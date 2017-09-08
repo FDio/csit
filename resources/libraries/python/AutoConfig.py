@@ -13,9 +13,9 @@
 
 """Library that supports Auto Configuration."""
 
-import yaml
 import logging
 import re
+import yaml
 
 from resources.libraries.python.VppPCIUtil import VppPCIUtil
 from resources.libraries.python.VppHugePageUtil import VppHugePageUtil
@@ -24,7 +24,6 @@ from resources.libraries.python.VppGrubUtil import VppGrubUtil
 from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.QemuUtils import QemuUtils
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.topology import Topology
 
 __all__ = ["AutoConfig"]
 
@@ -92,7 +91,7 @@ class AutoConfig(object):
 
         while True:
             answer = raw_input(question)
-            if len(answer) == 0:
+            if answer == '':
                 answer = default
                 break
             if re.findall(r'[0-9+]', answer):
@@ -125,7 +124,7 @@ class AutoConfig(object):
         answer = ''
         while not input_valid:
             answer = raw_input(question)
-            if len(answer) == 0:
+            if answer == '':
                 answer = default
             if re.findall(r'[YyNn]', answer):
                 input_valid = True
@@ -152,7 +151,7 @@ class AutoConfig(object):
             except yaml.YAMLError as exc:
                 print exc
 
-    def _updateconfig(self):
+    def updateconfig(self):
         """
         Update the testbed configuration, given the auto configuration file.
         We will write the system configuration file with the current node
@@ -215,9 +214,6 @@ class AutoConfig(object):
             if 'reserve_vpp_main_core' in self._nodes[key]['cpu']:
                 node['cpu']['reserve_vpp_main_core'] = \
                     self._nodes[key]['cpu']['reserve_vpp_main_core']
-            if 'total_buffers_per_queue' in self._nodes[key]['cpu']:
-                node['cpu']['total_buffers_per_queue'] = \
-                    self._nodes[key]['cpu']['total_buffers_per_queue']
 
             # Huge pages
             node['hugepages']['total'] = self._nodes[key]['hugepages']['total']
@@ -276,7 +272,8 @@ class AutoConfig(object):
 
         # Get workers
         vpp_workers = node['cpu']['vpp_workers']
-        if len(vpp_workers) > 0:
+        vpp_worker_len = len(vpp_workers)
+        if vpp_worker_len > 0:
             vpp_worker_str = ''
             for i, worker in enumerate(vpp_workers):
                 if i > 0:
@@ -317,10 +314,6 @@ class AutoConfig(object):
 
             num_rx_desc = None
             num_tx_desc = None
-            if 'rx_desc_entries' in value:
-                num_rx_desc = value['rx_desc_entries']
-            if 'tx_desc_entries' in value:
-                num_tx_desc = value['tx_desc_entries']
 
             # Create the devices string
             for interface in interfaces:
@@ -396,22 +389,20 @@ class AutoConfig(object):
         return reserve_vpp_main_core
 
     @staticmethod
-    def _calc_desc_and_queues(node, total_ports,
+    def _calc_desc_and_queues(total_numa_nodes,
                               total_ports_per_numa,
                               total_vpp_cpus,
                               ports_per_numa_value):
         """
         Calculate the number of descriptors and queues
 
-        :param node: Node dictionary
-        :param total_ports: The total number of ports to be used by vpp
+        :param total_numa_nodes: The total number of numa nodes
         :param total_ports_per_numa: The total number of ports for this
         numa node
         :param total_vpp_cpus: The total number of cpus to allocate for vpp
         :param ports_per_numa_value: The value from the ports_per_numa
         dictionary
-        :type node: dict
-        :type total_ports: int
+        :type total_numa_nodes: int
         :type total_ports_per_numa: int
         :type total_vpp_cpus: int
         :type ports_per_numa_value: dict
@@ -421,20 +412,21 @@ class AutoConfig(object):
         :rtype: int
         """
 
-        total_vpp_workers = int(float(total_vpp_cpus) *
-                                (float(total_ports_per_numa) /
-                                 float(total_ports)))
+        # Get the total vpp workers
+        total_vpp_workers = total_vpp_cpus
         ports_per_numa_value['total_vpp_workers'] = total_vpp_workers
 
+        # Get the number of rx queues
+        rx_queues = max(1, total_vpp_workers)
+        tx_queues = max(1, (rx_queues * total_numa_nodes) + 1)
+
         # Get the descriptor entries
-        desc_entries = max(1, total_vpp_workers) * \
-            node['cpu']['total_buffers_per_queue'] * \
-            total_ports
-        ports_per_numa_value['rx_desc_entries'] = desc_entries
-        ports_per_numa_value['tx_desc_entries'] = desc_entries
-        total_mbufs = desc_entries * 2
-        ports_per_numa_value['rx_queues'] = max(1, total_vpp_workers / 2)
-        ports_per_numa_value['tx_queues'] = max(1, total_vpp_workers / 2)
+        desc_entries = 1024
+        ports_per_numa_value['rx_queues'] = rx_queues
+        total_mbufs = (((rx_queues * desc_entries) +
+                        (tx_queues * desc_entries)) *
+                       total_ports_per_numa)
+        total_mbufs = total_mbufs
 
         return total_mbufs, total_vpp_workers
 
@@ -482,7 +474,7 @@ class AutoConfig(object):
 
             # Get the number of cpus to skip, we never use the first cpu
             other_cpus_start = 1
-            other_cpus_end = other_cpus_start + \
+            other_cpus_end = other_cpus_start +\
                 node['cpu']['total_other_cpus'] - 1
             other_workers = None
             if other_cpus_end is not 0:
@@ -500,15 +492,15 @@ class AutoConfig(object):
             if reserve_vpp_main_core:
                 total_with_main += 1
             total_mbufs = 0
-            if total_with_main is not 0:
+            if total_vpp_cpus is not 0:
                 for item in ports_per_numa.items():
                     numa_node = item[0]
                     value = item[1]
 
                     # Get the number of descriptors and queues
                     mbufs, total_vpp_workers = self._calc_desc_and_queues(
-                        node, len(interfaces), len(value['interfaces']),
-                        total_vpp_cpus, value)
+                        len(ports_per_numa),
+                        len(value['interfaces']), total_vpp_cpus, value)
                     total_mbufs += mbufs
 
                     # Get the VPP workers
@@ -516,12 +508,15 @@ class AutoConfig(object):
                         node, vpp_workers, numa_node, other_cpus_end,
                         total_vpp_workers, reserve_vpp_main_core)
 
+            total_mbufs *= 2.5
+            total_mbufs = max(16384, int(total_mbufs))
+
             # Save the info
             node['cpu']['vpp_workers'] = vpp_workers
             node['cpu']['total_mbufs'] = total_mbufs
 
         # Write the config
-        self._updateconfig()
+        self.updateconfig()
 
     def apply_vpp_startup(self):
         """
@@ -609,10 +604,10 @@ class AutoConfig(object):
             if 'grub' not in node:
                 node['grub'] = {}
             node['grub']['current_cmdline'] = current_cmdline
-            node['grub']['default_cmdline'] =\
+            node['grub']['default_cmdline'] = \
                 vppgrb.apply_cmdline(node, isolated_cpus)
 
-        self._updateconfig()
+        self.updateconfig()
 
     def get_hugepages(self):
         """
@@ -632,7 +627,7 @@ class AutoConfig(object):
             node['hugepages']['free'] = free
             node['hugepages']['size'] = size
 
-        self._updateconfig()
+        self.updateconfig()
 
     def get_grub(self):
         """
@@ -650,7 +645,8 @@ class AutoConfig(object):
             # Get the total number of isolated CPUs
             current_iso_cpus = 0
             iso_cpur = re.findall(r'isolcpus=[\w+\-,]+', current_cmdline)
-            if len(iso_cpur):
+            iso_cpurl = len(iso_cpur)
+            if iso_cpurl > 0:
                 iso_cpu_str = iso_cpur[0]
                 iso_cpu_str = iso_cpu_str.split('=')[1]
                 iso_cpul = iso_cpu_str.split(',')
@@ -672,7 +668,7 @@ class AutoConfig(object):
             node['grub']['default_cmdline'] = default_cmdline
             node['grub']['current_iso_cpus'] = current_iso_cpus
 
-        self._updateconfig()
+        self.updateconfig()
 
     def get_device(self):
         """
@@ -694,7 +690,7 @@ class AutoConfig(object):
             node['devices']['other_devices'] = vpp.get_other_devices()
             node['devices']['linkup_devices'] = vpp.get_link_up_devices()
 
-        self._updateconfig()
+        self.updateconfig()
 
     @staticmethod
     def get_cpu_layout(node):
@@ -722,7 +718,7 @@ class AutoConfig(object):
         pcpus = []
         lines = stdout.split('\n')
         for line in lines:
-            if len(line) == 0 or line[0] == '#':
+            if line == '' or line[0] == '#':
                 continue
             linesplit = line.split(',')
             layout = {'cpu': linesplit[0], 'core': linesplit[1],
@@ -757,7 +753,7 @@ class AutoConfig(object):
             node['cpuinfo'] = ""
 
         # Write the config
-        self._updateconfig()
+        self.updateconfig()
 
     def discover(self):
         """
@@ -783,7 +779,7 @@ class AutoConfig(object):
 
         :param node: Node dictionary
         :param total_cpus: The total number of cpus in the system
-        :param interfaces: The list of numa nodes in the system
+        :param numa_nodes: The list of numa nodes in the system
         :type node: dict
         :type total_cpus: int
         :type numa_nodes: list
@@ -792,7 +788,7 @@ class AutoConfig(object):
         interfaces = node['interfaces']
         total_nic_ports = len(interfaces)
 
-        print "\nYour system has {} CPUs and {} Numa Nodes.". \
+        print "\nYour system has {} core(s) and {} Numa Nodes.". \
             format(total_cpus, len(numa_nodes))
         print "You want to use {} ports.".format(total_nic_ports)
         print "\nYou can devote between 0 and {} cpu cores to VPP" \
@@ -800,7 +796,7 @@ class AutoConfig(object):
         print "To begin, we suggest not devoting any CPUs, then \
         reconfigure as needed."
 
-        question = '\nHow many CPUs do you want to reserve for processes \
+        question = '\nHow many core(s) do you want to reserve for processes \
 other than VPP? [0-{}][0]? '.format(str(total_cpus - 1))
         total_other_cpus = self._ask_user_range(question, 0,
                                                 total_cpus - 1, 0)
@@ -809,7 +805,7 @@ other than VPP? [0-{}][0]? '.format(str(total_cpus - 1))
         max_vpp_cpus = total_cpus - total_other_cpus - 1
         total_vpp_cpus = 0
         if max_vpp_cpus > 0:
-            question = "How many CPU(s) shall we use with VPP [0-{}][0]? ". \
+            question = "How many core(s) shall we use with VPP [0-{}][0]? ". \
                 format(max_vpp_cpus)
             total_vpp_cpus = self._ask_user_range(question, 0, max_vpp_cpus, 0)
             node['cpu']['total_vpp_cpus'] = total_vpp_cpus
@@ -817,18 +813,13 @@ other than VPP? [0-{}][0]? '.format(str(total_cpus - 1))
         max_main_cpus = max_vpp_cpus - total_vpp_cpus
         reserve_vpp_main_core = False
         if max_main_cpus > 0:
-            question = "Should we reserve 1 cpu for the VPP Main thread? "
-            question += "[y/N]? "
-            answer = self._ask_user_yn(question, 'n')
+            question = "Should we reserve 1 core for the VPP Main thread? "
+            question += "[Y/n]? "
+            answer = self._ask_user_yn(question, 'y')
             if answer == 'y':
                 reserve_vpp_main_core = True
             node['cpu']['reserve_vpp_main_core'] = reserve_vpp_main_core
             node['cpu']['vpp_main_core'] = 0
-
-        question = "How many rx/tx buffers per queue do you want? "
-        question += "[512-8192][512]? "
-        total_buffers_per_queue = self._ask_user_range(question, 512, 8192, 512)
-        node['cpu']['total_buffers_per_queue'] = total_buffers_per_queue
 
     def modify_cpu(self):
         """
@@ -881,14 +872,14 @@ other than VPP? [0-{}][0]? '.format(str(total_cpus - 1))
 
             # Populate the interfaces with the numa node
             ikeys = node['interfaces'].keys()
-            Topology.get_interfaces_numa_node(node, *tuple(ikeys))
+            VPPUtil.get_interfaces_numa_node(node, *tuple(ikeys))
 
             # We don't want to write the cpuinfo
             node['cpuinfo'] = ""
 
         # Write the configs
         self._update_auto_config()
-        self._updateconfig()
+        self.updateconfig()
 
     def _modify_other_devices(self, node,
                               other_devices, kernel_devices, dpdk_devices):
@@ -897,19 +888,20 @@ other than VPP? [0-{}][0]? '.format(str(total_cpus - 1))
 
         """
 
-        if len(other_devices) > 0:
+        odevices_len = len(other_devices)
+        if odevices_len > 0:
             print "\nThese device(s) are currently NOT being used",
             print "by VPP or the OS.\n"
             VppPCIUtil.show_vpp_devices(other_devices)
             question = "\nWould you like to give any of these devices"
-            question += "back to the OS [y/N]? "
+            question += " back to the OS [y/N]? "
             answer = self._ask_user_yn(question, 'N')
             if answer == 'y':
                 vppd = {}
                 for dit in other_devices.items():
                     dvid = dit[0]
                     device = dit[1]
-                    question = "Would you like to use device {} for".\
+                    question = "Would you like to use device {} for". \
                         format(dvid)
                     question += " the OS [y/N]? "
                     answer = self._ask_user_yn(question, 'n')
@@ -923,7 +915,8 @@ other than VPP? [0-{}][0]? '.format(str(total_cpus - 1))
                     kernel_devices[dvid] = device
                     del other_devices[dvid]
 
-        if len(other_devices) > 0:
+        odevices_len = len(other_devices)
+        if odevices_len > 0:
             print "\nThese device(s) are still NOT being used ",
             print "by VPP or the OS.\n"
             VppPCIUtil.show_vpp_devices(other_devices)
@@ -961,21 +954,22 @@ other than VPP? [0-{}][0]? '.format(str(total_cpus - 1))
             self._modify_other_devices(node, other_devices,
                                        kernel_devices, dpdk_devices)
 
-            if len(kernel_devices) > 0:
-                print "\nThese devices have kernel interfaces, but appear\
- to be safe to use with VPP.\n"
+            klen = len(kernel_devices)
+            if klen > 0:
+                print "\nThese devices have kernel interfaces, but",
+                print "appear to be safe to use with VPP.\n"
                 VppPCIUtil.show_vpp_devices(kernel_devices)
-                question = \
-                    "\nWould you like to use any of these device(s) for \
-VPP [y/N]? "
+                question = "\nWould you like to use any of these "
+                question += "device(s) for VPP [y/N]? "
                 answer = self._ask_user_yn(question, 'n')
                 if answer == 'y':
                     vppd = {}
                     for dit in kernel_devices.items():
                         dvid = dit[0]
                         device = dit[1]
-                        question = "Would you like to use device {} \
-for VPP [y/N]? ".format(dvid)
+                        question = "Would you like to use device {} ".\
+                                   format(dvid)
+                        question += "for VPP [y/N]? "
                         answer = self._ask_user_yn(question, 'n')
                         if answer == 'y':
                             vppd[dvid] = device
@@ -985,7 +979,8 @@ for VPP [y/N]? ".format(dvid)
                         dpdk_devices[dvid] = device
                         del kernel_devices[dvid]
 
-            if len(dpdk_devices) > 0:
+            dlen = len(dpdk_devices)
+            if dlen > 0:
                 print "\nThese device(s) will be used by VPP.\n"
                 VppPCIUtil.show_vpp_devices(dpdk_devices)
                 question = "\nWould you like to remove any of "
@@ -1014,12 +1009,12 @@ for VPP [y/N]? ".format(dvid)
                 VppPCIUtil.vpp_create_interface(interfaces, dvid, device)
             node['interfaces'] = interfaces
 
-            print "\nThese device(s) will be used by VPP, please rerun\
- this option if this is incorrect.\n"
+            print "\nThese device(s) will be used by VPP, please ",
+            print "rerun this option if this is incorrect.\n"
             VppPCIUtil.show_vpp_devices(dpdk_devices)
 
         self._update_auto_config()
-        self._updateconfig()
+        self.updateconfig()
 
     def modify_huge_pages(self):
         """
@@ -1035,8 +1030,9 @@ for VPP [y/N]? ".format(dvid)
             size = node['hugepages']['size']
             print "\nThere currently {} {} huge pages free.". \
                 format(free, size)
-            answer = self._ask_user_yn("Do you want to reconfigure the \
-number of huge pages [y/N]? ", 'N')
+            question = "Do you want to reconfigure the number of "
+            question += "huge pages [y/N]? "
+            answer = self._ask_user_yn(question, 'n')
             if answer == 'n':
                 continue
 
@@ -1053,19 +1049,17 @@ number of huge pages [y/N]? ", 'N')
         # Rediscover just the hugepages
         self.get_hugepages()
 
-    def patch_qemu(self):
+    @staticmethod
+    def patch_qemu(node):
         """
         Patch qemu with the correct patches.
 
+        :param node: Node dictionary
+        :type node: dict
         """
 
-        for i in self._nodes.items():
-            node = i[1]
-
-            print '\nWe are patching the node "{}":\n'.format(node['host'])
-
-            qmu = QemuUtils()
-            qmu.build_qemu(node, force_install=False, apply_patch=True)
+        print '\nWe are patching the node "{}":\n'.format(node['host'])
+        QemuUtils.build_qemu(node, force_install=True, apply_patch=True)
 
     @staticmethod
     def cpu_info(node):
@@ -1111,8 +1105,8 @@ number of huge pages [y/N]? ", 'N')
             smt = 'Disabled'
         print "{:>20}:    {}".format('SMT', smt)
 
-        # VPP Processes
-        print "\nVPP Processes: (Process Name: Cpu Number)"
+        # VPP Threads
+        print "\nVPP Threads: (Name: Cpu Number)"
         vpp_processes = cpu['vpp_processes']
         for i in vpp_processes.items():
             print "  {:10}: {:4}".format(i[0], i[1])
@@ -1126,11 +1120,12 @@ number of huge pages [y/N]? ", 'N')
 
         # devices = node['devices']
         # VppPCIUtil.show_vpp_devices(devices['dpdk_devices'])
-        interfaces = VPPUtil.get_hardware(node)
+        vpputl = VPPUtil()
+        interfaces = vpputl.get_hardware(node)
         if interfaces == {}:
             return
 
-        print "{:30} {:6} {:4} {:7} {:4} {:7}".\
+        print "{:30} {:6} {:4} {:7} {:4} {:7}". \
             format('Name', 'Socket', 'RXQs',
                    'RXDescs', 'TXQs', 'TXDescs')
         for intf in sorted(interfaces.items()):
@@ -1151,6 +1146,10 @@ number of huge pages [y/N]? ", 'N')
                 tx_ds = value['tx descs']
             print "{:30} {:>6} {:>4} {:>7} {:>4} {:>7}".format(
                 name, socket, rx_qs, rx_ds, tx_qs, tx_ds)
+        if 'cpu' in node and 'total_mbufs' in node['cpu']:
+            total_mbufs = node['cpu']['total_mbufs']
+            print "Total Number of Message Buffers: {}". \
+                format(total_mbufs)
 
     @staticmethod
     def hugepage_info(node):

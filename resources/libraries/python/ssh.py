@@ -141,7 +141,7 @@ class SSH(object):
         :rtype: tuple(int, str, str)
         """
 
-        logger.debug("Executing local command: {}".format(cmd))
+        logger.info(" Local Command: {}".format(cmd))
         out = ''
         err = ''
         prc = subprocess.Popen(cmd, shell=True, bufsize=1,
@@ -150,12 +150,12 @@ class SSH(object):
                                stderr=subprocess.PIPE)
         with prc.stdout:
             for line in iter(prc.stdout.readline, b''):
-                logger.info(line.strip('\n'))
+                logger.info("  {}".format(line.strip('\n')))
                 out += line
 
         with prc.stderr:
             for line in iter(prc.stderr.readline, b''):
-                logger.debug(line.strip('\n'))
+                logger.warn("  {}".format(line.strip('\n')))
                 err += line
 
         ret = prc.wait()
@@ -397,7 +397,7 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise TypeError('Node parameter is None')
     if cmd is None:
         raise TypeError('Command parameter is None')
-    if len(cmd) == 0:
+    if cmd == '':
         raise ValueError('Empty command parameter')
 
     ssh = SSH()

@@ -15,11 +15,34 @@
 import logging
 import re
 
+from collections import Counter
 from resources.libraries.python.ssh import SSH
 
 
 class VPPUtil(object):
     """General class for any VPP related methods/functions."""
+
+    @staticmethod
+    def _autoconfig_backup_file(ssh, filename):
+        """
+        Create a backup file.
+
+        :param ssh: ssh class
+        :param filename: The file to backup
+        :type ssh: class
+        :type filename: str
+        """
+
+        # Does a copy of the file exist, if not create one
+        ofile = filename + '.orig'
+        (ret, stdout, stderr) = ssh.exec_command('ls {}'.format(ofile))
+        if ret != 0:
+            logging.debug(stderr)
+            if stdout.strip('\n') != ofile:
+                cmd = 'sudo cp {} {}'.format(filename, ofile)
+                (ret, stdout, stderr) = ssh.exec_command(cmd)
+                if ret != 0:
+                    logging.debug(stderr)
 
     @staticmethod
     def _install_vpp_pkg(node, ssh, pkg):
@@ -53,53 +76,26 @@ class VPPUtil(object):
         :type ubuntu_version: string
         """
 
-        ofile = '/etc/apt/sources.list.d/99fd.io.list.orig'  # Original file
-        nfile = '/etc/apt/sources.list.d/99fd.io.list'  # New file
-        ofile_exists = False
-        nfile_exists = False
-
+        # Modify the sources list
+        sfile = '/etc/apt/sources.list.d/99fd.io.list'
         ssh = SSH()
         ssh.connect(node)
 
-        # Save the original file, then write a new one
-        # Does a copy of the original file exist
-        (ret, stdout, stderr) = ssh.exec_command('ls {}'.format(ofile))
-        if ret != 0:
-            logging.debug(stderr)
-        if stdout.strip('\n') == ofile:
-            ofile_exists = True
-
-        # Does a copy of the original file exist
-        (ret, stdout, stderr) = ssh.exec_command('ls {}'.format(nfile))
-        if ret != 0:
-            logging.debug(stderr)
-        if stdout.strip('\n') == nfile:
-            nfile_exists = True
-
-        # Make a copy of the original file
-        if (nfile_exists is True) and (ofile_exists is not True):
-            cmd = 'sudo cp {} {}'.format(nfile, ofile)
-            (ret, stdout, stderr) = ssh.exec_command(cmd)
-            if ret != 0:
-                raise RuntimeError('{} command failed on node {} {}'.format(
-                    cmd,
-                    node['host'],
-                    stderr))
+        # Backup the sources list
+        self._autoconfig_backup_file(ssh, sfile)
 
         # Remove the current file
-        if nfile_exists is True:
-            cmd = 'rm {}'.format(nfile)
-            (ret, stdout, stderr) = ssh.exec_command(cmd)
-            if ret != 0:
-                raise RuntimeError('{} failed on node {} {}'.format(
-                    cmd,
-                    node['host'],
-                    stderr))
+        cmd = 'rm {}'.format(sfile)
+        (ret, stdout, stderr) = ssh.exec_command(cmd)
+        if ret != 0:
+            logging.debug('%s failed on node %s %s %s',
+                          cmd, node['host'], stdout, stderr)
 
-        reps = 'deb [trusted=yes] https://nexus.fd.io/content/repositories/\
-fd.io.stable.{}.ubuntu.{}.main/ ./\n'.format(fdio_release, ubuntu_version)
+        reps = 'deb [trusted=yes] https://nexus.fd.io/content/'
+        reps += 'repositories/fd.io.stable.{}.ubuntu.{}.main/ ./\n' \
+            .format(fdio_release, ubuntu_version)
 
-        cmd = 'echo "{0}" | sudo tee {1}'.format(reps, nfile)
+        cmd = 'echo "{0}" | sudo tee {1}'.format(reps, sfile)
         (ret, stdout, stderr) = ssh.exec_command(cmd)
         if ret != 0:
             raise RuntimeError('{} failed on node {} {}'.format(
@@ -158,12 +154,6 @@ fd.io.stable.{}.ubuntu.{}.main/ ./\n'.format(fdio_release, ubuntu_version)
 
         ssh = SSH()
         ssh.connect(node)
-
-        cmd = 'dpkg -l | grep vpp'
-        (ret, stdout, stderr) = ssh.exec_command(cmd)
-        if ret != 0:
-            raise RuntimeError('{} failed on node {} {} {}'.format(
-                cmd, node['host'], stdout, stderr))
 
         self._uninstall_vpp_pkg(node, ssh, 'vpp-api-python')
         self._uninstall_vpp_pkg(node, ssh, 'vpp-api-java')
@@ -254,25 +244,25 @@ fd.io.stable.{}.ubuntu.{}.main/ ./\n'.format(fdio_release, ubuntu_version)
 
             # Ethernet address
             rfall = re.findall(r'Ethernet address', line)
-            if len(rfall):
+            if rfall:
                 spl = line.split()
                 interfaces[name]['mac'] = spl[2]
 
             # Carrier
             rfall = re.findall(r'carrier', line)
-            if len(rfall):
+            if rfall:
                 spl = line.split('carrier ')
                 interfaces[name]['carrier'] = spl[1]
 
             # Socket
             rfall = re.findall(r'cpu socket', line)
-            if len(rfall):
+            if rfall:
                 spl = line.split('cpu socket ')
                 interfaces[name]['cpu socket'] = spl[1]
 
             # Queues and Descriptors
             rfall = re.findall(r'rx queues', line)
-            if len(rfall):
+            if rfall:
                 spl = line.split(',')
                 interfaces[name]['rx queues'] = spl[0].lstrip(' ').split(' ')[2]
                 interfaces[name]['rx descs'] = spl[1].split(' ')[3]
@@ -280,3 +270,66 @@ fd.io.stable.{}.ubuntu.{}.main/ ./\n'.format(fdio_release, ubuntu_version)
                 interfaces[name]['tx descs'] = spl[3].split(' ')[3]
 
         return interfaces
+
+    @staticmethod
+    def get_installed_vpp_pkgs(node):
+        """
+        Get the VPP hardware information and return it in a
+        dictionary
+
+        :returns: List of the packages installed
+        :rtype: list
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        pkgs = []
+        cmd = 'dpkg -l | grep vpp'
+        (ret, stdout, stderr) = ssh.exec_command(cmd)
+        if ret != 0:
+            logging.warning("%s failed on node %s %s %s",
+                            cmd, node['host'], stdout, stderr)
+            return pkgs
+
+        lines = stdout.split('\n')
+        for line in lines:
+            items = line.split()
+            if len(items) < 2:
+                continue
+            pkg = {'name': items[1], 'version': items[2]}
+            pkgs.append(pkg)
+
+        return pkgs
+
+    @staticmethod
+    def get_interfaces_numa_node(node, *iface_keys):
+        """Get numa node on which are located most of the interfaces.
+
+        Return numa node with highest count of interfaces provided as arguments.
+        Return 0 if the interface does not have numa_node information available.
+        If all interfaces have unknown location (-1), then return 0.
+        If most of interfaces have unknown location (-1), but there are
+        some interfaces with known location, then return the second most
+        location of the provided interfaces.
+
+        :param node: Node from DICT__nodes.
+        :param iface_keys: Interface keys for lookup.
+        :type node: dict
+        :type iface_keys: strings
+        """
+        numa_list = []
+        for if_key in iface_keys:
+            try:
+                numa_list.append(node['interfaces'][if_key].get('numa_node'))
+            except KeyError:
+                pass
+
+        numa_cnt_mc = Counter(numa_list).most_common()
+        numa_cnt_mc_len = len(numa_cnt_mc)
+        if numa_cnt_mc_len > 0 and numa_cnt_mc[0][0] != -1:
+            return numa_cnt_mc[0][0]
+        elif numa_cnt_mc_len > 1 and numa_cnt_mc[0][0] == -1:
+            return numa_cnt_mc[1][0]
+
+        return 0

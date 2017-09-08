@@ -67,10 +67,10 @@ class VppGrubUtil(object):
         # Get the Default Linux command line, ignoring commented lines
         lines = stdout.split('\n')
         for line in lines:
-            if (len(line) == 0) or (line[0] == '#'):
+            if line == '' or line[0] == '#':
                 continue
             ldefault = re.findall(r'GRUB_CMDLINE_LINUX_DEFAULT=.+', line)
-            if len(ldefault) > 0:
+            if ldefault:
                 self._default_cmdline = ldefault[0]
                 break
 
@@ -107,23 +107,48 @@ class VppGrubUtil(object):
         value = value.rstrip('"').lstrip('"')
 
         iommu = re.findall(r'iommu=\w+', value)
+        pstate = re.findall(r'intel_pstate=\w+', value)
         # If there is already some iommu commands set, leave them,
         # if not use ours
-        if not iommu:
-            value = '{} iommu=pt intel_iommu=on'.format(value)
+        if not iommu or not pstate:
+            value = '{} intel_pstate=disable'.format(value)
 
         # Replace isolcpus with ours
         isolcpus = re.findall(r'isolcpus=[\w+\-,]+', value)
         if not isolcpus:
-            if isolated_cpus is not '':
+            if isolated_cpus != '':
                 value = "{} isolcpus={}".format(value, isolated_cpus)
         else:
-            if isolated_cpus is not '':
+            if isolated_cpus != '':
                 value = re.sub(r'isolcpus=[\w+\-,]+',
                                'isolcpus={}'.format(isolated_cpus),
                                value)
             else:
                 value = re.sub(r'isolcpus=[\w+\-,]+', '', value)
+
+        nohz = re.findall(r'nohz_full=[\w+\-,]+', value)
+        if not nohz:
+            if isolated_cpus != '':
+                value = "{} nohz_full={}".format(value, isolated_cpus)
+        else:
+            if isolated_cpus != '':
+                value = re.sub(r'nohz_full=[\w+\-,]+',
+                               'nohz_full={}'.format(isolated_cpus),
+                               value)
+            else:
+                value = re.sub(r'nohz_full=[\w+\-,]+', '', value)
+
+        rcu = re.findall(r'rcu_nocbs=[\w+\-,]+', value)
+        if not rcu:
+            if isolated_cpus != '':
+                value = "{} rcu_nocbs={}".format(value, isolated_cpus)
+        else:
+            if isolated_cpus != '':
+                value = re.sub(r'rcu_nocbs=[\w+\-,]+',
+                               'rcu_nocbs={}'.format(isolated_cpus),
+                               value)
+            else:
+                value = re.sub(r'rcu_nocbs=[\w+\-,]+', '', value)
 
         value = value.lstrip(' ').rstrip(' ')
         cmdline = 'GRUB_CMDLINE_LINUX_DEFAULT="{}"'.format(value)
@@ -178,7 +203,7 @@ class VppGrubUtil(object):
         content = ""
         lines = stdout.split('\n')
         for line in lines:
-            if len(line) == 0:
+            if line == '':
                 content += line + '\n'
                 continue
             if line[0] == '#':
@@ -186,7 +211,7 @@ class VppGrubUtil(object):
                 continue
 
             ldefault = re.findall(r'GRUB_CMDLINE_LINUX_DEFAULT=.+', line)
-            if len(ldefault) > 0:
+            if ldefault:
                 content += vpp_cmdline + '\n'
             else:
                 content += line + '\n'

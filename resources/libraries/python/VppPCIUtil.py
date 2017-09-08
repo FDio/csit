@@ -45,14 +45,12 @@ class VppPCIUtil(object):
 
         ids = re.findall(PCI_DEV_ID_REGEX, device_string)
         descriptions = re.findall(r'\'([\s\S]*?)\'', device_string)
-        unuseds = re.findall(r'unused=[\w,]+', device_string)
         interfaces = re.findall(r'if=[\w,]+', device_string)
 
-        for i in range(len(ids)):
-            device = {'description': descriptions[i],
-                      'unused': unuseds[i].split('=')[1]}
+        for i, j in enumerate(ids):
+            device = {'description': descriptions[i]}
 
-            cmd = 'ls /sys/bus/pci/devices/{}/driver/module/drivers'.\
+            cmd = 'ls /sys/bus/pci/devices/{}/driver/module/drivers'. \
                 format(ids[i])
             (ret, stdout, stderr) = ssh.exec_command(cmd)
             if ret == 0:
@@ -241,7 +239,7 @@ class VppPCIUtil(object):
         interfaces[name]['numa_node'] = device['numa_node']
         if 'l2addr' in device:
             l2_addrs = device['l2addr']
-            for i in range(len(l2_addrs)):
+            for i, j in enumerate(l2_addrs):
                 if i > 0:
                     mname = 'mac_address' + str(i + 1)
                     interfaces[name][mname] = l2_addrs[i]
@@ -269,7 +267,7 @@ class VppPCIUtil(object):
             device = dit[1]
             interfaces = device['interfaces']
             interface = 'NA'
-            for i in range(len(interfaces)):
+            for i, j in enumerate(interfaces):
                 if i > 0:
                     interface += ',' + interfaces[i]
                 else:

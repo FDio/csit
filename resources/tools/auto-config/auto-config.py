@@ -18,9 +18,11 @@
 import re
 import os
 import sys
+import logging
 
 from resources.libraries.python.AutoConfig import AutoConfig
 from resources.libraries.python.ssh import SSH
+from resources.libraries.python.VPPUtil import VPPUtil
 
 VPP_DEFAULT_CONFIGURATION_FILE = './configs/auto-config.yaml'
 VPP_SYSTEM_CONFIGURATION_FILE = './configs/system-config.yaml'
@@ -45,7 +47,7 @@ def autoconfig_yn(question, default):
     answer = ''
     while not input_valid:
         answer = raw_input(question)
-        if len(answer) == 0:
+        if answer == '':
             answer = default
         if re.findall(r'[YyNn]', answer):
             input_valid = True
@@ -129,7 +131,7 @@ def autoconfig_show_system():
 
     """
 
-    acfg = AutoConfig(VPP_DEFAULT_CONFIGURATION_FILE)
+    acfg = AutoConfig(VPP_SYSTEM_CONFIGURATION_FILE)
 
     acfg.discover()
 
@@ -319,7 +321,7 @@ def autoconfig_dryrun():
     Execute the dryrun function.
 
     """
-    acfg = AutoConfig(VPP_DEFAULT_CONFIGURATION_FILE)
+    acfg = AutoConfig(VPP_SYSTEM_CONFIGURATION_FILE)
 
     # Discover
     acfg.discover()
@@ -344,11 +346,77 @@ def autoconfig_dryrun():
     acfg.apply_huge_pages()
 
 
+def autoconfig_install():
+    """
+    Install or Uninstall VPP.
+
+    """
+
+    # Since these commands will take a while, we
+    # want to see the progress
+    logger = logging.getLogger()
+
+    acfg = AutoConfig(VPP_SYSTEM_CONFIGURATION_FILE)
+    vutil = VPPUtil()
+
+    nodes = acfg.get_nodes()
+    for i in nodes.items():
+        node = i[1]
+
+        pkgs = vutil.get_installed_vpp_pkgs(node)
+
+        if pkgs is not []:
+            print "\nThese packages are installed on node {}"\
+                .format(node['host'])
+            print "{:25} {}".format("Name", "Version")
+            for pkg in pkgs:
+                print "{:25} {}".format(
+                    pkg['name'], pkg['version'])
+            question = "\nDo you want to uninstall these "
+            question += "packages [y/N]? "
+            answer = autoconfig_yn(question, 'n')
+            if answer == 'y':
+                logger.setLevel(logging.INFO)
+                vutil.uninstall_vpp_ubuntu(node)
+        else:
+            print "\nThere are no VPP packages on node {}."\
+                .format(node['host'])
+            question = "Do you want to install VPP [Y/n]? "
+            answer = autoconfig_yn(question, 'y')
+            if answer == 'y':
+                logger.setLevel(logging.INFO)
+                vutil.install_vpp_ubuntu(node)
+
+    # Set the logging level back
+    logger.setLevel(logging.ERROR)
+
+
+def autoconfig_patch_qemu():
+    """
+    Patch the correct qemu version that is needed for openstack
+
+    """
+
+    # Since these commands will take a while, we
+    # want to see the progress
+    logger = logging.getLogger()
+
+    acfg = AutoConfig(VPP_SYSTEM_CONFIGURATION_FILE)
+
+    nodes = acfg.get_nodes()
+    for i in nodes.items():
+        node = i[1]
+
+        logger.setLevel(logging.INFO)
+        acfg.patch_qemu(node)
+
+
 def autoconfig_not_implemented():
     """
     This feature is not implemented
 
     """
+
     print "This Feature is not implented yet"
 
 
@@ -403,6 +471,10 @@ def autoconfig_main():
             autoconfig_dryrun()
         elif answer == '3':
             autoconfig_apply()
+        elif answer == '5':
+            autoconfig_install()
+        elif answer == '6':
+            autoconfig_patch_qemu()
         elif answer == '9' or answer == 'q':
             return
         else:
@@ -417,9 +489,12 @@ def autoconfig_setup():
 
     """
 
-    acfg = AutoConfig(VPP_DEFAULT_CONFIGURATION_FILE)
+    logging.basicConfig(level=logging.ERROR)
 
-    print "\nWelcome to the FDIO system configuration utility"
+    acfg = AutoConfig(VPP_DEFAULT_CONFIGURATION_FILE)
+    acfg.updateconfig()
+
+    print "\nWelcome to the VPP system configuration utility"
 
     print "\nWe'll create or modify these files:"
     print "    /etc/vpp/startup.conf"
@@ -454,7 +529,7 @@ if __name__ == '__main__':
 
     # Check for root
     if not os.geteuid() == 0:
-        sys.exit('\nPlease run the FDIO Configuration Utility as root.')
+        sys.exit('\nPlease run the VPP Configuration Utility as root.')
 
     # Set the PYTHONPATH
     sys.path.append('../../..')

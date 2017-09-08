@@ -263,7 +263,7 @@ class QemuUtils(object):
         """
         qga_cmd = '(printf "\xFF"; sleep 1) | sudo -S socat - UNIX-CONNECT:' + \
                   self._qga_sock
-        #TODO: probably need something else
+        # TODO: probably need something else
         (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
         if int(ret_code) != 0:
             logger.debug('QGA execute failed {0}'.format(stderr))
