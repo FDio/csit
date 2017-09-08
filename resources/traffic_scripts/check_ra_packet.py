@@ -17,6 +17,8 @@
 import sys
 import ipaddress
 
+from scapy.layers.inet6 import IPv6, ICMPv6ND_RA, ICMPv6ND_NS
+
 from resources.libraries.python.PacketVerifier import RxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
@@ -56,15 +58,23 @@ def main():
     interval = int(args.get_arg('interval'))
     rxq = RxQueue(rx_if)
 
-    ether = rxq.recv(max(5, interval))
+    # receive ICMPv6ND_RA packet
+    while True:
+        ether = rxq.recv(max(5, interval))
+        if ether is None:
+            raise RuntimeError('ICMP echo Rx timeout')
 
-    # Check whether received packet contains layer RA and check other values
-    if ether is None:
-        raise RuntimeError('ICMP echo Rx timeout')
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+        else:
+            # otherwise process the current packet
+            break
 
-    if not ether.haslayer('ICMPv6ND_RA'):
-        raise RuntimeError('Not an RA packet received {0}'
-                           .format(ether.__repr__()))
+    # Check if received packet contains layer RA and check other values
+    if not ether.haslayer(ICMPv6ND_RA):
+        raise RuntimeError('Not an RA packet received {0}'.
+                           format(ether.__repr__()))
 
     src_address = ipaddress.IPv6Address(unicode(ether['IPv6'].src))
     dst_address = ipaddress.IPv6Address(unicode(ether['IPv6'].dst))
@@ -72,22 +82,22 @@ def main():
     all_nodes_multicast = ipaddress.IPv6Address(u'ff02::1')
 
     if src_address != link_local:
-        raise RuntimeError(
-            'Source address ({0}) not matching link local address({1})'.format(
-                src_address, link_local))
+        raise RuntimeError('Source address ({0}) not matching link local '
+                           'address ({1})'.format(src_address, link_local))
     if dst_address != all_nodes_multicast:
-        raise RuntimeError('Packet destination address ({0}) is not the all '
-                           'nodes multicast address ({1}).'.format(
-                            dst_address, all_nodes_multicast))
-    if ether['IPv6'].hlim != 255:
-        raise RuntimeError('Hop limit not correct: {0}!=255'.format(
-            ether['IPv6'].hlim))
+        raise RuntimeError('Packet destination address ({0}) is not the all'
+                           ' nodes multicast address ({1}).'.
+                           format(dst_address, all_nodes_multicast))
+    if ether[IPv6].hlim != 255:
+        raise RuntimeError('Hop limit not correct: {0}!=255'.
+                           format(ether[IPv6].hlim))
 
-    ra_code = ether['ICMPv6 Neighbor Discovery - Router Advertisement'].code
+    ra_code = ether[ICMPv6ND_RA].code
     if ra_code != 0:
         raise RuntimeError('ICMP code: {0} not correct. '.format(ra_code))
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
