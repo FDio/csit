@@ -19,11 +19,9 @@ the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
 import sys
 import ipaddress
 
+from scapy.layers.l2 import Ether,  Dot1Q
 from scapy.layers.inet import ICMP, IP
-from scapy.layers.l2 import Ether
-from scapy.layers.l2 import Dot1Q
-from scapy.layers.inet6 import ICMPv6EchoRequest
-from scapy.layers.inet6 import IPv6
+from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6ND_NS
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
@@ -107,8 +105,8 @@ def main():
             pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                        IP(src=src_ip, dst=dst_ip) /
                        ICMP())
-        ip_format = 'IP'
-        icmp_format = 'ICMP'
+        ip_format = IP
+        icmp_format = ICMP
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
         if encaps == 'Dot1q':
             pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
@@ -125,8 +123,8 @@ def main():
             pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                        IPv6(src=src_ip, dst=dst_ip) /
                        ICMPv6EchoRequest())
-        ip_format = 'IPv6'
-        icmp_format = 'ICMPv6EchoRequest'
+        ip_format = IPv6
+        icmp_format = ICMPv6EchoRequest
     else:
         raise ValueError("IP(s) not in correct format")
 
@@ -134,44 +132,55 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    ether = rxq.recv(2)
+    # Receive ICMP / ICMPv6 echo reply
+    while True:
+        ether = rxq.recv(2,)
+        if ether is None:
+            raise RuntimeError('ICMP echo Rx timeout')
 
-    # Check whether received packet contains layers Ether, IP and ICMP
-    if ether is None:
-        raise RuntimeError('ICMP echo Rx timeout')
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+        else:
+            # otherwise process the current packet
+            break
 
+    # Check whether received packet contains layers IP/IPv6 and
+    # ICMP/ICMPv6EchoRequest
     if encaps_rx:
         if encaps_rx == 'Dot1q':
             if not vlan1_rx:
                 vlan1_rx = vlan1
             if not ether.haslayer(Dot1Q):
-                raise RuntimeError('Not VLAN tagged Eth frame received:\n{0}'
-                                   .format(ether.__repr__()))
+                raise RuntimeError('Not VLAN tagged Eth frame received:\n{0}'.
+                                   format(ether.__repr__()))
             elif ether[Dot1Q].vlan != int(vlan1_rx):
                 raise RuntimeError('Ethernet frame with wrong VLAN tag ({}) '
-                                   'received ({} expected):\n{}'.format(
-                    ether[Dot1Q].vlan, vlan1_rx, ether.__repr__()))
+                                   'received ({} expected):\n{}'.
+                                   format(ether[Dot1Q].vlan, vlan1_rx,
+                                          ether.__repr__()))
         elif encaps_rx == 'Dot1ad':
             if not vlan1_rx:
                 vlan1_rx = vlan1
             if not vlan2_rx:
                 vlan2_rx = vlan2
             # TODO
-            raise RuntimeError('Encapsulation {0} not implemented yet.'
-                               .format(encaps_rx))
+            raise RuntimeError('Encapsulation {0} not implemented yet.'.
+                               format(encaps_rx))
         else:
-            raise RuntimeError('Unsupported/unknown encapsulation expected: {0}'
-                               .format(encaps_rx))
+            raise RuntimeError('Unsupported encapsulation expected: {0}'.
+                               format(encaps_rx))
 
     if not ether.haslayer(ip_format):
-        raise RuntimeError('Not an IP packet received:\n{0}'
-                           .format(ether.__repr__()))
+        raise RuntimeError('Not an IP/IPv6 packet received:\n{0}'.
+                           format(ether.__repr__()))
 
     if not ether.haslayer(icmp_format):
-        raise RuntimeError('Not an ICMP packet received:\n{0}'
-                           .format(ether.__repr__()))
+        raise RuntimeError('Not an ICMP/ICMPv6EchoRequest packet received:\n'
+                           '{0}'.format(ether.__repr__()))
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
