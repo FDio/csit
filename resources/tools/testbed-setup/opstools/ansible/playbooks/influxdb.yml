@@ -1,0 +1,6 @@
+---
+- name: Apply influxdb role
+  hosts: influxdb
+  any_errors_fatal: true
+  roles:
+    - influxdb

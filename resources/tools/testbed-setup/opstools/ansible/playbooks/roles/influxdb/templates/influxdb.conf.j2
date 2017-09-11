@@ -1,0 +1,106 @@
+###
+### [meta]
+###
+### Controls the parameters for the Raft consensus group that stores metadata
+### about the InfluxDB cluster.
+###
+[meta]
+  # Where the metadata/raft database is stored
+  dir = "/var/lib/influxdb/meta"
+
+###
+### [data]
+###
+### Controls where the actual shard data for InfluxDB lives and how it is
+### flushed from the WAL. "dir" may need to be changed to a suitable place
+### for your system, but the WAL settings are an advanced configuration. The
+### defaults should work for most systems.
+###
+[data]
+  # The directory where the TSM storage engine stores TSM files.
+  dir = "/var/lib/influxdb/data"
+
+  # The directory where the TSM storage engine stores WAL files.
+  wal-dir = "/var/lib/influxdb/wal"
+
+###
+### [coordinator]
+###
+### Controls the clustering service configuration.
+###
+[coordinator]
+
+###
+### [retention]
+###
+### Controls the enforcement of retention policies for evicting old data.
+###
+[retention]
+
+###
+### [shard-precreation]
+###
+### Controls the precreation of shards, so they are available before data arrives.
+### Only shards that, after creation, will have both a start- and end-time in the
+### future, will ever be created. Shards are never precreated that would be wholly
+### or partially in the past.
+[shard-precreation]
+
+###
+### Controls the system self-monitoring, statistics and diagnostics.
+###
+### The internal database for monitoring data is created automatically if
+### if it does not already exist. The target retention within this database
+### is called 'monitor' and is also created with a retention period of 7 days
+### and a replication factor of 1, if it does not exist. In all cases the
+### this retention policy is configured as the default for the database.
+[monitor]
+
+###
+### [admin]
+###
+### Controls the availability of the built-in, web-based admin interface. If HTTPS is
+### enabled for the admin interface, HTTPS must also be enabled on the [http] service.
+###
+### NOTE: This interface is deprecated as of 1.1.0 and will be removed in a future release.
+[admin]
+enabled = true
+
+###
+### [http]
+###
+### Controls how the HTTP endpoints are configured. These are the primary
+### mechanism for getting data into and out of InfluxDB.
+###
+[http]
+enabled = true
+
+###
+### [subscriber]
+###
+### Controls the subscriptions, which can be used to fork a copy of all data
+### received by the InfluxDB host.
+###
+[subscriber]
+enabled = false
+
+[[collectd]]
+  enabled = true
+  bind-address = ":25826" # the bind address
+  database = "collectd" # Name of the database that will be written to
+  retention-policy = ""
+  batch-size = 500 # will flush if this many points get buffered
+  batch-pending = 10 # number of batches that may be pending in memory
+  batch-timeout = "10s"
+  read-buffer = 0 # UDP read buffer size, 0 means to use OS default
+  typesdb = "/usr/share/collectd/types.db"
+  security-level = "none" # "none", "sign", or "encrypt"
+  auth-file = "/etc/collectd/auth_file"
+
+###
+### [continuous_queries]
+###
+### Controls how continuous queries are run within InfluxDB.
+###
+
+[continuous_queries]

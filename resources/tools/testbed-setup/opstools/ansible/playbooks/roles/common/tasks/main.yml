@@ -1,0 +1,12 @@
+---
+
+- hostname:
+    name: "{{ inventory_hostname }}"
+
+- lineinfile:
+    dest: /etc/hosts
+    line: '127.0.1.1 {{ inventory_hostname }}'
+    
+- name: Update apt cache
+  shell: apt update -y --allow-unauthenticated --allow-insecure-repositories
+  when: ansible_pkg_mgr == "apt"

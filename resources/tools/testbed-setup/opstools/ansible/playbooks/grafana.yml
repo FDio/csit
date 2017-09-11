@@ -1,0 +1,6 @@
+---
+- name: Apply grafana role
+  hosts: grafana
+  any_errors_fatal: true
+  roles:
+    - grafana

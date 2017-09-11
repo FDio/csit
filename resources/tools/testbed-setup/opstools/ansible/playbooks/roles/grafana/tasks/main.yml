@@ -1,0 +1,21 @@
+---
+- include_vars: group_vars/grafana
+
+- get_url:
+    url: "{{ grafana_url }}"
+    dest: /tmp/grafana_{{ grafana_version }}_amd64.deb
+    validate_certs: no
+  when:
+    - ansible_os_family == "Debian"
+
+- name: install grafana package (deb)
+  apt:
+    deb: /tmp/grafana_{{ grafana_version }}_amd64.deb
+  when:
+    - ansible_os_family == "Debian"
+
+- name: start grafana-server
+  service:
+    name: grafana-server
+    state: started
+    enabled: yes

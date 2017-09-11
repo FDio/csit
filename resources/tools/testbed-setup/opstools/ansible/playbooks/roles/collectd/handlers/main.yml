@@ -1,0 +1,10 @@
+---
+- name: Reload systemctl
+  command: systemctl daemon-reload
+  when: ansible_service_mgr == "systemd"
+- name: Restart collectd service
+  service: name=collectd state=restarted enabled=yes
+  when: ansible_service_mgr == "systemd"
+- name: Restart collectd service
+  shell: service collectd restart
+  when: ansible_service_mgr == "upstart"

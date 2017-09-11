@@ -1,0 +1,6 @@
+---
+- name: Apply ntp role
+  hosts: all
+  any_errors_fatal: true
+  roles:
+    - ntp

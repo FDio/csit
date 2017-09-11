@@ -1,0 +1,6 @@
+---
+- name: Apply fluentd role
+  hosts: fluentd
+  any_errors_fatal: true
+  roles:
+    - fluentd

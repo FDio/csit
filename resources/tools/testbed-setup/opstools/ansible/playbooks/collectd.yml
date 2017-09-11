@@ -1,0 +1,6 @@
+---
+- name: Apply collectd role
+  hosts: collectd
+  any_errors_fatal: true
+  roles:
+    - collectd

@@ -1,0 +1,6 @@
+---
+- name: Apply logstash role
+  hosts: logstash
+  any_errors_fatal: true
+  roles:
+    - logstash

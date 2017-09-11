@@ -1,0 +1,65 @@
+---
+- include_vars: group_vars/common
+
+- name: Install pubkey for repo (apt)
+  shell: wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+  when: ansible_pkg_mgr == "apt"
+
+- name: Install logstash package repository (apt)
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/5.x/apt stable main
+  when: ansible_pkg_mgr == "apt"
+
+- name: Install pubkey for repo (yum)
+  shell: rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+  when: ansible_pkg_mgr == "yum"
+
+- name: Update repo cache (apt)
+  shell: apt update -y --allow-unauthenticated --allow-insecure-repositories
+  when: ansible_pkg_mgr == "apt"
+
+- name: Install logstash package repository (yum)
+  copy:
+    src: files/logstash.repo
+    dest: /etc/yum.repos.d/logstash.repo
+  when: ansible_pkg_mgr == "yum"
+
+- name: Install logstash
+  package:
+    name: logstash
+    state: latest
+
+- name: Clean logstash configurations
+  file: path='/etc/logstash/conf.d/{{ item }}' state=absent
+  with_fileglob:
+    - /etc/logstash/conf.d/*
+                         
+- name: Install logstash configuration (openstack)
+  template: src=templates/openstack.conf.j2 dest=/etc/logstash/conf.d/openstack.conf
+  notify:
+    - Reload systemctl
+    - Restart logstash service
+  when: "'virl' in group_names"
+
+- name: Logstash configuration file
+  copy:
+    src: files/logstash.yml
+    dest: /etc/logstash/logstash.yml
+  notify:
+    - Reload systemctl
+    - Restart logstash service
+        
+- name: Update service file with user
+  lineinfile:
+    destfile: /etc/systemd/system/logstash.service
+    regexp: '^User='
+    line: 'User=root'
+  notify:
+    - Reload systemctl
+    - Restart logstash service
+            
+- name: Start logstash
+  service:
+    name: logstash
+    state: restarted
+    enabled: yes

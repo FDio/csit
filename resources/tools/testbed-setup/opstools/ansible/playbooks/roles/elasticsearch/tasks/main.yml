@@ -1,0 +1,18 @@
+---
+
+- name: Download elasticsearch
+  get_url:
+    url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.4.0.deb
+    dest: /tmp/elasticsearch-5.4.0.deb
+  when: ansible_os_family == 'Debian'
+  
+- name: install elasticsearch
+  apt:
+    deb: /tmp/elasticsearch-5.4.0.deb
+  when: ansible_os_family == 'Debian'
+
+- name: elasticsearch configuration
+  template: src=templates/elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml
+  notify:
+    - Reload systemctl
+    - Restart elasticsearch service

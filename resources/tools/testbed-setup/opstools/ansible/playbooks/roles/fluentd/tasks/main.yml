@@ -1,0 +1,18 @@
+---
+
+- name: install fluentd
+  shell: curl -L https://toolbelt.treasuredata.com/sh/install-ubuntu-xenial-td-agent2.sh | sh
+  when: ansible_os_family == 'Debian'
+
+- name: install fluentd
+  shell: curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
+  when: ansible_os_family == 'RedHat'
+
+- name: install fluentd elasticsearch plugin
+  shell:  /usr/sbin/td-agent-gem install fluent-plugin-elasticsearch --no-document
+  
+- name: start fluentd
+  service:
+    name: td-agent
+    state: restarted
+    enabled: yes

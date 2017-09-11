@@ -1,0 +1,5 @@
+---
+- name: Apply VIRL role
+  hosts: virl
+  roles:
+    - virl

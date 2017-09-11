@@ -1,0 +1,10 @@
+---
+- name: Reload systemctl
+  command: systemctl daemon-reload
+  when: ansible_service_mgr == "systemd"
+- name: Restart logstash service
+  service: name=logstash state=restarted enabled=yes
+  when: ansible_service_mgr == "systemd"
+- name: Restart logstash service
+  shell: service logstash restart
+  when: ansible_service_mgr == "upstart"

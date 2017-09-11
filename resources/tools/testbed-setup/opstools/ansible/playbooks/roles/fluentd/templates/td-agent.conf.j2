@@ -1,0 +1,12 @@
+<match *.**>
+  type copy
+  <store>
+    type elasticsearch
+    host localhost
+    port 9200
+    include_tag_key true
+    tag_key @log_name
+    logstash_format true
+    flush_interval 10s
+  </store>
+</match>

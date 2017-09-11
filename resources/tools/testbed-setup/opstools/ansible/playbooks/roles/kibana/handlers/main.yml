@@ -1,0 +1,9 @@
+- name: Reload systemctl
+  command: systemctl daemon-reload
+  when: ansible_service_mgr == "systemd"
+- name: Restart kibana service
+  service: name=kibana state=restarted enabled=yes
+  when: ansible_service_mgr == "systemd"
+- name: Restart kibana service
+  shell: service kibana restart
+  when: ansible_service_mgr == "upstart"

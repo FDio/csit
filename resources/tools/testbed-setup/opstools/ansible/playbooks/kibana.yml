@@ -1,0 +1,6 @@
+---
+- name: Apply kibana role
+  hosts: kibana
+  any_errors_fatal: true
+  roles:
+    - kibana

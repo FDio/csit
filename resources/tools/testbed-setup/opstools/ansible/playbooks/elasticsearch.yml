@@ -1,0 +1,6 @@
+---
+- name: Apply elasticsearch role
+  hosts: elasticsearch
+  any_errors_fatal: true
+  roles:
+    - elasticsearch

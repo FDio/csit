@@ -1,0 +1,50 @@
+
+FQDNLookup true
+#Hostname {{ inventory_hostname }}
+
+LoadPlugin syslog
+
+<Plugin syslog>
+  LogLevel info
+</Plugin>
+
+LoadPlugin interface
+
+LoadPlugin cpu
+<Plugin cpu>
+  ReportByState true
+  ReportByCpu true
+  ValuesPercentage true
+</Plugin>
+
+LoadPlugin numa
+
+LoadPlugin network
+<Plugin "network">
+#    Server "{{ hostvars['monitor']['ansible_host'] }}" "25826"
+    Server "{{ influxdb_ip }}" "25826"
+</Plugin>
+LoadPlugin interface
+LoadPlugin df
+<Plugin df>
+    FSType rootfs
+    FSType sysfs
+    FSType proc
+    FSType devtmpfs
+    FSType devpts
+    FSType tmpfs
+    FSType fusectl
+    FSType cgroup
+    IgnoreSelected true
+
+    ReportInodes true
+</Plugin>
+LoadPlugin disk
+LoadPlugin irq
+LoadPlugin load
+LoadPlugin memory
+<Plugin memory>
+  ValuesPercentage true
+</Plugin>
+LoadPlugin processes
+LoadPlugin swap

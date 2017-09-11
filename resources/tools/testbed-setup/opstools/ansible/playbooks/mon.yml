@@ -1,0 +1,7 @@
+---
+- include: common.yml
+- include: influxdb.yml
+- include: collectd.yml
+- include: grafana.yml
+- include: elasticsearch.yml
+- include: kibana.yml

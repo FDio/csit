@@ -1,0 +1,7 @@
+---
+- name: Reload systemctl
+  command: systemctl daemon-reload
+  when: ansible_service_mgr == "systemd"
+
+- name: Restart ntp service
+  service: name=ntp state=restarted enabled=yes

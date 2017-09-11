@@ -1,0 +1,43 @@
+---
+
+- name: Install influxdb apt key
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+- name: Install influxdb package repository
+  apt_repository:
+    repo: deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable
+
+- name: Update apt cache
+  shell: apt update -y
+
+- name: Install the latest version of influxdb
+  apt:
+    name: influxdb
+    state: present
+
+- name: Install the latest version of collectd
+  apt:
+    name: collectd
+    state: latest
+    update_cache: yes
+  ignore_errors: yes
+
+- name: Ensure collectd service is disable
+  service:
+    name: collectd
+    state: stopped
+    enabled: no
+
+- name: Install influxdb configuration
+  template: src=templates/influxdb.conf.j2 dest=/etc/influxdb/influxdb.conf
+  notify:
+    - Reload systemctl
+    - Restart influxdb service
+
+- name: Start influxdb
+  service:
+    name: influxdb
+    state: started
+    enabled: yes

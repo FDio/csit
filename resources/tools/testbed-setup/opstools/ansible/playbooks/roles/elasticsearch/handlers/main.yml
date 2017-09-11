@@ -1,0 +1,9 @@
+- name: Reload systemctl
+  command: systemctl daemon-reload
+  when: ansible_service_mgr == "systemd"
+- name: Restart elasticsearch service
+  service: name=elasticsearch state=restarted enabled=yes
+  when: ansible_service_mgr == "systemd"
+- name: Restart elasticsearch service
+  shell: service elasticsearch restart
+  when: ansible_service_mgr == "upstart"

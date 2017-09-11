@@ -1,0 +1,54 @@
+
+---
+- name: Set nova verbosity
+  ini_file:
+    dest: /etc/nova/nova.conf
+    section: DEFAULT
+    option: verbose
+    value: True
+  notify:
+    - Restart nova-compute
+    - Restart nova-scheduler
+    - Restart nova-conductor
+- name: Set neutron verbosity
+  ini_file:
+    dest: /etc/neutron/neutron.conf
+    section: DEFAULT
+    option: verbose
+    value: True
+  notify:
+    - Restart neutron-server
+- name: Set glance-api verbosity
+  ini_file:
+    dest: /etc/glance/glance-api.conf
+    section: DEFAULT
+    option: verbose
+    value: True
+  notify:
+    - Restart glance-api
+- name: Set glance-registry verbosity
+  ini_file:
+    dest: /etc/glance/glance-registry.conf
+    section: DEFAULT
+    option: verbose
+    value: True
+  notify:
+    - Restart glance-regsitry
+- name: Set cinder verbosity
+  ini_file:
+    dest: /etc/cinder/cinder.conf
+    section: DEFAULT
+    option: verbose
+    value: True
+  notify:
+    - Restart cinder-api
+    - Restart cinder-scheduler
+    - Restart cinder-volume
+- name: Set keystone verbosity
+  ini_file:
+    dest: /etc/keystone/keystone.conf
+    section: DEFAULT
+    option: verbose
+    value: True
+  notify:
+    - Restart httpd
