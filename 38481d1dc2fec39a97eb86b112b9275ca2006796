@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_84818d91",
+        "filename": "resources/tools/testbed-setup/opstools/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-09-11T14:43:48Z",
+      "side": 1,
+      "message": "In standard installation collectd is making a number of kernel system call collecting low-level performance information from compute hardware. Number of these calls are invasive affecting computer operation. In case of CSIT tests, these are likely to impact performance test results, and as such require very careful review before merging into CSIT.",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 10
+      },
+      "revId": "38481d1dc2fec39a97eb86b112b9275ca2006796",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
