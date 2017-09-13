@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "3a4b7175_956ad518",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-13T06:20:05Z",
+      "side": 1,
+      "message": "Is this any reason why it does took 80s? Why 10s/30s is not enough?",
+      "range": {
+        "startLine": 674,
+        "startChar": 52,
+        "endLine": 674,
+        "endChar": 62
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_75775903",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-13T06:20:05Z",
+      "side": 1,
+      "message": "Can you find better place for this? Maybe moving to base libraries not Honeycomb",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 54
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a4b7175_f58349ca",
         "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
         "patchSetId": 5
@@ -58,6 +104,29 @@
         "startChar": 45,
         "endLine": 29,
         "endChar": 53
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_55745dfc",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-13T06:20:05Z",
+      "side": 1,
+      "message": "Ifconfig is being obsoleted. What about this?\n\nfgrep -ls \u002702:42:d0:40:4d:8c\u0027 /sys/class/net/*/address | awk -F \u0027/\u0027 \u0027{print $5}\u0027\n\nIf this will not work then `ip link`",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 10
       },
       "revId": "1492293131abece783319bcb14b10adcc8709c94",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -104,6 +173,29 @@
         "startChar": 18,
         "endLine": 50,
         "endChar": 30
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_3561e139",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-13T06:20:05Z",
+      "side": 1,
+      "message": "Any chance to reuse functions in DUTSetup.py?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 34
       },
       "revId": "1492293131abece783319bcb14b10adcc8709c94",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -173,6 +265,29 @@
         "startChar": 20,
         "endLine": 114,
         "endChar": 28
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_1566e551",
+        "filename": "resources/libraries/robot/honeycomb/honeycomb.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-13T06:20:05Z",
+      "side": 1,
+      "message": "Does it make sense to use only for Honeycomb? Move to some generic libraries",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 31
       },
       "revId": "1492293131abece783319bcb14b10adcc8709c94",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
