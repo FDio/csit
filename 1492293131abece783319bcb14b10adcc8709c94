@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_d5116dad",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "There is no exception raised.",
+      "range": {
+        "startLine": 668,
+        "startChar": 8,
+        "endLine": 668,
+        "endChar": 52
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_f58349ca",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "You don\u0027t check return values of commands like \"ssh.exec_command\", why?",
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_752079f7",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "ifconfig is obsolete",
+      "range": {
+        "startLine": 29,
+        "startChar": 45,
+        "endLine": 29,
+        "endChar": 53
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_9523f504",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "Add to doc",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_b526f114",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "Add to doc",
+      "range": {
+        "startLine": 50,
+        "startChar": 18,
+        "endLine": 50,
+        "endChar": 30
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_551d7dbc",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "use ip",
+      "range": {
+        "startLine": 93,
+        "startChar": 18,
+        "endLine": 93,
+        "endChar": 26
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_357a01f2",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "do you need it?",
+      "range": {
+        "startLine": 98,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 17
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_157f05e2",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-13T05:42:59Z",
+      "side": 1,
+      "message": "use ip",
+      "range": {
+        "startLine": 114,
+        "startChar": 20,
+        "endLine": 114,
+        "endChar": 28
+      },
+      "revId": "1492293131abece783319bcb14b10adcc8709c94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
