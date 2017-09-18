@@ -2041,3 +2041,49 @@
 | |      | ... | ${dut1} | ${dut1-memif-${number}-if2} | ${dut1_if2}
 | |      | Run Keyword If | ${number}==${nr} | Configure L2XC
 | |      | ... | ${dut2} | ${dut2-memif-${number}-if2} | ${dut2_if2}
+
+| Initialize L2 Bridge Domain for '${nr}' memif pairs in 3-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
+| | ... | Memif interface to separate L2 bridge domain with one physical or
+| | ... | virtual interface to create a chain accross DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ... | _None_
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for Memif are defined in following format:
+| | ... | - /tmp/memif-${number}-1
+| | ... | - /tmp/memif-${number}-2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 Bridge Domain for '1' memif pairs in 3-node circular\
+| | ... | topology \|
+| | ...
+| | ${bd_id2}= | Evaluate | ${nr}+1
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${1}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${1}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | | ${sock1}= | Set Variable | /tmp/memif-DUT1_VNF${number}-1
+| | | ${sock2}= | Set Variable | /tmp/memif-DUT1_VNF${number}-2
+| | | ${prev_index}= | Evaluate | ${number}-1
+| | | Set up memif interfaces on DUT node | ${dut1}
+| | | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
+| | | ... | dut1-memif-${number}-if2
+| | | ${bd_id2}= | Evaluate | ${number}+1
+| | | Add interface to bridge domain | ${dut1}
+| | | ... | ${dut1-memif-${number}-if1} | ${number}
+| | | Add interface to bridge domain | ${dut1}
+| | | ... | ${dut1-memif-${number}-if2} | ${bd_id2}
+| | | ${sock1}= | Set Variable | /tmp/memif-DUT2_VNF${number}-1
+| | | ${sock2}= | Set Variable | /tmp/memif-DUT2_VNF${number}-2
+| | | Set up memif interfaces on DUT node | ${dut2}
+| | | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
+| | | ... | dut2-memif-${number}-if2
+| | | Add interface to bridge domain | ${dut2}
+| | | ... | ${dut2-memif-${number}-if1} | ${number}
+| | | Add interface to bridge domain | ${dut2}
+| | | ... | ${dut2-memif-${number}-if2} | ${bd_id2}
