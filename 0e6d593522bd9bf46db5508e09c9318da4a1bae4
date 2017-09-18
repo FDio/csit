@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_55ec568f",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 2016,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-09-18T10:49:55Z",
+      "side": 1,
+      "message": "\u00271\u0027 memif pairs",
+      "range": {
+        "startLine": 2016,
+        "startChar": 40,
+        "endLine": 2016,
+        "endChar": 47
+      },
+      "revId": "0e6d593522bd9bf46db5508e09c9318da4a1bae4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
