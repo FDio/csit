@@ -42,7 +42,7 @@
 | | ... | \| dut2_memif_if1 \| dut2_memif_if2 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${number}=${1}
-| | ... | ${memif_if2}=memif_if1 | ${memif_if1}=memif_if2
+| | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2
 | | ${key_1}= | Evaluate | (${number}*2)-1
 | | ${key_2}= | Evaluate | (${number}*2)
 | | ${memif_1}= | Create memif interface | ${dut_node} | ${sock1} | ${key_1}
@@ -62,8 +62,8 @@
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
 | | | Run Keyword | ${dut}_${lxc_base_name}_${number}.Create VPP cfg in container
-| | | ... | memif_create_lxc.vat | socket1=memif-${number}-1
-| | | ... | socket2=memif-${number}-2
+| | | ... | memif_create_lxc.vat | socket1=memif-${dut}_VNF${number}-1
+| | | ... | socket2=memif-${dut}_VNF${number}-2
 
 | Create memif VPP configuration on '${nr}' LXC containers on all DUT nodes
 | | [Documentation] | Create memif configuration of VPP on multiple LXC
