@@ -407,3 +407,8 @@ class VppConfigGenerator(object):
         else:
             raise RuntimeError('VPP failed to restart in {0} on node {1}'.
                                format(lxc_name, self._hostname))
+
+        ssh.exec_command_lxc('set int state memif0/1 up', lxc_name)
+        ssh.exec_command_lxc('set int state memif1/2 up', lxc_name)
+
+        ssh.exec_command_lxc('echo show hardware-interfaces', lxc_name)
