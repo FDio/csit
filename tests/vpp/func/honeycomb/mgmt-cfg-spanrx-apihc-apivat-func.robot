@@ -103,8 +103,6 @@
 | | ... | ${node} | ${interface2} | ${settings_if2}
 
 | TC07: DUT mirrors IPv4 packets from one interface to another
-# Pending rework
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1
 | | ... | [Cfg] (using Honeycomb) On DUT1 configure IPv4 address and set SPAN\
@@ -221,8 +219,6 @@
 | | ... | ${node} | ${interface2} | ${1} | ${settings_if2}
 
 | TC14: DUT mirrors IPv4 packets from an interface to a sub-interface
-# Pending rework
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1
 | | ... | [Cfg] (using Honeycomb) On DUT1 configure IPv4 address and set SPAN\
@@ -236,8 +232,8 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Sub-interface state from Honeycomb should be
-| | ... | ${dut_node} | ${interface1} | ${1} | down | up
+| | And Honeycomb creates sub-interface | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${sub_if_1_match} | ${sub_if_1_tags} | ${sub_if_1_settings}
 | | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1}
 | | ... | up
 | | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2}

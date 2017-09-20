@@ -115,8 +115,6 @@
 | | ... | ${interface} | ${slaac_data_03}
 
 | TC07: DUT retransmits RA on IPv6 enabled interface after a set interval
-# Traffic test failing in VIRL
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Cfg] On DUT1 configure IPv6 interface on the link to TG.
