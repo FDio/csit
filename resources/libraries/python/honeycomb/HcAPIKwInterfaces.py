@@ -1088,6 +1088,9 @@ class InterfaceKeywords(object):
         :raises KeyError: If the parameter 'match' is invalid.
         """
 
+        super_interface = Topology.convert_interface_reference(
+            node, super_interface, "name")
+
         match_type = {
             "default":
                 {"default": {}},
