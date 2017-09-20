@@ -54,16 +54,14 @@ def imcpv6nd_solicit(tx_if, src_mac, dst_mac, src_ip, dst_ip):
 
     ether = None
     for _ in range(5):
-        while True:
-            pkt = rxq.recv(3, ignore=sent_packets)
-            if ether.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            else:
-                # otherwise process the current packet
-                break
-        if pkt is not None:
-            ether = pkt
+        ether = rxq.recv(3, ignore=sent_packets)
+        if not ether:
+            continue
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue in case of ICMPv6ND_NS packet
+            continue
+        else:
+            # otherwise process the current packet
             break
 
     if ether is None:
@@ -132,17 +130,15 @@ def ipv6_ping(src_if, dst_if, src_mac, dst_mac,
     txq.send(icmpv6_ping_pkt)
 
     ether = None
-    for _ in range(5):
-        while True:
-            pkt = rxq.recv(3)
-            if ether.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            else:
-                # otherwise process the current packet
-                break
-        if pkt is not None:
-            ether = pkt
+    while True:
+        ether = rxq.recv(3)
+        if not ether:
+            continue
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue in case of ICMPv6ND_NS packet
+            continue
+        else:
+            # otherwise process the current packet
             break
 
     if ether is None:
@@ -163,17 +159,15 @@ def ipv6_ping(src_if, dst_if, src_mac, dst_mac,
     txq.send(icmpv6_ping_pkt)
 
     ether = None
-    for _ in range(5):
-        while True:
-            pkt = rxq.recv(3)
-            if ether.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            else:
-                # otherwise process the current packet
-                break
-        if pkt is not None:
-            ether = pkt
+    while True:
+        ether = rxq.recv(3)
+        if not ether:
+            continue
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue in case of ICMPv6ND_NS packet
+            continue
+        else:
+            # otherwise process the current packet
             break
 
     if ether is None:
