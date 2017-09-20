@@ -28,7 +28,6 @@
 | | ... | - 3. Monitor service startup using HTTP GET request loop
 | | ... | Expected sequence of HTTP replies:
 | | ... | connection refused -> 404 -> 401 -> 503 or 500 -> 200 (pass)
-| | ... | - 4. Configure honeycomb nodes using HTTP PUT request
 | | ...
 | | ... | _Arguments:_
 | | ... | - duts - list of nodes to setup Honeycomb on
@@ -39,7 +38,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 4min | 16sec
+| | Wait until keyword succeeds | 4min | 15sec
 | | ... | Check honeycomb startup state | @{duts}
 | | Sleep | 5s | Make sure all modules are loaded and ready.
 
@@ -62,7 +61,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Stop honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 60sec | 16sec
+| | Wait until keyword succeeds | 60sec | 15sec
 | | ... | Check honeycomb shutdown state | @{duts}
 
 | Clear persisted Honeycomb configuration
@@ -130,7 +129,7 @@
 | | Setup DUT | ${node}
 | | Sleep | 10s | Wait 10sec so VPP is up for sure.
 | | Configure Honeycomb service on DUTs | ${node}
-| | Wait until keyword succeeds | 2min | 16sec
+| | Wait until keyword succeeds | 2min | 15sec
 | | ... | Check honeycomb startup state | ${node}
 
 | Archive Honeycomb log file
@@ -166,11 +165,11 @@
 | | Setup ODL Client | ${node} | /tmp
 | | Wait until keyword succeeds | 2min | 30sec
 | | ... | Install ODL Features | ${node} | /tmp
-| | Wait until keyword succeeds | 4min | 16sec
+| | Wait until keyword succeeds | 4min | 15sec
 | | ... | Mount Honeycomb on ODL | ${node}
-| | Wait until keyword succeeds | 2min | 16sec
+| | Wait until keyword succeeds | 2min | 15sec
 | | ... | Check ODL startup state | ${node}
-| | Wait until keyword succeeds | 2min | 16sec
+| | Wait until keyword succeeds | 2min | 15sec
 | | ... | Check honeycomb startup state | ${node}
 
 | Configure Honeycomb for functional testing
@@ -186,9 +185,9 @@
 | | ...
 | | [Arguments] | ${node}
 | | Configure Restconf binding address | ${node}
-| | Configure Log Level | ${node} | TRACE
+| | Configure Log Level | ${node} | DEBUG
 | | Configure Persistence | ${node} | disable
-| | Configure jVPP timeout | ${node} | ${14}
+| | Configure jVPP timeout | ${node} | ${10}
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 

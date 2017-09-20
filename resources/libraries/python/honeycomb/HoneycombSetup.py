@@ -157,18 +157,8 @@ class HoneycombSetup(object):
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 HoneycombSetup.print_ports(node)
-                try:
-                    status_code, _ = HTTPRequest.get(node, path,
-                                                     enable_logging=False)
-                except HTTPRequestError:
-                    ssh = SSH()
-                    ssh.connect(node)
-                    ret_code, _, _ = ssh.exec_command_sudo(
-                        "tail -n 100 /var/log/syslog")
-                    if ret_code != 0:
-                        # It's probably Centos
-                        ssh.exec_command_sudo("tail -n 100 /var/log/messages")
-                    raise
+                status_code, _ = HTTPRequest.get(node, path,
+                                                 enable_logging=False)
                 if status_code == HTTPCodes.OK:
                     logger.info("Honeycomb on node {0} is up and running".
                                 format(node['host']))
@@ -183,7 +173,10 @@ class HoneycombSetup(object):
                 else:
                     raise HoneycombError('Unexpected return code: {0}.'.
                                          format(status_code))
-
+                _, _ = HcUtil.get_honeycomb_data(node, "config_bridge_domains")
+                _, _ = HcUtil.get_honeycomb_data(node, "oper_bridge_domains")
+                status_code, _ = HcUtil.get_honeycomb_data(
+                    node, "oper_vpp_interfaces")
                 status_code, _ = HcUtil.get_honeycomb_data(
                     node, "config_vpp_interfaces")
                 if status_code != HTTPCodes.OK:
