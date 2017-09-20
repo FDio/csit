@@ -39,9 +39,6 @@
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
 | | ... | Restart Honeycomb and VPP.
 | | ...
-# Failing due to HC2VPP-47
-| | [Tags] | HC_FUNC | EXPECTED_FAILING
-| | ...
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | ...

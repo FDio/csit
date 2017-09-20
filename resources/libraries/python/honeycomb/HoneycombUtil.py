@@ -399,6 +399,41 @@ class HoneycombUtil(object):
         return HTTPRequest.delete(node, path)
 
     @staticmethod
+    def append_honeycomb_log(node, suite_name):
+        """Append Honeycomb log for the current test suite to the full log.
+
+        :param node: Honeycomb node.
+        :param suite_name: Name of the current test suite. ${SUITE_NAME}
+        variable in robotframework.
+        :type node: dict
+        :type suite_name: str
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ssh.exec_command(
+            "echo '{separator}' >> /tmp/honeycomb.log".format(separator="="*80))
+        ssh.exec_command(
+            "echo 'Log for suite: {suite}' >> /tmp/honeycomb.log".format(
+                suite=suite_name))
+        ssh.exec_command(
+            "cat {hc_log} >> /tmp/honeycomb.log".format(
+                hc_log=Const.REMOTE_HC_LOG))
+
+    @staticmethod
+    def clear_honeycomb_log(node):
+        """Delete the Honeycomb log file for the current test suite.
+
+        :param node: Honeycomb node.
+        :type node: dict"""
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ssh.exec_command("sudo rm {hc_log}".format(hc_log=Const.REMOTE_HC_LOG))
+
+    @staticmethod
     def archive_honeycomb_log(node, perf=False):
         """Copy honeycomb log file from DUT node to VIRL for archiving.
 
@@ -412,10 +447,11 @@ class HoneycombUtil(object):
         ssh.connect(node)
 
         if not perf:
-            cmd = "cp /var/log/honeycomb/honeycomb.log /scratch/"
+            cmd = "cp /tmp/honeycomb.log /scratch/"
             ssh.exec_command_sudo(cmd)
         else:
             ssh.scp(
                 ".",
-                "/var/log/honeycomb/honeycomb.log",
+                "/tmp/honeycomb.log",
                 get=True)
+            ssh.exec_command("rm /tmp/honeycomb.log")

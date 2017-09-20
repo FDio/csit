@@ -101,8 +101,6 @@
 | | ... | ${node} | ${interface} | ${acl_tables['hc_acl_table']['name']}
 
 | TC06: VPP policer 2R3C Color-aware marks packet
-# Pending rework
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1.
 | | ... | [Ref] RFC2474, RFC2698.
