@@ -22,6 +22,7 @@
 | ...
 | Suite Setup | Run Keywords | Configure all DUTs before test | AND
 | ... | Set Global Variable | ${node} | AND
-| ... | Stop Honeycomb service on DUTs | ${node}
+| ... | Stop Honeycomb service on DUTs | ${node} | AND
+| ... | Clear Honeycomb Log | ${node}
 | ...
 | Suite Teardown | Archive Honeycomb log file | ${node}
