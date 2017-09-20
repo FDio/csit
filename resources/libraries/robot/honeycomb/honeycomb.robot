@@ -39,9 +39,9 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 4min | 16sec
-| | ... | Check honeycomb startup state | @{duts}
-| | Sleep | 5s | Make sure all modules are loaded and ready.
+| | :FOR | ${dut} | IN | @{duts}
+| | | Check honeycomb startup state | @{duts}
+| | | Sleep | 5s | Make sure all modules are loaded and ready.
 
 | Stop Honeycomb service on DUTs
 | | [Documentation] | *Cleanup environment after honeycomb testing.*
@@ -62,8 +62,9 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Stop honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 60sec | 16sec
-| | ... | Check honeycomb shutdown state | @{duts}
+| | :FOR | ${dut} | IN | @{duts}
+| | | Wait until keyword succeeds | 60sec | 15sec
+| | | ... | Check honeycomb shutdown state | @{duts}
 
 | Clear persisted Honeycomb configuration
 | | [Documentation] | *Delete saved configuration.*
@@ -130,8 +131,7 @@
 | | Setup DUT | ${node}
 | | Sleep | 10s | Wait 10sec so VPP is up for sure.
 | | Configure Honeycomb service on DUTs | ${node}
-| | Wait until keyword succeeds | 2min | 16sec
-| | ... | Check honeycomb startup state | ${node}
+| | Check honeycomb startup state | ${node} | timeout=120
 
 | Archive Honeycomb log file
 | | [Documentation] | Copy honeycomb.log file from Honeycomb node\
@@ -166,12 +166,11 @@
 | | Setup ODL Client | ${node} | /tmp
 | | Wait until keyword succeeds | 2min | 30sec
 | | ... | Install ODL Features | ${node} | /tmp
-| | Wait until keyword succeeds | 4min | 16sec
+| | Wait until keyword succeeds | 4min | 15sec
 | | ... | Mount Honeycomb on ODL | ${node}
-| | Wait until keyword succeeds | 2min | 16sec
+| | Wait until keyword succeeds | 2min | 15sec
 | | ... | Check ODL startup state | ${node}
-| | Wait until keyword succeeds | 2min | 16sec
-| | ... | Check honeycomb startup state | ${node}
+| | Check honeycomb startup state | ${node} | timeout=120
 
 | Configure Honeycomb for functional testing
 | | [Documentation] | Configure Honeycomb with parameters for functional
@@ -188,9 +187,8 @@
 | | Configure Restconf binding address | ${node}
 | | Configure Log Level | ${node} | TRACE
 | | Configure Persistence | ${node} | disable
-| | Configure jVPP timeout | ${node} | ${14}
+| | Configure jVPP timeout | ${node} | ${10}
 | | Clear Persisted Honeycomb Configuration | ${node}
-| | Generate Honeycomb startup configuration for ODL test | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Configure ODL Client for functional testing
@@ -245,6 +243,7 @@
 | | ... | \| Tear Down Honeycomb Functional Test Suite \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
+| | Append suite to Honeycomb log file | ${node}
 | | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
 | | Run Keyword If | '${use_odl_client}' != '${NONE}'
 | | ... | Run Keywords
@@ -253,6 +252,7 @@
 | | ... | Check ODL shutdown state | ${node} | AND
 | | ... | Set Global Variable | ${use_odl_client} | ${NONE}
 | | Stop Honeycomb service on DUTs | ${node}
+| | Clear Honeycomb Log | ${node}
 | | Stop VPP Service on DUT | ${node}
 
 | Enable Honeycomb Feature
@@ -324,8 +324,24 @@
 | | ...
 | | [Arguments] | ${node}
 | | Log Honeycomb and VPP process distribution on cores | ${node}
+| | Append suite to Honeycomb log file | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
+| | Clear Honeycomb Log | ${node}
 | | Stop VPP Service on DUT | ${node}
+
+| Append suite to Honeycomb log file
+| | [Documentation] | Add the contents of honeycomb.log for the current suite\
+| | ... | to the full log which will be archived.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Append suite to Honeycomb log file \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${node}
+| | Append Honeycomb log | ${node} | ${SUITE_NAME}
 
 | Generate Honeycomb startup configuration for ODL test
 | | [Documentation] | Create HC startup configuration and apply to config

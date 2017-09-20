@@ -41,6 +41,9 @@ class Constants(object):
     # Honeycomb persistence files location
     REMOTE_HC_PERSIST = '/var/lib/honeycomb/persist'
 
+    # Honeycomb log file location
+    REMOTE_HC_LOG = '/var/log/honeycomb/honeycomb.log'
+
     # Honeycomb templates location
     RESOURCES_TPL_HC = 'resources/templates/honeycomb'
 
