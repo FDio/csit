@@ -14,6 +14,7 @@
 """Implementation of keywords for Honeycomb setup."""
 
 from ipaddress import IPv6Address, AddressValueError
+from time import time, sleep
 
 from robot.api import logger
 
@@ -134,106 +135,104 @@ class HoneycombSetup(object):
                     node['host']))
 
     @staticmethod
-    def check_honeycomb_startup_state(*nodes):
-        """Check state of Honeycomb service during startup on specified nodes.
+    def check_honeycomb_startup_state(node, timeout=240, retries=15,
+                                      interval=15):
+        """Repeatedly check the status of Honeycomb startup until it is fully
+        started or until timeout or max retries is reached.
 
-        Reads html path from template file oper_vpp_version.url.
+        :param node: Honeycomb node.
+        :param timeout: Timeout value.
+        :param retries: Max number of retries.
+        :param interval: Interval between checks.
+        :type node: dict
+        :type timeout: int
+        :type retries: int
+        :type interval: int
+        :raises HoneycombError: If the Honeycomb process IP cannot be found,
+        or if timeout or number of retries is exceeded."""
 
-        Honeycomb nodes reply with connection refused or the following status
-        codes depending on startup progress: codes 200, 401, 403, 404, 500, 503
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, pid, _ = ssh.exec_command("pgrep honeycomb")
+        if ret_code != 0:
+            raise HoneycombError("No process named 'honeycomb' found.")
 
-        :param nodes: List of DUT nodes starting Honeycomb.
-        :type nodes: list
-        :return: True if all GETs returned code 200(OK).
-        :rtype bool
-        """
-        path = HcUtil.read_path_from_url_file("oper_vpp_version")
-        expected_status_codes = (HTTPCodes.UNAUTHORIZED,
-                                 HTTPCodes.FORBIDDEN,
-                                 HTTPCodes.NOT_FOUND,
-                                 HTTPCodes.SERVICE_UNAVAILABLE,
-                                 HTTPCodes.INTERNAL_SERVER_ERROR)
-
-        for node in nodes:
-            if node['type'] == NodeType.DUT:
-                HoneycombSetup.print_ports(node)
-                try:
-                    status_code, _ = HTTPRequest.get(node, path,
-                                                     enable_logging=False)
-                except HTTPRequestError:
-                    ssh = SSH()
-                    ssh.connect(node)
-                    ret_code, _, _ = ssh.exec_command_sudo(
-                        "tail -n 100 /var/log/syslog")
-                    if ret_code != 0:
-                        # It's probably Centos
-                        ssh.exec_command_sudo("tail -n 100 /var/log/messages")
-                    raise
-                if status_code == HTTPCodes.OK:
-                    logger.info("Honeycomb on node {0} is up and running".
-                                format(node['host']))
-                elif status_code in expected_status_codes:
-                    if status_code == HTTPCodes.UNAUTHORIZED:
-                        logger.info('Unauthorized. If this triggers keyword '
-                                    'timeout, verify Honeycomb username and '
-                                    'password.')
-                    raise HoneycombError('Honeycomb on node {0} running but '
-                                         'not yet ready.'.format(node['host']),
-                                         enable_logging=False)
-                else:
-                    raise HoneycombError('Unexpected return code: {0}.'.
-                                         format(status_code))
-
-                status_code, _ = HcUtil.get_honeycomb_data(
-                    node, "config_vpp_interfaces")
-                if status_code != HTTPCodes.OK:
-                    raise HoneycombError('Honeycomb on node {0} running but '
-                                         'not yet ready.'.format(node['host']),
-                                         enable_logging=False)
-        return True
+        pid = int(pid)
+        count = 0
+        start = time()
+        while time() - start < timeout and count < retries:
+            count += 1
+            ret_code, _, _ = ssh.exec_command(
+                " | ".join([
+                    "sudo tail -n 1000 /var/log/syslog",
+                    "grep {pid}".format(pid=pid),
+                    "grep 'Honeycomb started successfully!'"])
+            )
+            if ret_code != 0:
+                logger.debug(
+                    "Attempt #{count} failed on log check.".format(
+                        count=count))
+                sleep(interval)
+                continue
+            status_code_version, _ = HcUtil.get_honeycomb_data(
+                node, "oper_vpp_version")
+            status_code_if_cfg, _ = HcUtil.get_honeycomb_data(
+                node, "config_vpp_interfaces")
+            status_code_if_oper, _ = HcUtil.get_honeycomb_data(
+                node, "oper_vpp_interfaces")
+            if status_code_if_cfg == HTTPCodes.OK\
+                    and status_code_if_cfg == HTTPCodes.OK\
+                    and status_code_if_oper == HTTPCodes.OK:
+                logger.info("Check successful, Honeycomb is up and running.")
+                break
+            else:
+                logger.debug(
+                    "Attempt ${count} failed on Restconf check. Status codes:\n"
+                    "Version: {version}\n"
+                    "Interface config: {if_cfg}\n"
+                    "Interface operational: {if_oper}".format(
+                        count=count,
+                        version=status_code_version,
+                        if_cfg=status_code_if_cfg,
+                        if_oper=status_code_if_oper))
+                sleep(interval)
+                continue
+        else:
+            _, vpp_status, _ = ssh.exec_command("service vpp status")
+            ret_code, hc_log, _ = ssh.exec_command(
+                " | ".join([
+                    "sudo tail -n 1000 /var/log/syslog",
+                    "grep {pid}".format(pid=pid)]))
+            raise HoneycombError(
+                "Timeout or max retries exceeded. Status of VPP:\n"
+                "{vpp_status}\n"
+                "Syslog entries filtered by Honeycomb's pid:\n"
+                "{hc_log}".format(vpp_status=vpp_status, hc_log=hc_log))
 
     @staticmethod
-    def check_honeycomb_shutdown_state(*nodes):
+    def check_honeycomb_shutdown_state(node):
         """Check state of Honeycomb service during shutdown on specified nodes.
 
         Honeycomb nodes reply with connection refused or the following status
         codes depending on shutdown progress: codes 200, 404.
 
-        :param nodes: List of DUT nodes stopping Honeycomb.
-        :type nodes: list
+        :param node: List of DUT nodes stopping Honeycomb.
+        :type node: dict
         :return: True if all GETs fail to connect.
         :rtype bool
         """
-        cmd = "ps -ef | grep -v grep | grep honeycomb"
-        for node in nodes:
-            if node['type'] == NodeType.DUT:
-                try:
-                    status_code, _ = HTTPRequest.get(node, '/index.html',
-                                                     enable_logging=False)
-                    if status_code == HTTPCodes.OK:
-                        raise HoneycombError('Honeycomb on node {0} is still '
-                                             'running.'.format(node['host']),
-                                             enable_logging=False)
-                    elif status_code == HTTPCodes.NOT_FOUND:
-                        raise HoneycombError('Honeycomb on node {0} is shutting'
-                                             ' down.'.format(node['host']),
-                                             enable_logging=False)
-                    else:
-                        raise HoneycombError('Unexpected return code: {0}.'.
-                                             format(status_code))
-                except HTTPRequestError:
-                    logger.debug('Connection refused, checking the process '
-                                 'state ...')
-                    ssh = SSH()
-                    ssh.connect(node)
-                    (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-                    if ret_code == 0:
-                        raise HoneycombError('Honeycomb on node {0} is still '
-                                             'running.'.format(node['host']),
-                                             enable_logging=False)
-                    else:
-                        logger.info("Honeycomb on node {0} has stopped".
-                                    format(node['host']))
+        cmd = "pgrep honeycomb"
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if ret_code == 0:
+            raise HoneycombError('Honeycomb on node {0} is still '
+                                 'running.'.format(node['host']),
+                                 enable_logging=False)
+        else:
+            logger.info("Honeycomb on node {0} has stopped".
+                        format(node['host']))
         return True
 
     @staticmethod

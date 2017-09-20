@@ -54,49 +54,48 @@ def imcpv6nd_solicit(tx_if, src_mac, dst_mac, src_ip, dst_ip):
 
     ether = None
     for _ in range(5):
-        while True:
-            pkt = rxq.recv(3, ignore=sent_packets)
-            if ether.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            else:
-                # otherwise process the current packet
-                break
-        if pkt is not None:
-            ether = pkt
+        ether = rxq.recv(3, ignore=sent_packets)
+        if not ether:
+            continue
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue in case of ICMPv6ND_NS packet
+            continue
+        else:
+            # otherwise process the current packet
             break
 
     if ether is None:
         raise RuntimeError('ICMPv6ND Proxy response timeout.')
 
     if ether.src != dst_mac:
-        raise RuntimeError("Source MAC address error: {} != {}".
-                           format(ether.src, dst_mac))
+        raise RuntimeError("Source MAC address error: {} != {}".format(
+            ether.src, dst_mac))
     print "Source MAC address: OK."
 
     if ether.dst != src_mac:
-        raise RuntimeError("Destination MAC address error: {} != {}".
-                           format(ether.dst, src_mac))
+        raise RuntimeError("Destination MAC address error: {} != {}".format(
+            ether.dst, src_mac))
     print "Destination MAC address: OK."
 
-    if ether[IPv6].src != dst_ip:
-        raise RuntimeError("Source IP address error: {} != {}".
-                           format(ether[IPv6].src, dst_ip))
+    if ether['IPv6'].src != dst_ip:
+        raise RuntimeError("Source IP address error: {} != {}".format(
+            ether['IPv6'].src, dst_ip))
     print "Source IP address: OK."
 
-    if ether[IPv6].dst != src_ip:
-        raise RuntimeError("Destination IP address error: {} != {}".
-                           format(ether[IPv6].dst, src_ip))
+    if ether['IPv6'].dst != src_ip:
+        raise RuntimeError("Destination IP address error: {} != {}".format(
+            ether['IPv6'].dst, src_ip))
     print "Destination IP address: OK."
 
     try:
-        target_addr = ether[IPv6][ICMPv6ND_NA].tgt
+        target_addr = ether['IPv6']\
+            ['ICMPv6 Neighbor Discovery - Neighbor Advertisement'].tgt
     except (KeyError, AttributeError):
         raise RuntimeError("Not an ICMPv6ND Neighbor Advertisement packet.")
 
     if target_addr != dst_ip:
-        raise RuntimeError("ICMPv6 field 'Target address' error: {} != {}".
-                           format(target_addr, dst_ip))
+        raise RuntimeError("ICMPv6 field 'Target address' error:"
+                           " {} != {}".format(target_addr, dst_ip))
     print "Target address field: OK."
 
 
@@ -132,17 +131,15 @@ def ipv6_ping(src_if, dst_if, src_mac, dst_mac,
     txq.send(icmpv6_ping_pkt)
 
     ether = None
-    for _ in range(5):
-        while True:
-            pkt = rxq.recv(3)
-            if ether.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            else:
-                # otherwise process the current packet
-                break
-        if pkt is not None:
-            ether = pkt
+    while True:
+        ether = rxq.recv(3)
+        if not ether:
+            continue
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue in case of ICMPv6ND_NS packet
+            continue
+        else:
+            # otherwise process the current packet
             break
 
     if ether is None:
@@ -163,17 +160,15 @@ def ipv6_ping(src_if, dst_if, src_mac, dst_mac,
     txq.send(icmpv6_ping_pkt)
 
     ether = None
-    for _ in range(5):
-        while True:
-            pkt = rxq.recv(3)
-            if ether.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            else:
-                # otherwise process the current packet
-                break
-        if pkt is not None:
-            ether = pkt
+    while True:
+        ether = rxq.recv(3)
+        if not ether:
+            continue
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue in case of ICMPv6ND_NS packet
+            continue
+        else:
+            # otherwise process the current packet
             break
 
     if ether is None:
