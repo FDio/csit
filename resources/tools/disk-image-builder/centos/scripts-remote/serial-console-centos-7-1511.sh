@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,7 @@
 ##
 ## Serial console
 ##
-echo "********** CONFIGURING SERIAL CONSOLE AND DISABLING IPV6 **********"
+echo "********** CONFIGURING SERIAL CONSOLE **********"
 cat - > /etc/systemd/system/serial-getty-digi@.service <<"_EOF"
 # ttyS0 - getty
 #
@@ -69,7 +69,7 @@ GRUB_DEFAULT=0
 GRUB_TIMEOUT=5
 GRUB_DISABLE_SUBMENU=true
 GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
-GRUB_CMDLINE_LINUX="rhgb quiet console=tty0 console=ttyS0,115200n8 ipv6.disable=1"
+GRUB_CMDLINE_LINUX="rhgb quiet console=tty0 console=ttyS0,115200n8"
 
 GRUB_TERMINAL=serial
 GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"
