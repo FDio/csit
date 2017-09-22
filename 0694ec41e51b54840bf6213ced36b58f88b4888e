@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_09d60dc6",
+        "filename": "tests/vpp/perf/l2/10ge2p1x520-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdrdisc.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-22T11:36:25Z",
+      "side": 1,
+      "message": "L2BD",
+      "range": {
+        "startLine": 33,
+        "startChar": 43,
+        "endLine": 33,
+        "endChar": 47
+      },
+      "revId": "0694ec41e51b54840bf6213ced36b58f88b4888e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_29d1c9cd",
+        "filename": "tests/vpp/perf/l2/10ge2p1x520-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdrdisc.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-22T11:36:25Z",
+      "side": 1,
+      "message": "Bridge domain",
+      "range": {
+        "startLine": 37,
+        "startChar": 52,
+        "endLine": 37,
+        "endChar": 68
+      },
+      "revId": "0694ec41e51b54840bf6213ced36b58f88b4888e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
