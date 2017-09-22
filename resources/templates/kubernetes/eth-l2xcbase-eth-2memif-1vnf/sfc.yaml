@@ -1,0 +1,78 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sfc-controller-cfg
+  namespace: csit
+data:
+  etcd.conf:
+    insecure-transport: true
+    dial-timeout: 1000000000
+    endpoints:
+      - "172.17.0.1:22379"
+
+  sfc.conf:
+    sfc_controller_config_version: 1
+    description: $$TEST_NAME$$
+    host_entities:
+      - name: vswitch
+    sfc_entities:
+      - name: vswitch-vnf1
+        description: vswitch to VNF1 - memif
+        type: 4
+        elements:
+          - container: vswitch
+            port_label: $$VSWITCH_IF1$$
+            etcd_vpp_switch_key: vswitch
+            type: 5
+          - container: vnf1
+            port_label: port1
+            etcd_vpp_switch_key: vswitch
+            type: 2
+      - name: vnf1-vswitch
+        description: VNF1 to vswitch - memif
+        type: 4
+        elements:
+          - container: vswitch
+            port_label: $$VSWITCH_IF2$$
+            etcd_vpp_switch_key: vswitch
+            type: 5
+          - container: vnf1
+            port_label: port2
+            etcd_vpp_switch_key: vswitch
+            type: 2
+
+  vnf.conf:
+    vnf_plugin_config_version: 1
+    description: VNF config
+    vnf_entities:
+      - name: vnf1
+        container: vnf1
+        l2xconnects:
+          - port_labels:
+            - port1
+            - port2
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sfc-controller
+  namespace: csit
+spec:
+  containers:
+    - name: "sfc-controller"
+      image: containers.cisco.com/odpm_jenkins_gen/prod_sfc_controller
+      imagePullPolicy: IfNotPresent
+      command:
+        - /bin/sfc-controller
+        - -etcdv3-config=/opt/sfc-controller/dev/etcd.conf
+        - -sfc-config=/opt/sfc-controller/dev/sfc.conf
+        - -sfc-config=/opt/sfc-controller/dev/vnf.conf
+      volumeMounts:
+        - name: controller-config
+          mountPath: /opt/sfc-controller/dev
+  volumes:
+    - name: controller-config
+      configMap:
+        name: sfc-controller-cfg
