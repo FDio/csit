@@ -12,19 +12,25 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Library | resources.libraries.python.SetupFramework
+| Variables | resources/libraries/python/topology.py
 | Library | resources.libraries.python.CpuUtils
+| Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.KubernetesUtils
+| Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.SchedUtils
+| Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.topology.Topology
+| Library | Collections
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
-| ...         | AND          | Setup All DUTs | ${nodes}
-| ...         | AND          | Show Vpp Version On All Duts | ${nodes}
+| ...         | AND          | Setup Kubernetes on all duts | ${nodes}
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
-| ...         | AND          | Update All Interface Data On All Nodes
-| ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
-
+| ...         | AND          | Update all numa nodes | ${nodes}
+| ...                        | skip_tg=${True}
+| ...         | AND          | Update NIC interface names on all duts | ${nodes}
 *** Keywords ***
+
 | Setup performance global Variables
 | | [Documentation]
 | | ... | Setup suite Variables. Variables are used across performance testing.
@@ -33,18 +39,7 @@
 | | ... | - perf_trial_duration - Duration of traffic run [s]
 | | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
-| | ... | - perf_vm_image - Guest VM disk image
-| | ... | - perf_qemu_bin - Path to QEMU binary
-| | ... | - perf_qemu_qsz - QEMU virtio queue size
-| | ... | - use_tuned_cfs - Switch to set scheduler policy
-| | ... | - qemu_built - Information if QEMU build is already prepared
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
-| | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.6.img
-| | Set Global Variable | ${perf_qemu_bin}
-| | ... | /opt/qemu-2.5.0/bin/qemu-system-x86_64
-| | Set Global Variable | ${perf_qemu_qsz} | 1024
-| | Set Global Variable | ${use_tuned_cfs} | ${False}
-| | Set Global Variable | ${qemu_built} | ${False}
