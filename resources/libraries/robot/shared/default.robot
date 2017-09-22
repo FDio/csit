@@ -113,7 +113,6 @@
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
 | | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']}
-| | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
