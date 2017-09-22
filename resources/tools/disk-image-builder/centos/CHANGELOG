@@ -1,3 +1,7 @@
+## [1.6] - 2017-09-22
+
+Moved IPv6_disable from GRUB boot params to sysctl
+
 ## [1.5] - 2017-08-01
 
 Added tcpdump.
