@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.DpdkUtil
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.KubernetesUtils
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
