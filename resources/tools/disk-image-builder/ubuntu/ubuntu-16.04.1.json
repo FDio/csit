@@ -124,6 +124,10 @@
     },
     {
       "type": "shell",
+      "script": "scripts-remote/disable_ipv6.sh"
+    },
+    {
+      "type": "shell",
       "script": "scripts-remote/cleanup.sh"
     }
   ],
