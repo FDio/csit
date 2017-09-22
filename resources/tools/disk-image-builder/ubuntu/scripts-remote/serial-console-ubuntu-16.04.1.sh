@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,7 @@
 ##
 ## Serial console
 ##
-echo "********** CONFIGURING SERIAL CONSOLE AND DISABLING IPV6 **********"
+echo "********** CONFIGURING SERIAL CONSOLE **********"
 cat - > /etc/default/grub <<"_EOF"
 # If you change this file, run 'update-grub' afterwards to update
 # /boot/grub/grub.cfg.
@@ -26,7 +26,7 @@ cat - > /etc/default/grub <<"_EOF"
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=1
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
-GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8 ipv6.disable=1"
+GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"
 
 GRUB_TERMINAL=serial
 GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"
