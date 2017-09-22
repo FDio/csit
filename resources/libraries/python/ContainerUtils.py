@@ -311,7 +311,6 @@ class ContainerEngine(object):
         # Create config instance
         vpp_config = VppConfigGenerator()
         vpp_config.set_node(self.container.node)
-        vpp_config.set_config_filename(config_filename)
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
@@ -323,10 +322,9 @@ class ContainerEngine(object):
             vpp_config.add_cpu_corelist_workers(corelist_workers)
         vpp_config.add_plugin_disable('dpdk_plugin.so')
 
-        self.execute('mkdir -p /etc/vpp/')
         self.execute('echo "{c}" | tee {f}'
                      .format(c=vpp_config.get_config_str(),
-                             f=vpp_config.get_config_filename()))
+                             f=config_filename))
 
     def create_vpp_exec_config(self, vat_template_file, **args):
         """Create VPP exec configuration on container.
@@ -547,6 +545,16 @@ class LXC(ContainerEngine):
             'cgset --copy-from / lxc')
         if int(ret) != 0:
             raise RuntimeError('Failed to copy cgroup settings from root.')
+
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.cpu_exclusive=0 /lxc')
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
+
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.mem_exclusive=0 /lxc')
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
