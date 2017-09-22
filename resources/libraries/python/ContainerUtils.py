@@ -12,7 +12,7 @@
 # limitations under the License.
 
 # Bug workaround in pylint for abstract classes.
-#pylint: disable=W0223
+# pylint: disable=W0223
 
 """Library to manipulate Containers."""
 
@@ -93,11 +93,12 @@ class ContainerManager(object):
 
     def construct_containers(self, **kwargs):
         """Construct 1..N container(s) on node with specified name.
+
         Ordinal number is automatically added to the name of container as
         suffix.
 
-        :param kwargs: Name of container.
-        :param kwargs: str
+        :param kwargs: Named parameters.
+        :param kwargs: dict
         """
         name = kwargs['name']
         for i in range(kwargs['count']):
@@ -311,7 +312,6 @@ class ContainerEngine(object):
         # Create config instance
         vpp_config = VppConfigGenerator()
         vpp_config.set_node(self.container.node)
-        vpp_config.set_config_filename(config_filename)
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
@@ -326,15 +326,15 @@ class ContainerEngine(object):
         self.execute('mkdir -p /etc/vpp/')
         self.execute('echo "{c}" | tee {f}'
                      .format(c=vpp_config.get_config_str(),
-                             f=vpp_config.get_config_filename()))
+                             f=config_filename))
 
-    def create_vpp_exec_config(self, vat_template_file, **args):
+    def create_vpp_exec_config(self, vat_template_file, **kwargs):
         """Create VPP exec configuration on container.
 
         :param vat_template_file: File name of a VAT template script.
-        :param args: Parameters for VAT script.
+        :param kwargs: Parameters for VAT script.
         :type vat_template_file: str
-        :type args: dict
+        :type kwargs: dict
         """
         vat_file_path = '{p}/{f}'.format(p=Constants.RESOURCES_TPL_VAT,
                                          f=vat_template_file)
@@ -342,7 +342,7 @@ class ContainerEngine(object):
         with open(vat_file_path, 'r') as template_file:
             cmd_template = template_file.readlines()
             for line_tmpl in cmd_template:
-                vat_cmd = line_tmpl.format(**args)
+                vat_cmd = line_tmpl.format(**kwargs)
                 self.execute('echo "{c}" >> /tmp/running.exec'
                              .format(c=vat_cmd.replace('\n', '')))
 
@@ -354,6 +354,28 @@ class ContainerEngine(object):
         """Check if container is present."""
         raise NotImplementedError
 
+    def _configure_cgroup(self, name):
+        """Configure the control group associated with a container.
+
+        :param name: Name of cgroup.
+        :type name: str
+        :raises RuntimeError: If applying cgroup settings via cgset failed.
+        """
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgcreate -g cpuset:/{name}'.format(name=name))
+        if int(ret) != 0:
+            raise RuntimeError('Failed to copy cgroup settings from root.')
+
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.cpu_exclusive=0 /{name}'.format(name=name))
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
+
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.mem_exclusive=0 /{name}'.format(name=name))
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
+
 
 class LXC(ContainerEngine):
     """LXC implementation."""
@@ -363,8 +385,7 @@ class LXC(ContainerEngine):
         super(LXC, self).__init__()
 
     def acquire(self, force=True):
-        """Acquire a privileged system object where configuration is stored and
-        where user information can be stored.
+        """Acquire a privileged system object where configuration is stored.
 
         :param force: If a container exists, destroy it and create a new
         container.
@@ -398,6 +419,7 @@ class LXC(ContainerEngine):
             if int(ret) != 0:
                 raise RuntimeError('Failed to write {c.name} config.'
                                    .format(c=self.container))
+        self._configure_cgroup('lxc')
 
     def create(self):
         """Create/deploy an application inside a container on system.
@@ -415,13 +437,25 @@ class LXC(ContainerEngine):
             raise RuntimeError('Failed to start container {c.name}.'
                                .format(c=self.container))
         self._lxc_wait('RUNNING')
-        self._lxc_cgroup(state_object='cpuset.cpus',
-                         value=cpuset_cpus)
+
+        # Workaround for LXC to be able to allocate all cpus including isolated.
+        cmd = 'cgset --copy-from / lxc/'
+        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        if int(ret) != 0:
+            raise RuntimeError('Failed to copy cgroup to LXC')
+
+        cmd = 'lxc-cgroup --name {c.name} cpuset.cpus {cpus}'\
+            .format(c=self.container, cpus=cpuset_cpus)
+        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        if int(ret) != 0:
+            raise RuntimeError('Failed to set cpuset.cpus to container '
+                               '{c.name}.'.format(c=self.container))
 
     def execute(self, command):
-        """Start a process inside a running container. Runs the specified
-        command inside the container specified by name. The container has to
-        be running already.
+        """Start a process inside a running container.
+
+        Runs the specified command inside the container specified by name. The
+        container has to be running already.
 
         :param command: Command to run inside container.
         :type command: str
@@ -530,33 +564,6 @@ class LXC(ContainerEngine):
             raise RuntimeError('Failed to wait for state "{s}" of container '
                                '{c.name}.'.format(s=state, c=self.container))
 
-    def _lxc_cgroup(self, state_object, value=''):
-        """Manage the control group associated with a container.
-
-        :param state_object: Specify the state object name.
-        :param value: Specify the value to assign to the state object. If empty,
-        then action is GET, otherwise is action SET.
-        :type state_object: str
-        :type value: str
-        :raises RuntimeError: If getting/setting state of a container failed.
-        """
-        cmd = 'lxc-cgroup --name {c.name} {s} {v}'\
-            .format(c=self.container, s=state_object, v=value)
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            'cgset --copy-from / lxc')
-        if int(ret) != 0:
-            raise RuntimeError('Failed to copy cgroup settings from root.')
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            if value:
-                raise RuntimeError('Failed to set {s} of container {c.name}.'
-                                   .format(s=state_object, c=self.container))
-            else:
-                raise RuntimeError('Failed to get {s} of container {c.name}.'
-                                   .format(s=state_object, c=self.container))
-
 
 class Docker(ContainerEngine):
     """Docker implementation."""
@@ -584,6 +591,7 @@ class Docker(ContainerEngine):
         if int(ret) != 0:
             raise RuntimeError('Failed to create container {c.name}.'
                                .format(c=self.container))
+        self._configure_cgroup('docker')
 
     def create(self):
         """Create/deploy container.
@@ -613,7 +621,7 @@ class Docker(ContainerEngine):
 
         cmd = 'docker run '\
             '--privileged --detach --interactive --tty --rm '\
-            '--cgroup-parent lxc {cpuset_cpus} {cpuset_mems} {publish} '\
+            '--cgroup-parent docker {cpuset_cpus} {cpuset_mems} {publish} '\
             '{env} {volume} --name {container.name} {container.image} '\
             '{command}'.format(cpuset_cpus=cpuset_cpus, cpuset_mems=cpuset_mems,
                                container=self.container, command=command,
@@ -627,9 +635,10 @@ class Docker(ContainerEngine):
         self.info()
 
     def execute(self, command):
-        """Start a process inside a running container. Runs the specified
-        command inside the container specified by name. The container has to
-        be running already.
+        """Start a process inside a running container.
+
+        Runs the specified command inside the container specified by name. The
+        container has to be running already.
 
         :param command: Command to run inside container.
         :type command: str
@@ -731,12 +740,26 @@ class Container(object):
         pass
 
     def __getattr__(self, attr):
+        """Get attribute custom implementation.
+
+        :param attr: Attribute to get.
+        :type attr: str
+        :returns: Attribute value or None.
+        :rtype: any
+        """
         try:
             return self.__dict__[attr]
         except KeyError:
             return None
 
     def __setattr__(self, attr, value):
+        """Set attribute custom implementation.
+
+        :param attr: Attribute to set.
+        :param value: Value to set.
+        :type attr: str
+        :type value: any
+        """
         try:
             # Check if attribute exists
             self.__dict__[attr]
