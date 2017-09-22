@@ -68,6 +68,7 @@
       "http_directory": "html",
       "iso_target_path" : "build/ubuntu-16.04.1-server-amd64.iso",
       "headless": "true",
+      "boot_wait": "30s",
       "boot_command":
         [
           "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -121,6 +122,10 @@
       "type": "shell",
       "only": ["{{user `release`}}-virtualbox"],
       "script": "scripts-remote/vagrant-guestadditions.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts-remote/disable_ipv6.sh"
     },
     {
       "type": "shell",
