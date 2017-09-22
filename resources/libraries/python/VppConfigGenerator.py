@@ -22,10 +22,12 @@ from resources.libraries.python.topology import Topology
 
 __all__ = ['VppConfigGenerator']
 
+
 class VppConfigGenerator(object):
     """VPP Configuration File Generator."""
 
     def __init__(self):
+        """Initialize library."""
         # VPP Node to apply configuration on
         self._node = ''
         # VPP Hostname
@@ -36,8 +38,6 @@ class VppConfigGenerator(object):
         self._vpp_config = ''
         # VPP Service name
         self._vpp_service_name = 'vpp'
-        # VPP Configuration file path
-        self._vpp_config_filename = '/etc/vpp/startup.conf'
 
     def set_node(self, node):
         """Set DUT node.
@@ -46,28 +46,11 @@ class VppConfigGenerator(object):
         :type node: dict
         :raises RuntimeError: If Node type is not DUT.
         """
-
         if node['type'] != NodeType.DUT:
             raise RuntimeError('Startup config can only be applied to DUT'
                                'node.')
         self._node = node
         self._hostname = Topology.get_node_hostname(node)
-
-    def set_config_filename(self, filename):
-        """Set startup configuration filename.
-
-        :param filename: Startup configuration filename.
-        :type filename: str
-        """
-        self._vpp_config_filename = filename
-
-    def get_config_filename(self):
-        """Get startup configuration filename.
-
-        :returns: Startup configuration filename.
-        :rtype: str
-        """
-        return self._vpp_config_filename
 
     def get_config_str(self):
         """Get dumped startup configuration in VPP config format.
@@ -88,11 +71,10 @@ class VppConfigGenerator(object):
         :type value: str
         :type path: list
         """
-
         if len(path) == 1:
             config[path[0]] = value
             return
-        if not config.has_key(path[0]):
+        if path[0] not in config:
             config[path[0]] = {}
         self.add_config_item(config[path[0]], value, path[1:])
 
@@ -100,9 +82,9 @@ class VppConfigGenerator(object):
         """Dump the startup configuration in VPP config format.
 
         :param obj: Python Object to print.
-        :param nested_level: Nested level for indentation.
+        :param level: Nested level for indentation.
         :type obj: Obj
-        :type nested_level: int
+        :type level: int
         :returns: nothing
         """
         indent = '  '
@@ -158,7 +140,6 @@ class VppConfigGenerator(object):
         :type devices: tuple
         :raises ValueError: If PCI address format is not valid.
         """
-
         pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
                              "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
         for device in devices:
@@ -218,7 +199,6 @@ class VppConfigGenerator(object):
         """
         path = ['dpdk', 'dev default', 'num-tx-desc']
         self.add_config_item(self._nodeconfig, value, path)
-
 
     def add_dpdk_socketmem(self, value):
         """Add DPDK socket memory configuration.
@@ -312,16 +292,21 @@ class VppConfigGenerator(object):
         path = ['nat']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def apply_config(self, waittime=5, retries=12):
+    def apply_config(self, filename='/etc/vpp/startup.conf', waittime=5,
+                     retries=12, restart_vpp=True):
         """Generate and apply VPP configuration for node.
 
         Use data from calls to this class to form a startup.conf file and
         replace /etc/vpp/startup.conf with it on node.
 
+        :param filename: Startup configuration file name.
         :param waittime: Time to wait for VPP to restart (default 5 seconds).
         :param retries: Number of times (default 12) to re-try waiting.
+        :param restart_vpp: Whether to restart VPP.
+        :type filename: str
         :type waittime: int
         :type retries: int
+        :type restart_vpp: bool.
         :raises RuntimeError: If writing config file failed, or restarting of
         VPP failed.
         """
@@ -330,39 +315,37 @@ class VppConfigGenerator(object):
         ssh = SSH()
         ssh.connect(self._node)
 
-        # We're using this "| sudo tee" construct because redirecting
-        # a sudo's output ("sudo echo xxx > /path/to/file") does not
-        # work on most platforms...
         (ret, _, _) = \
-            ssh.exec_command('echo "{0}" | sudo tee {1}'.
-                             format(self._vpp_config,
-                                    self._vpp_config_filename))
+            ssh.exec_command('echo "{config}" | sudo tee {filename}'.
+                             format(config=self._vpp_config,
+                                    filename=filename))
 
         if ret != 0:
             raise RuntimeError('Writing config file failed to node {}'.
                                format(self._hostname))
 
-        # Instead of restarting, we'll do separate start and stop
-        # actions. This way we don't care whether VPP was running
-        # to begin with.
-        ssh.exec_command('sudo service {} stop'
-                         .format(self._vpp_service_name))
-        (ret, _, _) = \
-            ssh.exec_command('sudo service {} start'
+        if restart_vpp:
+            # Instead of restarting, we'll do separate start and stop
+            # actions. This way we don't care whether VPP was running
+            # to begin with.
+            ssh.exec_command('sudo service {} stop'
                              .format(self._vpp_service_name))
-        if ret != 0:
-            raise RuntimeError('Restarting VPP failed on node {}'.
-                               format(self._hostname))
-
-        # Sleep <waittime> seconds, up to <retry> times,
-        # and verify if VPP is running.
-        for _ in range(retries):
-            time.sleep(waittime)
             (ret, _, _) = \
-                ssh.exec_command('echo show hardware-interfaces | '
-                                 'nc 0 5002 || echo "VPP not yet running"')
-            if ret == 0:
-                break
-        else:
-            raise RuntimeError('VPP failed to restart on node {}'.
-                               format(self._hostname))
+                ssh.exec_command('sudo service {} start'
+                                 .format(self._vpp_service_name))
+            if ret != 0:
+                raise RuntimeError('Restarting VPP failed on node {}'.
+                                   format(self._hostname))
+
+            # Sleep <waittime> seconds, up to <retry> times,
+            # and verify if VPP is running.
+            for _ in range(retries):
+                time.sleep(waittime)
+                (ret, _, _) = \
+                    ssh.exec_command('echo show hardware-interfaces | '
+                                     'nc 0 5002 || echo "VPP not yet running"')
+                if ret == 0:
+                    break
+            else:
+                raise RuntimeError('VPP failed to restart on node {}'.
+                                   format(self._hostname))
