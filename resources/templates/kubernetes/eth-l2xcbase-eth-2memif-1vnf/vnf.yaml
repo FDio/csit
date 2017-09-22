@@ -1,0 +1,82 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vnf-agent-cfg
+  namespace: csit
+data:
+  etcd.conf: |
+    insecure-transport: true
+    dial-timeout: 1000000000
+    endpoints:
+     - "172.17.0.1:22379"
+  kafka.conf: |
+    addrs:
+     - "172.17.0.1:9092"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vnf-vpp-cfg
+  namespace: csit
+data:
+  vpp.conf: |
+    unix {
+      nodaemon
+      cli-listen 0.0.0.0:5002
+    }
+    cpu {
+      main-core 5
+      corelist-workers 6
+    }
+    plugins {
+      plugin dpdk_plugin.so {
+        disable
+      }
+    }
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vnf-vpp
+  namespace: csit
+spec:
+  containers:
+    - name: "vnf"
+      image: prod_vpp_agent_shrink
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        privileged: true
+      ports:
+        - containerPort: 5002
+        - containerPort: 9191
+      readinessProbe:
+        httpGet:
+          path: /readiness
+          port: 9191
+        periodSeconds: 1
+      livenessProbe:
+        httpGet:
+          path: /liveness
+          port: 9191
+        initialDelaySeconds: 15
+      env:
+        - name: MICROSERVICE_LABEL
+          value: vnf1
+      volumeMounts:
+        - name: vpp-config
+          mountPath: /etc/vpp
+        - name: agent-config
+          mountPath: /opt/vpp-agent/dev
+        - name: memif-sockets
+          mountPath: /tmp
+  volumes:
+  - name: vpp-config
+    configMap:
+      name: vnf-vpp-cfg
+  - name: agent-config
+    configMap:
+      name: vnf-agent-cfg
+  - name: memif-sockets
+    hostPath:
+      path: /tmp
