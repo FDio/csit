@@ -450,6 +450,47 @@ class InterfaceUtil(object):
                                                         interface_dump_json)
 
     @staticmethod
+    def update_nic_interface_names(node):
+        """Update interface names base on nic type and PCI address.
+
+        This method updates interface names in the same format as VPP does.
+
+        :param node: Node dictionary.
+        :type node: dict
+        """
+        for ifc in node['interfaces'].values():
+            if_pci = ifc['pci_address'].replace('.', ':').split(':')
+            bus = '{:x}'.format(int(if_pci[1], 16))
+            dev = '{:x}'.format(int(if_pci[2], 16))
+            fun = '{:x}'.format(int(if_pci[3], 16))
+            loc = '{bus}/{dev}/{fun}'.format(bus=bus, dev=dev, fun=fun)
+            if ifc['model'] == 'Intel-XL710':
+                ifc['name'] = 'FortyGigabitEthernet{loc}'.format(loc=loc)
+            elif ifc['model'] == 'Intel-X710':
+                ifc['name'] = 'TenGigabitEthernet{loc}'.format(loc=loc)
+            elif ifc['model'] == 'Intel-X520-DA2':
+                ifc['name'] = 'TenGigabitEthernet{loc}'.format(loc=loc)
+            elif ifc['model'] == 'Cisco-VIC-1385':
+                ifc['name'] = 'FortyGigabitEthernet{loc}'.format(loc=loc)
+            elif ifc['model'] == 'Cisco-VIC-1227':
+                ifc['name'] = 'TenGigabitEthernet{loc}'.format(loc=loc)
+            else:
+                ifc['name'] = 'UnknownEthernet{loc}'.format(loc=loc)
+
+    @staticmethod
+    def update_nic_interface_names_on_all_duts(nodes):
+        """Update interface names base on nic type and PCI address on all DUTs.
+
+        This method updates interface names in the same format as VPP does.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                InterfaceUtil.update_nic_interface_names(node)
+
+    @staticmethod
     def update_tg_interface_data_on_node(node):
         """Update interface name for TG/linux node in DICT__nodes.
 
