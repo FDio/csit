@@ -315,6 +315,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include nic_intel-x520-da2ANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
