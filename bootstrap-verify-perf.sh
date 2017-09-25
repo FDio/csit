@@ -228,6 +228,14 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    VERIFY-PERF-MEMIF )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.vpp.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     VPP-VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
@@ -273,6 +281,15 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VPP-VERIFY-PERF-MEMIF )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.vpp.perf" \
+              --include pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
+              --include pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
