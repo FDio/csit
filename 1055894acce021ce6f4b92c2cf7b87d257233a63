@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_6fc1fce3",
+        "filename": "resources/libraries/python/honeycomb/IPv6Management.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-27T12:12:51Z",
+      "side": 1,
+      "message": "\u0026\u0026",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 17
+      },
+      "revId": "1055894acce021ce6f4b92c2cf7b87d257233a63",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
