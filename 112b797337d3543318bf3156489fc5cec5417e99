@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_e01cdb6c",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T05:38:31Z",
+      "side": 1,
+      "message": "pylint error: https://jenkins.fd.io/job/csit-validate-pylint-master/5408/violations/file/resources/libraries/python/honeycomb/HoneycombSetup.py/",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "112b797337d3543318bf3156489fc5cec5417e99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
