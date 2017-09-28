@@ -22,6 +22,30 @@
       "revId": "112b797337d3543318bf3156489fc5cec5417e99",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_c068bf89",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-09-28T07:53:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_e01cdb6c",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "112b797337d3543318bf3156489fc5cec5417e99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
