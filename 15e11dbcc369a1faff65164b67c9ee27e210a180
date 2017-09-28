@@ -229,6 +229,52 @@
       "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_803c0795",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T08:00:53Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 20
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_a03703b0",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T08:00:53Z",
+      "side": 1,
+      "message": "PEP8: Final new line is missing: https://jenkins.fd.io/job/csit-validate-pylint-master/5411/violations/file/resources/libraries/python/VppConfigGenerator.py/",
+      "range": {
+        "startLine": 368,
+        "startChar": 0,
+        "endLine": 368,
+        "endChar": 54
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
