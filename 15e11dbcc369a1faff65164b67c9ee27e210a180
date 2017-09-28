@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_e0617bd4",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "Add empty line",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 17
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_a09b83c8",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "Mandatory",
+      "range": {
+        "startLine": 312,
+        "startChar": 22,
+        "endLine": 312,
+        "endChar": 31
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_80a087f5",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "documentation",
+      "range": {
+        "startLine": 315,
+        "startChar": 19,
+        "endLine": 315,
+        "endChar": 33
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_60a58b03",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "Kubernetes",
+      "range": {
+        "startLine": 321,
+        "startChar": 45,
+        "endLine": 321,
+        "endChar": 53
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_40aa8fd5",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 322,
+        "startChar": 18,
+        "endLine": 322,
+        "endChar": 31
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_20af93e5",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "heavily depends",
+      "range": {
+        "startLine": 354,
+        "startChar": 25,
+        "endLine": 354,
+        "endChar": 42
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_00ac97ec",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "takes",
+      "range": {
+        "startLine": 355,
+        "startChar": 5,
+        "endLine": 355,
+        "endChar": 9
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_e0b85b2c",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "depending",
+      "range": {
+        "startLine": 355,
+        "startChar": 48,
+        "endLine": 355,
+        "endChar": 55
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_80876761",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "reduce the width of this table",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 122
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_40816f49",
+        "filename": "docs/report/vpp_performance_tests/containers.rst",
+        "patchSetId": 36
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-28T07:03:06Z",
+      "side": 1,
+      "message": "do you mean tests/ligato/perf ?",
+      "range": {
+        "startLine": 383,
+        "startChar": 61,
+        "endLine": 383,
+        "endChar": 72
+      },
+      "revId": "15e11dbcc369a1faff65164b67c9ee27e210a180",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
