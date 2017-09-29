@@ -444,7 +444,7 @@ class InterfaceUtil(object):
         :type node: dict
         """
         vat_executor = VatExecutor()
-        vat_executor.execute_script_json_out("dump_interfaces.vat", node)
+        vat_executor.execute_script_json_out("interface_dump.vat", node)
         interface_dump_json = vat_executor.get_script_stdout()
         VatJsonUtil.update_vpp_interface_data_from_json(node,
                                                         interface_dump_json)
