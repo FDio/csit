@@ -293,7 +293,8 @@ class HoneycombSetup(object):
                 "which java",
                 "java -version",
                 "dpkg --list | grep openjdk",
-                "ls -la /opt/honeycomb")
+                "ls -la /opt/honeycomb",
+                "cat /opt/honeycomb/modules/*module-config")
 
         for node in nodes:
             if node['type'] == NodeType.DUT:
@@ -365,27 +366,32 @@ class HoneycombSetup(object):
          """
 
         disabled_features = {
-            "NSH": "io.fd.hc2vpp.vppnsh.impl.VppNshModule"
+            "NSH": ["io.fd.hc2vpp.vppnsh.impl.VppNshModule"],
+            "BGP": ["io.fd.hc2vpp.bgp.inet.BgpInetModule",
+                    "io.fd.honeycomb.infra.bgp.BgpModule",
+                    "io.fd.honeycomb.infra.bgp.BgpReadersModule",
+                    "io.fd.honeycomb.infra.bgp.BgpWritersModule"]
         }
 
         ssh = SSH()
         ssh.connect(node)
 
         if feature in disabled_features.keys():
-            # uncomment by replacing the entire line
-            find = replace = "{0}".format(disabled_features[feature])
-            if disable:
-                replace = "// {0}".format(find)
+            # for every module, uncomment by replacing the entire line
+            for item in disabled_features[feature]:
+                find = replace = "{0}".format(item)
+                if disable:
+                    replace = "// {0}".format(find)
 
-            argument = '"/{0}/c\\ {1}"'.format(find, replace)
-            path = "{0}/modules/*module-config"\
-                .format(Const.REMOTE_HC_DIR)
-            command = "sed -i {0} {1}".format(argument, path)
+                argument = '"/{0}/c\\ {1}"'.format(find, replace)
+                path = "{0}/modules/*module-config"\
+                    .format(Const.REMOTE_HC_DIR)
+                command = "sed -i {0} {1}".format(argument, path)
 
-            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
-            if ret_code != 0:
-                raise HoneycombError("Failed to modify configuration on "
-                                     "node {0}, {1}".format(node, stderr))
+                (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+                if ret_code != 0:
+                    raise HoneycombError("Failed to modify configuration on "
+                                         "node {0}, {1}".format(node, stderr))
         else:
             raise HoneycombError(
                 "Unrecognized feature {0}.".format(feature))

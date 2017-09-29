@@ -157,7 +157,7 @@ class RoutingKeywords(object):
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
                 "Not possible to get operational information about the "
-                "classify tables. Status code: {0}.".format(status_code))
+                "routing tables. Status code: {0}.".format(status_code))
 
         data = RoutingKeywords.clean_routing_oper_data(
             resp['routing-protocol'][0]['static-routes']
