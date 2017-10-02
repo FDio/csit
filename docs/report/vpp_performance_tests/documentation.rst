@@ -1,3 +1,5 @@
+.. include:: ./containers.rst
+
 Documentation
 =============
 
