@@ -418,4 +418,5 @@ class HoneycombUtil(object):
             ssh.scp(
                 ".",
                 "/var/log/honeycomb/honeycomb.log",
-                get=True)
+                get=True,
+                timeout=60)
