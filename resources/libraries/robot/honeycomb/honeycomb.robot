@@ -39,7 +39,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 4min | 16sec
+| | Wait until keyword succeeds | 6min | 16sec
 | | ... | Check honeycomb startup state | @{duts}
 | | Sleep | 5s | Make sure all modules are loaded and ready.
 
@@ -164,11 +164,11 @@
 | | [Arguments] | ${node} | ${odl_name}
 | | Copy ODL Client | ${node} | ${odl_name} | /mnt/common | /tmp
 | | Setup ODL Client | ${node} | /tmp
-| | Wait until keyword succeeds | 2min | 30sec
+| | Wait until keyword succeeds | 3min | 30sec
 | | ... | Install ODL Features | ${node} | /tmp
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Mount Honeycomb on ODL | ${node}
-| | Wait until keyword succeeds | 2min | 16sec
+| | Wait until keyword succeeds | 3min | 16sec
 | | ... | Check ODL startup state | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check honeycomb startup state | ${node}
