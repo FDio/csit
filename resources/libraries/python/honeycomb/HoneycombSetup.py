@@ -466,7 +466,7 @@ class HoneycombSetup(object):
               "cp -r {src}/*karaf_{odl_name}* {dst}".format(
                   src=src_path, odl_name=odl_name, dst=dst_path)
 
-        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=120)
+        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret_code) != 0:
             raise HoneycombError(
                 "Failed to copy ODL client on node {0}".format(node["host"]))
