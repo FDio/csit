@@ -453,5 +453,6 @@ class HoneycombUtil(object):
             ssh.scp(
                 ".",
                 "/tmp/honeycomb.log",
-                get=True)
+                get=True,
+                timeout=60)
             ssh.exec_command("rm /tmp/honeycomb.log")
