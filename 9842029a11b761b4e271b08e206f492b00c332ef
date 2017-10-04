@@ -91,6 +91,29 @@
       "revId": "9842029a11b761b4e271b08e206f492b00c332ef",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_4fb513cc",
+        "filename": "resources/templates/vat/memif_create_lxc.vat",
+        "patchSetId": 43
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-04T07:24:39Z",
+      "side": 1,
+      "message": "remove white spaces",
+      "range": {
+        "startLine": 7,
+        "startChar": 63,
+        "endLine": 7,
+        "endChar": 64
+      },
+      "revId": "9842029a11b761b4e271b08e206f492b00c332ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
