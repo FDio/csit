@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_afdda716",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-04T07:38:15Z",
+      "side": 1,
+      "message": "I see \"type local: bool\" in doc, so: local\u003dFalse",
+      "range": {
+        "startLine": 28,
+        "startChar": 41,
+        "endLine": 28,
+        "endChar": 45
+      },
+      "revId": "b9c31ee14f0fbb7bd24e4d31d8a489e91787045b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_cfc0e32c",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-04T07:38:15Z",
+      "side": 1,
+      "message": ":type ipv6: bool",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 24
+      },
+      "revId": "b9c31ee14f0fbb7bd24e4d31d8a489e91787045b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_8fe2ebd3",
+        "filename": "tests/vpp/func/ip4/eth2p-ethip4-ip4base-copwhlistbase-func.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-04T07:38:15Z",
+      "side": 1,
+      "message": "${TRUE}",
+      "range": {
+        "startLine": 86,
+        "startChar": 73,
+        "endLine": 86,
+        "endChar": 74
+      },
+      "revId": "b9c31ee14f0fbb7bd24e4d31d8a489e91787045b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_6fe7afe5",
+        "filename": "tests/vpp/func/ip6/eth2p-ethip6-ip6base-copwhlistbase-func.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-04T07:38:15Z",
+      "side": 1,
+      "message": "${TRUE}",
+      "range": {
+        "startLine": 95,
+        "startChar": 73,
+        "endLine": 95,
+        "endChar": 74
+      },
+      "revId": "b9c31ee14f0fbb7bd24e4d31d8a489e91787045b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
