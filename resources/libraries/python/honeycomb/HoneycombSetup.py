@@ -155,33 +155,22 @@ class HoneycombSetup(object):
 
         ssh = SSH()
         ssh.connect(node)
-        ret_code, pid, _ = ssh.exec_command("pgrep honeycomb")
-        if ret_code != 0:
-            raise HoneycombError("No process named 'honeycomb' found.")
 
-        pid = int(pid)
         count = 0
         start = time()
         while time() - start < timeout and count < retries:
             count += 1
-            ret_code, _, _ = ssh.exec_command(
-                " | ".join([
-                    "sudo tail -n 1000 /var/log/syslog",
-                    "grep {pid}".format(pid=pid),
-                    "grep 'Honeycomb started successfully!'"])
-            )
-            if ret_code != 0:
-                logger.debug(
-                    "Attempt #{count} failed on log check.".format(
-                        count=count))
+
+            try:
+                status_code_version, _ = HcUtil.get_honeycomb_data(
+                    node, "oper_vpp_version")
+                status_code_if_cfg, _ = HcUtil.get_honeycomb_data(
+                    node, "config_vpp_interfaces")
+                status_code_if_oper, _ = HcUtil.get_honeycomb_data(
+                    node, "oper_vpp_interfaces")
+            except HTTPRequestError:
                 sleep(interval)
                 continue
-            status_code_version, _ = HcUtil.get_honeycomb_data(
-                node, "oper_vpp_version")
-            status_code_if_cfg, _ = HcUtil.get_honeycomb_data(
-                node, "config_vpp_interfaces")
-            status_code_if_oper, _ = HcUtil.get_honeycomb_data(
-                node, "oper_vpp_interfaces")
             if status_code_if_cfg == HTTPCodes.OK\
                     and status_code_if_cfg == HTTPCodes.OK\
                     and status_code_if_oper == HTTPCodes.OK:
@@ -200,16 +189,10 @@ class HoneycombSetup(object):
                 sleep(interval)
                 continue
         else:
-            _, vpp_status, _ = ssh.exec_command("service vpp status")
-            ret_code, hc_log, _ = ssh.exec_command(
-                " | ".join([
-                    "sudo tail -n 1000 /var/log/syslog",
-                    "grep {pid}".format(pid=pid)]))
+            _, vpp_status, _ = ssh.exec_command("sudo service vpp status")
             raise HoneycombError(
                 "Timeout or max retries exceeded. Status of VPP:\n"
-                "{vpp_status}\n"
-                "Syslog entries filtered by Honeycomb's pid:\n"
-                "{hc_log}".format(vpp_status=vpp_status, hc_log=hc_log))
+                "{vpp_status}".format(vpp_status=vpp_status))
 
     @staticmethod
     def check_honeycomb_shutdown_state(node):
@@ -677,8 +660,7 @@ class HoneycombStartupConfig(object):
     def __init__(self):
         """Initializer."""
 
-        self.template = """
-        #!/bin/sh -
+        self.template = """#!/bin/sh -
         STATUS=100
 
         while [ $STATUS -eq 100 ]
