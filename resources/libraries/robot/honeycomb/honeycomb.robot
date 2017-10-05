@@ -188,6 +188,7 @@
 | | Configure Log Level | ${node} | TRACE
 | | Configure Persistence | ${node} | disable
 | | Configure jVPP timeout | ${node} | ${10}
+| | Generate Honeycomb startup configuration for ODL test | ${node}
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 

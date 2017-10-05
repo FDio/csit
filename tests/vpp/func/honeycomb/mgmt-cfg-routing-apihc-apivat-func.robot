@@ -165,6 +165,8 @@
 | | ... | destination. Make sure no packet is received on the second TG\
 | | ... | interface.
 | | ...
+# VPP-930: ip6_fib_dump shows incorrect outgoing interface index
+| | [Tags] | EXPECTED_FAILING
 | | ${table}= | Set Variable | table6
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | When Honeycomb configures routing table
