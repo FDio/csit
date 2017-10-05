@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_61a3439f",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-05T08:49:43Z",
+      "side": 1,
+      "message": "Please let\u0027s not use T-rex specific variables and use tg instead. There is IXIA comming in and test cases should be portable. Higher level KW should be abstract from TG used unless not specific.",
+      "range": {
+        "startLine": 948,
+        "startChar": 0,
+        "endLine": 957,
+        "endChar": 60
+      },
+      "revId": "9f22c4ec755d919bda6a161039533d70babd99e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
