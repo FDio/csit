@@ -15,12 +15,12 @@
 
 import json
 
+from paramiko.ssh_exception import SSHException
 from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.VatHistory import VatHistory
-
 
 __all__ = ['VatExecutor']
 
@@ -39,6 +39,12 @@ def cleanup_vat_json_output(json_output):
     for garbage in clutter:
         retval = retval.replace(garbage, '')
     return retval
+
+
+def get_vpp_pid(node):
+    import resources.libraries.python.DUTSetup as PidLib
+    pid = PidLib.DUTSetup.get_vpp_pid(node)
+    return pid
 
 
 class VatExecutor(object):
@@ -60,7 +66,11 @@ class VatExecutor(object):
         """
 
         ssh = SSH()
-        ssh.connect(node)
+        try:
+            ssh.connect(node)
+        except:
+            raise SSHException("Cannot open SSH connection to execute VAT "
+                               "command(s) from template {0}".format(vat_name))
 
         remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
                                                 Constants.RESOURCES_TPL_VAT,
@@ -76,10 +86,6 @@ class VatExecutor(object):
         self._ret_code = ret_code
         self._stdout = stdout
         self._stderr = stderr
-
-        logger.trace("Command '{0}' returned {1}'".format(cmd, self._ret_code))
-        logger.trace("stdout: '{0}'".format(self._stdout))
-        logger.trace("stderr: '{0}'".format(self._stderr))
 
         # TODO: download vpp_api_test output file
         # self._delete_files(node, remote_file_path, remote_file_out)
@@ -101,7 +107,11 @@ class VatExecutor(object):
         """
 
         ssh = SSH()
-        ssh.connect(node)
+        try:
+            ssh.connect(node)
+        except:
+            raise SSHException("Cannot open SSH connection to execute VAT "
+                               "command(s) from template {0}".format(vat_name))
 
         ssh.scp(vat_name, vat_name)
 
@@ -113,10 +123,6 @@ class VatExecutor(object):
         self._ret_code = ret_code
         self._stdout = stdout
         self._stderr = stderr
-
-        logger.trace("Command '{0}' returned {1}'".format(cmd, self._ret_code))
-        logger.trace("stdout: '{0}'".format(self._stdout))
-        logger.trace("stderr: '{0}'".format(self._stderr))
 
         self._delete_files(node, vat_name)
 
@@ -138,22 +144,23 @@ class VatExecutor(object):
         """
 
         ssh = SSH()
-        ssh.connect(node)
+        try:
+            ssh.connect(node)
+        except:
+            raise SSHException("Cannot open SSH connection to execute CLI "
+                               "command(s) from template {0}".format(fname))
 
         ssh.scp(fname, fname)
 
         cmd = "{vat} {json}".format(json="json" if json_out is True else "",
                                     vat=Constants.VAT_BIN_NAME)
         cmd_input = "exec exec {0}".format(fname)
+
         (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd, cmd_input,
                                                            timeout)
         self._ret_code = ret_code
         self._stdout = stdout
         self._stderr = stderr
-
-        logger.trace("Command '{0}' returned {1}'".format(cmd, self._ret_code))
-        logger.trace("stdout: '{0}'".format(self._stdout))
-        logger.trace("stderr: '{0}'".format(self._stderr))
 
         self._delete_files(node, fname)
 
@@ -240,10 +247,36 @@ class VatTerminal(object):
         self._ssh = SSH()
         self._ssh.connect(self._node)
         self._tty = self._ssh.interactive_terminal_open()
-        self._ssh.interactive_terminal_exec_command(
-            self._tty,
-            'sudo -S {}{}'.format(Constants.VAT_BIN_NAME, json_text),
-            self.__VAT_PROMPT)
+
+        command_exec_tries = 3
+        while True:
+            try:
+                self._ssh.interactive_terminal_exec_command(
+                    self._tty, 'sudo -S {0}{1}'.format(Constants.VAT_BIN_NAME,
+                                                       json_text),
+                    self.__VAT_PROMPT)
+            except Exception:
+                command_exec_tries -= 1
+                if command_exec_tries:
+                    continue
+                else:
+                    vpp_pid = get_vpp_pid(self._node)
+                    if vpp_pid:
+                        if isinstance(vpp_pid, int):
+                            logger.error("VPP running on node {0} but VAT "
+                                         "command execution failed.".
+                                         format(self._node['host']))
+                        else:
+                            logger.error("More instances of VPP running on node"
+                                         " {0}. VAT command execution failed.".
+                                         format(self._node['host']))
+                    else:
+                        logger.error("VPP not running on node {0}.".
+                                     format(self._node['host']))
+                    raise
+            else:
+                break
+
         self._exec_failure = False
         self.vat_stdout = None
 
@@ -262,16 +295,28 @@ class VatTerminal(object):
         None if not in JSON mode.
         """
         VatHistory.add_to_vat_history(self._node, cmd)
-        logger.debug("Executing command in VAT terminal: {}".format(cmd))
+        logger.debug("Executing command in VAT terminal: {0}".format(cmd))
         try:
             out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
                                                               self.__VAT_PROMPT)
             self.vat_stdout = out
         except:
             self._exec_failure = True
+            vpp_pid = get_vpp_pid(self._node)
+            if vpp_pid:
+                if isinstance(vpp_pid, int):
+                    logger.error("VPP running on node {0} but VAT command "
+                                 "execution failed.".format(self._node['host']))
+                else:
+                    logger.error("More instances of VPP running on node {0}. "
+                                 "VAT command execution failed.".
+                                 format(self._node['host']))
+            else:
+                logger.error("VPP not running on node {0}.".
+                             format(self._node['host']))
             raise
 
-        logger.debug("VAT output: {}".format(out))
+        logger.debug("VAT output: {0}".format(out))
         if self.json:
             obj_start = out.find('{')
             obj_end = out.rfind('}')
@@ -279,7 +324,7 @@ class VatTerminal(object):
             array_end = out.rfind(']')
 
             if obj_start == -1 and array_start == -1:
-                raise RuntimeError("VAT: no JSON data.")
+                raise RuntimeError("VAT command {0}: no JSON data.".format(cmd))
 
             if obj_start < array_start or array_start == -1:
                 start = obj_start
