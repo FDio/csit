@@ -157,10 +157,10 @@ class SSH(object):
 
             if time() - start > timeout:
                 raise SSHTimeout(
-                    'Timeout exception.\n'
-                    'Current contents of stdout buffer: {0}\n'
-                    'Current contents of stderr buffer: {1}\n'
-                    .format(stdout.getvalue(), stderr.getvalue())
+                    'Timeout exception during execution of command: {0}\n'
+                    'Current contents of stdout buffer: {1}\n'
+                    'Current contents of stderr buffer: {2}\n'
+                    .format(cmd, stdout.getvalue(), stderr.getvalue())
                 )
 
             sleep(0.1)
@@ -293,7 +293,8 @@ class SSH(object):
                     logger.error('Channel exit status ready')
                     break
             except socket.timeout:
-                raise Exception('Socket timeout: {0}'.format(buf))
+                raise Exception('Socket timeout during execution of command: '
+                                '{0}\nBuffer content:\n{1}'.format(cmd, buf))
         tmp = buf.replace(cmd.replace('\n', ''), '')
         for item in prompt:
             tmp.replace(item, '')
