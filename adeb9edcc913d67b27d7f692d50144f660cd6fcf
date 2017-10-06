@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_2d3e5ab9",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-06T10:35:59Z",
+      "side": 1,
+      "message": "... or write a config.",
+      "range": {
+        "startLine": 371,
+        "startChar": 30,
+        "endLine": 371,
+        "endChar": 62
+      },
+      "revId": "adeb9edcc913d67b27d7f692d50144f660cd6fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_0d4b9e5a",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-06T10:35:59Z",
+      "side": 1,
+      "message": "create or start?",
+      "range": {
+        "startLine": 589,
+        "startChar": 43,
+        "endLine": 589,
+        "endChar": 49
+      },
+      "revId": "adeb9edcc913d67b27d7f692d50144f660cd6fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_ad792a95",
+        "filename": "resources/templates/vat/memif_create_lxc.vat",
+        "patchSetId": 45
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-06T10:35:59Z",
+      "side": 1,
+      "message": "remove trailing whitespaces",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 64
+      },
+      "revId": "adeb9edcc913d67b27d7f692d50144f660cd6fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
