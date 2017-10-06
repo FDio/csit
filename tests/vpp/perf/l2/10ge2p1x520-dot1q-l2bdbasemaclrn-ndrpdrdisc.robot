@@ -100,7 +100,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with VLAN
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=NDR
