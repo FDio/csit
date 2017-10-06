@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_52a3739e",
+        "filename": "resources/libraries/python/honeycomb/BGP.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-10-06T09:01:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_d2d08355",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 15
+      },
+      "revId": "12aa08116c9dc4bafdf9b09dd5c4f7abb1716cff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_92ca0ba0",
         "filename": "resources/libraries/python/honeycomb/BGP.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-06T07:53:20Z",
       "side": 1,
       "message": "node",
+      "range": {
+        "startLine": 92,
+        "startChar": 42,
+        "endLine": 92,
+        "endChar": 46
+      },
+      "revId": "12aa08116c9dc4bafdf9b09dd5c4f7abb1716cff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_32a0f78f",
+        "filename": "resources/libraries/python/honeycomb/BGP.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-10-06T09:01:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_92ca0ba0",
       "range": {
         "startLine": 92,
         "startChar": 42,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_12adfb88",
+        "filename": "resources/libraries/python/honeycomb/BGP.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-10-06T09:01:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_72cf8fb1",
+      "range": {
+        "startLine": 104,
+        "startChar": 8,
+        "endLine": 104,
+        "endChar": 14
+      },
+      "revId": "12aa08116c9dc4bafdf9b09dd5c4f7abb1716cff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_12be1b00",
         "filename": "resources/libraries/python/honeycomb/BGP.py",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_f2a93f7c",
+        "filename": "resources/libraries/python/honeycomb/BGP.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-10-06T09:01:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_12be1b00",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 14
+      },
+      "revId": "12aa08116c9dc4bafdf9b09dd5c4f7abb1716cff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_32c11781",
         "filename": "resources/libraries/python/honeycomb/BGP.py",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2017-10-06T07:53:20Z",
       "side": 1,
       "message": "add to doc",
+      "range": {
+        "startLine": 156,
+        "startChar": 8,
+        "endLine": 156,
+        "endChar": 14
+      },
+      "revId": "12aa08116c9dc4bafdf9b09dd5c4f7abb1716cff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_d2b643dc",
+        "filename": "resources/libraries/python/honeycomb/BGP.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-10-06T09:01:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_32c11781",
       "range": {
         "startLine": 156,
         "startChar": 8,
