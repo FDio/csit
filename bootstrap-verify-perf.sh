@@ -15,9 +15,7 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -76,7 +74,7 @@ else
     exit 1
 fi
 
-WORKING_TOPOLOGY=""
+WORKING_TOPOLOGY=${TOPOLOGIES}
 export PYTHONPATH=${SCRIPT_DIR}
 
 sudo apt-get -y update
@@ -89,27 +87,6 @@ echo pip install
 pip install -r requirements.txt
 
 # We iterate over available topologies and wait until we reserve topology
-while :; do
-    for TOPOLOGY in ${TOPOLOGIES};
-    do
-        python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -t ${TOPOLOGY}
-        if [ $? -eq 0 ]; then
-            WORKING_TOPOLOGY=${TOPOLOGY}
-            echo "Reserved: ${WORKING_TOPOLOGY}"
-            break
-        fi
-    done
-
-    if [ ! -z "${WORKING_TOPOLOGY}" ]; then
-        # Exit the infinite while loop if we made a reservation
-        break
-    fi
-
-    # Wait ~3minutes before next try
-    SLEEP_TIME=$[ ( $RANDOM % 20 ) + 180 ]s
-    echo "Sleeping ${SLEEP_TIME}"
-    sleep ${SLEEP_TIME}
-done
 
 function cancel_all {
     python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
@@ -332,6 +309,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
