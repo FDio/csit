@@ -145,3 +145,14 @@ class IPv6Management(object):
         ret_code, _, _ = ssh.exec_command_sudo(cmd)
         if ret_code != 0:
             raise RuntimeError("Could not configure tunnel.")
+
+    @staticmethod
+    def set_static_arp(node, ip_address, mac_address):
+
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, _, _ = ssh.exec_command_sudo("arp -s {0} {1}".format(
+            ip_address, mac_address))
+
+        if ret_code != 0:
+            raise RuntimeError("Failed to configure static ARP adddress.")
