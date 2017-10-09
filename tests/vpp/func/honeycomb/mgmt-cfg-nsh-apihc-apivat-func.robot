@@ -32,8 +32,8 @@
 | ... | Tear Down Honeycomb Functional Test Suite | ${node} | AND
 | ... | Disable Honeycomb Feature | ${node} | NSH
 | ...
-| Force Tags | HC_FUNC
-
+# NSH packages are not yet available in fd.io.stable.1710.* repos
+| Force Tags | HC_FUNC | EXPECTED_FAILING
 
 *** Test Cases ***
 | TC01: Honeycomb can configure NSH entry
