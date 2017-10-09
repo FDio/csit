@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_c32c374d",
+        "filename": "tests/vpp/func/ip4/eth2p-ethip4-ip4basevrf-func.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 267
+      },
+      "writtenOn": "2017-10-09T12:42:03Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "1a486d77_4372877d",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 330,
+        "endChar": 53
+      },
+      "revId": "ef667656b6b30c1715705d5d031f9c2c126bbcc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_236f8b94",
         "filename": "tests/vpp/func/ip4/eth2p-ethip4-ip4basevrf-func.robot",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-09T12:28:31Z",
       "side": 1,
       "message": "Why creating fib tables again? Already done on lines 314 and 315.",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 341,
+        "endChar": 53
+      },
+      "revId": "ef667656b6b30c1715705d5d031f9c2c126bbcc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_a3313ba4",
+        "filename": "tests/vpp/func/ip4/eth2p-ethip4-ip4basevrf-func.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 267
+      },
+      "writtenOn": "2017-10-09T12:42:03Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "1a486d77_236f8b94",
       "range": {
         "startLine": 340,
         "startChar": 0,
