@@ -13,6 +13,7 @@
 
 """Keywords to manipulate BGP configuration using Honeycomb REST API."""
 
+from resources.libraries.python.constants import Constants as Const
 from resources.libraries.python.HTTPRequest import HTTPCodes
 from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \
@@ -27,6 +28,7 @@ class BGPKeywords(object):
     """
 
     def __init__(self):
+        """Initializer."""
         pass
 
     @staticmethod
@@ -41,7 +43,7 @@ class BGPKeywords(object):
         :type data: dict
         :returns: Content of response.
         :rtype: bytearray
-        :raises HoneycombError: If the status code in response on PUT is not
+        :raises HoneycombError: If the status code in response to PUT is not
         200 = OK or 201 = ACCEPTED.
         """
 
@@ -69,7 +71,7 @@ class BGPKeywords(object):
         :type data: dict
         :returns: Content of response.
         :rtype: bytearray
-        :raises HoneycombError: If the status code in response on PUT is not
+        :raises HoneycombError: If the status code in response to PUT is not
         200 = OK or 201 = ACCEPTED.
         """
 
@@ -93,6 +95,7 @@ class BGPKeywords(object):
         :type node: dict
         :returns: BGP configuration data.
         :rtype: dict
+        :raises HoneycombError: If the status code in response is not 200 = OK.
         """
 
         status_code, resp = HcUtil. \
@@ -104,21 +107,29 @@ class BGPKeywords(object):
         return resp
 
     @staticmethod
-    def get_bgp_peer(node, address):
+    def get_bgp_peer(node, address, datastore='config'):
         """Get BGP configuration of the specified peer from the node.
 
         :param node: Honeycomb node.
         :param address: IP address of the peer.
+        :param datastore: Get data from config or operational datastore.
         :type node: dict
         :type address: str
+        :type datastore; str
         :returns: BGP peer configuration data.
         :rtype: dict
+        :raises HoneycombError: If the status code in response is not 200 = OK.
         """
 
         path = "bgp-openconfig-extensions:neighbors/" \
                "neighbor/{0}".format(address)
+        if datastore != "operational":
+            url = "config_bgp_peer"
+        else:
+            url = "oper_bgp"
+            path = "peer/bgp:%2F%2F{0}".format(address)
         status_code, resp = HcUtil. \
-            get_honeycomb_data(node, "config_bgp_peer", path)
+            get_honeycomb_data(node, url, path)
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
                 "Not possible to get configuration information about the BGP"
@@ -211,7 +222,7 @@ class BGPKeywords(object):
         :type ip_version: str
         :returns: Content of response.
         :rtype: bytearray
-        :raises HoneycombError: If the operation fails.
+        :raises HoneycombError: If the status code in response is not 200 = OK.
         """
 
         route_address = route_address.replace("/", "%2F")
@@ -239,7 +250,7 @@ class BGPKeywords(object):
     def get_all_peer_routes(node, peer_address, ip_version):
         """Get all configured routes for the given BGP peer.
 
-        :param node: HOneycomb node.
+        :param node: Honeycomb node.
         :param peer_address: IP address of the peer.
         :param ip_version: IP protocol version. ipv4 or ipv6
         :type node: dict
@@ -247,7 +258,7 @@ class BGPKeywords(object):
         :type ip_version: str
         :returns: Content of response.
         :rtype: bytearray
-        :raises HoneycombError: If the operation fails.
+        :raises HoneycombError: If the status code in response is not 200 = OK.
         """
 
         if ip_version.lower() == "ipv4":
@@ -299,3 +310,90 @@ class BGPKeywords(object):
                 .format(peer_address, route_address, index)
 
         return BGPKeywords._configure_bgp_route(node, path)
+
+    @staticmethod
+    def get_bgp_local_rib(node):
+        """Get local RIB table from the Honeycomb node.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :returns: RIB operational data.
+        :rtype: dict
+        :raises HoneycombError: If the status code in response is not 200 = OK.
+        """
+
+        path = "loc-rib"
+
+        status_code, resp = HcUtil. \
+            get_honeycomb_data(node, "oper_bgp", path)
+
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Not possible to get operational data from BGP local RIB."
+                " Status code: {0}.".format(status_code))
+
+        return resp
+
+    @staticmethod
+    def configure_bgp_base(node, ip_address, port, as_number):
+        """Modify BGP config file. Requires a restart of Honeycomb to take
+        effect.
+
+        :param node: Honeycomb node.
+        :param ip_address: BGP peer identifier/binding address.
+        :param port: BGP binding port.
+        :param as_number: Autonomous System ID number.
+        :type node: dict
+        :type ip_address: str
+        :type port: int
+        :type as_number: int
+        :raises HoneycombError: If modifying the configuration fails.
+        """
+
+        from resources.libraries.python.ssh import SSH
+
+        config = {
+            '\\"bgp-binding-address\\"': '\\"{0}\\"'.format(ip_address),
+            '\\"bgp-port\\"': port,
+            '\\"bgp-as-number\\"': as_number}
+
+        path = "{0}/config/bgp.json".format(Const.REMOTE_HC_DIR)
+
+        for key, value in config.items():
+            find = key
+            replace = '"{0}": "{1}",'.format(key, value)
+
+            argument = '"/{0}/c\\ {1}"'.format(find, replace)
+            command = "sed -i {0} {1}".format(argument, path)
+
+            ssh = SSH()
+            ssh.connect(node)
+            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+            if ret_code != 0:
+                raise HoneycombError("Failed to modify configuration on "
+                                     "node {0}, {1}".format(node, stderr))
+
+    @staticmethod
+    def compare_rib_tables(data, ref):
+        """Compare provided RIB table data with reference data.
+
+        :param data: Data from Honeycomb node.
+        :param ref: Reference data to compare against.
+        :type data: dict
+        :type ref: dict
+        :raises HoneycombError: If the tables do not match."""
+
+        # Remove runtime attributes from data
+        for item in data:
+            item.pop("attributes", "")
+
+        # Sort list of dicts by value of subsequent address family key
+        data = sorted(data, key=lambda k: k['safi'])
+        ref = sorted(ref, key=lambda k: k['safi'])
+
+        # Compare list items individually
+        for index in range(len(ref)):
+            if ref[index] != data[index]:
+                raise HoneycombError(
+                    "RIB table: {0}\n does not match reference table:\n {1}"
+                    .format(data, ref))
