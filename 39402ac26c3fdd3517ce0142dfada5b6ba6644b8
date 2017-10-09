@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_039fef60",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-09T13:13:00Z",
+      "side": 1,
+      "message": "missing exception?",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 67
+      },
+      "revId": "39402ac26c3fdd3517ce0142dfada5b6ba6644b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_2392eb57",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-09T13:13:00Z",
+      "side": 1,
+      "message": "missing exception",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 67
+      },
+      "revId": "39402ac26c3fdd3517ce0142dfada5b6ba6644b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_c388b724",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-09T13:13:00Z",
+      "side": 1,
+      "message": "missing exception",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 67
+      },
+      "revId": "39402ac26c3fdd3517ce0142dfada5b6ba6644b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_03f12fcd",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-09T13:13:00Z",
+      "side": 1,
+      "message": "This needs to be exception\u0027ed as well",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 57
+      },
+      "revId": "39402ac26c3fdd3517ce0142dfada5b6ba6644b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_83abdf88",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-09T13:13:00Z",
+      "side": 1,
+      "message": "this can be written as\nfor _ in range(3) with same logic, less lines, and safe for number of iterations.",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 19
+      },
+      "revId": "39402ac26c3fdd3517ce0142dfada5b6ba6644b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_437cc720",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-09T13:13:00Z",
+      "side": 1,
+      "message": "Exception?",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 33
+      },
+      "revId": "39402ac26c3fdd3517ce0142dfada5b6ba6644b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_0376cf3e",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-10-09T13:13:00Z",
+      "side": 1,
+      "message": "there is missing cmd to be executed. so user do not know what command failed.",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 56
+      },
+      "revId": "39402ac26c3fdd3517ce0142dfada5b6ba6644b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
