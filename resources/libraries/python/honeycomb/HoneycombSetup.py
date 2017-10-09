@@ -61,12 +61,13 @@ class HoneycombSetup(object):
 
         HoneycombSetup.print_environment(nodes)
 
-        logger.console("\n(re)Starting Honeycomb service ...")
-
         cmd = "sudo service honeycomb start"
 
         for node in nodes:
             if node['type'] == NodeType.DUT:
+                logger.console(
+                    "\n(re)Starting Honeycomb service on node {0}".format(
+                        node["host"]))
                 ssh = SSH()
                 ssh.connect(node)
                 (ret_code, _, _) = ssh.exec_command_sudo(cmd)
@@ -89,13 +90,15 @@ class HoneycombSetup(object):
         :type nodes: list
         :raises HoneycombError: If Honeycomb failed to stop.
         """
-        logger.console("\nShutting down Honeycomb service ...")
 
         cmd = "sudo service honeycomb stop"
         errors = []
 
         for node in nodes:
             if node['type'] == NodeType.DUT:
+                logger.console(
+                    "\nShutting down Honeycomb service on node {0}".format(
+                        node["host"]))
                 ssh = SSH()
                 ssh.connect(node)
                 (ret_code, _, _) = ssh.exec_command_sudo(cmd)
@@ -121,7 +124,8 @@ class HoneycombSetup(object):
         :raises HoneycombError: If Honeycomb fails to start.
         """
 
-        logger.console("\n(re)Starting Honeycomb service ...")
+        logger.console(
+            "\n(re)Starting Honeycomb service on node {0}".format(node["host"]))
 
         cmd = "sudo service honeycomb restart"
 
