@@ -16,6 +16,24 @@
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 
 *** Keywords ***
+| Configure BGP module
+| | [Documentation] | Edit Honeycomb's configuration file for the BGP feature.\
+| | ... | Honeycomb needs to be restarted for the changes to take effect.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - ip_address - IP address to bind BGP listener to. Type: string
+| | ... | - port - Port number to bind BGP listener to. Type: integer
+| | ... | - as_number - Autonomous System (AS) ID number. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure BGP module \| ${nodes['DUT1']} \| 192.168.0.1 \| ${179} \
+| | ... | \| ${65000} \|
+| | ...
+| | [Arguments] | ${node} | ${ip_address} | ${port} | ${as_number}
+| | Configure BGP base | ${node} | ${ip_address} | ${port} | ${as_number}
+
 | No BGP peers should be configured
 | | [Documentation] | Uses Honeycomb API to read BGP configuration and checks
 | | ... | if there ary BGP peers conffigured.
@@ -50,7 +68,7 @@
 | | Add BGP Peer | ${node} | ${address} | ${data}
 
 | BGP Peer From Honeycomb Should be
-| | [Documentation] | Uses Honeycomb API to verify BGP peer operational data.
+| | [Documentation] | Uses Honeycomb API to verify BGP peer config data.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -66,6 +84,24 @@
 | | ...
 | | ${oper_data}= | Get BGP Peer | ${node} | ${address}
 | | Compare Data Structures | ${oper_data} | ${data}
+
+| Peer Operational Data From Honeycomb Should be
+| | [Documentation] | Uses Honeycomb API to verify BGP peer operational data.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - address - IP address of the peer. Type: string
+| | ... | - data - Peer configuration data. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| BGP Peer From Honeycomb Should be \
+| | ... | \| ${nodes['DUT1']} \| 192.168.0.1 \| ${data} \|
+| | ...
+| | [Arguments] | ${node} | ${address}
+| | ...
+| | ${oper_data}= | Get BGP Peer | ${node} | ${address} | operational
+| | Should be Equal | ${oper_data['peer'][0]['peer-id']} | bgp://${address}
 
 | Honeycomb removes BGP peer
 | | [Documentation] | Uses Honeycomb API to add a BGP peer.
@@ -171,3 +207,51 @@
 | | ${oper_data}= | Get All Peer Routes
 | | ... | ${node} | ${peer_address} | ${ip_version}
 | | Should be Empty | ${oper_data['bgp-inet:${ip_version}-routes']}
+
+| BGP Loc-RIB table should include
+| | [Documentation] | Uses Honeycomb API to retrieve local BGP RIB table\
+| | ... | And verifies that it contains the specified entry.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - data - RIB that should be present in operational data.\
+| | ... | Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| BGP Loc-RIB table should include \| ${nodes['DUT1']} \| ${data} \|
+| | ...
+| | [Arguments] | ${node} | ${data}
+| | ...
+| | ${oper_data}= | Get BGP Local RIB | ${node}
+| | ${oper_data}= | Set Variable | ${oper_data['loc-rib']['tables']}
+| | ${data}= | Set Variable | ${data['loc-rib']['tables']}
+| | Compare RIB Tables | ${oper_data} | ${data}
+
+| Receive BGP OPEN message
+| | [Documentation] | Open a TCP listener on BGP port(179) and listen\
+| | ... | for BGP OPEN message. Verify ID and holdtime fields.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - Information about the TG node. Type: dictionary
+| | ... | - rx_ip - IP address to listen on. Type: string
+| | ... | - src_ip - IP address of the BGP speaker. Also acts as BGP peer ID.\
+| | ... | Type: string
+| | ... | - holdtime - Expected value of HOLD_TIME field in received message.\
+| | ... | Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Receive BGP OPEN message \| ${node['TG']} \
+| | ... | \| 192.168.0.1 \| 192.168.0.2 \| ${0}
+| | ...
+| | [Arguments] | ${tg_node} | ${rx_ip} | ${src_ip} | ${port} | ${as_number}
+| | ... | ${holdtime}
+| | ...
+| | ${args}= | Catenate | --rx_ip | ${rx_ip}
+| | ...                 | --src_ip | ${src_ip}
+| | ...                 | --rx_port | ${port}
+| | ...                 | --as_number | ${as_number}
+| | ...                 | --holdtime | ${holdtime}
+| | Run Traffic Script On Node | honeycomb/bgp_open.py
+| | ... | ${tg_node} | ${args}
