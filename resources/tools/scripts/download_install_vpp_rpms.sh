@@ -26,7 +26,7 @@ else
     REPO='https://nexus.fd.io/content/repositories/fd.io.centos7'
 fi
 
-ARTIFACTS="vpp vpp-lib vpp-debuginfo vpp-devel vpp-python-api vpp-plugins"
+ARTIFACTS="vpp vpp-lib vpp-devel vpp-python-api vpp-plugins"
 
 
 yum-config-manager --add-repo $REPO

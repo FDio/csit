@@ -34,7 +34,7 @@ if [ -f "/etc/redhat-release" ]; then
     MD5FILES=*.rpm.md5
     fi
 
-    ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
+    ARTIFACTS="vpp vpp-devel vpp-lib vpp-plugins"
     PACKAGE="rpm rpm.md5"
     CLASS=""
     VPP_INSTALL_COMMAND="rpm -ivh *.rpm"
