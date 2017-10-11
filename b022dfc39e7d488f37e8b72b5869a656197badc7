@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_b0885ae8",
+        "filename": "resources/tools/presentation/conf.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:18:42Z",
+      "side": 1,
+      "message": "It is a part of \"static content update\"",
+      "parentUuid": "1a486d77_10272eb8",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 3
+      },
+      "revId": "b022dfc39e7d488f37e8b72b5869a656197badc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_4d2f51a2",
         "filename": "resources/tools/presentation/doc/pal_lld.rst",
         "patchSetId": 80
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-11T12:18:20Z",
       "side": 1,
       "message": "This parameter is missing in description of the input section.",
+      "range": {
+        "startLine": 327,
+        "startChar": 8,
+        "endLine": 327,
+        "endChar": 27
+      },
+      "revId": "b022dfc39e7d488f37e8b72b5869a656197badc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_5077e602",
+        "filename": "resources/tools/presentation/doc/pal_lld.rst",
+        "patchSetId": 80
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:18:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_4d2f51a2",
       "range": {
         "startLine": 327,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_30746afc",
+        "filename": "resources/tools/presentation/doc/pal_lld.rst",
+        "patchSetId": 80
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:18:42Z",
+      "side": 1,
+      "message": "parameter removed (it is not used)",
+      "parentUuid": "1a486d77_cd122162",
+      "range": {
+        "startLine": 520,
+        "startChar": 6,
+        "endLine": 520,
+        "endChar": 23
+      },
+      "revId": "b022dfc39e7d488f37e8b72b5869a656197badc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_6d09ed30",
         "filename": "resources/tools/presentation/doc/pal_lld.rst",
         "patchSetId": 80
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_f065b245",
+        "filename": "resources/tools/presentation/doc/pal_lld.rst",
+        "patchSetId": 80
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:18:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_6d09ed30",
+      "range": {
+        "startLine": 571,
+        "startChar": 11,
+        "endLine": 571,
+        "endChar": 22
+      },
+      "revId": "b022dfc39e7d488f37e8b72b5869a656197badc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_8d0c2944",
         "filename": "resources/tools/presentation/doc/pal_lld.rst",
         "patchSetId": 80
@@ -105,6 +201,30 @@
       "writtenOn": "2017-10-11T12:18:20Z",
       "side": 1,
       "message": "This parameter is missing in description of the input section.",
+      "range": {
+        "startLine": 591,
+        "startChar": 6,
+        "endLine": 591,
+        "endChar": 12
+      },
+      "revId": "b022dfc39e7d488f37e8b72b5869a656197badc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_90543e55",
+        "filename": "resources/tools/presentation/doc/pal_lld.rst",
+        "patchSetId": 80
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:18:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_8d0c2944",
       "range": {
         "startLine": 591,
         "startChar": 6,
