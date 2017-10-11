@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_70d8a2ef",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:38:49Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 34,
+        "startChar": 9,
+        "endLine": 34,
+        "endChar": 15
+      },
+      "revId": "236f6e078644d921ab50a8abc68563fd78937091",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_50e5a6a6",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:38:49Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 15
+      },
+      "revId": "236f6e078644d921ab50a8abc68563fd78937091",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_10ef2e89",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:38:49Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 35,
+        "startChar": 9,
+        "endLine": 35,
+        "endChar": 15
+      },
+      "revId": "236f6e078644d921ab50a8abc68563fd78937091",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_f0f37271",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T13:38:49Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 15
+      },
+      "revId": "236f6e078644d921ab50a8abc68563fd78937091",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
