@@ -23,7 +23,7 @@ export PYTHONPATH=${SCRIPT_DIR}
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
     sudo yum install -y python-devel python-virtualenv
-    VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
+    VPP_ARTIFACTS="vpp vpp-devel vpp-lib vpp-plugins"
     DPDK_ARTIFACTS=""
     PACKAGE="rpm"
     VPP_CLASSIFIER=""

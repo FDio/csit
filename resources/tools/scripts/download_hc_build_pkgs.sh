@@ -39,7 +39,7 @@ elif [ "${OS}" == "centos7" ]; then
     OS="centos7"
     PACKAGE="rpm rpm.md5"
     CLASS=""
-    VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins vpp-api-java"
+    VPP_ARTIFACTS="vpp vpp-devel vpp-lib vpp-plugins vpp-api-java"
 fi
 
 REPO="fd.io.${STREAM}.${OS}"

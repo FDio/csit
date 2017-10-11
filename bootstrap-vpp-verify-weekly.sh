@@ -119,7 +119,7 @@ done
 # Temporarily download VPP and DPDK packages from nexus.fd.io
 case "$DISTRO" in
         CENTOS )
-            VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
+            VPP_ARTIFACTS="vpp vpp-devel vpp-lib vpp-plugins"
             DPDK_ARTIFACTS=""
             PACKAGE="rpm"
             VPP_CLASSIFIER=""
