@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_1b006f00",
+        "filename": "bootstrap-verify-perf-ligato.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 30,
+        "startChar": 71,
+        "endLine": 30,
+        "endChar": 93
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_30034a11",
+        "filename": "bootstrap-verify-perf-ligato.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 361,
+        "endChar": 2
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_bb0efb32",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "Named parameters",
+      "range": {
+        "startLine": 100,
+        "startChar": 23,
+        "endLine": 100,
+        "endChar": 41
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_fb047316",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "dict",
+      "range": {
+        "startLine": 101,
+        "startChar": 23,
+        "endLine": 101,
+        "endChar": 26
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_7b10834e",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "kwargs",
+      "range": {
+        "startLine": 331,
+        "startChar": 58,
+        "endLine": 331,
+        "endChar": 62
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_5b1dc765",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "kwargs",
+      "range": {
+        "startLine": 335,
+        "startChar": 15,
+        "endLine": 335,
+        "endChar": 19
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_3b1a0b6f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "based",
+      "range": {
+        "startLine": 482,
+        "startChar": 34,
+        "endLine": 482,
+        "endChar": 38
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_7b6523e0",
+        "filename": "resources/tools/scripts/topo_container_copy.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_5b6267d9",
+        "filename": "resources/tools/scripts/topo_container_copy.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 36,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 11
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_3b5fab10",
+        "filename": "resources/tools/scripts/topo_container_copy.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "use () with print",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 13
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_1b9cefbf",
+        "filename": "resources/tools/scripts/topo_container_copy.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 63,
+        "endChar": 11
+      },
+      "revId": "369e8d289643f0f3ca9b00fd04dae15c853d5a4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}

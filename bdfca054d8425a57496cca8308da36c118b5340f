@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_bb739bb0",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-10-11T14:39:40Z",
+      "side": 0,
+      "message": "will the version be in the log file?",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 43
+      },
+      "revId": "bdfca054d8425a57496cca8308da36c118b5340f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
