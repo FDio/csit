@@ -60,7 +60,8 @@ def table_details(table, input_data):
     # Prepare the header of the tables
     header = list()
     for column in table["columns"]:
-        header.append('"{0}"'.format(str(column["title"]).replace('"', '""')))
+        # header.append('"{0}"'.format(str(column["title"]).replace('"', '""')))
+        header.append('{{0}}'.format(str(column["title"])))
 
     # Generate the data for the table according to the model in the table
     # specification
@@ -77,14 +78,15 @@ def table_details(table, input_data):
                 for column in table["columns"]:
                     try:
                         col_data = str(data[job][build][test][column["data"].
-                                       split(" ")[1]]).replace('"', '""')
+                                       split(" ")[1]])  # .replace('"', '""')
                         if column["data"].split(" ")[1] in ("vat-history",
                                                             "show-run"):
                             col_data = replace(col_data, " |br| ", "",
                                                maxreplace=1)
                             col_data = " |prein| {0} |preout| ".\
                                 format(col_data[:-5])
-                        row_lst.append('"{0}"'.format(col_data))
+                        row_lst.append('{{0}}'.format(col_data))
+                        # row_lst.append('"{0}"'.format(col_data))
                     except KeyError:
                         row_lst.append("No data")
                 table_lst.append(row_lst)
