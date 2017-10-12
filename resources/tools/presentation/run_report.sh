@@ -40,7 +40,7 @@ pip install -r requirements.txt
 export PYTHONPATH=`pwd`
 
 python pal.py \
-    --specification specification.yaml \
+    --specification spec_debug.yaml \
     --release ${RELEASE} \
     --logging INFO \
     --force
