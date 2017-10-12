@@ -68,15 +68,36 @@ def file_test_results(file_spec, input_data):
     file_name = "{0}{1}".format(file_spec["output-file"],
                                 file_spec["output-file-ext"])
     rst_header = file_spec["file-header"]
-    rst_include_table = ("\n.. csv-table::\n"
-                         "    :header-rows: 1\n"
-                         "    :widths: auto\n"
-                         "    :align: center\n"
-                         "    :file: {file}\n\n")
+    # rst_include_table = ("\n.. csv-table::\n"
+    #                      "    :header-rows: 1\n"
+    #                      "    :widths: auto\n"
+    #                      "    :align: center\n"
+    #                      "    :file: {file}\n\n")
+
+    # rst_include_table = ("\n.. only:: html\n\n"
+    #                      "    .. csv-table::\n"
+    #                      "        :header-rows: 1\n"
+    #                      "        :widths: auto\n"
+    #                      "        :align: center\n"
+    #                      "        :file: {file}\n"
+    #                      "\n.. only:: latex\n\n"
+    #                      "\n  .. raw:: latex\n\n"
+    #                      "      \csvautolongtable{{{file}}}\n\n")
+    rst_include_table = ("\n"
+                         ".. only:: html\n\n"
+                         "   .. csv-table::\n"
+                         "       :header-rows: 1\n"
+                         "       :widths: auto\n"
+                         "       :align: center\n"
+                         "       :file: {file_html}\n"
+                         "\n"
+                         ".. only:: latex\n\n"
+                         "   .. raw:: latex\n\n"
+                         "      \csvautolongtable{{../{file_latex}}}\n\n")
 
     logging.info("  Generating the file {0} ...".format(file_name))
 
-    table_lst = get_files(file_spec["dir-tables"], ".csv", full_path=False)
+    table_lst = get_files(file_spec["dir-tables"], ".csv", full_path=True)
     if len(table_lst) == 0:
         logging.error("  No tables to include in '{0}'. Skipping.".
                       format(file_spec["dir-tables"]))
@@ -103,7 +124,9 @@ def file_test_results(file_spec, input_data):
             if tests_in_suite(suite_name, input_data.tests(job, build)):
                 for tbl_file in table_lst:
                     if suite_name in tbl_file:
-                        file_handler.write(rst_include_table.
-                                           format(file=tbl_file))
+                        file_handler.write(
+                            rst_include_table.format(
+                                file_latex=tbl_file,
+                                file_html=tbl_file.split("/")[-1]))
 
     logging.info("  Done.")
