@@ -157,6 +157,8 @@ latex_elements = {
          \usepackage[defaultsans]{lato}
          \usepackage{inconsolata}
          \usepackage{csvsimple}
+         \usepackage{longtable}
+         \usepackage{booktabs}
      ''',
 
      # Latex figure (float) alignment

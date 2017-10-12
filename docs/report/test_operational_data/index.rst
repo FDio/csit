@@ -1,6 +1,8 @@
-Test Operational Data
-=====================
+.. only::  html
 
-.. toctree::
+    Test Operational Data
+    =====================
 
-    vpp_performance_operational_data/index
+    .. toctree::
+
+        vpp_performance_operational_data/index
