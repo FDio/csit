@@ -61,6 +61,7 @@ def table_details(table, input_data):
     header = list()
     for column in table["columns"]:
         header.append('"{0}"'.format(str(column["title"]).replace('"', '""')))
+        # header.append('{{{0}}}'.format(str(column["title"])))
 
     # Generate the data for the table according to the model in the table
     # specification
@@ -84,6 +85,7 @@ def table_details(table, input_data):
                                                maxreplace=1)
                             col_data = " |prein| {0} |preout| ".\
                                 format(col_data[:-5])
+                        # row_lst.append('{{{0}}}'.format(col_data))
                         row_lst.append('"{0}"'.format(col_data))
                     except KeyError:
                         row_lst.append("No data")

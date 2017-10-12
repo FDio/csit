@@ -50,6 +50,7 @@ THEME_OVERRIDES = """/* override table width restrictions */
 # Command to build the html format of the report
 HTML_BUILDER = 'sphinx-build -v -c . -a ' \
                '-b html -E ' \
+               '-t html ' \
                '-D release={release} ' \
                '-D version="{release} report - {date}" ' \
                '{working_dir} ' \
@@ -58,6 +59,7 @@ HTML_BUILDER = 'sphinx-build -v -c . -a ' \
 # Command to build the pdf format of the report
 PDF_BUILDER = 'sphinx-build -v -c . -a ' \
               '-b latex -E ' \
+              '-t latex ' \
               '-D release={release} ' \
               '-D version="{release} report - {date}" ' \
               '{working_dir} ' \
@@ -83,8 +85,8 @@ def generate_report(release, spec):
     for report_format, versions in spec.output.items():
         report[report_format](release, spec, versions)
 
-    archive_input_data(spec)
-    archive_report(spec)
+    # archive_input_data(spec)
+    # archive_report(spec)
 
     logging.info("Done.")
 
