@@ -68,11 +68,20 @@ def file_test_results(file_spec, input_data):
     file_name = "{0}{1}".format(file_spec["output-file"],
                                 file_spec["output-file-ext"])
     rst_header = file_spec["file-header"]
-    rst_include_table = ("\n.. csv-table::\n"
-                         "    :header-rows: 1\n"
-                         "    :widths: auto\n"
-                         "    :align: center\n"
-                         "    :file: {file}\n\n")
+    # rst_include_table = ("\n.. csv-table::\n"
+    #                      "    :header-rows: 1\n"
+    #                      "    :widths: auto\n"
+    #                      "    :align: center\n"
+    #                      "    :file: {file}\n\n")
+
+    rst_include_table = ("\n.. only:: html\n\n"
+                         "    .. csv-table::\n"
+                         "        :header-rows: 1\n"
+                         "        :widths: auto\n"
+                         "        :align: center\n"
+                         "        :file: {file}\n"
+                         "\n.. only:: latex\n\n"
+                         "    \csvautolongtable{{{file}}}\n\n")
 
     logging.info("  Generating the file {0} ...".format(file_name))
 
