@@ -286,10 +286,10 @@ class KubernetesUtils(object):
         for _ in range(48):
             (ret_code, stdout, _) = ssh.exec_command_sudo(cmd, timeout=120)
             if int(ret_code) == 0:
-                ready = True
+                ready = False
                 for line in stdout.splitlines():
-                    if 'Running' not in line:
-                        ready = False
+                    if 'Running' in line and '1/1' in line:
+                        ready = True
                 if ready:
                     break
             time.sleep(5)
