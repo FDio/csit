@@ -99,18 +99,64 @@ NDR Throughput
 
 Non-Drop Rate Throughput discovery tests:
 
-.. csv-table::
-    :align: center
-    :file: performance_improvements/performance_improvements_ndr_top.csv
+.. only:: html
+
+   .. csv-table::
+      :align: center
+      :file: performance_improvements/performance_improvements_ndr_top.csv
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \makeatletter
+      \csvset{
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+      }
+      \makeatother
+
+      {\tiny
+      \csvautobooklongtable[separator=comma,
+        respect all,
+        no check column count,
+        perfimprovements column width=1cm,
+        late after line={\\\hline},
+        late after last line={\end{longtable}}
+        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance_improvements_ndr_top.csv}
+      }
+
 
 PDR Throughput
 ~~~~~~~~~~~~~~
 
 Partial Drop Rate thoughput discovery tests with packet Loss Tolerance of 0.5%:
 
-.. csv-table::
-    :align: center
-    :file: performance_improvements/performance_improvements_pdr_top.csv
+.. only:: html
+
+   .. csv-table::
+      :align: center
+      :file: performance_improvements/performance_improvements_pdr_top.csv
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \makeatletter
+      \csvset{
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+      }
+      \makeatother
+
+      {\tiny
+      \csvautobooklongtable[separator=comma,
+        respect all,
+        no check column count,
+        perfimprovements column width=1cm,
+        late after line={\\\hline},
+        late after last line={\end{longtable}}
+        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance_improvements_pdr_top.csv}
+      }
+
 
 Measured improvements are in line with VPP code optimizations listed in
 `VPP-17.07 release notes
@@ -129,18 +175,63 @@ NDR Throughput
 
 Non-Drop Rate Throughput discovery tests:
 
-.. csv-table::
-    :align: center
-    :file: performance_improvements/performance_improvements_ndr_low.csv
+.. only:: html
+
+   .. csv-table::
+      :align: center
+      :file: performance_improvements/performance_improvements_ndr_low.csv
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \makeatletter
+      \csvset{
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+      }
+      \makeatother
+
+      {\tiny
+      \csvautobooklongtable[separator=comma,
+        respect all,
+        no check column count,
+        perfimprovements column width=1cm,
+        late after line={\\\hline},
+        late after last line={\end{longtable}}
+        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance_improvements_ndr_low.csv}
+      }
+
 
 PDR Throughput
 ~~~~~~~~~~~~~~
 
 Partial Drop Rate thoughput discovery tests with packet Loss Tolerance of 0.5%:
 
-.. csv-table::
-    :align: center
-    :file: performance_improvements/performance_improvements_pdr_low.csv
+.. only:: html
+
+   .. csv-table::
+      :align: center
+      :file: performance_improvements/performance_improvements_pdr_low.csv
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \makeatletter
+      \csvset{
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+      }
+      \makeatother
+
+      {\tiny
+      \csvautobooklongtable[separator=comma,
+        respect all,
+        no check column count,
+        perfimprovements column width=1cm,
+        late after line={\\\hline},
+        late after last line={\end{longtable}}
+        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance_improvements_pdr_low.csv}
+      }
 
 
 Known Issues
