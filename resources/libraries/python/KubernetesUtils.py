@@ -244,6 +244,36 @@ class KubernetesUtils(object):
                                                                      rtype)
 
     @staticmethod
+    def get_kubernetes_logs_on_node(node, namespace='csit'):
+        """Get Kubernetes logs on node.
+
+        :param node: DUT node.
+        :param namespace: Kubernetes namespace.
+        :type node: dict
+        :type namespace: str
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "for p in $(kubectl get pods -n {namespace} --no-headers"\
+            " | cut -f 1 -d ' '); do echo $p; kubectl logs -n {namespace} $p; "\
+            "done".format(namespace=namespace)
+        ssh.exec_command(cmd, timeout=120)
+
+    @staticmethod
+    def get_kubernetes_logs_on_all_duts(nodes, namespace='csit'):
+        """Get Kubernetes logs on all DUTs.
+
+        :param nodes: Topology nodes.
+        :param namespace: Kubernetes namespace.
+        :type nodes: dict
+        :type namespace: str
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                KubernetesUtils.get_kubernetes_logs_on_node(node, namespace)
+
+    @staticmethod
     def reset_kubernetes_on_node(node):
         """Reset Kubernetes on node.
 
@@ -288,7 +318,9 @@ class KubernetesUtils(object):
             if int(ret_code) == 0:
                 ready = True
                 for line in stdout.splitlines():
-                    if 'Running' not in line:
+                    if 'Running' in line and '1/1' in line:
+                        ready = True
+                    else
                         ready = False
                 if ready:
                     break
