@@ -28,6 +28,7 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Teardown | Run Keywords
+| ... | Get Kubernetes logs on all DUTs | ${nodes} | AND
 | ... | Describe Kubernetes resource on all DUTs | ${nodes} | AND
 | ... | Delete Kubernetes resource on all duts | ${nodes}
 | ...
