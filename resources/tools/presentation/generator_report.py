@@ -83,8 +83,8 @@ def generate_report(release, spec):
     for report_format, versions in spec.output.items():
         report[report_format](release, spec, versions)
 
-    archive_input_data(spec)
-    archive_report(spec)
+    # archive_input_data(spec)
+    # archive_report(spec)
 
     logging.info("Done.")
 
