@@ -38,6 +38,9 @@ sub-layers, bottom up:
    - formats: html, pdf
    - versions: minimal, full (TODO: define the names and scope of versions)
 
+.. figure:: pal_layers.svg
+   :alt: PAL Layers
+   :align: center
 
 Data
 ----
