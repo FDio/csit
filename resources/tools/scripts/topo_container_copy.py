@@ -122,9 +122,14 @@ def main():
                     ssh.scp(local_path=image, remote_path=directory)
 
                 # Load image to Docker.
-                cmd = "for f in {directory}/*.tar.gz; do zcat $f | "\
-                    "sudo docker load; done".format(directory=directory)
+                cmd = "for f in {directory}/*.tar.gz; do "\
+                    "sudo docker load -i $f; done".format(directory=directory)
                 stdout = ssh_no_error(ssh, cmd)
+                print("###TI {}".format(stdout))
+
+                # Remove <none> images from Docker.
+                cmd = "docker rmi $(sudo docker images -f 'dangling=true' -q)"
+                stdout = ssh_no_error(ssh, cmd, sudo=True)
                 print("###TI {}".format(stdout))
 
 
