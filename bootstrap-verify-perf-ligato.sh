@@ -29,10 +29,61 @@ PYBOT_ARGS="-W 150 -L TRACE"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
+# If we run this script from CSIT jobs we want to use stable vpp version
+if [[ ${JOB_NAME} == csit-* ]] ;
+then
+    mkdir -p vpp
+    cd vpp
+
+    if [[ ${TEST_TAG} == *NIGHTLY ]] || \
+       [[ ${TEST_TAG} == *DAILY ]] || \
+       [[ ${TEST_TAG} == *WEEKLY ]];
+    then
+        # Download the latest VPP build .deb install packages
+        echo Downloading VPP packages...
+        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
+
+        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+        # Take vpp package and get the vpp version
+        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
+    else
+        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
+        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+        VPP_CLASSIFIER="-deb"
+        # Download vpp build from nexus and set VPP_DEBS variable
+        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        # Temporary disable using dpdk
+        # wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+    fi
+
+    cd ..
+
+# If we run this script from vpp project we want to use local build
+elif [[ ${JOB_NAME} == vpp-* ]] ;
+then
+    mkdir -p vpp
+    # Use local packages provided as argument list
+    # Jenkins VPP deb paths (convert to full path)
+    VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
+    # Take vpp package and get the vpp version
+    VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
+else
+    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
+    exit 1
+fi
+
+# Compress all VPP debs
+tar -zcvf ${SCRIPT_DIR}/vpp.tar.gz ./vpp/*
+
 LIGATO_REPO_URL=$(cat ${SCRIPT_DIR}/LIGATO_REPO_URL)
-LIGATO_STABLE_VER=$(cat ${SCRIPT_DIR}/LIGATO_STABLE_VER)
-VPP_COMMIT=$1
-VPP_BUILD=$1
+VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
+VPP_AGENT_STABLE_COMMIT="$( expr match `cat VPP_AGENT_STABLE_VER` '.*g\(.*\)' )"
 DOCKER_DEB="docker-ce_17.06.2~ce-0~ubuntu_amd64.deb"
 
 # Clone & checkout stable vnf-agent
@@ -42,10 +93,10 @@ if [ $? != 0 ]; then
     echo "Failed to run: git clone --depth 1 ${LIGATO_REPO_URL}/vpp-agent"
     exit 1
 fi
-cd vpp-agent && git checkout ${LIGATO_STABLE_VER}
+cd vpp-agent && git checkout ${VPP_AGENT_STABLE_COMMIT}
 # If the git checkout fails, complain clearly and exit
 if [ $? != 0 ]; then
-    echo "Failed to run: git checkout ${LIGATO_STABLE_VER}"
+    echo "Failed to run: git checkout ${VPP_AGENT_STABLE_VER}"
     exit 1
 fi
 
@@ -58,12 +109,14 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-# Compile vnf-agent docker image
-cd ${SCRIPT_DIR}/../vpp-agent/docker/dev_vpp_agent/ &&\
-    ./build.sh --agent ${LIGATO_STABLE_VER} --vpp ${VPP_COMMIT} &&\
-    ./shrink.sh
+# Pull dev_vpp_agent docker image
+sudo docker pull ligato/${VPP_AGENT_STABLE_VER}
+
+# Build prod_vpp_agent docker image
 cd ${SCRIPT_DIR}/../vpp-agent/docker/prod_vpp_agent/ &&\
-    ./build.sh &&\
+    cp ${SCRIPT_DIR}/vpp.tar.gz . &&\
+    ./extract_agent_files.sh &&\
+    sudo docker build -t prod_vpp_agent --no-cache . &&\
     ./shrink.sh
 # Export Docker image
 sudo docker save prod_vpp_agent_shrink | gzip > prod_vpp_agent_shrink.tar.gz
