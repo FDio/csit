@@ -122,8 +122,8 @@ def main():
                     ssh.scp(local_path=image, remote_path=directory)
 
                 # Load image to Docker.
-                cmd = "for f in {directory}/*.tar.gz; do zcat $f | "\
-                    "sudo docker load; done".format(directory=directory)
+                cmd = "for f in {directory}/*.tar.gz; "\
+                    "sudo docker load -i $f; done".format(directory=directory)
                 stdout = ssh_no_error(ssh, cmd)
                 print("###TI {}".format(stdout))
 
