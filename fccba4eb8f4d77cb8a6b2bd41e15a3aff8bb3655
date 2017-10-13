@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_d0ee3122",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-10-13T08:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_900e7933",
+      "range": {
+        "startLine": 48,
+        "startChar": 14,
+        "endLine": 48,
+        "endChar": 15
+      },
+      "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_9c0c5544",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-13T05:49:19Z",
       "side": 1,
       "message": "We need to increase timeout on 15s. Some of the VAT commands are set with 10s timeout in VPP thus some commands may fail as our condition is too tight.",
+      "range": {
+        "startLine": 65,
+        "startChar": 45,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_b0f3b509",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-10-13T08:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_9c0c5544",
       "range": {
         "startLine": 65,
         "startChar": 45,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_30e7c542",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-10-13T08:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_7c099930",
+      "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_5c06dd21",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 5
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_10e4c939",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-10-13T08:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_5c06dd21",
+      "range": {
+        "startLine": 113,
+        "startChar": 53,
+        "endLine": 113,
+        "endChar": 63
+      },
+      "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_3c032111",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 5
@@ -99,6 +189,24 @@
       "writtenOn": "2017-10-13T05:49:19Z",
       "side": 1,
       "message": ":raises:",
+      "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_f0d00d55",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-10-13T08:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_3c032111",
       "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -145,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_d0d51144",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-10-13T08:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_d004f116",
+      "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_b009752e",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 5
@@ -156,6 +282,30 @@
       "writtenOn": "2017-10-13T05:49:19Z",
       "side": 1,
       "message": "We need to increase timeout on 15s. Some of the VAT commands are set with 10s timeout in VPP thus some commands may fail as our condition is too tight.",
+      "range": {
+        "startLine": 204,
+        "startChar": 54,
+        "endLine": 204,
+        "endChar": 64
+      },
+      "revId": "fccba4eb8f4d77cb8a6b2bd41e15a3aff8bb3655",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_b0ca959f",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-10-13T08:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a486d77_b009752e",
       "range": {
         "startLine": 204,
         "startChar": 54,
