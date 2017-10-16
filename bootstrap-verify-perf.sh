@@ -332,6 +332,19 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include ndrdiscAND1t1cAND64bANDipsechw \
+              --include ndrdiscAND2t2cAND64bANDipsechw \
+              --include pdrdiscAND1t1cAND64bANDipsechw \
+              --include pdrdiscAND2t2cAND64bANDipsechw \
+              --include ndrdiscAND1t1cAND78bANDipsechw \
+              --include ndrdiscAND2t2cAND78bANDipsechw \
+              --include pdrdiscAND1t1cAND78bANDipsechw \
+              --include pdrdiscAND2t2cAND78bANDipsechw \
+              --exclude ACL1 \
+              --exclude ACL10 \
+              --exclude 100_FLOWS \
+              --exclude 100k_FLOWS \
+              --exclude HC_PERF \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
