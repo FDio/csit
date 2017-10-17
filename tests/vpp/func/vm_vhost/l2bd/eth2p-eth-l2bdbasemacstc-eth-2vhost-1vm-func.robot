@@ -19,7 +19,8 @@
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
 | Test Setup | Set up functional test
-| Test Teardown | Tear down functional test
+| Test Teardown | Run Keywords  | Tear down functional test
+| ... | AND | Stop and clear QEMU | ${dut_node} | ${vm_node}
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT=VM 3-node topology with VM
@@ -51,9 +52,6 @@
 | | ... | virtio i/fs. [Ver] Make TG verify ICMPv4 Echo Req pkts are
 | | ... | switched thru DUT1 and VM in both directions and are correct on
 | | ... | receive. [Ref]
-| | ...
-| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
-| | ... | AND | Tear down functional test
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -104,9 +102,6 @@
 | | ... | virtio i/fs. [Ver] Make TG verify ICMPv6 Echo Req pkts are
 | | ... | switched thru DUT1 and VM in both directions and are correct on
 | | ... | receive. [Ref]
-| | ...
-| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
-| | ... | AND | Tear down functional test
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}

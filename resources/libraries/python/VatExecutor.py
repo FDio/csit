@@ -299,9 +299,10 @@ class VatTerminal(object):
     __VAT_PROMPT = ("vat# ", )
     __LINUX_PROMPT = (":~$ ", "~]$ ")
 
-    def __init__(self, node, json_param=True):
+    def __init__(self, node, json_param=True, non_json_output=False):
         json_text = ' json' if json_param else ''
         self.json = json_param
+        self.non_json_output = False if self.json else non_json_output
         self._node = node
         self._ssh = SSH()
         self._ssh.connect(self._node)
@@ -350,8 +351,9 @@ class VatTerminal(object):
 
         :param cmd: Command to be executed.
 
-        :return: Command output in python representation of JSON format or
-        None if not in JSON mode.
+        :return: Command output in python representation of JSON format if in
+            JSON mode or in string representation if in non-JSON output mode or
+            None if both modes are disabled.
         """
         VatHistory.add_to_vat_history(self._node, cmd)
         logger.debug("Executing command in VAT terminal: {0}".format(cmd))
@@ -395,6 +397,8 @@ class VatTerminal(object):
             out = out[start:end]
             json_out = json.loads(out)
             return json_out
+        elif self.non_json_output:
+            return self.vat_stdout
         else:
             return None
 
