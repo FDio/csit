@@ -87,7 +87,7 @@ class Topology(object):
         :param ptype: Port type, used as key prefix.
         :type node: dict
         :type ptype: str
-        :return: Port key or None
+        :returns: Port key or None
         :rtype: string or None
         """
         max_ports = 1000000
@@ -100,6 +100,21 @@ class Topology(object):
         return iface
 
     @staticmethod
+    def remove_port(node, iface_key):
+        """Remove required port from active topology.
+
+        :param node: Node to remove port on.
+        :param: iface_key: Topology key of the interface.
+        :type node: dict
+        :type iface_key: str
+        :returns: Nothing
+        """
+        try:
+            node['interfaces'].pop(iface_key)
+        except KeyError:
+            pass
+
+    @staticmethod
     def remove_all_ports(node, ptype):
         """Remove all ports with ptype as prefix.
 
@@ -107,11 +122,27 @@ class Topology(object):
         :param: ptype: Port type, used as key prefix.
         :type node: dict
         :type ptype: str
-        :return: Nothing
+        :returns: Nothing
         """
         for if_key in list(node['interfaces']):
             if if_key.startswith(str(ptype)):
                 node['interfaces'].pop(if_key)
+
+    @staticmethod
+    def remove_all_added_ports_on_all_duts_from_topology(nodes):
+        """Remove all added ports on all DUT nodes in the topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        :returns: Nothing
+        """
+        port_types = ('subinterface', 'vlan_subif',  'memif', 'tap', 'vhost',
+                      'loopback', 'gre_tunnel', 'vxlan_tunnel')
+
+        for node_data in nodes.values():
+            if node_data['type'] == NodeType.DUT:
+                for ptype in port_types:
+                    Topology.remove_all_ports(node_data, ptype)
 
     @staticmethod
     def update_interface_sw_if_index(node, iface_key, sw_if_index):
@@ -166,6 +197,59 @@ class Topology(object):
         node['interfaces'][iface_key]['vhost_socket'] = str(vhost_socket)
 
     @staticmethod
+    def update_interface_memif_socket(node, iface_key, memif_socket):
+        """Update memif socket name on the interface from the node.
+
+        :param node: Node to update socket name on.
+        :param iface_key: Topology key of the interface.
+        :param memif_socket: Path to named socket on node.
+        :type node: dict
+        :type iface_key: str
+        :type memif_socket: str
+        """
+        node['interfaces'][iface_key]['memif_socket'] = str(memif_socket)
+
+    @staticmethod
+    def update_interface_memif_id(node, iface_key, memif_id):
+        """Update memif ID on the interface from the node.
+
+        :param node: Node to update memif ID on.
+        :param iface_key: Topology key of the interface.
+        :param memif_id: Memif interface ID.
+        :type node: dict
+        :type iface_key: str
+        :type memif_id: str
+        """
+        node['interfaces'][iface_key]['memif_id'] = str(memif_id)
+
+    @staticmethod
+    def update_interface_memif_role(node, iface_key, memif_role):
+        """Update memif role on the interface from the node.
+
+        :param node: Node to update memif role on.
+        :param iface_key: Topology key of the interface.
+        :param memif_role: Memif role.
+        :type node: dict
+        :type iface_key: str
+        :type memif_role: str
+        """
+        node['interfaces'][iface_key]['memif_role'] = str(memif_role)
+
+    @staticmethod
+    def update_interface_tap_dev_name(node, iface_key, dev_name):
+        """Update device name on the tap interface from the node.
+
+        :param node: Node to update tap device name on.
+        :param iface_key: Topology key of the interface.
+        :param dev_name: Device name of the tap interface.
+        :type node: dict
+        :type iface_key: str
+        :type dev_name: str
+        :returns: Nothing
+        """
+        node['interfaces'][iface_key]['dev_name'] = str(dev_name)
+
+    @staticmethod
     def get_node_by_hostname(nodes, hostname):
         """Get node from nodes of the topology by hostname.
 
@@ -173,7 +257,7 @@ class Topology(object):
         :param hostname: Host name.
         :type nodes: dict
         :type hostname: str
-        :return: Node dictionary or None if not found.
+        :returns: Node dictionary or None if not found.
         """
         for node in nodes.values():
             if node['host'] == hostname:
@@ -187,7 +271,7 @@ class Topology(object):
 
         :param nodes: Nodes of the test topology.
         :type nodes: dict
-        :return: Links in the topology.
+        :returns: Links in the topology.
         :rtype: list
         """
         links = []
@@ -212,7 +296,7 @@ class Topology(object):
         :type node: dict
         :type key: string
         :type value: string
-        :return: Interface key from topology file
+        :returns: Interface key from topology file
         :rtype: string
         """
         interfaces = node['interfaces']
@@ -236,7 +320,7 @@ class Topology(object):
         :param iface_name: Interface name (string form).
         :type node: dict
         :type iface_name: string
-        :return: Interface key.
+        :returns: Interface key.
         :rtype: str
         """
         return Topology._get_interface_by_key_value(node, "name", iface_name)
@@ -252,7 +336,7 @@ class Topology(object):
         :param link_name: Name of the link that a interface is connected to.
         :type node: dict
         :type link_name: string
-        :return: Interface key of the interface connected to the given link.
+        :returns: Interface key of the interface connected to the given link.
         :rtype: str
         """
         return Topology._get_interface_by_key_value(node, "link", link_name)
@@ -268,7 +352,7 @@ class Topology(object):
         connected to.
         :type node: dict
         :type link_names: list
-        :return: Dictionary of interface names that are connected to the given
+        :returns: Dictionary of interface names that are connected to the given
         links.
         :rtype: dict
         """
@@ -294,7 +378,7 @@ class Topology(object):
         :param sw_index: Sw_index of the link that a interface is connected to.
         :type node: dict
         :type sw_index: int
-        :return: Interface name of the interface connected to the given link.
+        :returns: Interface name of the interface connected to the given link.
         :rtype: str
         """
         return Topology._get_interface_by_key_value(node, "vpp_sw_index",
@@ -308,7 +392,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file, or sw_index.
         :type node: dict
         :type iface_key: str/int
-        :return: Return sw_if_index or None if not found.
+        :returns: Return sw_if_index or None if not found.
         """
         try:
             if isinstance(iface_key, basestring):
@@ -327,7 +411,7 @@ class Topology(object):
         :param iface_name: Interface name.
         :type node: dict
         :type iface_name: str
-        :return: Return sw_if_index or None if not found.
+        :returns: Return sw_if_index or None if not found.
         :raises TypeError: If provided interface name is not a string.
         """
         try:
@@ -348,7 +432,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file.
         :type node: dict
         :type iface_key: str
-        :return: MTU or None if not found.
+        :returns: MTU or None if not found.
         :rtype: int
         """
         try:
@@ -365,7 +449,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file.
         :type node: dict
         :type iface_key: str
-        :return: Interface name or None if not found.
+        :returns: Interface name or None if not found.
         :rtype: str
         """
         try:
@@ -386,7 +470,7 @@ class Topology(object):
         :type node: dict
         :type interface: str or int
 
-        :return: Interface key.
+        :returns: Interface key.
         :rtype: str
 
         :raises TypeError: If provided with invalid interface argument.
@@ -428,7 +512,7 @@ class Topology(object):
         :type interface: str or int
         :type wanted_format: str
 
-        :return: Interface name, interface key or sw_if_index.
+        :returns: Interface name, interface key or sw_if_index.
         :rtype: str or int
 
         :raises TypeError, ValueError: If provided with invalid arguments.
@@ -460,7 +544,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file.
         :type node: dict
         :type iface_key: str
-        :return: numa node id, None if not available.
+        :returns: numa node id, None if not available.
         :rtype: int
         """
         try:
@@ -508,7 +592,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file.
         :type node: dict
         :type iface_key: str
-        :return: Return MAC or None if not found.
+        :returns: Return MAC or None if not found.
         """
         try:
             return node['interfaces'][iface_key].get('mac_address')
@@ -527,7 +611,7 @@ class Topology(object):
         :type nodes_info: dict
         :type node: dict
         :type iface_key: str
-        :return: Return (node, interface_key) tuple or None if not found.
+        :returns: Return (node, interface_key) tuple or None if not found.
         :rtype: (dict, str)
         """
         link_name = None
@@ -562,7 +646,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file.
         :type node: dict
         :type iface_key: str
-        :return: Return PCI address or None if not found.
+        :returns: Return PCI address or None if not found.
         """
         try:
             return node['interfaces'][iface_key].get('pci_address')
@@ -577,7 +661,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file.
         :type node: dict
         :type iface_key: str
-        :return: Return interface driver or None if not found.
+        :returns: Return interface driver or None if not found.
         """
         try:
             return node['interfaces'][iface_key].get('driver')
@@ -590,7 +674,7 @@ class Topology(object):
 
         :param node: Node to get list of interfaces from.
         :type node: dict
-        :return: Return list of keys of all interfaces.
+        :returns: Return list of keys of all interfaces.
         :rtype: list
         """
         return node['interfaces'].keys()
@@ -603,7 +687,7 @@ class Topology(object):
         :param link_name: Link name.
         :type node: dict
         :type link_name: str
-        :return: MAC address string.
+        :returns: MAC address string.
         :rtype: str
         """
         for port in node['interfaces'].values():
@@ -619,7 +703,7 @@ class Topology(object):
         :param filter_list: Link filter criteria.
         :type node: dict
         :type filter_list: list of strings
-        :return: List of strings that represent link names occupied by the node.
+        :returns: List of strings representing link names occupied by the node.
         :rtype: list
         """
         interfaces = node['interfaces']
@@ -631,7 +715,7 @@ class Topology(object):
                         if filt == interface['model']:
                             link_names.append(interface['link'])
                 elif (filter_list is not None) and ('model' not in interface):
-                    logger.trace("Cannot apply filter on interface: {}"
+                    logger.trace('Cannot apply filter on interface: {}'
                                  .format(str(interface)))
                 else:
                     link_names.append(interface['link'])
@@ -653,7 +737,7 @@ class Topology(object):
         :type node2: dict
         :type filter_list_node1: list of strings
         :type filter_list_node2: list of strings
-        :return: List of strings that represent connecting link names.
+        :returns: List of strings that represent connecting link names.
         :rtype: list
         """
 
@@ -685,7 +769,7 @@ class Topology(object):
         :param node2: Connected node.
         :type node1: dict
         :type node2: dict
-        :return: Name of link connecting the two nodes together.
+        :returns: Name of link connecting the two nodes together.
         :rtype: str
         :raises: RuntimeError
         """
@@ -704,7 +788,7 @@ class Topology(object):
         :param node2: Second node.
         :type node1: dict
         :type node2: dict
-        :return: Egress interfaces.
+        :returns: Egress interfaces.
         :rtype: list
         """
         interfaces = []
@@ -732,7 +816,7 @@ class Topology(object):
         :param node2: Second node.
         :type node1: dict
         :type node2: dict
-        :return: Egress interface name.
+        :returns: Egress interface name.
         :rtype: str
         """
         interfaces = self.get_egress_interfaces_name_for_nodes(node1, node2)
@@ -765,7 +849,7 @@ class Topology(object):
         :type tgen: dict
         :type dut1: dict
         :type dut2: dict
-        :return: Dictionary of possible link combinations.
+        :returns: Dictionary of possible link combinations.
         :rtype: dict
         """
         # TODO: replace with generic function.
@@ -789,7 +873,7 @@ class Topology(object):
 
         :param node: Node to examine.
         :type node: dict
-        :return: True if node is type of TG, otherwise False.
+        :returns: True if node is type of TG, otherwise False.
         :rtype: bool
         """
         return node['type'] == NodeType.TG
@@ -800,7 +884,7 @@ class Topology(object):
 
         :param node: Node created from topology.
         :type node: dict
-        :return: Hostname or IP address.
+        :returns: Hostname or IP address.
         :rtype: str
         """
         return node['host']
@@ -811,7 +895,7 @@ class Topology(object):
 
         :param node: Node created from topology.
         :type node: dict
-        :return: Cryptodev configuration string.
+        :returns: Cryptodev configuration string.
         :rtype: str
         """
         try:
@@ -825,7 +909,7 @@ class Topology(object):
 
         :param node: Node created from topology.
         :type node: dict
-        :return: uio-driver configuration string.
+        :returns: uio-driver configuration string.
         :rtype: str
         """
         try:
@@ -841,7 +925,7 @@ class Topology(object):
         :param iface_key: Interface key from topology file.
         :type node: dict
         :type iface_key: str
-        :return: Return iface_key or None if not found.
+        :returns: Return iface_key or None if not found.
         """
         try:
             node['interfaces'][iface_key]['numa_node'] = numa_node_id
