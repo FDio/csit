@@ -67,7 +67,7 @@
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vswitch_cpus}= | ${5}
-| ${vnf_cpus}= | ${2}
+| ${vnf_cpus}= | ${3}
 
 *** Keywords ***
 | Create Kubernetes VSWITCH startup config on all DUTs
@@ -105,10 +105,11 @@
 | | ... | filename=/tmp/vswitch.conf | framesize=${framesize} | rxq=${rxq}
 | | ... | if1=${dut2_if1_pci} | if2=${dut2_if2_pci}
 
-| Create Kubernetes VNF startup config on all DUTs
+| Create Kubernetes VNF'${i}' startup config on all DUTs
 | | [Documentation] | Create base startup configuration of VNF in Kubernetes
 | | ... | deploy to all DUTs.
 | | ...
+| | ${i_int}= | Convert To Integer | ${i}
 | | ${cpu_skip}= | Evaluate | ${vswitch_cpus}+${system_cpus}
 | | ${dut1_numa}= | Get interfaces numa node | ${dut1}
 | | ... | ${dut1_if1} | ${dut1_if2}
@@ -116,10 +117,12 @@
 | | ... | ${dut2_if1} | ${dut2_if2}
 | | ${config}= | Run keyword | Create Kubernetes VNF startup config
 | | ... | node=${dut1} | cpu_cnt=${vnf_cpus} | cpu_node=${dut1_numa}
-| | ... | cpu_skip=${cpu_skip} | smt_used=${False} | filename=/tmp/vnf.conf
+| | ... | cpu_skip=${cpu_skip} | smt_used=${False} | filename=/tmp/vnf${i}.conf
+| | ... | i=${i_int}
 | | ${config}= | Run keyword | Create Kubernetes VNF startup config
 | | ... | node=${dut2} | cpu_cnt=${vnf_cpus} | cpu_node=${dut2_numa}
-| | ... | cpu_skip=${cpu_skip} | smt_used=${False} | filename=/tmp/vnf.conf
+| | ... | cpu_skip=${cpu_skip} | smt_used=${False} | filename=/tmp/vnf${i}.conf
+| | ... | i=${i_int}
 
 | L2 Cross Connect Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${search_type}
@@ -137,11 +140,11 @@
 | | ${dut2_if2_name}= | Get interface name | ${dut2} | ${dut2_if2}
 | | Create Kubernetes VSWITCH startup config on all DUTs | ${get_framesize}
 | | ... | ${wt} | ${rxq}
-| | Create Kubernetes VNF startup config on all DUTs
+| | Create Kubernetes VNF'1' startup config on all DUTs
 | | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vswitch-vpp-cfg
 | | ... | key=vpp.conf | src_file=/tmp/vswitch.conf
 | | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vnf.conf
+| | ... | key=vpp.conf | src_file=/tmp/vnf1.conf
 | | Apply Kubernetes resource on node | ${dut1}
 | | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut1_if1_name}
