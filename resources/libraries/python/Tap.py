@@ -15,6 +15,7 @@
 
 from resources.libraries.python.VatExecutor import VatTerminal
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.topology import Topology
 
 
 class Tap(object):
@@ -42,7 +43,17 @@ class Tap(object):
             resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
                                                            tap_command=command,
                                                            tap_arguments=args)
-        return resp[0]['sw_if_index']
+        sw_if_idx = resp[0]['sw_if_index']
+        if_key = Topology.add_new_port(node, 'tap')
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        ifc_name = Tap.vpp_get_tap_interface_name(node, sw_if_idx)
+        Topology.update_interface_name(node, if_key, ifc_name)
+        if not mac:
+            mac = Tap.vpp_get_tap_interface_mac(node, sw_if_idx)
+        Topology.update_interface_mac_address(node, if_key, mac)
+        Topology.update_interface_tap_dev_name(node, if_key, tap_name)
+
+        return sw_if_idx
 
     @staticmethod
     def modify_tap_interface(node, if_index, tap_name, mac=None):
@@ -69,6 +80,11 @@ class Tap(object):
             resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
                                                            tap_command=command,
                                                            tap_arguments=args)
+        if_key = Topology.get_interface_sw_index(node, if_index)
+        Topology.update_interface_tap_dev_name(node, if_key, tap_name)
+        if mac:
+            Topology.update_interface_mac_address(node, if_key, mac)
+
         return resp[0]['sw_if_index']
 
     @staticmethod
@@ -90,6 +106,8 @@ class Tap(object):
             if int(resp[0]['retval']) != 0:
                 raise RuntimeError(
                     'Could not remove tap interface: {}'.format(resp))
+        if_key = Topology.get_interface_sw_index(node, if_index)
+        Topology.remove_port(node, if_key)
 
     @staticmethod
     def check_tap_present(node, tap_name):
@@ -105,3 +123,53 @@ class Tap(object):
         if len(tap_if) == 0:
             raise RuntimeError(
                 'Tap interface :{} does not exist'.format(tap_name))
+
+    @staticmethod
+    def vpp_get_tap_interface_name(node, sw_if_idx):
+        """Get VPP tap interface name from hardware interfaces dump.
+
+        :param node: DUT node.
+        :param sw_if_idx: DUT node.
+        :type node: dict
+        :type sw_if_idx: int
+        :return: VPP tap interface name.
+        :rtype: str
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                'show_hardware_detail.vat')
+
+        for line in str(response[0]).splitlines():
+            if line.startswith('tap-'):
+                line_split = line.split()
+                if line_split[1] == sw_if_idx:
+                    return line_split[0]
+
+        return None
+
+    @staticmethod
+    def vpp_get_tap_interface_mac(node, sw_if_idx):
+        """Get tap interface MAC address from hardware interfaces dump.
+
+        :param node: DUT node.
+        :param sw_if_idx: DUT node.
+        :type node: dict
+        :type sw_if_idx: int
+        :return: Tap interface MAC address.
+        :rtype: str
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                'show_hardware_detail.vat')
+
+        tap_if_match = False
+        for line in str(response[0]).splitlines():
+            if tap_if_match:
+                line_split = line.split()
+                return line_split[-1]
+            if line.startswith('tap-'):
+                line_split = line.split()
+                if line_split[1] == sw_if_idx:
+                    tap_if_match = True
+
+        return None

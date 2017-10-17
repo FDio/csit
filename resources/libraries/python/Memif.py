@@ -15,6 +15,7 @@
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
+from resources.libraries.python.topology import Topology
 
 
 class Memif(object):
@@ -24,7 +25,7 @@ class Memif(object):
         pass
 
     @staticmethod
-    def create_memif_interface(node, socket, mid, role="master"):
+    def create_memif_interface(node, socket, mid, role='master'):
         """Create Memif interface on the given node.
 
         :param node: Given node to create Memif interface on.
@@ -46,13 +47,25 @@ class Memif(object):
                 socket=socket, id=mid, role=role)
             if 'sw_if_index' in vat.vat_stdout:
                 try:
-                    return int(vat.vat_stdout.split()[4])
+                    sw_if_idx = int(vat.vat_stdout.split()[4])
+                    if_key = Topology.add_new_port(node, 'memif')
+                    Topology.update_interface_sw_if_index(
+                        node, if_key, sw_if_idx)
+                    ifc_name = Memif.vpp_get_memif_interface_name(
+                        node, sw_if_idx)
+                    Topology.update_interface_name(node, if_key, ifc_name)
+                    ifc_mac = Memif.vpp_get_memif_interface_mac(node, sw_if_idx)
+                    Topology.update_interface_mac_address(node, if_key, ifc_mac)
+                    Topology.update_interface_memif_socket(node, if_key, socket)
+                    Topology.update_interface_memif_id(node, if_key, mid)
+                    Topology.update_interface_memif_role(node, if_key, role)
+                    return sw_if_idx
                 except KeyError:
                     raise ValueError('Create Memif interface failed on node '
-                                     '{}"'.format(node['host']))
+                                     '{}'.format(node['host']))
             else:
                 raise ValueError('Create Memif interface failed on node '
-                                 '{}"'.format(node['host']))
+                                 '{}'.format(node['host']))
 
     @staticmethod
     def show_memif(node):
@@ -78,3 +91,144 @@ class Memif(object):
 
         for sock in socks:
             ssh.exec_command_sudo('rm -f {}'.format(sock))
+
+    @staticmethod
+    def parse_memif_dump_data(memif_data):
+        """Convert Memif data to dictionary.
+
+        :param memif_data: Dump of Memif interfaces data.
+        :type memif_data: str
+        :return:
+        :rtype: dict
+        """
+        memif_name = None
+        memif_dict = dict()
+        memif_data = str(memif_data)
+
+        for line in memif_data.splitlines():
+            if line.startswith('Sending'):
+                continue
+            elif line.startswith('memif'):
+                if memif_name:
+                    memif_dict[memif_name] = values
+                line_split = line.split(':', 1)
+                memif_name = str(line_split[0])
+                values = dict()
+                line = line_split[1]
+            line_split = line.split()
+            for i in range(0, len(line_split), 2):
+                key = str(line_split[i])
+                try:
+                    value = line_split[i+1]
+                except IndexError:
+                    value = None
+                values[key] = value
+        if memif_name:
+            memif_dict[memif_name] = values
+        else:
+                raise RuntimeError('No memif interface name found')
+
+        return memif_dict
+
+    @staticmethod
+    def vpp_get_memif_interface_name(node, sw_if_idx):
+        """Get Memif interface name from Memif interfaces dump.
+
+        :param node: DUT node.
+        :param sw_if_idx: DUT node.
+        :type node: dict
+        :type sw_if_idx: int
+        :return: Memif interface name.
+        :rtype: str
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+        memif_data = Memif.parse_memif_dump_data(response[0])
+        for item in memif_data:
+            if item['sw_if_index'] == sw_if_idx:
+                return item
+            return None
+
+    @staticmethod
+    def vpp_get_memif_interface_mac(node, sw_if_idx):
+        """Get Memif interface MAC address from Memif interfaces dump.
+
+        :param node: DUT node.
+        :param sw_if_idx: DUT node.
+        :type node: dict
+        :type sw_if_idx: int
+        :return: Memif interface MAC address.
+        :rtype: str
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+        memif_data = Memif.parse_memif_dump_data(response[0])
+        for item in memif_data:
+            if item['sw_if_index'] == sw_if_idx:
+                try:
+                    return item['mac']
+                except KeyError:
+                    return None
+
+    @staticmethod
+    def vpp_get_memif_interface_socket(node, sw_if_idx):
+        """Get Memif interface socket path from Memif interfaces dump.
+
+        :param node: DUT node.
+        :param sw_if_idx: DUT node.
+        :type node: dict
+        :type sw_if_idx: int
+        :return: Memif interface socket path.
+        :rtype: str
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+        memif_data = Memif.parse_memif_dump_data(response[0])
+        for item in memif_data:
+            if item['sw_if_index'] == sw_if_idx:
+                try:
+                    return item['socket']
+                except KeyError:
+                    return None
+
+    @staticmethod
+    def vpp_get_memif_interface_id(node, sw_if_idx):
+        """Get Memif interface ID from Memif interfaces dump.
+
+        :param node: DUT node.
+        :param sw_if_idx: DUT node.
+        :type node: dict
+        :type sw_if_idx: int
+        :return: Memif interface ID.
+        :rtype: int
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+        memif_data = Memif.parse_memif_dump_data(response[0])
+        for item in memif_data:
+            if item['sw_if_index'] == sw_if_idx:
+                try:
+                    return item['id']
+                except KeyError:
+                    return None
+
+    @staticmethod
+    def vpp_get_memif_interface_role(node, sw_if_idx):
+        """Get Memif interface role from Memif interfaces dump.
+
+        :param node: DUT node.
+        :param sw_if_idx: DUT node.
+        :type node: dict
+        :type sw_if_idx: int
+        :return: Memif interface role.
+        :rtype: int
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+        memif_data = Memif.parse_memif_dump_data(response[0])
+        for item in memif_data:
+            if item['sw_if_index'] == sw_if_idx:
+                try:
+                    return item['role']
+                except KeyError:
+                    return None
