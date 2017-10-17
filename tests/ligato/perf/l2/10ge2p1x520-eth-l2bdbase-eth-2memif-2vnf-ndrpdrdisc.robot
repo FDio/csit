@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | L2XCBASE | MEMIF
-| ... | KUBERNETES | 1VSWITCH | 1VNF | VPP_AGENT | SFC_CONTROLLER
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | SCALE | MEMIF
+| ... | KUBERNETES | 1VSWITCH | 2VNF | VPP_AGENT | SFC_CONTROLLER
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
@@ -32,16 +32,17 @@
 | ... | Describe Kubernetes resource on all DUTs | ${nodes} | AND
 | ... | Delete Kubernetes resource on all duts | ${nodes}
 | ...
-| Documentation | *RFC2544: Pkt throughput L2XC test cases*
+| Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
-| ... | connect. DUT1 and DUT2 tested with 2p10GE NIC X520 Niantic by Intel.
-| ... | VNF Container is connected to VSWITCH container via Memif interface. All
-| ... | containers is running same VPP version. Containers are deployed with
-| ... | Kubernetes. Configuration is applied by vnf-agent.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 bridge domain.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with two L2
+| ... | bridge domains and MAC learning enabled. DUT1 and DUT2 tested with
+| ... | 2p10GE NIC X520 Niantic by Intel.
+| ... | VNF Containers are connected to VSWITCH container via Memif interface.
+| ... | All containers are running same VPP version. Containers are deployed
+| ... | with Kubernetes. Configuration is applied by vnf-agent.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
@@ -61,7 +62,7 @@
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 # Kubernetes profile
-| ${kubernetes_profile} | eth-l2xcbase-eth-2memif-1vnf
+| ${kubernetes_profile} | eth-l2xcbase-eth-2memif-2vnf
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 # CPU settings
@@ -124,7 +125,7 @@
 | | ... | cpu_skip=${cpu_skip} | smt_used=${False} | filename=/tmp/vnf${i}.conf
 | | ... | i=${i_int}
 
-| L2 Cross Connect Binary Search
+| L2 Bridge Domain Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -141,10 +142,13 @@
 | | Create Kubernetes VSWITCH startup config on all DUTs | ${get_framesize}
 | | ... | ${wt} | ${rxq}
 | | Create Kubernetes VNF'1' startup config on all DUTs
+| | Create Kubernetes VNF'2' startup config on all DUTs
 | | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vswitch-vpp-cfg
 | | ... | key=vpp.conf | src_file=/tmp/vswitch.conf
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf-vpp-cfg
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf1-vpp-cfg
 | | ... | key=vpp.conf | src_file=/tmp/vnf1.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf2-vpp-cfg
+| | ... | key=vpp.conf | src_file=/tmp/vnf2.conf
 | | Apply Kubernetes resource on node | ${dut1}
 | | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut1_if1_name}
@@ -154,7 +158,6 @@
 | | ... | $$VSWITCH_IF1$$=${dut2_if1_name}
 | | ... | $$VSWITCH_IF2$$=${dut2_if2_name}
 | | Wait for Kubernetes PODs on all DUTs | ${nodes}
-| | Describe Kubernetes resource on all DUTs | ${nodes}
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
@@ -166,138 +169,138 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc01-64B-1t1c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=NDR
 
-| tc02-64B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc02-64B-1t1c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=PDR
 
-| tc03-IMIX-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc03-IMIX-1t1c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
 
-| tc04-IMIX-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc04-IMIX-1t1c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=1 | rxq=1 | search_type=PDR
 
-| tc05-1518B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc05-1518B-1t1c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
 
-| tc06-1518B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc06-1518B-1t1c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1 | search_type=PDR
 
-| tc07-64B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc07-64B-2t2c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 2 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1 | search_type=NDR
 
-| tc08-64B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc08-64B-2t2c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 2 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1 | search_type=PDR
 
-| tc09-IMIX-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc09-IMIX-2t2c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 2 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=2 | rxq=1 | search_type=NDR
 
-| tc10-IMIX-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc10-IMIX-2t2c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=2 | rxq=1 | search_type=PDR
 
-| tc11-1518B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc11-1518B-2t2c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1 | search_type=NDR
 
-| tc12-1518B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc12-1518B-2t2c-eth-l2bdbase-eth-2memif-2vnf-kubernetes-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1 | search_type=PDR

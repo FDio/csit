@@ -392,10 +392,11 @@ class KubernetesUtils(object):
         :param kwargs: Key-value pairs used to create configuration.
         :param kwargs: dict
         """
+        skip_cnt = kwargs['cpu_skip'] + (kwargs['i'] - 1) * kwargs['cpu_cnt']
         cpuset_cpus = \
             CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
                                                 cpu_node=kwargs['cpu_node'],
-                                                skip_cnt=kwargs['cpu_skip'],
+                                                skip_cnt=skip_cnt,
                                                 cpu_cnt=kwargs['cpu_cnt'],
                                                 smt_used=kwargs['smt_used'])
 
