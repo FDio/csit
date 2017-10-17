@@ -14,7 +14,8 @@
 """Vhost-user interfaces library."""
 
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
-from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
 
 class VhostUser(object):
@@ -28,13 +29,22 @@ class VhostUser(object):
         :param socket: Vhost-user interface socket path.
         :type node: dict
         :type socket: str
-        :return: SW interface index.
+        :returns: SW interface index.
         :rtype: int
+        :raises RuntimeError: If Vhost-user interface creation failed.
         """
-        out = VatExecutor.cmd_from_template(node, "create_vhost_user_if.vat",
+        out = VatExecutor.cmd_from_template(node, 'create_vhost_user_if.vat',
                                             sock=socket)
         if out[0].get('retval') == 0:
-            return out[0].get('sw_if_index')
+            sw_if_idx = int(out[0].get('sw_if_index'))
+            if_key = Topology.add_new_port(node, 'vhost')
+            Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+            Topology.update_interface_name(node, if_key, ifc_name)
+            ifc_mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_idx)
+            Topology.update_interface_mac_address(node, if_key, ifc_mac)
+            Topology.update_interface_vhost_socket(node, if_key, socket)
+            return sw_if_idx
         else:
             raise RuntimeError('Create Vhost-user interface failed on node '
                                '"{}"'.format(node['host']))
@@ -47,7 +57,7 @@ class VhostUser(object):
         :param socket: Vhost-user interface socket path.
         :type node: dict
         :type socket: str
-        :return: Interface name or None if not found.
+        :returns: Interface name or None if not found.
         :rtype: str
         """
         for interface in node['interfaces'].values():
@@ -64,7 +74,7 @@ class VhostUser(object):
         :param sw_if_index: Idx of the specific interface.
         :type node: dict
         :type sw_if_index: str
-        :return: l2_address of the given interface.
+        :returns: l2_address of the given interface.
         :rtype: str
         """
 
@@ -83,7 +93,7 @@ class VhostUser(object):
 
         :param node: VPP node to get interface data from.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         vat = VatExecutor()
         vat.execute_script("show_vhost.vat", node, json_out=False)
