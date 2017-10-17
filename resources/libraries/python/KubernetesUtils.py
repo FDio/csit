@@ -50,6 +50,9 @@ class KubernetesUtils(object):
             raise RuntimeError('Failed to setup Kubernetes on {node}.'
                                .format(node=node['host']))
 
+        KubernetesUtils.wait_for_kubernetes_pods_on_node(node,
+                                                         nspace='kube-system')
+
     @staticmethod
     def setup_kubernetes_on_all_duts(nodes):
         """Set up Kubernetes on all DUTs.
@@ -244,34 +247,34 @@ class KubernetesUtils(object):
                                                                      rtype)
 
     @staticmethod
-    def get_kubernetes_logs_on_node(node, namespace='csit'):
+    def get_kubernetes_logs_on_node(node, nspace='csit'):
         """Get Kubernetes logs on node.
 
         :param node: DUT node.
-        :param namespace: Kubernetes namespace.
+        :param nspace: Kubernetes namespace.
         :type node: dict
-        :type namespace: str
+        :type nspace: str
         """
         ssh = SSH()
         ssh.connect(node)
 
         cmd = "for p in $(kubectl get pods -n {namespace} --no-headers"\
             " | cut -f 1 -d ' '); do echo $p; kubectl logs -n {namespace} $p; "\
-            "done".format(namespace=namespace)
+            "done".format(namespace=nspace)
         ssh.exec_command(cmd, timeout=120)
 
     @staticmethod
-    def get_kubernetes_logs_on_all_duts(nodes, namespace='csit'):
+    def get_kubernetes_logs_on_all_duts(nodes, nspace='csit'):
         """Get Kubernetes logs on all DUTs.
 
         :param nodes: Topology nodes.
-        :param namespace: Kubernetes namespace.
+        :param nspace: Kubernetes namespace.
         :type nodes: dict
-        :type namespace: str
+        :type nspace: str
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                KubernetesUtils.get_kubernetes_logs_on_node(node, namespace)
+                KubernetesUtils.get_kubernetes_logs_on_node(node, nspace)
 
     @staticmethod
     def reset_kubernetes_on_node(node):
@@ -302,26 +305,28 @@ class KubernetesUtils(object):
                 KubernetesUtils.reset_kubernetes_on_node(node)
 
     @staticmethod
-    def wait_for_kubernetes_pods_on_node(node):
+    def wait_for_kubernetes_pods_on_node(node, nspace='csit'):
         """Wait for Kubernetes PODs to become in 'Running' state on node.
 
         :param node: DUT node.
+        :param nspace: Kubernetes namespace.
         :type node: dict
+        :type nspace: str
         :raises RuntimeError: If Kubernetes PODs are not ready.
         """
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = 'kubectl get -n csit pods --no-headers'
+        cmd = 'kubectl get -n {namespace} pods --no-headers'\
+            .format(namespace=nspace)
         for _ in range(48):
             (ret_code, stdout, _) = ssh.exec_command_sudo(cmd, timeout=120)
             if int(ret_code) == 0:
                 ready = True
                 for line in stdout.splitlines():
-                    if 'Running' in line and '1/1' in line:
-                        ready = True
-                    else:
-                        ready = False
+                    state = line.split()[1].split('/')
+                    ready = True if 'Running' in line and state == state[::-1]\
+                        else False
                 if ready:
                     break
             time.sleep(5)
@@ -330,15 +335,17 @@ class KubernetesUtils(object):
                                .format(node=node['host']))
 
     @staticmethod
-    def wait_for_kubernetes_pods_on_all_duts(nodes):
+    def wait_for_kubernetes_pods_on_all_duts(nodes, nspace='csit'):
         """Wait for Kubernetes PODs to become in Running state on all DUTs.
 
         :param nodes: Topology nodes.
+        :param nspace: Kubernetes namespace.
         :type nodes: dict
+        :type nspace: str
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                KubernetesUtils.wait_for_kubernetes_pods_on_node(node)
+                KubernetesUtils.wait_for_kubernetes_pods_on_node(node, nspace)
 
     @staticmethod
     def create_kubernetes_vswitch_startup_config(**kwargs):
