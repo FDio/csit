@@ -437,6 +437,7 @@
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${topology_type}
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
@@ -446,12 +447,14 @@
 | Tear down performance ndrchk test
 | | [Documentation] | Common test teardown for ndrchk performance tests.
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show statistics on all DUTs | ${nodes}
 
 | Tear down performance pdrchk test
 | | [Documentation] | Common test teardown for pdrchk performance tests.
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show statistics on all DUTs | ${nodes}
 
@@ -478,6 +481,7 @@
 | | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show VPP vhost on all DUTs | ${nodes}
 | | Show statistics on all DUTs | ${nodes}
@@ -512,6 +516,7 @@
 | | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show VPP vhost on all DUTs | ${nodes}
 | | Show statistics on all DUTs | ${nodes}
