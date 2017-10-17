@@ -299,9 +299,10 @@ class VatTerminal(object):
     __VAT_PROMPT = ("vat# ", )
     __LINUX_PROMPT = (":~$ ", "~]$ ")
 
-    def __init__(self, node, json_param=True):
+    def __init__(self, node, json_param=True, non_json_output=False):
         json_text = ' json' if json_param else ''
         self.json = json_param
+        self.non_json_output = non_json_output
         self._node = node
         self._ssh = SSH()
         self._ssh.connect(self._node)
@@ -395,6 +396,8 @@ class VatTerminal(object):
             out = out[start:end]
             json_out = json.loads(out)
             return json_out
+        elif self.non_json_output:
+            return self.vat_stdout
         else:
             return None
 
