@@ -598,6 +598,7 @@
 | | ...
 | | Tear down performance discovery test | ${rate} | ${framesize}
 | | ... | ${traffic_profile}
-| | Run Keyword And Ignore Error | Vpp Log Macip Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Run Keyword And Ignore Error
+| | ... | Vpp Log Macip Acl Settings | ${dut1}
 | | Run Keyword And Ignore Error
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
