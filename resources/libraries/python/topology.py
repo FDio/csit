@@ -100,6 +100,21 @@ class Topology(object):
         return iface
 
     @staticmethod
+    def remove_port(node, iface_key):
+        """Remove required port from active topology.
+
+        :param node: Node to remove port on.
+        :param: iface_key: Topology key of the interface.
+        :type node: dict
+        :type iface_key: str
+        :returns: Nothing
+        """
+        try:
+            node['interfaces'].pop(iface_key)
+        except KeyError:
+            pass
+
+    @staticmethod
     def remove_all_ports(node, ptype):
         """Remove all ports with ptype as prefix.
 
@@ -112,6 +127,22 @@ class Topology(object):
         for if_key in list(node['interfaces']):
             if if_key.startswith(str(ptype)):
                 node['interfaces'].pop(if_key)
+
+    @staticmethod
+    def remove_all_added_ports_on_all_duts_from_topology(nodes):
+        """Remove all added ports on all DUT nodes in the topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        :return: Nothing
+        """
+        port_types = ('subinterface', 'vlan_subif',  'memif', 'tap', 'vhost',
+                      'loopback', 'gre_tunnel', 'vxlan_tunnel')
+
+        for node_data in nodes.values():
+            if node_data['type'] == NodeType.DUT:
+                for ptype in port_types:
+                    Topology.remove_all_ports(node_data, ptype)
 
     @staticmethod
     def update_interface_sw_if_index(node, iface_key, sw_if_index):
@@ -164,6 +195,59 @@ class Topology(object):
         :type vhost_socket: str
         """
         node['interfaces'][iface_key]['vhost_socket'] = str(vhost_socket)
+
+    @staticmethod
+    def update_interface_memif_socket(node, iface_key, memif_socket):
+        """Update memif socket name on the interface from the node.
+
+        :param node: Node to update socket name on.
+        :param iface_key: Topology key of the interface.
+        :param memif_socket: Path to named socket on node.
+        :type node: dict
+        :type iface_key: str
+        :type memif_socket: str
+        """
+        node['interfaces'][iface_key]['memif_socket'] = str(memif_socket)
+
+    @staticmethod
+    def update_interface_memif_id(node, iface_key, memif_id):
+        """Update memif ID on the interface from the node.
+
+        :param node: Node to update memif ID on.
+        :param iface_key: Topology key of the interface.
+        :param memif_id: Memif interface ID.
+        :type node: dict
+        :type iface_key: str
+        :type memif_id: str
+        """
+        node['interfaces'][iface_key]['memif_id'] = str(memif_id)
+
+    @staticmethod
+    def update_interface_memif_role(node, iface_key, memif_role):
+        """Update memif role on the interface from the node.
+
+        :param node: Node to update memif role on.
+        :param iface_key: Topology key of the interface.
+        :param memif_role: Memif role.
+        :type node: dict
+        :type iface_key: str
+        :type memif_role: str
+        """
+        node['interfaces'][iface_key]['memif_role'] = str(memif_role)
+
+    @staticmethod
+    def update_interface_tap_dev_name(node, iface_key, dev_name):
+        """Update device name on the tap interface from the node.
+
+        :param node: Node to update tap device name on.
+        :param iface_key: Topology key of the interface.
+        :param dev_name: Device name of the tap interface.
+        :type node: dict
+        :type iface_key: str
+        :type dev_name: str
+        :returns: Nothing
+        """
+        node['interfaces'][iface_key]['dev_name'] = str(dev_name)
 
     @staticmethod
     def get_node_by_hostname(nodes, hostname):
