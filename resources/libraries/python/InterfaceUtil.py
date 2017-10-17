@@ -655,10 +655,14 @@ class InterfaceUtil(object):
                                                sw_if_index=sw_if_index,
                                                vlan=vlan)
         if output[0]["retval"] == 0:
-            sw_subif_index = output[0]["sw_if_index"]
+            sw_subif_idx = output[0]["sw_if_index"]
             logger.trace('VLAN subinterface with sw_if_index {} and VLAN ID {} '
-                         'created on node {}'.format(sw_subif_index,
+                         'created on node {}'.format(sw_subif_idx,
                                                      vlan, node['host']))
+            if_key = Topology.add_new_port(node, "vlan_subif")
+            Topology.update_interface_sw_if_index(node, if_key, sw_subif_idx)
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_subif_idx)
+            Topology.update_interface_name(node, if_key, ifc_name)
         else:
             raise RuntimeError('Unable to create VLAN subinterface on node {}'
                                .format(node['host']))
@@ -666,7 +670,7 @@ class InterfaceUtil(object):
         with VatTerminal(node, False) as vat:
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
-        return '{}.{}'.format(interface, vlan), sw_subif_index
+        return '{}.{}'.format(interface, vlan), sw_subif_idx
 
     @staticmethod
     def create_vxlan_interface(node, vni, source_ip, destination_ip):
@@ -695,9 +699,14 @@ class InterfaceUtil(object):
         output = output[0]
 
         if output["retval"] == 0:
-            return output["sw_if_index"]
+            sw_if_idx = output["sw_if_index"]
+            if_key = Topology.add_new_port(node, "vxlan_tunnel")
+            Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+            Topology.update_interface_name(node, if_key, ifc_name)
+            return sw_if_idx
         else:
-            raise RuntimeError('Unable to create VXLAN interface on node {0}'
+            raise RuntimeError("Unable to create VXLAN interface on node {0}"
                                .format(node))
 
     @staticmethod
@@ -823,9 +832,13 @@ class InterfaceUtil(object):
                                                type_subif=type_subif)
 
         if output[0]["retval"] == 0:
-            sw_subif_index = output[0]["sw_if_index"]
+            sw_subif_idx = output[0]["sw_if_index"]
             logger.trace('Created subinterface with index {}'
-                         .format(sw_subif_index))
+                         .format(sw_subif_idx))
+            if_key = Topology.add_new_port(node, "subinterface")
+            Topology.update_interface_sw_if_index(node, if_key, sw_subif_idx)
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_subif_idx)
+            Topology.update_interface_name(node, if_key, ifc_name)
         else:
             raise RuntimeError('Unable to create sub-interface on node {}'
                                .format(node['host']))
@@ -834,7 +847,7 @@ class InterfaceUtil(object):
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
         name = '{}.{}'.format(interface, sub_id)
-        return name, sw_subif_index
+        return name, sw_subif_idx
 
     @staticmethod
     def create_gre_tunnel_interface(node, source_ip, destination_ip):
@@ -856,14 +869,19 @@ class InterfaceUtil(object):
         output = output[0]
 
         if output["retval"] == 0:
-            sw_if_index = output["sw_if_index"]
+            sw_if_idx = output["sw_if_index"]
 
             vat_executor = VatExecutor()
             vat_executor.execute_script_json_out("dump_interfaces.vat", node)
             interface_dump_json = vat_executor.get_script_stdout()
             name = VatJsonUtil.get_interface_name_from_json(
-                interface_dump_json, sw_if_index)
-            return name, sw_if_index
+                interface_dump_json, sw_if_idx)
+
+            if_key = Topology.add_new_port(node, "gre_tunnel")
+            Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+            Topology.update_interface_name(node, if_key, name)
+
+            return name, sw_if_idx
         else:
             raise RuntimeError('Unable to create GRE tunnel on node {}.'
                                .format(node))
@@ -881,7 +899,12 @@ class InterfaceUtil(object):
         """
         out = VatExecutor.cmd_from_template(node, "create_loopback.vat")
         if out[0].get('retval') == 0:
-            return out[0].get('sw_if_index')
+            sw_if_idx = out[0].get('sw_if_index')
+            if_key = Topology.add_new_port(node, "loopback")
+            Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+            Topology.update_interface_name(node, if_key, ifc_name)
+            return sw_if_idx
         else:
             raise RuntimeError('Create loopback failed on node "{}"'
                                .format(node['host']))
@@ -1066,7 +1089,6 @@ class InterfaceUtil(object):
         if ret[0]["retval"] != 0:
             raise RuntimeError('Unable to assign interface to FIB node {}.'
                                .format(node))
-
 
     @staticmethod
     def set_linux_interface_mac(node, interface, mac, namespace=None):
