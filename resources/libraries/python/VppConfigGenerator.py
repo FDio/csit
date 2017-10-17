@@ -128,6 +128,11 @@ class VppConfigGenerator(object):
         path = ['unix', 'nodaemon']
         self.add_config_item(self._nodeconfig, '', path)
 
+    def add_unix_coredump(self):
+        """Add UNIX full-coredump configuration."""
+        path = ['unix', 'full-coredump']
+        self.add_config_item(self._nodeconfig, '', path)
+
     def add_unix_exec(self, value):
         """Add UNIX exec configuration."""
         path = ['unix', 'exec']
