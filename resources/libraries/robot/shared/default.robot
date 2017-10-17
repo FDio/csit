@@ -312,6 +312,7 @@
 | Tear down functional test
 | | [Documentation] | Common test teardown for functional tests.
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Vpp Show Errors On All DUTs | ${nodes}
@@ -320,6 +321,7 @@
 | Tear down LISP functional test
 | | [Documentation] | Common test teardown for functional tests with LISP.
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
@@ -340,6 +342,7 @@
 | | ...
 | | [Arguments] | ${vm_node}
 | | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
