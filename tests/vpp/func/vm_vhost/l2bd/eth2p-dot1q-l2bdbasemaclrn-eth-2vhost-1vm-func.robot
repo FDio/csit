@@ -22,10 +22,8 @@
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
 | Test Setup | Set up functional test
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND | Show vpp trace dump on all DUTs
-| ...           | AND | Stop and clear QEMU | ${dut_node} | ${vm_node}
-| ...           | AND | Verify VPP PID in Teardown
+| Test Teardown | Run Keywords  | Tear down functional test
+| ... | AND | Stop and clear QEMU | ${dut_node} | ${vm_node}
 | Documentation | *L2 bridge domain with VLAN tag over VM test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT 2-node circular topology
