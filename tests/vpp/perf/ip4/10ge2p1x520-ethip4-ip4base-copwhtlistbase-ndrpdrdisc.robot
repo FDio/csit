@@ -79,8 +79,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -107,8 +109,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -136,8 +140,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -164,8 +170,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -192,8 +200,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -219,8 +229,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -248,8 +260,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -276,8 +290,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -305,8 +321,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -333,8 +351,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -361,8 +381,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -388,8 +410,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -407,6 +431,7 @@
 | | ... | step 100kpps.
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
@@ -417,8 +442,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -445,8 +472,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -474,8 +503,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -502,8 +533,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -530,8 +563,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -557,8 +592,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And Add Fib Table | ${dut1} | 1
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
