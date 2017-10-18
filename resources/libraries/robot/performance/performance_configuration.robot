@@ -244,22 +244,30 @@
 | | ${dut2_vif2_idx}= | Get Interface SW Index | ${dut2} | ${dut2_vif2}
 | | ${dut2_if1_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if1}
 | | ${dut2_if2_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if2}
-| | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_1}
-| | ... | via 4.4.4.2 sw_if_index ${dut1_vif1_idx} multipath
-| | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_1}
-| | ... | via 1.1.1.2 sw_if_index ${dut1_if1_idx} multipath
-| | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_2}
-| | ... | via 2.2.2.2 sw_if_index ${dut1_if2_idx} multipath
-| | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_2}
-| | ... | via 5.5.5.2 sw_if_index ${dut1_vif2_idx} multipath
-| | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_1}
-| | ... | via 2.2.2.1 sw_if_index ${dut2_if1_idx} multipath
-| | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_1}
-| | ... | via 4.4.4.1 sw_if_index ${dut2_vif1_idx} multipath
-| | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_2}
-| | ... | via 5.5.5.2 sw_if_index ${dut2_vif2_idx} multipath
-| | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_2}
-| | ... | via 3.3.3.2 sw_if_index ${dut2_if2_idx} multipath
+| | Add Fib Table | ${dut1}| ${fib_table_1}
+| | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_1}
+| | ... | gateway=4.4.4.2 | sw_if_index=${dut1_vif1_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut1} | ${fib_table_1}
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_1}
+| | ... | gateway=1.1.1.2 | sw_if_index=${dut1_if1_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut1} | ${fib_table_2}
+| | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_2}
+| | ... | gateway=2.2.2.2 | sw_if_index=${dut1_if2_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut1} | ${fib_table_2}
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_2}
+| | ... | gateway=5.5.5.2 | sw_if_index=${dut1_vif2_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut2} | ${fib_table_1}
+| | And Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | vrf=${fib_table_1}
+| | ... | gateway=2.2.2.1 | sw_if_index=${dut2_if1_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut2} | ${fib_table_1}
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=${fib_table_1}
+| | ... | gateway=4.4.4.1 | sw_if_index=${dut2_vif1_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut2} | ${fib_table_2}
+| | And Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | vrf=${fib_table_2}
+| | ... | gateway=5.5.5.2 | sw_if_index=${dut2_vif2_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut2} | ${fib_table_2}
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=${fib_table_2}
+| | ... | gateway=3.3.3.2 | sw_if_index=${dut2_if2_idx} | multipath=${TRUE}
 | | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
 | | Assign Interface To Fib Table | ${dut1} | ${dut1_vif1} | ${fib_table_1}
 | | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
@@ -349,16 +357,20 @@
 | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nr}
 | | ${dut1_if1_idx}= | Get Interface SW Index | ${dut1} | ${dut1_if1}
 | | ${dut1_if2_idx}= | Get Interface SW Index | ${dut1} | ${dut1_if2}
-| | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_1}
-| | ... | via 1.1.1.2 sw_if_index ${dut1_if1_idx} multipath
-| | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_2}
-| | ... | via 2.2.2.2 sw_if_index ${dut1_if2_idx} multipath
+| | Add Fib Table | ${dut1} | ${fib_table_1}
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_1}
+| | ... | gateway=1.1.1.2 | sw_if_index=${dut1_if1_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut1} | ${fib_table_2}
+| | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_2}
+| | ... | gateway=2.2.2.2 | sw_if_index=${dut1_if2_idx} | multipath=${TRUE}
 | | ${dut2_if1_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if1}
 | | ${dut2_if2_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if2}
-| | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_1}
-| | ... | via 2.2.2.1 sw_if_index ${dut2_if1_idx} multipath
-| | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_2}
-| | ... | via 3.3.3.2 sw_if_index ${dut2_if2_idx} multipath
+| | Add Fib Table | ${dut2} | ${fib_table_1}
+| | And Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | vrf=${fib_table_1}
+| | ... | gateway=2.2.2.1 | sw_if_index=${dut2_if1_idx} | multipath=${TRUE}
+| | Add Fib Table | ${dut2} | ${fib_table_2}
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=${fib_table_2}
+| | ... | gateway=3.3.3.2 | sw_if_index=${dut2_if2_idx} | multipath=${TRUE}
 | | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
 | | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
 | | Assign Interface To Fib Table | ${dut2} | ${dut2_if1} | ${fib_table_1}
@@ -413,14 +425,22 @@
 | | | ... | ${dut2-vhost-${number}-if1}
 | | | ${dut2_vif2_idx}= | Get Interface SW Index | ${dut2}
 | | | ... | ${dut2-vhost-${number}-if2}
-| | | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_1}
-| | | ... | via ${ip_net_vif1}.1 sw_if_index ${dut1_vif1_idx} multipath
-| | | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_2}
-| | | ... | via ${ip_net_vif2}.2 sw_if_index ${dut1_vif2_idx} multipath
-| | | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_1}
-| | | ... | via ${ip_net_vif1}.1 sw_if_index ${dut2_vif1_idx} multipath
-| | | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_2}
-| | | ... | via ${ip_net_vif2}.2 sw_if_index ${dut2_vif2_idx} multipath
+| | | Add Fib Table | ${dut1} | ${fib_table_1}
+| | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_1}
+| | | ... | gateway=${ip_net_vif1}.1 | sw_if_index=${dut1_vif1_idx}
+| | | ... | multipath=${TRUE}
+| | | Add Fib Table | ${dut1} | ${fib_table_2}
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_2}
+| | | ... | gateway=${ip_net_vif2}.2 | sw_if_index=${dut1_vif2_idx}
+| | | ... | multipath=${TRUE}
+| | | Add Fib Table | ${dut2} | ${fib_table_1}
+| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=${fib_table_1}
+| | | ... | gateway=${ip_net_vif1}.1 | sw_if_index=${dut2_vif1_idx}
+| | | ... | multipath=${TRUE}
+| | | Add Fib Table | ${dut2} | ${fib_table_2}
+| | And Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | vrf=${fib_table_2}
+| | | ... | gateway=${ip_net_vif2}.2 | sw_if_index=${dut2_vif2_idx}
+| | | ... | multipath=${TRUE}
 | | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if1}
 | | | ... | ${fib_table_1}
 | | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if2}
