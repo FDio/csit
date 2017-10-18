@@ -24,7 +24,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
 
-PYBOT_ARGS="-W 150"
+PYBOT_ARGS=""
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
@@ -83,7 +83,7 @@ case "$TEST_TAG" in
               -s "tests.dpdk.perf" \
               --exclude SKIP_PATCH \
               -i NDRPDRDISC \
-              tests/dpdk/
+              tests/
         RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_SHORT )
@@ -93,7 +93,7 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.dpdk.perf" \
               -i NDRCHK \
-              tests/dpdk/
+              tests/
         RETURN_STATUS=$(echo $?)
         ;;
    PERFTEST_NIGHTLY )
@@ -103,7 +103,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.dpdk.perf" \
-              tests/dpdk/
+              tests/
         RETURN_STATUS=$(echo $?)
         ;;
     * )
