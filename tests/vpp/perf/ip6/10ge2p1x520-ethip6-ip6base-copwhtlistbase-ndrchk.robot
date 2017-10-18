@@ -65,8 +65,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -88,8 +90,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -110,8 +114,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -133,8 +139,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -156,8 +164,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -178,8 +188,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -201,8 +213,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -224,8 +238,10 @@
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
@@ -246,8 +262,10 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
-| | And Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
-| | And Add fib table | ${dut2} | 2001:2:: | 64 | 1 | local
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
