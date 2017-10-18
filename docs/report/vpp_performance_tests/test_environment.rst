@@ -2138,7 +2138,7 @@ TG Configuration - TRex
 
 **DPDK version**
 
-DPDK v17.05
+DPDK v17.08
 
 **TG Build Script used**
 
