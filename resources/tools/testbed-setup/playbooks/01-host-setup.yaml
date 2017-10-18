@@ -103,6 +103,8 @@
     copy: src=files/requirements.txt dest=/tmp/requirements.txt
   - name: Install PIP requirements
     pip: requirements=/tmp/requirements.txt
+  - name: Install libnuma-dev
+    apt: name=libnuma-dev state=present
   - name: IRQ pinning
     lineinfile:
         dest: /etc/rc.local
