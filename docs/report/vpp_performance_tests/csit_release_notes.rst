@@ -111,7 +111,7 @@ Non-Drop Rate Throughput discovery tests:
 
       \makeatletter
       \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
       }
       \makeatother
 
@@ -143,7 +143,7 @@ Partial Drop Rate thoughput discovery tests with packet Loss Tolerance of 0.5%:
 
       \makeatletter
       \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
       }
       \makeatother
 
@@ -187,7 +187,7 @@ Non-Drop Rate Throughput discovery tests:
 
       \makeatletter
       \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
       }
       \makeatother
 
@@ -219,7 +219,7 @@ Partial Drop Rate thoughput discovery tests with packet Loss Tolerance of 0.5%:
 
       \makeatletter
       \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
+        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{ m{1.5cm} m{5cm} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
       }
       \makeatother
 
