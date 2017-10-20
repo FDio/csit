@@ -1,6 +1,5 @@
-===================================================
-Presentation and Analytics Layer - Low Level Design
-===================================================
+Presentation and Analytics Layer
+================================
 
 Overview
 --------
