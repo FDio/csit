@@ -15,3 +15,4 @@ CSIT 17.07
     detailed_test_results/index
     test_configuration/index
     test_operational_data/index
+    csit_framework_documentation/index
