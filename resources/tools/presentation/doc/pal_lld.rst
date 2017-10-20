@@ -1,6 +1,5 @@
-===================================================
-Presentation and Analytics Layer - Low Level Design
-===================================================
+Presentation and Analytics Layer
+================================
 
 Overview
 --------
@@ -37,6 +36,14 @@ sub-layers, bottom up:
 
    - formats: html, pdf
    - versions: minimal, full (TODO: define the names and scope of versions)
+
+.. raw:: latex
+
+    \begin{figure}[H]
+    \centering
+        \includesvg[width=0.90\textwidth]{pal_layers}
+        \label{fig:pal_layers}
+    \end{figure}
 
 .. figure:: pal_layers.svg
    :alt: PAL Layers
@@ -1211,6 +1218,14 @@ List of modules, classes, methods and functions
 
 PAL functional diagram
 ``````````````````````
+
+.. raw:: latex
+
+    \begin{figure}[H]
+    \centering
+        \includesvg[width=0.90\textwidth]{pal_func_diagram}
+        \label{fig:pal_func_diagram}
+    \end{figure}
 
 .. figure:: pal_func_diagram.svg
    :alt: PAL functional diagram
