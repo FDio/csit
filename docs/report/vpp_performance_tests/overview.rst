@@ -1,6 +1,8 @@
 Overview
 ========
 
+.. _tested_physical_topologies:
+
 Tested Physical Topologies
 --------------------------
 
@@ -52,7 +54,7 @@ performance labs to address larger scale multi-interface and multi-NIC
 performance testing scenarios.
 
 For test cases that require DUT (VPP) to communicate with
-VirtualMachines(VMs)/LinuxContainers(LXCs) over vhost-user/memif
+VirtualMachines (VMs) / LinuxContainers (LXCs) over vhost-user/memif
 interfaces, N of VM/LXC instances are created on SUT1 and SUT2. For N=1
 DUT forwards packets between vhost/memif and physical interfaces. For
 N>1 DUT a logical service chain forwarding topology is created on DUT by
@@ -305,18 +307,49 @@ environment settings:
   threads less susceptible to other Linux OS system tasks hijacking CPU
   cores running those data plane threads.
 
-Methodology: LXC Container memif
---------------------------------
+Methodology: LXC and Docker Containers memif
+--------------------------------------------
 
-CSIT |release| introduced new tests - VPP Memif virtual interface (shared memory
-interface) tests interconnecting VPP instances over memif. VPP vswitch instance
-runs in bare-metal user-mode handling Intel x520 NIC 10GbE interfaces and
-connecting over memif (Master side) virtual interfaces to another instance of
-VPP running in bare-metal :abbr:`LXC (Linux Container)` with memif virtual
-interfaces (Slave side). LXC runs in a priviliged mode with VPP data plane worker
-threads pinned to dedicated physical CPU cores per usual CSIT practice. Both VPP
-run the same version of software. This test topology is equivalent to existing
-tests with vhost-user and VMs.
+CSIT |release| introduced additional tests taking advantage of VPP memif
+virtual interface (shared memory interface) tests to interconnect VPP
+instances. VPP vswitch instance runs in bare-metal user-mode handling
+Intel x520 NIC 10GbE interfaces and connecting over memif (Master side)
+virtual interfaces to more instances of VPP running in :abbr:`LXC (Linux
+Container)` or in Docker Containers,  both with memif virtual interfaces
+(Slave side). LXCs and Docker Containers run in a priviliged mode with
+VPP data plane worker threads pinned to dedicated physical CPU cores per
+usual CSIT practice. All VPP instances run the same version of software.
+This test topology is equivalent to existing tests with vhost-user and
+VMs as described earlier in :ref:`tested_physical_topologies`.
+
+More information about CSIT LXC and Docker Container setup and control
+is available in section `Container Orchestration Systems Used in CSIT`.
+
+Methodology: Container Topologies Orchestrated by K8s
+-----------------------------------------------------
+
+CSIT |release| introduced new tests of Container topologies connected
+over the memif virtual interface (shared memory interface). In order to
+provide simple topology coding flexibility and extensibility container
+orchestration is done with `Kubernetes <https://github.com/kubernetes>`_
+using `Docker <https://github.com/docker>`_ images for all container
+applications including VPP. `Ligato <https://github.com/ligato>`_ is
+used to address the container networking orchestration that is
+integrated with K8s, including memif support.
+
+For these tests VPP vswitch instance runs in a Docker Container handling
+Intel x520 NIC 10GbE interfaces and connecting over memif (Master side)
+virtual interfaces to more instances of VPP running in Docker Containers
+with memif virtual interfaces (Slave side). All Docker Containers run in
+a priviliged mode with VPP data plane worker threads pinned to dedicated
+physical CPU cores per usual CSIT practice. All VPP instances run the
+same version of software. This test topology is equivalent to existing
+tests with vhost-user and VMs as described earlier in
+:ref:`tested_physical_topologies`.
+
+More information about CSIT Container Topologies Orchestrated by K8s
+setup and control is available in section `Container Orchestration
+Systems Used in CSIT`.
 
 Methodology: IPSec with Intel QAT HW cards
 ------------------------------------------
