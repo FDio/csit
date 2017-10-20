@@ -195,7 +195,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -204,7 +204,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -213,7 +213,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscAND1t1cORndrdiscAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -222,7 +222,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrdiscAND1t1cORpdrdiscAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -231,7 +231,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrchkAND1t1cORndrchkAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -240,7 +240,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrchkAND1t1cORndrchkAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -249,7 +249,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip4baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -258,7 +258,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip6baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -267,7 +267,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrdiscANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -276,7 +276,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDlisp \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -285,7 +285,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvxlan \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -294,7 +294,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -303,7 +303,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDip4baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -312,7 +312,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDip6baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -321,7 +321,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORpdrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -330,7 +330,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDlisp \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -339,7 +339,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -348,7 +348,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -357,7 +357,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDacl \
               --include pdrdiscANDnic_intel-x520-da2AND2t2cANDacl \
               tests/
@@ -367,7 +367,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               --exclude SKIP_PATCH \
               -i NDRPDRDISC \
               tests/
@@ -377,7 +377,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               -i NDRCHK \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -387,7 +387,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -396,7 +396,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "tests.ligato.perf" \
+              -s "tests.kubernetes.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
 esac

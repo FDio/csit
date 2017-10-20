@@ -448,11 +448,44 @@ Client-workload tags
 
 .. topic:: LXC
 
-    All test cases which use Linux container.
+    All test cases which use Linux container and LXC utils.
+
+.. topic:: DOCKER
+
+    All test cases which use Docker as container manager.
 
 .. topic:: APP
 
     All test cases with specific APP use.
+
+Container orchestration tags
+----------------------------
+
+.. topic:: K8S
+
+    All test cases which use Kubernetes for orchestration.
+
+.. topic:: SFC_CONTROLLER
+
+    All test cases which use ligato/sfc_controller for driving configuration
+    of vpp inside container.
+
+.. topic:: VPP_AGENT
+
+    All test cases which use Golang implementation of a control/management plane
+    for VPP
+
+.. topic:: 1VSWITCH
+
+    VPP running in Docker container acting as VSWITCH.
+
+.. topic:: 1VNF
+
+    1 VPP running in Docker container acting as VNF work load.
+
+.. topic:: 2VNF
+
+    2 VPP running in 2 Docker containers acting as VNF work load.
 
 Multi-threading tags
 --------------------
