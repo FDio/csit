@@ -1,6 +1,5 @@
-===================================================
-Presentation and Analytics Layer - Low Level Design
-===================================================
+Presentation and Analytics Layer
+================================
 
 Overview
 --------
@@ -38,9 +37,21 @@ sub-layers, bottom up:
    - formats: html, pdf
    - versions: minimal, full (TODO: define the names and scope of versions)
 
-.. figure:: pal_layers.svg
-   :alt: PAL Layers
-   :align: center
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/csit_framework_documentation/pal_layers}
+            \label{fig:pal_layers}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: pal_layers.svg
+        :alt: PAL Layers
+        :align: center
 
 Data
 ----
@@ -1212,9 +1223,21 @@ List of modules, classes, methods and functions
 PAL functional diagram
 ``````````````````````
 
-.. figure:: pal_func_diagram.svg
-   :alt: PAL functional diagram
-   :align: center
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/csit_framework_documentation/pal_func_diagram}
+            \label{fig:pal_func_diagram}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: pal_func_diagram.svg
+        :alt: PAL functional diagram
+        :align: center
 
 
 How to add an element
