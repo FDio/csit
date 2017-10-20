@@ -15,22 +15,18 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | SCALE | L2XCBASE | MEMIF
-| ... | KUBERNETES | 1VSWITCH | 2VNF | VPP_AGENT | SFC_CONTROLLER
+| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | MEMIF | DOCKER
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
+| Suite Setup | Run Keywords | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
+| ... | AND | Set up performance topology with containers
 | ...
-| Test Setup | Run Keywords
-| ... | Apply Kubernetes resource on all duts | ${nodes} | kafka.yaml
-| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | etcd.yaml
+| Suite Teardown | Tear down 3-node performance topology with container
 | ...
-| Suite Teardown | Tear down 3-node performance topology
+| Test Setup | Set up performance test
 | ...
-| Test Teardown | Run Keywords
-| ... | Get Kubernetes logs on all DUTs | ${nodes} | AND
-| ... | Describe Kubernetes resource on all DUTs | ${nodes} | AND
-| ... | Delete Kubernetes resource on all duts | ${nodes}
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput L2XC test cases*
 | ...
@@ -39,9 +35,10 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
 | ... | connect. DUT1 and DUT2 tested with 2p10GE NIC X520 Niantic by Intel.
-| ... | VNF Containers are connected to VSWITCH container via Memif interface.
-| ... | All containers are running same VPP version. Containers are deployed
-| ... | with Kubernetes. Configuration is applied by vnf-agent.
+| ... | Container is connected to VPP via Memif interface. Container is running
+| ... | same VPP version as running on DUT. Container is limited via cgroup to
+| ... | use 3 cores allocated from pool of isolated CPUs. There are no memory
+| ... | contraints.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
@@ -60,71 +57,19 @@
 | ${avg_imix_framesize}= | ${357.833}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
-# Kubernetes profile
-| ${kubernetes_profile} | eth-l2xcbase-eth-2memif-2vnf
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+# LXC container
+| ${container_count}= | ${1}
+| ${container_engine}= | Docker
+| ${container_image}= | ubuntu
 # CPU settings
 | ${system_cpus}= | ${1}
-| ${vswitch_cpus}= | ${5}
-| ${vnf_cpus}= | ${3}
+| ${vpp_cpus}= | ${5}
+| ${container_cpus}= | ${3}
 
 *** Keywords ***
-| Create Kubernetes VSWITCH startup config on all DUTs
-| | [Documentation] | Create base startup configuration of VSWITCH in Kubernetes
-| | ... | deploy to all DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${framesize} - L2 framesize. Type: integer
-| | ... | - ${wt} - Worker threads. Type: integer
-| | ... | - ${rxq} - RX queues. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Create Kubernetes VSWITCH startup config on all DUTs \| ${64} \
-| | ... | \| ${1} \| ${1}
-| | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
-| | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if1}
-| | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
-| | ${cpu_cnt}= | Evaluate | ${wt}+1
-| | ${config}= | Run keyword | Create Kubernetes VSWITCH startup config
-| | ... | node=${dut1} | cpu_cnt=${cpu_cnt} | cpu_node=${dut1_numa}
-| | ... | cpu_skip=${system_cpus} | smt_used=${False}
-| | ... | filename=/tmp/vswitch.conf | framesize=${framesize} | rxq=${rxq}
-| | ... | if1=${dut1_if1_pci} | if2=${dut1_if2_pci}
-| | ${config}= | Run keyword | Create Kubernetes VSWITCH startup config
-| | ... | node=${dut2} | cpu_cnt=${cpu_cnt} | cpu_node=${dut2_numa}
-| | ... | cpu_skip=${system_cpus} | smt_used=${False}
-| | ... | filename=/tmp/vswitch.conf | framesize=${framesize} | rxq=${rxq}
-| | ... | if1=${dut2_if1_pci} | if2=${dut2_if2_pci}
-
-| Create Kubernetes VNF'${i}' startup config on all DUTs
-| | [Documentation] | Create base startup configuration of VNF in Kubernetes
-| | ... | deploy to all DUTs.
-| | ...
-| | ${i_int}= | Convert To Integer | ${i}
-| | ${cpu_skip}= | Evaluate | ${vswitch_cpus}+${system_cpus}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${config}= | Run keyword | Create Kubernetes VNF startup config
-| | ... | node=${dut1} | cpu_cnt=${vnf_cpus} | cpu_node=${dut1_numa}
-| | ... | cpu_skip=${cpu_skip} | smt_used=${False} | filename=/tmp/vnf${i}.conf
-| | ... | i=${i_int}
-| | ${config}= | Run keyword | Create Kubernetes VNF startup config
-| | ... | node=${dut2} | cpu_cnt=${vnf_cpus} | cpu_node=${dut2_numa}
-| | ... | cpu_skip=${cpu_skip} | smt_used=${False} | filename=/tmp/vnf${i}.conf
-| | ... | i=${i_int}
-
-| L2 Cross Connect Binary Search
+| L2 Cross Connect over Memif Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -134,30 +79,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | ${dut1_if1_name}= | Get interface name | ${dut1} | ${dut1_if1}
-| | ${dut1_if2_name}= | Get interface name | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_name}= | Get interface name | ${dut2} | ${dut2_if1}
-| | ${dut2_if2_name}= | Get interface name | ${dut2} | ${dut2_if2}
-| | Create Kubernetes VSWITCH startup config on all DUTs | ${get_framesize}
-| | ... | ${wt} | ${rxq}
-| | Create Kubernetes VNF'1' startup config on all DUTs
-| | Create Kubernetes VNF'2' startup config on all DUTs
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vswitch-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vswitch.conf
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf1-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vnf1.conf
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf2-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vnf2.conf
-| | Apply Kubernetes resource on node | ${dut1}
-| | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
-| | ... | $$VSWITCH_IF1$$=${dut1_if1_name}
-| | ... | $$VSWITCH_IF2$$=${dut1_if2_name}
-| | Apply Kubernetes resource on node | ${dut2}
-| | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
-| | ... | $$VSWITCH_IF1$$=${dut2_if1_name}
-| | ... | $$VSWITCH_IF2$$=${dut2_if2_name}
-| | Wait for Kubernetes PODs on all DUTs | ${nodes}
-| | Describe Kubernetes resource on all DUTs | ${nodes}
+| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Add PCI Devices To DUTs In 3-node Single Link Topology
+| | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Apply startup configuration on all VPP DUTs
+| | Initialize L2 xconnect for '${container_count}' memif pairs in 3-node circular topology
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
@@ -169,7 +95,7 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc01-64B-1t1c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -177,10 +103,10 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=NDR
 
-| tc02-64B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc02-64B-1t1c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -188,10 +114,10 @@
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=PDR
 
-| tc03-IMIX-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc03-IMIX-1t1c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -200,10 +126,10 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
 
-| tc04-IMIX-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc04-IMIX-1t1c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -212,10 +138,10 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=1 | rxq=1 | search_type=PDR
 
-| tc05-1518B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc05-1518B-1t1c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -223,10 +149,10 @@
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
 
-| tc06-1518B-1t1c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc06-1518B-1t1c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -234,10 +160,10 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1 | search_type=PDR
 
-| tc07-64B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc07-64B-2t2c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -245,10 +171,10 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1 | search_type=NDR
 
-| tc08-64B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc08-64B-2t2c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -256,10 +182,10 @@
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1 | search_type=PDR
 
-| tc09-IMIX-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc09-IMIX-2t2c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -268,10 +194,10 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=2 | rxq=1 | search_type=NDR
 
-| tc10-IMIX-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc10-IMIX-2t2c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -280,10 +206,10 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=2 | rxq=1 | search_type=PDR
 
-| tc11-1518B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-ndrdisc
+| tc11-1518B-2t2c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -291,10 +217,10 @@
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1 | search_type=NDR
 
-| tc12-1518B-2t2c-eth-l2xcbase-eth-2memif-1vnf-kubernetes-pdrdisc
+| tc12-1518B-2t2c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -302,5 +228,5 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1 | search_type=PDR
