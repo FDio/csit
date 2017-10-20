@@ -140,7 +140,10 @@ def generate_pdf_report(release, spec, versions):
     convert_plots = "xvfb-run -a wkhtmltopdf {html} {pdf}.pdf"
 
     # Convert PyPLOT graphs in HTML format to PDF.
-    plots  = get_files(spec.environment["paths"]["DIR[STATIC,VPP]"], "html")
+    # VPP
+    plots = get_files(spec.environment["paths"]["DIR[STATIC,VPP]"], "html")
+    plots.extend(get_files(spec.environment["paths"]["DIR[STATIC,DPDK]"],
+                           "html"))
     for plot in plots:
         file_name = "{0}".format(plot.rsplit(".", 1)[0])
         cmd = convert_plots.format(html=plot, pdf=file_name)
