@@ -143,17 +143,8 @@
 #    - 21
 #    csit-vpp-perf-1710-all:
 #    -
-#    csit-dpdk-perf-1710-all:
-#    - 1
-#    - 2
-#    - 3
-#    - 4
-#    - 5
-#    - 6
-#    - 7
-#    - 8
-#    - 9
-#    - 10
+    csit-dpdk-perf-1710-all:
+    - 3
     csit-vpp-functional-1710-ubuntu1604-virl:
     - 16
 #    hc2vpp-csit-perf-master-ubuntu1604:  # REMOVE???
@@ -353,32 +344,32 @@
   - "name"
   - "vat-history"
 
-#-
-#  type: "table"
-#  title: "Detailed Test Results - DPDK Performance Results"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
-#  columns:
-#  -
-#    title: "Name"
-#    data: "data name"
-#  -
-#    title: "Documentation"
-#    data: "data doc"
-#  -
-#    title: "Status"
-#    data: "data msg"
-#  rows: "generated"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "doc"
-#  - "msg"
+-
+  type: "table"
+  title: "Detailed Test Results - DPDK Performance Results"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
 
 -
   type: "table"
@@ -533,26 +524,26 @@
   data-start-level: 3  # 0, 1, 2, ...
   chapters-start-level: 2  # 0, 1, 2, ...
 
-#-
-#  type: "file"
-#  title: "DPDK Performance Results"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTR,PERF,DPDK]}"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    - 
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  chapters:
-#  - "suites"
-#  data-start-level: 2  # 0, 1, 2, ...
-#  chapters-start-level: 2  # 0, 1, 2, ...
+-
+  type: "file"
+  title: "DPDK Performance Results"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,DPDK]}"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  chapters:
+  - "suites"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
 
 -
   type: "file"
@@ -2736,480 +2727,480 @@
 #      orientation: "h"
 #    width: 700
 #    height: 1000
-#
-## DPDK
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [2000000, 12000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [2000000, 12000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-pdrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-pdrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-pdrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [20000000, 30000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-pdrdisc"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [20000000, 30000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
+
+# DPDK
+-
+  type: "plot"
+  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [2000000, 12000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [2000000, 12000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-pdrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-pdrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-pdrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [20000000, 30000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-pdrdisc"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [20000000, 30000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
 ## Plot latency
 #
 ## VPP L2 sel1
@@ -4246,232 +4237,232 @@
 #      orientation: "h"
 #    width: 700
 #    height: 1000
-#
-## DPDK
-#-
-#  type: "plot"
-#  title: "DPDK Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc-lat50"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc-lat50"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Latency 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc-lat50"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "DPDK Latency 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc-lat50"
-#  data:
-#    csit-dpdk-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
+
+# DPDK
+-
+  type: "plot"
+  title: "DPDK Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc-lat50"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc-lat50"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Latency 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc-lat50"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "DPDK Latency 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc-lat50"
+  data:
+    csit-dpdk-perf-1710-all:
+    - 3
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
