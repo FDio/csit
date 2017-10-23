@@ -411,19 +411,19 @@
 | | | Set Interface State | ${dut2} | ${dut2-vhost-${number}-if2} | up
 | | | Add Fib Table | ${dut1} | ${fib_table_1}
 | | | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_1}
-| | | ... | gateway=${ip_net_vif1}.1 | interface=${dut1_vif1}
+| | | ... | gateway=${ip_net_vif1}.1 | interface=${dut1-vhost-${number}-if1}
 | | | ... | multipath=${TRUE}
 | | | Add Fib Table | ${dut1} | ${fib_table_2}
 | | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_2}
-| | | ... | gateway=${ip_net_vif2}.2 | interface=${dut1_vif2}
+| | | ... | gateway=${ip_net_vif2}.2 | interface=${dut1-vhost-${number}-if2}
 | | | ... | multipath=${TRUE}
 | | | Add Fib Table | ${dut2} | ${fib_table_1}
 | | | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=${fib_table_1}
-| | | ... | gateway=${ip_net_vif1}.1 | interface=${dut2_vif1}
+| | | ... | gateway=${ip_net_vif1}.1 | interface=${dut2-vhost-${number}-if1}
 | | | ... | multipath=${TRUE}
 | | | Add Fib Table | ${dut2} | ${fib_table_2}
 | | | And Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | vrf=${fib_table_2}
-| | | ... | gateway=${ip_net_vif2}.2 | interface=${dut2_vif2}
+| | | ... | gateway=${ip_net_vif2}.2 | interface=${dut2-vhost-${number}-if2}
 | | | ... | multipath=${TRUE}
 | | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if1}
 | | | ... | ${fib_table_1}
