@@ -221,6 +221,29 @@ class InterfaceUtil(object):
         return data
 
     @staticmethod
+    def vpp_get_interface_name(node, sw_if_index):
+        """Get interface name for the given SW interface index from actual
+        interface dump.
+
+        :param node: VPP node to get interface data from.
+        :param sw_if_index: SW interface index of the specific interface.
+        :type node: dict
+        :type sw_if_index: int
+        :returns: Name of the given interface.
+        :rtype: str
+        """
+
+        if_data = InterfaceUtil.vpp_get_interface_data(node, sw_if_index)
+        if if_data['sup_sw_if_index'] != if_data['sw_if_index']:
+            if_data = InterfaceUtil.vpp_get_interface_data(
+                node, if_data['sup_sw_if_index'])
+        try:
+            if_name = if_data["interface_name"]
+        except KeyError:
+            if_name = None
+        return if_name
+
+    @staticmethod
     def vpp_get_interface_mac(node, interface=None):
         """Get MAC address for the given interface from actual interface dump.
 

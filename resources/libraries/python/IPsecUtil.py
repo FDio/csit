@@ -486,16 +486,19 @@ class IPsecUtil(object):
 
     @staticmethod
     def vpp_ipsec_create_tunnel_interfaces(node1, node2, if1_ip_addr,
-                                           if2_ip_addr, n_tunnels, crypto_alg,
-                                           crypto_key, integ_alg, integ_key,
-                                           raddr_ip1, raddr_ip2, raddr_range):
+                                           if2_ip_addr, if1_key, if2_key,
+                                           n_tunnels, crypto_alg, crypto_key,
+                                           integ_alg, integ_key, raddr_ip1,
+                                           raddr_ip2, raddr_range):
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
 
         :param node1: VPP node 1 to create tunnel interfaces.
         :param node2: VPP node 2 to create tunnel interfaces.
         :param if1_ip_addr: VPP node 1 interface IP4 address.
         :param if2_ip_addr: VPP node 2 interface IP4 address.
-        :param n_tunnels: Number of tunnell interfaces to create.
+        :param if1_key: VPP node 1 interface key from topology file.
+        :param if2_key: VPP node 2 interface key from topology file.
+        :param n_tunnels: Number of tunnel interfaces to create.
         :param crypto_alg: The encryption algorithm name.
         :param crypto_key: The encryption key string.
         :param integ_alg: The integrity algorithm name.
@@ -510,6 +513,8 @@ class IPsecUtil(object):
         :type node2: dict
         :type if1_ip_addr: str
         :type if2_ip_addr: str
+        :type if1_key: str
+        :type if2_key: str
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
         :type crypto_key: str
@@ -569,10 +574,17 @@ class IPsecUtil(object):
                 dut2_rte_s = 'ip route add {0}/{1} via {2} {3}\n'.format(
                     raddr_ip1_s, raddr_range, if1_ip_addr, if_s)
                 tmp_f2.write(dut2_rte_s)
+                dut1_if = Topoplogy.get_interface_name(node1, if1_key)
+                dut1_unnum_s = 'set interface unnumbered {0} use {1}\n'.format(
+                    if_s, dut1_if)
+                tmp_f1.write(dut1_unnum_s)
+                dut2_if = Topoplogy.get_interface_name(node2, if2_key)
+                dut2_unnum_s = 'set interface unnumbered {0} use {1}\n'.format(
+                    if_s, dut2_if)
+                tmp_f2.write(dut2_unnum_s)
                 up_s = 'set int state {0} up\n'.format(if_s)
                 tmp_f1.write(up_s)
                 tmp_f2.write(up_s)
-
         vat = VatExecutor()
         vat.scp_and_execute_cli_script(tmp_fn1, node1, 300)
         vat.scp_and_execute_cli_script(tmp_fn2, node2, 300)
