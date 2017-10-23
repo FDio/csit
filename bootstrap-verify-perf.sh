@@ -332,7 +332,8 @@ case "$TEST_TAG" in
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.vpp.perf.vm_vhost.10ge2p1x520-ethip4-ip4base-eth-4vhostvr1024-2vm-ndrpdrdisc" \
+              -i 64bAND1t1cANDndrdisc \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
