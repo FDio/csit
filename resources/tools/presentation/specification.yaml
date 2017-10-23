@@ -147,6 +147,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
     csit-vpp-functional-1710-ubuntu1604-virl:
     - 16
 #    hc2vpp-csit-perf-master-ubuntu1604:  # REMOVE???
@@ -366,7 +374,7 @@
   rows: "generated"
   data:
     csit-dpdk-perf-1710-all:
-    - 3
+    - 13
   filter: "all"
   parameters:
   - "name"
@@ -537,7 +545,7 @@
   dir-tables: "{DIR[DTR,PERF,DPDK]}"
   data:
     csit-dpdk-perf-1710-all:
-    - 3
+    - 13
   filter: "all"
   parameters:
   - "name"
@@ -2778,6 +2786,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -2838,6 +2854,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -2898,6 +2922,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
   parameters:
   - "throughput"
@@ -2958,6 +2990,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
   parameters:
   - "throughput"
@@ -3018,6 +3058,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -3078,6 +3126,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -3138,6 +3194,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD'"
   parameters:
   - "throughput"
@@ -3198,6 +3262,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD'"
   parameters:
   - "throughput"
@@ -4314,6 +4386,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -4372,6 +4452,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -4430,6 +4518,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
   parameters:
   - "latency"
@@ -4488,6 +4584,14 @@
     csit-dpdk-perf-1710-all:
     - 2
     - 3
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 13
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
   parameters:
   - "latency"
