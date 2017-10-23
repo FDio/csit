@@ -130,19 +130,20 @@
     download-path: "{job}/{build}/robot/report/*zip*/{filename}"
     extract: "robot-plugin/output.xml"
   builds:
-#    csit-vpp-perf-1707-all:
-#    - 9
-#    - 10
-#    - 13
-#    - 14
-#    - 15
-#    - 16
-#    - 17
-#    - 18
-#    - 19
-#    - 21
-#    csit-vpp-perf-1710-all:
-#    -
+    csit-vpp-perf-1707-all:
+    - 9
+    - 10
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 21
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
     csit-dpdk-perf-1710-all:
     - 2
     - 3
@@ -168,132 +169,133 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
-#-
-#  type: "table"
-#  title: "Performance improvements"
-#  algorithm: "table_performance_improvements"
-#  template: "{DIR[DTR,PERF,VPP,IMPRV]}/tmpl_performance_improvements.csv"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance_improvements"
-#  columns:
-#  -
-#    title: "Functionality"
-#    data: "template 1"
-#  -
-#    title: "Test Name"
-#    data: "template 2"
-#  -
-#    title: "16.09 mean [Mpps]"
-#    data: "template 3"
-#  -
-#    title: "17.01 mean [Mpps]"
-#    data: "template 4"
-#  -
-#    title: "17.04 mean [Mpps]"
-#    data: "template 5"
-#  -
-#    title: "17.07 mean [Mpps]"
-#    data: "data csit-vpp-perf-1707-all mean"
-#  -
-#    title: "17.10 mean [Mpps]"
-#    data: "data csit-vpp-perf-1710-all mean"
-#  -
-#    title: "17.10 stdev [Mpps]"
-#    data: "data csit-vpp-perf-1710-all stdev"
-#  -
-#    title: "17.07 to 17.10 change [%]"
-#    data: "operation relative_change 6 5"
-#  rows: "generated"
-#  data:
-#    csit-vpp-perf-1707-all:
-#    - 9
-#    - 10
-#    - 13
-#    - 14
-#    - 15
-#    - 16
-#    - 17
-#    - 18
-#    - 19
-#    - 21
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "template"
-#  parameters:
-#  - "throughput"
+-
+  type: "table"
+  title: "Performance improvements"
+  algorithm: "table_performance_improvements"
+  template: "{DIR[DTR,PERF,VPP,IMPRV]}/tmpl_performance_improvements.csv"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance_improvements"
+  columns:
+  -
+    title: "Functionality"
+    data: "template 1"
+  -
+    title: "Test Name"
+    data: "template 2"
+  -
+    title: "16.09 mean [Mpps]"
+    data: "template 3"
+  -
+    title: "17.01 mean [Mpps]"
+    data: "template 4"
+  -
+    title: "17.04 mean [Mpps]"
+    data: "template 5"
+  -
+    title: "17.07 mean [Mpps]"
+    data: "data csit-vpp-perf-1707-all mean"
+  -
+    title: "17.10 mean [Mpps]"
+    data: "data csit-vpp-perf-1710-all mean"
+  -
+    title: "17.10 stdev [Mpps]"
+    data: "data csit-vpp-perf-1710-all stdev"
+  -
+    title: "17.07 to 17.10 change [%]"
+    data: "operation relative_change 6 5"
+  rows: "generated"
+  data:
+    csit-vpp-perf-1707-all:
+    - 9
+    - 10
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 21
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "template"
+  parameters:
+  - "throughput"
 
-#-
-#  type: "table"
-#  title: "Detailed Test Results - VPP Performance Results"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
-#  columns:
-#  -
-#    title: "Name"
-#    data: "data name"
-#  -
-#    title: "Documentation"
-#    data: "data doc"
-#  -
-#    title: "Status"
-#    data: "data msg"
-#  rows: "generated"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "doc"
-#  - "msg"
+-
+  type: "table"
+  title: "Detailed Test Results - VPP Performance Results"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data:
+    csit-vpp-perf-1710-all:
+    - 5
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
 
-#-
-#  type: "table"
-#  title: "Test configuration - VPP Performance Test Configs"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTC,PERF,VPP]}/vpp_test_configuration"
-#  columns:
-#  -
-#    title: "Name"
-#    data: "data name"
-#  -
-#    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-#    data: "data vat-history"
-#  rows: "generated"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "vat-history"
+-
+  type: "table"
+  title: "Test configuration - VPP Performance Test Configs"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,PERF,VPP]}/vpp_test_configuration"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data:
+    csit-vpp-perf-1710-all:
+    - 5
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
 
-#-
-#  type: "table"
-#  title: "Test Operational Data - VPP Performance Operational Data"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTO,PERF,VPP]}/vpp_test_operational"
-#  columns:
-#  -
-#    title: "Name"
-#    data: "data name"
-#  -
-#    title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-#    data: "data show-run"
-#  rows: "generated"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "all"
-#  parameters:
-#  - "parent"
-#  - "name"
-#  - "show-run"
+-
+  type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTO,PERF,VPP]}/vpp_test_operational"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
+    data: "data show-run"
+  rows: "generated"
+  data:
+    csit-vpp-perf-1710-all:
+    - 5
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "show-run"
 
 -
   type: "table"
@@ -430,62 +432,62 @@
 ###                                F I L E S                                 ###
 ################################################################################
 
-#-
-#  type: "file"
-#  title: "VPP Performance Results"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTR,PERF,VPP]}"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    - 
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  data-start-level: 2  # 0, 1, 2, ...
-#  chapters-start-level: 2  # 0, 1, 2, ...
+-
+  type: "file"
+  title: "VPP Performance Results"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,VPP]}"
+  data:
+    csit-vpp-perf-1710-all:
+    - 5
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
 
-#-
-#  type: "file"
-#  title: "VPP Performance Configuration"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTC,PERF,VPP]}/vpp_performance_configuration"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTC,PERF,VPP]}"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    - 
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  data-start-level: 2  # 0, 1, 2, ...
-#  chapters-start-level: 2  # 0, 1, 2, ...
+-
+  type: "file"
+  title: "VPP Performance Configuration"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,PERF,VPP]}/vpp_performance_configuration"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,PERF,VPP]}"
+  data:
+    csit-vpp-perf-1710-all:
+    - 5
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
 
-#-
-#  type: "file"
-#  title: "VPP Performance Operational Data"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTO,PERF,VPP]}/vpp_performance_operational_data"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTO,PERF,VPP]}"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    - 
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  data-start-level: 2  # 0, 1, 2, ...
-#  chapters-start-level: 2  # 0, 1, 2, ...
+-
+  type: "file"
+  title: "VPP Performance Operational Data"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTO,PERF,VPP]}/vpp_performance_operational_data"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTO,PERF,VPP]}"
+  data:
+    csit-vpp-perf-1710-all:
+    - 5
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
 
 -
   type: "file"
@@ -592,2142 +594,2178 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
-## Plot packets per second
-#
-## VPP L2 sel1
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-#  # each tag is enclosed with ' (apostrophe).
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP L2 sel2
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [0, 8000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [5000000, 12000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [0, 8000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: [5000000, 12000000]
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP4
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP6
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP4_overlay
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP6_overlay
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP VM VHOST
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-.*vhost.*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-.*vhost.*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP VM VHOST SELECTION
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-.*vhost.*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-.*vhost.*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP CRYPTO
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-.*ipsec.*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-.*ipsec.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-.*ipsec.*-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-.*ipsec.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-.*ipsec.*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-.*ipsec.*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-.*ipsec.*-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-pdrdisc"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-.*ipsec.*-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
+# Plot packets per second
+
+# VPP L2 sel1
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+  # each tag is enclosed with ' (apostrophe).
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP L2 sel2
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [0, 8000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [5000000, 12000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [0, 8000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [5000000, 12000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP4
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP6
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP4_overlay
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP6_overlay
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP VM VHOST
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-.*vhost.*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-.*vhost.*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP VM VHOST SELECTION
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-.*vhost.*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-.*vhost.*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP CRYPTO
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-.*ipsec.*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-.*ipsec.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-.*ipsec.*-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-.*ipsec.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-.*ipsec.*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-.*ipsec.*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-.*ipsec.*-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-pdrdisc"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-.*ipsec.*-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 # DPDK
 -
@@ -3210,1042 +3248,1060 @@
     width: 700
     height: 1000
 
-## Plot latency
-#
-## VPP L2 sel1
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP L2 sel2
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP4
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP6
-#-
-#  type: "plot"
-#  title: "VPP Latency 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP4_overlay
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP IP6_overlay
-#-
-#  type: "plot"
-#  title: "VPP Latency 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP VM VHOST
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP VM VHOST selection
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-.*vhost.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-## VPP CRYPTO
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-.*ipsec.*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-.*ipsec.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-.*ipsec.*-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc-lat50"
-#  data:
-#    csit-vpp-perf-1710-all:
-#    -
-#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-.*ipsec.*-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
+# Plot latency
+
+# VPP L2 sel1
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP L2 sel2
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP4
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP6
+-
+  type: "plot"
+  title: "VPP Latency 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP4_overlay
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP IP6_overlay
+-
+  type: "plot"
+  title: "VPP Latency 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP VM VHOST
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP VM VHOST selection
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-.*vhost.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+# VPP CRYPTO
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-.*ipsec.*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-.*ipsec.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-.*ipsec.*-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc-lat50"
+  data:
+    csit-vpp-perf-1710-all:
+    - 2
+    - 5
+  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-.*ipsec.*-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 # DPDK
 -
