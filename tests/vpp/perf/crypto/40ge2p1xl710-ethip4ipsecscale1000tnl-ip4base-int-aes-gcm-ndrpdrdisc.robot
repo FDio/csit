@@ -99,9 +99,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -133,9 +133,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -168,9 +168,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -202,9 +202,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -239,9 +239,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -275,9 +275,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -310,9 +310,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -344,9 +344,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
 | | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
