@@ -42,4 +42,6 @@ and their indices.
     ip4_tunnels
     ip6_tunnels
     vm_vhost
+    container_memif
+    container_orchestrated
     ipsec

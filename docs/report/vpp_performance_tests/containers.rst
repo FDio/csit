@@ -535,10 +535,10 @@ Following container networking topologies are tested in CSIT |release|:
 
 - Kubernetes/Ligato topologies:
 
-  - eth-l2xcbase-eth-2memif-1vnf.
-  - eth-l2xcbase-eth-4memif-2vnf.
-  - eth-l2bdbasemaclrn-eth-2memif-1vnf.
-  - eth-l2bdbasemaclrn-eth-4memif-2vnf.
+  - eth-1drcl2xcbase-eth-2memif-1drcl2xc.
+  - eth-1drcl2xcbase-eth-4memif-2drcl2xc.
+  - eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc.
+  - eth-1drcl2bdbasemaclrn-eth-4memif-2drcl2xc.
 
 
 References
