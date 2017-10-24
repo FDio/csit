@@ -15,15 +15,15 @@ in the graph below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-container_orchestrated-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-container-orchestrated-ndrdisc.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-container_orchestrated-ndrdisc}
-            \label{fig:64B-1t1c-container_orchestrated-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-container-orchestrated-ndrdisc}
+            \label{fig:64B-1t1c-container-orchestrated-ndrdisc}
     \end{figure}
 
 *Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
@@ -49,15 +49,15 @@ in the graph below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-container_orchestrated-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-container-orchestrated-ndrdisc.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-container_orchestrated-ndrdisc}
-            \label{fig:64B-2t2c-container_orchestrated-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-container-orchestrated-ndrdisc}
+            \label{fig:64B-2t2c-container-orchestrated-ndrdisc}
     \end{figure}
 
 *Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
@@ -87,15 +87,15 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-container_orchestrated-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-container-orchestrated-pdrdisc.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-container_orchestrated-pdrdisc}
-            \label{fig:64B-1t1c-container_orchestrated-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-container-orchestrated-pdrdisc}
+            \label{fig:64B-1t1c-container-orchestrated-pdrdisc}
     \end{figure}
 
 *Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
@@ -121,15 +121,15 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-container_orchestrated-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-container-orchestrated-pdrdisc.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-container_orchestrated-pdrdisc}
-            \label{fig:64B-2t2c-container_orchestrated-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-container-orchestrated-pdrdisc}
+            \label{fig:64B-2t2c-container-orchestrated-pdrdisc}
     \end{figure}
 
 *Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
