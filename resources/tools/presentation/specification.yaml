@@ -155,8 +155,8 @@
     - 10
     - 11
     - 13
-#    csit-ligato-perf-1710-all:
-#    -
+    csit-ligato-perf-1710-all:
+    - 1
     csit-vpp-functional-1710-ubuntu1604-virl:
     - 16
     hc2vpp-csit-integration-1710-ubuntu1604:
@@ -4885,242 +4885,242 @@
     width: 700
     height: 1000
 
-## Container orchestrated
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc"
-#  data:
-#    csit-ligato-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc"
-#  data:
-#    csit-ligato-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-pdrdisc"
-#  data:
-#    csit-ligato-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-pdrdisc"
-#  data:
-#    csit-ligato-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ".4s"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Packets Per Second [pps]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
+# Container orchestrated
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-pdrdisc"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-pdrdisc"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 # Ligato - Latency
 
@@ -5241,117 +5241,117 @@
     width: 700
     height: 1000
 
-## Container orchestrated
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc-lat50"
-#  data:
-#    csit-ligato-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
-#
-#-
-#  type: "plot"
-#  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#  algorithm: "plot_latency_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc-lat50"
-#  data:
-#    csit-ligato-perf-1710-all:
-#    -
-#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-#  parameters:
-#  - "latency"
-#  - "parent"
-#  traces:
-#    boxmean: False
-#  layout:
-#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-#    xaxis:
-#      autorange: True
-#      autotick: False
-#      fixedrange: False
-#      gridcolor: "rgb(238, 238, 238)"
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      tickmode: "linear"
-#      title: "Indexed Test Cases"
-#      zeroline: False
-#    yaxis:
-#      gridcolor: "rgb(238, 238, 238)'"
-#      hoverformat: ""
-#      linecolor: "rgb(238, 238, 238)"
-#      linewidth: 1
-#      range: []
-#      showgrid: True
-#      showline: True
-#      showticklabels: True
-#      tickcolor: "rgb(238, 238, 238)"
-#      title: "Latency min/avg/max [uSec]"
-#      zeroline: False
-#    boxmode: "group"
-#    boxgroupgap: 0.5
-#    autosize: False
-#    margin:
-#      t: 50
-#      b: 20
-#      l: 50
-#      r: 20
-#    showlegend: True
-#    legend:
-#      orientation: "h"
-#    width: 700
-#    height: 1000
+# Container orchestrated
+-
+  type: "plot"
+  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc-lat50"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
+
+-
+  type: "plot"
+  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc-lat50"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ""
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: []
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Latency min/avg/max [uSec]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
