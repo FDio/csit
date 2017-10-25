@@ -67,7 +67,13 @@ def table_details(table, input_data):
 
     job = table["data"].keys()[0]
     build = str(table["data"][job][0])
-    for suite_longname, suite in input_data.suites(job, build).iteritems():
+    try:
+        suites = input_data.suites(job, build)
+    except KeyError:
+        logging.error("    No data available. The table will not be generated.")
+        return
+
+    for suite_longname, suite in suites.iteritems():
         # Generate data
         suite_name = suite["name"]
         table_lst = list()
