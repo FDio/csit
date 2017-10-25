@@ -159,8 +159,8 @@ Partial Drop Rate thoughput discovery tests with packet Loss Tolerance of 0.5%:
 
 
 Measured improvements are in line with VPP code optimizations listed in
-`VPP-17.07 release notes
-<https://docs.fd.io/vpp/17.07/release_notes_1707.html>`_.
+`VPP-17.10 release notes
+<https://docs.fd.io/vpp/17.10/release_notes_1710.html>`_.
 
 Other Performance Changes
 -------------------------
@@ -242,27 +242,17 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | # | Issue                                           | Jira ID    | Description                                                     |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 1 | Security-groups acl-plugin scale tests failure  | CSIT-731   | VPP with 2 worker threads crashes during security-groups        |
-|   | with stateful acls if VPP with 2 worker threads | VPP-912    | iaclNsf and oaclNsf tests with 100k flows.                      |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | VPP fails memif tests in 4 worker 2 core setup  | CSIT-732   | VPP with 4 worker threads running on 2 physical cores crashes   |
-|   |                                                 | VPP-920    | during memif tests. Initial debugging points to DPDK code       |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | NDR discovery test failures 1518B frame size    | VPP-663    | VPP reporting errors: dpdk-input Rx ip checksum errors.         |
-|   | for ip4scale200k, ip4scale2m scale IPv4 routed- |            | Observed frequency: all test runs.                              |
-|   | forwarding tests. ip4scale20k tests are fine.   |            |                                                                 |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | Vic1385 and Vic1227 low performance.            | VPP-664    | Low NDR performance.                                            |
+| 1 | Vic1385 and Vic1227 low performance.            | VPP-664    | Low NDR performance.                                            |
 |   |                                                 |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 5 | Sporadic NDR discovery test failures on x520.   | CSIT-750   | Suspected issue with HW settings (BIOS, FW) in LF               |
+| 2 | Sporadic NDR discovery test failures on x520.   | CSIT-750   | Suspected issue with HW settings (BIOS, FW) in LF               |
 |   |                                                 |            | infrastructure. Issue can't be replicated outside LF.           |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 6 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
+| 3 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
 |   | of discovered NDR throughput values across      |            | throughput. Applies to XL710 and X710 NICs, x520 NICs are fine. |
 |   | multiple test runs with xl710 and x710 NICs.    |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 7 | Lower than expected NDR and PDR throughput with | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
+| 4 | Lower than expected NDR and PDR throughput with | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
 |   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 

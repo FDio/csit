@@ -38,6 +38,7 @@
     DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
     DIR[DTR,PERF,DPDK]: "{DIR[DTR]}/dpdk_performance_results"
     DIR[DTR,PERF,VPP]: "{DIR[DTR]}/vpp_performance_results"
+    DIR[DTR,PERF,COT]: "{DIR[DTR]}/cot_performance_results"
     DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
     DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
@@ -178,7 +179,7 @@
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
-
+#
 -
   type: "table"
   title: "Performance improvements"
@@ -359,6 +360,33 @@
 
 -
   type: "table"
+  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,COT]}/cot_performance_results"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
+
+-
+  type: "table"
   title: "Detailed Test Results - DPDK Performance Results"
   algorithm: "table_details"
   output-file-ext: ".csv"
@@ -535,6 +563,25 @@
   - "doc"
   - "level"
   data-start-level: 3  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
+  title: "Container Orchestrated Performance Results"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,COT]}/cot_performance_results"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,COT]}"
+  data:
+    csit-ligato-perf-1710-all:
+    - 1
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 2  # 0, 1, 2, ...
   chapters-start-level: 2  # 0, 1, 2, ...
 
 -
