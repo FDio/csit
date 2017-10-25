@@ -5,6 +5,9 @@ This is the **F**\ast **D**\ata **I**/**O** Project (**FD.io**) **C**\ontinuous
 **S**\ystem **I**\ntegration and **T**\esting (**CSIT**) project report for CSIT
 |release| system testing of |vpp-release|.
 
+This is the full html version, there is also the reduced
+`pdf version of this report`_.
+
 The report describes CSIT functional and performance tests and their
 continuous execution delivered in CSIT |release|. A high-level overview is
 provided for each CSIT test environment running in :abbr:`LF (Linux Foundation)`
