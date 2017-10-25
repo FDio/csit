@@ -158,7 +158,7 @@
     csit-ligato-perf-1710-all:
     - 1
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 16
+    - 62
     hc2vpp-csit-integration-1710-ubuntu1604:
     - lastSuccessfulBuild
 #    hc2vpp-csit-perf-master-ubuntu1604:  # REMOVE???
@@ -326,7 +326,7 @@
   rows: "generated"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 16
+    - 62
   filter: "all"
   parameters:
   - "name"
@@ -350,7 +350,7 @@
   rows: "generated"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 16
+    - 62
   filter: "all"
   parameters:
   - "parent"
@@ -509,7 +509,7 @@
   dir-tables: "{DIR[DTR,FUNC,VPP]}"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 16
+    - 62
   filter: "all"
   parameters:
   - "name"
@@ -528,7 +528,7 @@
   dir-tables: "{DIR[DTC,FUNC,VPP]}"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 16
+    - 62
   filter: "all"
   parameters:
   - "name"
