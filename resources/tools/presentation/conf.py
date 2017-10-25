@@ -67,6 +67,7 @@ rst_epilog = """
 .. |virl-image-ubuntu| replace:: ubuntu-16.04.1_2017-02-23_1.8
 .. |virl-image-centos| replace:: centos-7.3-1611_2017-02-23_1.4
 
+.. _pdf version of this report: https://docs.fd.io/csit/rls1710/report/_static/archive/csit_rls1710.pdf
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h=rls1710
 .. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h=rls1710
 .. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h=rls1710
