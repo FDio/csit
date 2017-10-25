@@ -68,7 +68,7 @@ rst_epilog = """
 .. |virl-image-centos| replace:: centos-7.3-1611_2017-02-23_1.4
 
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h=rls1710
-.. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h=rls17010
+.. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h=rls1710
 .. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h=rls1710
 .. _VIRL topologies directory: https://git.fd.io/csit/tree/resources/tools/virl/topologies/?h=rls1710
 .. _VIRL images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h=rls1710
@@ -81,6 +81,7 @@ rst_epilog = """
 .. _CSIT NSH_SFC Functional Tests Documentation: https://docs.fd.io/csit/rls1710/doc/tests.nsh_sfc.func.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/17.10/vpp_make_test/html/
 .. _FD.io test executor vpp performance jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1710-all
+.. _FD.io test executor ligato performance jobs: https://jenkins.fd.io/job/csit-ligato-perf-1710-all
 .. _FD.io test executor vpp functional jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-1710-ubuntu1604-virl/lastSuccessfulBuild
 .. _FD.io test executor dpdk performance jobs: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1710-all
 .. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-1710-ubuntu1604/lastSuccessfulBuild
