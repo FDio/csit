@@ -8,5 +8,4 @@ VPP Performance Tests
     packet_throughput_graphs/index
     packet_latency_graphs/index
     test_environment
-    documentation
-
+    documentation/index
