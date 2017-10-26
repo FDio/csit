@@ -49,36 +49,16 @@ Changes in CSIT |release|
 
    - **Linux Container VPP memif virtual interface tests**
 
-     - VPP Memif virtual interface (shared memory interface) tests
-       interconnecting VPP instances over memif. VPP vswitch
-       instance runs in bare-metal user-mode handling Intel x520 NIC
-       10GbE interfaces and connecting over memif (Master side) virtual
-       interfaces to another instance of VPP running in bare-metal Linux
-       Container (LXC) with memif virtual interfaces (Slave side). LXC
-       runs in a priviliged mode with VPP data plane worker threads
-       pinned to dedicated physical CPU cores per usual CSIT practice.
-       Both VPP run the same version of software. This test topology is
-       equivalent to existing tests with vhost-user and VMs.
+     - New VPP Memif virtual interface (shared memory interface) tests
+       with L2 Bridge-Domain switched-forwarding;
 
    - **Stateful Security Groups**
 
-     - New tests of VPP stateful security-groups a.k.a. acl-plugin
-       functionally compatible with networking-vpp OpenStack;
+     - New m-thread m-core VPP stateful security-groups tests;
 
-     - New tested security-groups access-control-lists (acl)
-       configuration variants include: [iaclNsl] input acl stateless,
-       [oaclNsl] output acl stateless, [iaclNsf] input acl stateful
-       a.k.a. reflect, [oaclNsf] output acl stateful a.k.a. reflect,
-       where N is number of access-control-entries (ace) in the acl.
+   - **MAC-IP binding**
 
-     - Testing packet flows transmitted by TG: 100, 10k, 100k, always
-       hitting the last permit entry in acl.
-
-   - **VPP vhost and VM tests**
-
-     - New VPP vhost-user and VM test cases to benchmark performance of
-       VPP and VM topologies with Qemu and CFS policy combinations of
-       [vr256,vr1024] x [cfs,cfsrr1];
+     - New MACIP iACL single-thread single-core and m-thread m-core tests;
 
      - Statistical analysis of repeatibility of results;
 
