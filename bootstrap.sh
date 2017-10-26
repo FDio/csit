@@ -265,6 +265,8 @@ for index in "${!VIRL_SERVER[@]}"; do
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
         "start-testcase -vv --quota ${IP_QUOTA} --copy ${VIRL_TOPOLOGY} \
         --release ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
+        # TODO: remove param ${VPP_PKGS_FULL[@]} when start-testcase script is
+        # updated on all virl servers
     retval=$?
     if [ ${retval} -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
