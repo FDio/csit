@@ -110,8 +110,7 @@ class VerifyPacket(object):
             raise RuntimeError("Unexpected NSH version: {0}".
                                format(nsh_pkt.Version))
 
-        print type(nsh_pkt.OAM)
-        if nsh_pkt.OAM != 0 or nsh_pkt.OAM != 1:
+        if nsh_pkt.OAM != 0 and nsh_pkt.OAM != 1:
             raise RuntimeError("Unexpected NSH OAM: {0}".
                                format(nsh_pkt.OAM))
 
