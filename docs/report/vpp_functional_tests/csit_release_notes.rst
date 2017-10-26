@@ -6,25 +6,18 @@ Changes in CSIT |release|
 
 #. VPP functional test framework changes:
 
-   - Upgrade of tb4-virl1 and tb4-virl2 hosts;
+   - Upgrade of tb4-virl3 host;
 
      - OS version to Ubuntu 16.04.02;
 
      - VIRL version to Mitaka;
 
-   - Implemented load balance mechanism for VIRL hosts;
-
-   - Implemented waiting mechanism on VIRL host if there is not enough resources
-     available to successfully start simulation;
-
 #. Code updates and optimizations in CSIT functional framework:
 
-   - Complete CSIT framework code revision and optimizations as descried
-     on CSIT wiki page
-     `Design_Optimizations <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_;
+   - Traffic scripts adapted to ignore received unexpected ICMPv6 Neighbor
+     Discovery - Neighbor Solicitation packets;
 
-   - For more detail see the :ref:`CSIT Framework Design <csit-design>` section
-     in this report;
+   - Refactor of L1 robot keywords - Python libraries;
 
 Known Issues
 ------------
@@ -57,17 +50,6 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 |          | reconnect. It requires moving CSIT VIRL environment  |
 |   |                                                 |          | to QEMU 2.7.0.                                       |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 6 | Centos7: LISP and VXLAN sporadic test failures. | CSIT-566 | Observing sporadic crashes of DUT1 VM during LISP    |
-|   |                                                 |          | and VXLAN test executions, what leads to failure of  |
-|   |                                                 |          | all other tests in the suite. NOTE: After upgrading  |
-|   |                                                 |          | one of the VIRL servers host from Ubuntu14.04 to     |
-|   |                                                 |          | 16.04, DUT1 VM stops crashing, but tests keep        |
-|   |                                                 |          | failing sporadically 1-in-100. Possible root cause   |
-|   |                                                 |          | identified - unexpected IPv6 RA packets upsetting    |
-|   |                                                 |          | some test component. Currently suspecting            |
-|   |                                                 |          | environment or CSIT issue, but can not exclude VPP,  |
-|   |                                                 |          | further troubleshooting in progress.                 |
-+---+-------------------------------------------------+----------+------------------------------------------------------+
-| 7 | IPSEC: Tests cover old crypto code path         | CSIT-733 | There are used default conf settings so IPSEC tests  |
+| 6 | IPSEC: Tests cover old crypto code path         | CSIT-733 | There are used default conf settings so IPSEC tests  |
 |   |                                                 |          | use old security code not the new Crypto SW code.    |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
