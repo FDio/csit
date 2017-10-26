@@ -275,7 +275,7 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("vat# Thread "):
+        if msg.message.count("return STDOUT Thread "):
             self._show_run_lookup_nr += 1
             if self._lookup_kw_nr == 1 and self._show_run_lookup_nr == 1:
                 self._data["tests"][self._test_ID]["show-run"] = str()
@@ -554,7 +554,7 @@ class ExecutionChecker(ResultVisitor):
         if teardown_kw.name.count("Show Vat History On All Duts"):
             self._vat_history_lookup_nr = 0
             self._msg_type = "teardown-vat-history"
-        elif teardown_kw.name.count("Vpp Show Runtime"):
+        elif teardown_kw.name.count("Show Statistics On All Duts"):
             self._lookup_kw_nr += 1
             self._show_run_lookup_nr = 0
             self._msg_type = "teardown-show-runtime"
