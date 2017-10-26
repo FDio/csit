@@ -22,6 +22,15 @@ is listed separately, as follows:
    interfaces, range of multi-thread and multi-core configurations. VPP
    application runs in host user- mode. TRex is used as a traffic generator.
 
+#. **Container Orchestrated Performance Tests** - CSIT |release| introduced new
+   tests of Container topologies connected over the memif virtual interface
+   (shared memory interface). For these tests VPP vswitch instance runs in a
+   Docker Container handling Intel x520 NIC 10GbE interfaces and connecting over
+   memif (Master side) virtual interfaces to more instances of VPP running in
+   Docker Containers with memif virtual interfaces (Slave side). Tested across a
+   range of multi-thread and multi-core configurations. VPP application runs in
+   host user- mode. TRex is used as a traffic generator.
+
 #. **DPDK Performance Tests** - VPP is using DPDK code to control and drive
    the NICs and physical interfaces. Testpmd tests are used as a baseline to
    profile the DPDK sub-system of VPP. DPDK performance tests executed in
