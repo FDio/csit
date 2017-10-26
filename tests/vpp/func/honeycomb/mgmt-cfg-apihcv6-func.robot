@@ -47,8 +47,7 @@
 | ... | Unconfigure IPv6 Management Interface | AND
 | ... | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
-# IPv6 is disabled in VIRL images
-| Force Tags | HC_FUNC | EXPECTED_FAILING
+| Force Tags | HC_FUNC | HC_REST_ONLY
 | ...
 | Documentation | *Honeycomb IPv6 control interface test suite.*
 
