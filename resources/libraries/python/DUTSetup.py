@@ -13,6 +13,8 @@
 
 """DUT setup library."""
 
+import os
+
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, Topology
@@ -429,3 +431,102 @@ class DUTSetup(object):
         vat = VatExecutor()
         vat.execute_script("enable_dpdk_traces.vat", node, json_out=False)
         vat.execute_script("enable_vhost_user_traces.vat", node, json_out=False)
+
+    @staticmethod
+    def install_vpp_on_all_duts(nodes):
+        """Install VPP on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        :raises: RuntimeError if failed to install VPP
+        """
+        logger.debug("Installing VPP")
+        directory = "/scratch/vpp"
+
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                ipaddr = node['host']
+                logger.debug("Installing VPP on node {}".format(ipaddr))
+
+                ssh = SSH()
+                ssh.connect(node)
+
+                if os.path.isfile("/etc/redhat-release"):
+                    # workaroud - uninstall existing vpp installation until
+                    # start-testcase script is updated on all virl servers
+                    ssh.exec_command_sudo(
+                        "rpm -e vpp vpp-devel vpp-lib vpp-plugins", timeout=90)
+                    ret_code, _, _ = ssh.exec_command_sudo(
+                        "rpm -ivh {}/*.rpm".format(directory), timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host: {}'
+                                           .format(node['host']))
+                    else:
+                        ssh.exec_command_sudo("rpm -qai vpp*")
+                        logger.info("VPP installed on node {}".format(ipaddr))
+                else:
+                    # workaroud - uninstall existing vpp installation until
+                    # start-testcase script is updated on all virl servers
+                    ssh.exec_command_sudo(
+                        "dpkg --purge vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib"
+                        " vpp-plugins", timeout=90)
+                    ret_code, _, _ = ssh.exec_command_sudo(
+                        "dpkg -i --force-all {}/*.deb".format(directory),
+                        timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host: {}'
+                                           .format(node['host']))
+                    else:
+                        ssh.exec_command_sudo(
+                            "dpkg -l | grep vpp")
+                        logger.info("VPP installed on node {}".format(ipaddr))
+
+                ssh.disconnect(node)
+
+    @staticmethod
+    def verify_vpp_on_all_duts(nodes):
+        """Verify that VPP is installed on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        logger.debug("Verify VPP on all DUTs")
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.verify_vpp_on_dut(node)
+
+        pids = DUTSetup.get_vpp_pids(nodes)
+        logger.debug('All VPP PIDs: {}'.format(pids))
+
+    @staticmethod
+    def verify_vpp_on_dut(node):
+        """Verify that VPP is installed on DUT node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises: RuntimeError if failed to restart VPP, get VPP version or
+        get VPP interfaces
+        """
+        ipaddr = node['host']
+        logger.debug("Verify VPP on node {}".format(ipaddr))
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ret_code, _, _ = ssh.exec_command_sudo("service vpp restart", timeout=1)
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to restart VPP on host: {}'.
+                               format(node['host']))
+
+        ret_code, _, _ = ssh.exec_command_sudo(
+            "vppctl show version verbose", timeout=1)
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to get VPP version on host: {}'.
+                               format(node['host']))
+
+        ret_code, _, _ = ssh.exec_command_sudo("vppctl show int", timeout=1)
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to get VPP interfaces on host: {}'.
+                               format(node['host']))
+
+        ssh.disconnect(node)
