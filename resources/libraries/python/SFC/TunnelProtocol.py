@@ -35,7 +35,9 @@ class VxLANGPE(Packet):
 class NSH(Packet):
     """Define the NSH protocol for the packet analysis."""
     name = "nsh"
-    fields_desc = [XBitField("flags", 0x0, 10), XBitField("length", 0x6, 6),
-                   XByteField("MDtype", 0x1), XByteField("nextproto", 0x3),
+    fields_desc = [XBitField("Version", 0x0, 2), XBitField("OAM", 0x0, 1),
+                   XBitField("Unassigned", 0x0, 1), XBitField("TTL", 0x0, 6),
+                   XBitField("length", 0x6, 6), XBitField("Unassigned", 0x0, 4),
+                   XBitField("MDtype", 0x1, 4), XByteField("nextproto", 0x3),
                    IntField("nsp_nsi", 0), IntField("c1", 0),
                    IntField("c2", 0), IntField("c3", 0), IntField("c4", 0)]

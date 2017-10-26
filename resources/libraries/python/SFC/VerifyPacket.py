@@ -106,9 +106,13 @@ class VerifyPacket(object):
 
         # get the NSH packet and check it
         nsh_pkt = NSH(payload_data[8:32])
-        if nsh_pkt.flags != sfccon.NSH_FLAGS:
-            raise RuntimeError("Unexpected NSH flags: {0}".
-                               format(nsh_pkt.flags))
+        if nsh_pkt.Version != 0:
+            raise RuntimeError("Unexpected NSH version: {0}".
+                               format(nsh_pkt.Version))
+
+        if nsh_pkt.OAM != 0 or nsh_pkt.OAM != 1:
+            raise RuntimeError("Unexpected NSH OAM: {0}".
+                               format(nsh_pkt.OAM))
 
         if nsh_pkt.length != sfccon.NSH_HEADER_LENGTH:
             raise RuntimeError("NSH length {0} incorrect".
