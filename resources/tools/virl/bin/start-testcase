@@ -189,6 +189,8 @@ def main():
     parser.add_argument("-q", "--quota",
                         help="VIRL quota for max number of allowed IPs",
                         type=int, default=74)
+    parser.add_argument("-si", "--skip-install", help="Skip VPP install",
+                        action='store_true')
 
     args = parser.parse_args()
 
@@ -216,14 +218,15 @@ def main():
     #
     # Check if VPP package exists
     #
-    for package in args.packages:
-        if args.verbosity >= 2:
-            print_to_stderr("DEBUG: Checking if file {} exists"
-                            .format(package))
-        if not os.path.isfile(package):
-            print_to_stderr("ERROR: Debian package {} does not exist"
-                            .format(package))
-            sys.exit(1)
+    if not args.skip_install:
+        for package in args.packages:
+            if args.verbosity >= 2:
+                print_to_stderr("DEBUG: Checking if file {} exists"
+                                .format(package))
+            if not os.path.isfile(package):
+                print_to_stderr("ERROR: Debian package {} does not exist"
+                                .format(package))
+                sys.exit(1)
 
     #
     # Start VIRL topology
@@ -496,46 +499,47 @@ def main():
     #
     # Upgrade VPP
     #
-    if args.verbosity >= 1:
-        print_to_stderr("DEBUG: Uprading VPP")
+    if not args.skip_install:
+        if args.verbosity >= 1:
+            print_to_stderr("DEBUG: Uprading VPP")
 
-    for key1 in nodeaddrs:
-        if not key1 == 'tg':
-            for key2 in nodeaddrs[key1]:
-                ipaddr = nodeaddrs[key1][key2]
-                if args.verbosity >= 2:
-                    print_to_stderr("DEBUG: Upgrading VPP on node {}"
-                                    .format(ipaddr))
-                paramiko.util.log_to_file(os.path.join(scratch_directory,
-                                                       "ssh.log"))
-                client = paramiko.SSHClient()
-                client.load_system_host_keys()
-                client.load_host_keys("/dev/null")
-                client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                client.connect(ipaddr, username=args.ssh_user,
-                               key_filename=args.ssh_privkey)
-                if 'centos' in args.topology:
-                    if args.verbosity >= 1:
-                        print_to_stderr("DEBUG: Installing RPM packages")
-                    vpp_install_command = 'sudo rpm -ivh /scratch/vpp/*.rpm'
-                elif 'trusty' in args.topology or 'xenial' in args.topology:
-                    if args.verbosity >= 1:
-                        print_to_stderr("DEBUG: Installing DEB packages")
-                    vpp_install_command = 'sudo dpkg -i --force-all ' \
-                                          '/scratch/vpp/*.deb'
-                else:
-                    print_to_stderr("ERROR: Unsupported OS requested: {}"
-                                    .format(args.topology))
-                    vpp_install_command = ''
-                _, stdout, stderr = \
-                    client.exec_command(vpp_install_command)
-                c_stdout = stdout.read()
-                c_stderr = stderr.read()
-                if args.verbosity >= 2:
-                    print_to_stderr("DEBUG: Command output was:")
-                    print_to_stderr(c_stdout)
-                    print_to_stderr("DEBUG: Command stderr was:")
-                    print_to_stderr(c_stderr)
+        for key1 in nodeaddrs:
+            if not key1 == 'tg':
+                for key2 in nodeaddrs[key1]:
+                    ipaddr = nodeaddrs[key1][key2]
+                    if args.verbosity >= 2:
+                        print_to_stderr("DEBUG: Upgrading VPP on node {}"
+                                        .format(ipaddr))
+                    paramiko.util.log_to_file(os.path.join(scratch_directory,
+                                                           "ssh.log"))
+                    client = paramiko.SSHClient()
+                    client.load_system_host_keys()
+                    client.load_host_keys("/dev/null")
+                    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                    client.connect(ipaddr, username=args.ssh_user,
+                                   key_filename=args.ssh_privkey)
+                    if 'centos' in args.topology:
+                        if args.verbosity >= 1:
+                            print_to_stderr("DEBUG: Installing RPM packages")
+                        vpp_install_command = 'sudo rpm -ivh /scratch/vpp/*.rpm'
+                    elif 'trusty' in args.topology or 'xenial' in args.topology:
+                        if args.verbosity >= 1:
+                            print_to_stderr("DEBUG: Installing DEB packages")
+                        vpp_install_command = 'sudo dpkg -i --force-all ' \
+                                              '/scratch/vpp/*.deb'
+                    else:
+                        print_to_stderr("ERROR: Unsupported OS requested: {}"
+                                         .format(args.topology))
+                        vpp_install_command = ''
+                    _, stdout, stderr = \
+                        client.exec_command(vpp_install_command)
+                    c_stdout = stdout.read()
+                    c_stderr = stderr.read()
+                    if args.verbosity >= 2:
+                        print_to_stderr("DEBUG: Command output was:")
+                        print_to_stderr(c_stdout)
+                        print_to_stderr("DEBUG: Command stderr was:")
+                        print_to_stderr(c_stderr)
 
     #
     # Write a file with timestamp to scratch directory. We can use this to track
