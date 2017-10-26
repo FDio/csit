@@ -105,7 +105,12 @@ with results listed in this report:
   - Configure and delete Lisp mapping as local and remote.
   - Configure and delete Lisp adjacency mapping
   - Configure and delete Lisp map resolver, proxy ITR.
-  - Test case count: 16
+  - Test case count: 18
+- ** LISP GPE** - CRUD for LISP GPE mappings.
+  - Toggle Lisp GPE feature status.
+  - Configure Lisp GPE mappings.
+  - Traffic test verifying encapsulation.
+  - Test case count: 12
 - **NAT** - CRD for NAT entries, interface assignment.
   - Configure and delete up to two NAT entries.
   - Assign NAT entries to a physical interface.
@@ -146,11 +151,16 @@ with results listed in this report:
   - Configure Policing rules.
   - Assign to interface.
   - Test case count: 6
+- **Border Gateway Protocol** - CRUD and functional tests for BGP.
+  - Configure peers and routes
+  - Check interactions with another BGP peer.
+  - Test case count: 9
 - **Honeycomb Infractructure** - configuration persistence,
   - Netconf notifications for interface events,
   - Netconf negative tests aimed at specific issues
+  - Netconf/Restconf northbound over IPv6
 
-Total 173 Honeycomb functional tests in the CSIT |release|.
+Total 217 Honeycomb functional tests in the CSIT |release|.
 
 Operational data in Honeycomb should mirror configuration data at all times.
 Because of this, test cases follow this general pattern:
