@@ -207,7 +207,7 @@ fi
 
 VPP_PKGS=(*.$PACKAGE)
 echo ${VPP_PKGS[@]}
-VIRL_DIR_LOC="/tmp"
+export VIRL_DIR_LOC="/tmp"
 VPP_PKGS_FULL=(${VPP_PKGS[@]})
 
 # Prepend directory location at remote host to package file list
@@ -266,7 +266,7 @@ for index in "${!VIRL_SERVER[@]}"; do
     VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
         "start-testcase -vv --quota ${IP_QUOTA} --copy ${VIRL_TOPOLOGY} \
-        --release ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
+        --release ${VIRL_RELEASE} ")
     retval=$?
     if [ ${retval} -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"

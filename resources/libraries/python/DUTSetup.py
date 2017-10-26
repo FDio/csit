@@ -13,6 +13,8 @@
 
 """DUT setup library."""
 
+import os
+
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, Topology
@@ -348,3 +350,68 @@ class DUTSetup(object):
         if int(ret_code) != 0:
             raise RuntimeError('Failed to load {} kernel module on host: {}'.
                                format(module, node['host']))
+
+    @staticmethod
+    def install_vpp_on_all_duts(nodes):
+        logger.debug("Installing VPP")
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                ipaddr = node['host']
+                try:
+                    directory = os.environ.get("VIRL_DIR_LOC")
+                except KeyError:
+                    directory = None
+                directory = "/home/lab"
+                logger.info("VPP directory is {}".format(directory))
+                logger.debug("Installing VPP on node {}".format(ipaddr))
+                ssh = SSH()
+                ssh.connect(node)
+                if os.path.isfile("/etc/redhat-release"):
+                    ret_code, _, _ = ssh.exec_command_sudo\
+                        ("rpm -ivh {}/*.rpm".format(directory), timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host: {}'
+                                           .format(node['host']))
+                    else:
+                        ret_code, _, _ = ssh.exec_command_sudo \
+                            ("dpkg -l | grep vpp")
+                        logger.info("VPP installed on node {}".format(ipaddr))
+                else:
+                    ret_code, _, _ = ssh.exec_command_sudo\
+                        ("dpkg -i --force-all {}/*.deb".format(directory),
+                         timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host: {}'
+                                           .format(node['host']))
+                    else:
+                        ret_code, _, _ = ssh.exec_command_sudo \
+                            ("dpkg -l | grep vpp")
+                        logger.info("VPP installed on node {}".format(ipaddr))
+                ssh.disconnect(node)
+
+    @staticmethod
+    def verify_vpp_on_all_duts(nodes):
+        logger.debug("Verify VPP on all DUTs")
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.verify_vpp_on_dut(node)
+        pids = DUTSetup.get_vpp_pids(nodes)
+        logger.debug('All VPPs PID {}'.format(pids))
+
+    @staticmethod
+    def verify_vpp_on_dut(node):
+        ipaddr = node['host']
+        logger.debug("Verify VPP on node {}".format(ipaddr))
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, _, _ = ssh.exec_command_sudo \
+                ("vppctl show version", timeout=1)
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to verify VPP version on host: {}'
+                    .format(node['host']))
+        ret_code, _, _ = ssh.exec_command_sudo \
+                ("vppctl show int", timeout=1)
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to verify VPP interfaces on host: {}'
+                    .format(node['host']))
+        ssh.disconnect(node)

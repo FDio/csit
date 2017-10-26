@@ -16,5 +16,7 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.SetupFramework
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
+| ...         | AND          | Install Vpp On All Duts | ${nodes}
+| ...         | AND          | Verify Vpp On All Duts | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
