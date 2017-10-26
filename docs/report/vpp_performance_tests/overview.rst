@@ -146,7 +146,8 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     of 2 VMs using vhost-user interfaces, with VPP forwarding modes incl. L2
     Cross-Connect, L2 Bridge-Domain, VXLAN with L2BD, IPv4 routed-forwarding.
   - **COP** - IPv4 and IPv6 routed-forwarding with COP address security.
-  - **ACL** - L2, IPv4 and IPv6 routed-forwarding with ACL address security.
+  - **ACL** - L2 Bridge-Domain switched-forwarding and IPv4 and IPv6 routed-
+    forwarding with iACL and oACL IP address, MAC address and L4 port security.
   - **LISP** - LISP overlay tunneling for IPv4-over-IPv4, IPv6-over-IPv4,
     IPv6-over-IPv6, IPv4-over-IPv6 in IPv4 and IPv6 routed-forwarding modes.
   - **VXLAN** - VXLAN overlay tunnelling integration with L2XC and L2BD.
@@ -155,7 +156,7 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **NAT** - (Source) Network Address Translation tests with varying
     number of users and ports per user.
   - **Container memif connections** - VPP memif virtual interface tests to
-    interconnect VPP instances.
+    interconnect VPP instances with L2XC and L2BD.
   - **Container Orchestrated Topologies** - Container topologies connected over
     the memif virtual interface.
 
