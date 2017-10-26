@@ -113,8 +113,6 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Receive packet on the second TG interface.
 | | ...
-# VPP-930: ip6_fib_dump shows incorrect outgoing interface index
-| | [Tags] | EXPECTED_FAILING
 | | ${table}= | Set Variable | table4
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | When Honeycomb configures routing table
@@ -137,8 +135,6 @@
 | | ... | verify that each destination MAC was used by exactly 50 packets.
 | | ... | Receive packet on the second TG interface.
 | | ...
-# VPP-930: ip6_fib_dump shows incorrect outgoing interface index
-| | [Tags] | EXPECTED_FAILING
 | | ${table}= | Set Variable | table5
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
@@ -165,7 +161,7 @@
 | | ... | destination. Make sure no packet is received on the second TG\
 | | ... | interface.
 | | ...
-# VPP-930: ip6_fib_dump shows incorrect outgoing interface index
+# HC2VPP-254 Operational data for Blackhole IPv6 route is incorrect
 | | [Tags] | EXPECTED_FAILING
 | | ${table}= | Set Variable | table6
 | | Given Setup interfaces and neighbors for IPv6 routing test
