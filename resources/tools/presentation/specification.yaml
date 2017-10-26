@@ -160,13 +160,13 @@
     - 1
     csit-vpp-functional-1710-ubuntu1604-virl:
     - 62
+    csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
+    - 7
     hc2vpp-csit-integration-1710-ubuntu1604:
     - lastSuccessfulBuild
 #    hc2vpp-csit-perf-master-ubuntu1604:  # REMOVE???
 #    - 8
 #    - 9
-#    csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:  # REMOVE???
-#    - 2
 
 -
   type: "output"
@@ -439,32 +439,32 @@
   - "doc"
   - "status"
 
-#-
-#  type: "table"
-#  title: "Detailed Test Results - NSH SFC Functional Results"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,FUNC,NSHSFC]}/nsh_sfc_functional_results"
-#  columns:
-#  -
-#    title: "Name"
-#    data: "data name"
-#  -
-#    title: "Documentation"
-#    data: "data doc"
-#  -
-#    title: "Status"
-#    data: "data status"
-#  rows: "generated"
-#  data:
-#    csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
-#    - 2
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "doc"
-#  - "status"
+-
+  type: "table"
+  title: "Detailed Test Results - NSH SFC Functional Results"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,FUNC,NSHSFC]}/nsh_sfc_functional_results"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data status"
+  rows: "generated"
+  data:
+    csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
+    - 7
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "status"
 
 ################################################################################
 ###                                F I L E S                                 ###
@@ -626,26 +626,26 @@
   data-start-level: 3  # 0, 1, 2, ...
   chapters-start-level: 2  # 0, 1, 2, ...
 
-#-
-#  type: "file"
-#  title: "NSH SFC Functional Results"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTR,FUNC,NSHSFC]}/nshsfc_functional_results"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTR,FUNC,NSHSFC]}"
-#  data:
-#    csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
-#    - 
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  chapters:
-#  - "suites"
-#  data-start-level: 2  # 0, 1, 2, ...
-#  chapters-start-level: 2  # 0, 1, 2, ...
+-
+  type: "file"
+  title: "NSH SFC Functional Results"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,FUNC,NSHSFC]}/nshsfc_functional_results"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,FUNC,NSHSFC]}"
+  data:
+    csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
+    - 7
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  chapters:
+  - "suites"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
 
 ################################################################################
 ###                                P L O T S                                 ###
