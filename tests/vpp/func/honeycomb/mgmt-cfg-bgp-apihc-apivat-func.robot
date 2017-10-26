@@ -31,7 +31,8 @@
 | ... | Tear Down Honeycomb Functional Test Suite | ${node} | AND
 | ... | Disable Honeycomb Feature | ${node} | BGP
 | ...
-| Force Tags | HC_FUNC
+# HONEYCOMB-407: Honeycomb does not start with BGP modules enabled
+| Force Tags | HC_FUNC | EXPECTED_FAILING
 | ...
 | Documentation | *Honeycomb BGP management test suite.*
 
