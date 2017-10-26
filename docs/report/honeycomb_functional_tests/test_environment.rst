@@ -7,10 +7,10 @@ each host being a Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @
 2.30GHz, 18c, 512GB RAM) running Ubuntu 14.04.3 and the following VIRL software
 versions:
 
-  STD server version 0.10.24.7
-  UWM server version 0.10.24.7
+  - STD server version 0.10.32.16
+  - UWM server version 0.10.32.16
 
-Current VPP tests have been executed on a single VM operating system and
+Current Honeycomb tests have been executed on a single VM operating system and
 version only, as described in the following paragraphs.
 
 In CSIT terminology, the VM operating system for both DUTs and TG that

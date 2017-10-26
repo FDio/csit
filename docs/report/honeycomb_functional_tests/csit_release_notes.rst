@@ -4,15 +4,15 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Added Honeycomb functional tests for the following features:
+#. Added Honeycomb functional tests for the following areas:
 
-   - Policer
+   - LISP GPE
+   - Honeycomb northbound interfaces over IPv6
+   - Honeycomb implementation of ODL BGP
 
 #. Improved test coverage for the following features:
 
-   - Interface Management
-   - Vlan
-   - Port Mirroring
+   - Vlan sub-interfaces
 
 Known Issues
 ------------
@@ -27,17 +27,7 @@ tests in VIRL:
 |   |                                            |            | VPP refuses the configuration but returns code 200:OK. This can cause      |
 |   |                                            |            | desync between Honeycomb's config and operational data.                    |
 +---+--------------------------------------------+------------+----------------------------------------------------------------------------+
-| 2 | Removal of ACP-plugin interface assignment | HC2VPP-173 | Attempting to remove all ACLs from an interface responds with OK but does  |
-|   |                                            |            | not remove the assignments.                                                |
+| 2 | VxLAN GPE configuration crashes VPP        | VPP-875    | Specific VxLAN GPE configurations cause VPP to crash and restart.          |
 +---+--------------------------------------------+------------+----------------------------------------------------------------------------+
-| 3 | VxLAN GPE configuration crashes VPP        | VPP-875    | Specific VxLAN GPE configurations cause VPP to crash and restart.          |
-+---+--------------------------------------------+------------+----------------------------------------------------------------------------+
-| 4 | Policer traffic test failure               | CSIT-      | Traffic test has begun to fail, likely due to VPP changes. There is  more  |
-|   |                                            |            | information available yet.                                                 |
-+---+--------------------------------------------+------------+----------------------------------------------------------------------------+
-| 5 | SPAN traffic test failure                  | CSIT-      | Traffic test has begun to fail, likely due to VPP changes. There is  more  |
-|   |                                            |            | information available yet.                                                 |
-+---+--------------------------------------------+------------+----------------------------------------------------------------------------+
-| 6 | Unnumbered interface VIRL issue            | CSIT-      | CRUD for unnumbered interface appears to fail in VIRL, but not in local    |
-|   |                                            |            | test runs. Investigation pending.                                          |
+| 3 | Operational data for IPv6 special routes   | HC2VPP-228 | Special hop routes are misidentified as regular routes in operational data.|
 +---+--------------------------------------------+------------+----------------------------------------------------------------------------+
