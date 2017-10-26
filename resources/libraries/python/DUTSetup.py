@@ -13,6 +13,8 @@
 
 """DUT setup library."""
 
+import os
+
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, Topology
@@ -53,6 +55,12 @@ class DUTSetup(object):
         vat = VatExecutor()
         vat.execute_script("show_version_verbose.vat", node, json_out=False)
 
+        try:
+            vat.script_should_have_passed()
+        except AssertionError:
+            raise RuntimeError('Failed to get VPP version on host: {}'.
+                               format(node['host']))
+
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
         """Show VPP version verbose on all DUTs.
@@ -63,6 +71,22 @@ class DUTSetup(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 DUTSetup.vpp_show_version_verbose(node)
+
+    @staticmethod
+    def vpp_show_interfaces(node):
+        """Run "show interface" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_interface.vat", node, json_out=False)
+
+        try:
+            vat.script_should_have_passed()
+        except AssertionError:
+            raise RuntimeError('Failed to get VPP interfaces on host: {}'.
+                               format(node['host']))
 
     @staticmethod
     def vpp_api_trace_save(node):
@@ -429,3 +453,86 @@ class DUTSetup(object):
         vat = VatExecutor()
         vat.execute_script("enable_dpdk_traces.vat", node, json_out=False)
         vat.execute_script("enable_vhost_user_traces.vat", node, json_out=False)
+
+    @staticmethod
+    def install_vpp_on_all_duts(nodes):
+        """Install VPP on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        :raises: RuntimeError if failed to install VPP
+        """
+
+        logger.debug("Installing VPP")
+        vpp_pkg_dir = "/scratch/vpp"
+
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                logger.debug("Installing VPP on node {}".format(node['host']))
+
+                ssh = SSH()
+                ssh.connect(node)
+
+                if os.path.isfile("/etc/redhat-release"):
+                    # workaroud - uninstall existing vpp installation until
+                    # start-testcase script is updated on all virl servers
+                    ssh.exec_command_sudo(
+                        "rpm -e vpp vpp-devel vpp-lib vpp-plugins", timeout=90)
+                    ret_code, _, _ = ssh.exec_command_sudo(
+                        "rpm -ivh {}/*.rpm".format(vpp_pkg_dir), timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host: {}'
+                                           .format(node['host']))
+                    else:
+                        ssh.exec_command_sudo("rpm -qai vpp*")
+                        logger.info("VPP installed on node {}".
+                                    format(node['host']))
+                else:
+                    # workaroud - uninstall existing vpp installation until
+                    # start-testcase script is updated on all virl servers
+                    ssh.exec_command_sudo(
+                        "dpkg --purge vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib"
+                        " vpp-plugins", timeout=90)
+                    ret_code, _, _ = ssh.exec_command_sudo(
+                        "dpkg -i --force-all {}/*.deb".format(vpp_pkg_dir),
+                        timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host: {}'
+                                           .format(node['host']))
+                    else:
+                        ssh.exec_command_sudo("dpkg -l | grep vpp")
+                        logger.info("VPP installed on node {}".
+                                    format(node['host']))
+
+                ssh.disconnect(node)
+
+    @staticmethod
+    def verify_vpp_on_all_duts(nodes):
+        """Verify that VPP is installed on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+
+        logger.debug("Verify VPP on all DUTs")
+
+        DUTSetup.start_vpp_service_on_all_duts(nodes)
+
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.verify_vpp_on_dut(node)
+
+    @staticmethod
+    def verify_vpp_on_dut(node):
+        """Verify that VPP is installed on DUT node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises: RuntimeError if failed to restart VPP, get VPP version or
+        get VPP interfaces
+        """
+
+        logger.debug("Verify VPP on node {}".format(node['host']))
+
+        DUTSetup.vpp_show_version_verbose(node)
+        DUTSetup.vpp_show_interfaces(node)
