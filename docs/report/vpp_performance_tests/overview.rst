@@ -135,6 +135,9 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     VLAN tagged Ethernet frames.
   - **L2BD** - L2 Bridge-Domain switched-forwarding of untagged Ethernet frames
     with MAC learning; disabled MAC learning i.e. static MAC tests to be added.
+  - **L2BD Scale** - L2 Bridge-Domain switched-forwarding of untagged Ethernet
+    frames with MAC learning; disabled MAC learning i.e. static MAC tests to be
+    added with 20k, 200k and 2M FIB entries.
   - **IPv4** - IPv4 routed-forwarding.
   - **IPv6** - IPv6 routed-forwarding.
   - **IPv4 Scale** - IPv4 routed-forwarding with 20k, 200k and 2M FIB entries.
@@ -143,14 +146,18 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     of 2 VMs using vhost-user interfaces, with VPP forwarding modes incl. L2
     Cross-Connect, L2 Bridge-Domain, VXLAN with L2BD, IPv4 routed-forwarding.
   - **COP** - IPv4 and IPv6 routed-forwarding with COP address security.
-  - **iACL** - IPv4 and IPv6 routed-forwarding with iACL address security.
+  - **ACL** - L2, IPv4 and IPv6 routed-forwarding with ACL address security.
   - **LISP** - LISP overlay tunneling for IPv4-over-IPv4, IPv6-over-IPv4,
     IPv6-over-IPv6, IPv4-over-IPv6 in IPv4 and IPv6 routed-forwarding modes.
   - **VXLAN** - VXLAN overlay tunnelling integration with L2XC and L2BD.
   - **QoS Policer** - ingress packet rate measuring, marking and limiting
     (IPv4).
-  - **CGNAT** - Carrier Grade Network Address Translation tests with varying
+  - **NAT** - (Source) Network Address Translation tests with varying
     number of users and ports per user.
+  - **Container memif connections** - VPP memif virtual interface tests to
+    interconnect VPP instances.
+  - **Container Orchestrated Topologies** - Container topologies connected over
+    the memif virtual interface.
 
 - 2port40GE XL710 Intel
 
