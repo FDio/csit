@@ -189,12 +189,17 @@ def table_performance_improvements(table, input_data):
                     tbl_item.append({"data": eval(operation)(data_lst)})
             elif cmd == "operation":
                 operation = args[0]
-                nr1 = tbl_item[int(args[1])]["data"]
-                nr2 = tbl_item[int(args[2])]["data"]
-                if nr1 and nr2:
-                    tbl_item.append({"data": eval(operation)(nr1, nr2)})
-                else:
+                try:
+                    nr1 = tbl_item[int(args[1])]["data"]
+                    nr2 = tbl_item[int(args[2])]["data"]
+                    if nr1 and nr2:
+                        tbl_item.append({"data": eval(operation)(nr1, nr2)})
+                    else:
+                        tbl_item.append({"data": None})
+                except IndexError:
+                    logging.error("No data for {0}".format(tbl_item[0]))
                     tbl_item.append({"data": None})
+                    continue
             else:
                 logging.error("Not supported command {0}. Skipping the table.".
                               format(cmd))
