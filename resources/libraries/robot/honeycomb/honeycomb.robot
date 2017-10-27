@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.honeycomb.HcPersistence
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.InterfaceUtil
+| Resource | resources/libraries/robot/shared/default.robot
 
 *** Keywords ***
 | Configure Honeycomb service on DUTs
