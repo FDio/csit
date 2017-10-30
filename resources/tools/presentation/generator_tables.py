@@ -134,6 +134,8 @@ def table_performance_improvements(table, input_data):
                 line_lst.append(item["data"])
             elif isinstance(item["data"], float):
                 line_lst.append("{:.1f}".format(item["data"]))
+            elif item["data"] is None:
+                line_lst.append("")
         file_handler.write(",".join(line_lst) + "\n")
 
     logging.info("  Generating the table {0} ...".

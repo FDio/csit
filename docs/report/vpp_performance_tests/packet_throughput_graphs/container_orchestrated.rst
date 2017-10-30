@@ -34,7 +34,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/kubernetes/perf/container_memif && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/kubernetes/perf/container_memif && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -68,7 +68,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/kubernetes/perf/container_memif && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/kubernetes/perf/container_memif && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -106,7 +106,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/kubernetes/perf/container_memif && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*pdrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/kubernetes/perf/container_memif && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*pdrdisc" *
       :shell:
 
 .. only:: latex
@@ -140,7 +140,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/kubernetes/perf/container_memif && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*pdrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/kubernetes/perf/container_memif && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-[1-9]drc(l2xcbase|l2bdbasemaclrn)-.*pdrdisc" *
       :shell:
 
 .. only:: latex
