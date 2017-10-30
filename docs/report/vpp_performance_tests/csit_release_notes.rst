@@ -4,47 +4,6 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Test environment changes in VPP data plane performance tests:
-
-   - Further characterization and optimizations of VPP vhost-user and VM test
-     methodology and test environment;
-
-     - Tests with varying Qemu virtio queue (a.k.a. vring) sizes:
-       [vr256] default 256 descriptors, [vr1024] 1024 descriptors to
-       optimize for packet throughput;
-
-     - Tests with varying Linux :abbr:`CFS (Completely Fair Scheduler)`
-       settings: [cfs] default settings, [cfsrr1] :abbr:`CFS (Completely Fair
-       Scheduler)` RoundRobin(1) policy applied to all data plane threads
-       handling test packet path including all VPP worker threads and all Qemu
-       testpmd poll-mode threads;
-
-     - Resulting test cases are all combinations with [vr256,vr1024] and
-       [cfs,cfsrr1] settings;
-
-     - For more detail see performance results observations section in
-       this report;
-
-#. Code updates and optimizations in CSIT performance framework:
-
-   - Complete CSIT framework code revision and optimizations as descried
-     on CSIT wiki page `Design_Optimizations
-     <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_.
-
-   - For more detail see the :ref:`CSIT Framework Design <csit-design>` section
-     in this report;
-
-#. Changes to CSIT driver for TRex Traffic Generator:
-
-   - Complete refactor of TRex CSIT driver;
-
-   - Introduction of packet traffic profiles to improve usability and
-     manageability of traffic profiles for a growing number of test
-     scenarios.
-
-   - Support for packet traffic profiles to test IPv4/IPv6 stateful and
-     stateless DUT data plane features;
-
 #. Added VPP performance tests
 
    - **Linux Container VPP memif virtual interface tests**
@@ -71,8 +30,8 @@ double-digit percentage points. Relative improvements for this release are
 calculated against the test results listed in CSIT |release-1| report. The
 comparison is calculated between the mean values based on collected and
 archived test results' samples for involved VPP releases. Standard deviation
-has been also listed for CSIT |release|. VPP-16.09 and VPP-17.01 numbers are
-provided for reference.
+has been also listed for CSIT |release|. Performance numbers since release
+VPP-16.09 are provided for reference.
 
 NDR Throughput
 ~~~~~~~~~~~~~~
@@ -230,7 +189,7 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 3 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
 |   | of discovered NDR throughput values across      |            | throughput. Applies to XL710 and X710 NICs, x520 NICs are fine. |
-|   | multiple test runs with xl710 and x710 NICs.    |            |                                                                 |
+|   | multiple test runs with xl710 and x710 NICs.    |            | RESOLVED - no zig-zagging measured anymore                      |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 4 | Lower than expected NDR and PDR throughput with | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
 |   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
