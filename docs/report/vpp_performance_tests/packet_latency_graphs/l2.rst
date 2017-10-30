@@ -22,6 +22,20 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
             \label{fig:64B-1t1c-l2-sel1-ndrdisc-lat50}
     \end{figure}
 
+CSIT source code for the test cases used for above plots can be found in CSIT
+git repository:
+
+.. only:: html
+
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+
 *Figure 1a. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet
 Switching (base).*
 
@@ -46,7 +60,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -54,7 +68,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/l2
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -70,6 +84,20 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-sel1-ndrdisc-lat50}
             \label{fig:64B-2t2c-l2-sel1-ndrdisc-lat50}
     \end{figure}
+
+CSIT source code for the test cases used for above plots can be found in CSIT
+git repository:
+
+.. only:: html
+
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
 
 *Figure 2a. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet
 Switching (base).*
@@ -95,7 +123,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -103,4 +131,4 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/l2
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *

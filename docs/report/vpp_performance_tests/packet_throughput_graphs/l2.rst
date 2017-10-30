@@ -26,6 +26,20 @@ in the graph below.
             \label{fig:64B-1t1c-l2-sel1-ndrdisc}
     \end{figure}
 
+CSIT source code for the test cases used for above plots can be found in CSIT
+git repository:
+
+.. only:: html
+
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+
 *Figure 1a. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
 
@@ -50,7 +64,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -58,7 +72,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/l2
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
 
 VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below.
@@ -75,6 +89,20 @@ in the graph below.
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-sel1-ndrdisc}
             \label{fig:64B-2t2c-l2-sel1-ndrdisc}
     \end{figure}
+
+CSIT source code for the test cases used for above plots can be found in CSIT
+git repository:
+
+.. only:: html
+
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
 
 *Figure 2a. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
@@ -100,7 +128,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -108,7 +136,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/l2
-      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
 
 
 PDR Throughput
@@ -129,6 +157,20 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-sel1-pdrdisc}
             \label{fig:64B-1t1c-l2-sel1-pdrdisc}
     \end{figure}
+
+CSIT source code for the test cases used for above plots can be found in CSIT
+git repository:
+
+.. only:: html
+
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
 
 *Figure 3a. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
@@ -154,7 +196,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*pdrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-pdrdisc" *
       :shell:
 
 .. only:: latex
@@ -162,7 +204,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/l2
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*pdrdisc" *
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-pdrdisc" *
 
 VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.
@@ -179,6 +221,20 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-sel1-pdrdisc}
             \label{fig:64B-2t2c-l2-sel1-pdrdisc}
     \end{figure}
+
+CSIT source code for the test cases used for above plots can be found in CSIT
+git repository:
+
+.. only:: html
+
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
 
 *Figure 4a. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
@@ -198,3 +254,15 @@ Switching (base).*
 
 *Figure 4b. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (feature).*
+
+.. only:: html
+
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-pdrdisc" *
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ cd tests/vpp/perf/l2
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-pdrdisc" *
