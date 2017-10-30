@@ -929,7 +929,7 @@
 # VPP L2 sel2
 -
   type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-ndrdisc"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc"
@@ -942,7 +942,7 @@
     - 15
     - 16
     - 17
-  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -951,7 +951,7 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-ndrdisc"
     xaxis:
       autorange: True
       autotick: False
@@ -994,7 +994,7 @@
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-ndrdisc"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc"
@@ -1007,7 +1007,7 @@
     - 15
     - 16
     - 17
-  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1016,7 +1016,7 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-ndrdisc"
     xaxis:
       autorange: True
       autotick: False
@@ -1059,7 +1059,7 @@
 
 -
   type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-pdrdisc"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc"
@@ -1072,7 +1072,7 @@
     - 15
     - 16
     - 17
-  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1081,7 +1081,7 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-pdrdisc"
     xaxis:
       autorange: True
       autotick: False
@@ -1124,7 +1124,7 @@
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-pdrdisc"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc"
@@ -1137,7 +1137,7 @@
     - 15
     - 16
     - 17
-  filter: "'64B' and 'FEATURE' and 'ACL50' and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1146,7 +1146,7 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-acl-pdrdisc"
     xaxis:
       autorange: True
       autotick: False
