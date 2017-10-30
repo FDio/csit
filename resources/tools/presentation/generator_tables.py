@@ -184,9 +184,11 @@ def table_performance_improvements(table, input_data):
                                               ["value"]) / 1000000)
                     except (KeyError, TypeError):
                         # No data, ignore
-                        pass
+                        continue
                 if data_lst:
                     tbl_item.append({"data": eval(operation)(data_lst)})
+                else:
+                    tbl_item.append({"data": None})
             elif cmd == "operation":
                 operation = args[0]
                 try:
@@ -197,7 +199,7 @@ def table_performance_improvements(table, input_data):
                     else:
                         tbl_item.append({"data": None})
                 except IndexError:
-                    logging.error("No data for {0}".format(tbl_item[0]))
+                    logging.error("No data for {0}".format(tbl_item[1]["data"]))
                     tbl_item.append({"data": None})
                     continue
             else:
