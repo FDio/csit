@@ -12,7 +12,7 @@ references are provided to the :abbr:`RF (Robot Framework)` result files that
 got archived in FD.io nexus online storage system.
 
 FD.io CSIT project currently covers multiple FD.io system and sub-system
-testing areas and this is  reflected in this report, where each testing area
+testing areas and this is reflected in this report, where each testing area
 is listed separately, as follows:
 
 #. **VPP Performance Tests** - VPP performance tests are executed in physical
