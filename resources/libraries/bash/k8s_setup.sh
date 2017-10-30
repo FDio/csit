@@ -48,6 +48,8 @@ kubectl apply -f ${K8S_CSIT}  || \
 kubectl taint nodes --all node-role.kubernetes.io/master- || \
     { echo "Failed to taint nodes"; exit 1; }
 
+sleep 5
+
 # Dump Kubernetes objects ...
 kubectl get all --all-namespaces
 
