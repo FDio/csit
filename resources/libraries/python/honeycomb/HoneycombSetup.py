@@ -370,7 +370,14 @@ class HoneycombSetup(object):
             "BGP": ["io.fd.hc2vpp.bgp.inet.BgpInetModule",
                     "io.fd.honeycomb.infra.bgp.BgpModule",
                     "io.fd.honeycomb.infra.bgp.BgpReadersModule",
-                    "io.fd.honeycomb.infra.bgp.BgpWritersModule"]
+                    "io.fd.honeycomb.infra.bgp.BgpWritersModule",
+                    "io.fd.honeycomb.northbound.bgp.extension.InetModule",
+                    "io.fd.honeycomb.northbound.bgp.extension.EvpnModule",
+                    "io.fd.honeycomb.northbound.bgp.extension.L3VpnV4Module",
+                    "io.fd.honeycomb.northbound.bgp.extension.L3VpnV6Module",
+                    "io.fd.honeycomb.northbound.bgp.extension."
+                    "LabeledUnicastModule",
+                    "io.fd.honeycomb.northbound.bgp.extension.LinkstateModule"]
         }
 
         ssh = SSH()

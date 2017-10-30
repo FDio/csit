@@ -31,7 +31,7 @@
 | ... | Tear Down Honeycomb Functional Test Suite | ${node} | AND
 | ... | Disable Honeycomb Feature | ${node} | BGP
 | ...
-# HONEYCOMB-407: Honeycomb does not start with BGP modules enabled
+# HONEYCOMB-409: ODL client fails to parse requests to BGP instance node
 | Force Tags | HC_FUNC | EXPECTED_FAILING
 | ...
 | Documentation | *Honeycomb BGP management test suite.*
