@@ -5,8 +5,8 @@ This is the **F**\ast **D**\ata **I**/**O** Project (**FD.io**) **C**\ontinuous
 **S**\ystem **I**\ntegration and **T**\esting (**CSIT**) project report for CSIT
 |release| system testing of |vpp-release|.
 
-This is the full html version, there is also the reduced
-`pdf version of this report`_.
+This is the full html version, there is also a reduced
+`PDF version of this report`_.
 
 The report describes CSIT functional and performance tests and their
 continuous execution delivered in CSIT |release|. A high-level overview is
@@ -58,13 +58,6 @@ CSIT |release| report contains following main sections and sub-sections:
    *Test Environment* - environment description ;
    *Documentation* - source code documentation for Honeycomb functional tests.
 
-#. **Honeycomb Performance Tests** - Honeycomb performance tests executed in
-   physical FD.io testbeds; *Overview* - tested topologies, test
-   coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
-   |release|, added tests, environment or methodology changes, known CSIT issues;
-   *Test Environment* - environment description ;
-   *Documentation* - source code documentation for Honeycomb performance tests.
-
 #. **VPP Unit Tests** - refers to VPP functional unit tests executed as
    part of vpp make test verify option within the FD.io VPP project; listed in
    this report to give a more complete view about executed VPP functional tests;
@@ -90,3 +83,8 @@ CSIT |release| report contains following main sections and sub-sections:
 #. **Test Operational Data** - auto-generated DUT operational data from CSIT jobs
    executions using CSIT Robot Framework output files as source data; *VPP
    Performance Operational Data*.
+
+#. **CSIT Framework Documentation** - description of the overall CSIT
+   framework design hierarchy, CSIT test naming convention, followed by
+   description of Presentation and Analytics Layer (PAL) introduced in
+   CSIT |release|.

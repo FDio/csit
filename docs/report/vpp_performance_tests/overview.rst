@@ -54,18 +54,18 @@ performance labs to address larger scale multi-interface and multi-NIC
 performance testing scenarios.
 
 For test cases that require DUT (VPP) to communicate with
-VirtualMachines (VMs) / LinuxContainers (LXCs) over vhost-user/memif
-interfaces, N of VM/LXC instances are created on SUT1 and SUT2. For N=1
-DUT forwards packets between vhost/memif and physical interfaces. For
-N>1 DUT a logical service chain forwarding topology is created on DUT by
-applying L2 or IPv4/IPv6 configuration depending on the test suite. DUT
-test topology with N VM/LXC instances is shown in the figure below
-including applicable packet flow thru the DUTs and VMs/LXCs (marked in
-the figure with ``***``).::
+VirtualMachines (VMs) / Containers (Linux or Docker Containers) over
+vhost-user/memif interfaces, N of VM/Ctr instances are created on SUT1
+and SUT2. For N=1 DUT forwards packets between vhost/memif and physical
+interfaces. For N>1 DUT a logical service chain forwarding topology is
+created on DUT by applying L2 or IPv4/IPv6 configuration depending on
+the test suite. DUT test topology with N VM/Ctr instances is shown in
+the figure below including applicable packet flow thru the DUTs and
+VMs/Ctrs (marked in the figure with ``***``).::
 
     +-------------------------+           +-------------------------+
     | +---------+ +---------+ |           | +---------+ +---------+ |
-    | |VM/LXC[1]| |VM/LXC[N]| |           | |VM/LXC[1]| |VM/LXC[N]| |
+    | |VM/Ctr[1]| |VM/Ctr[N]| |           | |VM/Ctr[1]| |VM/Ctr[N]| |
     | |  *****  | |  *****  | |           | |  *****  | |  *****  | |
     | +--^---^--+ +--^---^--+ |           | +--^---^--+ +--^---^--+ |
     |   *|   |*     *|   |*   |           |   *|   |*     *|   |*   |
@@ -85,8 +85,8 @@ the figure with ``***``).::
         **********************|           |**********************
                               +-----------+
 
-For VM/LXC tests, packets are switched by DUT multiple times: twice for
-a single VM/LXC, three times for two VMs/LXCs, N+1 times for N VMs/LXCs.
+For VM/Ctr tests, packets are switched by DUT multiple times: twice for
+a single VM/Ctr, three times for two VMs/Ctrs, N+1 times for N VMs/Ctrs.
 Hence the external throughput rates measured by TG and listed in this
 report must be multiplied by (N+1) to represent the actual DUT aggregate
 packet forwarding rate.
@@ -99,7 +99,7 @@ thoughput for Phy-to-Phy (NIC-to-NIC, PCI-to-PCI) topology, is to expect
 the forwarding performance to be proportional to CPU core frequency,
 assuming CPU is the only limiting factor and all other SUT parameters
 equivalent to FD.io CSIT environment. The same rule of thumb can be also
-applied for Phy-to-VM/LXC-to-Phy (NIC-to-VM/LXC-to-NIC) topology, but due to
+applied for Phy-to-VM/Ctr-to-Phy (NIC-to-VM/Ctr-to-NIC) topology, but due to
 much higher dependency on intensive memory operations and sensitivity to Linux
 kernel scheduler settings and behaviour, this estimation may not always yield
 good enough accuracy.
