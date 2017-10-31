@@ -194,13 +194,13 @@ def table_performance_improvements(table, input_data):
             elif cmd == "operation":
                 operation = args[0]
                 try:
-                    nr1 = tbl_item[int(args[1])]["data"]
-                    nr2 = tbl_item[int(args[2])]["data"]
+                    nr1 = float(tbl_item[int(args[1])]["data"])
+                    nr2 = float(tbl_item[int(args[2])]["data"])
                     if nr1 and nr2:
                         tbl_item.append({"data": eval(operation)(nr1, nr2)})
                     else:
                         tbl_item.append({"data": None})
-                except IndexError:
+                except (IndexError, ValueError):
                     logging.error("No data for {0}".format(tbl_item[1]["data"]))
                     tbl_item.append({"data": None})
                     continue
@@ -228,19 +228,19 @@ def table_performance_improvements(table, input_data):
             for item in tbl_lst:
                 if "ndr_top" in file_name \
                         and "ndr" in item[1]["data"] \
-                        and item[-1]["data"] >= 10:
+                        and item[-1]["data"] >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_top" in file_name \
                         and "pdr" in item[1]["data"] \
-                        and item[-1]["data"] >= 10:
+                        and item[-1]["data"] >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "ndr_low" in file_name \
                         and "ndr" in item[1]["data"] \
-                        and item[-1]["data"] < 10:
+                        and item[-1]["data"] < 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_low" in file_name \
                         and "pdr" in item[1]["data"] \
-                        and item[-1]["data"] < 10:
+                        and item[-1]["data"] < 10.0:
                     _write_line_to_file(file_handler, item)
 
     logging.info("  Done.")

@@ -57,7 +57,7 @@ def relative_change(nr1, nr2):
     :rtype: float
     """
 
-    return (nr1 - nr2) / nr2 * 100
+    return float((nr2 - nr1) / nr1 * 100)
 
 
 def get_files(path, extension=None, full_path=True):
