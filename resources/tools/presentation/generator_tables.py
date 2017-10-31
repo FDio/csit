@@ -240,10 +240,12 @@ def table_performance_improvements(table, input_data):
                         and rel_change >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "ndr_low" in file_name \
-                        and "ndr" in item[1]["data"]:
+                        and "ndr" in item[1]["data"] \
+                        and rel_change < 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_low" in file_name \
-                        and "pdr" in item[1]["data"]:
+                        and "pdr" in item[1]["data"] \
+                        and rel_change < 10.0:
                     _write_line_to_file(file_handler, item)
 
     logging.info("  Done.")
