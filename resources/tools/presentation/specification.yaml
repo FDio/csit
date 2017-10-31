@@ -393,9 +393,6 @@
   rows: "generated"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 3
-    - 4
     - 5
   filter: "all"
   parameters:
@@ -594,9 +591,6 @@
   dir-tables: "{DIR[DTR,PERF,COT]}"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 3
-    - 4
     - 5
   filter: "all"
   parameters:
