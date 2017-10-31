@@ -22,8 +22,7 @@
 | Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.Trace
 
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING
-# TODO: Remove EXPECTED_FAILING tag once functionality is implemented (VPP-204)
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *IPFIX ipv6 test cases*
