@@ -227,21 +227,23 @@ def table_performance_improvements(table, input_data):
         with open(file_name, "w") as file_handler:
             file_handler.write(",".join(header) + "\n")
             for item in tbl_lst:
+                if isinstance(item[-1]["data"], float):
+                    rel_change = round(item[-1]["data"], 1)
+                else:
+                    rel_change = item[-1]["data"]
                 if "ndr_top" in file_name \
                         and "ndr" in item[1]["data"] \
-                        and round(item[-1]["data"], 1) >= 10.0:
+                        and rel_change >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_top" in file_name \
                         and "pdr" in item[1]["data"] \
-                        and round(item[-1]["data"], 1) >= 10.0:
+                        and rel_change >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "ndr_low" in file_name \
-                        and "ndr" in item[1]["data"] \
-                        and round(item[-1]["data"], 1) < 10.0:
+                        and "ndr" in item[1]["data"]:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_low" in file_name \
-                        and "pdr" in item[1]["data"] \
-                        and round(item[-1]["data"], 1) < 10.0:
+                        and "pdr" in item[1]["data"]:
                     _write_line_to_file(file_handler, item)
 
     logging.info("  Done.")
