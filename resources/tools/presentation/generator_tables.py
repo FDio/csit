@@ -229,19 +229,19 @@ def table_performance_improvements(table, input_data):
             for item in tbl_lst:
                 if "ndr_top" in file_name \
                         and "ndr" in item[1]["data"] \
-                        and item[-1]["data"] >= 10.0:
+                        and round(item[-1]["data"], 1) >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_top" in file_name \
                         and "pdr" in item[1]["data"] \
-                        and item[-1]["data"] >= 10.0:
+                        and round(item[-1]["data"], 1) >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "ndr_low" in file_name \
                         and "ndr" in item[1]["data"] \
-                        and item[-1]["data"] < 10.0:
+                        and round(item[-1]["data"], 1) < 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_low" in file_name \
                         and "pdr" in item[1]["data"] \
-                        and item[-1]["data"] < 10.0:
+                        and round(item[-1]["data"], 1) < 10.0:
                     _write_line_to_file(file_handler, item)
 
     logging.info("  Done.")
