@@ -169,6 +169,8 @@
     - 3
     - 4
     - 5
+    - 6
+    - 7
     csit-vpp-functional-1710-ubuntu1604-virl:
     - 115
     csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
@@ -5425,6 +5427,8 @@
     - 3
     - 4
     - 5
+    - 6
+    - 7
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5487,6 +5491,8 @@
     - 3
     - 4
     - 5
+    - 6
+    - 7
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5549,6 +5555,8 @@
     - 3
     - 4
     - 5
+    - 6
+    - 7
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5611,6 +5619,8 @@
     - 3
     - 4
     - 5
+    - 6
+    - 7
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5809,6 +5819,8 @@
     - 3
     - 4
     - 5
+    - 6
+    - 7
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -5869,6 +5881,8 @@
     - 3
     - 4
     - 5
+    - 6
+    - 7
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
