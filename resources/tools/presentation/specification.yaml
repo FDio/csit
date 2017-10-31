@@ -166,6 +166,9 @@
     - 13
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
     csit-vpp-functional-1710-ubuntu1604-virl:
     - 115
     csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
@@ -219,7 +222,7 @@
     data: "data csit-vpp-perf-1710-all stdev"
   -
     title: "17.07 to 17.10 change [%]"
-    data: "operation relative_change 6 5"
+    data: "operation relative_change 5 6"
   rows: "generated"
   data:
     csit-vpp-perf-1707-all:
@@ -391,6 +394,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "all"
   parameters:
   - "name"
@@ -589,6 +595,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "all"
   parameters:
   - "name"
@@ -5419,6 +5428,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5478,6 +5490,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5537,6 +5552,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5596,6 +5614,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5791,6 +5812,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -5848,6 +5872,9 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
+    - 3
+    - 4
+    - 5
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
