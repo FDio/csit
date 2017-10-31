@@ -183,12 +183,13 @@ def table_performance_improvements(table, input_data):
                 for build in data[job]:
                     try:
                         data_lst.append(float(build[tmpl_item[0]]["throughput"]
-                                              ["value"]) / 1000000)
+                                              ["value"]))
                     except (KeyError, TypeError):
                         # No data, ignore
                         continue
                 if data_lst:
-                    tbl_item.append({"data": eval(operation)(data_lst)})
+                    tbl_item.append({"data": (eval(operation)(data_lst)) /
+                                             1000000})
                 else:
                     tbl_item.append({"data": None})
             elif cmd == "operation":
