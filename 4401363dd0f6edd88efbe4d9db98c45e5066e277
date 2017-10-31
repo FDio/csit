@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "156399f2_e566c357",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-10-31T11:03:18Z",
+      "side": 1,
+      "message": "OK, my bad. It improved, but still there. CSIT-568 ticket looks closed though. Is there another ticket?",
+      "parentUuid": "4be0d88c_4c049512",
+      "range": {
+        "startLine": 20,
+        "startChar": 71,
+        "endLine": 20,
+        "endChar": 118
+      },
+      "revId": "4401363dd0f6edd88efbe4d9db98c45e5066e277",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f033196_1fab1eed",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2bacd959_accd09db",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-10-31T11:03:18Z",
+      "side": 1,
+      "message": "added both now.",
+      "parentUuid": "1f033196_1fab1eed",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 49
+      },
+      "revId": "4401363dd0f6edd88efbe4d9db98c45e5066e277",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6b1dac1_ab870873",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2017-10-31T06:38:55Z",
       "side": 1,
       "message": "Remove PDR",
+      "range": {
+        "startLine": 194,
+        "startChar": 30,
+        "endLine": 194,
+        "endChar": 37
+      },
+      "revId": "4401363dd0f6edd88efbe4d9db98c45e5066e277",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f44b582d_8476127a",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-10-31T11:03:18Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "f6b1dac1_ab870873",
       "range": {
         "startLine": 194,
         "startChar": 30,
