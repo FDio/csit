@@ -55,8 +55,6 @@
 | | ... | encaps_rx=Dot1q | vlan_rx=${tag_2}
 
 | TC02: Process tagged send untagged
-# It doesn't work with virtio
-| | [Tags] | EXPECTED_FAILING
 | | Given Vlan Test Setup
 | | Then Send packet and verify headers
 | | ... | ${tg_node} | ${ip4_net2_2} | ${ip4_net0_2} | ${tg_to_dut_if2}
@@ -65,8 +63,6 @@
 | | ... | encaps_tx=Dot1q | vlan_tx=${tag_2}
 
 | TC03: Process tagged send tagged
-# It doesn't work with virtio
-| | [Tags] | EXPECTED_FAILING
 | | Given Vlan Test Setup
 | | Then Send packet and verify headers
 | | ... | ${tg_node} | ${ip4_net1_2} | ${ip4_net2_2} | ${tg_to_dut_if2}
