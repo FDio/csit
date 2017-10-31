@@ -150,6 +150,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
     csit-dpdk-perf-1710-all:
     - 2
     - 3
@@ -162,16 +165,13 @@
     - 11
     - 13
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 102
+    - 115
     csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
     - 7
     csit-hc2vpp-verify-func-1710-ubuntu1604:
     - lastSuccessfulBuild
-#    hc2vpp-csit-perf-master-ubuntu1604:  # REMOVE???
-#    - 8
-#    - 9
 
 -
   type: "output"
@@ -184,7 +184,7 @@
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
-#
+
 -
   type: "table"
   title: "Performance improvements"
@@ -241,6 +241,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "template"
   parameters:
   - "throughput"
@@ -264,7 +267,7 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 15
+    - 19
   filter: "all"
   parameters:
   - "name"
@@ -288,7 +291,7 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 15
+    - 19
   filter: "all"
   parameters:
   - "parent"
@@ -311,7 +314,7 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 15
+    - 19
   filter: "all"
   parameters:
   - "parent"
@@ -337,7 +340,7 @@
   rows: "generated"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 102
+    - 115
   filter: "all"
   parameters:
   - "name"
@@ -361,7 +364,7 @@
   rows: "generated"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 102
+    - 115
   filter: "all"
   parameters:
   - "parent"
@@ -387,7 +390,7 @@
   rows: "generated"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "all"
   parameters:
   - "name"
@@ -490,7 +493,7 @@
   dir-tables: "{DIR[DTR,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 13
+    - 19
   filter: "all"
   parameters:
   - "name"
@@ -509,7 +512,7 @@
   dir-tables: "{DIR[DTC,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 15
+    - 19
   filter: "all"
   parameters:
   - "name"
@@ -528,7 +531,7 @@
   dir-tables: "{DIR[DTO,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 15
+    - 19
   filter: "all"
   parameters:
   - "name"
@@ -547,7 +550,7 @@
   dir-tables: "{DIR[DTR,FUNC,VPP]}"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 102
+    - 115
   filter: "all"
   parameters:
   - "name"
@@ -566,7 +569,7 @@
   dir-tables: "{DIR[DTC,FUNC,VPP]}"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 102
+    - 115
   filter: "all"
   parameters:
   - "name"
@@ -585,7 +588,7 @@
   dir-tables: "{DIR[DTR,PERF,COT]}"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "all"
   parameters:
   - "name"
@@ -679,6 +682,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   # Keep this formatting, the filter is enclosed with " (quotation mark) and
   # each tag is enclosed with ' (apostrophe).
   filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
@@ -746,6 +752,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -811,6 +820,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -876,6 +888,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -942,6 +957,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1007,6 +1025,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1072,6 +1093,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1137,6 +1161,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1203,6 +1230,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1268,6 +1298,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1333,6 +1366,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1398,6 +1434,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1464,6 +1503,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1529,6 +1571,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1594,6 +1639,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1659,6 +1707,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
@@ -1725,6 +1776,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
   parameters:
   - "throughput"
@@ -1790,6 +1844,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
   parameters:
   - "throughput"
@@ -1855,6 +1912,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
   parameters:
   - "throughput"
@@ -1920,6 +1980,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
   parameters:
   - "throughput"
@@ -1986,6 +2049,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -2051,6 +2117,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -2116,6 +2185,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -2181,6 +2253,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -2247,6 +2322,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -2312,6 +2390,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -2377,6 +2458,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -2442,6 +2526,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -2508,6 +2595,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
   parameters:
   - "throughput"
@@ -2573,6 +2663,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
   parameters:
   - "throughput"
@@ -2638,6 +2731,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
   parameters:
   - "throughput"
@@ -2703,6 +2799,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
   parameters:
   - "throughput"
@@ -2769,6 +2868,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
   parameters:
   - "throughput"
@@ -2834,6 +2936,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
   parameters:
   - "throughput"
@@ -2899,6 +3004,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
   parameters:
   - "throughput"
@@ -2964,6 +3072,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
   parameters:
   - "throughput"
@@ -3577,6 +3688,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -3640,6 +3754,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -3704,6 +3821,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -3767,6 +3887,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -3831,6 +3954,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "latency"
@@ -3894,6 +4020,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "latency"
@@ -3958,6 +4087,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "latency"
@@ -4021,6 +4153,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "latency"
@@ -4085,6 +4220,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
   parameters:
   - "latency"
@@ -4148,6 +4286,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
   parameters:
   - "latency"
@@ -4212,6 +4353,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
   parameters:
   - "latency"
@@ -4275,6 +4419,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
   parameters:
   - "latency"
@@ -4339,6 +4486,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -4402,6 +4552,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -4466,6 +4619,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
   parameters:
   - "latency"
@@ -4529,6 +4685,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
   parameters:
   - "latency"
@@ -4593,6 +4752,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
   parameters:
   - "latency"
@@ -4656,6 +4818,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
   parameters:
   - "latency"
@@ -4987,6 +5152,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5052,6 +5220,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5117,6 +5288,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5182,6 +5356,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5241,7 +5418,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5300,7 +5477,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5359,7 +5536,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-pdrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5418,7 +5595,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-pdrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5487,6 +5664,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -5550,6 +5730,9 @@
     - 15
     - 16
     - 17
+    - 18
+    - 19
+    - 20
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -5607,7 +5790,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc-lat50"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -5664,7 +5847,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc-lat50"
   data:
     csit-ligato-perf-1710-all:
-    - 1
+    - 2
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
