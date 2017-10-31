@@ -200,7 +200,7 @@ def table_performance_improvements(table, input_data):
                         tbl_item.append({"data": eval(operation)(nr1, nr2)})
                     else:
                         tbl_item.append({"data": None})
-                except (IndexError, ValueError):
+                except (IndexError, ValueError, TypeError):
                     logging.error("No data for {0}".format(tbl_item[1]["data"]))
                     tbl_item.append({"data": None})
                     continue
