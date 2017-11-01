@@ -166,13 +166,17 @@
     - 13
     csit-ligato-perf-1710-all:
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 115
+    - 126
     csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
     - 7
     csit-hc2vpp-verify-func-1710-ubuntu1604:
@@ -345,7 +349,7 @@
   rows: "generated"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 115
+    - 126
   filter: "all"
   parameters:
   - "name"
@@ -369,7 +373,7 @@
   rows: "generated"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 115
+    - 126
   filter: "all"
   parameters:
   - "parent"
@@ -395,7 +399,7 @@
   rows: "generated"
   data:
     csit-ligato-perf-1710-all:
-    - 5
+    - 12
   filter: "all"
   parameters:
   - "name"
@@ -555,7 +559,7 @@
   dir-tables: "{DIR[DTR,FUNC,VPP]}"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 115
+    - 126
   filter: "all"
   parameters:
   - "name"
@@ -574,7 +578,7 @@
   dir-tables: "{DIR[DTC,FUNC,VPP]}"
   data:
     csit-vpp-functional-1710-ubuntu1604-virl:
-    - 115
+    - 126
   filter: "all"
   parameters:
   - "name"
@@ -593,7 +597,7 @@
   dir-tables: "{DIR[DTR,PERF,COT]}"
   data:
     csit-ligato-perf-1710-all:
-    - 5
+    - 12
   filter: "all"
   parameters:
   - "name"
@@ -5424,11 +5428,15 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5488,11 +5496,15 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5552,11 +5564,15 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5616,11 +5632,15 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5816,11 +5836,15 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -5878,11 +5902,15 @@
   data:
     csit-ligato-perf-1710-all:
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
