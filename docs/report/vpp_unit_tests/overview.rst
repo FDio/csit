@@ -33,40 +33,42 @@ Unit Tests Coverage
 -------------------
 
 Following VPP functional test areas are covered in VPP unit test code included
-in VPP rls1704 with results listed in this report:
+in VPP rls1710 with results listed in this report:
 
-- CRUD Loopback - create, read, update, delete Loopback interfaces.
-- Flow-per-packet plugin - collect and report L2 and IP4 flow statistics.
-- DHCP - DHCPv4 and DHCPv6 Proxy.
-- IP4 VRF Multi-instance - create, read, update, delete and verify IPv4 VRFs.
-- Load Balancer - IP4 GRE4, IP4 GRE6, IP6 GRE4, IP6 GRE6.
-- FIB Unit Tests.
-- Bidirectional Forwarding Detection (BFD) IPv4 - baseline BFD session operation.
-- Bidirectional Forwarding Detection (BFD) IPv6 - baseline BFD session operation.
-- Bidirectional Forwarding Detection (BFD) - API tests.
-- Bidirectional Forwarding Detection (BFD) - changing authorization.
-- Bidirectional Forwarding Detection (BFD) - SHA1 authentication.
-- IPv6 Tests - baseline FIB operations, NS/RS exception handling.
-- SPAN Test - Switched Port Analyzer packet mirroring.
-- GRE Tests - GRE tunnel tests.
-- SNAT Test Cases - SNAT44 tests.
-- Deterministic NAT Test Cases - Carrier Grade NAT tests.
-- NAT64 Test Cases - NAT64 static and dynamic translation tests.
-- L2XC Multi-instance - L2 cross-connect multi-instance tests.
-- IPv4 Tests - baseline FIB tests.
-- IPv4 FIB CRUD - add/update/delete IPv4 routes.
-- IRB Tests - Integrated Routing and Bridging tests.
+- ARP - ARP, Proxy ARP.
 - ACL plugin - stateful and stateless security-groups access-control-lists.
-- MPLS Tests - MPLS baseline tests.
-- MPLS PIC edge convergence - prefix independent convergence tests for MPLS PE.
-- L2XC Tests - L2 cross-connect baseline tests incl. single- and dual-loop.
-- MFIB Unit Tests.
-- IP Multicast Tests - IPv4/IPv6 multicast replication, connected source check.
+- BFD IPv4 - Bidirectional Forwarding Detection - baseline, APIs, authorization, authentication.
+- BFD IPv6 - Bidirectional Forwarding Detection - baseline, APIs, authorization, authentication.
 - Classifier - classification with IP ACL, MAC ACL, IP PBR.
-- VXLAN Tests - baseline VXLAN tunneling.
-- VXLAN-GPE Test Cases - baseline VXLAN-GPE tunneling tests including multicast.
-- VTR Test Case - VLAN tag manipulation tests.
-- L2 FIB CRUD - add/update/delete L2 MAC entries.
-- L2BD Tests - L2 Bridge-Domain baseline tests incl. single- and dual-loop.
+- CRUD Loopback - create, read, update, delete Loopback interfaces.
+- Deterministic NAT - Carrier Grade NAT tests.
+- DHCP - DHCPv4 and DHCPv6 Proxy.
+- FIB - baseline and scale tests.
+- Flow-per-packet plugin - collect and report L2 and IP4 flow statistics.
 - Flowprobe tests.
-- GTPU Test Cases - baseline GTPU tests.
+- GRE - GRE IPv4/IPv6 tunnel, L2, VRF tests.
+- GTPU - baseline GTPU tests.
+- IP Multicast - IPv4/IPv6 multicast replication, connected source check.
+- IP4 VRF Multi-instance - create, read, update, delete and verify IPv4 VRFs.
+- IP6 VRF Multi-instance - create, read, update, delete and verify IPv6 VRFs.
+- IPv4 - baseline FIB tests.
+- IPv4 FIB CRUD - add/update/delete IPv4 routes.
+- IPv6 - baseline FIB operations, NS/RS exception handling.
+- IRB - Integrated Routing and Bridging tests.
+- L2 FIB CRUD - add/update/delete L2 MAC entries.
+- L2BD - L2 Bridge-Domain baseline tests incl. single- and dual-loop.
+- L2XC - L2 cross-connect baseline tests incl. single- and dual-loop.
+- L2XC Multi-instance - L2 cross-connect multi-instance tests.
+- LISP - basic LISP tests.
+- Load Balancer - IP4 GRE4, IP4 GRE6, IP6 GRE4, IP6 GRE6.
+- MACIP - ingress access control for IPv4, IPv6 with L2BDP and IP routing.
+- MFIB Unit.
+- MPLS - MPLS baseline tests.
+- MPLS PIC edge convergence - prefix independent convergence tests for MPLS PE.
+- NAT44 - NAT44 tests, IPFIX logging, VRF awareness.
+- NAT64 - NAT64 static and dynamic translation tests.
+- SPAN - Switched Port Analyzer packet mirroring.
+- SRv6 - Segment Routing IPv6 tests.
+- VTR Test Case - VLAN tag manipulation tests.
+- VXLAN - baseline VXLAN tunneling.
+- VXLAN-GPE - baseline VXLAN-GPE tunneling tests including multicast.
