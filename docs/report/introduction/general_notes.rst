@@ -15,32 +15,33 @@ FD.io CSIT project currently covers multiple FD.io system and sub-system
 testing areas and this is reflected in this report, where each testing area
 is listed separately, as follows:
 
-#. **VPP Performance Tests** - VPP performance tests are executed in physical
+#. **VPP - Performance** - VPP benchmarking tests are executed in physical
    FD.io testbeds, focusing on VPP network data plane performance at this stage,
    both for Phy-to-Phy (NIC-to-NIC) and Phy-to-VM-to-Phy (NIC-to-VM-to-NIC)
    forwarding topologies. Tested across a range of NICs, 10GE and 40GE
    interfaces, range of multi-thread and multi-core configurations. VPP
    application runs in host user-mode. TRex is used as a traffic generator.
 
-#. **Container memif connections** -  VPP memif virtual interface (shared memory
-   interface) tests to interconnect VPP instances. VPP vswitch instance runs in
-   bare-metal user-mode handling Intel x520 NIC 10GbE interfaces and connecting
-   over memif (Master side) virtual interfaces to more instances of VPP running
-   in LXC or in Docker Containers, both with memif virtual interfaces (Slave
-   side). Tested across a range of NICs, 10GE and 40GE interfaces, range of
-   multi-thread and multi-core configurations. VPP application runs in host
-   user-mode. TRex is used as a traffic generator.
+#. **LXC and Docker Containers VPP memif - Performance** - VPP memif
+   virtual interface tests interconnect multiple VPP instances running in
+   containers. VPP vswitch instance runs in bare-metal user-mode
+   handling Intel x520 NIC 10GbE interfaces and connecting over memif
+   (Master side) virtual interfaces to more instances of VPP running in
+   LXC or in Docker Containers, both with memif virtual interfaces (Slave
+   side). Tested across a range of multi-thread and multi-core
+   configurations. TRex is used as a traffic generator.
 
-#. **Container Orchestrated Performance Tests** - CSIT |release| introduced new
-   tests of Container topologies connected over the memif virtual interface
-   (shared memory interface). For these tests VPP vswitch instance runs in a
-   Docker Container handling Intel x520 NIC 10GbE interfaces and connecting over
-   memif (Master side) virtual interfaces to more instances of VPP running in
-   Docker Containers with memif virtual interfaces (Slave side). Tested across a
-   range of multi-thread and multi-core configurations. VPP application runs in
-   host user-mode. TRex is used as a traffic generator.
+#. **Container Topologies Orchestrated by K8s - Performance** - CSIT
+   |release| introduced new tests of Container topologies connected over
+   the memif virtual interface (shared memory interface). For these tests
+   VPP vswitch instance runs in a Docker Container handling Intel x520 NIC
+   10GbE interfaces and connecting over memif (Master side) virtual
+   interfaces to more instances of VPP running in Docker Containers with
+   memif virtual interfaces (Slave side). All containers are orchestrated
+   by Kubernetes, with Ligato for container networking. TRex is used as a
+   traffic generator.
 
-#. **DPDK Performance Tests** - VPP is using DPDK code to control and drive
+#. **DPDK Performance** - VPP is using DPDK code to control and drive
    the NICs and physical interfaces. Testpmd tests are used as a baseline to
    profile the DPDK sub-system of VPP. DPDK performance tests executed in
    physical FD.io testbeds, focusing on Testpmd/L3FWD data plane performance for
@@ -49,23 +50,23 @@ is listed separately, as follows:
    Testpmd/L3FWD application runs in host user-mode. TRex is used as a traffic
    generator.
 
-#. **VPP Functional Tests** - VPP functional tests are executed in virtual
+#. **Honeycomb Performance** - Honeycomb performance tests are executed in
+   physical FD.io testbeds, focusing on the performance of Honeycomb management
+   and programming functionality of VPP. Tests cover a range of CRUD operations
+   executed against VPP.
+
+#. **VPP Functional** - VPP functional tests are executed in virtual
    FD.io testbeds focusing on VPP packet processing functionality, including
    network data plane and in -line control plane. Tests cover vNIC-to-vNIC
    vNIC-to-VM-to-vNIC forwarding topologies. Scapy is used as a traffic
    generator.
 
-#. **Honeycomb Functional Tests** - Honeycomb functional tests are executed in
+#. **Honeycomb Functional** - Honeycomb functional tests are executed in
    virtual FD.io testbeds, focusing on Honeycomb management and programming
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
 
-#. **Honeycomb Performance Tests** - Honeycomb performance tests are executed in
-   physical FD.io testbeds, focusing on the performance of Honeycomb management
-   and programming functionality of VPP. Tests cover a range of CRUD operations
-   executed against VPP.
-
-#. **NSH_SFC Functional Tests** - NSH_SFC functional tests are executed in
+#. **NSH_SFC Functional** - NSH_SFC functional tests are executed in
    virtual FD.io testbeds focusing on NSH_SFC of VPP. Tests cover a range of
    CRUD operations executed against VPP.
 
