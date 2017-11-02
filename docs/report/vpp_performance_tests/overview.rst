@@ -110,7 +110,7 @@ configuration and setup of SUTs and DUTs testbeds please refer to
 
 Similar SUT compute node and DUT VPP settings can be arrived to in a
 standalone VPP setup by using a `vpp-config configuration tool
-<https://wiki.fd.io/view/VPP_Configuration_Tool>`_ developed within the
+<https://wiki.fd.io/view/VPP/Configuration_Tool>`_ developed within the
 VPP project using CSIT recommended settings and scripts.
 
 Performance Tests Coverage

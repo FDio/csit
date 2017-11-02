@@ -6,6 +6,11 @@ Changes in CSIT |release|
 
 #. Added VPP performance tests
 
+   - **L2BD MAC scale tests**
+
+     - VPP L2 Bridge-Domain with MAC learning and large size L2FIB (10k,
+       100k, 1M MACs), tested in NIC-to-NIC and VM vhost topologies.
+
    - **Linux Container VPP memif tests**
 
      - Tests with VPP in L2 Bridge-Domain configuration connecting over
@@ -31,7 +36,11 @@ Changes in CSIT |release|
      - MACIP input access-lists, single-thread single-core and m-thread
        m-core tests;
 
-     - Statistical analysis of repeatibility of results;
+#. Presentation and Analytics Layer
+
+     - New Presentation and Analytics Layer (PAL) for automated CSIT test
+       results analysis and presentation, including statistical analysis
+       of results repeatibility and test report auto-generation;
 
 Performance Improvements
 ------------------------
