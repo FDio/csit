@@ -165,8 +165,6 @@
     - 11
     - 13
     csit-ligato-perf-1710-all:
-    - 2
-    - 4
     - 5
     - 7
     - 8
@@ -175,6 +173,8 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
     csit-vpp-functional-1710-ubuntu1604-virl:
     - 126
     csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
@@ -399,7 +399,7 @@
   rows: "generated"
   data:
     csit-ligato-perf-1710-all:
-    - 12
+    - 17
   filter: "all"
   parameters:
   - "name"
@@ -597,7 +597,7 @@
   dir-tables: "{DIR[DTR,PERF,COT]}"
   data:
     csit-ligato-perf-1710-all:
-    - 12
+    - 17
   filter: "all"
   parameters:
   - "name"
@@ -5427,8 +5427,6 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 4
     - 5
     - 7
     - 8
@@ -5437,6 +5435,8 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5495,8 +5495,6 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 4
     - 5
     - 7
     - 8
@@ -5505,6 +5503,8 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5563,8 +5563,6 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-pdrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 4
     - 5
     - 7
     - 8
@@ -5573,6 +5571,8 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5631,8 +5631,6 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-pdrdisc"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 4
     - 5
     - 7
     - 8
@@ -5641,6 +5639,8 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
   filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
@@ -5835,8 +5835,6 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc-lat50"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 4
     - 5
     - 7
     - 8
@@ -5845,6 +5843,8 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
   filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
@@ -5901,8 +5901,6 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc-lat50"
   data:
     csit-ligato-perf-1710-all:
-    - 2
-    - 4
     - 5
     - 7
     - 8
@@ -5911,6 +5909,8 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
   filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
