@@ -104,9 +104,14 @@ much higher dependency on intensive memory operations and sensitivity to Linux
 kernel scheduler settings and behaviour, this estimation may not always yield
 good enough accuracy.
 
-For detailed :abbr:`LF (Linux Foundation)` FD.io test bed specification and
-physical topology please refer to `LF FD.io CSIT testbed wiki page
-<https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+For detailed FD.io CSIT testbed specification and topology, as well as
+configuration and setup of SUTs and DUTs testbeds please refer to
+:ref:`test_environment`.
+
+Similar SUT compute node and DUT VPP settings can be arrived to in a
+standalone VPP setup by using a `vpp-config configuration tool
+<https://wiki.fd.io/view/VPP_Configuration_Tool>`_ developed within the
+VPP project using CSIT recommended settings and scripts.
 
 Performance Tests Coverage
 --------------------------
