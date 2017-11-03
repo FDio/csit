@@ -5437,7 +5437,7 @@
     - 13
     - 16
     - 17
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -5505,7 +5505,7 @@
     - 13
     - 16
     - 17
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -5573,7 +5573,7 @@
     - 13
     - 16
     - 17
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -5641,7 +5641,7 @@
     - 13
     - 16
     - 17
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -5845,7 +5845,7 @@
     - 13
     - 16
     - 17
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
@@ -5911,7 +5911,7 @@
     - 13
     - 16
     - 17
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
