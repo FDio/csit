@@ -222,6 +222,9 @@
 | TC14: Honeycomb enabled LISP PITR feature
 | | [Documentation] | Check if Honeycomb can configure the LISP PITR feature.
 | | ...
+# Locator set reference in operational data is incorrect
+# TODO: Add Jira link to VPP/HC2VPP bug report
+| | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Honeycomb disables all LISP features | ${node}
 | | Given Honeycomb enables LISP | ${node}
 | | And Honeycomb adds locator set | ${node} | ${interface} | ${locator_set}

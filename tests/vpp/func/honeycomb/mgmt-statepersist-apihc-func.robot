@@ -52,7 +52,9 @@
 | | [Documentation] | Checks if Honeycomb reverts to default configuration when\
 | | ... | persistence files are damaged or invalid.
 | | ...
-| | [Tags] | HC_FUNC
+# VAT dump of TAP interface MAC addresses was changed
+# TODO: add Jira link to bug report or CSIT task
+| | [Tags] | HC_FUNC | EXPECTED_FAILING
 | | ...
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}

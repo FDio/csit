@@ -51,6 +51,9 @@
 | | [Documentation] | Check if Honeycomb sends an interface-deleted notification
 | | ... | when an interface is deleted.
 | | ...
+# VAT dump of TAP interface MAC addresses was changed
+# TODO: add Jira link to bug report or CSIT task
+| | [Tags] | EXPECTED_FAILING
 | | Given TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | And TAP Operational Data From VAT Should Be
