@@ -222,11 +222,11 @@
 | TC14: Honeycomb enabled LISP PITR feature
 | | [Documentation] | Check if Honeycomb can configure the LISP PITR feature.
 | | ...
+# HC2VPP-263 Locator set reference in operational data is incorrect
+| | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Honeycomb disables all LISP features | ${node}
 | | Given Honeycomb enables LISP | ${node}
 | | And Honeycomb adds locator set | ${node} | ${interface} | ${locator_set}
-| | Given Locator Set From Honeycomb Should Be
-| | ... | ${node} | ${interface} | ${locator_set}
 | | When Honeycomb enables LISP PITR feature | ${node} | ${locator_set}
 | | Then PITR config from Honeycomb should be | ${node} | ${locator_set}
 | | And PITR config from VAT should be | ${node} | ${locator_set}

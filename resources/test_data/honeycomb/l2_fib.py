@@ -81,7 +81,7 @@ def get_variables(node, interface, interface2):
 
         # Expected VAT data:
         'l2_fib_forward_vat': {
-            "mac": int("".join(notstatic.split(':')), 16),
+            "mac": [int(x, 16) for x in notstatic.split(":")],
             "sw_if_index": sw_if_index,
             "static_mac": 0,
             "filter_mac": 0,
@@ -108,7 +108,7 @@ def get_variables(node, interface, interface2):
 
         # Expected VAT data:
         'l2_fib_static_forward_vat': {
-            "mac": int("".join(static.split(':')), 16),
+            "mac": [int(x, 16) for x in static.split(":")],
             "sw_if_index": sw_if_index,
             "static_mac": 1,
             "filter_mac": 0,
@@ -133,7 +133,7 @@ def get_variables(node, interface, interface2):
 
         # Expected VAT data:
         'l2_fib_filter_vat': {
-            "mac": int("".join(filtered.split(':')), 16),
+            "mac": [int(x, 16) for x in filtered.split(":")],
             "static_mac": 1,
             "filter_mac": 1,
             "bvi_mac": 0

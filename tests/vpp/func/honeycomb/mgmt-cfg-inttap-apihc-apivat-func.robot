@@ -27,7 +27,9 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/tap.robot
 | ...
-| Force Tags | HC_FUNC
+# VAT dump of TAP interface MAC addresses was changed
+# TODO: add Jira link to bug report or CSIT task
+| Force Tags | HC_FUNC | EXPECTED_FAILING
 | ...
 | Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
 | ...
