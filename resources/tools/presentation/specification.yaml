@@ -153,6 +153,7 @@
     - 18
     - 19
     - 20
+    - 22
     csit-dpdk-perf-1710-all:
     - 2
     - 3
@@ -276,7 +277,7 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 19
+    - 22
   filter: "all"
   parameters:
   - "name"
@@ -300,7 +301,7 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 19
+    - 22
   filter: "all"
   parameters:
   - "parent"
@@ -323,7 +324,7 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 19
+    - 22
   filter: "all"
   parameters:
   - "parent"
@@ -502,7 +503,7 @@
   dir-tables: "{DIR[DTR,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 19
+    - 22
   filter: "all"
   parameters:
   - "name"
@@ -521,7 +522,7 @@
   dir-tables: "{DIR[DTC,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 19
+    - 22
   filter: "all"
   parameters:
   - "name"
@@ -540,7 +541,7 @@
   dir-tables: "{DIR[DTO,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 19
+    - 22
   filter: "all"
   parameters:
   - "name"
