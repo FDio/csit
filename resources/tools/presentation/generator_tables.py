@@ -108,6 +108,29 @@ def table_details(table, input_data):
     logging.info("  Done.")
 
 
+def table_merged_details(table, input_data):
+    """Generate the table(s) with algorithm: table_detailed_test_results
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    data = input_data.filter_data(table)
+
+    # Merge the data:
+    data = input_data.merge_data(data)
+
+    for test_ID, test_data in data.iteritems():
+        print(test_ID)
+
+
 def table_performance_improvements(table, input_data):
     """Generate the table(s) with algorithm: table_performance_improvements
     specified in the specification file.
