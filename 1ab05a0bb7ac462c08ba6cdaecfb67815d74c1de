@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c852c7e4_2b55ac82",
+        "filename": "resources/test_data/ikev2/ikev2_variables.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1044
+      },
+      "writtenOn": "2017-11-07T09:16:50Z",
+      "side": 1,
+      "message": "Need to be changed to variable, it\u0027s hard coded(local testing). Used tests/vpp/func/ikev2/ikev2.robot line 143",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "1ab05a0bb7ac462c08ba6cdaecfb67815d74c1de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "831b3449_d3dd1788",
+        "filename": "tests/vpp/func/ikev2/ikev2.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1044
+      },
+      "writtenOn": "2017-11-07T09:16:50Z",
+      "side": 1,
+      "message": "Need to be changed to variable, it\u0027s hard coded(local testing).",
+      "range": {
+        "startLine": 144,
+        "startChar": 42,
+        "endLine": 144,
+        "endChar": 47
+      },
+      "revId": "1ab05a0bb7ac462c08ba6cdaecfb67815d74c1de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "281e04f7_c493e6ce",
+        "filename": "tests/vpp/func/ikev2/ikev2.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1044
+      },
+      "writtenOn": "2017-11-07T09:16:50Z",
+      "side": 1,
+      "message": "Need to be changed to variable, it\u0027s hard coded(local testing).",
+      "range": {
+        "startLine": 145,
+        "startChar": 68,
+        "endLine": 145,
+        "endChar": 73
+      },
+      "revId": "1ab05a0bb7ac462c08ba6cdaecfb67815d74c1de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
