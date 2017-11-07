@@ -19,6 +19,16 @@ import logging
 
 from utils import get_files, get_rst_title_char
 
+RST_INCLUDE_TABLE = ("\n.. only:: html\n\n"
+                     "    .. csv-table::\n"
+                     "        :header-rows: 1\n"
+                     "        :widths: auto\n"
+                     "        :align: center\n"
+                     "        :file: {file_html}\n"
+                     "\n.. only:: latex\n\n"
+                     "\n  .. raw:: latex\n\n"
+                     "      \csvautolongtable{{{file_latex}}}\n\n")
+
 
 def generate_files(spec, data):
     """Generate all files specified in the specification file.
@@ -39,6 +49,23 @@ def generate_files(spec, data):
     logging.info("Done.")
 
 
+def _tests_in_suite(suite_name, tests):
+    """Check if the suite includes tests.
+
+    :param suite_name: Name of the suite to be checked.
+    :param tests: Set of tests
+    :type suite_name: str
+    :type tests: pandas.Series
+    :returns: True if the suite includes tests.
+    :rtype: bool
+    """
+
+    for key in tests.keys():
+        if suite_name == tests[key]["parent"]:
+            return True
+    return False
+
+
 def file_test_results(file_spec, input_data):
     """Generate the file(s) with algorithm: file_test_results specified in the
     specification file.
@@ -49,35 +76,9 @@ def file_test_results(file_spec, input_data):
     :type input_data: InputData
     """
 
-    def tests_in_suite(suite_name, tests):
-        """Check if the suite includes tests.
-
-        :param suite_name: Name of the suite to be checked.
-        :param tests: Set of tests
-        :type suite_name: str
-        :type tests: pandas.Series
-        :returns: True if the suite includes tests.
-        :rtype: bool
-        """
-
-        for key in tests.keys():
-            if suite_name == tests[key]["parent"]:
-                return True
-        return False
-
     file_name = "{0}{1}".format(file_spec["output-file"],
                                 file_spec["output-file-ext"])
     rst_header = file_spec["file-header"]
-
-    rst_include_table = ("\n.. only:: html\n\n"
-                         "    .. csv-table::\n"
-                         "        :header-rows: 1\n"
-                         "        :widths: auto\n"
-                         "        :align: center\n"
-                         "        :file: {file_html}\n"
-                         "\n.. only:: latex\n\n"
-                         "\n  .. raw:: latex\n\n"
-                         "      \csvautolongtable{{{file_latex}}}\n\n")
 
     logging.info("  Generating the file {0} ...".format(file_name))
 
@@ -105,11 +106,65 @@ def file_test_results(file_spec, input_data):
                             len(suite_name)))
             file_handler.write("\n{0}\n".format(
                 suite["doc"].replace('|br|', '\n\n -')))
-            if tests_in_suite(suite_name, input_data.tests(job, build)):
+            if _tests_in_suite(suite_name, input_data.tests(job, build)):
                 for tbl_file in table_lst:
                     if suite_name in tbl_file:
                         file_handler.write(
-                            rst_include_table.format(
+                            RST_INCLUDE_TABLE.format(
+                                file_latex=tbl_file,
+                                file_html=tbl_file.split("/")[-1]))
+
+    logging.info("  Done.")
+
+
+def file_merged_test_results(file_spec, input_data):
+    """Generate the file(s) with algorithm: file_test_results specified in the
+    specification file.
+
+    :param file_spec: File to generate.
+    :param input_data: Data to process.
+    :type file_spec: pandas.Series
+    :type input_data: InputData
+    """
+
+    file_name = "{0}{1}".format(file_spec["output-file"],
+                                file_spec["output-file-ext"])
+    rst_header = file_spec["file-header"]
+
+    logging.info("  Generating the file {0} ...".format(file_name))
+
+    table_lst = get_files(file_spec["dir-tables"], ".csv", full_path=True)
+    if len(table_lst) == 0:
+        logging.error("  No tables to include in '{0}'. Skipping.".
+                      format(file_spec["dir-tables"]))
+        return None
+
+    logging.info("    Writing file '{0}'".format(file_name))
+
+    tests = input_data.filter_data(file_spec)
+    tests = input_data.merge_data(tests)
+
+    suites = input_data.filter_data(file_spec, data_set="suites")
+    suites = input_data.merge_data(suites)
+    suites.sort_index(inplace=True)
+
+    with open(file_name, "w") as file_handler:
+        file_handler.write(rst_header)
+        for suite_longname, suite in suites.iteritems():
+            if len(suite_longname.split(".")) <= file_spec["data-start-level"]:
+                continue
+            suite_name = suite["name"]
+            file_handler.write("\n{0}\n{1}\n".format(
+                suite_name, get_rst_title_char(
+                    suite["level"] - file_spec["data-start-level"] - 1) *
+                            len(suite_name)))
+            file_handler.write("\n{0}\n".format(
+                suite["doc"].replace('|br|', '\n\n -')))
+            if _tests_in_suite(suite_name, tests):
+                for tbl_file in table_lst:
+                    if suite_name in tbl_file:
+                        file_handler.write(
+                            RST_INCLUDE_TABLE.format(
                                 file_latex=tbl_file,
                                 file_html=tbl_file.split("/")[-1]))
 

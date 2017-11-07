@@ -108,6 +108,66 @@ def table_details(table, input_data):
     logging.info("  Done.")
 
 
+def table_merged_details(table, input_data):
+    """Generate the table(s) with algorithm: table_detailed_test_results
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    data = input_data.filter_data(table)
+    data = input_data.merge_data(data)
+
+    suites = input_data.filter_data(table, data_set="suites")
+    suites = input_data.merge_data(suites)
+
+    # Prepare the header of the tables
+    header = list()
+    for column in table["columns"]:
+        header.append('"{0}"'.format(str(column["title"]).replace('"', '""')))
+
+    for _, suite in suites.iteritems():
+        # Generate data
+        suite_name = suite["name"]
+        table_lst = list()
+        for test in data.keys():
+            if data[test]["parent"] in suite_name:
+                row_lst = list()
+                for column in table["columns"]:
+                    try:
+                        col_data = str(data[test][column["data"].
+                                       split(" ")[1]]).replace('"', '""')
+                        if column["data"].split(" ")[1] in ("vat-history",
+                                                            "show-run"):
+                            col_data = replace(col_data, " |br| ", "",
+                                               maxreplace=1)
+                            col_data = " |prein| {0} |preout| ".\
+                                format(col_data[:-5])
+                        row_lst.append('"{0}"'.format(col_data))
+                    except KeyError:
+                        row_lst.append("No data")
+                table_lst.append(row_lst)
+
+        # Write the data to file
+        if table_lst:
+            file_name = "{0}_{1}{2}".format(table["output-file"], suite_name,
+                                            table["output-file-ext"])
+            logging.info("      Writing file: '{}'".format(file_name))
+            with open(file_name, "w") as file_handler:
+                file_handler.write(",".join(header) + "\n")
+                for item in table_lst:
+                    file_handler.write(",".join(item) + "\n")
+
+    logging.info("  Done.")
+
+
 def table_performance_improvements(table, input_data):
     """Generate the table(s) with algorithm: table_performance_improvements
     specified in the specification file.
