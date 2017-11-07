@@ -22,6 +22,30 @@
       "revId": "34e82b4df14ec13e84a0254ccd3dc1473568cd55",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5009a962_78bfeb7c",
+        "filename": "resources/traffic_scripts/honeycomb/bgp_open.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-11-07T14:56:46Z",
+      "side": 1,
+      "message": "Added documentation.",
+      "parentUuid": "ad1d8f03_d81e1221",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 10
+      },
+      "revId": "34e82b4df14ec13e84a0254ccd3dc1473568cd55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
