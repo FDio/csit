@@ -222,10 +222,10 @@
     data: "data csit-vpp-perf-1707-all mean"
   -
     title: "17.10 mean [Mpps]"
-    data: "data csit-vpp-perf-1710-all mean"
+    data: "data csit-vpp-perf-1710-all csit-ligato-perf-1710-all mean"
   -
     title: "17.10 stdev [Mpps]"
-    data: "data csit-vpp-perf-1710-all stdev"
+    data: "data csit-vpp-perf-1710-all csit-ligato-perf-1710-all stdev"
   -
     title: "17.07 to 17.10 change [%]"
     data: "operation relative_change 5 6"
@@ -253,6 +253,17 @@
     - 18
     - 19
     - 20
+    csit-ligato-perf-1710-all:
+    - 5
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 16
+    - 17
   filter: "template"
   parameters:
   - "throughput"
