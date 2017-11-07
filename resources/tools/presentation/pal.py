@@ -99,9 +99,9 @@ def main():
     data.read_data()
 
     generate_tables(spec, data)
-    generate_plots(spec, data)
-    generate_files(spec, data)
-    generate_report(args.release, spec)
+    # generate_plots(spec, data)
+    # generate_files(spec, data)
+    # generate_report(args.release, spec)
 
     logging.info("Successfully finished.")
 

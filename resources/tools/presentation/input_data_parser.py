@@ -858,3 +858,23 @@ class InputData(object):
             logging.error("   The filter '{0}' is not correct. Check if all "
                           "tags are enclosed by apostrophes.".format(cond))
             return None
+
+    @staticmethod
+    def merge_data(data):
+        """
+
+        :param data: Data to merge.
+        :type data: pandas.Series
+        :returns: Merged data.
+        :rtype: pandas.Series
+        """
+
+        logging.info("    Merging data ...")
+
+        merged_data = pd.Series()
+        for _, builds in data.iteritems():
+            for _, item in builds.iteritems():
+                for test_ID, test_data in item.iteritems():
+                    merged_data[test_ID] = test_data
+
+        return merged_data
