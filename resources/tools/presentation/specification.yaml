@@ -153,7 +153,6 @@
     - 18
     - 19
     - 20
-    - 22
     csit-dpdk-perf-1710-all:
     - 2
     - 3
@@ -261,7 +260,7 @@
 -
   type: "table"
   title: "Detailed Test Results - VPP Performance Results"
-  algorithm: "table_details"
+  algorithm: "table_merged_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
   columns:
@@ -277,7 +276,8 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 22
+    - 20
+#    - 23
   filter: "all"
   parameters:
   - "name"
@@ -288,7 +288,7 @@
 -
   type: "table"
   title: "Test configuration - VPP Performance Test Configs"
-  algorithm: "table_details"
+  algorithm: "table_merged_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTC,PERF,VPP]}/vpp_test_configuration"
   columns:
@@ -301,7 +301,8 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 22
+    - 20
+#    - 23
   filter: "all"
   parameters:
   - "parent"
@@ -311,7 +312,7 @@
 -
   type: "table"
   title: "Test Operational Data - VPP Performance Operational Data"
-  algorithm: "table_details"
+  algorithm: "table_merged_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTO,PERF,VPP]}/vpp_test_operational"
   columns:
@@ -324,7 +325,8 @@
   rows: "generated"
   data:
     csit-vpp-perf-1710-all:
-    - 22
+    - 20
+#    - 23
   filter: "all"
   parameters:
   - "parent"
@@ -496,57 +498,63 @@
 -
   type: "file"
   title: "VPP Performance Results"
-  algorithm: "file_test_results"
+  algorithm: "file_merged_test_results"
   output-file-ext: ".rst"
   output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 22
+    - 20
+#    - 23
   filter: "all"
   parameters:
   - "name"
   - "doc"
   - "level"
+  - "parent"
   data-start-level: 2  # 0, 1, 2, ...
   chapters-start-level: 2  # 0, 1, 2, ...
 
 -
   type: "file"
   title: "VPP Performance Configuration"
-  algorithm: "file_test_results"
+  algorithm: "file_merged_test_results"
   output-file-ext: ".rst"
   output-file: "{DIR[DTC,PERF,VPP]}/vpp_performance_configuration"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 22
+    - 20
+#    - 23
   filter: "all"
   parameters:
   - "name"
   - "doc"
   - "level"
+  - "parent"
   data-start-level: 2  # 0, 1, 2, ...
   chapters-start-level: 2  # 0, 1, 2, ...
 
 -
   type: "file"
   title: "VPP Performance Operational Data"
-  algorithm: "file_test_results"
+  algorithm: "file_merged_test_results"
   output-file-ext: ".rst"
   output-file: "{DIR[DTO,PERF,VPP]}/vpp_performance_operational_data"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP]}"
   data:
     csit-vpp-perf-1710-all:
-    - 22
+    - 20
+#    - 23
   filter: "all"
   parameters:
   - "name"
   - "doc"
   - "level"
+  - "parent"
   data-start-level: 2  # 0, 1, 2, ...
   chapters-start-level: 2  # 0, 1, 2, ...
 
