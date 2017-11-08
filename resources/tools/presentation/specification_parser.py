@@ -486,7 +486,7 @@ class Specification(object):
                 pass
 
             # add data sets to the elements:
-            if isinstance(element["data"], str):
+            if isinstance(element.get("data", None), str):
                 data_set = element["data"]
                 try:
                     element["data"] = self.configuration["data-sets"][data_set]
@@ -515,7 +515,7 @@ class Specification(object):
                     element["layout"].pop("layout")
                     try:
                         for key, val in (self.configuration["plot-layouts"]
-                                         [layout]):
+                                         [layout].items()):
                             element["layout"][key] = val
                     except KeyError:
                         raise PresentationError("Layout {0} is not defined in "
