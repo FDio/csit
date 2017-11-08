@@ -124,7 +124,7 @@
     vpp-perf-results:
       csit-vpp-perf-1710-all:
       - 20
-#      - 23
+      - 23
     vpp-func-results:
       csit-vpp-functional-1710-ubuntu1604-virl:
       - 126
@@ -327,6 +327,7 @@
     - 18
     - 19
     - 20
+    - 23
     csit-dpdk-perf-1710-all:
     - 2
     - 3
