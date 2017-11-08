@@ -302,7 +302,14 @@ class HoneycombUtil(object):
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
         path = base_path + path
         status_code, resp = HTTPRequest.get(node, path)
-        return status_code, loads(resp)
+
+        try:
+            data = loads(resp)
+        except ValueError:
+            logger.debug("Failed to deserialize JSON data.")
+            data = None
+
+        return status_code, data
 
     @staticmethod
     def put_honeycomb_data(node, url_file, data, path="",
