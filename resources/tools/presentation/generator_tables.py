@@ -124,6 +124,7 @@ def table_merged_details(table, input_data):
     # Transform the data
     data = input_data.filter_data(table)
     data = input_data.merge_data(data)
+    data.sort_index(inplace=True)
 
     suites = input_data.filter_data(table, data_set="suites")
     suites = input_data.merge_data(suites)
