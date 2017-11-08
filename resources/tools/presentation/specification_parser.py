@@ -46,6 +46,7 @@ class Specification(object):
         self._cfg_yaml = None
 
         self._specification = {"environment": dict(),
+                               "configuration": dict(),
                                "debug": dict(),
                                "static": dict(),
                                "input": dict(),
@@ -71,6 +72,15 @@ class Specification(object):
         :rtype: dict
         """
         return self._specification["environment"]
+
+    @property
+    def configuration(self):
+        """Getter - configuration.
+
+        :returns: Configuration of PAL.
+        :rtype: dict
+        """
+        return self._specification["configuration"]
 
     @property
     def static(self):
@@ -330,6 +340,25 @@ class Specification(object):
 
         logging.info("Done.")
 
+    def _parse_configuration(self):
+        """Parse configuration of PAL in the specification YAML file.
+        """
+
+        logging.info("Parsing specification file: configuration ...")
+
+        idx = self._get_type_index("configuration")
+        if idx is None:
+            logging.warning("No configuration information in the specification "
+                            "file.")
+            return None
+
+        try:
+            self._specification["configuration"] = self._cfg_yaml[idx]
+        except KeyError:
+            raise PresentationError("No configuration defined.")
+
+        logging.info("Done.")
+
     def _parse_debug(self):
         """Parse debug specification in the specification YAML file.
         """
@@ -455,6 +484,17 @@ class Specification(object):
                     self._specification["environment"]["paths"])
             except KeyError:
                 pass
+
+            # add data sets to the elements:
+            if isinstance(element["data"], str):
+                data_set = element["data"]
+                try:
+                    element["data"] = self.configuration["data-sets"][data_set]
+                except KeyError:
+                    raise PresentationError("Data set {0} is not defined in "
+                                            "the configuration section.".
+                                            format(data_set))
+
             if element["type"] == "table":
                 logging.info("  {:3d} Processing a table ...".format(count))
                 try:
@@ -465,10 +505,25 @@ class Specification(object):
                     pass
                 self._specification["tables"].append(element)
                 count += 1
+
             elif element["type"] == "plot":
                 logging.info("  {:3d} Processing a plot ...".format(count))
+
+                # Add layout to the plots:
+                layout = element["layout"].get("layout", None)
+                if layout is not None:
+                    element["layout"].pop("layout")
+                    try:
+                        for key, val in (self.configuration["plot-layouts"]
+                                         [layout]):
+                            element["layout"][key] = val
+                    except KeyError:
+                        raise PresentationError("Layout {0} is not defined in "
+                                                "the configuration section.".
+                                                format(layout))
                 self._specification["plots"].append(element)
                 count += 1
+
             elif element["type"] == "file":
                 logging.info("  {:3d} Processing a file ...".format(count))
                 try:
@@ -496,12 +551,16 @@ class Specification(object):
                                     details=str(err))
 
         self._parse_env()
+        self._parse_configuration()
         self._parse_debug()
         if not self.debug:
             self._parse_input()
         self._parse_output()
         self._parse_static()
         self._parse_elements()
+        print(self.tables)
+        print(self.files)
+        print(self.plots)
 
         logging.debug("Specification: \n{}".
                       format(pformat(self._specification)))
