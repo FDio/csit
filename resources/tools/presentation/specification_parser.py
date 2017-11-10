@@ -558,9 +558,6 @@ class Specification(object):
         self._parse_output()
         self._parse_static()
         self._parse_elements()
-        print(self.tables)
-        print(self.files)
-        print(self.plots)
 
         logging.debug("Specification: \n{}".
                       format(pformat(self._specification)))
