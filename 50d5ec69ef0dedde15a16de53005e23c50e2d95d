@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d651735_54397a5e",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-11-10T07:40:41Z",
+      "side": 1,
+      "message": "It was used there just for debugging issue with memif data dump - thanks for catching this residue.",
+      "parentUuid": "02cab27a_09655248",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "50d5ec69ef0dedde15a16de53005e23c50e2d95d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0656b77_1cd8000f",
         "filename": "resources/libraries/python/Memif.py",
         "patchSetId": 22
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-10T07:23:36Z",
       "side": 1,
       "message": "Please avoid dependency on logger. If it is usefull lets implement logging in VatTerminal so in future we will avoid duplicit logging.",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 64
+      },
+      "revId": "50d5ec69ef0dedde15a16de53005e23c50e2d95d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80f8ebc4_7c974cd9",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-11-10T07:40:41Z",
+      "side": 1,
+      "message": "It was used there just for debugging issue with memif data dump - thanks for catching this residue.",
+      "parentUuid": "b0656b77_1cd8000f",
       "range": {
         "startLine": 155,
         "startChar": 0,
