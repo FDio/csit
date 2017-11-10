@@ -184,7 +184,7 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.29"
+            trex_path = "/opt/trex-core-2.34"
 
             ssh = SSH()
             ssh.connect(tg_node)
@@ -229,7 +229,7 @@ class TrafficGenerator(object):
             if1_adj_mac_hex = "0x"+if1_adj_mac.replace(":", ",0x")
             if2_adj_mac_hex = "0x"+if2_adj_mac.replace(":", ",0x")
 
-            (ret, stdout, stderr) = ssh.exec_command(
+            (ret, _, _) = ssh.exec_command(
                 "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                 "- port_limit      : 2\n"
                 "  version         : 2\n"
@@ -244,8 +244,6 @@ class TrafficGenerator(object):
                         if1_adj_mac_hex, if1_mac_hex,
                         if2_adj_mac_hex, if2_mac_hex))
             if int(ret) != 0:
-                logger.error("failed to create t-rex config: {}"\
-                .format(stdout + stderr))
                 raise RuntimeError('trex config generation error')
 
             max_startup_retries = 3
@@ -255,20 +253,20 @@ class TrafficGenerator(object):
                     "sh -c 'pgrep t-rex && sudo pkill t-rex && sleep 3'")
 
                 # configure T-rex
-                (ret, stdout, stderr) = ssh.exec_command(
+                (ret, _, _) = ssh.exec_command(
                     "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'"\
                     .format(trex_path))
                 if int(ret) != 0:
-                    logger.error('trex-cfg failed: {0}'.format(stdout + stderr))
                     raise RuntimeError('trex-cfg failed')
 
                 # start T-rex
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'cd {0}/scripts/ && "
-                    "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
-                    "> /dev/null"\
+                    "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log "
+                    "2>&1 &' > /dev/null"\
                     .format(trex_path))
                 if int(ret) != 0:
+                    ssh.exec_command("sh -c 'cat /tmp/trex.log'")
                     raise RuntimeError('t-rex-64 startup failed')
 
                 # get T-rex server info
