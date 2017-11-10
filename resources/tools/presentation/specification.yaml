@@ -430,7 +430,7 @@
   rows: "generated"
   data:
     "vpp-perf-results"
-  filter: "all"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
   - "parent"
@@ -453,7 +453,7 @@
   rows: "generated"
   data:
     "vpp-perf-results"
-  filter: "all"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
   - "name"
@@ -475,7 +475,7 @@
   rows: "generated"
   data:
     "vpp-perf-results"
-  filter: "all"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
   - "name"
@@ -647,7 +647,7 @@
   dir-tables: "{DIR[DTR,PERF,VPP]}"
   data:
     "vpp-perf-results"
-  filter: "all"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
   - "doc"
@@ -666,7 +666,7 @@
   dir-tables: "{DIR[DTC,PERF,VPP]}"
   data:
     "vpp-perf-results"
-  filter: "all"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
   - "doc"
@@ -685,7 +685,7 @@
   dir-tables: "{DIR[DTO,PERF,VPP]}"
   data:
     "vpp-perf-results"
-  filter: "all"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
   - "doc"
