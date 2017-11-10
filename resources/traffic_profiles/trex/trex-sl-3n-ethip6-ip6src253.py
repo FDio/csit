@@ -73,8 +73,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                                        size=8, op="inc"),
                           STLVmWrFlowVar(fv_name="ipv6_src",
                                          pkt_offset="IPv6.src",
-                                         offset_fixup=8)],
-                         split_by_field="ipv6_src")
+                                         offset_fixup=8)])
         # Direction 1 --> 0
         vm2 = STLScVmRaw([STLVmFlowVar(name="ipv6_src",
                                        min_value=base_p2,
@@ -82,8 +81,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                                        size=8, op="inc"),
                           STLVmWrFlowVar(fv_name="ipv6_src",
                                          pkt_offset="IPv6.src",
-                                         offset_fixup=8)],
-                         split_by_field="ipv6_src")
+                                         offset_fixup=8)])
 
         return base_pkt_a, base_pkt_b, vm1, vm2
 
