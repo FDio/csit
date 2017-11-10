@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TREX_VERSION="2.29"
+TREX_VERSION="2.31"
 
 TREX_DOWNLOAD_REPO="https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 TREX_DOWNLOAD_PACKAGE="v${TREX_VERSION}.zip"
@@ -34,4 +34,3 @@ test $? -eq 0 || exit 1
 
 cd ${TREX_INSTALL_DIR}/linux_dpdk/ && ./b configure && ./b build || exit 1
 cd ${TREX_INSTALL_DIR}/scripts/ko/src && make && make install || exit 1
-

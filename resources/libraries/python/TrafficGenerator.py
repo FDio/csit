@@ -265,8 +265,7 @@ class TrafficGenerator(object):
                 # start T-rex
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'cd {0}/scripts/ && "
-                    "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
-                    "> /dev/null"\
+                    "sudo nohup ./t-rex-64 -i -c 7 --iom 0 &>/tmp/trex.log"
                     .format(trex_path))
                 if int(ret) != 0:
                     raise RuntimeError('t-rex-64 startup failed')
@@ -375,6 +374,9 @@ class TrafficGenerator(object):
             timeout=int(duration) + 60)
 
         if int(ret) != 0:
+            (_, out, err) = ssh.exec_command("cat /tmp/trex.log")
+            logger.trace(out)
+            logger.trace(err)
             raise RuntimeError('T-rex stateless runtime error')
         elif async_call:
             #no result

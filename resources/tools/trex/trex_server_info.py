@@ -28,7 +28,7 @@ Functionality:
 
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.29/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.31/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -71,6 +71,7 @@ def main():
     """Main function."""
 
     get_server_system_info()
+
 
 if __name__ == "__main__":
     main()
