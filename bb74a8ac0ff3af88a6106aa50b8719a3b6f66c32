@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c76bbb38_019bba92",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-11-10T08:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cc894b0_2d44ba13",
+      "range": {
+        "startLine": 185,
+        "startChar": 9,
+        "endLine": 185,
+        "endChar": 15
+      },
+      "revId": "bb74a8ac0ff3af88a6106aa50b8719a3b6f66c32",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ffa484a_c92a6652",
         "filename": "resources/libraries/python/VhostUser.py",
         "patchSetId": 23
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-10T08:20:07Z",
       "side": 1,
       "message": "returns",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "bb74a8ac0ff3af88a6106aa50b8719a3b6f66c32",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53e032d9_3309fb43",
+        "filename": "resources/libraries/python/VhostUser.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-11-10T08:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ffa484a_c92a6652",
       "range": {
         "startLine": 32,
         "startChar": 9,
