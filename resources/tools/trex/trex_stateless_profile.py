@@ -22,7 +22,7 @@ import sys
 import argparse
 import json
 
-sys.path.insert(0, "/opt/trex-core-2.29/scripts/automation/"
+sys.path.insert(0, "/opt/trex-core-2.34/scripts/automation/"
                    "trex_control_plane/stl/")
 
 from trex_stl_lib.api import *
@@ -109,8 +109,8 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
         print("### Profile file:\n{}".format(profile_file))
         profile = STLProfile.load(profile_file, direction=0, port_id=0,
                                   framesize=framesize)
-        print("\n### Profiles ###\n")
-        print(profile.dump_to_yaml())
+        #print("\n### Profiles ###\n")
+        #print(profile.dump_to_yaml())
         streams = profile.get_streams()
     except STLError:
         print("Error while loading profile '{0}'\n".format(profile_file))
