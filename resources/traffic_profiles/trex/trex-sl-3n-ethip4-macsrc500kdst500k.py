@@ -105,8 +105,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                                        max_value=self.p1_dst_end_ip,
                                        size=4, op="inc"),
                           STLVmWrFlowVar(fv_name="ip_dst", pkt_offset="IP.dst"),
-                          STLVmFixIpv4(offset="IP")],
-                         split_by_field="dst")
+                          STLVmFixIpv4(offset="IP")])
         # Direction 1 --> 0
         vm2 = STLScVmRaw([STLVmFlowVar(name="mac_src",
                                        min_value=0,
@@ -128,8 +127,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                                        max_value=self.p2_dst_end_ip,
                                        size=4, op="inc"),
                           STLVmWrFlowVar(fv_name="ip_dst", pkt_offset="IP.dst"),
-                          STLVmFixIpv4(offset="IP")],
-                         split_by_field="dst")
+                          STLVmFixIpv4(offset="IP")])
 
         return base_pkt_a, base_pkt_b, vm1, vm2
 
