@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/vm/qemu.robot
+| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Variables | resources/libraries/python/topology.py
 | Variables | resources/libraries/python/VatHistory.py
 | Library | resources.libraries.python.topology.Topology
@@ -26,6 +27,7 @@
 | Library | resources.libraries.python.VppConfigGenerator
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
+| Library | resources.libraries.python.Trace
 | Library | Collections
 
 *** Keywords ***
@@ -379,6 +381,27 @@
 | | Tear down functional test
 | | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
 | | Clean Up Namespaces | ${nodes['DUT1']}
+
+| Tear down FDS functional test
+| | [Documentation] | Common test teardown for FDS functional tests.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut1_node - Node Nr.1 where to clean qemu. Type: dictionary
+| | ... | - qemu_node1 - VM Nr.1 node info dictionary. Type: string
+| | ... | - dut2_node - Node Nr.2 where to clean qemu. Type: dictionary
+| | ... | - qemu_node2 - VM Nr.2 node info dictionary. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down FDS functional test \| ${dut1_node} \| ${qemu_node1}\
+| | ... | \| ${dut2_node} \| ${qemu_node2} \|
+| | ...
+| | [Arguments] | ${dut1_node} | ${qemu_node1} | ${dut2_node}
+| | ... | ${qemu_node2}
+| | ...
+| | Tear down functional test
+| | Tear down QEMU | ${dut1_node} | ${qemu_node1} | qemu_node1
+| | Tear down QEMU | ${dut2_node} | ${qemu_node2} | qemu_node2
 
 | Stop VPP Service on DUT
 | | [Documentation] | Stop the VPP service on the specified node.
