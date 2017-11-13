@@ -31,7 +31,8 @@
 | ... | Tear Down Honeycomb Functional Test Suite | ${node} | AND
 | ... | Disable Honeycomb Feature | ${node} | BGP
 | ...
-| Force Tags | HC_FUNC
+# HONEYCOMB-409: BGP configuration via ODL is currently not fully supported
+| Force Tags | HC_FUNC | HC_REST_ONLY
 | ...
 | Documentation | *Honeycomb BGP management test suite.*
 
