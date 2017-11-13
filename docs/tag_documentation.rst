@@ -546,6 +546,10 @@ Honeycomb tags
 
     Honeycomb functional test cases.
 
+.. topic:: HC_NSH
+
+    Honeycomb NSH test cases.
+
 .. topic:: HC_PERSIST
 
     Honeycomb persistence test cases.
