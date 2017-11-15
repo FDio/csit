@@ -2,12 +2,17 @@
  - install virtualenv
  - generate environment using virtualenv:
     # cd $ROOT
-    # virtualenv --system-site-packages env
+    # virtualenv env
     # source env/bin/activate
  - install python requirements for this project by executing:
     # pip install -r requirements.txt
  - make sure user mentioned in topology.py has NOPASSWD sudo access to
     vpp_api_test
+
+Note:
+You can alternatively create the virtualenv with the flag --system-site-packages
+It give access to the global site-packages dir to the virtual environment, which
+is faster, but you may end up with some conflicts.
 
 
  Done.
@@ -16,7 +21,7 @@
 export PYTHONPATH=.
 
 # create topology, edit ip addresses
-cp topologies/available/topology.yaml.example topologies/available/topology.yaml
+cp topologies/available/3_node_hw_topo1.yaml.example topologies/available/topology.yaml
 ln -s ../available/topology.yaml topologies/enabled/topology.yaml
 
 pybot -L TRACE -v TOPOLOGY_PATH:topologies/enabled/topology.yaml tests
