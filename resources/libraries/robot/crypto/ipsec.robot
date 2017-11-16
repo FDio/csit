@@ -254,21 +254,21 @@
 
 | Set up IPv4 IPSec functional test
 | | [Documentation]
-| | ... | Set up IPv4 IPSec functional test
+| | ... | Set up IPv4 IPSec functional test.
 | | ...
 | | Set up functional test
 | | Configure topology for IPv4 IPsec testing
 
 | Set up IPv6 IPSec functional test
 | | [Documentation]
-| | ... | Set up IPv6 IPSec functional test
+| | ... | Set up IPv6 IPSec functional test.
 | | ...
 | | Set up functional test
 | | Configure topology for IPv6 IPsec testing
 
 | Tear down IPSec functional test
 | | [Documentation]
-| | ... | Tear down IPSec functional test
+| | ... | Tear down IPSec functional test.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -278,3 +278,31 @@
 | | ...
 | | VPP IPsec Show | ${dut_node}
 | | Tear down functional test
+
+| Set up IPSec SW device functional test suite
+| | [Documentation]
+| | ... | Set up IPSec SW device functional test suite.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | | ... | WITH NAME | ${dut}
+| | | Run keyword | ${dut}.Set Node | ${nodes['${dut}']}
+| | | Run keyword | ${dut}.Set Vpp Startup Conf Backup
+| | | Run keyword | ${dut}.Set Vpp Logfile | /tmp/vpp.log
+| | | Run keyword | ${dut}.Add Unix Nodaemon
+| | | Run keyword | ${dut}.Add Unix Log
+| | | Run keyword | ${dut}.Add Unix Coredump
+| | | Run keyword | ${dut}.Add Unix CLI Listen | /run/vpp/cli.sock
+| | | Run keyword | ${dut}.Add Unix Gid
+| | | Run keyword | ${dut}.Add Api Segment Gid
+| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | ${1}
+| | Apply startup configuration on all VPP DUTs
+
+| Tear down IPSec SW device functional test suite
+| | [Documentation]
+| | ... | Tear down IPSec SW device functional test suite.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Restore Config
