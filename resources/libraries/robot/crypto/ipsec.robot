@@ -254,21 +254,21 @@
 
 | Set up IPv4 IPSec functional test
 | | [Documentation]
-| | ... | Set up IPv4 IPSec functional test
+| | ... | Set up IPv4 IPSec functional test.
 | | ...
 | | Set up functional test
 | | Configure topology for IPv4 IPsec testing
 
 | Set up IPv6 IPSec functional test
 | | [Documentation]
-| | ... | Set up IPv6 IPSec functional test
+| | ... | Set up IPv6 IPSec functional test.
 | | ...
 | | Set up functional test
 | | Configure topology for IPv6 IPsec testing
 
 | Tear down IPSec functional test
 | | [Documentation]
-| | ... | Tear down IPSec functional test
+| | ... | Tear down IPSec functional test.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -278,3 +278,41 @@
 | | ...
 | | VPP IPsec Show | ${dut_node}
 | | Tear down functional test
+
+| Set up IPSec SW device functional test suite
+| | [Documentation]
+| | ... | Set up IPSec SW device functional test suite.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | | ... | WITH NAME | ${dut}_vpp_conf
+| | | Run keyword | ${dut}_vpp_conf.Set Node | ${nodes['${dut}']}
+| | | Run keyword | ${dut}_vpp_conf.Set Vpp Startup Conf Backup
+| | | Run keyword | ${dut}_vpp_conf.Set Vpp Logfile | /tmp/vpp.log
+| | | Run keyword | ${dut}_vpp_conf.Add Unix Nodaemon
+| | | Run keyword | ${dut}_vpp_conf.Add Unix Log
+| | | Run keyword | ${dut}_vpp_conf.Add Unix Coredump
+| | | Run keyword | ${dut}_vpp_conf.Add Unix CLI Listen | /run/vpp/cli.sock
+| | | Run keyword | ${dut}_vpp_conf.Add Unix Gid
+| | | Run keyword | ${dut}_vpp_conf.Add Api Segment Gid
+| | | Run keyword | ${dut}_vpp_conf.Add DPDK SW Cryptodev | ${1}
+| | Apply startup configuration on all VPP DUTs
+| | Log VppConfigGenerator node data on all DUTs
+
+| Tear down IPSec SW device functional test suite
+| | [Documentation]
+| | ... | Tear down IPSec SW device functional test suite.
+| | ...
+| | Log VppConfigGenerator node data on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}_vpp_conf.Restore Config
+
+| Log VppConfigGenerator node data on all DUTs
+| | [Documentation]
+| | ... | log node data.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}_vpp_conf.Log Node
