@@ -265,6 +265,22 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
 
+| Add crypto SW device on all DUTs
+| | [Documentation] | Add required number of crypto SW devices to VPP startup
+| | ... | configuration on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${count} - Number of SW crypto devices. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add SW cryptodev on all DUTs \| ${4} \|
+| | ...
+| | [Arguments] | ${count}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | ${count}
+
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write startup configuration and restart VPP on all DUTs.
 | | ...
