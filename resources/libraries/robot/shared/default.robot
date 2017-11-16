@@ -24,7 +24,6 @@
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.Tap
-| Library | resources.libraries.python.VppConfigGenerator
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
 | Library | resources.libraries.python.Trace
@@ -141,12 +140,12 @@
 | | ... | skip_cnt=${1} | cpu_cnt=${1}
 | | ${dut2_cpu_w}= | Cpu list per node str | ${dut2} | ${dut2_numa}
 | | ... | skip_cnt=${2} | cpu_cnt=${m_int}
-| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
-| | Run keyword | DUT2.Add CPU Main Core | ${dut2_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
-| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
-| | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
+| | Run keyword | DUT1_vpp_conf.Add CPU Main Core | ${dut1_cpu_main}
+| | Run keyword | DUT2_vpp_conf.Add CPU Main Core | ${dut2_cpu_main}
+| | Run keyword | DUT1_vpp_conf.Add CPU Corelist Workers | ${dut1_cpu_w}
+| | Run keyword | DUT2_vpp_conf.Add CPU Corelist Workers | ${dut2_cpu_w}
+| | Run keyword | DUT1_vpp_conf.Add DPDK Dev Default RXQ | ${n}
+| | Run keyword | DUT2_vpp_conf.Add DPDK Dev Default RXQ | ${n}
 
 | Add '${m}' worker threads and '${n}' rxqueues in 2-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
@@ -207,7 +206,7 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK No Multi Seg
+| | | Run keyword | ${dut}_vpp_conf.Add DPDK No Multi Seg
 
 | Add DPDK dev default RXD to all DUTs
 | | [Documentation] | Add DPDK num-rx-desc to VPP startup configuration to all
@@ -224,7 +223,7 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXD | ${rxd}
+| | | Run keyword | ${dut}_vpp_conf.Add DPDK Dev Default RXD | ${rxd}
 
 | Add DPDK dev default TXD to all DUTs
 | | [Documentation] | Add DPDK num-tx-desc to VPP startup configuration to all
@@ -241,7 +240,7 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
+| | | Run keyword | ${dut}_vpp_conf.Add DPDK Dev Default TXD | ${txd}
 
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
@@ -265,12 +264,28 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
 
+| Add crypto SW device on all DUTs
+| | [Documentation] | Add required number of crypto SW devices to VPP startup
+| | ... | configuration on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${count} - Number of SW crypto devices. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add SW cryptodev on all DUTs \| ${4} \|
+| | ...
+| | [Arguments] | ${count}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}_vpp_conf.Add DPDK SW Cryptodev | ${count}
+
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write startup configuration and restart VPP on all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Apply Config
+| | | Run keyword | ${dut}_vpp_conf.Apply Config
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${TRUE}
 
 | Save VPP PIDs
