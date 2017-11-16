@@ -324,6 +324,9 @@
 | | ... | a reflexive "permit" rule) Finally, send the original packet again\
 | | ... | and receive it from interface 2.
 | | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
+| | ...
 | | [Teardown] | Bridged ACL test teardown
 | | ...
 | | Given Setup Interfaces And Bridge Domain For plugin-acl Test
@@ -369,6 +372,9 @@
 | | ... | to the other, using different IPv4 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
+| | ...
 | | [Teardown] | Routed ACL test teardown - ipv4
 | | ...
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
@@ -404,6 +410,9 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
+| | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
 | | ...
 | | [Teardown] | Routed ACL test teardown - ipv6
 | | ...
@@ -460,6 +469,9 @@
 | | ...
 | | [Teardown] | Routed ACL test teardown - ipv4
 | | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
+| | ...
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | L4 | ${acl_name_l4}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -497,6 +509,9 @@
 | | ...
 | | [Teardown] | Routed ACL test teardown - ipv4
 | | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
+| | ...
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | mixed | ${acl_name_mixed}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -532,6 +547,9 @@
 | | ... | except those with the filtered type and code.
 | | ...
 | | [Teardown] | Routed ACL test teardown - ipv4
+| | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
 | | ...
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | icmp | ${acl_name_icmp}
@@ -569,6 +587,9 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
+| | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
 | | ...
 | | [Teardown] | Routed ACL test teardown - ipv6
 | | ...
@@ -627,6 +648,9 @@
 | | ... | to VPP interface 2 and receive it from interface 1(this should create\
 | | ... | a reflexive "permit" rule) Finally, send the original packet again\
 | | ... | and receive it from interface 2.
+| | ...
+# CSIT-863: running ODL and HC on single node may cause out of memory errors
+| | [Tags] | HC_REST_ONLY
 | | ...
 | | [Teardown] | Routed ACL test teardown - ipv4
 | | ...
