@@ -38,6 +38,12 @@ class VppConfigGenerator(object):
         self._vpp_config = ''
         # VPP Service name
         self._vpp_service_name = 'vpp'
+        # VPP Logfile location
+        self._vpp_logfile = '/tmp/vpe.log'
+        # VPP Startup config location
+        self._vpp_startup_conf = '/etc/vpp/startup.conf'
+        # VPP Startup config backup location
+        self._vpp_startup_conf_backup = None
 
     def set_node(self, node):
         """Set DUT node.
@@ -51,6 +57,22 @@ class VppConfigGenerator(object):
                                'node.')
         self._node = node
         self._hostname = Topology.get_node_hostname(node)
+
+    def set_vpp_logfile(self, logfile):
+        """Set VPP logfile location.
+
+        :param logfile: VPP logfile location.
+        :type logfile: str
+        """
+        self._vpp_logfile = logfile
+
+    def set_vpp_startup_conf_backup(self, backup='/etc/vpp/startup.backup'):
+        """Set VPP startup configuration backup.
+
+        :param backup: VPP logfile location.
+        :type backup: str
+        """
+        self._vpp_startup_conf_backup = backup
 
     def get_config_str(self):
         """Get dumped startup configuration in VPP config format.
@@ -105,22 +127,33 @@ class VppConfigGenerator(object):
         if level >= 0:
             self._vpp_config += '{}}}\n'.format(level * indent)
 
-    def add_unix_log(self, value='/tmp/vpe.log'):
+    def add_unix_log(self, value=None):
         """Add UNIX log configuration.
 
         :param value: Log file.
         :type value: str
         """
         path = ['unix', 'log']
+        if value is None:
+            value = self._vpp_logfile
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_unix_cli_listen(self, value='localhost:5002'):
         """Add UNIX cli-listen configuration.
 
-        :param value: CLI listen address and port.
+        :param value: CLI listen address and port or path to CLI socket.
         :type value: str
         """
         path = ['unix', 'cli-listen']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_unix_gid(self, value='vpp'):
+        """Add UNIX gid configuration.
+
+        :param value: Gid.
+        :type value: str
+        """
+        path = ['unix', 'gid']
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_unix_nodaemon(self):
@@ -136,6 +169,15 @@ class VppConfigGenerator(object):
     def add_unix_exec(self, value):
         """Add UNIX exec configuration."""
         path = ['unix', 'exec']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_api_segment_gid(self, value='vpp'):
+        """Add API-SEGMENT gid configuration.
+
+        :param value: Gid.
+        :type value: str
+        """
+        path = ['api-segment', 'gid']
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_dev(self, *devices):
@@ -158,7 +200,7 @@ class VppConfigGenerator(object):
     def add_dpdk_cryptodev(self, count):
         """Add DPDK Crypto PCI device configuration.
 
-        :param count: Number of crypto devices to add.
+        :param count: Number of HW crypto devices to add.
         :type count: int
         """
         cryptodev = Topology.get_cryptodev(self._node)
@@ -168,6 +210,18 @@ class VppConfigGenerator(object):
             path = ['dpdk', cryptodev_config]
             self.add_config_item(self._nodeconfig, '', path)
         self.add_dpdk_uio_driver('igb_uio')
+
+    def add_dpdk_sw_cryptodev(self, count):
+        """Add DPDK Crypto SW device configuration.
+
+        :param count: Number of crypto SW devices to add.
+        :type count: int
+        """
+        for i in range(count):
+            cryptodev_config = 'vdev cryptodev_aesni_mb_pmd,socket_id={0}'.\
+                format(str(i))
+            path = ['dpdk', cryptodev_config]
+            self.add_config_item(self._nodeconfig, '', path)
 
     def add_dpdk_dev_default_rxq(self, value):
         """Add DPDK dev default rxq configuration.
@@ -297,7 +351,7 @@ class VppConfigGenerator(object):
         path = ['nat']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def apply_config(self, filename='/etc/vpp/startup.conf', waittime=5,
+    def apply_config(self, filename=None, waittime=5,
                      retries=12, restart_vpp=True):
         """Generate and apply VPP configuration for node.
 
@@ -312,13 +366,25 @@ class VppConfigGenerator(object):
         :type waittime: int
         :type retries: int
         :type restart_vpp: bool.
-        :raises RuntimeError: If writing config file failed, or restarting of
-        VPP failed.
+        :raises RuntimeError: If writing config file failed or restarting of
+            VPP failed or backup of VPP startup.conf failed.
         """
         self.dump_config(self._nodeconfig)
 
         ssh = SSH()
         ssh.connect(self._node)
+
+        if filename is None:
+            filename = self._vpp_startup_conf
+
+        if self._vpp_startup_conf_backup is not None:
+            (ret, _, _) = \
+                ssh.exec_command('sudo cp {0} {1}'.
+                                 format(self._vpp_startup_conf,
+                                        self._vpp_startup_conf_backup))
+            if ret != 0:
+                raise RuntimeError('Backup of config file failed on node {}'.
+                                   format(self._hostname))
 
         (ret, _, _) = \
             ssh.exec_command('echo "{config}" | sudo tee {filename}'.
@@ -354,3 +420,19 @@ class VppConfigGenerator(object):
             else:
                 raise RuntimeError('VPP failed to restart on node {}'.
                                    format(self._hostname))
+
+    def restore_config(self):
+        """Restore VPP startup.conf from backup.
+
+        :raises RuntimeError: When restoration of startup.conf file failed.
+        """
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        (ret, _, _) = ssh.exec_command('sudo cp {0} {1}'.
+                                       format(self._vpp_startup_conf_backup,
+                                              self._vpp_startup_conf))
+        if ret != 0:
+            raise RuntimeError('Restoration of config file failed on node {}'.
+                               format(self._hostname))
