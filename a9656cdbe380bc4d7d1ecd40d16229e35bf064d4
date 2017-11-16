@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4ff5ba2_a1b89920",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-11-16T08:41:40Z",
+      "side": 1,
+      "message": "STDOUT and STDERR are logged inside exec_command method already.",
+      "range": {
+        "startLine": 378,
+        "startChar": 12,
+        "endLine": 379,
+        "endChar": 29
+      },
+      "revId": "a9656cdbe380bc4d7d1ecd40d16229e35bf064d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
