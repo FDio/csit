@@ -13,7 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.Routing.RoutingKeywords
-| Library | resources.libraries.python.Trace.Trace
+| Library | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip4.robot

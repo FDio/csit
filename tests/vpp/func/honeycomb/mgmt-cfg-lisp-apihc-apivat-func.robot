@@ -22,7 +22,7 @@
 | ... | unknown-unicast-flood=${True} | arp-termination=${True}
 
 *** Settings ***
-| Library | resources.libraries.python.Trace.Trace
+| Library | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
