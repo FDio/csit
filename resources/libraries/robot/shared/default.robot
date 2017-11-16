@@ -265,6 +265,22 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
 
+| Add SW cryptodev to all DUTs
+| | [Documentation] | Add required number of crypto SW devices to VPP startup
+| | ... | configuration to all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${count} - Number of SW crypto devices. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add SW cryptodev to all DUTs \| ${4} \|
+| | ...
+| | [Arguments] | ${count}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | ${count}
+
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write startup configuration and restart VPP on all DUTs.
 | | ...
@@ -272,6 +288,14 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${TRUE}
+
+| Import VPP configuration library on all DUTs
+| | [Documentation] | Import VPP configuration generator library on all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | | ... | WITH NAME | ${dut}
 
 | Save VPP PIDs
 | | [Documentation] | Get PIDs of VPP processes from all DUTs in topology and\

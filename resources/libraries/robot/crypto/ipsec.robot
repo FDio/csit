@@ -254,21 +254,21 @@
 
 | Set up IPv4 IPSec functional test
 | | [Documentation]
-| | ... | Set up IPv4 IPSec functional test
+| | ... | Set up IPv4 IPSec functional test.
 | | ...
 | | Set up functional test
 | | Configure topology for IPv4 IPsec testing
 
 | Set up IPv6 IPSec functional test
 | | [Documentation]
-| | ... | Set up IPv6 IPSec functional test
+| | ... | Set up IPv6 IPSec functional test.
 | | ...
 | | Set up functional test
 | | Configure topology for IPv6 IPsec testing
 
 | Tear down IPSec functional test
 | | [Documentation]
-| | ... | Tear down IPSec functional test
+| | ... | Tear down IPSec functional test.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -278,3 +278,11 @@
 | | ...
 | | VPP IPsec Show | ${dut_node}
 | | Tear down functional test
+
+| Set up IPSec SW device test suite
+| | [Documentation]
+| | ... | Set up IPSec SW device test suite.
+| | ...
+| | Import VPP configuration library on all DUTs
+| | Add SW cryptodev to all DUTs | ${1}
+| | Apply startup configuration on all VPP DUTs
