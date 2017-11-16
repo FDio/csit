@@ -64,6 +64,7 @@ class SSH(object):
         try:
             self._node = node
             node_hash = self._node_hash(node)
+            logger.debug('node_hash: {0}\nnode: {1}'.format(node_hash, self._node))
             if node_hash in SSH.__existing_connections:
                 self._ssh = SSH.__existing_connections[node_hash]
                 logger.debug('reusing ssh: {0}'.format(self._ssh))
