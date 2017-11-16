@@ -158,7 +158,7 @@ class VppConfigGenerator(object):
     def add_dpdk_cryptodev(self, count):
         """Add DPDK Crypto PCI device configuration.
 
-        :param count: Number of crypto devices to add.
+        :param count: Number of HW crypto devices to add.
         :type count: int
         """
         cryptodev = Topology.get_cryptodev(self._node)
@@ -168,6 +168,18 @@ class VppConfigGenerator(object):
             path = ['dpdk', cryptodev_config]
             self.add_config_item(self._nodeconfig, '', path)
         self.add_dpdk_uio_driver('igb_uio')
+
+    def add_dpdk_sw_cryptodev(self, count):
+        """Add DPDK Crypto SW device configuration.
+
+        :param count: Number of crypto SW devices to add.
+        :type count: int
+        """
+        for i in range(count):
+            cryptodev_config = 'vdev cryptodev_aesni_mb_pmd,socket_id={0}'.\
+                format(str(i))
+            path = ['dpdk', cryptodev_config]
+            self.add_config_item(self._nodeconfig, '', path)
 
     def add_dpdk_dev_default_rxq(self, value):
         """Add DPDK dev default rxq configuration.
