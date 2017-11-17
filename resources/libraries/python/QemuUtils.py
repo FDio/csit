@@ -300,7 +300,8 @@ class QemuUtils(object):
     def _wait_until_vm_boot(self, timeout=60):
         """Wait until QEMU VM is booted.
 
-        Ping QEMU guest agent each 5s until VM booted or timeout.
+        First try to flush qga until there is output.
+        Then ping QEMU guest agent each 5s until VM booted or timeout.
 
         :param timeout: Waiting timeout in seconds (optional, default 60s).
         :type timeout: int
@@ -312,7 +313,20 @@ class QemuUtils(object):
                     self._qemu_opt['disk_image'], self._node['host']))
             out = None
             try:
-                self._qemu_qga_flush()
+                out = self._qemu_qga_flush()
+            except ValueError:
+                logger.trace('QGA qga flush unexpected output {}'.format(out))
+            # Empty output - VM not booted yet
+            if not out:
+                sleep(5)
+            else:
+                break
+        while True:
+            if time() - start > timeout:
+                raise RuntimeError('timeout, VM {0} not booted on {1}'.format(
+                    self._qemu_opt['disk_image'], self._node['host']))
+            out = None
+            try:
                 out = self._qemu_qga_exec('guest-ping')
             except ValueError:
                 logger.trace('QGA guest-ping unexpected output {}'.format(out))
