@@ -3,6 +3,11 @@
 set -x
 
 # Setting variables
+
+# set arch, default to x86_64 if none given
+ARCH=$1
+ARCH=${ARCH:="x86_64"}
+
 DPDK_VERSION=dpdk-17.08
 DPDK_DIR=${DPDK_VERSION}
 DPDK_PACKAGE=${DPDK_DIR}.tar.xz
@@ -19,13 +24,13 @@ tar xJvf ${DPDK_PACKAGE} || \
 # Compile the DPDK
 cd ./${DPDK_DIR}
 sudo sed -i 's/^CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=n/CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=y/g' ./config/common_base
-make install T=x86_64-native-linuxapp-gcc -j || \
+make install T=${ARCH}-native-linuxapp-gcc -j || \
     { echo "Failed to compile $DPDK_VERSION"; exit 1; }
 cd ${PWDDIR}
 
 # Compile the l3fwd
 export RTE_SDK=${ROOTDIR}/${DPDK_DIR}/
-export RTE_TARGET=x86_64-native-linuxapp-gcc
+export RTE_TARGET=${ARCH}-native-linuxapp-gcc
 cd ${RTE_SDK}/examples/l3fwd
 sudo sed -i 's/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 2048/g' ./main.c
 sudo sed -i 's/^#define RTE_TEST_TX_DESC_DEFAULT 512/#define RTE_TEST_TX_DESC_DEFAULT 2048/g' ./main.c

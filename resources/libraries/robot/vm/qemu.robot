@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 *** Settings ***
-| Library | resources.libraries.python.QemuUtils
+| Library | resources.libraries.python.QemuUtils | arch=${TARGET_ARCH}
 | Library | resources.libraries.python.ssh.SSH
 
 *** Keywords ***

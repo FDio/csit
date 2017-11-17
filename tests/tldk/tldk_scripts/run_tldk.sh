@@ -2,6 +2,10 @@
 
 set -x
 
+# set arch, default to x86_64 if none given
+ARCH=$1
+ARCH=${ARCH:="x86_64"}
+
 ROOTDIR=/tmp/TLDK-testing
 PWDDIR=$(pwd)
 
@@ -53,12 +57,12 @@ sleep 2
 # need to install libpcap, libpcap-dev to use --vdev
 cd ${ROOTDIR}
 if [ "$IPv6_addr" == "NONE" ]; then
-sudo sh -c "nohup ./tldk/x86_64-native-linuxapp-gcc/app/l4fwd --lcore='0' \
+sudo sh -c "nohup ./tldk/${ARCH}-native-linuxapp-gcc/app/l4fwd --lcore='0' \
     -n 2 --vdev 'eth_pcap1,rx_pcap=${rx_file},tx_pcap=${tx_file}' \
     -b ${nic_pci} -- -P -U -R 0x1000 -S 0x1000 -s 0x20 -f ${fe_cfg} -b ${be_cfg} \
     port=0,lcore=0,rx_offload=0,tx_offload=0,ipv4=${IPv4_addr} &"
 elif [ "$IPv4_addr" == "NONE" ]; then
-sudo sh -c "nohup ./tldk/x86_64-native-linuxapp-gcc/app/l4fwd --lcore='0' \
+sudo sh -c "nohup ./tldk/${ARCH}-native-linuxapp-gcc/app/l4fwd --lcore='0' \
     -n 2 --vdev 'eth_pcap1,rx_pcap=${rx_file},tx_pcap=${tx_file}' \
     -b ${nic_pci} -- -P -U -R 0x1000 -S 0x1000 -s 0x20 -f ${fe_cfg} -b ${be_cfg} \
     port=0,lcore=0,rx_offload=0,tx_offload=0,ipv6=${IPv6_addr} &"

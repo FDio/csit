@@ -26,10 +26,10 @@ from resources.libraries.python.topology import NodeType
 class QemuUtils(object):
     """QEMU utilities."""
 
-    def __init__(self, qemu_id=1):
+    def __init__(self, qemu_id=1, arch='x86_64'):
         self._qemu_id = qemu_id
         # Path to QEMU binary
-        self._qemu_bin = '/usr/bin/qemu-system-x86_64'
+        self._qemu_bin = '/usr/bin/qemu-system-{0}'.format(arch)
         # QEMU Machine Protocol socket
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
