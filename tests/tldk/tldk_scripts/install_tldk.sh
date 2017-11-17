@@ -2,6 +2,10 @@
 
 set -x
 
+# set arch, default to x86_64 if none given
+ARCH=$1
+ARCH=${ARCH:="x86_64"}
+
 DPDK_VERSION=16.11.1
 
 ROOTDIR=/tmp/TLDK-testing
