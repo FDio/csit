@@ -44,8 +44,7 @@ def get_variables(node, ip_version, out_interface):
         "dut_to_tg_if2_ip": "11::1",
         "src_ip": "10::2",
         "dst_ip": "12::1",
-        "dst_net": "12::0",
-        "dst_net_full": "12:0:0:0:0:0:0:0",
+        "dst_net": "12::",
         "prefix_len": 64,
         "next_hop": "11::2",
         "next_hop1": "11::3",
@@ -177,7 +176,7 @@ def get_variables(node, ip_version, out_interface):
         },
         "table4_oper": {
             "destination-prefix":
-                "{0}/{1}".format(ipv6_base["dst_net_full"],
+                "{0}/{1}".format(ipv6_base["dst_net"],
                                  ipv6_base["prefix_len"]),
             "next-hop": ipv6_base["next_hop"],
             "outgoing-interface": out_interface,
@@ -185,7 +184,7 @@ def get_variables(node, ip_version, out_interface):
         },
         "table5_oper": {
             "destination-prefix":
-                "{0}/{1}".format(ipv6_base["dst_net_full"],
+                "{0}/{1}".format(ipv6_base["dst_net"],
                                  ipv6_base["prefix_len"]),
             "next-hop-list": {
                 "next-hop": [
@@ -205,7 +204,7 @@ def get_variables(node, ip_version, out_interface):
         },
         "table6_oper": {
             "destination-prefix":
-                "{0}/{1}".format(ipv6_base["dst_net_full"],
+                "{0}/{1}".format(ipv6_base["dst_net"],
                                  ipv6_base["prefix_len"]),
             "special-next-hop": "blackhole",
             'vpp-ipv6-route-state': {}

@@ -22,8 +22,6 @@
 | ... | encap-vrf-id=${0}
 | &{vxlan_settings_ipv6}= | src=10::10 | dst=10::11 | vni=${88}
 | ... | encap-vrf-id=${0}
-| &{vxlan_settings_ipv6_long}= | src=10:0:0:0:0:0:0:10 | dst=10:0:0:0:0:0:0:11
-| ... | vni=${88} | encap-vrf-id=${0}
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
@@ -134,6 +132,6 @@
 | | When Honeycomb sets interface VxLAN configuration
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings_ipv6}
 | | Then VxLAN Operational Data From Honeycomb Should Be
-| | ... | ${node} | ${vx_interface} | ${vxlan_settings_ipv6_long}
+| | ... | ${node} | ${vx_interface} | ${vxlan_settings_ipv6}
 | | And VxLAN Operational Data From VAT Should Be
 | | ... | ${node} | ${vxlan_settings_ipv6}
