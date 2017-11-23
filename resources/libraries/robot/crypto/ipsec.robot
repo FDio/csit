@@ -305,5 +305,4 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Set Node | ${nodes['${dut}']}
 | | | Run keyword | ${dut}.Restore Config

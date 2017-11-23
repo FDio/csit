@@ -412,9 +412,10 @@ class VppConfigGenerator(object):
             # and verify if VPP is running.
             for _ in range(retries):
                 time.sleep(waittime)
-                (ret, _, _) = \
+                (ret, stdout, _) = \
                     ssh.exec_command('echo show hardware-interfaces | '
                                      'nc 0 5002 || echo "VPP not yet running"')
+                # if ret == 0 and stdout != 'VPP not yet running':
                 if ret == 0:
                     break
             else:
@@ -431,8 +432,8 @@ class VppConfigGenerator(object):
         ssh.connect(self._node)
 
         (ret, _, _) = ssh.exec_command('sudo cp {0} {1}'.
-                                       format(self._vpp_startup_conf,
-                                              self._vpp_startup_conf_backup))
+                                       format(self._vpp_startup_conf_backup,
+                                              self._vpp_startup_conf))
         if ret != 0:
             raise RuntimeError('Restoration of config file failed on node {}'.
                                format(self._hostname))
