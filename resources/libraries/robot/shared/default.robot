@@ -24,7 +24,7 @@
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.Tap
-| Library | resources.libraries.python.VppConfigGenerator
+#| Library | resources.libraries.python.VppConfigGenerator
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
 | Library | resources.libraries.python.Trace
@@ -242,6 +242,23 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
+
+| Add DPDK Uio Driver on all DUTs
+| | [Documentation] | Add DPDK uio driver to VPP startup configuration on all
+| | ... | DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - uio_driver - Required uio driver. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add DPDK Uio Driver on all DUTs \| igb_uio \|
+| | ...
+| | [Arguments] | ${uio_driver}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
 
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
