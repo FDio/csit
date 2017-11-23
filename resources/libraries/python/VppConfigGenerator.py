@@ -431,8 +431,8 @@ class VppConfigGenerator(object):
         ssh.connect(self._node)
 
         (ret, _, _) = ssh.exec_command('sudo cp {0} {1}'.
-                                       format(self._vpp_startup_conf,
-                                              self._vpp_startup_conf_backup))
+                                       format(self._vpp_startup_conf_backup,
+                                              self._vpp_startup_conf))
         if ret != 0:
             raise RuntimeError('Restoration of config file failed on node {}'.
                                format(self._hostname))
