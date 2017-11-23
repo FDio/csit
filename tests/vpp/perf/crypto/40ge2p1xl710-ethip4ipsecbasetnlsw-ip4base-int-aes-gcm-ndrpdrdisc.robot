@@ -16,9 +16,10 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | BASE | TEST
+| ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-XL710 | BASE | TEST
 | ...
-| Suite Setup | Set up IPSec performance test suite | L3 | Intel-XL710
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
+| ... | L3 | Intel-XL710
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
@@ -33,9 +34,10 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 on TG-DUTn,
 | ... | Eth-IPv4-IPSec on DUT1-DUT2
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with multiple
-| ... | IPsec tunnels between them. DUTs get IPv4 traffic from TG, encrypt it
-| ... | and send to another DUT, where packets are decrypted and sent back to TG
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with DPDK SW
+| ... | crypto devices and multiple IPsec tunnels between them. DUTs get IPv4
+| ... | traffic from TG, encrypt it and send to another DUT, where packets are
+| ... | decrypted and sent back to TG.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in number
@@ -72,7 +74,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
-| Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -89,7 +91,7 @@
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add cryptodev to all DUTs | ${1}
+| | And Add crypto SW device on all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
@@ -110,7 +112,7 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
+| tc01-64B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -119,10 +121,10 @@
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=NDR
 
-| tc02-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
+| tc02-64B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -131,10 +133,10 @@
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=PDR
 
-| tc03-1518B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
+| tc03-1518B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -143,10 +145,10 @@
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${100000} | search_type=NDR
 
-| tc04-1518B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
+| tc04-1518B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -155,10 +157,10 @@
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${100000} | search_type=PDR
 
-| tc05-IMIX-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
+| tc05-IMIX-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -168,10 +170,10 @@
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${100000} | search_type=NDR
 
-| tc06-IMIX-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
+| tc06-IMIX-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -181,10 +183,10 @@
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${100000} | search_type=PDR
 
-| tc07-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
+| tc07-64B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 2 thread, 2 phy core, 1 receive queue per NIC port.
@@ -193,10 +195,10 @@
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=NDR
 
-| tc08-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
+| tc08-64B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 2 thread, 2 phy core, 1 receive queue per NIC port.
@@ -205,5 +207,5 @@
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=PDR
