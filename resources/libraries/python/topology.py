@@ -890,6 +890,17 @@ class Topology(object):
         return node['host']
 
     @staticmethod
+    def get_node_arch(node):
+        """Return arch of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: Node arch
+        :rtype: str
+        """
+        return node['arch']
+
+    @staticmethod
     def get_cryptodev(node):
         """Return Crytodev configuration of the node.
 
