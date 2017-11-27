@@ -6,6 +6,19 @@ set -x
 DPDK_VERSION=dpdk-17.08
 ROOTDIR=/tmp/openvpp-testing
 PWDDIR=$(pwd)
+
+# set arch, default to x86_64 if none given
+ARCH=$3
+ARCH=${ARCH:="x86_64"}
+
+# dpdk prefers "arm64" to "aarch64" and does not allow arm64 native target
+if [ $ARCH == "aarch64" ]; then
+    ARCH="arm64"
+    MACHINE="armv8a"
+else
+    MACHINE="native"
+fi
+
 cd ${ROOTDIR}/${DPDK_VERSION}/
 
 modprobe uio
@@ -25,7 +38,7 @@ then
         { echo "Failed to remove uio_pci_generic module"; exit 1; }
 fi
 
-insmod ./x86_64-native-linuxapp-gcc/kmod/igb_uio.ko || \
+insmod ./${ARCH}-${MACHINE}-linuxapp-gcc/kmod/igb_uio.ko || \
     { echo "Failed to insert igb_uio module"; exit 1; }
 
 # Binding

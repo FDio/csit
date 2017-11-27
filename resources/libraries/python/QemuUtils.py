@@ -15,6 +15,7 @@
 
 from time import time, sleep
 import json
+import platform
 
 from robot.api import logger
 
@@ -26,10 +27,13 @@ from resources.libraries.python.topology import NodeType
 class QemuUtils(object):
     """QEMU utilities."""
 
-    def __init__(self, qemu_id=1):
+    def __init__(self, qemu_id=1, arch=''):
+        if not arch:
+            arch = platform.machine()
+
         self._qemu_id = qemu_id
         # Path to QEMU binary
-        self._qemu_bin = '/usr/bin/qemu-system-x86_64'
+        self._qemu_bin = '/usr/bin/qemu-system-{0}'.format(arch)
         # QEMU Machine Protocol socket
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
@@ -75,6 +79,7 @@ class QemuUtils(object):
         """Set binary path for QEMU.
 
         :param path: Absolute path in filesystem.
+        :param arch: Target system architecture
         :type path: str
         """
         self._qemu_bin = path
@@ -678,12 +683,13 @@ class QemuUtils(object):
         version = ' --version={0}'.format(Constants.QEMU_INSTALL_VERSION)
         force = ' --force' if force_install else ''
         patch = ' --patch' if apply_patch else ''
+        target_list = ' --target-list={0}-softmmu'.format(node['arch'])
 
         (ret_code, stdout, stderr) = \
             ssh.exec_command(
-                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}'"\
+                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}{6}'"\
                 .format(Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH,
-                        version, directory, force, patch), 1000)
+                        version, directory, force, patch), 1000, target_list)
 
         if int(ret_code) != 0:
             logger.debug('QEMU build failed {0}'.format(stdout + stderr))
