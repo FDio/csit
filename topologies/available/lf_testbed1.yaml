@@ -11,6 +11,7 @@ nodes:
     type: TG
     subtype: TREX
     host: "10.30.51.16"
+    arch: x86_64
     port: 22
     username: testuser
     password: Csit1234
@@ -114,6 +115,7 @@ nodes:
   DUT1:
     type: DUT
     host: "10.30.51.17"
+    arch: x86_64
     port: 22
     username: testuser
     password: Csit1234
@@ -198,6 +200,7 @@ nodes:
   DUT2:
     type: DUT
     host: "10.30.51.18"
+    arch: x86_64
     port: 22
     username: testuser
     password: Csit1234

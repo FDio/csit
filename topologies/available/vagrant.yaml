@@ -10,6 +10,7 @@ nodes:
   TG:
     type: TG
     host: "192.168.255.100"
+    arch: x86_64
     port: 22
     username: csit
     password: csit
@@ -47,6 +48,7 @@ nodes:
   DUT1:
     type: DUT
     host: "192.168.255.101"
+    arch: x86_64
     port: 22
     username: csit
     password: csit
@@ -74,6 +76,7 @@ nodes:
   DUT2:
     type: DUT
     host: "192.168.255.102"
+    arch: x86_64
     port: 22
     username: csit
     password: csit
