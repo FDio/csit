@@ -147,14 +147,16 @@ def install_tldk_test(node):
     :returns: nothing.
     :raises RuntimeError: If install tldk failed.
     """
-    logger.console('Install the TLDK on {0}'.format(node['host']))
+
+    logger.console('Install the TLDK on {0} ({0})'.format(node['host'],
+                                                          node['arch']))
 
     ssh = SSH()
     ssh.connect(node)
 
     (ret_code, _, stderr) = ssh.exec_command(
-        'cd {0}/{1} && ./install_tldk.sh'
-        .format(con.REMOTE_FW_DIR, con.TLDK_SCRIPTS), timeout=600)
+        'cd {0}/{1} && ./install_tldk.sh {0}'
+        .format(con.REMOTE_FW_DIR, con.TLDK_SCRIPTS, node['arch']), timeout=600)
 
     if ret_code != 0:
         logger.error('Install the TLDK error: {0}'.format(stderr))
@@ -175,6 +177,10 @@ def setup_node(args):
     :raises RuntimeError: If node setup failed.
     """
     tarball, remote_tarball, node = args
+    if not node['arch']:
+        # if unset, arch defaults to x86_64
+        node['arch'] = 'x86_64'
+
     try:
         copy_tarball_to_node(tarball, node)
         extract_tarball_at_node(remote_tarball, node)
