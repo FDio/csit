@@ -10,6 +10,7 @@ nodes:
   TG:
     type: TG
     host: "{topology[tg1][nic-management][ip-addr]}"
+    arch: x86_64
     port: 22
     username: cisco
     priv_key: |
@@ -38,6 +39,7 @@ nodes:
   DUT1:
     type: DUT
     host: "{topology[sut1][nic-management][ip-addr]}"
+    arch: x86_64
     port: 22
     username: cisco
     honeycomb:
@@ -67,6 +69,7 @@ nodes:
   DUT2:
     type: DUT
     host: "{topology[sut2][nic-management][ip-addr]}"
+    arch: x86_64
     port: 22
     username: cisco
     honeycomb:
