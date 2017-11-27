@@ -18,6 +18,7 @@ QEMU_DOWNLOAD_PACKAGE="${QEMU_VERSION}.tar.xz"
 QEMU_PACKAGE_URL="${QEMU_DOWNLOAD_REPO}${QEMU_DOWNLOAD_PACKAGE}"
 QEMU_INSTALL_DIR="/opt/${QEMU_VERSION}"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TARGET_LIST="x86_64-softmmu"
 
 for i in "$@"; do
     case $i in
@@ -32,6 +33,9 @@ for i in "$@"; do
             shift ;;
         --force)
             FORCE=1
+            shift ;;
+        --target-list)
+            TARGET_LIST="${i#*=}"
             shift ;;
         *)
             ;;
@@ -78,7 +82,7 @@ then
 fi
 
 # Build
-./configure --target-list=x86_64-softmmu --prefix=${QEMU_INSTALL_DIR} || \
+./configure --target-list=${TARGET_LIST} --prefix=${QEMU_INSTALL_DIR} || \
     { echo "Failed to configure ${QEMU_VERSION}"; exit 1; }
 make -j`nproc` || \
     { echo "Failed to compile ${QEMU_VERSION}"; exit 1; }

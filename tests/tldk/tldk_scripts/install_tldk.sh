@@ -2,6 +2,18 @@
 
 set -x
 
+# set arch, default to x86_64 if none given
+ARCH=$1
+ARCH=${ARCH:="x86_64"}
+
+# dpdk prefers "arm64" to "aarch64" and does not allow arm64 native target
+if [ $ARCH == "aarch64" ]; then
+    ARCH="arm64"
+    MACHINE="armv8a"
+else
+    MACHINE="native"
+fi
+
 DPDK_VERSION=16.11.1
 
 ROOTDIR=/tmp/TLDK-testing
@@ -17,12 +29,12 @@ echo $PWD
 echo ${DPDK_PACKAGE}
 cd ./${DPDK_DIR}
 sudo sed -i 's/^CONFIG_RTE_LIBRTE_PMD_PCAP=n/CONFIG_RTE_LIBRTE_PMD_PCAP=y/g' ./config/common_base
-sudo make install T=x86_64-native-linuxapp-gcc
+sudo make install T=${ARCH}-${MACHINE}-linuxapp-gcc
 cd ${PWDDIR}
 
 # compile the TLDK
 export RTE_SDK=${ROOTDIR}/${DPDK_DIR}/
-export RTE_TARGET=x86_64-native-linuxapp-gcc
+export RTE_TARGET=${ARCH}-${MACHINE}-linuxapp-gcc
 cd ${ROOTDIR}/tldk
 make all
 cd ${PWDDIR}

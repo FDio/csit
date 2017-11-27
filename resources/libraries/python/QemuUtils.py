@@ -26,10 +26,10 @@ from resources.libraries.python.topology import NodeType
 class QemuUtils(object):
     """QEMU utilities."""
 
-    def __init__(self, qemu_id=1):
+    def __init__(self, qemu_id=1, arch='x86_64'):
         self._qemu_id = qemu_id
         # Path to QEMU binary
-        self._qemu_bin = '/usr/bin/qemu-system-x86_64'
+        self._qemu_bin = '/usr/bin/qemu-system-{0}'.format(arch)
         # QEMU Machine Protocol socket
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
@@ -657,6 +657,19 @@ class QemuUtils(object):
         :type apply_patch: bool
         :raises: RuntimeError if building QEMU failed.
         """
+
+        # TODO
+        # set qemu bin according to node arch
+        # change qemu string end only, not its path
+        # eg:
+        # /opt/qemu/bin/qemu-system-x86_64 <- /opt/qemu/bin/qemu-system-aarch64
+        # if not self._qemu_bin.endswith(node['arch']):
+        #     l = len(self._qemu_bin) - len(node['arch'])
+        #     qemu_path = '{0}-{1}'.format(self._qemu_bin[:l], node['arch'])
+        #     logger.debug('qemu path change: {0} <- {1}'.format(self._qemu_bin,
+        #                                                        qemu_path)
+        #     self.qemu_set_bin(qemu_path)
+
         ssh = SSH()
         ssh.connect(node)
 
@@ -664,12 +677,16 @@ class QemuUtils(object):
         version = ' --version={0}'.format(Constants.QEMU_INSTALL_VERSION)
         force = ' --force' if force_install else ''
         patch = ' --patch' if apply_patch else ''
+        if arch == 'aarch64':
+            target_list = ' --target-list=aarch64-softmmu'
+        else:
+            target_list = ' --target-list=x86_64-softmmu'
 
         (ret_code, stdout, stderr) = \
             ssh.exec_command(
-                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}'"\
+                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}{6}'"\
                 .format(Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH,
-                        version, directory, force, patch), 1000)
+                        version, directory, force, patch), 1000, target_list)
 
         if int(ret_code) != 0:
             logger.debug('QEMU build failed {0}'.format(stdout + stderr))
