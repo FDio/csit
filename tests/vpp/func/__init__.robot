@@ -15,6 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
+| Suite Teardown | Cleanup Framework | ${nodes}
