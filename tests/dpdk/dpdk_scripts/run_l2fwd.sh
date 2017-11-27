@@ -13,6 +13,15 @@ cpu_corelist=$1
 nb_cores=$2
 queue_nums=$3
 jumbo_frames=$4
+arch={5:-"x86_64"}
+
+# dpdk prefers "arm64" to "aarch64" and does not allow arm64 native target
+if [ $arch == "aarch64" ]; then
+    arch="arm64"
+    machine="armv8a"
+else
+    machine="native"
+fi
 
 # Try to kill the testpmd
 sudo pgrep testpmd
@@ -75,8 +84,10 @@ sleep 2
 
 cd ${ROOTDIR}/${DPDK_VERSION}/
 rm -f ${TESTPMDLOG}
+TESTPMD_BIN='./${arch}-${machine}-linuxapp-gcc/app/testpmd'
+
 if [ "$jumbo_frames" = "yes" ]; then
-    sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd \
+    sudo sh -c "screen -dmSL DPDK-test $TESTPMD_BIN \
         -l ${cpu_corelist} -n 4 -- \
         --numa \
         --nb-ports=2 \
@@ -93,7 +104,7 @@ if [ "$jumbo_frames" = "yes" ]; then
         --disable-link-check \
         --auto-start"
 else
-    sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd \
+    sudo sh -c "screen -dmSL DPDK-test $TESTPMD_BIN \
         -l ${cpu_corelist} -n 4 -- \
         --numa \
         --nb-ports=2 \

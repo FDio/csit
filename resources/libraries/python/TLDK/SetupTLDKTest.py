@@ -147,14 +147,16 @@ def install_tldk_test(node):
     :returns: nothing.
     :raises RuntimeError: If install tldk failed.
     """
-    logger.console('Install the TLDK on {0}'.format(node['host']))
+
+    logger.console('Install the TLDK on {0} ({1})'.format(node['host'],
+                                                          node['arch']))
 
     ssh = SSH()
     ssh.connect(node)
 
     (ret_code, _, stderr) = ssh.exec_command(
-        'cd {0}/{1} && ./install_tldk.sh'
-        .format(con.REMOTE_FW_DIR, con.TLDK_SCRIPTS), timeout=600)
+        'cd {0}/{1} && ./install_tldk.sh {2}'
+        .format(con.REMOTE_FW_DIR, con.TLDK_SCRIPTS, node['arch']), timeout=600)
 
     if ret_code != 0:
         logger.error('Install the TLDK error: {0}'.format(stderr))
@@ -175,6 +177,11 @@ def setup_node(args):
     :raises RuntimeError: If node setup failed.
     """
     tarball, remote_tarball, node = args
+
+    # if unset, arch defaults to x86_64
+    if 'arch' not in node or not node['arch']:
+        node['arch'] = 'x86_64'
+
     try:
         copy_tarball_to_node(tarball, node)
         extract_tarball_at_node(remote_tarball, node)
@@ -232,8 +239,13 @@ class SetupTLDKTest(object):
             'Executed node setups in parallel, waiting for processes to end')
         result.wait()
 
-        logger.info('Results: {0}'.format(result.get()))
+        results = result.get()
+        node_setup_success = all(results)
+        logger.info('Results: {0}'.format(results))
 
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
-        logger.console('All nodes are ready')
+        if node_setup_success:
+            logger.console('All nodes are ready')
+        else:
+            logger.console('Failed to setup dpdk on all the nodes')
