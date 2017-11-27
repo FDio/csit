@@ -20,7 +20,7 @@ from robot.api import logger
 
 from resources.libraries.python.ssh import SSH, SSHTimeout
 from resources.libraries.python.constants import Constants
-from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class QemuUtils(object):
@@ -28,7 +28,7 @@ class QemuUtils(object):
 
     def __init__(self, qemu_id=1):
         self._qemu_id = qemu_id
-        # Path to QEMU binary
+        # Path to QEMU binary. Use x86_64 by default
         self._qemu_bin = '/usr/bin/qemu-system-x86_64'
         # QEMU Machine Protocol socket
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
@@ -187,6 +187,9 @@ class QemuUtils(object):
         self._ssh = SSH()
         self._ssh.connect(node)
         self._vm_info['host'] = node['host']
+
+        arch = Topology.get_node_arch(node)
+        self._qemu_bin = '/usr/bin/qemu-system-{0}'.format(arch)
 
     def qemu_add_vhost_user_if(self, socket, server=True, mac=None):
         """Add Vhost-user interface.
@@ -677,12 +680,14 @@ class QemuUtils(object):
         version = ' --version={0}'.format(Constants.QEMU_INSTALL_VERSION)
         force = ' --force' if force_install else ''
         patch = ' --patch' if apply_patch else ''
+        arch = Topology.get_node_arch(node)
+        target_list = ' --target-list={0}-softmmu'.format(arch)
 
         (ret_code, stdout, stderr) = \
             ssh.exec_command(
-                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}'"\
+                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}{6}'"\
                 .format(Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH,
-                        version, directory, force, patch), 1000)
+                        version, directory, force, patch, target_list), 1000)
 
         if int(ret_code) != 0:
             logger.debug('QEMU build failed {0}'.format(stdout + stderr))
