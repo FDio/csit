@@ -28,6 +28,7 @@ from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants as con
 from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import Topology
 
 __all__ = ["SetupDPDKTest"]
 
@@ -125,14 +126,16 @@ def install_dpdk_test(node):
     :type node: dict
     :returns: nothing
     """
-    logger.console('Install the DPDK on {0}'.format(node['host']))
+    arch = Topology.get_node_arch(node)
+    logger.console('Install the DPDK on {0} ({1})'.format(node['host'],
+                                                          arch))
 
     ssh = SSH()
     ssh.connect(node)
 
     (ret_code, _, stderr) = ssh.exec_command(
-        'cd {0}/tests/dpdk/dpdk_scripts/ && ./install_dpdk.sh'
-        .format(con.REMOTE_FW_DIR), timeout=600)
+        'cd {0}/tests/dpdk/dpdk_scripts/ && ./install_dpdk.sh {1}'
+        .format(con.REMOTE_FW_DIR, arch), timeout=600)
 
     if ret_code != 0:
         logger.error('Install the DPDK error: {0}'.format(stderr))
@@ -153,6 +156,11 @@ def setup_node(args):
     :rtype: bool
     """
     tarball, remote_tarball, node = args
+
+    # if unset, arch defaults to x86_64
+    if 'arch' not in node or not node['arch']:
+        node['arch'] = 'x86_64'
+
     try:
         copy_tarball_to_node(tarball, node)
         extract_tarball_at_node(remote_tarball, node)
@@ -166,6 +174,7 @@ def setup_node(args):
     else:
         logger.console('Setup of node {0} done'.format(node['host']))
         return True
+#pylint: enable=broad-except
 
 def delete_local_tarball(tarball):
     """Delete local tarball to prevent disk pollution.
@@ -210,9 +219,13 @@ class SetupDPDKTest(object):
             'Executed node setups in parallel, waiting for processes to end')
         result.wait()
 
-        logger.info('Results: {0}'.format(result.get()))
+        results = result.get()
+        node_setup_success = all(results)
+        logger.info('Results: {0}'.format(results))
 
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
-        logger.console('All nodes are ready')
-
+        if node_setup_success:
+            logger.console('All nodes are ready')
+        else:
+            logger.console('Failed to setup dpdk on all the nodes')

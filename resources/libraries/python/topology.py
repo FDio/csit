@@ -905,6 +905,21 @@ class Topology(object):
         return node['host']
 
     @staticmethod
+    def get_node_arch(node):
+        """Return arch of the node.
+           Default to x86_64 if no arch present
+
+        :param node: Node created from topology.
+        :type node: dict
+        :returns: Node architecture
+        :rtype: str
+        """
+        try:
+            return node['arch']
+        except KeyError:
+            return 'x86_64'
+
+    @staticmethod
     def get_cryptodev(node):
         """Return Crytodev configuration of the node.
 

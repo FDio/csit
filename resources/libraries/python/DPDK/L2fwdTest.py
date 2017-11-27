@@ -17,6 +17,7 @@ DUT nodes.
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants as con
+from resources.libraries.python.topology import Topology
 
 
 class L2fwdTest(object):
@@ -46,8 +47,9 @@ class L2fwdTest(object):
         ssh.connect(dut_node)
 
         cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && sudo ./run_l2fwd.sh {1} ' \
-              '{2} {3} {4}'.format(con.REMOTE_FW_DIR, cpu_cores, nb_cores,
-                                   queue_nums, jumbo_frames)
+              '{2} {3} {4} {5}'.format(con.REMOTE_FW_DIR, cpu_cores, nb_cores,
+                                       queue_nums, jumbo_frames,
+                                       Topology.get_node_arch(dut_node))
 
         (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
         if ret_code != 0:
