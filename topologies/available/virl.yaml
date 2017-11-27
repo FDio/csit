@@ -10,6 +10,7 @@ nodes:
   TG:
     type: TG
     host: "10.30.51.73"
+    arch: x86_64
     port: 22
     username: cisco
     priv_key: |
@@ -54,6 +55,7 @@ nodes:
   DUT1:
     type: DUT
     host: "10.30.51.72"
+    arch: x86_64
     port: 22
     username: cisco
     priv_key: |
@@ -96,6 +98,7 @@ nodes:
   DUT2:
     type: DUT
     host: "10.30.51.71"
+    arch: x86_64
     port: 22
     username: cisco
     priv_key: |

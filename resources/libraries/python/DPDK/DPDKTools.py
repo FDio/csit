@@ -46,8 +46,12 @@ class DPDKTools(object):
         ssh = SSH()
         ssh.connect(dut_node)
 
-        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && sudo ./init_dpdk.sh {1} {2}' \
-              .format(con.REMOTE_FW_DIR, pci_address1, pci_address2)
+        arch = Topology.get_node_arch(dut_node)
+        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ &&'\
+              'sudo ./init_dpdk.sh {1} {2} {3}' .format(con.REMOTE_FW_DIR,
+                                                        pci_address1,
+                                                        pci_address2,
+                                                        arch)
 
         (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
         if ret_code != 0:
