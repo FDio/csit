@@ -18,3 +18,4 @@
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
+| Suite Teardown | Cleanup Framework | ${nodes}
