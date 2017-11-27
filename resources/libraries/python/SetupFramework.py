@@ -34,7 +34,12 @@ __all__ = ["SetupFramework"]
 
 
 def pack_framework_dir():
-    """Pack the testing WS into temp file, return its name."""
+    """Pack the testing WS into temp file, return its name.
+
+    :returns: Tarball file name.
+    :rtype: str
+    :raises Exception: When failed to pack testing framework.
+    """
 
     try:
         directory = environ["TMPDIR"]
@@ -91,6 +96,7 @@ def extract_tarball_at_node(tarball, node):
     :type tarball: str
     :type node: dict
     :returns: nothing
+    :raises Excpetion: When failed to unpack tarball.
     """
     logger.console('Extracting tarball to {0} on {1}'.format(
         con.REMOTE_FW_DIR, node['host']))
@@ -107,7 +113,13 @@ def extract_tarball_at_node(tarball, node):
 
 
 def create_env_directory_at_node(node):
-    """Create fresh virtualenv to a directory, install pip requirements."""
+    """Create fresh virtualenv to a directory, install pip requirements.
+
+    :param node: Node to create virtualenv on.
+    :type node: dict
+    :returns: nothing
+    :raises Exception: When failed to setup virtualenv.
+    """
     logger.console('Extracting virtualenv, installing requirements.txt '
                    'on {0}'.format(node['host']))
     ssh = SSH()
@@ -144,7 +156,8 @@ def setup_node(args):
         if node['type'] == NodeType.TG:
             create_env_directory_at_node(node)
     except Exception as exc:
-        logger.error("Node setup failed, error:'{0}'".format(exc.message))
+        logger.error("Node {0} setup failed, error:'{1}'".format(node['host'],
+                                                                 exc.message))
         return False
     else:
         logger.console('Setup of node {0} done'.format(node['host']))
@@ -161,6 +174,66 @@ def delete_local_tarball(tarball):
     call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
+def delete_openvpp_testing_stuff(node):
+    """Delete openvpp-testing directory and tarball in /tmp/ on given node.
+
+    :param node: Node to delete openvpp-testing stuff on.
+    :type node: dict
+    """
+    logger.console('Deleting openvpp-testing directory and tarball on {0}'
+                   .format(node['host']))
+    ssh = SSH()
+    ssh.connect(node)
+    (ret_code, stdout, stderr) = ssh.exec_command(
+        'cd {0} && sudo rm -rf openvpp-testing*'.format(
+            con.REMOTE_FW_DIR), timeout=100)
+    if ret_code != 0:
+        logger.console('Deleting opvenvpp-testing stuff failed on node {0}: {1}'
+                       .format(node, stdout + stderr))
+
+
+def remove_env_directory_at_node(node):
+    """Remove virtualenv directory on given node.
+
+    :param node: Node to remove virtualenv on.
+    :type node: dict
+    """
+    logger.console('Removing virtualenv directory on {0}'.format(node['host']))
+    ssh = SSH()
+    ssh.connect(node)
+    (ret_code, stdout, stderr) = ssh.exec_command(
+        'cd {0} && sudo rm -rf openvpp-testing*'
+        .format(con.REMOTE_FW_DIR), timeout=100)
+    if ret_code != 0:
+        logger.console('Virtualenv removing failed on node {0}: {1}'.format(
+            node, stdout + stderr))
+
+
+# pylint: disable=broad-except
+def cleanup_node(node):
+    """Run all clean-up methods for a node.
+
+    This method is used as map_async parameter. It receives tuple with all
+    parameters as passed to map_async function.
+
+    :param node: Node to do cleanup on.
+    :type node: dict
+    :returns: True - success, False - error
+    :rtype: bool
+    """
+    try:
+        delete_openvpp_testing_stuff(node)
+        if node['type'] == NodeType.TG:
+            remove_env_directory_at_node(node)
+    except Exception as exc:
+        logger.error("Node {0} cleanup failed, error:'{1}'".format(
+            node['host'], exc.message))
+        return False
+    else:
+        logger.console('Cleanup of node {0} done'.format(node['host']))
+        return True
+
+
 class SetupFramework(object):
     """Setup suite run on topology nodes.
 
@@ -171,7 +244,11 @@ class SetupFramework(object):
 
     @staticmethod
     def setup_framework(nodes):
-        """Pack the whole directory and extract in temp on each node."""
+        """Pack the whole directory and extract in temp on each node.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
 
         tarball = pack_framework_dir()
         msg = 'Framework packed to {0}'.format(tarball)
@@ -191,7 +268,7 @@ class SetupFramework(object):
         BuiltIn().set_log_level(log_level)
 
         logger.info(
-            'Executed node setups in parallel, waiting for processes to end')
+            'Executing node setups in parallel, waiting for processes to end')
         result.wait()
 
         logger.info('Results: {0}'.format(result.get()))
@@ -199,3 +276,34 @@ class SetupFramework(object):
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
         logger.console('All nodes are ready')
+
+
+class CleanupFramework(object):
+    """Clean up suite run on topology nodes."""
+
+    @staticmethod
+    def cleanup_framework(nodes):
+        """Perform cleaning on each node.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        # Turn off logging since we use multiprocessing
+        log_level = BuiltIn().set_log_level('NONE')
+        params = (node for node in nodes.values())
+        pool = Pool(processes=len(nodes))
+        result = pool.map_async(cleanup_node, params)
+        pool.close()
+        pool.join()
+
+        # Turn on logging
+        BuiltIn().set_log_level(log_level)
+
+        logger.info(
+            'Executing node cleanups in parallel, waiting for processes to end')
+        result.wait()
+
+        logger.info('Results: {0}'.format(result.get()))
+
+        logger.trace('All topology nodes cleaned up')
+        logger.console('All nodes cleaned up')
