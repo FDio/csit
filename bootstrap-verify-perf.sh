@@ -237,6 +237,14 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    VERIFY-PERF-IPSECHW )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.vpp.perf.crypto" \
+              --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechwANDbase \
+              --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechwANDbase \
+              tests/
+        ;;
     VPP-VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
@@ -300,6 +308,15 @@ case "$TEST_TAG" in
               -s "tests.vpp.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDacl \
               --include pdrdiscANDnic_intel-x520-da2AND2t2cANDacl \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VPP-VERIFY-PERF-IPSECHW )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.vpp.perf.crypto" \
+              --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechwANDbase \
+              --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechwANDbase \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
