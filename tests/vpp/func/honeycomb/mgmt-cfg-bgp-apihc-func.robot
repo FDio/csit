@@ -230,6 +230,8 @@
 | | ... | [ver] Verify that the route is present in BGP
 | | ... | local RIB and VPP's routing table on each DUT.
 | | ...
+# HC2VPP-267: Adding IPv4 route via BGP crashes VPP
+| | [Tags] | EXPECTED_FAILING
 | | Given Peer operational data from Honeycomb should be
 | | ... | ${dut1_node} | ${dut2_to_dut1_ip}
 | | And Peer operational data from Honeycomb should be
