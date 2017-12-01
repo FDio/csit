@@ -28,6 +28,12 @@ VIRL_SESSION_EXPIRY="620"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Create tmp dir
+mkdir ${SCRIPT_DIR}/tmp
+
+# Use tmp dir to store log files
+LOG_PATH="${SCRIPT_DIR}/tmp"
+
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
     sudo yum install -y python-devel python-virtualenv
@@ -231,6 +237,7 @@ pip install -r ${SCRIPT_DIR}/requirements.txt
 RC=0
 MORE_FAILS=0
 
+partial_logs=""
 for test_set in 1 2 3
 do
     echo
@@ -242,9 +249,10 @@ do
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
         --noncritical EXPECTED_FAILING \
-        --output log_test_set${test_set} \
+        --output ${LOG_PATH}/output_test_set${test_set} \
         tests/
     PARTIAL_RC=$(echo $?)
+    partial_logs="${partial_logs} ${LOG_PATH}/output_test_set${test_set}.xml"
     if [ ${PARTIAL_RC} -eq 250 ]; then
         MORE_FAILS=1
     fi
@@ -290,11 +298,10 @@ echo Post-processing test data...
 
 # Rebot output post-processing
 rebot --noncritical EXPECTED_FAILING \
-      --output output.xml \
-      ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
+      --output output.xml ${partial_logs}
 
 # Remove unnecessary log files
-rm -f ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
+rm -f ${partial_logs}
 
 echo Post-processing finished.
 
