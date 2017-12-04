@@ -235,6 +235,22 @@ Test type tags
 
     Functional test cases for TLDK.
 
+.. topic:: TCP
+
+    Tests which use TCP.
+
+.. topic:: TCP_CPS
+
+    Performance tests which measure connections per second using http requests.
+
+.. topic:: TCP_RPS
+
+    Performance tests which measure requests per second using http requests.
+
+.. topic:: HTTP
+
+    Tests which use HTTP.
+
 Forwarding mode tags
 --------------------
 
