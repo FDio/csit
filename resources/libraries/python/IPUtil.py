@@ -13,6 +13,8 @@
 
 """Common IP utilities library."""
 
+import re
+
 from ipaddress import IPv4Network, ip_address
 
 from resources.libraries.python.ssh import SSH
@@ -136,6 +138,34 @@ class IPUtil(object):
         """
         cmd = 'sysctl -w net.{0}.ip_forward=1'.format(ip_ver)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def get_linux_interface_name(node, pci_addr):
+        """
+
+        :param node: Node where to execute command.
+        :param pci_addr: PCI address
+        :type node: dict
+        :type pci_addr: str
+        :returns: Interface name
+        :rtype: str
+        :raises RuntimeError: If cannot get the information about interfaces.
+        """
+
+        REGEX_INTF_INFO = r"pci@" \
+                          r"([0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}.[0-9a-f])\s*" \
+                          r"([a-zA-Z0-9]*)\s*network"
+
+        cmd = "lshw -class network -businfo"
+        ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30, sudo=True)
+        if ret_code != 0:
+            raise RuntimeError('Could not get information about interfaces, '
+                               'reason:{}'.format(stderr))
+
+        for line in stdout.splitlines():
+            if re.search(REGEX_INTF_INFO, line).group(1) == pci_addr:
+                return re.search(REGEX_INTF_INFO, line).group(2)
+        return None
 
     @staticmethod
     def set_linux_interface_ip(node, interface, ip_addr, prefix,
