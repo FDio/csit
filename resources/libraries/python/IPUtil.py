@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,6 +12,8 @@
 # limitations under the License.
 
 """Common IP utilities library."""
+
+import re
 
 from ipaddress import IPv4Network, ip_address
 
@@ -136,6 +138,54 @@ class IPUtil(object):
         """
         cmd = 'sysctl -w net.{0}.ip_forward=1'.format(ip_ver)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def get_linux_interface_name(node, pci_addr):
+        """Get the interface name.
+
+        :param node: Node where to execute command.
+        :param pci_addr: PCI address
+        :type node: dict
+        :type pci_addr: str
+        :returns: Interface name
+        :rtype: str
+        :raises RuntimeError: If cannot get the information about interfaces.
+        """
+
+        REGEX_INTF_INFO = r"pci@" \
+                          r"([0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}.[0-9a-f])\s*" \
+                          r"([a-zA-Z0-9]*)\s*network"
+
+        cmd = "lshw -class network -businfo"
+        ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30, sudo=True)
+        if ret_code != 0:
+            raise RuntimeError('Could not get information about interfaces, '
+                               'reason:{0}'.format(stderr))
+
+        for line in stdout.splitlines()[2:]:
+            try:
+                if re.search(REGEX_INTF_INFO, line).group(1) == pci_addr:
+                    return re.search(REGEX_INTF_INFO, line).group(2)
+            except AttributeError:
+                continue
+        return None
+
+    @staticmethod
+    def set_linux_interface_up(node, interface):
+        """Set the specified interface up.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :type node: dict
+        :type interface: str
+        :raises RuntimeError: If the interface could not be set up.
+        """
+
+        cmd = "ip link set {0} up".format(interface)
+        ret_code, _, stderr = exec_cmd(node, cmd, timeout=30, sudo=True)
+        if ret_code != 0:
+            raise RuntimeError('Could not set the interface up, reason:{0}'.
+                               format(stderr))
 
     @staticmethod
     def set_linux_interface_ip(node, interface, ip_addr, prefix,
