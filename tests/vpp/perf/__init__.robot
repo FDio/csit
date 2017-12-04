@@ -23,6 +23,9 @@
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes
 | ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
+| Suite Setup | Run Keywords | Setup performance global Variables
+| ...         | AND          | Setup Framework | ${nodes}
+| ...         | AND          | Setup All DUTs | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables
