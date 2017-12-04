@@ -1,0 +1,56 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.30.51.16"
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port3:
+        # t1-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:a0"
+        pci_address: "0000:05:00.0"
+        driver: i40e
+        link: link3
+        model: Intel-X710
+      port7:
+        # t1-tg1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:3a:af:40"
+        pci_address: "0000:86:00.0"
+        driver: i40e
+        link: link7
+        model: Intel-XL710
+  DUT1:
+    type: DUT
+    host: "10.30.51.17"
+    port: 22
+    username: testuser
+    password: Csit1234
+    cryptodev: 0000:86:00.0
+    uio_driver: igb_uio
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831
+    interfaces:
+      port2:
+        # t1-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
+        mac_address: "90:e2:ba:b5:0a:19"
+        pci_address: "0000:0a:00.1"
+        link: link3
+        model: Intel-X520-DA2
+      port6:
+        # t1-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:37:20:49"
+        pci_address: "0000:88:00.1"
+        link: link7
+        model: Intel-XL710
