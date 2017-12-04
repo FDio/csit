@@ -21,7 +21,7 @@ from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.api.deco import keyword
 
-__all__ = ["DICT__nodes", 'Topology']
+__all__ = ["DICT__nodes", 'Topology', 'NodeType']
 
 
 def load_topo_from_yaml():
