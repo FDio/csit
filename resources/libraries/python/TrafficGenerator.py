@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -281,6 +281,26 @@ class TrafficGenerator(object):
             # after max retries T-rex is still not responding to API
             # critical error occurred
             raise RuntimeError('t-rex-64 startup failed')
+
+    @staticmethod
+    def is_trex_running(node):
+        """Check if TRex is running using pidof.
+
+        :param node: Traffic generator node.
+        :type node: dict
+        :returns: nothing
+        :raises: RuntimeError if node type is not a TG.
+        """
+        if node['type'] != NodeType.TG:
+            raise RuntimeError('Node type is not a TG')
+
+        ssh = SSH()
+        ssh.connect(node)
+        ret, _, _ = ssh.exec_command("sh -c 'sudo pidof t-rex'")
+        if int(ret) == 0:
+            return True
+        else:
+            return False
 
     @staticmethod
     def teardown_traffic_generator(node):
