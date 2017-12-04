@@ -308,6 +308,24 @@ class TrafficGenerator(object):
             raise RuntimeError('t-rex-64 startup failed')
 
     @staticmethod
+    def is_trex_running(node):
+        """Check if TRex is running using pidof.
+
+        :param node: Traffic generator node.
+        :type node: dict
+        :returns: True if TRex is running otherwise False.
+        :rtype: bool
+        :raises: RuntimeError if node type is not a TG.
+        """
+        if node['type'] != NodeType.TG:
+            raise RuntimeError('Node type is not a TG')
+
+        ssh = SSH()
+        ssh.connect(node)
+        ret, _, _ = ssh.exec_command_sudo("pidof t-rex")
+        return bool(int(ret) == 0)
+
+    @staticmethod
     def teardown_traffic_generator(node):
         """TG teardown.
 
