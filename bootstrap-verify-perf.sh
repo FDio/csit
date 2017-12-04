@@ -244,7 +244,6 @@ case "$TEST_TAG" in
               --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechwANDbase \
               --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechwANDbase \
               tests/
-        RETURN_STATUS=$(echo $?)
         ;;
     VPP-VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
