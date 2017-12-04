@@ -52,3 +52,6 @@ class Constants(object):
 
     # ODL Client Restconf listener port
     ODL_PORT = 8181
+
+    # Path where wrk is cloned on TG
+    WRK_PATH = '/tmp'

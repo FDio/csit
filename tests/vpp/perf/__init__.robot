@@ -16,13 +16,16 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.CpuUtils
+#| Suite Setup | Run Keywords | Setup performance global Variables
+#| ...         | AND          | Setup Framework | ${nodes}
+#| ...         | AND          | Setup All DUTs | ${nodes}
+#| ...         | AND          | Show Vpp Version On All Duts | ${nodes}
+#| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
+#| ...         | AND          | Update All Interface Data On All Nodes
+#| ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
-| ...         | AND          | Show Vpp Version On All Duts | ${nodes}
-| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
-| ...         | AND          | Update All Interface Data On All Nodes
-| ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
 
 *** Keywords ***
 | Setup performance global Variables
