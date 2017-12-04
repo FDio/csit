@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.DUTSetup
+| Library | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Documentation | Performance suite keywords - Suite and test setups and
@@ -385,6 +386,45 @@
 | | Configure VPP in all 'VNF' containers
 | | Install VPP in all 'VNF' containers
 
+| Set up 3-node performance topology with wrk and DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that setup default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Installs the traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up 2-node topology with wrk and DUT interface model\
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${iface_model}
+| | ...
+| | Iface update numa node | ${tg}
+| | Set variables in 3-node circular topology with DUT interface model
+| | ... | ${iface_model}
+# Make sure TRex is stopped
+| | ${running}= | Is TRex running | ${tg}
+| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
+| | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Run keyword if | '${curr_driver}'!='${None}'
+| | ... | PCI Driver Unbind | ${tg} |
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+# Bind tg_if1 to driver specified in the topology
+| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
+| | PCI Driver Bind | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
+# Set IP on tg_if1
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.10.1 | 24
+| | Set Linux interface up | ${tg} | ${intf_name}
+| | Install wrk | ${tg}
+
 # Suite teardowns
 
 | Tear down 3-node performance topology
@@ -475,6 +515,18 @@
 
 | Tear down performance pdrchk test
 | | [Documentation] | Common test teardown for pdrchk performance tests.
+| | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
+| | Show VAT History On All DUTs | ${nodes}
+| | Show statistics on all DUTs | ${nodes}
+
+| Tear down performance test with wrk
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down performance test with wrk \|
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
