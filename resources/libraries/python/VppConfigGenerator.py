@@ -317,6 +317,15 @@ class VppConfigGenerator(object):
         path = ['cpu', 'corelist-workers']
         self.add_config_item(self._nodeconfig, value, path)
 
+    # def add_cpu_core_workers(self, value):
+    #     """Add CPU core-workers configuration.
+    #
+    #     :param value: Core-workers option.
+    #     :type value: str
+    #     """
+    #     path = ['cpu', 'workers']
+    #     self.add_config_item(self._nodeconfig, value, path)
+
     def add_heapsize(self, value):
         """Add Heapsize configuration.
 
@@ -380,6 +389,96 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['nat']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_tcp_preallocated_connections(self, value):
+        """Add TCP pre-allocated connections.
+
+        :param value: The number of pre-allocated connections.
+        :type value: int
+        """
+        path = ['tcp', 'preallocated-connections']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_tcp_preallocated_half_open_connections(self, value):
+        """Add TCP pre-allocated half open connections.
+
+        :param value: The number of pre-allocated half open connections.
+        :type value: int
+        """
+        path = ['tcp', 'preallocated-half-open-connections']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_event_queue_length(self, value):
+        """Add session event queue length.
+
+        :param value: Session event queue length.
+        :type value: int
+        """
+        path = ['session', 'event-queue-length']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_preallocated_sessions(self, value):
+        """Add the number of pre-allocated sessions.
+
+        :param value: Number of pre-allocated sessions.
+        :type value: int
+        """
+        path = ['session', 'preallocated-sessions']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_v4_session_table_buckets(self, value):
+        """Add number of v4 session table buckets to the config.
+
+        :param value: Number of v4 session table buckets.
+        :type value: int
+        """
+        path = ['session', 'v4-session-table-buckets']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_v4_session_table_memory(self, value):
+        """Add the size of v4 session table memory.
+
+        :param value: Size of v4 session table memory.
+        :type value: str
+        """
+        path = ['session', 'v4-session-table-memory']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_v4_halfopen_table_buckets(self, value):
+        """Add the number of v4 halfopen table buckets.
+
+        :param value: Number of v4 halfopen table buckets.
+        :type value: int
+        """
+        path = ['session', 'v4-halfopen-table-buckets']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_v4_halfopen_table_memory(self, value):
+        """Add the size of v4 halfopen table memory.
+
+        :param value: Size of v4 halfopen table memory.
+        :type value: str
+        """
+        path = ['session', 'v4-halfopen-table-memory']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_local_endpoints_table_buckets(self, value):
+        """Add the number of local endpoints table buckets.
+
+        :param value: Number of local endpoints table buckets.
+        :type value: int
+        """
+        path = ['session', 'local-endpoints-table-buckets']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_local_endpoints_table_memory(self, value):
+        """Add the size of local endpoints table memory.
+
+        :param value: Size of local endpoints table memory.
+        :type value: str
+        """
+        path = ['session', 'local-endpoints-table-memory']
         self.add_config_item(self._nodeconfig, value, path)
 
     def apply_config(self, filename=None, waittime=5,
