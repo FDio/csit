@@ -148,8 +148,8 @@
 | | ... | skip_cnt=${2} | cpu_cnt=${m_int}
 | | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
 | | Run keyword | DUT2.Add CPU Main Core | ${dut2_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
+#| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
+#| | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
 | | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
 | | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
 
