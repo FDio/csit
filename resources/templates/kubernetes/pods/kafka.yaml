@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kafka-server
+  name: kafka
   namespace: csit
 spec:
   hostNetwork: true
