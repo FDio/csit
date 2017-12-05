@@ -73,28 +73,31 @@
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
 | | ... | initialized on all DUTs. If parameter force_init is set to True, then
-| | ... | try to initialize.
+| | ... | try to initialize/disbale.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${force_init} - Try to initialize. Type: boolean
+| | ... | - force_init - Force to initialize. Type: boolean
+| | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs
+| | ... | (Optional). Type: integer, default value: ${32}
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure crypto device on all DUTs \| ${True} \|
 | | ...
-| | [Arguments] | ${force_init}=${False}
+| | [Arguments] | ${force_init}=${False} | ${numvfs}=${32}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Crypto Device Verify | ${nodes['${dut}']} | force_init=${force_init}
+| | | ... | numvfs=${numvfs}
 
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
 | | ... | If parameter force_load is set to True, then try to initialize.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${module} - Module to verify. Type: string
-| | ... | - ${force_load} - Try to load module. Type: boolean
+| | ... | - module - Module to verify. Type: string
+| | ... | - force_load - Try to load module. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
@@ -242,6 +245,23 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
 
+| Add DPDK Uio Driver on all DUTs
+| | [Documentation] | Add DPDK uio driver to VPP startup configuration on all
+| | ... | DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - uio_driver - Required uio driver. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add DPDK Uio Driver on all DUTs \| igb_uio \|
+| | ...
+| | [Arguments] | ${uio_driver}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
+
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
@@ -253,7 +273,7 @@
 | | [Documentation] | Add Cryptodev to VPP startup configuration to all DUTs.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${count} - Number of QAT devices. Type: integer
+| | ... | - count - Number of QAT devices. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
@@ -264,27 +284,33 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
 
-| Add crypto SW device on all DUTs
-| | [Documentation] | Add required number of crypto SW devices to VPP startup
-| | ... | configuration on all DUTs.
+| Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
+| | [Documentation] | Add required number of SW crypto devices of given type
+| | ... | to VPP startup configuration on all DUTs in 3-node single-link
+| | ... | circular topology.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${count} - Number of SW crypto devices. Type: integer
+| | ... | - sw_pmd_type - PMD type of SW crypto device. Type: string
+| | ... | - count - Number of SW crypto devices. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Add SW cryptodev on all DUTs \| ${4} \|
+| | ... | \| Add DPDK SW cryptodev on DUTs in 3-node single-link circular\
+| | ... | topology \| aesni-mb \| ${2} \|
 | | ...
-| | [Arguments] | ${count}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | ${count}
+| | [Arguments] | ${sw_pmd_type} | ${count}
+| | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT1']} | ${dut1_if2}
+| | Run keyword | DUT1.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
+| | ... | ${count}
+| | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT2']} | ${dut2_if1}
+| | Run keyword | DUT2.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
+| | ... | ${count}
 
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write startup configuration and restart VPP on all DUTs.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${restart_vpp} - Whether to restart VPP (Optional). Type: boolean
+| | ... | - restart_vpp - Whether to restart VPP (Optional). Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
