@@ -80,7 +80,7 @@ metadata:
 spec:
   containers:
     - name: "sfc-controller"
-      image: prod_sfc_controller
+      image: ligato/prod_sfc_controller
       imagePullPolicy: IfNotPresent
       command:
         - /bin/sfc-controller
@@ -94,6 +94,7 @@ spec:
     - name: controller-config
       configMap:
         name: sfc-controller-cfg
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -121,7 +122,7 @@ spec:
   hostNetwork: true
   containers:
     - name: "vswitch"
-      image: prod_vpp_agent_shrink
+      image: prod_vpp_agent
       imagePullPolicy: IfNotPresent
       securityContext:
         privileged: true
@@ -149,6 +150,8 @@ spec:
           mountPath: /opt/vpp-agent/dev
         - name: memif-sockets
           mountPath: /tmp
+        - name: device-uio
+          mountPath: /dev
   volumes:
     - name: vpp-config
       configMap:
@@ -159,6 +162,10 @@ spec:
     - name: memif-sockets
       hostPath:
         path: /tmp
+    - name: device-uio
+      hostPath:
+        path: /dev
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -185,7 +192,7 @@ metadata:
 spec:
   containers:
     - name: "vnf1"
-      image: prod_vpp_agent_shrink
+      image: prod_vpp_agent
       imagePullPolicy: IfNotPresent
       securityContext:
         privileged: true
@@ -232,7 +239,7 @@ metadata:
 spec:
   containers:
     - name: "vnf2"
-      image: prod_vpp_agent_shrink
+      image: prod_vpp_agent
       imagePullPolicy: IfNotPresent
       securityContext:
         privileged: true

@@ -607,3 +607,13 @@
 | | ... | Vpp Log Macip Acl Settings | ${dut1}
 | | Run Keyword And Ignore Error
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
+
+| Tear down performance test with Ligato Kubernetes
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests with Ligato Kubernetes.
+| | ...
+| | Run Keyword If Test Failed | 
+| | ... | Get Kubernetes logs on all DUTs | ${nodes} | csit
+| | Run Keyword If Test Failed |
+| | ... | Describe Kubernetes resource on all DUTs | ${nodes} | csit
+| | Delete Kubernetes resource on all DUTs | ${nodes} | csit

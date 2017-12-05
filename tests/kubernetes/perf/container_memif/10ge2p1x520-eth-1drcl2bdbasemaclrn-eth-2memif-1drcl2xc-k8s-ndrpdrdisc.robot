@@ -22,15 +22,13 @@
 | ... | L2 | Intel-X520-DA2
 | ...
 | Test Setup | Run Keywords
-| ... | Apply Kubernetes resource on all duts | ${nodes} | kafka.yaml
-| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | etcd.yaml
+| ... | Apply Kubernetes resource on all duts | ${nodes} | namespaces/csit.yaml
+| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | pods/kafka.yaml
+| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | pods/etcd.yaml
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Teardown | Run Keywords
-| ... | Get Kubernetes logs on all DUTs | ${nodes} | AND
-| ... | Describe Kubernetes resource on all DUTs | ${nodes} | AND
-| ... | Delete Kubernetes resource on all duts | ${nodes}
+| Test Teardown | Tear down performance test with Ligato Kubernetes
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
@@ -67,7 +65,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 # CPU settings
 | ${system_cpus}= | ${1}
-| ${vswitch_cpus}= | ${5}
+| ${vswitch_cpus}= | ${2}
 | ${vnf_cpus}= | ${3}
 
 *** Keywords ***
@@ -142,10 +140,24 @@
 | | Create Kubernetes VSWITCH startup config on all DUTs | ${get_framesize}
 | | ... | ${wt} | ${rxq}
 | | Create Kubernetes VNF'1' startup config on all DUTs
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vswitch-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vswitch.conf
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vnf1.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | csit
+| | ... | name=vswitch-vpp-cfg | vpp.conf=/tmp/vswitch.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | csit
+| | ... | name=vnf-vpp-cfg | vpp.conf=/tmp/vnf1.conf
+| | Apply Kubernetes resource on node | ${dut1}
+| | ... | contiv-sfc-controller.yaml
+| | Apply Kubernetes resource on node | ${dut2}
+| | ... | contiv-sfc-controller.yaml
+| | Apply Kubernetes resource on node | ${dut1}
+| | ... | contiv-vswitch.yaml
+| | Apply Kubernetes resource on node | ${dut2}
+| | ... | contiv-vswitch.yaml
+| | Apply Kubernetes resource on node | ${dut1}
+| | ... | contiv-vnf1.yaml | $$VNF_NAME$$=vnf1-vpp | $$VNF_LABEL$$=vnf1
+| | ... | $$VNF_CM$$=vnf1-agent-cfg
+| | Apply Kubernetes resource on node | ${dut2}
+| | ... | contiv-vnf2.yaml | $$VNF_NAME$$=vnf1-vpp | $$VNF_LABEL$$=vnf1
+| | ... | $$VNF_CM$$=vnf1-agent-cfg
 | | Apply Kubernetes resource on node | ${dut1}
 | | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut1_if1_name}
@@ -173,7 +185,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=NDR
 

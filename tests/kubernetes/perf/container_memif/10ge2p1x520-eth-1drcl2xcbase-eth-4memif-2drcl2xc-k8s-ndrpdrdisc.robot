@@ -22,15 +22,13 @@
 | ... | L2 | Intel-X520-DA2
 | ...
 | Test Setup | Run Keywords
-| ... | Apply Kubernetes resource on all duts | ${nodes} | kafka.yaml
-| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | etcd.yaml
+| ... | Apply Kubernetes resource on all duts | ${nodes} | namespaces/csit.yaml
+| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | pods/kafka.yaml
+| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | pods/etcd.yaml
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Teardown | Run Keywords
-| ... | Get Kubernetes logs on all DUTs | ${nodes} | AND
-| ... | Describe Kubernetes resource on all DUTs | ${nodes} | AND
-| ... | Delete Kubernetes resource on all duts | ${nodes}
+| Test Teardown | Tear down performance test with Ligato Kubernetes
 | ...
 | Documentation | *RFC2544: Pkt throughput L2XC test cases*
 | ...
@@ -142,12 +140,12 @@
 | | ... | ${wt} | ${rxq}
 | | Create Kubernetes VNF'1' startup config on all DUTs
 | | Create Kubernetes VNF'2' startup config on all DUTs
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vswitch-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vswitch.conf
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf1-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vnf1.conf
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf2-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vnf2.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | csit | 
+| | ... | name=vswitch-vpp-cfg | vpp.conf=/tmp/vswitch.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | csit | 
+| | ... | name=vnf1-vpp-cfg | vpp.conf=/tmp/vnf1.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | csit | 
+| | ... | name=vnf2-vpp-cfg | vpp.conf=/tmp/vnf2.conf
 | | Apply Kubernetes resource on node | ${dut1}
 | | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut1_if1_name}
@@ -157,7 +155,6 @@
 | | ... | $$VSWITCH_IF1$$=${dut2_if1_name}
 | | ... | $$VSWITCH_IF2$$=${dut2_if2_name}
 | | Wait for Kubernetes PODs on all DUTs | ${nodes}
-| | Describe Kubernetes resource on all DUTs | ${nodes}
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
