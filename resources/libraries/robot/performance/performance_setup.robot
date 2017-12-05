@@ -419,6 +419,22 @@
 | | Reset VAT History On All DUTs | ${nodes}
 | | Create base startup configuration of VPP on all DUTs
 
+| Set up performance test with Ligato Kubernetes
+| | [Documentation] | Common test setup for performance tests with Ligato \
+| | ... | Kubernetes.
+| | ...
+| | Apply Kubernetes resource on all duts | ${nodes} | namespaces/csit.yaml
+| | Apply Kubernetes resource on all duts | ${nodes} | pods/kafka.yaml
+| | Apply Kubernetes resource on all duts | ${nodes} | pods/etcdv3.yaml
+| | Apply Kubernetes resource on all duts | ${nodes}
+| | ... | configmaps/vswitch-agent-cfg.yaml
+| | Apply Kubernetes resource on all duts | ${nodes}
+| | ... | configmaps/vnf-agent-cfg.yaml
+| | Apply Kubernetes resource on all duts | ${nodes}
+| | ... | pods/contiv-sfc-controller.yaml
+| | Apply Kubernetes resource on all duts | ${nodes}
+| | ... | pods/contiv-vswitch.yaml
+
 # Tests teardowns
 
 | Tear down performance discovery test
@@ -607,3 +623,13 @@
 | | ... | Vpp Log Macip Acl Settings | ${dut1}
 | | Run Keyword And Ignore Error
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
+
+| Tear down performance test with Ligato Kubernetes
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests with Ligato Kubernetes.
+| | ...
+| | Run Keyword If Test Failed | 
+| | ... | Get Kubernetes logs on all DUTs | ${nodes} | csit
+| | Run Keyword If Test Failed |
+| | ... | Describe Kubernetes resource on all DUTs | ${nodes} | csit
+| | Delete Kubernetes resource on all DUTs | ${nodes} | csit

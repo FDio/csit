@@ -21,16 +21,11 @@
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | ...
-| Test Setup | Run Keywords
-| ... | Apply Kubernetes resource on all duts | ${nodes} | kafka.yaml
-| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | etcd.yaml
+| Test Setup | Set up performance test with Ligato Kubernetes
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Teardown | Run Keywords
-| ... | Get Kubernetes logs on all DUTs | ${nodes} | AND
-| ... | Describe Kubernetes resource on all DUTs | ${nodes} | AND
-| ... | Delete Kubernetes resource on all duts | ${nodes}
+| Test Teardown | Tear down performance test with Ligato Kubernetes
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
@@ -61,14 +56,14 @@
 | ${avg_imix_framesize}= | ${357.833}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
-# Kubernetes profile
-| ${kubernetes_profile} | eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc
+# SFC profile
+| ${sfc_profile} | configmaps/eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vswitch_cpus}= | ${5}
-| ${vnf_cpus}= | ${3}
+| ${vnf_cpus}= | ${2}
 
 *** Keywords ***
 | Create Kubernetes VSWITCH startup config on all DUTs
@@ -139,22 +134,33 @@
 | | ${dut1_if2_name}= | Get interface name | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_name}= | Get interface name | ${dut2} | ${dut2_if1}
 | | ${dut2_if2_name}= | Get interface name | ${dut2} | ${dut2_if2}
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | Create Kubernetes VSWITCH startup config on all DUTs | ${get_framesize}
 | | ... | ${wt} | ${rxq}
 | | Create Kubernetes VNF'1' startup config on all DUTs
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vswitch-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vswitch.conf
-| | Create Kubernetes CM from file on all DUTs | ${nodes} | name=vnf-vpp-cfg
-| | ... | key=vpp.conf | src_file=/tmp/vnf1.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | csit
+| | ... | name=vswitch-vpp-cfg | vpp.conf=/tmp/vswitch.conf
+| | Create Kubernetes CM from file on all DUTs | ${nodes} | csit
+| | ... | name=vnf1-vpp-cfg | vpp.conf=/tmp/vnf1.conf
 | | Apply Kubernetes resource on node | ${dut1}
-| | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
+| | ... | pods/contiv-vnf.yaml | $$VNF$$=vnf1
+| | Apply Kubernetes resource on node | ${dut2}
+| | ... | pods/contiv-vnf.yaml | $$VNF$$=vnf1
+| | Apply Kubernetes resource on node | ${dut1}
+| | ... | ${sfc_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut1_if1_name}
 | | ... | $$VSWITCH_IF2$$=${dut1_if2_name}
+| | ... | $$TG_IF1_MAC1$$=${tg_if1_mac}
+| | ... | $$TG_IF2_MAC1$$=${tg_if2_mac}
 | | Apply Kubernetes resource on node | ${dut2}
-| | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
+| | ... | ${sfc_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut2_if1_name}
 | | ... | $$VSWITCH_IF2$$=${dut2_if2_name}
+| | ... | $$TG_IF1_MAC1$$=${tg_if1_mac}
+| | ... | $$TG_IF2_MAC1$$=${tg_if2_mac}
 | | Wait for Kubernetes PODs on all DUTs | ${nodes}
+| | Set Kubernetes PODs affinity on all DUTs | ${nodes}
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
