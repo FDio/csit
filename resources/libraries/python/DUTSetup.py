@@ -19,6 +19,7 @@ from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VPPUtil import VPPUtil
 
 
 class DUTSetup(object):
@@ -196,7 +197,7 @@ class DUTSetup(object):
         ssh.connect(node)
 
         cryptodev = Topology.get_cryptodev(node)
-        cmd = 'cat /sys/bus/pci/devices/{}/sriov_numvfs'.\
+        cmd = 'cat /sys/bus/pci/devices/{0}/sriov_numvfs'.\
             format(cryptodev.replace(':', r'\:'))
 
         # Try to read number of VFs from PCI address of QAT device
@@ -206,7 +207,7 @@ class DUTSetup(object):
                 try:
                     sriov_numvfs = int(stdout)
                 except ValueError:
-                    logger.trace('Reading sriov_numvfs info failed on: {}'.
+                    logger.trace('Reading sriov_numvfs info failed on {0}'.
                                  format(node['host']))
                 else:
                     if sriov_numvfs != numvfs:
@@ -215,10 +216,10 @@ class DUTSetup(object):
                             # with numvfs
                             DUTSetup.crypto_device_init(node, numvfs)
                         else:
-                            raise RuntimeError('QAT device {} is not '
-                                               'initialized to {} on host: {}'.
-                                               format(cryptodev, numvfs,
-                                                      node['host']))
+                            raise RuntimeError('QAT device {0} is not '
+                                               'initialized to {1} on host {2}'
+                                               .format(cryptodev, numvfs,
+                                                       node['host']))
                     break
 
     @staticmethod
@@ -230,26 +231,35 @@ class DUTSetup(object):
         :type node: dict
         :type numvfs: int
         :returns: nothing
-        :raises RuntimeError: If QAT failed to initialize.
+        :raises RuntimeError: If failed to stop VPP or QAT failed to initialize.
         """
+        cryptodev = Topology.get_cryptodev(node)
+
+        # QAT device must be re-bound to kernel driver before initialization
+        driver = 'dh895xcc'
+        kernel_module = 'qat_dh895xcc'
+        current_driver = DUTSetup.get_pci_dev_driver(
+            node, cryptodev.replace(':', r'\:'))
+
+        DUTSetup.kernel_module_verify(node, kernel_module, force_load=True)
+
+        VPPUtil.stop_vpp_service(node)
+        if current_driver is not None:
+            DUTSetup.pci_driver_unbind(node, cryptodev)
+        DUTSetup.pci_driver_bind(node, cryptodev, driver)
 
         ssh = SSH()
         ssh.connect(node)
 
-        cryptodev = Topology.get_cryptodev(node)
-
-        # QAT device must be bind to kernel driver before initialization
-        DUTSetup.pci_driver_unbind(node, cryptodev)
-        DUTSetup.pci_driver_bind(node, cryptodev, "dh895xcc")
-
         # Initialize QAT VFs
-        ret_code, _, _ = ssh.exec_command(
-            "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/sriov_numvfs'"
-            .format(numvfs, cryptodev.replace(':', r'\:')))
+        if numvfs > 0:
+            cmd = 'echo "{0}" | tee /sys/bus/pci/devices/{1}/sriov_numvfs'.\
+                format(numvfs, cryptodev.replace(':', r'\:'), timeout=180)
+            ret_code, _, _ = ssh.exec_command_sudo("sh -c '{0}'".format(cmd))
 
-        if int(ret_code) != 0:
-            raise RuntimeError('Failed to initialize {} VFs on QAT device on '
-                               'host: {}'.format(numvfs, node['host']))
+            if int(ret_code) != 0:
+                raise RuntimeError('Failed to initialize {0} VFs on QAT device '
+                                   ' on host {1}'.format(numvfs, node['host']))
 
     @staticmethod
     def pci_driver_unbind(node, pci_addr):
@@ -266,13 +276,13 @@ class DUTSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        ret_code, _, _ = ssh.exec_command(
-            "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/driver/unbind'"
-            .format(pci_addr, pci_addr.replace(':', r'\:')))
+        ret_code, _, _ = ssh.exec_command_sudo(
+            "sh -c 'echo {0} | tee /sys/bus/pci/devices/{1}/driver/unbind'"
+            .format(pci_addr, pci_addr.replace(':', r'\:')), timeout=180)
 
         if int(ret_code) != 0:
-            raise RuntimeError('Failed to unbind PCI device from driver on '
-                               'host: {}'.format(node['host']))
+            raise RuntimeError('Failed to unbind PCI device {0} from driver on '
+                               'host {1}'.format(pci_addr, node['host']))
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
@@ -291,13 +301,57 @@ class DUTSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        ret_code, _, _ = ssh.exec_command(
-            "sudo sh -c 'echo {} | tee /sys/bus/pci/drivers/{}/bind'"
-            .format(pci_addr, driver))
+        ret_code, _, _ = ssh.exec_command_sudo(
+            "sh -c 'echo {0} | tee /sys/bus/pci/drivers/{1}/bind'".format(
+                pci_addr, driver), timeout=180)
 
         if int(ret_code) != 0:
-            raise RuntimeError('Failed to bind PCI device to {} driver on '
-                               'host: {}'.format(driver, node['host']))
+            raise RuntimeError('Failed to bind PCI device {0} to {1} driver on '
+                               'host {2}'.format(pci_addr, driver,
+                                                 node['host']))
+
+    @staticmethod
+    def get_pci_dev_driver(node, pci_addr):
+        """Get current PCI device driver on node.
+
+        :param node: DUT node.
+        :param pci_addr: PCI device address.
+        :type node: dict
+        :type pci_addr: str
+        :returns: Driver or None
+        :raises RuntimeError: If PCI rescan or lspci command execution failed.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        for i in range(3):
+            logger.trace('Try {0}: Get interface driver'.format(i))
+            cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
+            ret_code, _, _ = ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                raise RuntimeError("'{0}' failed on '{1}'"
+                                   .format(cmd, node['host']))
+
+            cmd = 'lspci -vmmks {0}'.format(pci_addr)
+            ret_code, stdout, _ = ssh.exec_command(cmd)
+            if int(ret_code) != 0:
+                raise RuntimeError("'{0}' failed on '{1}'"
+                                   .format(cmd, node['host']))
+
+            for line in stdout.splitlines():
+                if len(line) == 0:
+                    continue
+                name = None
+                value = None
+                try:
+                    name, value = line.split("\t", 1)
+                except ValueError:
+                    if name == "Driver:":
+                        return None
+                if name == 'Driver:':
+                    return value
+        else:
+            return None
 
     @staticmethod
     def kernel_module_verify(node, module, force_load=False):
@@ -309,7 +363,7 @@ class DUTSetup(object):
         :param force_load: If True then try to load module.
         :type node: dict
         :type module: str
-        :type force_init: bool
+        :type force_load: bool
         :returns: nothing
         :raises RuntimeError: If module is not loaded or failed to load.
         """
@@ -317,7 +371,7 @@ class DUTSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = 'grep -w {} /proc/modules'.format(module)
+        cmd = 'grep -w {0} /proc/modules'.format(module)
         ret_code, _, _ = ssh.exec_command(cmd)
 
         if int(ret_code) != 0:
@@ -325,8 +379,8 @@ class DUTSetup(object):
                 # Module is not loaded and we want to load it
                 DUTSetup.kernel_module_load(node, module)
             else:
-                raise RuntimeError('Kernel module {} is not loaded on host: {}'.
-                                   format(module, node['host']))
+                raise RuntimeError('Kernel module {0} is not loaded on host '
+                                   '{1}'.format(module, node['host']))
 
     @staticmethod
     def kernel_module_load(node, module):
@@ -343,8 +397,8 @@ class DUTSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        ret_code, _, _ = ssh.exec_command_sudo("modprobe {}".format(module))
+        ret_code, _, _ = ssh.exec_command_sudo("modprobe {0}".format(module))
 
         if int(ret_code) != 0:
-            raise RuntimeError('Failed to load {} kernel module on host: {}'.
+            raise RuntimeError('Failed to load {0} kernel module on host {1}'.
                                format(module, node['host']))

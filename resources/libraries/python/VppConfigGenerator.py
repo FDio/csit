@@ -211,15 +211,19 @@ class VppConfigGenerator(object):
             self.add_config_item(self._nodeconfig, '', path)
         self.add_dpdk_uio_driver('igb_uio')
 
-    def add_dpdk_sw_cryptodev(self, count):
-        """Add DPDK Crypto SW device configuration.
+    def add_dpdk_sw_cryptodev(self, sw_pmd_type, socket_id, count):
+        """Add DPDK SW Crypto device configuration.
 
-        :param count: Number of crypto SW devices to add.
+        :param sw_pmd_type: Type of SW crypto device PMD to add.
+        :param socket_id: Socket ID.
+        :param count: Number of SW crypto devices to add.
+        :type sw_pmd_type: str
+        :type socket_id: int
         :type count: int
         """
-        for i in range(count):
-            cryptodev_config = 'vdev cryptodev_aesni_mb_pmd,socket_id={0}'.\
-                format(str(i))
+        for _ in range(count):
+            cryptodev_config = 'vdev cryptodev_{0}_pmd,socket_id={1}'.\
+                format(sw_pmd_type, str(socket_id))
             path = ['dpdk', cryptodev_config]
             self.add_config_item(self._nodeconfig, '', path)
 
