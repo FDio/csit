@@ -43,8 +43,9 @@ class KubernetesUtils(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = '{dir}/{lib}/k8s_setup.sh '.format(dir=Constants.REMOTE_FW_DIR,
-                                                 lib=Constants.RESOURCES_LIB_SH)
+        cmd = '{dir}/{lib}/k8s_setup.sh deploy_calico'\
+            .format(dir=Constants.REMOTE_FW_DIR,
+                    lib=Constants.RESOURCES_LIB_SH)
         (ret_code, _, _) = ssh.exec_command(cmd, timeout=120)
         if int(ret_code) != 0:
             raise RuntimeError('Failed to setup Kubernetes on {node}.'
@@ -63,6 +64,36 @@ class KubernetesUtils(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 KubernetesUtils.setup_kubernetes_on_node(node)
+
+    @staticmethod
+    def reset_kubernetes_on_node(node):
+        """Reset Kubernetes on node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises RuntimeError: If resetting Kubernetes failed.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = '{dir}/{lib}/k8s_setup.sh destroy'\
+            .format(dir=Constants.REMOTE_FW_DIR,
+                    lib=Constants.RESOURCES_LIB_SH)
+        (ret_code, _, _) = ssh.exec_command(cmd, timeout=120)
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to reset Kubernetes on {node}.'
+                               .format(node=node['host']))
+
+    @staticmethod
+    def reset_kubernetes_on_all_duts(nodes):
+        """Reset Kubernetes on all DUTs.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                KubernetesUtils.reset_kubernetes_on_node(node)
 
     @staticmethod
     def apply_kubernetes_resource_on_node(node, yaml_file, **kwargs):
@@ -114,14 +145,17 @@ class KubernetesUtils(object):
                                                                   **kwargs)
 
     @staticmethod
-    def create_kubernetes_cm_from_file_on_node(node, name, key, src_file):
+    def create_kubernetes_cm_from_file_on_node(node, name, key, src_file,
+                                               nspace='csit'):
         """Create Kubernetes ConfigMap from file on node.
 
         :param node: DUT node.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :param name: ConfigMap name.
         :param key: Key (destination file).
         :param src_file: Source file.
         :type node: dict
+        :type nspace: str
         :type name: str
         :type key: str
         :type src_file: str
@@ -130,8 +164,11 @@ class KubernetesUtils(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = 'kubectl create -n csit configmap {name} --from-file={key}='\
-            '{src_file}'.format(name=name, key=key, src_file=src_file)
+        nspace = '{nspace}'.format(nspace=nspace) if nspace else 'default'
+
+        cmd = 'kubectl create -n {nspace} configmap {name} --from-file={key}='\
+            '{src_file}'.format(nspace=nspace, name=name, key=key,
+                                src_file=src_file)
         (ret_code, _, _) = ssh.exec_command_sudo(cmd, timeout=120)
         if int(ret_code) != 0:
             raise RuntimeError('Failed to create Kubernetes ConfigMap {name} '
@@ -139,14 +176,17 @@ class KubernetesUtils(object):
                                                    node=node['host']))
 
     @staticmethod
-    def create_kubernetes_cm_from_file_on_all_duts(nodes, name, key, src_file):
+    def create_kubernetes_cm_from_file_on_all_duts(nodes, name, key, src_file,
+                                                   nspace='csit'):
         """Create Kubernetes ConfigMap from file on all DUTs.
 
         :param nodes: Topology nodes.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :param name: ConfigMap name.
         :param key: Key (destination file).
         :param src_file: Source file.
         :type nodes: dict
+        :type nspace: str
         :type name: str
         :type key: str
         :type src_file: str
@@ -156,16 +196,21 @@ class KubernetesUtils(object):
                 KubernetesUtils.create_kubernetes_cm_from_file_on_node(node,
                                                                        name,
                                                                        key,
-                                                                       src_file)
+                                                                       src_file,
+                                                                       nspace)
 
     @staticmethod
-    def delete_kubernetes_resource_on_node(node, rtype='po,cm', name=None):
+    def delete_kubernetes_resource_on_node(node, nspace='csit',
+                                           rtype='po,cm,ds,deploy,ev,rs,rc,svc',
+                                           name=None):
         """Delete Kubernetes resource on node.
 
         :param node: DUT node.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :param rtype: Kubernetes resource type.
-        :param name: Name of resource.
+        :param name: Name of resource (Default: all).
         :type node: dict
+        :type nspace: str
         :type rtype: str
         :type name: str
         :raises RuntimeError: If deleting Kubernetes resource failed.
@@ -174,76 +219,105 @@ class KubernetesUtils(object):
         ssh.connect(node)
 
         name = '{name}'.format(name=name) if name else '--all'
+        nspace = '{nspace}'.format(nspace=nspace) if nspace else 'default'
 
-        cmd = 'kubectl delete -n csit {rtype} {name}'\
-            .format(rtype=rtype, name=name)
+        cmd = 'kubectl delete -n {nspace} {rtype} {name}'\
+            .format(nspace=nspace, rtype=rtype, name=name)
         (ret_code, _, _) = ssh.exec_command_sudo(cmd, timeout=120)
         if int(ret_code) != 0:
             raise RuntimeError('Failed to delete Kubernetes resources in CSIT '
                                'namespace on {node}.'.format(node=node['host']))
 
-        cmd = 'kubectl get -n csit pods --no-headers'
-        for _ in range(24):
+        cmd = 'kubectl get -n {nspace} pods -a --no-headers'\
+            .format(nspace=nspace)
+        for _ in range(48):
             (ret_code, stdout, _) = ssh.exec_command_sudo(cmd, timeout=120)
             if int(ret_code) == 0:
-                ready = True
-                for line in stdout.splitlines():
-                    if 'No resources found.' not in line:
-                        ready = False
-                if ready:
-                    break
+                if name == '--all':
+                    ready = False
+                    for line in stdout.splitlines():
+                        if 'No resources found.' in line:
+                            ready = True
+                    if ready:
+                        break
+                else:
+                    ready = False
+                    for line in stdout.splitlines():
+                        try:
+                            state = line.split()[1].split('/')
+                            ready = True if 'Running' in line and\
+                                state == state[::-1] else False
+                            if not ready:
+                                break
+                        except ValueError, IndexError:
+                            ready = False
+                    if ready:
+                        break
             time.sleep(5)
         else:
-            raise RuntimeError('Failed to delete Kubernetes resources in CSIT '
-                               'namespace on {node}.'.format(node=node['host']))
+            raise RuntimeError('Failed to delete Kubernetes resources on '
+                               '{node}.'.format(node=node['host']))
 
     @staticmethod
-    def delete_kubernetes_resource_on_all_duts(nodes, rtype='po,cm', name=None):
+    def delete_kubernetes_resource_on_all_duts(nodes, nspace='csit',
+                                               rtype='po,cm', name=None):
         """Delete all Kubernetes resource on all DUTs.
 
         :param nodes: Topology nodes.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :param rtype: Kubernetes resource type.
         :param name: Name of resource.
         :type nodes: dict
+        :type nspace: str
         :type rtype: str
         :type name: str
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                KubernetesUtils.delete_kubernetes_resource_on_node(node, rtype,
-                                                                   name)
+                KubernetesUtils.delete_kubernetes_resource_on_node(node, nspace,
+                                                                   rtype, name)
 
     @staticmethod
-    def describe_kubernetes_resource_on_node(node, rtype='po,cm'):
+    def describe_kubernetes_resource_on_node(node, nspace='csit',
+                                             rtype='po,cm'):
         """Describe Kubernetes resource on node.
 
         :param node: DUT node.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :param rtype: Kubernetes resource type.
         :type node: dict
+        :type nspace: str
         :type rtype: str
         :raises RuntimeError: If describing Kubernetes resource failed.
         """
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = 'kubectl describe -n csit {rtype}'.format(rtype=rtype)
+        nspace = '{nspace}'.format(nspace=nspace) if nspace else 'default'
+
+        cmd = 'kubectl describe -n {nspace} {rtype}'.format(nspace=nspace,
+                                                            rtype=rtype)
         (ret_code, _, _) = ssh.exec_command_sudo(cmd, timeout=120)
         if int(ret_code) != 0:
             raise RuntimeError('Failed to describe Kubernetes resource on '
                                '{node}.'.format(node=node['host']))
 
     @staticmethod
-    def describe_kubernetes_resource_on_all_duts(nodes, rtype='po,cm'):
+    def describe_kubernetes_resource_on_all_duts(nodes, nspace='csit',
+                                                 rtype='po,cm'):
         """Describe Kubernetes resource on all DUTs.
 
         :param nodes: Topology nodes.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :param rtype: Kubernetes resource type.
         :type nodes: dict
+        :type nspace: str
         :type rtype: str
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 KubernetesUtils.describe_kubernetes_resource_on_node(node,
+                                                                     nspace,
                                                                      rtype)
 
     @staticmethod
@@ -251,16 +325,18 @@ class KubernetesUtils(object):
         """Get Kubernetes logs on node.
 
         :param node: DUT node.
-        :param nspace: Kubernetes namespace.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :type node: dict
         :type nspace: str
         """
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = "for p in $(kubectl get pods -n {namespace} --no-headers"\
-            " | cut -f 1 -d ' '); do echo $p; kubectl logs -n {namespace} $p; "\
-            "done".format(namespace=nspace)
+        nspace = '{nspace}'.format(nspace=nspace) if nspace else 'default'
+
+        cmd = "for p in $(kubectl get pods -n {nspace} -o jsonpath="\
+            "'{{.items[*].metadata.name}}'); do echo $p; kubectl logs "\
+            "-n {nspace} $p; done".format(nspace=nspace)
         ssh.exec_command(cmd, timeout=120)
 
     @staticmethod
@@ -268,7 +344,7 @@ class KubernetesUtils(object):
         """Get Kubernetes logs on all DUTs.
 
         :param nodes: Topology nodes.
-        :param nspace: Kubernetes namespace.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :type nodes: dict
         :type nspace: str
         """
@@ -277,48 +353,23 @@ class KubernetesUtils(object):
                 KubernetesUtils.get_kubernetes_logs_on_node(node, nspace)
 
     @staticmethod
-    def reset_kubernetes_on_node(node):
-        """Reset Kubernetes on node.
-
-        :param node: DUT node.
-        :type node: dict
-        :raises RuntimeError: If resetting Kubernetes failed.
-        """
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = 'kubeadm reset && rm -rf $HOME/.kube'
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd, timeout=120)
-        if int(ret_code) != 0:
-            raise RuntimeError('Failed to reset Kubernetes on {node}.'
-                               .format(node=node['host']))
-
-    @staticmethod
-    def reset_kubernetes_on_all_duts(nodes):
-        """Reset Kubernetes on all DUTs.
-
-        :param nodes: Topology nodes.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node['type'] == NodeType.DUT:
-                KubernetesUtils.reset_kubernetes_on_node(node)
-
-    @staticmethod
     def wait_for_kubernetes_pods_on_node(node, nspace='csit'):
-        """Wait for Kubernetes PODs to become in 'Running' state on node.
+        """Wait for Kubernetes PODs to become ready on node.
 
         :param node: DUT node.
-        :param nspace: Kubernetes namespace.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :type node: dict
         :type nspace: str
-        :raises RuntimeError: If Kubernetes PODs are not ready.
+        :raises RuntimeError: If Kubernetes PODs are not ready or operation not
+        supported.
         """
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = 'kubectl get -n {namespace} pods --no-headers'\
-            .format(namespace=nspace)
+        nspace = '{nspace}'.format(nspace=nspace) if nspace else 'default'
+
+        cmd = 'kubectl get -n {nspace} pods -a --no-headers'\
+            .format(nspace=nspace)
         for _ in range(48):
             (ret_code, stdout, _) = ssh.exec_command_sudo(cmd, timeout=120)
             if int(ret_code) == 0:
@@ -336,15 +387,15 @@ class KubernetesUtils(object):
                     break
             time.sleep(5)
         else:
-            raise RuntimeError('Kubernetes PODs are not ready on {node}.'
+            raise RuntimeError('Kubernetes PODs are not running on {node}.'
                                .format(node=node['host']))
 
     @staticmethod
     def wait_for_kubernetes_pods_on_all_duts(nodes, nspace='csit'):
-        """Wait for Kubernetes PODs to become in Running state on all DUTs.
+        """Wait for Kubernetes to become ready on all DUTs.
 
         :param nodes: Topology nodes.
-        :param nspace: Kubernetes namespace.
+        :param nspace: Namespace to apply operation on (Default: csit).
         :type nodes: dict
         :type nspace: str
         """
