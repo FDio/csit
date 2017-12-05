@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: etcdv3-server
+  name: etcdv3
   namespace: csit
 spec:
   hostNetwork: true
