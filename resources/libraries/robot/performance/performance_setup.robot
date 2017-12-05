@@ -355,18 +355,24 @@
 | | ... | *Arguments:*
 | | ... | - topology_type - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
+| | ... | - crypto_type - Crypto device type - HW_cryptodev or SW_cryptodev
+| | ... | (Optional). Type: string, default value: HW_cryptodev
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Set up IPSec performance test suite \| L2 \
 | | ... | \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model}
+| | [Arguments] | ${topology_type} | ${nic_model} | ${crypto_type}=HW_cryptodev
 | | ...
 | | Set up 3-node performance topology with DUT's NIC model
 | | ... | ${topology_type} | ${nic_model}
-| | Configure crypto device on all DUTs | force_init=${True}
-| | Configure kernel module on all DUTs | igb_uio | force_load=${True}
+| | ${numvfs}= | Set Variable If
+| | ... | '${crypto_type}' == 'HW_cryptodev' | ${32}
+| | ... | '${crypto_type}' == 'SW_cryptodev' | ${0}
+| | Configure crypto device on all DUTs | force_init=${True} | numvfs=${numvfs}
+| | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
+| | .. | Configure kernel module on all DUTs | igb_uio | force_load=${True}
 
 | Set up performance topology with containers
 | | [Documentation]
