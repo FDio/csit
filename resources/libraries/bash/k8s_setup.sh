@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,39 +16,58 @@ set -xo pipefail
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-K8S_CALICO="${SCRIPT_DIR}/../../templates/kubernetes/calico_v2.4.1.yaml"
-K8S_CSIT="${SCRIPT_DIR}/../../templates/kubernetes/csit.yaml"
+# Include
+source ${SCRIPT_DIR}/config/defaults
+source ${SCRIPT_DIR}/shell/dpdk_utils.sh
+source ${SCRIPT_DIR}/shell/k8s_utils.sh
 
-trap "sudo kubeadm reset && sudo rm -rf $HOME/.kube" ERR
+# Read configuration
+while read line
+do
+    if echo $line | grep -F = &>/dev/null
+    then
+        varname=$(echo "$line" | cut -d '=' -f 1)
+        cfg[$varname]=$(echo "$line" | cut -d '=' -f 2-)
+    fi
+done < ${script_dir}/../config/config
 
-# Revert any changes made to this host by 'kubeadm init' or 'kubeadm join'
-sudo kubeadm reset && sudo rm -rf $HOME/.kube || \
-    { echo "Failed to reset kubeadm"; exit 1; }
+trap "k8s_utils.destroy" ERR
 
-# Ret up the Kubernetes master
-sudo -E kubeadm init --token-ttl 0 --pod-network-cidr=192.168.0.0/16 || \
-    { echo "Failed to init kubeadm"; exit 1; }
+case "$1" in
+    prepare)
+        # Revert any changes made to this host by 'kubeadm init'
+        k8s_utils.destroy
+        # Sets up the Kubernetes master
+        k8s_utils.prepare
+        ;;
+    deploy_calico)
+        # Revert any changes made to this host by 'kubeadm init'
+        k8s_utils.destroy
+        # Load kernel modules uio/uio_pci_generic
+        dpdk_utils.load_modules
+        # Sets up the Kubernetes master
+        k8s_utils.prepare "--pod-network-cidr=192.168.0.0/16"
+        # Apply resources
+        k8s_utils.calico_deploy ${cfg[K8S_CALICO]}
+        # Dump Kubernetes objects ...
+        k8s_utils.dump_all
+        ;;
+    affinity_non_vpp)
+        # Set affinity for all non VPP docker containers to CPU 0
+        k8s_utils.affinity_non_vpp
+        ;;
+    destroy)
+        # Revert any changes made to this host by 'kubeadm init'
+        k8s_utils.destroy
+        ;;
+    *)
+        echo "usage: $0 function"
+        echo "function:"
+        echo "    prepare_k8s"
+        echo "    deploy_calico"
+        echo "    destroy_k8s"
+        exit 1
+esac
+shift
 
-# Make cgroup non-exclusive for CPU and MEM
-sudo cgset -r cpuset.cpu_exclusive=0 /kubepods
-sudo cgset -r cpuset.mem_exclusive=0 /kubepods
-
-rm -rf $HOME/.kube
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-# Apply resources
-kubectl apply -f ${K8S_CALICO}  || \
-    { echo "Failed to apply Calico resources"; exit 1; }
-kubectl apply -f ${K8S_CSIT}  || \
-    { echo "Failed to apply CSIT resource"; exit 1; }
-
-# Update the taints
-kubectl taint nodes --all node-role.kubernetes.io/master- || \
-    { echo "Failed to taint nodes"; exit 1; }
-
-# Dump Kubernetes objects ...
-kubectl get all --all-namespaces
-
-echo Kubernetes is ready
+echo Kubernetes setup finished

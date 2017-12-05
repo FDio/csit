@@ -88,7 +88,7 @@ tar -zcvf ${SCRIPT_DIR}/vpp.tar.gz vpp/*  && rm -R vpp
 LIGATO_REPO_URL=$(cat ${SCRIPT_DIR}/LIGATO_REPO_URL)
 VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
 VPP_AGENT_STABLE_COMMIT="$( expr match `cat VPP_AGENT_STABLE_VER` '.*g\(.*\)' )"
-DOCKER_DEB="docker-ce_17.06.2~ce-0~ubuntu_amd64.deb"
+DOCKER_DEB="docker-ce_17.09.0~ce-0~ubuntu_amd64.deb"
 
 # Clone & checkout stable vnf-agent
 cd .. && git clone ${LIGATO_REPO_URL}/vpp-agent
@@ -123,16 +123,15 @@ sudo docker images
 cd ${SCRIPT_DIR}/../vpp-agent/docker/prod_vpp_agent/ &&\
     mv ${SCRIPT_DIR}/vpp.tar.gz . &&\
     ./extract_agent_files.sh &&\
-    sudo docker build -t prod_vpp_agent --no-cache . &&\
-    ./shrink.sh
+    sudo docker build -t prod_vpp_agent --no-cache .
 # Export Docker image
-sudo docker save prod_vpp_agent_shrink | gzip > prod_vpp_agent_shrink.tar.gz
+sudo docker save prod_vpp_agent | gzip > prod_vpp_agent.tar.gz
 # If image build fails, complain clearly and exit
 if [ $? != 0 ]; then
     echo "Failed to build vpp-agent Docker image."
     exit 1
 fi
-DOCKER_IMAGE="$( readlink -f prod_vpp_agent_shrink.tar.gz | tr '\n' ' ' )"
+DOCKER_IMAGE="$( readlink -f prod_vpp_agent.tar.gz | tr '\n' ' ' )"
 
 cd ${SCRIPT_DIR}
 
