@@ -244,7 +244,7 @@ class DUTSetup(object):
 
         # Initialize QAT VFs
         ret_code, _, _ = ssh.exec_command(
-            "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/sriov_numvfs'"
+            "sudo sh -c 'echo {} > /sys/bus/pci/devices/{}/sriov_numvfs'"
             .format(numvfs, cryptodev.replace(':', r'\:')))
 
         if int(ret_code) != 0:
@@ -267,8 +267,8 @@ class DUTSetup(object):
         ssh.connect(node)
 
         ret_code, _, _ = ssh.exec_command(
-            "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/driver/unbind'"
-            .format(pci_addr, pci_addr.replace(':', r'\:')))
+            "sudo sh -c 'echo {} > /sys/bus/pci/devices/{}/driver/unbind'"
+            .format(pci_addr, pci_addr.replace(':', r'\:')), timeout=30)
 
         if int(ret_code) != 0:
             raise RuntimeError('Failed to unbind PCI device from driver on '
@@ -292,7 +292,7 @@ class DUTSetup(object):
         ssh.connect(node)
 
         ret_code, _, _ = ssh.exec_command(
-            "sudo sh -c 'echo {} | tee /sys/bus/pci/drivers/{}/bind'"
+            "sudo sh -c 'echo {} > /sys/bus/pci/drivers/{}/bind'"
             .format(pci_addr, driver))
 
         if int(ret_code) != 0:
