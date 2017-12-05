@@ -268,7 +268,7 @@ class DUTSetup(object):
 
         ret_code, _, _ = ssh.exec_command(
             "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/driver/unbind'"
-            .format(pci_addr, pci_addr.replace(':', r'\:')))
+            .format(pci_addr, pci_addr.replace(':', r'\:')), timout=30)
 
         if int(ret_code) != 0:
             raise RuntimeError('Failed to unbind PCI device from driver on '
