@@ -239,8 +239,8 @@ class DUTSetup(object):
         cryptodev = Topology.get_cryptodev(node)
 
         # QAT device must be bind to kernel driver before initialization
-        DUTSetup.pci_driver_unbind(node, cryptodev)
-        DUTSetup.pci_driver_bind(node, cryptodev, "dh895xcc")
+        # DUTSetup.pci_driver_unbind(node, cryptodev)
+        # DUTSetup.pci_driver_bind(node, cryptodev, "dh895xcc")
 
         # Initialize QAT VFs
         ret_code, _, _ = ssh.exec_command(
@@ -268,7 +268,7 @@ class DUTSetup(object):
 
         ret_code, _, _ = ssh.exec_command(
             "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/driver/unbind'"
-            .format(pci_addr, pci_addr.replace(':', r'\:')))
+            .format(pci_addr, pci_addr.replace(':', r'\:')), timeout=30)
 
         if int(ret_code) != 0:
             raise RuntimeError('Failed to unbind PCI device from driver on '
