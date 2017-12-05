@@ -30,10 +30,9 @@
 | ...                        | skip_tg=${True}
 | ...         | AND          | Update NIC interface names on all duts | ${nodes}
 | ...
-| Suite Teardown | Reset Kubernetes on all duts | ${nodes}
-| ...
-*** Keywords ***
+| Suite Teardown | Destroy Kubernetes on all duts | ${nodes}
 
+*** Keywords ***
 | Setup performance global Variables
 | | [Documentation]
 | | ... | Setup suite Variables. Variables are used across performance testing.
