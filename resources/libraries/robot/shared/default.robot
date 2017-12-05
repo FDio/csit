@@ -242,6 +242,23 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
 
+| Add DPDK Uio Driver on all DUTs
+| | [Documentation] | Add DPDK uio driver to VPP startup configuration on all
+| | ... | DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - uio_driver - Required uio driver. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add DPDK Uio Driver on all DUTs \| igb_uio \|
+| | ...
+| | [Arguments] | ${uio_driver}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
+
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
@@ -264,21 +281,24 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
 
-| Add crypto SW device on all DUTs
-| | [Documentation] | Add required number of crypto SW devices to VPP startup
-| | ... | configuration on all DUTs.
+| Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
+| | [Documentation] | Add required number of crypto SW devices of required type
+| | ... | to VPP startup configuration on all DUTs in 3-node single-link
+| | ... | circular topology.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${count} - Number of SW crypto devices. Type: integer
+| | ... | - ${sw_pmd_type} -PMD type of SW cryptodev. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Add SW cryptodev on all DUTs \| ${4} \|
+| | ... | \| Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology \
+| | ... | \| aesni_mb \|
 | | ...
-| | [Arguments] | ${count}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | ${count}
+| | [Arguments] | ${sw_pmd_type}
+| | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT1']} | ${dut1_if2}
+| | Run keyword | DUT1.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
+| | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT2']} | ${dut2_if1}
+| | Run keyword | DUT2.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
 
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write startup configuration and restart VPP on all DUTs.

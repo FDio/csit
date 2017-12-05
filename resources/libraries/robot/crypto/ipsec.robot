@@ -305,7 +305,8 @@
 | | | Run keyword | ${dut}.Add Unix CLI Listen | /run/vpp/cli.sock
 | | | Run keyword | ${dut}.Add Unix Gid
 | | | Run keyword | ${dut}.Add Api Segment Gid
-| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | ${1}
+| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | aesni_mb | ${0}
+| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | aesni_gcm | ${0}
 | | Apply startup configuration on all VPP DUTs | restart_vpp=${FALSE}
 | | Set up functional test
 | | Run Keyword | Configure topology for ${ip_version} IPsec testing
