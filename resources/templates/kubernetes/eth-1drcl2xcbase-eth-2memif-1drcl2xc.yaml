@@ -62,7 +62,7 @@ metadata:
 spec:
   containers:
     - name: "sfc-controller"
-      image: prod_sfc_controller
+      image: ligato/prod_sfc_controller
       imagePullPolicy: IfNotPresent
       command:
         - /bin/sfc-controller

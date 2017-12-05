@@ -80,7 +80,7 @@ metadata:
 spec:
   containers:
     - name: "sfc-controller"
-      image: prod_sfc_controller
+      image: ligato/prod_sfc_controller
       imagePullPolicy: IfNotPresent
       command:
         - /bin/sfc-controller
@@ -149,6 +149,8 @@ spec:
           mountPath: /opt/vpp-agent/dev
         - name: memif-sockets
           mountPath: /tmp
+        - name: device-uio
+          mountPath: /dev
   volumes:
     - name: vpp-config
       configMap:
@@ -159,6 +161,9 @@ spec:
     - name: memif-sockets
       hostPath:
         path: /tmp
+    - name: device-uio
+      hostPath:
+        path: /dev 
 ---
 apiVersion: v1
 kind: ConfigMap

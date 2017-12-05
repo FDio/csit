@@ -22,7 +22,8 @@
 | ... | L2 | Intel-X520-DA2
 | ...
 | Test Setup | Run Keywords
-| ... | Apply Kubernetes resource on all duts | ${nodes} | kafka.yaml
+| ... | Apply Kubernetes resource on all duts | ${nodes} | csit.yaml
+| ... | AND | Apply Kubernetes resource on all duts | ${nodes} | kafka.yaml
 | ... | AND | Apply Kubernetes resource on all duts | ${nodes} | etcd.yaml
 | ...
 | Suite Teardown | Tear down 3-node performance topology
@@ -67,7 +68,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 # CPU settings
 | ${system_cpus}= | ${1}
-| ${vswitch_cpus}= | ${5}
+| ${vswitch_cpus}= | ${2}
 | ${vnf_cpus}= | ${3}
 
 *** Keywords ***
@@ -154,7 +155,7 @@
 | | ... | ${kubernetes_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut2_if1_name}
 | | ... | $$VSWITCH_IF2$$=${dut2_if2_name}
-| | Wait for Kubernetes PODs on all DUTs | ${nodes}
+| | Wait for Kubernetes PODs on all DUTs | ${nodes} | apply
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
@@ -173,7 +174,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=NDR
 
