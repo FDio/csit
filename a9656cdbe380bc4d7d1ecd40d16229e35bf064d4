@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c5c31424_3a2bf979",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-06T07:12:47Z",
+      "side": 1,
+      "message": "remove this part",
+      "range": {
+        "startLine": 377,
+        "startChar": 12,
+        "endLine": 377,
+        "endChar": 28
+      },
+      "revId": "a9656cdbe380bc4d7d1ecd40d16229e35bf064d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4ff5ba2_a1b89920",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 4
