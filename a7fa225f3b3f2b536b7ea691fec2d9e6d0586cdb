@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "452478ac_3a5a12da",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-12-13T08:43:52Z",
+      "side": 1,
+      "message": "Sorry, didn\u0027t notice.",
+      "parentUuid": "6412a4c1_a7e9c8a3",
+      "range": {
+        "startLine": 323,
+        "startChar": 12,
+        "endLine": 323,
+        "endChar": 13
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a46db6a_b0c2f19a",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 21
