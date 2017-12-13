@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6dd02227_7fafe080",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8f8ba51_dd4e0bd6",
+      "range": {
+        "startLine": 259,
+        "startChar": 36,
+        "endLine": 259,
+        "endChar": 43
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "505daf3b_09fef300",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 21
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-12T14:05:33Z",
       "side": 1,
       "message": "_",
+      "range": {
+        "startLine": 323,
+        "startChar": 12,
+        "endLine": 323,
+        "endChar": 13
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6412a4c1_a7e9c8a3",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Variable i is used in the first command of the loop.",
+      "parentUuid": "505daf3b_09fef300",
       "range": {
         "startLine": 323,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a37f7514_3c3ea7a4",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a46db6a_b0c2f19a",
+      "range": {
+        "startLine": 332,
+        "startChar": 12,
+        "endLine": 332,
+        "endChar": 33
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "581bfa90_6aa68499",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 21
@@ -82,6 +154,30 @@
       "writtenOn": "2017-12-12T14:05:33Z",
       "side": 1,
       "message": "name, value",
+      "range": {
+        "startLine": 341,
+        "startChar": 20,
+        "endLine": 341,
+        "endChar": 33
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f590456_448c4da7",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "581bfa90_6aa68499",
       "range": {
         "startLine": 341,
         "startChar": 20,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "0e23deb2_3bf27217",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8346877_d673ecf7",
+      "range": {
+        "startLine": 343,
+        "startChar": 20,
+        "endLine": 346,
+        "endChar": 35
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2fdce165_a84de052",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 21
@@ -128,6 +248,30 @@
       "writtenOn": "2017-12-12T14:05:33Z",
       "side": 1,
       "message": "Force?",
+      "range": {
+        "startLine": 79,
+        "startChar": 25,
+        "endLine": 79,
+        "endChar": 28
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b5cdae9d_2e0dd099",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fdce165_a84de052",
       "range": {
         "startLine": 79,
         "startChar": 25,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "29497064_10bcf176",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f063fc1_58c0a5b6",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 84
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51dded55_9905c156",
         "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdrdisc.robot",
         "patchSetId": 21
@@ -174,6 +342,30 @@
       "writtenOn": "2017-12-12T14:05:33Z",
       "side": 1,
       "message": "Do not commit disabled code.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 50
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b446e649_be0e7a45",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdrdisc.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51dded55_9905c156",
       "range": {
         "startLine": 94,
         "startChar": 0,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "31cb5117_1d90606a",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdrdisc.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c02a18e9_613e2363",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 50
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d138ae6_95161f90",
         "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdrdisc.robot",
         "patchSetId": 21
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "ce5426cf_4ee38dc5",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdrdisc.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d138ae6_95161f90",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 50
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c84b60fd_a813bf2e",
         "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdrdisc.robot",
         "patchSetId": 21
@@ -243,6 +483,30 @@
       "writtenOn": "2017-12-12T14:05:33Z",
       "side": 1,
       "message": "Do not commit disabled code",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 50
+      },
+      "revId": "a7fa225f3b3f2b536b7ea691fec2d9e6d0586cdb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5ceb50f_8e9fd41f",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdrdisc.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-13T08:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84b60fd_a813bf2e",
       "range": {
         "startLine": 94,
         "startChar": 0,
