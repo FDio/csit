@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fd32835_d75f75fb",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "sudo(\"",
+      "range": {
+        "startLine": 258,
+        "startChar": 38,
+        "endLine": 258,
+        "endChar": 51
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe64744d_3f548274",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "ssh.exec_command_sudo\n\nLets make it universal across.",
+      "range": {
+        "startLine": 279,
+        "startChar": 25,
+        "endLine": 279,
+        "endChar": 41
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3bc4cb09_f66e903f",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 280,
+        "startChar": 13,
+        "endLine": 280,
+        "endChar": 18
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "541e86aa_4a264f76",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "ssh.exec_command_sudo\n\nLets make it universal across.",
+      "range": {
+        "startLine": 304,
+        "startChar": 25,
+        "endLine": 304,
+        "endChar": 41
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "003a5a16_06fc78d9",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 305,
+        "startChar": 13,
+        "endLine": 305,
+        "endChar": 18
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d76d63a4_69293e14",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "It returns None or value (driver)",
+      "range": {
+        "startLine": 321,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 25
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94c79965_e5f1ed9f",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "disable",
+      "range": {
+        "startLine": 76,
+        "startChar": 28,
+        "endLine": 76,
+        "endChar": 35
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "779c5b65_5ca810bc",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdrdisc.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-14T10:07:47Z",
+      "side": 1,
+      "message": "What about the other files in test/vpp/perf/crypto/ to adjust for HW_crypto? would they work by default on HW_crypto?",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "b4fe3965bd04fdfcf223ba9c6bb41e3d03596914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
