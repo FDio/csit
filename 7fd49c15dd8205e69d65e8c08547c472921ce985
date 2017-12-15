@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ede69b6c_4b52ed76",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-12-15T09:29:47Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 262,
+        "startChar": 36,
+        "endLine": 262,
+        "endChar": 37
+      },
+      "revId": "7fd49c15dd8205e69d65e8c08547c472921ce985",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
