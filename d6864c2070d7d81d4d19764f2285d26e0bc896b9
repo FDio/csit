@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4b5acbc_10768d27",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-12-18T16:48:36Z",
+      "side": 1,
+      "message": "Where is the default value defined?",
+      "range": {
+        "startLine": 148,
+        "startChar": 56,
+        "endLine": 148,
+        "endChar": 70
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
