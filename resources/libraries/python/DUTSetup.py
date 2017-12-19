@@ -402,3 +402,34 @@ class DUTSetup(object):
         if int(ret_code) != 0:
             raise RuntimeError('Failed to load {0} kernel module on host {1}'.
                                format(module, node['host']))
+
+    @staticmethod
+    def vpp_enable_traces_on_all_duts(nodes):
+        """Enable vpp packet traces on all DUTs in the given topology."""
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.vpp_enable_traces_on_dut(node)
+
+    @staticmethod
+    def vpp_enable_traces_on_dut(node):
+        """Enable vpp packet traces on the DUT node.
+
+        :param node: DUT node to set up.
+        :type node: dict
+
+        :raises Exception: If the DUT setup fails.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        (ret_code, stdout, stderr) = \
+            ssh.exec_command('sudo -Sn bash {0}/{1}/enable_traces.sh'.
+                             format(Constants.REMOTE_FW_DIR,
+                                    Constants.RESOURCES_LIB_SH), timeout=120)
+        logger.trace(stdout)
+        logger.trace(stderr)
+        if int(ret_code) != 0:
+            logger.debug('DUT {0} setup script failed: "{1}"'.
+                         format(node['host'], stdout + stderr))
+            raise Exception('DUT test setup script failed at node {}'.
+                            format(node['host']))
