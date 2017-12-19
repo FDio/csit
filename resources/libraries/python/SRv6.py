@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,29 +13,25 @@
 
 """Segment Routing over IPv6 dataplane utilities library."""
 
-from enum import Enum
-
 from resources.libraries.python.VatExecutor import VatTerminal
-from resources.libraries.python.VatJsonUtil import VatJsonUtil
 from resources.libraries.python.topology import Topology
 
 
-class SRv6Behaviour(Enum):
-    """Defines SRv6 endpoint functions implemented in VPP."""
-    # Endpoint function
-    END = 'end'
-    # Endpoint function with Layer-3 cross-connect
-    END_X = 'end.x'
-    # Endpoint with decapsulation and Layer-2 cross-connect
-    END_DX2 = 'end.dx2'
-    # Endpoint with decapsulation and IPv4 cross-connect
-    END_DX4 = 'end.dx4'
-    # Endpoint with decapsulation and IPv4 table lookup
-    END_DT4 = 'end.dt4'
-    # Endpoint with decapsulation and IPv6 cross-connect
-    END_DX6 = 'end.dx6'
-    # Endpoint with decapsulation and IPv6 table lookup
-    END_DT6 = 'end.dt6'
+# SRv6 LocalSID supported functions.
+# Endpoint function
+SRV6BEHAVIOUR_END = 'end'
+# Endpoint function with Layer-3 cross-connect
+SRV6BEHAVIOUR_END_X = 'end.x'
+# Endpoint with decapsulation and Layer-2 cross-connect
+SRV6BEHAVIOUR_END_DX2 = 'end.dx2'
+# Endpoint with decapsulation and IPv4 cross-connect
+SRV6BEHAVIOUR_END_DX4 = 'end.dx4'
+# Endpoint with decapsulation and IPv4 table lookup
+SRV6BEHAVIOUR_END_DT4 = 'end.dt4'
+# Endpoint with decapsulation and IPv6 cross-connect
+SRV6BEHAVIOUR_END_DX6 = 'end.dx6'
+# Endpoint with decapsulation and IPv6 table lookup
+SRV6BEHAVIOUR_END_DT6 = 'end.dt6'
 
 
 class SRv6(object):
@@ -68,21 +64,21 @@ class SRv6(object):
         :raises ValueError: If unsupported SRv6 LocalSID function used or
             required parameter is missing.
         """
-        if behavior == SRv6Behaviour.END:
+        if behavior == SRV6BEHAVIOUR_END:
             params = ''
-        elif behavior in [SRv6Behaviour.END_X, SRv6Behaviour.END_DX4,
-                          SRv6Behaviour.END_DX6]:
+        elif behavior in [SRV6BEHAVIOUR_END_X, SRV6BEHAVIOUR_END_DX4,
+                          SRV6BEHAVIOUR_END_DX6]:
             if interface is None or next_hop is None:
                 raise ValueError('Required data missing.\ninterface:{0}\n'
                                  'next_hop:{1}'.format(interface, next_hop))
             interface_name = Topology.get_interface_name(node, interface)
             params = '{0} {1}'.format(interface_name, next_hop)
-        elif behavior == SRv6Behaviour.END_DX2:
+        elif behavior == SRV6BEHAVIOUR_END_DX2:
             if interface is None:
                 raise ValueError('Required data missing.\ninterface:{0}\n'.
                                  format(interface))
             params = '{0}'.format(interface)
-        elif behavior in [SRv6Behaviour.END_DT4, SRv6Behaviour.END_DT6]:
+        elif behavior in [SRV6BEHAVIOUR_END_DT4, SRV6BEHAVIOUR_END_DT6]:
             if fib_table is None:
                 raise ValueError('Required data missing.\nfib_table:{0}\n'.
                                  format(fib_table))
@@ -91,15 +87,14 @@ class SRv6(object):
             raise ValueError('Unsupported SRv6 LocalSID function: {0}'.
                              format(behavior))
 
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_localsid_add.vat', local_sid=local_sid,
                 behavior=behavior, params=params)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Create SRv6 LocalSID {0} failed on node {1}'.format(
-                local_sid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Create SRv6 LocalSID {0} failed on node {1}'.
+                               format(local_sid, node['host']))
 
     @staticmethod
     def delete_sr_localsid(node, local_sid):
@@ -110,14 +105,13 @@ class SRv6(object):
         :type node: dict
         :type local_sid: str
         """
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_localsid_del.vat', local_sid=local_sid)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Delete SRv6 LocalSID {0} failed on node {1}'.format(
-                local_sid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Delete SRv6 LocalSID {0} failed on node {1}'.
+                               format(local_sid, node['host']))
 
     @staticmethod
     def show_sr_localsids(node):
@@ -126,7 +120,7 @@ class SRv6(object):
         :param node: Given node to show localSIDs on.
         :type node: dict
         """
-        with VatTerminal(node) as vat:
+        with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_localsids_show.vat')
 
@@ -145,15 +139,14 @@ class SRv6(object):
         """
         sid_conf = 'next ' + ' next '.join(sid_list)
 
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_policy_add.vat', bsid=bsid,
                 sid_conf=sid_conf, mode=mode)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Create SRv6 policy for BindingSID {0} failed on node '
-                    '{1}'.format(bsid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Create SRv6 policy for BindingSID {0} failed on'
+                               ' node {1}'.format(bsid, node['host']))
 
     @staticmethod
     def delete_sr_policy(node, bsid):
@@ -164,14 +157,13 @@ class SRv6(object):
         :type node: dict
         :type bsid: str
         """
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_policy_del.vat', bsid=bsid)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Delete SRv6 policy for BindingSID {0} failed on node '
-                    '{1}'.format(bsid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Delete SRv6 policy for BindingSID {0} failed on'
+                               ' node {1}'.format(bsid, node['host']))
 
     @staticmethod
     def show_sr_policies(node):
@@ -186,7 +178,7 @@ class SRv6(object):
 
     @staticmethod
     def configure_sr_steer(node, mode, bsid, interface=None, ip_addr=None,
-                           mask=None):
+                           prefix=None):
         """Create SRv6 steering policy on the given node.
 
         :param node: Given node to create steering policy on.
@@ -196,38 +188,37 @@ class SRv6(object):
             L2 mode).
         :param ip_addr: IPv4/IPv6 address (Optional, required in case of L3
             mode).
-        :param mask: IP address mask (Optional, required in case of L3 mode).
+        :param prefix: IP address prefix (Optional, required in case of L3 mode).
         :type node: dict
         :type mode: str
         :type bsid: str
         :type interface: str
-        :type ip_addr: int
-        :type mask: int
+        :type ip_addr: str
+        :type prefix: int
         :raises ValueError: If unsupported mode used or required parameter
             is missing.
         """
-        if mode == 'l2':
+        if mode.lower() == 'l2':
             if interface is None:
                 raise ValueError('Required data missing.\ninterface:{0}\n'.
                                  format(interface))
             interface_name = Topology.get_interface_name(node, interface)
             params = 'l2 {0}'.format(interface_name)
-        elif mode == 'l3':
-            if ip_addr is None or mask is None:
+        elif mode.lower() == 'l3':
+            if ip_addr is None or prefix is None:
                 raise ValueError('Required data missing.\nIP address:{0}\n'
-                                 'mask:{1}'.format(ip_addr, mask))
-            params = '{0}/{1}'.format(ip_addr, mask)
+                                 'mask:{1}'.format(ip_addr, prefix))
+            params = 'l3 {0}/{1}'.format(ip_addr, prefix)
         else:
             raise ValueError('Unsupported mode: {0}'.format(mode))
 
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_steer_add_del.vat', params=params, bsid=bsid)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Create SRv6 steering policy for BindingSID {0} failed on '
-                    'node {1}'.format(bsid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Create SRv6 steering policy for BindingSID {0}'
+                               ' failed on node {1}'.format(bsid, node['host']))
 
     @staticmethod
     def delete_sr_steer(node, mode, bsid, interface=None, ip_addr=None,
@@ -266,14 +257,13 @@ class SRv6(object):
         else:
             raise ValueError('Unsupported mode: {0}'.format(mode))
 
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_steer_add_del.vat', params=params, bsid=bsid)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Delete SRv6 policy for bsid {0} failed on node {1}'.format(
-                bsid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Delete SRv6 policy for bsid {0} failed on node'
+                               ' {1}'.format(bsid, node['host']))
 
     @staticmethod
     def show_sr_steering_policies(node):
@@ -295,11 +285,6 @@ class SRv6(object):
         :type node: dict
         :type ip6_addr: str
         """
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_set_encaps_source.vat', ip6_addr=ip6_addr)
-
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Set SRv6 encapsulation source address {0} failed on node'
-                    ' {1}'.format(ip6_addr, node['host']))
