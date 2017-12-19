@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,6 +21,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/counters.robot
@@ -82,8 +83,8 @@
 | | ... | Return TRUE if variable DPDK_TEST exist, otherwise FALSE.
 | | ${ret} | ${tmp}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${DPDK_TEST}
-| | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
-| | Return From Keyword | ${FALSE}
+| | Return From Keyword If | "${ret}" == "PASS" | ${True}
+| | Return From Keyword | ${False}
 
 | Find NDR using linear search and pps
 | | [Documentation]
@@ -452,10 +453,10 @@
 | | ...
 | | Return From Keyword If | ${rate} <= 10000 | ${-1}
 | | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
+| | Run Keyword If | ${ret}==${False} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs | ${nodes}
+| | Run Keyword If | ${ret}==${False} | Show statistics on all DUTs | ${nodes}
 | | Run keyword and return | Get latency
 
 | Traffic should pass with no loss
@@ -482,10 +483,14 @@
 | | Clear and show runtime counters with running traffic | ${duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
+| | Run Keyword If | ${ret}==${False} | Clear all counters on all DUTs
+| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
+| | ... | VPP Enable Traces On All DUTs | ${nodes}
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs | ${nodes}
+| | Run Keyword If | ${ret}==${False} | Show statistics on all DUTs | ${nodes}
+| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
+| | ... | Show Packet Trace On All Duts | ${nodes}
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
 | Traffic should pass with partial loss
@@ -513,10 +518,14 @@
 | | Clear and show runtime counters with running traffic | ${duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
+| | Run Keyword If | ${ret}==${False} | Clear all counters on all DUTs
+| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
+| | ... | VPP Enable Traces On All DUTs | ${nodes}
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs | ${nodes}
+| | Run Keyword If | ${ret}==${False} | Show statistics on all DUTs | ${nodes}
+| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
+| | ... | Show Packet Trace On All Duts | ${nodes}
 | | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
 | | ... | ${loss_acceptance} | ${loss_acceptance_type}
 
@@ -542,9 +551,9 @@
 | | Send traffic on tg | -1 | ${rate} | ${framesize} | ${topology_type}
 | | ... | warmup_time=0 | async_call=${True} | latency=${False}
 | | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${FALSE}
+| | Run Keyword If | ${ret}==${False}
 | | ... | Clear runtime counters on all DUTs | ${nodes}
 | | Sleep | ${duration}
-| | Run Keyword If | ${ret}==${FALSE}
+| | Run Keyword If | ${ret}==${False}
 | | ... | Show runtime counters on all DUTs | ${nodes}
 | | Stop traffic on tg
