@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "a4f31ff2_e9d6ff84",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-19T10:53:25Z",
+      "side": 1,
+      "message": "Parentheses are not needed.\n\n- valid for all occurences",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 24
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4b5acbc_10768d27",
         "filename": "resources/libraries/python/KubernetesUtils.py",
         "patchSetId": 12
@@ -41,6 +64,29 @@
         "startChar": 56,
         "endLine": 148,
         "endChar": 70
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66a6b247_c16ef59e",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-12-19T10:53:25Z",
+      "side": 1,
+      "message": "also in case that retrieve failed",
+      "range": {
+        "startLine": 206,
+        "startChar": 30,
+        "endLine": 206,
+        "endChar": 68
       },
       "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
