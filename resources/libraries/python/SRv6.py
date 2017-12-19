@@ -126,7 +126,7 @@ class SRv6(object):
         :param node: Given node to show localSIDs on.
         :type node: dict
         """
-        with VatTerminal(node) as vat:
+        with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_localsids_show.vat')
 
@@ -145,15 +145,14 @@ class SRv6(object):
         """
         sid_conf = 'next ' + ' next '.join(sid_list)
 
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_policy_add.vat', bsid=bsid,
                 sid_conf=sid_conf, mode=mode)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Create SRv6 policy for BindingSID {0} failed on node '
-                    '{1}'.format(bsid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Create SRv6 policy for BindingSID {0} failed on'
+                               ' node {1}'.format(bsid, node['host']))
 
     @staticmethod
     def delete_sr_policy(node, bsid):
@@ -186,7 +185,7 @@ class SRv6(object):
 
     @staticmethod
     def configure_sr_steer(node, mode, bsid, interface=None, ip_addr=None,
-                           mask=None):
+                           prefix=None):
         """Create SRv6 steering policy on the given node.
 
         :param node: Given node to create steering policy on.
@@ -196,13 +195,13 @@ class SRv6(object):
             L2 mode).
         :param ip_addr: IPv4/IPv6 address (Optional, required in case of L3
             mode).
-        :param mask: IP address mask (Optional, required in case of L3 mode).
+        :param prefix: IP address prefix (Optional, required in case of L3 mode).
         :type node: dict
         :type mode: str
         :type bsid: str
         :type interface: str
-        :type ip_addr: int
-        :type mask: int
+        :type ip_addr: str
+        :type prefix: int
         :raises ValueError: If unsupported mode used or required parameter
             is missing.
         """
@@ -213,10 +212,10 @@ class SRv6(object):
             interface_name = Topology.get_interface_name(node, interface)
             params = 'l2 {0}'.format(interface_name)
         elif mode == 'l3':
-            if ip_addr is None or mask is None:
+            if ip_addr is None or prefix is None:
                 raise ValueError('Required data missing.\nIP address:{0}\n'
-                                 'mask:{1}'.format(ip_addr, mask))
-            params = '{0}/{1}'.format(ip_addr, mask)
+                                 'mask:{1}'.format(ip_addr, prefix))
+            params = '{0}/{1}'.format(ip_addr, prefix)
         else:
             raise ValueError('Unsupported mode: {0}'.format(mode))
 
@@ -285,3 +284,16 @@ class SRv6(object):
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_steer_policies_show.vat')
+
+    @staticmethod
+    def set_sr_encaps_source_address(node, ip6_addr):
+        """Set SRv6 encapsulation source address on the given node.
+
+        :param node: Given node to set SRv6 encapsulation source address on.
+        :param ip6_addr: Local SID IPv6 address.
+        :type node: dict
+        :type ip6_addr: str
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
+                'srv6/sr_set_encaps_source.vat', ip6_addr=ip6_addr)
