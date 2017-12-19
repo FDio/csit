@@ -26,7 +26,11 @@ class DUTSetup(object):
     """Contains methods for setting up DUTs."""
     @staticmethod
     def start_vpp_service_on_all_duts(nodes):
-        """Start up the VPP service on all nodes."""
+        """Start up the VPP service on all nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
         ssh = SSH()
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
@@ -402,3 +406,26 @@ class DUTSetup(object):
         if int(ret_code) != 0:
             raise RuntimeError('Failed to load {0} kernel module on host {1}'.
                                format(module, node['host']))
+
+    @staticmethod
+    def vpp_enable_traces_on_all_duts(nodes):
+        """Enable vpp packet traces on all DUTs in the given topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.vpp_enable_traces_on_dut(node)
+
+    @staticmethod
+    def vpp_enable_traces_on_dut(node):
+        """Enable vpp packet traces on the DUT node.
+
+        :param node: DUT node to set up.
+        :type node: dict
+        """
+
+        vat = VatExecutor()
+        vat.execute_script("enable_dpdk_traces.vat", node, json_out=False)
+        vat.execute_script("enable_vhost_user_traces.vat", node, json_out=False)
