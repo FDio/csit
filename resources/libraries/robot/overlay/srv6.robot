@@ -82,18 +82,19 @@
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to create SRv6 policy on. Type: dictionary
 | | ... | - bsid - BindingSID - local SID IPv6 address. Type: string
-| | ... | - mode - Encapsulation / insertion mode (Optional, default value:
-| | ... | encap). Type: string
+| | ... | - mode - Encapsulation / insertion mode. Type: string
 | | ... | - sid_list - SID list. Type: list
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure SR Policy on DUT \| ${nodes['DUT2']} \| D:: \
-| | ... | \| mode=insert \| E::\| F:: \|
+| | ... | \| Configure SR Policy on DUT \| ${nodes['DUT2']} \| A:: \| encap \
+| | ... | \| B::\| C:: \|
+| | ... | \| Configure SR Policy on DUT \| ${nodes['DUT2']} \| D:: \| insert \
+| | ... | \| E::\| F:: \|
 | | ...
-| | [Arguments] | ${dut_node} | ${bsid} | ${mode}=encap | @{sid_list}
+| | [Arguments] | ${dut_node} | ${bsid} | ${mode} | @{sid_list}
 | | ...
-| | Configure SR Policy | ${dut_node} | ${bsid} | @{sid_list} | mode=${mode}
+| | Configure SR Policy | ${dut_node} | ${bsid} | ${sid_list} | mode=${mode}
 
 | Delete SR Policy on DUT
 | | [Documentation] | Delete SRv6 policy on the given DUT node.
@@ -211,3 +212,51 @@
 | | [Arguments] | ${dut_node} | ${ip6_addr}
 | | ...
 | | Set SR Encaps Source Address | ${dut_node} | ip6_addr=${ip6_addr}
+
+| Show SR Policies on all DUTs
+| | [Documentation] | Show SRv6 policies on all DUT nodes in topology.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nodes - Topology. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Show SR Policies on all DUTs \| ${nodes} \|
+| | ...
+| | [Arguments] | ${nodes}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Show SR Policies | ${nodes['${dut}']}
+
+| Show SR Steering Policies on all DUTs
+| | [Documentation] | Show SRv6 steering policies on all DUT nodes in topology.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nodes - Topology. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Show SR Steering Policies on all DUTs \| ${nodes} \|
+| | ...
+| | [Arguments] | ${nodes}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Show SR Steering Policies | ${nodes['${dut}']}
+
+| Show SR LocalSIDs on all DUTs
+| | [Documentation] | Show SRv6 LocalSIDs on all DUT nodes in topology.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nodes - Topology. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Show SR LocalSIDs on all DUTs \| ${nodes} \|
+| | ...
+| | [Arguments] | ${nodes}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Show SR LocalSIDs | ${nodes['${dut}']}
