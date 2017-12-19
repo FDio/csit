@@ -38,6 +38,7 @@
 | | ... | - perf_qemu_qsz - QEMU virtio queue size
 | | ... | - use_tuned_cfs - Switch to set scheduler policy
 | | ... | - qemu_built - Information if QEMU build is already prepared
+| | ... | - teardown_pkt_trace - Switch to enable packet trace in test tear down
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
@@ -48,3 +49,4 @@
 | | Set Global Variable | ${perf_qemu_qsz} | 1024
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
 | | Set Global Variable | ${qemu_built} | ${False}
+| | Set Global Variable | ${teardown_pkt_trace} | ${True}
