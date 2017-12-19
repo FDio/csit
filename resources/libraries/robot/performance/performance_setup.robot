@@ -613,3 +613,25 @@
 | | ... | Vpp Log Macip Acl Settings | ${dut1}
 | | Run Keyword And Ignore Error
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
+
+| Tear down performance test with SRv6 with encapsulation
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests with SRv6 with encapsulation feature used.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - traffic_profile - Traffic profile. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down performance test with MACIP ACL \| 100000pps \| 64 \
+| | ... | \| ${traffic_profile} \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
+| | ...
+| | Tear down performance discovery test | ${rate} | ${framesize}
+| | ... | ${traffic_profile}
+| | Show SR Policies on all DUTs | ${nodes}
+| | Show SR Steering Policies on all DUTs | ${nodes}
+| | Show SR LocalSIDs on all DUTs | ${nodes}

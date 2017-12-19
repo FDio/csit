@@ -201,7 +201,7 @@ class SRv6(object):
         :type mode: str
         :type bsid: str
         :type interface: str
-        :type ip_addr: int
+        :type ip_addr: str
         :type mask: int
         :raises ValueError: If unsupported mode used or required parameter
             is missing.
@@ -285,3 +285,21 @@ class SRv6(object):
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_steer_policies_show.vat')
+
+    @staticmethod
+    def set_sr_encaps_source_address(node, ip6_addr):
+        """Set SRv6 encapsulation source address on the given node.
+
+        :param node: Given node to set SRv6 encapsulation source address on.
+        :param ip6_addr: Local SID IPv6 address.
+        :type node: dict
+        :type ip6_addr: str
+        """
+        with VatTerminal(node) as vat:
+            resp = vat.vat_terminal_exec_cmd_from_template(
+                'srv6/sr_set_encaps_source.vat', ip6_addr=ip6_addr)
+
+        VatJsonUtil.verify_vat_retval(
+            resp[0],
+            err_msg='Set SRv6 encapsulation source address {0} failed on node'
+                    ' {1}'.format(ip6_addr, node['host']))
