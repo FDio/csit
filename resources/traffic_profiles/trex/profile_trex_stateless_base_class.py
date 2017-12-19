@@ -192,7 +192,7 @@ class TrafficStreamsBaseClass(object):
                                          mode=STLTXCont(pps=stream['pps'])))
             streams = list()
             streams.extend(stream1)
-            streams.extend(stream2)
+            # streams.extend(stream2)
 
             return streams
 
