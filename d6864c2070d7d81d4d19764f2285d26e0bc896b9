@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a3cd9b52_b5f5cd27",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-12-19T09:35:47Z",
+      "side": 1,
+      "message": "consider: from time import sleep",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4b5acbc_10768d27",
         "filename": "resources/libraries/python/KubernetesUtils.py",
         "patchSetId": 12
@@ -18,6 +41,75 @@
         "startChar": 56,
         "endLine": 148,
         "endChar": 70
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd4ce9a8_01f0585a",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-12-19T09:35:47Z",
+      "side": 1,
+      "message": "Is name\u003d\u0027\u0027 the same as name\u003d\u0027--all\u0027?",
+      "range": {
+        "startLine": 211,
+        "startChar": 45,
+        "endLine": 211,
+        "endChar": 49
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09bcd379_af4c2173",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-12-19T09:35:47Z",
+      "side": 1,
+      "message": "define as constant with comment",
+      "range": {
+        "startLine": 223,
+        "startChar": 23,
+        "endLine": 223,
+        "endChar": 25
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "345057e7_d68ef7e0",
+        "filename": "resources/templates/kubernetes/pods/contiv-vswitch.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-12-19T09:35:47Z",
+      "side": 1,
+      "message": "remove white space",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 17
       },
       "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
