@@ -126,7 +126,7 @@ class SRv6(object):
         :param node: Given node to show localSIDs on.
         :type node: dict
         """
-        with VatTerminal(node) as vat:
+        with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_localsids_show.vat')
 
@@ -145,15 +145,14 @@ class SRv6(object):
         """
         sid_conf = 'next ' + ' next '.join(sid_list)
 
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template(
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_policy_add.vat', bsid=bsid,
                 sid_conf=sid_conf, mode=mode)
 
-        VatJsonUtil.verify_vat_retval(
-            resp[0],
-            err_msg='Create SRv6 policy for BindingSID {0} failed on node '
-                    '{1}'.format(bsid, node['host']))
+        if "exec error: Misc" in vat.vat_stdout:
+            raise RuntimeError('Create SRv6 policy for BindingSID {0} failed on'
+                               ' node {1}'.format(bsid, node['host']))
 
     @staticmethod
     def delete_sr_policy(node, bsid):
@@ -201,7 +200,7 @@ class SRv6(object):
         :type mode: str
         :type bsid: str
         :type interface: str
-        :type ip_addr: int
+        :type ip_addr: str
         :type mask: int
         :raises ValueError: If unsupported mode used or required parameter
             is missing.
@@ -285,3 +284,16 @@ class SRv6(object):
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_steer_policies_show.vat')
+
+    @staticmethod
+    def set_sr_encaps_source_address(node, ip6_addr):
+        """Set SRv6 encapsulation source address on the given node.
+
+        :param node: Given node to set SRv6 encapsulation source address on.
+        :param ip6_addr: Local SID IPv6 address.
+        :type node: dict
+        :type ip6_addr: str
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
+                'srv6/sr_set_encaps_source.vat', ip6_addr=ip6_addr)
