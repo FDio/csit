@@ -33,6 +33,7 @@
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
+| Resource | resources/libraries/robot/overlay/srv6.robot
 | Documentation | Performance suite keywords - configuration.
 
 *** Keywords ***
@@ -597,6 +598,71 @@
 | | ... | ip6 | dst | 2001:1::2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip6 | ${table_idx}
+
+| Initialize IPv6 forwarding over SRv6 with encapsulation with '${n}' x SID in 3-node circular topology
+| | [Documentation]
+| | ... | NEEDS UPDATE
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup neighbour on all
+| | ... | VPP interfaces. Setup IPv6 addresses with /128 prefixes on all
+| | ... | interfaces. Set routing on both DUT nodes with prefix /64 and
+| | ... | next hop of neighbour DUT interface IPv6 address.
+| | ... | NEEDS UPDATE
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6} | ${prefix}
+| | Suppress ICMPv6 router advertisement message | ${nodes}
+| | :FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
+| | | ${hexa_nr}= | Convert To Hex | ${number}
+| | | Add Ip Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip6_subnet}${hexa_nr}
+| | | ... | ${tg1_if1_mac}
+| | | Add Ip Neighbor | ${dut2} | ${dut2_if2} | ${tg_if2_ip6_subnet}${hexa_nr}
+| | | ... | ${tg1_if2_mac}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_if2_ip6} | ${dut1_if2_mac}
+| | Vpp Route Add | ${dut1} | ${dut2_sid1} | ${sid_prefix} | ${dut2_if1_ip6}
+| | ... | ${dut1_if2}
+| | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix} | ${dut1_if2_ip6}
+| | ... | ${dut2_if1}
+| | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
+| | @{sid_list_dir0}= | Run Keyword If | "${n}" == "1"
+| | ... | Create List | ${dut2_sid1}
+| | ... | ELSE IF | "${n}" == "2"
+| | ... | Create List | ${dut2_sid1_1} | ${dut2_sid1_2}
+| | Configure SR Policy on DUT | ${dut1} | ${dut1_bsid} | encap
+| | ... | @{sid_list_dir0}
+| | Configure SR Steer on DUT | ${dut1} | L3 | ${dut1_bsid}
+| | ... | ip_addr=${tg_if2_ip6_subnet} | prefix=${sid_prefix}
+| | Run Keyword If | "${n}" == "1"
+| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.dx6
+| | ... | interface=${dut2_if2} | next_hop=${tg_if2_ip6_subnet}2
+| | Run Keyword If | "${n}" == "2"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1} | end
+| | Run Keyword If | "${n}" == "2"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_2} | end.dx6
+| | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
+| | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
+| | @{sid_list_dir1}= | Run Keyword If | "${n}" == "1"
+| | ... | Create List | ${dut1_sid2}
+| | ... | ELSE IF | "${n}" == "2"
+| | ... | Create List | ${dut1_sid2_1} | ${dut1_sid2_2}
+| | Configure SR Policy on DUT | ${dut2} | ${dut2_bsid} | encap
+| | ... | @{sid_list_dir1}
+| | Configure SR Steer on DUT | ${dut2} | L3 | ${dut2_bsid}
+| | ... | ip_addr=${tg_if1_ip6_subnet} | prefix=${sid_prefix}
+| | Run Keyword If | "${n}" == "1"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.dx6
+| | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
+| | Run Keyword If | "${n}" == "2"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_1} | end
+| | Run Keyword If | "${n}" == "2"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2_2} | end.dx6
+| | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
 
 | Initialize L2 xconnect in 3-node circular topology
 | | [Documentation]
