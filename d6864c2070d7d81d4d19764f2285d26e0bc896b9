@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7aa8a8c0_00869f61",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-20T12:03:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3cd9b52_b5f5cd27",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4f31ff2_e9d6ff84",
         "filename": "resources/libraries/python/KubernetesUtils.py",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-19T10:53:25Z",
       "side": 1,
       "message": "Parentheses are not needed.\n\n- valid for all occurences",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 24
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff0653b5_596253be",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-20T12:03:14Z",
+      "side": 1,
+      "message": "No, but they are all over the CSIT. So no point to change it everywhere in this commit.",
+      "parentUuid": "a4f31ff2_e9d6ff84",
       "range": {
         "startLine": 48,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8ba97a54_0ca85274",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-20T12:03:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4b5acbc_10768d27",
+      "range": {
+        "startLine": 148,
+        "startChar": 56,
+        "endLine": 148,
+        "endChar": 70
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66a6b247_c16ef59e",
         "filename": "resources/libraries/python/KubernetesUtils.py",
         "patchSetId": 12
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5883eef9_d643d7c2",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-20T12:03:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66a6b247_c16ef59e",
+      "range": {
+        "startLine": 206,
+        "startChar": 30,
+        "endLine": 206,
+        "endChar": 68
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd4ce9a8_01f0585a",
         "filename": "resources/libraries/python/KubernetesUtils.py",
         "patchSetId": 12
@@ -105,6 +201,30 @@
       "writtenOn": "2017-12-19T09:35:47Z",
       "side": 1,
       "message": "Is name\u003d\u0027\u0027 the same as name\u003d\u0027--all\u0027?",
+      "range": {
+        "startLine": 211,
+        "startChar": 45,
+        "endLine": 211,
+        "endChar": 49
+      },
+      "revId": "d6864c2070d7d81d4d19764f2285d26e0bc896b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d54587e_7381c831",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-12-20T12:03:14Z",
+      "side": 1,
+      "message": "Looks like no\n\nOptions:\n      --all\u003dfalse: Delete all resources, including uninitialized ones, in the namespace of the specified resource types.\n\nUsage:\n  kubectl delete ([-f FILENAME] | TYPE [(NAME | -l label | --all)]) [options]",
+      "parentUuid": "bd4ce9a8_01f0585a",
       "range": {
         "startLine": 211,
         "startChar": 45,
