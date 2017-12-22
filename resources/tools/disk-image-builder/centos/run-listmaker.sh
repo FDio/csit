@@ -42,13 +42,19 @@ if [ "$1" == "centos-7-1511" ]
 then
     OS="centos-7-1511"
     VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7-1511.yaml"
-elif [ "$1" == "centos-7.3-1611" ]
-then
-    OS="centos-7.3-1611"
-    VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.3-1611.yaml"
 else
-    echo specify argument -- probably centos-7-1511 or centos-7.3-1611
-    exit 1
+    if [ "$1" == "centos-7.3-1611" ]
+    then
+        OS="centos-7.3-1611"
+        VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.3-1611.yaml"
+    elif [ "$1" == "centos-7.4-1711" ]
+    then
+        OS="centos-7.4-1711"
+        VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.4-1711.yaml"
+    else
+        echo specify argument -- probably centos-7-1511 or centos-7.3-1611 or centos-7.4-1711
+        exit 1
+    fi
 fi
 
 RELEASE="${OS}_${DATE}_${VERSION}"
@@ -61,13 +67,34 @@ echo "Storing data in ${OUTPUT_DIR}/."
 # RPM packages wanted
 
 RPM_WANTLIST_INFRA="nfs-utils cloud-init pkgconfig yum-utils"
-RPM_WANTLIST_CSIT="python-devel python-pip python-virtualenv python-setuptools python-pip openssl-devel git strongswan"
+RPM_WANTLIST_CSIT="python-devel python-pip  python-virtualenv \
+            python-setuptools   python-pip  openssl-devel   git \
+            strongswan"
 RPM_WANTLIST_TLDK="tcpdump"
 RPM_WANTLIST_VPP="dkms bridge-utils"
 RPM_WANTLIST_TREX="zlib-devel unzip"
-RPM_WANTLIST_MISC="socat psmisc gperftools glusterfs glusterfs-api libiscsi libibverbs libpcap libpcap-devel pixman libpng pulseaudio-libs librados2 librbd1 librdmacm libseccomp spice-server libusb usbredir glusterfs-devel seavgabios-bin sgabios-bin ipxe-roms-qemu nss-devel seabios-bin"
+RPM_WANTLIST_MISC="socat        psmisc      gperftools      glusterfs \
+            glusterfs-api       libiscsi    libibverbs      libpcap \
+            libpcap-devel       pixman      libpng          pulseaudio-libs \
+            librados2           librbd1     librdmacm       libseccomp \
+            spice-server        libusb      usbredir        glusterfs-devel \
+            seavgabios-bin      sgabios-bin ipxe-roms-qemu  nss-devel \
+            seabios-bin         boost       boost-devel     chrpath \
+            libffi-devel        rpm-build   apr-devel       numactl-devel \
+            check               check-devel subunit         subunit-devel \
+            gnutls              nettle"
 
-RPM_WANTLIST_NESTED="qemu-img-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-devel-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-debuginfo-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-common-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm"
+if [ "$OS" == "centos-7.4-1711" ]
+then
+    RPM_WANTLIST_NESTED="qemu-img-ev-2.9.0-16.el7_4.13.1.x86_64.rpm qemu-kvm-ev-debuginfo-2.9.0-16.el7_4.13.1.x86_64.rpm qemu-kvm-tools-ev-2.9.0-16.el7_4.13.1.x86_64.rpm qemu-kvm-common-ev-2.9.0-16.el7_4.13.1.x86_64.rpm qemu-kvm-ev-2.9.0-16.el7_4.13.1.x86_64.rpm"
+    RPM_WANTLIST_NESTED_CACARD="libcacard libcacard-tools libcacard-devel"
+    RPM_WANTLIST_NESTED_URL="http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.9.0/16.el7_4.13.1/x86_64/"
+else
+    RPM_WANTLIST_NESTED="qemu-img-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-devel-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-debuginfo-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-common-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm"
+    RPM_WANTLIST_NESTED_URL="http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/"
+fi
+
+
 RPM_WANTLIST_JAVA="java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel"
 #RPM_WANTLIST_DOCKER="docker-engine"
 
@@ -170,26 +197,33 @@ do_ssh yum install -y @base
 do_ssh yum install -y deltarpm
 do_ssh yum update -y
 do_ssh yum -y install epel-release
+do_ssh yum install -y centos-release-qemu-ev
 do_ssh yum update -y
 do_ssh yum -y install $RPM_WANTLIST
 for i in ${RPM_WANTLIST} ; do
     echo $i >> $RPM_TEMPFILE
 done
 
+if [ "$OS" == "centos-7.4-1711" ] ; then
+    do_ssh yum -y install $RPM_WANTLIST_NESTED_CACARD
+    for i in ${RPM_WANTLIST_NESTED_CACARD} ; do
+        echo $i >> $RPM_TEMPFILE
+    done
+fi
 ###
 ### Install qemu ($RPM_WANTLIST_NESTED) separately from PPA in case specific versions are required.
 ###
 for i in ${RPM_WANTLIST_NESTED};  do
-    echo $i http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/ >> $RPM_URL_TEMPFILE
+    echo $i $RPM_WANTLIST_NESTED_URL >> $RPM_URL_TEMPFILE
 done
 ###
-### Try 2 times for dependencies. Not in yum repo so it is not automatic"
+### Try 2 times for dependencies. Not using yum repo so it is not automatic
 ###
 for i in ${RPM_WANTLIST_NESTED};  do
-    do_ssh rpm -i http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/$i
+    do_ssh rpm -i $RPM_WANTLIST_NESTED_URL/$i
 done
 for i in ${RPM_WANTLIST_NESTED};  do
-    do_ssh rpm -i http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/$i
+    do_ssh rpm -i $RPM_WANTLIST_NESTED_URL/$i
 done
 
 

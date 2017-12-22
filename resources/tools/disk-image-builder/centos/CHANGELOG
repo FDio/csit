@@ -1,3 +1,11 @@
+## [1.8] - 2017-01-08
+
+Add cloud-init package removed in 1.7"
+
+## [1.7] - 2017-12-29
+
+Refreshed image to 7.4-1711
+
 ## [1.6] - 2017-09-22
 
 Moved IPv6_disable from GRUB boot params to sysctl
