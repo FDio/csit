@@ -1,0 +1,64 @@
+apr-devel
+boost
+boost-devel
+bridge-utils
+check
+check-devel
+chrpath
+dkms
+git
+glusterfs
+glusterfs-api
+glusterfs-devel
+gnutls
+gperftools
+ipxe-roms-qemu
+java-1.8.0-openjdk-devel
+java-1.8.0-openjdk-headless
+libcacard
+libcacard-devel
+libcacard-tools
+libffi-devel
+libibverbs
+libiscsi
+libpcap
+libpcap-devel
+libpng
+librados2
+librbd1
+librdmacm
+libseccomp
+libusb
+nettle
+nfs-utils
+nss-devel
+numactl-devel
+openssl-devel
+pixman
+pkgconfig
+psmisc
+pulseaudio-libs
+python-devel
+python-pip
+python-pip
+python-setuptools
+python-virtualenv
+rpm-build
+seabios-bin
+seavgabios-bin
+sgabios-bin
+socat
+spice-server
+strongswan
+subunit
+subunit-devel
+tcpdump
+unzip
+usbredir
+yum-utils
+zlib-devel
+qemu-img-ev-2.9.0-16.el7_4.13.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.9.0/16.el7_4.13.1/x86_64/
+qemu-kvm-ev-debuginfo-2.9.0-16.el7_4.13.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.9.0/16.el7_4.13.1/x86_64/
+qemu-kvm-tools-ev-2.9.0-16.el7_4.13.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.9.0/16.el7_4.13.1/x86_64/
+qemu-kvm-common-ev-2.9.0-16.el7_4.13.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.9.0/16.el7_4.13.1/x86_64/
+qemu-kvm-ev-2.9.0-16.el7_4.13.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.9.0/16.el7_4.13.1/x86_64/

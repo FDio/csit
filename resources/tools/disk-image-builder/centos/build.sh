@@ -83,7 +83,7 @@ PACKER_DIR="${BUILD_DIR}/packer"
 RPM_CACHE_DIR="${BUILD_DIR}/cache/rpm"
 PIP_CACHE_DIR="${BUILD_DIR}/cache/pip"
 
-PACKER_TEMPLATE="centos-7.3-1611.json"
+PACKER_TEMPLATE="centos-7.4-1711.json"
 LISTS_DIR="$(dirname $0)/lists"
 
 function syntax {

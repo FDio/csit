@@ -23,13 +23,18 @@ OUT_DIR="${BUILD_DIR}/output/listmaker"
 if [ "$1" = "centos-7-1511" ]; then
     RELEASE_NAME="csit-centos-7-1511-listmaker"
     PACKER_TEMPLATE="listmaker/centos-7-1511.json"
-elif [ "$1" = "centos-7.3-1611" ]; then
-    RELEASE_NAME="csit-centos-7.3-1611-listmaker"
-    PACKER_TEMPLATE="listmaker/centos-7.3-1611.json"
 else
-    echo "Please provide OS as parameter:"
-    echo "Options: ${0} [centos-7-1511|centos-7.3-1611]"
-    exit 1
+    if [ "$1" = "centos-7.3-1611" ]; then
+        RELEASE_NAME="csit-centos-7.3-1611-listmaker"
+        PACKER_TEMPLATE="listmaker/centos-7.3-1611.json"
+    elif [ "$1" = "centos-7.4-1711" ]; then
+        RELEASE_NAME="csit-centos-7.4-1711-listmaker"
+        PACKER_TEMPLATE="listmaker/centos-7.4-1711.json"
+    else
+        echo "Please provide OS as parameter:"
+        echo "Options: ${0} [centos-7-1511|centos-7.3-1611|centos-7.4-1711]"
+        exit 1
+    fi
 fi
 
 VIRL_IMAGE_SUBTYPE=server
