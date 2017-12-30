@@ -549,12 +549,13 @@ class QemuUtils(object):
             self._qemu_bin, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
             drive, qmp, serial, qga, graphic, pid)
-        (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
+        (ret_code, _, _) = self._ssh.exec_command_sudo(cmd, timeout=300)
         if int(ret_code) != 0:
-            logger.debug('QEMU start failed {0}'.format(stderr))
+            self.qemu_kill_all()
+            self.qemu_clear_socks()
             raise RuntimeError('QEMU start failed on {0}'.format(
                 self._node['host']))
-        logger.trace('QEMU running')
+        logger.trace('QEMU process started successfully.')
         # Wait until VM boot
         try:
             self._wait_until_vm_boot()
@@ -562,6 +563,7 @@ class QemuUtils(object):
             self.qemu_kill_all()
             self.qemu_clear_socks()
             raise
+        logger.trace('VM started successfully.')
         # Update interface names in VM node dict
         self._update_vm_interfaces()
         # Return VM node dict
