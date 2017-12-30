@@ -431,7 +431,6 @@
 | | ... | step 100kpps.
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
-| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
