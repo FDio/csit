@@ -160,7 +160,7 @@ class TrafficGenerator(object):
         :param tg_if1_adj_if: TG if1 adjecent interface.
         :param tg_if2_adj_node: TG if2 adjecent node.
         :param tg_if2_adj_if: TG if2 adjecent interface.
-        :param test_type: 'L2' or 'L3' - src/dst MAC address.
+        :param test_type: 'L2', 'L3' or 'L7' - OSI Layer testing type.
         :param tg_if1_dst_mac: Interface 1 destination MAC address.
         :param tg_if2_dst_mac: Interface 2 destination MAC address.
         :type tg_node: dict
@@ -176,7 +176,6 @@ class TrafficGenerator(object):
         :returns: nothing
         :raises: RuntimeError in case of issue during initialization.
         """
-
         topo = Topology()
 
         if tg_node['type'] != NodeType.TG:
@@ -184,8 +183,6 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.34"
-
             ssh = SSH()
             ssh.connect(tg_node)
 
@@ -198,76 +195,101 @@ class TrafficGenerator(object):
 
             if1_pci = topo.get_interface_pci_addr(tg_node, tg_if1)
             if2_pci = topo.get_interface_pci_addr(tg_node, tg_if2)
-            if1_mac = topo.get_interface_mac(tg_node, tg_if1)
-            if2_mac = topo.get_interface_mac(tg_node, tg_if2)
 
             if test_type == 'L2':
-                if1_adj_mac = if2_mac
-                if2_adj_mac = if1_mac
+                if1_addr = topo.get_interface_mac(tg_node, tg_if1)
+                if2_addr = topo.get_interface_mac(tg_node, tg_if2)
+                if1_adj_addr = if2_addr
+                if2_adj_addr = if1_addr
             elif test_type == 'L3':
-                if1_adj_mac = topo.get_interface_mac(tg_if1_adj_node,
-                                                     tg_if1_adj_if)
-                if2_adj_mac = topo.get_interface_mac(tg_if2_adj_node,
-                                                     tg_if2_adj_if)
+                if1_addr = topo.get_interface_mac(tg_node, tg_if1)
+                if2_addr = topo.get_interface_mac(tg_node, tg_if2)
+                if1_adj_addr = topo.get_interface_mac(tg_if1_adj_node,
+                                                      tg_if1_adj_if)
+                if2_adj_addr = topo.get_interface_mac(tg_if2_adj_node,
+                                                      tg_if2_adj_if)
+            elif test_type == 'L7':
+                if1_addr = topo.get_interface_ip4(tg_node, tg_if1)
+                if2_addr = topo.get_interface_ip4(tg_node, tg_if2)
+                if1_adj_addr = topo.get_interface_ip4(tg_if1_adj_node,
+                                                      tg_if1_adj_if)
+                if2_adj_addr = topo.get_interface_ip4(tg_if2_adj_node,
+                                                      tg_if2_adj_if)
             else:
-                raise ValueError("test_type unknown")
+                raise ValueError("Unknown Test Type")
 
+            # in case of switched environment we can override MAC addresses
             if tg_if1_dst_mac is not None and tg_if2_dst_mac is not None:
-                if1_adj_mac = tg_if1_dst_mac
-                if2_adj_mac = tg_if2_dst_mac
+                if1_adj_addr = tg_if1_dst_mac
+                if2_adj_addr = tg_if2_dst_mac
 
             if min(if1_pci, if2_pci) != if1_pci:
-                if1_mac, if2_mac = if2_mac, if1_mac
                 if1_pci, if2_pci = if2_pci, if1_pci
-                if1_adj_mac, if2_adj_mac = if2_adj_mac, if1_adj_mac
+                if1_addr, if2_addr = if2_addr, if1_addr
+                if1_adj_addr, if2_adj_addr = if2_adj_addr, if1_adj_addr
                 self._ifaces_reordered = True
 
-            if1_mac_hex = "0x"+if1_mac.replace(":", ",0x")
-            if2_mac_hex = "0x"+if2_mac.replace(":", ",0x")
-            if1_adj_mac_hex = "0x"+if1_adj_mac.replace(":", ",0x")
-            if2_adj_mac_hex = "0x"+if2_adj_mac.replace(":", ",0x")
+            if test_type == 'L2' or test_type == 'L3':
+                cfg = "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"\
+                    "- port_limit: 2\n"\
+                    "  version: 2\n"\
+                    "  interfaces: [\"{0}\",\"{1}\"]\n"\
+                    "  port_info:\n"\
+                    "      - dest_mac: [{2}]\n"\
+                    "        src_mac: [{3}]\n"\
+                    "      - dest_mac: [{4}]\n"\
+                    "        src_mac: [{5}]\n"\
+                    "EOF'"\
+                    .format(if1_pci, if2_pci,
+                            "0x"+if1_adj_addr.replace(":", ",0x"),
+                            "0x"+if1_addr.replace(":", ",0x"),
+                            "0x"+if2_adj_addr.replace(":", ",0x"),
+                            "0x"+if2_addr.replace(":", ",0x"))
+            elif test_type == 'L7':
+                cfg = "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"\
+                    "- port_limit: 2\n"\
+                    "  version: 2\n"\
+                    "  interfaces: [\"{0}\",\"{1}\"]\n"\
+                    "  port_info:\n"\
+                    "      - ip: [{2}]\n"\
+                    "        default_gw: [{3}]\n"\
+                    "      - ip: [{4}]\n"\
+                    "        default_gw: [{5}]\n"\
+                    "EOF'"\
+                    .format(if1_pci, if2_pci,
+                            if1_addr, if1_adj_addr,
+                            if2_addr, if2_adj_addr)
+            else:
+                raise ValueError("Unknown Test Type")
 
-            (ret, _, _) = ssh.exec_command(
-                "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                "- port_limit      : 2\n"
-                "  version         : 2\n"
-                "  interfaces      : [\"{}\",\"{}\"]\n"
-                "  port_info       :\n"
-                "          - dest_mac        :   [{}]\n"
-                "            src_mac         :   [{}]\n"
-                "          - dest_mac        :   [{}]\n"
-                "            src_mac         :   [{}]\n"
-                "EOF'"\
-                .format(if1_pci, if2_pci,
-                        if1_adj_mac_hex, if1_mac_hex,
-                        if2_adj_mac_hex, if2_mac_hex))
+            (ret, _, _) = ssh.exec_command(cfg)
             if int(ret) != 0:
-                raise RuntimeError('trex config generation error')
+                raise RuntimeError('TRex config generation error')
 
             max_startup_retries = 3
             while max_startup_retries > 0:
-                # kill T-rex only if it is already running
+                # kill TRex only if it is already running
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'pgrep t-rex && sudo pkill t-rex && sleep 3'")
 
-                # configure T-rex
+                # configure TRex
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'"\
-                    .format(trex_path))
+                    .format(Constants.TREX_INSTALL_DIR))
                 if int(ret) != 0:
                     raise RuntimeError('trex-cfg failed')
 
-                # start T-rex
+                # start TRex
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'cd {0}/scripts/ && "
                     "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log "
                     "2>&1 &' > /dev/null"\
-                    .format(trex_path))
+                    .format(Constants.TREX_INSTALL_DIR))
                 if int(ret) != 0:
                     ssh.exec_command("sh -c 'cat /tmp/trex.log'")
                     raise RuntimeError('t-rex-64 startup failed')
 
-                # get T-rex server info
+                # get TRex server info
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'sleep 3; "
                     "{0}/resources/tools/trex/trex_server_info.py'"\
@@ -278,7 +300,7 @@ class TrafficGenerator(object):
                     return
                 # try again
                 max_startup_retries -= 1
-            # after max retries T-rex is still not responding to API
+            # after max retries TRex is still not responding to API
             # critical error occurred
             raise RuntimeError('t-rex-64 startup failed')
 
@@ -306,7 +328,7 @@ class TrafficGenerator(object):
     def trex_stl_stop_remote_exec(node):
         """Execute script on remote node over ssh to stop running traffic.
 
-        :param node: T-REX generator node.
+        :param node: TRex generator node.
         :type node: dict
         :returns: Nothing
         :raises: RuntimeError if stop traffic script fails.
