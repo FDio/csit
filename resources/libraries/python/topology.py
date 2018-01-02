@@ -600,6 +600,21 @@ class Topology(object):
             return None
 
     @staticmethod
+    def get_interface_ip4(node, iface_key):
+        """Get IP4 address for the interface.
+
+        :param node: Node to get interface mac on.
+        :param iface_key: Interface key from topology file.
+        :type node: dict
+        :type iface_key: str
+        :returns: Return IP4 or None if not found.
+        """
+        try:
+            return node['interfaces'][iface_key].get('ip4_address', None)
+        except KeyError:
+            return None
+
+    @staticmethod
     def get_adjacent_node_and_interface(nodes_info, node, iface_key):
         """Get node and interface adjacent to specified interface
         on local network.

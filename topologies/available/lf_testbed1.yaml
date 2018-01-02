@@ -19,6 +19,7 @@ nodes:
         # t1-tg1-c1/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:37:1f:48"
         pci_address: "0000:02:00.0"
+        ip4_address: "172.16.10.2"
         driver: i40e
         link: link1
         model: Intel-XL710
@@ -26,6 +27,7 @@ nodes:
         # t1-tg1-c1/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:37:1f:4d"
         pci_address: "0000:02:00.1"
+        ip4_address: "172.16.20.2"
         driver: i40e
         link: link2
         model: Intel-XL710
@@ -33,6 +35,7 @@ nodes:
         # t1-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ee:a0"
         pci_address: "0000:05:00.0"
+        ip4_address: "172.16.30.2"
         driver: i40e
         link: link3
         model: Intel-X710
@@ -40,6 +43,7 @@ nodes:
         # t1-tg1-c3/p2 - 10GE port2 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ee:a1"
         pci_address: "0000:05:00.1"
+        ip4_address: "172.16.40.2"
         driver: i40e
         link: link4
         model: Intel-X710
@@ -47,6 +51,7 @@ nodes:
         # t1-tg1-c2/p1 - 10GE port1 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ed:50"
         pci_address: "0000:07:00.0"
+        ip4_address: "172.16.50.2"
         driver: i40e
         link: link5
         model: Intel-X710
@@ -54,6 +59,7 @@ nodes:
         # t1-tg1-c2/p2 - 10GE port2 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ed:51"
         pci_address: "0000:07:00.1"
+        ip4_address: "172.16.60.2"
         driver: i40e
         link: link6
         model: Intel-X710
@@ -61,6 +67,7 @@ nodes:
         # t1-tg1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:3a:af:40"
         pci_address: "0000:86:00.0"
+        ip4_address: "172.16.70.2"
         driver: i40e
         link: link7
         model: Intel-XL710
@@ -68,6 +75,7 @@ nodes:
         # t1-tg1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:3a:af:41"
         pci_address: "0000:86:00.1"
+        ip4_address: "172.16.80.2"
         driver: i40e
         link: link8
         model: Intel-XL710
@@ -75,6 +83,7 @@ nodes:
         # t1-tg1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ee:2c"
         pci_address: "0000:88:00.0"
+        ip4_address: "172.16.90.2"
         driver: i40e
         link: link9
         model: Intel-X710
@@ -82,6 +91,7 @@ nodes:
         # t1-tg1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ee:2d"
         pci_address: "0000:88:00.1"
+        ip4_address: "172.16.100.2"
         driver: i40e
         link: link10
         model: Intel-X710
@@ -89,6 +99,7 @@ nodes:
         # t1-tg1-c6/p1 - 10GE port1 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ed:a4"
         pci_address: "0000:84:00.0"
+        ip4_address: "172.16.110.1"
         driver: i40e
         link: link11
         model: Intel-X710
@@ -96,6 +107,7 @@ nodes:
         # t1-tg1-c6/p2 - 10GE port2 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ed:a5"
         pci_address: "0000:84:00.1"
+        ip4_address: "172.16.110.2"
         driver: i40e
         link: link11
         model: Intel-X710
@@ -117,60 +129,70 @@ nodes:
         # t1-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:0a:18"
         pci_address: "0000:0a:00.0"
+        ip4_address: "172.17.21.1"
         link: link21
         model: Intel-X520-DA2
       port2:
         # t1-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:0a:19"
         pci_address: "0000:0a:00.1"
+        ip4_address: "172.16.30.1"
         link: link3
         model: Intel-X520-DA2
       port3:
         # t1-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
         mac_address: "04:62:73:8c:c3:0f"
         pci_address: "0000:13:00.0"
+        ip4_address: "172.17.22.1"
         link: link22
         model: Cisco-VIC-1385
       port4:
         # t1-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
         mac_address: "04:62:73:8c:c3:10"
         pci_address: "0000:14:00.0"
+        ip4_address: "172.16.10.1"
         link: link1
         model: Cisco-VIC-1385
       port5:
         # t1-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:37:20:48"
         pci_address: "0000:88:00.0"
+        ip4_address: "172.17.23.1"
         link: link23
         model: Intel-XL710
       port6:
         # t1-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:37:20:49"
         pci_address: "0000:88:00.1"
+        ip4_address: "172.16.70.1"
         link: link7
         model: Intel-XL710
       port7:
         # t1-sut1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ee:c4"
         pci_address: "0000:8a:00.0"
+        ip4_address: "172.17.24.1"
         link: link24
         model: Intel-X710
       port8:
         # t1-sut1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ee:c5"
         pci_address: "0000:8a:00.1"
+        ip4_address: "172.16.90.1"
         link: link9
         model: Intel-X710
       port9:
         # t1-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
         mac_address: "00:fe:c8:e4:d0:1b"
         pci_address: "0000:06:00.0"
+        ip4_address: "172.17.25.1"
         link: link25
         model: Cisco-VIC-1227
       port10:
         # t1-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
         mac_address: "00:fe:c8:e4:d0:1c"
         pci_address: "0000:07:00.0"
+        ip4_address: "172.16.50.1"
         link: link5
         model: Cisco-VIC-1227
   DUT2:
@@ -191,60 +213,70 @@ nodes:
         # t1-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:05:e4"
         pci_address: "0000:0a:00.0"
+        ip4_address: "172.16.40.1"
         link: link4
         model: Intel-X520-DA2
       port2:
         # t1-sut2-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:05:e5"
         pci_address: "0000:0a:00.1"
+        ip4_address: "172.17.21.2"
         link: link21
         model: Intel-X520-DA2
       port3:
         # t1-sut2-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
         mac_address: "d8:b1:90:19:41:69"
         pci_address: "0000:13:00.0"
+        ip4_address: "172.16.20.1"
         link: link2
         model: Cisco-VIC-1385
       port4:
         # t1-sut2-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
         mac_address: "d8:b1:90:19:41:6a"
         pci_address: "0000:15:00.0"
+        ip4_address: "172.17.22.2"
         link: link22
         model: Cisco-VIC-1385
       port5:
         # t1-sut2-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:78:e8"
         pci_address: "0000:88:00.0"
+        ip4_address: "172.16.80.1"
         link: link8
         model: Intel-XL710
       port6:
         # t1-sut2-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:78:e9"
         pci_address: "0000:88:00.1"
+        ip4_address: "172.17.23.2"
         link: link23
         model: Intel-XL710
       port7:
         # t1-sut2-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ef:94"
         pci_address: "0000:8a:00.0"
+        ip4_address: "172.16.100.1"
         link: link10
         model: Intel-X710
       port8:
         # t1-sut2-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ef:95"
         pci_address: "0000:8a:00.1"
+        ip4_address: "172.17.24.2"
         link: link24
         model: Intel-X710
       port9:
         # t1-sut2-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
         mac_address: "00:fe:c8:e5:44:4c"
         pci_address: "0000:06:00.0"
+        ip4_address: "172.16.60.1"
         link: link6
         model: Cisco-VIC-1227
       port10:
         # t1-sut2-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
         mac_address: "00:fe:c8:e5:44:4d"
         pci_address: "0000:07:00.0"
+        ip4_address: "172.17.25.2"
         link: link25
         model: Cisco-VIC-1227
 
