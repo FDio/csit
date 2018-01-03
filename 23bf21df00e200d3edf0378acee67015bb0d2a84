@@ -45,6 +45,30 @@
       "revId": "23bf21df00e200d3edf0378acee67015bb0d2a84",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8d73d62_0c508be7",
+        "filename": "resources/libraries/python/constants.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-03T09:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea0d2a1a_af7263b9",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "23bf21df00e200d3edf0378acee67015bb0d2a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
