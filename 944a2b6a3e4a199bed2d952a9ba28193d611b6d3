@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64c66d7a_a322b17b",
+        "filename": "resources/libraries/robot/overlay/srv6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:24:11Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "944a2b6a3e4a199bed2d952a9ba28193d611b6d3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acf77210_13e327e9",
+        "filename": "resources/libraries/robot/overlay/srv6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:24:11Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 21,
+        "startChar": 17,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "944a2b6a3e4a199bed2d952a9ba28193d611b6d3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
