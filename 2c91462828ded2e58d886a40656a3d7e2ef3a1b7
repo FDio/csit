@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a808d7e6_95c3a727",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-03T07:23:10Z",
+      "side": 1,
+      "message": "Consider using:\nreturn node[\u0027interfaces\u0027][iface_key].get(\u0027ip4_address\u0027, None)",
+      "range": {
+        "startLine": 612,
+        "startChar": 8,
+        "endLine": 615,
+        "endChar": 23
+      },
+      "revId": "2c91462828ded2e58d886a40656a3d7e2ef3a1b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
