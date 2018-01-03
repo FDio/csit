@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8f147ff_f1fe17bd",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:49:23Z",
+      "side": 1,
+      "message": "you can iterate over all nodes and find TG. You will save the param",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 55
+      },
+      "revId": "66ac418d164f4d391ff764ddc1625ac54d4a5a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d85ca23_114714fa",
+        "filename": "resources/libraries/python/constants.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:49:23Z",
+      "side": 1,
+      "message": "/opt/\nas /tmp is really temporary and after reboot it is gone.",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "66ac418d164f4d391ff764ddc1625ac54d4a5a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5adbad42_40589cf6",
+        "filename": "resources/libraries/python/tcp.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:49:23Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "66ac418d164f4d391ff764ddc1625ac54d4a5a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f03cec1f_87becb35",
+        "filename": "resources/libraries/robot/tcp/tcp_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:49:23Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "66ac418d164f4d391ff764ddc1625ac54d4a5a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd135a41_6d8ccdbb",
+        "filename": "resources/libraries/robot/wrk/wrk_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:49:23Z",
+      "side": 1,
+      "message": "Don\u0027t you want to move the functionality into performance library as mostly is is same as for T-rex.",
+      "revId": "66ac418d164f4d391ff764ddc1625ac54d4a5a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b34c8503_43e40ed4",
+        "filename": "resources/libraries/robot/wrk/wrk_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:49:23Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "66ac418d164f4d391ff764ddc1625ac54d4a5a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80ed8b4b_9aafac0c",
+        "filename": "resources/libraries/robot/wrk/wrk_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-03T07:49:23Z",
+      "side": 1,
+      "message": "This is reusing of existing KW. Consider to re-use KW and move to perf library.",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 42
+      },
+      "revId": "66ac418d164f4d391ff764ddc1625ac54d4a5a4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
