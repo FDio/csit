@@ -180,6 +180,24 @@ class VppConfigGenerator(object):
         path = ['api-segment', 'gid']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_api_segment_global_size(self, value):
+        """Add API-SEGMENT global-size configuration.
+
+        :param value: Global size.
+        :type value: str
+        """
+        path = ['api-segment', 'global-size']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_api_segment_api_size(self, value):
+        """Add API-SEGMENT api-size configuration.
+
+        :param value: API size.
+        :type value: str
+        """
+        path = ['api-segment', 'api-size']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_dev(self, *devices):
         """Add DPDK PCI device configuration.
 
