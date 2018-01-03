@@ -11,12 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 """
 This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
-
-from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants as con
@@ -49,24 +46,8 @@ class L3fwdTest(object):
         :type jumbo_frames: str
         :return: none
         """
-
-        if_key0 = dut_if1
-        if_key1 = dut_if2
-        if_pci0 = Topology.get_interface_pci_addr(dut_node, if_key0)
-        if_pci1 = Topology.get_interface_pci_addr(dut_node, if_key1)
-
-        # detect which is the port 0
-        if min(if_pci0, if_pci1) != if_pci0:
-            if_key0, if_key1 = if_key1, if_key0
-            if_pci0, if_pci1 = if_pci1, if_pci0
-
-        adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface( \
-                                 nodes_info, dut_node, if_key0)
-        adj_node1, adj_if_key1 = Topology.get_adjacent_node_and_interface( \
-                                 nodes_info, dut_node, if_key1)
-
-        adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if_key0)
-        adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if_key1)
+        adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(nodes_info, dut_node,
+                                                   dut_if1, dut_if2)
 
         list_cores = lcores_list.split(',')
 
@@ -86,18 +67,49 @@ class L3fwdTest(object):
                 port_config += temp_str
                 index = index + 1
 
-        port_config_param = port_config.rstrip(',')
-
         ssh = SSH()
         ssh.connect(dut_node)
 
         cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && ./run_l3fwd.sh ' \
               '"{1}" "{2}" {3} {4} {5}'.format(con.REMOTE_FW_DIR, lcores_list, \
-              port_config_param, adj_mac0, adj_mac1, jumbo_frames)
+              port_config.rstrip(','), adj_mac0, adj_mac1, jumbo_frames)
 
-        (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=600)
+        (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
         if ret_code != 0:
-            logger.error('Execute the l3fwd error: {0}'.format(stderr))
             raise Exception('Failed to execute l3fwd test at node {0}'
                             .format(dut_node['host']))
 
+    @staticmethod
+    def get_adj_mac(nodes_info, dut_node, dut_if1, dut_if2):
+        """
+        Get adjacency MAC addresses of the DUT node.
+
+        :param nodes_info: All the nodes info in the topology file.
+        :param dut_node: Will execute the l3fwd on this node
+        :param dut_if1: The test link interface 1.
+        :param dut_if2: The test link interface 2.
+        :type nodes_info: dict
+        :type dut_node: dict
+        :type dut_if1: str
+        :type dut_if2: str
+        :returns: Returns MAC addresses of adjacency DUT nodes.
+        :rtype: str
+        """
+        if_key0 = dut_if1
+        if_key1 = dut_if2
+        if_pci0 = Topology.get_interface_pci_addr(dut_node, if_key0)
+        if_pci1 = Topology.get_interface_pci_addr(dut_node, if_key1)
+
+        # detect which is the port 0
+        if min(if_pci0, if_pci1) != if_pci0:
+            if_key0, if_key1 = if_key1, if_key0
+
+        adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface( \
+                                 nodes_info, dut_node, if_key0)
+        adj_node1, adj_if_key1 = Topology.get_adjacent_node_and_interface( \
+                                 nodes_info, dut_node, if_key1)
+
+        adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if_key0)
+        adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if_key1)
+
+        return adj_mac0, adj_mac1
