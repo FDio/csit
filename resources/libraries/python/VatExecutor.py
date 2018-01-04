@@ -152,6 +152,9 @@ class VatExecutor(object):
             vat=Constants.VAT_BIN_NAME,
             input=vat_name)
 
+        with open(vat_name, 'r') as tmp_f:
+            VatHistory.add_to_vat_history(node, tmp_f.read())
+
         try:
             (ret_code, stdout, stderr) = ssh.exec_command(cmd, timeout)
         except SSHTimeout:
@@ -196,6 +199,10 @@ class VatExecutor(object):
         cmd = "{vat} {json}".format(json="json" if json_out is True else "",
                                     vat=Constants.VAT_BIN_NAME)
         cmd_input = "exec exec {0}".format(fname)
+
+        VatHistory.add_to_vat_history(node, cmd_input)
+        with open(fname, 'r') as tmp_f:
+            VatHistory.add_to_vat_history(node, tmp_f.read())
 
         try:
             (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd, cmd_input,
