@@ -20,14 +20,13 @@ class DpdkUtil(object):
     """Utilities for DPDK."""
 
     @staticmethod
-    def dpdk_testpmd_start(node, **args):
-        """Start DPDK testpmd app on VM node.
+    def get_eal_options(**args):
+        """Create EAL parameters string.
 
-        :param node: VM Node to start testpmd on.
         :param args: List of testpmd parameters.
-        :type node: dict
         :type args: dict
-        :return: nothing
+        :returns: EAL parameters string.
+        :rtype: str
         """
         # Set the hexadecimal bitmask of the cores to run on.
         eal_coremask = '-c {} '.format(args['eal_coremask'])\
@@ -42,6 +41,23 @@ class DpdkUtil(object):
             if args.get('eal_socket_mem', '') else ''
         # Load an external driver. Multiple -d options are allowed.
         eal_driver = '-d /usr/lib/librte_pmd_virtio.so '
+        eal_options = '-v '\
+            + eal_coremask\
+            + eal_master_core\
+            + eal_mem_channels\
+            + eal_socket_mem\
+            + eal_driver
+        return eal_options
+
+    @staticmethod
+    def get_pmd_options(**args):
+        """Create PMD parameters string.
+
+        :param args: List of testpmd parameters.
+        :type args: dict
+        :returns: PMD parameters string.
+        :rtype: str
+        """
         # Set the forwarding mode: io, mac, mac_retry, mac_swap, flowgen,
         # rxonly, txonly, csum, icmpecho, ieee1588
         pmd_fwd_mode = '--forward-mode={} '.format(args['pmd_fwd_mode'])\
@@ -83,12 +99,6 @@ class DpdkUtil(object):
         pmd_nb_cores = '--nb-cores={} '.format(\
             bin(int(args['eal_coremask'], 0)).count('1')-1)\
             if args.get('eal_coremask', '') else ''
-        eal_options = '-v '\
-            + eal_coremask\
-            + eal_master_core\
-            + eal_mem_channels\
-            + eal_socket_mem\
-            + eal_driver
         pmd_options = '-- '\
             + pmd_fwd_mode\
             + pmd_burst\
@@ -104,6 +114,21 @@ class DpdkUtil(object):
             + pmd_eth_peer_0\
             + pmd_eth_peer_1\
             + pmd_nb_cores
+        return pmd_options
+
+    @staticmethod
+    def dpdk_testpmd_start(node, **args):
+        """Start DPDK testpmd app on VM node.
+
+        :param node: VM Node to start testpmd on.
+        :param args: List of testpmd parameters.
+        :type node: dict
+        :type args: dict
+        :return: nothing
+        """
+        eal_options = DpdkUtil.get_eal_options(**args)
+        pmd_options = DpdkUtil.get_pmd_options(**args)
+
         ssh = SSH()
         ssh.connect(node)
         cmd = "/start-testpmd.sh {0} {1}".format(eal_options, pmd_options)

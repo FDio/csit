@@ -136,7 +136,7 @@ class Topology(object):
         :type nodes: dict
         :returns: Nothing
         """
-        port_types = ('subinterface', 'vlan_subif',  'memif', 'tap', 'vhost',
+        port_types = ('subinterface', 'vlan_subif', 'memif', 'tap', 'vhost',
                       'loopback', 'gre_tunnel', 'vxlan_tunnel')
 
         for node_data in nodes.values():

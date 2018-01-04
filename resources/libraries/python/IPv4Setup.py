@@ -60,17 +60,19 @@ class IPv4Node(object):
         pass
 
     @abstractmethod
-    def set_route(self, network, prefix_length, gateway, interface):
+    def set_route(self, network, prefix_length, gateway, interface, count=1):
         """Configure IPv4 route.
 
         :param network: Network IPv4 address.
         :param prefix_length: IPv4 prefix length.
         :param gateway: IPv4 address of the gateway.
         :param interface: Interface name.
+        :param count: Number of consecutive routes to add.
         :type network: str
         :type prefix_length: int
         :type gateway: str
         :type interface: str
+        :type route: int
         :returns: nothing
         """
         pass
@@ -146,7 +148,7 @@ class Tg(IPv4Node):
                                                 interface)
         self._sudo_execute(cmd)
 
-    def set_route(self, network, prefix_length, gateway, interface):
+    def set_route(self, network, prefix_length, gateway, interface, count=1):
         netmask = self._get_netmask(prefix_length)
         cmd = 'route add -net {} netmask {} gw {}'.\
             format(network, netmask, gateway)

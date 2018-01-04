@@ -59,7 +59,8 @@ class Routing(object):
         if interface:
             if use_sw_index:
                 int_cmd = ('sw_if_index {}'.
-                           format(Topology.get_interface_sw_index(node, interface)))
+                           format(Topology.get_interface_sw_index(node,
+                                                                  interface)))
             else:
                 int_cmd = interface
         else:
