@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "a77fbb1d_d4bd952c",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 618
+      },
+      "writtenOn": "2018-01-04T08:15:03Z",
+      "side": 1,
+      "message": "True. I will add a test if \u0027arch\u0027 in node, this should do the same with fewer lines",
+      "parentUuid": "f2a456c8_6e170bb6",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 31
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "86f4aa1a_4022d19e",
         "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
         "patchSetId": 9
@@ -160,6 +184,30 @@
       "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dbdf510d_2725e008",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 618
+      },
+      "writtenOn": "2018-01-04T08:15:03Z",
+      "side": 1,
+      "message": "I actually don\u0027t rightly know how to do in this case: This is run when the library is imported from the robot script file.\nI can have access to the node only if it is passed as argument in the robot file.\nSince it\u0027s not, I did not dare patch all the inclusions in all the robot files and opted for this. Kind as a workaround.",
+      "parentUuid": "96071bdc_5abca470",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 37
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     },
     {
       "key": {
@@ -522,6 +570,24 @@
       "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "60e84fcf_4a3a4dfc",
+        "filename": "topologies/available/3_node_hw_topo1.yaml.example",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 618
+      },
+      "writtenOn": "2018-01-04T08:15:03Z",
+      "side": 1,
+      "message": "Should I patch all the topology files to explicit arch: x86_64 ?",
+      "parentUuid": "96833774_a63b3320",
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
