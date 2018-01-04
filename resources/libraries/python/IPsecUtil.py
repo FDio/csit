@@ -15,6 +15,7 @@
 
 import os
 from ipaddress import ip_network, ip_address
+from time import sleep
 
 from enum import Enum
 
@@ -586,11 +587,16 @@ class IPsecUtil(object):
                 tmp_f1.write(up_s)
                 tmp_f2.write(up_s)
 
+        with open(tmp_fn1, 'r') as tmp_f1, open(tmp_fn2, 'r') as tmp_f2:
+            print(tmp_f1.read())
+            print(tmp_f2.read())
+
         vat = VatExecutor()
-        vat.scp_and_execute_cli_script(tmp_fn1, node1, 300)
-        vat.scp_and_execute_cli_script(tmp_fn2, node2, 300)
+        vat.scp_and_execute_cli_script(tmp_fn1, node1, 300, json_out=False)
+        vat.scp_and_execute_cli_script(tmp_fn2, node2, 300, json_out=False)
         os.remove(tmp_fn1)
         os.remove(tmp_fn2)
+        sleep(10)
 
     @staticmethod
     def vpp_ipsec_add_multiple_tunnels(node1, node2, interface1, interface2,
