@@ -320,7 +320,7 @@ class KubernetesUtils(object):
         cmd = "for p in $(kubectl get pods {nspace} -o jsonpath="\
             "'{{.items[*].metadata.name}}'); do echo $p; kubectl logs "\
             "{nspace} $p; done".format(nspace=nspace)
-        ssh.exec_command_sudo(cmd)
+        ssh.exec_command(cmd)
 
     @staticmethod
     def get_kubernetes_logs_on_all_duts(nodes, nspace):
