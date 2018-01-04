@@ -119,10 +119,29 @@ sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
     dev_vpp_agent:latest
 sudo docker images
 
+# Ensure that container is not running
+sudo docker rm -f agentcnt 2>/dev/null
+# Start dev_vpp_agent container as daemon
+sudo docker run -itd --name agentcnt dev_vpp_agent bash
+# Copy latest vpp api into running container
+dpkg -x ${SCRIPT_DIR}/vpp-${VPP_STABLE_VER}.deb /tmp/vpp
+sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
+# Recompile vpp-agent
+sudo docker exec agentcnt \
+    bash -c 'cd /root/go/src/github.com/ligato/vpp-agent && make generate && make install'
+# Extract vpp-agent
+rm -rf agent
+mkdir -p agent
+sudo docker cp agentcnt:/root/go/bin/vpp-agent agent/
+sudo docker cp agentcnt:/root/go/bin/vpp-agent-ctl agent/
+sudo docker cp agentcnt:/root/go/bin/agentctl agent/
+tar -zcvf ${SCRIPT_DIR}/../vpp-agent/docker/prod_vpp_agent/agent.tar.gz agent
+# Kill running container
+sudo docker rm -f agentcnt
+
 # Build prod_vpp_agent docker image
 cd ${SCRIPT_DIR}/../vpp-agent/docker/prod_vpp_agent/ &&\
     mv ${SCRIPT_DIR}/vpp.tar.gz . &&\
-    ./extract_agent_files.sh &&\
     sudo docker build -t prod_vpp_agent --no-cache .
 # Export Docker image
 sudo docker save prod_vpp_agent | gzip > prod_vpp_agent.tar.gz
@@ -368,7 +387,7 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
