@@ -20,6 +20,7 @@ data:
       - name: vswitch-vnf1
         description: vswitch to VNF1 - memif
         type: 3
+        vnf_repeat_count: 4
         elements:
           - container: vswitch
             port_label: $$VSWITCH_IF1$$
@@ -36,6 +37,7 @@ data:
       - name: vswitch-vnf4
         description: VNF4 to vswitch - memif
         type: 3
+        vnf_repeat_count: 4
         elements:
           - container: vswitch
             port_label: $$VSWITCH_IF2$$
