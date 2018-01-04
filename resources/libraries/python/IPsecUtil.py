@@ -586,6 +586,10 @@ class IPsecUtil(object):
                 tmp_f1.write(up_s)
                 tmp_f2.write(up_s)
 
+        with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
+            tmp_f1.read()
+            tmp_f2.read()
+
         vat = VatExecutor()
         vat.scp_and_execute_cli_script(tmp_fn1, node1, 300)
         vat.scp_and_execute_cli_script(tmp_fn2, node2, 300)
