@@ -211,6 +211,30 @@
     },
     {
       "key": {
+        "uuid": "3895bcae_f9721047",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T19:21:39Z",
+      "side": 1,
+      "message": "Then i suggest take a look on line:\n185    def qemu_set_node(self, node):\n\nput there the logic of:\nself._node_arch \u003d node[\u0027arch\u0027]",
+      "parentUuid": "dbdf510d_2725e008",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 37
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c08b5d9_9c2d49e7",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 9
@@ -585,6 +609,24 @@
       "side": 1,
       "message": "Should I patch all the topology files to explicit arch: x86_64 ?",
       "parentUuid": "96833774_a63b3320",
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97a1f2cb_933a73ec",
+        "filename": "topologies/available/3_node_hw_topo1.yaml.example",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T19:21:39Z",
+      "side": 1,
+      "message": "I think there are two ways how to do this.\n1) You can of course do it in all topo files.\n - With fallback to default.\n - Without fallback.\n2) Make Python to detect platform (like you did in QemuUtils.py) and dynamically add into node info when topology is read and nodes are constructed.\n\nThe point is to have it unified way across code. As 2) python platform library could not be optimal (for all scenarios like Qemu/DPDK/TRex... MacOSX, some exocit platform) i would say topofile is way to go. As transition could take some iteration fallback to x86_64 does make sense. For this to be safe solution i guess best would be to get arch from Topology().get_node_arch(node) function so topology.py alway returns correct value. And changing it to aarch as default :) takes only single line change. `Thoughts?",
+      "parentUuid": "60e84fcf_4a3a4dfc",
       "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
