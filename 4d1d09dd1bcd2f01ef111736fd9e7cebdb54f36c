@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "9b916372_714f251c",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-04T07:14:47Z",
+      "side": 1,
+      "message": "1",
+      "range": {
+        "startLine": 128,
+        "startChar": 46,
+        "endLine": 128,
+        "endChar": 47
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab85ec2b_8b540560",
         "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
         "patchSetId": 9
@@ -179,6 +202,98 @@
         "startChar": 58,
         "endLine": 685,
         "endChar": 70
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31dd1b4e_4ab842a4",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-04T07:14:47Z",
+      "side": 1,
+      "message": "patch, target_list), 1000)",
+      "range": {
+        "startLine": 691,
+        "startChar": 51,
+        "endLine": 691,
+        "endChar": 77
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f5bf09e_efcbc56a",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-04T07:14:47Z",
+      "side": 1,
+      "message": "1",
+      "range": {
+        "startLine": 151,
+        "startChar": 46,
+        "endLine": 151,
+        "endChar": 47
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c982c711_aa70420b",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-04T07:14:47Z",
+      "side": 1,
+      "message": "2",
+      "range": {
+        "startLine": 158,
+        "startChar": 42,
+        "endLine": 158,
+        "endChar": 43
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4cf2694_e34705d6",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-04T07:14:47Z",
+      "side": 1,
+      "message": "What if \u0027arch\u0027 is not defined in the topo file?",
+      "range": {
+        "startLine": 180,
+        "startChar": 11,
+        "endLine": 180,
+        "endChar": 23
       },
       "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
