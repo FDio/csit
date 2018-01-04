@@ -172,7 +172,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=NDR
 
@@ -240,7 +240,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC | THIS
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1 | search_type=NDR
 
