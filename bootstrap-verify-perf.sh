@@ -241,8 +241,8 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf.crypto" \
-              --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechwANDbase \
-              --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechwANDbase \
+              --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechwANDscaleANDmthread \
+              --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechwANDscaleANDmthread \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
