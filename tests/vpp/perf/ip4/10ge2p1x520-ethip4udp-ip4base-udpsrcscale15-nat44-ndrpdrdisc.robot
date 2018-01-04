@@ -30,18 +30,6 @@
 | ...
 | Documentation | *NAT44 performance test cases*
 | ...
-| ... | *High level description*
-| ...
-| ... | - NDR and PDR tests
-| ... | - 3-node topology, TG-DUT1-DUT2-TG, NAT44 is enabled between DUTs.
-| ... | - Cores / threads: 1t1c, 2t2c, and 4t4c
-| ... | - Framesize: 64B, 1518B, IMIX
-| ... | - Packet: ETH / IP(src, dst) / UDP(src_port, dst_port) / payload
-| ... | - scale: src: 1 user, 10 users, 100 users, ..., 4000 up to the memory
-| ... |   limit; 15 ports per user
-| ...
-| ... | *Low level description*
-| ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for IPv4 routing.
