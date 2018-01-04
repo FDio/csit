@@ -368,7 +368,7 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
