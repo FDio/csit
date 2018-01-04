@@ -200,7 +200,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=NDR
 
@@ -223,7 +223,7 @@
 | | ... | linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC | THIS
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
 
