@@ -128,6 +128,7 @@ sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
 # Recompile vpp-agent
 sudo docker exec -i agentcnt \
     script -qc '. ~/.bashrc; cd /root/go/src/github.com/ligato/vpp-agent && make generate && make install'
+echo $?
 # Extract vpp-agent
 rm -rf agent
 mkdir -p agent
@@ -386,7 +387,7 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
