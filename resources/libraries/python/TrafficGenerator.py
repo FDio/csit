@@ -185,8 +185,9 @@ class TrafficGenerator(object):
             ssh.connect(tg_node)
 
             (ret, _, _) = ssh.exec_command(
-                "sudo -E sh -c '{}/resources/tools/trex/"
-                "trex_installer.sh'".format(Constants.REMOTE_FW_DIR),
+                "sudo -E sh -c '{0}/resources/tools/trex/"
+                "trex_installer.sh {1}'".format(Constants.REMOTE_FW_DIR,
+                                                Constants.TREX_INSTALL_VERSION),
                 timeout=1800)
             if int(ret) != 0:
                 raise RuntimeError('TRex installation failed.')
