@@ -35,8 +35,11 @@ class Constants(object):
     # QEMU install directory
     QEMU_INSTALL_DIR = '/opt/qemu-2.5.0'
 
+    # TRex install version
+    TREX_INSTALL_VERSION = '2.35'
+
     # TRex install directory
-    TREX_INSTALL_DIR = '/opt/trex-core-2.34'
+    TREX_INSTALL_DIR = '/opt/trex-core-2.35'
 
     # Kubernetes templates location
     RESOURCES_TPL_K8S = 'resources/templates/kubernetes'
