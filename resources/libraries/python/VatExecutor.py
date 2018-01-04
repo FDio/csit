@@ -318,7 +318,7 @@ class VatTerminal(object):
                     'sudo -S {0}{1}'.format(Constants.VAT_BIN_NAME, json_text),
                     self.__VAT_PROMPT)
             except Exception:
-                    continue
+                continue
             else:
                 break
         else:
