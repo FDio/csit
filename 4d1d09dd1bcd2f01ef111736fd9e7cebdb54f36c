@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4382072b_d3de2a59",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "Pylint line too long. please split the line to max 80 chars",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 1
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab85ec2b_8b540560",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "{1}",
+      "range": {
+        "startLine": 135,
+        "startChar": 62,
+        "endLine": 135,
+        "endChar": 64
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f2a456c8_6e170bb6",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "What if the \u0027arch\u0027 is not in topology file?\nI think you need to wrap it to try: except KeyError:",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 31
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86f4aa1a_4022d19e",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "Exception message?",
+      "range": {
+        "startLine": 169,
+        "startChar": 41,
+        "endLine": 169,
+        "endChar": 46
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0be437fa_d276373f",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "exception",
+      "range": {
+        "startLine": 170,
+        "startChar": 41,
+        "endLine": 170,
+        "endChar": 46
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96071bdc_5abca470",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "This is confusing. You are using arch in topo file all over the place. But above you imported \"platform\" to get it recognized by Python. So which one do you want to use?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 37
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c08b5d9_9c2d49e7",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "? This is not a param.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 47
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72abf11e_34ae4135",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "This is confusing. You are using arch in topo file all over the place. But above you imported \"platform\" to get it recognized by Python. So which one do you want to use?",
+      "range": {
+        "startLine": 685,
+        "startChar": 58,
+        "endLine": 685,
+        "endChar": 70
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1be80050_fad1ba97",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "In SetupDPDKTest.py you implemented few improvements. Could it be done accross all these Setup funtions? So it is same accross.",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 45
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9797d15_a7212dec",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "architecture",
+      "range": {
+        "startLine": 898,
+        "startChar": 23,
+        "endLine": 898,
+        "endChar": 27
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a2f31e9_644b9db2",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "What arch is not in the file?",
+      "range": {
+        "startLine": 901,
+        "startChar": 0,
+        "endLine": 901,
+        "endChar": 27
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "599df30e_52e84ea8",
+        "filename": "tests/dpdk/dpdk_scripts/init_dpdk.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "This should work as well with fewer lines.\nARCH\u003d${3:-\"x86_64\"}",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "001a6b6e_a0227e9e",
+        "filename": "tests/dpdk/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "ARCH\u003d${1:-\"x86_64\"}",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5226196_a4babad0",
+        "filename": "tests/dpdk/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "arch\u003d${5:-\"x86_64\"}",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 7
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c306264_83a0f964",
+        "filename": "tests/dpdk/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c49bbe94_4a8f4275",
+        "filename": "tests/tldk/tldk_scripts/install_tldk.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "ARCH\u003d${1:-\"x86_64\"}",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9eda05bf_1bdd9aea",
+        "filename": "tests/tldk/tldk_scripts/run_tldk.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "ARCH\u003d${1:-\"x86_64\"}",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96833774_a63b3320",
+        "filename": "topologies/available/3_node_hw_topo1.yaml.example",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-04T06:26:40Z",
+      "side": 1,
+      "message": "Be aware that this topofile is just an example.\n\nThe real ones are located in:\n- All yaml files in csit/topologies/available/*.yaml\n- All yaml files in csit/resources/tools/virl/topologies/*.yaml",
+      "revId": "4d1d09dd1bcd2f01ef111736fd9e7cebdb54f36c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
