@@ -45,6 +45,29 @@
       "revId": "6cf17c00db9b92e1d4fc84f299c1e17d51fbb2b6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b08fbe9_d3d5fbe3",
+        "filename": "tests/vpp/perf/tcp/10ge2p1x520-ethip4tcphttp-httpserver.robot",
+        "patchSetId": 42
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-06T20:24:44Z",
+      "side": 1,
+      "message": "You are using Intel-XL710, i would recommend to start with X520. As XL710 is located on NUMA1 this means that connection to TRex (per topo) is also on NUMA1 but WRK is running on core 1.. This means bottleneck. In fact i do not see any logic behind checking NUMA during WRK like we do in Qemu/Docker/...",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 19
+      },
+      "revId": "6cf17c00db9b92e1d4fc84f299c1e17d51fbb2b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
