@@ -54,10 +54,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test at 2x 4.9mpps.
+| | ... | frames using single trial throughput test at 2x 4.0mpps.
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${64}
-| | ${rate}= | Set Variable | 4.9mpps
+| | ${rate}= | Set Variable | 4.0mpps
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
@@ -101,10 +101,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test at 2x 10.4mpps.
+| | ... | frames using single trial throughput test at 2x 9.4mpps.
 | | [Tags] | 64B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${64}
-| | ${rate}= | Set Variable | 10.4mpps
+| | ${rate}= | Set Variable | 9.4mpps
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs

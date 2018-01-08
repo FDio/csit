@@ -127,7 +127,7 @@
 | | [Tags] | 64B | 2T2C | STHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${64} | rate=7.4mpps | wt=2 | rxq=1
+| | framesize=${64} | rate=9.4mpps | wt=2 | rxq=1
 
 | tc05-1518B-2t2c-ethip4-ip4base-pdrchk
 | | [Documentation]

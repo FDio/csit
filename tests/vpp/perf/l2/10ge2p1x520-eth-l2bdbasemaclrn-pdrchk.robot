@@ -85,7 +85,7 @@
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for L2 bridge domain
-| | framesize=${64} | rate=4.9mpps | wt=1 | rxq=1
+| | framesize=${64} | rate=4.0mpps | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-eth-l2bdbasemaclrn-pdrchk
 | | [Documentation]
@@ -121,7 +121,7 @@
 | | [Tags] | 64B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 bridge domain
-| | framesize=${64} | rate=10.4mpps | wt=2 | rxq=1
+| | framesize=${64} | rate=9.4mpps | wt=2 | rxq=1
 
 | tc05-1518B-2t2c-eth-l2bdbasemaclrn-pdrchk
 | | [Documentation]
