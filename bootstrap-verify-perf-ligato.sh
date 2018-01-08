@@ -62,7 +62,6 @@ then
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
-    dpkg -x vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb /tmp/vpp
     # Temporary workaround as ligato docker file requires specific file name
     rename -v 's/^(.*)-(\d.*)-deb.deb/$1_$2.deb/' *.deb
     cd ${SCRIPT_DIR}
@@ -78,14 +77,14 @@ then
     VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
     # Move files to build-root for packing
     for deb in ${VPP_DEBS}; do mv ${deb} vpp/build-root/; done
-    dpkg -x vpp/build-root/vpp_${VPP_STABLE_VER}.deb /tmp/vpp
 else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
     exit 1
 fi
+dpkg -x vpp/build-root/vpp_${VPP_STABLE_VER}.deb /tmp/vpp
 
 # Compress all VPP debs and remove temporary directory
-tar -zcvf ${SCRIPT_DIR}/vpp.tar.gz vpp/*  && rm -R vpp
+tar -zcvf ${SCRIPT_DIR}/vpp.tar.gz vpp/* && rm -R vpp
 
 LIGATO_REPO_URL=$(cat ${SCRIPT_DIR}/LIGATO_REPO_URL)
 VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
@@ -116,18 +115,28 @@ if [ $? != 0 ]; then
 fi
 
 # Pull ligato/dev_vpp_agent docker image and re-tag as local
-sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}
-sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
-    dev_vpp_agent:latest
+if [[ ${VPP_AGENT_STABLE_VER} == g* ]] ;
+then
+    sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_COMMIT}
+    sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_COMMIT}\
+        dev_vpp_agent:latest
+else
+    sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}
+    sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
+        dev_vpp_agent:latest
+fi
 sudo docker images
-
 # Start dev_vpp_agent container as daemon
 sudo docker run --rm -itd --name agentcnt dev_vpp_agent bash
 # Copy latest vpp api into running container
 sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
 # Recompile vpp-agent
 sudo docker exec -i agentcnt \
-    script -qc '. ~/.bashrc; cd /root/go/src/github.com/ligato/vpp-agent && make generate && make install'
+    script -qec '. ~/.bashrc; cd /root/go/src/github.com/ligato/vpp-agent && make generate && make install'
+if [ $? != 0 ]; then
+    echo "Failed to build vpp-agent in Docker image."
+    exit 1
+fi
 # Extract vpp-agent
 rm -rf agent
 mkdir -p agent
@@ -386,7 +395,7 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i 1t1cAND64bANDl2bdbaseAND2vnf \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
