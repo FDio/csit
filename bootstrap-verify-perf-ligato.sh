@@ -127,7 +127,11 @@ sudo docker run --rm -itd --name agentcnt dev_vpp_agent bash
 sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
 # Recompile vpp-agent
 sudo docker exec -i agentcnt \
-    script -qc '. ~/.bashrc; cd /root/go/src/github.com/ligato/vpp-agent && make generate && make install'
+    script -qec '. ~/.bashrc; cd /root/go/src/github.com/ligato/vpp-agent && make generate && make install'
+if [ $? != 0 ]; then
+    echo "Failed to build vpp-agent in Docker image."
+    exit 1
+fi
 # Extract vpp-agent
 rm -rf agent
 mkdir -p agent
@@ -386,7 +390,7 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i 1t1cAND64bANDl2bdbaseAND2vnf \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
