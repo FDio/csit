@@ -83,6 +83,8 @@ the type:
     -
       type: "environment"
     -
+      type: "configuration"
+    -
       type: "debug"
     -
       type: "static"
@@ -123,6 +125,7 @@ This section has the following parts:
  - build-dirs - a list of the directories where the results are stored.
 
 The structure of the section "Environment" is as follows (example):
+
 ::
 
     -
@@ -221,6 +224,108 @@ will be automatically changed to
 ::
 
     DIR[WORKING,DATA]: "_tmp/data"
+
+
+Section: Configuration
+''''''''''''''''''''''
+
+This section specifies the groups of parameters which are repeatedly used in the
+elements defined later in the specification file. It has the following parts:
+
+ - data sets - Specification of data sets used later in element's specifications
+   to define the input data.
+ - plot layouts - Specification of plot layouts used later in plots'
+   specifications to define the plot layout.
+
+The structure of the section "Configuration" is as follows (example):
+
+::
+
+    -
+      type: "configuration"
+      data-sets:
+        plot-vpp-throughput-latency:
+          csit-vpp-perf-1710-all:
+          - 11
+          - 12
+          - 13
+          - 14
+          - 15
+          - 16
+          - 17
+          - 18
+          - 19
+          - 20
+        vpp-perf-results:
+          csit-vpp-perf-1710-all:
+          - 20
+          - 23
+      plot-layouts:
+        plot-throughput:
+          xaxis:
+            autorange: True
+            autotick: False
+            fixedrange: False
+            gridcolor: "rgb(238, 238, 238)"
+            linecolor: "rgb(238, 238, 238)"
+            linewidth: 1
+            showgrid: True
+            showline: True
+            showticklabels: True
+            tickcolor: "rgb(238, 238, 238)"
+            tickmode: "linear"
+            title: "Indexed Test Cases"
+            zeroline: False
+          yaxis:
+            gridcolor: "rgb(238, 238, 238)'"
+            hoverformat: ".4s"
+            linecolor: "rgb(238, 238, 238)"
+            linewidth: 1
+            range: []
+            showgrid: True
+            showline: True
+            showticklabels: True
+            tickcolor: "rgb(238, 238, 238)"
+            title: "Packets Per Second [pps]"
+            zeroline: False
+          boxmode: "group"
+          boxgroupgap: 0.5
+          autosize: False
+          margin:
+            t: 50
+            b: 20
+            l: 50
+            r: 20
+          showlegend: True
+          legend:
+            orientation: "h"
+          width: 700
+          height: 1000
+
+The definitions from this sections are used in the elements, e.g.:
+
+::
+
+    -
+      type: "plot"
+      title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+      algorithm: "plot_performance_box"
+      output-file-type: ".html"
+      output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc"
+      data:
+        "plot-vpp-throughput-latency"
+      filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      parameters:
+      - "throughput"
+      - "parent"
+      traces:
+        hoverinfo: "x+y"
+        boxpoints: "outliers"
+        whiskerwidth: 0
+      layout:
+        title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+        layout:
+          "plot-throughput"
 
 
 Section: Debug mode
@@ -1037,16 +1142,45 @@ Data analytics part implements:
  - etc.
 
 
+Throughput Speedup Analysis - Multi-Core Speedup Ratio
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Throughput Speedup Analysis (TSA) calculates a speedup factor for 1, 2, 4 cores
+which is defined as:
+
+::
+
+                        throughput
+    speedup factor = -----------------
+                     1-core-throughput
+
+A bar plot displays the speedup factor (normalized throughput for 64B on 1
+core). The plot displays number of cores on the X-axis and the speedup factor on
+the Y-axis.
+
+For better comparision, there can be displayed more than one set of data in a
+plot. So, in general:
+
+    - graph type: grouped bars;
+    - graph X-axis: (testcase index, number of cores);
+    - graph Y-axis: speedup factor.
+
+The data displayed is a subset of existing performance tests with 1core, 2core,
+4core.
+
+:TODO: Specify the data model for TSA.
+
+
 Advanced data analytics
 ```````````````````````
 
 As the next steps, advanced data analytics (ADA) will be implemented using
 machine learning (ML) and artificial intelligence (AI).
 
-TODO:
+:TODO:
 
- - describe the concept of ADA.
- - add specification.
+    - describe the concept of ADA.
+    - add specification.
 
 
 Data presentation
