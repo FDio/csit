@@ -54,10 +54,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test at 2x 5.9mpps.
+| | ... | frames using single trial throughput test at 2x 5.5mpps.
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${64}
-| | ${rate}= | Set Variable | 5.9mpps
+| | ${rate}= | Set Variable | 5.5mpps
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs

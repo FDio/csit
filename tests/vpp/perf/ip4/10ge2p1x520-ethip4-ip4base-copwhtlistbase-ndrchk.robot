@@ -60,10 +60,10 @@
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 64 Byte frames using single trial throughput test
-| | ... | at 2x 4.1mpps.
+| | ... | at 2x 4.0mpps.
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${64}
-| | ${rate}= | Set Variable | 4.1mpps
+| | ${rate}= | Set Variable | 4.0mpps
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs

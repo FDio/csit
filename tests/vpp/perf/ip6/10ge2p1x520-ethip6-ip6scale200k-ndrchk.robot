@@ -104,10 +104,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
-| | ... | frames using single trial throughput test at 2x 5.0mpps.
+| | ... | frames using single trial throughput test at 2x 4.4mpps.
 | | [Tags] | 78B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${78}
-| | ${rate}= | Set Variable | 5.0mpps
+| | ${rate}= | Set Variable | 4.4mpps
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
