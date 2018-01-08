@@ -134,6 +134,8 @@
 | | ${dut1_if2_name}= | Get interface name | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_name}= | Get interface name | ${dut2} | ${dut2_if1}
 | | ${dut2_if2_name}= | Get interface name | ${dut2} | ${dut2_if2}
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | Create Kubernetes VSWITCH startup config on all DUTs | ${get_framesize}
 | | ... | ${wt} | ${rxq}
 | | Create Kubernetes VNF'1' startup config on all DUTs
@@ -170,10 +172,14 @@
 | | ... | ${sfc_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut1_if1_name}
 | | ... | $$VSWITCH_IF2$$=${dut1_if2_name}
+| | ... | $$TG_IF1_MAC1$$=${tg_if1_mac}
+| | ... | $$TG_IF2_MAC1$$=${tg_if2_mac}
 | | Apply Kubernetes resource on node | ${dut2}
 | | ... | ${sfc_profile}.yaml | $$TEST_NAME$$=${TEST NAME}
 | | ... | $$VSWITCH_IF1$$=${dut2_if1_name}
 | | ... | $$VSWITCH_IF2$$=${dut2_if2_name}
+| | ... | $$TG_IF1_MAC1$$=${tg_if1_mac}
+| | ... | $$TG_IF2_MAC1$$=${tg_if2_mac}
 | | Wait for Kubernetes PODs on all DUTs | ${nodes} | csit
 | | Set Kubernetes PODs affinity on all DUTs | ${nodes}
 | | Run Keyword If | '${search_type}' == 'NDR'

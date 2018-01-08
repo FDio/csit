@@ -322,6 +322,10 @@ class KubernetesUtils(object):
             "{nspace} $p; done".format(nspace=nspace)
         ssh.exec_command(cmd)
 
+        cmd = "kubectl exec {nspace} etcdv3 -- etcdctl --endpoints "\
+            "\"localhost:22379\" get \"/\" --prefix=true".format(nspace=nspace)
+        ssh.exec_command(cmd)
+
     @staticmethod
     def get_kubernetes_logs_on_all_duts(nodes, nspace):
         """Get Kubernetes logs from all PODs in namespace on all DUTs.
