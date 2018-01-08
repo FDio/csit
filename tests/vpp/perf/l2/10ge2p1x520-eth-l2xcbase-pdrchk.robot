@@ -85,7 +85,7 @@
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect
-| | framesize=${64} | rate=5.9mpps | wt=1 | rxq=1
+| | framesize=${64} | rate=5.5mpps | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-eth-l2xcbase-pdrchk
 | | [Documentation]
