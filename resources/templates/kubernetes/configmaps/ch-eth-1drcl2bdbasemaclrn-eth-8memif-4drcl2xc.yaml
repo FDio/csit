@@ -24,10 +24,14 @@ data:
           - container: vswitch
             port_label: $$VSWITCH_IF1$$
             etcd_vpp_switch_key: vswitch
+            l2fib_macs:
+              - "$$TG_IF1_MAC1$$"
             type: 5
           - container: vnf1
             port_label: port1
             etcd_vpp_switch_key: vswitch
+            l2fib_macs:
+              - "$$TG_IF2_MAC1$$"
             type: 2
       - name: vswitch-vnf4
         description: VNF4 to vswitch - memif
@@ -36,14 +40,18 @@ data:
           - container: vswitch
             port_label: $$VSWITCH_IF2$$
             etcd_vpp_switch_key: vswitch
+            l2fib_macs:
+              - "$$TG_IF2_MAC1$$"
             type: 5
           - container: vnf4
             port_label: port2
             etcd_vpp_switch_key: vswitch
+            l2fib_macs:
+              - "$$TG_IF1_MAC1$$"
             type: 2
       - name: vnf1-vnf2
         description: vnf1 to vnf2 via vswitch - memifs
-        type: 8
+        type: 5
         elements:
           - container: vnf1
             port_label: port2
