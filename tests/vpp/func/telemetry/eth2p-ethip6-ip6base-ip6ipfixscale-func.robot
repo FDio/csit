@@ -23,6 +23,7 @@
 | Library | resources.libraries.python.Trace
 
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
+| ...        | EXPECTED_FAILING
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *IPFIX ipv6 test cases*
