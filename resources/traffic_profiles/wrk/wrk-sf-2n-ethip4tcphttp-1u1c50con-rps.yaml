@@ -14,7 +14,7 @@ first-cpu: 1
 # The number of cpus used for wrk. The number of cpus must be a
 # multiplication of the number of urls.
 # Type: integer
-cpus: 1
+cpus: 4
 
 # Duration of the test in seconds.
 # Type: integer
