@@ -6,6 +6,9 @@
 urls:
   # There must be a file (1kB - 1MB) requested but vpp does not support it.
   - "http://192.168.10.2"
+  - "http://192.168.20.2"
+  - "http://192.168.30.2"
+  - "http://192.168.40.2"
 
 # Index of the first CPU on the numa used to run wrk.
 # Type: integer
@@ -14,7 +17,7 @@ first-cpu: 1
 # The number of cpus used for wrk. The number of cpus must be a
 # multiplication of the number of urls.
 # Type: integer
-cpus: 1
+cpus: 4
 
 # Duration of the test in seconds.
 # Type: integer
