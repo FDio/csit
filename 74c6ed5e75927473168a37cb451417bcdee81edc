@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e5c6b82_0cc91d22",
+        "filename": "tests/dpdk/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-10T12:54:08Z",
+      "side": 1,
+      "message": "As per log https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-master-long/55/console\nthis is not working and is not substituted with variables:\n\n\nCannot exec \u0027./--linuxapp-gcc/app/testpmd\u0027: No such file or directory\n\nreturn STDERR + DPDK_VERSION\u003ddpdk-17.11\n+ ROOTDIR\u003d/tmp/openvpp-testing\n+ TESTPMDLOG\u003dscreenlog.0\n++ pwd\n+ PWDDIR\u003d/tmp/openvpp-testing/tests/dpdk/dpdk_scripts\n+ cpu_corelist\u003d1-2\n+ nb_cores\u003d1\n+ queue_nums\u003d1\n+ jumbo_frames\u003dno\n+ arch\u003dx86_64\n+ \u0027[\u0027 x86_64 \u003d\u003d aarch64 \u0027]\u0027\n+ machine\u003dnative\n+ sudo pgrep testpmd\n+ \u0027[\u0027 1 -eq 0 \u0027]\u0027\n+ echo \u0027testpmd is not running\u0027\n+ sudo pgrep l3fwd\n+ \u0027[\u0027 1 -eq 0 \u0027]\u0027\n+ echo \u0027l3fwd is not running\u0027\n+ sudo rm -f \u0027/dev/hugepages/*\u0027\n+ sleep 2\n+ cd /tmp/openvpp-testing/dpdk-17.11/\n+ rm -f screenlog.0\n+ TESTPMD_BIN\u003d\u0027./${arch}-${machine}-linuxapp-gcc/app/testpmd\u0027\n+ \u0027[\u0027 no \u003d yes \u0027]\u0027\n+ sudo sh -c \u0027screen -dmSL DPDK-test ./${arch}-${machine}-linuxapp-gcc/app/testpmd         -l 1-2 -n 4 --         --numa         --nb-ports\u003d2         --portmask\u003d0x3         --nb-cores\u003d1         --forward-mode\u003dio         --rxq\u003d1         --txq\u003d2         --burst\u003d64         --rxd\u003d1024         --txd\u003d1024         --disable-link-check         --auto-start\u0027\n+ sleep 10\n+ less -r screenlog.0\n+ cd /tmp/openvpp-testing/tests/dpdk/dpdk_scripts",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 53
+      },
+      "revId": "74c6ed5e75927473168a37cb451417bcdee81edc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
