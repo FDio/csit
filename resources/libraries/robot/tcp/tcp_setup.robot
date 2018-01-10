@@ -29,15 +29,23 @@
 | | ... | - ${dut1_if1_ip4} - IP address to be set on the dut1_if1 interface.
 | | ... | Type: string
 | | ... | - ${ip4_len} - Length of the netmask. Type: integer
+| | ... | - ${prealloc_fifos} - Max number of connections you expect to handle
+| | ... | at one time. Type: string
+| | ... | - ${fifo_size} - FIFO size in kB. Type: string
+| | ... | - ${private_segment_size} - Private segment size. Number + unit.
+| | ... | Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set up HTTP server on the VPP node \| 192.168.10.2 \| 24 \|
+| | ... | \| Set up HTTP server on the VPP node \| 192.168.10.2 \| 24 \| 400\
+| | ... | \|4096 \| 2g \|
 | | ...
-| | [Arguments] | ${dut1_if1_ip4} | ${ip4_len}
+| | [Arguments] | ${dut1_if1_ip4} | ${ip4_len} | ${prealloc_fifos}
+| | ... | ${fifo_size} | ${private_segment_size}
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface Address | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4} | ${ip4_len}
 | | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Start HTTP server | ${dut1}
+| | Start HTTP server | ${dut1} | ${prealloc_fifos} | ${fifo_size}
+| | ... | ${private_segment_size}
 | | Sleep | 30

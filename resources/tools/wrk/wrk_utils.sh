@@ -117,7 +117,7 @@ function wrk_utils.traffic_1_url_1_core {
         header=""
     fi
 
-    taskset --cpu-list ${cpu} \
+    taskset --cpu-list 19,20,21,22 \
         wrk --threads ${threads} \
             --connections ${connections} \
             --duration ${duration} \
