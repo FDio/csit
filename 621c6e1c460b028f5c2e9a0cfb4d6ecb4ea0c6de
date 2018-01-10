@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "55de1637_5b6835b0",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-10T08:53:38Z",
+      "side": 1,
+      "message": "Topology.get_node_arch(node)",
+      "range": {
+        "startLine": 683,
+        "startChar": 58,
+        "endLine": 683,
+        "endChar": 70
+      },
+      "revId": "621c6e1c460b028f5c2e9a0cfb4d6ecb4ea0c6de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0fcd2da_ccc5f400",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-10T08:53:38Z",
+      "side": 1,
+      "message": "arch \u003d Topology.get_node_arch(node)\n?",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 31
+      },
+      "revId": "621c6e1c460b028f5c2e9a0cfb4d6ecb4ea0c6de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "535ce5b0_b809fdaf",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-10T08:53:38Z",
+      "side": 1,
+      "message": "try:\n            return node[\u0027arch\u0027]\n        except KeyError:\n            node[\u0027arch\u0027] \u003d \u0027x86_64\u0027\n            return \u0027x86_64\u0027\n\nAny thoughts?",
+      "range": {
+        "startLine": 917,
+        "startChar": 0,
+        "endLine": 920,
+        "endChar": 27
+      },
+      "revId": "621c6e1c460b028f5c2e9a0cfb4d6ecb4ea0c6de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e86d64ff_711c1558",
         "filename": "tests/dpdk/dpdk_scripts/run_l2fwd.sh",
         "patchSetId": 12
