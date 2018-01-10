@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e86d64ff_711c1558",
+        "filename": "tests/dpdk/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T08:48:45Z",
+      "side": 1,
+      "message": "${5:-\"x86_64\"}\n- missing dollar sign",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 18
+      },
+      "revId": "621c6e1c460b028f5c2e9a0cfb4d6ecb4ea0c6de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
