@@ -37,7 +37,10 @@
 | | [Arguments] | ${dut1_if1_ip4} | ${ip4_len}
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface Address | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4} | ${ip4_len}
+#| | Set Interface Address | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4} | ${ip4_len}
+#| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.20.2 | ${ip4_len}
+#| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.30.2 | ${ip4_len}
+#| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.40.2 | ${ip4_len}
 | | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Start HTTP server | ${dut1}
+| | Start HTTP server | ${dut1} | 100 | 1024 | 1g
 | | Sleep | 30
