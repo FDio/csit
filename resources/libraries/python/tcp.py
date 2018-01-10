@@ -33,4 +33,49 @@ class TCPUtils(object):
         """
 
         with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("start_http_server.vat")
+            vat.vat_terminal_exec_cmd_from_template(
+                "start_http_server.vat")
+
+    @staticmethod
+    def start_http_server_params(node, prealloc_fifos, fifo_size,
+                                 private_segment_size):
+        """Start HTTP server on the given node.
+
+        test http server static prealloc-fifos <N> fifo-size <size in kB>
+        private-segment-size <seg_size expressed as number + unit, e.g. 100m>
+
+        Where N is the max number of connections you expect to handle at one
+        time and <size> should be small if you test for CPS and exchange few
+        bytes, say 4, if each connection just exchanges few packets. Or it
+        should be much larger, up to 1024/4096 (i.e., 1-4MB) if you have only
+        one connection and exchange a lot of packets, i.e., when you test for
+        RPS. If you need to allocate lots of FIFOs, so you test for CPS, make
+        private-segment-size something like 4g.
+
+        Example:
+
+        For CPS
+        test http server static prealloc-fifos 500000 fifo-size 4
+        private-segment-size 4000m
+
+        For RPS
+        test http server static fifo-size 1024 prealloc-fifos 500
+        private-segment-size 2000m
+
+        :param node: Node to start HTTP server on.
+        :param prealloc_fifos: Max number of connections you expect to handle at
+        one time.
+        :param fifo_size: FIFO size in kB.
+        :param private_segment_size: Private segment size. Number + unit.
+        :type node: dict
+        :type prealloc_fifos: str
+        :type fifo_size: str
+        :type private_segment_size: str
+        """
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
+                "start_http_server_params.vat",
+                prealloc_fifos=prealloc_fifos,
+                fifo_size=fifo_size,
+                private_segment_size=private_segment_size)
