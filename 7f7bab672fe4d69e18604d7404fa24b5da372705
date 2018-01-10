@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "180c3894_7933dbbc",
+        "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
+        "patchSetId": 58
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T14:33:47Z",
+      "side": 1,
+      "message": "- param type\n- raises",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 11
+      },
+      "revId": "7f7bab672fe4d69e18604d7404fa24b5da372705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
