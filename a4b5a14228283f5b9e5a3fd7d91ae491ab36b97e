@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b62554e_907f0d16",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "True or False\n\n+ add rtype",
+      "range": {
+        "startLine": 316,
+        "startChar": 18,
+        "endLine": 316,
+        "endChar": 25
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2564af_dc996257",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ec3fc75_67afc55f",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "175516ff_77b1f45b",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "Set up 3-node performance topology with wrk and DUT\u0027s NIC model",
+      "range": {
+        "startLine": 401,
+        "startChar": 13,
+        "endLine": 401,
+        "endChar": 68
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a79ef53_40a40d68",
+        "filename": "resources/libraries/robot/tcp/tcp_setup.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "test",
+      "range": {
+        "startLine": 20,
+        "startChar": 47,
+        "endLine": 20,
+        "endChar": 52
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7e499cc_e5538d25",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "or removal of wrk failed.",
+      "range": {
+        "startLine": 85,
+        "startChar": 60,
+        "endLine": 85,
+        "endChar": 61
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d53afe1_8f31d6f1",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "add returns, raises",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 113,
+        "endChar": 7
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fbfc0c2_e58fe6f1",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "add raises",
+      "range": {
+        "startLine": 205,
+        "startChar": 4,
+        "endLine": 205,
+        "endChar": 7
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3299673_760bdf47",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "dot at the end",
+      "range": {
+        "startLine": 256,
+        "startChar": 26,
+        "endLine": 256,
+        "endChar": 34
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe6457aa_f122243f",
+        "filename": "resources/tools/wrk/wrk.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "dot at the end",
+      "range": {
+        "startLine": 258,
+        "startChar": 24,
+        "endLine": 258,
+        "endChar": 30
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76fb6eec_c5e09214",
+        "filename": "tests/vpp/perf/tcp/10ge2p1x520-ethip4tcphttp-httpserver.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "2 node topo tag not defined in tag_documentation.rst",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 38
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3ebe972_9f22a1dd",
+        "filename": "tests/vpp/perf/tcp/10ge2p1x520-ethip4tcphttp-httpserver.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "There should be used 2-node in case of 2 node topology.",
+      "range": {
+        "startLine": 23,
+        "startChar": 16,
+        "endLine": 23,
+        "endChar": 29
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af94fbd9_141e61ca",
+        "filename": "tests/vpp/perf/tcp/10ge2p1x520-ethip4tcphttp-httpserver.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "There should be used 2-node variant.",
+      "range": {
+        "startLine": 43,
+        "startChar": 56,
+        "endLine": 43,
+        "endChar": 62
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "688df26b_da928b27",
+        "filename": "tests/vpp/perf/tcp/10ge2p1x520-ethip4tcphttp-httpserver.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-10T11:51:15Z",
+      "side": 1,
+      "message": "There should be used 2-node variant.",
+      "range": {
+        "startLine": 44,
+        "startChar": 31,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "a4b5a14228283f5b9e5a3fd7d91ae491ab36b97e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
