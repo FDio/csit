@@ -53,16 +53,24 @@
 | | | Run keyword | ${dut}.Add session v4 session table buckets | 500000
 | | | Run keyword | ${dut}.Add session v4 session table memory | 1g
 | | | Run keyword | ${dut}.Add session v4 halfopen table buckets | 2500000
-| | | Run keyword | ${dut}.Add session v4 halfopen table memory | 3g
+| | | Run keyword | ${dut}.Add session v4 halfopen table memory | 4g
 | | | Run keyword | ${dut}.Add session local endpoints table buckets | 2500000
-| | | Run keyword | ${dut}.Add session local endpoints table memory | 3g
+| | | Run keyword | ${dut}.Add session local endpoints table memory | 4g
 | | Apply startup configuration on all VPP DUTs
-| | Set up HTTP server on the VPP node | 192.168.10.2 | 24
 | | Run Keyword If | '${test_type}' == 'bw'
+| | ... | Run keywords
+| | ... | Set up HTTP server with paramters on the VPP node
+| | ... | 500000 | 4 | 4000m | AND
 | | ... | Measure throughput | ${traffic_profile}
 | | ... | ELSE IF | '${test_type}' == 'rps'
+| | ... | Run keywords
+| | ... | Set up HTTP server with paramters on the VPP node
+| | ... | 500000 | 4 | 4000m | AND
 | | ... | Measure requests per second | ${traffic_profile}
 | | ... | ELSE IF | '${test_type}' == 'cps'
+| | ... | Run keywords
+| | ... | Set up HTTP server with paramters on the VPP node
+| | ... | 10000 | 64 | 4000m | AND
 | | ... | Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
@@ -83,7 +91,7 @@
 | | [Tags] | 2T2C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=2 | rxq=1
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=2 | rxq=2
 | | ... | test_type=cps
 
 | tc03-4t4c-ethip4tcphttp-httpserver-cps
@@ -93,7 +101,7 @@
 | | [Tags] | 4T4C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=4 | rxq=2
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=4 | rxq=4
 | | ... | test_type=cps
 
 | tc04-1t1c-ethip4tcphttp-httpserver-rps
@@ -113,7 +121,7 @@
 | | [Tags] | 2T2C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c50con-rps | wt=2 | rxq=1
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c50con-rps | wt=2 | rxq=2
 | | ... | test_type=rps
 
 | tc06-4t4c-ethip4tcphttp-httpserver-rps
@@ -123,5 +131,5 @@
 | | [Tags] | 4T4C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c50con-rps | wt=4 | rxq=2
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c50con-rps | wt=4 | rxq=4
 | | ... | test_type=rps
