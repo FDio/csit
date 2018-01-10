@@ -16,6 +16,9 @@
 
 import re
 
+from copy import deepcopy
+from time import sleep
+
 from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
@@ -140,6 +143,8 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type):
             str(profile["latency"]),
             "'{0}'".format(" ".join(profile["urls"]))
         ]
+        warm_up_params = deepcopy(params)
+        warm_up_params[4] = "10s"
     elif len(profile["urls"]) == profile["cpus"]:
         params = [
             "traffic_n_urls_n_cores",
@@ -153,6 +158,8 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type):
             str(profile["latency"]),
             "'{0}'".format(" ".join(profile["urls"]))
         ]
+        warm_up_params = deepcopy(params)
+        warm_up_params[4] = "10s"
     else:
         params = [
             "traffic_n_urls_m_cores",
@@ -167,10 +174,22 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type):
             str(profile["latency"]),
             "'{0}'".format(" ".join(profile["urls"]))
         ]
+        warm_up_params = deepcopy(params)
+        warm_up_params[5] = "10s"
+
     args = " ".join(params)
+    warm_up_args = " ".join(warm_up_params)
 
     ssh = SSH()
     ssh.connect(tg_node)
+
+    ret, _, _ = ssh.exec_command(
+        "{0}/resources/tools/wrk/wrk_utils.sh {1}".
+        format(Constants.REMOTE_FW_DIR, warm_up_args), timeout=1800)
+    if int(ret) != 0:
+        raise RuntimeError('wrk runtime error.')
+
+    sleep(30)
 
     ret, stdout, _ = ssh.exec_command(
         "{0}/resources/tools/wrk/wrk_utils.sh {1}".
@@ -190,7 +209,7 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type):
         log_msg += "Requests/sec: Avg / Stdev / Max  / +/- Stdev\n"
         for item in stats["rps-stats-lst"]:
             log_msg += "{0} / {1} / {2} / {3}\n".format(*item)
-        log_msg += "Total rps: {0}cps\n".format(stats["rps-sum"])
+        log_msg += "Total rps: {0}rps\n".format(stats["rps-sum"])
     elif test_type == "bw":
         log_msg += "Transfer/sec: {0}Bps".format(stats["bw-sum"])
 
