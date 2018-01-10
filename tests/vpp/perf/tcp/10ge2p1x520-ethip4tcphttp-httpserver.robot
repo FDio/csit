@@ -66,35 +66,35 @@
 | | ... | Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-1t1c-ethip4tcphttp-httpserver-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
-| | [Tags] | 1T1C | TCP_CPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=1 | rxq=1
-| | ... | test_type=cps
-
-| tc02-2t2c-ethip4tcphttp-httpserver-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
-| | [Tags] | 2T2C | TCP_CPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=2 | rxq=1
-| | ... | test_type=cps
-
-| tc03-4t4c-ethip4tcphttp-httpserver-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
-| | [Tags] | 4T4C | TCP_CPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=4 | rxq=2
-| | ... | test_type=cps
+#| tc01-1t1c-ethip4tcphttp-httpserver-cps
+#| | [Documentation]
+#| | ... | Measure number of connections per second using wrk.
+#| | ...
+#| | [Tags] | 1T1C | TCP_CPS
+#| | ...
+#| | [Template] | Measure throughput or rps or cps
+#| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=1 | rxq=1
+#| | ... | test_type=cps
+#
+#| tc02-2t2c-ethip4tcphttp-httpserver-cps
+#| | [Documentation]
+#| | ... | Measure number of connections per second using wrk.
+#| | ...
+#| | [Tags] | 2T2C | TCP_CPS
+#| | ...
+#| | [Template] | Measure throughput or rps or cps
+#| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=2 | rxq=1
+#| | ... | test_type=cps
+#
+#| tc03-4t4c-ethip4tcphttp-httpserver-cps
+#| | [Documentation]
+#| | ... | Measure number of connections per second using wrk.
+#| | ...
+#| | [Tags] | 4T4C | TCP_CPS
+#| | ...
+#| | [Template] | Measure throughput or rps or cps
+#| | traffic_profile=wrk-sf-2n-ethip4tcphttp-1u1c1con-cps | wt=4 | rxq=2
+#| | ... | test_type=cps
 
 | tc04-1t1c-ethip4tcphttp-httpserver-rps
 | | [Documentation]
