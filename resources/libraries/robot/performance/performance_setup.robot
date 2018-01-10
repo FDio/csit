@@ -422,6 +422,9 @@
 | | ${intf_name}= | Get Linux interface name | ${tg}
 | | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
 | | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.10.1 | 24
+#| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.20.1 | 24
+#| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.30.1 | 24
+#| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.40.1 | 24
 | | Set Linux interface up | ${tg} | ${intf_name}
 | | Install wrk | ${tg}
 
