@@ -190,7 +190,7 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type):
         log_msg += "Requests/sec: Avg / Stdev / Max  / +/- Stdev\n"
         for item in stats["rps-stats-lst"]:
             log_msg += "{0} / {1} / {2} / {3}\n".format(*item)
-        log_msg += "Total rps: {0}cps\n".format(stats["rps-sum"])
+        log_msg += "Total rps: {0}rps\n".format(stats["rps-sum"])
     elif test_type == "bw":
         log_msg += "Transfer/sec: {0}Bps".format(stats["bw-sum"])
 
