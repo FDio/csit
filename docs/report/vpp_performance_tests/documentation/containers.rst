@@ -140,11 +140,8 @@ a range of virtual networking topologies.
   of functionality is better supported in LXC 2.1 but can be done is current
   version as well.
 
-**Open Questions**
-
-- CSIT code is currently using cgroup to pin lxc data plane thread to
-  cpu cores after lxc container is created. In the future may find a
-  more universal way to do it.
+- CSIT code is currently using cgroup control the range of CPU cores the
+  container must run on. VPP thread pinning defined vpp startup.conf.
 
 Docker
 ~~~~~~
@@ -166,7 +163,6 @@ containerized applications used in CSIT performance tests.
   configuration file controls the range of CPU cores the Docker image
   must run on. VPP thread pinning defined vpp startup.conf.
 
-
 Kubernetes
 ~~~~~~~~~~
 
@@ -179,11 +175,6 @@ K8s pod definitions including compute resource allocation is provided in
 
 CSIT uses K8s and its infrastructure components like etcd to control all
 phases of container based virtualized network topologies.
-
-**Known Issues**
-
-- Unable to properly pin k8s pods and containers to cpu cores. This will be
-  addressed in Kubernetes 1.8+ in alpha testing.
 
 **Open Questions**
 
@@ -201,7 +192,7 @@ using goVPP [govpp]_ and vpp-agent [vpp-agent]_.
 **Open Questions**
 
 - Currently using a separate LF Jenkins job for building csit-centric
-  vpp_agent docker images vs. dockerhub/ligato ones.
+  prod_vpp_agent docker images vs. dockerhub/ligato ones.
 
 Implementation
 --------------
@@ -285,9 +276,6 @@ Current CSIT implementation is illustrated using UML Class diagram:
                                                   +-------------------+
 
 Sequentional diagram that illustrates the creation of a single container.
-
-.. mk: what "RF KW" is meant below?
-.. mk: the flow sequence should adhere to the lifecycle events listed earlier in this doc.
 
 ::
 
@@ -415,7 +403,7 @@ Kubernetes is implemented as separate library ``KubernetesUtils.py``,
 with a class with the same name. This utility provides an API for L2
 Robot Keywords to control ``kubectl`` installed on each of DUTs. One
 time initialization script, ``resources/libraries/bash/k8s_setup.sh``
-does reset/init kubectl, applies Calico v2.4.1 and initializes the
+does reset/init kubectl, applies Calico v2.6.3 and initializes the
 ``csit`` namespace. CSIT namespace is required to not to interfere with
 existing setups and it further simplifies apply/get/delete
 Pod/ConfigMap operations on SUTs.
@@ -475,10 +463,12 @@ We created separate sets of Jenkins jobs, that will be executing following:
 
 1. Clone latest CSIT and Ligato repositaries.
 2. Pull specific version of ``dev_vpp_agent`` image from Dockerhub.
-3. Build ``prod_vpp_image`` Docker image from ``dev_vpp_agent`` image.
-4. Shrink image using ``docker/dev_vpp_agent/shrink.sh`` script.
-5. Transfer ``prod_vpp_agent_shrink`` image to DUTs.
-6. Execute subset of performance tests designed for Ligato testing.
+3. Extract VPP API (from ``.deb`` package) and copy into ``dev_vpp_agent``
+   image
+4. Rebuild vpp-agent and extract outside image.
+5. Build ``prod_vpp_image`` Docker image from ``dev_vpp_agent`` image.
+6. Transfer ``prod_vpp_agent`` image to DUTs.
+7. Execute subset of performance tests designed for Ligato testing.
 
 ::
 
@@ -491,7 +481,7 @@ We created separate sets of Jenkins jobs, that will be executing following:
  |               ligato/dev_vpp_agent            <------| Pull this image from
  +------------------------^----------------------+      | Dockerhub ligato/dev_vpp_agent:<version>
                           |
-                          | Extract agent.tar.gz from dev_vpp_agent
+                          | Rebuild and extract agent.tar.gz from dev_vpp_agent
  +------------------------+----------------------+
  |                 prod_vpp_agent                <------| Build by passing own
  +-----------------------------------------------+      | vpp.tar.gz (from nexus
@@ -506,9 +496,8 @@ Approximate size of vnf-agent docker images:
 
   REPOSITORY            TAG       IMAGE ID        CREATED        SIZE
   dev_vpp_agent         latest    442771972e4a    8 hours ago    3.57 GB
-  dev_vpp_agent_shrink  latest    bd2e76980236    8 hours ago    1.68 GB
-  prod_vpp_agent        latest    e33a5551b504    2 days ago     404 MB
-  prod_vpp_agent_shrink latest    446b271cce26    2 days ago     257 MB
+  dev-vpp-agent         latest    78c53bd57e2     6 weeks ago    9.79GB
+  prod_vpp_agent        latest    f68af5afe601    5 weeks ago    443MB
 
 In CSIT we need to create separate performance suite under
 ``tests/kubernetes/perf`` which contains modified Suite setup in comparison
