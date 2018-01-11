@@ -54,7 +54,7 @@ performance labs to address larger scale multi-interface and multi-NIC
 performance testing scenarios.
 
 For test cases that require DUT (VPP) to communicate with
-VirtualMachines (VMs) / Containers (Linux or Docker Containers) over
+VirtualMachines (VMs) / Linux or Docker Containers (Ctrs) over
 vhost-user/memif interfaces, N of VM/Ctr instances are created on SUT1
 and SUT2. For N=1 DUT forwards packets between vhost/memif and physical
 interfaces. For N>1 DUT a logical service chain forwarding topology is
@@ -175,10 +175,14 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **VMs with vhost-user** - virtual topologies with 1 VM and service chains
     of 2 VMs using vhost-user interfaces, with VPP forwarding modes incl. L2
     Cross-Connect, L2 Bridge-Domain, VXLAN with L2BD, IPv4 routed-forwarding.
-  - **IPSec** - IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in combination
-    with IPv4 routed-forwarding.
+  - **IPSecSW** - IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in
+    combination with IPv4 routed-forwarding.
+  - **IPSecHW** - IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in
+    combination with IPv4 routed-forwarding. Intel QAT HW acceleration.
   - **IPSec+LISP** - IPSec encryption with CBC-SHA1 ciphers, in combination
     with LISP-GPE overlay tunneling for IPv4-over-IPv4.
+  - **VPP TCP/IP stack** - VPP builtin TCP based HTTP server. WRK traffic
+    generator is used.
 
 - 2port10GE X710 Intel
 
@@ -399,7 +403,7 @@ TRex is installed and run on the TG compute node. The typical procedure is:
 - TRex is started in the background mode
   ::
 
-  $ sh -c 'cd /opt/trex-core-2.25/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
+  $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log 2>&1 &' > /dev/null
 
 - There are traffic streams dynamically prepared for each test, based on traffic
   profiles. The traffic is sent and the statistics obtained using
