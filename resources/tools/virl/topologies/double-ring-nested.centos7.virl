@@ -7,10 +7,11 @@
         <extensions>
             <entry key="config" type="String">#cloud-config
 hostname: tg1
-manage_etc_hosts: true
+manage_etc_hosts: false
 nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
 nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
+- hostnamectl set-hostname tg1
 - systemctl start rc-local
 - touch /tmp/before-sed
 - sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -85,10 +86,11 @@ write_files:
         <extensions>
             <entry key="config" type="string">#cloud-config
 hostname: sut1
-manage_etc_hosts: true
+manage_etc_hosts: false
 nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
 nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
+- hostnamectl set-hostname sut1
 - systemctl start rc-local
 - sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 - sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
@@ -189,10 +191,11 @@ write_files:
         <extensions>
             <entry key="config" type="string">#cloud-config
 hostname: sut2
-manage_etc_hosts: true
+manage_etc_hosts: false
 nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
 nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
+- hostnamectl set-hostname sut2
 - systemctl start rc-local
 - sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 - sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
