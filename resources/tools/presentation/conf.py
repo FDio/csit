@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# CSIT 17.01 report documentation build configuration file, created by
-# sphinx-quickstart on Sun Jan 15 09:49:36 2017.
+# CSIT report documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -46,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'FD.io CSIT'
-copyright = u'2017, FD.io'
+copyright = u'2018, FD.io'
 author = u'FD.io CSIT'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -59,38 +58,38 @@ author = u'FD.io CSIT'
 #release = u''
 
 rst_epilog = """
-.. |release-1| replace:: rls1704
-.. |vpp-release| replace:: VPP-17.10 release
-.. |vpp-release-1| replace:: VPP-17.04 release
-.. |dpdk-release| replace:: DPDK 17.05
-.. |trex-release| replace:: TRex v2.25
-.. |virl-image-ubuntu| replace:: ubuntu-16.04.1_2017-02-23_1.8
+.. |release-1| replace:: rls1710
+.. |vpp-release| replace:: VPP-{vpprelease} release
+.. |vpp-release-1| replace:: VPP-17.10 release
+.. |dpdk-release| replace:: DPDK 17.11
+.. |trex-release| replace:: TRex v2.35
+.. |virl-image-ubuntu| replace:: ubuntu-16.04.1_2017-10-21_2.0
 .. |virl-image-centos| replace:: centos-7.3-1611_2017-02-23_1.4
 
-.. _pdf version of this report: https://docs.fd.io/csit/rls1710/report/_static/archive/csit_rls1710.pdf
-.. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h=rls1710
-.. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h=rls1710
-.. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h=rls1710
-.. _VIRL topologies directory: https://git.fd.io/csit/tree/resources/tools/virl/topologies/?h=rls1710
-.. _VIRL images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h=rls1710
-.. _VIRL nested: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/nested/?h=rls1710
-.. _CSIT Honeycomb Functional Tests Documentation: https://docs.fd.io/csit/rls1710/doc/tests.vpp.func.honeycomb.html
-.. _CSIT Honeycomb Performance Tests Documentation: https://docs.fd.io/csit/rls1710/doc/tests.vpp.perf.honeycomb.html
-.. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/rls1710/doc/tests.dpdk.perf.html
-.. _CSIT VPP Functional Tests Documentation: https://docs.fd.io/csit/rls1710/doc/tests.vpp.func.html
-.. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/rls1710/doc/tests.vpp.perf.html
-.. _CSIT NSH_SFC Functional Tests Documentation: https://docs.fd.io/csit/rls1710/doc/tests.nsh_sfc.func.html
-.. _VPP test framework documentation: https://docs.fd.io/vpp/17.10/vpp_make_test/html/
-.. _FD.io test executor vpp performance jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1710-all
-.. _FD.io test executor ligato performance jobs: https://jenkins.fd.io/job/csit-ligato-perf-1710-all
-.. _FD.io test executor vpp functional jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-1710-ubuntu1604-virl/lastSuccessfulBuild
-.. _FD.io test executor dpdk performance jobs: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1710-all
-.. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-1710-ubuntu1604/lastSuccessfulBuild
+.. _pdf version of this report: https://docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.pdf
+.. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h={release}
+.. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h={release}
+.. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h={release}
+.. _VIRL topologies directory: https://git.fd.io/csit/tree/resources/tools/virl/topologies/?h={release}
+.. _VIRL images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h={release}
+.. _VIRL nested: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/nested/?h={release}
+.. _CSIT Honeycomb Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.func.honeycomb.html
+.. _CSIT Honeycomb Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.honeycomb.html
+.. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
+.. _CSIT VPP Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.func.html
+.. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
+.. _CSIT NSH_SFC Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.nsh_sfc.func.html
+.. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
+.. _FD.io test executor vpp performance jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-{srelease}-all
+.. _FD.io test executor ligato performance jobs: https://jenkins.fd.io/job/csit-ligato-perf-{srelease}-all
+.. _FD.io test executor vpp functional jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-ubuntu1604-virl/lastSuccessfulBuild
+.. _FD.io test executor dpdk performance jobs: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-{srelease}-all
+.. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-{srelease}-ubuntu1604/lastSuccessfulBuild
 .. _FD.io test executor honeycomb performance jobs: https://jenkins.fd.io/view/hc2vpp/job/hc2vpp-csit-perf-master-ubuntu1604/lastSuccessfulBuild
-.. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-1710-ubuntu1604-virl/lastSuccessfulBuild
-.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1710-ubuntu1604/
-.. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h=rls1710
-"""
+.. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-{srelease}-ubuntu1604-virl/lastSuccessfulBuild
+.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1604/
+.. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
+""".format(release='rls1801', srelease='1801', vpprelease='18.01')
 
 # The language for content autogenerated by Sphinx. Refer to documentation
 # for a list of supported languages.

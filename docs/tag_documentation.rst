@@ -487,6 +487,10 @@ Container orchestration tags
 
     2 VPP running in 2 Docker containers acting as VNF work load.
 
+.. topic:: 4VNF
+
+    4 VPP running in 4 Docker containers acting as VNF work load.
+
 Multi-threading tags
 --------------------
 
