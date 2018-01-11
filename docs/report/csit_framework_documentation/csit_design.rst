@@ -107,6 +107,8 @@ A brief bottom-up description is provided here:
      - VPP;
      - DPDK-Testpmd;
      - DPDK-L3Fwd;
+     - Honeycomb;
+     - VPP Container orchestrated topologies;
 
    - Tools:
 

@@ -328,7 +328,9 @@ Below a subset of the running configuration:
     adduser: 3.113+nmu3ubuntu4
     apparmor: 2.10.95-0ubuntu2.6
     apt: 1.2.12~ubuntu16.04.1
+    apt-transport-https: 1.2.24
     apt-utils: 1.2.12~ubuntu16.04.1
+    aufs-tools: 1:3.2+20130722-1.1ubuntu1
     autoconf: 2.69-9
     automake: 1:1.15-4ubuntu1
     autotools-dev: 20150820.1
@@ -342,6 +344,8 @@ Below a subset of the running configuration:
     busybox-initramfs: 1:1.22.0-15ubuntu1
     busybox-static: 1:1.22.0-15ubuntu1
     bzip2: 1.0.6-8
+    busybox-static: 1:1.22.0-15ubuntu1
+    bzip2: 1.0.6-8
     ca-certificates: 20160104ubuntu1
     ca-certificates-java: 20160321
     cgroup-bin: 0.41-7ubuntu1
@@ -350,6 +354,7 @@ Below a subset of the running configuration:
     cloud-image-utils: 0.27-0ubuntu24
     console-setup: 1.108ubuntu15.2
     console-setup-linux: 1.108ubuntu15.2
+    corekeeper: 1.6
     coreutils: 8.25-2ubuntu2
     cpio: 2.11+dfsg-5ubuntu1
     cpp: 4:5.3.1-1ubuntu1
@@ -373,23 +378,30 @@ Below a subset of the running configuration:
     dmidecode: 3.0-2ubuntu0.1
     dns-root-data: 2015052300+h+1
     dnsmasq-base: 2.75-1ubuntu0.16.04.2
+    docker-ce: 17.09.0~ce-0~ubuntu
     dpkg: 1.18.4ubuntu1.1
     dpkg-dev: 1.18.4ubuntu1.1
     e2fslibs:amd64: 1.42.13-1ubuntu1
     e2fsprogs: 1.42.13-1ubuntu1
+    ebtables: 2.0.10.4-3.4ubuntu2
     eject: 2.1.5+deb1+cvs20081104-13.1
+    ethtool: 1:4.5-1
     expect: 5.45-7
     fakeroot: 1.20.2-1ubuntu1
     file: 1:5.25-2ubuntu1
     findutils: 4.6.0+git+20160126-2
+    fontconfig: 2.11.94-0ubuntu1.1
     fontconfig-config: 2.11.94-0ubuntu1.1
     fonts-dejavu-core: 2.35-1
+    fonts-dejavu-extra: 2.35-1
     g++: 4:5.3.1-1ubuntu1
     g++-5: 5.4.0-6ubuntu1~16.04.2
     gcc: 4:5.3.1-1ubuntu1
     gcc-5: 5.4.0-6ubuntu1~16.04.2
     gcc-5-base:amd64: 5.4.0-6ubuntu1~16.04.2
     gcc-6-base:amd64: 6.0.1-0ubuntu1
+    gdb: 7.11.1-0ubuntu1~16.5
+    gdbserver: 7.11.1-0ubuntu1~16.5
     genisoimage: 9:1.1.11-3ubuntu1
     gettext-base: 0.19.7-2ubuntu3
     gir1.2-glib-2.0:amd64: 1.46.0-3ubuntu1
@@ -404,6 +416,7 @@ Below a subset of the running configuration:
     grub-pc-bin: 2.02~beta2-36ubuntu3.1
     grub2-common: 2.02~beta2-36ubuntu3.1
     gzip: 1.6-4ubuntu1
+    hicolor-icon-theme: 0.15-0ubuntu1
     hostname: 3.16ubuntu2
     ifupdown: 0.8.10ubuntu1
     init: 1.29ubuntu2
@@ -428,6 +441,10 @@ Below a subset of the running configuration:
     klibc-utils: 2.0.4-8ubuntu1.16.04.1
     kmod: 22-1ubuntu4
     krb5-locales: 1.13.2+dfsg-5
+    kubeadm: 1.8.4-00
+    kubectl: 1.8.4-00
+    kubelet: 1.8.4-00
+    kubernetes-cni: 0.5.1-00
     language-selector-common: 0.165.3
     laptop-detect: 0.13.7ubuntu2
     less: 481-2.1
@@ -448,6 +465,8 @@ Below a subset of the running configuration:
     libasound2-data: 1.1.0-0ubuntu1
     libasprintf0v5:amd64: 0.19.7-2ubuntu3
     libasyncns0:amd64: 0.8-5build1
+    libatk1.0-0:amd64: 2.18.0-1
+    libatk1.0-data: 2.18.0-1
     libatm1:amd64: 1:2.5.1-1.5
     libatomic1:amd64: 5.4.0-6ubuntu1~16.04.2
     libattr1:amd64: 1:2.4.47-2
@@ -456,6 +475,8 @@ Below a subset of the running configuration:
     libavahi-client3:amd64: 0.6.32~rc+dfsg-1ubuntu2
     libavahi-common-data:amd64: 0.6.32~rc+dfsg-1ubuntu2
     libavahi-common3:amd64: 0.6.32~rc+dfsg-1ubuntu2
+    libbabeltrace-ctf1:amd64: 1.3.2-1
+    libbabeltrace1:amd64: 1.3.2-1
     libblkid1:amd64: 2.27.1-6ubuntu3.1
     libbluetooth3:amd64: 5.37-0ubuntu5
     libboost-iostreams1.58.0:amd64: 1.58.0+dfsg-5ubuntu3.1
@@ -466,11 +487,12 @@ Below a subset of the running configuration:
     libbsd0:amd64: 0.8.2-1
     libbz2-1.0:amd64: 1.0.6-8
     libc-bin: 2.23-0ubuntu3
-    libc-dev-bin: 2.23-0ubuntu3
-    libc6:amd64: 2.23-0ubuntu3
-    libc6-dev:amd64: 2.23-0ubuntu3
+    libc-dev-bin: 2.23-0ubuntu9
+    libc6-dbg:amd64: 2.23-0ubuntu9
+    libc6-dev:amd64: 2.23-0ubuntu9
     libcaca0:amd64: 0.99.beta19-2build2~gcc5.2
     libcacard0:amd64: 1:2.5.0-2
+    libcairo2:amd64: 1.14.6-1
     libcap-ng0:amd64: 0.7.7-1
     libcap2:amd64: 1:2.24-12
     libcap2-bin: 1:2.24-12
@@ -482,6 +504,7 @@ Below a subset of the running configuration:
     libcryptsetup4:amd64: 2:1.6.6-5ubuntu2
     libcups2:amd64: 2.1.3-4
     libcurl3-gnutls:amd64: 7.47.0-1ubuntu2.1
+    libdatrie1:amd64: 0.2.10-2
     libdb5.3:amd64: 5.3.28-11
     libdbus-1-3:amd64: 1.10.6-1ubuntu3
     libdbus-glib-1-2:amd64: 0.106-1
@@ -515,6 +538,9 @@ Below a subset of the running configuration:
     libgcc1:amd64: 1:6.0.1-0ubuntu1
     libgcrypt20:amd64: 1.6.5-2ubuntu0.2
     libgdbm3:amd64: 1.8.3-13.1
+    libgdk-pixbuf2.0-0:amd64: 2.32.2-1ubuntu1.2
+    libgdk-pixbuf2.0-common: 2.32.2-1ubuntu1.2
+    libgif7:amd64: 5.1.4-0.3~16.04
     libgirepository-1.0-1:amd64: 1.46.0-3ubuntu1
     libgl1-mesa-dri:amd64: 11.2.0-1ubuntu2.2
     libgl1-mesa-glx:amd64: 11.2.0-1ubuntu2.2
@@ -528,13 +554,19 @@ Below a subset of the running configuration:
     libgnutls30:amd64: 3.4.10-4ubuntu1.1
     libgomp1:amd64: 5.4.0-6ubuntu1~16.04.2
     libgpg-error0:amd64: 1.21-2ubuntu1
+    libgraphite2-3:amd64: 1.3.6-1ubuntu1
     libgssapi-krb5-2:amd64: 1.13.2+dfsg-5
     libgssapi3-heimdal:amd64: 1.7~git20150920+dfsg-4ubuntu1
+    libgtk2.0-0:amd64: 2.24.30-1ubuntu1.16.04.2
+    libgtk2.0-bin: 2.24.30-1ubuntu1.16.04.2
+    libgtk2.0-common: 2.24.30-1ubuntu1.16.04.2
+    libharfbuzz0b:amd64: 1.0.1-1ubuntu0.1
     libhcrypto4-heimdal:amd64: 1.7~git20150920+dfsg-4ubuntu1
     libheimbase1-heimdal:amd64: 1.7~git20150920+dfsg-4ubuntu1
     libheimntlm0-heimdal:amd64: 1.7~git20150920+dfsg-4ubuntu1
     libhogweed4:amd64: 3.2-1
     libhx509-5-heimdal:amd64: 1.7~git20150920+dfsg-4ubuntu1
+    libice-dev:amd64: 2:1.0.9-1
     libice6:amd64: 2:1.0.9-1
     libicu55:amd64: 55.1-7
     libidn11:amd64: 1.32-3ubuntu1.1
@@ -542,6 +574,7 @@ Below a subset of the running configuration:
     libiscsi2:amd64: 1.12.0-2
     libisl15:amd64: 0.16.1-1
     libitm1:amd64: 5.4.0-6ubuntu1~16.04.2
+    libjbig0:amd64: 2.1-3.1
     libjpeg-turbo8:amd64: 1.4.2-0ubuntu3
     libjpeg8:amd64: 8c-2ubuntu8
     libjson-c2:amd64: 0.11-4ubuntu2
@@ -582,6 +615,7 @@ Below a subset of the running configuration:
     libnspr4:amd64: 2:4.12-0ubuntu0.16.04.1
     libnss3:amd64: 2:3.23-0ubuntu0.16.04.1
     libnss3-nssdb: 2:3.23-0ubuntu0.16.04.1
+    libnuma-dev:amd64: 2.0.11-1ubuntu1
     libnuma1:amd64: 2.0.11-1ubuntu1
     libogg0:amd64: 1.3.2-1
     libopus0:amd64: 1.1.2-1ubuntu1
@@ -591,6 +625,9 @@ Below a subset of the running configuration:
     libpam-modules-bin: 1.1.8-3.2ubuntu2
     libpam-runtime: 1.1.8-3.2ubuntu2
     libpam0g:amd64: 1.1.8-3.2ubuntu2
+    libpango-1.0-0:amd64: 1.38.1-1
+    libpangocairo-1.0-0:amd64: 1.38.1-1
+    libpangoft2-1.0-0:amd64: 1.38.1-1
     libpcap-dev: 1.7.4-2
     libpcap0.8:amd64: 1.7.4-2
     libpcap0.8-dev: 1.7.4-2
@@ -609,6 +646,7 @@ Below a subset of the running configuration:
     libpolkit-gobject-1-0:amd64: 0.105-14.1
     libpopt0:amd64: 1.16-10
     libprocps4:amd64: 2:3.3.10-4ubuntu2
+    libpthread-stubs0-dev:amd64: 0.3-4
     libpulse0:amd64: 1:8.0-0ubuntu3
     libpython-all-dev:amd64: 2.7.11-1
     libpython-dev:amd64: 2.7.11-1
@@ -618,8 +656,9 @@ Below a subset of the running configuration:
     libpython2.7-minimal:amd64: 2.7.12-1~16.04
     libpython2.7-stdlib:amd64: 2.7.12-1~16.04
     libpython3-stdlib:amd64: 3.5.1-3
-    libpython3.5-minimal:amd64: 3.5.2-2~16.01
-    libpython3.5-stdlib:amd64: 3.5.2-2~16.01
+    libpython3.5:amd64: 3.5.2-2ubuntu0~16.04.1
+    libpython3.5-minimal:amd64: 3.5.2-2ubuntu0~16.04.1
+    libpython3.5-stdlib:amd64: 3.5.2-2ubuntu0~16.04.1
     libquadmath0:amd64: 5.4.0-6ubuntu1~16.04.2
     librados2: 10.2.2-0ubuntu0.16.04.2
     librbd1: 10.2.2-0ubuntu0.16.04.2
@@ -637,6 +676,7 @@ Below a subset of the running configuration:
     libsepol1:amd64: 2.4-2
     libsigsegv2:amd64: 2.10-4
     libslang2:amd64: 2.3.0-2ubuntu1
+    libsm-dev:amd64: 2:1.2.2-1
     libsm6:amd64: 2:1.2.2-1
     libsmartcols1:amd64: 2.27.1-6ubuntu3.1
     libsndfile1:amd64: 1.0.25-10
@@ -652,6 +692,9 @@ Below a subset of the running configuration:
     libtext-charwidth-perl: 0.04-7build5
     libtext-iconv-perl: 1.7-5build4
     libtext-wrapi18n-perl: 0.06-7.1
+    libthai-data: 0.1.24-2
+    libthai0:amd64: 0.1.24-2
+    libtiff5:amd64: 4.0.6-1ubuntu0.2
     libtinfo5:amd64: 6.0+20160213-1ubuntu1
     libtk8.6:amd64: 8.6.5-1
     libtool: 2.4.6-0.1
@@ -671,21 +714,29 @@ Below a subset of the running configuration:
     libwrap0:amd64: 7.6.q-25
     libx11-6:amd64: 2:1.6.3-1ubuntu2
     libx11-data: 2:1.6.3-1ubuntu2
+    libx11-dev:amd64: 2:1.6.3-1ubuntu2
+    libx11-doc: 2:1.6.3-1ubuntu2
     libx11-xcb1:amd64: 2:1.6.3-1ubuntu2
+    libxau-dev:amd64: 1:1.0.8-1
     libxau6:amd64: 1:1.0.8-1
     libxaw7:amd64: 2:1.0.13-1
     libxcb-dri2-0:amd64: 1.11.1-1ubuntu1
     libxcb-dri3-0:amd64: 1.11.1-1ubuntu1
     libxcb-glx0:amd64: 1.11.1-1ubuntu1
     libxcb-present0:amd64: 1.11.1-1ubuntu1
+    libxcb-render0:amd64: 1.11.1-1ubuntu1
     libxcb-shape0:amd64: 1.11.1-1ubuntu1
+    libxcb-shm0:amd64: 1.11.1-1ubuntu1
     libxcb-sync1:amd64: 1.11.1-1ubuntu1
     libxcb1:amd64: 1.11.1-1ubuntu1
+    libxcb1-dev:amd64: 1.11.1-1ubuntu1
     libxcomposite1:amd64: 1:0.4.4-1
+    libxcursor1:amd64: 1:1.1.14-1
     libxdamage1:amd64: 1:1.1.4-2
+    libxdmcp-dev:amd64: 1:1.1.2-1.1
     libxdmcp6:amd64: 1:1.1.2-1.1
-    libxen-4.6:amd64: 4.6.0-1ubuntu4.2
-    libxenstore3.0:amd64: 4.6.0-1ubuntu4.2
+    libxen-4.6:amd64: 4.6.0-1ubuntu4.1
+    libxenstore3.0:amd64: 4.6.0-1ubuntu4.1
     libxext6:amd64: 2:1.3.3-1
     libxfixes3:amd64: 1:5.0.1-2
     libxft2:amd64: 2.3.2-1
@@ -699,6 +750,7 @@ Below a subset of the running configuration:
     libxrender1:amd64: 1:0.9.9-0ubuntu1
     libxshmfence1:amd64: 1.2-1
     libxss1:amd64: 1:1.2.2-1
+    libxt-dev:amd64: 1:1.1.5-0ubuntu1
     libxt6:amd64: 1:1.1.5-0ubuntu1
     libxtables11:amd64: 1.6.0-2ubuntu3
     libxtst6:amd64: 2:1.2.2-1
@@ -743,7 +795,10 @@ Below a subset of the running configuration:
     net-tools: 1.60-26ubuntu1
     netbase: 5.3
     netcat-openbsd: 1.105-7ubuntu1
-    openjdk-8-jre-headless:amd64: 8u131-b11-0ubuntu1.16.04.2
+    openjdk-8-jdk:amd64: 8u131-b11-2ubuntu1.16.04.3
+    openjdk-8-jdk-headless:amd64: 8u131-b11-2ubuntu1.16.04.3
+    openjdk-8-jre:amd64: 8u131-b11-2ubuntu1.16.04.3
+    openjdk-8-jre-headless:amd64: 8u131-b11-2ubuntu1.16.04.3
     openssh-client: 1:7.2p2-4ubuntu2.1
     openssh-server: 1:7.2p2-4ubuntu2.1
     openssh-sftp-server: 1:7.2p2-4ubuntu2.1
@@ -789,8 +844,8 @@ Below a subset of the running configuration:
     python3-six: 1.10.0-3
     python3-urllib3: 1.13.1-2ubuntu0.16.04.1
     python3-virtualenv: 15.0.1+ds-3
-    python3.5: 3.5.2-2~16.01
-    python3.5-minimal: 3.5.2-2~16.01
+    python3.5: 3.5.2-2ubuntu0~16.04.1
+    python3.5-minimal: 3.5.2-2ubuntu0~16.04.1
     qemu-block-extra:amd64: 1:2.5+dfsg-5ubuntu10.5
     qemu-system-common: 1:2.5+dfsg-5ubuntu10.5
     qemu-system-x86: 1:2.5+dfsg-5ubuntu10.5
@@ -820,8 +875,9 @@ Below a subset of the running configuration:
     tcl-expect:amd64: 5.45-7
     tcl8.6: 8.6.5+dfsg-2
     tcpd: 7.6.q-25
+    telnet: 0.17-40
     tk8.6: 8.6.5-1
-    tzdata: 2016g-0ubuntu0.16.04
+    tzdata: 2016f-0ubuntu0.16.04
     ubuntu-keyring: 2012.05.19
     ubuntu-minimal: 1.361
     ucf: 3.0036
@@ -834,24 +890,23 @@ Below a subset of the running configuration:
     vim-common: 2:7.4.1689-3ubuntu1.1
     vim-tiny: 2:7.4.1689-3ubuntu1.1
     virtualenv: 15.0.1+ds-3
-    vpp: 17.10-rc0~89-g7c35f19~b2621
-    vpp-dbg: 17.10-rc0~89-g7c35f19~b2621
-    vpp-dev: 17.10-rc0~89-g7c35f19~b2621
-    vpp-dpdk-dkms: 17.05-vpp6
-    vpp-lib: 17.10-rc0~89-g7c35f19~b2621
-    vpp-plugins: 17.10-rc0~89-g7c35f19~b2621
     wamerican: 7.1-1
     wget: 1.17.1-1ubuntu1.1
     whiptail: 0.52.18-1ubuntu2
     wireless-regdb: 2015.07.20-1ubuntu1
     x11-common: 1:7.7+13ubuntu3
     x11-utils: 7.7+3
+    x11proto-core-dev: 7.0.31-1~ubuntu16.04.1
+    x11proto-input-dev: 2.3.1-1
+    x11proto-kb-dev: 1.0.7-0ubuntu1
     xauth: 1:1.0.9-1ubuntu2
     xbitmaps: 1.1.1-2
     xdg-user-dirs: 0.15-2ubuntu6
     xkb-data: 2.16-1ubuntu1
     xml-core: 0.13+nmu2
+    xorg-sgml-doctools: 1:1.11-1
     xterm: 322-1ubuntu1
+    xtrans-dev: 1.3.5-1
     xz-utils: 5.1.1alpha+20120614-2ubuntu2
     zlib1g:amd64: 1:1.2.8.dfsg-2ubuntu4
     zlib1g-dev:amd64: 1:1.2.8.dfsg-2ubuntu4
@@ -1907,6 +1962,8 @@ Below a subset of the running configuration:
      [ + ]  cpufrequtils
      [ + ]  cron
      [ + ]  dbus
+     [ + ]  docker
+     [ + ]  ebtables
      [ + ]  grub-common
      [ - ]  hostname.sh
      [ - ]  hwclock.sh
@@ -1927,7 +1984,7 @@ Below a subset of the running configuration:
      [ - ]  plymouth-log
      [ + ]  procps
      [ + ]  qemu-kvm
-     [ + ]  rc.local
+     [ - ]  rc.local
      [ + ]  resolvconf
      [ - ]  rsync
      [ + ]  rsyslog
@@ -1939,7 +1996,7 @@ Below a subset of the running configuration:
      [ - ]  umountnfs.sh
      [ - ]  umountroot
      [ + ]  urandom
-     [ + ]  uuidd
+     [ - ]  uuidd
      [ - ]  x11-common
 
 **Host CFS optimizations (QEMU+VPP)**
@@ -2037,31 +2094,37 @@ Tagged by **1T1C**
 
     unix
     {
-        cli-listen localhost:5002
-        log /tmp/vpe.log
-        nodaemon
+      cli-listen localhost:5002
+      log /tmp/vpe.log
+      nodaemon
     }
     cpu
     {
-        corelist-workers 2
-        main-core 1
+      corelist-workers 2
+      main-core 1
+    }
+    ip4
+    {
+      heap-size "4G"
     }
     ip6
     {
-        heap-size 3G
-        hash-buckets 2000000
+      heap-size "4G"
+      hash-buckets "2000000"
     }
-    heapsize 3G
+    heapsize "4G"
     dpdk
     {
-        dev default
-        {
-            num-rx-queues 1
-        }
-        dev 0000:0a:00.0
-        dev 0000:0a:00.1
-        socket-mem 1024,1024
-        no-multi-seg
+      dev 0000:88:00.1
+      dev 0000:88:00.0
+      no-multi-seg
+      dev default
+      {
+        num-rx-desc 2048
+        num-rx-queues 1
+        num-tx-desc 2048
+      }
+      socket-mem "1024,1024
     }
 
 Tagged by **2T1C**
@@ -2070,31 +2133,37 @@ Tagged by **2T1C**
 
     unix
     {
-        cli-listen localhost:5002
-        log /tmp/vpe.log
-        nodaemon
+      cli-listen localhost:5002
+      log /tmp/vpe.log
+      nodaemon
     }
     cpu
     {
-        corelist-workers 2,3
-        main-core 1
+      corelist-workers 2,3
+      main-core 1
+    }
+    ip4
+    {
+      heap-size "4G"
     }
     ip6
     {
-        heap-size 3G
-        hash-buckets 2000000
+      heap-size "4G"
+      hash-buckets "2000000"
     }
-    heapsize 3G
+    heapsize "4G"
     dpdk
     {
-        dev default
-        {
-            num-rx-queues 1
-        }
-        dev 0000:0a:00.0
-        dev 0000:0a:00.1
-        socket-mem 1024,1024
-        no-multi-seg
+      dev 0000:88:00.1
+      dev 0000:88:00.0
+      no-multi-seg
+      dev default
+      {
+        num-rx-desc 2048
+        num-rx-queues 1
+        num-tx-desc 2048
+      }
+      socket-mem "1024,1024
     }
 
 Tagged by **4T4C**
@@ -2103,31 +2172,37 @@ Tagged by **4T4C**
 
     unix
     {
-        cli-listen localhost:5002
-        log /tmp/vpe.log
-        nodaemon
+      cli-listen localhost:5002
+      log /tmp/vpe.log
+      nodaemon
     }
     cpu
     {
-        corelist-workers 2,3,4,5
-        main-core 1
+      corelist-workers 2,3,4,5
+      main-core 1
+    }
+    ip4
+    {
+      heap-size "4G"
     }
     ip6
     {
-        heap-size 3G
-        hash-buckets 2000000
+      heap-size "4G"
+      hash-buckets "2000000"
     }
-    heapsize 3G
+    heapsize "4G"
     dpdk
     {
-        dev default
-        {
-            num-rx-queues 2
-        }
-        dev 0000:0a:00.0
-        dev 0000:0a:00.1
-        socket-mem 1024,1024
-        no-multi-seg
+      dev 0000:88:00.1
+      dev 0000:88:00.0
+      no-multi-seg
+      dev default
+      {
+        num-rx-desc 2048
+        num-rx-queues 2
+        num-tx-desc 2048
+      }
+      socket-mem "1024,1024
     }
 
 
@@ -2164,7 +2239,7 @@ DPDK v17.11
 
 ::
 
-    $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'> /dev/null
+    $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log 2>&1 &'> /dev/null
 
 **TG common API - pointer to driver**
 

@@ -31,18 +31,17 @@ is listed separately, as follows:
    side). Tested across a range of multi-thread and multi-core
    configurations. TRex is used as a traffic generator.
 
-#. **Container Topologies Orchestrated by K8s - Performance** - CSIT
-   |release| introduced new tests of Container topologies connected over
-   the memif virtual interface (shared memory interface). For these tests
-   VPP vswitch instance runs in a Docker Container handling Intel x520 NIC
-   10GbE interfaces and connecting over memif (Master side) virtual
-   interfaces to more instances of VPP running in Docker Containers with
-   memif virtual interfaces (Slave side). All containers are orchestrated
-   by Kubernetes, with Ligato for container networking. TRex is used as a
-   traffic generator.
+#. **Container Topologies Orchestrated by K8s - Performance** - CSIT Container
+   topologies connected over the memif virtual interface (shared memory
+   interface). For these tests VPP vswitch instance runs in a Docker Container
+   handling Intel x520 NIC 10GbE interfaces and connecting over memif (Master
+   side) virtual interfaces to more instances of VPP running in Docker
+   Containers with memif virtual interfaces (Slave side). All containers are
+   orchestrated by Kubernetes, with `Ligato <https://github.com/ligato>`_ for
+   container networking. TRex is used as a traffic generator.
 
 #. **DPDK Performance** - VPP is using DPDK code to control and drive
-   the NICs and physical interfaces. Testpmd tests are used as a baseline to
+   the NICs and physical interfaces. Tests are used as a baseline to
    profile the DPDK sub-system of VPP. DPDK performance tests executed in
    physical FD.io testbeds, focusing on Testpmd/L3FWD data plane performance for
    Phy-to-Phy (NIC-to-NIC). Tests cover a range of NICs, 10GE and 40GE

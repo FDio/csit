@@ -6,41 +6,40 @@ Changes in CSIT |release|
 
 #. Added VPP performance tests
 
-   - **L2BD MAC scale tests**
-
-     - VPP L2 Bridge-Domain with MAC learning and large size L2FIB (10k,
-       100k, 1M MACs), tested in NIC-to-NIC and VM vhost topologies.
-
-   - **Linux Container VPP memif tests**
-
-     - Tests with VPP in L2 Bridge-Domain configuration connecting over
-       memif virtual interfaces to VPPs running in LXCs;
-
-   - **Docker Container VPP memif tests**
-
-     - Tests with VPP in L2 Cross-Connect configuration connecting over
-       memif virtual interfaces VPPs running in Docker containers;
-
    - **Container Topologies Orchestrated by K8s with VPP memif tests**
 
-     - Tests with VPP in L2 Cross-Connect and Bridge-Domain configurations
+     - Added tests with VPP in L2 Cross-Connect and Bridge-Domain configurations
        connecting over memif virtual interfaces VPPs running in Docker
-       containers, with service chain topologies orchestrated by Kubernetes;
+       containers, with service chain topologies orchestrated by Kubernetes.
+       Chained, horizontal and standalone linked topologies added;
 
-   - **Stateful Security Groups**
+   - **VPP TCP/IP stack**
 
-     - m-thread m-core VPP stateful and stateless security-groups tests;
+     - Added tests with VPP builtin TCP based HTTP server. WRK traffic generator
+       is used.
 
-   - **MAC-IP binding**
+   - **SRv6 tests**
 
-     - MACIP input access-lists, single-thread single-core and m-thread
-       m-core tests;
+     - [placeholder]
+
+   - **IPSecSW tests**
+
+     - SW computed IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in
+       combination with IPv4 routed-forwarding.
 
 #. Presentation and Analytics Layer
 
-     - New Presentation and Analytics Layer (PAL) for automated CSIT test
-       results analysis and presentation, including statistical analysis
-       of results repeatibility and test report auto-generation;
+     - Added multi-core scale-up analysis into Presentation and Analytics Layer
+       (PAL) for automated CSIT test results analysis;
+
+
+#. Other improvements
+
+     - **Framework optimizations**
+
+       - Ability to run CSIT framework on ARM architecture.
+
+       - Overall stability improvements.
 
 Performance Improvements
 ------------------------
@@ -205,7 +204,7 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 | 1 | Vic1385 and Vic1227 low performance.            | VPP-664    | Low NDR performance.                                            |
 |   |                                                 |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | Sporadic NDR discovery test failures on x520.   | CSIT-750   | Suspected issue with HW settings (BIOS, FW) in LF               |
+| 2 | Sporadic NDR discovery test failures on x520.   | CSIT-750   | Suspected issue with HW combination of X710-X520 in LF          |
 |   |                                                 |            | infrastructure. Issue can't be replicated outside LF.           |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 3 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
