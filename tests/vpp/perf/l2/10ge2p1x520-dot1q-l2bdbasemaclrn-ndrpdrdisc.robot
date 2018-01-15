@@ -25,7 +25,8 @@
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
-| Documentation | *RFC2544: Packet throughput L2BD test cases with vhost*
+| Documentation | *RFC2544: Packet throughput L2BD test cases with 802.1q test
+| ... | cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
