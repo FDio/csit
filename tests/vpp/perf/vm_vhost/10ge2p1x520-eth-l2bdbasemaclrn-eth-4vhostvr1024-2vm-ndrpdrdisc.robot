@@ -64,7 +64,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -90,7 +90,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -117,7 +117,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -143,7 +143,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc04-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc04-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -170,7 +170,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc05-IMIX-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc05-IMIX-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -197,7 +197,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc06-IMIX-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc06-IMIX-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
@@ -225,7 +225,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -251,7 +251,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -278,7 +278,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc09-1518B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc09-1518B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -304,7 +304,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc10-1518B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc10-1518B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -331,7 +331,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc11-IMIX-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc11-IMIX-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -358,7 +358,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc12-IMIX-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc12-IMIX-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
@@ -386,7 +386,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -412,7 +412,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -439,7 +439,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc15-1518B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc15-1518B-4t4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -465,7 +465,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc16-1518B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc16-1518B-4t4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -492,7 +492,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc17-IMIX-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
+| tc17-IMIX-4t4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -519,7 +519,7 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc18-IMIX-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
+| tc18-IMIX-4t4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
