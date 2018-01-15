@@ -101,7 +101,7 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
@@ -113,7 +113,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=${64} | rate=1.6mpps | wt=1 | rxq=1
 
-| tc02-1518B-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc02-1518B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
@@ -125,7 +125,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=${1518} | rate=400000pps | wt=1 | rxq=1
 
-| tc03-IMIX-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc03-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
@@ -137,7 +137,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=IMIX_v4_1 | rate=1.0mpps | wt=1 | rxq=1
 
-| tc04-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc04-64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
@@ -149,7 +149,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=${64} | rate=3.0mpps | wt=2 | rxq=1
 
-| tc05-1518B-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc05-1518B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
@@ -161,7 +161,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=${1518} | rate=0.7mpps | wt=2 | rxq=1
 
-| tc06-IMIX-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc06-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
@@ -173,7 +173,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=IMIX_v4_1 | rate=2.0mpps | wt=2 | rxq=1
 
-| tc07-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc07-64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
@@ -185,7 +185,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=${64} | rate=4.2mpps | wt=4 | rxq=2
 
-| tc08-1518B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc08-1518B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
@@ -197,7 +197,7 @@
 | | [Template] | Check PDR for L2XC with vhost and VM with dpdk-testpmd
 | | framesize=${1518} | rate=0.7mpps | wt=4 | rxq=2
 
-| tc09-IMIX-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrchk
+| tc09-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-pdrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
