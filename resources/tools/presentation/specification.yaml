@@ -94,18 +94,29 @@
 #      csit-vpp-perf-1801-all:
 #      - 1
 #      - 2
-    plot-throughput-speedup-analysis:
-# TODO: Add the data sources
-#      csit-vpp-perf-1801-all:
-#      - 1
-#      - 2
+      csit-vpp-perf-1707-all:
+      - 9
+      - 10
+      - 13
+      csit-vpp-perf-1710-all:
+      - 11
+      - 12
+      - 13
     vpp-spectre-impact:
 # TODO: specify data sources
 #      csit-vpp-perf-1801-all:
 #      - 1
 #      - 2
-    plot-throughput-speedup-analysis:
+      csit-vpp-perf-1707-all:
+      - 9
+      - 10
+      - 13
+      csit-vpp-perf-1710-all:
+      - 11
+      - 12
+      - 13
 # TODO: Add the data sources
+#    plot-throughput-speedup-analysis:
 #      csit-vpp-perf-1801-all:
 #      - 1
 #      - 2
@@ -132,6 +143,9 @@
       - 18
       - 19
       - 20
+# TODO:
+#      csit-vpp-perf-1801-all:
+#      - 2
       csit-ligato-perf-1710-all:
       - 5
       - 7
@@ -143,61 +157,55 @@
       - 13
       - 16
       - 17
-    vpp-perf-results:
-      csit-vpp-perf-1710-all:
-      - 20
-      - 23
-    vpp-func-results:
-      csit-vpp-functional-1710-ubuntu1604-virl:
-      - 126
-    ligato-perf-results:
-      csit-ligato-perf-1710-all:
-      - 17
-    dpdk-perf-results:
-      csit-dpdk-perf-1710-all:
-      - 13
-    hc-func-results:
-      csit-hc2vpp-verify-func-1710-ubuntu1604:
-      - "lastSuccessfulBuild"
-    nsh-func-results:
-      csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
-      - 7
-    plot-vpp-throughput-latency:
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
-    plot-dpdk-throughput-latency:
-      csit-dpdk-perf-1710-all:
-      - 2
+      csit-ligato-perf-1801-all:
+      - 1
       - 3
+      - 7
+# TODO:
+#    vpp-perf-results:
+#      csit-vpp-perf-1801-all:
+#      - 11
+    vpp-func-results:
+      csit-vpp-functional-1801-ubuntu1604-virl:
+      - "lastSuccessfulBuild"
+# TODO:
+    ligato-perf-results:
+      csit-ligato-perf-1801-all:
+      - 1
+    dpdk-perf-results:
+      csit-dpdk-perf-1801-all:
+      - 12
+    hc-func-results:
+      csit-hc2vpp-verify-func-1801-ubuntu1604:
+      - "lastSuccessfulBuild"
+# TODO: Will we use this one?
+#      hc2vpp-csit-integration-odl-carbon-1801-ubuntu1604:
+#      - lastSuccessfulBuild
+    nsh-func-results:
+      csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
+      - 1
+# TODO:
+#    plot-vpp-throughput-latency:
+#      csit-vpp-perf-1801-all:
+#      - 2
+    plot-dpdk-throughput-latency:
+      csit-dpdk-perf-1801-all:
+      - 1
+      - 3
+      - 4
       - 5
       - 6
       - 7
       - 8
       - 9
       - 10
-      - 11
-      - 13
-    plot-ligato-throughput-latency:
-      csit-ligato-perf-1710-all:
-      - 5
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
       - 12
-      - 13
-      - 16
-      - 17
+# TODO:
+    plot-ligato-throughput-latency:
+      csit-ligato-perf-1801-all:
+      - 1
+      - 3
+      - 7
   plot-layouts:
     plot-throughput:
       xaxis:
@@ -281,7 +289,6 @@
       height: 1000
     plot-throughput-speedup-analysis:
       xaxis:
-        # title: "Test Cases"
         autorange: True
         autotick: False
         fixedrange: False
@@ -342,32 +349,6 @@
     -
       build: 2
       file: "{DIR[WORKING,DATA]}/output.xml"
-#    csit-dpdk-perf-1707-all:
-#    -
-#      build: 10
-#      file: "{DIR[WORKING,DATA]}/csit-dpdk-perf-1707-all__10.xml"
-#    -
-#      build: 9
-#      file: "{DIR[WORKING,DATA]}/csit-dpdk-perf-1707-all__9.xml"
-#    csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
-#    -
-#      build: 2
-#      file: "{DIR[WORKING,DATA]}/csit-nsh_sfc-verify-func-1707-ubuntu1604-virl-2.xml"
-#    csit-vpp-functional-1707-ubuntu1604-virl:
-#    -
-#      build: lastSuccessfulBuild
-#      file: "{DIR[WORKING,DATA]}/csit-vpp-functional-1707-ubuntu1604-virl-lastSuccessfulBuild.xml"
-#    hc2vpp-csit-integration-1707-ubuntu1604:
-#    -
-#      build: lastSuccessfulBuild
-#      file: "{DIR[WORKING,DATA]}/hc2vpp-csit-integration-1707-ubuntu1604-lastSuccessfulBuild.xml"
-#    csit-vpp-perf-1707-all:
-#    -
-#      build: 16
-#      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__16__output.xml"
-#    -
-#      build: 17
-#      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__17__output.xml"
 
 -
   type: "static"
@@ -405,17 +386,9 @@
     - 19
     - 20
     - 23
-    csit-dpdk-perf-1710-all:
-    - 2
-    - 3
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    - 13
+# TODO:
+#    csit-vpp-perf-1801-all:
+#    - 2
     csit-ligato-perf-1710-all:
     - 5
     - 7
@@ -427,12 +400,33 @@
     - 13
     - 16
     - 17
-    csit-vpp-functional-1710-ubuntu1604-virl:
-    - 126
-    csit-nsh_sfc-verify-func-1710-ubuntu1604-virl:
+# TODO:
+    csit-ligato-perf-1801-all:
+    - 1
+    - 3
     - 7
-    csit-hc2vpp-verify-func-1710-ubuntu1604:
+    csit-dpdk-perf-1801-all:
+    - 1
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 12
+    csit-vpp-functional-1801-ubuntu1604-virl:
     - lastSuccessfulBuild
+    csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
+    - 1
+# TODO: Change to 1801:
+    csit-hc2vpp-verify-func-master-ubuntu1604:
+#    csit-hc2vpp-verify-func-1801-ubuntu1604:
+    - lastSuccessfulBuild
+# TODO: Will we use this one?
+#    hc2vpp-csit-integration-odl-carbon-1801-ubuntu1604:
+#    - lastSuccessfulBuild
 
 -
   type: "output"
@@ -456,17 +450,19 @@
   reference:
     title: "No Meltdown"
 # TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1801-all:
-#      - 1
-#      - 2
+    data:
+      csit-vpp-perf-1707-all:
+      - 9
+      - 10
+      - 13
   compare:
     title: "Meltdown Patches Applied"
 # TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1801-all:
-#      - 1
-#      - 2
+    data:
+      csit-vpp-perf-1710-all:
+      - 11
+      - 12
+      - 13
   data:
     "vpp-meltdown-impact"
   filter: "all"
@@ -488,17 +484,19 @@
   reference:
     title: "No Spectre"
 # TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1801-all:
-#      - 1
-#      - 2
+    data:
+      csit-vpp-perf-1707-all:
+      - 9
+      - 10
+      - 13
   compare:
     title: "Spectre Patches Applied"
 # TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1801-all:
-#      - 1
-#      - 2
+    data:
+      csit-vpp-perf-1710-all:
+      - 11
+      - 12
+      - 13
   data:
     "vpp-spectre-impact"
   filter: "all"
@@ -510,117 +508,120 @@
   # to present all tests.
   nr-of-tests-shown: 20
 
--
-  type: "table"
-  title: "Performance improvements"
-  algorithm: "table_performance_improvements"
-  template: "{DIR[DTR,PERF,VPP,IMPRV]}/tmpl_performance_improvements.csv"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance_improvements"
-  columns:
-  -
-    title: "Functionality"
-    data: "template 1"
-  -
-    title: "Test Name"
-    data: "template 2"
-  -
-    title: "16.09 mean [Mpps]"
-    data: "template 3"
-  -
-    title: "17.01 mean [Mpps]"
-    data: "template 4"
-  -
-    title: "17.04 mean [Mpps]"
-    data: "template 5"
-  -
-    title: "17.07 mean [Mpps]"
-    data: "data csit-vpp-perf-1707-all mean"
-  -
-    title: "17.10 mean [Mpps]"
-    data: "data csit-vpp-perf-1710-all csit-ligato-perf-1710-all mean"
-  -
-    title: "17.10 stdev [Mpps]"
-    data: "data csit-vpp-perf-1710-all csit-ligato-perf-1710-all stdev"
-  -
-    title: "17.07 to 17.10 change [%]"
-    data: "operation relative_change 5 6"
-  rows: "generated"
-  data:
-    "performance-improvements"
-  filter: "template"
-  parameters:
-  - "throughput"
+#-
+#  type: "table"
+#  title: "Performance improvements"
+#  algorithm: "table_performance_improvements"
+#  template: "{DIR[DTR,PERF,VPP,IMPRV]}/tmpl_performance_improvements.csv"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance_improvements"
+#  columns:
+#  -
+#    title: "Functionality"
+#    data: "template 1"
+#  -
+#    title: "Test Name"
+#    data: "template 2"
+#  -
+#    title: "16.09 mean [Mpps]"
+#    data: "template 3"
+#  -
+#    title: "17.01 mean [Mpps]"
+#    data: "template 4"
+#  -
+#    title: "17.04 mean [Mpps]"
+#    data: "template 5"
+#  -
+#    title: "17.07 mean [Mpps]"
+#    data: "data csit-vpp-perf-1707-all mean"
+#  -
+#    title: "17.10 mean [Mpps]"
+#    data: "data csit-vpp-perf-1710-all csit-ligato-perf-1710-all mean"
+#  -
+#    title: "18.01 mean [Mpps]"
+#    data: "data csit-vpp-perf-1801-all csit-ligato-perf-1801-all mean"
+#  -
+#    title: "18.01 stdev [Mpps]"
+#    data: "data csit-vpp-perf-1801-all csit-ligato-perf-1801-all stdev"
+#  -
+#    title: "17.10 to 18.01 change [%]"
+#    data: "operation relative_change 6 7"
+#  rows: "generated"
+#  data:
+#    "performance-improvements"
+#  filter: "template"
+#  parameters:
+#  - "throughput"
 
--
-  type: "table"
-  title: "Detailed Test Results - VPP Performance Results"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
-  columns:
-  -
-    title: "Name"
-    data: "data name"
-  -
-    title: "Documentation"
-    data: "data doc"
-  -
-    title: "Status"
-    data: "data msg"
-  rows: "generated"
-  data:
-    "vpp-perf-results"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
-  parameters:
-  - "name"
-  - "parent"
-  - "doc"
-  - "msg"
+#-
+#  type: "table"
+#  title: "Detailed Test Results - VPP Performance Results"
+#  algorithm: "table_merged_details"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
+#  columns:
+#  -
+#    title: "Name"
+#    data: "data name"
+#  -
+#    title: "Documentation"
+#    data: "data doc"
+#  -
+#    title: "Status"
+#    data: "data msg"
+#  rows: "generated"
+#  data:
+#    "vpp-perf-results"
+#  filter: "not 'NDRCHK' and not 'PDRCHK'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "doc"
+#  - "msg"
 
--
-  type: "table"
-  title: "Test configuration - VPP Performance Test Configs"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTC,PERF,VPP]}/vpp_test_configuration"
-  columns:
-  -
-    title: "Name"
-    data: "data name"
-  -
-    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
-  rows: "generated"
-  data:
-    "vpp-perf-results"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
-  parameters:
-  - "parent"
-  - "name"
-  - "vat-history"
+#-
+#  type: "table"
+#  title: "Test configuration - VPP Performance Test Configs"
+#  algorithm: "table_merged_details"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[DTC,PERF,VPP]}/vpp_test_configuration"
+#  columns:
+#  -
+#    title: "Name"
+#    data: "data name"
+#  -
+#    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+#    data: "data vat-history"
+#  rows: "generated"
+#  data:
+#    "vpp-perf-results"
+#  filter: "not 'NDRCHK' and not 'PDRCHK'"
+#  parameters:
+#  - "parent"
+#  - "name"
+#  - "vat-history"
 
--
-  type: "table"
-  title: "Test Operational Data - VPP Performance Operational Data"
-  algorithm: "table_merged_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTO,PERF,VPP]}/vpp_test_operational"
-  columns:
-  -
-    title: "Name"
-    data: "data name"
-  -
-    title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
-    data: "data show-run"
-  rows: "generated"
-  data:
-    "vpp-perf-results"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
-  parameters:
-  - "parent"
-  - "name"
-  - "show-run"
+#-
+#  type: "table"
+#  title: "Test Operational Data - VPP Performance Operational Data"
+#  algorithm: "table_merged_details"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[DTO,PERF,VPP]}/vpp_test_operational"
+#  columns:
+#  -
+#    title: "Name"
+#    data: "data name"
+#  -
+#    title: "VPP Operational Data - Outputs of 'show runtime' at NDR packet rate"
+#    data: "data show-run"
+#  rows: "generated"
+#  data:
+#    "vpp-perf-results"
+#  filter: "not 'NDRCHK' and not 'PDRCHK'"
+#  parameters:
+#  - "parent"
+#  - "name"
+#  - "show-run"
 
 -
   type: "table"
@@ -778,62 +779,62 @@
 ###                                F I L E S                                 ###
 ################################################################################
 
--
-  type: "file"
-  title: "VPP Performance Results"
-  algorithm: "file_merged_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,PERF,VPP]}"
-  data:
-    "vpp-perf-results"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+#-
+#  type: "file"
+#  title: "VPP Performance Results"
+#  algorithm: "file_merged_test_results"
+#  output-file-ext: ".rst"
+#  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
+#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+#  dir-tables: "{DIR[DTR,PERF,VPP]}"
+#  data:
+#    "vpp-perf-results"
+#  filter: "not 'NDRCHK' and not 'PDRCHK'"
+#  parameters:
+#  - "name"
+#  - "doc"
+#  - "level"
+#  - "parent"
+#  data-start-level: 3  # 0, 1, 2, ...
+#  chapters-start-level: 2  # 0, 1, 2, ...
 
--
-  type: "file"
-  title: "VPP Performance Configuration"
-  algorithm: "file_merged_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTC,PERF,VPP]}/vpp_performance_configuration"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTC,PERF,VPP]}"
-  data:
-    "vpp-perf-results"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+#-
+#  type: "file"
+#  title: "VPP Performance Configuration"
+#  algorithm: "file_merged_test_results"
+#  output-file-ext: ".rst"
+#  output-file: "{DIR[DTC,PERF,VPP]}/vpp_performance_configuration"
+#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+#  dir-tables: "{DIR[DTC,PERF,VPP]}"
+#  data:
+#    "vpp-perf-results"
+#  filter: "not 'NDRCHK' and not 'PDRCHK'"
+#  parameters:
+#  - "name"
+#  - "doc"
+#  - "level"
+#  - "parent"
+#  data-start-level: 3  # 0, 1, 2, ...
+#  chapters-start-level: 2  # 0, 1, 2, ...
 
--
-  type: "file"
-  title: "VPP Performance Operational Data"
-  algorithm: "file_merged_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTO,PERF,VPP]}/vpp_performance_operational_data"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTO,PERF,VPP]}"
-  data:
-    "vpp-perf-results"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+#-
+#  type: "file"
+#  title: "VPP Performance Operational Data"
+#  algorithm: "file_merged_test_results"
+#  output-file-ext: ".rst"
+#  output-file: "{DIR[DTO,PERF,VPP]}/vpp_performance_operational_data"
+#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+#  dir-tables: "{DIR[DTO,PERF,VPP]}"
+#  data:
+#    "vpp-perf-results"
+#  filter: "not 'NDRCHK' and not 'PDRCHK'"
+#  parameters:
+#  - "name"
+#  - "doc"
+#  - "level"
+#  - "parent"
+#  data-start-level: 3  # 0, 1, 2, ...
+#  chapters-start-level: 2  # 0, 1, 2, ...
 
 -
   type: "file"
@@ -1126,774 +1127,774 @@
     layout:
       "plot-throughput-speedup-analysis"
 
-# Plot packets per second
-
-# VPP L2 sel1
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-  # each tag is enclosed with ' (apostrophe).
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP L2 sel2
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP IP4
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP IP6
--
-  type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP IP4_overlay
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP IP6_overlay
--
-  type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP VM VHOST
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP VM VHOST SELECTION
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP CRYPTO
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*ipsec.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*ipsec.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*ipsec.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*ipsec.*-pdrdisc"
-    layout:
-      "plot-throughput"
+## Plot packets per second
+#
+## VPP L2 sel1
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+#  # each tag is enclosed with ' (apostrophe).
+#  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP L2 sel2
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP IP4
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP IP6
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP IP4_overlay
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP IP6_overlay
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP VM VHOST
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP VM VHOST SELECTION
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+## VPP CRYPTO
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-.*ipsec.*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-.*ipsec.*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-.*ipsec.*-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-.*ipsec.*-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-.*ipsec.*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-.*ipsec.*-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-.*ipsec.*-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-.*ipsec.*-pdrdisc"
+#    layout:
+#      "plot-throughput"
 
 # DPDK
 -
@@ -2214,356 +2215,356 @@
 
 # Plot latency
 
-# VPP L2 sel1
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP L2 sel2
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP4
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP6
--
-  type: "plot"
-  title: "VPP Latency 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP4_overlay
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP6_overlay
--
-  type: "plot"
-  title: "VPP Latency 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP VM VHOST
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP VM VHOST selection
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP CRYPTO
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-latency"
+## VPP L2 sel1
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP L2 sel2
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP IP4
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP IP6
+#-
+#  type: "plot"
+#  title: "VPP Latency 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP IP4_overlay
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP IP6_overlay
+#-
+#  type: "plot"
+#  title: "VPP Latency 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP VM VHOST
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP VM VHOST selection
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+## VPP CRYPTO
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-.*ipsec.*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-.*ipsec.*-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-.*ipsec.*-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-.*ipsec.*-ndrdisc"
+#    layout:
+#      "plot-latency"
 
 # DPDK
 -
@@ -2644,90 +2645,90 @@
 
 # Ligato - Throughput
 
-# Container memif
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
+## Container memif
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-ndrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#    layout:
+#      "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-pdrdisc"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#    layout:
+#      "plot-throughput"
 
 # Container orchestrated
 -
@@ -2816,44 +2817,44 @@
 
 # Ligato - Latency
 
-# Container memif
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-latency"
+## Container memif
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#    layout:
+#      "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#  algorithm: "plot_latency_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-ndrdisc-lat50"
+#  data:
+#    "plot-vpp-throughput-latency"
+#  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  traces:
+#    boxmean: False
+#  layout:
+#    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#    layout:
+#      "plot-latency"
 
 # Container orchestrated
 -
