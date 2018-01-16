@@ -63,7 +63,7 @@ data:
             type: 2
       - name: vnf2-vnf3
         description: vnf2 to vnf3 via vswitch memifs
-        type: 8
+        type: 5
         elements:
           - container: vnf2
             port_label: port2
@@ -75,7 +75,7 @@ data:
             type: 2
       - name: vnf3-vnf4
         description: vnf3 to vnf4 via vswitch memifs
-        type: 8
+        type: 5
         elements:
           - container: vnf3
             port_label: port2
