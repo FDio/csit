@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -201,6 +201,102 @@ def plot_latency_box(plot, input_data):
                                y=df[col],
                                name=name,
                                **plot["traces"]))
+
+    try:
+        # Create plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        plpl = plgo.Figure(data=traces, layout=plot["layout"])
+
+        # Export Plot
+        ploff.plot(plpl,
+                   show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
+
+    logging.info("  Done.")
+
+
+def plot_throughput_speedup_analysis(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_throughput_speedup_analysis
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+    # Transform the data
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    throughput = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if throughput.get(test["parent"], None) is None:
+                    throughput[test["parent"]] = {"1": list(),
+                                                  "2": list(),
+                                                  "4": list()}
+                try:
+                    if "1T1C" in test["tags"]:
+                        throughput[test["parent"]]["1"].\
+                            append(test["throughput"]["value"])
+                    elif "2T2C" in test["tags"]:
+                        throughput[test["parent"]]["2"]. \
+                            append(test["throughput"]["value"])
+                    elif "4T4C" in test["tags"]:
+                        throughput[test["parent"]]["4"]. \
+                            append(test["throughput"]["value"])
+                except (KeyError, TypeError):
+                    pass
+
+    for test_name, test_vals in throughput.items():
+        for key, test_val in test_vals.items():
+            if test_val:
+                throughput[test_name][key] = sum(test_val) / len(test_val)
+
+    print(throughput)
+
+    names = ['1 core', '2 cores', '4 cores']
+    x_vals = list()
+    y_vals_1 = list()
+    y_vals_2 = list()
+    y_vals_4 = list()
+
+    for test_name, test_vals in throughput.items():
+        if test_vals["1"]:
+            x_vals.append("-".join(test_name.split('-')[:-1]))
+            y_vals_1.append(1)
+            if test_vals["2"]:
+                y_vals_2.append(
+                    round(float(test_vals["2"]) / float(test_vals["1"]), 2))
+            else:
+                y_vals_2.append(None)
+            if test_vals["4"]:
+                y_vals_4.append(
+                    round(float(test_vals["4"]) / float(test_vals["1"]), 2))
+            else:
+                y_vals_4.append(None)
+
+    y_vals = [y_vals_1, y_vals_2, y_vals_4]
+
+    y_vals_zipped = zip(names, y_vals)
+    traces = list()
+    for val in y_vals_zipped:
+        traces.append(plgo.Bar(x=x_vals,
+                               y=val[1],
+                               name=val[0]))
 
     try:
         # Create plot
