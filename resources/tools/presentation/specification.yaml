@@ -257,6 +257,50 @@
         orientation: "h"
       width: 700
       height: 1000
+    plot-throughput-speedup-analysis:
+      xaxis:
+        title: "Test Cases"
+        autorange: True
+        autotick: False
+        fixedrange: False
+        gridcolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        tickmode: "linear"
+        tickangle: 270
+        zeroline: False
+      yaxis:
+        title: "Packets Per Second [pps]"
+        gridcolor: "rgb(238, 238, 238)"
+        hoverformat: ".4s"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        range: []
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        zeroline: False
+      legend:
+        orientation: "h"
+        bgcolor: "rgba(255, 255, 255, 0)"
+        bordercolor: "rgba(255, 255, 255, 0)"
+      barmode: "group"
+      bargap: 0.15
+      bargroupgap: 0.1
+      autosize: False
+      margin:
+          't': 50
+          'b': 20
+          'l': 50
+          'r': 20
+      showlegend: True
+      width: 700
+      height: 1000
 
 -
   type: "debug"
