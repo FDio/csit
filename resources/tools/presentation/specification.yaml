@@ -87,6 +87,10 @@
 -
   type: "configuration"
   data-sets:
+    plot-throughput-speedup-analysis:
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
     performance-improvements:
       csit-vpp-perf-1707-all:
       - 9
@@ -257,6 +261,54 @@
         orientation: "h"
       width: 700
       height: 1000
+    plot-throughput-speedup-analysis:
+      xaxis:
+        # title: "Test Cases"
+        autorange: True
+        autotick: False
+        fixedrange: False
+        gridcolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        tickmode: "linear"
+        tickangle: 270
+        zeroline: False
+      yaxis:
+        title: "Throughput speedup factor"
+        gridcolor: "rgb(238, 238, 238)"
+        hoverformat: ".4s"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        range: []
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        zeroline: False
+      legend:
+        orientation: "h"
+        xanchor: "center"
+        yanchor: "top"
+        x: 0.5
+        y: 1
+        bgcolor: "rgba(255, 255, 255, 0)"
+        bordercolor: "rgba(255, 255, 255, 0)"
+      barmode: "group"
+      bargap: 0.15
+      bargroupgap: 0.1
+      autosize: False
+      margin:
+          't': 50
+          'b': 250
+          'l': 50
+          'r': 20
+      showlegend: True
+      width: 700
+      height: 1000
 
 -
   type: "debug"
@@ -265,32 +317,39 @@
     extract: "robot-plugin/output.xml"  # Only for zip
   builds:
     # The files must be in the directory DIR[WORKING,DATA]
-    csit-dpdk-perf-1707-all:
+    csit-vpp-perf-1801-all:
     -
-      build: 10
-      file: "{DIR[WORKING,DATA]}/csit-dpdk-perf-1707-all__10.xml"
-    -
-      build: 9
-      file: "{DIR[WORKING,DATA]}/csit-dpdk-perf-1707-all__9.xml"
-    csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
+      build: 1
+      file: "{DIR[WORKING,DATA]}/output.xml"
     -
       build: 2
-      file: "{DIR[WORKING,DATA]}/csit-nsh_sfc-verify-func-1707-ubuntu1604-virl-2.xml"
-    csit-vpp-functional-1707-ubuntu1604-virl:
-    -
-      build: lastSuccessfulBuild
-      file: "{DIR[WORKING,DATA]}/csit-vpp-functional-1707-ubuntu1604-virl-lastSuccessfulBuild.xml"
-    hc2vpp-csit-integration-1707-ubuntu1604:
-    -
-      build: lastSuccessfulBuild
-      file: "{DIR[WORKING,DATA]}/hc2vpp-csit-integration-1707-ubuntu1604-lastSuccessfulBuild.xml"
-    csit-vpp-perf-1707-all:
-    -
-      build: 16
-      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__16__output.xml"
-    -
-      build: 17
-      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__17__output.xml"
+      file: "{DIR[WORKING,DATA]}/output.xml"
+#    csit-dpdk-perf-1707-all:
+#    -
+#      build: 10
+#      file: "{DIR[WORKING,DATA]}/csit-dpdk-perf-1707-all__10.xml"
+#    -
+#      build: 9
+#      file: "{DIR[WORKING,DATA]}/csit-dpdk-perf-1707-all__9.xml"
+#    csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
+#    -
+#      build: 2
+#      file: "{DIR[WORKING,DATA]}/csit-nsh_sfc-verify-func-1707-ubuntu1604-virl-2.xml"
+#    csit-vpp-functional-1707-ubuntu1604-virl:
+#    -
+#      build: lastSuccessfulBuild
+#      file: "{DIR[WORKING,DATA]}/csit-vpp-functional-1707-ubuntu1604-virl-lastSuccessfulBuild.xml"
+#    hc2vpp-csit-integration-1707-ubuntu1604:
+#    -
+#      build: lastSuccessfulBuild
+#      file: "{DIR[WORKING,DATA]}/hc2vpp-csit-integration-1707-ubuntu1604-lastSuccessfulBuild.xml"
+#    csit-vpp-perf-1707-all:
+#    -
+#      build: 16
+#      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__16__output.xml"
+#    -
+#      build: 17
+#      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__17__output.xml"
 
 -
   type: "static"
@@ -811,6 +870,28 @@
 ################################################################################
 ###                                P L O T S                                 ###
 ################################################################################
+
+# Plot Throughput Speedup Analysis
+
+-
+  type: "plot"
+  title: "TODO Throughput Speedup Analysis"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/tsa-64B-l2"
+  data:
+    "plot-throughput-speedup-analysis" # CHANGE
+  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+  # each tag is enclosed with ' (apostrophe).
+  filter: "('64B' or '78B') and 'BASE' and 'NDRDISC' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'IP4FWD' or 'IP6FWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "TODO Throughput Speedup Analysis ..."
+    layout:
+      "plot-throughput-speedup-analysis"
 
 # Plot packets per second
 
