@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e03a1055_15e3d900",
+        "filename": "resources/libraries/bash/enable_traces.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "750b8dee_9f56193e",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 44
@@ -42,6 +65,98 @@
         "startChar": 0,
         "endLine": 428,
         "endChar": 77
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfc5e0ca_d49efb3a",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "not needed, ssh logs everything",
+      "range": {
+        "startLine": 429,
+        "startChar": 8,
+        "endLine": 430,
+        "endChar": 28
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24fb8f58_1f28b5ac",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "Too broad exception, use e.g. RuntimeError",
+      "range": {
+        "startLine": 434,
+        "startChar": 18,
+        "endLine": 434,
+        "endChar": 27
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb8b2739_6bf7d50a",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "PEP8: Constants must be uppercase",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f49d116_5e871b38",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 609,
+        "startChar": 7,
+        "endLine": 609,
+        "endChar": 9
       },
       "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -136,6 +251,75 @@
         "startChar": 0,
         "endLine": 493,
         "endChar": 50
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a4190d4_da908d08",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdrdisc.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d9cd59a_e2855744",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6srhip6-ip6base-srv6enc2sids-ndrpdrdisc.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f788bce3_f350559d",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdrdisc.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-01-17T12:20:38Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
       },
       "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
