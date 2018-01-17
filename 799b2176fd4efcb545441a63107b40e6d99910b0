@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "750b8dee_9f56193e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-17T10:47:31Z",
+      "side": 1,
+      "message": "Why are we using BASH for this? We can exec command in VAT executor",
+      "range": {
+        "startLine": 424,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 77
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06605fb1_42cad448",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-17T10:47:31Z",
+      "side": 1,
+      "message": "Don\u0027t you want to execute those only in case of failure or at least Execute and ignore the error? What if dumping policy will fail the testcase (like ACL)?",
+      "range": {
+        "startLine": 720,
+        "startChar": 0,
+        "endLine": 722,
+        "endChar": 44
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35184bf0_9b2a5d98",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-01-17T10:47:31Z",
+      "side": 1,
+      "message": "This will ruin DPDK tests and Ligato tests which does not have VPP installed.\n\nUse:\nRun Keyword If | ${ret}\u003d\u003d${False} |",
+      "range": {
+        "startLine": 487,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 50
+      },
+      "revId": "799b2176fd4efcb545441a63107b40e6d99910b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
