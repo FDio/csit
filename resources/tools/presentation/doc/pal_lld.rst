@@ -1139,43 +1139,62 @@ Data analytics part implements:
 
  - methods to compute statistical data from the filtered input data.
  - trending.
- - etc.
 
+Throughput Speedup Analysis - Multi-Core with Multi-Threading
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-Throughput Speedup Analysis - Multi-Core Speedup Ratio
-''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-Throughput Speedup Analysis (TSA) calculates a speedup factor for 1, 2, 4 cores
-which is defined as:
+Throughput Speedup Analysis (TSA) calculates throughput speedup ratios
+for tested 1-, 2- and 4-core multi-threaded VPP configurations using the
+following formula:
 
 ::
 
-                        throughput
-    speedup factor = -----------------
-                     1-core-throughput
+                                N_core_throughput
+    N_core_throughput_speedup = -----------------
+                                1_core_throughput
 
-A bar plot displays the speedup factor (normalized throughput for 64B/78B on 1
-core). The plot displays number of cores on the X-axis and the speedup factor on
-the Y-axis.
+Multi-core throughput speedup ratios are plotted in grouped bar graphs
+for throughput tests with 64B/78B frame size, with number of cores on
+X-axis and speedup ratio on Y-axis.
 
-For better comparision, there can be displayed more than one set of data in a
-plot. So, in general:
+For better comparison multiple test results' data sets are plotted per
+each graph:
 
     - graph type: grouped bars;
     - graph X-axis: (testcase index, number of cores);
     - graph Y-axis: speedup factor.
 
-The data displayed is a subset of existing performance tests with 1core, 2core,
-4core.
+Subset of existing performance tests is covered by TSA graphs.
 
-:TODO: Specify the data model for TSA.
+**Model for TSA:**
+
+::
+
+    -
+      type: "plot"
+      title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+      algorithm: "plot_throughput_speedup_analysis"
+      output-file-type: ".html"
+      output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-l2-tsa-ndrdisc"
+      data:
+        "plot-throughput-speedup-analysis"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'NDRDISC' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      parameters:
+      - "throughput"
+      - "parent"
+      - "tags"
+      layout:
+        title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+        layout:
+          "plot-throughput-speedup-analysis"
 
 
 Advanced data analytics
 ```````````````````````
 
-As the next steps, advanced data analytics (ADA) will be implemented using
-machine learning (ML) and artificial intelligence (AI).
+In the future advanced data analytics (ADA) will be added to analyze the
+telemetry data collected from SUT telemetry sources and correlate it to
+performance test results.
 
 :TODO:
 
