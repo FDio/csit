@@ -7,5 +7,6 @@ VPP Performance Tests
     csit_release_notes
     packet_throughput_graphs/index
     packet_latency_graphs/index
+    throughput_speedup_multi_core
     test_environment
     documentation/index
