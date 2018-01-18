@@ -15,8 +15,7 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
+TOPOLOGIES="topologies/available/lf_testbed2.yaml \
             topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -51,13 +50,17 @@ then
         VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
         VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
         VPP_CLASSIFIER="-deb"
-        # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dbg_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dev_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-lib_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-plugins_18.01-1~g369b88c~b2_amd64.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
@@ -350,6 +353,33 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include ndrdiscAND1t1cAND64b \
+              --include ndrdiscAND2t2cAND64b \
+              --include pdrdiscAND1t1cAND64b \
+              --include pdrdiscAND2t2cAND64b \
+              --include ndrdiscAND1t1cAND78b \
+              --include ndrdiscAND2t2cAND78b \
+              --include pdrdiscAND1t1cAND78b \
+              --include pdrdiscAND2t2cAND78b \
+              --include ndrdiscAND4t4cAND64bANDl2bdmaclrnANDbase \
+              --include ndrdiscAND4t4cAND64bANDl2xcfwdANDbase \
+              --include ndrdiscAND4t4cAND64bANDip4fwdANDbase \
+              --include ndrdiscAND4t4cAND78bANDip6fwdANDbase \
+              --include ndrdiscAND4t4cAND64bANDl2bdmaclrnANDscale \
+              --include ndrdiscAND4t4cAND64bANDip4fwdANDscale \
+              --include ndrdiscAND4t4cAND78bANDip6fwdANDscale \
+              --include pdrdiscAND4t4cAND64bANDl2bdmaclrnANDbase \
+              --include pdrdiscAND4t4cAND64bANDl2xcfwdANDbase \
+              --include pdrdiscAND4t4cAND64bANDip4fwdANDbase \
+              --include pdrdiscAND4t4cAND78bANDip6fwdANDbase \
+              --include pdrdiscAND4t4cAND64bANDl2bdmaclrnANDscale \
+              --include pdrdiscAND4t4cAND64bANDip4fwdANDscale \
+              --include pdrdiscAND4t4cAND78bANDip6fwdANDscale \
+              --exclude ACL1 \
+              --exclude ACL10 \
+              --exclude 100_FLOWS \
+              --exclude 100k_FLOWS \
+              --exclude HC_PERF \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
