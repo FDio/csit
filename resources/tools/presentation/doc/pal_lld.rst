@@ -1168,7 +1168,27 @@ plot. So, in general:
 The data displayed is a subset of existing performance tests with 1core, 2core,
 4core.
 
-:TODO: Specify the data model for TSA.
+**Model for TSA:**
+
+::
+
+    -
+      type: "plot"
+      title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+      algorithm: "plot_throughput_speedup_analysis"
+      output-file-type: ".html"
+      output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-l2-tsa-ndrdisc"
+      data:
+        "plot-throughput-speedup-analysis"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'NDRDISC' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      parameters:
+      - "throughput"
+      - "parent"
+      - "tags"
+      layout:
+        title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+        layout:
+          "plot-throughput-speedup-analysis"
 
 
 Advanced data analytics
