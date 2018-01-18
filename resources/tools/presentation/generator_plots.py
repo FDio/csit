@@ -261,12 +261,15 @@ def plot_throughput_speedup_analysis(plot, input_data):
                 except (KeyError, TypeError):
                     pass
 
+    if not throughput:
+        logging.warning("No data for the plot '{}'".
+                        format(plot.get("title", "")))
+        return
+
     for test_name, test_vals in throughput.items():
         for key, test_val in test_vals.items():
             if test_val:
                 throughput[test_name][key] = sum(test_val) / len(test_val)
-
-    print(throughput)
 
     names = ['1 core', '2 cores', '4 cores']
     x_vals = list()
@@ -276,7 +279,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
 
     for test_name, test_vals in throughput.items():
         if test_vals["1"]:
-            x_vals.append("-".join(test_name.split('-')[:-1]))
+            x_vals.append("-".join(test_name.split('-')[1:-1]))
             y_vals_1.append(1)
             if test_vals["2"]:
                 y_vals_2.append(
