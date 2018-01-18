@@ -854,6 +854,8 @@ class InputData(object):
             logging.error("   Missing mandatory parameter in the element "
                           "specification.", err)
             return None
+        except AttributeError:
+            return None
         except SyntaxError:
             logging.error("   The filter '{0}' is not correct. Check if all "
                           "tags are enclosed by apostrophes.".format(cond))
