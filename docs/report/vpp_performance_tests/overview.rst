@@ -341,7 +341,7 @@ This test topology is equivalent to existing tests with vhost-user and
 VMs as described earlier in :ref:`tested_physical_topologies`.
 
 More information about CSIT LXC and Docker Container setup and control
-is available in :ref:`containter_orchestration_in_csit`.
+is available in :ref:`container_orchestration_in_csit`.
 
 Methodology: Container Topologies Orchestrated by K8s
 -----------------------------------------------------
@@ -366,7 +366,7 @@ tests with vhost-user and VMs as described earlier in
 :ref:`tested_physical_topologies`.
 
 More information about CSIT Container Topologies Orchestrated by K8s is
-available in :ref:`containter_orchestration_in_csit`.
+available in :ref:`container_orchestration_in_csit`.
 
 Methodology: IPSec with Intel QAT HW cards
 ------------------------------------------
