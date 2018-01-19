@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1b2b6ba_73c48f54",
+        "filename": "resources/tools/presentation/doc/pal_lld.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1157,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-01-19T13:27:05Z",
+      "side": 1,
+      "message": "Will it always be 64B? There are IPv6 tests where 78B packet size are used instead of 64B.",
+      "range": {
+        "startLine": 1157,
+        "startChar": 66,
+        "endLine": 1157,
+        "endChar": 69
+      },
+      "revId": "5ec69a779d5351ccb6e2c5121c6a52bf3384331f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
