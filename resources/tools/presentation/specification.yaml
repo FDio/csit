@@ -44,6 +44,8 @@
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
     DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
     DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
+    DIR[DTR,PERF,VPP,IMPACT,SPECTRE]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_impact_spectre"
+    DIR[DTR,PERF,VPP,IMPACT,MELTDOWN]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
     # Detailed test configurations
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
@@ -87,6 +89,21 @@
 -
   type: "configuration"
   data-sets:
+    vpp-meltdown-impact:
+# TODO: specify data sources
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+    plot-throughput-speedup-analysis:
+# TODO: Add the data sources
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+    vpp-spectre-impact:
+# TODO: specify data sources
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
     plot-throughput-speedup-analysis:
 # TODO: Add the data sources
 #      csit-vpp-perf-1801-all:
@@ -428,6 +445,70 @@
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
+
+-
+  type: "table"
+  title: "Performance Impact of Meltdown Patches"
+  algorithm: "table_performance_comparision"
+  output-file-ext: ".csv"
+# TODO: specify dir
+  output-file: "{DIR[DTR,PERF,VPP,IMPACT,MELTDOWN]}/meltdown-impact"
+  reference:
+    title: "No Meltdown"
+# TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+  compare:
+    title: "Meltdown Patches Applied"
+# TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+  data:
+    "vpp-meltdown-impact"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
+
+-
+  type: "table"
+  title: "Performance Impact of Spectre Patches"
+  algorithm: "table_performance_comparision"
+  output-file-ext: ".csv"
+# TODO: specify dir
+  output-file: "{DIR[DTR,PERF,VPP,IMPACT,SPECTRE]}/spectre-impact"
+  reference:
+    title: "No Spectre"
+# TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+  compare:
+    title: "Spectre Patches Applied"
+# TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+  data:
+    "vpp-spectre-impact"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
 
 -
   type: "table"
