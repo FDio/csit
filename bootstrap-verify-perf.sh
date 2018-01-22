@@ -15,9 +15,10 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+#TOPOLOGIES="topologies/available/lf_testbed1.yaml \
+#            topologies/available/lf_testbed2.yaml \
+#            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed2.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -52,12 +53,17 @@ then
         VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
         VPP_CLASSIFIER="-deb"
         # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dbg_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dev_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-lib_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-plugins_18.01-1~g369b88c~b2_amd64.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
@@ -349,7 +355,9 @@ case "$TEST_TAG" in
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.vpp.perf.vm_vhost" \
+              --exclude PDRCHK \
+              --exclude NDRCHK \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
