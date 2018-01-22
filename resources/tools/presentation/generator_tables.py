@@ -16,6 +16,9 @@
 
 
 import logging
+import csv
+import prettytable
+
 from string import replace
 
 from errors import PresentationError
@@ -64,7 +67,6 @@ def table_details(table, input_data):
 
     # Generate the data for the table according to the model in the table
     # specification
-
     job = table["data"].keys()[0]
     build = str(table["data"][job][0])
     try:
@@ -331,3 +333,174 @@ def _read_csv_template(file_name):
         return tmpl_data
     except IOError as err:
         raise PresentationError(str(err), level="ERROR")
+
+
+def table_performance_comparision(table, input_data):
+    """Generate the table(s) with algorithm: table_performance_comparision
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    data = input_data.filter_data(table)
+
+    # Prepare the header of the tables
+    try:
+        header = ["Test case",
+                  "{0} Throughput [Mpps]".format(table["reference"]["title"]),
+                  "{0} stdev [Mpps]".format(table["reference"]["title"]),
+                  "{0} Throughput [Mpps]".format(table["compare"]["title"]),
+                  "{0} stdev [Mpps]".format(table["compare"]["title"]),
+                  "Change [%]"]
+        header_str = ",".join(header) + "\n"
+    except (AttributeError, KeyError) as err:
+        logging.error("The model is invalid, missing parameter: {0}".
+                      format(err))
+        return
+
+    # Prepare data to the table:
+    tbl_dict = dict()
+    for job, builds in table["reference"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                if tbl_dict.get(tst_name, None) is None:
+                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
+                                            "-".join(tst_data["name"].
+                                                     split("-")[1:]))
+                    tbl_dict[tst_name] = {"name": name,
+                                          "ref-data": list(),
+                                          "cmp-data": list()}
+                tbl_dict[tst_name]["ref-data"].\
+                    append(tst_data["throughput"]["value"])
+
+    for job, builds in table["compare"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                tbl_dict[tst_name]["cmp-data"].\
+                    append(tst_data["throughput"]["value"])
+
+    tbl_lst = list()
+    for tst_name in tbl_dict.keys():
+        item = [tbl_dict[tst_name]["name"], ]
+        if tbl_dict[tst_name]["ref-data"]:
+            item.append(round(mean(tbl_dict[tst_name]["ref-data"]) / 1000000,
+                              2))
+            item.append(round(stdev(tbl_dict[tst_name]["ref-data"]) / 1000000,
+                              2))
+        else:
+            item.extend([None, None])
+        if tbl_dict[tst_name]["cmp-data"]:
+            item.append(round(mean(tbl_dict[tst_name]["cmp-data"]) / 1000000,
+                              2))
+            item.append(round(stdev(tbl_dict[tst_name]["cmp-data"]) / 1000000,
+                              2))
+        else:
+            item.extend([None, None])
+        if item[1] is not None and item[3] is not None:
+            item.append(int(relative_change(float(item[1]), float(item[3]))))
+        if len(item) == 6:
+            tbl_lst.append(item)
+
+    # Sort the table according to the relative change
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Generate tables:
+    # All tests in csv:
+    tbl_names = ["{0}-ndr-1t1c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"]),
+                 "{0}-ndr-2t2c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"]),
+                 "{0}-ndr-4t4c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"]),
+                 "{0}-pdr-1t1c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"]),
+                 "{0}-pdr-2t2c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"]),
+                 "{0}-pdr-4t4c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"])
+                 ]
+    for file_name in tbl_names:
+        with open(file_name, "w") as file_handler:
+            file_handler.write(header_str)
+            for test in tbl_lst:
+                if (file_name.split("-")[-3] in test[0] and    # NDR vs PDR
+                        file_name.split("-")[-2] in test[0]):  # cores
+                    test[0] = "-".join(test[0].split("-")[:-1])
+                    file_handler.write(",".join([str(item) for item in test]) +
+                                       "\n")
+
+    # All tests in txt:
+    tbl_names_txt = ["{0}-ndr-1t1c-full.txt".format(table["output-file"]),
+                     "{0}-ndr-2t2c-full.txt".format(table["output-file"]),
+                     "{0}-ndr-4t4c-full.txt".format(table["output-file"]),
+                     "{0}-pdr-1t1c-full.txt".format(table["output-file"]),
+                     "{0}-pdr-2t2c-full.txt".format(table["output-file"]),
+                     "{0}-pdr-4t4c-full.txt".format(table["output-file"])
+                     ]
+
+    for i, txt_name in enumerate(tbl_names_txt):
+        txt_table = None
+        with open(tbl_names[i], 'rb') as csv_file:
+            csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+            for row in csv_content:
+                if txt_table is None:
+                    txt_table = prettytable.PrettyTable(row)
+                else:
+                    txt_table.add_row(row)
+        with open(txt_name, "w") as txt_file:
+            txt_file.write(str(txt_table))
+
+    # Selected tests in csv:
+    input_file = "{0}-ndr-1t1c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"])
+    with open(input_file, "r") as in_file:
+        lines = list()
+        for line in in_file:
+            lines.append(line)
+
+    output_file = "{0}-ndr-1t1c-top{1}".format(table["output-file"],
+                                               table["output-file-ext"])
+    with open(output_file, "w") as out_file:
+        out_file.write(header_str)
+        for i, line in enumerate(lines[1:]):
+            if i == table["nr-of-tests-shown"]:
+                break
+            out_file.write(line)
+
+    output_file = "{0}-ndr-1t1c-bottom{1}".format(table["output-file"],
+                                                  table["output-file-ext"])
+    with open(output_file, "w") as out_file:
+        out_file.write(header_str)
+        for i, line in enumerate(lines[-1:0:-1]):
+            if i == table["nr-of-tests-shown"]:
+                break
+            out_file.write(line)
+
+    input_file = "{0}-pdr-1t1c-full{1}".format(table["output-file"],
+                                               table["output-file-ext"])
+    with open(input_file, "r") as in_file:
+        lines = list()
+        for line in in_file:
+            lines.append(line)
+
+    output_file = "{0}-pdr-1t1c-top{1}".format(table["output-file"],
+                                               table["output-file-ext"])
+    with open(output_file, "w") as out_file:
+        out_file.write(header_str)
+        for i, line in enumerate(lines[1:]):
+            if i == table["nr-of-tests-shown"]:
+                break
+            out_file.write(line)
+
+    output_file = "{0}-pdr-1t1c-bottom{1}".format(table["output-file"],
+                                                  table["output-file-ext"])
+    with open(output_file, "w") as out_file:
+        out_file.write(header_str)
+        for i, line in enumerate(lines[-1:0:-1]):
+            if i == table["nr-of-tests-shown"]:
+                break
+            out_file.write(line)
