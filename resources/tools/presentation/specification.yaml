@@ -87,6 +87,10 @@
 -
   type: "configuration"
   data-sets:
+    vpp-perf-comparision:
+      csit-vpp-perf-1801-all:
+      - 1
+      - 2
     plot-throughput-speedup-analysis:
 # TODO: Add the data sources
 #      csit-vpp-perf-1801-all:
@@ -428,6 +432,36 @@
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
+
+-
+  type: "table"
+  title: "Performance comparision"
+  algorithm: "table_performance_comparision"
+  output-file-ext: ".csv"
+# TODO: specify dir
+  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/vpp_performance_comparision"
+  reference:
+    title: "csit-vpp-perf-1801-all - 1"
+    data:
+      csit-vpp-perf-1801-all:
+      - 1
+      - 2
+  compare:
+    title: "csit-vpp-perf-1801-all - 2"
+    data:
+      csit-vpp-perf-1801-all:
+      - 1
+      - 2
+  data:
+    "vpp-perf-comparision"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
 
 -
   type: "table"

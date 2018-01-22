@@ -1189,6 +1189,80 @@ Subset of existing performance tests is covered by TSA graphs.
           "plot-throughput-speedup-analysis"
 
 
+Comparision of two sets of runs of the same tests set
+'''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+This algorithm makes possible to compare two sets of runs of the same tests set.
+It is useful e.g. if you want to verify the performance after environment
+changes.
+
+The set of tests runs should include more than one tests run e.g. 10, to get
+valid statistical data.
+
+The results are presented as a table with specified number of the best and the
+worst relative changes. The table columns are:
+
+    - the name of the test,
+    - the throughput mean values of the reference set,
+    - the throughput standard deviation  of the reference set,
+    - the throughput mean values of the set to compare,
+    - the throughput standard deviation  of the set to compare and
+    - the relative change of the mean values.
+
+**The model**
+
+The model specifies:
+
+    - type: "table" - says that this section defines a table.
+    - title: Title of the table.
+    - algorithm: Algorithm which is used to generate the table. The other
+      parameters in this section must provide all information needed by the used
+      algorithm.
+    - output-file-ext: extension of the output file.
+    - output-file: file which the table will be written to.
+    - reference - the builds which are used as the reference for comparision.
+    - compare - the builds which are compared to the reference.
+    - data: Specify the jobs and builds which data is used to generate the
+      table.
+    - filter: filter based on tags applied on the input data, if "template" is
+      used, filtering is based on the template.
+    - parameters: Only these parameters will be put to the output data
+      structure.
+    - nr-of-tests-shown: Number of the best and the worst tests presented in the
+      table. Use 0 (zero) to present all tests.
+
+*Example:*
+
+::
+
+    -
+      type: "table"
+      title: "Performance comparision"
+      algorithm: "table_performance_comparision"
+      output-file-ext: ".csv"
+      output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/vpp_performance_comparision"
+      reference:
+        title: "csit-vpp-perf-1801-all - 1"
+        data:
+          csit-vpp-perf-1801-all:
+          - 1
+          - 2
+      compare:
+        title: "csit-vpp-perf-1801-all - 2"
+        data:
+          csit-vpp-perf-1801-all:
+          - 1
+          - 2
+      data:
+        "vpp-perf-comparision"
+      filter: "all"
+      parameters:
+      - "name"
+      - "parent"
+      - "throughput"
+      nr-of-tests-shown: 20
+
+
 Advanced data analytics
 ```````````````````````
 
