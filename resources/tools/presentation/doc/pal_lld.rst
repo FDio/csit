@@ -1,4 +1,4 @@
-Presentation and Analytics Layer
+6Presentation and Analytics Layer
 ================================
 
 Overview
@@ -1169,6 +1169,71 @@ The data displayed is a subset of existing performance tests with 1core, 2core,
 4core.
 
 :TODO: Specify the data model for TSA.
+
+
+Comparison between two sets of test executions of the same test set
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+This algorithm enables comparison between the two sets of test
+executions of the same test set. It is used to quantify performance
+changes between the sets of complete test executions after test
+environment changes e.g. Operating System upgrades/patches, Hardware
+changes.
+
+It is assumed that each set of test executions includes  multiple runs
+of the same tests, 10 or more, to verify test results repeatibility and
+to yield statistically meaningful results data.
+
+Comparison results are presented in a table with a specified number of
+the best and the worst relative changes between the two sets. Following table
+columns are defined:
+
+    - name of the test;
+    - throughput mean values of the reference set;
+    - throughput standard deviation  of the reference set;
+    - throughput mean values of the set to compare;
+    - throughput standard deviation  of the set to compare;
+    - relative change of the mean values.
+
+**The model**
+
+The model specifies:
+
+    - type: "table" - means this section defines a table'
+    - title: Title of the table.
+    - algorithm: Algorithm which is used to generate the table. The other
+      parameters in this section must provide all information needed by the used
+      algorithm.
+    - output-file-ext: Extension of the output file.
+    - output-file: File which the table will be written to.
+    - data: Specify the sources, jobs and builds, providing data for generating the
+      table.
+    - filter: Filter based on tags applied on the input data, if "template" is
+      used, filtering is based on the template.
+    - parameters: Only these parameters will be put to the output data
+      structure.
+    - nr-of-tests-shown: Number of the best and the worst tests presented in the
+      table. Use 0 (zero) to present all tests.
+
+*Example:*
+
+::
+
+    -
+      type: "table"
+      title: "Performance comparision"
+      algorithm: "table_performance_comparision"
+      output-file-ext: ".csv"
+      output-file: "dir/vpp_performance_comparision"
+      data:
+        "vpp-perf-comparision"
+      filter: "all"
+      parameters:
+      - "name"
+      - "parent"
+      - "throughput"
+      - "tags"
+      nr-of-tests-shown: 20
 
 
 Advanced data analytics
