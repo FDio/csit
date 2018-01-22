@@ -430,6 +430,25 @@
 
 -
   type: "table"
+  title: "Performance comparision"
+  algorithm: "table_performance_comparision"
+  output-file-ext: ".csv"
+# TODO: specify dir
+  output-file: "dir/vpp_performance_comparision"
+  data:
+    "vpp-perf-comparision"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags" # might not needed
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
+
+-
+  type: "table"
   title: "Performance improvements"
   algorithm: "table_performance_improvements"
   template: "{DIR[DTR,PERF,VPP,IMPRV]}/tmpl_performance_improvements.csv"
