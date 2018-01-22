@@ -36,3 +36,4 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.6.img
+| | Set Global Variable | ${pkt_trace} | ${False}
