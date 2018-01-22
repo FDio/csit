@@ -45,3 +45,4 @@
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
+| | Set Global Variable | ${pkt_trace} | ${False}
