@@ -129,7 +129,7 @@ def main():
 
                 # Remove <none> images from Docker.
                 cmd = "docker rmi $(sudo docker images -f 'dangling=true' -q)"
-                stdout = ssh_no_error(ssh, cmd, sudo=True)
+                stdout = ssh_ignore_error(ssh, cmd, sudo=True)
                 print("###TI {}".format(stdout))
 
 
