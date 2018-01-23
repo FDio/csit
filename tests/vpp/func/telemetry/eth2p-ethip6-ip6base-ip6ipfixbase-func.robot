@@ -48,6 +48,7 @@
 
 *** Test Cases ***
 | TC01: DUT reports packet flow for traffic by source address
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Cfg] On DUT1 configure IPFIX with TG interface
 | | ... | address as collector and add classify session with TG source address.
