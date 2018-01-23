@@ -22,17 +22,17 @@ Changes in CSIT |release|
    - **VPP TCP/IP stack**
 
      - Added tests for VPP TCP/IP stack using VPP built-in HTTP server.
-       WRK traffic generator is used as a client-side.
+       WRK traffic generator is used as a client-side;
 
    - **SRv6 tests**
 
      - Initial SRv6 tests verifying performance of SRv6 encapsulation and
-       decapsulation and SID lookups.
+       decapsulation and SID lookups;
 
    - **IPSecSW tests**
 
      - SW computed IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in
-       combination with IPv4 routed-forwarding.
+       combination with IPv4 routed-forwarding;
 
 #. Presentation and Analytics Layer
 
@@ -44,9 +44,9 @@ Changes in CSIT |release|
 
      - **Framework optimizations**
 
-       - Ability to run CSIT framework on ARM architecture.
+       - Ability to run CSIT framework on ARM architecture;
 
-       - Overall stability improvements.
+       - Overall stability improvements;
 
 Performance Improvements
 ------------------------

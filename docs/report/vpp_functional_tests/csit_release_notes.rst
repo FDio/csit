@@ -6,18 +6,12 @@ Changes in CSIT |release|
 
 #. VPP functional test framework changes:
 
-   - Upgrade of tb4-virl3 host;
-
-     - OS version to Ubuntu 16.04.02;
-
-     - VIRL version to Mitaka;
+   - improved stability of tests with nestedVM/QEMU;
 
 #. Code updates and optimizations in CSIT functional framework:
 
-   - Traffic scripts adapted to ignore received unexpected ICMPv6 Neighbor
-     Discovery - Neighbor Solicitation packets;
-
-   - Refactor of L1 robot keywords - Python libraries;
+   - IPSecSW tests - SW computed IPSec encryption with CBC-SHA1 and CBC-SHA
+     ciphers, in combination with IPv4 routed-forwarding;
 
 Known Issues
 ------------
@@ -49,7 +43,4 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 | 5 | Vhost-user: QEMU reconnect does not work.       | CSIT-565 | Using QEMU 2.5.0 that does not support vhost-user    |
 |   |                                                 |          | reconnect. It requires moving CSIT VIRL environment  |
 |   |                                                 |          | to QEMU 2.7.0.                                       |
-+---+-------------------------------------------------+----------+------------------------------------------------------+
-| 6 | IPSEC: Tests cover old crypto code path         | CSIT-733 | There are used default conf settings so IPSEC tests  |
-|   |                                                 |          | use old security code not the new Crypto SW code.    |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
