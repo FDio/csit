@@ -6,6 +6,7 @@ VIRL testbed infrastructure consists of three VIRL hosts:
 
 - All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @2.30GHz,
   18c, 512GB RAM)
+
 - tb4-virl1:
 
   - Status: Production
@@ -22,10 +23,10 @@ VIRL testbed infrastructure consists of three VIRL hosts:
 
 - tb4-virl3:
 
-  - Status: Production
-  - OS: Ubuntu 14.04.3
-  - STD server version 0.10.24.7
-  - UWM server version 0.10.24.7
+  - Status: Testing
+  - OS: Ubuntu 16.04.2
+  - STD server version 0.10.32.19
+  - UWM server version 0.10.32.19
 
 Whenever a patch is submitted to gerrit for review, parallel VIRL simulations
 are started to reduce the time of execution of all functional tests. The number

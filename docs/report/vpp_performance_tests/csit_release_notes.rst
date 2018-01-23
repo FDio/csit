@@ -16,16 +16,18 @@ Changes in CSIT |release|
    - **VPP TCP/IP stack**
 
      - Added tests with VPP builtin TCP based HTTP server. WRK traffic generator
-       is used.
+       is used;
 
    - **SRv6 tests**
 
-     - [placeholder]
+     - Added tests with Segment Routing over IPv6 dataplane with one routing
+       segment (Segment Routing Header not inserted) and two routing segments
+       (Segment Routing Header inserted);
 
    - **IPSecSW tests**
 
      - SW computed IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in
-       combination with IPv4 routed-forwarding.
+       combination with IPv4 routed-forwarding;
 
 #. Presentation and Analytics Layer
 
@@ -37,9 +39,9 @@ Changes in CSIT |release|
 
      - **Framework optimizations**
 
-       - Ability to run CSIT framework on ARM architecture.
+       - Ability to run CSIT framework on ARM architecture;
 
-       - Overall stability improvements.
+       - Overall stability improvements;
 
 Performance Improvements
 ------------------------
