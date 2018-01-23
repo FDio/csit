@@ -73,7 +73,6 @@ from scapy.layers.l2 import Ether, ARP
 
 # Enable libpcap's L2listen
 conf.use_pcap = True
-import scapy.arch.pcapdnet  # pylint: disable=C0413, unused-import
 
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
            'auto_pad', 'checksum_equal']
