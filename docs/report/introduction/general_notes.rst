@@ -42,7 +42,7 @@ is listed separately, as follows:
 
 #. **DPDK Performance** - VPP is using DPDK code to control and drive
    the NICs and physical interfaces. Tests are used as a baseline to
-   profile the DPDK sub-system of VPP. DPDK performance tests executed in
+   profile performance of the DPDK sub-system. DPDK tests are executed in
    physical FD.io testbeds, focusing on Testpmd/L3FWD data plane performance for
    Phy-to-Phy (NIC-to-NIC). Tests cover a range of NICs, 10GE and 40GE
    interfaces, range of multi-thread and multi-core configurations.

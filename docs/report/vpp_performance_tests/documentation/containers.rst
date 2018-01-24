@@ -140,8 +140,8 @@ a range of virtual networking topologies.
   of functionality is better supported in LXC 2.1 but can be done is current
   version as well.
 
-- CSIT code is currently using cgroup control the range of CPU cores the
-  container must run on. VPP thread pinning defined vpp startup.conf.
+- CSIT code is currently using cgroup to control the range of CPU cores the
+  LXC container runs on. VPP thread pinning is defined vpp startup.conf.
 
 Docker
 ~~~~~~
@@ -176,10 +176,6 @@ K8s pod definitions including compute resource allocation is provided in
 CSIT uses K8s and its infrastructure components like etcd to control all
 phases of container based virtualized network topologies.
 
-**Open Questions**
-
-- Clarify the functions provided by Contiv and Calico in Ligato system?
-
 Ligato
 ~~~~~~
 
@@ -188,8 +184,6 @@ tools for orchestrating container networking. Ligato integrates with FD.io VPP
 using goVPP [govpp]_ and vpp-agent [vpp-agent]_.
 
 **Known Issues**
-
-**Open Questions**
 
 - Currently using a separate LF Jenkins job for building csit-centric
   prod_vpp_agent docker images vs. dockerhub/ligato ones.
@@ -523,11 +517,16 @@ Following container networking topologies are tested in CSIT |release|:
 
 - Kubernetes/Ligato topologies:
 
-  - eth-1drcl2xcbase-eth-2memif-1drcl2xc.
-  - eth-1drcl2xcbase-eth-4memif-2drcl2xc.
-  - eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc.
-  - eth-1drcl2bdbasemaclrn-eth-4memif-2drcl2xc.
-
+  - eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral
+  - eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz
+  - eth-1drcl2bdbasemaclrn-eth-2memif-4drcl2xc-1horiz
+  - eth-1drcl2bdbasemaclrn-eth-4memif-2drcl2xc-1chain
+  - eth-1drcl2bdbasemaclrn-eth-8memif-4drcl2xc-1chain
+  - eth-1drcl2xcbase-eth-2memif-1drcl2xc-1paral
+  - eth-1drcl2xcbase-eth-2memif-2drcl2xc-1horiz
+  - eth-1drcl2xcbase-eth-2memif-4drcl2xc-1horiz
+  - eth-1drcl2xcbase-eth-4memif-2drcl2xc-1chain
+  - eth-1drcl2xcbase-eth-8memif-4drcl2xc-1chain
 
 References
 ----------

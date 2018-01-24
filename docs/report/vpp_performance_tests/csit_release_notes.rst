@@ -8,19 +8,26 @@ Changes in CSIT |release|
 
    - **Container Topologies Orchestrated by K8s with VPP memif tests**
 
-     - Added tests with VPP in L2 Cross-Connect and Bridge-Domain configurations
-       connecting over memif virtual interfaces VPPs running in Docker
-       containers, with service chain topologies orchestrated by Kubernetes.
-       Chained, horizontal and standalone linked topologies added;
+   - Added tests with VPP in L2 Cross-Connect and Bridge-Domain
+     configurations containers, with service chain topologies orchestrated by
+     Kubernetes. Added following forwarding topologies: i) "Parallel" with
+     packets flowing from NIC via VPP to container and back to VPP and NIC;
+     ii) "Chained" a.k.a. "Snake" with packets flowing via VPP to container,
+     back to VPP, to next container, back to VPP and so on until the last
+     container in chain, then back to VPP and NIC; iii) "Horizontal" with
+     packets flowing via VPP to container, then via "horizontal" memif to
+     next container, and so on until the last container, then back to VPP and
+     NIC;.
 
    - **VPP TCP/IP stack**
 
-     - Added tests with VPP builtin TCP based HTTP server. WRK traffic generator
-       is used.
+     - Added tests for VPP TCP/IP stack using VPP built-in HTTP server.
+       WRK traffic generator is used as a client-side.
 
    - **SRv6 tests**
 
-     - [placeholder]
+     - Initial SRv6 tests verifying performance of SRv6 encapsulation and
+       decapsulation and SID lookups.
 
    - **IPSecSW tests**
 
@@ -29,9 +36,9 @@ Changes in CSIT |release|
 
 #. Presentation and Analytics Layer
 
-     - Added multi-core scale-up analysis into Presentation and Analytics Layer
-       (PAL) for automated CSIT test results analysis;
-
+     - Added throughput speedup analysis for multi-core and multi-thread
+       VPP tests into Presentation and Analytics Layer (PAL) for automated
+       CSIT test results analysis;
 
 #. Other improvements
 
