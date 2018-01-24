@@ -162,7 +162,7 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     number of users and ports per user.
   - **Container memif connections** - VPP memif virtual interface tests to
     interconnect VPP instances with L2XC and L2BD.
-  - **Container Orchestrated Topologies** - Container topologies connected over
+  - **Container K8s Orchestrated Topologies** - Container topologies connected over
     the memif virtual interface.
 
 - 2port40GE XL710 Intel
