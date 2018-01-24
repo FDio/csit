@@ -423,6 +423,10 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
+              --include ndrdiscAND1t1cAND64b \
+              --include ndrdiscAND2t2cAND64b \
+              --include pdrdiscAND1t1cAND64b \
+              --include pdrdiscAND2t2cAND64b \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
