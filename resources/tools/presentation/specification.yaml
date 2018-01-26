@@ -44,8 +44,6 @@
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
     DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
     DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
-    DIR[DTR,PERF,VPP,IMPACT,SPECTRE]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_impact_spectre"
-    DIR[DTR,PERF,VPP,IMPACT,MELTDOWN]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_impact_meltdown"
 
     # Detailed test configurations
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
