@@ -164,6 +164,7 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     interconnect VPP instances with L2XC and L2BD.
   - **Container K8s Orchestrated Topologies** - Container topologies connected over
     the memif virtual interface.
+  - **SRv6** - Segment Routing IPv6 tests.
 
 - 2port40GE XL710 Intel
 
@@ -181,8 +182,8 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     combination with IPv4 routed-forwarding. Intel QAT HW acceleration.
   - **IPSec+LISP** - IPSec encryption with CBC-SHA1 ciphers, in combination
     with LISP-GPE overlay tunneling for IPv4-over-IPv4.
-  - **VPP TCP/IP stack** - VPP builtin TCP based HTTP server. WRK traffic
-    generator is used.
+  - **VPP TCP/IP stack** - tests of VPP TCP/IP stack used with VPP built-in HTTP
+    server.
 
 - 2port10GE X710 Intel
 
@@ -385,7 +386,7 @@ Currently CSIT |release| implements following IPSec test cases:
 Methodology: TRex Traffic Generator Usage
 -----------------------------------------
 
-The `TRex traffic generator <https://wiki.fd.io/view/TRex>`_ is used for all
+`TRex traffic generator <https://wiki.fd.io/view/TRex>`_ is used for all
 CSIT performance tests. TRex stateless mode is used to measure NDR and PDR
 throughputs using binary search (NDR and PDR discovery tests) and for quick
 checks of DUT performance against the reference NDRs (NDR check tests) for
@@ -426,3 +427,42 @@ the statistics are ignored.
 If measurement of latency is requested, two more packet streams are created (one
 for each direction) with TRex flow_stats parameter set to STLFlowLatencyStats. In
 that case, returned statistics will also include min/avg/max latency values.
+
+Methodology: TCP/IP tests with WRK tool
+---------------------------------------
+
+`WRK HTTP benchmarking tool <https://github.com/wg/wrk>`_ is used for
+experimental TCP/IP and HTTP tests of VPP TCP/IP stack and built-in
+static HTTP server. WRK has been chosen as it is capable of generating
+significant TCP/IP and HTTP loads by scaling number of threads across
+multi-core processors.
+
+This in turn enables quite high scale benchmarking of the main TCP/IP
+and HTTP service including HTTP TCP/IP Connections-Per-Second (CPS),
+HTTP Requests-Per-Second and HTTP Bandwidth Throughput.
+
+The initial tests are designed as follows:
+
+- HTTP and TCP/IP Connections-Per-Second (CPS)
+
+  - WRK configured to use 8 threads across 8 cores, 1 thread per core.
+  - Maximum of 50 concurrent connections across all WRK threads.
+  - Timeout for server responses set to 5 seconds.
+  - Test duration is 30 seconds.
+  - Expected HTTP test sequence:
+
+    - Single HTTP GET Request sent per open connection.
+    - Connection close after valid HTTP reply.
+    - Resulting flow sequence - 8 packets: >S,<S-A,>A,>Req,<Rep,>F,<F,> A.
+
+- HTTP Requests-Per-Second
+
+  - WRK configured to use 8 threads across 8 cores, 1 thread per core.
+  - Maximum of 50 concurrent connections across all WRK threads.
+  - Timeout for server responses set to 5 seconds.
+  - Test duration is 30 seconds.
+  - Expected HTTP test sequence:
+
+    - Multiple HTTP GET Requests sent in sequence per open connection.
+    - Connection close after set test duration time.
+    - Resulting flow sequence: >S,<S-A,>A,>Req[1],<Rep[1],..,>Req[n],<Rep[n],>F,<F,>A.
