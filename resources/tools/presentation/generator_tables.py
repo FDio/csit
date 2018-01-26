@@ -378,14 +378,18 @@ def table_performance_comparison(table, input_data):
                     tbl_dict[tst_name]["ref-data"].\
                         append(tst_data["throughput"]["value"])
                 except TypeError as err:
-                    logging.warning(err)
-                    logging.warning(tst_data)
+                    pass  # No data in output.xml for this test
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
-                tbl_dict[tst_name]["cmp-data"].\
-                    append(tst_data["throughput"]["value"])
+                try:
+                    tbl_dict[tst_name]["cmp-data"].\
+                        append(tst_data["throughput"]["value"])
+                except KeyError:
+                    pass
+                except TypeError:
+                    tbl_dict.pop(tst_name, None)
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
