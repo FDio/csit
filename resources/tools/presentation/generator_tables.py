@@ -374,8 +374,12 @@ def table_performance_comparison(table, input_data):
                     tbl_dict[tst_name] = {"name": name,
                                           "ref-data": list(),
                                           "cmp-data": list()}
-                tbl_dict[tst_name]["ref-data"].\
-                    append(tst_data["throughput"]["value"])
+                try:
+                    tbl_dict[tst_name]["ref-data"].\
+                        append(tst_data["throughput"]["value"])
+                except TypeError as err:
+                    logging.warning(err)
+                    logging.warning(tst_data)
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
