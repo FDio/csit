@@ -449,7 +449,7 @@
 -
   type: "table"
   title: "Performance Impact of Meltdown Patches"
-  algorithm: "table_performance_comparision"
+  algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
 # TODO: specify dir
   output-file: "{DIR[DTR,PERF,VPP,IMPACT,MELTDOWN]}/meltdown-impact"
@@ -481,7 +481,7 @@
 -
   type: "table"
   title: "Performance Impact of Spectre Patches"
-  algorithm: "table_performance_comparision"
+  algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
 # TODO: specify dir
   output-file: "{DIR[DTR,PERF,VPP,IMPACT,SPECTRE]}/spectre-impact"

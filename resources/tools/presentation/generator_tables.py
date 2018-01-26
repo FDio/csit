@@ -335,8 +335,8 @@ def _read_csv_template(file_name):
         raise PresentationError(str(err), level="ERROR")
 
 
-def table_performance_comparision(table, input_data):
-    """Generate the table(s) with algorithm: table_performance_comparision
+def table_performance_comparison(table, input_data):
+    """Generate the table(s) with algorithm: table_performance_comparison
     specified in the specification file.
 
     :param table: Table to generate.
