@@ -1,17 +1,21 @@
-Performance Impact of Meltdown Patches
-======================================
+Impact of Meltdown Patches
+==========================
 
-The following tables present performance impact on VPP after
-applying patches addressing Meltdown (Variant3: Rogue Data Cache Load) security
- ulnerabilities. Incremental kernel patches are applied for Ubuntu 16.04LTS as
-documented on `Ubuntu SpectreAndMeltdown page <https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/SpectreAndMeltdown>`_.
-For detailed listing of used software versions and patches please refer
-to :ref:`test_environment`.
+Following sections list changes to VPP throughput performance after applying
+patches addressing security vulnerabilities referred to as Meltdown
+(Variant3: Rogue Data Cache Load). Incremental kernel patches are
+applied for Ubuntu 16.04LTS as documented on
+`Ubuntu SpectreAndMeltdown page <https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/SpectreAndMeltdown>`_.
+Detailed listing of used software versions and patches is documented in
+:ref:`test_environment`.
 
 NDR and PDR packet throughput results are compared for 1-core/1-thread,
 2-cores/2-threads and 4-cores/4-threads VPP configurations, with
 reference performance numbers coming from tests without the Meltdown
-patches.
+patches. Tables show test results grouped into Best 20 changes (minimal
+performance impact), followed by Worst 20 changes (maximal performance
+impact). All results are also provided in downloadable CSV and pretty
+ASCII formats.
 
 NDR throughput: Best 20 changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

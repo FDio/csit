@@ -1,20 +1,24 @@
-Performance Impact of Meltdown and Spectre Patches
-==================================================
+Impact of SpectreAndMeltdown Patches
+====================================
 
-The following tables present performance impact on VPP after applying
-patches addressing Meltdown (Variant3: Rogue Data Cache Load) and
-Spectre (Variant1: Bounds Check Bypass; Variant2: Branch Target
-Injection) security vulnerabilities. Incremental kernel patches for
-Ubuntu 16.04 LTS as documented on
+Following sections list changes to VPP throughput performance after
+applying patches addressing security vulnerabilities referred to as:
+Meltdown (Variant3: Rogue Data Cache Load) and Spectre (Variant1: Bounds
+Check Bypass; Variant2: Branch Target Injection) security
+vulnerabilities. Incremental kernel patches for Ubuntu 16.04 LTS as
+documented on
 `Ubuntu SpectreAndMeltdown page <https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/SpectreAndMeltdown>`_.
 For Spectre additional Processor microcode and BIOS firmware changes are
-applied. For detailed listing of used software versions and patches
-please refer to :ref:`test_environment`.
+applied. Detailed listing of used software versions and patches is
+documented in :ref:`test_environment`.
 
 NDR and PDR packet throughput results are compared for 1-core/1-thread,
 2-cores/2-threads and 4-cores/4-threads VPP configurations, with
-reference performance numbers coming from tests without the Meltdown and
-Spectre patches.
+reference performance numbers coming from tests without the Meltdown
+patches. Tables show test results grouped into Best 20 changes (minimal
+performance impact), followed by Worst 20 changes (maximal performance
+impact). All results are also provided in downloadable CSV and pretty
+ASCII formats.
 
 NDR throughput: Best 20 changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
