@@ -90,10 +90,6 @@
   type: "configuration"
   data-sets:
     vpp-meltdown-impact:
-# TODO: specify data sources
-#      csit-vpp-perf-1801-all:
-#      - 1
-#      - 2
       csit-vpp-perf-1707-all:
       - 9
       - 10
@@ -103,10 +99,6 @@
       - 12
       - 13
     vpp-spectre-impact:
-# TODO: specify data sources
-#      csit-vpp-perf-1801-all:
-#      - 1
-#      - 2
       csit-vpp-perf-1707-all:
       - 9
       - 10
@@ -176,7 +168,9 @@
       csit-dpdk-perf-1801-all:
       - 12
     hc-func-results:
-      csit-hc2vpp-verify-func-1801-ubuntu1604:
+# TODO: Change to 1801:
+      csit-hc2vpp-verify-func-master-ubuntu1604:
+#      csit-hc2vpp-verify-func-1801-ubuntu1604:
       - "lastSuccessfulBuild"
 # TODO: Will we use this one?
 #      hc2vpp-csit-integration-odl-carbon-1801-ubuntu1604:
@@ -440,73 +434,73 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
-#-
-#  type: "table"
-#  title: "Performance Impact of Meltdown Patches"
-#  algorithm: "table_performance_comparison"
-#  output-file-ext: ".csv"
-## TODO: specify dir
-#  output-file: "{DIR[DTR,PERF,VPP,IMPACT,MELTDOWN]}/meltdown-impact"
-#  reference:
-#    title: "No Meltdown"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#  compare:
-#    title: "Meltdown Patches Applied"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#  data:
-#    "vpp-meltdown-impact"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-#  # to present all tests.
-#  nr-of-tests-shown: 20
-#
-#-
-#  type: "table"
-#  title: "Performance Impact of Spectre Patches"
-#  algorithm: "table_performance_comparison"
-#  output-file-ext: ".csv"
-## TODO: specify dir
-#  output-file: "{DIR[DTR,PERF,VPP,IMPACT,SPECTRE]}/spectre-impact"
-#  reference:
-#    title: "No Spectre"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#  compare:
-#    title: "Spectre Patches Applied"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#  data:
-#    "vpp-spectre-impact"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-#  # to present all tests.
-#  nr-of-tests-shown: 20
+-
+  type: "table"
+  title: "Performance Impact of Meltdown Patches"
+  algorithm: "table_performance_comparison"
+  output-file-ext: ".csv"
+# TODO: specify dir
+  output-file: "{DIR[DTR,PERF,VPP,IMPACT,MELTDOWN]}/meltdown-impact"
+  reference:
+    title: "No Meltdown"
+# TODO: specify data sources
+    data:
+      csit-vpp-perf-1707-all:
+      - 9
+      - 10
+      - 13
+  compare:
+    title: "Meltdown Patches Applied"
+# TODO: specify data sources
+    data:
+      csit-vpp-perf-1710-all:
+      - 11
+      - 12
+      - 13
+  data:
+    "vpp-meltdown-impact"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
+
+-
+  type: "table"
+  title: "Performance Impact of Spectre Patches"
+  algorithm: "table_performance_comparison"
+  output-file-ext: ".csv"
+# TODO: specify dir
+  output-file: "{DIR[DTR,PERF,VPP,IMPACT,SPECTRE]}/spectre-impact"
+  reference:
+    title: "No Spectre"
+# TODO: specify data sources
+    data:
+      csit-vpp-perf-1707-all:
+      - 9
+      - 10
+      - 13
+  compare:
+    title: "Spectre Patches Applied"
+# TODO: specify data sources
+    data:
+      csit-vpp-perf-1710-all:
+      - 11
+      - 12
+      - 13
+  data:
+    "vpp-spectre-impact"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
 
 #-
 #  type: "table"
