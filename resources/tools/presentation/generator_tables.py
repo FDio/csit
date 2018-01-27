@@ -20,6 +20,7 @@ import csv
 import prettytable
 
 from string import replace
+from pprint import pformat
 
 from errors import PresentationError
 from utils import mean, stdev, relative_change
@@ -345,8 +346,12 @@ def table_performance_comparison(table, input_data):
     :type input_data: InputData
     """
 
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
     # Transform the data
     data = input_data.filter_data(table)
+    logging.info(data)
 
     # Prepare the header of the tables
     try:
@@ -377,8 +382,9 @@ def table_performance_comparison(table, input_data):
                 try:
                     tbl_dict[tst_name]["ref-data"].\
                         append(tst_data["throughput"]["value"])
-                except TypeError as err:
+                except TypeError:
                     pass  # No data in output.xml for this test
+    logging.info(pformat(tbl_dict))
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
@@ -390,6 +396,8 @@ def table_performance_comparison(table, input_data):
                     pass
                 except TypeError:
                     tbl_dict.pop(tst_name, None)
+
+    logging.info(pformat(tbl_dict))
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
@@ -415,6 +423,7 @@ def table_performance_comparison(table, input_data):
 
     # Sort the table according to the relative change
     tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+    logging.info(pformat(tbl_lst))
 
     # Generate tables:
     # All tests in csv:
@@ -432,6 +441,7 @@ def table_performance_comparison(table, input_data):
                                                table["output-file-ext"])
                  ]
     for file_name in tbl_names:
+        logging.info("      Writing file: '{}'".format(file_name))
         with open(file_name, "w") as file_handler:
             file_handler.write(header_str)
             for test in tbl_lst:
@@ -452,6 +462,7 @@ def table_performance_comparison(table, input_data):
 
     for i, txt_name in enumerate(tbl_names_txt):
         txt_table = None
+        logging.info("      Writing file: '{}'".format(txt_name))
         with open(tbl_names[i], 'rb') as csv_file:
             csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
             for row in csv_content:
@@ -472,6 +483,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-ndr-1t1c-top{1}".format(table["output-file"],
                                                table["output-file-ext"])
+    logging.info("      Writing file: '{}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[1:]):
@@ -481,6 +493,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-ndr-1t1c-bottom{1}".format(table["output-file"],
                                                   table["output-file-ext"])
+    logging.info("      Writing file: '{}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[-1:0:-1]):
@@ -497,6 +510,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-pdr-1t1c-top{1}".format(table["output-file"],
                                                table["output-file-ext"])
+    logging.info("      Writing file: '{}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[1:]):
@@ -506,6 +520,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-pdr-1t1c-bottom{1}".format(table["output-file"],
                                                   table["output-file-ext"])
+    logging.info("      Writing file: '{}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[-1:0:-1]):
