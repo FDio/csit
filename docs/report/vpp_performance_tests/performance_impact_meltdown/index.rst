@@ -20,7 +20,7 @@ NDR throughput: Best 20 changes
 
    .. csv-table::
       :align: center
-      :file: performance_impact_meltdown/meltdown-impact-ndr-1t1c-top.csv
+      :file: meltdown-impact-ndr-1t1c-top.csv
 
 .. only:: latex
 
@@ -39,7 +39,7 @@ NDR throughput: Best 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/meltdown-impact-ndr-1t1c-top.csv}
+        ]{../_tmp/src/vpp_performance_tests/performance_impact_meltdown/meltdown-impact-ndr-1t1c-top.csv}
       }
 
 NDR throughput: Worst 20 changes
@@ -49,7 +49,7 @@ NDR throughput: Worst 20 changes
 
    .. csv-table::
       :align: center
-      :file: performance_impact_meltdown/meltdown-impact-ndr-1t1c-bottom.csv
+      :file: meltdown-impact-ndr-1t1c-bottom.csv
 
 .. only:: latex
 
@@ -68,7 +68,7 @@ NDR throughput: Worst 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/meltdown-impact-ndr-1t1c-bottom.csv}
+        ]{../_tmp/src/vpp_performance_tests/performance_impact_meltdown/meltdown-impact-ndr-1t1c-bottom.csv}
       }
 
 .. only:: html
@@ -93,7 +93,7 @@ PDR throughput: Best 20 changes
 
    .. csv-table::
       :align: center
-      :file: performance_impact_meltdown/meltdown-impact-pdr-1t1c-top.csv
+      :file: meltdown-impact-pdr-1t1c-top.csv
 
 .. only:: latex
 
@@ -112,7 +112,7 @@ PDR throughput: Best 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/meltdown-impact-pdr-1t1c-top.csv}
+        ]{../_tmp/src/vpp_performance_tests/performance_impact_meltdown/meltdown-impact-pdr-1t1c-top.csv}
       }
 
 PDR throughput: Worst 20 changes
@@ -122,7 +122,7 @@ PDR throughput: Worst 20 changes
 
    .. csv-table::
       :align: center
-      :file: performance_impact_meltdown/meltdown-impact-pdr-1t1c-bottom.csv
+      :file: meltdown-impact-pdr-1t1c-bottom.csv
 
 .. only:: latex
 
@@ -141,7 +141,7 @@ PDR throughput: Worst 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/meltdown-impact-pdr-1t1c-bottom.csv}
+        ]{../_tmp/src/vpp_performance_tests/performance_impact_meltdown/meltdown-impact-pdr-1t1c-bottom.csv}
       }
 
 .. only:: html
