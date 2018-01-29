@@ -386,7 +386,6 @@ def table_performance_comparison(table, input_data):
                         append(tst_data["throughput"]["value"])
                 except TypeError:
                     pass  # No data in output.xml for this test
-    logging.info(pformat(tbl_dict))
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
