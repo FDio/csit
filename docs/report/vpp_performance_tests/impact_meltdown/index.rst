@@ -24,7 +24,7 @@ NDR throughput: Best 20 changes
 
    .. csv-table::
       :align: center
-      :file: ../../../_build/_static/vpp/meltdown-impact-ndr-1t1c-top.csv
+      :file: ../../../../_build/_static/vpp/meltdown-impact-ndr-1t1c-top.csv
 
 .. only:: latex
 
@@ -53,7 +53,7 @@ NDR throughput: Worst 20 changes
 
    .. csv-table::
       :align: center
-      :file: ../../../_build/_static/vpp/meltdown-impact-ndr-1t1c-bottom.csv
+      :file: ../../../../_build/_static/vpp/meltdown-impact-ndr-1t1c-bottom.csv
 
 .. only:: latex
 
@@ -97,7 +97,7 @@ PDR throughput: Best 20 changes
 
    .. csv-table::
       :align: center
-      :file: ../../../_build/_static/vpp/meltdown-impact-pdr-1t1c-top.csv
+      :file: ../../../../_build/_static/vpp/meltdown-impact-pdr-1t1c-top.csv
 
 .. only:: latex
 
@@ -126,7 +126,7 @@ PDR throughput: Worst 20 changes
 
    .. csv-table::
       :align: center
-      :file: ../../../_build/_static/vpp/meltdown-impact-pdr-1t1c-bottom.csv
+      :file: ../../../../_build/_static/vpp/meltdown-impact-pdr-1t1c-bottom.csv
 
 .. only:: latex
 
