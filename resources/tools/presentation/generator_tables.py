@@ -353,7 +353,6 @@ def table_performance_comparison(table, input_data):
 
     # Transform the data
     data = input_data.filter_data(table)
-    logging.info(data)
 
     # Prepare the header of the tables
     try:
