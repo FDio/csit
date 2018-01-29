@@ -20,7 +20,6 @@ import csv
 import prettytable
 
 from string import replace
-from pprint import pformat
 
 from errors import PresentationError
 from utils import mean, stdev, relative_change
@@ -196,6 +195,9 @@ def table_performance_improvements(table, input_data):
         for item in data:
             if isinstance(item["data"], str):
                 line_lst.append(item["data"])
+                # Remove -?drdisc from the end
+                if item["data"].endswith("drdisc"):
+                    item["data"] = item["data"][:-8]
             elif isinstance(item["data"], float):
                 line_lst.append("{:.1f}".format(item["data"]))
             elif item["data"] is None:
@@ -397,8 +399,6 @@ def table_performance_comparison(table, input_data):
                 except TypeError:
                     tbl_dict.pop(tst_name, None)
 
-    logging.info(pformat(tbl_dict))
-
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
@@ -423,7 +423,6 @@ def table_performance_comparison(table, input_data):
 
     # Sort the table according to the relative change
     tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
-    logging.info(pformat(tbl_lst))
 
     # Generate tables:
     # All tests in csv:

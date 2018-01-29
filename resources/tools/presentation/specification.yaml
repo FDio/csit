@@ -439,7 +439,7 @@
   algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
 # TODO: specify dir
-  output-file: "{DIR[DTR,PERF,VPP,IMPACT,MELTDOWN]}/meltdown-impact"
+  output-file: "{DIR[STATIC,VPP]}/meltdown-impact"
   reference:
     title: "No Meltdown"
 # TODO: specify data sources
@@ -473,7 +473,7 @@
   algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
 # TODO: specify dir
-  output-file: "{DIR[DTR,PERF,VPP,IMPACT,SPECTRE]}/meltdown-spectre-impact"
+  output-file: "{DIR[STATIC,VPP]}/meltdown-spectre-impact"
   reference:
     title: "No Spectre"
 # TODO: specify data sources
