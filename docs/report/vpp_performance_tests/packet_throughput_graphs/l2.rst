@@ -31,14 +31,14 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
 *Figure 1a. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
@@ -95,14 +95,14 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
 *Figure 2a. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
@@ -163,14 +163,14 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
 *Figure 3a. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
@@ -227,14 +227,14 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
+   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/container_memif/*
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
 *Figure 4a. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (base).*
