@@ -1133,7 +1133,7 @@
     "plot-vpp-throughput-latency"
   # Keep this formatting, the filter is enclosed with " (quotation mark) and
   # each tag is enclosed with ' (apostrophe).
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -1154,7 +1154,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -1175,7 +1175,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -1196,7 +1196,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -1218,7 +1218,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -1239,7 +1239,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -1260,7 +1260,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -1281,7 +1281,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2217,7 +2217,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "latency"
   - "parent"
@@ -2236,7 +2236,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "latency"
   - "parent"
@@ -2256,7 +2256,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "latency"
   - "parent"
@@ -2275,7 +2275,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
   parameters:
   - "latency"
   - "parent"
