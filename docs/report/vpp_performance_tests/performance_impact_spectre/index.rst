@@ -23,7 +23,7 @@ NDR throughput: Best 20 changes
 
    .. csv-table::
       :align: center
-      :file: meltdown-spectre-impact-ndr-1t1c-top.csv
+      :file: ../../_static/vpp/meltdown-spectre-impact-ndr-1t1c-top.csv
 
 .. only:: latex
 
@@ -42,7 +42,7 @@ NDR throughput: Best 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_impact_spectre/meltdown-spectre-impact-ndr-1t1c-top.csv}
+        ]{../_build/_static/vpp/meltdown-spectre-impact-ndr-1t1c-top.csv}
       }
 
 NDR throughput: Worst 20 changes
@@ -52,7 +52,7 @@ NDR throughput: Worst 20 changes
 
    .. csv-table::
       :align: center
-      :file: meltdown-spectre-impact-ndr-1t1c-bottom.csv
+      :file: ../../_static/vpp/meltdown-spectre-impact-ndr-1t1c-bottom.csv
 
 .. only:: latex
 
@@ -71,7 +71,7 @@ NDR throughput: Worst 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_impact_spectre/meltdown-spectre-impact-ndr-1t1c-bottom.csv}
+        ]{../_build/_static/vpp/meltdown-spectre-impact-ndr-1t1c-bottom.csv}
       }
 
 .. only:: html
@@ -83,12 +83,12 @@ NDR throughput: All changes
 Complete results for all NDR tests are available in a CSV and pretty
 ASCII formats:
 
-  - `csv format for 1t1c <meltdown-spectre-impact-ndr-1t1c-full.csv>`_,
-  - `csv format for 2t2c <meltdown-spectre-impact-ndr-2t2c-full.csv>`_,
-  - `csv format for 4t4c <meltdown-spectre-impact-ndr-4t4c-full.csv>`_,
-  - `pretty ASCII format for 1t1c <meltdown-spectre-impact-ndr-1t1c-full.txt>`_,
-  - `pretty ASCII format for 2t2c <meltdown-spectre-impact-ndr-2t2c-full.txt>`_,
-  - `pretty ASCII format for 4t4c <meltdown-spectre-impact-ndr-4t4c-full.txt>`_.
+  - `csv format for 1t1c <../../_static/vpp/meltdown-spectre-impact-ndr-1t1c-full.csv>`_,
+  - `csv format for 2t2c <../../_static/vpp/meltdown-spectre-impact-ndr-2t2c-full.csv>`_,
+  - `csv format for 4t4c <../../_static/vpp/meltdown-spectre-impact-ndr-4t4c-full.csv>`_,
+  - `pretty ASCII format for 1t1c <../../_static/vpp/meltdown-spectre-impact-ndr-1t1c-full.txt>`_,
+  - `pretty ASCII format for 2t2c <../../_static/vpp/meltdown-spectre-impact-ndr-2t2c-full.txt>`_,
+  - `pretty ASCII format for 4t4c <../../_static/vpp/meltdown-spectre-impact-ndr-4t4c-full.txt>`_.
 
 PDR throughput: Best 20 changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,7 +97,7 @@ PDR throughput: Best 20 changes
 
    .. csv-table::
       :align: center
-      :file: meltdown-spectre-impact-pdr-1t1c-top.csv
+      :file: ../../_static/vpp/meltdown-spectre-impact-pdr-1t1c-top.csv
 
 .. only:: latex
 
@@ -116,7 +116,7 @@ PDR throughput: Best 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_impact_spectre/meltdown-spectre-impact-pdr-1t1c-top.csv}
+        ]{../_build/_static/vpp/meltdown-spectre-impact-pdr-1t1c-top.csv}
       }
 
 PDR throughput: Worst 20 changes
@@ -126,7 +126,7 @@ PDR throughput: Worst 20 changes
 
    .. csv-table::
       :align: center
-      :file: meltdown-spectre-impact-pdr-1t1c-bottom.csv
+      :file: ../../_static/vpp/meltdown-spectre-impact-pdr-1t1c-bottom.csv
 
 .. only:: latex
 
@@ -145,7 +145,7 @@ PDR throughput: Worst 20 changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_impact_spectre/meltdown-spectre-impact-pdr-1t1c-bottom.csv}
+        ]{../_build/_static/vpp/meltdown-spectre-impact-pdr-1t1c-bottom.csv}
       }
 
 .. only:: html
@@ -156,9 +156,9 @@ PDR throughput: All changes
 Complete results for all PDR tests are available in a CSV and pretty
 ASCII formats:
 
-  - `csv format for 1t1c <meltdown-spectre-impact-pdr-1t1c-full.csv>`_,
-  - `csv format for 2t2c <meltdown-spectre-impact-pdr-2t2c-full.csv>`_,
-  - `csv format for 4t4c <meltdown-spectre-impact-pdr-4t4c-full.csv>`_,
-  - `pretty ASCII format for 1t1c <meltdown-spectre-impact-pdr-1t1c-full.txt>`_,
-  - `pretty ASCII format for 2t2c <meltdown-spectre-impact-pdr-2t2c-full.txt>`_,
-  - `pretty ASCII format for 4t4c <meltdown-spectre-impact-pdr-4t4c-full.txt>`_.
+  - `csv format for 1t1c <../../_static/vpp/meltdown-spectre-impact-pdr-1t1c-full.csv>`_,
+  - `csv format for 2t2c <../../_static/vpp/meltdown-spectre-impact-pdr-2t2c-full.csv>`_,
+  - `csv format for 4t4c <../../_static/vpp/meltdown-spectre-impact-pdr-4t4c-full.csv>`_,
+  - `pretty ASCII format for 1t1c <../../_static/vpp/meltdown-spectre-impact-pdr-1t1c-full.txt>`_,
+  - `pretty ASCII format for 2t2c <../../_static/vpp/meltdown-spectre-impact-pdr-2t2c-full.txt>`_,
+  - `pretty ASCII format for 4t4c <../../_static/vpp/meltdown-spectre-impact-pdr-4t4c-full.txt>`_.
