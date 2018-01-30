@@ -124,6 +124,7 @@
 | | | Run keyword | ${dut}.Add API segment global size | 2000M
 | | | Run keyword | ${dut}.Add API segment API size | 1G
 | | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
+| | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add Heapsize | "4G"
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | "2000000"
 | | | Run keyword | ${dut}.Add IP6 Heap Size | "4G"
