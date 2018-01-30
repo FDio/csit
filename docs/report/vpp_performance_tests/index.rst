@@ -8,7 +8,5 @@ VPP Performance Tests
     packet_throughput_graphs/index
     packet_latency_graphs/index
     throughput_speedup_multi_core/index
-    impact_meltdown/index
-    impact_spectreandmeltdown/index
     test_environment
     documentation/index

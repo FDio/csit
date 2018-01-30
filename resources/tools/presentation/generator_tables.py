@@ -194,10 +194,10 @@ def table_performance_improvements(table, input_data):
         line_lst = list()
         for item in data:
             if isinstance(item["data"], str):
-                line_lst.append(item["data"])
                 # Remove -?drdisc from the end
                 if item["data"].endswith("drdisc"):
                     item["data"] = item["data"][:-8]
+                line_lst.append(item["data"])
             elif isinstance(item["data"], float):
                 line_lst.append("{:.1f}".format(item["data"]))
             elif item["data"] is None:
