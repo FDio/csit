@@ -373,6 +373,11 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'no-multi-seg']
         self.add_config_item(self._nodeconfig, '', path)
 
+    def add_dpdk_no_tx_checksum_offload(self):
+        """Add DPDK no-tx-checksum-offload configuration."""
+        path = ['dpdk', 'no-tx-checksum-offload']
+        self.add_config_item(self._nodeconfig, '', path)
+
     def add_nat(self, value='deterministic'):
         """Add NAT configuration.
 
