@@ -269,7 +269,7 @@ def table_performance_improvements(table, input_data):
                     else:
                         tbl_item.append({"data": None})
                 except (IndexError, ValueError, TypeError):
-                    logging.error("No data for {0}".format(tbl_item[1]["data"]))
+                    logging.error("No data for {0}".format(tbl_item[0]["data"]))
                     tbl_item.append({"data": None})
                     continue
             else:
@@ -299,19 +299,19 @@ def table_performance_improvements(table, input_data):
                 else:
                     rel_change = item[-1]["data"]
                 if "ndr_top" in file_name \
-                        and "ndr" in item[1]["data"] \
+                        and "ndr" in item[0]["data"] \
                         and rel_change >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_top" in file_name \
-                        and "pdr" in item[1]["data"] \
+                        and "pdr" in item[0]["data"] \
                         and rel_change >= 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "ndr_low" in file_name \
-                        and "ndr" in item[1]["data"] \
+                        and "ndr" in item[0]["data"] \
                         and rel_change < 10.0:
                     _write_line_to_file(file_handler, item)
                 elif "pdr_low" in file_name \
-                        and "pdr" in item[1]["data"] \
+                        and "pdr" in item[0]["data"] \
                         and rel_change < 10.0:
                     _write_line_to_file(file_handler, item)
 
