@@ -508,20 +508,17 @@
   output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance_improvements"
   columns:
   -
-    title: "Functionality"
+    title: "Test Name"
     data: "template 1"
   -
-    title: "Test Name"
+    title: "16.09 mean [Mpps]"
     data: "template 2"
   -
-    title: "16.09 mean [Mpps]"
+    title: "17.01 mean [Mpps]"
     data: "template 3"
   -
-    title: "17.01 mean [Mpps]"
-    data: "template 4"
-  -
     title: "17.04 mean [Mpps]"
-    data: "template 5"
+    data: "template 4"
   -
     title: "17.07 mean [Mpps]"
     data: "data csit-vpp-perf-1707-all mean"
@@ -536,7 +533,7 @@
     data: "data csit-vpp-perf-1801-all csit-ligato-perf-1801-all stdev"
   -
     title: "17.10 to 18.01 change [%]"
-    data: "operation relative_change 6 7"
+    data: "operation relative_change 5 6"
   rows: "generated"
   data:
     "performance-improvements"
