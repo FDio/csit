@@ -354,6 +354,10 @@ case "$TEST_TAG" in
               --include l2bdbaseANDndrdiscAND1t1cAND64b \
               --include ip4baseANDndrdiscAND1t1cAND64b \
               --include ip6baseANDndrdiscAND1t1cAND78b \
+              --include l2xcbaseANDpdrdiscAND1t1cAND64b \
+              --include l2bdbaseANDpdrdiscAND1t1cAND64b \
+              --include ip4baseANDpdrdiscAND1t1cAND64b \
+              --include ip6baseANDpdrdiscAND1t1cAND78b \
               --exclude SCALE \
               tests/
         RETURN_STATUS=$(echo $?)
