@@ -23,58 +23,59 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
-INSTALLATION_DIR="/tmp/install_dir"
+#INSTALLATION_DIR="/tmp/install_dir"
+INSTALLATION_DIR="/home/testuser/18011-release-dpdk-compiled-lf"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml output_perf_data.json)
 
-# If we run this script from CSIT jobs we want to use stable vpp version
-if [[ ${JOB_NAME} == csit-* ]] ;
-then
-    mkdir vpp_download
-    cd vpp_download
-
-    if [[ ${TEST_TAG} == *NIGHTLY ]] || \
-       [[ ${TEST_TAG} == *DAILY ]] || \
-       [[ ${TEST_TAG} == *WEEKLY ]];
-    then
-        # Download the latest VPP build .deb install packages
-        echo Downloading VPP packages...
-        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
-
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-        # Take vpp package and get the vpp version
-        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
-    else
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
-        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-        VPP_CLASSIFIER="-deb"
-        # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-    fi
-
-    cd ..
-
-# If we run this script from vpp project we want to use local build
-elif [[ ${JOB_NAME} == vpp-* ]] ;
-then
-    # Use local packages provided as argument list
-    # Jenkins VPP deb paths (convert to full path)
-    VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
-    # Take vpp package and get the vpp version
-    VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
-else
-    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
-    exit 1
-fi
+## If we run this script from CSIT jobs we want to use stable vpp version
+#if [[ ${JOB_NAME} == csit-* ]] ;
+#then
+#    mkdir vpp_download
+#    cd vpp_download
+#
+#    if [[ ${TEST_TAG} == *NIGHTLY ]] || \
+#       [[ ${TEST_TAG} == *DAILY ]] || \
+#       [[ ${TEST_TAG} == *WEEKLY ]];
+#    then
+#        # Download the latest VPP build .deb install packages
+#        echo Downloading VPP packages...
+#        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
+#
+#        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+#        # Take vpp package and get the vpp version
+#        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
+#    else
+#        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
+#        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+#        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+#        VPP_CLASSIFIER="-deb"
+#        # Download vpp build from nexus and set VPP_DEBS variable
+#        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+#    fi
+#
+#    cd ..
+#
+## If we run this script from vpp project we want to use local build
+#elif [[ ${JOB_NAME} == vpp-* ]] ;
+#then
+#    # Use local packages provided as argument list
+#    # Jenkins VPP deb paths (convert to full path)
+#    VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
+#    # Take vpp package and get the vpp version
+#    VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
+#else
+#    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
+#    exit 1
+#fi
 
 WORKING_TOPOLOGY=""
 export PYTHONPATH=${SCRIPT_DIR}
@@ -120,9 +121,11 @@ function cancel_all {
 # packages
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
+#python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -t ${WORKING_TOPOLOGY} \
+#                                                       -d ${INSTALLATION_DIR} \
+#                                                       -p ${VPP_DEBS}
 python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -t ${WORKING_TOPOLOGY} \
-                                                       -d ${INSTALLATION_DIR} \
-                                                       -p ${VPP_DEBS}
+                                                       -d ${INSTALLATION_DIR}
 if [ $? -eq 0 ]; then
     echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
 else
@@ -350,6 +353,19 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include l2xcbaseANDndrdiscAND1t1cAND64b \
+              --include l2bdbaseANDndrdiscAND1t1cAND64b \
+              --include ip4baseANDndrdiscAND1t1cAND64b \
+              --include ip6baseANDndrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDndrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
+              --include l2xcbaseANDpdrdiscAND1t1cAND64b \
+              --include l2bdbaseANDpdrdiscAND1t1cAND64b \
+              --include ip4baseANDpdrdiscAND1t1cAND64b \
+              --include ip6baseANDpdrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDpdrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
+              --exclude SCALE \
+              --exclude DOT1Q \
+              --exclude CFS_OPT \
               tests/
         RETURN_STATUS=$(echo $?)
 esac

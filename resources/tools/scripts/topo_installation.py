@@ -81,8 +81,8 @@ def main():
                         help="Topology file")
     parser.add_argument("-d", "--directory", required=True,
                         help="Installation directory")
-    parser.add_argument("-p", "--packages", required=False, nargs='+',
-                        help="Packages paths to copy")
+    # parser.add_argument("-p", "--packages", required=False, nargs='+',
+    #                     help="Packages paths to copy")
     parser.add_argument("-c", "--cancel", help="Cancel installation",
                         action="store_true")
     parser.add_argument("-hc", "--honeycomb", help="Include Honeycomb package.",
@@ -90,7 +90,7 @@ def main():
 
     args = parser.parse_args()
     topology_file = args.topo
-    packages = args.packages
+    # packages = args.packages
     install_dir = args.directory
     cancel_installation = args.cancel
     honeycomb = args.honeycomb
@@ -121,8 +121,9 @@ def main():
 
             if cancel_installation:
                 # Remove installation directory on DUT
-                cmd = "rm -r {}".format(install_dir)
-                stdout = ssh_ignore_error(ssh, cmd)
+                # cmd = "rm -r {}".format(install_dir)
+                cmd = "dpkg --purge vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
+                stdout = ssh_ignore_error(ssh, cmd, sudo=True)
                 print "###TI {}".format(stdout)
 
                 if honeycomb:
@@ -134,33 +135,33 @@ def main():
                 fix_interrupted("vpp")
 
             else:
-                # Create installation directory on DUT
-                cmd = "rm -r {0}; mkdir {0}".format(install_dir)
-                stdout = ssh_no_error(ssh, cmd)
-                print "###TI {}".format(stdout)
-
-                if honeycomb:
-                    smd = "ls ~/honeycomb | grep .deb"
-                    stdout = ssh_ignore_error(ssh, smd)
-                    if "honeycomb" in stdout:
-                        # If custom honeycomb packages exist, use them
-                        cmd = "cp ~/honeycomb/*.deb {0}".format(install_dir)
-                        stdout = ssh_no_error(ssh, cmd)
-                        print "###TI {}".format(stdout)
-                    else:
-                        # Copy packages from local path to installation dir
-                        for deb in packages:
-                            print "###TI scp: {}".format(deb)
-                            ssh.scp(local_path=deb, remote_path=install_dir)
-                else:
-                    # Copy packages from local path to installation dir
-                    for deb in packages:
-                        print "###TI scp: {}".format(deb)
-                        ssh.scp(local_path=deb, remote_path=install_dir)
-
-                if honeycomb:
-                    fix_interrupted("honeycomb")
-                fix_interrupted("vpp")
+                # # Create installation directory on DUT
+                # cmd = "rm -r {0}; mkdir {0}".format(install_dir)
+                # stdout = ssh_no_error(ssh, cmd)
+                # print "###TI {}".format(stdout)
+                #
+                # if honeycomb:
+                #     smd = "ls ~/honeycomb | grep .deb"
+                #     stdout = ssh_ignore_error(ssh, smd)
+                #     if "honeycomb" in stdout:
+                #         # If custom honeycomb packages exist, use them
+                #         cmd = "cp ~/honeycomb/*.deb {0}".format(install_dir)
+                #         stdout = ssh_no_error(ssh, cmd)
+                #         print "###TI {}".format(stdout)
+                #     else:
+                #         # Copy packages from local path to installation dir
+                #         for deb in packages:
+                #             print "###TI scp: {}".format(deb)
+                #             ssh.scp(local_path=deb, remote_path=install_dir)
+                # else:
+                #     # Copy packages from local path to installation dir
+                #     for deb in packages:
+                #         print "###TI scp: {}".format(deb)
+                #         ssh.scp(local_path=deb, remote_path=install_dir)
+                #
+                # if honeycomb:
+                #     fix_interrupted("honeycomb")
+                # fix_interrupted("vpp")
 
                 # Installation of deb packages
                 cmd = "dpkg -i --force-all {}/*.deb".format(install_dir)
