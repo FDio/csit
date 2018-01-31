@@ -52,12 +52,19 @@ then
         VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
         VPP_CLASSIFIER="-deb"
         # Download vpp build from nexus and set VPP_DEBS variable
+#        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp_18.01-1~g369b88c~b2_amd64.deb" || exit
+#        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dbg_18.01-1~g369b88c~b2_amd64.deb" || exit
+#        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dev_18.01-1~g369b88c~b2_amd64.deb" || exit
+#        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-lib_18.01-1~g369b88c~b2_amd64.deb" || exit
+#        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-plugins_18.01-1~g369b88c~b2_amd64.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        DPDK_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/"
+#        wget -q "${DPDK_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
@@ -350,6 +357,19 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include l2xcbaseANDndrdiscAND1t1cAND64b \
+              --include l2bdbaseANDndrdiscAND1t1cAND64b \
+              --include ip4baseANDndrdiscAND1t1cAND64b \
+              --include ip6baseANDndrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDndrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
+              --include l2xcbaseANDpdrdiscAND1t1cAND64b \
+              --include l2bdbaseANDpdrdiscAND1t1cAND64b \
+              --include ip4baseANDpdrdiscAND1t1cAND64b \
+              --include ip6baseANDpdrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDpdrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
+              --exclude SCALE \
+              --exclude DOT1Q \
+              --exclude CFS_OPT \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
