@@ -122,7 +122,8 @@ def main():
             if cancel_installation:
                 # Remove installation directory on DUT
                 cmd = "rm -r {}".format(install_dir)
-                stdout = ssh_ignore_error(ssh, cmd)
+                # cmd = "dpkg --purge vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
+                stdout = ssh_ignore_error(ssh, cmd, sudo=True)
                 print "###TI {}".format(stdout)
 
                 if honeycomb:

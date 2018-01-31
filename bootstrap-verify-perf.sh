@@ -24,6 +24,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
+#INSTALLATION_DIR="/home/testuser/18011-release-dpdk-compiled-lf"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
@@ -123,6 +124,8 @@ trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -t ${WORKING_TOPOLOGY} \
                                                        -d ${INSTALLATION_DIR} \
                                                        -p ${VPP_DEBS}
+#python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -t ${WORKING_TOPOLOGY} \
+#                                                       -d ${INSTALLATION_DIR}
 if [ $? -eq 0 ]; then
     echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
 else
@@ -350,6 +353,19 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include l2xcbaseANDndrdiscAND1t1cAND64b \
+              --include l2bdbaseANDndrdiscAND1t1cAND64b \
+              --include ip4baseANDndrdiscAND1t1cAND64b \
+              --include ip6baseANDndrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDndrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
+              --include l2xcbaseANDpdrdiscAND1t1cAND64b \
+              --include l2bdbaseANDpdrdiscAND1t1cAND64b \
+              --include ip4baseANDpdrdiscAND1t1cAND64b \
+              --include ip6baseANDpdrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDpdrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
+              --exclude SCALE \
+              --exclude DOT1Q \
+              --exclude CFS_OPT \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
