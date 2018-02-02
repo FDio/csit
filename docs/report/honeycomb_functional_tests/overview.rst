@@ -154,13 +154,14 @@ with results listed in this report:
 - **Border Gateway Protocol** - CRUD and functional tests for BGP.
   - Configure peers and routes
   - Check interactions with another BGP peer.
-  - Test case count: 9
+  - Test case count: 13
 - **Honeycomb Infractructure** - configuration persistence,
   - Netconf notifications for interface events,
   - Netconf negative tests aimed at specific issues
   - Netconf/Restconf northbound over IPv6
+  - Test case count: 12
 
-Total 217 Honeycomb functional tests in the CSIT |release|.
+Total 219 Honeycomb functional tests in the CSIT |release|.
 
 Operational data in Honeycomb should mirror configuration data at all times.
 Because of this, test cases follow this general pattern:
