@@ -4,7 +4,9 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-No changes.
+#. Improved test coverage for the following features:
+
+   - BGP
 
 Known Issues
 ------------
