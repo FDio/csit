@@ -73,6 +73,7 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
+| | Add Plugin Enable to all DUTs | "nat_plugin.so"
 | | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize NAT44 in 3-node circular topology
