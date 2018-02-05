@@ -368,6 +368,16 @@ class VppConfigGenerator(object):
             path = ['plugins', 'plugin {0}'.format(plugin), 'disable']
             self.add_config_item(self._nodeconfig, ' ', path)
 
+    def add_plugin_enable(self, *plugins):
+        """Add plugin enable for specific plugin.
+
+        :param plugins: Plugin(s) to enable.
+        :type plugins: list
+        """
+        for plugin in plugins:
+            path = ['plugins', 'plugin {0}'.format(plugin), 'enable']
+            self.add_config_item(self._nodeconfig, ' ', path)
+
     def add_dpdk_no_multi_seg(self):
         """Add DPDK no-multi-seg configuration."""
         path = ['dpdk', 'no-multi-seg']
