@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "999bb13d_c424f6e7",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-02-05T06:27:43Z",
+      "side": 1,
+      "message": "This is not used anymore. Remove",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "233e0fb8_a1e5a2f0",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-02-05T06:27:43Z",
+      "side": 1,
+      "message": "There are no PDR Discovery tests in suite. Consider adding them",
+      "range": {
+        "startLine": 20,
+        "startChar": 61,
+        "endLine": 20,
+        "endChar": 71
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2345045b_32ee7f39",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-02-05T06:27:43Z",
+      "side": 1,
+      "message": "How do you controll RXqueue parameter? You have variable only for Thread number.",
+      "range": {
+        "startLine": 43,
+        "startChar": 20,
+        "endLine": 43,
+        "endChar": 37
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bef360d0_a6170e48",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-02-05T06:27:43Z",
+      "side": 1,
+      "message": "line too long (we are using 80 chars.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 106
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c982a57_ed015994",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-02-05T06:27:43Z",
+      "side": 1,
+      "message": "Consider using template:\n\n| | [Template] | vxlan with acl on 1 threads with packetsize \n| | framesize\u003d${64}",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 53
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
