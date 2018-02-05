@@ -18,7 +18,7 @@ set -x
 #TOPOLOGIES="topologies/available/lf_testbed1.yaml \
 #            topologies/available/lf_testbed2.yaml \
 #            topologies/available/lf_testbed3.yaml"
-TOPOLOGIES="topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed2.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -53,11 +53,11 @@ then
         VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
         VPP_CLASSIFIER="-deb"
         # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp_18.01-1~g369b88c~b2_amd64.deb" || exit
-        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dbg_18.01-1~g369b88c~b2_amd64.deb" || exit
-        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-dev_18.01-1~g369b88c~b2_amd64.deb" || exit
-        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-lib_18.01-1~g369b88c~b2_amd64.deb" || exit
-        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/2/artifact/build-root/vpp-plugins_18.01-1~g369b88c~b2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/3/artifact/build-root/vpp_18.01-6~g1c986cb~b3_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/3/artifact/build-root/vpp-dbg_18.01-6~g1c986cb~b3_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/3/artifact/build-root/vpp-dev_18.01-6~g1c986cb~b3_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/3/artifact/build-root/vpp-lib_18.01-6~g1c986cb~b3_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-test-poc-verify-1801-ubuntu1604/3/artifact/build-root/vpp-plugins_18.01-6~g1c986cb~b3_amd64.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
@@ -362,11 +362,15 @@ case "$TEST_TAG" in
               --include l2bdbaseANDndrdiscAND1t1cAND64b \
               --include ip4baseANDndrdiscAND1t1cAND64b \
               --include ip6baseANDndrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDndrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
               --include l2xcbaseANDpdrdiscAND1t1cAND64b \
               --include l2bdbaseANDpdrdiscAND1t1cAND64b \
               --include ip4baseANDpdrdiscAND1t1cAND64b \
               --include ip6baseANDpdrdiscAND1t1cAND78b \
+              --include l2bdmaclrnANDbaseANDvhost_1024ANDpdrdiscAND1t1cAND64bANDnic_intel-x520-da2 \
               --exclude SCALE \
+              --exclude DOT1Q \
+              --exclude CFS_OPT \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
