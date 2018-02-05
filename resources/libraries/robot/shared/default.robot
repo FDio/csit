@@ -126,6 +126,7 @@
 | | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add Heapsize | "4G"
+| | | Run keyword | ${dut}.Add Plugin Disable | "nat_plugin.so"
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | "2000000"
 | | | Run keyword | ${dut}.Add IP6 Heap Size | "4G"
 | | | Run keyword | ${dut}.Add IP Heap Size | "4G"
@@ -272,6 +273,22 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add NAT
+
+| Add Plugin Enable to all DUTs
+| | [Documentation] | Add Plugin Enable configuration to all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - plugin - Plugin to enable. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add Plugin Enable to all DUTs \| nat_plugin.so \|
+| | ...
+| | [Arguments] | ${plugin}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add Plugin Enable to all DUTs | ${plugin}
 
 | Add cryptodev to all DUTs
 | | [Documentation] | Add Cryptodev to VPP startup configuration to all DUTs.
