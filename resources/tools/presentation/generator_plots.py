@@ -45,7 +45,7 @@ def generate_plots(spec, data):
 
 
 def plot_performance_box(plot, input_data):
-    """Generate the plot(s) with algorithm: table_detailed_test_results
+    """Generate the plot(s) with algorithm: plot_performance_box
     specified in the specification file.
 
     :param plot: Plot to generate.
@@ -308,6 +308,77 @@ def plot_throughput_speedup_analysis(plot, input_data):
         plpl = plgo.Figure(data=traces, layout=plot["layout"])
 
         # Export Plot
+        ploff.plot(plpl,
+                   show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
+
+    logging.info("  Done.")
+
+
+def plot_http_server_performance_box(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_http_server_performance_box
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+    # Transform the data
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    # Prepare the data for the plot
+    y_vals = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if y_vals.get(test["name"], None) is None:
+                    y_vals[test["name"]] = list()
+                try:
+                    y_vals[test["name"]].append(test["result"]["value"])
+                except (KeyError, TypeError):
+                    y_vals[test["name"]].append(None)
+
+    # Add None to the lists with missing data
+    max_len = 0
+    for val in y_vals.values():
+        if len(val) > max_len:
+            max_len = len(val)
+    for key, val in y_vals.items():
+        if len(val) < max_len:
+            val.extend([None for _ in range(max_len - len(val))])
+
+    # Add plot traces
+    traces = list()
+    df = pd.DataFrame(y_vals)
+    df.head()
+    for i, col in enumerate(df.columns):
+        name = "{0}. {1}".format(i + 1, col.lower().replace('-cps', '').
+                                 replace('-rps', ''))
+        traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
+                               y=df[col],
+                               name=name,
+                               **plot["traces"]))
+
+    try:
+        # Create plot
+        plpl = plgo.Figure(data=traces, layout=plot["layout"])
+
+        # Export Plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
         ploff.plot(plpl,
                    show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
