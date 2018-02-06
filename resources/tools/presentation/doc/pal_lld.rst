@@ -840,6 +840,35 @@ latency in a box chart):
         width: 700
         height: 1000
 
+The structure of the section "Plot" is as follows (example of a plot showing
+VPP HTTP server performance in a box chart with pre-defined data
+"plot-vpp-httlp-server-performance" set and  plot layout "plot-cps"):
+
+::
+
+    -
+      type: "plot"
+      title: "VPP HTTP Server Performance"
+      algorithm: "plot_http_server_performance_box"
+      output-file-type: ".html"
+      output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+      data:
+        "plot-vpp-httlp-server-performance"
+      # Keep this formatting, the filter is enclosed with " (quotation mark) and
+      # each tag is enclosed with ' (apostrophe).
+      filter: "'HTTP' and 'TCP_CPS'"
+      parameters:
+      - "result"
+      - "name"
+      traces:
+        hoverinfo: "x+y"
+        boxpoints: "outliers"
+        whiskerwidth: 0
+      layout:
+        title: "VPP HTTP Server Performance"
+        layout:
+          "plot-cps"
+
 
 Section: file
 '''''''''''''
