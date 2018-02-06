@@ -87,6 +87,14 @@
 -
   type: "configuration"
   data-sets:
+# TODO: Add the data sources
+    plot-vpp-http-server-performance:
+      csit-vpp-perf-1801-all:
+      - 1
+      - 2
+      - 3
+      - 4
+# TODO: Add the data sources
     vpp-meltdown-impact:
       csit-vpp-perf-1707-all:
       - 9
@@ -96,6 +104,7 @@
       - 11
       - 12
       - 13
+# TODO: Add the data sources
     vpp-spectre-impact:
       csit-vpp-perf-1707-all:
       - 9
@@ -134,7 +143,7 @@
       - 18
       - 19
       - 20
-# TODO:
+# TODO: Add the data sources
       csit-vpp-perf-1801-all:
       - 13
       - 14
@@ -201,7 +210,93 @@
       - 1
       - 3
       - 7
+
   plot-layouts:
+
+    plot-cps:
+      xaxis:
+        autorange: True
+        autotick: False
+        fixedrange: False
+        gridcolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        tickmode: "linear"
+        title: "Indexed Test Cases"
+        zeroline: False
+      yaxis:
+        gridcolor: "rgb(238, 238, 238)'"
+        hoverformat: ".4s"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        range: []
+        rangemode: "tozero"
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        title: "Connections Per Second [cps]"
+        zeroline: False
+      boxmode: "group"
+      boxgroupgap: 0.5
+      autosize: False
+      margin:
+        t: 50
+        b: 20
+        l: 50
+        r: 20
+      showlegend: True
+      legend:
+        orientation: "h"
+      width: 700
+      height: 1000
+
+    plot-rps:
+      xaxis:
+        autorange: True
+        autotick: False
+        fixedrange: False
+        gridcolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        tickmode: "linear"
+        title: "Indexed Test Cases"
+        zeroline: False
+      yaxis:
+        gridcolor: "rgb(238, 238, 238)'"
+        hoverformat: ".4s"
+        linecolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        range: []
+        rangemode: "tozero"
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
+        title: "Requests Per Second [rps]"
+        zeroline: False
+      boxmode: "group"
+      boxgroupgap: 0.5
+      autosize: False
+      margin:
+        t: 50
+        b: 20
+        l: 50
+        r: 20
+      showlegend: True
+      legend:
+        orientation: "h"
+      width: 700
+      height: 1000
+
     plot-throughput:
       xaxis:
         autorange: True
@@ -242,6 +337,7 @@
         orientation: "h"
       width: 700
       height: 1000
+
     plot-latency:
       xaxis:
         autorange: True
@@ -282,6 +378,7 @@
         orientation: "h"
       width: 700
       height: 1000
+
     plot-throughput-speedup-analysis:
       xaxis:
         autorange: True
@@ -343,6 +440,12 @@
       file: "{DIR[WORKING,DATA]}/output.xml"
     -
       build: 2
+      file: "{DIR[WORKING,DATA]}/output.xml"
+    -
+      build: 3
+      file: "{DIR[WORKING,DATA]}/output.xml"
+    -
+      build: 4
       file: "{DIR[WORKING,DATA]}/output.xml"
 
 -
@@ -946,6 +1049,51 @@
 ################################################################################
 ###                                P L O T S                                 ###
 ################################################################################
+
+# Plots VPP HTTP Server Performance
+-
+  type: "plot"
+  title: "VPP HTTP Server Performance"
+  algorithm: "plot_http_server_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+  data:
+    "plot-vpp-http-server-performance"
+  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+  # each tag is enclosed with ' (apostrophe).
+  filter: "'HTTP' and 'TCP_CPS'"
+  parameters:
+  - "result"
+  - "name"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "VPP HTTP Server Performance"
+    layout:
+      "plot-cps"
+
+-
+  type: "plot"
+  title: "VPP HTTP Server Performance"
+  algorithm: "plot_http_server_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
+  data:
+    "plot-vpp-http-server-performance"
+  filter: "'HTTP' and 'TCP_RPS'"
+  parameters:
+  - "result"
+  - "name"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "VPP HTTP Server Performance"
+    layout:
+      "plot-rps"
 
 # Plot Throughput Speedup Analysis
 

@@ -171,6 +171,8 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_VERSION = re.compile(r"(stdout: 'vat# vat# Version:)(\s*)(.*)")
 
+    REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
+
     def __init__(self, **metadata):
         """Initialisation.
 
@@ -416,34 +418,46 @@ class ExecutionChecker(ResultVisitor):
         test_result["doc"] =  replace(doc_str, ' |br| [', '[', maxreplace=1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
-        if test.status == "PASS" and "NDRPDRDISC" in tags:
+        if test.status == "PASS" and ("NDRPDRDISC" in tags or "TCP" in tags):
 
             if "NDRDISC" in tags:
                 test_type = "NDR"
             elif "PDRDISC" in tags:
                 test_type = "PDR"
+            elif "TCP" in tags:  # Change to wrk?
+                test_type = "TCP"
             else:
                 return
 
-            try:
-                rate_value = str(re.search(
-                    self.REGEX_RATE, test.message).group(1))
-            except AttributeError:
-                rate_value = "-1"
-            try:
-                rate_unit = str(re.search(
-                    self.REGEX_RATE, test.message).group(2))
-            except AttributeError:
-                rate_unit = "-1"
-
             test_result["type"] = test_type
-            test_result["throughput"] = dict()
-            test_result["throughput"]["value"] = int(rate_value.split('.')[0])
-            test_result["throughput"]["unit"] = rate_unit
-            test_result["latency"] = self._get_latency(test.message, test_type)
-            if test_type == "PDR":
-                test_result["lossTolerance"] = str(re.search(
-                    self.REGEX_TOLERANCE, test.message).group(1))
+
+            if test_type in ("NDR", "PDR"):
+                try:
+                    rate_value = str(re.search(
+                        self.REGEX_RATE, test.message).group(1))
+                except AttributeError:
+                    rate_value = "-1"
+                try:
+                    rate_unit = str(re.search(
+                        self.REGEX_RATE, test.message).group(2))
+                except AttributeError:
+                    rate_unit = "-1"
+
+                test_result["throughput"] = dict()
+                test_result["throughput"]["value"] = \
+                    int(rate_value.split('.')[0])
+                test_result["throughput"]["unit"] = rate_unit
+                test_result["latency"] = \
+                    self._get_latency(test.message, test_type)
+                if test_type == "PDR":
+                    test_result["lossTolerance"] = str(re.search(
+                        self.REGEX_TOLERANCE, test.message).group(1))
+
+            elif test_type in ("TCP", ):
+                groups = re.search(self.REGEX_TCP, test.message)
+                test_result["result"] = dict()
+                test_result["result"]["value"] = int(groups.group(2))
+                test_result["result"]["unit"] = groups.group(1)
         else:
             test_result["status"] = test.status
 
