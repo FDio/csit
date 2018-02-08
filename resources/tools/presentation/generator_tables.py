@@ -529,3 +529,21 @@ def table_performance_comparison(table, input_data):
             if i == table["nr-of-tests-shown"]:
                 break
             out_file.write(line)
+
+
+def table_compare_builds(table, input_data):
+    """Generate the table(s) with algorithm: table_performance_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    data = input_data.filter_data(table)
+

@@ -1,0 +1,122 @@
+-
+  type: "environment"
+  configuration:
+    # Debug mode:
+    # - Skip:
+    #   - Download of input data files
+    # - Do:
+    #   - Read data from given zip / xml files
+    #   - Set the configuration as it is done in normal mode
+    # If the section "type: debug" is missing, CFG[DEBUG] is set to 0.
+    CFG[DEBUG]: 1
+
+  paths:
+    # Top level directories:
+    ## Working directory
+    DIR[WORKING]: "_tmp"
+    ## Build directories
+    DIR[BUILD]: "_build"
+    ## Input data files (.zip, .xml)
+    DIR[WORKING,DATA]: "{DIR[WORKING]}/data"
+
+  urls:
+    URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
+
+  make-dirs:
+  # List the directories which are created while preparing the environment.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[WORKING,DATA]"
+  - "DIR[BUILD]"
+  build-dirs:
+  # List the directories where the results (build) is stored.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[BUILD]"
+
+-
+  type: "configuration"
+  data-sets:
+# TODO: Specify input data:
+    table-compare-builds:
+        csit-vpp-perf-1801-all:
+        - 1
+        csit-vpp-perf-1801-all:
+        - 2
+
+-
+  type: "debug"
+  general:
+    input-format: "xml"  # zip or xml
+    extract: "robot-plugin/output.xml"  # Only for zip
+  builds:
+    # The files must be in the directory DIR[WORKING,DATA]
+    csit-vpp-perf-1801-all:
+    -
+      build: 1
+      file: "{DIR[WORKING,DATA]}/output_cores_1.xml"
+    -
+      build: 2
+      file: "{DIR[WORKING,DATA]}/output_cores_1.xml"
+
+-
+  # No static content specified
+  type: "static"
+
+-
+  type: "input"  # Ignored in debug mode
+  general:
+    file-name: "robot-plugin.zip"
+    file-format: ".zip"
+    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    extract: "robot-plugin/output.xml"
+  builds:
+    csit-vpp-perf-1710-all:
+    - 1
+    csit-vpp-perf-1801-all:
+    - 1
+
+-
+  type: "output"
+  # No report is generated
+  format: {}
+
+################################################################################
+###                               T A B L E S                                ###
+################################################################################
+
+-
+  type: "table"
+  title: "Compare two builds"
+  algorithm: "table_compare_builds"
+  output-file: "{DIR[BUILD]}/perf_comp"
+  reference:
+    title: "csit-vpp-perf-1710-all - 1"
+# TODO: specify data source
+    data:
+      csit-vpp-perf-1710-all:
+      - 1
+  compare:
+    title: "csit-vpp-perf-1801-all - 1"
+# TODO: specify data source
+    data:
+      csit-vpp-perf-1801-all:
+      - 1
+  data:
+    "table-compare-builds"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 0
+# TODO: all in one table or grouped by feature?
+  # Group tests:
+  # "all" - all tests in one group, "feature" - tests grouped by feature
+  group-tests: "all"
+# TODO: specify the pass / fail criteria
+  criteria:
+    # Acceptable number of failed tests compared to reference tests
+    nr-of-failed: 10
+    # Acceptable performance degradation - relative change [%]
+    degradation: 5
