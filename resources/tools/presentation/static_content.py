@@ -34,8 +34,11 @@ def prepare_static_content(spec):
     content.
     """
 
-    src = spec.static["src-path"]
-    dst = spec.static["dst-path"]
+    src = spec.static.get("src-path", None)
+    dst = spec.static.get("dst-path", None)
+    if src is None or dst is None:
+        logging.warning("No static content specified, skipping")
+        return
 
     # Copy all the static content to the build directory:
     logging.info("Copying the static content ...")

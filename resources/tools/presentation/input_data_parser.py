@@ -866,7 +866,7 @@ class InputData(object):
 
         except (KeyError, IndexError, ValueError) as err:
             logging.error("   Missing mandatory parameter in the element "
-                          "specification.", err)
+                          "specification: {0}".format(err))
             return None
         except AttributeError:
             return None
