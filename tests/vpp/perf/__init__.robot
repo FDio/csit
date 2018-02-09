@@ -39,6 +39,7 @@
 | | ... | - use_tuned_cfs - Switch to set scheduler policy
 | | ... | - qemu_built - Information if QEMU build is already prepared
 | | ... | - pkt_trace - Switch to enable packet trace for test
+| | ... | - plugins_to_disable - List of plugins to be disabled for test
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
@@ -50,3 +51,8 @@
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
 | | Set Global Variable | ${qemu_built} | ${False}
 | | Set Global Variable | ${pkt_trace} | ${False}
+| | @{plugins_to_disable}= | Create List | acl_plugin.so | flowprobe_plugin.so
+| | ... | gtpu_plugin.so | ila_plugin.so | ioam_plugin.so | ixge_plugin.so
+| | ... | kubeproxy_plugin.so | l2e_plugin.so | lb_plugin.so | memif_plugin.so
+| | ... | nat_plugin.so | pppoe_plugin.so | sixrd_plugin.so | stn_plugin.so
+| | Set Global Variable | @{plugins_to_disable}
