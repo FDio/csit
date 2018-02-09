@@ -63,12 +63,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
-| | ... | 18.75Mpps rate, step 100kpps.
+| | ... | 18.75Mpps rate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -87,12 +87,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at\
-| | ... | 18.75Mpps rate, step 100kpps.
+| | ... | 18.75Mpps rate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -112,12 +112,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at\
-| | ... | 24.5G rate, step 10kpps.
+| | ... | 24.5G rate, step 50kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -160,12 +160,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
-| | ... | 18.75Mpps rate, step 100kpps.
+| | ... | 18.75Mpps rate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -184,12 +184,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at\
-| | ... | 18.75Mpps rate, step 100kpps.
+| | ... | 18.75Mpps rate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDR | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -209,12 +209,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at\
-| | ... | 24.5G rate, step 10kpps.
+| | ... | 24.5G rate, step 50kpps.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -233,12 +233,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
-| | ... | 18.75Mpps rate, step 100kpps.
+| | ... | 18.75Mpps rate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -257,12 +257,12 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at\
-| | ... | 24.5G rate, step 10kpps.
+| | ... | 24.5G rate, step 50kpps.
 | | ...
 | | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -281,13 +281,13 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 24.5G rate, step 100kpps.
+| | ... | 24.5G rate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -306,13 +306,13 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 24.5G rate, step 100kpps.
+| | ... | 24.5G rate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -331,13 +331,13 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 thread, 4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 24.5G rate, step 100kpps.
+| | ... | 24.5G rate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}

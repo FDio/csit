@@ -58,10 +58,10 @@
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 100kpps.
+| | ... | at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -88,10 +88,10 @@
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 100kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -119,10 +119,10 @@
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 100kpps.
+| | ... | at 10GE linerate, step 50kpps.
 | | [Tags] | 1460B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${1460}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -149,10 +149,10 @@
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1460B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -180,7 +180,7 @@
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 5kpps.
+| | ... | at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -209,7 +209,7 @@
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -239,10 +239,10 @@
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 100kpps.
+| | ... | at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -269,10 +269,10 @@
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 100kpps.
+| | ... | at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -300,10 +300,10 @@
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 10kpps.
+| | ... | at 10GE linerate, step 50kpps.
 | | [Tags] | 1460B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -330,10 +330,10 @@
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1460B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -361,7 +361,7 @@
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 5kpps.
+| | ... | at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -390,7 +390,7 @@
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -420,10 +420,10 @@
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 100kpps.
+| | ... | at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -450,10 +450,10 @@
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 100kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -481,10 +481,10 @@
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 10kpps.
+| | ... | at 10GE linerate, step 50kpps.
 | | [Tags] | 1460B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -511,10 +511,10 @@
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1460B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -542,7 +542,7 @@
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 5kpps.
+| | ... | at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -571,7 +571,7 @@
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
-| | ... | at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
