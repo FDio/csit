@@ -17,8 +17,10 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE | MEMIF | LXC
 | ...
-| Suite Setup | Run Keywords | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| Suite Setup | Run Keywords
+| ... | Set up 3-node performance topology with DUT's NIC model | L2
+| ... | Intel-X520-DA2
+| ... | AND | Set up performance test suite with MEMIF
 | ... | AND | Set up performance topology with containers
 | ...
 | Suite Teardown | Tear down 3-node performance topology with container
