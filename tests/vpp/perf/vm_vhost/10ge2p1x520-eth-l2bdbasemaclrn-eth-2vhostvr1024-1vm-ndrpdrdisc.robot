@@ -201,7 +201,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
-| | ... | size using binary search start at 10GE linerate, step 5kpps.
+| | ... | size using binary search start at 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | IMIX_v4_1
