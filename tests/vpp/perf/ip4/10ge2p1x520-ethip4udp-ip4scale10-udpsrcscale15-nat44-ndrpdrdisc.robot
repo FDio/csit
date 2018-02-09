@@ -20,8 +20,10 @@
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | NAT44 | SRC_USER_10
 | ... | SCALE
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L3 | Intel-X520-DA2
+| Suite Setup | Run Keywords
+| ... | Set up 3-node performance topology with DUT's NIC model | L3
+| ... | Intel-X520-DA2
+| ... | AND | Set up performance test suite with NAT
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
