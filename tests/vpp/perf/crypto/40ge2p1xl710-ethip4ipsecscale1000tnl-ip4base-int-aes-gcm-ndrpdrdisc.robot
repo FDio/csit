@@ -77,12 +77,12 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -111,12 +111,12 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -146,12 +146,12 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G}
 | | ... | ${framesize + ${ipsec_overhead_gcm}}
 | | ${binary_min}= | Set Variable | ${min_rate}
@@ -180,12 +180,12 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnel AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G}
 | | ... | ${framesize + ${ipsec_overhead_gcm}}
 | | ${binary_min}= | Set Variable | ${min_rate}
@@ -215,14 +215,14 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G}
 | | ... | ${imix_size} + ${ipsec_overhead_gcm}
 | | ${binary_min}= | Set Variable | ${min_rate}
@@ -251,14 +251,14 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G}
 | | ... | ${imix_size} + ${ipsec_overhead_gcm}
 | | ${binary_min}= | Set Variable | ${min_rate}
@@ -288,12 +288,12 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -322,12 +322,12 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
+| | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
