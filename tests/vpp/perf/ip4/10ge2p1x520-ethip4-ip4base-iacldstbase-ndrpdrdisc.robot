@@ -65,7 +65,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find NDR
 | | ... | for 64 Byte frames using binary search start at 10GE linerate,
-| | ... | step 100kpps.
+| | ... | step 50kpps.
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -101,7 +101,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find PDR
 | | ... | for 64 Byte frames using binary search start at 10GE linerate,
-| | ... | step 100kpps, LT=0.5%.
+| | ... | step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -282,7 +282,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find NDR
 | | ... | for 64 Byte frames using binary search start at 10GE linerate,
-| | ... | step 100kpps.
+| | ... | step 50kpps.
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -318,7 +318,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find PDR
 | | ... | for 64 Byte frames using binary search start at 10GE linerate,
-| | ... | step 100kpps, LT=0.5%.
+| | ... | step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -499,7 +499,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find NDR
 | | ... | for 64 Byte frames using binary search start at 10GE linerate,
-| | ... | step 100kpps.
+| | ... | step 50kpps.
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -535,7 +535,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find PDR
 | | ... | for 64 Byte frames using binary search start at 10GE linerate,
-| | ... | step 100kpps, LT=0.5%.
+| | ... | step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
