@@ -76,7 +76,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps.
+| | ... | linerate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
@@ -108,7 +108,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps, LT=0.5%.
+| | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -141,7 +141,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps.
+| | ... | linerate, step 50kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
@@ -172,7 +172,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps, LT=0.5%.
+| | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -204,7 +204,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps.
+| | ... | linerate, step 50kpps.
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
@@ -236,7 +236,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps, LT=0.5%.
+| | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -269,7 +269,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps.
+| | ... | linerate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
@@ -301,7 +301,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps, LT=0.5%.
+| | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -334,7 +334,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 4 threads, 4 phy\
 | | ... | cores, 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps.
+| | ... | linerate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ...
@@ -366,7 +366,7 @@
 | | ... | IPsec is in transport mode. DUTs are configured with 4 threads, 4 phy\
 | | ... | cores, 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps, LT=0.5%.
+| | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...

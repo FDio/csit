@@ -42,7 +42,7 @@
 | | ... | with 100K requests generated in a single thread.
 | | ${cycles}= | Set Variable | ${1}
 | | ${threads}= | Set Variable | ${1}
-| | ${entries}= | Set Variable | ${100000}
+| | ${entries}= | Set Variable | ${50000}
 | | Run base operational read performance trial
 | | ... | ${node} | ${cores} | ${cycles} | ${threads} | ${entries}
 
