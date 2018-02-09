@@ -77,7 +77,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
@@ -114,7 +114,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -152,7 +152,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
@@ -189,7 +189,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnel AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -227,7 +227,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
@@ -266,7 +266,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -306,7 +306,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
+| | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
@@ -343,7 +343,7 @@
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
 | | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
+| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
