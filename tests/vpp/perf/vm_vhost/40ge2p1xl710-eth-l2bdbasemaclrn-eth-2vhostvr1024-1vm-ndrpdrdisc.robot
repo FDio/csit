@@ -211,7 +211,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
-| | ... | size using binary search start at 40GE linerate, step 5kpps.
+| | ... | size using binary search start at 40GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
@@ -246,7 +246,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
-| | ... | size using binary search start at 40GE linerate, step 5kpps, LT=0.5%.
+| | ... | size using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -419,7 +419,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
-| | ... | size using binary search start at 40GE linerate, step 5kpps.
+| | ... | size using binary search start at 40GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
@@ -454,7 +454,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
-| | ... | size using binary search start at 40GE linerate, step 5kpps, LT=0.5%.
+| | ... | size using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
@@ -628,7 +628,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
-| | ... | size using binary search start at 40GE linerate, step 5kpps.
+| | ... | size using binary search start at 40GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
@@ -663,7 +663,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
-| | ... | size using binary search start at 40GE linerate, step 5kpps, LT=0.5%.
+| | ... | size using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
