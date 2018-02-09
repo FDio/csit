@@ -18,8 +18,10 @@
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | ACL | ACL_STATEFUL
 | ... | OACL | ACL10 | 100k_FLOWS
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L3 | Intel-X520-DA2
+| Suite Setup | Run Keywords
+| ... | Set up 3-node performance topology with DUT's NIC model | L3
+| ... | Intel-X520-DA2
+| ... | AND | Set up performance test suite with ACL
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test

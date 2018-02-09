@@ -18,8 +18,9 @@
 | ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | FEATURE | MACIP | ACL_STATELESS
 | ... | IACL | ACL50 | 10k_FLOWS
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| Suite Setup | Run Keywords
+| ... | Set up 3-node performance topology with DUT's NIC model | L2
+| ... | Intel-X520-DA2
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
