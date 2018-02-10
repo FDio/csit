@@ -13,13 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ... | WITH NAME | dut1_v4
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
-| ... | WITH NAME | dut2_v4
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | IP4BASE
@@ -61,6 +54,39 @@
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
+*** Keywords ***
+| Discover NDR or PDR for ethip4-ip4base
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with ${wt} thread(s), ${wt}\
+| | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
+| | ... | [Ver] Find NDR or PDR for ${framesize} frames using binary search\
+| | ... | start at 10GE linerate.
+| | ...
+| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| | ...
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${min_rate}
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Run Keyword If | ${get_framesize} < ${1522}
+| | ... | Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | Then Run Keyword If | '${search_type}' == 'NDR'
+| | ... | Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ELSE IF | '${search_type}' == 'PDR'
+| | ... | Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -68,20 +94,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
 
 | tc02-64B-1t1c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -89,21 +104,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
 
 | tc03-1518B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -111,20 +114,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
 
 | tc04-1518B-1t1c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -132,21 +124,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
 
 | tc05-9000B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -154,19 +134,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc06-9000B-1t1c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -174,20 +144,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
 
 | tc07-64B-2t2c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -195,20 +154,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
 
 | tc08-64B-2t2c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -216,21 +164,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
 
 | tc09-1518B-2t2c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -238,20 +174,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
 
 | tc10-1518B-2t2c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -259,21 +184,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
 
 | tc11-9000B-2t2c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -281,19 +194,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc12-9000B-2t2c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -301,20 +204,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
 
 | tc13-64B-4t4c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -322,20 +214,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
 
 | tc14-64B-4t4c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -343,21 +224,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR
 
 | tc15-1518B-4t4c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -365,20 +234,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
 
 | tc16-1518B-4t4c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -386,21 +244,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR
 
 | tc17-9000B-4t4c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -408,19 +254,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc18-9000B-4t4c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -428,62 +264,6 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
-
-| tc19-IMIX-1t1c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 50kpps.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 1T1C | STHREAD | NDRDISC
-| | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc20-IMIX-1t1c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=PDR

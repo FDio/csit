@@ -13,13 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ... | WITH NAME | dut1_v4
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
-| ... | WITH NAME | dut2_v4
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | IP4BASE
@@ -56,7 +49,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
-| Check PDR for IPv4 routing
+| Check PDR for ethip4-ip4base
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ${wt} thread(s), ${wt}\
 | | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
@@ -90,7 +83,7 @@
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${64} | rate=4.7mpps | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-ethip4-ip4base-pdrchk
@@ -102,7 +95,7 @@
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${1518} | rate=400000pps | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-ethip4-ip4base-pdrchk
@@ -114,7 +107,7 @@
 | | ...
 | | [Tags] | 9000B | 1T1C | STHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${9000} | rate=60000pps | wt=1 | rxq=1
 
 | tc04-64B-2t2c-ethip4-ip4base-pdrchk
@@ -126,7 +119,7 @@
 | | ...
 | | [Tags] | 64B | 2T2C | STHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${64} | rate=9.4mpps | wt=2 | rxq=1
 
 | tc05-1518B-2t2c-ethip4-ip4base-pdrchk
@@ -138,7 +131,7 @@
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${1518} | rate=400000pps | wt=2 | rxq=1
 
 | tc06-9000B-2t2c-ethip4-ip4base-pdrchk
@@ -150,7 +143,7 @@
 | | ...
 | | [Tags] | 9000B | 2T2C | MTHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${9000} | rate=60000pps | wt=2 | rxq=1
 
 | tc07-64B-4t4c-ethip4-ip4base-pdrchk
@@ -162,7 +155,7 @@
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${64} | rate=7.4mpps | wt=4 | rxq=2
 
 | tc08-1518B-4t4c-ethip4-ip4base-pdrchk
@@ -174,7 +167,7 @@
 | | ...
 | | [Tags] | 1518B | 4T4C | MTHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${1518} | rate=400000pps | wt=4 | rxq=2
 
 | tc08-9000B-4t4c-ethip4-ip4base-pdrchk
@@ -186,5 +179,5 @@
 | | ...
 | | [Tags] | 9000B | 4T4C | MTHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing
+| | [Template] | Check PDR for ethip4-ip4base
 | | framesize=${9000} | rate=60000pps | wt=4 | rxq=2
