@@ -117,16 +117,20 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | dut1_v4.set_arp | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
-| | dut2_v4.set_arp | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
-| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
-| | dut1_v4.set_ip | ${dut1_if1} | 10.10.10.1 | 24
-| | dut1_v4.set_ip | ${dut1_if2} | 1.1.1.1 | 30
-| | dut2_v4.set_ip | ${dut2_if1} | 1.1.1.2 | 30
-| | dut2_v4.set_ip | ${dut2_if2} | 20.20.20.1 | 24
-| | dut1_v4.set_route | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
-| | dut2_v4.set_route | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
+| | ... | 10.10.10.1 | 24
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+| | ... | 1.1.1.1 | 30
+| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1}
+| | ... | 1.1.1.2 | 30
+| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
+| | ... | 20.20.20.1 | 24
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if1}
+| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize IPv4 forwarding in 2-node circular topology
@@ -141,10 +145,12 @@
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.3 | ${tg1_if1_mac}
-| | dut1_v4.set_arp | ${dut1_if2} | 20.20.20.3 | ${tg1_if2_mac}
-| | dut1_v4.set_ip | ${dut1_if1} | 10.10.10.2 | 24
-| | dut1_v4.set_ip | ${dut1_if2} | 20.20.20.2 | 24
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.3 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 20.20.20.3 | ${tg1_if2_mac}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
+| | ... | 10.10.10.2 | 24
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+| | ... | 20.20.20.2 | 24
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize IPv4 forwarding with scaling in 3-node circular topology
