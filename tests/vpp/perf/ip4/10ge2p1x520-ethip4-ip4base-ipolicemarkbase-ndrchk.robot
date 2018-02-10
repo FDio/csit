@@ -14,10 +14,6 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Library | resources.libraries.python.Policer
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ... | WITH NAME | dut1_v4
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
-| ... | WITH NAME | dut2_v4
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
 | ... | NIC_Intel-X520-DA2 | IP4FWD | BASE | DOT1Q
@@ -56,6 +52,33 @@
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
+*** Keywords ***
+| Check NDR for ethip4-ip4base-ipolicemarkbase
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with ${wt} thread(s), ${wt}\
+| | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
+| | ... | [Ver] Verify ref-NDR for ${framesize} frames using single trial\
+| | ... | throughput test at 2x ${rate}.
+| | ...
+| | [Arguments] | ${framesize} | ${rate} | ${wt} | ${rxq}
+| | ...
+| | # Test Variables required for test teardown
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ...
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Run Keyword If | ${get_framesize} < ${1522}
+| | ... | Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration}
+| | ... | ${rate} | ${framesize} | ${traffic_profile}
+
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -63,18 +86,9 @@
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
 | | ... | Byte frames using single trial throughput test at 2x 3.6mpps.
 | | [Tags] | 64B | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | ${64}
-| | ${rate}= | Set Variable | 3.6mpps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${64} | rate=3.6mpps | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -82,18 +96,9 @@
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 \
 | | ... | Byte frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 1518B | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | ${1518}
-| | ${rate}= | Set Variable | 812743pps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${1518} | rate=812743pps | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -101,17 +106,9 @@
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 \
 | | ... | Byte frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 9000B | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | ${9000}
-| | ${rate}= | Set Variable | 138580pps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${9000} | rate=138580pps | wt=1 | rxq=1
 
 | tc04-64B-2t2c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -119,18 +116,9 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 64 Byte frames using single trial throughput test at 2x 6.2mpps.
 | | [Tags] | 64B | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | ${64}
-| | ${rate}= | Set Variable | 6.2mpps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${64} | rate=6.2mpps | wt=2 | rxq=1
 
 | tc05-1518B-2t2c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -138,18 +126,9 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 1518 Byte frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 1518B | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | ${1518}
-| | ${rate}= | Set Variable | 812743pps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${1518} | rate=812743pps | wt=2 | rxq=1
 
 | tc06-9000B-2t2c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -157,17 +136,9 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 9000 Byte frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 9000B | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | ${9000}
-| | ${rate}= | Set Variable | 138580pps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${9000} | rate=138580pps | wt=2 | rxq=1
 
 | tc07-64B-4t4c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -175,18 +146,9 @@
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
 | | ... | Byte frames using single trial throughput test at 2x 10.4mpps.
 | | [Tags] | 64B | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | ${64}
-| | ${rate}= | Set Variable | 10.4mpps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${64} | rate=10.4mpps | wt=4 | rxq=2
 
 | tc08-1518B-4t4c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -194,18 +156,9 @@
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 1518 Byte frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 1518B | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | ${1518}
-| | ${rate}= | Set Variable | 812743pps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${1518} | rate=812743pps | wt=4 | rxq=2
 
 | tc09-9000B-4t4c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
@@ -213,14 +166,6 @@
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 9000 Byte frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 9000B | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | ${9000}
-| | ${rate}= | Set Variable | 138580pps
-| | Set Test Variable | ${cb} | ${framesize}
-| | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
-| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${traffic_profile}
+| | ...
+| | [Template] | Check NDR for ethip4-ip4base-ipolicemarkbase
+| | framesize=${9000} | rate=138580pps | wt=4 | rxq=2
