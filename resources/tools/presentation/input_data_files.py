@@ -15,6 +15,8 @@
 Download all data.
 """
 
+import re
+
 import logging
 
 from os import rename, remove
@@ -33,6 +35,8 @@ CHUNK_SIZE = 512
 
 # Separator used in file names
 SEPARATOR = "__"
+
+REGEX_RELEASE = re.compile(r'(\D*)(\d{4})(\D*)')
 
 
 def download_data_files(spec):
@@ -59,21 +63,42 @@ def download_data_files(spec):
             url = "{0}/{1}".format(url, full_name)
             new_name = join(
                 spec.environment["paths"]["DIR[WORKING,DATA]"],
-                "{job}{sep}{build}{sep}{name}".format(job=job, sep=SEPARATOR,
+                "{job}{sep}{build}{sep}{name}".format(job=job,
+                                                      sep=SEPARATOR,
                                                       build=build["build"],
                                                       name=file_name))
-
-            logging.info("Downloading the file '{0}' to '{1}'.".
-                         format(url, new_name))
+            logging.info(
+                "Downloading the file '{0}' to '{1}' ...".format(url, new_name))
 
             status = "failed"
             try:
                 response = get(url, stream=True)
                 code = response.status_code
                 if code != codes["OK"]:
-                    logging.error("{0}: {1}".format(code, responses[code]))
+                    logging.warning(
+                        "Jenkins: {0}: {1}.".format(code, responses[code]))
+                    logging.info("Trying to download from Nexus:")
                     spec.set_input_state(job, build["build"], "not found")
-                    continue
+                    if code == codes["not_found"]:
+                        release = re.search(REGEX_RELEASE, job).group(2)
+                        nexus_file_name = "{job}{sep}{build}{sep}{name}".\
+                            format(job=job, sep=SEPARATOR, build=build["build"],
+                                   name=file_name)
+                        url = "{url}/rls{release}/{dir}/{file}".\
+                            format(url=spec.environment["urls"]["URL[NEXUS]"],
+                                   release=release,
+                                   dir=spec.environment["urls"]["DIR[NEXUS]"],
+                                   file=nexus_file_name)
+                        logging.info("Downloading the file '{0}' to '{1}' ...".
+                                     format(url, new_name))
+                        response = get(url, stream=True)
+                        code = response.status_code
+                        if code != codes["OK"]:
+                            logging.error(
+                                "Nexus: {0}: {1}".format(code, responses[code]))
+                            spec.set_input_state(
+                                job, build["build"], "not found")
+                            continue
 
                 file_handle = open(new_name, "wb")
                 for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
