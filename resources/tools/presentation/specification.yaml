@@ -61,6 +61,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
+    URL[NEXUS]: "https://docs.fd.io/csit"
+    DIR[NEXUS]: "report/_static/archive"
 
   make-dirs:
   # List the directories which are created while preparing the environment.
@@ -88,38 +90,38 @@
   type: "configuration"
   data-sets:
 # TODO: Add the data sources
-    plot-vpp-http-server-performance:
-      csit-vpp-perf-1801-all:
-      - 1
-      - 2
-      - 3
-      - 4
+#    plot-vpp-http-server-performance:
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+#      - 3
+#      - 4
 # TODO: Add the data sources
-    vpp-meltdown-impact:
-      csit-vpp-perf-1707-all:
-      - 9
-      - 10
-      - 13
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
+#    vpp-meltdown-impact:
+#      csit-vpp-perf-1707-all:
+#      - 9
+#      - 10
+#      - 13
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
 # TODO: Add the data sources
-    vpp-spectre-impact:
-      csit-vpp-perf-1707-all:
-      - 9
-      - 10
-      - 13
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
+#    vpp-spectre-impact:
+#      csit-vpp-perf-1707-all:
+#      - 9
+#      - 10
+#      - 13
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
 # TODO: Add the data sources
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1801-all:
-      - 13
-      - 14
-      - 21
+      - 122
+      - 126
+      - 129
     performance-improvements:
       csit-vpp-perf-1707-all:
       - 9
@@ -145,9 +147,9 @@
       - 20
 # TODO: Add the data sources
       csit-vpp-perf-1801-all:
-      - 13
-      - 14
-      - 21
+      - 124
+      - 127
+      - 128
       csit-ligato-perf-1710-all:
       - 5
       - 7
@@ -166,7 +168,9 @@
 # TODO:
     vpp-perf-results:
       csit-vpp-perf-1801-all:
-      - 12
+      - 122
+      - 126
+      - 129
     vpp-func-results:
       csit-vpp-functional-1801-ubuntu1604-virl:
       - "lastSuccessfulBuild"
@@ -180,18 +184,15 @@
     hc-func-results:
       csit-hc2vpp-verify-func-1801-ubuntu1604:
       - "lastSuccessfulBuild"
-# TODO: Will we use this one?
-#      hc2vpp-csit-integration-odl-carbon-1801-ubuntu1604:
-#      - lastSuccessfulBuild
     nsh-func-results:
       csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
       - 1
 # TODO:
     plot-vpp-throughput-latency:
       csit-vpp-perf-1801-all:
-      - 13
-      - 14
-      - 21
+      - 124
+      - 127
+      - 128
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1801-all:
       - 1
@@ -201,7 +202,6 @@
       - 6
       - 7
       - 8
-      - 9
       - 10
       - 12
 # TODO:
@@ -483,13 +483,14 @@
     - 18
     - 19
     - 20
-    - 23
 # TODO:
     csit-vpp-perf-1801-all:
-    - 12 # full
-    - 13 # sel
-    - 14 # sel
-    - 21 # sel
+    - 122  # full
+    - 126  # full
+    - 129  # full
+    - 124  # sel
+    - 127  # sel
+    - 128  # sel
     csit-ligato-perf-1710-all:
     - 5
     - 7
@@ -499,6 +500,16 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
+    csit-dpdk-perf-1801-all:
+    - 1
+    - 4
+    - 5
+    - 7
+    - 8
+    - 10
+    - 12
     - 16
     - 17
 # TODO:
@@ -523,9 +534,6 @@
     - 1
     csit-hc2vpp-verify-func-1801-ubuntu1604:
     - lastSuccessfulBuild
-# TODO: Will we use this one?
-#    hc2vpp-csit-integration-odl-carbon-1801-ubuntu1604:
-#    - lastSuccessfulBuild
 
 -
   type: "output"
@@ -539,73 +547,73 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
--
-  type: "table"
-  title: "Performance Impact of Meltdown Patches"
-  algorithm: "table_performance_comparison"
-  output-file-ext: ".csv"
-# TODO: specify dir
-  output-file: "{DIR[STATIC,VPP]}/meltdown-impact"
-  reference:
-    title: "No Meltdown"
-# TODO: specify data sources
-    data:
-      csit-vpp-perf-1707-all:
-      - 9
-      - 10
-      - 13
-  compare:
-    title: "Meltdown Patches Applied"
-# TODO: specify data sources
-    data:
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
-  data:
-    "vpp-meltdown-impact"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-  # to present all tests.
-  nr-of-tests-shown: 20
-
--
-  type: "table"
-  title: "Performance Impact of Spectre Patches"
-  algorithm: "table_performance_comparison"
-  output-file-ext: ".csv"
-# TODO: specify dir
-  output-file: "{DIR[STATIC,VPP]}/meltdown-spectre-impact"
-  reference:
-    title: "No Spectre"
-# TODO: specify data sources
-    data:
-      csit-vpp-perf-1707-all:
-      - 9
-      - 10
-      - 13
-  compare:
-    title: "Spectre Patches Applied"
-# TODO: specify data sources
-    data:
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
-  data:
-    "vpp-spectre-impact"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-  # to present all tests.
-  nr-of-tests-shown: 20
+#-
+#  type: "table"
+#  title: "Performance Impact of Meltdown Patches"
+#  algorithm: "table_performance_comparison"
+#  output-file-ext: ".csv"
+## TODO: specify dir
+#  output-file: "{DIR[STATIC,VPP]}/meltdown-impact"
+#  reference:
+#    title: "No Meltdown"
+## TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1707-all:
+#      - 9
+#      - 10
+#      - 13
+#  compare:
+#    title: "Meltdown Patches Applied"
+## TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
+#  data:
+#    "vpp-meltdown-impact"
+#  filter: "all"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "throughput"
+#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+#  # to present all tests.
+#  nr-of-tests-shown: 20
+#
+#-
+#  type: "table"
+#  title: "Performance Impact of Spectre Patches"
+#  algorithm: "table_performance_comparison"
+#  output-file-ext: ".csv"
+## TODO: specify dir
+#  output-file: "{DIR[STATIC,VPP]}/meltdown-spectre-impact"
+#  reference:
+#    title: "No Spectre"
+## TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1707-all:
+#      - 9
+#      - 10
+#      - 13
+#  compare:
+#    title: "Spectre Patches Applied"
+## TODO: specify data sources
+#    data:
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
+#  data:
+#    "vpp-spectre-impact"
+#  filter: "all"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "throughput"
+#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+#  # to present all tests.
+#  nr-of-tests-shown: 20
 
 -
   type: "table"
@@ -1051,49 +1059,49 @@
 ################################################################################
 
 # Plots VPP HTTP Server Performance
--
-  type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
-  data:
-    "plot-vpp-http-server-performance"
-  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-  # each tag is enclosed with ' (apostrophe).
-  filter: "'HTTP' and 'TCP_CPS'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-cps"
-
--
-  type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
-  data:
-    "plot-vpp-http-server-performance"
-  filter: "'HTTP' and 'TCP_RPS'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-rps"
+#-
+#  type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+#  # each tag is enclosed with ' (apostrophe).
+#  filter: "'HTTP' and 'TCP_CPS'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-cps"
+#
+#-
+#  type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  filter: "'HTTP' and 'TCP_RPS'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-rps"
 
 # Plot Throughput Speedup Analysis
 
