@@ -88,38 +88,37 @@
   type: "configuration"
   data-sets:
 # TODO: Add the data sources
-    plot-vpp-http-server-performance:
-      csit-vpp-perf-1801-all:
-      - 1
-      - 2
-      - 3
-      - 4
+#    plot-vpp-http-server-performance:
+#      csit-vpp-perf-1801-all:
+#      - 1
+#      - 2
+#      - 3
+#      - 4
 # TODO: Add the data sources
-    vpp-meltdown-impact:
-      csit-vpp-perf-1707-all:
-      - 9
-      - 10
-      - 13
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
+#    vpp-meltdown-impact:
+#      csit-vpp-perf-1707-all:
+#      - 9
+#      - 10
+#      - 13
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
 # TODO: Add the data sources
-    vpp-spectre-impact:
-      csit-vpp-perf-1707-all:
-      - 9
-      - 10
-      - 13
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
+#    vpp-spectre-impact:
+#      csit-vpp-perf-1707-all:
+#      - 9
+#      - 10
+#      - 13
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
 # TODO: Add the data sources
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1801-all:
-      - 13
-      - 14
-      - 21
+      - 122
+      - 126
     performance-improvements:
       csit-vpp-perf-1707-all:
       - 9
@@ -145,9 +144,8 @@
       - 20
 # TODO: Add the data sources
       csit-vpp-perf-1801-all:
-      - 13
-      - 14
-      - 21
+      - 124
+      - 127
       csit-ligato-perf-1710-all:
       - 5
       - 7
@@ -166,7 +164,7 @@
 # TODO:
     vpp-perf-results:
       csit-vpp-perf-1801-all:
-      - 12
+      - 127
     vpp-func-results:
       csit-vpp-functional-1801-ubuntu1604-virl:
       - "lastSuccessfulBuild"
@@ -189,9 +187,8 @@
 # TODO:
     plot-vpp-throughput-latency:
       csit-vpp-perf-1801-all:
-      - 13
-      - 14
-      - 21
+      - 124
+      - 127
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1801-all:
       - 1
@@ -201,7 +198,6 @@
       - 6
       - 7
       - 8
-      - 9
       - 10
       - 12
 # TODO:
@@ -483,13 +479,12 @@
     - 18
     - 19
     - 20
-    - 23
 # TODO:
     csit-vpp-perf-1801-all:
-    - 12 # full
-    - 13 # sel
-    - 14 # sel
-    - 21 # sel
+    - 122  # full
+    - 126  # full
+    - 124  # sel
+    - 127  # sel
     csit-ligato-perf-1710-all:
     - 5
     - 7
@@ -499,6 +494,16 @@
     - 11
     - 12
     - 13
+    - 16
+    - 17
+    csit-dpdk-perf-1801-all:
+    - 1
+    - 4
+    - 5
+    - 7
+    - 8
+    - 10
+    - 12
     - 16
     - 17
 # TODO:
@@ -523,9 +528,6 @@
     - 1
     csit-hc2vpp-verify-func-1801-ubuntu1604:
     - lastSuccessfulBuild
-# TODO: Will we use this one?
-#    hc2vpp-csit-integration-odl-carbon-1801-ubuntu1604:
-#    - lastSuccessfulBuild
 
 -
   type: "output"
