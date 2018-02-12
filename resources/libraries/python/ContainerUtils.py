@@ -362,6 +362,16 @@ class ContainerEngine(object):
         :raises RuntimeError: If applying cgroup settings via cgset failed.
         """
         ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.cpu_exclusive=0 /')
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
+
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.mem_exclusive=0 /')
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
+
+        ret, _, _ = self.container.ssh.exec_command_sudo(
             'cgcreate -g cpuset:/{name}'.format(name=name))
         if int(ret) != 0:
             raise RuntimeError('Failed to copy cgroup settings from root.')
