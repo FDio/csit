@@ -357,10 +357,27 @@ class ContainerEngine(object):
     def _configure_cgroup(self, name):
         """Configure the control group associated with a container.
 
+        By default the cpuset cgroup is using exclusive CPU/MEM. When Docker
+        container is initialized a new cgroup /docker or /lxc is created under
+        cpuset parent tree. This newly created cgroup is inheriting parent
+        setting for cpu/mem exclusive parameter and thus cannot be overriden
+        within /docker or /lxc cgroup. This patch is supposed to set cpu/mem
+        exclusive parameter for both parent and subgroup.
+
         :param name: Name of cgroup.
         :type name: str
         :raises RuntimeError: If applying cgroup settings via cgset failed.
         """
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.cpu_exclusive=0 /')
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
+
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset -r cpuset.mem_exclusive=0 /')
+        if int(ret) != 0:
+            raise RuntimeError('Failed to apply cgroup settings.')
+
         ret, _, _ = self.container.ssh.exec_command_sudo(
             'cgcreate -g cpuset:/{name}'.format(name=name))
         if int(ret) != 0:
