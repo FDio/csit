@@ -20,7 +20,8 @@
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up 3-node performance topology with DUT's NIC model | L2
-| ... | Intel-X520-DA2
+| ... | Intel-X520-DA
+| ... | AND | Set up performance test suite with ACL
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
