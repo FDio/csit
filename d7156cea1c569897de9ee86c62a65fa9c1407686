@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9b1d1909_ef427fe3",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 622
+      },
+      "writtenOn": "2018-02-12T12:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "999bb13d_c424f6e7",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "233e0fb8_a1e5a2f0",
         "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-05T06:27:43Z",
       "side": 1,
       "message": "There are no PDR Discovery tests in suite. Consider adding them",
+      "range": {
+        "startLine": 20,
+        "startChar": 61,
+        "endLine": 20,
+        "endChar": 71
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8379b4b9_ef661b1c",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 622
+      },
+      "writtenOn": "2018-02-12T12:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "233e0fb8_a1e5a2f0",
       "range": {
         "startLine": 20,
         "startChar": 61,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "72b7a560_2e9a26c4",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 622
+      },
+      "writtenOn": "2018-02-12T12:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2345045b_32ee7f39",
+      "range": {
+        "startLine": 43,
+        "startChar": 20,
+        "endLine": 43,
+        "endChar": 37
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bef360d0_a6170e48",
         "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2018-02-05T06:27:43Z",
       "side": 1,
       "message": "line too long (we are using 80 chars.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 106
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4db9954_7af8250f",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 622
+      },
+      "writtenOn": "2018-02-12T12:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bef360d0_a6170e48",
       "range": {
         "startLine": 45,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "50eab95e_bebc04d8",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 622
+      },
+      "writtenOn": "2018-02-12T12:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc90389f_901ae83a",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c982a57_ed015994",
         "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2018-02-05T06:27:43Z",
       "side": 1,
       "message": "Consider using template:\n\n| | [Template] | vxlan with acl on 1 threads with packetsize \n| | framesize\u003d${64}",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 53
+      },
+      "revId": "d7156cea1c569897de9ee86c62a65fa9c1407686",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f539cec_a243df90",
+        "filename": "tests/vpp/perf/vts/vts-specific-tests.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 622
+      },
+      "writtenOn": "2018-02-12T12:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c982a57_ed015994",
       "range": {
         "startLine": 77,
         "startChar": 0,
