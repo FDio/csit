@@ -638,7 +638,7 @@
   algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
 # TODO: specify dir
-  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance-changes"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes"
   reference:
     title: "Release 1710"
 # TODO: specify data sources
