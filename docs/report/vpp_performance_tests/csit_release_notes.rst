@@ -67,7 +67,7 @@ NDR Throughput: Best 20 Changes
 
    .. csv-table::
       :align: center
-      :file: performance_improvements/performance-changes-ndr-1t1c-top.csv
+      :file: ../../../../_build/_static/vpp/performance-changes-ndr-1t1c-top.csv
 
 .. only:: latex
 
@@ -86,7 +86,7 @@ NDR Throughput: Best 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance-changes-ndr-1t1c-top.csv}
+        ]{../_build/_static/vpp/performance-changes-ndr-1t1c-top.csv}
       }
 
 NDR Throughput: Worst 20 Changes
@@ -96,7 +96,7 @@ NDR Throughput: Worst 20 Changes
 
    .. csv-table::
       :align: center
-      :file: performance_improvements/performance-changes-ndr-1t1c-bottom.csv
+      :file: ../../../../_build/_static/vpp/performance-changes-ndr-1t1c-bottom.csv
 
 .. only:: latex
 
@@ -115,7 +115,7 @@ NDR Throughput: Worst 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance-changes-ndr-1t1c-bottom.csv}
+        ]{../_build/_static/vpp/performance-changes-ndr-1t1c-bottom.csv}
       }
 
 .. only:: html
@@ -126,12 +126,12 @@ NDR Throughput: Worst 20 Changes
       Complete results for all NDR tests are available in a CSV and pretty
       ASCII formats:
 
-        - `csv format for 1t1c <performance_improvements/performance-changes-ndr-1t1c-full.csv>`_,
-        - `csv format for 2t2c <performance_improvements/performance-changes-ndr-2t2c-full.csv>`_,
-        - `csv format for 4t4c <performance_improvements/performance-changes-ndr-4t4c-full.csv>`_,
-        - `pretty ASCII format for 1t1c <performance_improvements/performance-changes-ndr-1t1c-full.txt>`_,
-        - `pretty ASCII format for 2t2c <performance_improvements/performance-changes-ndr-2t2c-full.txt>`_,
-        - `pretty ASCII format for 4t4c <performance_improvements/performance-changes-ndr-4t4c-full.txt>`_.
+        - `csv format for 1t1c <../../_static/vpp/performance-changes-ndr-1t1c-full.csv>`_,
+        - `csv format for 2t2c <../../_static/vpp/performance-changes-ndr-2t2c-full.csv>`_,
+        - `csv format for 4t4c <../../_static/vpp/performance-changes-ndr-4t4c-full.csv>`_,
+        - `pretty ASCII format for 1t1c <../../_static/vpp/performance-changes-ndr-1t1c-full.txt>`_,
+        - `pretty ASCII format for 2t2c <../../_static/vpp/performance-changes-ndr-2t2c-full.txt>`_,
+        - `pretty ASCII format for 4t4c <../../_static/vpp/performance-changes-ndr-4t4c-full.txt>`_.
 
 PDR Throughput: Best 20 Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -140,7 +140,7 @@ PDR Throughput: Best 20 Changes
 
    .. csv-table::
       :align: center
-      :file: performance_improvements/performance-changes-pdr-1t1c-top.csv
+      :file: ../../../../_build/_static/vpp/performance-changes-pdr-1t1c-top.csv
 
 .. only:: latex
 
@@ -159,7 +159,7 @@ PDR Throughput: Best 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance-changes-pdr-1t1c-top.csv}
+        ]{../_build/_static/vpp/performance-changes-pdr-1t1c-top.csv}
       }
 
 PDR Throughput: Worst 20 Changes
@@ -169,7 +169,7 @@ PDR Throughput: Worst 20 Changes
 
    .. csv-table::
       :align: center
-      :file: performance_improvements/performance-changes-pdr-1t1c-bottom.csv
+      :file: ../../../../_build/_static/vpp/performance-changes-pdr-1t1c-bottom.csv
 
 .. only:: latex
 
@@ -188,7 +188,7 @@ PDR Throughput: Worst 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{../_tmp/src/vpp_performance_tests/performance_improvements/performance-changes-pdr-1t1c-bottom.csv}
+        ]{../_build/_static/vpp/performance-changes-pdr-1t1c-bottom.csv}
       }
 
 .. only:: html
@@ -199,12 +199,12 @@ PDR Throughput: Worst 20 Changes
             Complete results for all PDR tests are available in a CSV and pretty
             ASCII formats:
 
-              - `csv format for 1t1c <performance_improvements/performance-changes-pdr-1t1c-full.csv>`_,
-              - `csv format for 2t2c <performance_improvements/performance-changes-pdr-2t2c-full.csv>`_,
-              - `csv format for 4t4c <performance_improvements/performance-changes-pdr-4t4c-full.csv>`_,
-              - `pretty ASCII format for 1t1c <performance_improvements/performance-changes-pdr-1t1c-full.txt>`_,
-              - `pretty ASCII format for 2t2c <performance_improvements/performance-changes-pdr-2t2c-full.txt>`_,
-              - `pretty ASCII format for 4t4c <performance_improvements/performance-changes-pdr-4t4c-full.txt>`_.
+              - `csv format for 1t1c <../../_static/vpp/performance-changes-pdr-1t1c-full.csv>`_,
+              - `csv format for 2t2c <../../_static/vpp/performance-changes-pdr-2t2c-full.csv>`_,
+              - `csv format for 4t4c <../../_static/vpp/performance-changes-pdr-4t4c-full.csv>`_,
+              - `pretty ASCII format for 1t1c <../../_static/vpp/performance-changes-pdr-1t1c-full.txt>`_,
+              - `pretty ASCII format for 2t2c <../../_static/vpp/performance-changes-pdr-2t2c-full.txt>`_,
+              - `pretty ASCII format for 4t4c <../../_static/vpp/performance-changes-pdr-4t4c-full.txt>`_.
 
 Measured improvements are in line with VPP code optimizations listed in
 `VPP-17.10 release notes
