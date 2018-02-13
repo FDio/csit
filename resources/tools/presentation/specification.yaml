@@ -1228,7 +1228,7 @@
   output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ip4-tsa-ndrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'IP4FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1247,7 +1247,7 @@
   output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ip4-tsa-ndrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
+  filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1266,7 +1266,7 @@
   output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ip4-tsa-pdrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and not 'VHOST'"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'IP4FWD' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1285,7 +1285,7 @@
   output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ip6-tsa-ndrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'IP6FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1304,7 +1304,7 @@
   output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-78B-ip6-tsa-ndrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '78B' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
+  filter: "'NIC_Intel-XL710' and '78B' and 'IP6FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1323,7 +1323,7 @@
   output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ip6-tsa-pdrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and not 'VHOST'"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'IP6FWD' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
