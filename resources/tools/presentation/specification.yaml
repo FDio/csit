@@ -103,7 +103,7 @@
 #      - 10
 #      - 13
 #      csit-vpp-perf-1710-all:
-#      - 11
+#      - 11l
 #      - 12
 #      - 13
 # TODO: Add the data sources
@@ -1781,8 +1781,45 @@
     whiskerwidth: 0
   layout:
     title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [2000000, 6000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 -
   type: "plot"
@@ -1844,8 +1881,45 @@
     whiskerwidth: 0
   layout:
     title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [2000000, 6000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 # VPP VM VHOST
 -
@@ -1866,8 +1940,45 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [0, 3500000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 -
   type: "plot"
@@ -2870,8 +2981,45 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [0, 4500000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 -
   type: "plot"
@@ -2891,8 +3039,45 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [0, 8000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 -
   type: "plot"
@@ -2912,8 +3097,45 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [0, 4500000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 -
   type: "plot"
@@ -2933,8 +3155,45 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
+    xaxis:
+      autorange: True
+      autotick: False
+      fixedrange: False
+      gridcolor: "rgb(238, 238, 238)"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      tickmode: "linear"
+      title: "Indexed Test Cases"
+      zeroline: False
+    yaxis:
+      gridcolor: "rgb(238, 238, 238)'"
+      hoverformat: ".4s"
+      linecolor: "rgb(238, 238, 238)"
+      linewidth: 1
+      range: [0, 8000000]
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(238, 238, 238)"
+      title: "Packets Per Second [pps]"
+      zeroline: False
+    boxmode: "group"
+    boxgroupgap: 0.5
+    autosize: False
+    margin:
+      t: 50
+      b: 20
+      l: 50
+      r: 20
+    showlegend: True
+    legend:
+      orientation: "h"
+    width: 700
+    height: 1000
 
 # Container orchestrated
 -
