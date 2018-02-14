@@ -1900,7 +1900,7 @@
       hoverformat: ".4s"
       linecolor: "rgb(238, 238, 238)"
       linewidth: 1
-      range: [2000000, 6000000]
+      range: [4000000, 12000000]
       showgrid: True
       showline: True
       showticklabels: True
