@@ -252,7 +252,7 @@
 | | ... | linerate, step 10kpps.
 | | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | ... | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2 | search_type=NDR
+| | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2 | search_type=NDR
 
 | tc18-9000B-4t4c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
