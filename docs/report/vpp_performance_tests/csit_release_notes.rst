@@ -90,7 +90,7 @@ NDR Throughput: Best 20 Changes
       }
 
 NDR Throughput: Worst 20 Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~l
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. only:: html
 
