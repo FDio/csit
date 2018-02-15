@@ -22,7 +22,7 @@ import prettytable
 from string import replace
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change
+from utils import mean, stdev, relative_change, remove_outliers
 
 
 def generate_tables(spec, data):
@@ -401,17 +401,17 @@ def table_performance_comparison(table, input_data):
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
         if tbl_dict[tst_name]["ref-data"]:
-            item.append(round(mean(tbl_dict[tst_name]["ref-data"]) / 1000000,
-                              2))
-            item.append(round(stdev(tbl_dict[tst_name]["ref-data"]) / 1000000,
-                              2))
+            item.append(round(mean(remove_outliers(
+                tbl_dict[tst_name]["ref-data"], 1.5)) / 1000000, 2))
+            item.append(round(stdev(remove_outliers(
+                tbl_dict[tst_name]["ref-data"], 1.5)) / 1000000, 2))
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
-            item.append(round(mean(tbl_dict[tst_name]["cmp-data"]) / 1000000,
-                              2))
-            item.append(round(stdev(tbl_dict[tst_name]["cmp-data"]) / 1000000,
-                              2))
+            item.append(round(mean(remove_outliers(
+                tbl_dict[tst_name]["cmp-data"], 1.5)) / 1000000, 2))
+            item.append(round(stdev(remove_outliers(
+                tbl_dict[tst_name]["cmp-data"], 1.5)) / 1000000, 2))
         else:
             item.extend([None, None])
         if item[1] is not None and item[3] is not None:
