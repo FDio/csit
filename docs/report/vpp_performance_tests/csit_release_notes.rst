@@ -86,7 +86,7 @@ NDR Throughput: Best 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{_build/_static/vpp/performance-changes-ndr-1t1c-top.csv}
+        ]{../_build/_static/vpp/performance-changes-ndr-1t1c-top.csv}
       }
 
 NDR Throughput: Worst 20 Changes
@@ -115,7 +115,7 @@ NDR Throughput: Worst 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{_build/_static/vpp/performance-changes-ndr-1t1c-bottom.csv}
+        ]{../../_build/_static/vpp/performance-changes-ndr-1t1c-bottom.csv}
       }
 
 .. only:: html
@@ -159,7 +159,7 @@ PDR Throughput: Best 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{_build/_static/vpp/performance-changes-pdr-1t1c-top.csv}
+        ]{../../../_build/_static/vpp/performance-changes-pdr-1t1c-top.csv}
       }
 
 PDR Throughput: Worst 20 Changes
@@ -188,7 +188,7 @@ PDR Throughput: Worst 20 Changes
         perfimprovements column width=1cm,
         late after line={\\\hline},
         late after last line={\end{longtable}}
-        ]{_build/_static/vpp/performance-changes-pdr-1t1c-bottom.csv}
+        ]{../../../../_build/_static/vpp/performance-changes-pdr-1t1c-bottom.csv}
       }
 
 .. only:: html
