@@ -188,6 +188,7 @@
       - 122
       - 126
       - 129
+      - 140
     vpp-func-results:
       csit-vpp-functional-1801-ubuntu1604-virl:
       - "lastSuccessfulBuild"
@@ -505,6 +506,7 @@
     - 122  # full
     - 126  # full
     - 129  # full
+    - 140  # full
     - 124  # sel
     - 127  # sel
     - 128  # sel
