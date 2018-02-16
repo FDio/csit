@@ -87,7 +87,7 @@ dpkg -x vpp/build-root/vpp_${VPP_STABLE_VER}.deb /tmp/vpp
 tar -zcvf ${SCRIPT_DIR}/vpp.tar.gz vpp/* && rm -R vpp
 
 LIGATO_REPO_URL=$(cat ${SCRIPT_DIR}/LIGATO_REPO_URL)
-VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
+VPP_AGENT_STABLE_VER="v1.1"
 VPP_AGENT_STABLE_COMMIT="$( expr match `cat VPP_AGENT_STABLE_VER` '.*g\(.*\)' )"
 DOCKER_DEB="docker-ce_17.09.0~ce-0~ubuntu_amd64.deb"
 
@@ -98,7 +98,7 @@ if [ $? != 0 ]; then
     echo "Failed to run: git clone --depth 1 ${LIGATO_REPO_URL}/vpp-agent"
     exit 1
 fi
-cd vpp-agent && git checkout ${VPP_AGENT_STABLE_COMMIT}
+cd vpp-agent && git checkout b99e43a
 # If the git checkout fails, complain clearly and exit
 if [ $? != 0 ]; then
     echo "Failed to run: git checkout ${VPP_AGENT_STABLE_VER}"
