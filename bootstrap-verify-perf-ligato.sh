@@ -98,7 +98,7 @@ if [ $? != 0 ]; then
     echo "Failed to run: git clone --depth 1 ${LIGATO_REPO_URL}/vpp-agent"
     exit 1
 fi
-cd vpp-agent && git checkout ${VPP_AGENT_STABLE_COMMIT}
+cd vpp-agent && git checkout b99e43a
 # If the git checkout fails, complain clearly and exit
 if [ $? != 0 ]; then
     echo "Failed to run: git checkout ${VPP_AGENT_STABLE_VER}"
