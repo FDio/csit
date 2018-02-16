@@ -669,9 +669,11 @@
 # TODO: specify data sources
     data:
       csit-vpp-perf-1801-all:
-      - 124
-      - 127
-      - 128
+      - 124  # sel
+      - 127  # sel
+      - 128  # sel
+      - 141  # sel
+      - 142  # sel
   data: "vpp-performance-changes"
   filter: "all"
   parameters:
@@ -681,6 +683,7 @@
   # Number of the best and the worst tests presented in the table. Use 0 (zero)
   # to present all tests.
   nr-of-tests-shown: 20
+  outlier-const: 1.5
 
 #-
 #  type: "table"

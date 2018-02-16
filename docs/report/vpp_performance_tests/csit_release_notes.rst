@@ -60,155 +60,31 @@ comparison is calculated between the mean values based on collected and
 archived test results' samples for involved VPP releases. Standard deviation
 has been also listed for CSIT |release|.
 
-NDR Throughput: Best 20 Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NDR Throughput Changes
+~~~~~~~~~~~~~~~~~~~~~~
 
-.. only:: html
+NDR small packet throughput changes between releases are available in a CSV and
+pretty ASCII formats:
 
-   .. csv-table::
-      :align: center
-      :file: ../../../_build/_static/vpp/performance-changes-ndr-1t1c-top.csv
+  - `csv format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.csv>`_,
+  - `csv format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.csv>`_,
+  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.txt>`_,
+  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.txt>`_.
 
-.. only:: latex
+PDR Throughput Changes
+~~~~~~~~~~~~~~~~~~~~~~
 
-   .. raw:: latex
+NDR small packet throughput changes between releases are available in a CSV and
+pretty ASCII formats:
 
-      \makeatletter
-      \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{m{7cm} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
-      }
-      \makeatother
-
-      {\tiny
-      \csvautobooklongtable[separator=comma,
-        respect all,
-        no check column count,
-        perfimprovements column width=1cm,
-        late after line={\\\hline},
-        late after last line={\end{longtable}}
-        ]{../_build/_static/vpp/performance-changes-ndr-1t1c-top.csv}
-      }
-
-NDR Throughput: Worst 20 Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. only:: html
-
-   .. csv-table::
-      :align: center
-      :file: ../../../_build/_static/vpp/performance-changes-ndr-1t1c-bottom.csv
-
-.. only:: latex
-
-   .. raw:: latex
-
-      \makeatletter
-      \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{m{7cm} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
-      }
-      \makeatother
-
-      {\tiny
-      \csvautobooklongtable[separator=comma,
-        respect all,
-        no check column count,
-        perfimprovements column width=1cm,
-        late after line={\\\hline},
-        late after last line={\end{longtable}}
-        ]{../_build/_static/vpp/performance-changes-ndr-1t1c-bottom.csv}
-      }
-
-.. only:: html
-
-      NDR Throughput: All Changes
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-      Complete results for all NDR tests are available in a CSV and pretty
-      ASCII formats:
-
-        - `csv format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.csv>`_,
-        - `csv format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.csv>`_,
-        - `csv format for 4t4c <../_static/vpp/performance-changes-ndr-4t4c-full.csv>`_,
-        - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.txt>`_,
-        - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.txt>`_,
-        - `pretty ASCII format for 4t4c <../_static/vpp/performance-changes-ndr-4t4c-full.txt>`_.
-
-PDR Throughput: Best 20 Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. only:: html
-
-   .. csv-table::
-      :align: center
-      :file: ../../../_build/_static/vpp/performance-changes-pdr-1t1c-top.csv
-
-.. only:: latex
-
-   .. raw:: latex
-
-      \makeatletter
-      \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{m{7cm} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
-      }
-      \makeatother
-
-      {\tiny
-      \csvautobooklongtable[separator=comma,
-        respect all,
-        no check column count,
-        perfimprovements column width=1cm,
-        late after line={\\\hline},
-        late after last line={\end{longtable}}
-        ]{../_build/_static/vpp/performance-changes-pdr-1t1c-top.csv}
-      }
-
-PDR Throughput: Worst 20 Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. only:: html
-
-   .. csv-table::
-      :align: center
-      :file: ../../../_build/_static/vpp/performance-changes-pdr-1t1c-bottom.csv
-
-.. only:: latex
-
-   .. raw:: latex
-
-      \makeatletter
-      \csvset{
-        perfimprovements column width/.style={after head=\csv@pretable\begin{longtable}{m{7cm} m{#1} m{#1} m{#1} m{#1} m{#1}}\csv@tablehead},
-      }
-      \makeatother
-
-      {\tiny
-      \csvautobooklongtable[separator=comma,
-        respect all,
-        no check column count,
-        perfimprovements column width=1cm,
-        late after line={\\\hline},
-        late after last line={\end{longtable}}
-        ]{../_build/_static/vpp/performance-changes-pdr-1t1c-bottom.csv}
-      }
-
-.. only:: html
-
-      PDR Throughput: All Changes
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-            Complete results for all PDR tests are available in a CSV and pretty
-            ASCII formats:
-
-              - `csv format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.csv>`_,
-              - `csv format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.csv>`_,
-              - `csv format for 4t4c <../_static/vpp/performance-changes-pdr-4t4c-full.csv>`_,
-              - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.txt>`_,
-              - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.txt>`_,
-              - `pretty ASCII format for 4t4c <../_static/vpp/performance-changes-pdr-4t4c-full.txt>`_.
+  - `csv format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.csv>`_,
+  - `csv format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.csv>`_,
+  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.txt>`_,
+  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.txt>`_.
 
 Measured improvements are in line with VPP code optimizations listed in
-`VPP-17.10 release notes
-<https://docs.fd.io/vpp/17.10/release_notes_1710.html>`_.
+`VPP-18.01 release notes
+<https://docs.fd.io/vpp/18.01/release_notes_1801.html>`_.
 
 Known Issues
 ------------
