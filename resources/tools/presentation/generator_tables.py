@@ -467,6 +467,7 @@ def table_performance_comparison(table, input_data):
                     txt_table = prettytable.PrettyTable(row)
                 else:
                     txt_table.add_row(row)
+            txt_table.align["Test case"] = "l"
         with open(txt_name, "w") as txt_file:
             txt_file.write(str(txt_table))
 
