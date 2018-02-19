@@ -94,6 +94,7 @@
       csit-vpp-perf-1801-all:
       - 157
       - 158
+      - 159
 # TODO: Add the data sources
 #    vpp-meltdown-impact:
 #      csit-vpp-perf-1707-all:
@@ -189,6 +190,9 @@
 #      - 16  # sel
 #      - 17  # sel
 #      - 18  # sel
+#      - 19  # sel
+#      - 20  # sel
+#      - 21  # sel
 # TODO: Add the data sources
     vpp-perf-results:
       csit-vpp-perf-1801-all:
@@ -202,7 +206,7 @@
 # TODO: Add the data sources
     ligato-perf-results:
       csit-ligato-perf-1801-all:
-      - 17
+      - 19
     dpdk-perf-results:
       csit-dpdk-perf-1801-all:
       - 12
@@ -240,6 +244,9 @@
       - 16  # sel
       - 17  # sel
       - 18  # sel
+      - 19  # sel
+      - 20  # sel
+      - 21  # sel
 
   plot-layouts:
 
@@ -529,6 +536,7 @@
     - 146  # sel
     - 157  # wrk
     - 158  # wrk
+    - 159  # wrk
     csit-ligato-perf-1710-all:
     - 5
     - 7
@@ -555,6 +563,9 @@
     - 16  # sel
     - 17  # sel
     - 18  # sel
+    - 19  # sel
+    - 20  # sel
+    - 21  # sel
     csit-dpdk-perf-1801-all:
     - 1
     - 3
