@@ -95,6 +95,8 @@
       - 157
       - 158
       - 159
+      - 160
+      - 161
 # TODO: Add the data sources
 #    vpp-meltdown-impact:
 #      csit-vpp-perf-1707-all:
@@ -537,6 +539,8 @@
     - 157  # wrk
     - 158  # wrk
     - 159  # wrk
+    - 160  # wrk
+    - 161  # wrk
     csit-ligato-perf-1710-all:
     - 5
     - 7
