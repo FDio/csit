@@ -93,6 +93,7 @@
     plot-vpp-http-server-performance:
       csit-vpp-perf-1801-all:
       - 157
+      - 158
 # TODO: Add the data sources
 #    vpp-meltdown-impact:
 #      csit-vpp-perf-1707-all:
@@ -527,6 +528,7 @@
     - 145  # sel
     - 146  # sel
     - 157  # wrk
+    - 158  # wrk
     csit-ligato-perf-1710-all:
     - 5
     - 7
@@ -1141,49 +1143,49 @@
 ################################################################################
 
 # Plots VPP HTTP Server Performance
-#-
-#  type: "plot"
-#  title: "VPP HTTP Server Performance"
-#  algorithm: "plot_http_server_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
-#  data:
-#    "plot-vpp-http-server-performance"
-#  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-#  # each tag is enclosed with ' (apostrophe).
-#  filter: "'HTTP' and 'TCP_CPS'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "VPP HTTP Server Performance"
-#    layout:
-#      "plot-cps"
-#
-#-
-#  type: "plot"
-#  title: "VPP HTTP Server Performance"
-#  algorithm: "plot_http_server_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
-#  data:
-#    "plot-vpp-http-server-performance"
-#  filter: "'HTTP' and 'TCP_RPS'"
-#  parameters:
-#  - "result"
-#  - "name"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "outliers"
-#    whiskerwidth: 0
-#  layout:
-#    title: "VPP HTTP Server Performance"
-#    layout:
-#      "plot-rps"
+-
+  type: "plot"
+  title: "VPP HTTP Server Performance"
+  algorithm: "plot_http_server_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+  data:
+    "plot-vpp-http-server-performance"
+  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+  # each tag is enclosed with ' (apostrophe).
+  filter: "'HTTP' and 'TCP_CPS'"
+  parameters:
+  - "result"
+  - "name"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "VPP HTTP Server Performance"
+    layout:
+      "plot-cps"
+
+-
+  type: "plot"
+  title: "VPP HTTP Server Performance"
+  algorithm: "plot_http_server_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
+  data:
+    "plot-vpp-http-server-performance"
+  filter: "'HTTP' and 'TCP_RPS'"
+  parameters:
+  - "result"
+  - "name"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "VPP HTTP Server Performance"
+    layout:
+      "plot-rps"
 
 # Plot Throughput Speedup Analysis
 

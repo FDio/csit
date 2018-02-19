@@ -59,6 +59,7 @@ author = u'FD.io CSIT'
 
 rst_epilog = """
 .. |release-1| replace:: rls1710
+.. |srelease| replace:: {srelease}
 .. |vpp-release| replace:: VPP-{vpprelease} release
 .. |vpp-release-1| replace:: VPP-17.10 release
 .. |dpdk-release| replace:: DPDK 17.11
