@@ -2112,6 +2112,23 @@ Tagged by **1T1C**
       heap-size "4G"
       hash-buckets "2000000"
     }
+    plugins
+    {
+      plugin pppoe_plugin.so { disable }
+      plugin kubeproxy_plugin.so { disable }
+      plugin ioam_plugin.so { disable }
+      plugin ila_plugin.so { disable }
+      plugin stn_plugin.so { disable }
+      plugin acl_plugin.so { disable }
+      plugin l2e_plugin.so { disable }
+      plugin sixrd_plugin.so { disable }
+      plugin nat_plugin.so { disable }
+      plugin ixge_plugin.so { disable }
+      plugin lb_plugin.so { disable }
+      plugin memif_plugin.so { disable }
+      plugin gtpu_plugin.so { disable }
+      plugin flowprobe_plugin.so { disable }
+    }
     heapsize "4G"
     dpdk
     {
@@ -2124,10 +2141,11 @@ Tagged by **1T1C**
         num-rx-queues 1
         num-tx-desc 2048
       }
-      socket-mem "1024,1024
+      socket-mem "1024,1024"
+      no-tx-checksum-offload
     }
 
-Tagged by **2T1C**
+Tagged by **2T2C**
 
 ::
 
@@ -2151,6 +2169,23 @@ Tagged by **2T1C**
       heap-size "4G"
       hash-buckets "2000000"
     }
+    plugins
+    {
+      plugin pppoe_plugin.so { disable }
+      plugin kubeproxy_plugin.so { disable }
+      plugin ioam_plugin.so { disable }
+      plugin ila_plugin.so { disable }
+      plugin stn_plugin.so { disable }
+      plugin acl_plugin.so { disable }
+      plugin l2e_plugin.so { disable }
+      plugin sixrd_plugin.so { disable }
+      plugin nat_plugin.so { disable }
+      plugin ixge_plugin.so { disable }
+      plugin lb_plugin.so { disable }
+      plugin memif_plugin.so { disable }
+      plugin gtpu_plugin.so { disable }
+      plugin flowprobe_plugin.so { disable }
+    }
     heapsize "4G"
     dpdk
     {
@@ -2163,7 +2198,8 @@ Tagged by **2T1C**
         num-rx-queues 1
         num-tx-desc 2048
       }
-      socket-mem "1024,1024
+      socket-mem "1024,1024"
+      no-tx-checksum-offload
     }
 
 Tagged by **4T4C**
@@ -2190,6 +2226,23 @@ Tagged by **4T4C**
       heap-size "4G"
       hash-buckets "2000000"
     }
+    plugins
+    {
+      plugin pppoe_plugin.so { disable }
+      plugin kubeproxy_plugin.so { disable }
+      plugin ioam_plugin.so { disable }
+      plugin ila_plugin.so { disable }
+      plugin stn_plugin.so { disable }
+      plugin acl_plugin.so { disable }
+      plugin l2e_plugin.so { disable }
+      plugin sixrd_plugin.so { disable }
+      plugin nat_plugin.so { disable }
+      plugin ixge_plugin.so { disable }
+      plugin lb_plugin.so { disable }
+      plugin memif_plugin.so { disable }
+      plugin gtpu_plugin.so { disable }
+      plugin flowprobe_plugin.so { disable }
+    }
     heapsize "4G"
     dpdk
     {
@@ -2202,7 +2255,8 @@ Tagged by **4T4C**
         num-rx-queues 2
         num-tx-desc 2048
       }
-      socket-mem "1024,1024
+      socket-mem "1024,1024"
+      no-tx-checksum-offload
     }
 
 
