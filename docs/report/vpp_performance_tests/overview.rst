@@ -10,23 +10,23 @@ CSIT VPP performance tests are executed on physical baremetal servers hosted by
 :abbr:`LF (Linux Foundation)` FD.io project. Testbed physical topology is shown
 in the figure below.::
 
-    +------------------------+           +------------------------+
-    |                        |           |                        |
-    |  +------------------+  |           |  +------------------+  |
-    |  |                  |  |           |  |                  |  |
-    |  |                  <----------------->                  |  |
-    |  |       DUT1       |  |           |  |       DUT2       |  |
-    |  +--^---------------+  |           |  +---------------^--+  |
-    |     |                  |           |                  |     |
-    |     |            SUT1  |           |  SUT2            |     |
-    +------------------------+           +------------------^-----+
-          |                                                 |
-          |                                                 |
-          |                  +-----------+                  |
-          |                  |           |                  |
-          +------------------>    TG     <------------------+
-                             |           |
-                             +-----------+
+        +------------------------+           +------------------------+
+        |                        |           |                        |
+        |  +------------------+  |           |  +------------------+  |
+        |  |                  |  |           |  |                  |  |
+        |  |                  <----------------->                  |  |
+        |  |       DUT1       |  |           |  |       DUT2       |  |
+        |  +--^---------------+  |           |  +---------------^--+  |
+        |     |                  |           |                  |     |
+        |     |            SUT1  |           |  SUT2            |     |
+        +------------------------+           +------------------^-----+
+              |                                                 |
+              |                                                 |
+              |                  +-----------+                  |
+              |                  |           |                  |
+              +------------------>    TG     <------------------+
+                                 |           |
+                                 +-----------+
 
 SUT1 and SUT2 are two System Under Test servers (Cisco UCS C240, each with two
 Intel XEON CPUs), TG is a Traffic Generator (TG, another Cisco UCS C240, with
@@ -53,43 +53,59 @@ Going forward CSIT project will be looking to add more hardware into FD.io
 performance labs to address larger scale multi-interface and multi-NIC
 performance testing scenarios.
 
-For test cases that require DUT (VPP) to communicate with
-VirtualMachines (VMs) / Linux or Docker Containers (Ctrs) over
+For service chain topology test cases that require DUT (VPP) to communicate with
+VirtualMachines (VMs) or with Linux/Docker Containers (Ctrs) over
 vhost-user/memif interfaces, N of VM/Ctr instances are created on SUT1
-and SUT2. For N=1 DUT forwards packets between vhost/memif and physical
-interfaces. For N>1 DUT a logical service chain forwarding topology is
-created on DUT by applying L2 or IPv4/IPv6 configuration depending on
-the test suite. DUT test topology with N VM/Ctr instances is shown in
-the figure below including applicable packet flow thru the DUTs and
-VMs/Ctrs (marked in the figure with ``***``).::
+and SUT2. Three types of service chain topologies are tested in CSIT |release|:
 
-    +-------------------------+           +-------------------------+
-    | +---------+ +---------+ |           | +---------+ +---------+ |
-    | |VM/Ctr[1]| |VM/Ctr[N]| |           | |VM/Ctr[1]| |VM/Ctr[N]| |
-    | |  *****  | |  *****  | |           | |  *****  | |  *****  | |
-    | +--^---^--+ +--^---^--+ |           | +--^---^--+ +--^---^--+ |
-    |   *|   |*     *|   |*   |           |   *|   |*     *|   |*   |
-    | +--v---v-------v---v--+ |           | +--v---v-------v---v--+ |
-    | |  *   *       *   *  |*|***********|*|  *   *       *   *  | |
-    | |  *   *********   ***<-|-----------|->***   *********   *  | |
-    | |  *    DUT1          | |           | |       DUT2       *  | |
-    | +--^------------------+ |           | +------------------^--+ |
-    |   *|                    |           |                    |*   |
-    |   *|            SUT1    |           |  SUT2              |*   |
-    +-------------------------+           +-------------------------+
-        *|                                                     |*
-        *|                                                     |*
-        *|                    +-----------+                    |*
-        *|                    |           |                    |*
-        *+-------------------->    TG     <--------------------+*
-        **********************|           |**********************
-                              +-----------+
+#. "Parallel" topology with packets flowing from NIC via DUT (VPP) to
+   VM/Container and back to VPP and NIC;
 
-For VM/Ctr tests, packets are switched by DUT multiple times: twice for
-a single VM/Ctr, three times for two VMs/Ctrs, N+1 times for N VMs/Ctrs.
-Hence the external throughput rates measured by TG and listed in this
-report must be multiplied by (N+1) to represent the actual DUT aggregate
-packet forwarding rate.
+#. "Chained" topology (a.k.a. "Snake") with packets flowing via DUT (VPP) to
+   VM/Container, back to DUT, then to the next VM/Container, back to DUT and
+   so on until the last VM/Container in a chain, then back to DUT and NIC;
+
+#. "Horizontal" topology with packets flowing via DUT (VPP) to Container,
+   then via "horizontal" memif to the next Container, and so on until the
+   last Container, then back to DUT and NIC. "Horizontal" topology is not
+   supported for VMs;
+
+For each of the above topologies, DUT (VPP) is tested in a range of L2
+or IPv4/IPv6 configurations depending on the test suite. A sample DUT
+"Chained" service topology with N of VM/Ctr instances is shown in the
+figure below. Packet flow thru the DUTs and VMs/Ctrs is marked with
+``***``::
+
+        +-------------------------+           +-------------------------+
+        | +---------+ +---------+ |           | +---------+ +---------+ |
+        | |VM/Ctr[1]| |VM/Ctr[N]| |           | |VM/Ctr[1]| |VM/Ctr[N]| |
+        | |  *****  | |  *****  | |           | |  *****  | |  *****  | |
+        | +--^---^--+ +--^---^--+ |           | +--^---^--+ +--^---^--+ |
+        |   *|   |*     *|   |*   |           |   *|   |*     *|   |*   |
+        | +--v---v-------v---v--+ |           | +--v---v-------v---v--+ |
+        | |  *   *       *   *  |*|***********|*|  *   *       *   *  | |
+        | |  *   *********   ***<-|-----------|->***   *********   *  | |
+        | |  *    DUT1          | |           | |       DUT2       *  | |
+        | +--^------------------+ |           | +------------------^--+ |
+        |   *|                    |           |                    |*   |
+        |   *|            SUT1    |           |  SUT2              |*   |
+        +-------------------------+           +-------------------------+
+            *|                                                     |*
+            *|                                                     |*
+            *|                    +-----------+                    |*
+            *|                    |           |                    |*
+            *+-------------------->    TG     <--------------------+*
+            **********************|           |**********************
+                                  +-----------+
+
+In above "Chained" topology, packets are switched by DUT multiple times:
+twice for a single VM/Ctr, three times for two VMs/Ctrs, N+1 times for N
+VMs/Ctrs. Hence the external throughput rates measured by TG and listed
+in this report must be multiplied by (N+1) to represent the actual DUT
+aggregate packet forwarding rate.
+
+For a "Parallel" and "Horizontal" service topologies packets are always
+switched by DUT twice per service chain.
 
 Note that reported DUT (VPP) performance results are specific to the SUTs
 tested. Current :abbr:`LF (Linux Foundation)` FD.io SUTs are based on Intel
@@ -236,11 +252,17 @@ following VPP thread and core configurations:
 
 #. 1t1c - 1 VPP worker thread on 1 CPU physical core.
 #. 2t2c - 2 VPP worker threads on 2 CPU physical cores.
+#. 4t4c - 4 VPP worker threads on 4 CPU physical cores.
 
-VPP worker threads are the data plane threads. VPP control thread is running on
-a separate non-isolated core together with other Linux processes. Note that in
-quite a few test cases running VPP workers on 2 physical cores hits the tested
-NIC I/O bandwidth or packets-per-second limit.
+VPP worker threads are the data plane threads. VPP control thread is
+running on a separate non-isolated core together with other Linux
+processes. Note that in quite a few test cases running VPP workers on 2
+or 4 physical cores hits the I/O bandwidth or packets-per-second limit
+of tested NIC.
+
+Section :ref:`throughput_speedup_multi_core` includes a set of graphs
+illustrating packet throughout speedup when running VPP on multiple
+cores.
 
 Methodology: Packet Throughput
 ------------------------------
@@ -250,23 +272,32 @@ Following values are measured and reported for packet throughput tests:
 - NDR binary search per :rfc:`2544`:
 
   - Packet rate: "RATE: <aggregate packet rate in packets-per-second> pps
-    (2x <per direction packets-per-second>)"
+    (2x <per direction packets-per-second>)";
   - Aggregate bandwidth: "BANDWIDTH: <aggregate bandwidth in Gigabits per
-    second> Gbps (untagged)"
+    second> Gbps (untagged)";
 
 - PDR binary search per :rfc:`2544`:
 
   - Packet rate: "RATE: <aggregate packet rate in packets-per-second> pps (2x
-    <per direction packets-per-second>)"
+    <per direction packets-per-second>)";
   - Aggregate bandwidth: "BANDWIDTH: <aggregate bandwidth in Gigabits per
-    second> Gbps (untagged)"
+    second> Gbps (untagged)";
   - Packet loss tolerance: "LOSS_ACCEPTANCE <accepted percentage of packets
-    lost at PDR rate>""
+    lost at PDR rate>";
 
 - NDR and PDR are measured for the following L2 frame sizes:
 
-  - IPv4: 64B, IMIX_v4_1 (28x64B,16x570B,4x1518B), 1518B, 9000B.
-  - IPv6: 78B, 1518B, 9000B.
+  - IPv4: 64B, IMIX_v4_1 (28x64B,16x570B,4x1518B), 1518B, 9000B;
+  - IPv6: 78B, 1518B, 9000B;
+
+- NDR and PDR binary search resolution is determined by the final value of the rate change, referred to as the final step:
+
+  - The final step is set to 50kpps for all NIC to NIC tests and all L2
+    frame sizes except 9000B (changed from 100kpps used in previous
+    releases).
+
+  - The final step is set to 10kpps for all remaining tests, including 9000B
+    and all vhost VM and memif Container tests.
 
 All rates are reported from external Traffic Generator perspective.
 

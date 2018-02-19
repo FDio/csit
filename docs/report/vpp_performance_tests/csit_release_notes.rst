@@ -6,32 +6,32 @@ Changes in CSIT |release|
 
 #. Added VPP performance tests
 
-   - **Container Topologies Orchestrated by K8s with VPP memif tests**
+   - **Container Service Chain Topologies Orchestrated by K8s with VPP Memif**
 
-   - Added tests with VPP in L2 Cross-Connect and Bridge-Domain
-     configurations containers, with service chain topologies orchestrated by
-     Kubernetes. Added following forwarding topologies: i) "Parallel" with
-     packets flowing from NIC via VPP to container and back to VPP and NIC;
-     ii) "Chained" a.k.a. "Snake" with packets flowing via VPP to container,
-     back to VPP, to next container, back to VPP and so on until the last
-     container in chain, then back to VPP and NIC; iii) "Horizontal" with
-     packets flowing via VPP to container, then via "horizontal" memif to
-     next container, and so on until the last container, then back to VPP and
-     NIC;.
+     - Added tests with VPP vswitch in container connecting a number of VPP-
+       in-container service chain topologies with L2 Cross-Connect and L2
+       Bridge-Domain configurations, orchestrated by Kubernetes. Added
+       following forwarding topologies: i) "Parallel" with packets flowing from
+       NIC via VPP to container and back to VPP and NIC; ii) "Chained" (a.k.a.
+       "Snake") with packets flowing via VPP to container, back to VPP, to next
+       container, back to VPP and so on until the last container in a chain,
+       then back to VPP and NIC; iii) "Horizontal" with packets flowing via VPP
+       to container, then via "horizontal" memif to next container, and so on
+       until the last container, then back to VPP and NIC;
 
    - **VPP TCP/IP stack**
 
      - Added tests for VPP TCP/IP stack using VPP built-in HTTP server.
        WRK traffic generator is used as a client-side;
 
-   - **SRv6 tests**
+   - **SRv6**
 
      - Initial SRv6 (Segment Routing IPv6) tests verifying performance of
        IPv6 and SRH (Segment Routing Header) encapsulation, decapsulation,
        lookups and rewrites based on configured End and End.DX6 SRv6 egress
        functions;
 
-   - **IPSecSW tests**
+   - **IPSecSW**
 
      - SW computed IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in
        combination with IPv4 routed-forwarding;
@@ -50,15 +50,24 @@ Changes in CSIT |release|
 
        - Overall stability improvements;
 
+     - **NDR and PDR throughput binary search change**
+
+       - Increased binary search resolution by reducing final step from
+         100kpps to 50kpps;
+
 Performance Changes
 -------------------
 
-Substantial changes in measured packet throughput have been observed in a
-number of CSIT |release| tests listed below. Relative changes for this release
-are calculated against the test results listed in CSIT |release-1| report. The
-comparison is calculated between the mean values based on collected and
-archived test results' samples for involved VPP releases. Standard deviation
-has been also listed for CSIT |release|.
+Relative performance changes in measured packet throughput in CSIT
+|release| are calculated against the results from CSIT |release-1|
+report. Listed mean and standard deviation values are computed based on
+a series of the same tests executed against respective VPP releases to
+verify test results repeatibility, with percentage change calculated for
+mean values. Note that the standard deviation is quite high for a small
+number of packet throughput tests, what indicates poor test results
+repeatability and makes the relative change of mean throughput value not
+fully representative for these tests. The root causes behind poor
+results repeatibility vary between the test cases.
 
 NDR Throughput Changes
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -97,13 +106,14 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 | 1 | Vic1385 and Vic1227 low performance.            | VPP-664    | Low NDR performance.                                            |
 |   |                                                 |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | Sporadic NDR discovery test failures on x520.   | CSIT-750   | Suspected issue with HW combination of X710-X520 in LF          |
-|   |                                                 |            | infrastructure. Issue can't be replicated outside LF.           |
+| 2 | Sporadic (1 in 200) NDR discovery test failures | CSIT-570   | DPDK reporting rx-errors, indicating L1 issue. Suspected issue  |
+|   | on x520.                                        |            | with HW combination of X710-X520 in LF testbeds. Not observed   |
+|   |                                                 |            | outside of LF testbeds.                                         |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
-|   | of discovered NDR throughput values across      |            | throughput. Applies to XL710 and X710 NICs, x520 NICs are fine. |
-|   | multiple test runs with xl710 and x710 NICs.    |            |                                                                 |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | Lower than expected NDR throughput with         | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
+| 3 | Lower than expected NDR throughput with         | CSIT-571   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
 |   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
+| 4 | QAT IPSec scale with 1000 tunnels (interfaces)  | VPP-1121   | VPP crashes during configuration of 1000 IPsec tunnels.         |
+|   | in 2t2c config, all tests are failing.          |            | 1t1c tests are not affected                                     |
++---+-------------------------------------------------+------------+-----------------------------------------------------------------+
+
