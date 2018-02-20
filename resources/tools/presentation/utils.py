@@ -82,10 +82,6 @@ def remove_outliers(input_data, outlier_const):
     for y in data.tolist():
         if quartile_set[0] <= y <= quartile_set[1]:
             result_lst.append(y)
-    print(quartile_set)
-    print(input_data)
-    print(result_lst)
-    print("")
     return result_lst
 
 

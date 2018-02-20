@@ -529,23 +529,25 @@ Following container networking topologies are tested in CSIT |release|:
   - eth-1drcl2xcbase-eth-8memif-4drcl2xc-1chain
 
 References
-----------
+~~~~~~~~~~
 
-.. [lxc] `Linux Containers <https://linuxcontainers.org/>`_
-.. [lxc-namespace] `Resource management: Linux kernel Namespaces and cgroups <https://www.cs.ucsb.edu/~rich/class/cs293b-cloud/papers/lxc-namespace.pdf>`_.
-.. [stgraber] `LXC 1.0: Blog post series <https://stgraber.org/2013/12/20/lxc-1-0-blog-post-series/>`_.
-.. [lxc-security] `Linux Containers Security <https://linuxcontainers.org/lxc/security/>`_.
-.. [capabilities] `Linux manual - capabilities - overview of Linux capabilities http://man7.org/linux/man-pages/man7/capabilities.7.html`_.
-.. [cgroup1] `Linux kernel documentation: cgroups <https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>`_.
-.. [cgroup2] `Linux kernel documentation: Control Group v2 <https://www.kernel.org/doc/Documentation/cgroup-v2.txt>`_.
-.. [selinux] `SELinux Project Wiki <http://selinuxproject.org/page/Main_Page>`_.
-.. [lxc-sec-features] `LXC 1.0: Security features <https://stgraber.org/2014/01/01/lxc-1-0-security-features/>`_.
-.. [lxc-source] `Linux Containers source <https://github.com/lxc/lxc>`_.
-.. [apparmor] `Ubuntu AppArmor <https://wiki.ubuntu.com/AppArmor>`_.
-.. [seccomp] `SECure COMPuting with filters <https://www.kernel.org/doc/Documentation/prctl/seccomp_filter.txt>`_.
-.. [docker] `Docker <https://www.docker.com/what-docker>`_.
-.. [k8s-doc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.
-.. [ligato] `Ligato <https://github.com/ligato>`_.
-.. [govpp] `FD.io goVPP project <https://wiki.fd.io/view/GoVPP>`_.
-.. [vpp-agent] `Ligato vpp-agent <https://github.com/ligato/vpp-agent>`_.
-.. [image-var] Image parameter is required in initial commit version. There is plan to implement container build class to build Docker/LXC image.
+.. note::
+
+  .. [lxc] `Linux Containers <https://linuxcontainers.org/>`_
+  .. [lxc-namespace] `Resource management: Linux kernel Namespaces and cgroups <https://www.cs.ucsb.edu/~rich/class/cs293b-cloud/papers/lxc-namespace.pdf>`_.
+  .. [stgraber] `LXC 1.0: Blog post series <https://stgraber.org/2013/12/20/lxc-1-0-blog-post-series/>`_.
+  .. [lxc-security] `Linux Containers Security <https://linuxcontainers.org/lxc/security/>`_.
+  .. [capabilities] `Linux manual - capabilities - overview of Linux capabilities http://man7.org/linux/man-pages/man7/capabilities.7.html`_.
+  .. [cgroup1] `Linux kernel documentation: cgroups <https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>`_.
+  .. [cgroup2] `Linux kernel documentation: Control Group v2 <https://www.kernel.org/doc/Documentation/cgroup-v2.txt>`_.
+  .. [selinux] `SELinux Project Wiki <http://selinuxproject.org/page/Main_Page>`_.
+  .. [lxc-sec-features] `LXC 1.0: Security features <https://stgraber.org/2014/01/01/lxc-1-0-security-features/>`_.
+  .. [lxc-source] `Linux Containers source <https://github.com/lxc/lxc>`_.
+  .. [apparmor] `Ubuntu AppArmor <https://wiki.ubuntu.com/AppArmor>`_.
+  .. [seccomp] `SECure COMPuting with filters <https://www.kernel.org/doc/Documentation/prctl/seccomp_filter.txt>`_.
+  .. [docker] `Docker <https://www.docker.com/what-docker>`_.
+  .. [k8s-doc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.
+  .. [ligato] `Ligato <https://github.com/ligato>`_.
+  .. [govpp] `FD.io goVPP project <https://wiki.fd.io/view/GoVPP>`_.
+  .. [vpp-agent] `Ligato vpp-agent <https://github.com/ligato/vpp-agent>`_.
+  .. [image-var] Image parameter is required in initial commit version. There is plan to implement container build class to build Docker/LXC image.
