@@ -350,6 +350,12 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include l2xcbaseANDpdrdiscAND1t1cAND64b \
+              --include l2bdbaseANDpdrdiscAND1t1cAND64b \
+              --include ip4baseANDpdrdiscAND1t1cAND64b \
+              --include ip6baseANDpdrdiscAND1t1cAND78b \
+              --exclude SCALE \
+              --exclude DOT1Q \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
