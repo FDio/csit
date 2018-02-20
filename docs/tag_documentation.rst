@@ -152,6 +152,16 @@ Performance testing tags
     Performance tests where TG verifies DUTs' throughput at ref-NDR (reference
     Non Drop Rate) with zero packet loss tolerance.
 
+.. topic:: PDRCHK
+
+    Performance tests where TG verifies DUTs' throughput at ref-PDR (reference
+    Partial Drop Rate) with 0.5% loss tolerance.
+
+.. topic:: MRR
+
+    Performance tests where TG sends the traffic at maximum rate (line rate)
+    and reports total sent/received packets over performance trial duration.
+
 .. topic:: NDRPDRDISC
 
     Find performance of DUT based on :rfc:`2544` with linear / binary / combined
