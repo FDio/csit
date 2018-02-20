@@ -195,6 +195,9 @@
 #      - 19  # sel
 #      - 20  # sel
 #      - 21  # sel
+#      - 22  # sel
+#      - 23  # sel
+#      - 24  # sel
 # TODO: Add the data sources
     vpp-perf-results:
       csit-vpp-perf-1801-all:
@@ -208,7 +211,7 @@
 # TODO: Add the data sources
     ligato-perf-results:
       csit-ligato-perf-1801-all:
-      - 19
+      - 25  # full
     dpdk-perf-results:
       csit-dpdk-perf-1801-all:
       - 12
@@ -249,6 +252,9 @@
       - 19  # sel
       - 20  # sel
       - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
 
   plot-layouts:
 
@@ -570,6 +576,10 @@
     - 19  # sel
     - 20  # sel
     - 21  # sel
+    - 22  # sel
+    - 23  # sel
+    - 24  # sel
+    - 25  # full
     csit-dpdk-perf-1801-all:
     - 1
     - 3
