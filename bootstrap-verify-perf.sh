@@ -15,9 +15,7 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed1.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -47,17 +45,25 @@ then
         # Take vpp package and get the vpp version
         VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
     else
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
-        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-        VPP_CLASSIFIER="-deb"
-        # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
+#        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+#        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+#        VPP_CLASSIFIER="-deb"
+#        # Download vpp build from nexus and set VPP_DEBS variable
+#        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        VPP_URL="https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/132/artifact/build-root"
+        VPP_VER="18.01-9~gec5a8fb~b132_amd64"
+        wget -q "${VPP_URL}/vpp_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-dbg_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-dev_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-lib_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-plugins_${VPP_VER}.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/132/artifact/dpdk/vpp-dpdk-dkms_17.08-vpp2_amd64.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
@@ -165,19 +171,19 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
-    VERIFY-PERF-NDRCHK )
+    VERIFY-PERF-MRR )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
+              --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
-    PERFTEST_NDRCHK_DAILY )
+    PERFTEST_MRR_DAILY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
+              --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -241,15 +247,15 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf.crypto" \
-              --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechw \
-              --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechw \
+              --include ndrdiscANDnic_intel-xl710AND1t1cANDipsechw \
+              --include ndrdiscANDnic_intel-xl710AND2t2cANDipsechw \
               tests/
         ;;
     VPP-VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDip4baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDip4baseORmrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -257,7 +263,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDip6baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDip6baseORmrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -265,7 +271,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORpdrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDl2xcbaseORmrrANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -333,15 +339,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              -i NDRCHK \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NIGHTLY )
-        #run all available tests
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -i MRR \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -350,6 +348,17 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include l2xcbaseANDmrrAND1t1cAND64b \
+              --include l2bdbaseANDmrrAND1t1cAND64b \
+              --include ip4baseANDmrrAND1t1cAND64b \
+              --include ip6baseANDmrrAND1t1cAND78b \
+              --include nic_intel-x710ANDl2xcfwdANDmrrcAND1t1cAND64b \
+              --include nic_intel-x710ANDl2bdmaclrnANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDip4fwdANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDip6fwdANDmrrAND1t1cAND78b \
+              --exclude VHOST \
+              --exclude SCALE \
+              --exclude DOT1Q \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
@@ -363,14 +372,6 @@ python ${SCRIPT_DIR}/resources/tools/scripts/robot_output_parser.py \
        -v ${VPP_STABLE_VER}
 if [ ! $? -eq 0 ]; then
     echo "Parsing ${SCRIPT_DIR}/output.xml failed"
-fi
-
-python ${SCRIPT_DIR}/resources/tools/report_gen/run_robot_json_data.py \
-       --input ${SCRIPT_DIR}/output.xml \
-       --output ${SCRIPT_DIR}/output_perf_data.json \
-       --vdevice ${VPP_STABLE_VER}
-if [ ! $? -eq 0 ]; then
-    echo "Generating JSON data for report from ${SCRIPT_DIR}/output.xml failed"
 fi
 
 # Archive artifacts
