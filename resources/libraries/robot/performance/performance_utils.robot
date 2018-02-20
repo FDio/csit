@@ -370,7 +370,7 @@
 | | ... | Througput is calculated as:
 | | ... | Measured rate per stream * Total number of streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Througput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
 | | ...
 | | ... | *Arguments:*
 | | ... | - rate_per_stream - Measured rate per stream [pps]. Type: string
@@ -403,7 +403,7 @@
 | | ... | Througput is calculated as:
 | | ... | Measured rate per stream * Total number of streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Througput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
 | | ...
 | | ... | *Arguments:*
 | | ... | - rate_per_stream - Measured rate per stream [pps]. Type: string
@@ -434,6 +434,31 @@
 | | Set Test Message
 | | ... | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ... | append=yes
+
+| Display raw results
+| | [Documentation]
+| | ... | Display raw results from TG in total received/send packets over trial
+| | ... | duration in seconds.
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - results - Measured results. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Display raw results \| 64 \| results \|
+| | ...
+| | [Arguments] | ${framesize} | ${results}
+| | ...
+| | ${framesize}= | Get Frame Size | ${framesize}
+| | @{tokens}= | Split String | ${results} | ,
+| | @{received}= | Split String | @{tokens}[1] | =
+| | @{sent}= | Split String | @{tokens}[2] | =
+| | ${total_received} = | Set Variable | @{received}[1]
+| | ${total_sent} = | Set Variable | @{sent}[1]
+| | Set Test Message | RAW_RESULTS: ${total_sent} sent,
+| | Set Test Message | ${total_received} received pkts | append=yes
+| | Set Test Message | (over ${perf_trial_duration} seconds) | append=yes
 
 | Measure latency pps
 | | [Documentation]
@@ -480,17 +505,8 @@
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | ... | ${fail_on_loss}=${True}
 | | ...
-| | Clear and show runtime counters with running traffic | ${duration}
-| | ... | ${rate} | ${framesize} | ${topology_type}
-| | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${False} | Clear all counters on all DUTs
-| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
-| | ... | VPP Enable Traces On All DUTs | ${nodes}
-| | Send traffic on tg | ${duration} | ${rate} | ${framesize}
-| | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${False} | Show statistics on all DUTs | ${nodes}
-| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
-| | ... | Show Packet Trace On All Duts | ${nodes}
+| | Send traffic at specified rate | ${duration} | ${rate} | ${framesize}
+| | ... | ${topology_type}
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
 | Traffic should pass with partial loss
@@ -515,19 +531,63 @@
 | | ... | ${loss_acceptance} | ${loss_acceptance_type}
 | | ... | ${fail_on_loss}=${True}
 | | ...
+| | Send traffic at specified rate | ${duration} | ${rate} | ${framesize}
+| | ... | ${topology_type}
+| | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
+| | ... | ${loss_acceptance} | ${loss_acceptance_type}
+
+| Traffic should pass with maximum rate
+| | [Documentation]
+| | ... | Send traffic at maximum rate.
+| | ...
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Traffic should pass with no loss \| 10 \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \|
+| | ...
+| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | ...
+| | ${results}= | Send traffic at specified rate | ${duration} | ${rate}
+| | ... | ${framesize} | ${topology_type}
+| | Display raw results | ${framesize} | ${results}
+
+| Send traffic at specified rate
+| | [Documentation]
+| | ... | Send traffic at specific rate.
+| | ...
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send traffic at specific rate \| 10 \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \|
+| | ...
+| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | ...
 | | Clear and show runtime counters with running traffic | ${duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | ${ret}= | Is DPDK performance test
 | | Run Keyword If | ${ret}==${False} | Clear all counters on all DUTs
 | | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
-| | Send traffic on tg | ${duration} | ${rate} | ${framesize}
+| | ${results} = | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
 | | Run Keyword If | ${ret}==${False} | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes}
-| | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
-| | ... | ${loss_acceptance} | ${loss_acceptance_type}
+| | Return From Keyword | ${results}
 
 | Clear and show runtime counters with running traffic
 | | [Documentation]
