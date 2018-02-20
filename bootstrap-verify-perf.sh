@@ -165,19 +165,19 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
-    VERIFY-PERF-NDRCHK )
+    VERIFY-PERF-MRR )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
+              --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
-    PERFTEST_NDRCHK_DAILY )
+    PERFTEST_MRR_DAILY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
+              --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -333,15 +333,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              -i NDRCHK \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NIGHTLY )
-        #run all available tests
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -i MRR \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
