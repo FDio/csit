@@ -89,7 +89,6 @@
 -
   type: "configuration"
   data-sets:
-# TODO: Add the data sources
     plot-vpp-http-server-performance:
       csit-vpp-perf-1801-all:
       - 157
@@ -135,7 +134,6 @@
       - 18
       - 19
       - 20
-# TODO: Add the data sources
       csit-vpp-perf-1801-all:
       - 124  # sel
       - 127  # sel
@@ -147,9 +145,8 @@
       - 146  # sel
       - 162  # sel
       - 163  # sel
-#      - 167  # sel
+      - 167  # sel
       - 172  # sel acl only
-# TODO: Add the data sources
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1801-all:
       - 122  # full
@@ -166,7 +163,7 @@
       - 146  # sel
       - 162  # sel
       - 163  # sel
-#      - 167  # sel
+      - 167  # sel
       - 172  # sel acl only
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
@@ -216,7 +213,6 @@
 #      - 22  # sel
 #      - 23  # sel
 #      - 24  # sel
-# TODO: Add the data sources
     vpp-perf-results:
       csit-vpp-perf-1801-all:
       - 122
@@ -226,7 +222,6 @@
     vpp-func-results:
       csit-vpp-functional-1801-ubuntu1604-virl:
       - "lastSuccessfulBuild"
-# TODO: Add the data sources
     ligato-perf-results:
       csit-ligato-perf-1801-all:
       - 25  # full
@@ -239,7 +234,6 @@
     nsh-func-results:
       csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
       - 1
-# TODO: Add the data sources
     plot-vpp-throughput-latency:
       csit-vpp-perf-1801-all:
       - 122  # full
@@ -256,7 +250,7 @@
       - 146  # sel
       - 162  # sel
       - 163  # sel
-#      - 167  # sel
+      - 167  # sel
       - 172  # sel acl only
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1801-all:
@@ -269,7 +263,6 @@
       - 8
       - 10
       - 12
-# TODO: Add the data sources
     plot-ligato-throughput-latency:
       csit-ligato-perf-1801-all:
       - 16  # sel
@@ -554,7 +547,6 @@
     - 18
     - 19
     - 20
-# TODO:
     csit-vpp-perf-1801-all:
     - 122  # full
     - 126  # full
@@ -578,7 +570,7 @@
     - 164  # wrk
     - 165  # wrk
     - 166  # wrk
-#    - 167  # sel
+    - 167  # sel
     - 168  # wrk
     - 169  # wrk
     - 170  # wrk
@@ -604,7 +596,6 @@
     - 12
     - 16
     - 17
-# TODO:
     csit-ligato-perf-1801-all:
     - 16  # sel
     - 17  # sel
@@ -719,11 +710,9 @@
   title: "VPP Performance Changes"
   algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
-# TODO: specify dir
   output-file: "{DIR[STATIC,VPP]}/performance-changes"
   reference:
     title: "Release 1710"
-# TODO: specify data sources
     data:
       csit-vpp-perf-1710-all:
       - 11
@@ -749,6 +738,10 @@
       - 143  # sel
       - 145  # sel
       - 146  # sel
+      - 162  # sel
+      - 163  # sel
+      - 167  # sel
+      - 172  # sel acl only
   data: "vpp-performance-changes"
   filter: "all"
   parameters:
