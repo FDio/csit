@@ -32,7 +32,7 @@ and their indices.
     `FD.io test executor vpp performance jobs`_ with Robot Framework result
     files csit-vpp-perf-|srelease|-\*.zip `archived here <../../_static/archive/>`_.
     Plotted data set size per test case is equal to the number of job executions
-    presented in this report version: **8**.
+    presented in this report version: **10**.
 
 .. toctree::
 
