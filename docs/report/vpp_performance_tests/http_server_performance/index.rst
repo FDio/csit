@@ -46,7 +46,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/tcp && grep -E '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-cps' *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/tcp && grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-cps' *
       :shell:
 
 .. only:: latex
@@ -54,7 +54,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/tcp
-      $ grep -E '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-cps' *
+      $ grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-cps' *
 
 Requests per second
 -------------------
@@ -79,7 +79,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/tcp && grep -E '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-rps' *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/tcp && grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-rps' *
       :shell:
 
 .. only:: latex
@@ -87,4 +87,4 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/tcp
-      $ grep -E '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-rps' *
+      $ grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-rps' *
