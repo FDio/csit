@@ -147,7 +147,7 @@
       - 146  # sel
       - 162  # sel
       - 163  # sel
-#      - 167  # sel
+      - 167  # sel
       - 172  # sel acl only
 # TODO: Add the data sources
     plot-throughput-speedup-analysis:
@@ -166,7 +166,7 @@
       - 146  # sel
       - 162  # sel
       - 163  # sel
-#      - 167  # sel
+      - 167  # sel
       - 172  # sel acl only
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
@@ -256,7 +256,7 @@
       - 146  # sel
       - 162  # sel
       - 163  # sel
-#      - 167  # sel
+      - 167  # sel
       - 172  # sel acl only
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1801-all:
@@ -578,7 +578,7 @@
     - 164  # wrk
     - 165  # wrk
     - 166  # wrk
-#    - 167  # sel
+    - 167  # sel
     - 168  # wrk
     - 169  # wrk
     - 170  # wrk
