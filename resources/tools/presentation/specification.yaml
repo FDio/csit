@@ -151,6 +151,10 @@
 # TODO: Add the data sources
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1801-all:
+      - 122  # full
+      - 126  # full
+      - 129  # full
+      - 140  # full
       - 124  # sel
       - 127  # sel
       - 128  # sel
@@ -236,6 +240,10 @@
 # TODO: Add the data sources
     plot-vpp-throughput-latency:
       csit-vpp-perf-1801-all:
+      - 122  # full
+      - 126  # full
+      - 129  # full
+      - 140  # full
       - 124  # sel
       - 127  # sel
       - 128  # sel
