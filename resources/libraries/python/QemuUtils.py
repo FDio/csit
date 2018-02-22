@@ -29,7 +29,8 @@ class QemuUtils(object):
     def __init__(self, qemu_id=1):
         self._qemu_id = qemu_id
         # Path to QEMU binary. Use x86_64 by default
-        self._qemu_bin = '/usr/bin/qemu-system-x86_64'
+        self._qemu_path = '/usr/bin/'
+        self._qemu_bin = 'qemu-system-x86_64'
         # QEMU Machine Protocol socket
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
@@ -71,13 +72,13 @@ class QemuUtils(object):
         self._node = None
         self._socks = [self._qmp_sock, self._qga_sock]
 
-    def qemu_set_bin(self, path):
+    def qemu_set_path(self, path):
         """Set binary path for QEMU.
 
         :param path: Absolute path in filesystem.
         :type path: str
         """
-        self._qemu_bin = path
+        self._qemu_path = path
 
     def qemu_set_smp(self, cpus, cores, threads, sockets):
         """Set SMP option for QEMU.
@@ -189,7 +190,7 @@ class QemuUtils(object):
         self._vm_info['host'] = node['host']
 
         arch = Topology.get_node_arch(node)
-        self._qemu_bin = '/usr/bin/qemu-system-{0}'.format(arch)
+        self._qemu_bin = 'qemu-system-{arch}'.format(arch=arch)
 
     def qemu_add_vhost_user_if(self, socket, server=True, mac=None):
         """Add Vhost-user interface.
@@ -518,6 +519,9 @@ class QemuUtils(object):
         .. note:: First set at least node to run QEMU on.
         .. warning:: Starts only one VM on the node.
         """
+        # Qemu binary path
+        bin_path = '{0}{1}'.format(self._qemu_path, self._qemu_bin)
+
         # SSH forwarding
         ssh_fwd = '-net user,hostfwd=tcp::{0}-:22'.format(
             self._qemu_opt.get('ssh_fwd_port'))
@@ -548,10 +552,10 @@ class QemuUtils(object):
         pid = '-pidfile {}'.format(self._pid_file)
 
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}'.format(
-            self._qemu_bin, self._qemu_opt.get('smp'), mem, ssh_fwd,
-            self._qemu_opt.get('options'),
-            drive, qmp, serial, qga, graphic, pid)
+        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}'.format(bin_path,
+            self._qemu_opt.get('smp'), mem, ssh_fwd,
+            self._qemu_opt.get('options'), drive, qmp, serial, qga, graphic,
+            pid)
         try:
             (ret_code, _, _) = self._ssh.exec_command_sudo(cmd, timeout=300)
             if int(ret_code) != 0:
