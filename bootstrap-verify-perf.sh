@@ -47,17 +47,25 @@ then
         # Take vpp package and get the vpp version
         VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
     else
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
-        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+#        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
+#        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+#        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
         VPP_CLASSIFIER="-deb"
         # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+#        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        VPP_URL="https://jenkins.fd.io/job/vpp-cpoc-verify-1801-ubuntu1604/3/artifact/build-root"
+        VPP_VER="18.01.1-2~gcf140fe~b3_amd64"
+        wget -q "${VPP_URL}/vpp_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-dbg_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-dev_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-lib_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-plugins_${VPP_VER}.deb" || exit
+        wget -q "${VPP_URL}/vpp-dpdk-dkms_${VPP_VER}.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
@@ -350,6 +358,12 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include l2xcbaseANDpdrdiscAND1t1cAND64b \
+              --include l2bdbaseANDpdrdiscAND1t1cAND64b \
+              --include ip4baseANDpdrdiscAND1t1cAND64b \
+              --include ip6baseANDpdrdiscAND1t1cAND78b \
+              --exclude SCALE \
+              --exclude DOT1Q \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
