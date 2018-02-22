@@ -68,12 +68,18 @@ for ART in ${NSH_ARTIFACTS}; do
 done
 
 # determine VPP dependency
+# use latest if honeycomb package does not depend on single VPP version, e.g. stable branches since HC2VPP-285
+VER="RELEASE"
 if [ "${OS}" == "centos7" ]; then
-    VER=`rpm -qpR honeycomb*.rpm | grep 'vpp ' | cut -d ' ' -f 3`
-    VER=${VER}.x86_64
+    HC_VER=`rpm -qpR honeycomb*.rpm | grep 'vpp ' | cut -d ' ' -f 3`
+    if [ "${HC_VER}" != "" ]; then
+        VER=${HC_VER}.x86_64
+    fi
 else
-    VER=`dpkg -I honeycomb*.deb | grep -oP 'vpp \(= \K[^\)]+'`
-    VER=${VER}_amd64
+    HC_VER=`dpkg -I honeycomb*.deb | grep -oP 'vpp \(= \K[^\)]+'`
+    if [ "${HC_VER}" != "" ]; then
+        VER=${HC_VER}_amd64
+    fi
 fi
 
 # download VPP packages
