@@ -1457,7 +1457,7 @@
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
 | | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1540,7 +1540,7 @@
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
 | | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1605,7 +1605,7 @@
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
 | | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1698,7 +1698,7 @@
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
 | | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1746,7 +1746,7 @@
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
 | | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1796,7 +1796,7 @@
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
 | | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
