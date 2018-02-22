@@ -76,6 +76,12 @@ else
     VER=${VER}_amd64
 fi
 
+# if honeycomb package does not depend on single VPP version (e.g. stable branches since HC2VPP-285),
+# use latest version
+if [ "${VER}" == "" ]; then
+    VER="RELEASE"
+fi
+
 # download VPP packages
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in ${PACKAGE}; do
