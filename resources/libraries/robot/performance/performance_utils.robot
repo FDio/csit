@@ -476,11 +476,8 @@
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | ...
 | | Return From Keyword If | ${rate} <= 10000 | ${-1}
-| | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${False} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${False} | Show statistics on all DUTs | ${nodes}
 | | Run keyword and return | Get latency
 
 | Traffic should pass with no loss
