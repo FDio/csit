@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14aa1a47_6e3d89ec",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-iacldstbase-ndrpdrdisc.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-02-26T11:39:40Z",
+      "side": 1,
+      "message": "Why are you testing 3core 1thread? What is the purpose of such test?",
+      "revId": "7f7e4a4165346c28b1f9d1eb4276b4222eb5f92b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b180be30_90763832",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-iacldstbase-ndrpdrdisc.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-02-26T11:39:40Z",
+      "side": 1,
+      "message": "Missing TAGs describing the Packet size, Core/Workers, NDR/PDR, ...",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 63
+      },
+      "revId": "7f7e4a4165346c28b1f9d1eb4276b4222eb5f92b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
