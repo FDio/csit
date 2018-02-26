@@ -58,14 +58,14 @@ then
 #        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        VPP_URL="https://jenkins.fd.io/job/vpp-cpoc-verify-1801-ubuntu1604/21/artifact/build-root"
-        VPP_VER="18.01-rc0~405-g574f9ab~b21_amd64"
+        VPP_URL="https://jenkins.fd.io/job/vpp-cpoc-verify-1801-ubuntu1604/22/artifact/build-root"
+        VPP_VER="18.01-rc0~429-gbc44cc8~b22_amd64"
         wget -q "${VPP_URL}/vpp_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-dbg_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-dev_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-lib_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-plugins_${VPP_VER}.deb" || exit
-        wget -q "https://jenkins.fd.io/job/vpp-cpoc-verify-1801-ubuntu1604/21/artifact/dpdk/vpp-dpdk-dkms_17.08-vpp2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-cpoc-verify-1801-ubuntu1604/22/artifact/dpdk/vpp-dpdk-dkms_17.11-vpp1_amd64.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
