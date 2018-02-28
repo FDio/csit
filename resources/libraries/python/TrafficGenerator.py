@@ -33,7 +33,7 @@ class TGDropRateSearchImpl(DropRateSearch):
         super(TGDropRateSearchImpl, self).__init__()
 
     def measure_loss(self, rate, frame_size, loss_acceptance,
-                     loss_acceptance_type, traffic_type):
+                     loss_acceptance_type, traffic_type, skip_warmup=False):
         """Runs the traffic and evaluate the measured results.
 
         :param rate: Offered traffic load.
@@ -41,11 +41,13 @@ class TGDropRateSearchImpl(DropRateSearch):
         :param loss_acceptance: Permitted drop ratio or frames count.
         :param loss_acceptance_type: Type of permitted loss.
         :param traffic_type: Traffic profile ([2,3]-node-L[2,3], ...).
+        :param skip_warmup: Start TRex without warmup traffic if true.
         :type rate: int
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :type traffic_type: str
+        :type skip_warmup: bool
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
         :raises: NotImplementedError if TG is not supported.
@@ -60,9 +62,15 @@ class TGDropRateSearchImpl(DropRateSearch):
             raise RuntimeError('TG subtype not defined')
         elif tg_instance.node['subtype'] == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
-            tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                   unit_rate, frame_size,
-                                                   traffic_type)
+            if skip_warmup:
+                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
+                                                       unit_rate, frame_size,
+                                                       traffic_type,
+                                                       warmup_time=0)
+            else:
+                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
+                                                       unit_rate, frame_size,
+                                                       traffic_type)
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
