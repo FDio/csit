@@ -15,6 +15,7 @@
 """
 
 import numpy as np
+import pandas as pd
 
 from os import walk
 from os.path import join
@@ -62,27 +63,37 @@ def relative_change(nr1, nr2):
     return float(((nr2 - nr1) / nr1) * 100)
 
 
-def remove_outliers(input_data, outlier_const):
-    """
+def find_outliers(input_data, outlier_const=1.5):
+    """Go through the input data and generate two pandas series:
+    - input data without outliers
+    - outliers.
+    The function uses IQR to detect outliers.
 
-    :param input_data: Data from which the outliers will be removed.
+    :param input_data: Data to be examined for outliers.
     :param outlier_const: Outlier constant.
-    :type input_data: list
+    :type input_data: pandas.Series
     :type outlier_const: float
-    :returns: The input list without outliers.
-    :rtype: list
+    :returns: Tuple: input data with outliers removed; Outliers.
+    :rtype: tuple (trimmed_data, outliers)
     """
 
-    data = np.array(input_data)
-    upper_quartile = np.percentile(data, 75)
-    lower_quartile = np.percentile(data, 25)
+    upper_quartile = input_data.quantile(q=0.75)
+    lower_quartile = input_data.quantile(q=0.25)
     iqr = (upper_quartile - lower_quartile) * outlier_const
-    quartile_set = (lower_quartile - iqr, upper_quartile + iqr)
-    result_lst = list()
-    for y in data.tolist():
-        if quartile_set[0] <= y <= quartile_set[1]:
-            result_lst.append(y)
-    return result_lst
+    low = lower_quartile - iqr
+    high = upper_quartile + iqr
+    trimmed_data = pd.Series()
+    outliers = pd.Series()
+    for item in input_data.items():
+        item_pd = pd.Series([item[1], ], index=[item[0], ])
+        if low <= item[1] <= high:
+            trimmed_data = trimmed_data.append(item_pd)
+        else:
+            trimmed_data = trimmed_data.append(pd.Series([np.nan, ],
+                                                         index=[item[0], ]))
+            outliers = outliers.append(item_pd)
+
+    return trimmed_data, outliers
 
 
 def get_files(path, extension=None, full_path=True):

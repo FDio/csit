@@ -1,0 +1,184 @@
+# Copyright (c) 2018 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This is the specification of parameters for "Continuous Performance
+# Measurements and Trending" feature provided by PAL.
+
+-
+  type: "environment"
+  configuration:
+    # Debug mode:
+    # - Skip:
+    #   - Download of input data files
+    # - Do:
+    #   - Read data from given zip / xml files
+    #   - Set the configuration as it is done in normal mode
+    # If the section "type: debug" is missing, CFG[DEBUG] is set to 0.
+    CFG[DEBUG]: 1
+
+  paths:
+    # Top level directories:
+    ## Working directory
+    DIR[WORKING]: "_tmp"
+    ## Build directories
+    DIR[BUILD]: "_build"
+    ## Static .rst files
+    DIR[RST]: "../../../docs/report"
+
+    # Working directories
+    ## Input data files (.zip, .xml)
+    DIR[WORKING,DATA]: "{DIR[WORKING]}/data"
+    ## Static source files from git
+    DIR[WORKING,SRC]: "{DIR[WORKING]}/src"
+    DIR[WORKING,SRC,STATIC]: "{DIR[WORKING,SRC]}/_static"
+
+  urls:
+    URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
+
+  make-dirs:
+  # List the directories which are created while preparing the environment.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[WORKING,DATA]"
+  - "DIR[BUILD]"
+  build-dirs:
+  # List the directories where the results (build) is stored.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[BUILD]"
+
+-
+  type: "configuration"
+
+  data-sets:
+# TODO: Specify input data, this is only an example:
+    plot-performance-trending:
+      csit-vpp-perf-mrr-daily-master:
+        start: 1
+        end: 5  # lastSuccessfulBuild  # take all from the start
+        # TODO: build_id=`wget -qO- https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1801-all/lastSuccessfulBuild/buildNumber`
+
+  plot-layouts:
+    plot-cpta:
+      title: "VPP Performance Trend"
+      autosize: False
+      showlegend: True
+      height: 700
+      width: 1000
+      yaxis:
+        showticklabels: True
+        title: "Throughput [Mpps]"
+        hoverformat: ".4s"
+        range: []
+        gridcolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(238, 238, 238)"
+        showline: True
+        zeroline: False
+        tickcolor: "rgb(238, 238, 238)"
+        linewidth: 1
+        showgrid: True
+      xaxis:
+        showticklabels: True
+        title: "Build number"
+        autorange: True
+        showgrid: True
+        gridcolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(238, 238, 238)"
+        fixedrange: False
+        zeroline: False
+        tickcolor: "rgb(238, 238, 238)"
+        showline: True
+        linewidth: 1
+        autotick: True
+      margin:
+        r: 20
+        b: 20
+        t: 50
+        l: 50
+      legend:
+        orientation: "h"
+        traceorder: "normal"
+
+-
+  type: "debug"
+  general:
+    input-format: "xml"  # zip or xml
+    extract: "robot-plugin/output.xml"  # Only for zip
+  builds:
+    # The files must be in the directory DIR[WORKING,DATA]
+    csit-vpp-perf-mrr-daily-master:
+    -
+      build: 1
+      file: "{DIR[WORKING,DATA]}/output_mrr_1.xml"
+#    -
+#      build: 2
+#      file: "{DIR[WORKING,DATA]}/output_mrr_2.xml"
+#    -
+#      build: 3
+#      file: "{DIR[WORKING,DATA]}/output_mrr_3.xml"
+#    -
+#      build: 4
+#      file: "{DIR[WORKING,DATA]}/output_mrr_4.xml"
+#    -
+#      build: 5
+#      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
+
+-
+  type: "static"
+  src-path: "{DIR[RST]}"
+  dst-path: "{DIR[WORKING,SRC]}"
+
+-
+  type: "input"  # Ignored in debug mode
+  general:
+    file-name: "robot-plugin.zip"
+    file-format: ".zip"
+    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    extract: "robot-plugin/output.xml"
+  builds:
+    csit-vpp-perf-mrr-daily-master:
+      start: 1
+      end: 5  # lastSuccessfulBuild  # take all from the start
+
+-
+  type: "output"
+  output:
+#   "report"
+    "CPTA"  # Continuous Performance Trending and Analysis
+  format:
+    html:
+    - full
+    pdf:
+    - minimal
+
+################################################################################
+###                                 C P M T                                  ###
+################################################################################
+
+# Plots VPP Continuous Performance Trending and Analysis
+-
+  type: "cpta"
+  title: "Continuous Performance Trending and Analysis"
+  algorithm: "cpta"
+  output-file-type: ".html"
+  output-file: "{DIR[WORKING,SRC,STATIC]}/cpmt"
+  data: "plot-performance-trending"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"  # ???
+  plots:
+    - title: "L2"
+      filter: "TODO"
+      layout: "plot-cpta"
+    - title: "ip4"
+      filter: "TODO"
+      layout: "plot-cpta"
