@@ -1,0 +1,141 @@
+# Copyright (c) 2018 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This is the specification of parameters for "Continuous Performance
+# Measurements and Trending" feature provided by PAL.
+
+-
+  type: "environment"
+  configuration:
+    # Debug mode:
+    # - Skip:
+    #   - Download of input data files
+    # - Do:
+    #   - Read data from given zip / xml files
+    #   - Set the configuration as it is done in normal mode
+    # If the section "type: debug" is missing, CFG[DEBUG] is set to 0.
+    CFG[DEBUG]: 1
+
+  paths:
+    # Top level directories:
+    ## Working directory
+    DIR[WORKING]: "_tmp"
+    ## Build directories
+    DIR[BUILD]: "_build"
+    ## Static .rst files
+    DIR[RST]: "../../../docs/report"
+
+    # Working directories
+    ## Input data files (.zip, .xml)
+    DIR[WORKING,DATA]: "{DIR[WORKING]}/data"
+    ## Static source files from git
+    DIR[WORKING,SRC]: "{DIR[WORKING]}/src"
+    DIR[WORKING,SRC,STATIC]: "{DIR[WORKING,SRC]}/_static"
+
+  urls:
+    URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
+
+  make-dirs:
+  # List the directories which are created while preparing the environment.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[WORKING,DATA]"
+  - "DIR[BUILD]"
+  build-dirs:
+  # List the directories where the results (build) is stored.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[BUILD]"
+
+-
+  type: "configuration"
+
+  data-sets:
+# TODO: Specify input data, this is only an example:
+    plot-performance-trending:
+        csit-vpp-perf-1801-all:
+        - "all"
+
+  plot-layouts:
+    plot-cpmt:
+      "TODO"
+
+-
+  type: "debug"
+  general:
+    input-format: "xml"  # zip or xml
+    extract: "robot-plugin/output.xml"  # Only for zip
+  builds:
+    # The files must be in the directory DIR[WORKING,DATA]
+    csit-vpp-perf-1801-all:
+    -
+      build: 1
+      file: "{DIR[WORKING,DATA]}/output_cores_1.xml"
+    -
+      build: 2
+      file: "{DIR[WORKING,DATA]}/output_cores_1.xml"
+
+-
+  type: "static"
+  src-path: "{DIR[RST]}"
+  dst-path: "{DIR[WORKING,SRC]}"
+
+-
+  type: "input"  # Ignored in debug mode
+  general:
+    file-name: "robot-plugin.zip"
+    file-format: ".zip"
+    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    extract: "robot-plugin/output.xml"
+  builds:
+    csit-vpp-perf-1710-all:
+    - 1
+    csit-vpp-perf-1801-all:
+    - 1
+
+-
+  type: "output"
+  # No report is generated
+  output:
+#    - "report"
+    - "CPMT"  # Continuous Performance Measurements and Trending
+  format:
+    html:
+    - full
+
+################################################################################
+###                                P L O T S                                 ###
+################################################################################
+
+# Plots VPP Continuous Performance Measurements and Trending
+-
+  type: "plot"
+  title: "Continuous Performance Measurements and Trending"
+  algorithm: "plot_cpmt_line"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/cpmt_line"
+  data:
+    "TODO"
+  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+  # each tag is enclosed with ' (apostrophe).
+  filter: "TODO"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"  # ???
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: TODO
+#    layout:
+#      "plot-cpmt"
