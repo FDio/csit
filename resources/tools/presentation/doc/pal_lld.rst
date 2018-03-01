@@ -1368,6 +1368,46 @@ of an element is required, only a new algorithm needs to be implemented
 and integrated.
 
 
+Continuous Performance Measurements and Trending
+------------------------------------------------
+
+Performance analysis and trending execution sequence:
+`````````````````````````````````````````````````````
+
+1. Triggered at completion of Performance Measurements and Archiving (PMA) job.
+
+   a. Periodic, or gerrit triggers are supported too.
+
+2. Download RF output.xml from triggering CPM job.
+3. Parse out the test results listed in PAL specification file.
+4. Reads specified amount of PMA historical data from Nexus.
+5. Calculate specified statistical metrics – see next section.
+6. Evaluate latest results against the historical metrics, quantify relative
+   change and based on defined criteria set the result to Pass (no-change or
+   progression) or Fail (regression).
+7. Add the new data to historical data.
+8. Generate a new set of trend analysis summary and drill-down graphs.
+9. Archive the latest RF output.xml to nexus for future analysis.
+10. Publish trend analysis graphs in html format on https://docs.fd.io/.
+
+Parameters to specify:
+``````````````````````
+
+- job to be monitored - the Jenkins job which results are used as input data for
+  this test;
+- number of builds used for trending plot(s) - specified by an integer greater
+  than zero, or zero for all available builds;
+- tests we are interested in (list) list of tests which results are used for the
+  test;
+- window size for the moving average.
+
+*Example:*
+
+::
+
+    TODO
+
+
 API
 ---
 

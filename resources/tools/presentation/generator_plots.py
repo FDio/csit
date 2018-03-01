@@ -19,6 +19,7 @@ import logging
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
+
 from plotly.exceptions import PlotlyError
 
 from utils import mean
@@ -371,7 +372,6 @@ def plot_http_server_performance_box(plot, input_data):
                                y=df[col],
                                name=name,
                                **plot["traces"]))
-
     try:
         # Create plot
         plpl = plgo.Figure(data=traces, layout=plot["layout"])
