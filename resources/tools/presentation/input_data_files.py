@@ -16,13 +16,14 @@ Download all data.
 """
 
 import re
-
+import gzip
 import logging
 
 from os import rename, remove
 from os.path import join, getsize
 from shutil import move
 from zipfile import ZipFile, is_zipfile, BadZipfile
+
 from httplib import responses
 from requests import get, codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
@@ -51,7 +52,13 @@ def download_data_files(spec):
     for job, builds in spec.builds.items():
         for build in builds:
             if job.startswith("csit-"):
-                url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
+                if spec.input["file-name"].endswith(".zip"):
+                    url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
+                elif spec.input["file-name"].endswith(".gz"):
+                    url = spec.environment["urls"]["URL[NEXUS,LOG]"]
+                else:
+                    logging.error("Not supported file format.")
+                    continue
             elif job.startswith("hc2vpp-"):
                 url = spec.environment["urls"]["URL[JENKINS,HC]"]
             else:
@@ -106,25 +113,37 @@ def download_data_files(spec):
                         file_handle.write(chunk)
                 file_handle.close()
 
-                expected_length = None
-                try:
-                    expected_length = int(response.headers["Content-Length"])
-                    logging.debug("  Expected file size: {0}B".
-                                  format(expected_length))
-                except KeyError:
-                    logging.debug("  No information about expected size.")
+                if spec.input["file-name"].endswith(".zip"):
+                    expected_length = None
+                    try:
+                        expected_length = int(response.
+                                              headers["Content-Length"])
+                        logging.debug("  Expected file size: {0}B".
+                                      format(expected_length))
+                    except KeyError:
+                        logging.debug("  No information about expected size.")
 
-                real_length = getsize(new_name)
-                logging.debug("  Downloaded size: {0}B".format(real_length))
+                    real_length = getsize(new_name)
+                    logging.debug("  Downloaded size: {0}B".format(real_length))
 
-                if expected_length:
-                    if real_length == expected_length:
+                    if expected_length:
+                        if real_length == expected_length:
+                            status = "downloaded"
+                            logging.info("{0}: {1}".format(code,
+                                                           responses[code]))
+                        else:
+                            logging.error("The file size differs from the "
+                                          "expected size.")
+                    else:
                         status = "downloaded"
                         logging.info("{0}: {1}".format(code, responses[code]))
-                    else:
-                        logging.error("The file size differs from the expected "
-                                      "size.")
-                else:
+
+                elif spec.input["file-name"].endswith(".gz"):
+                    rename(new_name, new_name[:-7])
+                    with open(new_name[:-7], 'r') as xml_file:
+                        with gzip.open(new_name, 'wb') as gz_file:
+                            gz_file.write(xml_file.read())
+                    new_name = new_name[:-7]
                     status = "downloaded"
                     logging.info("{0}: {1}".format(code, responses[code]))
 
@@ -185,29 +204,30 @@ def unzip_files(spec):
                 directory = spec.environment["paths"]["DIR[WORKING,DATA]"]
                 file_name = join(build["file-name"])
 
-                if build["status"] == "downloaded" and is_zipfile(file_name):
+                if build["status"] == "downloaded":
                     logging.info("Unziping: '{0}' from '{1}'.".
                                  format(data_file, file_name))
                     new_name = "{0}{1}{2}".format(file_name.rsplit('.')[-2],
                                                   SEPARATOR,
                                                   data_file.split("/")[-1])
                     try:
-                        with ZipFile(file_name, 'r') as zip_file:
-                            zip_file.extract(data_file, directory)
-                        logging.info("Moving {0} to {1} ...".
-                                     format(join(directory, data_file),
-                                            directory))
-                        move(join(directory, data_file), directory)
-                        logging.info("Renaming the file '{0}' to '{1}'".
-                                     format(join(directory,
-                                                 data_file.split("/")[-1]),
-                                            new_name))
-                        rename(join(directory, data_file.split("/")[-1]),
-                               new_name)
+                        if is_zipfile(file_name):
+                            with ZipFile(file_name, 'r') as zip_file:
+                                zip_file.extract(data_file, directory)
+                            logging.info("Moving {0} to {1} ...".
+                                         format(join(directory, data_file),
+                                                directory))
+                            move(join(directory, data_file), directory)
+                            logging.info("Renaming the file '{0}' to '{1}'".
+                                         format(join(directory,
+                                                     data_file.split("/")[-1]),
+                                                new_name))
+                            rename(join(directory, data_file.split("/")[-1]),
+                                   new_name)
+                            spec.set_input_file_name(job, build["build"],
+                                                     new_name)
                         status = "unzipped"
                         spec.set_input_state(job, build["build"], status)
-                        spec.set_input_file_name(job, build["build"],
-                                                   new_name)
                     except (BadZipfile, RuntimeError) as err:
                         logging.error("Failed to unzip the file '{0}': {1}.".
                                       format(file_name, str(err)))
@@ -216,8 +236,7 @@ def unzip_files(spec):
                                       format(data_file, str(err)))
                     finally:
                         if status == "failed":
-                            spec.set_input_file_name(job, build["build"],
-                                                       None)
+                            spec.set_input_file_name(job, build["build"], None)
                 else:
                     raise PresentationError("The file '{0}' does not exist or "
                                             "it is not a zip file".
