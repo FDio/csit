@@ -28,6 +28,7 @@ from generator_plots import generate_plots
 from generator_files import generate_files
 from static_content import prepare_static_content
 from generator_report import generate_report
+from generator_CPTA import generate_cpta
 
 
 def parse_args():
@@ -83,39 +84,46 @@ def main():
         logging.critical("Finished with error.")
         sys.exit(1)
 
-    try:
-        env = Environment(spec.environment, args.force)
-        env.set_environment()
+    # try:
+    env = Environment(spec.environment, args.force)
+    env.set_environment()
 
-        if spec.is_debug:
-            if spec.debug["input-format"] == "zip":
-                unzip_files(spec)
-        else:
-            download_data_files(spec)
+    if spec.is_debug:
+        if spec.debug["input-format"] == "zip":
+            unzip_files(spec)
+    else:
+        download_data_files(spec)
 
-        prepare_static_content(spec)
+    prepare_static_content(spec)
 
-        data = InputData(spec)
-        data.read_data()
+    data = InputData(spec)
+    data.read_data()
 
-        generate_tables(spec, data)
-        generate_plots(spec, data)
-        generate_files(spec, data)
+    generate_tables(spec, data)
+    generate_plots(spec, data)
+    generate_files(spec, data)
+
+    if spec.output["output"] == "report":
         generate_report(args.release, spec)
-
         logging.info("Successfully finished.")
+    elif spec.output["output"] == "CPTA":
+        generate_cpta(spec)
+        logging.info("Successfully finished.")
+    else:
+        logging.critical("The output '{0}' is not supported.".
+                         format(spec.output["output"]))
 
-    except (KeyError, ValueError, PresentationError) as err:
-        logging.info("Finished with an error.")
-        logging.critical(str(err))
-    except Exception as err:
-        logging.info("Finished with an unexpected error.")
-        logging.critical(str(err))
-
-    finally:
-        if spec is not None and not spec.is_debug:
-            clean_environment(spec.environment)
-        sys.exit(1)
+    # except (KeyError, ValueError, PresentationError) as err:
+    #     logging.info("Finished with an error.")
+    #     logging.critical(str(err))
+    # except Exception as err:
+    #     logging.info("Finished with an unexpected error.")
+    #     logging.critical(str(err))
+    #
+    # finally:
+    #     if spec is not None and not spec.is_debug:
+    #         clean_environment(spec.environment)
+    #     sys.exit(1)
 
 
 if __name__ == '__main__':

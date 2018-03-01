@@ -440,8 +440,9 @@ class Specification(object):
             raise PresentationError("No output defined.")
 
         try:
-            self._specification["output"] = self._cfg_yaml[idx]["format"]
-        except KeyError:
+            # self._specification["output"] = self._cfg_yaml[idx]["format"]
+            self._specification["output"] = self._cfg_yaml[idx]
+        except (KeyError, IndexError):
             raise PresentationError("No output defined.")
 
         logging.info("Done.")

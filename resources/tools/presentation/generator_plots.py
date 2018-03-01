@@ -389,3 +389,19 @@ def plot_http_server_performance_box(plot, input_data):
         return
 
     logging.info("  Done.")
+
+
+def plot_cpta_line(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_cpta_line
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+    logging.info("  Done.")
