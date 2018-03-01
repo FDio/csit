@@ -101,9 +101,13 @@ def main():
         generate_tables(spec, data)
         generate_plots(spec, data)
         generate_files(spec, data)
-        generate_report(args.release, spec)
 
-        logging.info("Successfully finished.")
+        if spec.output["output"] == "report":
+            generate_report(args.release, spec)
+            logging.info("Successfully finished.")
+        else:
+            logging.critical("The output '{0}' is not supported.".
+                             format(spec.output["output"]))
 
     except (KeyError, ValueError, PresentationError) as err:
         logging.info("Finished with an error.")
