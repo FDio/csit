@@ -22,7 +22,7 @@ import prettytable
 from string import replace
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change, remove_outliers
+from utils import mean, stdev, relative_change
 
 
 def generate_tables(spec, data):

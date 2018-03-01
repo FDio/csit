@@ -53,7 +53,8 @@ class Specification(object):
                                "output": dict(),
                                "tables": list(),
                                "plots": list(),
-                               "files": list()}
+                               "files": list(),
+                               "cpta": dict()}
 
     @property
     def specification(self):
@@ -172,6 +173,17 @@ class Specification(object):
         :rtype: list
         """
         return self._specification["files"]
+
+    @property
+    def cpta(self):
+        """Getter - Continuous Performance Trending and Analysis to be
+        generated.
+
+        :returns: List of specifications of Continuous Performance Trending and
+        Analysis to be generated.
+        :rtype: list
+        """
+        return self._specification["cpta"]
 
     def set_input_state(self, job, build_nr, state):
         """Set the state of input
@@ -440,8 +452,9 @@ class Specification(object):
             raise PresentationError("No output defined.")
 
         try:
-            self._specification["output"] = self._cfg_yaml[idx]["format"]
-        except KeyError:
+            # self._specification["output"] = self._cfg_yaml[idx]["format"]
+            self._specification["output"] = self._cfg_yaml[idx]
+        except (KeyError, IndexError):
             raise PresentationError("No output defined.")
 
         logging.info("Done.")
@@ -533,6 +546,24 @@ class Specification(object):
                 except KeyError:
                     pass
                 self._specification["files"].append(element)
+                count += 1
+
+            elif element["type"] == "cpta":
+                logging.info("  {:3d} Processing Continuous Performance "
+                             "Trending and Analysis ...".format(count))
+
+                # Add layout to the plots:
+                for plot in element["plots"]:
+                    layout = plot.get("layout", None)
+                    if layout is not None:
+                        try:
+                            plot["layout"] = \
+                                self.configuration["plot-layouts"][layout]
+                        except KeyError:
+                            raise PresentationError(
+                                "Layout {0} is not defined in the "
+                                "configuration section.".format(layout))
+                self._specification["cpta"] = element
                 count += 1
 
         logging.info("Done.")

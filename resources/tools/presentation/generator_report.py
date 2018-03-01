@@ -82,7 +82,7 @@ def generate_report(release, spec):
         "pdf": generate_pdf_report
     }
 
-    for report_format, versions in spec.output.items():
+    for report_format, versions in spec.output["format"].items():
         report[report_format](release, spec, versions)
 
     archive_input_data(spec)
