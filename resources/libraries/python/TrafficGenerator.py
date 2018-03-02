@@ -96,6 +96,26 @@ class TGDropRateSearchImpl(DropRateSearch):
             'resources.libraries.python.TrafficGenerator')
         return tg_instance.get_latency_int()
 
+    def get_sent(self):
+        """Returns total sent packets.
+
+        :returns: Total sent packets stats.
+        :rtype: list
+        """
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        return tg_instance.get_sent()
+
+    def get_received(self):
+        """Returns total received packets.
+
+        :returns: Total received packets stats.
+        :rtype: list
+        """
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        return tg_instance.get_received()
+
 
 class TrafficGenerator(object):
     """Traffic Generator."""

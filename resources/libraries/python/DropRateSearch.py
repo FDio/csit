@@ -88,7 +88,7 @@ class DropRateSearch(object):
         # size of frames to send
         self._frame_size = "64"
         # binary convergence criterium type is self._rate_type
-        self._binary_convergence_threshold = 5000
+        self._binary_convergence_threshold = 10000
         # numbers of traffic runs during one rate step
         self._max_attempts = 1
         # type of search result evaluation, unit: SearchResultType
@@ -103,6 +103,24 @@ class DropRateSearch(object):
         """Return min/avg/max latency.
 
         :returns: Latency stats.
+        :rtype: list
+        """
+        pass
+
+    @abstractmethod
+    def get_sent(self):
+        """Returns total sent packets.
+
+        :returns: Total sent packets stats.
+        :rtype: list
+        """
+        pass
+
+    @abstractmethod
+    def get_received(self):
+        """Returns total received packets.
+
+        :returns: Total received packets stats.
         :rtype: list
         """
         pass
@@ -580,6 +598,32 @@ class DropRateSearch(object):
                 self._search_result_rate = temp_rate
         else:
             raise RuntimeError("Linear search FAILED")
+
+    def feedback_search(self, s_max, traffic_type, skip_warmup=False):
+        """Feedback optmized search of rate with loss below acceptance criteria.
+
+        :param s_max: Max rate.
+        :param traffic_type: Traffic profile.
+        :param skip_warmup: Start TRex without warmup traffic if true.
+        :type s_max: float
+        :type traffic_type: str
+        :type skip_warmup: bool
+        :returns: nothing
+        :raises: ValueError if input values are not valid
+        """
+        if not self._rate_min <= float(s_max) <= self._rate_max:
+            raise ValueError("Max rate is not in min,max range")
+
+        rate = float(b_max)
+
+        res = []
+        for dummy in range(self._max_attempts):
+            res.append(self.measure_loss(rate, self._frame_size,
+                                         self._loss_acceptance,
+                                         self._loss_acceptance_type,
+                                         traffic_type, skip_warmup=skip_warmup))
+
+        res = self._get_res_based_on_search_type(res)
 
     @staticmethod
     def floats_are_close_equal(num_a, num_b, rel_tol=1e-9, abs_tol=0.0):
