@@ -76,9 +76,9 @@ class DropRateSearch(object):
         # linear search direction, permitted values: SearchDirection
         self._search_linear_direction = SearchDirection.TOP_DOWN
         # upper limit of search, unit: RateType (self._rate_type)
-        self._rate_max = 100
+        self._rate_max = 100000
         # lower limit of search, unit: RateType (self._rate_type)
-        self._rate_min = 1
+        self._rate_min = 10000
         # permitted values: RateType
         self._rate_type = RateType.PERCENTAGE
         # accepted loss during search, units: LossAcceptanceType
@@ -88,7 +88,7 @@ class DropRateSearch(object):
         # size of frames to send
         self._frame_size = "64"
         # binary convergence criterium type is self._rate_type
-        self._binary_convergence_threshold = 5000
+        self._binary_convergence_threshold = 10000
         # numbers of traffic runs during one rate step
         self._max_attempts = 1
         # type of search result evaluation, unit: SearchResultType
@@ -103,6 +103,24 @@ class DropRateSearch(object):
         """Return min/avg/max latency.
 
         :returns: Latency stats.
+        :rtype: list
+        """
+        pass
+
+    @abstractmethod
+    def get_sent(self):
+        """Returns total sent packets.
+
+        :returns: Total sent packets stats.
+        :rtype: list
+        """
+        pass
+
+    @abstractmethod
+    def get_received(self):
+        """Returns total received packets.
+
+        :returns: Total received packets stats.
         :rtype: list
         """
         pass
@@ -580,6 +598,46 @@ class DropRateSearch(object):
                 self._search_result_rate = temp_rate
         else:
             raise RuntimeError("Linear search FAILED")
+
+    def feedback_search(self, max_rate, traffic_type):
+        """Feedback optmized search of rate.
+
+        :param max_rate: Max rate.
+        :param traffic_type: Traffic profile.
+        :type max_rate: float
+        :type traffic_type: str
+        :returns: nothing
+        :raises: ValueError if input values are not valid
+        """
+        if not self._rate_min <= float(max_rate) <= self._rate_max:
+            raise ValueError("Max rate is not in min,max range")
+
+        mrr = []
+        for _ in range(self._max_attempts):
+            mrr.append(self.measure_loss(float(max_rate), self._frame_size,
+                                         self._loss_acceptance,
+                                         self._loss_acceptance_type,
+                                         traffic_type))
+        mrr = self._get_res_based_on_search_type(mrr)
+
+        if not self.get_received():
+            raise RuntimeError("Search FAILED: 0 frames received")
+
+        rate = float(max_rate) * (self.get_received() / self.get_sent())
+
+        confirm_ndr = []
+        for _ in range(self._max_attempts):
+            confirm_ndr.append(self.measure_loss(rate, self._frame_size,
+                                                 self._loss_acceptance,
+                                                 self._loss_acceptance_type,
+                                                 traffic_type))
+        confirm_ndr = self._get_res_based_on_search_type(confirm_ndr)
+
+        if confirm_ndr:
+            self._search_result == SearchResults.SUCCESS:
+            self._search_result_rate = rate
+        elif not confirm_ndr:
+            self.binary_search(self._rate_min, rate, traffic_type, True, False)
 
     @staticmethod
     def floats_are_close_equal(num_a, num_b, rel_tol=1e-9, abs_tol=0.0):
