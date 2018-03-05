@@ -170,7 +170,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "deny": {}
+                            "deny": ["null"]
                         }
                     },
                     {
@@ -184,7 +184,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "permit": {}
+                            "permit": ["null"]
                         }
                     },
                 ]}
@@ -222,7 +222,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "deny": {}
+                            "deny": ["null"]
                         },
                     },
                     {
@@ -234,7 +234,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "permit": {}
+                            "permit": ["null"]
                         }
                     }
                 ]}
@@ -272,7 +272,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "deny": {}
+                            "deny": ["null"]
                         }
                     },
                     {
@@ -284,7 +284,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "permit": {}
+                            "permit": ["null"]
                         }
                     }
                 ]}
@@ -318,7 +318,7 @@ def get_variables(test_case, name):
                         }
                     },
                     "actions": {
-                        "deny": {}
+                        "deny": ["null"]
                     },
                 },
                     {
@@ -330,7 +330,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "permit": {}
+                            "permit": ["null"]
                         }
                     }
                 ]}
@@ -363,7 +363,7 @@ def get_variables(test_case, name):
                         }
                     },
                     "actions": {
-                        "deny": {}
+                        "deny": ["null"]
                     },
                 },
                     {
@@ -375,7 +375,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "permit": {}
+                            "permit": ["null"]
                         }
                     }
                 ]}
@@ -405,7 +405,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "deny": {}
+                            "deny": ["null"]
                         },
                     },
                     {
@@ -417,7 +417,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "permit": {}
+                            "permit": ["null"]
                         }
                     }
                 ]}
@@ -447,7 +447,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "deny": {}
+                            "deny": ["null"]
                         },
                     },
                     {
@@ -459,7 +459,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "permit": {}
+                            "permit": ["null"]
                         }
                     }
                 ]}
@@ -486,7 +486,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "vpp-acl:permit-and-reflect": {}
+                            "vpp-acl:permit-and-reflect": ["null"]
                         },
                     },
                 ]}
@@ -507,7 +507,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            "deny": {}
+                            "deny": ["null"]
                         }
                     }
                 ]}
