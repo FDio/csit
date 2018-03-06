@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8146641_393591be",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-06T09:35:48Z",
+      "side": 1,
+      "message": "Can we add somthing like:\n\n$ sudo service vpp status ? it contains some usefull debug data until we add some syslog parser.",
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3db0ac66_8870ec2e",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-06T09:35:48Z",
+      "side": 1,
+      "message": "VPP (it is not only Debian - Centos, Suse, ...)",
+      "range": {
+        "startLine": 235,
+        "startChar": 40,
+        "endLine": 235,
+        "endChar": 46
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8ef8b05_b821bade",
+        "filename": "tests/vpp/func/__init__.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-06T09:35:48Z",
+      "side": 1,
+      "message": "Do we need this anymore?\nThe only additional thing here is adding trace which we can replace. Just food for thought",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 56
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
