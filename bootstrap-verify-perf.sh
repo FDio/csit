@@ -58,14 +58,14 @@ then
 #        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        VPP_URL="https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/93/artifact/build-root"
-        VPP_VER="18.01-rc0~413-g44f22bf~b93_amd64"
+        VPP_URL="https://jenkins.fd.io/job/vpp-cpoc-verify-1801-ubuntu1604/21/artifact/build-root"
+        VPP_VER="18.01-rc0~405-g574f9ab~b21_amd64"
         wget -q "${VPP_URL}/vpp_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-dbg_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-dev_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-lib_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-plugins_${VPP_VER}.deb" || exit
-        wget -q "https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/93/artifact/dpdk/vpp-dpdk-dkms_17.08-vpp2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-cpoc-verify-1801-ubuntu1604/21/artifact/dpdk/vpp-dpdk-dkms_17.08-vpp2_amd64.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
@@ -350,14 +350,11 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include l2xcbaseANDpdrdiscAND1t1cAND64b \
-              --include l2bdbaseANDpdrdiscAND1t1cAND64b \
-              --include ip4baseANDpdrdiscAND1t1cAND64b \
-              --include ip6baseANDpdrdiscAND1t1cAND78b \
               --include nic_intel-x710ANDl2xcfwdANDpdrdiscAND1t1cAND64b \
               --include nic_intel-x710ANDl2bdmaclrnANDpdrdiscAND1t1cAND64b \
               --include nic_intel-x710ANDip4fwdANDpdrdiscAND1t1cAND64b \
               --include nic_intel-x710ANDip6fwdANDpdrdiscAND1t1cAND78b \
+              --exclude VHOST \
               --exclude SCALE \
               --exclude DOT1Q \
               tests/
