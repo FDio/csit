@@ -348,9 +348,9 @@ function run_test_set() {
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/
 
-    local_run_rc=$?
-    echo ${local_run_rc} > ${SHARED_MEMORY_PATH}/rc_test_run${nr}
+    local local_run_rc=$?
     set -x
+    echo ${local_run_rc} > ${SHARED_MEMORY_PATH}/rc_test_run${nr}
 }
 
 set +x
@@ -397,6 +397,10 @@ for index in "${!VIRL_SERVER[@]}"; do
     echo "Test_set${index} log:"
     cat ${LOG_PATH}/test_run${index}.log
     RC_PARTIAL_RUN=$(cat ${SHARED_MEMORY_PATH}/rc_test_run${index})
+    if [ -z "$RC_PARTIAL_RUN" ]; then
+        echo "Failed to retrieve return code from test run ${index}"
+        exit 1
+    fi
     RC=$((RC+RC_PARTIAL_RUN))
     rm -f ${SHARED_MEMORY_PATH}/rc_test_run${index}
     rm -f ${LOG_PATH}/test_run${index}.log
