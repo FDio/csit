@@ -142,6 +142,8 @@
     apt: name=libtool state=present
   - name: Install screen
     apt: name=screen state=present
+  - name: Install libmbedcrypto0
+    apt: name=libmbedcrypto0 state=present
   - name: Install lxc
     apt: name=lxc state=present
   - name: Disable 80-vpp.conf
