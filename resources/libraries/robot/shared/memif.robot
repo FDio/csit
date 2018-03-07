@@ -21,32 +21,34 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ... | - ${sock1} - Socket path for first Memif interface. Type: string
-| | ... | - ${sock2} - Socket path for second Memif interface. Type: string
-| | ... | - ${number} - Memif interface key. Type: integer
+| | ... | - ${filename1} - Socket filename for 1st Memif interface. Type: string
+| | ... | - ${filename2} - Socket filename for 2nd Memif interface. Type: string
+| | ... | - ${mid} - Memif interface ID. Type: integer
 | | ... | - ${memif_if1} - Name of the first Memif interface (Optional).
 | | ... | Type: string
 | | ... | - ${memif_if2} - Name of the second Memif interface (Optional).
 | | ... | Type: string
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
-| | ... | - ${${memif_if1}} - First Memif interface.
-| | ... | - ${${memif_if2}} - Second Memif interface.
+| | ... | - ${${memif_if1}} - 1st Memif interface.
+| | ... | - ${${memif_if2}} - 2nd Memif interface.
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Set up memif interfaces on DUT node \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| 1 \|
+| | ... | \| ${nodes['DUT1']} \| sock1 \| sock2 \| 1 \|
 | | ... | \| Set up memif interfaces on DUT node \
-| | ... | \| ${nodes['DUT2']} \| /tmp/sock1 \| /tmp/sock2 \| 1 \
+| | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \
 | | ... | \| dut2_memif_if1 \| dut2_memif_if2 \|
 | | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${number}=${1}
+| | [Arguments] | ${dut_node} | ${filename1} | ${filename2} | ${mid}=${1}
 | | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2
-| | ${key_1}= | Evaluate | (${number}*2)-1
-| | ${key_2}= | Evaluate | (${number}*2)
-| | ${memif_1}= | Create memif interface | ${dut_node} | ${sock1} | ${key_1}
-| | ${memif_2}= | Create memif interface | ${dut_node} | ${sock2} | ${key_2}
+| | ${sid_1}= | Evaluate | (${mid}*2)-1
+| | ${sid_2}= | Evaluate | (${mid}*2)
+| | ${memif_1}= | Create memif interface | ${dut_node}
+| | ... | ${filename1}${mid}-${sid_1} | ${mid} | ${sid_1}
+| | ${memif_2}= | Create memif interface | ${dut_node}
+| | ... | ${filename2}${mid}-${sid_2} | ${mid} | ${sid_2}
 | | Set Interface State | ${dut_node} | ${memif_1} | up
 | | Set Interface State | ${dut_node} | ${memif_2} | up
 | | Set Test Variable | ${${memif_if1}} | ${memif_1}
