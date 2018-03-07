@@ -32,7 +32,6 @@ if [ -f "/etc/redhat-release" ]; then
     VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
     VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
     VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
-    SHARED_MEMORY_PATH="/dev/shm"
 else
     DISTRO="UBUNTU"
     export DEBIAN_FRONTEND=noninteractive
@@ -47,7 +46,6 @@ else
     VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
     VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
     VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
-    SHARED_MEMORY_PATH="/run/shm"
 fi
 
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
@@ -350,7 +348,7 @@ function run_test_set() {
 
     local local_run_rc=$?
     set -x
-    echo ${local_run_rc} > ${SHARED_MEMORY_PATH}/rc_test_run${nr}
+    echo ${local_run_rc} > ${LOG_PATH}/rc_test_run${nr}
 }
 
 set +x
@@ -396,13 +394,13 @@ RC=0
 for index in "${!VIRL_SERVER[@]}"; do
     echo "Test_set${index} log:"
     cat ${LOG_PATH}/test_run${index}.log
-    RC_PARTIAL_RUN=$(cat ${SHARED_MEMORY_PATH}/rc_test_run${index})
+    RC_PARTIAL_RUN=$(cat ${LOG_PATH}/rc_test_run${index})
     if [ -z "$RC_PARTIAL_RUN" ]; then
         echo "Failed to retrieve return code from test run ${index}"
         exit 1
     fi
     RC=$((RC+RC_PARTIAL_RUN))
-    rm -f ${SHARED_MEMORY_PATH}/rc_test_run${index}
+    rm -f ${LOG_PATH}/rc_test_run${index}
     rm -f ${LOG_PATH}/test_run${index}.log
     echo
 done
