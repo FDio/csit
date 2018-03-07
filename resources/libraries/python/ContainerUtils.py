@@ -166,18 +166,23 @@ class ContainerManager(object):
         dut_cnt = len(Counter([self.containers[container].node['host']
                                for container in self.containers]))
         container_cnt = len(self.containers)
-        mod = dut_cnt/container_cnt
+        mod = container_cnt/dut_cnt
 
         for i, container in enumerate(self.containers):
+            mid1 = i % mod + 1
+            mid2 = i % mod + 1
+            sid1 = i % mod * 2 + 1
+            sid2 = i % mod * 2 + 2
             self.engine.container = self.containers[container]
             self.engine.create_vpp_startup_config()
-            self.engine.create_vpp_exec_config(vat_template_file,
-                                               memif_id1=i % mod * 2 + 1,
-                                               memif_id2=i % mod * 2 + 2,
-                                               socket1='memif-{c.name}-1'
-                                               .format(c=self.engine.container),
-                                               socket2='memif-{c.name}-2'
-                                               .format(c=self.engine.container))
+            self.engine.create_vpp_exec_config(vat_template_file, mid1=mid1,
+                                               mid2=mid2, sid1=sid1, sid2=sid2,
+                                               socket1='memif-{c.name}-{sid}'
+                                               .format(c=self.engine.container,
+                                                       sid=sid1),
+                                               socket2='memif-{c.name}-{sid}'
+                                               .format(c=self.engine.container,
+                                                       sid=sid2))
 
     def stop_all_containers(self):
         """Stop all containers."""
@@ -286,6 +291,7 @@ class ContainerEngine(object):
                          'do dpkg -i --force-all {0}/install_dir/$i; done'
                          .format(self.container.guest_dir))
         self.execute('apt-get -f install -y')
+        self.execute('apt-get install -y ca-certificates')
         self.execute('echo "{0}" >> {1}'
                      .format(
                          '[program:vpp]\n'
