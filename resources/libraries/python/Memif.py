@@ -25,16 +25,18 @@ class Memif(object):
         pass
 
     @staticmethod
-    def create_memif_interface(node, socket, mid, role='master'):
+    def create_memif_interface(node, filename, mid, sid, role='master'):
         """Create Memif interface on the given node.
 
         :param node: Given node to create Memif interface on.
-        :param socket: Memif interface socket path.
+        :param filename: Memif interface socket filename.
         :param mid: Memif interface ID.
+        :param sid: Socket ID.
         :param role: Memif interface role [master|slave]. Default is master.
         :type node: dict
-        :type socket: str
+        :type filename: str
         :type mid: str
+        :type sid: str
         :type role: str
         :returns: SW interface index.
         :rtype: int
@@ -43,8 +45,10 @@ class Memif(object):
 
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
-                'memif_create.vat',
-                socket=socket, id=mid, role=role)
+                'memif_socket_filename_add_del.vat',
+                add_del='add', id=sid, filename='/tmp/'+filename)
+            vat.vat_terminal_exec_cmd_from_template(
+                'memif_create.vat', id=mid, socket=sid, role=role)
             if 'sw_if_index' in vat.vat_stdout:
                 try:
                     sw_if_idx = int(vat.vat_stdout.split()[4])
@@ -56,7 +60,8 @@ class Memif(object):
                     Topology.update_interface_name(node, if_key, ifc_name)
                     ifc_mac = Memif.vpp_get_memif_interface_mac(node, sw_if_idx)
                     Topology.update_interface_mac_address(node, if_key, ifc_mac)
-                    Topology.update_interface_memif_socket(node, if_key, socket)
+                    Topology.update_interface_memif_socket(node, if_key,
+                                                           '/tmp/'+filename)
                     Topology.update_interface_memif_id(node, if_key, mid)
                     Topology.update_interface_memif_role(node, if_key, role)
                     return sw_if_idx
