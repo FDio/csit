@@ -1,0 +1,1 @@
+memif_socket_filename_add_del {add_del} id {id} filename {filename}
