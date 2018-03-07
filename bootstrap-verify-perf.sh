@@ -299,6 +299,8 @@ case "$TEST_TAG" in
               -s "tests.vpp.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
               --include pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDmemif \
+              --include mrrANDnic_intel-x520-da2AND2t2cANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -342,6 +344,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              -i mrrANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
