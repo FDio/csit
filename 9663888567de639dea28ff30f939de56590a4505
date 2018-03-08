@@ -19,6 +19,121 @@
     },
     {
       "key": {
+        "uuid": "be1e1f2c_a3d9bd54",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-08T07:09:50Z",
+      "side": 1,
+      "message": "this must be fully under control from global variables. So we can use outside LF.",
+      "range": {
+        "startLine": 467,
+        "startChar": 7,
+        "endLine": 467,
+        "endChar": 36
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02ca7b51_987cfe43",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-08T07:09:50Z",
+      "side": 1,
+      "message": "Make this as parameter so people can put their list in case they want to install selectively. Global var?",
+      "range": {
+        "startLine": 480,
+        "startChar": 32,
+        "endLine": 480,
+        "endChar": 65
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1db167c_1a1bd3e0",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-08T07:09:50Z",
+      "side": 1,
+      "message": "not safe. Rather do the list of pakcages and pass it.",
+      "range": {
+        "startLine": 482,
+        "startChar": 25,
+        "endLine": 482,
+        "endChar": 42
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb575303_d3ab82fe",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-08T07:09:50Z",
+      "side": 1,
+      "message": "what if not succesfull?",
+      "range": {
+        "startLine": 494,
+        "startChar": 30,
+        "endLine": 494,
+        "endChar": 37
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98fb2c8b_ecf5472e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-08T07:09:50Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 494,
+        "startChar": 39,
+        "endLine": 495,
+        "endChar": 37
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3db0ac66_8870ec2e",
         "filename": "resources/tools/virl/bin/start-testcase",
         "patchSetId": 10
