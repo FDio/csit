@@ -177,6 +177,30 @@
       "revId": "9663888567de639dea28ff30f939de56590a4505",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f27a411_825ef758",
+        "filename": "tests/vpp/func/__init__.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-08T10:46:02Z",
+      "side": 1,
+      "message": "Please ignore above",
+      "parentUuid": "d8ef8b05_b821bade",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 56
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
