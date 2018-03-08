@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20c3fdb1_c02c8548",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-08T17:09:59Z",
+      "side": 1,
+      "message": "measure_loss_and_compare\n\nWith the surrent name, I would expect the return value to be the measured drop ratio (or the total number of dropped frames or similar).\n\nAlso, I see no benefit in implementers having to perform the comparison themselves.\n\nBut I see benefit in abstract search algorithms seeing the drop rate.\n\nFor example if the attempted throughput of (for example) 10 Mpps results in 20% drop rate, then 8 Mpps could be a better NDR candidate than what binary search would otherwise try.",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 20
+      },
+      "revId": "f112262b6d3db251fe3171333adc48ee14ebed22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42aa1c4c_0f627ad6",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-08T17:09:59Z",
+      "side": 1,
+      "message": "This basically performs Frame Loss Rate [1] at given \"rate\", which is an interesting metric, worthy to get stored somewhere Trend Analysis job can read from.\n\nThe point is we are getting FLR number for several different rates, not just one NDR/PDR number.\n\n[1] https://tools.ietf.org/html/rfc1242#section-3.6",
+      "range": {
+        "startLine": 527,
+        "startChar": 28,
+        "endLine": 527,
+        "endChar": 40
+      },
+      "revId": "f112262b6d3db251fe3171333adc48ee14ebed22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
