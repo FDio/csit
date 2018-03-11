@@ -32,17 +32,19 @@ echo =======================End Remove NetworkManager===========================
 ###
 echo "********** INSTALLING RPMs **********"
 
-# We're doing this the hard way as we're dealing with a bunch of
-# rpm packages without using yum.
+# If it exists, copy in a specific Centos Repo for the Centos version for this image .
 
 # Attempt up to five cycles of unpack/configure. There may be dependency
 # problems during the first one(s).
-echo ==========================yum update==============================
-yum clean all
-yum install -y deltarpm
-yum update -y
-yum install -y @base epel-release
-echo ==========================end yum update==============================
+echo ==========================yum repos==============================
+if [ -f ${TEMP_PATH}/rpm/Centos-Vault.repo ] ; then
+    echo ==========================Install specific yum repo======================
+    sed -i '/gpgcheck=1/s/.*/&\nenabled=0/' /etc/yum.repos.d/CentOS-Base.repo
+    cp -f ${TEMP_PATH}/rpm/Centos-Vault.repo /etc/yum.repos.d
+else
+    echo ==========================Update from base repo and updates================
+    : ;
+fi
 attempt=1
 MAX_ATTEMPTS=3
 try_again=1
@@ -55,7 +57,7 @@ do
   do
     # use rpm command if url is present in the package file
     if [ ! -z $url ] ; then
-      rpm -i $url$name || try_again=1
+      rpm -i $url$name.rpm || try_again=1
     else
       yum install -y $name || try_again=1
     fi
