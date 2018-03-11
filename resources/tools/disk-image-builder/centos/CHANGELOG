@@ -1,3 +1,15 @@
+## [1.9] - 2018-03-20
+
+Centos image 7.4-1711 Add mbedtls and selinux-policy.
+
+## [1.8] - 2018-03-17
+
+Fix pypcap package insallation. Add libffi-devel.
+
+## [1.7] - 2018-03-10
+
+Add mbedtls and selinux-policy packages. Use Centos Vault repo for 7.3.1611.
+
 ## [1.6] - 2017-09-22
 
 Moved IPv6_disable from GRUB boot params to sysctl
