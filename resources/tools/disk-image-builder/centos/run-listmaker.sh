@@ -38,17 +38,65 @@ then
 fi
 DATE=$(date +%Y-%m-%d)
 
+RPMS_TMP_DIR=`mktemp -d`
+RPMS_WANTED_FILE=$RPMS_TMP_DIR/rpms_wanted.txt
+REPO_MOD_FILE=$RPMS_TMP_DIR/Centos-Vault.repo
+
 if [ "$1" == "centos-7-1511" ]
 then
     OS="centos-7-1511"
     VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7-1511.yaml"
-elif [ "$1" == "centos-7.3-1611" ]
-then
-    OS="centos-7.3-1611"
-    VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.3-1611.yaml"
 else
-    echo specify argument -- probably centos-7-1511 or centos-7.3-1611
-    exit 1
+    if [ "$1" == "centos-7.3-1611" ]
+    then
+        OS="centos-7.3-1611"
+        VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.3-1611.yaml"
+    echo '
+# C7.3.1611
+[C7.3.1611-base]
+name=CentOS-7.3.1611 - Base
+baseurl=http://vault.centos.org/7.3.1611/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=1
+
+[C7.3.1611-updates]
+name=CentOS-7.3.1611 - Updates
+baseurl=http://vault.centos.org/7.3.1611/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=1
+
+[C7.3.1611-extras]
+name=CentOS-7.3.1611 - Extras
+baseurl=http://vault.centos.org/7.3.1611/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=1
+
+[C7.3.1611-centosplus]
+name=CentOS-7.3.1611 - CentOSPlus
+baseurl=http://vault.centos.org/7.3.1611/centosplus/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=0
+
+[C7.3.1611-fasttrack]
+name=CentOS-7.3.1611 - CentOSPlus
+baseurl=http://vault.centos.org/7.3.1611/fasttrack/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=0
+
+' >  $REPO_MOD_FILE
+    elif [ "$1" == "centos-7.4-1711" ]
+    then
+        OS="centos-7.4-1711"
+        VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.4-1711.yaml"
+    else
+        echo specify argument -- probably centos-7-1511 or centos-7.3-1611
+        exit 1
+    fi
 fi
 
 RELEASE="${OS}_${DATE}_${VERSION}"
@@ -58,25 +106,83 @@ echo "Building release ${RELEASE}."
 echo "Storing data in ${OUTPUT_DIR}/."
 
 
+
 # RPM packages wanted
 
-RPM_WANTLIST_INFRA="nfs-utils cloud-init pkgconfig yum-utils"
-RPM_WANTLIST_CSIT="python-devel python-pip python-virtualenv python-setuptools python-pip openssl-devel git strongswan"
-RPM_WANTLIST_TLDK="tcpdump"
-RPM_WANTLIST_VPP="dkms bridge-utils libmbedcrypto0 libmbedtls10 libmbedx509-0"
-RPM_WANTLIST_TREX="zlib-devel unzip"
-RPM_WANTLIST_MISC="socat psmisc gperftools glusterfs glusterfs-api libiscsi libibverbs libpcap libpcap-devel pixman libpng pulseaudio-libs librados2 librbd1 librdmacm libseccomp spice-server libusb usbredir glusterfs-devel seavgabios-bin sgabios-bin ipxe-roms-qemu nss-devel seabios-bin"
-
-RPM_WANTLIST_NESTED="qemu-img-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-devel-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-debuginfo-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-common-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm"
-RPM_WANTLIST_JAVA="java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel"
-#RPM_WANTLIST_DOCKER="docker-engine"
-
-### For now, do not include WANTLIST_NESTED in the main list. We're installing qemu
-### separately because of the possible need for specific versions but the supported version seem to be ok for Centos 7.3
-##
-RPM_WANTLIST="$RPM_WANTLIST_INFRA $RPM_WANTLIST_CSIT $RPM_WANTLIST_VPP $RPM_WANTLIST_TREX $RPM_WANTLIST_MISC $RPM_WANTLIST_JAVA $RPM_WANTLIST_TLDK"
+echo '
+#RPM_WANTLIST_INFRA
+nfs-utils
+cloud-init
+pkgconfig
+yum-utils
+#RPM_WANTLIST_CSIT
+python-devel
+python-virtualenv
+python-setuptools
+python2-pip-8.1.2-5.el7.noarch http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/p/
+openssl-devel
+git
+strongswan-5.6.1-2.el7.x86_64 http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/s/
+#RPM_WANTLIST_TLDK
+tcpdump
+#RPM_WANTLIST_VPP
+elfutils-libelf
+elfutils-libelf-devel
+kernel-debug-devel
+gcc
+dkms-2.4.0-1.20170926git959bd74.el7.noarch http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/d/
+bridge-utils
+selinux-policy
+selinux-policy-devel
+mbedtls-2.7.0-1.el7.x86_64 http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/m/
+#RPM_WANTLIST_TREX
+zlib-devel
+unzip
+#RPM_WANTLIST_MISC
+socat
+psmisc
+gperftools
+glusterfs
+glusterfs-api
+libiscsi
+libibverbs
+libpcap
+libpcap-devel
+pixman
+libpng
+pulseaudio-libs
+librados2
+librbd1
+librdmacm
+libseccomp
+spice-server
+libusb
+usbredir
+glusterfs-devel
+seavgabios-bin
+sgabios-bin
+ipxe-roms-qemu
+nss-devel
+seabios-bin
+libffi-devel
+#RPM_WANTLIST_NESTED
+trousers
+libnettle
+gnutls
+libcacard
+libcacard-tools
+libcacard-devel
+qemu-img-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+qemu-kvm-tools-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+qemu-kvm-common-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+qemu-kvm-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+#RPM_WANTLIST_JAVA
+java-1.8.0-openjdk-headless
+java-1.8.0-openjdk-devel
+' > $RPMS_WANTED_FILE
 
 RPM_OUTPUTFILE="${OUTPUT_DIR}/rpm-packages.txt"
+REPO_OUTPUTFILE="${OUTPUT_DIR}/Centos-Vault.repo"
 
 # Python requirements file. Can point to a manually crafted file
 # here, or to the actual CSIT requirements file, or to a symlink.
@@ -163,42 +269,63 @@ function do_ssh {
 }
 
 RPM_TEMPFILE=$(mktemp)
-RPM_TEMPFILE2=$(mktemp)
-RPM_URL_TEMPFILE=$(mktemp)
-do_ssh yum clean all
-do_ssh yum install -y @base
-do_ssh yum install -y deltarpm
-do_ssh yum update -y
-do_ssh yum -y install epel-release
-do_ssh yum update -y
-do_ssh yum -y install $RPM_WANTLIST
-for i in ${RPM_WANTLIST} ; do
-    echo $i >> $RPM_TEMPFILE
-done
+###
+### If there is a repo file specified install it. Freeze yum to release specified above to
+### avoid updating to be packages newer then the specified Centos release. Most packages are
+### installed with yum from a specified Centos version. The packages with urls after them
+### have specific versions and they are installed by rpm from the url.
+###
+
+tmp2=$(mktemp)
+echo '#!/bin/bash' > $tmp2
+
+if [ -e ${REPO_MOD_FILE} ] ; then
+    do_ssh cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.back
+    do_ssh mv /etc/yum.repos.d/CentOS-Vault.repo /etc/yum.repos.d/CentOS-Vault.back
+
+    do_ssh "cat - > /tmp/tmp-Vault.repo" < ${REPO_MOD_FILE}
+    do_ssh cp -f /tmp/tmp-Vault.repo /etc/yum.repos.d/CentOS-Vault.repo
+
+    echo "sed -i '/gpgcheck=1/s/.*/&\nenabled=0/' /etc/yum.repos.d/CentOS-Base.repo" >> $tmp2
+    do_ssh "cat - > /tmp/chrepo.sh" < ${tmp2}
+    do_ssh chmod +x /tmp/chrepo.sh
+    do_ssh /tmp/chrepo.sh
+fi
+PKG_SCRIPT=$(mktemp)
+echo \
+'while IFS='' read -r line || [[ -n $line ]] ; do
+    array=( $line )
+    if [[ -z ${array[0]}  ]] ; then :;
+    elif [[ ${array[0]:0:1} == "#" ]] ; then :;
+    else
+        pkg="${array[0]}"
+        url="${array[1]}"
+        if [[ -z $url ]] ; then
+            yum install -y $pkg
+            echo $pkg >> /tmp/installedpackages.txt
+        else
+            rpm -i --force $url$pkg.rpm
+            echo "$(rpm -q $pkg) $(echo $url)"  >> /tmp/installedpackages.txt
+        fi
+    fi
+done < /tmp/rpms-wanted.txt
+' > $PKG_SCRIPT
+
+do_ssh "cat - > /tmp/installpackages.sh" < $PKG_SCRIPT
+do_ssh "cat - > /tmp/rpms-wanted.txt" < $RPMS_WANTED_FILE
+do_ssh chmod +x /tmp/installpackages.sh
+do_ssh /tmp/installpackages.sh
 
 ###
-### Install qemu ($RPM_WANTLIST_NESTED) separately from PPA in case specific versions are required.
+### Extract package list with versions and urls
 ###
-for i in ${RPM_WANTLIST_NESTED};  do
-    echo $i http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/ >> $RPM_URL_TEMPFILE
-done
-###
-### Try 2 times for dependencies. Not in yum repo so it is not automatic"
-###
-for i in ${RPM_WANTLIST_NESTED};  do
-    do_ssh rpm -i http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/$i
-done
-for i in ${RPM_WANTLIST_NESTED};  do
-    do_ssh rpm -i http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/$i
-done
+sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=false -o UserKnownHostsFile=/dev/null  $SSH_USER@${ip}:/tmp/installedpackages.txt $RPM_TEMPFILE
 
-
-cat $RPM_TEMPFILE | sort > $RPM_TEMPFILE2
+if [ -e ${REPO_MOD_FILE} ] ; then
+    cp $REPO_MOD_FILE $REPO_OUTPUTFILE
+fi
+cat $RPM_TEMPFILE | sort > $RPM_OUTPUTFILE
 rm -f $RPM_TEMPFILE
-cat $RPM_TEMPFILE2 > $RPM_OUTPUTFILE
-cat $RPM_URL_TEMPFILE >> $RPM_OUTPUTFILE
-rm -f $RPM_TEMPFILE2
-rm -f $RPM_URL_TEMPFILE
 
 ### Get Python data. We do this by installing as per our
 ### requirements.txt file while fetching a list of all
