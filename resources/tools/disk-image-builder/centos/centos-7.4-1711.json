@@ -1,6 +1,6 @@
 {
-  "_c": "Corrected CentOS-7 ISO URL to the iso with matching sha1sum of original iso",
-  "_c": "to https://buildlogs.centos.org/monthly/7/CentOS-7-x86_64-Minimal-1706-01.iso.",
+  "_c": "CentOS-7 ISO URL at the time of creation of this file (08/2017)",
+  "_c": "was http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal.iso.",
   "_c": "",
   "variables": {
     "release": null,
@@ -15,17 +15,17 @@
       "name": "{{user `release`}}-virtualbox",
       "type": "virtualbox-iso",
       "guest_os_type": "RedHat_64",
-      "iso_url": "https://buildlogs.centos.org/monthly/7/CentOS-7-x86_64-Minimal-1706-01.iso",
-      "iso_checksum": "c93c4a9755ebff419ac0a4d5052ed1f8b6fb84f9",
+      "iso_url": "https://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal-1711-01.iso",
+      "iso_checksum": "e892ff40c0c9a32dff403d4ef8b14f246a954f91",
       "iso_checksum_type": "sha1",
       "output_directory": "{{user `output_dir`}}",
       "ssh_username": "root",
       "ssh_password": "csit",
       "ssh_wait_timeout": "30m",
-      "disk_size": "4096",
+      "disk_size": "16384",
       "shutdown_command": "echo 'packer' | sudo -S /sbin/halt -h -p",
       "http_directory": "html",
-      "iso_target_path" : "build/centos-7.3-1611.iso",
+      "iso_target_path" : "build/CentOS-7-x86_64-Minimal-1711-01.iso",
       "headless": "true",
       "boot_command":
         [
@@ -35,17 +35,17 @@
     {
       "name": "{{user `release`}}-qemu",
       "type": "qemu",
-      "iso_url": "https://buildlogs.centos.org/monthly/7/CentOS-7-x86_64-Minimal-1706-01.iso",
-      "iso_checksum": "c93c4a9755ebff419ac0a4d5052ed1f8b6fb84f9",
+      "iso_url": "https://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal-1711-01.iso",
+      "iso_checksum": "e892ff40c0c9a32dff403d4ef8b14f246a954f91",
       "iso_checksum_type": "sha1",
       "output_directory": "{{user `output_dir`}}",
       "ssh_username": "root",
       "ssh_password": "csit",
       "ssh_wait_timeout": "30m",
-      "disk_size": "4096",
+      "disk_size": "16384",
       "shutdown_command": "echo 'packer' | sudo -S /sbin/halt -h -p",
       "http_directory": "html",
-      "iso_target_path" : "build/centos-7.3-1611.iso",
+      "iso_target_path" : "build/CentOS-7-x86_64-Minimal-1711-01.iso",
       "headless": "true",
       "boot_command":
         [

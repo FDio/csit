@@ -83,7 +83,7 @@ PACKER_DIR="${BUILD_DIR}/packer"
 RPM_CACHE_DIR="${BUILD_DIR}/cache/rpm"
 PIP_CACHE_DIR="${BUILD_DIR}/cache/pip"
 
-PACKER_TEMPLATE="centos-7.3-1611.json"
+PACKER_TEMPLATE="$1.json"
 LISTS_DIR="$(dirname $0)/lists"
 
 function syntax {
@@ -196,11 +196,17 @@ mkdir -p ${OUTPUT_DIR}/temp/rpm
 mkdir -p ${RPM_CACHE_DIR}
 
 RPM_FILE="${LIST}/rpm-packages.txt"
+REPO_FILE="${LIST}/Centos-Vault.repo"
 ###
 ### Copy rpm package list to cache dir because we are going to use yum on the image
 ###
 echo cp $RPM_FILE ${RPM_CACHE_DIR}
 cp $RPM_FILE ${RPM_CACHE_DIR}
+if [ -e $REPO_FILE ] ; then
+    echo cp $REPO_FILE ${RPM_CACHE_DIR}
+    cp $REPO_FILE ${RPM_CACHE_DIR}
+    ln ${RPM_CACHE_DIR}/Centos-Vault.repo ${OUTPUT_DIR}/temp/rpm/Centos-Vault.repo
+fi
 ln ${RPM_CACHE_DIR}/rpm-packages.txt ${OUTPUT_DIR}/temp/rpm/rpm-packages.txt
 
 ## PIP
