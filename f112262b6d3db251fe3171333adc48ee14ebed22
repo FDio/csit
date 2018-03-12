@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5fa31134_c80eaea6",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-12T06:40:42Z",
+      "side": 1,
+      "message": "In my recent work on new search algo based on predictions (feedback), there will be this implemented and the step will be determined by the loss. Binary search is here implemented as real binary search with no additional logic.",
+      "parentUuid": "20c3fdb1_c02c8548",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 20
+      },
+      "revId": "f112262b6d3db251fe3171333adc48ee14ebed22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42aa1c4c_0f627ad6",
         "filename": "resources/libraries/python/DropRateSearch.py",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-08T17:09:59Z",
       "side": 1,
       "message": "This basically performs Frame Loss Rate [1] at given \"rate\", which is an interesting metric, worthy to get stored somewhere Trend Analysis job can read from.\n\nThe point is we are getting FLR number for several different rates, not just one NDR/PDR number.\n\n[1] https://tools.ietf.org/html/rfc1242#section-3.6",
+      "range": {
+        "startLine": 527,
+        "startChar": 28,
+        "endLine": 527,
+        "endChar": 40
+      },
+      "revId": "f112262b6d3db251fe3171333adc48ee14ebed22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7280148_4d019ace",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-12T06:40:42Z",
+      "side": 1,
+      "message": "Partially agree. In log.html one can as of now see all the steps and all the corresponding raw data. We have some clever tools to get these values out. The real point is however usability of such data.\nCurrently we are not working with them and not reporting them out as we are insterested in NDR 0frames, PDR 0.5%, but i can tell now that NDR and PDR in my recent work will be merged and we will have search algorithm that will capture data on various load level in one run. This will speedup test. But again reported will be only 0frame and 0.5% frames. And the rest will be in log.html just for the record.",
+      "parentUuid": "42aa1c4c_0f627ad6",
       "range": {
         "startLine": 527,
         "startChar": 28,
