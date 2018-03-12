@@ -477,8 +477,8 @@ class VppConfigGenerator(object):
         path = ['session', 'local-endpoints-table-memory']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def apply_config(self, filename=None, waittime=5,
-                     retries=12, restart_vpp=True):
+    def apply_config(self, filename=None, waittime=1,
+                     retries=60, restart_vpp=True):
         """Generate and apply VPP configuration for node.
 
         Use data from calls to this class to form a startup.conf file and
