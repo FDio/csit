@@ -477,19 +477,16 @@ class VppConfigGenerator(object):
         path = ['session', 'local-endpoints-table-memory']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def apply_config(self, filename=None, waittime=5,
-                     retries=12, restart_vpp=True):
+    def apply_config(self, filename=None, retries=60, restart_vpp=True):
         """Generate and apply VPP configuration for node.
 
         Use data from calls to this class to form a startup.conf file and
         replace /etc/vpp/startup.conf with it on node.
 
         :param filename: Startup configuration file name.
-        :param waittime: Time to wait for VPP to restart (default 5 seconds).
         :param retries: Number of times (default 12) to re-try waiting.
         :param restart_vpp: Whether to restart VPP.
         :type filename: str
-        :type waittime: int
         :type retries: int
         :type restart_vpp: bool.
         :raises RuntimeError: If writing config file failed or restart of VPP
@@ -537,11 +534,11 @@ class VppConfigGenerator(object):
             # Sleep <waittime> seconds, up to <retry> times,
             # and verify if VPP is running.
             for _ in range(retries):
-                time.sleep(waittime)
+                time.sleep(1)
                 (ret, stdout, _) = \
                     ssh.exec_command('echo show hardware-interfaces | '
                                      'nc 0 5002 || echo "VPP not yet running"')
-                if ret == 0 and stdout != 'VPP not yet running':
+                if ret == 0 and 'VPP not yet running' not in stdout:
                     break
             else:
                 raise RuntimeError('VPP failed to restart on node {}'.
