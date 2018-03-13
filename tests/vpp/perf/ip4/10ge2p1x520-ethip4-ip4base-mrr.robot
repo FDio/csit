@@ -68,7 +68,19 @@
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | 64
+| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Then Traffic should pass with maximum rate | 32
+| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Then Traffic should pass with maximum rate | 16
+| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Then Traffic should pass with maximum rate | 8
+| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Then Traffic should pass with maximum rate | 4
+| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Then Traffic should pass with maximum rate | 2
+| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Then Traffic should pass with maximum rate | 1
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
@@ -78,7 +90,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base
 | | framesize=${64} | wt=1 | rxq=1
