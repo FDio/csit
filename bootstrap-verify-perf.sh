@@ -350,10 +350,14 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include nic_intel-x710ANDl2xcfwdANDpdrdiscAND1t1cAND64b \
-              --include nic_intel-x710ANDl2bdmaclrnANDpdrdiscAND1t1cAND64b \
-              --include nic_intel-x710ANDip4fwdANDpdrdiscAND1t1cAND64b \
-              --include nic_intel-x710ANDip6fwdANDpdrdiscAND1t1cAND78b \
+              --include l2xcbaseANDmrrAND1t1cAND64b \
+              --include l2bdbaseANDmrrAND1t1cAND64b \
+              --include ip4baseANDmrrAND1t1cAND64b \
+              --include ip6baseANDmrrAND1t1cAND78b \
+              --include nic_intel-x710ANDl2xcfwdANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDl2bdmaclrnANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDip4fwdANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDip6fwdANDmrrAND1t1cAND78b \
               --exclude VHOST \
               --exclude SCALE \
               --exclude DOT1Q \
