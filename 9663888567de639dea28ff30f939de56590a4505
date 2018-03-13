@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "6d81cf8b_dc95a5fe",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-13T07:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be1e1f2c_a3d9bd54",
+      "range": {
+        "startLine": 467,
+        "startChar": 7,
+        "endLine": 467,
+        "endChar": 36
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02ca7b51_987cfe43",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 10
@@ -53,6 +77,30 @@
       "writtenOn": "2018-03-08T07:09:50Z",
       "side": 1,
       "message": "Make this as parameter so people can put their list in case they want to install selectively. Global var?",
+      "range": {
+        "startLine": 480,
+        "startChar": 32,
+        "endLine": 480,
+        "endChar": 65
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b29128f_c74ba2bd",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-13T07:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02ca7b51_987cfe43",
       "range": {
         "startLine": 480,
         "startChar": 32,
@@ -88,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "2846f393_026c0a2b",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-13T07:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1db167c_1a1bd3e0",
+      "range": {
+        "startLine": 482,
+        "startChar": 25,
+        "endLine": 482,
+        "endChar": 42
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb575303_d3ab82fe",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 10
@@ -99,6 +171,30 @@
       "writtenOn": "2018-03-08T07:09:50Z",
       "side": 1,
       "message": "what if not succesfull?",
+      "range": {
+        "startLine": 494,
+        "startChar": 30,
+        "endLine": 494,
+        "endChar": 37
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d321595c_6ae58b87",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-13T07:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb575303_d3ab82fe",
       "range": {
         "startLine": 494,
         "startChar": 30,
@@ -134,6 +230,30 @@
     },
     {
       "key": {
+        "uuid": "ca2fb632_721c1661",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-13T07:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98fb2c8b_ecf5472e",
+      "range": {
+        "startLine": 494,
+        "startChar": 39,
+        "endLine": 495,
+        "endChar": 37
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3db0ac66_8870ec2e",
         "filename": "resources/tools/virl/bin/start-testcase",
         "patchSetId": 10
@@ -145,6 +265,30 @@
       "writtenOn": "2018-03-06T09:35:48Z",
       "side": 1,
       "message": "VPP (it is not only Debian - Centos, Suse, ...)",
+      "range": {
+        "startLine": 235,
+        "startChar": 40,
+        "endLine": 235,
+        "endChar": 46
+      },
+      "revId": "9663888567de639dea28ff30f939de56590a4505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c9cfb1f_7661d42c",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-13T07:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3db0ac66_8870ec2e",
       "range": {
         "startLine": 235,
         "startChar": 40,
