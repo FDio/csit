@@ -78,7 +78,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 78B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check RR for ethip6-ip6base
 | | framesize=${78} | wt=1 | rxq=1
@@ -111,7 +111,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 78B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check RR for ethip6-ip6base
 | | framesize=${78} | wt=2 | rxq=1
@@ -144,7 +144,7 @@
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 64B | 4T4C | MTHREAD
+| | [Tags] | 78B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check RR for ethip6-ip6base
 | | framesize=${78} | wt=4 | rxq=2
