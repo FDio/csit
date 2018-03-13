@@ -231,6 +231,7 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --suite "tests.vpp.func" \
     --include HC_FUNC \
+    --exclude HC_NSH \
     --noncritical EXPECTED_FAILING \
     tests/
 
