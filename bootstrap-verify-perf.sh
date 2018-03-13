@@ -27,7 +27,7 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml output_perf_data.json)
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -172,6 +172,7 @@ case "$TEST_TAG" in
               --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
+        cp output.xml ${WORKSPACE}/archive
         ;;
     PERFTEST_MRR_DAILY )
         pybot ${PYBOT_ARGS} \
