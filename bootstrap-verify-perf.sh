@@ -27,7 +27,10 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml output_perf_data.json)
+JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
+LOG_ARCHIVE_ARTIFACTS=(output.xml)
+LOG_ARCHIVES_DIR="$WORKSPACE/archives"
+mkdir -p ${LOG_ARCHIVES_DIR}
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -35,8 +38,7 @@ then
     mkdir vpp_download
     cd vpp_download
 
-    if [[ ${TEST_TAG} == *NIGHTLY ]] || \
-       [[ ${TEST_TAG} == *DAILY ]] || \
+    if [[ ${TEST_TAG} == *DAILY ]] || \
        [[ ${TEST_TAG} == *WEEKLY ]];
     then
         # Download the latest VPP build .deb install packages
@@ -140,6 +142,9 @@ case "$TEST_TAG" in
               --include ndrdiscAND1t1cANDipsecORndrdiscAND2t2cANDipsec \
               tests/
         RETURN_STATUS=$(echo $?)
+        for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+            cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVES_DIR}/${i}.log
+        done
         ;;
     PERFTEST_SEMI_WEEKLY )
         pybot ${PYBOT_ARGS} \
@@ -148,6 +153,9 @@ case "$TEST_TAG" in
               --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
+        for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+            cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVES_DIR}/${i}.log
+        done
         ;;
     VERIFY-PERF-NDRDISC )
         pybot ${PYBOT_ARGS} \
@@ -169,7 +177,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include mrrAND1t1cORmrrAND2t2c \
+              --include mrrAND1t1cANDip4base \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -180,6 +188,9 @@ case "$TEST_TAG" in
               --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
+        for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+            cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVES_DIR}/${i}.log
+        done
         ;;
     VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
@@ -361,7 +372,7 @@ fi
 
 # Archive artifacts
 mkdir -p archive
-for i in ${ARCHIVE_ARTIFACTS[@]}; do
+for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
 
