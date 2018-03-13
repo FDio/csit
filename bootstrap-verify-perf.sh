@@ -15,9 +15,7 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -58,14 +56,14 @@ then
 #        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 #        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        VPP_URL="https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/104/artifact/build-root"
-        VPP_VER="18.01-rc0~406-g5ec9444~b104_amd64"
+        VPP_URL="https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/128/artifact/build-root"
+        VPP_VER="18.01-rc0~404-g3bb6a97~b128_amd64"
         wget -q "${VPP_URL}/vpp_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-dbg_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-dev_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-lib_${VPP_VER}.deb" || exit
         wget -q "${VPP_URL}/vpp-plugins_${VPP_VER}.deb" || exit
-        wget -q "https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/104/artifact/dpdk/vpp-dpdk-dkms_17.08-vpp2_amd64.deb" || exit
+        wget -q "https://jenkins.fd.io/job/vpp-verify-1801-ubuntu1604/128/artifact/dpdk/vpp-dpdk-dkms_17.08-vpp2_amd64.deb" || exit
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
@@ -350,10 +348,14 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include nic_intel-x710ANDl2xcfwdANDpdrdiscAND1t1cAND64b \
-              --include nic_intel-x710ANDl2bdmaclrnANDpdrdiscAND1t1cAND64b \
-              --include nic_intel-x710ANDip4fwdANDpdrdiscAND1t1cAND64b \
-              --include nic_intel-x710ANDip6fwdANDpdrdiscAND1t1cAND78b \
+              --include l2xcbaseANDmrrAND1t1cAND64b \
+              --include l2bdbaseANDmrrAND1t1cAND64b \
+              --include ip4baseANDmrrAND1t1cAND64b \
+              --include ip6baseANDmrrAND1t1cAND78b \
+              --include nic_intel-x710ANDl2xcfwdANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDl2bdmaclrnANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDip4fwdANDmrrAND1t1cAND64b \
+              --include nic_intel-x710ANDip6fwdANDmrrAND1t1cAND78b \
               --exclude VHOST \
               --exclude SCALE \
               --exclude DOT1Q \
