@@ -27,7 +27,8 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml output_perf_data.json)
+CSIT_ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
+LF_ARCHIVE_ARTIFACTS=(output.xml)
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -35,8 +36,7 @@ then
     mkdir vpp_download
     cd vpp_download
 
-    if [[ ${TEST_TAG} == *NIGHTLY ]] || \
-       [[ ${TEST_TAG} == *DAILY ]] || \
+    if [[ ${TEST_TAG} == *DAILY ]] || \
        [[ ${TEST_TAG} == *WEEKLY ]];
     then
         # Download the latest VPP build .deb install packages
@@ -172,6 +172,9 @@ case "$TEST_TAG" in
               --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
+        for i in ${LF_ARCHIVE_ARTIFACTS[@]}; do
+            cp $( readlink -f ${i} | tr '\n' ' ' ) ${WORKSPACE}/archives/
+        done
         ;;
     PERFTEST_MRR_DAILY )
         pybot ${PYBOT_ARGS} \
@@ -361,7 +364,7 @@ fi
 
 # Archive artifacts
 mkdir -p archive
-for i in ${ARCHIVE_ARTIFACTS[@]}; do
+for i in ${CSIT_ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
 
