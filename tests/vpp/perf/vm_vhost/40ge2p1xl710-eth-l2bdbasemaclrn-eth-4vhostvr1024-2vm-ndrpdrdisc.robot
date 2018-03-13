@@ -269,6 +269,32 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
+| tcxy-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+| | [Documentation] | FIXME
+| | ...
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC | THIS
+| | ...
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${10000}
+| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
+| | ${dut1_vm_refs}= | Create Dictionary
+| | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | ${results} = | Send traffic on tg |  1 | ${max_rate} | ${framesize} | ${traffic_profile} | warmup_time=0
+| | ${results} = | Send traffic on tg |  2 | ${max_rate} | ${framesize} | ${traffic_profile} | warmup_time=0
+| | ${results} = | Send traffic on tg |  4 | ${max_rate} | ${framesize} | ${traffic_profile} | warmup_time=0
+| | ${results} = | Send traffic on tg |  8 | ${max_rate} | ${framesize} | ${traffic_profile} | warmup_time=0
+| | ${results} = | Send traffic on tg | 16 | ${max_rate} | ${framesize} | ${traffic_profile} | warmup_time=0
+| | ${results} = | Send traffic on tg | 32 | ${max_rate} | ${framesize} | ${traffic_profile} | warmup_time=0
+| | ${results} = | Send traffic on tg | 64 | ${max_rate} | ${framesize} | ${traffic_profile} | warmup_time=0
+
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
@@ -279,7 +305,7 @@
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
+| | ${max_rate}= | Set Variable | 30Gbps
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
