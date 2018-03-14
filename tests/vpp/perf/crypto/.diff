@@ -1,0 +1,115 @@
+--- 40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdrdisc.robot	2018-03-13 16:12:19.792138350 +0100
++++ 40ge2p1xl710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdrdisc.robot	2018-03-13 16:12:19.792138350 +0100
+@@ -86,13 +86,13 @@
+ | | ${binary_min}= | Set Variable | ${min_rate}
+ | | ${binary_max}= | Set Variable | ${max_rate}
+ | | ${threshold}= | Set Variable | ${min_rate}
+-| | ${encr_alg}= | Crypto Alg AES GCM 128
+-| | ${auth_alg}= | Integ Alg AES GCM 128
++| | ${encr_alg}= | Crypto Alg AES CBC 128
++| | ${auth_alg}= | Integ Alg SHA1 96
+ | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+ | | And Add PCI devices to DUTs in 3-node single link topology
+ | | And Add no multi seg to all DUTs
+ | | And Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
+-| | ... | aesni_gcm | ${${wt}}
++| | ... | aesni_mb | ${${wt}}
+ | | And Add DPDK dev default RXD to all DUTs | 2048
+ | | And Add DPDK dev default TXD to all DUTs | 2048
+ | | And Apply startup configuration on all VPP DUTs
+@@ -113,9 +113,9 @@
+ | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+ 
+ *** Test Cases ***
+-| tc01-64B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
++| tc01-64B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find NDR for 64 Byte frames\
+ | | ... | using binary search start at 40GE linerate, step 50kpps.
+@@ -125,9 +125,9 @@
+ | | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
+ | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+ 
+-| tc02-64B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
++| tc02-64B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-pdrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
+ | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
+@@ -137,9 +137,9 @@
+ | | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
+ | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+ 
+-| tc03-1518B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
++| tc03-1518B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find NDR for 1518 Byte frames\
+ | | ... | using binary search start at 40GE linerate, step 50kpps.
+@@ -149,9 +149,9 @@
+ | | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
+ | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+ 
+-| tc04-1518B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
++| tc04-1518B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-pdrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
+ | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
+@@ -161,9 +161,9 @@
+ | | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
+ | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+ 
+-| tc05-IMIX-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
++| tc05-IMIX-1t1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find NDR for IMIX_v4_1 frames\
+ | | ... | using binary search start at 40GE linerate, step 50kpps.
+@@ -174,9 +174,9 @@
+ | | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
+ | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=NDR
+ 
+-| tc06-IMIX-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
++| tc06-IMIX-1t1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-pdrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 40GE\
+ | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
+@@ -187,9 +187,9 @@
+ | | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
+ | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=PDR
+ 
+-| tc07-64B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrdisc
++| tc07-64B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 2 thread, 2 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find NDR for 64 Byte frames\
+ | | ... | using binary search start at 40GE linerate, step 50kpps.
+@@ -199,9 +199,9 @@
+ | | [Template] | Discover NDR or PDR for IPv4 routing with IPSec SW cryptodev
+ | | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+ 
+-| tc08-64B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-pdrdisc
++| tc08-64B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-pdrdisc
+ | | [Documentation]
+-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
++| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
+ | | ... | with 2 thread, 2 phy core, 1 receive queue per NIC port.
+ | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
+ | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
