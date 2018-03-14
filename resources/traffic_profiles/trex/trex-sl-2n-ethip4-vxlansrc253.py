@@ -60,18 +60,18 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 0 --> 1
         vm1 = STLScVmRaw([
             STLVmFlowVar(name="src", min_value="172.17.0.2" , max_value="172.17.0.254", size=4, op="inc"),
-            STLVmFlowVar(name="src_mac", min_value=2 , max_value=3100, size=2, op="inc"),
+            #STLVmFlowVar(name="src_mac", min_value=2 , max_value=3100, size=2, op="inc"),
             STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
-            STLVmWrFlowVar(fv_name="src_mac", pkt_offset=60),
+            #STLVmWrFlowVar(fv_name="src_mac", pkt_offset=60),
             STLVmFixIpv4(offset = "IP")
         ])
 
         # Direction 1 --> 0
         vm2 = STLScVmRaw([
             STLVmFlowVar(name="src", min_value="172.17.1.2" , max_value="172.17.1.254", size=4, op="inc"),
-            STLVmFlowVar(name="src_mac", min_value=2 , max_value=3100, size=2, op="inc"),
+            #STLVmFlowVar(name="src_mac", min_value=2 , max_value=3100, size=2, op="inc"),
             STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
-            STLVmWrFlowVar(fv_name="src_mac", pkt_offset=60),
+            #STLVmWrFlowVar(fv_name="src_mac", pkt_offset=60),
             STLVmFixIpv4(offset = "IP")
         ])
 
