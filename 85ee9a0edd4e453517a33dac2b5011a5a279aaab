@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fb88ffa8_08c73f39",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-14T17:00:47Z",
+      "side": 1,
+      "message": "SW analogues have an argument in both aes-gcm and cbc-sha1 suites, so I guess non-SW suites should have HW argument.",
+      "parentUuid": "02aa1131_2e5808d4",
+      "range": {
+        "startLine": 69,
+        "startChar": 38,
+        "endLine": 69,
+        "endChar": 51
+      },
+      "revId": "85ee9a0edd4e453517a33dac2b5011a5a279aaab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "434236af_0327f57c",
         "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.robot",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-14T16:07:01Z",
       "side": 1,
       "message": "Another case of ndrpdrdisc suite dropping something for reasons not obvious to me.",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 5
+      },
+      "revId": "85ee9a0edd4e453517a33dac2b5011a5a279aaab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ffe2c75_f6dfc03a",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-14T17:00:47Z",
+      "side": 1,
+      "message": "SW suite contains this line, so I will keep it.",
+      "parentUuid": "434236af_0327f57c",
       "range": {
         "startLine": 95,
         "startChar": 4,
