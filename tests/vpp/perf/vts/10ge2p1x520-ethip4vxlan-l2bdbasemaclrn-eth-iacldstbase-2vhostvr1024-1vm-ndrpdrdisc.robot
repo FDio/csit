@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.QemuUtils
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024
+| ... | VHOST | VM | VHOST_1024 | VTS
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
@@ -57,8 +57,9 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # X520-DA2 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit}= | ${10000000000}
 | ${vxlan_overhead} | ${50}
 # Socket names
 | ${dut1_bd_id1}= | 1
@@ -97,8 +98,6 @@
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm1}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
