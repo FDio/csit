@@ -1336,7 +1336,7 @@
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${dut1_bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${dut1_bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${dut2_bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${dut2_bd_id1}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${dut2_bd_id1}
 
 | Initialize L2 bridge domains with Vhost-User in 2-node circular topology
 | | [Documentation]

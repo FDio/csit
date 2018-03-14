@@ -47,7 +47,7 @@
 | | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.5.0
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
 | | Set Global Variable | ${qemu_build} | ${True}
-| | Set Global Variable | ${pkt_trace} | ${False}
+| | Set Global Variable | ${pkt_trace} | ${True}
 | | @{plugins_to_disable}= | Create List
 | | ... | acl_plugin.so
 | | ... | cdp_plugin.so
