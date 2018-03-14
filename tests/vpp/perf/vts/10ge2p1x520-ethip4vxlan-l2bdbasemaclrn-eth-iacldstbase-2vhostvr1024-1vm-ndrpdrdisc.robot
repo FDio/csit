@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.QemuUtils
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024
+| ... | VHOST | VM | VHOST_1024 | VTS
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
