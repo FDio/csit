@@ -59,7 +59,7 @@
 | | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -104,7 +104,19 @@
 | | [Template] | Check RR for l2xcbase
 | | framesize=${9000} | wt=1 | rxq=1
 
-| tc04-64B-2t2c-eth-l2xcbase-mrr
+| tc04-IMIX-1t1c-eth-l2xcbase-mrr
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Measure MaxReceivedRate for IMIX frames using single\
+| | ... | trial throughput test.
+| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | [Tags] | IMIX | 1T1C | STHREAD
+| | ...
+| | [Template] | Check RR for l2xcbase
+| | framesize=IMIX_v4_1 | wt=1 | rxq=1
+
+| tc05-64B-2t2c-eth-l2xcbase-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -115,7 +127,7 @@
 | | [Template] | Check RR for l2xcbase
 | | framesize=${64} | wt=2 | rxq=1
 
-| tc05-1518B-2t2c-eth-l2xcbase-mrr
+| tc06-1518B-2t2c-eth-l2xcbase-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -126,7 +138,7 @@
 | | [Template] | Check RR for l2xcbase
 | | framesize=${1518} | wt=2 | rxq=1
 
-| tc06-9000B-2t2c-eth-l2xcbase-mrr
+| tc07-9000B-2t2c-eth-l2xcbase-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -137,7 +149,19 @@
 | | [Template] | Check RR for l2xcbase
 | | framesize=${9000} | wt=2 | rxq=1
 
-| tc07-64B-4t4c-eth-l2xcbase-mrr
+| tc08-IMIX-2t2c-eth-l2xcbase-mrr
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Measure MaxReceivedRate for IMIX frames using single\
+| | ... | trial throughput test.
+| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | [Tags] | IMIX | 2T2C | MTHREAD
+| | ...
+| | [Template] | Check RR for l2xcbase
+| | framesize=IMIX_v4_1 | wt=2 | rxq=1
+
+| tc09-64B-4t4c-eth-l2xcbase-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -148,7 +172,7 @@
 | | [Template] | Check RR for l2xcbase
 | | framesize=${64} | wt=4 | rxq=2
 
-| tc08-1518B-4t4c-eth-l2xcbase-mrr
+| tc10-1518B-4t4c-eth-l2xcbase-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -159,7 +183,7 @@
 | | [Template] | Check RR for l2xcbase
 | | framesize=${1518} | wt=4 | rxq=2
 
-| tc09-9000B-4t4c-eth-l2xcbase-mrr
+| tc11-9000B-4t4c-eth-l2xcbase-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -169,3 +193,15 @@
 | | ...
 | | [Template] | Check RR for l2xcbase
 | | framesize=${9000} | wt=4 | rxq=2
+
+| tc12-IMIX-4t4c-eth-l2xcbase-mrr
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores,\
+| | ... | 2 receive queues per NIC port.
+| | ... | [Ver] Measure MaxReceivedRate for IMIX frames using single\
+| | ... | trial throughput test.
+| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | [Tags] | IMIX | 4T4C | MTHREAD
+| | ...
+| | [Template] | Check RR for l2xcbase
+| | framesize=IMIX_v4_1 | wt=4 | rxq=2
