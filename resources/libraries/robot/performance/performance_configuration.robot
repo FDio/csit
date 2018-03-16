@@ -69,17 +69,12 @@
 | | ...
 | | VPP Show Crypto Device Mapping | ${dut1}
 | | VPP Show Crypto Device Mapping | ${dut2}
-| | Set interfaces in path in 3-node circular topology up
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut2_if2}
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | Set Test Variable | ${tg_if1_mac}
 | | Set Test Variable | ${tg_if2_mac}
 | | Set Test Variable | ${dut1_if1_mac}
@@ -1944,6 +1939,7 @@
 | | ... | ${dut2} | ${dut2_if1} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
 | | ... | ${dut2_to_dut1_ip4} | ${dut1_to_dut2_ip4}
+| | Set interfaces in path in 3-node circular topology up
 
 | Initialize LISP IPv6 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
