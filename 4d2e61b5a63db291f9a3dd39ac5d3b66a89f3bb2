@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b649de20_b162a35f",
+        "filename": "tests/vpp/perf/l2/40ge2p1xl710-eth-l2xcbase-mrr.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-16T08:50:53Z",
+      "side": 1,
+      "message": "l2xcbase",
+      "range": {
+        "startLine": 56,
+        "startChar": 15,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "4d2e61b5a63db291f9a3dd39ac5d3b66a89f3bb2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
