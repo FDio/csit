@@ -208,7 +208,7 @@ ln ${RPM_CACHE_DIR}/rpm-packages.txt ${OUTPUT_DIR}/temp/rpm/rpm-packages.txt
 mkdir -p ${PIP_CACHE_DIR}
 
 # Let PIP do the work of downloading and verifying packages
-pip install --download ${PIP_CACHE_DIR} -r ${LIST}/pip-requirements.txt
+pip download -d ${PIP_CACHE_DIR} -r ${LIST}/pip-requirements.txt
 
 # Link packages and requirements file into VM's temp directory
 mkdir -p ${OUTPUT_DIR}/temp/pip
