@@ -30,7 +30,7 @@ tg1_ip6 = '2001:cdba:1::2'
 tg2_ip6 = '2001:cdba:2::2'
 prefix6 = 64
 
-vhost_ip = '2001:cdba:1::9'
+vhost_ip = '2001:cdba:6::9'
 
 dut1_to_dut2_ip6_static_adjacency = {'vni': 0,
                                      'deid': '2001:cdba:2::0',

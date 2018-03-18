@@ -43,7 +43,7 @@ dst_ip_range = '6.0.5.0'
 vm1_vif1_mac = '52:54:00:00:04:01'
 vm1_vif2_mac = '52:54:00:00:04:02'
 
-vhost_ip = '6.0.1.3'
+vhost_ip = '6.6.1.3'
 
 prefix4 = 24
 
