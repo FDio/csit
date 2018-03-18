@@ -30,7 +30,7 @@ tg1_ip4 = '6.0.1.2'
 tg2_ip4 = '6.0.2.2'
 prefix4 = 24
 prefix6 = 64
-vhost_ip = '6.0.1.3'
+vhost_ip = '6.6.1.3'
 lisp_gpe_int = 'lisp_gpe0'
 
 dut1_to_dut2_ip_static_adjacency = {'vni': 0,
