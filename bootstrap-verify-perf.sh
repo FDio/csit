@@ -177,7 +177,8 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include mrrAND1t1cORmrrAND2t2c \
+              --include mrrAND1t1cANDip4fwdORmrrAND2t2cANDip4fwd \
+              --include mrrAND1t1cANDip4unrlayORmrrAND2t2cANDip4unrlay \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
