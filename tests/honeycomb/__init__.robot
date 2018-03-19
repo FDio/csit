@@ -16,13 +16,21 @@
 | ${node}= | ${nodes['DUT1']}
 
 *** Settings ***
+| Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources/libraries/python/honeycomb/HcPersistence.py
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | ...
-| Suite Setup | Run Keywords | Configure all DUTs before test | AND
+| Suite Setup | Run Keywords | Setup Framework | ${nodes} | AND
+| ... | Setup All DUTs | ${nodes} | AND
+| ... | Update All Interface Data On All Nodes | ${nodes} | AND
+| ... | Configure all DUTs before test | AND
 | ... | Set Global Variable | ${node} | AND
 | ... | Stop Honeycomb service on DUTs | ${node} | AND
 | ... | Clear Honeycomb Log | ${node}
 | ...
-| Suite Teardown | Archive Honeycomb log file | ${node}
+| Suite Teardown | Cleanup Framework | ${nodes} | AND
+| ... | Archive Honeycomb log file | ${node}
