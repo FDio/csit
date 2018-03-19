@@ -74,8 +74,7 @@
 | | ...
 | | [Arguments] | ${framesize}
 | | ...
-| | Run Keyword If | '${framesize}' == 'IMIX_v4_1'
-| | ... | Return From Keyword | 353.83333
+| | Return From Keyword If | '${framesize}' == 'IMIX_v4_1' | ${353.83333}
 | | Return From Keyword | ${framesize}
 
 | Is DPDK performance test
