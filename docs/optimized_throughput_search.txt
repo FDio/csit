@@ -1,0 +1,177 @@
++ vocabulary
+ + from traffic generator (TG) point of view
+  + number of packets transmitted by TG: Tx
+  + number of packets received back at TG: Rx
+  + traffic duration: d
+   + this is for Tx, Rx is counted a little longer
+    + to not count delayed packets as lost
+  + transmitted rate: Tr = Tx / d
+  + received rate: Rr = Rx / d
+  + dropped packets count: Dx = Tx - Rx
+  + drop rate: Dr = Tr - Rr
+  + line rate Lr = maximum attempted Tr
+ + measurement is a (stochastic) function
+  + arguments are duration and transmit rate
+  + direct result: Rx
+  + indirect results: Dr, Rr
+  + MRR(d) = Rr(Lr, d)
+ + time dependence
+  + time instance: t
+  + instantaneous received rate can vary with time: Rr(t, Tr)
+  + hypothesis:
+   + packets start to drop when some buffer gets full
+   + that happens when Rr(t) is smaller than Tr
+    + by a large margin (buffer gets full quickly)
+    + by a small margin over longer time
+   + Rr(t) larger then Tr frees space in the buffer
+   + if buffer is empty, cycles-per-packet gets worse
++ observations
+ + for tcxy-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+  + Each "Send traffic on tg" takes around 0.5 second longer
+   + Tx suggests traffic duration is correct
+   + the 0.5s overhead is in Trex code
+   + not sure yet what is essential and what could be shortened
+  + First measurement in test has higher Dx than expected
+   + One d=1s measurement is enough to warm-up
+   + minutes between jenkins runs act as a cool-down
+    + even if I think nothing was running on cores in between
+  + Dx is never negative (no duplicate packets)
+  + there are three modes:
+   + low traffic: Rr = Tr
+   + high traffic: Rr ~ MRR
+    + increases with Tr only slightly // mk: Tr increasing from what value to what value?
+    + increased duration:
+     + decreases jitter (as expected) // mk: define "jitter" here?
+     + decreases Rr in general        // mk: do you mean Rr(t) or avg, or else? and how come? :)
+      + not expected
+       + these measurements have better warm-up // mk: which measurements? Rr ~ MRR?
+      + my hypothesis:
+       + Rr(t) values come from some distribution
+       + Rr(t) values at different t are not independent  // mk: agree.
+       + Rr(t) has large drops separated by some time     // mk: yes, likely packets are dropped in bursts, or in vectors..
+        + here "drop" means time region with lower Rr
+       + short durations:           // mk: don't get points below in the context of Rr ~ MRR.
+        + frequently lucky to not see the drop  // mk: ?
+        + occasional drop discarded as outlier  // mk: ?
+       + long durations average the drops       // mk: sure and obvious.
+       + No similarly large spikes in Rr(t) are seen  // mk: is this based on some testing you've done at Rr ~ MRR? Resolution of Rr statistics (TRex can produce 0.5s only).
+   + medium traffic: Dx fluctuating
+    + Dx=0 happens with probability depending on Tr
+    + nonzero Dx is in tens, hundreds or thousands
+     + Dx value depends on Tr   // mk: and value of d.
+     + Dx does not depend on duration in this mode! // mk: Dx does, Dr doesn't. I guess you assume here that drops happen only at the beggining of the test.. if so, I disagree..
+      + hypothesis:
+       + The drops only happen at the start of the duration
+       + start has smaller Rr(t) due to 0.5 pause   // mk: s/0.5/0.5s/?
+        + not sure if that is due to Trex setup/teardown
+        + or just due to no traffic (and Linux kernel and stuff)
+   + border between low and medium traffic
+    + is well defined, but hard to measure
+     + nonzero Dx probability is small  // mk: how do you define the "nonzero Dx probability" here?
+   + border between medium and high traffic
+    + is not even well defined          // mk: i don't follow here, your "medium traffic" and "high traffic" deffinitions are not precise, so the border is also unclear :)
+     + buffer might get full for multiple different reasons
++ drop rate ideas
+ + RFC 2544 is not clear on warm-up phase
+  + throughput definition:
+   + just says "send traffic"
+   + gives 2s + 5s after the measurement for device to cool down
+   + that could imply measurement should not have warm-up phase
+  + latency definition:
+   + takes care to explain the measured packet should not be at the start
+ + RFC 1242
+  + throughput:
+   + stress on no-drop
+   + no stress on steady state
+  + frame loss rate:
+   + stress on steady state
+    + might just mean Tr(t) is strictly constant
+ + practical applications
+  + TCP streams are more sensitive to Dx than UDP streams
+  + VPP just activated is expected to be slower at first
+  + New TCP streams start with lower Tr anyway
+  + Odl (rerouted) TCP streams were probably suffering on old path
+  + even if not, Dx at start has less impact than Dx throughout duration  // mk: by "at start" you mean "without warm-up phase"?
+ + Trex abilities:
+  + Already performs latency measurement
+  + Not sure if within one stream or as a separate stream.  // mk: separate streams, and measurement resolution is poor.
+   + RFC 2544 suggests separate stream
+    + but perhaps just for TG performance reasons
+  + If on one stream:
+   + VPP probably does not reorder packets
+   + Trex can identify a particular packet in Rx
+   + Can Trex store counters for this packet?
+   + If yes, can it report Tx and Rx only since that packet?
+   + That would create a warm-up period adjacent to measurement
+    + no 0.5s pause
+   + this way NDR would measure medium-high border  // mk: i don't follow how TRex latency measurement impacts NDR measurement? it's separate streams..
+    + currently it measures low-medium border       // mk: NDR is about measured highest rate with zero pkt loss, eliminating cases with sporadic pkt drop, yes.
++ pdr/ndr ideas
+ + PDR+NDR
+  + PDR value will typically be found in high traffic range // mk: yes.
+   + less jitter between runs
+   + we can aim for higher precision
+  + NDR value will typically be a lucky zero in medium traffic range  // mk: why "lucky"? you mean non-repetitive, as you can't be lucky all the time :) ?
+   + more jitter between runs
+   + we can require less precision to save time
+  + measurement of Dr =0 or above partial limit applies to both
+  + Only after measuring Dr in between, they become independent searches  // mk: today are performed as independent searches.
+   + after the searches are split:
+    + NDR measurement with surprisingly high Dr is relevant for PDR   // mk: not following, explain.
+    + PDR measurement with zero is not relevant for NDR               // mk: not following, explain.
+  + both precision and relevancy suggest to measure NDR first
+   + or "at the same time", but still NDR first within iteration      // mk: agree, and then do PDR? how does NDR help in faster finding PDR?
+ + durations
+  + 1s measurements are quick to find the interesting range
+   + measuring MRR acts as a warm-up
+    + This MRR will be an underestimate, but still a good start
+  + to start pdr/ndr at higher duration, results from lower duration help
+  + Example duration [s] sequence: 1, 2, 4, 8, 15, 30, 60.      // mk: are you suggesting we search with 1sec duration, once rate found, extend to 2sec, once verified, do 4sec.. that's a lot of steps..
+ + bisection
+  + usually used only as internal search
+   + result guaranteed to be between the two starting bounds
+  + there exist a modification for external search    // mk: by external you mean outside of defined bounds ?
+   + I was not successful when googling for its name
+   + example:
+    + we guess PDR will be between 2 and 3 (arbitrary units)
+    + we measure Dr(12) = 0, good               // mk: Good here = low bound?
+    + we measure Dr(13) = 0, bad                // mk: Next Good is when Dr>0?
+    + we measure at 15, 19, 27, 43 and so on
+    + when we find nonzero Dr, we continue as in internal search
+   + this is how short duration results are still useful  // mk: you mean we can find the bounds with short duration tests, i like it :)
+    + compared to full [0, LR] search
+ + "smart section"    // mk: text below is hard to follow - need a voice-over.. :)
+  + Rr(upper_bound_rate) can be better candidate for section
+   + But it can be way worse in medium traffic region
+  + good section creates smaller and larger sub-range
+   + small subrange should be:
+    + small enough to save some iterations if lucky
+    + large enough to reduce large subrange enough if unlucky
+  + NDR Example:
+   + upper bound: Lr=10
+   + lower bound: Lr=2
+   + range size = 8
+   + Rr(10)=9.9
+  + there are several ideas on how to to the smart section:
+   + hard limits
+    + example: small subrange should be at least a fourth of the range
+     + NDR example: next Lr = 8
+   + adaptive limits (similar to external binary search)
+    + start with very small limits
+    + double the limits for every Dr!=0 measurement in a row
+  + theoretical best:
+   + the two subranges should have 50% chance of containing the NDR.
+    + we need a good model for Dx=0 probabilities in medium range
+    + even with good model, computing the section might be too complicated
+  + practical approach
+   + code a few algorithms
+   + run them against vhost measurements
+   + pick a subjective best
+  + measurement simulator to test algorithms with
+   + if we become really limited by jenkins run time
+   + if we are not sure about worst case behavior
+   + if we have a model and want to compare with real results
+   + After some thinking I have realized, that it is not clear what would be the API of our search algorithm (and rate providers).
+   + So I have created a basic simulator [0]. For usage see manual_tests.py The API is in the two Abstract* files.
+   + I have included some rate providers for testing bad cases. No realistic provider nor smart search (yet).
+   + [0] https://gerrit.fd.io/r/11173
