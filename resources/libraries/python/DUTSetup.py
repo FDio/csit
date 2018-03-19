@@ -477,9 +477,9 @@ class DUTSetup(object):
                 if os.path.isfile("/etc/redhat-release"):
                     # workaroud - uninstall existing vpp installation until
                     # start-testcase script is updated on all virl servers
-                    rpm_pkgs_remove = " ".join(vpp_rpm_pkgs)
-                    r_rcode, _, r_err = ssh.exec_command_sudo(
-                        "rpm -e {0}".format(rpm_pkgs_remove), timeout=90)
+                    rpm_pkgs_remove = "vpp*"
+                    cmd_u = 'yum -y remove "{0}"'.format(rpm_pkgs_remove)
+                    r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
                     if int(r_rcode) != 0:
                         raise RuntimeError('Failed to remove previous VPP'
                                            'installation on host {0}:\n{1}'
@@ -487,8 +487,8 @@ class DUTSetup(object):
 
                     rpm_pkgs = "*.rpm ".join(str(vpp_pkg_dir + pkg)
                                              for pkg in vpp_rpm_pkgs) + "*.rpm"
-                    ret_code, _, err = ssh.exec_command_sudo(
-                        "rpm -ivh {0}".format(rpm_pkgs), timeout=90)
+                    cmd_i = "rpm -ivh {0}".format(rpm_pkgs)
+                    ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
                     if int(ret_code) != 0:
                         raise RuntimeError('Failed to install VPP on host {0}:'
                                            '\n{1}'.format(node['host']), err)
@@ -499,17 +499,17 @@ class DUTSetup(object):
                 else:
                     # workaroud - uninstall existing vpp installation until
                     # start-testcase script is updated on all virl servers
-                    deb_pkgs_remove = " ".join(vpp_deb_pkgs)
-                    r_rcode, _, r_err = ssh.exec_command_sudo(
-                        "dpkg --purge {0}".format(deb_pkgs_remove), timeout=90)
+                    deb_pkgs_remove = "vpp*"
+                    cmd_u = 'apt-get purge -y "{0}"'.format(deb_pkgs_remove)
+                    r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
                     if int(r_rcode) != 0:
                         raise RuntimeError('Failed to remove previous VPP'
                                            'installation on host {0}:\n{1}'
                                            .format(node['host']), r_err)
                     deb_pkgs = "*.deb ".join(str(vpp_pkg_dir + pkg)
                                              for pkg in vpp_deb_pkgs) + "*.deb"
-                    ret_code, _, err = ssh.exec_command_sudo(
-                        "dpkg -i --force-all {0}".format(deb_pkgs), timeout=90)
+                    cmd_i = "dpkg -i --force-all {0}".format(deb_pkgs)
+                    ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
                     if int(ret_code) != 0:
                         raise RuntimeError('Failed to install VPP on host {0}:'
                                            '\n{1}'.format(node['host']), err)
