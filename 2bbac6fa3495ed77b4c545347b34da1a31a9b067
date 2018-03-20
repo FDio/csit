@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "180bee00_b6c44b10",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-20T11:33:07Z",
+      "side": 1,
+      "message": "Please, use the assignment sign there:\n| ${s_24.5G}\u003d | ${24500000000}\n\nIt\u0027s not necessary but we decided to use it after the variable name to make assigning variables slightly more explicit (see https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines)\n\n- valid for all occurences",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 13
+      },
+      "revId": "2bbac6fa3495ed77b4c545347b34da1a31a9b067",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1f1c5d7_269d71ac",
         "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.robot",
         "patchSetId": 7
@@ -41,6 +64,29 @@
         "startChar": 4,
         "endLine": 95,
         "endChar": 7
+      },
+      "revId": "2bbac6fa3495ed77b4c545347b34da1a31a9b067",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24ad83cb_6ee9513b",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-20T11:33:07Z",
+      "side": 1,
+      "message": "2 receive queues  - please, check in all 4t4c tests",
+      "range": {
+        "startLine": 198,
+        "startChar": 39,
+        "endLine": 198,
+        "endChar": 54
       },
       "revId": "2bbac6fa3495ed77b4c545347b34da1a31a9b067",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
