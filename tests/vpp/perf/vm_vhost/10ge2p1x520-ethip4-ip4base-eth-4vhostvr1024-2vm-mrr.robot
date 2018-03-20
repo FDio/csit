@@ -82,6 +82,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
+| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
+| | ... | ${False} | ${True}
+| | Set Test Variable | ${jumbo_frames}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -150,7 +153,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 64B | 2T2C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-eth-4vhostvr1024-2vm
 | | framesize=${64} | wt=2 | rxq=1
@@ -174,7 +177,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2T2C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-eth-4vhostvr1024-2vm
 | | framesize=${9000} | wt=2 | rxq=1

@@ -77,6 +77,8 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
+| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
+| | ... | ${False} | ${True}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -87,9 +89,11 @@
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
 | | ... | ${True}
@@ -177,7 +181,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2T2C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
 | | framesize=${9000} | wt=2 | rxq=1
@@ -190,7 +194,7 @@
 | | ... | trial throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD
+| | [Tags] | IMIX | 2T2C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1

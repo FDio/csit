@@ -192,16 +192,19 @@ class QemuUtils(object):
         arch = Topology.get_node_arch(node)
         self._qemu_bin = 'qemu-system-{arch}'.format(arch=arch)
 
-    def qemu_add_vhost_user_if(self, socket, server=True, mac=None):
+    def qemu_add_vhost_user_if(self, socket, server=True, mac=None,
+                               jumbo_frames=False):
         """Add Vhost-user interface.
 
         :param socket: Path of the unix socket.
         :param server: If True the socket shall be a listening socket.
         :param mac: Vhost-user interface MAC address (optional, otherwise is
-            used auto-generated MAC 52:54:00:00:xx:yy).
+        used auto-generated MAC 52:54:00:00:xx:yy).
+        :param jumbo_frames: Set True if jumbo frames are used in the test.
         :type socket: str
         :type server: bool
         :type mac: str
+        :type jumbo_frames: bool
         """
         self._vhost_id += 1
         # Create unix socket character device.
@@ -221,7 +224,11 @@ class QemuUtils(object):
             mac = '52:54:00:00:{0:02x}:{1:02x}'.\
                 format(self._qemu_id, self._vhost_id)
         extend_options = 'mq=on,csum=off,gso=off,guest_tso4=off,'\
-            'guest_tso6=off,guest_ecn=off,mrg_rxbuf=off'
+            'guest_tso6=off,guest_ecn=off'
+        if jumbo_frames:
+            extend_options += ",mrg_rxbuf=on"
+        else:
+            extend_options += ",mrg_rxbuf=off"
         # Create Virtio network device.
         device = ' -device virtio-net-pci,netdev=vhost{0},mac={1},{2}'.format(
             self._vhost_id, mac, extend_options)
