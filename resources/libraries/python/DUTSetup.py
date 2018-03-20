@@ -474,7 +474,9 @@ class DUTSetup(object):
                 ssh = SSH()
                 ssh.connect(node)
 
-                if os.path.isfile("/etc/redhat-release"):
+                cmd = "[[ -f /etc/redhat-release ]]"
+                return_code, _, _ = ssh.exec_command(cmd)
+                if int(return_code) == 0:
                     # workaroud - uninstall existing vpp installation until
                     # start-testcase script is updated on all virl servers
                     rpm_pkgs_remove = "vpp*"
