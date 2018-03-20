@@ -1433,6 +1433,8 @@
 | | ... | Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
 | | ... | Type: integer
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1444,7 +1446,7 @@
 | | ... | \| qemu_id=${2} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5} | ${qemu_id}=${1}
+| | ... | ${count}=${5} | ${qemu_id}=${1} | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
@@ -1458,7 +1460,9 @@
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
@@ -1471,9 +1475,11 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure '${nr}' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
@@ -1488,10 +1494,12 @@
 | | ... | - ${system_cpus} - Number of CPUs allocated for OS itself.
 | | ... | - ${vpp_cpus} - Number of CPUs allocated for VPP.
 | | ... | - ${vm_cpus} - Number of CPUs to be allocated per QEMU instance.
+| | ... | - ${jumbo_frames} - Jumbo frames are used (True) or are not used
+| | ... | (False) in the test.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure '2' guest VMs with dpdk-testpmd connected via vhost-user \
+| | ... | \| Configure '2' guest VMs with dpdk-testpmd connected via vhost-user\
 | | ... | in 3-node circular topology \|
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
@@ -1501,10 +1509,12 @@
 | | | ${vm1}= | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM${number}
 | | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
+| | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
 | | | ${vm2}= | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
 | | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
+| | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
 | | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
 | | | ... | ${True}
@@ -1524,6 +1534,8 @@
 | | ... | - vm_name - QemuUtil instance name. Type: string
 | | ... | - skip - number of cpus which will be skipped. Type: int
 | | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1532,7 +1544,7 @@
 | | ... | \| ${6} \| ${5} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5}
+| | ... | ${count}=${5} | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils
 | | ... | WITH NAME | ${vm_name}
@@ -1542,6 +1554,10 @@
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
@@ -1554,9 +1570,11 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
@@ -1579,6 +1597,8 @@
 | | ... | Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
 | | ... | Type: integer
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1592,7 +1612,7 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
-| | ... | ${qemu_id}=${1}
+| | ... | ${qemu_id}=${1} | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
@@ -1607,6 +1627,10 @@
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
@@ -1619,10 +1643,12 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure '${nr}' guest VMs with dpdk-testpmd-mac connected via vhost-user in 3-node circular topology
@@ -1682,6 +1708,8 @@
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
 | | ... | - skip - number of cpus which will be skipped. Type: int
 | | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1691,6 +1719,7 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
+| | ... | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils
 | | ... | WITH NAME | ${vm_name}
@@ -1700,6 +1729,10 @@
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
 | | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
@@ -1712,10 +1745,12 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure guest VM with linux bridge connected via vhost-user
