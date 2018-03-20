@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cc16304_27695942",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2018-03-20T18:18:24Z",
+      "side": 1,
+      "message": "Reference which documents problem:\nCSIT-1110",
+      "revId": "1897616f64004ef308adaa854785f9a0ef07a3b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
