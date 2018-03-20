@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1f1c5d7_269d71ac",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-03-20T10:05:36Z",
+      "side": 1,
+      "message": "Add empty line \"| | ...\" to mark end of \"Test variables\" section.\nCheck everywhere.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 40
+      },
+      "revId": "2bbac6fa3495ed77b4c545347b34da1a31a9b067",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb4a8a83_69877486",
+        "filename": "tests/vpp/perf/crypto/40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-03-20T10:05:36Z",
+      "side": 1,
+      "message": "When\nCheck everywhere",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 7
+      },
+      "revId": "2bbac6fa3495ed77b4c545347b34da1a31a9b067",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
