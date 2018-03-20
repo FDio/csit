@@ -79,8 +79,11 @@ class DpdkUtil(object):
         # Set the hexadecimal bitmask of TX queue flags.
         pmd_txqflags = '--txqflags=0xf00 '
         # Set the number of mbufs to be allocated in the mbuf pools.
-        pmd_total_num_mbufs = '--total-num-mbufs={} '.format(\
+        pmd_total_num_mbufs = '--total-num-mbufs={} '.format(
             args['pmd_num_mbufs']) if args.get('pmd_num_mbufs', '') else ''
+        # Set the max packet length.
+        pmd_max_pkt_len = "--max-pkt-len={0}".format(args["pmd_max_pkt_len"]) \
+            if args.get("pmd_max_pkt_len", "") else ""
         # Set the hexadecimal bitmask of the ports for forwarding.
         pmd_portmask = '--portmask={} '.format(args['pmd_portmask'])\
             if args.get('pmd_portmask', '') else ''
@@ -96,7 +99,7 @@ class DpdkUtil(object):
         pmd_eth_peer_1 = '--eth-peer={} '.format(args['pmd_eth_peer_1'])\
             if args.get('pmd_eth_peer_1', '') else ''
         # Set the number of forwarding cores based on coremask.
-        pmd_nb_cores = '--nb-cores={} '.format(\
+        pmd_nb_cores = '--nb-cores={} '.format(
             bin(int(args['eal_coremask'], 0)).count('1')-1)\
             if args.get('eal_coremask', '') else ''
         pmd_options = '-- '\
@@ -113,7 +116,8 @@ class DpdkUtil(object):
             + pmd_disable_rss\
             + pmd_eth_peer_0\
             + pmd_eth_peer_1\
-            + pmd_nb_cores
+            + pmd_nb_cores\
+            + pmd_max_pkt_len
         return pmd_options
 
     @staticmethod
