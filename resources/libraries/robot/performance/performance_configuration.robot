@@ -1433,6 +1433,8 @@
 | | ... | Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
 | | ... | Type: integer
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1444,7 +1446,7 @@
 | | ... | \| qemu_id=${2} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5} | ${qemu_id}=${1}
+| | ... | ${count}=${5} | ${qemu_id}=${1} | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
@@ -1471,9 +1473,11 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure '${nr}' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology

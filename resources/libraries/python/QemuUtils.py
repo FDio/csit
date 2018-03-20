@@ -220,8 +220,10 @@ class QemuUtils(object):
         if mac is None:
             mac = '52:54:00:00:{0:02x}:{1:02x}'.\
                 format(self._qemu_id, self._vhost_id)
+        # extend_options = 'mq=on,csum=off,gso=off,guest_tso4=off,'\
+        #     'guest_tso6=off,guest_ecn=off,mrg_rxbuf=off'
         extend_options = 'mq=on,csum=off,gso=off,guest_tso4=off,'\
-            'guest_tso6=off,guest_ecn=off,mrg_rxbuf=off'
+            'guest_tso6=off,guest_ecn=off'
         # Create Virtio network device.
         device = ' -device virtio-net-pci,netdev=vhost{0},mac={1},{2}'.format(
             self._vhost_id, mac, extend_options)
