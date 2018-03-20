@@ -1,0 +1,239 @@
++ vocabulary
+ + from traffic generator (TG) point of view
+  + number of packets transmitted by TG: Tx
+  + number of packets received back at TG: Rx
+  + traffic duration: d
+   + this is for Tx, Rx is counted a little longer
+    + to not count delayed packets as lost
+  + transmitted rate: Tr := Tx / d
+  + received rate: Rr := Rx / d
+  + dropped packets count: Dx := Tx - Rx
+  + drop rate: Dr := Tr - Rr
+  + drop fraction: Df := Dr / Tr = Dx / Tx
+  + line rate Lr := maximum attempted Tr
+ + measurement is a (stochastic) function
+  + arguments are duration and transmit rate
+  + direct result: Rx
+  + indirect results: Dr, Rr
+  + MRR(d) := Rr(Lr, d)
+ + time dependence
+  + time instance: t
+  + instantaneous received rate can vary with time: Rr(t, Tr)
+  + hypothesis:
+   + packets start to drop when some buffer gets full
+   + that happens when Rr(t) is smaller than Tr
+    + by a large margin (buffer gets full quickly)
+    + by a small margin over longer time
+   + Rr(t) larger then Tr frees space in the buffer
+   + if buffer is empty, cycles-per-packet gets worse
++ observations
+ + for tcxy-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+  + Each "Send traffic on tg" takes around 0.5 second longer
+   + Tx suggests traffic duration is correct
+   + the 0.5s overhead seem to be cuased just by SSH client being slow to connect
+  + First measurement in test has higher Dx than expected
+   + One d=1s measurement is enough to warm-up
+   + minutes between jenkins runs act as a cool-down
+    + even if I think nothing was running on cores in between
+  + Dx is never negative (no duplicate packets)
+  + there are three modes:
+   + low traffic: Rr = Tr
+    + In other words, no propped packets, ever.
+   + high traffic: Rr ~ MRR
+    + In other words, lots of dropped packets.
+    + large increase in Tr only results in small increase in Rr
+    + increased duration:
+     + decreases variance of Rr between runs
+     + decreases (averaged) Rr slightly, in general
+      + not expected
+       + particular test executes small-duration PLR measurements first
+        + so increased duration traffic is warmed-up better
+      + my hypothesis:
+       + Rr(t) values come from some distribution
+       + Rr(t) values at different t are not independent
+       + Rr(t) has large drops separated by some time
+        + here "drop" means time region with lower Rr
+       + short durations:
+        + when time separation is larger than duration:
+         + frequently, no drop is seen
+          + Rr measured is higher than long-duration Rr
+          + this is called "lucky" case
+         + occasionally, the drop is seen:
+          + Rr measured is significantly lower than long-duration Rr
+          + could be discarded as an outlier
+          + this is called "unlucky" case
+       + long durations average the drops
+       + No similarly large spikes in Rr(t) are seen:
+        + We do not see any "lucky outliers"
+        + Large spikes would increase long-duration Rr
+         + If there are spikes, they are not as big as drops.
+   + medium traffic: Dx fluctuating
+    + Dx (sometimes) non-zero, but not big.
+    + Dx=0 happens with probability depending on Tr
+     + There is a Tr when Dx=0 stops happening, but Dx values are still noticeably smaller than high-traffic Dx.
+    + nonzero Dx is in tens, hundreds or thousands
+     + Dx value depends on Tr
+     + Dx does not depend on duration in this mode!
+      + Yes, Dx, not Dr.
+       + Dr decreases with duration.
+       + Perhaps Dx raises slowly with duration,
+        + but Dx variance between runs is high
+        + "Dx is constant" is a better predictor than "Dx increases slowly with duration"
+      + hypothesis:
+       + The drops only happen at the start of the duration
+       + start has smaller Rr(t) due to the 0.5s the pause
+        + not sure if that is due to Trex setup/teardown
+        + or just due to no traffic (and Linux kernel and stuff)
+   + border between low and medium traffic
+    + is well defined, but hard to measure
+     + probability of seeing nonzero Dx value is small
+   + border between medium and high traffic
+    + hard to determine when Dx starts scaling with duration
+    + it might be possible to use linear regression to find when Dx starts increasing rapidly with Tr
+     + more data needed
+     + Dx variance might make the regression result imprecise
+     + but such result will still be more precise than low-megium boundary
++ drop rate ideas
+ + RFC 2544 is not clear on warm-up phase
+  + throughput definition:
+   + just says "send traffic"
+   + gives 2s + 5s after the measurement for device to cool down
+   + that could imply measurement should not have warm-up phase
+  + latency definition:
+   + takes care to explain the measured packet should not be at the start
+ + RFC 1242
+  + throughput:
+   + stress on no-drop
+   + no stress on steady state
+  + frame loss rate:
+   + stress on steady state
+    + might just mean Tr(t) is strictly constant
+ + practical applications
+  + TCP streams are more sensitive to Dx than UDP streams
+  + VPP just activated is expected to be slower at first
+  + New TCP streams start with lower Tr anyway
+  + Odl (rerouted) TCP streams were probably suffering on old path
+  + even if not, Dx(t) at start of the stream has less impact than Dx(t) throughout duration
+   + Practical TCP streams do not have "warm up phase".
+ + Trex abilities:
+  + Already performs latency measurement
+   + using a separate stream of "timestamped" packets
+    + probably, Tr(t) is constant for the union of streams
+     + as opposed to each stream separately,
+     + in other words, the "uniform" stream leaves holes exactly for timestamped packets
+  + If on (effectively) one stream:
+   + VPP probably does not reorder packets
+   + Trex can identify a particular packet in Rx
+   + Can Trex store counters for this packet?
+    + Tx when the packet is sent (Tx0), Rx when the packet is received (Rx0)
+   + If yes, can it report Tx1 := Tx - Tx0 and Rx1 := Rx - Rx0 at the end of the measurement?
+   + That would effectively create a warm-up period adjacent to measurement
+    + no 0.5s pause
+    + (hopefully) Dx1 will be always zero in the medium traffic mode
+   + this way NDR would measure medium-high border
+    + currently it measures low-medium border
++ pdr/ndr current state
+ + NDR:
+  + value will typically be a lucky zero in medium traffic range
+   + here "lucky zero" means Dx=0 is seen while still in medium traffic mode
+    + "unlucky nonzero" has only small probability to happen
+   + NDR varianve between runs is high
+ + PDR:
+  + is measured separately from NDR
+  + value is found in high traffic range
+  + less variance between runs compared to NDR
++ pdr/ndr ideas
+ + PDR:
+  + we can aim for higher Tr precision than in NDR
+ + NDR:
+  + we can require less Tr precision to save time
+ + PDR+NDR being searched together
+  + Perhaps aiming for similar Dr precision is better idea
+   + (than aiming for two different Tr precisions)
+   + Will have to see data
+    + (jittery) Tr precision might still be useful goal for NDR
+  + measurement of Df=0 or above the partial limit applies to both
+  + Only after measuring Df in between, they would become independent searches
+  + after the searches are split:
+   + NDR measurement with Df above the limit is relevant for PDR
+    + This would happen at Tr lower than both previous PDR bounds
+    + So the previous bounds are invalid and new NDR range is once again common for both NDR and PDR
+   + PDR measurement with zero Df is not relevant for NDR
+    + We know lucky zeros are possible in medium traffic range
+    + Valid bounds for NDR:
+     + Upper bound is always the lowest Tr with nonzero Df
+      + (or the line rate)
+     + All measurements with Tr lower than the upper bound have zero Df
+     + Lower bound is highest Tr of such measurements.
+      + Again, measurements with Tr at the upper bound (or above) do not count.
+  + both precision and relevancy suggest to measure NDR first
+   + or "at the same time", but still NDR first within "iteration"
+ + durations
+  + 1s measurements are quick to find the interesting range
+   + measuring MRR acts as a warm-up
+    + This MRR will be an underestimate, but still a good start
+  + to start pdr/ndr at higher duration, results from lower duration help
+  + Example duration [s] sequence: 1, 2, 7, 20, 60.
+   + This is a lot of measurements
+   + but hopefully less seconds overall
+    + copared to jumping straight to 60s without finding interesting interval first.
+ + bisection
+  + usually used only as internal search
+   + internal: "always within the bounds"
+   + result guaranteed to be between the two starting bounds
+  + there exist a modification for external search
+   + external: "possibly outside the bounds"
+   + I was not successful when googling for its official name
+   + example:
+    + we guess NDR will be between Tr of 12 and 13 (arbitrary units)
+    + we measure Df(12) = 0
+     + Good, we have a valid lower bound
+    + we measure Df(13) = 0
+     + Bad, our "upper bound candidate" is not a valid upper bound
+     + 13 is now a _lower_ bound for NDR
+    + we measure at 15, 19, 27, 43 and so on
+    + when we find nonzero Df
+     + The Tr becomes a valid upper bound.
+     + with both bound valid, we continue as in internal search
+   + this is how short duration results are still useful
+    + Even if bounds found with shorter duration are not valid for longer duration
+     + "external bisection" will probably take less iterations
+      + when starting from the short duration bound
+     + compared to full [0, Lr] internal bisection
+ + "smart section"
+  + Rr(upper_bound_rate) can be better candidate for section
+   + than bisecting strictly in half
+   + But it can be way worse in medium traffic region
+  + good section point creates smaller and larger sub-range
+   + small subrange should be:
+    + small enough to save some iterations if lucky
+    + large enough to reduce large subrange enough if unlucky
+  + NDR Example:
+   + upper bound: Lr=10
+   + lower bound: Lr=2
+   + range size = 8
+   + Rr(10)=9.9
+  + there are several ideas on how to to the smart section:
+   + hard limits
+    + example: small subrange should be at least a fourth of the range
+     + NDR example: next Lr = 8
+   + adaptive limits (similar to external binary search)
+    + start with very small limits
+    + double the limits for every Dr!=0 measurement in a row
+  + theoretical best:
+   + the two subranges should have 50% chance of containing the NDR.
+    + we need a good model for Dx=0 probabilities in medium range
+    + even with good model, computing the section might be too complicated
+  + practical approach
+   + code a few algorithms
+   + run them against vhost measurements
+   + pick a subjective best
+  + measurement simulator to test algorithms with
+   + if we become really limited by jenkins run time
+   + if we are not sure about worst case behavior
+   + if we have a model and want to compare with real results
+ + Simulator enhancements
+  + After some thinking I have realized, that it is not clear what would be the API of our search algorithm (and rate providers).
+  + So I have created a basic simulator [0]. For usage see manual_tests.py The API is in the two Abstract* files.
+  + I have included some rate providers for testing bad cases. No realistic provider nor smart search (yet).
+  + [0] https://gerrit.fd.io/r/11173
