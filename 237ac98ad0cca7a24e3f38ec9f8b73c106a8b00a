@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e4e8c92_d0100321",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2018-03-20T13:12:55Z",
+      "side": 1,
+      "message": "This breaks all Centos tests because this statement actually runs on the host not on the DUT. Often as in the case with VIRL the host is Ubuntu.",
+      "revId": "237ac98ad0cca7a24e3f38ec9f8b73c106a8b00a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
