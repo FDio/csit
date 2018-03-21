@@ -58,7 +58,7 @@ def get_variables(interface):
         'sub_if_name': sub_if_name,
         'sub_if_1_settings': {
             "identifier": sub_if_id,
-            "vlan-type": "802dot1q",
+            "vlan-type": "_802dot1q",
             "enabled": "false"
             },
         'sub_if_1_tags': [
@@ -116,7 +116,7 @@ def get_variables(interface):
         },
 
         'tag_rewrite_pop_1_oper': {
-            "vlan-type": "vpp-vlan:802dot1ad",
+            "vlan-type": "vpp-vlan:_802dot1ad",
             "pop-tags": 1
         },
 
