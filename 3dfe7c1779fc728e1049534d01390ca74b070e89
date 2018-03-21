@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e82422f_3b9340eb",
+        "filename": "resources/tools/disk-image-builder/centos/build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-21T08:43:56Z",
+      "side": 1,
+      "message": "\"$1.json\"",
+      "range": {
+        "startLine": 86,
+        "startChar": 17,
+        "endLine": 86,
+        "endChar": 32
+      },
+      "revId": "3dfe7c1779fc728e1049534d01390ca74b070e89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e69cd602_c007d884",
+        "filename": "resources/tools/disk-image-builder/centos/centos-7.4-1711.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-21T08:43:56Z",
+      "side": 1,
+      "message": "Is this file present? centos-7-1711?",
+      "range": {
+        "startLine": 69,
+        "startChar": 47,
+        "endLine": 69,
+        "endChar": 60
+      },
+      "revId": "3dfe7c1779fc728e1049534d01390ca74b070e89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
