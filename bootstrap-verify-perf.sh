@@ -185,7 +185,8 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include mrrAND1t1cORmrrAND2t2c \
+              --include mrrAND64bAND1t1c \
+              --include mrrAND64bAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
         for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
