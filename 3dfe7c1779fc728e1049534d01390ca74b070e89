@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "03eaa765_543826fc",
+        "filename": "resources/tools/disk-image-builder/centos/CHANGELOG",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-03-21T09:09:18Z",
+      "side": 1,
+      "message": "7.4-1711",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "3dfe7c1779fc728e1049534d01390ca74b070e89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e82422f_3b9340eb",
         "filename": "resources/tools/disk-image-builder/centos/build.sh",
         "patchSetId": 4
