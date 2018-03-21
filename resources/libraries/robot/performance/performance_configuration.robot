@@ -1626,7 +1626,9 @@
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
@@ -1732,7 +1734,9 @@
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}

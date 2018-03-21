@@ -110,7 +110,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
 | | [Template] | Check RR for eth-ip4base-eth-2vhostvr256-1vm
 | | framesize=${64} | wt=1 | rxq=1
@@ -134,7 +134,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD
+| | [Tags] | 9000B | 1T1C | STHREAD | THIS
 | | ...
 | | [Template] | Check RR for eth-ip4base-eth-2vhostvr256-1vm
 | | framesize=${9000} | wt=1 | rxq=1
