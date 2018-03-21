@@ -170,7 +170,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2T2C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-eth-2vhostvr1024-1vm
 | | framesize=${1518} | wt=2 | rxq=1
@@ -182,7 +182,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2T2C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-eth-2vhostvr1024-1vm
 | | framesize=${9000} | wt=2 | rxq=1

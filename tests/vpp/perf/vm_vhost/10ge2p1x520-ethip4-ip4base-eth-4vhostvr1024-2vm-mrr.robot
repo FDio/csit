@@ -226,7 +226,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4T4C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-eth-4vhostvr1024-2vm
 | | framesize=${9000} | wt=4 | rxq=2
@@ -239,7 +239,7 @@
 | | ... | trial throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD
+| | [Tags] | IMIX | 4T4C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-eth-4vhostvr1024-2vm
 | | framesize=IMIX_v4_1 | wt=4 | rxq=2
