@@ -18,7 +18,7 @@ from copy import deepcopy
 # Sub-interface 1 and its settings:
 sub_if_1_settings = {
     "identifier": "1",
-    "vlan-type": "802dot1q",
+    "vlan-type": "_802dot1q",
     "enabled": "false"
 }
 
@@ -93,7 +93,7 @@ sub_bd_settings = {
 
 # Configuration data: Enable tag-rewrite push.
 tag_rewrite_push = {
-    "vlan-type": "vpp-vlan:802dot1q",
+    "vlan-type": "vpp-vlan:_802dot1q",
     "push-tags": [
         {
             "index": 0,
@@ -114,7 +114,7 @@ tag_rewrite_push = {
 
 # Expected operational data: tag-rewrite push.
 tag_rewrite_push_oper = {
-    "vlan-type": "vpp-vlan:802dot1q",
+    "vlan-type": "vpp-vlan:_802dot1q",
     "push-tags": [
         {
             "index": 0,
@@ -156,7 +156,7 @@ tag_rewrite_pop_1 = {
 
 # Expected operational data: tag-rewrite pop 1.
 tag_rewrite_pop_1_oper = {
-    "vlan-type": "vpp-vlan:802dot1ad",
+    "vlan-type": "vpp-vlan:_802dot1ad",
     "pop-tags": 1
 }
 
@@ -178,7 +178,7 @@ tag_rewrite_pop_1_VAT = {
 
 # Configuration data: Enable tag-rewrite translate 1-2.
 tag_rewrite_translate_1_2 = {
-    "vlan-type": "vpp-vlan:802dot1q",
+    "vlan-type": "vpp-vlan:_802dot1q",
     "pop-tags": "1",
     "push-tags": [
         {
@@ -200,7 +200,7 @@ tag_rewrite_translate_1_2 = {
 
 # Expected operational data: tag-rewrite translate 1-2.
 tag_rewrite_translate_1_2_oper = {
-    "vlan-type": "vpp-vlan:802dot1q",
+    "vlan-type": "vpp-vlan:_802dot1q",
     "pop-tags": 1,
     "push-tags": [
         {

@@ -502,7 +502,7 @@ trigger_vlan = u"""
 <match-exact-tags>true</match-exact-tags>
 </vlan-tagged>
 </match>
-<vlan-type>802dot1q</vlan-type>
+<vlan-type>_802dot1q</vlan-type>
 <enabled>false</enabled>
 <tags>
 <tag>
