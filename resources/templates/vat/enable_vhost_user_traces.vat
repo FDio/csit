@@ -1,1 +1,1 @@
-exec trace add vhost-user-input 100
+exec trace add vhost-user-input 50

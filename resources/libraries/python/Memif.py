@@ -175,7 +175,7 @@ class Memif(object):
             for item in memif_data:
                 if memif_data[item]['sw_if_index'] == str(sw_if_idx):
                     return item
-                return None
+        return None
 
     @staticmethod
     def vpp_get_memif_interface_mac(node, sw_if_idx):

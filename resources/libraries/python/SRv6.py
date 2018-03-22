@@ -32,6 +32,12 @@ SRV6BEHAVIOUR_END_DT4 = 'end.dt4'
 SRV6BEHAVIOUR_END_DX6 = 'end.dx6'
 # Endpoint with decapsulation and IPv6 table lookup
 SRV6BEHAVIOUR_END_DT6 = 'end.dt6'
+# Endpoint to SR-unaware appliance via static proxy
+SRV6BEHAVIOUR_END_AS = 'end.as'
+# Endpoint to SR-unaware appliance via dynamic proxy
+SRV6BEHAVIOUR_END_AD = 'end.ad'
+# Endpoint to SR-unaware appliance via masquerading
+SRV6BEHAVIOUR_END_AM = 'end.am'
 
 
 class SRv6(object):
@@ -42,7 +48,8 @@ class SRv6(object):
 
     @staticmethod
     def configure_sr_localsid(node, local_sid, behavior, interface=None,
-                              next_hop=None, fib_table=None):
+                              next_hop=None, fib_table=None, out_if=None,
+                              in_if=None, src_addr=None, sid_list=None):
         """Create SRv6 LocalSID and binds it to a particular behaviour on
         the given node.
 
@@ -55,12 +62,27 @@ class SRv6(object):
             xconnects).
         :param fib_table: FIB table for IPv4/IPv6 lookup (Optional, required for
             L3 routing).
+        :param out_if: Interface name of local interface for sending traffic
+            towards the Service Function (Optional, required for SRv6 endpoint
+            to SR-unaware appliance).
+        :param in_if: Interface name of local interface receiving the traffic
+            coming back from the Service Function (Optional, required for SRv6
+            endpoint to SR-unaware appliance).
+        :param src_addr: Source address on the packets coming back on in_if
+            interface (Optional, required for SRv6 endpoint to SR-unaware
+            appliance via static proxy).
+        :param sid_list: SID list (Optional, required for SRv6 endpoint to
+            SR-unaware appliance via static proxy).
         :type node: dict
         :type local_sid: str
         :type behavior: str
         :type interface: str
         :type next_hop: int
         :type fib_table: str
+        :type out_if: str
+        :type in_if: str
+        :type src_addr: str
+        :type sid_list: list
         :raises ValueError: If unsupported SRv6 LocalSID function used or
             required parameter is missing.
         """
@@ -69,20 +91,36 @@ class SRv6(object):
         elif behavior in [SRV6BEHAVIOUR_END_X, SRV6BEHAVIOUR_END_DX4,
                           SRV6BEHAVIOUR_END_DX6]:
             if interface is None or next_hop is None:
-                raise ValueError('Required data missing.\ninterface:{0}\n'
-                                 'next_hop:{1}'.format(interface, next_hop))
+                raise ValueError('Required parameter(s) missing.\ninterface:{0}'
+                                 '\nnext_hop:{1}'.format(interface, next_hop))
             interface_name = Topology.get_interface_name(node, interface)
             params = '{0} {1}'.format(interface_name, next_hop)
         elif behavior == SRV6BEHAVIOUR_END_DX2:
             if interface is None:
-                raise ValueError('Required data missing.\ninterface:{0}\n'.
+                raise ValueError('Required parameter missing.\ninterface:{0}'.
                                  format(interface))
             params = '{0}'.format(interface)
         elif behavior in [SRV6BEHAVIOUR_END_DT4, SRV6BEHAVIOUR_END_DT6]:
             if fib_table is None:
-                raise ValueError('Required data missing.\nfib_table:{0}\n'.
+                raise ValueError('Required parameter missing.\nfib_table: {0}'.
                                  format(fib_table))
             params = '{0}'.format(fib_table)
+        elif behavior == SRV6BEHAVIOUR_END_AS:
+            if next_hop is None or out_if is None or in_if is None or \
+                            src_addr is None or sid_list is None:
+                raise ValueError('Required parameter(s) missing.\nnext_hop:{0}'
+                                 '\nout_if:{1}\nin_if:{2}\nsrc_addr:{3}\n'
+                                 'sid_list:{4}'.format(next_hop, out_if, in_if,
+                                                       src_addr, sid_list))
+            sid_conf = 'next ' + ' next '.join(sid_list)
+            params = 'nh {0} oif {1} iif {2} src {3} {4}'.\
+                format(next_hop, out_if, in_if, src_addr, sid_conf)
+        elif behavior in [SRV6BEHAVIOUR_END_AD, SRV6BEHAVIOUR_END_AM]:
+            if next_hop is None or out_if is None or in_if is None:
+                raise ValueError('Required parameter(s) missing.\nnext_hop:{0}'
+                                 '\nout_if:{1}\nin_if:{2}'.
+                                 format(next_hop, out_if, in_if))
+            params = 'nh {0} oif {1} iif {2}'.format(next_hop, out_if, in_if)
         else:
             raise ValueError('Unsupported SRv6 LocalSID function: {0}'.
                              format(behavior))
@@ -217,9 +255,13 @@ class SRv6(object):
             vat.vat_terminal_exec_cmd_from_template(
                 'srv6/sr_steer_add_del.vat', params=params, bsid=bsid)
 
-        if "exec error: Misc" in vat.vat_stdout:
-            raise RuntimeError('Create SRv6 steering policy for BindingSID {0}'
-                               ' failed on node {1}'.format(bsid, node['host']))
+        sr_steer_errors = ("exec error: Misc",
+                           "sr steer: No SR policy specified")
+        for err in sr_steer_errors:
+            if err in vat.vat_stdout:
+                raise RuntimeError('Create SRv6 steering policy for BindingSID'
+                                   ' {0} failed on node {1}'.
+                                   format(bsid, node['host']))
 
     @staticmethod
     def delete_sr_steer(node, mode, bsid, interface=None, ip_addr=None,
