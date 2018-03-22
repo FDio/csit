@@ -407,6 +407,27 @@
 | | Set Suite Variable | @{plugins_to_enable}
 | | Append To List | ${plugins_to_enable} | acl_plugin.so
 
+| Set up performance test suite with Static SRv6 proxy
+| | [Documentation]
+| | ... | Append acl_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | srv6as_plugin.so
+
+| Set up performance test suite with Dynamic SRv6 proxy
+| | [Documentation]
+| | ... | Append acl_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | srv6ad_plugin.so
+
+| Set up performance test suite with Masquerading SRv6 proxy
+| | [Documentation]
+| | ... | Append acl_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | srv6am_plugin.so
+
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of
@@ -775,3 +796,5 @@
 | | Run Keyword If Test Failed
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed | Show SR LocalSIDs on all DUTs | ${nodes}
+| | Run Keyword If | ${pkt_trace}==${True}
+| | ... | Show Packet Trace On All Duts | ${nodes}

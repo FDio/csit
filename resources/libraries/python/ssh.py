@@ -79,7 +79,7 @@ class SSH(object):
 
                 self._ssh.connect(node['host'], username=node['username'],
                                   password=node.get('password'), pkey=pkey,
-                                  port=node['port'])
+                                  port=node['port'], allow_agent=False)
 
                 self._ssh.get_transport().set_keepalive(10)
 
