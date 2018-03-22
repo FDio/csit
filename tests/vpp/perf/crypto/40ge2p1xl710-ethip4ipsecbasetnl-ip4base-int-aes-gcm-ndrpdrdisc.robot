@@ -55,9 +55,9 @@
 
 *** Variables ***
 # XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_limit} | ${24500000000}
+| ${s_limit}= | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps} | ${18750000}
+| ${s_18.75Mpps}= | ${18750000}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
 | ${dut1_if2_ip4}= | 172.168.1.1
@@ -70,11 +70,19 @@
 | ${ipsec_overhead_gcm}= | ${54}
 | ${n_tunnels}= | ${1}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4dst${n_tunnels}
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config with ${wt} thread(s),\
+| | ... | ${wt} phy core(s), ${rxq} receive queue(s) per NIC port.
+| | ... | [Ver] Measure NDR or PDR for ${framesize} by bisecting between\
+| | ... | ${min_rate} and computed max rate, using trial loss rate measurements.
+| | ...
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| | ...
+| | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
@@ -87,6 +95,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
+| | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
@@ -94,7 +103,7 @@
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
