@@ -188,6 +188,9 @@ case "$TEST_TAG" in
               --include mrrAND64bAND1t1c \
               --include mrrAND64bAND2t2c \
               --include mrrAND64bAND4t4c \
+              --include mrrAND78bAND1t1c \
+              --include mrrAND78bAND2t2c \
+              --include mrrAND78bAND4t4c \
               tests/
         RETURN_STATUS=$(echo $?)
         for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
