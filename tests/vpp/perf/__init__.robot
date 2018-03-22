@@ -34,8 +34,7 @@
 | | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - perf_vm_image - Guest VM disk image
-| | ... | - perf_qemu_bin - Path to QEMU binary
-| | ... | - perf_qemu_qsz - QEMU virtio queue size
+| | ... | - perf_qemu_path - Path prefix to QEMU binary
 | | ... | - use_tuned_cfs - Switch to set scheduler policy
 | | ... | - qemu_built - Information if QEMU build is already prepared
 | | ... | - pkt_trace - Switch to enable packet trace for test
@@ -45,10 +44,9 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
-| | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.5.0/bin/
-| | Set Global Variable | ${perf_qemu_qsz} | 1024
+| | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.5.0
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
-| | Set Global Variable | ${qemu_built} | ${False}
+| | Set Global Variable | ${qemu_built} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | @{plugins_to_disable}= | Create List
 | | ... | acl_plugin.so
