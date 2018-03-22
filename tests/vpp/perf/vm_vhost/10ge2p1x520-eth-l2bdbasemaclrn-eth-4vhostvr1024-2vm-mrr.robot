@@ -49,6 +49,7 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
@@ -56,7 +57,7 @@
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | Check RR for eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm
