@@ -640,6 +640,7 @@
 | | ... | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${sid2} | ${sid_prefix} | ${dut1_if2_ip6}
 | | ... | ${dut2_if1}
+# Configure SRv6 for direction0
 | | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
 | | @{sid_list_dir0}= | Run Keyword If | "${n}" == "1"
 | | ... | Create List | ${dut2_sid1}
@@ -660,6 +661,7 @@
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut2} | ${dut2_sid1_2} | ${sid_prefix}
 | | ... | ${tg_if2_ip6_subnet}2 | ${dut2_if2}
+# Configure SRv6 for direction1
 | | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
 | | @{sid_list_dir1}= | Run Keyword If | "${n}" == "1"
 | | ... | Create List | ${dut1_sid2}
@@ -680,6 +682,95 @@
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
 | | ... | ${tg_if1_ip6_subnet}2 | ${dut1_if1}
+
+| Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via '${behavior}' behaviour in 3-node circular topology
+| | [Documentation]
+| | ... | Create pair of Memif interfaces on all defined VPP nodes. Set UP
+| | ... | state on VPP interfaces in path on nodes in 3-node circular topology.
+| | ... | Get the interface MAC addresses and setup neighbours on all VPP
+| | ... | interfaces. Setup IPv6 addresses on all interfaces. Set segment
+| | ... | routing for IPv6 with defined behaviour function and configure IPv6
+| | ... | routes on both DUT nodes.
+| | ...
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${sock1}= | Set Variable | memif-DUT1_VNF
+| | ${sock2}= | Set Variable | memif-DUT2_VNF
+| | Set up memif interfaces on DUT node | ${dut1}
+| | ... | ${sock1} | ${sock1} | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2
+| | Set up memif interfaces on DUT node | ${dut2}
+| | ... | ${sock2} | ${sock2} | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1-memif-1-if1}
+| | ... | ${dut1-memif-1-if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1-memif-1-if2}
+| | ... | ${dut1-memif-1-if2_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2-memif-1-if1}
+| | ... | ${dut2-memif-1-if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2-memif-1-if2}
+| | ... | ${dut2-memif-1-if2_ip6} | ${prefix}
+| | Suppress ICMPv6 router advertisement message | ${nodes}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_if2_ip6} | ${dut1_if2_mac}
+| | Vpp Route Add | ${dut1} | ${dut2_sid1} | ${sid_prefix} | ${dut2_if1_ip6}
+| | ... | ${dut1_if2}
+| | Vpp Route Add | ${dut1} | ${dut1_nh} | ${prefix} | ${dut1-memif-1-if1_ip6}
+| | ... | ${dut1-memif-1-if1}
+| | Vpp Route Add | ${dut1} | ${out_sid2} | ${sid_prefix} | ${dut1_if1_ip6}
+| | ... | ${dut1_if1}
+| | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix} | ${dut1_if2_ip6}
+| | ... | ${dut2_if1}
+| | Vpp Route Add | ${dut2} | ${dut2_nh} | ${prefix} | ${dut2-memif-1-if1_ip6}
+| | ... | ${dut2-memif-1-if2}
+| | Vpp Route Add | ${dut2} | ${out_sid1} | ${sid_prefix} | ${dut2_if2_ip6}
+| | ... | ${dut2_if2}
+# Configure SRv6 for direction0
+| | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
+| | @{sid_list_dir0}= | Create List | ${dut2_sid1} | ${out_sid1}
+| | Configure SR Policy on DUT | ${dut1} | ${dut1_bsid} | encap
+| | ... | @{sid_list_dir0}
+| | Configure SR Steer on DUT | ${dut1} | L3 | ${dut1_bsid}
+| | ... | ip_addr=${tg_if2_ip6_subnet} | prefix=${sid_prefix}
+| | Run Keyword If | "${behavior}" == "static_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.as
+| | ... | next_hop=${dut2_nh} | out_if=${dut2-memif-1-if1}
+| | ... | in_if=${dut2-memif-1-if2} | src_addr=${dut1_sid1}
+| | ... | interface=${None} | fib_table=${None} | @{sid_list_dir0}
+| | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.ad
+| | ... | next_hop=${dut2_nh} | out_if=${dut2-memif-1-if1}
+| | ... | in_if=${dut2-memif-1-if2}
+| | ... | ELSE IF | "${behavior}" == "masquerading"
+| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.am
+| | ... | next_hop=${dut2_nh} | out_if=${dut2-memif-1-if1}
+| | ... | in_if=${dut2-memif-1-if2}
+| | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
+# Configure SRv6 for direction1
+| | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
+| | @{sid_list_dir1}= Create List | ${dut1_sid2} | ${out_sid2}
+| | Configure SR Policy on DUT | ${dut2} | ${dut2_bsid} | encap
+| | ... | @{sid_list_dir1}
+| | Configure SR Steer on DUT | ${dut2} | L3 | ${dut2_bsid}
+| | ... | ip_addr=${tg_if1_ip6_subnet} | prefix=${sid_prefix}
+| | Run Keyword If | "${behavior}" == "static_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.as
+| | ... | next_hop=${dut1_nh} | out_if=${dut1-memif-1-if1}
+| | ... | in_if=${dut1-memif-1-if2} | src_addr=${dut2_sid2}
+| | ... | interface=${None} | fib_table=${None} | @{sid_list_dir1}
+| | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.ad
+| | ... | next_hop=${dut1_nh} | out_if=${dut1-memif-1-if1}
+| | ... | in_if=${dut1-memif-1-if2}
+| | ... | ELSE IF | "${behavior}" == "masquerading"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.am
+| | ... | next_hop=${dut1_nh} | out_if=${dut1-memif-1-if1}
+| | ... | in_if=${dut1-memif-1-if2}
+| | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
 
 | Initialize L2 xconnect in 3-node circular topology
 | | [Documentation]
