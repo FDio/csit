@@ -68,12 +68,13 @@ APT_WANTLIST_VPP="dkms bridge-utils libmbedcrypto0 libmbedtls10 libmbedx509-0"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
 APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
+APT_WANTLIST_DMM="git cmake gcc g++ automake libtool wget lsof lshw pciutils net-tools tcpdump libpcre3 libpcre3-dev zlibc zlib1g zlib1g-dev psmisc autoconf"
 #Docker is currently disabled due to issues with apt repositories retrieval
 #APT_WANTLIST_DOCKER="docker-engine"
 
 # For now, let us NOT incude WANTLIST_NESTED in the below. We're installing qemu
 # separately from a separate source.
-APT_WANTLIST="$APT_WANTLIST_INFRA $APT_WANTLIST_CSIT $APT_WANTLIST_VPP $APT_WANTLIST_TREX $APT_WANTLIST_TLDK"
+APT_WANTLIST="$APT_WANTLIST_INFRA $APT_WANTLIST_CSIT $APT_WANTLIST_VPP $APT_WANTLIST_TREX $APT_WANTLIST_TLDK $APT_WANTLIST_DMM"
 
 APT_OUTPUTFILE="${OUTPUT_DIR}/apt-packages.txt"
 
