@@ -688,6 +688,8 @@ class QemuUtils(object):
         ssh.connect(node)
 
         directory = ' --directory={0}'.format(Constants.QEMU_INSTALL_DIR)
+        if apply_patch:
+            directory += '-patch'
         version = ' --version={0}'.format(Constants.QEMU_INSTALL_VERSION)
         force = ' --force' if force_install else ''
         patch = ' --patch' if apply_patch else ''

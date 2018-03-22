@@ -49,6 +49,7 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # Socket names
 | ${sock1}= | /tmp/sock-1
 | ${sock2}= | /tmp/sock-2
@@ -62,7 +63,7 @@
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
 | Check RR for ethip4-ip4base-eth-4vhostvr1024-2vm
