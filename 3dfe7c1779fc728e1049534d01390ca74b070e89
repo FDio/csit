@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e40faf8_493e62a8",
+        "filename": "resources/tools/disk-image-builder/centos/CHANGELOG",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2018-03-22T13:13:31Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "03eaa765_543826fc",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "3dfe7c1779fc728e1049534d01390ca74b070e89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e82422f_3b9340eb",
         "filename": "resources/tools/disk-image-builder/centos/build.sh",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cffa89e4_c5096679",
+        "filename": "resources/tools/disk-image-builder/centos/build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2018-03-22T13:13:31Z",
+      "side": 1,
+      "message": "Yes, you are right. Since  this builds for multiple releases, that should use the parameter.\nFixed.",
+      "parentUuid": "2e82422f_3b9340eb",
+      "range": {
+        "startLine": 86,
+        "startChar": 17,
+        "endLine": 86,
+        "endChar": 32
+      },
+      "revId": "3dfe7c1779fc728e1049534d01390ca74b070e89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e69cd602_c007d884",
         "filename": "resources/tools/disk-image-builder/centos/centos-7.4-1711.json",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2018-03-21T08:43:56Z",
       "side": 1,
       "message": "Is this file present? centos-7-1711?",
+      "range": {
+        "startLine": 69,
+        "startChar": 47,
+        "endLine": 69,
+        "endChar": 60
+      },
+      "revId": "3dfe7c1779fc728e1049534d01390ca74b070e89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f34f46e_86a5a625",
+        "filename": "resources/tools/disk-image-builder/centos/centos-7.4-1711.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2018-03-22T13:13:31Z",
+      "side": 1,
+      "message": "Yes, we have been carrying it along since the first Centos image.",
+      "parentUuid": "e69cd602_c007d884",
       "range": {
         "startLine": 69,
         "startChar": 47,
