@@ -57,6 +57,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
 | ${vlan_overhead}= | ${4}
@@ -68,7 +69,7 @@
 | ${sock1}= | /tmp/sock-1-${bd_id1}
 | ${sock2}= | /tmp/sock-1-${bd_id2}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Test Cases ***
 | tc01-64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
@@ -100,8 +101,6 @@
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -137,8 +136,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -174,8 +171,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -210,8 +205,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -249,8 +242,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -287,8 +278,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -324,8 +313,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -360,8 +347,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -397,8 +382,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -433,8 +416,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -472,8 +453,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -510,8 +489,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -547,8 +524,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -583,8 +558,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -620,8 +593,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -656,8 +627,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -695,8 +664,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -733,8 +700,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
