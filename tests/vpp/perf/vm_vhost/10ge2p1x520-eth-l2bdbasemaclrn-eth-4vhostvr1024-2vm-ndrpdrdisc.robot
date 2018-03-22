@@ -37,7 +37,7 @@
 | ... | vhost-user interfaces using 5 cores pinned to cpus 6-10 and 11-15 and
 | ... | 2048M memory. Testpmd is using socket-mem=1024M (512x2M hugepages),
 | ... | 5 cores (1 main core and 4 cores dedicated for io), forwarding mode is
-| ... | set to io, rxd/txd=256, burst=64. DUT1, DUT2 are tested with 2p10GE NIC
+| ... | set to io, rxd/txd=1024, burst=64. DUT1, DUT2 are tested with 2p10GE NIC
 | ... | X520 Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
@@ -54,6 +54,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # CPU settings
@@ -61,7 +62,7 @@
 | ${vpp_cpus}= | ${5}
 | ${vm_cpus}= | ${5}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
