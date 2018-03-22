@@ -407,6 +407,27 @@
 | | Set Suite Variable | @{plugins_to_enable}
 | | Append To List | ${plugins_to_enable} | acl_plugin.so
 
+| Set up performance test suite with Static SRv6 proxy
+| | [Documentation]
+| | ... | Append srv6as_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | srv6as_plugin.so
+
+| Set up performance test suite with Dynamic SRv6 proxy
+| | [Documentation]
+| | ... | Append srv6ad_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | srv6ad_plugin.so
+
+| Set up performance test suite with Masquerading SRv6 proxy
+| | [Documentation]
+| | ... | Append srv6am_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | srv6am_plugin.so
+
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of
