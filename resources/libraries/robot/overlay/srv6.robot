@@ -30,6 +30,18 @@
 | | ... | None; required for L3 xconnects). Type: string
 | | ... | - fib_table - FIB table for IPv4/IPv6 lookup (Optional, default value:
 | | ... | None; required for L3 routing). Type: string
+| | ... | - out_if - Interface name of local interface for sending traffic
+| | ... | towards the Service Function (Optional, default value: None;
+| | ... | required for SRv6 endpoint to SR-unaware appliance). Type: string
+| | ... | - in_if - Interface name of local interface receiving the traffic
+| | ... | coming back from the Service Function (Optional, default value:
+| | ... | None; required for SRv6 endpoint to SR-unaware appliance).
+| | ... | Type: string
+| | ... | - src_addr - Source address on the packets coming back on in_if
+| | ... | interface (Optional, default value: None; required for SRv6 endpoint
+| | ... | to SR-unaware appliance via static proxy). Type: string
+| | ... | - sid_list - SID list (Optional, default value: []; required for SRv6
+| | ... | endpoint to SR-unaware appliance via static proxy). Type: list
 | | ...
 | | ... | *Example:*
 | | ...
@@ -40,12 +52,22 @@
 | | ... | \| end.dx4 \| interface=GigabitEthernet0/8/0 \| next_hop=10.0.0.1 \|
 | | ... | \| Configure SR LocalSID on DUT \| ${nodes['DUT2']} \| E:: \
 | | ... | \| end.dt6 \| fib_table=2 \|
+| | ... | \| Configure SR LocalSID on DUT \| ${nodes['DUT2']} \| E:: \
+| | ... | \| end.ad \| next_hop=10.0.0.1 \| out_if=DUT2_VHOST1 \
+| | ... | \| in_if=DUT2_VHOST2 \|
+| | ... | \| Configure SR LocalSID on DUT \| ${nodes['DUT2']} \| E:: \
+| | ... | \| end.as \| next_hop=10.0.0.1 \| out_if=DUT2_VHOST1 \
+| | ... | \| in_if=DUT2_VHOST2 \| src_addr=B:: \| sid_list=['C::', 'D::'] \|
 | | ...
 | | [Arguments] | ${dut_node} | ${local_sid} | ${behavior}
 | | ... | ${interface}=${None} | ${next_hop}=${None} | ${fib_table}=${None}
+| | ... | ${out_if}=${None} | ${in_if}=${None} | ${src_addr}=${None}
+| | ... | @{sid_list}
 | | ...
 | | Configure SR LocalSID | ${dut_node} | ${local_sid} | ${behavior}
 | | ... | interface=${interface} | next_hop=${next_hop} | fib_table=${fib_table}
+| | ... | out_if=${out_if} | in_if=${in_if} | src_addr=${src_addr}
+| | ... | sid_list=${sid_list}
 
 | Delete SR LocalSID on DUT
 | | [Documentation] | Delete SRv6 LocalSID on the given DUT node.

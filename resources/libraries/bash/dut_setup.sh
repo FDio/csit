@@ -55,3 +55,6 @@ cmd 'sudo vpp_api_test <<< "exec trace add dpdk-input 100"'
 
 echo "[Command_desc] Adding vhost-user-input trace"
 cmd 'sudo vpp_api_test <<< "exec trace add vhost-user-input 100"'
+
+echo "[Command_desc] Adding memif-input trace"
+cmd 'sudo vpp_api_test <<< "exec trace add memif-input 100"'
