@@ -1,0 +1,1 @@
+exec trace add memif-input 50

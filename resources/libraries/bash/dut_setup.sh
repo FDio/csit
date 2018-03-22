@@ -51,7 +51,10 @@ cmd 'sudo dmidecode | grep UUID'
 cmd 'lspci -Dnn'
 
 echo "[Command_desc] Adding dpdk-input trace"
-cmd 'sudo vpp_api_test <<< "exec trace add dpdk-input 100"'
+cmd 'sudo vpp_api_test <<< "exec trace add dpdk-input 50"'
 
 echo "[Command_desc] Adding vhost-user-input trace"
-cmd 'sudo vpp_api_test <<< "exec trace add vhost-user-input 100"'
+cmd 'sudo vpp_api_test <<< "exec trace add vhost-user-input 50"'
+
+echo "[Command_desc] Adding memif-input trace"
+cmd 'sudo vpp_api_test <<< "exec trace add memif-input 50"'
