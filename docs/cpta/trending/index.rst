@@ -6,5 +6,8 @@ VPP Performance Trend
     l2
     ip4
     ip6
-    container_memif
+    ip4_tunnels
+    ip6_tunnels
     vm_vhost
+    container_memif
+    ipsec
