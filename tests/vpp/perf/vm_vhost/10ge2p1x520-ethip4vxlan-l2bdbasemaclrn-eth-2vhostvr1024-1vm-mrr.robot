@@ -53,6 +53,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC7348.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
@@ -62,7 +63,7 @@
 | ${s_limit}= | ${10000000000}
 | ${vxlan_overhead} | ${50}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | Check RR for ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm
@@ -97,8 +98,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 

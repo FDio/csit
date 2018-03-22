@@ -890,40 +890,40 @@
 | | ${port_limit}= | Set Variable | ${65535}
 | | ${acl}= | Set Variable | ipv4 permit
 | | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
-| |      | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
-| |      | ${dst_ip_int} = | Evaluate | $dst_ip_int + $ip_step
-| |      | ${sport}= | Evaluate | $sport + $port_step
-| |      | ${dport}= | Evaluate | $dport + $port_step
-| |      | ${ipv4_limit_reached}= | Set Variable If
-| |      | ... | $src_ip_int > $ip_limit_int or $src_ip_int > $ip_limit_int
-| |      | ... | ${True}
-| |      | ${udp_limit_reached}= | Set Variable If
-| |      | ... | $sport > $port_limit or $dport > $port_limit | ${True}
-| |      | Run Keyword If | $ipv4_limit_reached is True | Log
-| |      | ... | Can't do more iterations - IPv4 address limit has been reached.
-| |      | ... | WARN
-| |      | Run Keyword If | $udp_limit_reached is True | Log
-| |      | ... | Can't do more iterations - UDP port limit has been reached.
-| |      | ... | WARN
-| |      | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
-| |      | ... | Set Variable | ${ip_limit}
-| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
-| |      | ... | modules=ipaddress
-| |      | ${dst_ip} = | Run Keyword If | $ipv4_limit_reached is True
-| |      | ... | Set Variable | ${ip_limit}
-| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($dst_ip_int))
-| |      | ... | modules=ipaddress
-| |      | ${sport}= | Set Variable If | ${sport} > $port_limit | $port_limit
-| |      | ... | ${sport}
-| |      | ${dport}= | Set Variable If | ${dport} > $port_limit | $port_limit
-| |      | ... | ${dport}
-| |      | ${acl}= | Catenate | ${acl} | src ${src_ip}/32 dst ${dst_ip}/32
-| |      | ... | sport ${sport} | dport ${dport},
-| |      | Exit For Loop If
-| |      | ... | $ipv4_limit_reached is True or $udp_limit_reached is True
+| | | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
+| | | ${dst_ip_int} = | Evaluate | $dst_ip_int + $ip_step
+| | | ${sport}= | Evaluate | $sport + $port_step
+| | | ${dport}= | Evaluate | $dport + $port_step
+| | | ${ipv4_limit_reached}= | Set Variable If
+| | | ... | $src_ip_int > $ip_limit_int or $src_ip_int > $ip_limit_int
+| | | ... | ${True}
+| | | ${udp_limit_reached}= | Set Variable If
+| | | ... | $sport > $port_limit or $dport > $port_limit | ${True}
+| | | Run Keyword If | $ipv4_limit_reached is True | Log
+| | | ... | Can't do more iterations - IPv4 address limit has been reached.
+| | | ... | WARN
+| | | Run Keyword If | $udp_limit_reached is True | Log
+| | | ... | Can't do more iterations - UDP port limit has been reached.
+| | | ... | WARN
+| | | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| | | ... | Set Variable | ${ip_limit}
+| | | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
+| | | ... | modules=ipaddress
+| | | ${dst_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| | | ... | Set Variable | ${ip_limit}
+| | | ... | ELSE | Evaluate | str(ipaddress.ip_address($dst_ip_int))
+| | | ... | modules=ipaddress
+| | | ${sport}= | Set Variable If | ${sport} > $port_limit | $port_limit
+| | | ... | ${sport}
+| | | ${dport}= | Set Variable If | ${dport} > $port_limit | $port_limit
+| | | ... | ${dport}
+| | | ${acl}= | Catenate | ${acl} | src ${src_ip}/32 dst ${dst_ip}/32
+| | | ... | sport ${sport} | dport ${dport},
+| | | Exit For Loop If
+| | | ... | $ipv4_limit_reached is True or $udp_limit_reached is True
 | | ${acl}= | Catenate | ${acl}
-| | ...     | ipv4 ${acl_action} src ${trex_stream1_subnet},
-| | ...     | ipv4 ${acl_action} src ${trex_stream2_subnet}
+| | ... | ipv4 ${acl_action} src ${trex_stream1_subnet},
+| | ... | ipv4 ${acl_action} src ${trex_stream2_subnet}
 | | Add Replace Acl Multi Entries | ${dut} | rules=${acl}
 | | @{acl_list}= | Create List | ${0}
 | | Run Keyword If | 'input' in $acl_apply_type and $dut_if1 is not None
@@ -1433,6 +1433,8 @@
 | | ... | Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
 | | ... | Type: integer
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1444,7 +1446,7 @@
 | | ... | \| qemu_id=${2} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5} | ${qemu_id}=${1}
+| | ... | ${count}=${5} | ${qemu_id}=${1} | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
@@ -1458,12 +1460,17 @@
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin/
+| | ... | ${perf_qemu_path}-base/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1471,9 +1478,11 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure '${nr}' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
@@ -1488,10 +1497,12 @@
 | | ... | - ${system_cpus} - Number of CPUs allocated for OS itself.
 | | ... | - ${vpp_cpus} - Number of CPUs allocated for VPP.
 | | ... | - ${vm_cpus} - Number of CPUs to be allocated per QEMU instance.
+| | ... | - ${jumbo_frames} - Jumbo frames are used (True) or are not used
+| | ... | (False) in the test.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure '2' guest VMs with dpdk-testpmd connected via vhost-user \
+| | ... | \| Configure '2' guest VMs with dpdk-testpmd connected via vhost-user\
 | | ... | in 3-node circular topology \|
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
@@ -1501,13 +1512,13 @@
 | | | ${vm1}= | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM${number}
 | | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
+| | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
 | | | ${vm2}= | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
 | | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
+| | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
-| | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | | ... | ${True}
 
 | Configure guest VM with dpdk-testpmd using SMT connected via vhost-user
 | | [Documentation]
@@ -1524,6 +1535,8 @@
 | | ... | - vm_name - QemuUtil instance name. Type: string
 | | ... | - skip - number of cpus which will be skipped. Type: int
 | | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1532,7 +1545,7 @@
 | | ... | \| ${6} \| ${5} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5}
+| | ... | ${count}=${5} | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils
 | | ... | WITH NAME | ${vm_name}
@@ -1541,12 +1554,17 @@
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin/
+| | ... | ${perf_qemu_path}-base/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1554,9 +1572,11 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
@@ -1579,6 +1599,8 @@
 | | ... | Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
 | | ... | Type: integer
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1592,7 +1614,7 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
-| | ... | ${qemu_id}=${1}
+| | ... | ${qemu_id}=${1} | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
@@ -1606,12 +1628,17 @@
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin/
+| | ... | ${perf_qemu_path}-base/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1619,10 +1646,12 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure '${nr}' guest VMs with dpdk-testpmd-mac connected via vhost-user in 3-node circular topology
@@ -1638,10 +1667,12 @@
 | | ... | - ${system_cpus} - Number of CPUs allocated for OS itself.
 | | ... | - ${vpp_cpus} - Number of CPUs allocated for VPP.
 | | ... | - ${vm_cpus} - Number of CPUs to be allocated per QEMU instance.
+| | ... | - ${jumbo_frames} - Jumbo frames are used (True) or are not used
+| | ... | (False) in the test.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure '2' guest VMs with dpdk-testpmd-mac connected via vhost-user \
+| | ... | \| Configure '2' guest VMs with dpdk-testpmd-mac connected via vhost-user\
 | | ... | in 3-node circular topology \|
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
@@ -1654,6 +1685,7 @@
 | | | ... | ${dut1-vhost-${number}-if1_mac}
 | | | ... | ${dut1-vhost-${number}-if2_mac} | skip=${skip_cpus}
 | | | ... | count=${vm_cpus} | qemu_id=${number}
+| | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
 | | | ${vm2}=
 | | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
@@ -1661,9 +1693,8 @@
 | | | ... | ${dut2-vhost-${number}-if1_mac}
 | | | ... | ${dut2-vhost-${number}-if2_mac} | skip=${skip_cpus}
 | | | ... | count=${vm_cpus} | qemu_id=${number}
+| | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
-| | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | | ... | ${True}
 
 | Configure guest VM with dpdk-testpmd-mac using SMT connected via vhost-user
 | | [Documentation]
@@ -1682,6 +1713,8 @@
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
 | | ... | - skip - number of cpus which will be skipped. Type: int
 | | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1691,6 +1724,7 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
+| | ... | ${jumbo_frames}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils
 | | ... | WITH NAME | ${vm_name}
@@ -1699,12 +1733,17 @@
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin/
+| | ... | ${perf_qemu_path}-base/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1712,10 +1751,12 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure guest VM with linux bridge connected via vhost-user
@@ -1750,9 +1791,12 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin/
+| | ... | ${perf_qemu_path}-base/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1800,9 +1844,12 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin/
+| | ... | ${perf_qemu_path}-base/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
+| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -2092,8 +2139,7 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-${number}-1
-| | ... | - /tmp/memif-${number}-2
+| | ... | - /tmp/memif-DUT1_VNF${number}-${sid}
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2104,29 +2150,29 @@
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
 | | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
-| |      | ${sock1}= | Set Variable | /tmp/memif-DUT1_VNF${number}-1
-| |      | ${sock2}= | Set Variable | /tmp/memif-DUT1_VNF${number}-2
-| |      | ${prev_index}= | Evaluate | ${number}-1
-| |      | Set up memif interfaces on DUT node | ${dut1}
-| |      | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
-| |      | ... | dut1-memif-${number}-if2
-| |      | ${dut1_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut1_if1}
-| |      | ... | ${dut1-memif-${prev_index}-if2}
-| |      | Configure L2XC | ${dut1} | ${dut1_xconnect_if1}
-| |      | ... | ${dut1-memif-${number}-if1}
-| |      | ${sock1}= | Set Variable | /tmp/memif-DUT2_VNF${number}-1
-| |      | ${sock2}= | Set Variable | /tmp/memif-DUT2_VNF${number}-2
-| |      | Set up memif interfaces on DUT node | ${dut2}
-| |      | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
-| |      | ... | dut2-memif-${number}-if2
-| |      | ${dut2_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut2_if1}
-| |      | ... | ${dut2-memif-${prev_index}-if2}
-| |      | Configure L2XC | ${dut2} | ${dut2_xconnect_if1}
-| |      | ... | ${dut2-memif-${number}-if1}
-| |      | Run Keyword If | ${number}==${nr} | Configure L2XC
-| |      | ... | ${dut1} | ${dut1-memif-${number}-if2} | ${dut1_if2}
-| |      | Run Keyword If | ${number}==${nr} | Configure L2XC
-| |      | ... | ${dut2} | ${dut2-memif-${number}-if2} | ${dut2_if2}
+| | | ${sock1}= | Set Variable | memif-DUT1_VNF
+| | | ${sock2}= | Set Variable | memif-DUT1_VNF
+| | | ${prev_index}= | Evaluate | ${number}-1
+| | | Set up memif interfaces on DUT node | ${dut1}
+| | | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
+| | | ... | dut1-memif-${number}-if2
+| | | ${dut1_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut1_if1}
+| | | ... | ${dut1-memif-${prev_index}-if2}
+| | | Configure L2XC | ${dut1} | ${dut1_xconnect_if1}
+| | | ... | ${dut1-memif-${number}-if1}
+| | | ${sock1}= | Set Variable | memif-DUT2_VNF
+| | | ${sock2}= | Set Variable | memif-DUT2_VNF
+| | | Set up memif interfaces on DUT node | ${dut2}
+| | | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
+| | | ... | dut2-memif-${number}-if2
+| | | ${dut2_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut2_if1}
+| | | ... | ${dut2-memif-${prev_index}-if2}
+| | | Configure L2XC | ${dut2} | ${dut2_xconnect_if1}
+| | | ... | ${dut2-memif-${number}-if1}
+| | | Run Keyword If | ${number}==${nr} | Configure L2XC
+| | | ... | ${dut1} | ${dut1-memif-${number}-if2} | ${dut1_if2}
+| | | Run Keyword If | ${number}==${nr} | Configure L2XC
+| | | ... | ${dut2} | ${dut2-memif-${number}-if2} | ${dut2_if2}
 
 | Initialize L2 Bridge Domain for '${nr}' memif pairs in 3-node circular topology
 | | [Documentation]
@@ -2139,8 +2185,7 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-${number}-1
-| | ... | - /tmp/memif-${number}-2
+| | ... | - /tmp/memif-DUT1_VNF${number}-${sid}
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2153,8 +2198,8 @@
 | | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${1}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
-| | | ${sock1}= | Set Variable | /tmp/memif-DUT1_VNF${number}-1
-| | | ${sock2}= | Set Variable | /tmp/memif-DUT1_VNF${number}-2
+| | | ${sock1}= | Set Variable | memif-DUT1_VNF
+| | | ${sock2}= | Set Variable | memif-DUT1_VNF
 | | | Set up memif interfaces on DUT node | ${dut1}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
 | | | ... | dut1-memif-${number}-if2
@@ -2163,8 +2208,8 @@
 | | | ... | ${dut1-memif-${number}-if1} | ${number}
 | | | Add interface to bridge domain | ${dut1}
 | | | ... | ${dut1-memif-${number}-if2} | ${bd_id2}
-| | | ${sock1}= | Set Variable | /tmp/memif-DUT2_VNF${number}-1
-| | | ${sock2}= | Set Variable | /tmp/memif-DUT2_VNF${number}-2
+| | | ${sock1}= | Set Variable | memif-DUT2_VNF
+| | | ${sock2}= | Set Variable | memif-DUT2_VNF
 | | | Set up memif interfaces on DUT node | ${dut2}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
 | | | ... | dut2-memif-${number}-if2

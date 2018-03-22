@@ -62,6 +62,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 | ${avg_imix_framesize}= | ${357.833}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
@@ -103,8 +104,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Setup Scheduler Policy for Vpp On All DUTs
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps

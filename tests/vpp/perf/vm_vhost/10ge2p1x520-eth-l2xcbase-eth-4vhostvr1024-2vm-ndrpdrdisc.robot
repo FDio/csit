@@ -38,7 +38,7 @@
 | ... | Guests are running DPDK testpmd interconnecting vhost-user interfaces
 | ... | using 5 cores pinned to cpus 6-10 and 11-15 and 2048M memory. Testpmd is
 | ... | using socket-mem=1024M (512x2M hugepages), 5 cores (1 main core and 4
-| ... | cores dedicated for io), forwarding mode is set to io, rxd/txd=256,
+| ... | cores dedicated for io), forwarding mode is set to io, rxd/txd=1024,
 | ... | burst=64. DUT1, DUT2 are tested with 2p10GE NIC X520 Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
@@ -55,6 +55,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 #CPU settings
