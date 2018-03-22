@@ -1,1 +1,1 @@
-exec show trace
+exec show trace {maximum}
