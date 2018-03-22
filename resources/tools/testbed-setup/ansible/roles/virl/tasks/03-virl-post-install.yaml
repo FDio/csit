@@ -47,6 +47,11 @@
     args:
       creates: /home/jenkins-in/bin/stop-testcase
     become: jenkins-in
+  - name: Link start-testcase-DMM executable
+    command: ln -sf /home/jenkins-in/testcase-infra/bin/start-testcase-DMM /home/jenkins-in/bin/start-testcase-DMM
+    args:
+      creates: /home/jenkins-in/bin/start-testcase-DMM
+    become: jenkins-in
   - name: Link kill-idle-testcases executable
     command: ln -sf /home/jenkins-in/testcase-infra/bin/kill-idle-testcases /home/jenkins-in/bin/kill-idle-testcases
     args:
