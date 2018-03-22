@@ -129,6 +129,8 @@
 | | | Run keyword | ${dut}.Add IP6 Heap Size | "4G"
 | | | Run keyword | ${dut}.Add IP Heap Size | "4G"
 
+# The following keyword results in lines longer than 80 characters.
+# FIXME: Rename the keyword, possibly moving arguments out of the keyword name.
 | Add '${m}' worker threads and '${n}' rxqueues in 3-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
 | | ... | configuration on all DUTs in 3-node single-link topology.

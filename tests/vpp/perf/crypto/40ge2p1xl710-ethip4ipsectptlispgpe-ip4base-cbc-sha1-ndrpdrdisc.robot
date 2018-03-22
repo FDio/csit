@@ -22,6 +22,7 @@
 | ... | NIC_Intel-XL710
 | ...
 | Suite Setup | Set up IPSec performance test suite | L3 | Intel-XL710
+| ... | HW_cryptodev
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
@@ -59,15 +60,15 @@
 
 *** Variables ***
 # XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_24.5G} | ${24500000000}
+| ${s_24.5G}= | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps} | ${18750000}
+| ${s_18.75Mpps}= | ${18750000}
 | ${dut2_spi}= | ${1000}
 | ${dut1_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
 | ${ipsec_overhead}= | ${54}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
@@ -80,6 +81,7 @@
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
+| | # FIXME: Move repeated lines into a keyword.
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -89,13 +91,13 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -121,13 +123,13 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -154,12 +156,12 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -185,12 +187,12 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -218,12 +220,12 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -250,12 +252,12 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -282,13 +284,13 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -314,13 +316,13 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -332,7 +334,7 @@
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
 | | ... | IPsec is in transport mode. DUTs are configured with 4 threads, 4 phy\
-| | ... | cores, 2 receive queue per NIC port.
+| | ... | cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps.
 | | ...
@@ -347,13 +349,13 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${4}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -364,7 +366,7 @@
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
 | | ... | IPsec is in transport mode. DUTs are configured with 4 threads, 4 phy\
-| | ... | cores, 2 receive queue per NIC port.
+| | ... | cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
@@ -379,13 +381,13 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${4}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
