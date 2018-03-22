@@ -58,6 +58,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 256
 | ${avg_imix_framesize}= | ${357.833}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
@@ -68,7 +69,7 @@
 | ${fib_table_1}= | 100
 | ${fib_table_2}= | 101
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
 | Discover NDR or PDR for IPv4 forwarding with VM
@@ -88,7 +89,6 @@
 | | ... | - search_type - Type of the search - non drop rate (NDR) or partial
 | | ... | drop rare (PDR). Type: string
 | | ...
-| | Set Test Variable | ${perf_qemu_qsz} | 256
 | | Set Test Variable | ${use_tuned_cfs} | ${True}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -117,8 +117,6 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ... | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Setup Scheduler Policy for Vpp On All DUTs
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
