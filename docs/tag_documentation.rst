@@ -356,6 +356,10 @@ Encapsulation tags
 
     All test cases with IPSEC.
 
+.. topic:: SRv6
+
+    All test cases with Segment routing over IPv6 dataplane.
+
 Interface tags
 --------------
 
@@ -445,6 +449,10 @@ Feature tags
 .. topic:: ACL50
 
     ACL plugin configured and tested with 50 not-hitting ACEs.
+
+.. topic:: SRv6_PROXY
+
+    SRv6 endpoint to SR-unaware appliance via static/dynamic/masquerading proxy.
 
 Encryption tags
 ---------------
