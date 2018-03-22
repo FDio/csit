@@ -15,47 +15,47 @@
 function qemu_utils.qemu_delete {
     # Deletes the QEMU directory
     # QEMU install directory
-    qemu_install_dir=$1
-    # QEMU install version
-    qemu_install_ver=$2
+    local qemu_install_dir=$1
 
-    [ -d ${qemu_install_dir}/${qemu_install_ver} ] && \
-        sudo rm -r ${qemu_install_dir}/${qemu_install_ver} && \
-        echo "${qemu_install_dir}/${qemu_install_ver} removed"
+    [ -d ${qemu_install_dir} ] && \
+        sudo rm -r ${qemu_install_dir} && \
+        echo "${qemu_install_dir} removed"
 }
 
 function qemu_utils.qemu_install {
     # Downloads and installs QEMU
     # QEMU install directory
-    qemu_install_dir=$1
+    local qemu_install_dir=$1
     # QEMU install version
-    qemu_install_ver=$2
+    local qemu_install_ver=$2
     # QEMU patch
-    qemu_patch=$3
+    local qemu_patch=${3:-false}
     # Force install (if true then remove previous installation; default false)
-    force_install=${4:-false}
+    local force_install=${4:-false}
     # QEMU repo URL
-    qemu_package_url="http://download.qemu-project.org/${qemu_install_ver}.tar.xz"
+    local qemu_package_url="http://download.qemu-project.org/${qemu_install_ver}.tar.xz"
+    # QEMU target arch
+    local qemu_target_list=${5:-x86_64-softmmu}
 
-    if [ $force_install ]; then
+    if [ $force_install = true ]; then
         # Cleanup QEMU dir
-        qemu_utils.qemu_delete $qemu_install_dir $qemu_install_ver
+        qemu_utils.qemu_delete $qemu_install_dir
     else
         # Test if QEMU was installed previously
         test -d $qemu_install_dir && \
             { echo "Qemu already installed: $qemu_install_dir"; exit 0; }
     fi
 
-    tmp_dir=$(mktemp -d) || \
+    local tmp_dir=$(mktemp -d) || \
         { echo "Failed to create temporary working dir"; exit 1; }
-    trap "rm -r ${tmp_dir}" EXIT
+    trap "sudo rm -r ${tmp_dir}" EXIT
 
     # Download QEMU source code if no local copy exists
     if [ ! -f /opt/${qemu_install_ver}.tar.xz ]; then
         sudo wget -e use_proxy=yes -P /opt -q ${qemu_package_url} || \
             { echo "Failed to download ${qemu_install_ver}"; exit 1; }
     fi
-    tar --strip-components 1 -xvJf ${tmp_dir}/${qemu_install_ver}.tar.xz -C ${tmp_dir} && \
+    tar --strip-components 1 -xf /opt/${qemu_install_ver}.tar.xz -C ${tmp_dir} || \
         { echo "Failed to exctract ${qemu_install_ver}.tar.xz"; exit 1; }
 
     cd ${tmp_dir}
@@ -63,14 +63,14 @@ function qemu_utils.qemu_install {
         { echo "Failed to create ${qemu_install_dir}"; exit 1; }
 
     # Apply additional patches
-    if [ $qemu_patch ]
+    if [ $qemu_patch = true ]
     then
         chmod +x ${SCRIPT_DIR}/qemu_patches/${qemu_install_ver}/*
         run-parts --verbose --report  ${SCRIPT_DIR}/qemu_patches/${qemu_install_ver}
     fi
 
     # Build
-    sudo ./configure --target-list=x86_64-softmmu --prefix=${qemu_install_dir}/${qemu_install_ver} || \
+    sudo ./configure --target-list=${qemu_target_list} --prefix=${qemu_install_dir} || \
         { echo "Failed to configure ${qemu_install_ver}"; exit 1; }
     sudo make -j`nproc` || \
         { echo "Failed to compile ${qemu_install_ver}"; exit 1; }

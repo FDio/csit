@@ -49,6 +49,7 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 256
 # Socket names
 | ${sock1}= | /tmp/sock-1-1
 | ${sock2}= | /tmp/sock-1-2
@@ -58,7 +59,7 @@
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
 | Check RR for eth-ip4base-eth-2vhostvr256-1vm
@@ -71,7 +72,6 @@
 | | [Arguments] | ${framesize} | ${wt} | ${rxq}
 | | ...
 | | # Test Variables required for test and test teardown
-| | Set Test Variable | ${perf_qemu_qsz} | 256
 | | Set Test Variable | ${framesize}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
@@ -97,8 +97,6 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ... | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
