@@ -49,6 +49,7 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # Socket names
 | ${sock1}= | /tmp/sock-1
 | ${sock2}= | /tmp/sock-2
@@ -94,8 +95,6 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ... | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 

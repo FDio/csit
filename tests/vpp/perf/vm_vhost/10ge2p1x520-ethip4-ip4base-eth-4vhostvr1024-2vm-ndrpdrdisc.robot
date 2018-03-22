@@ -56,6 +56,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # CPU settings
@@ -63,7 +64,7 @@
 | ${vpp_cpus}= | ${5}
 | ${vm_cpus}= | ${5}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-eth-4vhostvr1024-2vm-ndrdisc
