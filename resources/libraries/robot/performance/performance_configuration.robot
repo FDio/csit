@@ -635,6 +635,7 @@
 | | ... | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${sid2} | ${sid_prefix} | ${dut1_if2_ip6}
 | | ... | ${dut2_if1}
+# Configure SRv6 for direction0
 | | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
 | | @{sid_list_dir0}= | Run Keyword If | "${n}" == "1"
 | | ... | Create List | ${dut2_sid1}
@@ -655,6 +656,7 @@
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut2} | ${dut2_sid1_2} | ${sid_prefix}
 | | ... | ${tg_if2_ip6_subnet}2 | ${dut2_if2}
+# Configure SRv6 for direction1
 | | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
 | | @{sid_list_dir1}= | Run Keyword If | "${n}" == "1"
 | | ... | Create List | ${dut1_sid2}
@@ -675,6 +677,109 @@
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
 | | ... | ${tg_if1_ip6_subnet}2 | ${dut1_if1}
+
+| Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via '${behavior}' behaviour in 3-node circular topology
+| | [Documentation]
+| | ... | Create pair of Memif interfaces on all defined VPP nodes. Set UP
+| | ... | state on VPP interfaces in path on nodes in 3-node circular topology.
+| | ... | Get the interface MAC addresses and setup neighbours on all VPP
+| | ... | interfaces. Setup IPv6 addresses on all interfaces. Set segment
+| | ... | routing for IPv6 with defined behaviour function and configure IPv6
+| | ... | routes on both DUT nodes.
+| | ...
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${sock1}= | Set Variable | memif-DUT1_VNF
+| | ${sock2}= | Set Variable | memif-DUT2_VNF
+| | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
+| | ... | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2 | ${rxq} | ${rxq}
+| | Set up memif interfaces on DUT node | ${dut2} | ${sock2} | ${sock2}
+| | ... | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2 | ${rxq} | ${rxq}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Show Memif | ${nodes['${dut}']}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1-memif-1-if1}
+| | ... | ${dut1-memif-1-if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1-memif-1-if2}
+| | ... | ${dut1-memif-1-if2_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2-memif-1-if1}
+| | ... | ${dut2-memif-1-if1_ip6} | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2-memif-1-if2}
+| | ... | ${dut2-memif-1-if2_ip6} | ${prefix}
+| | Suppress ICMPv6 router advertisement message | ${nodes}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_if2_ip6} | ${dut1_if2_mac}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip6_subnet}2
+| | ... | ${tg1_if1_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2_if2} | ${tg_if2_ip6_subnet}2
+| | ... | ${tg1_if2_mac}
+| | ${dut1-memif-1-if2_mac}= | Get Interface MAC | ${dut1} | memif2
+| | ${dut2-memif-1-if2_mac}= | Get Interface MAC | ${dut2} | memif2
+| | Add Ip Neighbor | ${dut1} | ${dut1-memif-1-if1} | ${dut1_nh}
+| | ... | ${dut1-memif-1-if2_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2-memif-1-if1} | ${dut2_nh}
+| | ... | ${dut2-memif-1-if2_mac}
+| | Vpp Route Add | ${dut1} | ${dut2_sid1} | ${sid_prefix} | ${dut2_if1_ip6}
+| | ... | ${dut1_if2}
+| | Vpp Route Add | ${dut1} | ${out_sid2_1} | ${sid_prefix}
+| | ... | ${tg_if1_ip6_subnet}2 | ${dut1_if1}
+| | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix} | ${dut1_if2_ip6}
+| | ... | ${dut2_if1}
+| | Vpp Route Add | ${dut2} | ${out_sid1_1} | ${sid_prefix}
+| | ... | ${tg_if2_ip6_subnet}2 | ${dut2_if2}
+# Configure SRv6 for direction0 on DUT1
+| | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
+| | @{sid_list_dir0}= | Create List | ${dut2_sid1} | ${out_sid1_1}
+| | ... | ${out_sid1_2}
+| | Configure SR Policy on DUT | ${dut1} | ${dut1_bsid} | encap
+| | ... | @{sid_list_dir0}
+| | Configure SR Steer on DUT | ${dut1} | L3 | ${dut1_bsid}
+| | ... | ip_addr=${tg_if2_ip6_subnet} | prefix=${sid_prefix}
+# Configure SRv6 for direction1 on DUT2
+| | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
+| | @{sid_list_dir1}= | Create List | ${dut1_sid2} | ${out_sid2_1}
+| | ... | ${out_sid2_2}
+| | Configure SR Policy on DUT | ${dut2} | ${dut2_bsid} | encap
+| | ... | @{sid_list_dir1}
+| | Configure SR Steer on DUT | ${dut2} | L3 | ${dut2_bsid}
+| | ... | ip_addr=${tg_if1_ip6_subnet} | prefix=${sid_prefix}
+# Configure SRv6 for direction0 on DUT2
+| | ${dut2_out_if}= | Get Interface Name | ${dut2} | memif1
+| | ${dut2_in_if}= | Get Interface Name | ${dut2} | memif2
+| | Remove Values From List | ${sid_list_dir0} | ${dut2_sid1}
+| | Run Keyword If | "${behavior}" == "static_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.as
+| | ... | ${None} | ${dut2_nh} | ${None} | ${dut2_out_if} | ${dut2_in_if}
+| | ... | ${dut1_sid1} | @{sid_list_dir0}
+| | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.ad
+| | ... | next_hop=${dut2_nh} | out_if=${dut2_out_if} | in_if=${dut2_in_if}
+| | ... | ELSE IF | "${behavior}" == "masquerading"
+| | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.am
+| | ... | next_hop=${dut2_nh} | out_if=${dut2_out_if} | in_if=${dut2_in_if}
+| | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
+# Configure SRv6 for direction1 on DUT1
+| | ${dut1_out_if}= | Get Interface Name | ${dut1} | memif1
+| | ${dut1_in_if}= | Get Interface Name | ${dut1} | memif2
+| | Remove Values From List | ${sid_list_dir1} | ${dut1_sid2}
+| | Run Keyword If | "${behavior}" == "static_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.as
+| | ... | ${None} | ${dut1_nh} | ${None} | ${dut1_out_if} | ${dut1_in_if}
+| | ... | ${dut2_sid2} | @{sid_list_dir1}
+| | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.ad
+| | ... | next_hop=${dut1_nh} | out_if=${dut1_out_if} | in_if=${dut1_in_if}
+| | ... | ELSE IF | "${behavior}" == "masquerading"
+| | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.am
+| | ... | next_hop=${dut1_nh} | out_if=${dut1_out_if} | in_if=${dut1_in_if}
+| | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
+| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 xconnect in 3-node circular topology
 | | [Documentation]

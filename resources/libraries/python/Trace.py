@@ -13,7 +13,7 @@
 
 """Packet trace library."""
 
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.topology import NodeType
 
 
@@ -21,16 +21,21 @@ class Trace(object):
     """This class provides methods to manipulate the VPP packet trace."""
 
     @staticmethod
-    def show_packet_trace_on_all_duts(nodes):
+    def show_packet_trace_on_all_duts(nodes, maximum=None):
         """Show VPP packet trace.
 
         :param nodes: Nodes from which the packet trace will be displayed.
+        :param maximum: Maximum number of packet traces to be displayed.
         :type nodes: list
+        :type maximum: int
         """
+        maximum = "max {count}".format(count=maximum) if maximum is not None\
+            else ""
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                vat = VatExecutor()
-                vat.execute_script("show_trace.vat", node, json_out=False)
+                with VatTerminal(node, json_param=False) as vat:
+                    vat.vat_terminal_exec_cmd_from_template(
+                        'show_trace.vat', maximum=maximum)
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):
