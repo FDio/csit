@@ -347,7 +347,7 @@ case "$TEST_TAG" in
     PERFTEST_SHORT )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.vpp.perf.srv6" \
               -i MRR \
               tests/
         RETURN_STATUS=$(echo $?)

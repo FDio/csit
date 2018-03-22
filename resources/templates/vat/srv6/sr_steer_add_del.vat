@@ -1,1 +1,1 @@
-exec sr steer {params} via sr policy bsid {bsid}
+exec sr steer {params} via bsid {bsid}
