@@ -496,6 +496,7 @@ class DUTSetup(object):
         vat = VatExecutor()
         vat.execute_script("enable_dpdk_traces.vat", node, json_out=False)
         vat.execute_script("enable_vhost_user_traces.vat", node, json_out=False)
+        vat.execute_script("enable_memif_traces.vat", node, json_out=False)
 
     @staticmethod
     def install_vpp_on_all_duts(nodes, vpp_pkg_dir, vpp_rpm_pkgs, vpp_deb_pkgs):
