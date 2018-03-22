@@ -1465,8 +1465,11 @@
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-base/bin/
+| | ... | ${perf_qemu_path}-patched/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1516,8 +1519,6 @@
 | | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
 | | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
-| | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | | ... | ${True}
 
 | Configure guest VM with dpdk-testpmd using SMT connected via vhost-user
 | | [Documentation]
@@ -1558,8 +1559,11 @@
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-base/bin/
+| | ... | ${perf_qemu_path}-patched/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1629,8 +1633,11 @@
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-base/bin/
+| | ... | ${perf_qemu_path}-patched/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1688,8 +1695,6 @@
 | | | ... | count=${vm_cpus} | qemu_id=${number}
 | | | ... | jumbo_frames=${jumbo_frames}
 | | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
-| | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | | ... | ${True}
 
 | Configure guest VM with dpdk-testpmd-mac using SMT connected via vhost-user
 | | [Documentation]
@@ -1733,8 +1738,11 @@
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-base/bin/
+| | ... | ${perf_qemu_path}-patched/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1783,8 +1791,11 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-base/bin/
+| | ... | ${perf_qemu_path}-patched/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1833,8 +1844,11 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${True} | apply_patch=${apply_patch}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-base/bin/
+| | ... | ${perf_qemu_path}-patched/bin/
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1

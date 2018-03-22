@@ -40,7 +40,7 @@
 | ... | vhost-user interfaces using 5 cores pinned to cpus 5-9 and 2048M
 | ... | memory. Testpmd is using socket-mem=1024M (512x2M hugepages), 5 cores
 | ... | (1 main core and 4 cores dedicated for io), forwarding mode is set to
-| ... | io, rxd/txd=256, burst=64. DUT1, DUT2 are tested with 2p10GE NIC X520
+| ... | io, rxd/txd=1024, burst=64. DUT1, DUT2 are tested with 2p10GE NIC X520
 | ... | Niantic by Intel.
 | ... | *[Ver] TG verification:* TG verifies throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
@@ -55,12 +55,13 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| ${perf_qemu_qsz}= | 1024
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 | ${sock1}= | /tmp/sock-1-${bd_id1}
 | ${sock2}= | /tmp/sock-1-${bd_id2}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | Check PDR for L2XC with vhost and VM with dpdk-testpmd
@@ -94,8 +95,6 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
 | | Then Traffic should pass with partial loss | ${perf_trial_duration}
 | | ... | ${rate} | ${framesize} | ${traffic_profile}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
