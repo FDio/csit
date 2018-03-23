@@ -16,6 +16,8 @@
 
 import datetime
 import logging
+import csv
+import prettytable
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
 import plotly.exceptions as plerr
@@ -358,6 +360,13 @@ def _generate_all_charts(spec, input_data):
     :type input_data: InputData
     """
 
+    csv_table = list()
+    # Create the header:
+    builds = spec.cpta["data"].values()[0]
+    builds_lst = [str(build) for build in range(builds[0], builds[-1] + 1)]
+    header = "Build Number:," + ",".join(builds_lst) + '\n'
+    csv_table.append(header)
+
     results = list()
     for chart in spec.cpta["plots"]:
         logging.info("  Generating the chart '{0}' ...".
@@ -372,14 +381,22 @@ def _generate_all_charts(spec, input_data):
         chart_data = dict()
         for job in data:
             for idx, build in job.items():
-                for test in build:
-                    if chart_data.get(test["name"], None) is None:
-                        chart_data[test["name"]] = OrderedDict()
+                for test_name, test in build.items():
+                    if chart_data.get(test_name, None) is None:
+                        chart_data[test_name] = OrderedDict()
                     try:
-                        chart_data[test["name"]][int(idx)] = \
+                        chart_data[test_name][int(idx)] = \
                             test["result"]["throughput"]
                     except (KeyError, TypeError):
-                        chart_data[test["name"]][int(idx)] = None
+                        chart_data[test_name][int(idx)] = None
+
+        # Add items to the csv table:
+        for tst_name, tst_data in chart_data.items():
+            tst_lst = list()
+            for build in builds_lst:
+                item = tst_data.get(int(build), '')
+                tst_lst.append(str(item) if item else '')
+            csv_table.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
 
         for period in chart["periods"]:
             # Generate traces:
@@ -391,6 +408,7 @@ def _generate_all_charts(spec, input_data):
                     logging.warning("No data for the test '{0}'".
                                     format(test_name))
                     continue
+                test_name = test_name.split('.')[-1]
                 trace, result = _generate_trending_traces(
                     test_data,
                     period=period,
@@ -417,6 +435,24 @@ def _generate_all_charts(spec, input_data):
 
         logging.info("  Done.")
 
+    # Write the tables:
+    file_name = spec.cpta["output-file"] + "-trending"
+    with open("{0}.csv".format(file_name), 'w') as file_handler:
+        file_handler.writelines(csv_table)
+
+    txt_table = None
+    with open("{0}.csv".format(file_name), 'rb') as csv_file:
+        csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+        for row in csv_content:
+            if txt_table is None:
+                txt_table = prettytable.PrettyTable(row)
+            else:
+                txt_table.add_row(row)
+        txt_table.align["Build Number:"] = "l"
+    with open("{0}.txt".format(file_name), "w") as txt_file:
+        txt_file.write(str(txt_table))
+
+    # Evaluate result:
     result = "PASS"
     for item in results:
         if item is None:

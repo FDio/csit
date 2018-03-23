@@ -10,3 +10,4 @@ VPP Performance Trend
     vm_vhost
     container_memif
     ipsec
+    data

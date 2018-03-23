@@ -389,7 +389,8 @@ class Specification(object):
                         else:
                             # defined as a range <start, end (build number)>
                             build_nr = builds.get("end", None)
-                        builds = [x for x in range(1, int(build_nr)+1)]
+                        builds = [x for x in range(builds["start"],
+                                                   int(build_nr)+1)]
                         self.configuration["data-sets"][set_name][job] = builds
 
         logging.info("Done.")
