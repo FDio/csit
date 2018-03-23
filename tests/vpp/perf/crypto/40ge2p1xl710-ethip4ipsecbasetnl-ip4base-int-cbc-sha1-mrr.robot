@@ -73,22 +73,14 @@
 | | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | [Arguments] | ${wt} | ${rxq}
 | | ...
 | | # Test Variables required for test teardown
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_24.5G}
-| | ... | ${get_framesize} + ${ipsec_overhead}
-| | ${max_rate}= | Set Variable If
-| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${${wt}}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
@@ -99,10 +91,17 @@
 | | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
-| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Search for MTU at maximum rate | ${perf_trial_duration}
+| | ... | 187500pps | ${100} | ${10000} | ${traffic_profile}
 
 *** Test Cases ***
+| tc00-var-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-vpp1207
+| | [Documentation] | FIXME
+| | [Tags] | 1T1C | STHREAD | THIS
+| | ...
+| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
+| | wt=1 | rxq=1
+
 | tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\

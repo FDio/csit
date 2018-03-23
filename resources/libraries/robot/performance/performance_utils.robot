@@ -553,6 +553,30 @@
 | | ... | ${framesize} | ${topology_type}
 | | Display raw results | ${framesize} | ${results}
 
+| Search for MTU at maximum rate
+| | [Documentation]
+| | ... | Bisect for maximal framesize using traffic of maximum rate.
+| | ...
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize_lo - Lower bound for L2 Frame Size [B]. Type: integer
+| | ... | - framesize_hi - Upper bound for L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | Type: (int, int)
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Search for MTU at maximum rate \| 10 \| 4.0mpps \| 100 \| 10000
+| | ... | \| 3-node-IPv4 \|
+| | ...
+| | [Arguments] | ${duration} | ${rate} | ${framesize_lo} | ${framesize_hi}
+| | ... | ${topology_type}
+| | ...
+| | ${results}= | Search for MTU at rate | ${duration} | ${rate}
+| | ... | ${framesize_lo} | ${framesize_hi} | ${topology_type}
+| | Log To Console | ${result}
+
 | Send traffic at specified rate
 | | [Documentation]
 | | ... | Send traffic at specified rate.
