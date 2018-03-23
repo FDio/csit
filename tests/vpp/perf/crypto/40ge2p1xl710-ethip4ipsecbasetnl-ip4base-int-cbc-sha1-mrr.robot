@@ -102,6 +102,35 @@
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
+| Find framesize for IPv4 routing with IPSec HW cryptodev
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPSec tunneling CBC-SHA1 config with ${wt} thread(s),\
+| | ... | ${wt} phy core(s), ${rxq} receive queue(s) per NIC port.
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
+| | ... | trial throughput test.
+| | ...
+| | [Arguments] | ${wt} | ${rxq} | ${multi_seg}
+| | ...
+| | # Test Variables required for test teardown
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | ...
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Run Keyword If | ${multi_seg} | Add no multi seg to all DUTs
+| | And Add cryptodev to all DUTs | ${${wt}}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
+| | And Apply startup configuration on all VPP DUTs
+| | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Initialize IPSec in 3-node circular topology
+| | And VPP IPsec Create Tunnel Interfaces
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | Then Search for MTU at maximum rate | ${perf_trial_duration}
+| | ... | 99999pps | ${64} | ${10000} | ${traffic_profile}
+
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr
 | | [Documentation]
@@ -109,10 +138,24 @@
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
 | | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
 | | framesize=${64} | wt=1 | rxq=1
+
+| tc90-var-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-vpp1207
+| | [Documentation] | FIXME
+| | [Tags] | 1T1C | STHREAD | THIS
+| | ...
+| | [Template] | Find framesize for IPv4 routing with IPSec HW cryptodev
+| | wt=1 | rxq=1 | multi_seg=False
+
+| tc91-var-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-vpp1207
+| | [Documentation] | FIXME
+| | [Tags] | 1T1C | STHREAD | THIS
+| | ...
+| | [Template] | Find framesize for IPv4 routing with IPSec HW cryptodev
+| | wt=1 | rxq=1 | multi_seg=True
 
 | tc02-1518B-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr
 | | [Documentation]
