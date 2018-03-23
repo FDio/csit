@@ -58,17 +58,10 @@
 | | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize}
-| | ...
-| | # Test Variables required for test execution and test teardown
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
+| | [Arguments] | ${wt} | ${rxq}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
@@ -85,21 +78,17 @@
 | | ... | ip4 | dst | 10.10.10.2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
-| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Search for MTU at maximum rate | ${perf_trial_duration}
+| | ... | 187500pps | ${100} | ${10000} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4-ip4base-iacldstbase-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
+| tc00-var-1t1c-ethip4-ip4base-iacldstbase-mrr
+| | [Documentation] | FIXME
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 1T1C | STHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=1 | rxq=1 | framesize=${64}
+| | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
