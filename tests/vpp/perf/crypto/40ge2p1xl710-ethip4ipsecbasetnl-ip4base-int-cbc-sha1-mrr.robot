@@ -73,7 +73,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | [Arguments] | ${wt} | ${rxq}
 | | ...
 | | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
@@ -99,10 +99,17 @@
 | | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
-| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Search for MTU at maximum rate | ${perf_trial_duration}
+| | ... | ${max_rate}pps | ${100} | ${10000} | ${traffic_profile}
 
 *** Test Cases ***
+| tc00-var-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-vpp1207
+| | [Documentation] | FIXME
+| | [Tags] | 1T1C | STHREAD | THIS
+| | ...
+| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
+| | wt=1 | rxq=1
+
 | tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction, configured\
