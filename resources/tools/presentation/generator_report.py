@@ -14,16 +14,12 @@
 """Report generation.
 """
 
-import subprocess
 import logging
 import datetime
 
-from os import makedirs, environ
-from os.path import isdir
-from shutil import copy, Error, make_archive
+from shutil import make_archive
 
 from utils import get_files, execute_command, archive_input_data
-from errors import PresentationError
 
 
 # .css file for the html format of the report
