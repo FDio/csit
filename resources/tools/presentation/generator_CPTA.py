@@ -18,6 +18,7 @@ import datetime
 import logging
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
+import plotly.exceptions as plerr
 import numpy as np
 import pandas as pd
 
@@ -29,6 +30,7 @@ from utils import find_outliers, archive_input_data, execute_command
 HTML_BUILDER = 'sphinx-build -v -c conf_cpta -a ' \
                '-b html -E ' \
                '-t html ' \
+               '-D version="Generated on {date}" ' \
                '{working_dir} ' \
                '{build_dir}/'
 
@@ -341,7 +343,10 @@ def _generate_chart(traces, layout, file_name):
     # Create plot
     logging.info("    Writing the file '{0}' ...".format(file_name))
     plpl = plgo.Figure(data=traces, layout=layout)
-    ploff.plot(plpl, show_link=False, auto_open=False, filename=file_name)
+    try:
+        ploff.plot(plpl, show_link=False, auto_open=False, filename=file_name)
+    except plerr.PlotlyEmptyDataError:
+        logging.warning(" No data for the plot. Skipped.")
 
 
 def _generate_all_charts(spec, input_data):
