@@ -216,6 +216,7 @@
   algorithm: "cpta"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/cpta"
+  data: "plot-performance-trending"
   plots:
 
 # L2

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set +x
+set -x
 
 # set default values in config array
 typeset -A DIR
@@ -33,5 +33,6 @@ python pal.py \
     --logging INFO \
     --force
 
-RETURN_STATUS=$(echo $?)
+RETURN_STATUS=$?
+echo ${RETURN_STATUS}
 exit ${RETURN_STATUS}
