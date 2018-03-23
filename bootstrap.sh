@@ -86,7 +86,7 @@ function get_max_sim_nr() {
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
-VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SERVER_EXPECTED_STATUS="TESTING"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
