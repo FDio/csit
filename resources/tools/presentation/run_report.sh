@@ -23,10 +23,6 @@ then
     sudo sed -i.bak 's/^\(main_memory\s=\s\).*/\110000000/' /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 fi
 
-# Clean-up when finished
-trap 'rm -rf ${DIR[WORKING]}; exit' EXIT
-trap 'rm -rf ${DIR[WORKING]}; exit' ERR
-
 # Create working directories
 mkdir ${DIR[WORKING]}
 
