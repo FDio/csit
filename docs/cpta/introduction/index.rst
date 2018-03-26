@@ -143,8 +143,7 @@ measurement data. PA is defined as follows:
     #. PA job triggers:
 
         #. By PT job at its completion.
-        #. On-demand gerrit triggered.
-        #. Other periodic TBD.
+        #. Manually from Jenkins UI.
 
     #. Download and parse archived historical data and the new data:
 
