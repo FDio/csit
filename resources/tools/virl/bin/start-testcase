@@ -386,7 +386,7 @@ def main():
                                auth=(args.username, args.password))
             try:
                 shutil.rmtree(scratch_directory)
-            except shutil.Error:
+            except:
                 print_to_stderr("ERROR: Removing scratch directory")
             print "{}".format(session_id)
         sys.exit(1)
@@ -424,7 +424,7 @@ def main():
                                auth=(args.username, args.password))
             try:
                 shutil.rmtree(scratch_directory)
-            except shutil.Error:
+            except:
                 print_to_stderr("ERROR: Removing scratch directory")
             print "{}".format(session_id)
         sys.exit(1)
@@ -499,7 +499,7 @@ def main():
                                auth=(args.username, args.password))
             try:
                 shutil.rmtree(scratch_directory)
-            except shutil.Error:
+            except:
                 print_to_stderr("ERROR: Removing scratch directory")
             print "{}".format(session_id)
         sys.exit(1)
