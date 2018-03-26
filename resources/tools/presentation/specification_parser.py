@@ -22,7 +22,8 @@ from yaml import load, YAMLError
 from pprint import pformat
 
 from errors import PresentationError
-from utils import get_last_build_number
+from utils import get_last_successful_build_number
+from utils import get_last_completed_build_number
 
 
 class Specification(object):
@@ -230,6 +231,44 @@ class Specification(object):
             raise PresentationError("Job '{}' and build '{}' is not defined in "
                                     "specification file.".format(job, build_nr))
 
+    def _get_build_number(self, job, build_type):
+        """Get the number of the job defined by its name:
+         - lastSuccessfulBuild
+         - lastCompletedBuild
+
+        :param job: Job name.
+        :param build_type: Build type:
+         - lastSuccessfulBuild
+         - lastCompletedBuild
+        :type job" str
+        :raises PresentationError: If it is not possible to get the build
+        number.
+        :returns: The build number.
+        :rtype: int
+        """
+
+        # defined as a range <start, end>
+        if build_type == "lastSuccessfulBuild":
+            # defined as a range <start, lastSuccessfulBuild>
+            ret_code, build_nr, _ = get_last_successful_build_number(
+                self.environment["urls"]["URL[JENKINS,CSIT]"], job)
+        elif build_type == "lastCompletedBuild":
+            # defined as a range <start, lastCompletedBuild>
+            ret_code, build_nr, _ = get_last_completed_build_number(
+                self.environment["urls"]["URL[JENKINS,CSIT]"], job)
+        else:
+            raise PresentationError("Not supported build type: '{0}'".
+                                    format(build_type))
+        if ret_code != 0:
+            raise PresentationError("Not possible to get the number of the "
+                                    "build number.")
+        try:
+            build_nr = int(build_nr)
+            return build_nr
+        except ValueError as err:
+            raise PresentationError("Not possible to get the number of the "
+                                    "build number.\nReason: {0}".format(err))
+
     def _get_type_index(self, item_type):
         """Get index of item type (environment, input, output, ...) in
         specification YAML file.
@@ -376,23 +415,14 @@ class Specification(object):
             for job, builds in data_set.items():
                 if builds:
                     if isinstance(builds, dict):
-                        # defined as a range <start, end>
-                        if builds.get("end", None) == "lastSuccessfulBuild":
-                            # defined as a range <start, lastSuccessfulBuild>
-                            ret_code, build_nr, _ = get_last_build_number(
-                                self.environment["urls"]["URL[JENKINS,CSIT]"],
-                                job)
-                            if ret_code != 0:
-                                raise PresentationError(
-                                    "Not possible to get the number of the "
-                                    "last successful  build.")
-                        else:
-                            # defined as a range <start, end (build number)>
-                            build_nr = builds.get("end", None)
-                        builds = [x for x in range(builds["start"],
-                                                   int(build_nr)+1)]
+                        build_nr = builds.get("end", None)
+                        try:
+                            build_nr = int(build_nr)
+                        except ValueError:
+                            # defined as a range <start, build_type>
+                            build_nr = self._get_build_number(job, build_nr)
+                        builds = [x for x in range(builds["start"], build_nr+1)]
                         self.configuration["data-sets"][set_name][job] = builds
-
         logging.info("Done.")
 
     def _parse_debug(self):
@@ -452,25 +482,18 @@ class Specification(object):
             for job, builds in self._cfg_yaml[idx]["builds"].items():
                 if builds:
                     if isinstance(builds, dict):
-                        # defined as a range <start, end>
-                        if builds.get("end", None) == "lastSuccessfulBuild":
-                            # defined as a range <start, lastSuccessfulBuild>
-                            ret_code, build_nr, _ = get_last_build_number(
-                                self.environment["urls"]["URL[JENKINS,CSIT]"],
-                                job)
-                            if ret_code != 0:
-                                raise PresentationError(
-                                    "Not possible to get the number of the "
-                                    "last successful  build.")
-                        else:
-                            # defined as a range <start, end (build number)>
-                            build_nr = builds.get("end", None)
-                        builds = [x for x in range(builds["start"],
-                                                   int(build_nr) + 1)]
-                    self._specification["input"]["builds"][job] = list()
-                    for build in builds:
-                        self._specification["input"]["builds"][job].\
-                            append({"build": build, "status": None})
+                        build_nr = builds.get("end", None)
+                        try:
+                            build_nr = int(build_nr)
+                        except ValueError:
+                            # defined as a range <start, build_type>
+                            build_nr = self._get_build_number(job, build_nr)
+                        builds = [x for x in range(builds["start"], build_nr+1)]
+                        self._specification["input"]["builds"][job] = list()
+                        for build in builds:
+                            self._specification["input"]["builds"][job]. \
+                                append({"build": build, "status": None})
+
                 else:
                     logging.warning("No build is defined for the job '{}'. "
                                     "Trying to continue without it.".

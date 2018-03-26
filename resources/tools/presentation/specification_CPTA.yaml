@@ -75,11 +75,10 @@
   type: "configuration"
 
   data-sets:
-# TODO: Specify input data, this is only an example:
     plot-performance-trending:
       csit-vpp-perf-mrr-daily-master:
         start: 9
-        end: "lastSuccessfulBuild"  # take all from the 'start'
+        end: "lastCompletedBuild" # "lastSuccessfulBuild"  # take all from the 'start'
 
   plot-layouts:
     plot-cpta:
@@ -189,10 +188,7 @@
   builds:
     csit-vpp-perf-mrr-daily-master:
       start: 9
-      end: "lastSuccessfulBuild"  # take all from the 'start'
-#    csit-vpp-perf-check-master:
-#      start: 22
-#      end: 22
+      end: "lastCompletedBuild"  # take all from the 'start'
 
 -
   type: "output"
