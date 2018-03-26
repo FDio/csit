@@ -401,21 +401,17 @@ def table_performance_comparison(table, input_data):
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
         if tbl_dict[tst_name]["ref-data"]:
-            item.append(round(mean(remove_outliers(
-                tbl_dict[tst_name]["ref-data"],
-                table["outlier-const"])) / 1000000, 2))
-            item.append(round(stdev(remove_outliers(
-                tbl_dict[tst_name]["ref-data"],
-                table["outlier-const"])) / 1000000, 2))
+            data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
+                                     table["outlier-const"])
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
-            item.append(round(mean(remove_outliers(
-                tbl_dict[tst_name]["cmp-data"],
-                table["outlier-const"])) / 1000000, 2))
-            item.append(round(stdev(remove_outliers(
-                tbl_dict[tst_name]["cmp-data"],
-                table["outlier-const"])) / 1000000, 2))
+            data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
+                                     table["outlier-const"])
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
         if item[1] is not None and item[3] is not None:
