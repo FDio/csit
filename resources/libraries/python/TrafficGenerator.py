@@ -498,6 +498,24 @@ class TrafficGenerator(object):
 
         return self._result
 
+    def search_for_mtu_at_rate(self, duration, rate, framesize_lo, framesize_hi, topology_type, coeff=0.1):
+        """FIXME"""
+        while 1:
+            framesize_range = framesize_hi - framesize_lo
+            if framesize_range < 2:
+                logger.debug("Precision reached, exiting.")
+                break
+            framesize_mid = int(math.ceil(framesize_lo + framesize_range * coeff))
+            logger.trace("measuring with framesize " + str(framesize_mid))
+            result = self.send_traffic_on_tg(duration, rate, framesize_mid, topology_type, warmup_time=0)
+            logger.trace("measurement result: " + str(result))
+            rx = int(result.split("totalReceived=")[1].split(",")[0])
+            if rx > 0:
+                framesize_lo = framesize_mid
+            else:
+                framesize_hi = framesize_mid
+        return framesize_lo, framesize_hi,
+
     def no_traffic_loss_occurred(self):
         """Fail if loss occurred in traffic run.
 
