@@ -627,6 +627,7 @@
 
 -
   type: "output"
+  output: "report"
   format:
     html:
     - full
