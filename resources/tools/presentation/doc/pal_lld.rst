@@ -1374,39 +1374,106 @@ Continuous Performance Measurements and Trending
 Performance analysis and trending execution sequence:
 `````````````````````````````````````````````````````
 
-1. Triggered at completion of Performance Measurements and Archiving (PMA) job.
+CSIT PA runs performance analysis, change detection and trending using specified
+trend analysis metrics over the rolling window of last <N> sets of historical
+measurement data. PA is defined as follows:
 
-   a. Periodic, or gerrit triggers are supported too.
+    #. PA job triggers:
 
-2. Download RF output.xml from triggering CPM job.
-3. Parse out the test results listed in PAL specification file.
-4. Reads specified amount of PMA historical data from Nexus.
-5. Calculate specified statistical metrics – see next section.
-6. Evaluate latest results against the historical metrics, quantify relative
-   change and based on defined criteria set the result to Pass (no-change or
-   progression) or Fail (regression).
-7. Add the new data to historical data.
-8. Generate a new set of trend analysis summary and drill-down graphs.
-9. Archive the latest RF output.xml to nexus for future analysis.
-10. Publish trend analysis graphs in html format on https://docs.fd.io/.
+        #. By PT job at its completion.
+        #. Manually from Jenkins UI.
+
+    #. Download and parse archived historical data and the new data:
+
+        #. New data from latest PT job is evaluated against the rolling window
+           of <N> sets of historical data.
+        #. Download RF output.xml files and compressed archived data.
+        #. Parse out the data filtering test cases listed in PA specification
+           (part of CSIT PAL specification file).
+
+    #. Calculate trend metrics for the rolling window of <N> sets of historical data:
+
+        #. Calculate quartiles Q1, Q2, Q3.
+        #. Trim outliers using IQR.
+        #. Calculate TMA and TMSD.
+        #. Calculate normal trending range per test case based on TMA and TMSD.
+
+    #. Evaluate new test data against trend metrics:
+
+        #. If within the range of (TMA +/- 3*TMSD) => Result = Pass,
+           Reason = Normal.
+        #. If below the range => Result = Fail, Reason = Regression.
+        #. If above the range => Result = Pass, Reason = Progression.
+
+    #. Generate and publish results
+
+        #. Relay evaluation result to job result.
+        #. Generate a new set of trend analysis summary graphs and drill-down
+           graphs.
+
+            #. Summary graphs to include measured values with Normal,
+               Progression and Regression markers. MM shown in the background if
+               possible.
+            #. Drill-down graphs to include MM, TMA and TMSD.
+
+        #. Publish trend analysis graphs in html format on
+           https://docs.fd.io/csit/master/trending/.
+
 
 Parameters to specify:
 ``````````````````````
 
 - job to be monitored - the Jenkins job which results are used as input data for
   this test;
-- number of builds used for trending plot(s) - specified by an integer greater
-  than zero, or zero for all available builds;
-- tests we are interested in (list) list of tests which results are used for the
-  test;
-- window size for the moving average.
+- builds used for trending plot(s) - specified by a list of build numbers or by
+  a range of builds defined by the first and the last buld number;
+- list plots to generate:
+
+  - plot title;
+  - output file name;
+  - data for plots;
+  - tests to be displayed in the plot defined by a filter;
+  - list of parameters to extract from the data;
+  - periods (daily = 1, weekly = 5, monthly = 30);
+  - plot layout
 
 *Example:*
 
 ::
 
-    TODO
+    -
+      type: "cpta"
+      title: "Continuous Performance Trending and Analysis"
+      algorithm: "cpta"
+      output-file-type: ".html"
+      output-file: "{DIR[STATIC,VPP]}/cpta"
+      data: "plot-performance-trending"
+      plots:
+        - title: "VPP 1T1C L2 64B Packet Throughput - {period} Trending"
+          output-file-name: "l2-1t1c-x520"
+          data: "plot-performance-trending"
+          filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+          parameters:
+          - "result"
+    #      - "name"
+          periods:
+          - 1
+          - 5
+          - 30
+          layout: "plot-cpta"
 
+        - title: "VPP 2T2C L2 64B Packet Throughput - {period} Trending"
+          output-file-name: "l2-2t2c-x520"
+          data: "plot-performance-trending"
+          filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+          parameters:
+          - "result"
+    #      - "name"
+          periods:
+          - 1
+          - 5
+          - 30
+          layout: "plot-cpta"
 
 API
 ---

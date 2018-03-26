@@ -223,7 +223,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -236,7 +235,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -249,7 +247,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -262,7 +259,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -275,7 +271,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -288,7 +283,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -301,7 +295,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -314,7 +307,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -327,7 +319,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -342,7 +333,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -355,7 +345,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -368,7 +357,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -381,7 +369,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -394,7 +381,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -407,7 +393,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -420,7 +405,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -433,7 +417,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -446,7 +429,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -461,7 +443,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -474,7 +455,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -487,7 +467,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '4T4C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -502,7 +481,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -515,7 +493,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -528,7 +505,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -541,7 +517,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -554,7 +529,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -567,7 +541,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -582,7 +555,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -595,7 +567,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -608,7 +579,6 @@
       filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -621,7 +591,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -634,7 +603,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -647,7 +615,6 @@
       filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -662,7 +629,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -675,7 +641,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -688,7 +653,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -702,7 +666,6 @@
 
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -715,7 +678,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -728,7 +690,6 @@
       filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -742,7 +703,6 @@
 
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -755,7 +715,6 @@
       filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -768,7 +727,6 @@
       filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -778,12 +736,11 @@
 # IPSec
 
     - title: "VPP 1T1C IPSec 64B Packet Throughput - {period} Trending"
-      output-file-name: "ipsec-1t1c-x520"
+      output-file-name: "ipsec-1t1c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -791,12 +748,11 @@
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPSec 64B Packet Throughput - {period} Trending"
-      output-file-name: "ipsec-2t2c-x520"
+      output-file-name: "ipsec-2t2c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
@@ -804,12 +760,11 @@
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPSec 64B Packet Throughput - {period} Trending"
-      output-file-name: "ipsec-4t4c-x520"
+      output-file-name: "ipsec-4t4c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
       parameters:
       - "result"
-      - "name"
       periods:
       - 1
       - 5
