@@ -88,6 +88,34 @@
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
+| Find framesize for ethip4-ip4base-iacldstbase
+| | ...
+| | [Documentation] | FIXME
+| | ...
+| | [Arguments] | ${wt} | ${rxq} | ${no_multi_seg}
+| | ...
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Run Keyword If | ${no_multi_seg} | Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize IPv4 forwarding in 3-node circular topology
+| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
+| | ... | ${dut1} | ip4 | dst
+| | And Vpp Configures Classify Session L3
+| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n}
+| | ... | ip4 | dst | 20.20.20.2
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1} | ${dut1_if1} | ip4 | ${table_idx}
+| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
+| | ... | ${dut2} | ip4 | dst
+| | And Vpp Configures Classify Session L3
+| | ... | ${dut2} | permit | ${table_idx} | ${skip_n} | ${match_n}
+| | ... | ip4 | dst | 10.10.10.2
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
+| | Then Search for MTU at maximum rate | ${perf_trial_duration}
+| | ... | 9999pps | ${64} | ${9100} | ${traffic_profile}
+
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -100,6 +128,30 @@
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
 | | wt=1 | rxq=1 | framesize=${64}
+
+| tc90-var-1t1c-ethip4-ip4base-iacldstbase-mrr
+| | [Documentation] | FIXME
+| | ...
+| | [Tags] | 1T1C | STHREAD | THIS
+| | ...
+| | [Template] | Find framesize for ethip4-ip4base-iacldstbase
+| | wt=1 | rxq=1 | no_multi_seg=True
+
+| tc91-var-1t1c-ethip4-ip4base-iacldstbase-mrr
+| | [Documentation] | FIXME
+| | ...
+| | [Tags] | 1T1C | STHREAD | THIS
+| | ...
+| | [Template] | Find framesize for ethip4-ip4base-iacldstbase
+| | wt=1 | rxq=1 | no_multi_seg=False
+
+| tc92-var-1t1c-ethip4-ip4base-iacldstbase-mrr
+| | [Documentation] | FIXME
+| | ...
+| | [Tags] | 1T1C | STHREAD | THIS
+| | ...
+| | [Template] | Find framesize for ethip4-ip4base-iacldstbase
+| | wt=1 | rxq=1 | no_multi_seg=True
 
 | tc02-1518B-1t1c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
