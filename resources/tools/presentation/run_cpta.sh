@@ -12,10 +12,6 @@ sudo apt-get -y update
 sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
     zlib1g-dev unzip
 
-# Clean-up when finished
-trap 'rm -rf ${DIR[WORKING]}; exit' EXIT
-trap 'rm -rf ${DIR[WORKING]}; exit' ERR
-
 # Create working directories
 mkdir ${DIR[WORKING]}
 
@@ -32,7 +28,9 @@ python pal.py \
     --specification specification_CPTA.yaml \
     --logging INFO \
     --force
-
 RETURN_STATUS=$?
+
+rm -rf ${DIR[WORKING]}
+
 echo ${RETURN_STATUS}
 exit ${RETURN_STATUS}
