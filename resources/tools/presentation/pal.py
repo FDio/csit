@@ -86,7 +86,7 @@ def main():
         logging.critical("Finished with error.")
         return 1
 
-    ret_code = 1
+    ret_code = 0
     try:
         env = Environment(spec.environment, args.force)
         env.set_environment()
@@ -109,9 +109,8 @@ def main():
         if spec.output["output"] == "report":
             generate_report(args.release, spec)
             logging.info("Successfully finished.")
-            ret_code = 0
         elif spec.output["output"] == "CPTA":
-            ret_code = generate_cpta(spec, data)
+            sys.stdout.write(generate_cpta(spec, data))
             logging.info("Successfully finished.")
         else:
             logging.critical("The output '{0}' is not supported.".

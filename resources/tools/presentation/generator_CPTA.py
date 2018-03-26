@@ -462,9 +462,8 @@ def _generate_all_charts(spec, input_data):
             result = "PASS"
         elif item == 0.33 or item == 0.0:
             result = "FAIL"
-    print(results)
-    print(result)
-    if result == "FAIL":
-        return 1
-    else:
-        return 0
+
+    logging.info("Partial results: {0}".format(results))
+    logging.info("Result: {0}".format(result))
+
+    return result

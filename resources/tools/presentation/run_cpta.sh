@@ -24,13 +24,11 @@ pip install -r requirements.txt
 
 export PYTHONPATH=`pwd`
 
-python pal.py \
+STATUS=$(python pal.py \
     --specification specification_CPTA.yaml \
     --logging INFO \
-    --force
+    --force)
 RETURN_STATUS=$?
 
-rm -rf ${DIR[WORKING]}
-
-echo ${RETURN_STATUS}
+echo ${STATUS}
 exit ${RETURN_STATUS}
