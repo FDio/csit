@@ -489,10 +489,10 @@ class Specification(object):
                             # defined as a range <start, build_type>
                             build_nr = self._get_build_number(job, build_nr)
                         builds = [x for x in range(builds["start"], build_nr+1)]
-                        self._specification["input"]["builds"][job] = list()
-                        for build in builds:
-                            self._specification["input"]["builds"][job]. \
-                                append({"build": build, "status": None})
+                    self._specification["input"]["builds"][job] = list()
+                    for build in builds:
+                        self._specification["input"]["builds"][job]. \
+                            append({"build": build, "status": None})
 
                 else:
                     logging.warning("No build is defined for the job '{}'. "
