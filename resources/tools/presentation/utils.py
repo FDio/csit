@@ -68,6 +68,29 @@ def relative_change(nr1, nr2):
     return float(((nr2 - nr1) / nr1) * 100)
 
 
+def remove_outliers(input_data, outlier_const):
+    """
+
+    :param input_data: Data from which the outliers will be removed.
+    :param outlier_const: Outlier constant.
+    :type input_data: list
+    :type outlier_const: float
+    :returns: The input list without outliers.
+    :rtype: list
+    """
+
+    data = np.array(input_data)
+    upper_quartile = np.percentile(data, 75)
+    lower_quartile = np.percentile(data, 25)
+    iqr = (upper_quartile - lower_quartile) * outlier_const
+    quartile_set = (lower_quartile - iqr, upper_quartile + iqr)
+    result_lst = list()
+    for y in data.tolist():
+        if quartile_set[0] <= y <= quartile_set[1]:
+            result_lst.append(y)
+    return result_lst
+
+
 def find_outliers(input_data, outlier_const=1.5):
     """Go through the input data and generate two pandas series:
     - input data without outliers
