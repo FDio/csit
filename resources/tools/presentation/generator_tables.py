@@ -22,7 +22,7 @@ import prettytable
 from string import replace
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change, find_outliers
+from utils import mean, stdev, relative_change, remove_outliers
 
 
 def generate_tables(spec, data):
@@ -401,15 +401,15 @@ def table_performance_comparison(table, input_data):
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
         if tbl_dict[tst_name]["ref-data"]:
-            data_t, _ = find_outliers(tbl_dict[tst_name]["ref-data"],
-                                      table["outlier-const"])
+            data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
+                                     table["outlier-const"])
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
-            data_t, _ = find_outliers(tbl_dict[tst_name]["cmp-data"],
-                                      table["outlier-const"])
+            data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
+                                     table["outlier-const"])
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:

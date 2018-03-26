@@ -1598,7 +1598,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1619,7 +1619,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1640,7 +1640,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -1661,7 +1661,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
@@ -2701,7 +2701,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
@@ -2720,7 +2720,7 @@
   output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
