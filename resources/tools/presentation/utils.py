@@ -172,15 +172,35 @@ def execute_command(cmd):
     return proc.returncode, stdout, stderr
 
 
-def get_last_build_number(jenkins_url, job_name):
-    """
+def get_last_successful_build_number(jenkins_url, job_name):
+    """Get the number of the last successful build of the given job.
 
-    :param jenkins_url:
-    :param job_name:
-    :return:
+    :param jenkins_url: Jenkins URL.
+    :param job_name: Job name.
+    :type jenkins_url: str
+    :type job_name: str
+    :returns: The build number as a string.
+    :rtype: str
     """
 
     url = "{}/{}/lastSuccessfulBuild/buildNumber".format(jenkins_url, job_name)
+    cmd = "wget -qO- {url}".format(url=url)
+
+    return execute_command(cmd)
+
+
+def get_last_completed_build_number(jenkins_url, job_name):
+    """Get the number of the last completed build of the given job.
+
+    :param jenkins_url: Jenkins URL.
+    :param job_name: Job name.
+    :type jenkins_url: str
+    :type job_name: str
+    :returns: The build number as a string.
+    :rtype: str
+    """
+
+    url = "{}/{}/lastCompletedBuild/buildNumber".format(jenkins_url, job_name)
     cmd = "wget -qO- {url}".format(url=url)
 
     return execute_command(cmd)
