@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.KubernetesUtils
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
+| Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/shared/default.robot
@@ -361,6 +362,99 @@
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
 | | ... | ${framesize} | ${topology_type} | ${loss_acceptance}
 | | ... | ${loss_acceptance_type} | fail_on_loss=${False}
+
+| Find NDR and PDR intervals using optimized search
+| | [Documentation]
+| | ... | Find boundaries for RFC2544 compatible NDR and PDR values
+| | ... | using an optimized search algorithm.
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - fail_rate - Lower limit of search [pps]. Type: float
+| | ... | - line_rate - Upper limit of search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - acceptable_drop_fraction - Accepted loss during search. Type: float
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find NDR and PDR intervals using optimized search \| \${64} \
+| | ... | \${100000} \| \${14880952} \| 3-node-IPv4 \| \${0.005}
+| | ...
+| | [Arguments] | ${framesize} | ${fail_rate} | ${line_rate} | ${topology_type}
+| | ... | ${acceptable_drop_fraction}=${0.005}
+| | ...
+| | ${result}= | Perform optimized ndr pdr search | $(frame_size} | ${fail_rate}
+| | ... | ${line_rate} | ${topology_type} | ${allowed_drop_fraction}
+| | Display result of NDRPDR search | ${result} | ${frame_size} | 2
+
+| Display single bound
+| | [Documentation]
+| | ... | Display one bound of NDR+PDR search,
+| | ... | in packet per seconds (total and per stream)
+| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | Througput is calculated as:
+| | ... | Measured rate per stream * Total number of streams
+| | ... | Bandwidth is calculated as:
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | The given result should contain latency data as well.
+| | ...
+| | ... | *Arguments:*
+| | ... | - text - Flavor text describing which bound is this. Type: string
+| | ... | - measurement - Measured result data per stream [pps]. Type: NdrPdrResult
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - nr_streams - Total number of streams. Type: integer
+| | ... | - show_latency - Whether latency data should be displayed. Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Display single bound \| NDR lower bound \| \${measurement} \
+| | ... | \| \${64} \| \${2} \| show_latency=\${True}
+| | ...
+| | [Arguments] | ${text} | ${measurement} | ${framesize} | ${nr_streams}
+| | ... | ${show_latency}=${False}
+| | ...
+| | ${rate_total}= | Evaluate | ${measurement.target_tr}*${nr_streams}
+| | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
+| | Set Test Message | ${text} | append=yes
+| | Set Test Message | RATE: ${rate_total} pps | append=yes
+| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
+| | Set Test Message | ${\n}BANDWIDTH: ${bandwidth_total} Gbps (untagged)
+| | ... | append=yes
+| | Return FromKeyword If | not ${show_latency}
+| | Set Test Message | ${\n}LATENCY usec [min/avg/max]: @{measurement.latency} | append=yes
+
+| Display result of NDRPDR search
+| | [Documentation]
+| | ... | Display result of NDR+PDR search, both quantities, both bounds,
+| | ... | in packet per seconds (total and per stream)
+| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | Througput is calculated as:
+| | ... | Measured rate per stream * Total number of streams
+| | ... | Bandwidth is calculated as:
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | The given result should contain latency data as well.
+| | ...
+| | ... | *Arguments:*
+| | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - nr_streams - Total number of streams. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Display result of NDRPDR search \| \${result} \| \${64} \| \${2}
+| | ...
+| | [Arguments] | ${result} | ${framesize} | ${nr_streams} | ${latency}
+| | ...
+| | ${framesize}= | Get Frame Size | ${framesize}
+| | ${ndr_lo_tr}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
+| | ${ndr_hi_tr}= | Set Variable | ${result.ndr_interval.measured_high.target_tr}
+| | ${pdr_lo_tr}= | Set Variable | ${result.pdr_interval.measured_low.target_tr}
+| | ${pdr_hi_tr}= | Set Variable | ${result.pdr_interval.measured_high.target_tr}
+| | Set Test Message | NDR+PDR search results:
+| | Display single bound | NDR lower bound | ${ndr_lo_tr} | ${framesize} | ${nr_streams} | ${True}
+| | Display single bound | NDR upper bound | ${ndr_hi_tr} | ${framesize} | ${nr_streams}
+| | Display single bound | PDR lower bound | ${pdr_lo_tr} | ${framesize} | ${nr_streams} | ${True}
+| | Display single bound | PDR upper bound | ${pdr_hi_tr} | ${framesize} | ${nr_streams}
 
 | Display result of NDR search
 | | [Documentation]
