@@ -1391,7 +1391,8 @@ measurement data. PA is defined as follows:
         #. Parse out the data filtering test cases listed in PA specification
            (part of CSIT PAL specification file).
 
-    #. Calculate trend metrics for the rolling window of <N> sets of historical data:
+    #. Calculate trend metrics for the rolling window of <N> sets of historical
+       data:
 
         #. Calculate quartiles Q1, Q2, Q3.
         #. Trim outliers using IQR.
@@ -1423,19 +1424,28 @@ measurement data. PA is defined as follows:
 Parameters to specify:
 ``````````````````````
 
-- job to be monitored - the Jenkins job which results are used as input data for
-  this test;
-- builds used for trending plot(s) - specified by a list of build numbers or by
-  a range of builds defined by the first and the last buld number;
-- list plots to generate:
+*General section - parameters common to all plots:*
 
-  - plot title;
-  - output file name;
-  - data for plots;
-  - tests to be displayed in the plot defined by a filter;
-  - list of parameters to extract from the data;
-  - periods (daily = 1, weekly = 5, monthly = 30);
-  - plot layout
+    - type: "cpta";
+    - title: The title of this section;
+    - output-file-type: only ".html" is supported;
+    - output-file: path where the generated files will be stored.
+
+*Plots section:*
+
+    - plot title;
+    - output file name;
+    - input data for plots;
+
+        - job to be monitored - the Jenkins job which results are used as input
+          data for this test;
+        - builds used for trending plot(s) - specified by a list of build
+          numbers or by a range of builds defined by the first and the last
+          build number;
+
+    - tests to be displayed in the plot defined by a filter;
+    - list of parameters to extract from the data;
+    - plot layout
 
 *Example:*
 
@@ -1444,36 +1454,122 @@ Parameters to specify:
     -
       type: "cpta"
       title: "Continuous Performance Trending and Analysis"
-      algorithm: "cpta"
       output-file-type: ".html"
       output-file: "{DIR[STATIC,VPP]}/cpta"
-      data: "plot-performance-trending"
       plots:
-        - title: "VPP 1T1C L2 64B Packet Throughput - {period} Trending"
+
+        - title: "VPP 1T1C L2 64B Packet Throughput - Trending"
           output-file-name: "l2-1t1c-x520"
-          data: "plot-performance-trending"
+          data: "plot-performance-trending-vpp"
           filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
           parameters:
           - "result"
-    #      - "name"
-          periods:
-          - 1
-          - 5
-          - 30
-          layout: "plot-cpta"
+          layout: "plot-cpta-vpp"
 
-        - title: "VPP 2T2C L2 64B Packet Throughput - {period} Trending"
-          output-file-name: "l2-2t2c-x520"
-          data: "plot-performance-trending"
-          filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+        - title: "DPDK 4T4C IMIX MRR Trending"
+          output-file-name: "dpdk-imix-4t4c-xl710"
+          data: "plot-performance-trending-dpdk"
+          filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '4T4C' and 'DPDK'"
           parameters:
           - "result"
-    #      - "name"
-          periods:
-          - 1
-          - 5
-          - 30
-          layout: "plot-cpta"
+          layout: "plot-cpta-dpdk"
+
+The Dashboard
+`````````````
+
+Performance dashboard tables provide the latest VPP throughput trend, trend
+compliance and detected anomalies, all on a per VPP test case basis.
+The Dashboard is generated as three tables for 1t1c, 2t2c and 4t4c MRR tests.
+
+At first, the .csv tables are generated (only the table for 1t1c is shown):
+
+::
+
+    -
+      type: "table"
+      title: "Performance trending dashboard"
+      algorithm: "table_performance_trending_dashboard"
+      output-file-ext: ".csv"
+      output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c"
+      data: "plot-performance-trending-all"
+      filter: "'MRR' and '1T1C'"
+      parameters:
+      - "name"
+      - "parent"
+      - "result"
+      ignore-list:
+      - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+      outlier-const: 1.5
+      window: 14
+      evaluated-window: 14
+      long-trend-window: 180
+
+Then, html tables stored inside .rst files are generated:
+
+::
+
+    -
+      type: "table"
+      title: "HTML performance trending dashboard 1t1c"
+      algorithm: "table_performance_trending_dashboard_html"
+      input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.csv"
+      output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.rst"
+
+Root Cause Analysis
+-------------------
+
+Root Cause Analysis (RCA) by analysing archived performance results – re-analyse
+available data for specified:
+
+    - range of jobs builds,
+    - set of specific tests and
+    - PASS/FAIL criteria to detect performance change.
+
+In addition, PAL generates trending plots to show performance over the specified
+time interval.
+
+Root Cause Analysis - Option 1: Analysing Archived VPP Results
+``````````````````````````````````````````````````````````````
+
+It can be used to speed-up the process, or when the existing data is sufficient.
+In this case, PAL uses existing data saved in Nexus, searches for performance
+degradations and generates plots to show performance over the specified time
+interval for the selected tests.
+
+Execution Sequence
+''''''''''''''''''
+
+    #. Download and parse archived historical data and the new data.
+    #. Calculate trend metrics.
+    #. Find regression / progression.
+    #. Generate and publish results:
+
+        #. Summary graphs to include measured values with Progression and
+           Regression markers.
+        #. List the DUT build(s) where the anomalies were detected.
+
+CSIT PAL Specification
+''''''''''''''''''''''
+
+    - What to test:
+
+        - first build (Good); specified by the Jenkins job name and the build
+          number
+        - last build (Bad); specified by the Jenkins job name and the build
+          number
+        - step (1..n).
+
+    - Data:
+
+        - tests of interest; list of tests (full name is used) which results are
+          used
+
+*Example:*
+
+::
+
+    TODO
+
 
 API
 ---
