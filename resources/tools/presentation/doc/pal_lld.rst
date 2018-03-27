@@ -1475,6 +1475,55 @@ Parameters to specify:
           - 30
           layout: "plot-cpta"
 
+Root Cause Analysis
+-------------------
+
+Root Cause Analysis (RCA) by analysing archived performance results – re-analyse
+available data for specified:
+
+    - range of jobs builds,
+    - set of specific tests and
+    - PASS/FAIL criteria to detect performance change.
+
+In addition, PAL generates trending plots to show performance over the specified
+time interval.
+
+Root Cause Analysis - Option 1: Analysing Archived VPP Results
+``````````````````````````````````````````````````````````````
+
+It can be used to speed-up the process, or when the existing data is sufficient.
+In this case, PAL uses existing data saved in Nexus, searches for performance
+degradations and generates plots to show performance over the specified time
+interval for the selected tests.
+
+Execution Sequence
+''''''''''''''''''
+
+    - What to test:
+
+        - first build (Good); specified by the Jenkins job name and the build
+          number
+        - last build (Bad); specified by the Jenkins job name and the build
+          number
+        - step (1..n).
+
+    - Data:
+
+        - tests of interest; list of tests (full name is used) which results are
+          used
+
+CSIT PAL Specification
+''''''''''''''''''''''
+
+    - TODO
+
+*Example:*
+
+::
+
+    TODO
+
+
 API
 ---
 
