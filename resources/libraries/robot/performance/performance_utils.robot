@@ -362,6 +362,31 @@
 | | ... | ${framesize} | ${topology_type} | ${loss_acceptance}
 | | ... | ${loss_acceptance_type} | fail_on_loss=${False}
 
+| Find NDR and PDR intervals using optimized search
+| | [Documentation]
+| | ... | Find boundaries for RFC2544 compatible NDR and PDR values
+| | ... | using an optimized search algorithm.
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - fail_rate - Lower limit of search [pps]. Type: float
+| | ... | - line_rate - Upper limit of search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - acceptable_drop_fraction - Accepted loss during search. Type: float
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find NDR and PDR intervals using optimized search \| \${64} \
+| | ... | \${100000} \| \${14880952} \| 3-node-IPv4 \| \${0.005}
+| | ...
+| | [Arguments] | ${framesize} | ${fail_rate} | ${line_rate} | ${topology_type}
+| | ... | ${acceptable_drop_fraction}=${0.005}
+| | ...
+| | ${result}= | Prform opimized ndr pdr search | $(frame_size} | ${fail_rate}
+| | ... | ${line_rate} | ${traffic_type} | ${allowed_drop_fraction}
+# FIXME: Design a PAL-friendly test result string.
+| | Log To Console | ${result}
+
 | Display result of NDR search
 | | [Documentation]
 | | ... | Display result of NDR search in packet per seconds (total and per
