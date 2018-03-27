@@ -343,7 +343,6 @@
 -
   type: "cpta"
   title: "Continuous Performance Trending and Analysis"
-  algorithm: "cpta"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/cpta"
   plots:
