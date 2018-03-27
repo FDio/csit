@@ -313,8 +313,9 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
     traces.append(trace_anomalies)
 
     if show_moving_median:
+        min_periods = moving_win_size / 2 + 1
         data_mean_y = pd.Series(data_y).rolling(
-            window=moving_win_size).median()
+            window=moving_win_size, min_periods=min_periods).median()
         trace_median = plgo.Scatter(
             x=data_x,
             y=data_mean_y,
@@ -324,7 +325,7 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
                 "width": 1,
                 "color": color,
             },
-            name='{name}-trend'.format(name=name, size=moving_win_size)
+            name='{name}-trend'.format(name=name)
         )
         traces.append(trace_median)
 
@@ -388,7 +389,7 @@ def _generate_all_charts(spec, input_data):
                         chart_data[test_name][int(idx)] = \
                             test["result"]["throughput"]
                     except (KeyError, TypeError):
-                        chart_data[test_name][int(idx)] = None
+                        pass
 
         # Add items to the csv table:
         for tst_name, tst_data in chart_data.items():
