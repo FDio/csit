@@ -8,109 +8,73 @@ NIC 10ge2p1x520
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-1t1c-x520-1.html"></iframe>
 
-*Figure 1. Daily trend.*
+    <center><i>Figure 1. VM vhost Connections, NIC 10ge2p1x520 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-1t1c-x520-5.html"></iframe>
 
-*Figure 2. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-1t1c-x520-30.html"></iframe>
-
-*Figure 3. Monthly trend.*
+    <center><i>Figure 2. VM vhost Connections, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-2t2c-x520-1.html"></iframe>
 
-*Figure 4. Daily trend.*
+    <center><i>Figure 3. VM vhost Connections, NIC 10ge2p1x520 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-2t2c-x520-5.html"></iframe>
 
-*Figure 5. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-2t2c-x520-30.html"></iframe>
-
-*Figure 6. Monthly trend.*
+    <center><i>Figure 4. VM vhost Connections, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-4t4c-x520-1.html"></iframe>
 
-*Figure 7. Daily trend.*
+    <center><i>Figure 5. VM vhost Connections, NIC 10ge2p1x520 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-4t4c-x520-5.html"></iframe>
 
-*Figure 8. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-ethip4-4t4c-x520-30.html"></iframe>
-
-*Figure 9. Monthly trend.*
+    <center><i>Figure 6. VM vhost Connections, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-x520-1.html"></iframe>
 
-*Figure 10. Daily trend.*
+    <center><i>Figure 7. VM vhost Connections, NIC 10ge2p1x520 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-x520-5.html"></iframe>
 
-*Figure 11. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-x520-30.html"></iframe>
-
-*Figure 12. Monthly trend.*
+    <center><i>Figure 8. VM vhost Connections, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-x520-1.html"></iframe>
 
-*Figure 13. Daily trend.*
+    <center><i>Figure 9. VM vhost Connections, NIC 10ge2p1x520 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-x520-5.html"></iframe>
 
-*Figure 14. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-x520-30.html"></iframe>
-
-*Figure 15. Monthly trend.*
+    <center><i>Figure 10. VM vhost Connections, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-x520-1.html"></iframe>
 
-*Figure 16. Daily trend.*
+    <center><i>Figure 11. VM vhost Connections, NIC 10ge2p1x520 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-x520-5.html"></iframe>
 
-*Figure 17. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-x520-30.html"></iframe>
-
-*Figure 18. Monthly trend.*
+    <center><i>Figure 12. VM vhost Connections, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
 
 NIC 40ge2p1xl710
 ----------------
@@ -119,52 +83,34 @@ NIC 40ge2p1xl710
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-xl710-1.html"></iframe>
 
-*Figure 1. Daily trend.*
+    <center><i>Figure 1. VM vhost Connections, NIC 40ge2p1xl710 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-xl710-5.html"></iframe>
 
-*Figure 2. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-xl710-30.html"></iframe>
-
-*Figure 3. Monthly trend.*
+    <center><i>Figure 2. VM vhost Connections, NIC 40ge2p1xl710 - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-xl710-1.html"></iframe>
 
-*Figure 4. Daily trend.*
+    <center><i>Figure 3. VM vhost Connections, NIC 40ge2p1xl710 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-xl710-5.html"></iframe>
 
-*Figure 5. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-xl710-30.html"></iframe>
-
-*Figure 6. Monthly trend.*
+    <center><i>Figure 4. VM vhost Connections, NIC 40ge2p1xl710 - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-xl710-1.html"></iframe>
 
-*Figure 4. Daily trend.*
+    <center><i>Figure 5. VM vhost Connections, NIC 40ge2p1xl710 - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-xl710-5.html"></iframe>
 
-*Figure 5. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-xl710-30.html"></iframe>
-
-*Figure 6. Monthly trend.*
+    <center><i>Figure 6. VM vhost Connections, NIC 40ge2p1xl710 - Weekly trend.</i></center><br><br>

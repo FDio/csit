@@ -291,19 +291,21 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
             "color": anomalies_res,
             "colorscale": color_scale,
             "showscale": True,
-
+            "line": {
+                "width": 2
+            },
             "colorbar": {
                 "y": 0.5,
                 "len": 0.8,
-                "title": "Results Clasification",
+                "title": "Circles Marking Data Classification",
                 "titleside": 'right',
                 "titlefont": {
                     "size": 14
                 },
                 "tickmode": 'array',
                 "tickvals": [0.125, 0.375, 0.625, 0.875],
-                "ticktext": ["Outlier", "Regress", "Normal", "Progress"],
-                "ticks": 'outside',
+                "ticktext": ["Outlier", "Regression", "Normal", "Progression"],
+                "ticks": "",
                 "ticklen": 0,
                 "tickangle": -90,
                 "thickness": 10
@@ -313,9 +315,8 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
     traces.append(trace_anomalies)
 
     if show_moving_median:
-        min_periods = moving_win_size / 2 + 1
         data_mean_y = pd.Series(data_y).rolling(
-            window=moving_win_size, min_periods=min_periods).median()
+            window=moving_win_size, min_periods=2).median()
         trace_median = plgo.Scatter(
             x=data_x,
             y=data_mean_y,

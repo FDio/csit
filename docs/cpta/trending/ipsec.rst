@@ -5,52 +5,34 @@ IPSec Crypto HW: IP4 Routed-Forwarding
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710-1.html"></iframe>
 
-*Figure 1. Daily trend.*
+    <center><i>Figure 1. IPSec Crypto HW: IP4 Routed-Forwarding - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710-5.html"></iframe>
 
-*Figure 2. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710-30.html"></iframe>
-
-*Figure 3. Monthly trend.*
+    <center><i>Figure 2. IPSec Crypto HW: IP4 Routed-Forwarding - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710-1.html"></iframe>
 
-*Figure 4. Daily trend.*
+    <center><i>Figure 3. IPSec Crypto HW: IP4 Routed-Forwarding - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710-5.html"></iframe>
 
-*Figure 5. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710-30.html"></iframe>
-
-*Figure 6. Monthly trend.*
+    <center><i>Figure 4. IPSec Crypto HW: IP4 Routed-Forwarding - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710-1.html"></iframe>
 
-*Figure 7. Daily trend.*
+    <center><i>Figure 5. IPSec Crypto HW: IP4 Routed-Forwarding - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710-5.html"></iframe>
 
-*Figure 8. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710-30.html"></iframe>
-
-*Figure 9. Monthly trend.*
+    <center><i>Figure 6. IPSec Crypto HW: IP4 Routed-Forwarding - Weekly trend.</i></center><br><br>
