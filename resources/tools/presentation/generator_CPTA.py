@@ -443,7 +443,7 @@ def _generate_all_charts(spec, input_data):
         file_handler.writelines(csv_table)
 
     txt_table = None
-    with open("{0}.csv".format("cpta-trending"), 'rb') as csv_file:
+    with open("{0}.csv".format(file_name), 'rb') as csv_file:
         csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
         header = True
         for row in csv_content:
@@ -459,7 +459,7 @@ def _generate_all_charts(spec, input_data):
                             pass
                 txt_table.add_row(row)
         txt_table.align["Build Number:"] = "l"
-    with open("{0}.txt".format("cpta-trending"), "w") as txt_file:
+    with open("{0}.txt".format(file_name), "w") as txt_file:
         txt_file.write(str(txt_table))
 
     # Evaluate result:
