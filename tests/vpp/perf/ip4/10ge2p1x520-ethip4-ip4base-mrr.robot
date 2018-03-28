@@ -80,7 +80,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
 | | [Template] | Check RR for ethip4-ip4base
 | | wt=1 | rxq=1 | framesize=${64}

@@ -26,7 +26,10 @@ RESERVATION_DIR="/tmp/reservation_dir"
 
 PYBOT_ARGS=""
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
+JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+LOG_ARCHIVES_DIR="$WORKSPACE/archives"
+mkdir -p ${LOG_ARCHIVES_DIR}
 
 # we will download the DPDK in the robot
 
@@ -75,17 +78,6 @@ trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
-    PERFTEST_LONG )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.dpdk.perf" \
-              --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
     PERFTEST_SHORT )
         pybot ${PYBOT_ARGS} \
               -L TRACE \
@@ -117,22 +109,14 @@ case "$TEST_TAG" in
         RETURN_STATUS=$(echo $?)
 esac
 
-# Pybot output post-processing
-echo Post-processing test data...
-
-python ${SCRIPT_DIR}/resources/tools/scripts/robot_output_parser.py \
-       -i ${SCRIPT_DIR}/output.xml \
-       -o ${SCRIPT_DIR}/output_perf_data.xml
-if [ ! $? -eq 0 ]; then
-    echo "Parsing ${SCRIPT_DIR}/output.xml failed"
-fi
-
-# Archive artifacts
-mkdir archive
-for i in ${ARCHIVE_ARTIFACTS[@]}; do
+# Archive JOB artifacts in jenkins
+mkdir -p archive
+for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
-
-echo Post-processing finished.
+# Archive JOB artifacts to logs.fd.io
+for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVES_DIR}/
+done
 
 exit ${RETURN_STATUS}
