@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "12b90c36_4b5402f8",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-28T12:01:10Z",
+      "side": 1,
+      "message": "Nevermind, I have not noticed the star before. It should work (assuming \"default\" string is interpreted correctly).",
+      "range": {
+        "startLine": 361,
+        "startChar": 32,
+        "endLine": 361,
+        "endChar": 40
+      },
+      "revId": "c370c28714f34789982ac504b489b9356f7b680b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a876b041_27c188fb",
         "filename": "resources/libraries/python/VppConfigGenerator.py",
         "patchSetId": 2
