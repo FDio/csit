@@ -124,7 +124,8 @@
 | | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add Heapsize | "4G"
-| | | Run keyword | ${dut}.Add Plugin Disable | @{plugins_to_disable}
+| | | Run keyword | ${dut}.Add Plugin | disable | default
+| | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | "2000000"
 | | | Run keyword | ${dut}.Add IP6 Heap Size | "4G"
 | | | Run keyword | ${dut}.Add IP Heap Size | "4G"
