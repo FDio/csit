@@ -123,6 +123,8 @@
 #        tracegroupgap: 10
 #        bordercolor: "rgb(238, 238, 238)"
 #        borderwidth: 1
+      hoverlabel:
+        namelength: -1
 
 -
   type: "debug"

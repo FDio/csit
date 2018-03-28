@@ -5,52 +5,34 @@ IPv4 Overlay Tunnels
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-1.html"></iframe>
 
-*Figure 1. Daily trend.*
+    <center><i>Figure 1. IPv4 Overlay Tunnels - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-5.html"></iframe>
 
-*Figure 2. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-30.html"></iframe>
-
-*Figure 3. Monthly trend.*
+    <center><i>Figure 2. IPv4 Overlay Tunnels - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-1.html"></iframe>
 
-*Figure 4. Daily trend.*
+    <center><i>Figure 3. IPv4 Overlay Tunnels - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-5.html"></iframe>
 
-*Figure 5. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-30.html"></iframe>
-
-*Figure 6. Monthly trend.*
+    <center><i>Figure 4. IPv4 Overlay Tunnels - Weekly trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-1.html"></iframe>
 
-*Figure 7. Daily trend.*
+    <center><i>Figure 5. IPv4 Overlay Tunnels - Daily trend.</i></center><br><br>
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-5.html"></iframe>
 
-*Figure 8. Weekly trend.*
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-30.html"></iframe>
-
-*Figure 9. Monthly trend.*
+    <center><i>Figure 6. IPv4 Overlay Tunnels - Weekly trend.</i></center><br><br>
