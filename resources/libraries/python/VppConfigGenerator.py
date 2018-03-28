@@ -358,14 +358,16 @@ class VppConfigGenerator(object):
         path = ['ip', 'heap-size']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_plugin_disable(self, *plugins):
-        """Add plugin disable for specific plugin.
+    def add_plugin(self, state, *plugins):
+        """Add plugin section for specific plugin(s).
 
+        :param state: State of plugin [enable|disable].
         :param plugins: Plugin(s) to disable.
+        :type state: str
         :type plugins: list
         """
         for plugin in plugins:
-            path = ['plugins', 'plugin {0}'.format(plugin), 'disable']
+            path = ['plugins', 'plugin {0}'.format(plugin), state]
             self.add_config_item(self._nodeconfig, ' ', path)
 
     def add_dpdk_no_multi_seg(self):
