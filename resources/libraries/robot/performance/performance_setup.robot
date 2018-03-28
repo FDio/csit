@@ -388,24 +388,24 @@
 
 | Set up performance test suite with MEMIF
 | | [Documentation]
-| | ... | Remove memif_plugin.so from the list of disabled plugins.
+| | ... | Append memif_plugin.so to the list of enabled plugins.
 | | ...
-| | Set Suite Variable | @{plugins_to_disable}
-| | Remove Values From List | ${plugins_to_disable} | memif_plugin.so
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | memif_plugin.so
 
 | Set up performance test suite with NAT
 | | [Documentation]
-| | ... | Remove nat_plugin.so from the list of disabled plugins.
+| | ... | Append nat_plugin.so to the list of enabled plugins.
 | | ...
-| | Set Suite Variable | @{plugins_to_disable}
-| | Remove Values From List | ${plugins_to_disable} | nat_plugin.so
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | nat_plugin.so
 
 | Set up performance test suite with ACL
 | | [Documentation]
-| | ... | Remove acl_plugin.so from the list of disabled plugins.
+| | ... | Append acl_plugin.so to the list of enabled plugins.
 | | ...
-| | Set Suite Variable | @{plugins_to_disable}
-| | Remove Values From List | ${plugins_to_disable} | acl_plugin.so
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | acl_plugin.so
 
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]

@@ -48,27 +48,5 @@
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
-| | @{plugins_to_disable}= | Create List
-| | ... | acl_plugin.so
-| | ... | cdp_plugin.so
-| | ... | flowprobe_plugin.so
-| | ... | gbp_plugin.so
-| | ... | gtpu_plugin.so
-| | ... | igmp_plugin.so
-| | ... | ila_plugin.so
-| | ... | ioam_plugin.so
-| | ... | ixge_plugin.so
-| | ... | kubeproxy_plugin.so
-| | ... | l2e_plugin.so
-| | ... | lb_plugin.so
-| | ... | memif_plugin.so
-| | ... | nat_plugin.so
-| | ... | pppoe_plugin.so
-| | ... | srv6ad_plugin.so
-| | ... | srv6am_plugin.so
-| | ... | srv6as_plugin.so
-# | | ... | sixrd_plugin.so
-| | ... | stn_plugin.so
-| | ... | tlsmbedtls_plugin.so
-| | ... | tlsopenssl_plugin.so
-| | Set Global Variable | @{plugins_to_disable}
+| | @{plugins_to_enable}= | Create List | dpdk_plugin.so
+| | Set Global Variable | @{plugins_to_enable}
