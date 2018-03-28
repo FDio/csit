@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a876b041_27c188fb",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-28T11:42:38Z",
+      "side": 1,
+      "message": "This is the subject of the following comment.",
+      "range": {
+        "startLine": 369,
+        "startChar": 8,
+        "endLine": 369,
+        "endChar": 29
+      },
+      "revId": "c370c28714f34789982ac504b489b9356f7b680b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41a7db36_e311c0bf",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-28T11:42:38Z",
+      "side": 1,
+      "message": "Would \"for plugin in plugins\" iterate oved \u0027d\u0027, \u0027e\u0027, \u0027f\u0027, and so on?",
+      "range": {
+        "startLine": 127,
+        "startChar": 50,
+        "endLine": 127,
+        "endChar": 57
+      },
+      "revId": "c370c28714f34789982ac504b489b9356f7b680b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
