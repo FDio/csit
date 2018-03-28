@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91d806db_0e234b4a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-28T10:53:39Z",
+      "side": 1,
+      "message": "This condition here says that we want to have multiple TG like Trex, IXIA ... So the class cannot be TRex only.\nSecond thing is do we really need a special class for this?\nWhy to not use the TGDropRateSearchImpl()",
+      "range": {
+        "startLine": 553,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 65
+      },
+      "revId": "99a638c7e2a4665e3e080ae1d8b5eb9eb3dc486b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45e40341_875ccfa7",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-03-28T10:53:39Z",
+      "side": 1,
+      "message": "Anything rate search related should go to DropRateSearch.py to have this file only as interface to any TG.",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 21
+      },
+      "revId": "99a638c7e2a4665e3e080ae1d8b5eb9eb3dc486b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
