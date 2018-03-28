@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -27,7 +27,10 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
+JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+LOG_ARCHIVES_DIR="$WORKSPACE/archives"
+mkdir -p ${LOG_ARCHIVES_DIR}
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -223,6 +226,7 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
+              --include ndrdiscAND1t1cANDipsecORndrdiscAND2t2cANDipsec \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -232,6 +236,20 @@ case "$TEST_TAG" in
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
               --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    PERFTEST_MRR_DAILY )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -v DPDK_TEST:True \
+              -s "tests.kubernetes.perf" \
+              --include mrrAND64bAND1t1c \
+              --include mrrAND64bAND2t2c \
+              --include mrrAND64bAND4t4c \
+              --include mrrAND78bAND1t1c \
+              --include mrrAND78bAND2t2c \
+              --include mrrAND78bAND4t4c \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -253,21 +271,12 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
-    VERIFY-PERF-NDRCHK )
+    VERIFY-PERF-MRR )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NDRCHK_DAILY )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
+              --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -325,12 +334,31 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    VERIFY-PERF-MEMIF )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -v DPDK_TEST:True \
+              -s "tests.kubernetes.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VERIFY-PERF-IPSECHW )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -v DPDK_TEST:True \
+              -s "tests.kubernetes.perf" \
+              --include ndrdiscANDnic_intel-xl710AND1t1cANDipsechw \
+              --include ndrdiscANDnic_intel-xl710AND2t2cANDipsechw \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     VPP-VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDip4baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDip4baseORmrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -339,7 +367,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDip6baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDip6baseORmrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -348,7 +376,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORpdrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDl2xcbaseORmrrANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -379,6 +407,18 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    VPP-VERIFY-PERF-MEMIF )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -v DPDK_TEST:True \
+              -s "tests.kubernetes.perf" \
+              --include pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
+              --include pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif \
+              --include mrrANDnic_intel-x520-da2AND1t1cANDmemif \
+              --include mrrANDnic_intel-x520-da2AND2t2cANDmemif \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     VPP-VERIFY-PERF-ACL )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
@@ -389,31 +429,13 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
-    PERFTEST_LONG )
+    VPP-VERIFY-PERF-IPSECHW )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.kubernetes.perf" \
-              --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_SHORT )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
-              -i NDRCHK \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NIGHTLY )
-        #run all available tests
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechw \
+              --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechw \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -427,23 +449,14 @@ case "$TEST_TAG" in
         RETURN_STATUS=$(echo $?)
 esac
 
-# Pybot output post-processing
-echo Post-processing test data...
-
-python ${SCRIPT_DIR}/resources/tools/scripts/robot_output_parser.py \
-       -i ${SCRIPT_DIR}/output.xml \
-       -o ${SCRIPT_DIR}/output_perf_data.xml \
-       -v ${VPP_STABLE_VER}
-if [ ! $? -eq 0 ]; then
-    echo "Parsing ${SCRIPT_DIR}/output.xml failed"
-fi
-
-# Archive artifacts
+# Archive JOB artifacts in jenkins
 mkdir -p archive
-for i in ${ARCHIVE_ARTIFACTS[@]}; do
+for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
-
-echo Post-processing finished.
+# Archive JOB artifacts to logs.fd.io
+for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVES_DIR}/
+done
 
 exit ${RETURN_STATUS}
