@@ -1,8 +1,8 @@
 
 
-from KeyboardRateProvider import KeyboardRateProvider as provider
+#from KeyboardRateProvider import KeyboardRateProvider as provider
 #from RandomRateProvider import RandomRateProvider as provider
-##from TwoPhaseRateProvider import TwoPhaseRateProvider as provider
+from TwoPhaseRateProvider import TwoPhaseRateProvider as provider
 from PrintingRateProvider import PrintingRateProvider as printing
 from TimeTrackingRateProvider import TimeTrackingRateProvider as tracking
 from BasicBinarySearchAlgorithm import BasicBinarySearchAlgorithm as search
@@ -29,8 +29,8 @@ p = tracking(printing(provider()))
 #    f.write('\n')
 #
 
-print "my smart search, 60s final duration, random provider, printing"
-#print "my smart search, 60s final duration, two phase provider, printing"
+#print "my smart search, 60s final duration, random provider, printing"
+print "my smart search, 60s final duration, two phase provider, printing"
 
 s = my_search(rate_provider=p, final_duration=60)
 result = s.narrow_down_ndr_and_pdr(fail_rate=1000000, line_rate=30000000, allowed_drop_fraction=0.005)
