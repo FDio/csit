@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5a56839_d3ff4d36",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-28T11:10:55Z",
+      "side": 1,
+      "message": "I have copied most code from TGDropRateSearchImpl.\nThile the current class has Trex in the name, tg_instance is created elsewhere and _could_ have used something else than Trex. This line just fails if subtype is not Trex, which is what we want from TrexRateProvider.\n\n\u003e Why to not use the TGDropRateSearchImpl()\n\nIt has different arguments in constructor, its measure_loss() has different return type than measure().\n\nIn final patch sets I will probably replace TGDropRateSearchImpl with new classes, but in the meantime I would like to compare speed of two searches, so I am keeping TGDropRateSearchImpl without any edits.",
+      "parentUuid": "91d806db_0e234b4a",
+      "range": {
+        "startLine": 553,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 65
+      },
+      "revId": "99a638c7e2a4665e3e080ae1d8b5eb9eb3dc486b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45e40341_875ccfa7",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 23
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-28T10:53:39Z",
       "side": 1,
       "message": "Anything rate search related should go to DropRateSearch.py to have this file only as interface to any TG.",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 21
+      },
+      "revId": "99a638c7e2a4665e3e080ae1d8b5eb9eb3dc486b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "328a0bca_28ad1ba4",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-28T11:10:55Z",
+      "side": 1,
+      "message": "In ODL, we usually import into Robot Python code as modules. But in this case it is imported as classes, so I needed a class name to contain perform_optimized_ndr_pdr_search keyword. I will use something more specific than OptimizedSearch. This keyword also should have \"trex\" in it, as it is hardcoded in line 574 and not configurable. As this keyword relies on specific Traffic Generator, it should not belong to DropRateSearch (which contains TG-independent logic).",
+      "parentUuid": "45e40341_875ccfa7",
       "range": {
         "startLine": 569,
         "startChar": 0,
