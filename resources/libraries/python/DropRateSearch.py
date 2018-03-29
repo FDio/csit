@@ -15,7 +15,7 @@
 
 from abc import ABCMeta, abstractmethod
 from enum import Enum, unique
-
+import logging
 
 @unique
 class SearchDirection(Enum):
@@ -607,3 +607,322 @@ class DropRateSearch(object):
 
         return abs(num_b - num_a) <= max(rel_tol * max(abs(num_a), abs(num_b)),
                                          abs_tol)
+
+
+class ReceiveRateMeasurement(object):
+    """Structure defining the result of single Rr measurement."""
+
+    def __init__(self, duration, target_tr, transmit_count, drop_count):
+        """Constructor, normalize primary and compute secondary quantities."""
+        self.duration = float(duration)
+        self.target_tr = float(target_tr)
+        self.transmit_count = int(transmit_count)
+        self.drop_count = int(drop_count)
+        self.receive_count = transmit_count - drop_count
+        self.transmit_rate = transmit_count / self.duration
+        self.drop_rate = drop_count / self.duration
+        self.receive_rate = self.receive_count / self.duration
+        self.drop_fraction = self.drop_rate / self.transmit_rate
+        # TODO: Do we want to store also the real time (duration + overhead)?
+
+    def __str__(self):
+        """Return string reporting Rr."""
+        return "d=" + str(self.duration) + ",Tr=" + str(self.target_tr) + ",Df=" + str(self.drop_fraction)
+
+    def __repr__(self):
+        """Return string evaluable as a constructor call."""
+        return "ReceiveRateMeasurement(duration=" + repr(self.duration) + \
+               ",target_tr=" + repr(self.target_tr) + \
+               ",transmit_count=" + repr(self.transmit_count) + \
+               ",drop_count=" + repr(self.drop_count) + ")"
+
+
+class ReceiveRateInterval(object):
+    """Structure defining two Rr measurements, presumably close to each other."""
+
+    def __init__(self, measured_low, measured_high):
+        """Constructor, store the measurement after checking argument types."""
+        # TODO: Type checking is not very pythonic, perhaps users can fix wrong usage without it?
+        if not isinstance(measured_low, ReceiveRateMeasurement):
+            raise TypeError("measured_low is not a ReceiveRateMeasurement: " + repr(measured_low))
+        if not isinstance(measured_high, ReceiveRateMeasurement):
+            raise TypeError("measured_high is not a ReceiveRateMeasurement: " + repr(measured_high))
+        self.measured_low = measured_low
+        self.measured_high = measured_high
+        self.sort()
+
+    def sort(self):
+        """Interval always have to be sorted by Tr."""
+        if self.measured_low.target_tr > self.measured_high.target_tr:
+            self.measured_low, self.measured_high = self.measured_high, self.measured_low
+        self.abs_tr_width = self.measured_high.target_tr - self.measured_low.target_tr
+        self.rel_tr_width = self.abs_tr_width / self.measured_high.target_tr
+
+    def __str__(self):
+        """Return string as half-open interval."""
+        return "[" + str(self.measured_low) + ";" + str(self.measured_high) + ")"
+
+    def __repr__(self):
+        """Return string evaluable as a constructor call."""
+        return "ReceiveRateInterval(measured_low=" + repr(self.measured_low) + \
+               ",measured_high=" + repr(self.measured_high) + ")"
+
+
+class NdrPdrResult(object):
+    """Two measurement intervals, return value of search algorithms.
+
+    Partial fraction is NOT part of the result. Pdr interval should be valid
+    for all partial fractions implied by the interval."""
+
+    def __init__(self, ndr_interval, pdr_interval):
+        """Constructor, store the measurement after checking argument types."""
+        # TODO: Type checking is not very pythonic, perhaps users can fix wrong usage without it?
+        if not isinstance(ndr_interval, ReceiveRateInterval):
+            raise TypeError("ndr_interval, is not a ReceiveRateInterval: " + repr(ndr_interval))
+        if not isinstance(pdr_interval, ReceiveRateInterval):
+            raise TypeError("pdr_interval, is not a ReceiveRateInterval: " + repr(pdr_interval))
+        self.ndr_interval = ndr_interval
+        self.pdr_interval = pdr_interval
+
+    # TODO: Offer methods to check validity and/or quality.
+    #       NDR lower bound should have zero Dx (beware floats).
+    #       NDR upper bound should have nonzero Dx (or line rate Rr).
+    #       PDR bounds should be not-above and not-below partial fraction respectively.
+    #       Both interval should be narrow enough in Tr,
+    #       Both interval should be narrow enough in Rr,
+    #       All durations should be long enough.
+
+    def __str__(self):
+        """Return string as tuple of named values."""
+        return "NDR=" + str(self.ndr_interval) + ";PDR=" + str(self.pdr_interval)
+
+    def __repr__(self):
+        """Return string evaluable as a constructor call."""
+        return "NdrPdrResult(ndr_interval=" + repr(self.ndr_interval) + \
+               ",pdr_interval=" + repr(self.pdr_interval) + ")"
+
+
+class AbstractRateProvider(object):
+    """Abstract class defining API for rate providers."""
+
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def measure(self, duration, transmit_rate):
+        """Return ReceiveRateMeasurement object with the measurement result."""
+        pass
+
+
+class AbstractSearchAlgorithm(object):
+    """Abstract class with defining API for search algorithms."""
+
+    __metaclass__ = ABCMeta
+
+    def __init__(self, rate_provider):
+        """Constructor, needs a rate provider to inject."""
+        # TODO: Type check for AbstractRateProvider?
+        self.rate_provider = rate_provider
+
+    @abstractmethod
+    def narrow_down_ndr_and_pdr(self, fail_rate, line_rate, allowed_drop_fraction):
+        # TODO: Should we require more arguments, related to precision or overall duration?
+        """Return NdrPdrResult object with the narrowed measured data."""
+        pass
+
+
+class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
+    """FIXME: Describe the smart ways and choose a better name."""
+
+    class ProgressState(object):
+        """Structure containing data to be passed around in recursion."""
+
+        def __init__(self, result, width_goal, allowed_drop_fraction, fail_rate, line_rate):
+            """FIXME"""
+            self.result = result
+            self.width_goal = width_goal
+            self.allowed_drop_fraction = allowed_drop_fraction
+            self.fail_rate = fail_rate
+            self.line_rate = line_rate
+            self.duration_min = min(result.ndr_interval.measured_low.duration,
+                                    result.ndr_interval.measured_high.duration,
+                                    result.pdr_interval.measured_low.duration,
+                                    result.pdr_interval.measured_high.duration)
+
+
+    def __init__(self, rate_provider, final_duration=60.0, final_width=0.01, duration_coefficient=3.0, width_coefficient=2.0):
+        """FIXME"""
+        super(OptimizedSearchAlgorithm, self).__init__(rate_provider)
+        self.final_duration = final_duration
+        self.final_width = final_width
+        self.duration_coefficient = duration_coefficient
+        self.width_coefficient = width_coefficient
+
+    def narrow_down_ndr_and_pdr(self, fail_rate, line_rate, allowed_drop_fraction):
+        """Perform minimal measurements, initialize state, proceed with the width-aware method."""
+        line_measurement = self.rate_provider.measure(1.0, line_rate)
+        mrr = min(line_rate, max(fail_rate, line_measurement.receive_rate))
+        if mrr >= line_rate:
+            # No drops at line rate, but we cannot trust one second measurement.
+            mrr = fail_rate
+        mrr_measurement = self.rate_provider.measure(1.0, mrr)
+        # Even if there are too many drops at fail rate, we still cannot trust one second measurement.
+        starting_interval = ReceiveRateInterval(mrr_measurement, line_measurement)
+        starting_result = NdrPdrResult(starting_interval, starting_interval)
+        state = ProgressState(starting_result, self.final_width, allowed_drop_fraction, fail_rate, line_rate)
+        state = self.ndrpdr(state, self.final_duration)
+        return state.result
+
+    def _measure_and_update_state(self, state, duration, transmit_rate):
+        """Repeated action of updating state upon new measurement."""
+        measurement = self.rate_provider.measure(duration, transmit_rate)
+        ndr_interval = self._new_interval(state.result.ndr_interval, measurement, 0.0)
+        pdr_interval = self._new_interval(state.result.pdr_interval, measurement, state.allowed_drop_fraction)
+        state.result = NdrPdrResult(ndr_interval, pdr_interval)
+        logging.info("result after update: %s", state.result)
+        return state
+
+    def _new_interval(self, old_interval, measurement, allowed_drop_fraction):
+        """Figure out which interval bounds to replace."""
+        old_lo, old_hi = old_interval.measured_low, old_interval.measured_high
+        # Priority zero: direct replace if the target Tr is the same.
+        if measurement.target_tr in (old_lo.target_tr, old_hi.target_tr):
+            if measurement.target_tr == old_lo.target_tr:
+                return ReceiveRateInterval(measurement, old_hi)
+            else:
+                return ReceiveRateInterval(old_lo, measurement)
+        if measurement.drop_fraction > allowed_drop_fraction:
+            # Priority two: above-fraction measurement replaces any bound with bigger Tr
+            # First compare against lower bound, return the narrower interval.
+            if measurement.target_tr < old_lo.target_tr:
+                return ReceiveRateInterval(measurement, old_lo)
+            if measurement.target_tr < old_hi.target_tr:
+                return ReceiveRateInterval(old_lo, measurement)
+            # Priority three: otherwise above-fraction measurement only replaces upper bound if it is was not valid
+            if old_hi.drop_fraction <= allowed_drop_fraction:
+                return ReceiveRateInterval(old_lo, measurement)
+        else:
+            if old_lo.drop_fraction <= allowed_drop_fraction:
+                # Priority four: below-fraction measurement replaces valid lower bound only if measured Tr is higher
+                if measurement.target_tr > old_lo.target_tr:
+                    return ReceiveRateInterval(measurement, old_hi)
+            else:
+                # Priority five: invalid lower bound is only updated if measured Tr is lower.
+                # the invalid lower bound becomes a valid upper bound.
+                if measurement.target_tr < old_lo.target_tr:
+                    return ReceiveRateInterval(measurement, old_lo)
+        # Fallback: the measurement is irrelevant for the interval
+        return old_interval
+
+    def ndrpdr(self, state, duration):
+        """Iterate to improve bounds. When time is up, return current result."""
+        acceptable_duration = duration / self.duration_coefficient
+        if state.duration_min < acceptable_duration and acceptable_duration >= 1.0:
+            # Previous measurements are too short, recurse to get acceptable measurements.
+            # Shorter durations do not need that narrow widths.
+            saved_width = state.width_goal
+            state.width_goal *= self.width_coefficient
+            state = self.ndrpdr(state, acceptable_duration)
+            state.width_goal = saved_width
+        logging.info("starting iterations with duration %s and relative width goal %s", duration, state.width_goal)
+        while 1:
+            # Order of priorities: improper bounds (nl, nh, pl, ph), then narrowing relative Tr widths.
+            # Durations are not priorities, they will settle on their own.
+            ndr_lo = state.result.ndr_interval.measured_low
+            ndr_hi = state.result.ndr_interval.measured_high
+            pdr_lo = state.result.pdr_interval.measured_low
+            pdr_hi = state.result.pdr_interval.measured_high
+            ndr_tr_width = state.result.ndr_interval.abs_tr_width
+            pdr_tr_width = state.result.pdr_interval.abs_tr_width
+            # If we are hitting line or fail rate, we cannot shift, but we can re-measure.
+            if ndr_lo.drop_fraction > 0.0:
+                if ndr_lo.target_tr > state.fail_rate:
+                    new_tr = max(ndr_lo.target_tr - 2 * ndr_tr_width, state.fail_rate)
+                    logging.info("ndr lo external")
+                    state = self._measure_and_update_state(state, duration, new_tr)
+                    continue
+                elif ndr_lo.duration < duration:
+                    logging.info("ndr lo fail re-measure")
+                    state = self._measure_and_update_state(state, duration, state.fail_rate)
+                    continue
+            if ndr_hi.drop_fraction <= 0.0:
+                if ndr_hi.target_tr < state.line_rate:
+                    new_tr = min(ndr_hi.target_tr + 2 * ndr_tr_width, state.line_rate)
+                    logging.info("ndr hi external")
+                    state = self._measure_and_update_state(state, duration, new_tr)
+                    continue
+                elif ndr_hi.duration < duration:
+                    logging.info("ndr hi line re-measure")
+                    state = self._measure_and_update_state(state, duration, state.line_rate)
+                    continue
+            if pdr_lo.drop_fraction > state.allowed_drop_fraction:
+                if pdr_lo.target_tr > state.fail_rate:
+                    new_tr = max(pdr_lo.target_tr - 2 * pdr_tr_width, state.fail_rate)
+                    logging.info("pdr lo external")
+                    state = self._measure_and_update_state(state, duration, new_tr)
+                    continue
+                elif pdr_lo.duration < duration:
+                    logging.info("pdr lo fail re-measure")
+                    state = self._measure_and_update_state(state, duration, state.fail_rate)
+                    continue
+            if pdr_hi.drop_fraction <= state.allowed_drop_fraction:
+                if pdr_hi.target_tr < state.line_rate:
+                    new_tr = min(pdr_hi.target_tr + 2 * pdr_tr_width, state.line_rate)
+                    logging.info("pdr hi external")
+                    state = self._measure_and_update_state(state, duration, new_tr)
+                    continue
+                elif pdr_hi.duration < duration:
+                    logging.info("ndr hi line re-measure")
+                    state = self._measure_and_update_state(state, duration, state.line_rate)
+                    continue
+            ndr_relative_width = state.result.ndr_interval.rel_tr_width
+            pdr_relative_width = state.result.pdr_interval.rel_tr_width
+            # If we are hitting line_rate, it is still worth narrowing width,
+            # hoping large enough Df will happen.
+            # But if we are hitting fail rate (at current duration), no additional measurement
+            # will help with that, so we can stop improving.
+            if ndr_lo.target_tr <= state.fail_rate and ndr_lo.drop_fraction > 0.0:
+                ndr_relative_width = 0.0
+            if pdr_lo.target_tr <= state.fail_rate and pdr_lo.drop_fraction > state.allowed_drop_fraction:
+                pdr_relative_width = 0.0
+            if max(ndr_relative_width, pdr_relative_width) > state.width_goal:
+                # We have to narrow some width.
+                if ndr_relative_width >= pdr_relative_width:
+                    prediction_from_rr = ndr_hi.receive_rate
+                    logging.info("DEBUG: ndr section predicted %s", prediction_from_rr)
+                    new_tr = min(max(prediction_from_rr,
+                                     ndr_lo.target_tr + ndr_tr_width / 4),
+                                 ndr_hi.target_tr - ndr_tr_width / 4)
+                    state = self._measure_and_update_state(state, duration, new_tr)
+                    continue
+                else:
+                    prediction_from_rr = pdr_hi.receive_rate / (1.0 - state.allowed_drop_fraction)
+                    # TODO: If pdr_lo.df>0.0 it might be better to use interpolation.
+                    logging.info("pdr section predicted %s", prediction_from_rr)
+                    new_tr = min(max(prediction_from_rr,
+                                     pdr_lo.target_tr + pdr_tr_width / 4),
+                                 pdr_hi.target_tr - pdr_tr_width / 4)
+                    state = self._measure_and_update_state(state, duration, new_tr)
+                    continue
+            # We do not need to improve width, but there still might be some measurements with smaller duration.
+            # We need to re-measure with full duration, possibly creating improper bounds to resolve (thus broadening width).
+            if ndr_lo.duration < duration:
+                logging.info("re-measuring NDR lower bound")
+                self._measure_and_update_state(state, duration, ndr_lo.target_tr)
+                continue
+            # Except when lower bounds have high Df, in that case we do not need to re-measure _upper_ bounds.
+            if ndr_hi.duration < duration and ndr_relative_width > 0.0:
+                logging.info("re-measuring NDR upper bound")
+                self._measure_and_update_state(state, duration, ndr_hi.target_tr)
+                continue
+            if pdr_lo.duration < duration:
+                logging.info("re-measuring PDR lower bound")
+                self._measure_and_update_state(state, duration, pdr_lo.target_tr)
+                continue
+            if pdr_hi.duration < duration and pdr_relative_width > 0.0:
+                logging.info("re-measuring PDR upper bound")
+                self._measure_and_update_state(state, duration, pdr_hi.target_tr)
+                continue
+            # Widths are narrow (or failing), bound measurements are long enough, we can return.
+            logging.info("duration done")
+            break
+        return state
