@@ -163,6 +163,12 @@ case "$TEST_TAG" in
               --include mrrAND78bAND1t1c \
               --include mrrAND78bAND2t2c \
               --include mrrAND78bAND4t4c \
+              --include mrrANDimixAND1t1cANDvhost \
+              --include mrrANDimixAND2t2cANDvhost \
+              --include mrrANDimixAND4t4cANDvhost \
+              --include mrrANDimixAND1t1cANDmemif \
+              --include mrrANDimixAND2t2cANDmemif \
+              --include mrrANDimixAND4t4cANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
