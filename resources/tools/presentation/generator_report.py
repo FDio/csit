@@ -14,16 +14,12 @@
 """Report generation.
 """
 
-import subprocess
 import logging
 import datetime
 
-from os import makedirs, environ
-from os.path import isdir
-from shutil import copy, Error, make_archive
+from shutil import make_archive
 
-from utils import get_files
-from errors import PresentationError
+from utils import get_files, execute_command, archive_input_data
 
 
 # .css file for the html format of the report
@@ -82,7 +78,7 @@ def generate_report(release, spec):
         "pdf": generate_pdf_report
     }
 
-    for report_format, versions in spec.output.items():
+    for report_format, versions in spec.output["format"].items():
         report[report_format](release, spec, versions)
 
     archive_input_data(spec)
@@ -110,7 +106,7 @@ def generate_html_report(release, spec, versions):
         date=datetime.date.today().strftime('%d-%b-%Y'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
-    _execute_command(cmd)
+    execute_command(cmd)
 
     with open(spec.environment["paths"]["DIR[CSS_PATCH_FILE]"], "w") as \
             css_file:
@@ -146,7 +142,7 @@ def generate_pdf_report(release, spec, versions):
     for plot in plots:
         file_name = "{0}".format(plot.rsplit(".", 1)[0])
         cmd = convert_plots.format(html=plot, pdf=file_name)
-        _execute_command(cmd)
+        execute_command(cmd)
 
     # Generate the LaTeX documentation
     build_dir = spec.environment["paths"]["DIR[BUILD,LATEX]"]
@@ -155,7 +151,7 @@ def generate_pdf_report(release, spec, versions):
         date=datetime.date.today().strftime('%d-%b-%Y'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=build_dir)
-    _execute_command(cmd)
+    execute_command(cmd)
 
     # Build pdf documentation
     archive_dir = spec.environment["paths"]["DIR[STATIC,ARCH]"]
@@ -174,7 +170,7 @@ def generate_pdf_report(release, spec, versions):
     ]
 
     for cmd in cmds:
-        _execute_command(cmd)
+        execute_command(cmd)
 
     logging.info("  Done.")
 
@@ -193,64 +189,3 @@ def archive_report(spec):
                  base_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
 
     logging.info("  Done.")
-
-
-def archive_input_data(spec):
-    """Archive the report.
-
-    :param spec: Specification read from the specification file.
-    :type spec: Specification
-    :raises PresentationError: If it is not possible to archive the input data.
-    """
-
-    logging.info("    Archiving the input data files ...")
-
-    if spec.is_debug:
-        extension = spec.debug["input-format"]
-    else:
-        extension = spec.input["file-format"]
-    data_files = get_files(spec.environment["paths"]["DIR[WORKING,DATA]"],
-                           extension=extension)
-    dst = spec.environment["paths"]["DIR[STATIC,ARCH]"]
-    logging.info("      Destination: {0}".format(dst))
-
-    try:
-        if not isdir(dst):
-            makedirs(dst)
-
-        for data_file in data_files:
-            logging.info("      Copying the file: {0} ...".format(data_file))
-            copy(data_file, dst)
-
-    except (Error, OSError) as err:
-        raise PresentationError("Not possible to archive the input data.",
-                                str(err))
-
-    logging.info("    Done.")
-
-
-def _execute_command(cmd):
-    """Execute the command in a subprocess and log the stdout and stderr.
-
-    :param cmd: Command to execute.
-    :type cmd: str
-    :returns: Return code of the executed command.
-    :rtype: int
-    """
-
-    env = environ.copy()
-    proc = subprocess.Popen(
-        [cmd],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        shell=True,
-        env=env)
-
-    stdout, stderr = proc.communicate()
-
-    logging.info(stdout)
-    logging.info(stderr)
-
-    if proc.returncode != 0:
-        logging.error("    Command execution failed.")
-    return proc.returncode
