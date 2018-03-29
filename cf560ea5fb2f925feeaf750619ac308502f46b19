@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "852ac4d0_423ea0ac",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-03-29T08:47:15Z",
+      "side": 1,
+      "message": "I am not sure what is the correct way to document type of varargs.\nPerhaps \"variable number of string arguments\"?\n\nHere are some (unsatisfactory) links I have found:\nhttp://www.sphinx-doc.org/en/1.4.8/domains.html#info-field-lists\nhttps://github.com/evanunderscore/defopt/issues/31\nhttps://stackoverflow.com/questions/1137161/what-is-the-correct-way-to-document-a-kwargs-parameter",
+      "range": {
+        "startLine": 365,
+        "startChar": 9,
+        "endLine": 365,
+        "endChar": 14
+      },
+      "revId": "cf560ea5fb2f925feeaf750619ac308502f46b19",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
