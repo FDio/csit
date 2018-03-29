@@ -258,6 +258,8 @@ case "$TEST_TAG" in
               -s "tests.vpp.perf.crypto" \
               --include ndrdiscANDnic_intel-xl710AND1t1cANDipsechw \
               --include ndrdiscANDnic_intel-xl710AND2t2cANDipsechw \
+              --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
+              --include mrrANDnic_intel-xl710AND2t2cANDipsechw \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -335,6 +337,8 @@ case "$TEST_TAG" in
               -s "tests.vpp.perf.crypto" \
               --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechw \
               --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechw \
+              --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
+              --include mrrANDnic_intel-xl710AND2t2cANDipsechw \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
