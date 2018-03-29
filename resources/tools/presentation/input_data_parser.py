@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,6 +23,7 @@ import pandas as pd
 import logging
 
 from robot.api import ExecutionResult, ResultVisitor
+from robot import errors
 from collections import OrderedDict
 from string import replace
 
@@ -173,6 +174,9 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
 
+    REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
+                           r'tx\s(\d*),\srx\s(\d*)')
+
     def __init__(self, **metadata):
         """Initialisation.
 
@@ -219,7 +223,7 @@ class ExecutionChecker(ResultVisitor):
         self.parse_msg = {
             "setup-version": self._get_version,
             "teardown-vat-history": self._get_vat_history,
-            "teardown-show-runtime": self._get_show_run
+            "test-show-runtime": self._get_show_run
         }
 
     @property
@@ -372,11 +376,11 @@ class ExecutionChecker(ResultVisitor):
 
         self._data["suites"][suite.longname.lower().replace('"', "'").
             replace(" ", "_")] = {
-            "name": suite.name.lower(),
-            "doc": doc_str,
-            "parent": parent_name,
-            "level": len(suite.longname.split("."))
-        }
+                "name": suite.name.lower(),
+                "doc": doc_str,
+                "parent": parent_name,
+                "level": len(suite.longname.split("."))
+            }
 
         suite.keywords.visit(self)
 
@@ -415,17 +419,20 @@ class ExecutionChecker(ResultVisitor):
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
             replace('\r', '').replace('[', ' |br| [')
-        test_result["doc"] =  replace(doc_str, ' |br| [', '[', maxreplace=1)
+        test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
-        if test.status == "PASS" and ("NDRPDRDISC" in tags or "TCP" in tags):
-
+        if test.status == "PASS" and ("NDRPDRDISC" in tags or
+                                      "TCP" in tags or
+                                      "MRR" in tags):
             if "NDRDISC" in tags:
                 test_type = "NDR"
             elif "PDRDISC" in tags:
                 test_type = "PDR"
-            elif "TCP" in tags:  # Change to wrk?
+            elif "TCP" in tags:
                 test_type = "TCP"
+            elif "MRR" in tags:
+                test_type = "MRR"
             else:
                 return
 
@@ -458,6 +465,15 @@ class ExecutionChecker(ResultVisitor):
                 test_result["result"] = dict()
                 test_result["result"]["value"] = int(groups.group(2))
                 test_result["result"]["unit"] = groups.group(1)
+            elif test_type in ("MRR", ):
+                groups = re.search(self.REGEX_MRR, test.message)
+                test_result["result"] = dict()
+                test_result["result"]["duration"] = int(groups.group(1))
+                test_result["result"]["tx"] = int(groups.group(2))
+                test_result["result"]["rx"] = int(groups.group(3))
+                test_result["result"]["throughput"] = int(
+                    test_result["result"]["rx"] /
+                    test_result["result"]["duration"])
         else:
             test_result["status"] = test.status
 
@@ -496,6 +512,9 @@ class ExecutionChecker(ResultVisitor):
             elif keyword.type == "teardown":
                 self._lookup_kw_nr = 0
                 self.visit_teardown_kw(keyword)
+            else:
+                self._lookup_kw_nr = 0
+                self.visit_test_kw(keyword)
         except AttributeError:
             pass
 
@@ -504,6 +523,42 @@ class ExecutionChecker(ResultVisitor):
 
         :param keyword: Keyword to process.
         :type keyword: Keyword
+        :returns: Nothing.
+        """
+        pass
+
+    def visit_test_kw(self, test_kw):
+        """Implements traversing through the test keyword and its child
+        keywords.
+
+        :param test_kw: Keyword to process.
+        :type test_kw: Keyword
+        :returns: Nothing.
+        """
+        for keyword in test_kw.keywords:
+            if self.start_test_kw(keyword) is not False:
+                self.visit_test_kw(keyword)
+                self.end_test_kw(keyword)
+
+    def start_test_kw(self, test_kw):
+        """Called when test keyword starts. Default implementation does
+        nothing.
+
+        :param test_kw: Keyword to process.
+        :type test_kw: Keyword
+        :returns: Nothing.
+        """
+        if test_kw.name.count("Show Runtime Counters On All Duts"):
+            self._lookup_kw_nr += 1
+            self._show_run_lookup_nr = 0
+            self._msg_type = "test-show-runtime"
+            test_kw.messages.visit(self)
+
+    def end_test_kw(self, test_kw):
+        """Called when keyword ends. Default implementation does nothing.
+
+        :param test_kw: Keyword to process.
+        :type test_kw: Keyword
         :returns: Nothing.
         """
         pass
@@ -568,12 +623,6 @@ class ExecutionChecker(ResultVisitor):
         if teardown_kw.name.count("Show Vat History On All Duts"):
             self._vat_history_lookup_nr = 0
             self._msg_type = "teardown-vat-history"
-        elif teardown_kw.name.count("Show Statistics On All Duts"):
-            self._lookup_kw_nr += 1
-            self._show_run_lookup_nr = 0
-            self._msg_type = "teardown-show-runtime"
-
-        if self._msg_type:
             teardown_kw.messages.visit(self)
 
     def end_teardown_kw(self, teardown_kw):
@@ -710,7 +759,12 @@ class InputData(object):
         """
 
         with open(build["file-name"], 'r') as data_file:
-            result = ExecutionResult(data_file)
+            try:
+                result = ExecutionResult(data_file)
+            except errors.DataError as err:
+                logging.error("Error occurred while parsing output.xml: {0}".
+                              format(err))
+                return None
         checker = ExecutionChecker(job=job, build=build)
         result.visit(checker)
 
@@ -736,6 +790,11 @@ class InputData(object):
                 logging.info("    Processing the file '{0}'".
                              format(build["file-name"]))
                 data = InputData._parse_tests(job, build)
+                if data is None:
+                    logging.error("Input data file from the job '{job}', build "
+                                  "'{build}' is damaged. Skipped.".
+                                  format(job=job, build=build["build"]))
+                    continue
 
                 build_data = pd.Series({
                     "metadata": pd.Series(data["metadata"].values(),
@@ -793,7 +852,8 @@ class InputData(object):
             index += 1
             tag_filter = tag_filter[:index] + " in tags" + tag_filter[index:]
 
-    def filter_data(self, element, params=None, data_set="tests"):
+    def filter_data(self, element, params=None, data_set="tests",
+                    continue_on_error=False):
         """Filter required data from the given jobs and builds.
 
         The output data structure is:
@@ -818,15 +878,18 @@ class InputData(object):
         all parameters are included.
         :param data_set: The set of data to be filtered: tests, suites,
         metadata.
+        :param continue_on_error: Continue if there is error while reading the
+        data. The Item will be empty then
         :type element: pandas.Series
         :type params: list
         :type data_set: str
+        :type continue_on_error: bool
         :returns: Filtered data.
         :rtype pandas.Series
         """
 
         logging.info("    Creating the data set for the {0} '{1}'.".
-                     format(element["type"], element.get("title", "")))
+                     format(element.get("type", ""), element.get("title", "")))
 
         try:
             if element["filter"] in ("all", "template"):
@@ -847,8 +910,15 @@ class InputData(object):
                 data[job] = pd.Series()
                 for build in builds:
                     data[job][str(build)] = pd.Series()
-                    for test_ID, test_data in \
-                            self.data[job][str(build)][data_set].iteritems():
+                    try:
+                        data_iter = self.data[job][str(build)][data_set].\
+                            iteritems()
+                    except KeyError:
+                        if continue_on_error:
+                            continue
+                        else:
+                            return None
+                    for test_ID, test_data in data_iter:
                         if eval(cond, {"tags": test_data.get("tags", "")}):
                             data[job][str(build)][test_ID] = pd.Series()
                             if params is None:
@@ -866,7 +936,7 @@ class InputData(object):
 
         except (KeyError, IndexError, ValueError) as err:
             logging.error("   Missing mandatory parameter in the element "
-                          "specification.", err)
+                          "specification: {0}".format(err))
             return None
         except AttributeError:
             return None

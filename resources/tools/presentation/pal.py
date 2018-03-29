@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,6 +28,9 @@ from generator_plots import generate_plots
 from generator_files import generate_files
 from static_content import prepare_static_content
 from generator_report import generate_report
+from generator_CPTA import generate_cpta
+
+from pprint import pprint
 
 
 def parse_args():
@@ -81,8 +84,9 @@ def main():
         spec.read_specification()
     except PresentationError:
         logging.critical("Finished with error.")
-        sys.exit(1)
+        return 1
 
+    ret_code = 0
     try:
         env = Environment(spec.environment, args.force)
         env.set_environment()
@@ -101,22 +105,31 @@ def main():
         generate_tables(spec, data)
         generate_plots(spec, data)
         generate_files(spec, data)
-        generate_report(args.release, spec)
 
-        logging.info("Successfully finished.")
+        if spec.output["output"] == "report":
+            generate_report(args.release, spec)
+            logging.info("Successfully finished.")
+        elif spec.output["output"] == "CPTA":
+            sys.stdout.write(generate_cpta(spec, data))
+            logging.info("Successfully finished.")
+        else:
+            logging.critical("The output '{0}' is not supported.".
+                             format(spec.output["output"]))
+            ret_code = 1
 
     except (KeyError, ValueError, PresentationError) as err:
         logging.info("Finished with an error.")
         logging.critical(str(err))
+        ret_code = 1
     except Exception as err:
         logging.info("Finished with an unexpected error.")
         logging.critical(str(err))
-
+        ret_code = 1
     finally:
         if spec is not None and not spec.is_debug:
             clean_environment(spec.environment)
-        sys.exit(1)
+        return ret_code
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
