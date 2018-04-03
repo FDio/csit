@@ -81,13 +81,6 @@ def download_data_files(spec):
                 response = get(url, stream=True)
                 code = response.status_code
 
-                # temporary workaround, remove when output.log.xml is not needed
-                if code != codes["OK"] and \
-                        spec.input["file-name"].endswith(".gz"):
-                    url = '.'.join(url.split('.')[:-1]) + ".log.gz"
-                    response = get(url, stream=True)
-                    code = response.status_code
-
                 if code != codes["OK"]:
                     logging.warning(
                         "Jenkins: {0}: {1}.".format(code, responses[code]))
@@ -150,8 +143,12 @@ def download_data_files(spec):
                         logging.info("{0}: {1}".format(code, responses[code]))
 
                 elif spec.input["file-name"].endswith(".gz"):
-                    rename(new_name, new_name[:-3])
-                    execute_command("gzip --keep {0}".format(new_name[:-3]))
+                    if "docs.fd.io" in url:
+                        execute_command("gzip --decompress --keep --force {0}".
+                                        format(new_name))
+                    else:
+                        rename(new_name, new_name[:-3])
+                        execute_command("gzip --keep {0}".format(new_name[:-3]))
                     new_name = new_name[:-3]
                     status = "downloaded"
                     logging.info("{0}: {1}".format(code, responses[code]))
