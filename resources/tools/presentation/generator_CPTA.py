@@ -426,7 +426,7 @@ def _generate_all_charts(spec, input_data):
             # Generate the chart:
             period_name = "Daily" if period == 1 else \
                 "Weekly" if period < 20 else "Monthly"
-            chart["layout"]["title"] = chart["title"].format(period=period_name)
+            # chart["layout"]["title"] = chart["title"].format(period=period_name)
             _generate_chart(traces,
                             chart["layout"],
                             file_name="{0}-{1}-{2}{3}".format(

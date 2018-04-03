@@ -77,7 +77,7 @@
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc01-64B-1t1c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -88,7 +88,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${64} | wt=1 | rxq=1
 
-| tc02-1518B-1t1c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc02-1518B-1t1c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -100,7 +100,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${1518} | wt=1 | rxq=1
 
-| tc03-9000B-1t1c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc03-9000B-1t1c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -112,7 +112,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${9000} | wt=1 | rxq=1
 
-| tc04-IMIX-1t1c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc04-IMIX-1t1c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -125,7 +125,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1
 
-| tc05-64B-2t2c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc05-64B-2t2c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -137,7 +137,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${64} | wt=2 | rxq=1
 
-| tc06-1518B-2t2c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc06-1518B-2t2c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -149,7 +149,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${1518} | wt=2 | rxq=1
 
-| tc07-9000B-2t2c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc07-9000B-2t2c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -161,7 +161,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${9000} | wt=2 | rxq=1
 
-| tc08-9000B-2t2c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc08-9000B-2t2c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -174,7 +174,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1
 
-| tc09-64B-4t4c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc09-64B-4t4c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -186,7 +186,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${64} | wt=4 | rxq=2
 
-| tc10-1518B-4t4c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc10-1518B-4t4c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -198,7 +198,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${1518} | wt=4 | rxq=2
 
-| tc11-9000B-4t4c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc11-9000B-4t4c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -210,7 +210,7 @@
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${9000} | wt=4 | rxq=2
 
-| tc12-IMIX-4t4c-eth-l2bdscale1mmaclrn-ndrdisc
+| tc12-IMIX-4t4c-eth-l2bdscale1mmaclrn-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
