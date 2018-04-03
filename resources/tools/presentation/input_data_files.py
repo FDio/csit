@@ -37,7 +37,7 @@ CHUNK_SIZE = 512
 # Separator used in file names
 SEPARATOR = "__"
 
-REGEX_RELEASE = re.compile(r'(\D*)(\d{4})(\D*)')
+REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
 
 def download_data_files(spec):
@@ -81,6 +81,13 @@ def download_data_files(spec):
             try:
                 response = get(url, stream=True)
                 code = response.status_code
+                # temporary workaround, remove when output.log.xml is not needed
+                if code != codes["OK"] and \
+                        spec.input["file-name"].endswith(".gz"):
+                    url = '.'.join(url.split('.')[:-1]) + ".log.gz"
+                    response = get(url, stream=True)
+                    code = response.status_code
+
                 if code != codes["OK"]:
                     logging.warning(
                         "Jenkins: {0}: {1}.".format(code, responses[code]))
@@ -139,11 +146,11 @@ def download_data_files(spec):
                         logging.info("{0}: {1}".format(code, responses[code]))
 
                 elif spec.input["file-name"].endswith(".gz"):
-                    rename(new_name, new_name[:-7])
-                    with open(new_name[:-7], 'r') as xml_file:
+                    rename(new_name, new_name[:-3])
+                    with open(new_name[:-3], 'r') as xml_file:
                         with gzip.open(new_name, 'wb') as gz_file:
                             gz_file.write(xml_file.read())
-                    new_name = new_name[:-7]
+                    new_name = new_name[:-3]
                     status = "downloaded"
                     logging.info("{0}: {1}".format(code, responses[code]))
 

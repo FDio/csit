@@ -179,7 +179,7 @@
 -
   type: "input"  # Ignored in debug mode
   general:
-    file-name: "output.xml.log.gz"
+    file-name: "output.xml.gz"
     file-format: ".gz"
     download-path: "{job}/{build}/archives/{filename}"
     extract: "output.xml"
