@@ -23,13 +23,12 @@ from os import rename, remove
 from os.path import join, getsize
 from shutil import move
 from zipfile import ZipFile, is_zipfile, BadZipfile
-
 from httplib import responses
 from requests import get, codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 
 from errors import PresentationError
-
+from utils import execute_command
 
 # Chunk size used for file download
 CHUNK_SIZE = 512
@@ -152,9 +151,7 @@ def download_data_files(spec):
 
                 elif spec.input["file-name"].endswith(".gz"):
                     rename(new_name, new_name[:-3])
-                    with open(new_name[:-3], 'r') as xml_file:
-                        with gzip.open(new_name, 'w') as gz_file:
-                            gz_file.write(xml_file.read())
+                    execute_command("gzip --keep {0}".format(new_name[:-3]))
                     new_name = new_name[:-3]
                     status = "downloaded"
                     logging.info("{0}: {1}".format(code, responses[code]))
