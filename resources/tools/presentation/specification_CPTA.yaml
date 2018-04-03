@@ -56,7 +56,7 @@
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
     URL[NEXUS]: "https://docs.fd.io/csit"
-    DIR[NEXUS]: "report/_static/archive"
+    DIR[NEXUS]: "trending/_static/archive"
 
   make-dirs:
   # List the directories which are created while preparing the environment.

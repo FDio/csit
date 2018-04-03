@@ -81,13 +81,6 @@ def download_data_files(spec):
             try:
                 response = get(url, stream=True)
                 code = response.status_code
-                # temporary workaround, remove when output.log.xml is not needed
-                if code != codes["OK"] and \
-                        spec.input["file-name"].endswith(".gz"):
-                    url = '.'.join(url.split('.')[:-1]) + ".log.gz"
-                    response = get(url, stream=True)
-                    code = response.status_code
-
                 if code != codes["OK"]:
                     logging.warning(
                         "Jenkins: {0}: {1}.".format(code, responses[code]))
@@ -98,7 +91,11 @@ def download_data_files(spec):
                         nexus_file_name = "{job}{sep}{build}{sep}{name}".\
                             format(job=job, sep=SEPARATOR, build=build["build"],
                                    name=file_name)
-                        url = "{url}/rls{release}/{dir}/{file}".\
+                        try:
+                            release = "rls".format(int(release))
+                        except ValueError:
+                            pass
+                        url = "{url}/{release}/{dir}/{file}".\
                             format(url=spec.environment["urls"]["URL[NEXUS]"],
                                    release=release,
                                    dir=spec.environment["urls"]["DIR[NEXUS]"],
