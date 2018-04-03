@@ -81,6 +81,14 @@ def download_data_files(spec):
             try:
                 response = get(url, stream=True)
                 code = response.status_code
+
+                # temporary workaround, remove when output.log.xml is not needed
+                if code != codes["OK"] and \
+                        spec.input["file-name"].endswith(".gz"):
+                    url = '.'.join(url.split('.')[:-1]) + ".log.gz"
+                    response = get(url, stream=True)
+                    code = response.status_code
+
                 if code != codes["OK"]:
                     logging.warning(
                         "Jenkins: {0}: {1}.".format(code, responses[code]))
@@ -145,7 +153,7 @@ def download_data_files(spec):
                 elif spec.input["file-name"].endswith(".gz"):
                     rename(new_name, new_name[:-3])
                     with open(new_name[:-3], 'r') as xml_file:
-                        with gzip.open(new_name, 'wb') as gz_file:
+                        with gzip.open(new_name, 'w') as gz_file:
                             gz_file.write(xml_file.read())
                     new_name = new_name[:-3]
                     status = "downloaded"
