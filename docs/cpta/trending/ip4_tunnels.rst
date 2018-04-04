@@ -17,7 +17,7 @@ IPv4 Overlay Tunnels
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-5.html"></iframe><br><br>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-14.html"></iframe><br><br>
 
 2 Threads, 2 Cores
 ~~~~~~~~~~~~~~~~~~
@@ -32,7 +32,7 @@ IPv4 Overlay Tunnels
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-5.html"></iframe><br><br>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-14.html"></iframe><br><br>
 
 4 Threads, 4 Cores
 ~~~~~~~~~~~~~~~~~~
@@ -47,4 +47,4 @@ IPv4 Overlay Tunnels
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-5.html"></iframe><br><br>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-14.html"></iframe><br><br>
