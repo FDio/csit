@@ -4,8 +4,8 @@ L2 Ethernet Switching
 NIC 10ge2p1x520
 ---------------
 
-L2 Ethernet Switching - Base and Scale
-``````````````````````````````````````
+Base and Scale
+``````````````
 
 64B Packet
 ..........
@@ -55,8 +55,8 @@ L2 Ethernet Switching - Base and Scale
 
     <center><i>L2 Ethernet Switching - Base and Scale, 10ge2p1x520, 64B, 4t4c - Weekly Trend.</i></center><br><br>
 
-L2 Ethernet Switching - Features
-````````````````````````````````
+Features
+````````
 
 64B Packet
 ..........
@@ -109,6 +109,9 @@ L2 Ethernet Switching - Features
 NIC 40ge2p1xl710
 ----------------
 
+Base and Scale
+``````````````
+
 64B Packet
 ..........
 
@@ -158,6 +161,9 @@ NIC 40ge2p1xl710
 
 NIC 10ge2p1x710
 ----------------
+
+Base and Scale
+``````````````
 
 64B Packet
 ..........
