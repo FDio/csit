@@ -87,7 +87,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
     :param async_start: Start the traffic and exit.
     :type profile_file: str
     :type framesize: int or str
-    :type duration: int
+    :type duration: float
     :type rate: str
     :type warmup_time: int
     :type port_0: int
@@ -247,7 +247,7 @@ def main():
                         help="Python traffic profile.")
     parser.add_argument("-d", "--duration",
                         required=True,
-                        type=int,
+                        type=float,
                         help="Duration of traffic run.")
     parser.add_argument("-s", "--frame_size",
                         required=True,
@@ -256,8 +256,8 @@ def main():
                         required=True,
                         help="Traffic rate with included units (%, pps).")
     parser.add_argument("-w", "--warmup_time",
-                        type=int,
-                        default=5,
+                        type=float,
+                        default=5.0,
                         help="Traffic warm-up time in seconds, 0 = disable.")
     parser.add_argument("--port_0",
                         required=True,
@@ -283,10 +283,10 @@ def main():
         framesize = args.frame_size
 
     simple_burst(profile_file=args.profile,
-                 duration=int(args.duration),
+                 duration=float(args.duration),
                  framesize=framesize,
                  rate=args.rate,
-                 warmup_time=int(args.warmup_time),
+                 warmup_time=float(args.warmup_time),
                  port_0=int(args.port_0),
                  port_1=int(args.port_1),
                  latency=args.latency,
