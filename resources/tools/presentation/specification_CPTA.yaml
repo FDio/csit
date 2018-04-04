@@ -89,6 +89,7 @@
       height: 800
       yaxis:
         showticklabels: True
+        tickformat: ".3s"
         title: "Throughput [Mpps]"
         hoverformat: ".4s"
         range: []

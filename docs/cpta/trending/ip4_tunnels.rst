@@ -7,44 +7,44 @@ IPv4 Overlay Tunnels
 1 Thread, 1 Core
 ~~~~~~~~~~~~~~~~
 
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-1.html"></iframe>
-
-    <center><i>Figure 1. IPv4 Overlay Tunnels - Daily trend.</i></center><br><br>
+:index:`IPv4 Overlay Tunnels, 10ge2p1x520, 64B, 1t1c - Daily Trend`.
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-5.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-1.html"></iframe><br><br>
 
-    <center><i>Figure 2. IPv4 Overlay Tunnels - Weekly trend.</i></center><br><br>
+:index:`IPv4 Overlay Tunnels, 10ge2p1x520, 64B, 1t1c - Weekly Trend`.
+
+.. raw:: html
+
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-1t1c-x520-5.html"></iframe><br><br>
 
 2 Threads, 2 Cores
 ~~~~~~~~~~~~~~~~~~
 
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-1.html"></iframe>
-
-    <center><i>Figure 3. IPv4 Overlay Tunnels - Daily trend.</i></center><br><br>
+:index:`IPv4 Overlay Tunnels, 10ge2p1x520, 64B, 2t2c - Daily Trend`.
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-5.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-1.html"></iframe><br><br>
 
-    <center><i>Figure 4. IPv4 Overlay Tunnels - Weekly trend.</i></center><br><br>
+:index:`IPv4 Overlay Tunnels, 10ge2p1x520, 64B, 2t2c - Weekly Trend`.
+
+.. raw:: html
+
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-2t2c-x520-5.html"></iframe><br><br>
 
 4 Threads, 4 Cores
 ~~~~~~~~~~~~~~~~~~
 
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-1.html"></iframe>
-
-    <center><i>Figure 5. IPv4 Overlay Tunnels - Daily trend.</i></center><br><br>
+:index:`IPv4 Overlay Tunnels, 10ge2p1x520, 64B, 4t4c - Daily Trend`.
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-5.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-1.html"></iframe><br><br>
 
-    <center><i>Figure 6. IPv4 Overlay Tunnels - Weekly trend.</i></center><br><br>
+:index:`IPv4 Overlay Tunnels, 10ge2p1x520, 64B, 4t4c - Weekly Trend`.
+
+.. raw:: html
+
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-tunnels-4t4c-x520-5.html"></iframe><br><br>

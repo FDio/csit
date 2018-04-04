@@ -7,3 +7,4 @@ Continuous Performance Trending and Analysis
     introduction/index
     trending/index
     data/index
+    indices
