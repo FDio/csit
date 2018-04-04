@@ -23,7 +23,7 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| Test Teardown | Tear down performance discovery test | ${10000}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
@@ -79,6 +79,25 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
+| L2 Bridge Domain NDRPDR Search
+| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | # Test Variables required for test teardown
+| | Set Test Variable | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | Set Test Documentation | [Cfg] DUT runs L2BD switching config with ${wt}\
+| | Set Test Documentation | thread, ${wt} phy core, ${rxq}\ | append=True
+| | Set Test Documentation | receive queue per NIC port. | append=True
+| | Set Test Documentation | [Ver] Find NDR for ${framesize} Byte\ | append=True
+| | Set Test Documentation | frames using binary search start at\ | append=True
+| | Set Test Documentation | 10GE linerate, step ${threshold}pps. | append=True
+| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Add PCI devices to DUTs in 3-node single link topology
+| | Run Keyword If | ${framesize} < ${1522} | Add no multi seg to all DUTs
+| | Apply startup configuration on all VPP DUTs
+| | Initialize L2 bridge domain in 3-node circular topology
+| | Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${10000} | ${max_rate} | ${traffic_profile}
+
 | L2 Bridge Domain PDR Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
 | | # Test Variables required for test teardown
@@ -107,15 +126,15 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1
+| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrpdr
+| | ... | framesize=${64} | wt=1 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Bridge Domain NDR Binary Search
+| | [Template] | L2 Bridge Domain NDRPDR Search
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1
