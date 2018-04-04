@@ -21,80 +21,9 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import NodeSubTypeTG
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.DropRateSearch import DropRateSearch
+import resources.libraries.python.DropRateSearch as DropRateSearch
 
-__all__ = ['TrafficGenerator', 'TGDropRateSearchImpl']
-
-
-class TGDropRateSearchImpl(DropRateSearch):
-    """Drop Rate Search implementation."""
-
-    def __init__(self):
-        super(TGDropRateSearchImpl, self).__init__()
-
-    def measure_loss(self, rate, frame_size, loss_acceptance,
-                     loss_acceptance_type, traffic_type, skip_warmup=False):
-        """Runs the traffic and evaluate the measured results.
-
-        :param rate: Offered traffic load.
-        :param frame_size: Size of frame.
-        :param loss_acceptance: Permitted drop ratio or frames count.
-        :param loss_acceptance_type: Type of permitted loss.
-        :param traffic_type: Traffic profile ([2,3]-node-L[2,3], ...).
-        :param skip_warmup: Start TRex without warmup traffic if true.
-        :type rate: int
-        :type frame_size: str
-        :type loss_acceptance: float
-        :type loss_acceptance_type: LossAcceptanceType
-        :type traffic_type: str
-        :type skip_warmup: bool
-        :returns: Drop threshold exceeded? (True/False)
-        :rtype: bool
-        :raises: NotImplementedError if TG is not supported.
-        :raises: RuntimeError if TG is not specified.
-        """
-        # we need instance of TrafficGenerator instantiated by Robot Framework
-        # to be able to use trex_stl-*()
-        tg_instance = BuiltIn().get_library_instance(
-            'resources.libraries.python.TrafficGenerator')
-
-        if tg_instance.node['subtype'] is None:
-            raise RuntimeError('TG subtype not defined')
-        elif tg_instance.node['subtype'] == NodeSubTypeTG.TREX:
-            unit_rate = str(rate) + self.get_rate_type_str()
-            if skip_warmup:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_type,
-                                                       warmup_time=0)
-            else:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_type)
-            loss = tg_instance.get_loss()
-            sent = tg_instance.get_sent()
-            if self.loss_acceptance_type_is_percentage():
-                loss = (float(loss) / float(sent)) * 100
-
-            logger.trace("comparing: {} < {} {}".format(loss,
-                                                        loss_acceptance,
-                                                        loss_acceptance_type))
-            if float(loss) > float(loss_acceptance):
-                return False
-            else:
-                return True
-        else:
-            raise NotImplementedError("TG subtype not supported")
-
-    def get_latency(self):
-        """Returns min/avg/max latency.
-
-        :returns: Latency stats.
-        :rtype: list
-        """
-        tg_instance = BuiltIn().get_library_instance(
-            'resources.libraries.python.TrafficGenerator')
-        return tg_instance.get_latency_int()
+__all__ = ['TrafficGenerator', 'TGDropRateSearchImpl', 'OptimizedTrexSearch']
 
 
 class TrafficGenerator(object):
@@ -490,7 +419,7 @@ class TrafficGenerator(object):
         if node['subtype'] is None:
             raise RuntimeError('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
-            self.trex_stl_start_remote_exec(int(duration), rate, framesize,
+            self.trex_stl_start_remote_exec(float(duration), rate, framesize,
                                             traffic_type, async_call, latency,
                                             warmup_time=warmup_time)
         else:
@@ -533,3 +462,116 @@ class TrafficGenerator(object):
         if loss > float(loss_acceptance):
             raise Exception("Traffic loss {} above loss acceptance: {}".format(
                 loss, loss_acceptance))
+
+
+class TGDropRateSearchImpl(DropRateSearch.DropRateSearch):
+    """Drop Rate Search implementation."""
+
+    def __init__(self):
+        super(TGDropRateSearchImpl, self).__init__()
+
+    def measure_loss(self, rate, frame_size, loss_acceptance,
+                     loss_acceptance_type, traffic_type, skip_warmup=False):
+        """Runs the traffic and evaluate the measured results.
+
+        :param rate: Offered traffic load.
+        :param frame_size: Size of frame.
+        :param loss_acceptance: Permitted drop ratio or frames count.
+        :param loss_acceptance_type: Type of permitted loss.
+        :param traffic_type: Traffic profile ([2,3]-node-L[2,3], ...).
+        :param skip_warmup: Start TRex without warmup traffic if true.
+        :type rate: int
+        :type frame_size: str
+        :type loss_acceptance: float
+        :type loss_acceptance_type: LossAcceptanceType
+        :type traffic_type: str
+        :type skip_warmup: bool
+        :returns: Drop threshold exceeded? (True/False)
+        :rtype: bool
+        :raises: NotImplementedError if TG is not supported.
+        :raises: RuntimeError if TG is not specified.
+        """
+        # we need instance of TrafficGenerator instantiated by Robot Framework
+        # to be able to use trex_stl-*()
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+
+        if tg_instance.node['subtype'] is None:
+            raise RuntimeError('TG subtype not defined')
+        elif tg_instance.node['subtype'] == NodeSubTypeTG.TREX:
+            unit_rate = str(rate) + self.get_rate_type_str()
+            if skip_warmup:
+                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
+                                                       unit_rate, frame_size,
+                                                       traffic_type,
+                                                       warmup_time=0)
+            else:
+                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
+                                                       unit_rate, frame_size,
+                                                       traffic_type)
+            loss = tg_instance.get_loss()
+            sent = tg_instance.get_sent()
+            if self.loss_acceptance_type_is_percentage():
+                loss = (float(loss) / float(sent)) * 100
+
+            logger.trace("comparing: {} < {} {}".format(loss,
+                                                        loss_acceptance,
+                                                        loss_acceptance_type))
+            if float(loss) > float(loss_acceptance):
+                return False
+            else:
+                return True
+        else:
+            raise NotImplementedError("TG subtype not supported")
+
+    def get_latency(self):
+        """Returns min/avg/max latency.
+
+        :returns: Latency stats.
+        :rtype: list
+        """
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        return tg_instance.get_latency_int()
+
+
+class TrexRateProvider(DropRateSearch.AbstractRateProvider):
+    """Rate provider which uses Trex for rate measurements."""
+
+    def __init__(self, frame_size, traffic_type, warmup_time=0):
+        """Store arguments to be used as default."""
+        self.frame_size = frame_size
+        self.traffic_type = traffic_type
+        self.warmup_time = warmup_time
+
+    def measure(self, duration, transmit_rate):
+        """Run bi-directional Trex measurement, parse results, return ReceiveRateMeasurement object."""
+        # we need instance of TrafficGenerator instantiated by Robot Framework
+        # to be able to use trex_stl-*()
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        if tg_instance.node['subtype'] is None:
+            raise RuntimeError('TG subtype not defined')
+        elif tg_instance.node['subtype'] != NodeSubTypeTG.TREX:
+            raise NotImplementedError("TG subtype not supported")
+        # Trex needs target Tr per stream, but reports aggregate Tx and Dx.
+        unit_rate = str(transmit_rate / 2.0) + "pps"
+        tg_instance.trex_stl_start_remote_exec(duration, unit_rate, self.frame_size,
+                                               self.traffic_type, warmup_time=self.warmup_time)
+        tx = int(tg_instance.get_sent())
+        dx = int(tg_instance.get_loss())
+        measurement = DropRateSearch.ReceiveRateMeasurement(duration, transmit_rate, tx, dx)
+        measurement.latency = tg_instance.get_latency_int()
+        return measurement
+
+
+class OptimizedTrexSearch(object):
+    """Class to be imported as Robot Library, containing a single keyword."""
+
+    def perform_optimized_trex_ndrpdr_search(self, frame_size, fail_rate, line_rate, traffic_type,
+                                             final_relative_width=0.015, final_duration=60.0, allowed_drop_fraction=0.005):
+        """Create Trex provider, initialize optimized search, find intervals and return them."""
+        rate_provider = TrexRateProvider(int(frame_size), traffic_type)
+        algorithm = DropRateSearch.OptimizedSearchAlgorithm(rate_provider, float(final_duration), float(final_relative_width))
+        result = algorithm.narrow_down_ndr_and_pdr(float(fail_rate), float(line_rate), float(allowed_drop_fraction))
+        return result
