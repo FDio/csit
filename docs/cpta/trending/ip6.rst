@@ -4,6 +4,12 @@ IPv6 Routed-Forwarding
 NIC 10ge2p1x520
 ---------------
 
+78B Packet
+..........
+
+1 Thread, 1 Core
+~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-1t1c-x520-1.html"></iframe>
@@ -16,6 +22,9 @@ NIC 10ge2p1x520
 
     <center><i>Figure 2. IPv6 Routed-Forwarding, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
 
+2 Threads, 2 Cores
+~~~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-2t2c-x520-1.html"></iframe>
@@ -27,6 +36,9 @@ NIC 10ge2p1x520
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-2t2c-x520-5.html"></iframe>
 
     <center><i>Figure 4. IPv6 Routed-Forwarding, NIC 10ge2p1x520 - Weekly trend.</i></center><br><br>
+
+4 Threads, 4 Cores
+~~~~~~~~~~~~~~~~~~
 
 .. raw:: html
 
@@ -43,6 +55,12 @@ NIC 10ge2p1x520
 NIC 40ge2p1xl710
 ----------------
 
+78B Packet
+..........
+
+1 Thread, 1 Core
+~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-1t1c-xl710-1.html"></iframe>
@@ -55,6 +73,8 @@ NIC 40ge2p1xl710
 
     <center><i>Figure 2. IPv6 Routed-Forwarding, NIC 40ge2p1xl710 - Weekly trend.</i></center><br><br>
 
+2 Threads, 2 Cores
+~~~~~~~~~~~~~~~~~~
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-2t2c-xl710-1.html"></iframe>
@@ -66,6 +86,9 @@ NIC 40ge2p1xl710
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-2t2c-xl710-5.html"></iframe>
 
     <center><i>Figure 4. IPv6 Routed-Forwarding, NIC 40ge2p1xl710 - Weekly trend.</i></center><br><br>
+
+4 Threads, 4 Cores
+~~~~~~~~~~~~~~~~~~
 
 .. raw:: html
 
