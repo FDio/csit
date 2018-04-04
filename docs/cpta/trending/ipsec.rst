@@ -20,7 +20,7 @@ NIC 40ge2p1xl710
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710-5.html"></iframe><br><br>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710-14.html"></iframe><br><br>
 
 2 Threads, 2 Cores
 ~~~~~~~~~~~~~~~~~~
@@ -35,7 +35,7 @@ NIC 40ge2p1xl710
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710-5.html"></iframe><br><br>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710-14.html"></iframe><br><br>
 
 4 Threads, 4 Cores
 ~~~~~~~~~~~~~~~~~~
@@ -50,4 +50,4 @@ NIC 40ge2p1xl710
 
 .. raw:: html
 
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710-5.html"></iframe><br><br>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710-14.html"></iframe><br><br>

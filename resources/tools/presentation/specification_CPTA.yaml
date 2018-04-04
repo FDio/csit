@@ -228,8 +228,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 64B Packet Throughput - {period} Trending"
@@ -240,8 +240,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 64B Packet Throughput - {period} Trending"
@@ -252,8 +252,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C L2 64B Packet Throughput - {period} Trending"
@@ -264,8 +264,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 64B Packet Throughput - {period} Trending"
@@ -276,8 +276,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 64B Packet Throughput - {period} Trending"
@@ -288,8 +288,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C L2 64B Packet Throughput - {period} Trending"
@@ -300,8 +300,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 64B Packet Throughput - {period} Trending"
@@ -312,8 +312,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 64B Packet Throughput - {period} Trending"
@@ -324,8 +324,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C L2 64B Packet Throughput - {period} Trending"
@@ -336,8 +336,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 64B Packet Throughput - {period} Trending"
@@ -348,8 +348,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 64B Packet Throughput - {period} Trending"
@@ -360,8 +360,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
 # IPv4
@@ -374,8 +374,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPv4 64B Packet Throughput - {period} Trending"
@@ -386,8 +386,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPv4 64B Packet Throughput - {period} Trending"
@@ -398,8 +398,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C IPv4 64B Packet Throughput - {period} Trending"
@@ -410,8 +410,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPv4 64B Packet Throughput - {period} Trending"
@@ -422,8 +422,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPv4 64B Packet Throughput - {period} Trending"
@@ -434,8 +434,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C IPv4 64B Packet Throughput - {period} Trending"
@@ -446,8 +446,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPv4 64B Packet Throughput - {period} Trending"
@@ -458,8 +458,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPv4 64B Packet Throughput - {period} Trending"
@@ -470,8 +470,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
 # IPv4 Tunnels
@@ -484,8 +484,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPv4 Tunnels 64B Packet Throughput - {period} Trending"
@@ -496,8 +496,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPv4 Tunnels 64B Packet Throughput - {period} Trending"
@@ -508,8 +508,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
 # IPv6
@@ -522,8 +522,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPv6 78B Packet Throughput - {period} Trending"
@@ -534,8 +534,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPv6 78B Packet Throughput - {period} Trending"
@@ -546,8 +546,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C IPv6 78B Packet Throughput - {period} Trending"
@@ -558,8 +558,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPv6 78B Packet Throughput - {period} Trending"
@@ -570,8 +570,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPv6 78B Packet Throughput - {period} Trending"
@@ -582,8 +582,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
 # Container memif
@@ -596,8 +596,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 Container memif 64B Packet Throughput - {period} Trending"
@@ -608,8 +608,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 Container memif 64B Packet Throughput - {period} Trending"
@@ -620,8 +620,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C L2 Container memif 64B Packet Throughput - {period} Trending"
@@ -632,8 +632,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 Container memif 64B Packet Throughput - {period} Trending"
@@ -644,8 +644,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 Container memif 64B Packet Throughput - {period} Trending"
@@ -656,8 +656,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C L2 Container memif IMIX Packet Throughput - {period} Trending"
@@ -668,8 +668,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 Container memif IMIX Packet Throughput - {period} Trending"
@@ -680,8 +680,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 Container memif IMIX Packet Throughput - {period} Trending"
@@ -692,8 +692,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C L2 Container memif IMIX Packet Throughput - {period} Trending"
@@ -704,8 +704,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 Container memif IMIX Packet Throughput - {period} Trending"
@@ -716,8 +716,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C L2 Container memif IMIX Packet Throughput - {period} Trending"
@@ -728,8 +728,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
 # VM vhost
@@ -742,8 +742,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost ethip4 64B Packet Throughput - {period} Trending"
@@ -754,8 +754,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost ethip4 64B Packet Throughput - {period} Trending"
@@ -766,8 +766,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -779,8 +779,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -791,8 +791,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -803,8 +803,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -816,8 +816,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -828,8 +828,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -840,8 +840,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -853,8 +853,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -865,8 +865,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - {period} Trending"
@@ -877,8 +877,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C VM vhost ethip4 IMIX Packet Throughput - {period} Trending"
@@ -889,8 +889,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost ethip4 IMIX Packet Throughput - {period} Trending"
@@ -901,8 +901,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost ethip4 IMIX Packet Throughput - {period} Trending"
@@ -913,8 +913,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -926,8 +926,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -938,8 +938,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -950,8 +950,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -963,8 +963,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -975,8 +975,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -987,8 +987,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -1000,8 +1000,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -1012,8 +1012,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - {period} Trending"
@@ -1024,8 +1024,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
 # IPSec
@@ -1038,8 +1038,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C IPSec 64B Packet Throughput - {period} Trending"
@@ -1050,8 +1050,8 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 4T4C IPSec 64B Packet Throughput - {period} Trending"
@@ -1062,6 +1062,6 @@
       - "result"
       periods:
       - 1
-      - 5
-      - 30
+      - 14
+      # - 60
       layout: "plot-cpta"
