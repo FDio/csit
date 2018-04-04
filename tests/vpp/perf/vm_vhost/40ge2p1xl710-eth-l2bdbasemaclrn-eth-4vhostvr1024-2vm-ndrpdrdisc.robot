@@ -24,7 +24,7 @@
 | ...
 | Test Setup | Set up performance test
 | Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
-| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
+| ... | ${10000}pps | ${framesize} | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
@@ -75,7 +75,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -87,6 +87,7 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
+| | Set Test Variable | ${jumbo_frames} | ${False}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
@@ -103,7 +104,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THAT
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -115,6 +116,7 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
+| | Set Test Variable | ${jumbo_frames} | ${False}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
@@ -125,6 +127,83 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+
+| tc90-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrpdr
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR+PDR for 64 Byte frames \
+| | ... | using optimized search, LT=0.5%.
+| | ...
+| | [Tags] | 64B | 1T1C | STHREAD | NDRPDR | SKIP_PATCH | THIS
+| | ...
+| | ${framesize}= | Set Variable | ${64}
+| | ${fail_rate}= | Set Variable | ${20000}
+| | ${line_rate}= | Set Variable | ${s_18.75Mpps}
+| | ${dut1_vm_refs}= | Create Dictionary
+| | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
+| | Set Test Variable | ${jumbo_frames} | ${False}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${fail_rate} | ${line_rate} | ${traffic_profile}
+
+| tc91-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrpdr
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR+PDR for 64 Byte frames \
+| | ... | using optimized search, LT=0.5%.
+| | ...
+| | [Tags] | 64B | 1T1C | STHREAD | NDRPDR | SKIP_PATCH | THIS
+| | ...
+| | ${framesize}= | Set Variable | ${64}
+| | ${fail_rate}= | Set Variable | ${20000}
+| | ${line_rate}= | Set Variable | ${s_18.75Mpps}
+| | ${dut1_vm_refs}= | Create Dictionary
+| | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
+| | Set Test Variable | ${jumbo_frames} | ${False}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${fail_rate} | ${line_rate} | ${traffic_profile}
+| | ... | final_duration=${40.0} | final_relative_width=${0.01}
+
+| tc92-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrpdr
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR+PDR for 64 Byte frames \
+| | ... | using optimized search, LT=0.5%.
+| | ...
+| | [Tags] | 64B | 1T1C | STHREAD | NDRPDR | SKIP_PATCH | THIS
+| | ...
+| | ${framesize}= | Set Variable | ${64}
+| | ${fail_rate}= | Set Variable | ${20000}
+| | ${line_rate}= | Set Variable | ${s_18.75Mpps}
+| | ${dut1_vm_refs}= | Create Dictionary
+| | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
+| | Set Test Variable | ${jumbo_frames} | ${False}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${fail_rate} | ${line_rate} | ${traffic_profile}
+| | ... | final_duration=${30.0} | final_relative_width=${0.005}
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
