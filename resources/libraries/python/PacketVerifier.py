@@ -218,9 +218,6 @@ class RxQueue(PacketVerifier):
         :returns: Ether() initialized object from packet data.
         :rtype: scapy.Ether
         """
-        (rlist, _, _) = select.select([self._sock], [], [], timeout)
-        if self._sock not in rlist:
-            return None
         try:
             with interruptingcow.timeout(timeout,
                                          exception=RuntimeError('Timeout')):
@@ -230,6 +227,9 @@ class RxQueue(PacketVerifier):
                         # Auto pad all packets in ignore list
                         ignore_list.append(auto_pad(ig_pkt))
                 while True:
+                    (rlist, _, _) = select.select([self._sock], [], [], timeout)
+                    if self._sock not in rlist:
+                        return None
                     pkt = self._sock.recv(0x7fff)
                     pkt_pad = auto_pad(pkt)
                     print 'Received packet on {0} of len {1}'\
