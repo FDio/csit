@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -70,9 +70,10 @@ class VatExecutor(object):
         self._stdout = None
         self._stderr = None
         self._ret_code = None
+        self._script_name = None
 
-    def execute_script(self, vat_name, node, timeout=15, json_out=True):
-        """Copy local_path script to node, execute it and return result.
+    def execute_script(self, vat_name, node, timeout=120, json_out=True):
+        """Execute local_path script on node, and store result.
 
         :param vat_name: Name of the vat script file. Only the file name of
         the script is required, the resources path is prepended automatically.
@@ -83,31 +84,28 @@ class VatExecutor(object):
         :type node: dict
         :type timeout: int
         :type json_out: bool
-        :returns: Status code, stdout and stderr of executed VAT script.
-        :rtype: tuple
         :raises RuntimeError: If VAT script execution failed.
         """
-
         ssh = SSH()
         try:
             ssh.connect(node)
         except:
             raise SSHException("Cannot open SSH connection to execute VAT "
-                               "command(s) from template {0}".format(vat_name))
+                               "command(s) from vat script {name}"
+                               .format(name=vat_name))
 
         remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
                                                 Constants.RESOURCES_TPL_VAT,
                                                 vat_name)
-        # TODO this overwrites the output if the vat script has been used twice
-        # remote_file_out = remote_file_path + ".out"
 
-        cmd = "sudo -S {vat} {json} in {input} script".format(
-            vat=Constants.VAT_BIN_NAME,
+        cmd = "{vat_bin} {json} in {vat_path} script".format(
+            vat_bin=Constants.VAT_BIN_NAME,
             json="json" if json_out is True else "",
-            input=remote_file_path)
+            vat_path=remote_file_path)
 
         try:
-            (ret_code, stdout, stderr) = ssh.exec_command(cmd, timeout)
+            ret_code, stdout, stderr = ssh.exec_command_sudo(cmd=cmd,
+                                                             timeout=timeout)
         except SSHTimeout:
             logger.error("VAT script execution timeout: {0}".format(cmd))
             raise
@@ -117,12 +115,12 @@ class VatExecutor(object):
         self._ret_code = ret_code
         self._stdout = stdout
         self._stderr = stderr
+        self._script_name = vat_name
 
-        # TODO: download vpp_api_test output file
-        # self._delete_files(node, remote_file_path, remote_file_out)
-
-    def scp_and_execute_script(self, vat_name, node, timeout=15, json_out=True):
+    def scp_and_execute_script(self, vat_name, node, timeout=120,
+                               json_out=True):
         """Copy vat_name script to node, execute it and return result.
+        Store the content of vat script in VAT history.
 
         :param vat_name: Name of the vat script file.
         Full path and name of the script is required.
@@ -133,80 +131,80 @@ class VatExecutor(object):
         :type node: dict
         :type timeout: int
         :type json_out: bool
-        :returns: Status code, stdout and stderr of executed VAT script.
-        :rtype: tuple
         :raises RuntimeError: If VAT script execution failed.
         """
-
         ssh = SSH()
         try:
             ssh.connect(node)
         except:
             raise SSHException("Cannot open SSH connection to execute VAT "
-                               "command(s) from template {0}".format(vat_name))
+                               "command(s) from vat script {name}"
+                               .format(name=vat_name))
 
         ssh.scp(vat_name, vat_name)
 
-        cmd = "sudo -S {vat} {json} in {input} script".format(
+        cmd = "{vat_bin} {json} in {vat_path} script".format(
+            vat_bin=Constants.VAT_BIN_NAME,
             json="json" if json_out is True else "",
-            vat=Constants.VAT_BIN_NAME,
-            input=vat_name)
+            vat_path=vat_name)
 
         with open(vat_name, 'r') as tmp_f:
             VatHistory.add_to_vat_history(node, tmp_f.read())
 
         try:
-            (ret_code, stdout, stderr) = ssh.exec_command(cmd, timeout)
+            ret_code, stdout, stderr = ssh.exec_command_sudo(cmd=cmd,
+                                                             timeout=timeout)
         except SSHTimeout:
-            logger.error("VAT script execution timeout: {0}".format(cmd))
+            logger.error("VAT script execution timeout: {cmd}".format(cmd=cmd))
             raise
         except:
-            raise RuntimeError("VAT script execution failed: {0}".format(cmd))
+            raise RuntimeError("VAT script execution failed: {cmd}"
+                               .format(cmd=cmd))
 
         self._ret_code = ret_code
         self._stdout = stdout
         self._stderr = stderr
+        self._script_name = vat_name
 
         self._delete_files(node, vat_name)
 
-    def scp_and_execute_cli_script(self, fname, node, timeout=15,
+    def scp_and_execute_cli_script(self, vat_name, node, timeout=120,
                                    json_out=True):
         """Copy vat_name script to node, execute it and return result.
+        Store the content of vat script in VAT history.
 
-        :param fname: Name of the VPP script file.
+        :param vat_name: Name of the VPP script file.
         Full path and name of the script is required.
         :param node: Node to execute the VPP script on.
         :param timeout: Seconds to allow the script to run.
         :param json_out: Require JSON output.
-        :type fname: str
+        :type vat_name: str
         :type node: dict
         :type timeout: int
         :type json_out: bool
-        :returns: Status code, stdout and stderr of executed CLI script.
-        :rtype: tuple
         :raises RuntimeError: If CLI script execution failed.
         """
-
         ssh = SSH()
         try:
             ssh.connect(node)
         except:
-            raise SSHException("Cannot open SSH connection to execute CLI "
-                               "command(s) from template {0}".format(fname))
+            raise SSHException("Cannot open SSH connection to execute VAT "
+                               "command(s) from vat script {name}"
+                               .format(name=vat_name))
 
-        ssh.scp(fname, fname)
+        ssh.scp(vat_name, vat_name)
 
-        cmd = "{vat} {json}".format(json="json" if json_out is True else "",
-                                    vat=Constants.VAT_BIN_NAME)
-        cmd_input = "exec exec {0}".format(fname)
+        cmd = "{vat_bin} {json}".format(vat_bin=Constants.VAT_BIN_NAME,
+                                        json="json" if json_out is True else "")
+        cmd_input = "exec exec {vat_path}".format(vat_path=vat_name)
 
         VatHistory.add_to_vat_history(node, cmd_input)
-        with open(fname, 'r') as tmp_f:
+        with open(vat_name, 'r') as tmp_f:
             VatHistory.add_to_vat_history(node, tmp_f.read())
 
         try:
-            (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd, cmd_input,
-                                                               timeout)
+            ret_code, stdout, stderr = ssh.exec_command_sudo(cmd, cmd_input,
+                                                             timeout)
         except SSHTimeout:
             logger.error("CLI script execution timeout: {0}{1}".
                          format(cmd, "<<< " + cmd_input if cmd_input else ""))
@@ -218,10 +216,11 @@ class VatExecutor(object):
         self._ret_code = ret_code
         self._stdout = stdout
         self._stderr = stderr
+        self._script_name = cmd_input
 
-        self._delete_files(node, fname)
+        self._delete_files(node, vat_name)
 
-    def execute_script_json_out(self, vat_name, node, timeout=15):
+    def execute_script_json_out(self, vat_name, node, timeout=120):
         """Pass all arguments to 'execute_script' method, then cleanup returned
         json output.
 
@@ -249,7 +248,7 @@ class VatExecutor(object):
         ssh = SSH()
         ssh.connect(node)
         files = " ".join([str(x) for x in files])
-        ssh.exec_command("rm {0}".format(files))
+        ssh.exec_command("rm {files}".format(files=files))
 
     def script_should_have_failed(self):
         """Read return code from last executed script and raise exception if the
@@ -258,7 +257,8 @@ class VatExecutor(object):
             raise Exception("First execute the script!")
         if self._ret_code == 0:
             raise AssertionError(
-                "Script execution passed, but failure was expected")
+                "VAT Script execution passed, but failure was expected: {cmd}"
+                .format(cmd=self._script_name))
 
     def script_should_have_passed(self):
         """Read return code from last executed script and raise exception if the
@@ -267,7 +267,8 @@ class VatExecutor(object):
             raise Exception("First execute the script!")
         if self._ret_code != 0:
             raise AssertionError(
-                "Script execution failed, but success was expected")
+                "VAT Script execution failed, but success was expected: {cmd}"
+                .format(cmd=self._script_name))
 
     def get_script_stdout(self):
         """Returns value of stdout from last executed script."""
