@@ -65,7 +65,6 @@
 import os
 import select
 
-import interruptingcow
 from scapy.config import conf
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
 from scapy.layers.inet6 import IPv6
@@ -218,33 +217,29 @@ class RxQueue(PacketVerifier):
         :returns: Ether() initialized object from packet data.
         :rtype: scapy.Ether
         """
-        (rlist, _, _) = select.select([self._sock], [], [], timeout)
-        if self._sock not in rlist:
-            return None
-        try:
-            with interruptingcow.timeout(timeout,
-                                         exception=RuntimeError('Timeout')):
-                ignore_list = list()
-                if ignore is not None:
-                    for ig_pkt in ignore:
-                        # Auto pad all packets in ignore list
-                        ignore_list.append(auto_pad(ig_pkt))
-                while True:
-                    pkt = self._sock.recv(0x7fff)
-                    pkt_pad = auto_pad(pkt)
-                    print 'Received packet on {0} of len {1}'\
-                        .format(self._ifname, len(pkt))
-                    if verbose:
-                        pkt.show2()  # pylint: disable=no-member
-                        print
-                    if pkt_pad in ignore_list:
-                        ignore_list.remove(pkt_pad)
-                        print 'Received packet ignored.'
-                        continue
-                    else:
-                        return pkt
-        except RuntimeError:
-            return None
+        ignore_list = list()
+        if ignore is not None:
+            for ig_pkt in ignore:
+                # Auto pad all packets in ignore list
+                ignore_list.append(auto_pad(ig_pkt))
+        while True:
+            (rlist, _, _) = select.select([self._sock], [], [], timeout)
+            if self._sock not in rlist:
+                return None
+
+            pkt = self._sock.recv(0x7fff)
+            pkt_pad = auto_pad(pkt)
+            print 'Received packet on {0} of len {1}'\
+                .format(self._ifname, len(pkt))
+            if verbose:
+                pkt.show2()  # pylint: disable=no-member
+                print
+            if pkt_pad in ignore_list:
+                ignore_list.remove(pkt_pad)
+                print 'Received packet ignored.'
+                continue
+            else:
+                return pkt
 
 
 class TxQueue(PacketVerifier):
