@@ -26,16 +26,6 @@ class VppCounters(object):
     def __init__(self):
         self._stats_table = None
 
-    def vpp_nodes_clear_interface_counters(self, nodes):
-        """Clear interface counters on all VPP nodes in topology.
-
-        :param nodes: Nodes in topology.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node['type'] == NodeType.DUT:
-                self.vpp_clear_interface_counters(node)
-
     @staticmethod
     def vpp_show_errors(node):
         """Run "show errors" debug CLI command.
@@ -45,6 +35,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_errors.vat", node, json_out=False)
+        vat.script_should_have_passed()
 
     @staticmethod
     def vpp_show_errors_verbose(node):
@@ -55,6 +46,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_errors_verbose.vat", node, json_out=False)
+        vat.script_should_have_passed()
 
     @staticmethod
     def vpp_show_errors_on_all_duts(nodes, verbose=False):
@@ -82,6 +74,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_runtime.vat", node, json_out=False)
+        vat.script_should_have_passed()
 
     @staticmethod
     def show_runtime_counters_on_all_duts(nodes):
@@ -103,6 +96,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_runtime_verbose.vat", node, json_out=False)
+        vat.script_should_have_passed()
 
     @staticmethod
     def vpp_show_hardware_detail(node):
@@ -113,6 +107,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_hardware_detail.vat", node, json_out=False)
+        vat.script_should_have_passed()
 
     @staticmethod
     def vpp_clear_runtime(node):
@@ -123,6 +118,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("clear_runtime.vat", node, json_out=False)
+        vat.script_should_have_passed()
 
     @staticmethod
     def clear_runtime_counters_on_all_duts(nodes):

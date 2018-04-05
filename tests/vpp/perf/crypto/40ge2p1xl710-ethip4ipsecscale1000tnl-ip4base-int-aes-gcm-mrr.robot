@@ -109,7 +109,7 @@
 | | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
 | | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
 | | framesize=${64} | wt=1 | rxq=1
@@ -146,7 +146,7 @@
 | | ... | configured with 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 64B | 2T2C | MTHREAD | THIS
 | | ...
 | | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
 | | framesize=${64} | wt=2 | rxq=1
