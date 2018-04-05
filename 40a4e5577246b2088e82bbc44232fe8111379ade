@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e3f606f_1f20d99f",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-05T08:27:04Z",
+      "side": 1,
+      "message": "param type for odl_name missing",
+      "range": {
+        "startLine": 511,
+        "startChar": 0,
+        "endLine": 511,
+        "endChar": 28
+      },
+      "revId": "40a4e5577246b2088e82bbc44232fe8111379ade",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
