@@ -19,7 +19,7 @@
 | Clear interface counters on all vpp nodes in topology
 | | [Documentation] | Clear interface counters on all VPP nodes in topology
 | | [Arguments] | ${nodes}
-| | Vpp Nodes Clear Interface Counters | ${nodes}
+| | Clear Interface Counters on all DUTs | ${nodes}
 
 | Check ipv4 interface counter
 | | [Documentation] | Check that ipv4 interface counter has right value
