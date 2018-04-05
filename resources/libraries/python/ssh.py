@@ -132,7 +132,6 @@ class SSH(object):
         :rtype: tuple(int, str, str)
         :raise SSHTimeout: If command is not finished in timeout time.
         """
-        start = time()
         stdout = StringIO.StringIO()
         stderr = StringIO.StringIO()
         try:
@@ -147,6 +146,7 @@ class SSH(object):
         logger.trace('exec_command on {0}: {1}'
                      .format(self._ssh.get_transport().getpeername(), cmd))
 
+        start = time()
         chan.exec_command(cmd)
         while not chan.exit_status_ready() and timeout is not None:
             if chan.recv_ready():
@@ -163,7 +163,6 @@ class SSH(object):
                     .format(cmd, stdout.getvalue(), stderr.getvalue())
                 )
 
-            sleep(0.1)
         return_code = chan.recv_exit_status()
 
         while chan.recv_ready():
@@ -175,8 +174,6 @@ class SSH(object):
         end = time()
         logger.trace('exec_command on {0} took {1} seconds'.format(
             self._ssh.get_transport().getpeername(), end-start))
-
-        logger.trace('chan_recv/_stderr took {} seconds'.format(time()-end))
 
         logger.trace('return RC {}'.format(return_code))
         logger.trace('return STDOUT {}'.format(stdout.getvalue()))
