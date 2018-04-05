@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e281c46c_9c75cef9",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-05T13:16:52Z",
+      "side": 1,
+      "message": "store",
+      "range": {
+        "startLine": 76,
+        "startChar": 58,
+        "endLine": 76,
+        "endChar": 64
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31128ac2_149a8278",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-05T13:16:52Z",
+      "side": 1,
+      "message": "I do not see this function copying anything.",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "374db752_861826c4",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-05T13:16:52Z",
+      "side": 1,
+      "message": "Why are the many lines of execute_script() copied here (as opposed to just calling that method)?",
+      "range": {
+        "startLine": 122,
+        "startChar": 41,
+        "endLine": 122,
+        "endChar": 51
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "122ca3c0_5dc26ba0",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-05T13:16:52Z",
+      "side": 1,
+      "message": "Mention this step in docstring.",
+      "range": {
+        "startLine": 151,
+        "startChar": 23,
+        "endLine": 151,
+        "endChar": 41
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ea95333_9070bef7",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-05T13:16:52Z",
+      "side": 1,
+      "message": "What is the difference from scp_and_execute_script()?\nIf any, why is the logic of trevious methods copied here?",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 34
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "efcd6882_41ad4212",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-05T13:16:52Z",
+      "side": 1,
+      "message": "It would be better if vat.execute_script() already did this.\nEither unconditionally, or at least by default (unless an optional argument is given to skip this).",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
