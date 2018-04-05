@@ -64,6 +64,8 @@
 
 import os
 import select
+import struct
+import fcntl
 
 from scapy.config import conf
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
@@ -73,6 +75,8 @@ from scapy.layers.l2 import Ether, ARP
 # Enable libpcap's L2listen
 conf.use_pcap = True
 import scapy.arch.pcapdnet  # pylint: disable=C0413, unused-import
+from scapy.arch.pcapdnet import L2pcapListenSocket
+
 
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
            'auto_pad', 'checksum_equal']
@@ -185,6 +189,62 @@ def packet_reader(interface_name, queue):
     while True:
         pkt = sock.recv(0x7fff)
         queue.put(pkt)
+
+
+class L2pcapListenSocketJumbo(L2pcapListenSocket):
+    """This class is used to handle the L2pcapListenSocket limitation to pcap
+    packets larger than 1600 bytes."""
+    desc = "read jumbo packets at layer 2 using libpcap"
+
+    def __init__(self, iface=None, type=ETH_P_ALL, promisc=None, filter=None):
+        """Initialize the L2pcapListenSocketJumbo object.
+
+        :param iface: Interface used to capture Ethernet packets.
+        :param type: Ethernet packet type.
+        :param promisc: Promiscuous mode
+        :param filter: PCAP filter
+        :type iface: str
+        :type type: int
+        :type promisc: int
+        :type filter: str
+
+        This implementation is based on L2pcapListenSocket from Scapy 2.3.1
+        https://github.com/secdev/scapy/blob/v2.3.1/scapy/arch/pcapdnet.py .
+        """
+        self.type = type
+        self.outs = None
+        if iface is None:
+            self.iface = conf.iface
+        else:
+            self.iface = iface
+        if promisc is None:
+            self.promisc = conf.sniff_promisc
+        else:
+            self.promisc = promisc
+        self.ins = scapy.arch.pcapdnet.open_pcap(self.iface, 9216,
+                                                 self.promisc, 100)
+        try:
+            # From BSD net/bpf.h
+            BIOCIMMEDIATE = -2147204496
+            fcntl.ioctl(self.ins.fileno(), BIOCIMMEDIATE, struct.pack("I", 1))
+        except IOError:
+            pass
+
+        # Do not apply any filter if Ethernet type is given
+        if type == ETH_P_ALL:
+            if conf.except_filter:
+                if filter:
+                    filter = "{} and not {}".format(filter, conf.except_filter)
+                else:
+                    filter = "not {}".format(conf.except_filter)
+            if filter:
+                self.ins.setfilter(filter)
+
+    def close(self):
+        del(self.ins)
+
+
+conf.L2listen = L2pcapListenSocketJumbo
 
 
 class RxQueue(PacketVerifier):
