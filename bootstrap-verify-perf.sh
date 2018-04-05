@@ -192,7 +192,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
-              --include mrrAND1t1cORmrrAND2t2c \
+              --include mrrAND1t1cORmrrAND2t2cANDnic_intel-x710 \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
