@@ -74,6 +74,7 @@ from scapy.layers.l2 import Ether, ARP
 # Enable libpcap's L2listen
 conf.use_pcap = True
 import scapy.arch.pcapdnet  # pylint: disable=C0413, unused-import
+from scapy.arch.pcapdnet import L2pcapListenSocket
 
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
            'auto_pad', 'checksum_equal']
@@ -186,6 +187,43 @@ def packet_reader(interface_name, queue):
     while True:
         pkt = sock.recv(0x7fff)
         queue.put(pkt)
+
+class L2pcapListenSocketJumbo(L2pcapListenSocket):
+    """This class is used to handle the L2pcapListenSocket limitation to pcap
+    packets larger than 1600 bytes.
+
+    This implementation is based on L2pcapListenSocket from Scapy 2.3.1
+    https://github.com/secdev/scapy/blob/v2.3.1/scapy/arch/pcapdnet.py.
+    """
+    desc = "read jumbo packets at layer 2 using libpcap"
+
+    def __init__(self, iface = None, type = ETH_P_ALL, promisc=None, filter=None):
+        self.type = type
+        self.outs = None
+        self.iface = iface
+        if iface is None:
+            iface = conf.iface
+        if promisc is None:
+            promisc = conf.sniff_promisc
+        self.promisc = promisc
+        self.ins =  scapy.arch.pcapdnet.open_pcap(iface, 9216, self.promisc, 100)
+        try:
+            ioctl(self.ins.fileno(), BIOCIMMEDIATE, struct.pack("I", 1))
+        except:
+            pass
+        if type == ETH_P_ALL: # Do not apply any filter if Ethernet type is given
+            if conf.except_filter:
+                if filter:
+                    filter = "(%s) and not (%s)" % (filter, conf.except_filter)
+                else:
+                    filter = "not (%s)" % conf.except_filter
+            if filter:
+                self.ins.setfilter(filter)
+
+    def close(self):
+        del(self.ins)
+
+conf.L2listen = L2pcapListenSocketJumbo
 
 
 class RxQueue(PacketVerifier):
@@ -342,3 +380,4 @@ def checksum_equal(chksum1, chksum2):
     if chksum2 == 0xFFFF:
         chksum2 = 0
     return chksum1 == chksum2
+
