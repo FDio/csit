@@ -499,13 +499,15 @@ class HoneycombSetup(object):
                         "in progress ...".format(node['host']))
 
     @staticmethod
-    def install_odl_features(node, path, *features):
+    def install_odl_features(node, odl_name, path, *features):
         """Install required features on a running ODL client.
 
         :param node: Honeycomb node.
+        :param odl_name: Name of ODL client version to use.
         :param path: Path to ODL client on node.
         :param features: Optional, list of additional features to install.
         :type node: dict
+        :type odl_name: str
         :type path: str
         :type features: list
         """
@@ -513,10 +515,14 @@ class HoneycombSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = "{path}/*karaf*/bin/client -u karaf feature:install " \
+        auth = "-u karaf"
+        if odl_name.lower() == "oxygen":
+            auth = "-u karaf -p karaf"
+
+        cmd = "{path}/*karaf*/bin/client {auth} feature:install " \
               "odl-restconf-all " \
               "odl-netconf-connector-all " \
-              "odl-netconf-topology".format(path=path)
+              "odl-netconf-topology".format(path=path, auth=auth)
         for feature in features:
             cmd += " {0}".format(feature)
 
