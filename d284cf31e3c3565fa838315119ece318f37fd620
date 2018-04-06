@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "093bc4fc_ce50a1e9",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-06T07:26:02Z",
+      "side": 1,
+      "message": "This timeout should be longer than that on the line 230.\nI think, the best way would be to remove interruptingcow (this is the only place where it is used) and handle deadlocks by ourselves (as it is in the ssh module).",
+      "range": {
+        "startLine": 222,
+        "startChar": 41,
+        "endLine": 222,
+        "endChar": 48
+      },
+      "revId": "d284cf31e3c3565fa838315119ece318f37fd620",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
