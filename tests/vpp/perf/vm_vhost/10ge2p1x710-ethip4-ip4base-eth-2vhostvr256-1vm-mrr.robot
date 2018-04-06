@@ -95,7 +95,7 @@
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
-| | ... | ${dut2_vif2_mac}
+| | ... | ${dut2_vif2_mac} | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
