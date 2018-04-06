@@ -27,7 +27,7 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| Test Teardown | Tear down performance discovery test | ${20000}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
@@ -95,6 +95,20 @@
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+
+| Discover NDRPDR for L2 Bridge Domain with Memif
+| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | Set Test Variable | ${framesize}
+| | ${get_framesize}= | Set Variable If
+| | ... | "${framesize}" == "IMIX_v4_1" | ${avg_imix_framesize} | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
+| | When Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI Devices To DUTs In 3-node Single Link Topology
+| | And Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Initialize L2 Bridge Domain for '1' memif pairs in 3-node circular topology
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${20000} | ${max_rate} | ${traffic_profile}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrdisc
@@ -165,16 +179,16 @@
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with Memif
 | | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
 
-| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrdisc
+| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 thread, 2 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with Memif
-| | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC | THIS
+| | [Template] | Discover NDRPDR for L2 Bridge Domain with Memif
+| | framesize=${64} | wt=2 | rxq=1
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-2memif-1lxc-pdrdisc
 | | [Documentation]

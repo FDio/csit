@@ -25,7 +25,7 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| Test Teardown | Tear down performance discovery test | ${20000}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC6830: Pkt throughput Lisp test cases*
@@ -262,6 +262,31 @@
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
+
+| tc97-78B-2t2c-ethip6lispip4-ip6base-ndrpdr
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv6 LISP remote static mappings and whitelist\
+| | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
+| | ... | port.
+| | ... | [Ver] Find NDR for 78 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 50kpps.
+| | [Tags] | 78B | 2T2C | MTHREAD | NDRDISC | THIS
+| | ${framesize}= | Set Variable | ${78}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize LISP IPv6 over IPv4 forwarding in 3-node circular topology
+| | ... | ${dut1_to_dut2_ip6o4} | ${dut1_to_tg_ip6o4} | ${dut2_to_dut1_ip6o4}
+| | ... | ${dut2_to_tg_ip6o4} | ${tg_prefix6o4} | ${dut_prefix6o4}
+| | And Configure LISP topology in 3-node circular topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
+| | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${20000} | ${max_rate} | ${traffic_profile}
 
 | tc08-78B-2t2c-ethip6lispip4-ip6base-pdrdisc
 | | [Documentation]
