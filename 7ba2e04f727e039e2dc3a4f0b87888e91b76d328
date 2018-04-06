@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bbda87c_d3ec89e7",
+        "filename": "tests/vpp/perf/l2/10ge2p1x710-dot1q-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T10:34:10Z",
+      "side": 1,
+      "message": "add assignment sign there:\n${traffic_profile}\u003d |",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "7ba2e04f727e039e2dc3a4f0b87888e91b76d328",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
