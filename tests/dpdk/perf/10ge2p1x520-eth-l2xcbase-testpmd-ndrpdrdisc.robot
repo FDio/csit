@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -47,364 +47,283 @@
 
 *** Variables ***
 # X520-DA2 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
+# Trex minimal pps per stream is 9000.
+| ${min_rate}= | ${100000}
+# Search is terminated when width is less than the following value.
+| ${threshold}= | ${100000}
+
+*** Keywords ***
+| Find NDR for eth-l2xcbase-testpmd
+| | [Arguments]
+| | ... | ${wt} | ${rxq} | ${framesize}
+| | ...
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2 frame forwarding config with ${wt} thread,\
+| | ... | ${wt} phy core, ${rxq} receive queue per NIC port.
+| | ... | [Ver] Find NDR for ${framesize} Byte frames\
+| | ... | using binary search, max 10GE linerate, step ${threshold}pps.
+| | ...
+| | # Set test variables
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ${jumbo}= | Set Variable If | ${get_framesize} < ${1522} | no | yes
+| | When Start L2FWD '${wt}' worker threads and '${rxq}' rxqueues with jumbo frames '${jumbo}'
+| | Then Find NDR using binary search and pps | ${framesize} | ${min_rate}
+| | ... | ${max_rate} | ${traffic_profile} | ${min_rate} | ${max_rate} | ${threshold}
+
+| Find PDR for eth-l2xcbase-testpmd
+| | [Arguments]
+| | ... | ${wt} | ${rxq} | ${framesize}
+| | ...
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2 frame forwarding config with ${wt} thread,\
+| | ... | ${wt} phy core, ${rxq} receive queue per NIC port.
+| | ... | [Ver] Find PDR for ${framesize} Byte frames\
+| | ... | using binary search, max 10GE linerate, step ${threshold}pps.
+| | ...
+| | # Set test variables
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ${jumbo}= | Set Variable If | ${get_framesize} < ${1522} | no | yes
+| | When Start L2FWD '${wt}' worker threads and '${rxq}' rxqueues with jumbo frames '${jumbo}'
+| | Then Find PDR using binary search and pps | ${framesize} | ${min_rate}
+| | ... | ${max_rate} | ${traffic_profile} | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread,\
+| | ... | 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=1 | rxq=1 | framesize=${64}
 
 | tc02-64B-1t1c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames\
-| | ... | using binary search start at 10GE linerate, step 100kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread,\
+| | ... | 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=1 | rxq=1 | framesize=${64}
 
 | tc03-1518B-1t1c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames\
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread,\
+| | ... | 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=1 | rxq=1 | framesize=${1518}
 
 | tc04-1518B-1t1c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames\
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread,\
+| | ... | 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=1 | rxq=1 | framesize=${1518}
 
 | tc05-9000B-1t1c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames\
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread,\
+| | ... | 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
 | | ...
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '1' worker threads and '1' rxqueues with jumbo frames 'yes'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=1 | rxq=1 | framesize=${9000}
 
 | tc06-9000B-1t1c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames\
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread,\
+| | ... | 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '1' worker threads and '1' rxqueues with jumbo frames 'yes'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=1 | rxq=1 | framesize=${9000}
 
 | tc07-64B-2t2c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
-| | ... | cores, 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 100kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 thread,\
+| | ... | 2 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=2 | rxq=1 | framesize=${64}
 
 | tc08-64B-2t2c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
-| | ... | cores, 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 100kpps,\
-| | ... | LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 thread,\
+| | ... | 2 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=2 | rxq=1 | framesize=${64}
 
 | tc09-1518B-2t2c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
-| | ... | cores, 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 thread,\
+| | ... | 2 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=2 | rxq=1 | framesize=${1518}
 
 | tc10-1518B-2t2c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
-| | ... | cores, 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 10kpps,\
-| | ... | LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 thread,\
+| | ... | 2 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=2 | rxq=1 | framesize=${1518}
 
 | tc11-9000B-2t2c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
-| | ... | cores, 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 thread,\
+| | ... | 2 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '2' worker threads and '1' rxqueues with jumbo frames 'yes'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=2 | rxq=1 | framesize=${9000}
 
 | tc12-9000B-2t2c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
-| | ... | cores, 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 10kpps,\
-| | ... | LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 thread,\
+| | ... | 2 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '2' worker threads and '1' rxqueues with jumbo frames 'yes'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=2 | rxq=1 | framesize=${9000}
 
 | tc13-64B-4t4c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
-| | ... | cores, 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 100kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 thread,\
+| | ... | 4 phy core, 2 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ...
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=4 | rxq=2 | framesize=${64}
 
 | tc14-64B-4t4c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
-| | ... | cores, 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 100kpps,\
-| | ... | LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 thread,\
+| | ... | 4 phy core, 2 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${100000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=4 | rxq=2 | framesize=${64}
 
 | tc15-1518B-4t4c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
-| | ... | cores, 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 thread,\
+| | ... | 4 phy core, 2 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=4 | rxq=2 | framesize=${1518}
 
 | tc16-1518B-4t4c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
-| | ... | cores, 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 10kpps,\
-| | ... | LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 thread,\
+| | ... | 4 phy core, 2 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=4 | rxq=2 | framesize=${1518}
 
 | tc17-9000B-4t4c-eth-l2xcbase-testpmd-ndrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
-| | ... | cores, 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte\
-| | ... | frames using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 thread,\
+| | ... | 4 phy core, 2 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '4' worker threads and '2' rxqueues with jumbo frames 'yes'
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | [Template] | Find NDR for eth-l2xcbase-testpmd
+| | wt=4 | rxq=2 | framesize=${9000}
 
 | tc18-9000B-4t4c-eth-l2xcbase-testpmd-pdrdisc
+| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
-| | ... | cores, 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte
-| | ... | frames using binary search start at 10GE linerate, step 5kpps,\
-| | ... | LT=0.5%.
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 thread,\
+| | ... | 4 phy core, 2 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames\
+| | ... | using binary search, max 10GE linerate, step 100kpps.
 | | ...
 | | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L2FWD '4' worker threads and '2' rxqueues with jumbo frames 'yes'
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | [Template] | Find PDR for eth-l2xcbase-testpmd
+| | wt=4 | rxq=2 | framesize=${9000}
