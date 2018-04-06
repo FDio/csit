@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "4fa3221e_5be80294",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T06:46:45Z",
+      "side": 1,
+      "message": "Apparently it is not the same. I try to remove this function and replace it by above one.\nvpp_api_test in \u003c\u003e script - is calling vat functions\nvpp_api_test \u003c\u003c\u003c exec exec \u003cscript\u003e - is calling exec commands (a.k.a vpp builtin CLI commands)\nSo this will be tricky, but we can move common parts of both function into new funtion and let the others only decorate it.\nthe only function in whole CSIT using it is:\ndef vpp_ipsec_create_tunnel_interfaces() so maybe we can rewrite this fc to use VAT commands and not CLI commands",
+      "parentUuid": "a87e18b6_ae4a0330",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 34
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efcd6882_41ad4212",
         "filename": "resources/libraries/python/VppCounters.py",
         "patchSetId": 5
