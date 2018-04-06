@@ -70,7 +70,7 @@ class HcPersistence(object):
         :type find: string
         :type replace: string
         :raises HoneycombError: If persistent configuration couldn't be
-        modified.
+                                modified.
         """
 
         argument = "\"s/{0}/{1}/g\"".format(find, replace)

@@ -125,7 +125,7 @@ class DropRateSearch(object):
         :type traffic_type: str
         :type traffic_type: bool
         :returns: Drop threshold exceeded? (True/False)
-        :rtype bool
+        :rtype: bool
         """
         pass
 

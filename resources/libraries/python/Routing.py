@@ -38,7 +38,7 @@ class Routing(object):
         :param resolve_attempts: Resolve attempts IP route add parameter.
         :param count: number of IP addresses to add starting from network IP
         :param local: The route is local
-        with same prefix (increment is 1). If None, then is not used.
+                      with same prefix (increment is 1). If None, then is not used.
         :param lookup_vrf: VRF table ID for lookup.
         :param multipath: Enable multipath routing.
         :param weight: Weight value for unequal cost multipath routing.

@@ -414,6 +414,7 @@ class Policer(object):
 
         :param interface: Interface name or sw_if_index.
         :type interface: str or int
+
         .. note:: First set node with policer_set_node.
         """
         if isinstance(interface, basestring):

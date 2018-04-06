@@ -56,7 +56,7 @@ def get_vpp_pid(node):
     :param node: DUT node.
     :type node: dict
     :returns: PID of VPP process / List of PIDs if more VPP processes are
-    running on the DUT node.
+              running on the DUT node.
     :rtype: int or list
     """
     import resources.libraries.python.DUTSetup as PidLib
@@ -76,7 +76,8 @@ class VatExecutor(object):
         """Execute local_path script on node, and store result.
 
         :param vat_name: Name of the vat script file. Only the file name of
-        the script is required, the resources path is prepended automatically.
+                         the script is required, the resources path
+                         is prepended automatically.
         :param node: Node to execute the VAT script on.
         :param timeout: Seconds to allow the script to run.
         :param json_out: Require JSON output.
@@ -123,7 +124,7 @@ class VatExecutor(object):
         Store the content of vat script in VAT history.
 
         :param vat_name: Name of the vat script file.
-        Full path and name of the script is required.
+                         Full path and name of the script is required.
         :param node: Node to execute the VAT script on.
         :param timeout: Seconds to allow the script to run.
         :param json_out: Require JSON output.
@@ -174,7 +175,7 @@ class VatExecutor(object):
         Store the content of vat script in VAT history.
 
         :param vat_name: Name of the VPP script file.
-        Full path and name of the script is required.
+                         Full path and name of the script is required.
         :param node: Node to execute the VPP script on.
         :param timeout: Seconds to allow the script to run.
         :param json_out: Require JSON output.
@@ -224,8 +225,9 @@ class VatExecutor(object):
         """Pass all arguments to 'execute_script' method, then cleanup returned
         json output.
 
-         :param vat_name: Name of the vat script file. Only the file name of
-        the script is required, the resources path is prepended automatically.
+        :param vat_name: Name of the vat script file. Only the file name of
+                         the script is required, the resources path
+                         is prepended automatically.
         :param node: Node to execute the VAT script on.
         :param timeout: Seconds to allow the script to run.
         :type vat_name: str
@@ -298,7 +300,7 @@ class VatTerminal(object):
 
     :param node: Node to open VAT terminal on.
     :param json_param: Defines if outputs from VAT are in JSON format.
-    Default is True.
+                       Default is True.
     :type node: dict
     :type json_param: bool
 
@@ -359,7 +361,7 @@ class VatTerminal(object):
         :param cmd: Command to be executed.
 
         :return: Command output in python representation of JSON format or
-        None if not in JSON mode.
+                 None if not in JSON mode.
         """
         VatHistory.add_to_vat_history(self._node, cmd)
         logger.debug("Executing command in VAT terminal: {0}".format(cmd))

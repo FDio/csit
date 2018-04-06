@@ -94,8 +94,9 @@ class NodePath(object):
         """Compute path for added nodes.
 
         :param always_same_link: If True use always same link between two nodes
-        in path. If False use different link (if available) between two
-        nodes if one link was used before.
+                                 in path. If False use different link
+                                 (if available) between two nodes if one link
+                                 was used before.
         :type always_same_link: bool
 
         .. note:: First add at least two nodes to the topology.

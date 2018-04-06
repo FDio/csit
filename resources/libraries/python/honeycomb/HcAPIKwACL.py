@@ -50,7 +50,7 @@ class ACLKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        200 = OK.
+                                200 = OK.
         """
 
         if data:
@@ -266,7 +266,6 @@ class ACLKeywords(object):
         :type list_name: str
         :type data: dict
         :type macip: bool
-
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails.
@@ -296,14 +295,13 @@ class ACLKeywords(object):
         :param interface: Name of an interface on the node.
         :param acl_name: Name of an ACL chain configured through ACL-plugin.
         :param direction: Classify incoming or outgiong packets.
-        Valid options are: ingress, egress
+                          Valid options are: ingress, egress
         :param macip: Use simple MAC+IP classifier. Optional.
         :type node: dict
         :type interface: str or int
         :type acl_name: str
         :type direction: str
         :type macip: bool
-
         :returns: Content of response.
         :rtype: bytearray
         :raises ValueError: If the direction argument is incorrect.

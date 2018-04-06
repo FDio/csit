@@ -41,7 +41,7 @@ class NATKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        OK or ACCEPTED.
+                                OK or ACCEPTED.
         """
 
         if data:
@@ -67,7 +67,7 @@ class NATKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails or the response
-        is not as expected.
+                                is not as expected.
         """
 
         status_code, resp = HcUtil.get_honeycomb_data(node, "oper_nat")

@@ -55,7 +55,7 @@ class BridgeDomainKeywords(object):
         :return: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response on PUT is not
-        200 = OK.
+                                200 = OK.
         """
 
         status_code, resp = HcUtil.\
@@ -78,7 +78,7 @@ class BridgeDomainKeywords(object):
         :param bd_name: The name of bridge domain.
         :param path:  Path to data we want to change, create or remove.
         :param new_value: The new value to be set. If None, the item will be
-        removed.
+                          removed.
         :type node: dict
         :type bd_name: str
         :type path: tuple
@@ -109,7 +109,7 @@ class BridgeDomainKeywords(object):
 
         :param bd_name: Bridge domain name.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in BridgeDomainKeywords.PARAMS.
+                       defined in BridgeDomainKeywords.PARAMS.
         :type bd_name: str
         :type kwargs: dict
         :return: Bridge domain data structure.
@@ -158,7 +158,7 @@ class BridgeDomainKeywords(object):
         :type node: dict
         :type bd_name: str
         :return: Configuration data about the given bridge domain from
-        Honeycomb.
+                 Honeycomb.
         :rtype: dict
         """
 
@@ -218,7 +218,7 @@ class BridgeDomainKeywords(object):
         :param node: Honeycomb node.
         :param bd_name: Bridge domain name.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in BridgeDomainKeywords.PARAMS
+                       defined in BridgeDomainKeywords.PARAMS
         :type node: dict
         :type bd_name: str
         :type kwargs: dict
@@ -237,7 +237,7 @@ class BridgeDomainKeywords(object):
         :param node: Honeycomb node.
         :param bd_name: Bridge domain name.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in BridgeDomainKeywords.PARAMS
+                       defined in BridgeDomainKeywords.PARAMS
         :type node: dict
         :type bd_name: str
         :type kwargs: dict
@@ -260,7 +260,7 @@ class BridgeDomainKeywords(object):
         :return: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If it is not possible to remove all bridge
-        domains.
+                                domains.
         """
 
         data = {"bridge-domains": {"bridge-domain": []}}
@@ -283,8 +283,8 @@ class BridgeDomainKeywords(object):
         :type bd_name: str
         :return: Content of response.
         :rtype: bytearray
-        :raises HoneycombError:If it is not possible to remove the bridge
-        domain.
+        :raises HoneycombError: If it is not possible to remove the bridge
+                                domain.
         """
 
         path = ("bridge-domains", ("bridge-domain", "name", bd_name))
@@ -312,9 +312,9 @@ class BridgeDomainKeywords(object):
         :param node: Honeycomb node.
         :param bd_name: Bridge domain name.
         :param param: Parameter to set, change or remove. The accepted
-        parameters are defined in BridgeDomainKeywords.PARAMS
+                      parameters are defined in BridgeDomainKeywords.PARAMS
         :param value: The new value to be set, change or remove. If None, the
-        item will be removed.
+                      item will be removed.
         :type node: dict
         :type bd_name: str
         :type param: str
@@ -395,7 +395,7 @@ class BridgeDomainKeywords(object):
         :return: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If it is not possible to remove the specified
-        entry.
+                                entry.
         """
 
         path = ("bridge-domains",
@@ -449,7 +449,7 @@ class BridgeDomainKeywords(object):
         :type node: dict
         :type bd_name: str
         :return: Bridge domain's L2 FIB table or empty list if the table does
-        not exist or it is empty.
+                 not exist or it is empty.
         :rtype: list
         """
 
@@ -471,7 +471,7 @@ class BridgeDomainKeywords(object):
         :type bd_name: str
         :type mac: str
         :return: The requested entry from bridge domain's L2 FIB table or empty
-        dictionary if it does not exist in the L2 FIB table.
+                 dictionary if it does not exist in the L2 FIB table.
         :rtype: dict
         """
 

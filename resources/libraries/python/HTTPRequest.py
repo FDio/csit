@@ -48,10 +48,12 @@ class HTTPRequestError(Exception):
 
     When raising this exception, put this information to the message in this
     order:
-    - short description of the encountered problem,
-    - relevant messages if there are any collected, e.g., from caught
-      exception,
-    - relevant data if there are any collected.
+
+     - short description of the encountered problem,
+     - relevant messages if there are any collected, e.g., from caught
+       exception,
+     - relevant data if there are any collected.
+
     The logging is performed on two levels: 1. error - short description of the
     problem; 2. debug - detailed information.
     """
@@ -65,7 +67,7 @@ class HTTPRequestError(Exception):
 
         :param msg: Message to be displayed and logged.
         :param enable_logging: When True, logging is enabled, otherwise
-        logging is disabled.
+                               logging is disabled.
         :type msg: str
         :type enable_logging: bool
         """
@@ -238,10 +240,12 @@ class HTTPRequest(object):
         :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+                        giving up, as a float, or a
+                        (connect timeout, read timeout) tuple.
         :param enable_logging: Used to suppress errors when checking Honeycomb
-        state during suite setup and teardown. When True, logging is enabled,
-        otherwise logging is disabled.
+                               state during suite setup and teardown.
+                               When True, logging is enabled,
+                               otherwise logging is disabled.
         :type node: dict
         :type path: str
         :type headers: dict
@@ -264,10 +268,11 @@ class HTTPRequest(object):
         :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param payload: Dictionary, bytes, or file-like object to send in
-        the body of the Request.
+                        the body of the Request.
         :param json: JSON formatted string to send in the body of the Request.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+                        giving up, as a float, or a
+                        (connect timeout, read timeout) tuple.
         :type node: dict
         :type path: str
         :type headers: dict
@@ -291,13 +296,15 @@ class HTTPRequest(object):
         :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param payload: Dictionary, bytes, or file-like object to send in
-        the body of the Request.
+                        the body of the Request.
         :param json: JSON formatted string to send in the body of the Request.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+                        giving up, as a float, or a
+                        (connect timeout, read timeout) tuple.
         :param enable_logging: Used to suppress errors when checking ODL
-        state during suite setup and teardown. When True, logging is enabled,
-        otherwise logging is disabled.
+                               state during suite setup and teardown.
+                               When True, logging is enabled,
+                               otherwise logging is disabled.
         :type node: dict
         :type path: str
         :type headers: dict
@@ -321,7 +328,8 @@ class HTTPRequest(object):
         :param node: Honeycomb node.
         :param path: URL path, e.g. /index.html.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+                        giving up, as a float, or a
+                        (connect timeout, read timeout) tuple.
         :type node: dict
         :type path: str
         :type timeout: float or tuple

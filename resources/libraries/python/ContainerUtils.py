@@ -275,9 +275,10 @@ class ContainerEngine(object):
     def install_vpp(self, install_dkms=False):
         """Install VPP inside a container.
 
-        :param install_dkms: If install dkms package. This will impact install
-        time. Dkms is required for installation of vpp-dpdk-dkms. Default is
-        false.
+        :param install_dkms: If install dkms package. This will impact
+                             install time. Dkms is required
+                             for installation of vpp-dpdk-dkms.
+                             Default is false.
         :type install_dkms: bool
         """
         self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
@@ -411,10 +412,10 @@ class LXC(ContainerEngine):
         """Acquire a privileged system object where configuration is stored.
 
         :param force: If a container exists, destroy it and create a new
-        container.
+                      container.
         :type force: bool
         :raises RuntimeError: If creating the container or writing the container
-        config fails.
+                              config fails.
         """
         if self.is_container_present():
             if force:

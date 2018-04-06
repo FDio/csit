@@ -92,7 +92,7 @@ class L2Util(object):
         :type uu_flood: bool
         :type forward: bool
         :type learn: bool
-        :type arp_term:bool
+        :type arp_term: bool
         """
         VatExecutor.cmd_from_template(node, "l2_bd_create.vat",
                                       bd_id=bd_id, flood=flood,
@@ -151,12 +151,12 @@ class L2Util(object):
 
         :param node: Node data dictionary.
         :param link_names: List of names of links the bridge domain should be
-        connecting.
+                           connecting.
         :param bd_id: Bridge domain index number.
         :type node: dict
         :type link_names: list
         :return: Dictionary used to generate l2 bridge domain VAT configuration
-        from template file.
+                 from template file.
         :rtype: dict
         """
         bd_dict = Topology().get_interfaces_by_link_names(node, link_names)
@@ -226,7 +226,7 @@ class L2Util(object):
         :param if_1: First interface to be added to the bridge.
         :param if_2: Second interface to be added to the bridge.
         :param set_up: Change bridge interface state to up after create bridge.
-        Optional. Default: True.
+                       Optional. Default: True.
         :type node: dict
         :type br_name: str
         :type if_1: str
@@ -250,12 +250,13 @@ class L2Util(object):
         :param node: Node to delete bridge from.
         :param br_name: Bridge name.
         :param set_down: Change bridge interface state to down before delbr
-        command. Optional. Default: True.
+                         command. Optional. Default: True.
         :type node: str
         :type br_name: str
         :type set_down: bool
+
         ..note:: The network interface corresponding to the bridge must be
-        down before it can be deleted!
+                 down before it can be deleted!
         """
         if set_down:
             cmd = 'ip link set dev {0} down'.format(br_name)
@@ -273,7 +274,7 @@ class L2Util(object):
         :type node: dict
         :type bd_id: int
         :return: List of dictionaries containing data for each bridge domain, or
-         a single dictionary for the specified bridge domain.
+                 a single dictionary for the specified bridge domain.
         :rtype: list or dict
         """
         with VatTerminal(node) as vat:
@@ -298,7 +299,7 @@ class L2Util(object):
         :param interface: Interface on which rewrite tags.
         :param tag_rewrite_method: Method of tag rewrite.
         :param push_dot1q: Optional parameter to disable to push dot1q tag
-         instead of dot1ad.
+                           instead of dot1ad.
         :param tag1_id: Optional tag1 ID for VLAN.
         :param tag2_id: Optional tag2 ID for VLAN.
         :type node: dict

@@ -46,7 +46,7 @@ class NSHKeywords(object):
         :return: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        OK or ACCEPTED.
+                                OK or ACCEPTED.
         """
 
         if data:
@@ -136,7 +136,7 @@ class NSHKeywords(object):
         :param node: Honeycomb node.
         :param entry_name: Name of a specific NSH entry. Optional.
         :param map_name: Name of a specific NSH map. Optional. Do not use
-        together with entry_name.
+                         together with entry_name.
         :type node: dict
         :type entry_name: str
         :type map_name: str

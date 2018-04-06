@@ -85,7 +85,7 @@ class VatJsonUtil(object):
 
         :param node: Node dictionary.
         :param interface_dump_json: JSON output from dump_interface_list VAT
-        command.
+                                    command.
         :type node: dict
         :type interface_dump_json: str
         """
@@ -107,7 +107,7 @@ class VatJsonUtil(object):
         """Get sw_if_index from given JSON output by interface name.
 
         :param interface_dump_json: JSON output from dump_interface_list VAT
-        command.
+                                    command.
         :param interface_name: Interface name.
         :type interface_dump_json: str
         :type interface_name: str
@@ -134,7 +134,7 @@ class VatJsonUtil(object):
         """Get interface name from given JSON output by sw_if_index.
 
         :param interface_dump_json: JSON output from dump_interface_list VAT
-        command.
+                                    command.
         :param sw_if_index: SW interface index.
         :type interface_dump_json: str
         :type sw_if_index: int

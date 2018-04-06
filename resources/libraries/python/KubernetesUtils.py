@@ -206,7 +206,7 @@ class KubernetesUtils(object):
         :type rtype: str
         :type name: str
         :raises RuntimeError: If retrieving or deleting Kubernetes resource
-        failed.
+                              failed.
         """
         ssh = SSH()
         ssh.connect(node)

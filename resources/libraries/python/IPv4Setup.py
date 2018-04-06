@@ -331,7 +331,7 @@ class IPv4Setup(object):
         interfaces from topology and use them to setup ARP entries.
 
         :param nodes_info: Dictionary containing information on all nodes
-        in topology.
+                           in topology.
         :param nodes_addr: Nodes IPv4 addresses.
         :type nodes_info: dict
         :type nodes_addr: dict
