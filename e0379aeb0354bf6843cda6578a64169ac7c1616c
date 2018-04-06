@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "d2e61886_5fa78870",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:57:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31128ac2_149a8278",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0598cd2_b8f9b7b7",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:57:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e281c46c_9c75cef9",
+      "range": {
+        "startLine": 76,
+        "startChar": 58,
+        "endLine": 76,
+        "endChar": 64
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "374db752_861826c4",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2018-04-05T13:16:52Z",
       "side": 1,
       "message": "Why are the many lines of execute_script() copied here (as opposed to just calling that method)?",
+      "range": {
+        "startLine": 122,
+        "startChar": 41,
+        "endLine": 122,
+        "endChar": 51
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a08d5721_baa15793",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:57:20Z",
+      "side": 1,
+      "message": "Agree. These three methods should be merged to one with COR (copy_on_read) parameter saying that if anyone created local VAT not in remote side,we will automatically copy it to remote machine and execute. That is the point of this function.\nEg. IPsecs are configuring 1000tnls. Executing it one by one would take lot of time. This way you can prepare file with VATs, scp it, execute it remotely and it is much faster.\nThis is ok for us but i agree it could be written in one function.",
+      "parentUuid": "374db752_861826c4",
       "range": {
         "startLine": 122,
         "startChar": 41,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "2fe9bc2c_30e3a60f",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:57:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "122ca3c0_5dc26ba0",
+      "range": {
+        "startLine": 151,
+        "startChar": 23,
+        "endLine": 151,
+        "endChar": 41
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ea95333_9070bef7",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 5
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "a87e18b6_ae4a0330",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:57:20Z",
+      "side": 1,
+      "message": "There is different usage of VAT.\nPrevious fcn:\nsudo -s vpp_api_test \u003cjson\u003e in \u003cfile\u003e script\nThis\nsudo -s vpp_api_test \u003cjson\u003e \u003c\u003c\u003c exec exec \u003cfile\u003e\n\nThe question is if it is same or not from VAT point of view. These 2 functions were developed by VPP developers so we did not really think about if it is the same or not. We can ping vpp-dev here. If it is same lets merge it i agree.",
+      "parentUuid": "9ea95333_9070bef7",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 34
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efcd6882_41ad4212",
         "filename": "resources/libraries/python/VppCounters.py",
         "patchSetId": 5
@@ -128,6 +248,30 @@
       "writtenOn": "2018-04-05T13:16:52Z",
       "side": 1,
       "message": "It would be better if vat.execute_script() already did this.\nEither unconditionally, or at least by default (unless an optional argument is given to skip this).",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8edb90_5192a82b",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:57:20Z",
+      "side": 1,
+      "message": "I agree. I can do a separate patch for this as it will be larger change.",
+      "parentUuid": "efcd6882_41ad4212",
       "range": {
         "startLine": 38,
         "startChar": 8,
