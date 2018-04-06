@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9734354_8d82c302",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "Line too long \u003e80ch",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 82
+      },
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcaa4af0_dca722bf",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "Please add Docstring incl parameters",
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "576a5c9b_ceabb872",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "self.iface \u003d conf.iface if iface is None else iface ???",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 30
+      },
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58cfcc15_aba939d0",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "self.promisc \u003d conf.sniff_promisc if promisc is None else promisc\n?",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 30
+      },
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39e1caad_9046e9e5",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 81
+      },
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d54f0175_f6b3bb68",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 214,
+        "startChar": 8,
+        "endLine": 214,
+        "endChar": 81
+      },
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dba85e6f_51702735",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "please use .format()",
+      "range": {
+        "startLine": 217,
+        "startChar": 20,
+        "endLine": 217,
+        "endChar": 79
+      },
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d442f5fe_f6bd93a6",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T05:42:00Z",
+      "side": 1,
+      "message": "please use .format()",
+      "range": {
+        "startLine": 219,
+        "startChar": 20,
+        "endLine": 219,
+        "endChar": 60
+      },
+      "revId": "3ba7c9ff0957568a6ef220098f7bba6ef9487ff4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
