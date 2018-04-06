@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "01d95edb_9962966e",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T09:29:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f621e84b_16ed3a56",
+      "range": {
+        "startLine": 73,
+        "startChar": 13,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0fa12d2_4a7c3f20",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 6
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "c5bf6c62_3a4d7602",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T09:29:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dc2bf1b_8b98a4cb",
+      "range": {
+        "startLine": 166,
+        "startChar": 13,
+        "endLine": 166,
+        "endChar": 17
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cd9b4b9_2c6ec155",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 6
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "479c4569_c4dcc455",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T09:29:57Z",
+      "side": 1,
+      "message": "This function is going to be removed completely.",
+      "parentUuid": "5cd9b4b9_2c6ec155",
+      "range": {
+        "startLine": 170,
+        "startChar": 41,
+        "endLine": 170,
+        "endChar": 49
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9fef7c3_02393a99",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 6
@@ -105,6 +177,30 @@
       "writtenOn": "2018-04-06T08:03:42Z",
       "side": 1,
       "message": "Copy cli_script_name script to node, execute CLI commands via VAT and return result.\nStore executed CLI commands in VAT history.",
+      "range": {
+        "startLine": 172,
+        "startChar": 11,
+        "endLine": 172,
+        "endChar": 70
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e15c98e2_2bb08e16",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T09:29:57Z",
+      "side": 1,
+      "message": "This function is going to be removed completely.",
+      "parentUuid": "b9fef7c3_02393a99",
       "range": {
         "startLine": 172,
         "startChar": 11,
@@ -156,6 +252,54 @@
         "startChar": 20,
         "endLine": 219,
         "endChar": 29
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d0ae809_049f88ee",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T09:29:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7615c91_8655f413",
+      "range": {
+        "startLine": 219,
+        "startChar": 20,
+        "endLine": 219,
+        "endChar": 29
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3145ac77_5adb0b4e",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T09:29:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a2030c_4fcccf06",
+      "range": {
+        "startLine": 219,
+        "startChar": 13,
+        "endLine": 219,
+        "endChar": 17
       },
       "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
