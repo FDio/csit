@@ -45,7 +45,7 @@ class LispUtil(object):
 
         :param node: VPP node.
         :param items_filter: Filter which specifies which items should be
-        retrieved - local, remote, empty string = both.
+                             retrieved - local, remote, empty string = both.
         :type node: dict
         :type items_filter: str
         :returns: Lisp locator_set data as python list.
@@ -220,7 +220,7 @@ class LispUtil(object):
         :type node: dict
         :type locator_set_number: str
         :returns: list of lisp locator_set, list of lisp locator_set expected
-        from VAT.
+                  from VAT.
         :rtype: tuple
         """
 
@@ -266,7 +266,7 @@ class LispUtil(object):
         :type node: dict
         :type locator_set_number: str
         :returns: list of lisp locator_set, list of lisp locator_set expected
-        from VAT.
+                  from VAT.
         :rtype: tuple
         """
 

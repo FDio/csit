@@ -35,7 +35,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If setting of inside and outside interfaces for
-        NAT44 fails.
+                              NAT44 fails.
         """
 
         try:
@@ -65,7 +65,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If setting of deterministic behaviour of NAT44
-        fails.
+                              fails.
         """
 
         try:
@@ -85,7 +85,7 @@ class NATUtil(object):
 
         :param node: DUT node.
         :param lcores: list of cores, format: range e.g. 1-5 or list of ranges
-        e.g.: 1-5,18-22.
+                       e.g.: 1-5,18-22.
         :type node: dict
         :type lcores: str
         :returns: Response of the command.
@@ -131,7 +131,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If command 'exec snat deterministic forward'
-        fails.
+                              fails.
         """
 
         try:
@@ -156,7 +156,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If command 'exec snat deterministic reverse'
-        fails.
+                              fails.
         """
 
         try:

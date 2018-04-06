@@ -26,7 +26,7 @@ class VPPUtil(object):
 
         :param node: VPP node.
         :param additional_cmds: Additional commands that the vpp should print
-        settings for.
+                                settings for.
         :type node: dict
         :type additional_cmds: tuple
         """

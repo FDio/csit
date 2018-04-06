@@ -60,7 +60,7 @@ class Performance(object):
         :param script: Name of the script to execute.
         :param cores: Number of processor cores to use.
         :param reserved: Number of cores reserved for other tasks. Default is 2,
-        one for system tasks and one for VPP main thread.
+                         one for system tasks and one for VPP main thread.
         :param args: Sequential arguments for the script.
         :param kwargs: Named arguments for the script.
         :type node: dict

@@ -44,7 +44,7 @@ class BGPKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        200 = OK or 201 = ACCEPTED.
+                                200 = OK or 201 = ACCEPTED.
         """
 
         if data is None:
@@ -72,7 +72,7 @@ class BGPKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        200 = OK or 201 = ACCEPTED.
+                                200 = OK or 201 = ACCEPTED.
         """
 
         if data is None:
@@ -115,7 +115,7 @@ class BGPKeywords(object):
         :param datastore: Get data from config or operational datastore.
         :type node: dict
         :type address: str
-        :type datastore; str
+        :type datastore: str
         :returns: BGP peer configuration data.
         :rtype: dict
         :raises HoneycombError: If the status code in response is not 200 = OK.
@@ -382,7 +382,8 @@ class BGPKeywords(object):
         :param ref: Reference data to compare against.
         :type data: dict
         :type ref: dict
-        :raises HoneycombError: If the tables do not match."""
+        :raises HoneycombError: If the tables do not match.
+        """
 
         # Remove runtime attributes from data
         for item in data:

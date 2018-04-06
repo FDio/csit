@@ -32,10 +32,10 @@ class Classify(object):
         :type node: dict
         :type ip_version: str
         :type direction: str
-        :returns (table_index, skip_n, match_n)
-        table_index: Classify table index.
-        skip_n: Number of skip vectors.
-        match_n: Number of match vectors.
+        :returns: (table_index, skip_n, match_n)
+                  table_index: Classify table index.
+                  skip_n: Number of skip vectors.
+                  match_n: Number of match vectors.
         :rtype: tuple(int, int, int)
         :raises RuntimeError: If VPP can't create table.
         """
@@ -64,10 +64,10 @@ class Classify(object):
         :param direction: Direction of traffic - src/dst.
         :type node: dict
         :type direction: str
-        :returns (table_index, skip_n, match_n)
-        table_index: Classify table index.
-        skip_n: Number of skip vectors.
-        match_n: Number of match vectors.
+        :returns: (table_index, skip_n, match_n)
+                  table_index: Classify table index.
+                  skip_n: Number of skip vectors.
+                  match_n: Number of match vectors.
         :rtype: tuple(int, int, int)
         :raises RuntimeError: If VPP can't create table.
         """
@@ -95,10 +95,10 @@ class Classify(object):
         :param hex_mask: Classify hex mask.
         :type node: dict
         :type hex_mask: str
-        :returns (table_index, skip_n, match_n)
-        table_index: Classify table index.
-        skip_n: Number of skip vectors.
-        match_n: Number of match vectors.
+        :returns: (table_index, skip_n, match_n)
+                  table_index: Classify table index.
+                  skip_n: Number of skip vectors.
+                  match_n: Number of match vectors.
         :rtype: tuple(int, int, int)
         :raises RuntimeError: If VPP can't create table.
         """
@@ -216,14 +216,14 @@ class Classify(object):
 
         :param node: VPP node to setup classify session.
         :param session_type: Session type - hit-next, l2-hit-next, acl-hit-next
-        or policer-hit-next, and their respective parameters.
+                             or policer-hit-next, and their respective parameters.
         :param table_index: Classify table index.
         :param skip_n: Number of skip vectors based on mask.
         :param match_n: Number of match vectors based on mask.
         :param match: Match value - l2, l3, l4 or hex, and their
-        respective parameters.
+                      respective parameters.
         :param match2: Additional match values, to avoid using overly long
-        variables in RobotFramework.
+                       variables in RobotFramework.
         :type node: dict
         :type session_type: str
         :type table_index: int
@@ -256,7 +256,7 @@ class Classify(object):
         :type protocol: str
         :type direction: str
         :returns: Classify hex mask.
-        :rtype : str
+        :rtype: str
         :raises ValueError: If protocol is not TCP or UDP.
         :raises ValueError: If direction is not source or destination or
                             source + destination.

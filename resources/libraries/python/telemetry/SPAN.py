@@ -51,7 +51,7 @@ class SPAN(object):
         :param node: DUT node.
         :type node: dict
         :returns: Full SPAN configuration as list. One list entry for every
-        source/destination interface pair.
+                  source/destination interface pair.
         :rtype: list of dict
         """
 
@@ -72,7 +72,7 @@ class SPAN(object):
         :type dst_interface: str or int
         :type ret_format: string
         :returns: List of SPAN source interfaces for the provided destination
-        interface.
+                  interface.
         :rtype: list
         """
 

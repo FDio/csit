@@ -166,7 +166,7 @@ class QemuUtils(object):
         """Set scheduler policy to SCHED_RR with priority 1 for all Qemu CPU
         processes.
 
-       :raises RuntimeError: Set scheduler policy failed.
+        :raises RuntimeError: Set scheduler policy failed.
         """
         qemu_cpus = self._qemu_qmp_exec('query-cpus')['return']
 
@@ -199,7 +199,7 @@ class QemuUtils(object):
         :param socket: Path of the unix socket.
         :param server: If True the socket shall be a listening socket.
         :param mac: Vhost-user interface MAC address (optional, otherwise is
-        used auto-generated MAC 52:54:00:00:xx:yy).
+                    used auto-generated MAC 52:54:00:00:xx:yy).
         :param jumbo_frames: Set True if jumbo frames are used in the test.
         :type socket: str
         :type server: bool
@@ -248,8 +248,8 @@ class QemuUtils(object):
         :param cmd: QMP command to execute.
         :type cmd: str
         :return: Command output in python representation of JSON format. The
-            { "return": {} } response is QMP's success response. An error
-            response will contain the "error" keyword instead of "return".
+                 { "return": {} } response is QMP's success response. An error
+                 response will contain the "error" keyword instead of "return".
         """
         # To enter command mode, the qmp_capabilities command must be issued.
         qmp_cmd = 'echo "{ \\"execute\\": \\"qmp_capabilities\\" }' \
@@ -523,6 +523,7 @@ class QemuUtils(object):
 
         :return: VM node info.
         :rtype: dict
+
         .. note:: First set at least node to run QEMU on.
         .. warning:: Starts only one VM on the node.
         """

@@ -190,7 +190,7 @@ class DUTSetup(object):
         :type node: dict
         :returns: PID
         :rtype: int
-        :raises RuntimeError if it is not possible to get the PID.
+        :raises RuntimeError: if it is not possible to get the PID.
         """
 
         ssh = SSH()
@@ -591,8 +591,8 @@ class DUTSetup(object):
 
         :param node: DUT node.
         :type node: dict
-        :raises: RuntimeError if failed to restart VPP, get VPP version or
-        get VPP interfaces
+        :raises RuntimeError: if failed to restart VPP, get VPP version
+                              or get VPP interfaces
         """
 
         logger.debug("Verify VPP on node {0}".format(node['host']))

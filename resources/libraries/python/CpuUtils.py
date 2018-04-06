@@ -114,8 +114,8 @@ class CpuUtils(object):
         :type smt_used: bool
         :returns: List of cpu numbers related to numa from argument.
         :rtype: list of int
-        :raises RuntimeError: If node cpuinfo is not available or if SMT is not
-        enabled.
+        :raises RuntimeError: If node cpuinfo is not available
+                              or if SMT is not enabled.
         """
 
         cpu_node = int(cpu_node)
