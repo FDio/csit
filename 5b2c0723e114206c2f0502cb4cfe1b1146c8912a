@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20ad5eb9_89f6d351",
+        "filename": "tests/vpp/perf/container_memif/10ge2p1x710-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T10:36:15Z",
+      "side": 1,
+      "message": "Pleases, use assignment sign there.",
+      "range": {
+        "startLine": 53,
+        "startChar": 2,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "5b2c0723e114206c2f0502cb4cfe1b1146c8912a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
