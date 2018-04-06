@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81e6b108_b08e1112",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T18:07:10Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "b9745c26d778401a8502932ebe2e6a7fa39af6d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d9d5b9f_5b66724b",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-06T18:07:10Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "b9745c26d778401a8502932ebe2e6a7fa39af6d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
