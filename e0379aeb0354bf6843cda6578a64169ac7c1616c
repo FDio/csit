@@ -305,6 +305,30 @@
       "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb189706_799c8c31",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T07:24:47Z",
+      "side": 1,
+      "message": "I agree if optional argument to skip check of RC is implemented. We need to have possibility to check some negative test scenario where corresponding VAT command rejection is expected.",
+      "parentUuid": "7a8edb90_5192a82b",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "e0379aeb0354bf6843cda6578a64169ac7c1616c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
