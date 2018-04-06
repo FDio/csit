@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6a8337_4bac1cfd",
+        "filename": "tests/vpp/perf/ip6/10ge2p1x710-ethip6-ip6base-copwhtlistbase-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T10:21:36Z",
+      "side": 1,
+      "message": "please, use assignment sign there:\n| ${s_limit}\u003d | ${10000000000}\n\n- check everywhere",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 13
+      },
+      "revId": "7e74c674be8d2000b111aba2d1753a6dba1b48ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
