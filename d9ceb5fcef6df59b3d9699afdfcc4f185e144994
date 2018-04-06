@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f621e84b_16ed3a56",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T08:03:42Z",
+      "side": 1,
+      "message": "cmd is misleading - it stores vat script or cli script name not the vat/cli command itself.\nWhat about to use self._script_name ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 13,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0fa12d2_4a7c3f20",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T08:03:42Z",
+      "side": 1,
+      "message": "self._script_name ?",
+      "range": {
+        "startLine": 118,
+        "startChar": 14,
+        "endLine": 118,
+        "endChar": 17
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6dc2bf1b_8b98a4cb",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T08:03:42Z",
+      "side": 1,
+      "message": "self._script_name ?",
+      "range": {
+        "startLine": 166,
+        "startChar": 13,
+        "endLine": 166,
+        "endChar": 17
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5cd9b4b9_2c6ec155",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T08:03:42Z",
+      "side": 1,
+      "message": "cli_script_name would be better.",
+      "range": {
+        "startLine": 170,
+        "startChar": 41,
+        "endLine": 170,
+        "endChar": 49
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9fef7c3_02393a99",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T08:03:42Z",
+      "side": 1,
+      "message": "Copy cli_script_name script to node, execute CLI commands via VAT and return result.\nStore executed CLI commands in VAT history.",
+      "range": {
+        "startLine": 172,
+        "startChar": 11,
+        "endLine": 172,
+        "endChar": 70
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4a2030c_4fcccf06",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T08:03:42Z",
+      "side": 1,
+      "message": "self._script_name ?",
+      "range": {
+        "startLine": 219,
+        "startChar": 13,
+        "endLine": 219,
+        "endChar": 17
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7615c91_8655f413",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-04-06T08:03:42Z",
+      "side": 1,
+      "message": "I guess it is enough to store cli_script_name.",
+      "range": {
+        "startLine": 219,
+        "startChar": 20,
+        "endLine": 219,
+        "endChar": 29
+      },
+      "revId": "d9ceb5fcef6df59b3d9699afdfcc4f185e144994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
