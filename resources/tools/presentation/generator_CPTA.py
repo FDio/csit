@@ -365,6 +365,7 @@ def _generate_all_charts(spec, input_data):
     csv_table = list()
     # Create the header:
     builds = spec.cpta["data"].values()[0]
+    job_name = spec.cpta["data"].keys()[0]
     builds_lst = [str(build) for build in range(builds[0], builds[-1] + 1)]
     header = "Build Number:," + ",".join(builds_lst) + '\n'
     csv_table.append(header)
@@ -424,6 +425,8 @@ def _generate_all_charts(spec, input_data):
                 idx += 1
 
             # Generate the chart:
+            chart["layout"]["xaxis"]["title"] = \
+                chart["layout"]["xaxis"]["title"].format(job=job_name)
             _generate_chart(traces,
                             chart["layout"],
                             file_name="{0}-{1}-{2}{3}".format(

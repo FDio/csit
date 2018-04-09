@@ -102,7 +102,7 @@
         showgrid: True
       xaxis:
         showticklabels: True
-        title: "VPP Performance Trending Job ID"
+        title: "/csit/job/{job}/$id"
         autorange: True
         showgrid: True
         gridcolor: "rgb(238, 238, 238)"
