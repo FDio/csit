@@ -21,6 +21,7 @@
 import re
 import pandas as pd
 import logging
+import xml.etree.ElementTree as ET
 
 from robot.api import ExecutionResult, ResultVisitor
 from robot import errors
@@ -758,6 +759,10 @@ class InputData(object):
         :rtype: dict
         """
 
+        tree = ET.parse(build["file-name"])
+        root = tree.getroot()
+        generated = root.attrib["generated"]
+
         with open(build["file-name"], 'r') as data_file:
             try:
                 result = ExecutionResult(data_file)
@@ -765,7 +770,7 @@ class InputData(object):
                 logging.error("Error occurred while parsing output.xml: {0}".
                               format(err))
                 return None
-        checker = ExecutionChecker(job=job, build=build)
+        checker = ExecutionChecker(job=job, build=build, generated=generated)
         result.visit(checker)
 
         return checker.data
