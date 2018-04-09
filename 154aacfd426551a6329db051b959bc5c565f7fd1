@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54b20b7f_90050013",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-09T05:36:13Z",
+      "side": 1,
+      "message": "these can be removed.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 52
+      },
+      "revId": "154aacfd426551a6329db051b959bc5c565f7fd1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adbbc1bd_7f6fa3f4",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-09T05:36:13Z",
+      "side": 1,
+      "message": "254",
+      "range": {
+        "startLine": 42,
+        "startChar": 35,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "154aacfd426551a6329db051b959bc5c565f7fd1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8b96ced_9671a957",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-09T05:36:13Z",
+      "side": 1,
+      "message": "Can we maybe rename this to:\n${i_x520_da2_limit}\u003d | ${10000000000}\nand put into __init__.robot\n\nSo we will have this in one place. No need to have it per file.\nOr lets make a KW that will base on Suite TAG compute the slimit?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 30
+      },
+      "revId": "154aacfd426551a6329db051b959bc5c565f7fd1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cce5301d_b912f750",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-09T05:36:13Z",
+      "side": 1,
+      "message": "We will discuss on call if we can merge those two together or not",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "154aacfd426551a6329db051b959bc5c565f7fd1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
