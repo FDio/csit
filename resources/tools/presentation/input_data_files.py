@@ -92,7 +92,7 @@ def download_data_files(spec):
                             format(job=job, sep=SEPARATOR, build=build["build"],
                                    name=file_name)
                         try:
-                            release = "rls".format(int(release))
+                            release = "rls{0}".format(int(release))
                         except ValueError:
                             pass
                         url = "{url}/{release}/{dir}/{file}".\
