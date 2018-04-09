@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.QemuUtils
 | Library  | resources.libraries.python.VPPUtil
+| Library | resources.libraries.python.Routing
 | Library | String
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/default.robot
@@ -35,7 +36,7 @@
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 # Import configuration and test data:
-| Variables | resources/test_data/lisp/ipv4_lispgpe_ipv6/ipv4_lispgpe_ipsec_ipv6.py
+| Variables | resources/test_data/lisp/ipsec_lispgpe/ipv4_via_ipsec_lispgpe_ipv6.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
@@ -73,8 +74,10 @@
 | | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
-| | Given Setup Topology And Lisp
+| | Given Setup 3-node Topology
 | | And Setup Qemu DUT1
+| | And Add IP Neighbors And Routes
+| | And Configure LISP GPE
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Configure manual keyed connection for IPSec
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${encr_alg} | ${encr_key}
@@ -86,7 +89,7 @@
 | | ... | ${dut2_to_dut1_ip6} | ${dut1_to_dut2_ip6}
 | | Then Send packet and verify headers
 | | ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
-| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dst_vhost_mac}
+| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
 | | And Send packet and verify headers
 | | ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
@@ -108,8 +111,10 @@
 | | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
-| | Given Setup Topology And Lisp
+| | Given Setup 3-node Topology
 | | And Setup Qemu DUT1
+| | And Add IP Neighbors And Routes
+| | And Configure LISP GPE
 | | ${lisp1_if_idx}= | resources.libraries.python.InterfaceUtil.get sw if index
 | | ... | ${dut1_node} | ${lisp_gpe_int}
 | | ${lisp2_if_idx}= | resources.libraries.python.InterfaceUtil.get sw if index
@@ -125,7 +130,7 @@
 | | ... | ${dut2_to_dut1_ip6} | ${dut1_to_dut2_ip6}
 | | Then Send packet and verify headers
 | | ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
-| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dst_vhost_mac}
+| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
 | | And Send packet and verify headers
 | | ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
@@ -133,51 +138,86 @@
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
 *** Keywords ***
-| Setup Topology And Lisp
-| | [Documentation] | Setup IPs and neighbors for interfaces on DUT1 and DUT2\
-| | ... | and then setup LISP.
+| Setup 3-node Topology
+| | [Documentation]
+| | ... | Setup 3-node topology for this test suite. Set all physical\
+| | ... | interfaces up and assing IP adresses to them. ...\
+| | ...
+| | ${dut2_fib_table}= | Set Variable | ${0}
+| | Set Test Variable | ${dut2_fib_table}
 | | Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_2}
+| | And Add Fib Table | ${dut2_node} | ${dut2_fib_table}
+| | Assign Interface To Fib Table | ${dut1_node} | ${dut1_to_tg}
+| | ... | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut2_node} | ${dut2_to_tg}
+| | ... | ${dut2_fib_table}
+| | Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6}
+| | ... | ${prefix6}
+| | Set Interface Address | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4}
+| | ... | ${prefix4}
+| | Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6}
+| | ... | ${prefix6}
+| | Set Interface Address | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip4}
+| | ... | ${prefix4}
 | | Set interfaces in 3-node circular topology up
-| | Vpp Set If IPv6 Addr | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6}
-| | ... | ${prefix6}
-| | Vpp Set If IPv6 Addr | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6}
-| | ... | ${prefix6}
-| | Vpp Set If IPv6 Addr | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4}
-| | ... | ${prefix4}
-| | Vpp Set If IPv6 Addr | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6}
-| | ... | ${prefix6}
-| | Vpp Set If IPv6 Addr | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip4}
-| | ... | ${prefix4}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
-| | ... | ${tg_to_dut2_mac}
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6}
-| | ... | ${dut2_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
-| | ... | ${dut1_to_dut2_mac}
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
-| | ... | ${tg_to_dut1_mac}
 | | Vpp All RA Suppress Link Layer | ${nodes}
+
+| Configure LISP GPE
 | | Configure LISP GPE topology in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ... | ${dut1_to_dut2_ip_static_adjacency}
-| | ... | ${dut2_to_dut1_ip_static_adjacency}
+| | ... | ${dut1_to_dut2_ip46_static_adjacency}
+| | ... | ${dut2_to_dut1_ip46_static_adjacency}
+| | ... | vni_table=${vni_table} | vrf_table=${fib_table_2}
+
+| Add IP Neighbors And Routes
+| | [Documentation]
+| | ... | Add IP neighbors to physical interfaces on DUTs.
+| | ...
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
+| | ... | ${tg_to_dut1_mac}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_vhost1} | ${dut1_vhost2_ip4}
+| | ... | ${dut1_vhost2_mac}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6}
+| | ... | ${dut2_to_dut1_mac}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_vhost2} | ${dut1_vhost1_ip4}
+| | ... | ${dut1_vhost1_mac}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
+| | ... | ${tg_to_dut2_mac}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
+| | ... | ${dut1_to_dut2_mac}
+| | Vpp Route Add | ${dut1_node} | ${dut2_to_tg_ip4} | ${prefix4}
+| | ... | gateway=${dut1_vhost2_ip4} | interface=${dut1_vhost1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1_node} | ${dut1_to_tg_ip4} | ${prefix4}
+| | ... | gateway=${dut1_vhost1_ip4} | interface=${dut1_vhost2}
+| | ... | vrf=${fib_table_2}
 
 | Setup Qemu DUT1
-| | [Documentation] | Setup Vhosts on DUT1 and setup IP to one of them. Setup\
+| | [Documentation] | Setup Vhosts on DUT1 and setup IP to one of them. Setup \
 | | ... | Qemu and bridge the vhosts.
-| | ${vhost1}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
-| | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
-| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
-| | Set Interface State | ${dut1_node} | ${vhost1} | up
-| | Set Interface State | ${dut1_node} | ${vhost2} | up
-| | Create bridge domain | ${dut1_node} | ${bid} | learn=${TRUE}
-| | Add interface to bridge domain | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${bid} | 0
-| | Add interface to bridge domain | ${dut1_node}
-| | ... | ${vhost1} | ${bid} | 0
-| | ${vhost_mac}= | Get Vhost User Mac By SW Index | ${dut1_node} | ${vhost2}
-| | Set test variable | ${dst_vhost_mac} | ${vhost_mac}
+| | ${dut1_vhost1}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
+| | Set Test Variable | ${dut1_vhost1}
+| | ${dut1_vhost1_mac}= | Get Vhost User Mac By SW Index | ${dut1_node}
+| | ... | ${dut1_vhost1}
+| | Set Test Variable | ${dut1_vhost1_mac}
+| | ${dut1_vhost2}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
+| | Set Test Variable | ${dut1_vhost2}
+| | ${dut1_vhost2_mac}= | Get Vhost User Mac By SW Index | ${dut1_node}
+| | ... | ${dut1_vhost2}
+| | Set Test Variable | ${dut1_vhost2_mac}
+| | Assign Interface To Fib Table | ${dut1_node} | ${dut1_vhost1}
+| | ... | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut1_node} | ${dut1_vhost2}
+| | ... | ${fib_table_2}
+| | Set Interface Address | ${dut1_node} | ${dut1_vhost1} | ${dut1_vhost1_ip4}
+| | ... | ${prefix4}
+| | Set Interface Address | ${dut1_node} | ${dut1_vhost2} | ${dut1_vhost2_ip4}
+| | ... | ${prefix4}
+| | Set Interface State | ${dut1_node} | ${dut1_vhost1} | up
+| | Set Interface State | ${dut1_node} | ${dut1_vhost2} | up
 | | Configure VM for vhost L2BD forwarding | ${dut1_node} | ${sock1} | ${sock2}
