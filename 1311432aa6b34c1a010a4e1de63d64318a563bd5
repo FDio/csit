@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2424798_bc6ebb7e",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-09T08:27:42Z",
+      "side": 1,
+      "message": "Is there a reason why this part has to be executed before continuing with line 598?",
+      "range": {
+        "startLine": 590,
+        "startChar": 12,
+        "endLine": 590,
+        "endChar": 26
+      },
+      "revId": "1311432aa6b34c1a010a4e1de63d64318a563bd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
