@@ -35,7 +35,7 @@
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 # Import configuration and test data:
-| Variables | resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py
+| Variables | resources/test_data/lisp/ipsec_lispgpe/ipv6_via_ipsec_lispgpe_ipv6.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
@@ -56,14 +56,6 @@
 | ... | *[Ver] TG verification:* Packet is send from TG(if1) across the DUT1\
 | ... | to DUT2 where it is forwarded to TG(if2).
 | ... | *[Ref] Applicable standard specifications:* RFC6830, RFC4303.
-
-*** Variables ***
-| ${dut2_spi}= | ${1000}
-| ${dut1_spi}= | ${1001}
-
-| ${ESP_PROTO}= | ${50}
-
-| ${bid}= | 10
 
 *** Test Cases ***
 | TC01: DUT1 and DUT2 route IPv6 bidirectionally over LISP GPE tunnel using IPsec (transport) on RLOC Int.

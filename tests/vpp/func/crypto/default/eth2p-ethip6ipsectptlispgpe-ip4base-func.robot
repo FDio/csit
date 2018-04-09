@@ -34,7 +34,7 @@
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 # Import configuration and test data:
-| Variables | resources/test_data/lisp/ipv4_lispgpe_ipv6/ipv4_lispgpe_ipsec_ipv6.py
+| Variables | resources/test_data/lisp/ipsec_lispgpe/ipv4_via_ipsec_lispgpe_ipv6.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
@@ -154,5 +154,5 @@
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ... | ${dut1_to_dut2_ip_static_adjacency}
-| | ... | ${dut2_to_dut1_ip_static_adjacency}
+| | ... | ${dut1_to_dut2_ip46_static_adjacency}
+| | ... | ${dut2_to_dut1_ip46_static_adjacency}

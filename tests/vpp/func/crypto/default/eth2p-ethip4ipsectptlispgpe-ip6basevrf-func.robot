@@ -35,7 +35,7 @@
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 # Import configuration and test data:
-| Variables | resources/test_data/lisp/ipv6_lispgpe_ipv4/ipv6_lispgpe_ipsec_ipv4.py
+| Variables | resources/test_data/lisp/ipsec_lispgpe/ipv6_via_ipsec_lispgpe_ipv4.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
@@ -91,7 +91,7 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
 | | ... | ${dut2_to_dut1_ip4} | ${dut1_to_dut2_ip4}
-| | Setup Topology And Lisp | ${fib_table_1} | ${dut1_dut2_vni}
+| | Setup Topology And Lisp | ${fib_table_1} | vni_table=1
 | | Then Send packet and verify headers
 | | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
 | | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
@@ -130,6 +130,6 @@
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
-| | ... | ${dut1_to_dut2_ip_static_adjacency}
-| | ... | ${dut2_to_dut1_ip_static_adjacency}
+| | ... | ${dut1_to_dut2_ip64_static_adjacency}
+| | ... | ${dut2_to_dut1_ip64_static_adjacency}
 | | ... | ${vni_table} | ${fib_table}

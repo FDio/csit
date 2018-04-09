@@ -90,7 +90,8 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("crypto,ip4_tunnels.softwire,ip4_tunnels.vxlan" "ip4,ip4_tunnels.gre,ip4_tunnels.lisp,ip6_tunnels.vxlan,ip6_tunnels.lisp,vm_vhost.ip4,vm_vhost.ip6" "interfaces,ip6,l2bd,l2xc,vm_vhost.l2bd,vm_vhost.l2xc,telemetry")
+#TEST_GROUPS=("crypto,ip4_tunnels.softwire,ip4_tunnels.vxlan" "ip4,ip4_tunnels.gre,ip4_tunnels.lisp,ip6_tunnels.vxlan,ip6_tunnels.lisp,vm_vhost.ip4,vm_vhost.ip6" "interfaces,ip6,l2bd,l2xc,vm_vhost.l2bd,vm_vhost.l2xc,telemetry")
+TEST_GROUPS=("vm_vhost.ip4.eth2p-ethip4ipsectptlispgpe-ip4basevrf-eth-2vhost-1vm-func,vm_vhost.ip4.eth2p-ethip4ipsectptlispgpe-ip6basevrf-eth-2vhost-1vm-func,vm_vhost.ip6.eth2p-ethip6ipsectptlispgpe-ip4basevrf-eth-2vhost-1vm-func,vm_vhost.ip6.eth2p-ethip6ipsectptlispgpe-ip6basevrf-eth-2vhost-1vm-func,crypto.default.eth2p-ethip4ipsectptlispgpe-ip6base-func,crypto.default.eth2p-ethip4ipsectptlispgpe-ip6basevrf-func,crypto.default.eth2p-ethip6ipsectptlispgpe-ip4base-func,crypto.default.eth2p-ethip6ipsectptlispgpe-ip6base-func")
 SUITE_PATH="tests.vpp.func"
 SKIP_PATCH="SKIP_PATCH"
 
