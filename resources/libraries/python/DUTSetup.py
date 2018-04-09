@@ -26,6 +26,67 @@ from resources.libraries.python.VPPUtil import VPPUtil
 
 class DUTSetup(object):
     """Contains methods for setting up DUTs."""
+
+    @staticmethod
+    def get_service_logs(node, service):
+        """Get service logs by journalctl from specific service unit.
+
+        :param node: Node in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, stdout, stderr) = \
+            ssh.exec_command_sudo('journalctl --no-pager --unit={name} '
+                                  '--since="$(echo `systemctl show -p '
+                                  'ActiveEnterTimestamp {name}` | '
+                                  'awk \'\{print $2 $3\}\')"'.
+                                  format(name=service))
+        if int(ret_code) != 0:
+            raise Exception('DUT {host} failed to get logs from unit {name}'.
+                            format(host=node['host'], name=service))
+
+    @staticmethod
+    def get_service_logs_on_all_duts(nodes, service):
+        """Get service logs by journalctl from specific service unit.
+
+        :param nodes: Nodes in the topology.
+        :param service: Service unit name.
+        :type nodes: dict
+        :type service: str
+        """
+        ssh = SSH()
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.get_service_logs(node, service)
+
+    @staticmethod
+    def start_service(node, service):
+        """Start up the VPP service on node.
+
+        :param node: Node in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        ssh = SSH()
+
+        if node['type'] == NodeType.DUT:
+            ssh.connect(node)
+            # We are doing full-restart. With this we do not care if service
+            # was running or not. It will run the command twice. Stop the
+            # service and then start the service.
+            (ret_code, stdout, stderr) = \
+                ssh.exec_command_sudo('service {name} --full-restart'.
+                                      format(name=service), timeout=120)
+            if int(ret_code) != 0:
+                raise Exception('DUT {host} failed to start service {name}'.
+                                format(host=node['host'], name=service))
+
+            DUTSetup.get_service_logs(node, service)
+
     @staticmethod
     def start_vpp_service_on_all_duts(nodes):
         """Start up the VPP service on all nodes.
@@ -34,14 +95,10 @@ class DUTSetup(object):
         :type nodes: dict
         """
         ssh = SSH()
+
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                ssh.connect(node)
-                (ret_code, stdout, stderr) = \
-                    ssh.exec_command_sudo('service vpp restart', timeout=120)
-                if int(ret_code) != 0:
-                    raise Exception('DUT {0} failed to start VPP service'.
-                                    format(node['host']))
+                DUTSetup.start_service(node, Constants.VPP_UNIT)
 
     @staticmethod
     def vpp_show_version_verbose(node):
@@ -130,8 +187,6 @@ class DUTSetup(object):
                              format(Constants.REMOTE_FW_DIR,
                                     Constants.RESOURCES_LIB_SH), timeout=120)
         if int(ret_code) != 0:
-            logger.debug('DUT {0} setup script failed: "{1}"'.
-                         format(node['host'], stdout + stderr))
             raise Exception('DUT test setup script failed at node {}'.
                             format(node['host']))
 
