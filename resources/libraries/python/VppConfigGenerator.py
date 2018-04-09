@@ -17,6 +17,8 @@ import re
 import time
 
 from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants
+from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
 
@@ -513,48 +515,38 @@ class VppConfigGenerator(object):
             filename = self._vpp_startup_conf
 
         if self._vpp_startup_conf_backup is not None:
-            (ret, _, _) = \
-                ssh.exec_command('sudo cp {0} {1}'.
-                                 format(self._vpp_startup_conf,
-                                        self._vpp_startup_conf_backup))
+            ret, _, _ = \
+                ssh.exec_command('sudo cp {src} {dest}'.
+                                 format(src=self._vpp_startup_conf,
+                                        dest=self._vpp_startup_conf_backup))
             if ret != 0:
-                raise RuntimeError('Backup of config file failed on node {}'.
-                                   format(self._hostname))
+                raise RuntimeError('Backup of config file failed on node '
+                                   '{name}'.format(name=self._hostname))
 
-        (ret, _, _) = \
+        ret, _, _ = \
             ssh.exec_command('echo "{config}" | sudo tee {filename}'.
                              format(config=self._vpp_config,
                                     filename=filename))
 
         if ret != 0:
-            raise RuntimeError('Writing config file failed to node {}'.
-                               format(self._hostname))
+            raise RuntimeError('Writing config file failed to node {name}'.
+                               format(name=self._hostname))
 
         if restart_vpp:
-            # Instead of restarting, we'll do separate start and stop
-            # actions. This way we don't care whether VPP was running
-            # to begin with.
-            ssh.exec_command('sudo service {} stop'
-                             .format(self._vpp_service_name))
-            (ret, _, _) = \
-                ssh.exec_command('sudo service {} start'
-                                 .format(self._vpp_service_name))
-            if ret != 0:
-                raise RuntimeError('Restarting VPP failed on node {}'.
-                                   format(self._hostname))
+            DUTSetup.start_service(self._node, Constants.VPP_UNIT)
 
             # Sleep <waittime> seconds, up to <retry> times,
             # and verify if VPP is running.
             for _ in range(retries):
                 time.sleep(waittime)
-                (ret, stdout, _) = \
+                ret, stdout, _ = \
                     ssh.exec_command('echo show hardware-interfaces | '
                                      'nc 0 5002 || echo "VPP not yet running"')
                 if ret == 0 and stdout != 'VPP not yet running':
                     break
             else:
-                raise RuntimeError('VPP failed to restart on node {}'.
-                                   format(self._hostname))
+                raise RuntimeError('VPP failed to restart on node {name}'.
+                                   format(name=self._hostname))
 
     def restore_config(self):
         """Restore VPP startup.conf from backup.
@@ -565,9 +557,9 @@ class VppConfigGenerator(object):
         ssh = SSH()
         ssh.connect(self._node)
 
-        (ret, _, _) = ssh.exec_command('sudo cp {0} {1}'.
-                                       format(self._vpp_startup_conf_backup,
-                                              self._vpp_startup_conf))
+        ret, _, _ = ssh.exec_command('sudo cp {src} {dest}'.
+                                     format(src=self._vpp_startup_conf_backup,
+                                            dest=self._vpp_startup_conf))
         if ret != 0:
-            raise RuntimeError('Restoration of config file failed on node {}'.
-                               format(self._hostname))
+            raise RuntimeError('Restoration of config file failed on node '
+                               '{name}'.format(name=self._hostname))

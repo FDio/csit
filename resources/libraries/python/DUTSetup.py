@@ -24,6 +24,63 @@ from resources.libraries.python.VPPUtil import VPPUtil
 
 class DUTSetup(object):
     """Contains methods for setting up DUTs."""
+
+    @staticmethod
+    def get_service_logs(node, service):
+        """Get specific service unit logs by journalctl from node.
+
+        :param node: Node in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, _, _ = \
+            ssh.exec_command_sudo('journalctl --no-pager --unit={name} '
+                                  '--since="$(echo `systemctl show -p '
+                                  'ActiveEnterTimestamp {name}` | '
+                                  'awk \'{{print $2 $3}}\')"'.
+                                  format(name=service))
+        if int(ret_code) != 0:
+            raise RuntimeError('DUT {host} failed to get logs from unit {name}'.
+                               format(host=node['host'], name=service))
+
+    @staticmethod
+    def get_service_logs_on_all_duts(nodes, service):
+        """Get specific service unit logs by journalctl from all DUTs.
+
+        :param nodes: Nodes in the topology.
+        :param service: Service unit name.
+        :type nodes: dict
+        :type service: str
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.get_service_logs(node, service)
+
+    @staticmethod
+    def start_service(node, service):
+        """Start up the named service on node.
+
+        :param node: Node in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        ssh = SSH()
+        ssh.connect(node)
+        # We are doing restart. With this we do not care if service
+        # was running or not.
+        ret_code, _, _ = \
+            ssh.exec_command_sudo('service {name} restart'.
+                                  format(name=service), timeout=120)
+        if int(ret_code) != 0:
+            raise RuntimeError('DUT {host} failed to start service {name}'.
+                               format(host=node['host'], name=service))
+
+        DUTSetup.get_service_logs(node, service)
+
     @staticmethod
     def start_vpp_service_on_all_duts(nodes):
         """Start up the VPP service on all nodes.
@@ -31,17 +88,9 @@ class DUTSetup(object):
         :param nodes: Nodes in the topology.
         :type nodes: dict
         """
-        ssh = SSH()
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                ssh.connect(node)
-                (ret_code, stdout, stderr) = \
-                    ssh.exec_command_sudo('service vpp restart', timeout=120)
-                if int(ret_code) != 0:
-                    logger.debug('stdout: {0}'.format(stdout))
-                    logger.debug('stderr: {0}'.format(stderr))
-                    raise Exception('DUT {0} failed to start VPP service'.
-                                    format(node['host']))
+                DUTSetup.start_service(node, Constants.VPP_UNIT)
 
     @staticmethod
     def vpp_show_version_verbose(node):
@@ -53,6 +102,12 @@ class DUTSetup(object):
         vat = VatExecutor()
         vat.execute_script("show_version_verbose.vat", node, json_out=False)
 
+        try:
+            vat.script_should_have_passed()
+        except AssertionError:
+            raise RuntimeError('Failed to get VPP version on host: {name}'.
+                               format(name=node['host']))
+
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
         """Show VPP version verbose on all DUTs.
@@ -63,6 +118,22 @@ class DUTSetup(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 DUTSetup.vpp_show_version_verbose(node)
+
+    @staticmethod
+    def vpp_show_interfaces(node):
+        """Run "show interface" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_interface.vat", node, json_out=False)
+
+        try:
+            vat.script_should_have_passed()
+        except AssertionError:
+            raise RuntimeError('Failed to get VPP interfaces on host: {name}'.
+                               format(name=node['host']))
 
     @staticmethod
     def vpp_api_trace_save(node):
@@ -103,17 +174,15 @@ class DUTSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        (ret_code, stdout, stderr) = \
+        ret_code, _, _ = \
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.
                              format(Constants.REMOTE_FW_DIR,
                                     Constants.RESOURCES_LIB_SH), timeout=120)
         logger.trace(stdout)
         logger.trace(stderr)
         if int(ret_code) != 0:
-            logger.debug('DUT {0} setup script failed: "{1}"'.
-                         format(node['host'], stdout + stderr))
-            raise Exception('DUT test setup script failed at node {}'.
-                            format(node['host']))
+            raise RuntimeError('DUT test setup script failed at node {name}'.
+                               format(name=node['host']))
 
     @staticmethod
     def get_vpp_pid(node):
@@ -429,3 +498,106 @@ class DUTSetup(object):
         vat = VatExecutor()
         vat.execute_script("enable_dpdk_traces.vat", node, json_out=False)
         vat.execute_script("enable_vhost_user_traces.vat", node, json_out=False)
+
+    @staticmethod
+    def install_vpp_on_all_duts(nodes, vpp_pkg_dir, vpp_rpm_pkgs, vpp_deb_pkgs):
+        """Install VPP on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :param vpp_pkg_dir: Path to directory where VPP packages are stored.
+        :param vpp_rpm_pkgs: List of VPP rpm packages to be installed.
+        :param vpp_deb_pkgs: List of VPP deb packages to be installed.
+        :type nodes: dict
+        :type vpp_pkg_dir: str
+        :type vpp_rpm_pkgs: list
+        :type vpp_deb_pkgs: list
+        :raises: RuntimeError if failed to remove or install VPP
+        """
+
+        logger.debug("Installing VPP")
+
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                logger.debug("Installing VPP on node {0}".format(node['host']))
+
+                ssh = SSH()
+                ssh.connect(node)
+
+                cmd = "[[ -f /etc/redhat-release ]]"
+                return_code, _, _ = ssh.exec_command(cmd)
+                if int(return_code) == 0:
+                    # workaroud - uninstall existing vpp installation until
+                    # start-testcase script is updated on all virl servers
+                    rpm_pkgs_remove = "vpp*"
+                    cmd_u = 'yum -y remove "{0}"'.format(rpm_pkgs_remove)
+                    r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
+                    if int(r_rcode) != 0:
+                        raise RuntimeError('Failed to remove previous VPP'
+                                           'installation on host {0}:\n{1}'
+                                           .format(node['host'], r_err))
+
+                    rpm_pkgs = "*.rpm ".join(str(vpp_pkg_dir + pkg)
+                                             for pkg in vpp_rpm_pkgs) + "*.rpm"
+                    cmd_i = "rpm -ivh {0}".format(rpm_pkgs)
+                    ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host {0}:'
+                                           '\n{1}'.format(node['host'], err))
+                    else:
+                        ssh.exec_command_sudo("rpm -qai vpp*")
+                        logger.info("VPP installed on node {0}".
+                                    format(node['host']))
+                else:
+                    # workaroud - uninstall existing vpp installation until
+                    # start-testcase script is updated on all virl servers
+                    deb_pkgs_remove = "vpp*"
+                    cmd_u = 'apt-get purge -y "{0}"'.format(deb_pkgs_remove)
+                    r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
+                    if int(r_rcode) != 0:
+                        raise RuntimeError('Failed to remove previous VPP'
+                                           'installation on host {0}:\n{1}'
+                                           .format(node['host'], r_err))
+                    deb_pkgs = "*.deb ".join(str(vpp_pkg_dir + pkg)
+                                             for pkg in vpp_deb_pkgs) + "*.deb"
+                    cmd_i = "dpkg -i --force-all {0}".format(deb_pkgs)
+                    ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
+                    if int(ret_code) != 0:
+                        raise RuntimeError('Failed to install VPP on host {0}:'
+                                           '\n{1}'.format(node['host'], err))
+                    else:
+                        ssh.exec_command_sudo("dpkg -l | grep vpp")
+                        logger.info("VPP installed on node {0}".
+                                    format(node['host']))
+
+                ssh.disconnect(node)
+
+    @staticmethod
+    def verify_vpp_on_all_duts(nodes):
+        """Verify that VPP is installed on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+
+        logger.debug("Verify VPP on all DUTs")
+
+        DUTSetup.start_vpp_service_on_all_duts(nodes)
+
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.verify_vpp_on_dut(node)
+
+    @staticmethod
+    def verify_vpp_on_dut(node):
+        """Verify that VPP is installed on DUT node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises: RuntimeError if failed to restart VPP, get VPP version or
+        get VPP interfaces
+        """
+
+        logger.debug("Verify VPP on node {0}".format(node['host']))
+
+        DUTSetup.vpp_show_version_verbose(node)
+        DUTSetup.vpp_show_interfaces(node)
