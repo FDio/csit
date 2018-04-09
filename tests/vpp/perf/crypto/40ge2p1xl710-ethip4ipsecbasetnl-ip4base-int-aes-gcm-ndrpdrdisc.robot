@@ -25,7 +25,7 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| Test Teardown | Tear down performance discovery test | ${20000}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *IPv4 IPsec tunnel mode performance test suite.*
@@ -119,6 +119,41 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
+| Discover NDRPDR for IPv4 routing with IPSec HW cryptodev
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config with ${wt} thread(s),\
+| | ... | ${wt} phy core(s), ${rxq} receive queue(s) per NIC port.
+| | ... | [Ver] Measure NDR or PDR for ${framesize} by bisecting between\
+| | ... | ${min_rate} and computed max rate, using trial loss rate measurements.
+| | ...
+| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | ...
+| | # Test Variables required for test teardown
+| | Set Test Variable | ${framesize}
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit}
+| | ... | ${get_framesize} + ${ipsec_overhead_gcm}
+| | ${max_rate}= | Set Variable If
+| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
+| | ${encr_alg}= | Crypto Alg AES GCM 128
+| | ${auth_alg}= | Integ Alg AES GCM 128
+| | ...
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Add cryptodev to all DUTs | ${${wt}}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
+| | And Apply startup configuration on all VPP DUTs
+| | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Initialize IPSec in 3-node circular topology
+| | And VPP IPsec Create Tunnel Interfaces
+| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${20000} | ${max_rate} | ${traffic_profile}
+
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
@@ -201,10 +236,10 @@
 | | ... | [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC | THIS
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | [Template] | Discover NDRPDR for IPv4 routing with IPSec HW cryptodev
+| | wt=2 | rxq=1 | framesize=${64}
 
 | tc08-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
