@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -38,6 +38,8 @@ cmd 'sudo -S service vpp restart'
 echo "[Command_desc] SLEEP for three seconds, so that VPP is up for sure"
 cmd 'sleep 3'
 
+cmd "sudo journalctl --no-pager --unit=vpp --since=\"$(echo `systemctl show -p ActiveEnterTimestamp vpp` | awk '{print $2 $3}')\""
+
 cmd 'cat /proc/meminfo'
 
 cmd 'free -m'
@@ -47,12 +49,6 @@ cmd 'ps aux | grep vpp'
 cmd 'sudo dmidecode | grep UUID'
 
 cmd 'lspci -Dnn'
-
-if [ -f "/etc/redhat-release" ]; then
-    cmd 'tail -n 100 /var/log/messages'
-else
-    cmd 'tail -n 100 /var/log/syslog'
-fi
 
 echo "[Command_desc] Adding dpdk-input trace"
 cmd 'sudo vpp_api_test <<< "exec trace add dpdk-input 100"'

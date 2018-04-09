@@ -29,6 +29,9 @@ class Constants(object):
     # OpenVPP VAT binary name
     VAT_BIN_NAME = 'vpp_api_test'
 
+    # VPP service unit name
+    VPP_UNIT = 'vpp'
+
     # QEMU version to install
     QEMU_INSTALL_VERSION = 'qemu-2.5.0'
 
