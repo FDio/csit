@@ -13,8 +13,6 @@
 
 """DUT setup library."""
 
-import os
-
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, Topology
@@ -26,6 +24,63 @@ from resources.libraries.python.VPPUtil import VPPUtil
 
 class DUTSetup(object):
     """Contains methods for setting up DUTs."""
+
+    @staticmethod
+    def get_service_logs(node, service):
+        """Get service logs by journalctl from specific service unit.
+
+        :param node: Node in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, _, _ = \
+            ssh.exec_command_sudo('journalctl --no-pager --unit={name} '
+                                  '--since="$(echo `systemctl show -p '
+                                  'ActiveEnterTimestamp {name}` | '
+                                  'awk \'{{print $2 $3}}\')"'.
+                                  format(name=service))
+        if int(ret_code) != 0:
+            raise Exception('DUT {host} failed to get logs from unit {name}'.
+                            format(host=node['host'], name=service))
+
+    @staticmethod
+    def get_service_logs_on_all_duts(nodes, service):
+        """Get service logs by journalctl from specific service unit.
+
+        :param nodes: Nodes in the topology.
+        :param service: Service unit name.
+        :type nodes: dict
+        :type service: str
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.get_service_logs(node, service)
+
+    @staticmethod
+    def start_service(node, service):
+        """Start up the named service on node.
+
+        :param node: Node in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        ssh = SSH()
+        ssh.connect(node)
+        # We are doing restart. With this we do not care if service
+        # was running or not.
+        ret_code, _, _ = \
+            ssh.exec_command_sudo('service {name} restart'.
+                                  format(name=service), timeout=120)
+        if int(ret_code) != 0:
+            raise Exception('DUT {host} failed to start service {name}'.
+                            format(host=node['host'], name=service))
+
+        DUTSetup.get_service_logs(node, service)
+
     @staticmethod
     def start_vpp_service_on_all_duts(nodes):
         """Start up the VPP service on all nodes.
@@ -33,15 +88,9 @@ class DUTSetup(object):
         :param nodes: Nodes in the topology.
         :type nodes: dict
         """
-        ssh = SSH()
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                ssh.connect(node)
-                (ret_code, stdout, stderr) = \
-                    ssh.exec_command_sudo('service vpp restart', timeout=120)
-                if int(ret_code) != 0:
-                    raise Exception('DUT {0} failed to start VPP service'.
-                                    format(node['host']))
+                DUTSetup.start_service(node, Constants.VPP_UNIT)
 
     @staticmethod
     def vpp_show_version_verbose(node):
@@ -125,13 +174,11 @@ class DUTSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        (ret_code, stdout, stderr) = \
+        ret_code, _, _ = \
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.
                              format(Constants.REMOTE_FW_DIR,
                                     Constants.RESOURCES_LIB_SH), timeout=120)
         if int(ret_code) != 0:
-            logger.debug('DUT {0} setup script failed: "{1}"'.
-                         format(node['host'], stdout + stderr))
             raise Exception('DUT test setup script failed at node {}'.
                             format(node['host']))
 
@@ -485,7 +532,7 @@ class DUTSetup(object):
                     if int(r_rcode) != 0:
                         raise RuntimeError('Failed to remove previous VPP'
                                            'installation on host {0}:\n{1}'
-                                           .format(node['host']), r_err)
+                                           .format(node['host'], r_err))
 
                     rpm_pkgs = "*.rpm ".join(str(vpp_pkg_dir + pkg)
                                              for pkg in vpp_rpm_pkgs) + "*.rpm"
@@ -493,7 +540,7 @@ class DUTSetup(object):
                     ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
                     if int(ret_code) != 0:
                         raise RuntimeError('Failed to install VPP on host {0}:'
-                                           '\n{1}'.format(node['host']), err)
+                                           '\n{1}'.format(node['host'], err))
                     else:
                         ssh.exec_command_sudo("rpm -qai vpp*")
                         logger.info("VPP installed on node {0}".
@@ -507,14 +554,14 @@ class DUTSetup(object):
                     if int(r_rcode) != 0:
                         raise RuntimeError('Failed to remove previous VPP'
                                            'installation on host {0}:\n{1}'
-                                           .format(node['host']), r_err)
+                                           .format(node['host'], r_err))
                     deb_pkgs = "*.deb ".join(str(vpp_pkg_dir + pkg)
                                              for pkg in vpp_deb_pkgs) + "*.deb"
                     cmd_i = "dpkg -i --force-all {0}".format(deb_pkgs)
                     ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
                     if int(ret_code) != 0:
                         raise RuntimeError('Failed to install VPP on host {0}:'
-                                           '\n{1}'.format(node['host']), err)
+                                           '\n{1}'.format(node['host'], err))
                     else:
                         ssh.exec_command_sudo("dpkg -l | grep vpp")
                         logger.info("VPP installed on node {0}".
