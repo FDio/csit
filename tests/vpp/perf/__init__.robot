@@ -38,7 +38,8 @@
 | | ... | - use_tuned_cfs - Switch to set scheduler policy
 | | ... | - qemu_build - Whether Qemu will be built
 | | ... | - pkt_trace - Switch to enable packet trace for test
-| | ... | - plugins_to_disable - List of plugins to be disabled for test
+| | ... | - dut_stats - Switch to enable DUT statistics
+| | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
@@ -48,5 +49,6 @@
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
+| | Set Global Variable | ${dut_stats} | ${True}
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
 | | Set Global Variable | @{plugins_to_enable}

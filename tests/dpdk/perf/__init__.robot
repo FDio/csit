@@ -31,9 +31,12 @@
 | | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - perf_vm_image - Guest VM disk image
+| | ... | - pkt_trace - Switch to enable packet trace for test
+| | ... | - dut_stats - Switch to enable DUT statistics
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
-| | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.6.img
+| | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
 | | Set Global Variable | ${pkt_trace} | ${False}
+| | Set Global Variable | ${dut_stats} | ${False}
