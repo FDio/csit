@@ -40,8 +40,7 @@ then
     mkdir -p vpp/build-root
     cd vpp/build-root
 
-    if [[ ${TEST_TAG} == *NIGHTLY ]] || \
-       [[ ${TEST_TAG} == *DAILY ]] || \
+    if [[ ${TEST_TAG} == *DAILY ]] || \
        [[ ${TEST_TAG} == *WEEKLY ]];
     then
         # Download the latest VPP build .deb install packages
@@ -86,15 +85,15 @@ else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
     exit 1
 fi
-dpkg -x vpp/build-root/vpp_${VPP_STABLE_VER}.deb /tmp/vpp
 
+# Extract VPP API to specific folder
+dpkg -x vpp/build-root/vpp_${VPP_STABLE_VER}.deb /tmp/vpp
 # Compress all VPP debs and remove temporary directory
 tar -zcvf ${SCRIPT_DIR}/vpp.tar.gz vpp/* && rm -R vpp
 
 LIGATO_REPO_URL=$(cat ${SCRIPT_DIR}/LIGATO_REPO_URL)
 VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
-VPP_AGENT_STABLE_COMMIT="$( expr match `cat VPP_AGENT_STABLE_VER` '.*g\(.*\)' )"
-DOCKER_DEB="docker-ce_17.09.0~ce-0~ubuntu_amd64.deb"
+DOCKER_DEB="docker-ce_18.03.0~ce-0~ubuntu_amd64.deb"
 
 # Clone & checkout stable vnf-agent
 cd .. && git clone ${LIGATO_REPO_URL}/vpp-agent
@@ -103,7 +102,7 @@ if [ $? != 0 ]; then
     echo "Failed to run: git clone --depth 1 ${LIGATO_REPO_URL}/vpp-agent"
     exit 1
 fi
-cd vpp-agent && git checkout b99e43a
+cd vpp-agent && git checkout tags/${VPP_AGENT_STABLE_VER}
 # If the git checkout fails, complain clearly and exit
 if [ $? != 0 ]; then
     echo "Failed to run: git checkout ${VPP_AGENT_STABLE_VER}"
@@ -120,17 +119,10 @@ if [ $? != 0 ]; then
 fi
 
 # Pull ligato/dev_vpp_agent docker image and re-tag as local
-if [[ ${VPP_AGENT_STABLE_VER} == g* ]] ;
-then
-    sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_COMMIT}
-    sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_COMMIT}\
-        dev_vpp_agent:latest
-else
-    sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}
-    sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
-        dev_vpp_agent:latest
-fi
-sudo docker images
+sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}
+sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
+    dev_vpp_agent:latest
+
 # Start dev_vpp_agent container as daemon
 sudo docker run --rm -itd --name agentcnt dev_vpp_agent bash
 # Copy latest vpp api into running container
@@ -167,11 +159,11 @@ DOCKER_IMAGE="$( readlink -f prod_vpp_agent.tar.gz | tr '\n' ' ' )"
 
 cd ${SCRIPT_DIR}
 
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
-
 WORKING_TOPOLOGY=""
 export PYTHONPATH=${SCRIPT_DIR}
+
+sudo apt-get -y update
+sudo apt-get -y install libpython2.7-dev python-virtualenv
 
 virtualenv --system-site-packages env
 . env/bin/activate
@@ -211,7 +203,7 @@ function cancel_all {
 # packages
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
-python ${SCRIPT_DIR}/resources/tools/scripts/topo_container_copy.py\
+python ${SCRIPT_DIR}/resources/tools/scripts/topo_container_copy.py \
     -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR} -i ${DOCKER_IMAGE}
 if [ $? -eq 0 ]; then
     echo "Docker image copied and loaded on hosts from: ${WORKING_TOPOLOGY}"
@@ -220,13 +212,30 @@ else
     exit 1
 fi
 
+# Based on job we will identify DUT
+if [[ ${JOB_NAME} == *hc2vpp* ]] ;
+then
+    DUT="hc2vpp"
+elif [[ ${JOB_NAME} == *vpp* ]] ;
+then
+    DUT="vpp"
+elif [[ ${JOB_NAME} == *ligato* ]] ;
+then
+    DUT="kubernetes"
+elif [[ ${JOB_NAME} == *dpdk* ]] ;
+then
+    DUT="dpdk"
+else
+    echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
+    exit 1
+fi
+
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
     PERFTEST_DAILY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
               --include ndrdiscAND1t1cANDipsecORndrdiscAND2t2cANDipsec \
               tests/
@@ -235,8 +244,7 @@ case "$TEST_TAG" in
     PERFTEST_SEMI_WEEKLY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -244,22 +252,26 @@ case "$TEST_TAG" in
     PERFTEST_MRR_DAILY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrAND64bAND1t1c \
               --include mrrAND64bAND2t2c \
               --include mrrAND64bAND4t4c \
               --include mrrAND78bAND1t1c \
               --include mrrAND78bAND2t2c \
               --include mrrAND78bAND4t4c \
+              --include mrrANDimixAND1t1cANDvhost \
+              --include mrrANDimixAND2t2cANDvhost \
+              --include mrrANDimixAND4t4cANDvhost \
+              --include mrrANDimixAND1t1cANDmemif \
+              --include mrrANDimixAND2t2cANDmemif \
+              --include mrrANDimixAND4t4cANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
     VERIFY-PERF-NDRDISC )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscAND1t1cORndrdiscAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -267,8 +279,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-PDRDISC )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscAND1t1cORpdrdiscAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -276,8 +287,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-MRR )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -285,8 +295,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip4baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -294,8 +303,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-IP6 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip6baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -303,8 +311,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-L2 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrdiscANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -312,8 +319,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-LISP )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDlisp \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -321,8 +327,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-VXLAN )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvxlan \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -330,8 +335,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-VHOST )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -339,8 +343,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-MEMIF )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -348,18 +351,18 @@ case "$TEST_TAG" in
     VERIFY-PERF-IPSECHW )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf.crypto" \
               --include ndrdiscANDnic_intel-xl710AND1t1cANDipsechw \
               --include ndrdiscANDnic_intel-xl710AND2t2cANDipsechw \
+              --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
+              --include mrrANDnic_intel-xl710AND2t2cANDipsechw \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
     VPP-VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrANDnic_intel-x520-da2AND1t1cANDip4baseORmrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -367,8 +370,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-IP6 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrANDnic_intel-x520-da2AND1t1cANDip6baseORmrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -376,8 +378,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-L2 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrANDnic_intel-x520-da2AND1t1cANDl2xcbaseORmrrANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -385,8 +386,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-LISP )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDlisp \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -394,8 +394,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-VXLAN )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -403,8 +402,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-VHOST )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -412,8 +410,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-MEMIF )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
               --include pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif \
               --include mrrANDnic_intel-x520-da2AND1t1cANDmemif \
@@ -424,8 +421,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-ACL )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDacl \
               --include pdrdiscANDnic_intel-x520-da2AND2t2cANDacl \
               tests/
@@ -434,10 +430,11 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-IPSECHW )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf.crypto" \
               --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechw \
               --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechw \
+              --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
+              --include mrrANDnic_intel-xl710AND2t2cANDipsechw \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -445,8 +442,7 @@ case "$TEST_TAG" in
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.kubernetes.perf" \
+              -s "tests.${DUT}.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
