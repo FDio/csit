@@ -23,13 +23,12 @@ from os import rename, remove
 from os.path import join, getsize
 from shutil import move
 from zipfile import ZipFile, is_zipfile, BadZipfile
-
 from httplib import responses
 from requests import get, codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 
 from errors import PresentationError
-
+from utils import execute_command
 
 # Chunk size used for file download
 CHUNK_SIZE = 512
@@ -37,7 +36,7 @@ CHUNK_SIZE = 512
 # Separator used in file names
 SEPARATOR = "__"
 
-REGEX_RELEASE = re.compile(r'(\D*)(\d{4})(\D*)')
+REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
 
 def download_data_files(spec):
@@ -81,6 +80,7 @@ def download_data_files(spec):
             try:
                 response = get(url, stream=True)
                 code = response.status_code
+
                 if code != codes["OK"]:
                     logging.warning(
                         "Jenkins: {0}: {1}.".format(code, responses[code]))
@@ -91,7 +91,11 @@ def download_data_files(spec):
                         nexus_file_name = "{job}{sep}{build}{sep}{name}".\
                             format(job=job, sep=SEPARATOR, build=build["build"],
                                    name=file_name)
-                        url = "{url}/rls{release}/{dir}/{file}".\
+                        try:
+                            release = "rls{0}".format(int(release))
+                        except ValueError:
+                            pass
+                        url = "{url}/{release}/{dir}/{file}".\
                             format(url=spec.environment["urls"]["URL[NEXUS]"],
                                    release=release,
                                    dir=spec.environment["urls"]["DIR[NEXUS]"],
@@ -139,11 +143,13 @@ def download_data_files(spec):
                         logging.info("{0}: {1}".format(code, responses[code]))
 
                 elif spec.input["file-name"].endswith(".gz"):
-                    rename(new_name, new_name[:-7])
-                    with open(new_name[:-7], 'r') as xml_file:
-                        with gzip.open(new_name, 'wb') as gz_file:
-                            gz_file.write(xml_file.read())
-                    new_name = new_name[:-7]
+                    if "docs.fd.io" in url:
+                        execute_command("gzip --decompress --keep --force {0}".
+                                        format(new_name))
+                    else:
+                        rename(new_name, new_name[:-3])
+                        execute_command("gzip --keep {0}".format(new_name[:-3]))
+                    new_name = new_name[:-3]
                     status = "downloaded"
                     logging.info("{0}: {1}".format(code, responses[code]))
 

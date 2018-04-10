@@ -362,11 +362,24 @@ def _generate_all_charts(spec, input_data):
     :type input_data: InputData
     """
 
-    csv_table = list()
-    # Create the header:
     builds = spec.cpta["data"].values()[0]
+    job_name = spec.cpta["data"].keys()[0]
     builds_lst = [str(build) for build in range(builds[0], builds[-1] + 1)]
+
+    # Get "build ID": "date" dict:
+    build_dates = dict()
+    for build in builds_lst:
+        try:
+            build_dates[build] = \
+                input_data.metadata(job_name, build)["generated"][:14]
+        except KeyError:
+            pass
+
+    # Create the header:
+    csv_table = list()
     header = "Build Number:," + ",".join(builds_lst) + '\n'
+    csv_table.append(header)
+    header = "Build Date:," + ",".join(build_dates.values()) + '\n'
     csv_table.append(header)
 
     results = list()
@@ -424,9 +437,8 @@ def _generate_all_charts(spec, input_data):
                 idx += 1
 
             # Generate the chart:
-            period_name = "Daily" if period == 1 else \
-                "Weekly" if period < 20 else "Monthly"
-            chart["layout"]["title"] = chart["title"].format(period=period_name)
+            chart["layout"]["xaxis"]["title"] = \
+                chart["layout"]["xaxis"]["title"].format(job=job_name)
             _generate_chart(traces,
                             chart["layout"],
                             file_name="{0}-{1}-{2}{3}".format(
@@ -445,19 +457,19 @@ def _generate_all_charts(spec, input_data):
     txt_table = None
     with open("{0}.csv".format(file_name), 'rb') as csv_file:
         csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
-        header = True
+        line_nr = 0
         for row in csv_content:
             if txt_table is None:
                 txt_table = prettytable.PrettyTable(row)
-                header = False
             else:
-                if not header:
+                if line_nr > 1:
                     for idx, item in enumerate(row):
                         try:
                             row[idx] = str(round(float(item) / 1000000, 2))
                         except ValueError:
                             pass
                 txt_table.add_row(row)
+            line_nr += 1
         txt_table.align["Build Number:"] = "l"
     with open("{0}.txt".format(file_name), "w") as txt_file:
         txt_file.write(str(txt_table))
