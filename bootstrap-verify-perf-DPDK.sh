@@ -78,25 +78,29 @@ function cancel_all {
 # On script exit we cancel the reservation
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
+# Based on job we will identify DUT
+if [[ ${JOB_NAME} == *vpp* ]] ;
+then
+    DUT="vpp"
+elif [[ ${JOB_NAME} == *ligato* ]] ;
+then
+    DUT="kubernetes"
+elif [[ ${JOB_NAME} == *dpdk* ]] ;
+then
+    DUT="dpdk"
+else
+    echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
+    exit 1
+fi
+
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
     PERFTEST_SHORT )
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.dpdk.perf" \
+              -s "tests.${DUT}.perf" \
               -i NDRCHK \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-   PERFTEST_NIGHTLY )
-        #run all available tests
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.dpdk.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -105,8 +109,8 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True \
-              -s "tests.dpdk.perf" \
+              -s "tests.${DUT}.perf" \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
