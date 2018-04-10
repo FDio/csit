@@ -77,14 +77,6 @@
 | | Return From Keyword If | '${framesize}' == 'IMIX_v4_1' | ${353.83333}
 | | Return From Keyword | ${framesize}
 
-| Is DPDK performance test
-| | [Documentation]
-| | ... | Return TRUE if variable DPDK_TEST exist, otherwise FALSE.
-| | ${ret} | ${tmp}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${DPDK_TEST}
-| | Return From Keyword If | "${ret}" == "PASS" | ${True}
-| | Return From Keyword | ${False}
-
 | Find NDR using linear search and pps
 | | [Documentation]
 | | ... | Find throughput by using RFC2544 linear search with non drop rate.
@@ -573,14 +565,13 @@
 | | ...
 | | Clear and show runtime counters with running traffic | ${duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
-| | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${False} | Clear all counters on all DUTs
-| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
+| | Run Keyword If | ${dut_stats}==${True} | Clear all counters on all DUTs
+| | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
 | | ${results} = | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${False} | Show statistics on all DUTs | ${nodes}
-| | Run Keyword If | ${ret}==${False} and ${pkt_trace}==${True}
+| | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs | ${nodes}
+| | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes}
 | | Return From Keyword | ${results}
 
@@ -605,10 +596,9 @@
 | | ...
 | | Send traffic on tg | -1 | ${rate} | ${framesize} | ${topology_type}
 | | ... | warmup_time=0 | async_call=${True} | latency=${False}
-| | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${False}
+| | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear runtime counters on all DUTs | ${nodes}
 | | Sleep | ${duration}
-| | Run Keyword If | ${ret}==${False}
+| | Run Keyword If | ${dut_stats}==${True}
 | | ... | Show runtime counters on all DUTs | ${nodes}
 | | Stop traffic on tg
