@@ -362,9 +362,13 @@ def _generate_all_charts(spec, input_data):
     :type input_data: InputData
     """
 
-    builds = spec.cpta["data"].values()[0]
     job_name = spec.cpta["data"].keys()[0]
-    builds_lst = [str(build) for build in range(builds[0], builds[-1] + 1)]
+
+    builds_lst = list()
+    for build in spec.input["builds"][job_name]:
+        status = build["status"]
+        if status != "failed" and status != "not found":
+            builds_lst.append(str(build["build"]))
 
     # Get "build ID": "date" dict:
     build_dates = dict()
