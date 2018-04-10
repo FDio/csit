@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,8 +16,8 @@ This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants as con
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.constants import Constants
+from resources.libraries.python.topology import NodeType, Topology
 
 class L3fwdTest(object):
     """Test the DPDK l3fwd performance."""
@@ -46,38 +46,43 @@ class L3fwdTest(object):
         :type jumbo_frames: str
         :return: none
         """
-        adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(nodes_info, dut_node,
-                                                   dut_if1, dut_if2)
+        if dut_node['type'] == NodeType.DUT:
+            adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(nodes_info, dut_node,
+                                                       dut_if1, dut_if2)
 
-        list_cores = lcores_list.split(',')
+            list_cores = lcores_list.split(',')
 
-        # prepare the port config param
-        index = 0
-        port_config = ''
-        for port in range(0, 2):
-            for queue in range(0, int(queue_nums)):
-                if int(nb_cores) == 1:
-                    index = 0
-                    temp_str = '({0}, {1}, {2}),'.format(port, queue, \
-                                                    int(list_cores[index]))
-                else:
-                    temp_str = '({0}, {1}, {2}),'.format(port, queue, \
-                                                    int(list_cores[index]))
+            # prepare the port config param
+            index = 0
+            port_config = ''
+            for port in range(0, 2):
+                for queue in range(0, int(queue_nums)):
+                    if int(nb_cores) == 1:
+                        index = 0
+                        temp_str = '({port}, {queue}, {core}),'.\
+                        format(port=port, queue=queue,
+                               core=int(list_cores[index]))
+                    else:
+                        temp_str = '({port}, {queue}, {core}),'.\
+                        format(port=port, queue=queue,
+                               core=int(list_cores[index]))
 
-                port_config += temp_str
-                index = index + 1
+                    port_config += temp_str
+                    index = index + 1
 
-        ssh = SSH()
-        ssh.connect(dut_node)
+            ssh = SSH()
+            ssh.connect(dut_node)
 
-        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && ./run_l3fwd.sh ' \
-              '"{1}" "{2}" {3} {4} {5}'.format(con.REMOTE_FW_DIR, lcores_list, \
-              port_config.rstrip(','), adj_mac0, adj_mac1, jumbo_frames)
+            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l3fwd.sh ' \
+                  '"{lcores}" "{ports}" {mac1} {mac2} {jumbo}'.\
+                  format(fwdir=Constants.REMOTE_FW_DIR, lcores=lcores_list,
+                         ports=port_config.rstrip(','), mac1=adj_mac0,
+                         mac2=adj_mac1, jumbo=jumbo_frames)
 
-        (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
-        if ret_code != 0:
-            raise Exception('Failed to execute l3fwd test at node {0}'
-                            .format(dut_node['host']))
+            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
+            if ret_code != 0:
+                raise Exception('Failed to execute l3fwd test at node {name}'
+                                .format(name=dut_node['host']))
 
     @staticmethod
     def get_adj_mac(nodes_info, dut_node, dut_if1, dut_if2):
