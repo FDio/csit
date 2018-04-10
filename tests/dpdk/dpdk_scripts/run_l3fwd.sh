@@ -3,7 +3,7 @@
 set -x
 
 # Setting variables
-DPDK_VERSION=dpdk-17.11
+DPDK_VERSION=dpdk-18.02
 ROOTDIR=/tmp/openvpp-testing
 L3FWDLOG=screenlog.0
 PWDDIR=$(pwd)

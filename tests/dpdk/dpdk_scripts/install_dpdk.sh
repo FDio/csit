@@ -7,7 +7,6 @@ set -x
 # set arch, default to x86_64 if none given
 ARCH=${1:-"x86_64"}
 
-
 # dpdk prefers "arm64" to "aarch64" and does not allow arm64 native target
 if [ $ARCH == "aarch64" ]; then
     ARCH="arm64"
@@ -16,7 +15,7 @@ else
     MACHINE="native"
 fi
 
-DPDK_VERSION=dpdk-17.11
+DPDK_VERSION=dpdk-18.02
 DPDK_DIR=${DPDK_VERSION}
 DPDK_PACKAGE=${DPDK_DIR}.tar.xz
 ROOTDIR=/tmp/openvpp-testing
