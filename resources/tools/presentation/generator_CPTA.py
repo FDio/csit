@@ -364,8 +364,14 @@ def _generate_all_charts(spec, input_data):
 
     builds = spec.cpta["data"].values()[0]
     job_name = spec.cpta["data"].keys()[0]
-    builds_lst = [str(build) for build in range(builds[0], builds[-1] + 1)]
+    # builds_lst = [str(build) for build in range(builds[0], builds[-1] + 1)]
 
+    builds_lst = list()
+    for build in range(builds[0], builds[-1] + 1):
+        if spec.input[job_name][str(build)]["status"] != "failed" and \
+                spec.input[job_name][build]["status"] != "not found":
+            builds_lst.append(str(build))
+    print(builds_lst)
     # Get "build ID": "date" dict:
     build_dates = dict()
     for build in builds_lst:
