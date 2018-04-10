@@ -1,0 +1,58 @@
+# FIXME: License and similar.
+
+import logging
+import sys
+
+#from KeyboardRateProvider import KeyboardRateProvider as provider
+#from RandomRateProvider import RandomRateProvider as provider
+from TwoPhaseRateProvider import TwoPhaseRateProvider as provider
+from LoggingRateProvider import LoggingRateProvider as infologging
+from TimeTrackingRateProvider import TimeTrackingRateProvider as tracking
+from BasicBinarySearchAlgorithm import BasicBinarySearchAlgorithm as search
+
+logging.basicConfig(level=getattr(logging, "INFO"))
+
+p = tracking(infologging(provider()))
+
+print "basic binary search, 10.0 duration, width 20000.0, two phase provider, printing"
+
+s = search(rate_provider=p, duration=60.0, width=20000.0)
+result = s.narrow_down_ndr_and_pdr(fail_rate=20000, line_rate=37000000, allowed_drop_fraction=0.005)
+
+#print "result repr:", repr(result)
+print "result string:", str(result)
+print "RW:", "NDR", result.ndr_interval.rel_tr_width, "PDR", result.pdr_interval.rel_tr_width
+print "search took", p.total_time, "seconds", p.measurements, "measurements"
+p.reset()
+sys.exit(0)
+#
+#with open("binary.txt", "a") as f:
+#    f.write(str(result.ndr_interval.measured_low.target_tr) + " ")
+#    f.write(str(result.ndr_interval.measured_high.target_tr) + " ")
+#    f.write(str(result.pdr_interval.measured_low.target_tr) + " ")
+#    f.write(str(result.pdr_interval.measured_high.target_tr))
+#    f.write('\n')
+#
+
+print "total time search, 60s final duration, random provider, printing"
+#print "relative width based search, 60s final duration, two phase provider"
+
+from RelativeWidthBasedSearch import RelativeWidthBasedSearch as my_search
+s = my_search(rate_provider=p, final_width=0.015)
+#from TotalTimeBasedSearch import TotalTimeBasedSearch as my_search
+#s = my_search(rate_provider=p, length=7.7)
+
+result = s.narrow_down_ndr_and_pdr(fail_rate=1000000, line_rate=30000000, allowed_drop_fraction=0.005)
+
+#print "result repr:", repr(result)
+print "result string:", str(result)
+print "RW:", "NDR", result.ndr_interval.rel_tr_width, "PDR", result.pdr_interval.rel_tr_width
+print "search took", p.total_time, "seconds", p.measurements, "measurements"
+p.reset()
+
+#with open("smart.txt", "a") as f:
+#    f.write(str(result.ndr_interval.measured_low.target_tr) + " ")
+#    f.write(str(result.ndr_interval.measured_high.target_tr) + " ")
+#    f.write(str(result.pdr_interval.measured_low.target_tr) + " ")
+#    f.write(str(result.pdr_interval.measured_high.target_tr))
+#    f.write('\n')
