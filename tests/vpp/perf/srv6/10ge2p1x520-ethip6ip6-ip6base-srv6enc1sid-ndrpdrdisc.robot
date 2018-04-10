@@ -24,7 +24,7 @@
 | Test Setup | Set up performance test
 | ...
 | Test Teardown | Tear down performance test with SRv6 with encapsulation
-| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
+| ... | ${20000}pps | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *Packet throughput Segment routing over IPv6 dataplane with\
 | ... | one SID (SRH not inserted) test cases*
@@ -104,18 +104,33 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
+| Discover NDRPDR for IPv6 routing over SRv6
+| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | Set Test Variable | ${framesize}
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit}
+| | ... | ${get_framesize} + ${srv6_overhead_nosrh}
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in 3-node circular topology
+| | Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${20000} | ${max_rate} | ${traffic_profile}
+
 *** Test Cases ***
-| tc01-78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-ndrdisc
+| tc01-78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 over SRv6 routing config with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 78B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 78B | 1T1C | STHREAD | NDRDISC | THAT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
+| | [Template] | Discover NDRPDR for IPv6 routing over SRv6
+| | wt=1 | rxq=1 | framesize=${78}
 
 | tc02-78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-pdrdisc
 | | [Documentation]

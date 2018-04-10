@@ -24,7 +24,7 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| Test Teardown | Tear down performance discovery test | ${20000}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput IPv6 whitelist test cases*
@@ -267,6 +267,31 @@
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
+
+| tc97-78B-2t2c-ethip6-ip6base-copwhtlistbase-ndrpdr
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find NDR
+| | ... | for 78 Byte frames using binary search start at 10GE linerate,
+| | ... | step 50kpps.
+| | [Tags] | 78B | 2T2C | MTHREAD | NDRDISC | THAT
+| | ${framesize}= | Set Variable | ${78}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize IPv6 forwarding in 3-node circular topology
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
+| | And Add Fib Table | ${dut2} | 1 | ipv6=${TRUE}
+| | And Vpp Route Add | ${dut2} | 2001:2:: | 64 | vrf=1 | local=${TRUE}
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${20000} | ${max_rate} | ${traffic_profile}
 
 | tc08-78B-2t2c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
