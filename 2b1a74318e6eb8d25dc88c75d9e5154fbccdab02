@@ -22,6 +22,30 @@
       "revId": "2b1a74318e6eb8d25dc88c75d9e5154fbccdab02",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e97228e0_1d77a2a8",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1252
+      },
+      "writtenOn": "2018-04-10T07:53:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "386134bc_f2d07a11",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "2b1a74318e6eb8d25dc88c75d9e5154fbccdab02",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
