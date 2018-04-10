@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76adb1f6_cdd43810",
+        "filename": "bootstrap-verify-perf-DPDK.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-10T10:59:47Z",
+      "side": 1,
+      "message": "What about \"honeycomb\" and \"hc2vpp\"?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 42
+      },
+      "revId": "e0c17a18fccc5dc8fd315965b0124db1a92d229f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
