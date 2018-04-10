@@ -23,7 +23,7 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| Test Teardown | Tear down performance discovery test | ${10000}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput IPv4 routing test cases*
@@ -87,6 +87,26 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
+| Discover NDRPDR for ethip4-ip4base
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with ${wt} thread(s), ${wt}\
+| | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
+| | ... | [Ver] Find NDR or PDR for ${framesize} frames using optimized search\
+| | ... | start at 10GE linerate.
+| | ...
+| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | ...
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Run Keyword If | ${get_framesize} < ${1522}
+| | ... | Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${20000} | ${max_rate} | ${traffic_profile}
+
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -107,6 +127,16 @@
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+
+| tc90-64B-1t1c-ethip4-ip4base-pdrdisc
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
+| | ... | using optimized search start at 10GE linerate.
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THIS
+| | ...
+| | [Template] | Discover NDRPDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${64}
 
 | tc03-1518B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
