@@ -680,6 +680,30 @@
       "revId": "9ef20d5de10ea080a17b434384d0650910083289",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4584e82f_83723ce5",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-10T12:18:30Z",
+      "side": 1,
+      "message": "CSIT runs virtual environment, see e.g. your bootstrap-DMM.sh, line 188.\nThis line should point to virtual environment or it can be removed.",
+      "parentUuid": "b4b95601_87f22984",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "9ef20d5de10ea080a17b434384d0650910083289",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
