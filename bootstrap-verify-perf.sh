@@ -48,8 +48,6 @@ then
         bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
 
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-        # Take vpp package and get the vpp version
-        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
     else
         DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
         VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
@@ -65,7 +63,7 @@ then
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     fi
 
-    cd ..
+    cd ${SCRIPT_DIR}
 
 # If we run this script from vpp project we want to use local build
 elif [[ ${JOB_NAME} == vpp-* ]] ;
@@ -73,8 +71,6 @@ then
     # Use local packages provided as argument list
     # Jenkins VPP deb paths (convert to full path)
     VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
-    # Take vpp package and get the vpp version
-    VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
 else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
     exit 1
@@ -124,13 +120,27 @@ function cancel_all {
 # packages
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
-python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -t ${WORKING_TOPOLOGY} \
-                                                       -d ${INSTALLATION_DIR} \
-                                                       -p ${VPP_DEBS}
+python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py \
+    -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR} -p ${VPP_DEBS}
 if [ $? -eq 0 ]; then
     echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
 else
     echo "Failed to copy vpp deb files to DUTs"
+    exit 1
+fi
+
+# Based on job we will identify DUT
+if [[ ${JOB_NAME} == *vpp* ]] ;
+then
+    DUT="vpp"
+elif [[ ${JOB_NAME} == *ligato* ]] ;
+then
+    DUT="kubernetes"
+elif [[ ${JOB_NAME} == *dpdk* ]] ;
+then
+    DUT="dpdk"
+else
+    echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
     exit 1
 fi
 
@@ -139,7 +149,7 @@ case "$TEST_TAG" in
     PERFTEST_DAILY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
               --include ndrdiscAND1t1cANDipsecORndrdiscAND2t2cANDipsec \
               tests/
@@ -148,7 +158,7 @@ case "$TEST_TAG" in
     PERFTEST_SEMI_WEEKLY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -156,7 +166,7 @@ case "$TEST_TAG" in
     PERFTEST_MRR_DAILY )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrAND64bAND1t1c \
               --include mrrAND64bAND2t2c \
               --include mrrAND64bAND4t4c \
@@ -175,7 +185,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-NDRDISC )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscAND1t1cORndrdiscAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -183,7 +193,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-PDRDISC )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscAND1t1cORpdrdiscAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -191,7 +201,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-MRR )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrAND1t1cORmrrAND2t2c \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -199,7 +209,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip4baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -207,7 +217,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-IP6 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip6baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -215,7 +225,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-L2 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrdiscANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -223,7 +233,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-LISP )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDlisp \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -231,7 +241,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-VXLAN )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvxlan \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -239,7 +249,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-VHOST )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -247,7 +257,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-MEMIF )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -255,7 +265,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-IPSECHW )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf.crypto" \
+              -s "tests.${DUT}.perf.crypto" \
               --include ndrdiscANDnic_intel-xl710AND1t1cANDipsechw \
               --include ndrdiscANDnic_intel-xl710AND2t2cANDipsechw \
               --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
@@ -266,7 +276,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-IP4 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrANDnic_intel-x520-da2AND1t1cANDip4baseORmrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -274,7 +284,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-IP6 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrANDnic_intel-x520-da2AND1t1cANDip6baseORmrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -282,7 +292,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-L2 )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include mrrANDnic_intel-x520-da2AND1t1cANDl2xcbaseORmrrANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -290,7 +300,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-LISP )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDlisp \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -298,7 +308,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-VXLAN )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -306,7 +316,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-VHOST )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -314,7 +324,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-MEMIF )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
               --include pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif \
               --include mrrANDnic_intel-x520-da2AND1t1cANDmemif \
@@ -325,7 +335,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-ACL )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
               --include pdrdiscANDnic_intel-x520-da2AND1t1cANDacl \
               --include pdrdiscANDnic_intel-x520-da2AND2t2cANDacl \
               tests/
@@ -334,7 +344,7 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-IPSECHW )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf.crypto" \
+              -s "tests.${DUT}.perf.crypto" \
               --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechw \
               --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechw \
               --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
@@ -346,7 +356,8 @@ case "$TEST_TAG" in
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.vpp.perf" \
+              -s "tests.${DUT}.perf" \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
