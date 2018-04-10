@@ -107,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "f18805c0_894127e6",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-04-10T10:29:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abf9de05_0732a1b8",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 1
+      },
+      "revId": "9ef20d5de10ea080a17b434384d0650910083289",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2dece24f_e7a00594",
         "filename": "resources/libraries/python/DMM/SingleCliSer.py",
         "patchSetId": 5
