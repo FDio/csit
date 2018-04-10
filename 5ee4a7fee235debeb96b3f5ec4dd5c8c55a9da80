@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7aa7c5fc_2afc3a65",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T12:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7b1a628_be6a8733",
+      "range": {
+        "startLine": 46,
+        "startChar": 18,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "5ee4a7fee235debeb96b3f5ec4dd5c8c55a9da80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e22ae78_0bbe42a7",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-10T11:14:56Z",
       "side": 1,
       "message": "PEP8: Too broad exception. Use e.g. RuntimeError",
+      "range": {
+        "startLine": 79,
+        "startChar": 18,
+        "endLine": 79,
+        "endChar": 27
+      },
+      "revId": "5ee4a7fee235debeb96b3f5ec4dd5c8c55a9da80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "937aae22_6387df1c",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T12:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e22ae78_0bbe42a7",
       "range": {
         "startLine": 79,
         "startChar": 18,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e30d4642_d0b69060",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T12:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b0d8593_4eef9b54",
+      "range": {
+        "startLine": 182,
+        "startChar": 18,
+        "endLine": 182,
+        "endChar": 27
+      },
+      "revId": "5ee4a7fee235debeb96b3f5ec4dd5c8c55a9da80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00bf02fc_da689b13",
         "filename": "resources/libraries/python/VppConfigGenerator.py",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2018-04-10T11:14:56Z",
       "side": 1,
       "message": "not necessary, check everywhere",
+      "range": {
+        "startLine": 508,
+        "startChar": 12,
+        "endLine": 508,
+        "endChar": 13
+      },
+      "revId": "5ee4a7fee235debeb96b3f5ec4dd5c8c55a9da80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17332a5e_d555e9c7",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T12:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00bf02fc_da689b13",
       "range": {
         "startLine": 508,
         "startChar": 12,
