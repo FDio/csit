@@ -483,5 +483,5 @@ class KubernetesUtils(object):
         if cpuset_cpus:
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
-        vpp_config.add_plugin_disable('dpdk_plugin.so')
+        vpp_config.add_plugin('disable', 'dpdk_plugin.so')
         vpp_config.apply_config(filename=kwargs['filename'], restart_vpp=False)
