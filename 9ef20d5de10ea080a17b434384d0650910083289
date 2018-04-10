@@ -704,6 +704,29 @@
       "revId": "9ef20d5de10ea080a17b434384d0650910083289",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dde804cc_1dd734ba",
+        "filename": "tests/dmm/func/SingleCliSer-func.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-10T12:25:01Z",
+      "side": 1,
+      "message": "We use Gherkin style in tests, i.e. use \"Given\", \"When\", \"Then\", \"And\" with the keywords. See https://wiki.fd.io/view/CSIT/Design_Optimizations for more information.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "9ef20d5de10ea080a17b434384d0650910083289",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
