@@ -69,6 +69,30 @@
       "revId": "1311432aa6b34c1a010a4e1de63d64318a563bd5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3002f6be_7e738340",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T07:49:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e5073a_b7a8f60a",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 77,
+        "endChar": 62
+      },
+      "revId": "1311432aa6b34c1a010a4e1de63d64318a563bd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
