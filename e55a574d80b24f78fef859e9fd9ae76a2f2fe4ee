@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61738616_a68936d8",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T12:47:52Z",
+      "side": 1,
+      "message": "Can this be leveraged into outside __init__.py?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "e55a574d80b24f78fef859e9fd9ae76a2f2fe4ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e2d2710_435e5d41",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T12:47:52Z",
+      "side": 1,
+      "message": "I think we can ca remove this any views, thoughts?",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 63
+      },
+      "revId": "e55a574d80b24f78fef859e9fd9ae76a2f2fe4ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02c774ce_43455fb5",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-10T12:47:52Z",
+      "side": 1,
+      "message": "This can be in separate line , line 90? then it is common for all TCs",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 50
+      },
+      "revId": "e55a574d80b24f78fef859e9fd9ae76a2f2fe4ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
