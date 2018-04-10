@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,8 +16,8 @@ DUT nodes.
 """
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants as con
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.constants import Constants
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class L2fwdTest(object):
@@ -42,16 +42,18 @@ class L2fwdTest(object):
         :returns: none
         :raises RuntimeError: If the script "run_l2fwd.sh" fails.
         """
+        if dut_node['type'] == NodeType.DUT:
+            ssh = SSH()
+            ssh.connect(dut_node)
 
-        ssh = SSH()
-        ssh.connect(dut_node)
+            arch = Topology.get_node_arch(dut_node)
+            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l2fwd.sh {cpu_cores} ' \
+                  '{nb_cores} {queues} {jumbo} {arch}'.\
+                  format(fwdir=Constants.REMOTE_FW_DIR, cpu_cores=cpu_cores,
+                         nb_cores=nb_cores, queues=queue_nums,
+                         jumbo=jumbo_frames, arch=arch)
 
-        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && sudo ./run_l2fwd.sh {1} ' \
-              '{2} {3} {4} {5}'.format(con.REMOTE_FW_DIR, cpu_cores, nb_cores,
-                                       queue_nums, jumbo_frames,
-                                       Topology.get_node_arch(dut_node))
-
-        (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
-        if ret_code != 0:
-            raise RuntimeError('Failed to execute l2fwd test at node {0}'.
-                               format(dut_node['host']))
+            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
+            if ret_code != 0:
+                raise RuntimeError('Failed to execute l2fwd test at node '
+                                   '{name}'.format(name=dut_node['host']))
