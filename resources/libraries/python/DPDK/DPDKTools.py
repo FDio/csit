@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,7 +15,7 @@
 """This module implements initialization and cleanup of DPDK environment."""
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants as con
+from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import Topology
 
 
@@ -40,23 +40,25 @@ class DPDKTools(object):
         :returns: none
         :raises RuntimeError: If it fails to bind the interfaces to igb_uio.
         """
-        pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
-        pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
+        if dut_node['type'] == NodeType.DUT:
+            pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
+            pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
 
-        ssh = SSH()
-        ssh.connect(dut_node)
+            ssh = SSH()
+            ssh.connect(dut_node)
 
-        arch = Topology.get_node_arch(dut_node)
-        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ &&'\
-              'sudo ./init_dpdk.sh {1} {2} {3}' .format(con.REMOTE_FW_DIR,
-                                                        pci_address1,
-                                                        pci_address2,
-                                                        arch)
+            arch = Topology.get_node_arch(dut_node)
+            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/init_dpdk.sh '\
+                  '{pci1} {pci2} {arch}'.format(fwdir=Constants.REMOTE_FW_DIR,
+                                                pci1=pci_address1,
+                                                pci2=pci_address2,
+                                                arch=arch)
 
-        (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
-        if ret_code != 0:
-            raise RuntimeError('Failed to bind the interfaces to igb_uio at '
-                               'node {0}'.format(dut_node['host']))
+            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
+            if ret_code != 0:
+                raise RuntimeError('Failed to bind the interfaces to igb_uio '
+                                   'at node {name}'.\
+                                    format(name=dut_node['host']))
 
     @staticmethod
     def cleanup_dpdk_environment(dut_node, dut_if1, dut_if2):
@@ -73,19 +75,21 @@ class DPDKTools(object):
         :returns: none
         :raises RuntimeError: If it fails to cleanup the dpdk.
         """
-        pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
-        if1_driver = Topology.get_interface_driver(dut_node, dut_if1)
-        pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
-        if2_driver = Topology.get_interface_driver(dut_node, dut_if2)
+        if dut_node['type'] == NodeType.DUT:
+            pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
+            if1_driver = Topology.get_interface_driver(dut_node, dut_if1)
+            pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
+            if2_driver = Topology.get_interface_driver(dut_node, dut_if2)
 
-        ssh = SSH()
-        ssh.connect(dut_node)
+            ssh = SSH()
+            ssh.connect(dut_node)
 
-        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && sudo ./cleanup_dpdk.sh ' \
-              '{1} {2} {3} {4}'.format(con.REMOTE_FW_DIR, if1_driver,
-                                       pci_address1, if2_driver, pci_address2)
+            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/cleanup_dpdk.sh ' \
+                  '{drv1} {pci1} {drv2} {pci2}'.\
+                  format(fwdir=Constants.REMOTE_FW_DIR, drv1=if1_driver,
+                         pci1=pci_address1,drv2=if2_driver, pci2=pci_address2)
 
-        (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
-        if ret_code != 0:
-            raise RuntimeError('Failed to cleanup the dpdk at node {0}'
-                               .format(dut_node['host']))
+            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
+            if ret_code != 0:
+                raise RuntimeError('Failed to cleanup the dpdk at node {name}'
+                                   .format(name=dut_node['host']))
