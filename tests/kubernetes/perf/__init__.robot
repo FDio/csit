@@ -41,10 +41,14 @@
 | | ... | - perf_trial_duration - Duration of traffic run [s]
 | | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
+| | ... | - pkt_trace - Switch to enable packet trace for test
+| | ... | - dut_stats - Switch to enable DUT statistics
+| | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${pkt_trace} | ${False}
-| | @{plugins_to_disable}= | Create List | dpdk_plugin.so
-| | Set Global Variable | @{plugins_to_disable}
+| | Set Global Variable | ${dut_stats} | ${False}
+| | @{plugins_to_enable}= | Create List | dpdk_plugin.so
+| | Set Global Variable | @{plugins_to_enable}
