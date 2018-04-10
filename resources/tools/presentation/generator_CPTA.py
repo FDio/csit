@@ -368,7 +368,7 @@ def _generate_all_charts(spec, input_data):
 
     builds_lst = list()
     for build in range(builds[0], builds[-1] + 1):
-        status = spec.input["builds"][job_name][str(build)]["status"]
+        status = spec.input["builds"][job_name][build]["status"]
         if status != "failed" and status != "not found":
             builds_lst.append(str(build))
     print(builds_lst)
