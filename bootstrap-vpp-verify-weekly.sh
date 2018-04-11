@@ -303,6 +303,16 @@ rebot --noncritical EXPECTED_FAILING \
 # Remove unnecessary log files
 rm -f ${partial_logs}
 
+# Prepare log files for backup
+LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+LOG_ARCHIVE_DIR="$WORKSPACE/archives"
+mkdir -p ${LOG_ARCHIVE_DIR}
+
+# Archive JOB artifacts to logs.fd.io
+for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVE_DIR}/
+done
+
 echo Post-processing finished.
 
 if [ ${RC} -eq 0 ]; then

@@ -23,7 +23,12 @@ cat /etc/hosts
 
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+JOB_ARCHIVE_DIR="archive"
+LOG_ARCHIVE_DIR="$WORKSPACE/archives"
+mkdir -p ${JOB_ARCHIVE_DIR}
+mkdir -p ${LOG_ARCHIVE_DIR}
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
@@ -356,10 +361,13 @@ rebot --noncritical EXPECTED_FAILING \
 # Remove unnecessary files
 rm -f ${partial_logs}
 
-# Archive artifacts
-mkdir archive
-for i in ${ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+# Archive JOB artifacts in jenkins
+for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${JOB_ARCHIVE_DIR}/
+done
+# Archive JOB artifacts to logs.fd.io
+for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVE_DIR}/
 done
 
 echo Post-processing finished.
