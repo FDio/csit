@@ -123,6 +123,7 @@
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
+| | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add Heapsize | "4G"
 | | | Run keyword | ${dut}.Add Plugin | disable | default
 | | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
