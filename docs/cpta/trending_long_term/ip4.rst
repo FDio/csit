@@ -7,7 +7,7 @@ x520-64b-base-scale
 1t1c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base and Scale, 10ge2p1x520, 64B, 1t1c - Weekly Trend`:
+ip4-rtd-x520-64b-base-scale-1t1c:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ x520-64b-base-scale
 2t2c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base and Scale, 10ge2p1x520, 64B, 2t2c - Weekly Trend`:
+ip4-rtd-x520-64b-base-scale-2t2c:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ x520-64b-base-scale
 4t4c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base and Scale, 10ge2p1x520, 64B, 4t4c - Weekly Trend`:
+ip4-rtd-x520-64b-base-scale-4t4c:
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ x520-64b-features
 1t1c
 ````
 
-:index:`IPv4 Routed-Forwarding: Features, 10ge2p1x520, 64B, 1t1c - Weekly Trend`:
+ip4-rtd-x520-64b-features-1t1c:
 
 .. raw:: html
 
@@ -46,7 +46,7 @@ x520-64b-features
 2t2c
 ````
 
-:index:`IPv4 Routed-Forwarding: Features, 10ge2p1x520, 64B, 2t2c - Weekly Trend`:
+ip4-rtd-x520-64b-features-2t2c:
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ x520-64b-features
 4t4c
 ````
 
-:index:`IPv4 Routed-Forwarding: Features, 10ge2p1x520, 64B, 4t4c - Weekly Trend`:
+ip4-rtd-x520-64b-features-4t4c:
 
 .. raw:: html
 
@@ -67,7 +67,7 @@ x710-64b-base-scale
 1t1c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base and Scale, 10ge2p1x710, 64B, 1t1c - Weekly Trend`:
+ip4-rtd-x710-64b-base-scale-1t1c:
 
 .. raw:: html
 
@@ -76,7 +76,7 @@ x710-64b-base-scale
 2t2c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base and Scale, 10ge2p1x710, 64B, 2t2c - Weekly Trend`:
+ip4-rtd-x710-64b-base-scale-2t2c:
 
 .. raw:: html
 
@@ -85,7 +85,7 @@ x710-64b-base-scale
 4t4c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base and Scale, 10ge2p1x710, 64B, 4t4c - Weekly Trend`:
+ip4-rtd-x710-64b-base-scale-4t4c:
 
 .. raw:: html
 
@@ -97,7 +97,7 @@ x710-64b-features
 1t1c
 ````
 
-:index:`IPv4 Routed-Forwarding: Features, 10ge2p1x710, 64B, 1t1c - Weekly Trend`:
+ip4-rtd-x710-64b-features-1t1c:
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ x710-64b-features
 2t2c
 ````
 
-:index:`IPv4 Routed-Forwarding: Features, 10ge2p1x710, 64B, 2t2c - Weekly Trend`:
+ip4-rtd-x710-64b-features-2t2c:
 
 .. raw:: html
 
@@ -115,7 +115,7 @@ x710-64b-features
 4t4c
 ````
 
-:index:`IPv4 Routed-Forwarding: Features, 10ge2p1x710, 64B, 4t4c - Weekly Trend`:
+ip4-rtd-x710-64b-features-4t4c:
 
 .. raw:: html
 
@@ -127,7 +127,7 @@ xl710-64b-base-scale-features
 1t1c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base, Scale and Features, 40ge2p1xl710, 64B, 1t1c - Weekly Trend`:
+ip4-rtd-xl710-64b-base-scale-features-1t1c:
 
 .. raw:: html
 
@@ -136,7 +136,7 @@ xl710-64b-base-scale-features
 2t2c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base, Scale and Features, 40ge2p1xl710, 64B, 2t2c - Weekly Trend`:
+ip4-rtd-xl710-64b-base-scale-features-2t2c:
 
 .. raw:: html
 
@@ -145,7 +145,7 @@ xl710-64b-base-scale-features
 4t4c
 ````
 
-:index:`IPv4 Routed-Forwarding: Base, Scale and Features, 40ge2p1xl710, 64B, 4t4c - Weekly Trend`:
+ip4-rtd-xl710-64b-base-scale-features-4t4c:
 
 .. raw:: html
 

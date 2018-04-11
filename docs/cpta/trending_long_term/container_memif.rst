@@ -7,7 +7,7 @@ x520-64b-base
 1t1c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching 10ge2p1x520, 64B, 1t1c - Weekly Trend`:
+l2-memif-x520-64b-base-1t1c:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ x520-64b-base
 2t2c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching 10ge2p1x520 , 64B, 2t2c- Weekly Trend`:
+l2-memif-x520-64b-base-2t2c:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ x520-64b-base
 4t4c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching 10ge2p1x520, 64B, 4t4c - Weekly Trend`:
+l2-memif-x520-64b-base-4t4c:
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ x710-64b-base
 1t1c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 10ge2p1x710, 64B, 1t1c - Weekly Trend`:
+l2-memif-x710-64b-base-1t1c:
 
 .. raw:: html
 
@@ -46,7 +46,7 @@ x710-64b-base
 2t2c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 10ge2p1x710 , 64B, 2t2c- Weekly Trend`:
+l2-memif-x710-64b-base-2t2c:
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ x710-64b-base
 4t4c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 10ge2p1x710, 64B, 4t4c - Weekly Trend`:
+l2-memif-x710-64b-base-4t4c:
 
 .. raw:: html
 
@@ -67,7 +67,7 @@ xl710-64b-base
 1t1c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 40ge2p1xl710, 64B, 1t1c - Weekly Trend`:
+l2-memif-xl710-64b-base-1t1c:
 
 .. raw:: html
 
@@ -76,7 +76,7 @@ xl710-64b-base
 2t2c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 40ge2p1xl710, 64B, 2t2c - Weekly Trend`:
+l2-memif-xl710-64b-base-2t2c:
 
 .. raw:: html
 
@@ -85,7 +85,7 @@ xl710-64b-base
 4t4c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 40ge2p1xl710, 64B, 4t4c - Weekly Trend`:
+l2-memif-xl710-64b-base-4t4c:
 
 .. raw:: html
 
@@ -97,7 +97,7 @@ x520-imix-base
 1t1c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching 10ge2p1x520, IMIX, 1t1c - Weekly Trend`:
+l2-memif-x520-imix-base-1t1c:
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ x520-imix-base
 2t2c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching 10ge2p1x520, IMIX, 2t2c - Weekly Trend`:
+l2-memif-x520-imix-base-2t2c:
 
 .. raw:: html
 
@@ -115,7 +115,7 @@ x520-imix-base
 4t4c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching 10ge2p1x520, IMIX, 4t4c - Weekly Trend`:
+l2-memif-x520-imix-base-4t4c:
 
 .. raw:: html
 
@@ -127,7 +127,7 @@ x710-imix-base
 1t1c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 10ge2p1x710, IMIX, 1t1c - Weekly Trend`:
+l2-memif-x710-imix-base-1t1c:
 
 .. raw:: html
 
@@ -136,7 +136,7 @@ x710-imix-base
 2t2c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 10ge2p1x710, IMIX, 2t2c - Weekly Trend`:
+l2-memif-x710-imix-base-2t2c:
 
 .. raw:: html
 
@@ -145,7 +145,7 @@ x710-imix-base
 4t4c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 10ge2p1x710, IMIX, 4t4c - Weekly Trend`:
+l2-memif-x710-imix-base-4t4c:
 
 .. raw:: html
 
@@ -157,7 +157,7 @@ xl710-imix-base
 1t1c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 40ge2p1xl710, IMIX, 1t1c - Weekly Trend`:
+l2-memif-xl710-imix-base-1t1c:
 
 .. raw:: html
 
@@ -166,7 +166,7 @@ xl710-imix-base
 2t2c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 40ge2p1xl710, IMIX, 2t2c - Weekly Trend`:
+l2-memif-xl710-imix-base-2t2c:
 
 .. raw:: html
 
@@ -175,7 +175,7 @@ xl710-imix-base
 4t4c
 ````
 
-:index:`Container memif Connections: L2 Ethernet Switching, 40ge2p1xl710, IMIX, 4t4c - Weekly Trend`:
+l2-memif-xl710-imix-base-4t4c:
 
 .. raw:: html
 
