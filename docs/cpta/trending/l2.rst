@@ -1,17 +1,11 @@
 L2 Ethernet Switching
 =====================
 
-NIC 10ge2p1x520
----------------
+x520-64b-base-scale
+-------------------
 
-Base and Scale
-``````````````
-
-64B Packet
-..........
-
-1 Thread, 1 Core
-~~~~~~~~~~~~~~~~
+1t1c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 1t1c - Daily Trend`:
 
@@ -19,14 +13,8 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-1t1c-x520-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 1t1c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-1t1c-x520-14.html"></iframe><p><br><br></p>
-
-2 Threads, 2 Cores
-~~~~~~~~~~~~~~~~~~
+2t2c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 2t2c - Daily Trend`:
 
@@ -34,14 +22,8 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-2t2c-x520-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 2t2c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-2t2c-x520-14.html"></iframe><p><br><br></p>
-
-4 Threads, 4 Cores
-~~~~~~~~~~~~~~~~~~
+4t4c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 4t4c - Daily Trend`:
 
@@ -49,20 +31,11 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-4t4c-x520-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 4t4c - Weekly Trend`:
+x520-64b-features
+-----------------
 
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-4t4c-x520-14.html"></iframe><p><br><br></p>
-
-Features
-````````
-
-64B Packet
-..........
-
-1 Thread, 1 Core
-~~~~~~~~~~~~~~~~
+1t1c
+````
 
 :index:`L2 Ethernet Switching: Features, 10ge2p1x520, 64B, 1t1c - Daily Trend`:
 
@@ -70,14 +43,8 @@ Features
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-1t1c-x520-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Features, 10ge2p1x520, 64B, 1t1c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-1t1c-x520-14.html"></iframe><p><br><br></p>
-
-2 Threads, 2 Cores
-~~~~~~~~~~~~~~~~~~
+2t2c
+````
 
 :index:`L2 Ethernet Switching: Features, 10ge2p1x520, 64B, 2t2c - Daily Trend`:
 
@@ -85,14 +52,8 @@ Features
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-2t2c-x520-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Features, 10ge2p1x520, 64B, 2t2c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-2t2c-x520-14.html"></iframe><p><br><br></p>
-
-4 Threads, 4 Cores
-~~~~~~~~~~~~~~~~~~
+4t4c
+````
 
 :index:`L2 Ethernet Switching: Features, 10ge2p1x520, 64B, 4t4c - Daily Trend`:
 
@@ -100,23 +61,11 @@ Features
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-4t4c-x520-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Features, 10ge2p1x520, 64B, 4t4c - Weekly Trend`:
+x710-64b-base-scale
+-------------------
 
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-4t4c-x520-14.html"></iframe><p><br><br></p>
-
-NIC 10ge2p1x710
-----------------
-
-Base and Scale
-``````````````
-
-64B Packet
-..........
-
-1 Thread, 1 Core
-~~~~~~~~~~~~~~~~
+1t1c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x710, 64B, 1t1c - Daily Trend`:
 
@@ -124,14 +73,8 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-1t1c-x710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x710, 64B, 1t1c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-1t1c-x710-14.html"></iframe><p><br><br></p>
-
-2 Threads, 2 Cores
-~~~~~~~~~~~~~~~~~~
+2t2c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x710, 64B, 2t2c - Daily Trend`:
 
@@ -139,14 +82,8 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-2t2c-x710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x710, 64B, 2t2c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-2t2c-x710-14.html"></iframe><p><br><br></p>
-
-4 Threads, 4 Cores
-~~~~~~~~~~~~~~~~~~
+4t4c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x710, 64B, 4t4c - Daily Trend`:
 
@@ -154,20 +91,11 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-4t4c-x710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x710, 64B, 4t4c - Weekly Trend`:
+x710-64b-features
+-----------------
 
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-4t4c-x710-14.html"></iframe><p><br><br></p>
-
-Features
-````````
-
-64B Packet
-..........
-
-1 Thread, 1 Core
-~~~~~~~~~~~~~~~~
+1t1c
+````
 
 :index:`L2 Ethernet Switching: Features, 10ge2p1x710, 64B, 1t1c - Daily Trend`:
 
@@ -175,14 +103,8 @@ Features
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-1t1c-x710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Features, 10ge2p1x710, 64B, 1t1c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-1t1c-x710-14.html"></iframe><p><br><br></p>
-
-2 Threads, 2 Cores
-~~~~~~~~~~~~~~~~~~
+2t2c
+````
 
 :index:`L2 Ethernet Switching: Features, 10ge2p1x710, 64B, 2t2c - Daily Trend`:
 
@@ -190,14 +112,8 @@ Features
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-2t2c-x710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Features, 10ge2p1x710, 64B, 2t2c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-2t2c-x710-14.html"></iframe><p><br><br></p>
-
-4 Threads, 4 Cores
-~~~~~~~~~~~~~~~~~~
+4t4c
+````
 
 :index:`L2 Ethernet Switching: Features, 10ge2p1x710, 64B, 4t4c - Daily Trend`:
 
@@ -205,23 +121,11 @@ Features
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-4t4c-x710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Features, 10ge2p1x710, 64B, 4t4c - Weekly Trend`:
+xl710-64b-base-scale
+--------------------
 
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-feature-4t4c-x710-14.html"></iframe><p><br><br></p>
-
-NIC 40ge2p1xl710
-----------------
-
-Base and Scale
-``````````````
-
-64B Packet
-..........
-
-1 Thread, 1 Core
-~~~~~~~~~~~~~~~~
+1t1c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 1t1c - Daily Trend`:
 
@@ -229,14 +133,8 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-1t1c-xl710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 1t1c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-1t1c-xl710-14.html"></iframe><p><br><br></p>
-
-2 Threads, 2 Cores
-~~~~~~~~~~~~~~~~~~
+2t2c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 2t2c - Daily Trend`:
 
@@ -244,23 +142,11 @@ Base and Scale
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-2t2c-xl710-1.html"></iframe><p><br><br></p>
 
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 2t2c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-2t2c-xl710-14.html"></iframe><p><br><br></p>
-
-4 Threads, 4 Cores
-~~~~~~~~~~~~~~~~~~
+4t4c
+````
 
 :index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 2t2c - Daily Trend`:
 
 .. raw:: html
 
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-4t4c-xl710-1.html"></iframe><p><br><br></p>
-
-:index:`L2 Ethernet Switching: Base and Scale, 10ge2p1x520, 64B, 2t2c - Weekly Trend`:
-
-.. raw:: html
-
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-l2-4t4c-xl710-14.html"></iframe><p><br><br></p>
