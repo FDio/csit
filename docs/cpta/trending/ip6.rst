@@ -7,7 +7,7 @@ x520-78b-base-scale
 1t1c
 ````
 
-:index:`IPv6 Routed-Forwarding: 10ge2p1x520, 78B, 1t1c - Daily Trend`:
+:index:`ip6-rtd-x520-78b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ x520-78b-base-scale
 2t2c
 ````
 
-:index:`IPv6 Routed-Forwarding: 10ge2p1x520, 78B, 2t2c - Daily Trend`:
+:index:`ip6-rtd-x520-78b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ x520-78b-base-scale
 4t4c
 ````
 
-:index:`IPv6 Routed-Forwarding: 10ge2p1x520, 78B, 4t4c - Daily Trend`:
+:index:`ip6-rtd-x520-78b-base-scale-4t4c`:
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ x710-78b-base-scale
 1t1c
 ````
 
-:index:`IPv6 Routed-Forwarding: 10ge2p1x710, 78B, 1t1c - Daily Trend`:
+:index:`ip6-rtd-x710-78b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -46,7 +46,7 @@ x710-78b-base-scale
 2t2c
 ````
 
-:index:`IPv6 Routed-Forwarding: 10ge2p1x710, 78B, 2t2c - Daily Trend`:
+:index:`ip6-rtd-x710-78b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ x710-78b-base-scale
 4t4c
 ````
 
-:index:`IPv6 Routed-Forwarding: 10ge2p1x710, 78B, 4t4c - Daily Trend`:
+:index:`ip6-rtd-x710-78b-base-scale-4t4c`:
 
 .. raw:: html
 
@@ -67,7 +67,7 @@ xl710-78b-base-scale
 1t1c
 ````
 
-:index:`IPv6 Routed-Forwarding: 40ge2p1xl710, 78B, 1t1c - Daily Trend`:
+:index:`ip6-rtd-xl710-78b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -76,7 +76,7 @@ xl710-78b-base-scale
 2t2c
 ````
 
-:index:`IPv6 Routed-Forwarding: 40ge2p1xl710, 78B, 2t2c - Daily Trend`:
+:index:`ip6-rtd-xl710-78b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -85,7 +85,7 @@ xl710-78b-base-scale
 4t4c
 ````
 
-:index:`IPv6 Routed-Forwarding: 40ge2p1xl710, 78B, 4t4c - Daily Trend`:
+:index:`ip6-rtd-xl710-78b-base-scale-4t4c`:
 
 .. raw:: html
 
