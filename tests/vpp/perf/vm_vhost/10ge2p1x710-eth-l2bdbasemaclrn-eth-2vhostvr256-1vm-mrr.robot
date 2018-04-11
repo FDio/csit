@@ -101,7 +101,7 @@
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -113,7 +113,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${64} | wt=1 | rxq=1
 
-| tc02-1518B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm
+| tc02-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -125,7 +125,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${1518} | wt=1 | rxq=1
 
-| tc03-9000B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm
+| tc03-9000B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -137,7 +137,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${9000} | wt=1 | rxq=1
 
-| tc04-IMIX-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc04-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -150,7 +150,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1
 
-| tc05-64B-2t2c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc05-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -162,7 +162,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${64} | wt=2 | rxq=1
 
-| tc06-1518B-2t2c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc06-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -174,7 +174,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${1518} | wt=2 | rxq=1
 
-| tc07-9000B-2t2c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc07-9000B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -186,7 +186,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${9000} | wt=2 | rxq=1
 
-| tc08-IMIX-2t2c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc08-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -199,7 +199,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1
 
-| tc09-64B-4t4c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc09-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -211,7 +211,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${64} | wt=4 | rxq=2
 
-| tc10-1518B-4t4c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc10-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -223,7 +223,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${1518} | wt=4 | rxq=2
 
-| tc11-9000B-4t4c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc11-9000B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -235,7 +235,7 @@
 | | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr256-1vm
 | | framesize=${9000} | wt=4 | rxq=2
 
-| tc12-IMIX-4t4c-ethip4-ip4base-eth-2vhostvr256-1vm-mrr
+| tc12-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
