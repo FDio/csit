@@ -7,7 +7,7 @@ x520-64b-base
 1t1c
 ````
 
-:index:`IPv4 Overlay Tunnels: 10ge2p1x520, 64B, 1t1c - Daily Trend`:
+:index:`ip4-tun-x520-64b-base-1t1c`:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ x520-64b-base
 2t2c
 ````
 
-:index:`IPv4 Overlay Tunnels: 10ge2p1x520, 64B, 2t2c - Daily Trend`:
+:index:`ip4-tun-x520-64b-base-2t2c`:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ x520-64b-base
 4t4c
 ````
 
-:index:`IPv4 Overlay Tunnels: 10ge2p1x520, 64B, 4t4c - Daily Trend`:
+:index:`ip4-tun-x520-64b-base-4t4c`:
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ x710-64b-base
 1t1c
 ````
 
-:index:`IPv4 Overlay Tunnels: 10ge2p1x710, 64B, 1t1c - Daily Trend`:
+:index:`ip4-tun-x710-64b-base-1t1c`:
 
 .. raw:: html
 
@@ -46,7 +46,7 @@ x710-64b-base
 2t2c
 ````
 
-:index:`IPv4 Overlay Tunnels: 10ge2p1x710, 64B, 2t2c - Daily Trend`:
+:index:`ip4-tun-x710-64b-base-2t2c`:
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ x710-64b-base
 4t4c
 ````
 
-:index:`IPv4 Overlay Tunnels: 10ge2p1x710, 64B, 4t4c - Daily Trend`:
+:index:`ip4-tun-x710-64b-base-4t4c`:
 
 .. raw:: html
 

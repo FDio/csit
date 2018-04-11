@@ -7,7 +7,7 @@ x520-64b-base
 1t1c
 ````
 
-:index:`VM vhost Connections: L2 Ethernet Switching, 10ge2p1x520, 64B, 1t1c - Weekly Trend`:
+l2-vhost-x520-64b-base-1t1c:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ x520-64b-base
 2t2c
 ````
 
-:index:`VM vhost Connections: L2 Ethernet Switching, 10ge2p1x520, 64B, 2t2c - Weekly Trend`:
+l2-vhost-x520-64b-base-2t2c:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ x520-64b-base
 4t4c
 ````
 
-:index:`VM vhost Connections: L2 Ethernet Switching, 10ge2p1x520, 64B, 4t4c - Weekly Trend`:
+l2-vhost-x520-64b-base-4t4c:
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ x710-64b-base
 1t1c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 10ge2p1x710, 64B, 1t1c - Weekly Trend`:
+l2-vhost-x710-64b-base-1t1c:
 
 .. raw:: html
 
@@ -46,7 +46,7 @@ x710-64b-base
 2t2c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 10ge2p1x710, 64B, 2t2c - Weekly Trend`:
+l2-vhost-x710-64b-base-2t2c:
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ x710-64b-base
 4t4c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 10ge2p1x710, 64B, 4t4c - Weekly Trend`:
+l2-vhost-x710-64b-base-4t4c:
 
 .. raw:: html
 
@@ -67,7 +67,7 @@ xl710-64b-base
 1t1c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 40ge2p1xl710, 64B, 1t1c - Weekly Trend`:
+l2-vhost-xl710-64b-base-1t1c:
 
 .. raw:: html
 
@@ -75,8 +75,7 @@ xl710-64b-base
 
 2t2c
 ````
-
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 40ge2p1xl710, 64B, 2t2c - Weekly Trend`:
+l2-vhost-xl710-64b-base-2t2c:
 
 .. raw:: html
 
@@ -85,7 +84,7 @@ xl710-64b-base
 4t4c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 40ge2p1xl710, 64B, 4t4c - Weekly Trend`:
+l2-vhost-xl710-64b-base-4t4c:
 
 .. raw:: html
 
@@ -97,7 +96,7 @@ x520-imix-base
 1t1c
 ````
 
-:index:`VM vhost Connections: L2 Ethernet Switching, 10ge2p1x520, IMIX, 1t1c - Weekly Trend`:
+l2-vhost-x520-imix-base-1t1c:
 
 .. raw:: html
 
@@ -106,7 +105,7 @@ x520-imix-base
 2t2c
 ````
 
-:index:`VM vhost Connections: L2 Ethernet Switching, 10ge2p1x520, IMIX, 2t2c - Weekly Trend`:
+l2-vhost-x520-imix-base-2t2c:
 
 .. raw:: html
 
@@ -115,7 +114,7 @@ x520-imix-base
 4t4c
 ````
 
-:index:`VM vhost Connections: L2 Ethernet Switching, 10ge2p1x520, IMIX, 4t4c - Weekly Trend`:
+l2-vhost-x520-imix-base-4t4c:
 
 .. raw:: html
 
@@ -127,7 +126,7 @@ x710-imix-base
 1t1c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 10ge2p1x710, IMIX, 1t1c - Weekly Trend`:
+l2-vhost-x710-imix-base-1t1c:
 
 .. raw:: html
 
@@ -136,7 +135,7 @@ x710-imix-base
 2t2c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 10ge2p1x710, IMIX, 2t2c - Weekly Trend`:
+l2-vhost-x710-imix-base-2t2c:
 
 .. raw:: html
 
@@ -145,7 +144,7 @@ x710-imix-base
 4t4c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 10ge2p1x710, IMIX, 4t4c - Weekly Trend`:
+l2-vhost-x710-imix-base-4t4c:
 
 .. raw:: html
 
@@ -157,7 +156,7 @@ xl710-imix-base
 1t1c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 40ge2p1xl710, IMIX, 1t1c - Weekly Trend`:
+l2-vhost-xl710-imix-base-1t1c:
 
 .. raw:: html
 
@@ -166,7 +165,7 @@ xl710-imix-base
 2t2c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 40ge2p1xl710, IMIX, 2t2c - Weekly Trend`:
+l2-vhost-xl710-imix-base-2t2c:
 
 .. raw:: html
 
@@ -175,7 +174,7 @@ xl710-imix-base
 4t4c
 ````
 
-:index:`VM vhost Connections: IPv4 Routed-Forwarding, 40ge2p1xl710, IMIX, 4t4c - Weekly Trend`:
+l2-vhost-xl710-imix-base-2t2c:
 
 .. raw:: html
 

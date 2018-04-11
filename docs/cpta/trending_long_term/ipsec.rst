@@ -1,5 +1,5 @@
-IPSec Crypto HW: IP4 Routed-Forwarding
-======================================
+IPv4 IPSec Crypto HW
+====================
 
 xl710-64b-base-scale
 --------------------
@@ -7,7 +7,7 @@ xl710-64b-base-scale
 1t1c
 ````
 
-:index:`IPSec Crypto HW: IP4 Routed-Forwarding, 40ge2p1xl710, 64B, 1t1c - Weekly Trend`:
+ip4-ipsechw-xl710-64b-base-scale-1t1c:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ xl710-64b-base-scale
 2t2c
 ````
 
-:index:`IPSec Crypto HW: IP4 Routed-Forwarding, 40ge2p1xl710, 64B, 2t2c - Weekly Trend`:
+ip4-ipsechw-xl710-64b-base-scale-2t2c:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ xl710-64b-base-scale
 4t4c
 ````
 
-:index:`IPSec Crypto HW: IP4 Routed-Forwarding, 40ge2p1xl710, 64B, 4t4c - Weekly Trend`:
+ip4-ipsechw-xl710-64b-base-scale-4t4c:
 
 .. raw:: html
 
