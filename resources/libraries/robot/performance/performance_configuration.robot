@@ -1285,6 +1285,54 @@
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
+| Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on one VPP node. Add each
+| | ... | Vhost-User interface into L2 bridge domains with learning enabled
+| | ... | one connected to physical interface, the other to VXLAN.
+| | ... | Setup VXLANoIPv4 between DUTs and TG by connecting physical and vxlan
+| | ... | interfaces on the DUT. All interfaces are brought up.
+| | ... | IPv4 addresses with prefix /24 are configured on interfaces between
+| | ... | DUT and TG.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut1_bd_id1 - Bridge domain ID. Type: integer
+| | ... | - dut1_bd_id2 - Bridge domain ID. Type: integer
+| | ... | - dut2_bd_id1 - Bridge domain ID. Type: integer
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains with Vhost-User and VXLANoIPv4 initialized in a\
+| | ... | 2-node circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
+| | ...
+| | [Arguments] | ${dut1_bd_id1} | ${dut1_bd_id2} | ${dut2_bd_id1} | ${sock1} | ${sock2}
+| | ...
+| | Set interfaces in path in 3-node circular topology up
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 172.16.0.1
+| | ... | 24
+| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2} | 172.16.1.1
+| | ... | 24
+| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
+| | ... | 172.16.0.1 | 172.17.0.2
+| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
+| | ... | 172.16.1.1 | 172.17.1.2
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 172.16.0.2 | ${tg_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 172.16.1.2 | ${tg_if2_mac}
+| | Vpp Route Add | ${dut1} | 172.17.0.0 | 24 | 172.16.0.2 | ${dut1_if1}
+| | Vpp Route Add | ${dut2} | 172.17.1.0 | 24 | 172.16.1.2 | ${dut2_if2}
+| | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | ... | ${sock1} | ${sock2}
+| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${dut1_bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${dut1s_vxlan} | ${dut1_bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${dut1_bd_id2}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${dut1_bd_id2}
+| | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${dut2_bd_id1}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${dut2_bd_id1}
+
 | Initialize L2 bridge domains with Vhost-User in 2-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
