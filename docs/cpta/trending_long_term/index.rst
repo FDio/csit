@@ -1,5 +1,5 @@
-Daily Trending Graphs
-=====================
+Long-Term Trending Graphs
+=========================
 
 .. toctree::
 
