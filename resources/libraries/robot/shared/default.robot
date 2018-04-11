@@ -119,6 +119,7 @@
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
 | | | Run keyword | ${dut}.Add Heapsize | "3G"
+| | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | "2000000"
 | | | Run keyword | ${dut}.Add IP6 Heap Size | "3G"
 
