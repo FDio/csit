@@ -636,6 +636,31 @@
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
 
+| Tear down performance test with vhost and VM with dpdk-testpmd and ACL
+| | [Documentation] | Common test teardown for performance tests which use
+| | ... | vhost(s) and VM(s) with ACL and dpdk-testpmd.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
+| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
+| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
+| | ...
+| | Tear down performance test with vhost and VM with dpdk-testpmd
+| | ... | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${dut1_node} | ${dut1_vm_refs}
+| | ... | ${dut2_node} | ${dut2_vm_refs}
+| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Run Keyword And Ignore Error
+| | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
+
 | Tear down performance pdrchk test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for performance pdrchk tests which \
 | | ... | use vhost(s) and VM(s) with dpdk-testpmd.
