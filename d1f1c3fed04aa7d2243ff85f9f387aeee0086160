@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3640f30a_234cdd68",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1252
+      },
+      "writtenOn": "2018-04-11T06:05:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55b9643a_68b9a1ca",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 210,
+        "endChar": 30
+      },
+      "revId": "d1f1c3fed04aa7d2243ff85f9f387aeee0086160",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28b0b10e_2af0e714",
         "filename": "resources/libraries/python/PacketVerifier.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-10T12:12:13Z",
       "side": 1,
       "message": "PEP8: Too broad exception",
+      "range": {
+        "startLine": 225,
+        "startChar": 8,
+        "endLine": 225,
+        "endChar": 14
+      },
+      "revId": "d1f1c3fed04aa7d2243ff85f9f387aeee0086160",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "815fabc5_aa49b2b8",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1252
+      },
+      "writtenOn": "2018-04-11T06:05:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28b0b10e_2af0e714",
       "range": {
         "startLine": 225,
         "startChar": 8,
