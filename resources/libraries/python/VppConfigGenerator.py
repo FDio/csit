@@ -281,6 +281,15 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'dev default', 'num-tx-desc']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_log_level(self, value):
+        """Add DPDK log-level configuration.
+
+        :param value: Log level.
+        :type value: str
+        """
+        path = ['dpdk', 'log-level']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_socketmem(self, value):
         """Add DPDK socket memory configuration.
 

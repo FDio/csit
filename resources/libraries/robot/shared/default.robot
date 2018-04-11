@@ -125,6 +125,7 @@
 | | | Run keyword | ${dut}.Add API segment API size | 1G
 | | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
+| | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add Heapsize | "4G"
 | | | Run keyword | ${dut}.Add Plugin Disable | @{plugins_to_disable}
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | "2000000"
