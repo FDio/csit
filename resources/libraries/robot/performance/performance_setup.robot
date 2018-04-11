@@ -601,6 +601,20 @@
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
 
+
+| Tear down performance test with vhost and VM with dpdk-testpmd and ACL
+| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
+| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
+| | ...
+| | Tear down performance test with vhost and VM with dpdk-testpmd
+| | ... | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${dut1_node} | ${dut1_vm_refs}
+| | ... | ${dut2_node} | ${dut2_vm_refs}
+| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Run Keyword And Ignore Error
+| | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
+
 | Tear down performance pdrchk test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for performance pdrchk tests which \
 | | ... | use vhost(s) and VM(s) with dpdk-testpmd.

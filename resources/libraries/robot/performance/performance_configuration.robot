@@ -1285,6 +1285,63 @@
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
+| Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on one VPP node. Add each
+| | ... | Vhost-User interface into L2 bridge domains with learning enabled
+| | ... | one connected to physical interface, the other to VXLAN.
+| | ... | Setup VXLANoIPv4 between DUTs and TG by connecting physical and vxlan
+| | ... | interfaces on the DUT. All interfaces are brought up.
+| | ... | IPv4 addresses with prefix /24 are configured on interfaces between
+| | ... | DUT and TG.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut1_address - Address of physical interface on DUT1. Type: string
+| | ... | - dut1_address_subnet - Subnet of the address of physical interface on DUT1. Type: string
+| | ... | - dut2_address - Address of physical interface on DUT2. Type: string
+| | ... | - dut2_address_subnet - Subnet of the address of physical interface on DUT2. Type: string
+| | ... | - dut1_gw - Address of the _gateway_ to which the traffic will be forwarded on DUT1. Type: string
+| | ... | - dut2_gw - Address of the _gateway_ to which the traffic will be forwarded on DUT2. Type: string
+| | ... | - dut1_vxlans - List of VXLAN params to be configured on DUT1. Type: list of dicts, dict params vni, vtep
+| | ... | - dut2_vxlans - List of VXLAN params to be configured on DUT2. Type: list of dicts, dict params vni, vtep
+| | ... | - dut1_route_subnet - Subnet address to forward to  _gateway_ on DUT1. Type: string
+| | ... | - dut1_route_mask - Subnet address mask to forward to  _gateway_ on DUT1. Type: string
+| | ... | - dut2_route_subnet - Subnet address to forward to  _gateway_ on DUT2. Type: string
+| | ... | - dut2_route_mask - Subnet address mask to forward to  _gateway_ on DUT2. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | [Arguments] | ${dut1_address} | ${dut1_address_subnet} |
+| | ... | ${dut2_address} | ${dut2_address_subnet} | ${dut1_gw} | ${dut2_gw} |
+| | ... | ${dut1_vxlans} | ${dut2_vxlans} | ${dut1_route_subnet} | ${dut1_route_mask}
+| | ... | ${dut2_route_subnet} | ${dut2_route_mask}
+| | ...
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | ${dut1_address}
+| | ... | ${dut1_address_subnet}
+| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2} | ${dut2_address}
+| | ... | ${dut2_address_subnet}
+| | ${dut1_bd_id1}= | Set Variable | 1
+| | ${dut1_bd_id2}= | Set Variable | 2
+| | ${dut2_bd_id1}= | Set Variable | 1
+| | :FOR | ${vxlan} | IN | @{dut1_vxlans}
+| | | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | ${vxlan.vni}
+| | | ... | ${dut1_address} | ${vxlan.vtep}
+| | | Add interface to bridge domain | ${dut1} | ${dut1s_vxlan} | ${dut1_bd_id1}
+| | :FOR | ${vxlan} | IN | @{dut2_vxlans}
+| | | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | ${vxlan.vni}
+| | | ... | ${dut2_address} | ${vxlan.vtep}
+| | | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${dut2_bd_id1}
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | ${dut1_gw} | ${tg_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | ${dut2_gw} | ${tg_if2_mac}
+| | Vpp Route Add | ${dut1} | ${dut1_route_subnet} | ${dut1_route_mask} | ${dut1_gw} | ${dut1_if1}
+| | Vpp Route Add | ${dut2} | ${dut2_route_subnet} | ${dut2_route_mask} | ${dut2_gw} | ${dut2_if2}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${dut1_bd_id2}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${dut2_bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${dut1_bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${dut1_bd_id2}
+
 | Initialize L2 bridge domains with Vhost-User in 2-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
