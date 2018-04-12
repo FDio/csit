@@ -94,7 +94,6 @@ if [ "$jumbo_frames" = "yes" ]; then
         --portmask=0x3 \
         --nb-cores=${nb_cores} \
         --max-pkt-len=9000 \
-        --txqflags=0 \
         --forward-mode=io \
         --rxq=${queue_nums} \
         --txq=$((${nb_cores} + 1)) \
@@ -105,7 +104,7 @@ if [ "$jumbo_frames" = "yes" ]; then
         --auto-start"
 else
     sudo sh -c "screen -dmSL DPDK-test $TESTPMD_BIN \
-        -l ${cpu_corelist} -n 4 -- \
+        -l ${cpu_corelist} -n 4 --log-level 8 -- \
         --numa \
         --nb-ports=2 \
         --portmask=0x3 \
