@@ -136,7 +136,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames\
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
