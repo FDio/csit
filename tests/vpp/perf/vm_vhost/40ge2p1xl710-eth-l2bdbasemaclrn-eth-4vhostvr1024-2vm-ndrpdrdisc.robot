@@ -113,6 +113,40 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
+| Discover NDRPDR for eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ${wt} thread, ${wt} phy\
+| | ... | core, ${rxq} receive queue per NIC port.
+| | ... | [Ver] Find NDR and PDR for ${framesize} frames using optimized search start at
+| | ... | 40GE linerate.
+| | ...
+| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | ...
+| | # Test Variables required for test and test teardown
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${min_rate} | ${20000}
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${get_framesize}
+| | ${max_rate}= | Set Variable If
+| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
+| | ${dut1_vm_refs}= | Create Dictionary
+| | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
+| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
+| | ... | ${False} | ${True}
+| | Set Test Variable | ${jumbo_frames}
+| | ...
+| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Run Keyword If | ${get_framesize} < ${1522}
+| | ... | Add no multi seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | Then Find NDR and PDR intervals using optimized Trex search
+| | ... | ${framesize} | ${min_rate} | ${max_rate} | ${traffic_profile}
+
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
@@ -121,7 +155,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -133,10 +167,22 @@
 | | ... | [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THIS
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
+
+| tc90-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrpdr
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR and PDR for 64 Byte frames \
+| | ... | using binary search start at 40GE linerate.
+| | ...
+| | [Tags] | 64B | 1T1C | STHREAD | NDRPDR | THIS
+| | ...
+| | [Template] | Discover NDRPDR for eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm
+| | wt=1 | rxq=1 | framesize=${64}
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-ndrdisc
 | | [Documentation]
