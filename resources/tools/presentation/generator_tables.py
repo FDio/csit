@@ -18,7 +18,6 @@
 import logging
 import csv
 import prettytable
-import numpy as np
 import pandas as pd
 
 from string import replace
@@ -441,7 +440,7 @@ def table_performance_comparison(table, input_data):
                                                table["output-file-ext"])
                  ]
     for file_name in tbl_names:
-        logging.info("      Writing file: '{}'".format(file_name))
+        logging.info("      Writing file: '{0}'".format(file_name))
         with open(file_name, "w") as file_handler:
             file_handler.write(header_str)
             for test in tbl_lst:
@@ -462,7 +461,7 @@ def table_performance_comparison(table, input_data):
 
     for i, txt_name in enumerate(tbl_names_txt):
         txt_table = None
-        logging.info("      Writing file: '{}'".format(txt_name))
+        logging.info("      Writing file: '{0}'".format(txt_name))
         with open(tbl_names[i], 'rb') as csv_file:
             csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
             for row in csv_content:
@@ -484,7 +483,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-ndr-1t1c-top{1}".format(table["output-file"],
                                                table["output-file-ext"])
-    logging.info("      Writing file: '{}'".format(output_file))
+    logging.info("      Writing file: '{0}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[1:]):
@@ -494,7 +493,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-ndr-1t1c-bottom{1}".format(table["output-file"],
                                                   table["output-file-ext"])
-    logging.info("      Writing file: '{}'".format(output_file))
+    logging.info("      Writing file: '{0}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[-1:0:-1]):
@@ -511,7 +510,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-pdr-1t1c-top{1}".format(table["output-file"],
                                                table["output-file-ext"])
-    logging.info("      Writing file: '{}'".format(output_file))
+    logging.info("      Writing file: '{0}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[1:]):
@@ -521,7 +520,7 @@ def table_performance_comparison(table, input_data):
 
     output_file = "{0}-pdr-1t1c-bottom{1}".format(table["output-file"],
                                                   table["output-file-ext"])
-    logging.info("      Writing file: '{}'".format(output_file))
+    logging.info("      Writing file: '{0}'".format(output_file))
     with open(output_file, "w") as out_file:
         out_file.write(header_str)
         for i, line in enumerate(lines[-1:0:-1]):
@@ -567,7 +566,7 @@ def table_performance_trending_dashboard(table, input_data):
                                           "data": list()}
                 try:
                     tbl_dict[tst_name]["data"]. \
-                        append(tst_data["throughput"]["value"])
+                        append(tst_data["result"]["throughput"])
                 except TypeError:
                     pass  # No data in output.xml for this test
 
@@ -606,19 +605,19 @@ def table_performance_trending_dashboard(table, input_data):
                             anomaly])
 
     # Sort the table according to the relative change
-    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+    tbl_lst.sort(key=lambda rel: rel[-2], reverse=True)
 
-    file_name = "{}.{}".format(table["output-file"], table["output-file-ext"])
+    file_name = "{0}.{1}".format(table["output-file"], table["output-file-ext"])
 
-    logging.info("      Writing file: '{}'".format(file_name))
+    logging.info("      Writing file: '{0}'".format(file_name))
     with open(file_name, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(",".join([str(item) for item in test]) + '\n')
 
-    txt_file_name = "{}.txt".format(table["output-file"])
+    txt_file_name = "{0}.txt".format(table["output-file"])
     txt_table = None
-    logging.info("      Writing file: '{}'".format(txt_file_name))
+    logging.info("      Writing file: '{0}'".format(txt_file_name))
     with open(file_name, 'rb') as csv_file:
         csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
         for row in csv_content:
