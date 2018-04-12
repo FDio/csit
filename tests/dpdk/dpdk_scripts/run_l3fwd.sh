@@ -88,12 +88,14 @@ cd ${ROOTDIR}/${DPDK_VERSION}/
 rm -f ${L3FWDLOG}
 if [ "$jumbo_frames" = "yes" ]; then
     sudo sh -c "screen -dmSL DPDK-test ./examples/l3fwd/build/app/l3fwd \
-    -l ${cpu_corelist} -n 4 -- -P -L -p 0x3 --config='${port_config}' \
+    -l ${cpu_corelist} -n 4 --log-level 8 -- \
+    -P -L -p 0x3 --config='${port_config}' \
     --enable-jumbo --max-pkt-len=9000 --eth-dest=0,${adj_mac0} \
     --eth-dest=1,${adj_mac1} --parse-ptype"
 else
     sudo sh -c "screen -dmSL DPDK-test ./examples/l3fwd/build/app/l3fwd \
-    -l ${cpu_corelist} -n 4 -- -P -L -p 0x3 --config='${port_config}' \
+    -l ${cpu_corelist} -n 4 --log-level 8 -- \
+    -P -L -p 0x3 --config='${port_config}' \
     --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype"
 fi
 
