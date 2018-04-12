@@ -7,7 +7,7 @@ xl710-64b-base-scale
 1t1c
 ````
 
-ip4-ipsechw-xl710-64b-base-scale-1t1c:
+:index:`ip4-ipsechw-xl710-64b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ ip4-ipsechw-xl710-64b-base-scale-1t1c:
 2t2c
 ````
 
-ip4-ipsechw-xl710-64b-base-scale-2t2c:
+:index:`ip4-ipsechw-xl710-64b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ ip4-ipsechw-xl710-64b-base-scale-2t2c:
 4t4c
 ````
 
-ip4-ipsechw-xl710-64b-base-scale-4t4c:
+:index:`ip4-ipsechw-xl710-64b-base-scale-4t4c`:
 
 .. raw:: html
 
