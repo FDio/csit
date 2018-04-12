@@ -18,11 +18,14 @@
 import logging
 import csv
 import prettytable
+import numpy as np
+import pandas as pd
 
 from string import replace
+from math import isnan
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change, remove_outliers
+from utils import mean, stdev, relative_change, remove_outliers, find_outliers
 
 
 def generate_tables(spec, data):
@@ -525,3 +528,104 @@ def table_performance_comparison(table, input_data):
             if i == table["nr-of-tests-shown"]:
                 break
             out_file.write(line)
+
+
+def table_performance_trending_dashboard(table, input_data):
+    """Generate the table(s) with algorithm: table_performance_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    data = input_data.filter_data(table)
+
+    # Prepare the header of the tables
+    header = ["Test case",
+              "Thput trend [Mpps]",
+              "Change [Mpps]",
+              "Change [%]",
+              "Anomaly"]
+    header_str = ",".join(header) + "\n"
+
+    # Prepare data to the table:
+    tbl_dict = dict()
+    for job, builds in table["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                if tbl_dict.get(tst_name, None) is None:
+                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
+                                            "-".join(tst_data["name"].
+                                                     split("-")[1:]))
+                    tbl_dict[tst_name] = {"name": name,
+                                          "data": list()}
+                try:
+                    tbl_dict[tst_name]["data"]. \
+                        append(tst_data["throughput"]["value"])
+                except TypeError:
+                    pass  # No data in output.xml for this test
+
+    tbl_lst = list()
+    for tst_name in tbl_dict.keys():
+        if len(tbl_dict[tst_name]["data"]) > 2:
+            pd_data = pd.Series(tbl_dict[tst_name]["data"])
+            win_size = pd_data.size \
+                if pd_data.size < table["window"] else table["window"]
+            # Test name:
+            name = tbl_dict[tst_name]["name"]
+            # Throughput trend:
+            trend = list(pd_data.rolling(window=win_size).median())[-2]
+            # Anomaly:
+            t_data, _ = find_outliers(pd_data)
+            last = list(t_data)[-1]
+            t_stdev = list(t_data.rolling(window=win_size, min_periods=2).
+                         std())[-2]
+            if isnan(last):
+                anomaly = "outlier"
+            elif last < (trend - 3 * t_stdev):
+                anomaly = "regression"
+            elif last > (trend + 3 * t_stdev):
+                anomaly = "progression"
+            else:
+                anomaly = "normal"
+            # Change:
+            change = round(float(last - trend) / 1000000, 2)
+            # Relative change:
+            rel_change = int(relative_change(float(trend), float(last)))
+
+            tbl_lst.append([name,
+                            round(float(last) / 1000000, 2),
+                            change,
+                            rel_change,
+                            anomaly])
+
+    # Sort the table according to the relative change
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    file_name = "{}.{}".format(table["output-file"], table["output-file-ext"])
+
+    logging.info("      Writing file: '{}'".format(file_name))
+    with open(file_name, "w") as file_handler:
+        file_handler.write(header_str)
+        for test in tbl_lst:
+            file_handler.write(",".join([str(item) for item in test]) + '\n')
+
+    txt_file_name = "{}.txt".format(table["output-file"])
+    txt_table = None
+    logging.info("      Writing file: '{}'".format(txt_file_name))
+    with open(file_name, 'rb') as csv_file:
+        csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+        for row in csv_content:
+            if txt_table is None:
+                txt_table = prettytable.PrettyTable(row)
+            else:
+                txt_table.add_row(row)
+        txt_table.align["Test case"] = "l"
+    with open(txt_file_name, "w") as txt_file:
+        txt_file.write(str(txt_table))
