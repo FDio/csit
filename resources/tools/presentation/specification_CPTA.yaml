@@ -205,6 +205,65 @@
     - minimal
 
 ################################################################################
+###                               T A B L E S                                ###
+################################################################################
+
+-
+  type: "table"
+  title: "Performance trending dashboard"
+  algorithm: "table_performance_trending_dashboard"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c"
+  data: "plot-performance-trending"
+  filter: "'1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
+  outlier-const: 1.5
+  window: 10
+
+-
+  type: "table"
+  title: "Performance trending dashboard"
+  algorithm: "table_performance_trending_dashboard"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c"
+  data: "plot-performance-trending"
+  filter: "'2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
+  outlier-const: 1.5
+  window: 10
+
+-
+  type: "table"
+  title: "Performance trending dashboard"
+  algorithm: "table_performance_trending_dashboard"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c"
+  data: "plot-performance-trending"
+  filter: "'4T4C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
+  outlier-const: 1.5
+  window: 10
+
+
+################################################################################
 ###                                 C P T A                                  ###
 ################################################################################
 
