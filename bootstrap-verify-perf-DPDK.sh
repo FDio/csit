@@ -113,6 +113,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
               -s "tests.dpdk.perf" \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
 esac

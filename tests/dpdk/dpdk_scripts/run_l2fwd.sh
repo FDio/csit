@@ -77,7 +77,7 @@ cd ${ROOTDIR}/${DPDK_VERSION}/
 rm -f ${TESTPMDLOG}
 if [ "$jumbo_frames" = "yes" ]; then
     sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd \
-        -l ${cpu_corelist} -n 4 -- \
+        -l ${cpu_corelist} -n 4 --log-level 8 -- \
         --numa \
         --nb-ports=2 \
         --portmask=0x3 \
@@ -94,7 +94,7 @@ if [ "$jumbo_frames" = "yes" ]; then
         --auto-start"
 else
     sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd \
-        -l ${cpu_corelist} -n 4 -- \
+        -l ${cpu_corelist} -n 4 --log-level 8 -- \
         --numa \
         --nb-ports=2 \
         --portmask=0x3 \
