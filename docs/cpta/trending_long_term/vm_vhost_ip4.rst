@@ -7,7 +7,7 @@ x520-64b-base
 1t1c
 ````
 
-ip4-vhost-x520-64b-base-1t1c:
+:index:`ip4-vhost-x520-64b-base-1t1c`:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ ip4-vhost-x520-64b-base-1t1c:
 2t2c
 ````
 
-ip4-vhost-x520-64b-base-2t2c:
+:index:`ip4-vhost-x520-64b-base-2t2c`:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ ip4-vhost-x520-64b-base-2t2c:
 4t4c
 ````
 
-ip4-vhost-x520-64b-base-4t4c:
+:index:`ip4-vhost-x520-64b-base-4t4c`:
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ x710-64b-base
 1t1c
 ````
 
-ip4-vhost-x710-64b-base-1t1c:
+:index:`ip4-vhost-x710-64b-base-1t1c`:
 
 .. raw:: html
 
@@ -46,7 +46,7 @@ ip4-vhost-x710-64b-base-1t1c:
 2t2c
 ````
 
-ip4-vhost-x710-64b-base-2t2c:
+:index:`ip4-vhost-x710-64b-base-2t2c`:
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ ip4-vhost-x710-64b-base-2t2c:
 4t4c
 ````
 
-ip4-vhost-x710-64b-base-4t4c:
+:index:`ip4-vhost-x710-64b-base-4t4c`:
 
 .. raw:: html
 
@@ -67,7 +67,7 @@ x520-imix-base
 1t1c
 ````
 
-ip4-vhost-x520-imix-base-1t1c:
+:index:`ip4-vhost-x520-imix-base-1t1c`:
 
 .. raw:: html
 
@@ -76,7 +76,7 @@ ip4-vhost-x520-imix-base-1t1c:
 2t2c
 ````
 
-ip4-vhost-x520-imix-base-2t2c:
+:index:`ip4-vhost-x520-imix-base-2t2c`:
 
 .. raw:: html
 
@@ -85,7 +85,7 @@ ip4-vhost-x520-imix-base-2t2c:
 4t4c
 ````
 
-ip4-vhost-x520-imix-base-4t4c:
+:index:`ip4-vhost-x520-imix-base-4t4c`:
 
 .. raw:: html
 
@@ -97,7 +97,7 @@ x710-imix-base
 1t1c
 ````
 
-ip4-vhost-x710-imix-base-1t1c:
+:index:`ip4-vhost-x710-imix-base-1t1c`:
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ ip4-vhost-x710-imix-base-1t1c:
 2t2c
 ````
 
-ip4-vhost-x710-imix-base-2t2c:
+:index:`ip4-vhost-x710-imix-base-2t2c`:
 
 .. raw:: html
 
@@ -115,7 +115,7 @@ ip4-vhost-x710-imix-base-2t2c:
 4t4c
 ````
 
-ip4-vhost-x710-imix-base-4t4c:
+:index:`ip4-vhost-x710-imix-base-4t4c`:
 
 .. raw:: html
 

@@ -7,7 +7,7 @@ x520-78b-base-scale
 1t1c
 ````
 
-ip6-rtd-x520-78b-base-scale-1t1c:
+:index:`ip6-rtd-x520-78b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ ip6-rtd-x520-78b-base-scale-1t1c:
 2t2c
 ````
 
-ip6-rtd-x520-78b-base-scale-2t2c:
+:index:`ip6-rtd-x520-78b-base-scale-2t2c`:
 
 
 .. raw:: html
@@ -26,7 +26,7 @@ ip6-rtd-x520-78b-base-scale-2t2c:
 4t4c
 ````
 
-ip6-rtd-x520-78b-base-scale-4t4c:
+:index:`ip6-rtd-x520-78b-base-scale-4t4c`:
 
 .. raw:: html
 
@@ -38,7 +38,7 @@ x710-78b-base-scale
 1t1c
 ````
 
-ip6-rtd-x710-78b-base-scale-1t1c:
+:index:`ip6-rtd-x710-78b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -47,7 +47,7 @@ ip6-rtd-x710-78b-base-scale-1t1c:
 2t2c
 ````
 
-ip6-rtd-x710-78b-base-scale-2t2c:
+:index:`ip6-rtd-x710-78b-base-scale-2t2c`:
 
 
 .. raw:: html
@@ -57,7 +57,7 @@ ip6-rtd-x710-78b-base-scale-2t2c:
 4t4c
 ````
 
-ip6-rtd-x710-78b-base-scale-4t4c:
+:index:`ip6-rtd-x710-78b-base-scale-4t4c`:
 
 .. raw:: html
 
@@ -69,7 +69,7 @@ xl710-78b-base-scale
 1t1c
 ````
 
-ip6-rtd-xl710-78b-base-scale-1t1c:
+:index:`ip6-rtd-xl710-78b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -78,7 +78,7 @@ ip6-rtd-xl710-78b-base-scale-1t1c:
 2t2c
 ````
 
-ip6-rtd-xl710-78b-base-scale-2t2c:
+:index:`ip6-rtd-xl710-78b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -87,7 +87,7 @@ ip6-rtd-xl710-78b-base-scale-2t2c:
 4t4c
 ````
 
-ip6-rtd-xl710-78b-base-scale-4t4c:
+:index:`ip6-rtd-xl710-78b-base-scale-4t4c`:
 
 .. raw:: html
 
