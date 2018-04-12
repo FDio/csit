@@ -174,7 +174,7 @@ xl710-imix-base
 4t4c
 ````
 
-:index:`l2-vhost-xl710-imix-base-2t2c`:
+:index:`l2-vhost-xl710-imix-base-4t4c`:
 
 .. raw:: html
 
