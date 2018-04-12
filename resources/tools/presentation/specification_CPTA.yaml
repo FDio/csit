@@ -255,7 +255,7 @@
   parameters:
   - "name"
   - "parent"
-  - "throughput"
+  - "result"
   # Number of the best and the worst tests presented in the table. Use 0 (zero)
   # to present all tests.
   nr-of-tests-shown: 20
