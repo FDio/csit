@@ -7,7 +7,7 @@ x520-64b-base-scale
 1t1c
 ````
 
-l2-sw-x520-64b-base-scale-1t1c:
+:index:`l2-sw-x520-64b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ l2-sw-x520-64b-base-scale-1t1c:
 2t2c
 ````
 
-l2-sw-x520-64b-base-scale-2t2c:
+:index:`l2-sw-x520-64b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -25,7 +25,7 @@ l2-sw-x520-64b-base-scale-2t2c:
 4t4c
 ````
 
-l2-sw-x520-64b-base-scale-4t4c:
+:index:`l2-sw-x520-64b-base-scale-4t4c`:
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ x520-64b-features
 1t1c
 ````
 
-l2-sw-x520-64b-features-1t1c:
+:index:`l2-sw-x520-64b-features-1t1c`:
 
 .. raw:: html
 
@@ -46,7 +46,7 @@ l2-sw-x520-64b-features-1t1c:
 2t2c
 ````
 
-l2-sw-x520-64b-features-2t2c:
+:index:`l2-sw-x520-64b-features-2t2c`:
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ l2-sw-x520-64b-features-2t2c:
 4t4c
 ````
 
-l2-sw-x520-64b-features-4t4c:
+:index:`l2-sw-x520-64b-features-4t4c`:
 
 .. raw:: html
 
@@ -67,7 +67,7 @@ x710-64b-base-scale
 1t1c
 ````
 
-l2-sw-x710-64b-base-scale-1t1c:
+:index:`l2-sw-x710-64b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -76,7 +76,7 @@ l2-sw-x710-64b-base-scale-1t1c:
 2t2c
 ````
 
-l2-sw-x710-64b-base-scale-2t2c:
+:index:`l2-sw-x710-64b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -85,7 +85,7 @@ l2-sw-x710-64b-base-scale-2t2c:
 4t4c
 ````
 
-l2-sw-x710-64b-base-scale-4t4c:
+:index:`l2-sw-x710-64b-base-scale-4t4c`:
 
 .. raw:: html
 
@@ -97,7 +97,7 @@ x710-64b-features
 1t1c
 ````
 
-l2-sw-x710-64b-features-1t1c:
+:index:`l2-sw-x710-64b-features-1t1c`:
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ l2-sw-x710-64b-features-1t1c:
 2t2c
 ````
 
-l2-sw-x710-64b-features-2t2c:
+:index:`l2-sw-x710-64b-features-2t2c`:
 
 .. raw:: html
 
@@ -115,7 +115,7 @@ l2-sw-x710-64b-features-2t2c:
 4t4c
 ````
 
-l2-sw-x710-64b-features-4t4c:
+:index:`l2-sw-x710-64b-features-4t4c`:
 
 .. raw:: html
 
@@ -127,7 +127,7 @@ xl710-64b-base-scale
 1t1c
 ````
 
-l2-sw-xl710-64b-base-scale-1t1c:
+:index:`l2-sw-xl710-64b-base-scale-1t1c`:
 
 .. raw:: html
 
@@ -136,7 +136,7 @@ l2-sw-xl710-64b-base-scale-1t1c:
 2t2c
 ````
 
-l2-sw-xl710-64b-base-scale-2t2c:
+:index:`l2-sw-xl710-64b-base-scale-2t2c`:
 
 .. raw:: html
 
@@ -145,7 +145,7 @@ l2-sw-xl710-64b-base-scale-2t2c:
 4t4c
 ````
 
-l2-sw-xl710-64b-base-scale-4t4c:
+:index:`l2-sw-xl710-64b-base-scale-4t4c`:
 
 .. raw:: html
 
