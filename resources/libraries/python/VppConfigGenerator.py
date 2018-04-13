@@ -539,8 +539,8 @@ class VppConfigGenerator(object):
             for _ in range(retries):
                 time.sleep(1)
                 ret, stdout, _ = \
-                    ssh.exec_command('echo show hardware-interfaces | '
-                                     'nc 0 5002 || echo "VPP not yet running"')
+                    ssh.exec_command('echo show pci | nc 0 5002 || '
+                                     'echo "VPP not yet running"')
                 if ret == 0 and 'VPP not yet running' not in stdout:
                     break
             else:
