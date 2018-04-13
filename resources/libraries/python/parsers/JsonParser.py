@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -30,7 +30,7 @@ class JsonParser(object):
 
         :param json_data: Data in JSON format.
         :type json_data: str
-        :return: JSON data parsed as python list.
+        :returns: JSON data parsed as python list.
         :rtype: list
         """
         if "4.2.0-42-generic" in uname():
@@ -62,7 +62,7 @@ class JsonParser(object):
 
         :param json_file: File with JSON type data.
         :type json_file: str
-        :return: JSON data parsed as python list.
+        :returns: JSON data parsed as python list.
         :rtype: list
         """
         input_data = open(json_file).read()

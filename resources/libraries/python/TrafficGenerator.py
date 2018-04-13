@@ -50,8 +50,8 @@ class TGDropRateSearchImpl(DropRateSearch):
         :type skip_warmup: bool
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
-        :raises: NotImplementedError if TG is not supported.
-        :raises: RuntimeError if TG is not specified.
+        :raises NotImplementedError: If TG is not supported.
+        :raises RuntimeError: If TG is not specified.
         """
         # we need instance of TrafficGenerator instantiated by Robot Framework
         # to be able to use trex_stl-*()
@@ -182,7 +182,7 @@ class TrafficGenerator(object):
         :type tg_if1_dst_mac: str
         :type tg_if2_dst_mac: str
         :returns: nothing
-        :raises: RuntimeError in case of issue during initialization.
+        :raises RuntimeError: In case of issue during initialization.
         """
         if tg_node['type'] != NodeType.TG:
             raise RuntimeError('Node type is not a TG')
@@ -323,7 +323,7 @@ class TrafficGenerator(object):
         :type node: dict
         :returns: True if TRex is running otherwise False.
         :rtype: bool
-        :raises: RuntimeError if node type is not a TG.
+        :raises RuntimeError: If node type is not a TG.
         """
         if node['type'] != NodeType.TG:
             raise RuntimeError('Node type is not a TG')
@@ -340,8 +340,8 @@ class TrafficGenerator(object):
         :param node: Traffic generator node.
         :type node: dict
         :returns: nothing
-        :raises: RuntimeError if TRex teardown failed.
-        :raises: RuntimeError if node type is not a TG.
+        :raises RuntimeError: If node type is not a TG,
+            or if TRex teardown fails.
         """
         if node['type'] != NodeType.TG:
             raise RuntimeError('Node type is not a TG')
@@ -360,7 +360,7 @@ class TrafficGenerator(object):
         :param node: TRex generator node.
         :type node: dict
         :returns: Nothing
-        :raises: RuntimeError if stop traffic script fails.
+        :raises RuntimeError: If stop traffic script fails.
         """
         ssh = SSH()
         ssh.connect(node)
@@ -392,7 +392,7 @@ class TrafficGenerator(object):
         :type latency: bool
         :type warmup_time: int
         :returns: Nothing
-        :raises: RuntimeError in case of TG driver issue.
+        :raises RuntimeError: In case of TG driver issue.
         """
         ssh = SSH()
         ssh.connect(self._node)
@@ -447,7 +447,7 @@ class TrafficGenerator(object):
         """Stop all traffic on TG.
 
         :returns: Nothing
-        :raises: RuntimeError if TG is not set.
+        :raises RuntimeError: If TG is not set.
         """
         if self._node is None:
             raise RuntimeError("TG is not set")
@@ -475,9 +475,9 @@ class TrafficGenerator(object):
         :type latency: bool
         :returns: TG output.
         :rtype: str
-        :raises: RuntimeError if TG is not set.
-        :raises: RuntimeError if node is not TG or subtype is not specified.
-        :raises: NotImplementedError if TG is not supported.
+        :raises RuntimeError: If TG is not set, or if node is not TG,
+            or if subtype is not specified.
+        :raises NotImplementedError: If TG is not supported.
         """
 
         node = self._node
@@ -502,7 +502,7 @@ class TrafficGenerator(object):
         """Fail if loss occurred in traffic run.
 
         :returns: nothing
-        :raises: Exception if loss occured.
+        :raises Exception: If loss occured.
         """
         if self._loss is None:
             raise Exception('The traffic generation has not been issued')
@@ -518,7 +518,7 @@ class TrafficGenerator(object):
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :returns: nothing
-        :raises: Exception if loss is above acceptance criteria.
+        :raises Exception: If loss is above acceptance criteria.
         """
         if self._loss is None:
             raise Exception('The traffic generation has not been issued')

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -43,10 +43,10 @@ class NSHKeywords(object):
         :type node: dict
         :type path: str
         :type data: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        OK or ACCEPTED.
+            OK or ACCEPTED.
         """
 
         if data:
@@ -74,7 +74,7 @@ class NSHKeywords(object):
         :type node: dict
         :type name: str
         :type data: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -93,7 +93,7 @@ class NSHKeywords(object):
         :type node: dict
         :type name: str
         :type data: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
         path = "/nsh-maps/nsh-map/{0}".format(name)
@@ -107,7 +107,7 @@ class NSHKeywords(object):
         :param name: Name of the NSH entry.
         :type node: dict
         :type name: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -121,7 +121,7 @@ class NSHKeywords(object):
         :param name: Name of the NSH map.
         :type node: dict
         :type name: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -136,11 +136,11 @@ class NSHKeywords(object):
         :param node: Honeycomb node.
         :param entry_name: Name of a specific NSH entry. Optional.
         :param map_name: Name of a specific NSH map. Optional. Do not use
-        together with entry_name.
+            together with entry_name.
         :type node: dict
         :type entry_name: str
         :type map_name: str
-        :return: List of classify tables.
+        :returns: List of classify tables.
         :rtype: list
         """
         if entry_name:
@@ -166,7 +166,7 @@ class NSHKeywords(object):
 
         :param node: Honeycomb node.
         :type node: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 

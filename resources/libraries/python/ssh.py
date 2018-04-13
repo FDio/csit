@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -50,7 +50,7 @@ class SSH(object):
 
         :param node: Node in topology.
         :type node: dict
-        :return: IP address and port for the specified node.
+        :returns: IP address and port for the specified node.
         :rtype: int
         """
 
@@ -192,7 +192,7 @@ class SSH(object):
         :param cmd: Command to be executed.
         :param cmd_input: Input redirected to the command.
         :param timeout: Timeout.
-        :return: return_code, stdout, stderr
+        :returns: return_code, stdout, stderr
 
         :Example:
 
@@ -224,7 +224,7 @@ class SSH(object):
         :type lxc_params: str
         :type sudo: bool
         :type timeout: int
-        :return: return_code, stdout, stderr
+        :returns: return_code, stdout, stderr
         """
         command = "lxc-attach {p} --name {n} -- /bin/sh -c '{c}'"\
             .format(p=lxc_params, n=lxc_name, c=lxc_cmd)
@@ -237,7 +237,7 @@ class SSH(object):
         """Open interactive terminal on a new channel on the connected Node.
 
         :param time_out: Timeout in seconds.
-        :return: SSH channel with opened terminal.
+        :returns: SSH channel with opened terminal.
 
         .. warning:: Interruptingcow is used here, and it uses
            signal(SIGALRM) to let the operating system interrupt program
@@ -276,7 +276,7 @@ class SSH(object):
         :param cmd: Command to be executed.
         :param prompt: Command prompt, sequence of characters used to
         indicate readiness to accept commands.
-        :return: Command output.
+        :returns: Command output.
 
         .. warning:: Interruptingcow is used here, and it uses
            signal(SIGALRM) to let the operating system interrupt program

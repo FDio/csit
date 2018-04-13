@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -48,10 +48,12 @@ class HTTPRequestError(Exception):
 
     When raising this exception, put this information to the message in this
     order:
-    - short description of the encountered problem,
-    - relevant messages if there are any collected, e.g., from caught
-      exception,
-    - relevant data if there are any collected.
+
+     - short description of the encountered problem,
+     - relevant messages if there are any collected, e.g., from caught
+       exception,
+     - relevant data if there are any collected.
+
     The logging is performed on two levels: 1. error - short description of the
     problem; 2. debug - detailed information.
     """
@@ -65,7 +67,7 @@ class HTTPRequestError(Exception):
 
         :param msg: Message to be displayed and logged.
         :param enable_logging: When True, logging is enabled, otherwise
-        logging is disabled.
+            logging is disabled.
         :type msg: str
         :type enable_logging: bool
         """
@@ -113,7 +115,7 @@ class HTTPRequest(object):
         :type ip_addr: str
         :type port: str or int
         :type path: str
-        :return: Full url.
+        :returns: Full url.
         :rtype: str
         """
 
@@ -168,7 +170,7 @@ class HTTPRequest(object):
         :type path: str
         :type enable_logging: bool
         :type kwargs: dict
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype: tuple
         :raises HTTPRequestError: If
         1. it is not possible to connect,
@@ -238,16 +240,16 @@ class HTTPRequest(object):
         :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+            giving up, as a float, or a (connect timeout, read timeout) tuple.
         :param enable_logging: Used to suppress errors when checking Honeycomb
-        state during suite setup and teardown. When True, logging is enabled,
-        otherwise logging is disabled.
+            state during suite setup and teardown. When True,
+            logging is enabled, otherwise logging is disabled.
         :type node: dict
         :type path: str
         :type headers: dict
         :type timeout: float or tuple
         :type enable_logging: bool
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype: tuple
         """
 
@@ -264,17 +266,17 @@ class HTTPRequest(object):
         :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param payload: Dictionary, bytes, or file-like object to send in
-        the body of the Request.
+            the body of the Request.
         :param json: JSON formatted string to send in the body of the Request.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+            giving up, as a float, or a (connect timeout, read timeout) tuple.
         :type node: dict
         :type path: str
         :type headers: dict
         :type payload: dict, bytes, or file-like object
         :type json: str
         :type timeout: float or tuple
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype: tuple
         """
         return HTTPRequest._http_request('PUT', node, path, headers=headers,
@@ -291,13 +293,13 @@ class HTTPRequest(object):
         :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param payload: Dictionary, bytes, or file-like object to send in
-        the body of the Request.
+            the body of the Request.
         :param json: JSON formatted string to send in the body of the Request.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+            giving up, as a float, or a (connect timeout, read timeout) tuple.
         :param enable_logging: Used to suppress errors when checking ODL
-        state during suite setup and teardown. When True, logging is enabled,
-        otherwise logging is disabled.
+            state during suite setup and teardown. When True,
+            logging is enabled, otherwise logging is disabled.
         :type node: dict
         :type path: str
         :type headers: dict
@@ -305,7 +307,7 @@ class HTTPRequest(object):
         :type json: str
         :type timeout: float or tuple
         :type enable_logging: bool
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype: tuple
         """
         return HTTPRequest._http_request('POST', node, path,
@@ -321,11 +323,11 @@ class HTTPRequest(object):
         :param node: Honeycomb node.
         :param path: URL path, e.g. /index.html.
         :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
+            giving up, as a float, or a (connect timeout, read timeout) tuple.
         :type node: dict
         :type path: str
         :type timeout: float or tuple
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype: tuple
         """
         return HTTPRequest._http_request('DELETE', node, path, timeout=timeout)

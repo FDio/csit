@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -40,9 +40,9 @@ class IPv6Networks(object):
     def next_network(self):
         """Get the next element of the iterator.
 
-        :return: IPv6 network.
+        :returns: IPv6 network.
         :rtype: IPv6Network object
-        :raises: StopIteration if there is no more elements.
+        :raises StopIteration: If there is no more elements.
         """
         if len(self._networks):
             return self._networks.pop()

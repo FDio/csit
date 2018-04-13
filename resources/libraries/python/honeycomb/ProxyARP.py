@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -44,7 +44,7 @@ class ProxyARPKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        200 = OK or 201 = ACCEPTED.
+            200 = OK or 201 = ACCEPTED.
         """
 
         data = {
@@ -112,7 +112,7 @@ class ProxyARPKeywords(object):
         :type state: str
         :raises ValueError: If the state argument is incorrect.
         :raises HoneycombError: If the status code in response is not
-        200 = OK or 201 = ACCEPTED.
+            200 = OK or 201 = ACCEPTED.
         """
 
         interface = Topology.convert_interface_reference(
@@ -166,7 +166,7 @@ class IPv6NDProxyKeywords(object):
         :param node: Honeycomb node.
         :param interface: Name of an interface on the node.
         :param addresses: IPv6 addresses to configure ND proxy with. If no
-        address is provided, ND proxy configuration will be removed.
+            address is provided, ND proxy configuration will be removed.
         :type node: dict
         :type interface: str
         :type addresses: list
