@@ -603,7 +603,7 @@ def table_performance_trending_dashboard(table, input_data):
                 rel_change = int(relative_change(float(trend), float(last)))
 
                 tbl_lst.append([name,
-                                round(float(last) / 1000000, 2),
+                                round(float(trend) / 1000000, 2),
                                 change,
                                 rel_change,
                                 anomaly])
