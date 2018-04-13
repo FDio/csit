@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -130,7 +130,7 @@ class InterfaceUtil(object):
         :type node: dict
         :type timeout: int
         :returns: Nothing.
-        :raises: RuntimeError if the timeout period value has elapsed.
+        :raises RuntimeError: If the timeout period value has elapsed.
         """
         if_ready = False
         not_ready = []
@@ -196,10 +196,10 @@ class InterfaceUtil(object):
         :type node: dict
         :type interface: int or str
         :returns: List of dictionaries containing data for each interface, or a
-        single dictionary for the specified interface.
+            single dictionary for the specified interface.
         :rtype: list or dict
         :raises TypeError: if the data type of interface is neither basestring
-        nor int.
+            nor int.
         """
         with VatTerminal(node) as vat:
             response = vat.vat_terminal_exec_cmd_from_template(
@@ -279,8 +279,8 @@ class InterfaceUtil(object):
          :type interface: str
          :type ip_version: str
          :returns: List of dictionaries, each containing IP address, subnet
-         prefix length and also the subnet mask for ipv4 addresses.
-         Note: A single interface may have multiple IP addresses assigned.
+            prefix length and also the subnet mask for ipv4 addresses.
+            Note: A single interface may have multiple IP addresses assigned.
          :rtype: list
         """
 
@@ -355,7 +355,7 @@ class InterfaceUtil(object):
         :returns: Interface driver or None if not found.
         :rtype: str
         :raises RuntimeError: If it is not possible to get the interface driver
-        information from the node.
+            information from the node.
 
         .. note::
             # lspci -vmmks 0000:00:05.0
@@ -517,10 +517,6 @@ class InterfaceUtil(object):
     def update_tg_interface_data_on_node(node):
         """Update interface name for TG/linux node in DICT__nodes.
 
-        :param node: Node selected from DICT__nodes.
-        :type node: dict
-        :raises RuntimeError: If getting of interface name and MAC fails.
-
         .. note::
             # for dev in `ls /sys/class/net/`;
             > do echo "\"`cat /sys/class/net/$dev/address`\": \"$dev\""; done
@@ -529,7 +525,11 @@ class InterfaceUtil(object):
             "52:54:00:e1:8a:0f": "eth2"
             "00:00:00:00:00:00": "lo"
 
-        .. todo:: parse lshw -json instead
+        .. note:: TODO: parse lshw -json instead
+
+        :param node: Node selected from DICT__nodes.
+        :type node: dict
+        :raises RuntimeError: If getting of interface name and MAC fails.
         """
         # First setup interface driver specified in yaml file
         InterfaceUtil.tg_set_interfaces_default_driver(node)
@@ -646,7 +646,7 @@ class InterfaceUtil(object):
         :returns: Name and index of created subinterface.
         :rtype: tuple
         :raises RuntimeError: if it is unable to create VLAN subinterface on the
-        node.
+            node.
         """
         iface_key = Topology.get_interface_by_name(node, interface)
         sw_if_index = Topology.get_interface_sw_index(node, iface_key)
@@ -690,7 +690,7 @@ class InterfaceUtil(object):
         :returns: SW IF INDEX of created interface.
         :rtype: int
         :raises RuntimeError: if it is unable to create VxLAN interface on the
-        node.
+            node.
         """
         output = VatExecutor.cmd_from_template(node, "vxlan_create.vat",
                                                src=source_ip,
@@ -715,14 +715,14 @@ class InterfaceUtil(object):
 
         :param node: VPP node to get interface data from.
         :param interface: Numeric index or name string of a specific interface.
-        If None, information about all VxLAN interfaces is returned.
+            If None, information about all VxLAN interfaces is returned.
         :type node: dict
         :type interface: int or str
         :returns: Dictionary containing data for the given VxLAN interface or if
-        interface=None, the list of dictionaries with all VxLAN interfaces.
+            interface=None, the list of dictionaries with all VxLAN interfaces.
         :rtype: dict or list
         :raises TypeError: if the data type of interface is neither basestring
-        nor int.
+            nor int.
         """
         param = "sw_if_index"
         if interface is None:
@@ -771,7 +771,7 @@ class InterfaceUtil(object):
         :type node: dict
         :type name: str
         :returns: Dictionary of information about a specific TAP interface, or
-        a List of dictionaries containing all TAP data for the given node.
+            a List of dictionaries containing all TAP data for the given node.
         :rtype: dict or list
         """
         with VatTerminal(node) as vat:
@@ -797,7 +797,8 @@ class InterfaceUtil(object):
         :param outer_vlan_id: Optional outer VLAN ID.
         :param inner_vlan_id: Optional inner VLAN ID.
         :param type_subif: Optional type of sub-interface. Values supported by
-        VPP: [no_tags] [one_tag] [two_tags] [dot1ad] [exact_match] [default_sub]
+            VPP: [no_tags] [one_tag] [two_tags] [dot1ad] [exact_match]
+            [default_sub]
         :type node: dict
         :type interface: str or int
         :type sub_id: int
@@ -895,7 +896,7 @@ class InterfaceUtil(object):
         :returns: SW interface index.
         :rtype: int
         :raises RuntimeError: If it is not possible to create loopback on the
-        node.
+            node.
         """
         out = VatExecutor.cmd_from_template(node, "create_loopback.vat")
         if out[0].get('retval') == 0:
@@ -1006,12 +1007,12 @@ class InterfaceUtil(object):
 
         :param node: VPP node to get interface data from.
         :param interface_name: Name of the specific interface. If None,
-        information about all VxLAN GPE interfaces is returned.
+            information about all VxLAN GPE interfaces is returned.
         :type node: dict
         :type interface_name: str
         :returns: Dictionary containing data for the given VxLAN GPE interface
-        or if interface=None, the list of dictionaries with all VxLAN GPE
-        interfaces.
+            or if interface=None, the list of dictionaries with all VxLAN GPE
+            interfaces.
         :rtype: dict or list
         """
 

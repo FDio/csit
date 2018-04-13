@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -30,7 +30,7 @@ class VatJsonUtil(object):
 
         :param mac_address: MAC address.
         :type mac_address: str
-        :return: List representation of MAC address.
+        :returns: List representation of MAC address.
         :rtype: list
         """
         list_mac = []
@@ -49,7 +49,7 @@ class VatJsonUtil(object):
         :param mac_address: MAC address of interface we are looking for.
         :type interfaces_list: dict
         :type mac_address: str
-        :return: Interface from JSON.
+        :returns: Interface from JSON.
         :rtype: dict
         """
         interface_dict = {}
@@ -85,7 +85,7 @@ class VatJsonUtil(object):
 
         :param node: Node dictionary.
         :param interface_dump_json: JSON output from dump_interface_list VAT
-        command.
+            command.
         :type node: dict
         :type interface_dump_json: str
         """
@@ -107,11 +107,11 @@ class VatJsonUtil(object):
         """Get sw_if_index from given JSON output by interface name.
 
         :param interface_dump_json: JSON output from dump_interface_list VAT
-        command.
+            command.
         :param interface_name: Interface name.
         :type interface_dump_json: str
         :type interface_name: str
-        :return: SW interface index.
+        :returns: SW interface index.
         :rtype: int
         :raises ValueError: If interface not found in interface_dump_json.
         """
@@ -134,11 +134,11 @@ class VatJsonUtil(object):
         """Get interface name from given JSON output by sw_if_index.
 
         :param interface_dump_json: JSON output from dump_interface_list VAT
-        command.
+            command.
         :param sw_if_index: SW interface index.
         :type interface_dump_json: str
         :type sw_if_index: int
-        :return: Interface name.
+        :returns: Interface name.
         :rtype: str
         :raises ValueError: If interface not found in interface_dump_json.
         """

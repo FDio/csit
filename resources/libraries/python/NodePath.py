@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -93,12 +93,13 @@ class NodePath(object):
     def compute_path(self, always_same_link=True):
         """Compute path for added nodes.
 
-        :param always_same_link: If True use always same link between two nodes
-        in path. If False use different link (if available) between two
-        nodes if one link was used before.
-        :type always_same_link: bool
-
         .. note:: First add at least two nodes to the topology.
+
+        :param always_same_link: If True use always same link between two nodes
+            in path. If False use different link (if available)
+            between two nodes if one link was used before.
+        :type always_same_link: bool
+        :raises RuntimeError: If not enough nodes for path.
         """
         nodes = self._nodes
         if len(nodes) < 2:
