@@ -121,15 +121,16 @@
 | | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
-| | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
+| | | Run keyword | ${dut}.Add DPDK Socketmem | 1024,1024
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
-| | | Run keyword | ${dut}.Add Heapsize | "4G"
+| | | Run keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
+| | | Run keyword | ${dut}.Add Heapsize | 4G
 | | | Run keyword | ${dut}.Add Plugin | disable | default
 | | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
-| | | Run keyword | ${dut}.Add IP6 Hash Buckets | "2000000"
-| | | Run keyword | ${dut}.Add IP6 Heap Size | "4G"
-| | | Run keyword | ${dut}.Add IP Heap Size | "4G"
+| | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
+| | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
+| | | Run keyword | ${dut}.Add IP Heap Size | 4G
 
 # The following keyword results in lines longer than 80 characters.
 # FIXME: Rename the keyword, possibly moving arguments out of the keyword name.
