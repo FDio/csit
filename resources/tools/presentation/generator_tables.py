@@ -588,6 +588,7 @@ def table_performance_trending_dashboard(table, input_data):
                          std())[-2]
             if isnan(last):
                 anomaly = "outlier"
+                last = list(pd_data)[-1]
             elif last < (trend - 3 * t_stdev):
                 anomaly = "regression"
             elif last > (trend + 3 * t_stdev):
