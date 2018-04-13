@@ -215,11 +215,11 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c"
   data: "plot-performance-trending"
-  filter: "'1T1C'"
+  filter: "'MRR' and '1T1C'"
   parameters:
   - "name"
   - "parent"
-  - "throughput"
+  - "result"
   # Number of the best and the worst tests presented in the table. Use 0 (zero)
   # to present all tests.
   nr-of-tests-shown: 20
@@ -233,11 +233,11 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c"
   data: "plot-performance-trending"
-  filter: "'2T2C'"
+  filter: "'MRR' and '2T2C'"
   parameters:
   - "name"
   - "parent"
-  - "throughput"
+  - "result"
   # Number of the best and the worst tests presented in the table. Use 0 (zero)
   # to present all tests.
   nr-of-tests-shown: 20
@@ -251,7 +251,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c"
   data: "plot-performance-trending"
-  filter: "'4T4C'"
+  filter: "'MRR' and '4T4C'"
   parameters:
   - "name"
   - "parent"
