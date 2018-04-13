@@ -16,7 +16,6 @@
 from abc import ABCMeta, abstractmethod
 from enum import Enum, unique
 
-
 @unique
 class SearchDirection(Enum):
     """Direction of linear search."""
