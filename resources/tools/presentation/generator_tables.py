@@ -567,7 +567,7 @@ def table_performance_trending_dashboard(table, input_data):
                 try:
                     tbl_dict[tst_name]["data"]. \
                         append(tst_data["result"]["throughput"])
-                except TypeError:
+                except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
 
     tbl_lst = list()
@@ -579,7 +579,8 @@ def table_performance_trending_dashboard(table, input_data):
             # Test name:
             name = tbl_dict[tst_name]["name"]
             # Throughput trend:
-            trend = list(pd_data.rolling(window=win_size).median())[-2]
+            trend = list(pd_data.rolling(window=win_size, min_periods=2).
+                         median())[-2]
             # Anomaly:
             t_data, _ = find_outliers(pd_data)
             last = list(t_data)[-1]
@@ -593,16 +594,18 @@ def table_performance_trending_dashboard(table, input_data):
                 anomaly = "progression"
             else:
                 anomaly = "normal"
-            # Change:
-            change = round(float(last - trend) / 1000000, 2)
-            # Relative change:
-            rel_change = int(relative_change(float(trend), float(last)))
 
-            tbl_lst.append([name,
-                            round(float(last) / 1000000, 2),
-                            change,
-                            rel_change,
-                            anomaly])
+            if not isnan(last) and not isnan(trend):
+                # Change:
+                change = round(float(last - trend) / 1000000, 2)
+                # Relative change:
+                rel_change = int(relative_change(float(trend), float(last)))
+
+                tbl_lst.append([name,
+                                round(float(last) / 1000000, 2),
+                                change,
+                                rel_change,
+                                anomaly])
 
     # Sort the table according to the relative change
     tbl_lst.sort(key=lambda rel: rel[-2], reverse=True)
