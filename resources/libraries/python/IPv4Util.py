@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -94,7 +94,7 @@ class IPv4Util(object):
         :type node: dict
         :type port: str
         :type nodes_addr: dict
-        :return: IPv4 prefix length.
+        :returns: IPv4 prefix length.
         :rtype: int
         """
         for net in nodes_addr.values():
@@ -117,7 +117,7 @@ class IPv4Util(object):
         :type node: dict
         :type port: int
         :type nodes_addr: dict
-        :return: IPv4 subnet.
+        :returns: IPv4 subnet.
         :rtype: str
         """
         for net in nodes_addr.values():
@@ -133,9 +133,9 @@ class IPv4Util(object):
     def flush_ip_addresses(port, node):
         """See IPv4Node.flush_ip_addresses for more information.
 
-        :param port:
-        :param node:
-        :return:
+        :param port: FIXME
+        :param node: FIXME
+        :returns: FIXME
         """
         get_node(node).flush_ip_addresses(port)
 
@@ -147,7 +147,7 @@ class IPv4Util(object):
         :param nodes_addr: Available nodes IPv4 addresses.
         :type link: str
         :type nodes_addr: dict
-        :return: Link IPv4 address.
+        :returns: Link IPv4 address.
         :rtype: str
         """
         net = nodes_addr.get(link)
@@ -163,7 +163,7 @@ class IPv4Util(object):
         :param nodes_addr: Available nodes IPv4 addresses.
         :type link: str
         :type nodes_addr: dict
-        :return: Link IPv4 address prefix.
+        :returns: Link IPv4 address prefix.
         :rtype: int
         """
         net = nodes_addr.get(link)

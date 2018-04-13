@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -166,7 +166,7 @@ class QemuUtils(object):
         """Set scheduler policy to SCHED_RR with priority 1 for all Qemu CPU
         processes.
 
-       :raises RuntimeError: Set scheduler policy failed.
+        :raises RuntimeError: Set scheduler policy failed.
         """
         qemu_cpus = self._qemu_qmp_exec('query-cpus')['return']
 
@@ -199,7 +199,7 @@ class QemuUtils(object):
         :param socket: Path of the unix socket.
         :param server: If True the socket shall be a listening socket.
         :param mac: Vhost-user interface MAC address (optional, otherwise is
-        used auto-generated MAC 52:54:00:00:xx:yy).
+            used auto-generated MAC 52:54:00:00:xx:yy).
         :param jumbo_frames: Set True if jumbo frames are used in the test.
         :type socket: str
         :type server: bool
@@ -247,7 +247,7 @@ class QemuUtils(object):
 
         :param cmd: QMP command to execute.
         :type cmd: str
-        :return: Command output in python representation of JSON format. The
+        :returns: Command output in python representation of JSON format. The
             { "return": {} } response is QMP's success response. An error
             response will contain the "error" keyword instead of "return".
         """
@@ -449,7 +449,7 @@ class QemuUtils(object):
 
         :returns: Default size of free huge pages in system.
         :rtype: int
-        :raises: RuntimeError if reading failed for three times.
+        :raises RuntimeError: If reading failed for three times.
         """
         # TODO: remove to dedicated library
         cmd_huge_size = "grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
@@ -473,7 +473,7 @@ class QemuUtils(object):
         :type huge_size: int
         :returns: Number of free huge pages in system.
         :rtype: int
-        :raises: RuntimeError if reading failed for three times.
+        :raises RuntimeError: If reading failed for three times.
         """
         # TODO: add numa aware option
         # TODO: remove to dedicated library
@@ -499,7 +499,7 @@ class QemuUtils(object):
         :type huge_size: int
         :returns: Total number of huge pages in system.
         :rtype: int
-        :raises: RuntimeError if reading failed for three times.
+        :raises RuntimeError: If reading failed for three times.
         """
         # TODO: add numa aware option
         # TODO: remove to dedicated library
@@ -521,10 +521,11 @@ class QemuUtils(object):
     def qemu_start(self):
         """Start QEMU and wait until VM boot.
 
-        :return: VM node info.
-        :rtype: dict
         .. note:: First set at least node to run QEMU on.
         .. warning:: Starts only one VM on the node.
+
+        :returns: VM node info.
+        :rtype: dict
         """
         # Qemu binary path
         bin_path = '{0}{1}'.format(self._qemu_path, self._qemu_bin)
@@ -659,7 +660,7 @@ class QemuUtils(object):
             - watchdog: watchdog action has been triggered
             - guest-panicked: panicked as a result of guest OS panic
 
-        :return: VM status.
+        :returns: VM status.
         :rtype: str
         """
         out = self._qemu_qmp_exec('query-status')
@@ -682,7 +683,7 @@ class QemuUtils(object):
         :type node: dict
         :type force_install: bool
         :type apply_patch: bool
-        :raises: RuntimeError if building QEMU failed.
+        :raises RuntimeError: If building QEMU failed.
         """
         ssh = SSH()
         ssh.connect(node)
