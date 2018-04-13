@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -54,6 +54,7 @@ class HoneycombSetup(object):
         Honeycomb is up and running.
         Honeycomb must be installed in "/opt" directory, otherwise the start
         will fail.
+
         :param nodes: List of nodes to start Honeycomb on.
         :type nodes: list
         :raises HoneycombError: If Honeycomb fails to start.
@@ -86,6 +87,7 @@ class HoneycombSetup(object):
         stops the Honeycomb and does not check its shutdown state. Use the
         keyword "Check Honeycomb Shutdown State" to check if Honeycomb has
         stopped.
+
         :param nodes: List of nodes to stop Honeycomb on.
         :type nodes: list
         :raises HoneycombError: If Honeycomb failed to stop.
@@ -155,7 +157,8 @@ class HoneycombSetup(object):
         :type retries: int
         :type interval: int
         :raises HoneycombError: If the Honeycomb process IP cannot be found,
-        or if timeout or number of retries is exceeded."""
+            or if timeout or number of retries is exceeded.
+        """
 
         ssh = SSH()
         ssh.connect(node)
@@ -207,8 +210,8 @@ class HoneycombSetup(object):
 
         :param node: List of DUT nodes stopping Honeycomb.
         :type node: dict
-        :return: True if all GETs fail to connect.
-        :rtype bool
+        :returns: True if all GETs fail to connect.
+        :rtype: bool
         """
         cmd = "pgrep honeycomb"
 
@@ -229,10 +232,10 @@ class HoneycombSetup(object):
         """Configure Honeycomb to accept restconf requests from all IP
         addresses. IP version is determined by node data.
 
-         :param node: Information about a DUT node.
-         :type node: dict
-         :raises HoneycombError: If the configuration could not be changed.
-         """
+        :param node: Information about a DUT node.
+        :type node: dict
+        :raises HoneycombError: If the configuration could not be changed.
+        """
 
         find = "restconf-binding-address"
         try:
@@ -257,12 +260,12 @@ class HoneycombSetup(object):
     def configure_jvpp_timeout(node, timeout=10):
         """Configure timeout value for Java API commands Honeycomb sends to VPP.
 
-         :param node: Information about a DUT node.
-         :param timeout: Timeout value in seconds.
-         :type node: dict
-         :type timeout: int
-         :raises HoneycombError: If the configuration could not be changed.
-         """
+        :param node: Information about a DUT node.
+        :param timeout: Timeout value in seconds.
+        :type node: dict
+        :type timeout: int
+        :raises HoneycombError: If the configuration could not be changed.
+        """
 
         find = "jvpp-request-timeout"
         replace = '\\"jvpp-request-timeout\\": {0}'.format(timeout)
@@ -367,7 +370,7 @@ class HoneycombSetup(object):
         :type feature: string
         :type disable: bool
         :raises HoneycombError: If the configuration could not be changed.
-         """
+        """
 
         disabled_features = {
             "NSH": ["io.fd.hc2vpp.vppnsh.impl.VppNshModule"],
@@ -477,6 +480,7 @@ class HoneycombSetup(object):
 
         Karaf should be located in the provided path, and VPP and Honeycomb
         should already be running, otherwise the start will fail.
+
         :param node: Node to start ODL client on.
         :param path: Path to ODL client on node.
         :type node: dict
@@ -716,11 +720,11 @@ class HoneycombStartupConfig(object):
 
     def apply_config(self, node):
         """Generate configuration file /opt/honeycomb/honeycomb on the specified
-         node.
+        node.
 
-         :param node: Honeycomb node.
-         :type node: dict
-         """
+        :param node: Honeycomb node.
+        :type node: dict
+        """
 
         self.ssh.connect(node)
         _, filename, _ = self.ssh.exec_command("ls /opt/honeycomb | grep .jar")
@@ -785,7 +789,7 @@ class HoneycombStartupConfig(object):
 
         :param mem_min: Minimum amount of memory (MB).
         :param mem_max: Maximum amount of memory (MB). Default is 4 times
-        minimum value.
+            minimum value.
         :type mem_min: int
         :type mem_max: int
         """
@@ -798,7 +802,7 @@ class HoneycombStartupConfig(object):
 
         :param mem_min: Minimum metaspace size (MB).
         :param mem_max: Maximum metaspace size (MB). Defailt is 4 times
-        minimum value.
+            minimum value.
         :type mem_min: int
         :type mem_max: int
         """

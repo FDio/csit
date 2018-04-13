@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,7 +57,7 @@ class Notifications(Netconf):
 
         :param time_out: Timeout value for the read operation in seconds.
         :type time_out: int
-        :return: Data received from buffer.
+        :returns: Data received from buffer.
         :rtype: str
         """
 

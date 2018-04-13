@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -229,9 +229,9 @@ class IPsecUtil(object):
         :param integ_alg: The integrity algorithm name.
         :param integ_key: The integrity key string.
         :param tunnel_src: Tunnel header source IPv4 or IPv6 address. If not
-        specified ESP transport mode is used.
+            specified ESP transport mode is used.
         :param tunnel_dst: Tunnel header destination IPv4 or IPv6 address. If
-        not specified ESP transport mode is used.
+            not specified ESP transport mode is used.
         :type node: dict
         :type sad_id: int
         :type spi: int
@@ -266,17 +266,17 @@ class IPsecUtil(object):
         :param node: VPP node to add SAD entry on.
         :param n_entries: Number of SAD entries to be created.
         :param sad_id: First SAD entry ID. All subsequent SAD entries will have
-        id incremented by 1.
+            id incremented by 1.
         :param spi: Security Parameter Index of first SAD entry. All subsequent
-        SAD entries will have spi incremented by 1.
+            SAD entries will have spi incremented by 1.
         :param crypto_alg: The encryption algorithm name.
         :param crypto_key: The encryption key string.
         :param integ_alg: The integrity algorithm name.
         :param integ_key: The integrity key string.
         :param tunnel_src: Tunnel header source IPv4 or IPv6 address. If not
-        specified ESP transport mode is used.
+            specified ESP transport mode is used.
         :param tunnel_dst: Tunnel header destination IPv4 or IPv6 address. If
-        not specified ESP transport mode is used.
+            not specified ESP transport mode is used.
         :type node: dict
         :type n_entries: int
         :type sad_id: int
@@ -381,19 +381,19 @@ class IPsecUtil(object):
         :param priority: SPD entry priority, higher number = higher priority.
         :param action: Policy action.
         :param inbound: If True policy is for inbound traffic, otherwise
-        outbound.
+            outbound.
         :param sa_id: SAD entry ID for protect action.
         :param laddr_range: Policy selector local IPv4 or IPv6 address range in
-        format IP/prefix or IP/mask. If no mask is provided, it's considered
-        to be /32.
+            format IP/prefix or IP/mask. If no mask is provided,
+            it's considered to be /32.
         :param raddr_range: Policy selector remote IPv4 or IPv6 address range in
-        format IP/prefix or IP/mask. If no mask is provided, it's considered
-        to be /32.
+            format IP/prefix or IP/mask. If no mask is provided,
+            it's considered to be /32.
         :param proto: Policy selector next layer protocol number.
         :param lport_range: Policy selector local TCP/UDP port range in format
-        <port_start>-<port_end>.
+            <port_start>-<port_end>.
         :param rport_range: Policy selector remote TCP/UDP port range in format
-        <port_start>-<port_end>.
+            <port_start>-<port_end>.
         :type node: dict
         :type spd_id: int
         :type priority: int
@@ -450,15 +450,15 @@ class IPsecUtil(object):
         :param spd_id: SPD ID to add entries on.
         :param priority: SPD entries priority, higher number = higher priority.
         :param inbound: If True policy is for inbound traffic, otherwise
-        outbound.
+            outbound.
         :param sa_id: SAD entry ID for first entry. Each subsequent entry will
-        SAD entry ID incremented by 1.
+            SAD entry ID incremented by 1.
         :param raddr_ip: Policy selector remote IPv4 start address for the first
-        entry. Remote IPv4 end address will be calculated depending on
-        raddr_range parameter. Each subsequent entry will have start address
-        next after IPv4 end address of previous entry.
+            entry. Remote IPv4 end address will be calculated depending on
+            raddr_range parameter. Each subsequent entry will have start address
+            next after IPv4 end address of previous entry.
         :param raddr_range: Mask specifying range of Policy selector Remote IPv4
-        addresses. Valid values are from 1 to 32.
+            addresses. Valid values are from 1 to 32.
         :type node: dict
         :type n_entries: int
         :type spd_id: int
@@ -507,11 +507,11 @@ class IPsecUtil(object):
         :param integ_alg: The integrity algorithm name.
         :param integ_key: The integrity key string.
         :param raddr_ip1: Policy selector remote IPv4 start address for the
-        first tunnel in direction node1->node2.
+            first tunnel in direction node1->node2.
         :param raddr_ip2: Policy selector remote IPv4 start address for the
-        first tunnel in direction node2->node1.
+            first tunnel in direction node2->node1.
         :param raddr_range: Mask specifying range of Policy selector Remote IPv4
-        addresses. Valid values are from 1 to 32.
+            addresses. Valid values are from 1 to 32.
         :type node1: dict
         :type node2: dict
         :type if1_ip_addr: str
@@ -640,11 +640,11 @@ class IPsecUtil(object):
         :param tunnel_ip1: Tunnel node1 IPv4 address.
         :param tunnel_ip2: Tunnel node2 IPv4 address.
         :param raddr_ip1: Policy selector remote IPv4 start address for the
-        first tunnel in direction node1->node2.
+            first tunnel in direction node1->node2.
         :param raddr_ip2: Policy selector remote IPv4 start address for the
-        first tunnel in direction node2->node1.
+            first tunnel in direction node2->node1.
         :param raddr_range: Mask specifying range of Policy selector Remote IPv4
-        addresses. Valid values are from 1 to 32.
+            addresses. Valid values are from 1 to 32.
         :type node1: dict
         :type node2: dict
         :type interface1: str or int

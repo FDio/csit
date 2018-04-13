@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,7 +29,7 @@ class MacSwap(object):
         :param interface: Interface id.
         :type node: dict
         :type interface: str or int
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] == NodeType.DUT:
             sw_if_index = Topology.get_interface_sw_index(node, interface)
@@ -50,7 +50,7 @@ class MacSwap(object):
         :param interface_name: Interface name.
         :type node: dict
         :type interface_name: str or int
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] == NodeType.DUT:
 

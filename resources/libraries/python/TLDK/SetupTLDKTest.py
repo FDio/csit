@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -97,7 +97,7 @@ def extract_tarball_at_node(tarball, node):
     :param node: Dictionary created from topology.
     :type tarball: str
     :type node: dict
-    :return: nothing
+    :returns: nothing
     :raises RuntimeError: If extract tarball failed.
     """
     logger.console('Extracting tarball to {0} on {1}'.format(

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -70,7 +70,7 @@ class HcPersistence(object):
         :type find: string
         :type replace: string
         :raises HoneycombError: If persistent configuration couldn't be
-        modified.
+            modified.
         """
 
         argument = "\"s/{0}/{1}/g\"".format(find, replace)

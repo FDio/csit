@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -128,7 +128,7 @@ class DpdkUtil(object):
         :param args: List of testpmd parameters.
         :type node: dict
         :type args: dict
-        :return: nothing
+        :returns: nothing
         """
         eal_options = DpdkUtil.get_eal_options(**args)
         pmd_options = DpdkUtil.get_pmd_options(**args)
@@ -145,7 +145,7 @@ class DpdkUtil(object):
 
         :param node: Node to stop testpmd on.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         ssh = SSH()
         ssh.connect(node)

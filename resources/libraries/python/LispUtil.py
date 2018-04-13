@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -45,7 +45,7 @@ class LispUtil(object):
 
         :param node: VPP node.
         :param items_filter: Filter which specifies which items should be
-        retrieved - local, remote, empty string = both.
+            retrieved - local, remote, empty string = both.
         :type node: dict
         :type items_filter: str
         :returns: Lisp locator_set data as python list.
@@ -220,7 +220,7 @@ class LispUtil(object):
         :type node: dict
         :type locator_set_number: str
         :returns: list of lisp locator_set, list of lisp locator_set expected
-        from VAT.
+            from VAT.
         :rtype: tuple
         """
 
@@ -266,7 +266,7 @@ class LispUtil(object):
         :type node: dict
         :type locator_set_number: str
         :returns: list of lisp locator_set, list of lisp locator_set expected
-        from VAT.
+            from VAT.
         :rtype: tuple
         """
 

@@ -56,7 +56,7 @@ def get_vpp_pid(node):
     :param node: DUT node.
     :type node: dict
     :returns: PID of VPP process / List of PIDs if more VPP processes are
-    running on the DUT node.
+        running on the DUT node.
     :rtype: int or list
     """
     import resources.libraries.python.DUTSetup as PidLib
@@ -79,18 +79,21 @@ class VatExecutor(object):
         Path is defined automatically.
 
         :param vat_name: Name of the vat script file. Only the file name of
-        the script is required, the resources path is prepended automatically.
+            the script is required, the resources path is prepended
+            automatically.
         :param node: Node to execute the VAT script on.
         :param timeout: Seconds to allow the script to run.
         :param json_out: Require JSON output.
         :param copy_on_execute: If true, copy the file from local host to remote
-        before executing.
+            before executing.
         :type vat_name: str
         :type node: dict
         :type timeout: int
         :type json_out: bool
         :type copy_on_execute: bool
-        :raises RuntimeError: If VAT script execution failed.
+        :raises SSHException: If cannot open connection for VAT.
+        :raises SSHTimeout: If VAT execution is timed out.
+        :raises RuntimeError: If VAT script execution fails.
         """
         ssh = SSH()
         try:
@@ -131,8 +134,9 @@ class VatExecutor(object):
         """Pass all arguments to 'execute_script' method, then cleanup returned
         json output.
 
-         :param vat_name: Name of the vat script file. Only the file name of
-        the script is required, the resources path is prepended automatically.
+        :param vat_name: Name of the vat script file. Only the file name of
+            the script is required, the resources path is prepended
+            automatically.
         :param node: Node to execute the VAT script on.
         :param timeout: Seconds to allow the script to run.
         :type vat_name: str
@@ -178,7 +182,7 @@ class VatExecutor(object):
         :param node: Node in topology on witch the script is executed.
         :param vat_template_file: Template file of VAT script.
         :param vat_args: Arguments to the template file.
-        :return: List of JSON objects returned by VAT.
+        :returns: List of JSON objects returned by VAT.
         """
         with VatTerminal(node) as vat:
             return vat.vat_terminal_exec_cmd_from_template(vat_template_file,
@@ -190,7 +194,7 @@ class VatTerminal(object):
 
     :param node: Node to open VAT terminal on.
     :param json_param: Defines if outputs from VAT are in JSON format.
-    Default is True.
+        Default is True.
     :type node: dict
     :type json_param: bool
 
@@ -250,8 +254,8 @@ class VatTerminal(object):
 
         :param cmd: Command to be executed.
 
-        :return: Command output in python representation of JSON format or
-        None if not in JSON mode.
+        :returns: Command output in python representation of JSON format or
+            None if not in JSON mode.
         """
         VatHistory.add_to_vat_history(self._node, cmd)
         logger.debug("Executing command in VAT terminal: {0}".format(cmd))
@@ -331,7 +335,7 @@ class VatTerminal(object):
 
         :param vat_template_file: Template file name of a VAT script.
         :param args: Dictionary of parameters for VAT script.
-        :return: List of JSON objects returned by VAT.
+        :returns: List of JSON objects returned by VAT.
         """
         file_path = '{}/{}'.format(Constants.RESOURCES_TPL_VAT,
                                    vat_template_file)

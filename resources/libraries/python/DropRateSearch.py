@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -125,7 +125,7 @@ class DropRateSearch(object):
         :type traffic_type: str
         :type traffic_type: bool
         :returns: Drop threshold exceeded? (True/False)
-        :rtype bool
+        :rtype: bool
         """
         pass
 
@@ -137,7 +137,7 @@ class DropRateSearch(object):
         :type max_rate: float
         :type min_rate: float
         :returns: nothing
-        :raises: ValueError if min rate is lower than 0 and higher than max rate
+        :raises ValueError: If min rate is lower than 0 or higher than max rate.
         """
         if float(min_rate) <= 0:
             raise ValueError("min_rate must be higher than 0")
@@ -153,7 +153,7 @@ class DropRateSearch(object):
         :param loss_acceptance: Loss acceptance treshold for PDR search.
         :type loss_acceptance: str
         :returns: nothing
-        :raises: ValueError if loss acceptance is lower than zero
+        :raises ValueError: If loss acceptance is lower than zero.
         """
         if float(loss_acceptance) < 0:
             raise ValueError("Loss acceptance must be higher or equal 0")
@@ -227,7 +227,7 @@ class DropRateSearch(object):
         :param rate_type: Type of rate to set.
         :type rate_type: RateType
         :returns: nothing
-        :raises: Exception if rate type is unknown
+        :raises Exception: If rate type is unknown.
         """
         if rate_type not in RateType:
             raise Exception("rate_type unknown: {}".format(rate_type))
@@ -282,7 +282,7 @@ class DropRateSearch(object):
 
         :returns: String representation of rate type.
         :rtype: str
-        :raises: ValueError if rate type is unknown
+        :raises ValueError: If rate type is unknown.
         """
         if self._rate_type == RateType.PERCENTAGE:
             return "%"
@@ -299,7 +299,7 @@ class DropRateSearch(object):
         :param max_attempts: Number of traffic runs.
         :type max_attempts: int
         :returns: nothing
-        :raises: ValueError if max attempts is lower than zero
+        :raises ValueError: If max attempts is lower than zero.
         """
         if int(max_attempts) > 0:
             self._max_attempts = int(max_attempts)
@@ -334,7 +334,7 @@ class DropRateSearch(object):
         :param search_type: Type of search result evaluation to set.
         :type search_type: SearchResultType
         :returns: nothing
-        :raises: ValueError if search type is unknown
+        :raises ValueError: If search type is unknown.
         """
         if search_type not in SearchResultType:
             raise ValueError("search_type unknown: {}".format(search_type))
@@ -372,7 +372,7 @@ class DropRateSearch(object):
         :type res_list: list
         :returns: Boolean based on search result type.
         :rtype: boolean
-        :raises: ValueError if search result type is unknown
+        :raises ValueError: If search result type is unknown.
         """
         if self._search_result_type == SearchResultType.BEST_OF_N:
             return self._get_best_of_n(res_list)
@@ -389,7 +389,7 @@ class DropRateSearch(object):
         :type start_rate: float
         :type traffic_type: str
         :returns: nothing
-        :raises: ValueError if start rate is not in range
+        :raises ValueError: If start rate is not in range.
         """
 
         if not self._rate_min <= float(start_rate) <= self._rate_max:
@@ -473,7 +473,7 @@ class DropRateSearch(object):
 
         :returns: Result rate and latency stats.
         :rtype: tuple
-        :raises: Exception if search failed
+        :raises Exception: If search failed.
         """
         if self._search_result == SearchResults.FAILURE:
             raise Exception('Search FAILED')
@@ -496,7 +496,7 @@ class DropRateSearch(object):
         :type skip_max_rate: bool
         :type skip_warmup: bool
         :returns: nothing
-        :raises: ValueError if input values are not valid
+        :raises ValueError: If input values are not valid.
         """
 
         if not self._rate_min <= float(b_min) <= self._rate_max:
@@ -546,7 +546,7 @@ class DropRateSearch(object):
         :type start_rate: float
         :type traffic_type: str
         :returns: nothing
-        :raises: RuntimeError if linear search failed
+        :raises RuntimeError: If linear search failed.
         """
 
         self.linear_search(start_rate, traffic_type)
@@ -596,7 +596,7 @@ class DropRateSearch(object):
         :returns: Returns True if num_a is close in value to num_b or equal.
                  False otherwise.
         :rtype: boolean
-        :raises: ValueError if input values are not valid
+        :raises ValueError: If input values are not valid.
         """
 
         if num_a == num_b:

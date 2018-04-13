@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -60,7 +60,7 @@ class Performance(object):
         :param script: Name of the script to execute.
         :param cores: Number of processor cores to use.
         :param reserved: Number of cores reserved for other tasks. Default is 2,
-        one for system tasks and one for VPP main thread.
+            one for system tasks and one for VPP main thread.
         :param args: Sequential arguments for the script.
         :param kwargs: Named arguments for the script.
         :type node: dict
