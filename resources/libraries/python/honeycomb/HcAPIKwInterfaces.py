@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -86,7 +86,7 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response on PUT is not
-        200 = OK.
+            200 = OK.
         """
 
         status_code, resp = HcUtil.\
@@ -228,7 +228,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :param path:  Path to data we want to change / create / remove.
         :param new_value: The new value to be set. If None, the item will be
-        removed.
+            removed.
         :type node: dict
         :type interface: str
         :type path: tuple
@@ -261,7 +261,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: Interface name, key, link name or sw_if_index.
         :param state: The requested state, only "up" and "down" are valid
-        values.
+            values.
         :type node: dict
         :type interface: str
         :type state: str
@@ -370,7 +370,6 @@ class InterfaceKeywords(object):
         :param interface: Interface name, key, link name or sw_if_index.
         :type node: dict
         :type interface: str or int
-
         :raises HoneycombError: If the operation fails.
         """
 
@@ -402,7 +401,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :returns: Operational data about bridge domain settings in the
-        interface.
+            interface.
         :rtype: dict
         """
 
@@ -423,7 +422,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :param param: Parameter to configure (set, change, remove)
         :param value: The value of parameter. If None, the parameter will be
-        removed.
+            removed.
         :type node: dict
         :type interface: str
         :type param: str
@@ -448,7 +447,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :param param: Parameter to configure (set, change, remove)
         :param value: The value of parameter. If None, the parameter will be
-        removed.
+            removed.
         :type node: dict
         :type interface: str
         :type param: str
@@ -617,7 +616,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :param param: Parameter to configure (set, change, remove)
         :param value: The value of parameter. If None, the parameter will be
-        removed.
+            removed.
         :type node: dict
         :type interface: str
         :type param: str
@@ -763,7 +762,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :param param: Parameter to configure (set, change, remove)
         :param value: The value of parameter. If None, the parameter will be
-        removed.
+            removed.
         :type node: dict
         :type interface: str
         :type param: str
@@ -788,7 +787,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :param param: Parameter to configure (set, change, remove)
         :param value: The value of parameter. If None, the parameter will be
-        removed.
+            removed.
         :type node: dict
         :type interface: str
         :type param: str
@@ -816,7 +815,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.VXLAN_PARAMS.
+            defined in InterfaceKeywords.VXLAN_PARAMS.
         :type node: dict
         :type interface: str
         :type kwargs: dict
@@ -852,7 +851,7 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If it is not possible to get information about
-        interfaces or it is not possible to delete the interface.
+            interfaces or it is not possible to delete the interface.
         """
 
         path = ("interfaces", ("interface", "name", interface))
@@ -887,7 +886,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.VXLAN_PARAMS.
+            defined in InterfaceKeywords.VXLAN_PARAMS.
         :type node: dict
         :type interface: str
         :type kwargs: dict
@@ -915,7 +914,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :param param: Parameter to configure (set, change, remove)
         :param value: The value of parameter. If None, the parameter will be
-        removed.
+            removed.
         :type node: dict
         :type interface: str
         :type param: str
@@ -939,7 +938,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.TAP_PARAMS.
+            defined in InterfaceKeywords.TAP_PARAMS.
         :type node: dict
         :type interface: str
         :type kwargs: dict
@@ -978,7 +977,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.TAP_PARAMS.
+            defined in InterfaceKeywords.TAP_PARAMS.
         :type node: dict
         :type interface: str
         :type kwargs: dict
@@ -1012,7 +1011,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.VHOST_USER_PARAMS.
+            defined in InterfaceKeywords.VHOST_USER_PARAMS.
         :type node: dict
         :type interface: str
         :type kwargs: dict
@@ -1040,7 +1039,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.VHOST_USER_PARAMS.
+            defined in InterfaceKeywords.VHOST_USER_PARAMS.
         :type node: dict
         :type interface: str
         :type kwargs: dict
@@ -1073,10 +1072,10 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param super_interface: Super interface.
         :param match: Match type. The valid values are defined in
-        InterfaceKeywords.SUB_IF_MATCH.
+            InterfaceKeywords.SUB_IF_MATCH.
         :param tags: List of tags.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.SUB_IF_PARAMS.
+            defined in InterfaceKeywords.SUB_IF_PARAMS.
         :type node: dict
         :type super_interface: str
         :type match: str
@@ -1380,13 +1379,13 @@ class InterfaceKeywords(object):
         :param data: Data to be checked.
         :param ref: Referential data used for comparison.
         :param _path: Used in recursive calls, stores the path taken down
-        the JSON tree.
+            the JSON tree.
         :type data: dict
         :type ref: dict
         :type _path: str
 
         :raises HoneycombError: If the data structures do not match in some way,
-        or if they are not in deserialized JSON format.
+            or if they are not in deserialized JSON format.
         """
 
         if data == ref:
@@ -1474,7 +1473,7 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface to be created.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.VXLAN_GPE_PARAMS.
+            defined in InterfaceKeywords.VXLAN_GPE_PARAMS.
         :type node: dict
         :type interface: str
         :type kwargs: dict
@@ -1514,7 +1513,7 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of interface is not
-        successful.
+            successful.
         """
 
         interface = interface.replace("/", "%2F")
@@ -1555,7 +1554,7 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of interface is not
-        successful.
+            successful.
         """
         interface = Topology.convert_interface_reference(
             node, interface, "name")
@@ -1588,7 +1587,7 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of interface is not
-        successful.
+            successful.
         """
         interface = Topology.convert_interface_reference(
             node, interface, "name")
@@ -1614,7 +1613,7 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of interface is not
-        successful.
+            successful.
         """
 
         interface = interface.replace("/", "%2F")
@@ -1638,14 +1637,14 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param intf: The interface where PBB sub-interface will be configured.
         :param params: Configuration parameters of the sub-interface to be
-        created.
+            created.
         :type node: dict
         :type intf: str
         :type params: dict
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of sub-interface is not
-        successful.
+            successful.
         """
 
         interface = intf.replace("/", "%2F")
@@ -1670,7 +1669,7 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the removal of sub-interface is not
-        successful.
+            successful.
         """
 
         interface = intf.replace("/", "%2F")
@@ -1697,7 +1696,7 @@ class InterfaceKeywords(object):
         :returns: PBB sub-interface operational data.
         :rtype: dict
         :raises HoneycombError: If the removal of sub-interface is not
-        successful.
+            successful.
         """
 
         raise NotImplementedError
@@ -1714,8 +1713,8 @@ class InterfaceKeywords(object):
         :returns: True if the interface exists in disabled interfaces.
         :rtype: bool
         :raises HoneycombError: If the interface is not present
-         in retrieved list of disabled interfaces.
-         """
+            in retrieved list of disabled interfaces.
+        """
         data = InterfaceKeywords.get_disabled_interfaces_oper_data(node)
         # decrement by one = conversion from HC if-index to VPP sw_if_index
         interface -= 1
@@ -1780,7 +1779,7 @@ class InterfaceKeywords(object):
 
         :param node: Honeycomb node.
         :param super_interface: Name, link name or sw_if_index
-        of the destination interface's super-interface.
+            of the destination interface's super-interface.
         :param dst_interface_index: Index of sub-interface to mirror packets to.
         :param src_interfaces: List of interfaces to mirror packets from.
         :type node: dict
@@ -1880,7 +1879,7 @@ class InterfaceKeywords(object):
 
         :param node: Honeycomb node.
         :param interface: Name, link name or sw_if_index of an interface,
-        name of a custom interface or name of a sub-interface.
+            name of a custom interface or name of a sub-interface.
         :type node: Honeycomb node.
         :type interface: str or int
         :returns: Name of interface that can be used in Honeycomb requests.

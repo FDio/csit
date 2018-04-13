@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -41,7 +41,7 @@ class NATKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        OK or ACCEPTED.
+            OK or ACCEPTED.
         """
 
         if data:
@@ -67,7 +67,7 @@ class NATKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails or the response
-        is not as expected.
+            is not as expected.
         """
 
         status_code, resp = HcUtil.get_honeycomb_data(node, "oper_nat")

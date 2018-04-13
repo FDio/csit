@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -35,7 +35,7 @@ class Map(object):
         :param psid_offset: Port Set Identifier (PSID) offset.
         :param psid_len: Port Set Identifier (PSID) length.
         :param map_t: Mapping using translation instead of encapsulation.
-        Default False.
+            Default False.
         :type vpp_node: dict
         :type ip4_pfx: str
         :type ip6_pfx: str
@@ -108,7 +108,8 @@ class Map(object):
 
     @staticmethod
     def get_psid_from_port(port, psid_len, psid_offset):
-        """Return PSID from port.
+        """Return PSID from port.::
+
                               0                   1
                               0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
                              +-----------+-----------+-------+
@@ -181,7 +182,7 @@ class Map(object):
         :type ea_bit_len: int
         :type psid: int
         :returns: Number representing interface id field of destination IPv6
-        address.
+            address.
         :rtype: int
         """
         if rule_net.prefixlen + ea_bit_len < 32:
@@ -207,14 +208,13 @@ class Map(object):
                                              psid_offset, psid_len, ipv4_dst,
                                              dst_port):
         """Compute IPv6 destination address from IPv4 address for MAP algorithm.
-        (RFC 7597)
+        (RFC 7597)::
 
-       |     n bits         |  o bits   | s bits  |   128-n-o-s bits      |
-       +--------------------+-----------+---------+-----------------------+
-       |  Rule IPv6 prefix  |  EA bits  |subnet ID|     interface ID      |
-       +--------------------+-----------+---------+-----------------------+
-       |<---  End-user IPv6 prefix  --->|
-
+          |     n bits         |  o bits   | s bits  |   128-n-o-s bits      |
+          +--------------------+-----------+---------+-----------------------+
+          |  Rule IPv6 prefix  |  EA bits  |subnet ID|     interface ID      |
+          +--------------------+-----------+---------+-----------------------+
+          |<---  End-user IPv6 prefix  --->|
 
         :param ipv4_pfx: Domain IPv4 preffix.
         :param ipv6_pfx: Domain IPv6 preffix.

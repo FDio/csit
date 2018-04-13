@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -95,7 +95,7 @@ class IPFIXSetup(object):
         :param node: DUT node.
         :param domain: Desired index number of exporting domain.
         :param src_port: Source port to use when sending IPFIX packets. Default
-        is the standard IPFIX port 4739.
+            is the standard IPFIX port 4739.
         :type node: dict
         :type domain: int
         :type src_port: int
@@ -112,15 +112,15 @@ class IPFIXSetup(object):
     @staticmethod
     def assign_classify_table_to_exporter(node, table_id, ip_version='ip4'):
         """Assign a classify table to an IPFIX exporter. Classified packets will
-         be included in the IPFIX flow report.
+        be included in the IPFIX flow report.
 
-         :param node: DUT node.
-         :param table_id: ID of a classify table.
-         :param ip_version: Version of IP protocol. Valid options are ip4, ip6.
-         :type node: dict
-         :type table_id: int
-         :type ip_version: str
-         """
+        :param node: DUT node.
+        :param table_id: ID of a classify table.
+        :param ip_version: Version of IP protocol. Valid options are ip4, ip6.
+        :type node: dict
+        :type table_id: int
+        :type ip_version: str
+        """
 
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template("ipfix_table_add.vat",

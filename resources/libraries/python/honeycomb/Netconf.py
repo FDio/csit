@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -98,9 +98,9 @@ class Netconf(object):
         :param size: Maximum number of bytes to read in one iteration.
         :param time_out: Timeout value for getting the complete response.
         :param err: Error message to provide when timeout is reached.
-        :type size:int
-        :type time_out:int
-        :type err:str
+        :type size: int
+        :type time_out: int
+        :type err: str
         :returns: Content of response.
         :rtype: str
         :raises HoneycombError: If the read process times out.
@@ -133,12 +133,12 @@ class Netconf(object):
 
     def get_all_responses(self, size=4096, time_out=3):
         """Read responses from the receive buffer and catenate together
-         until a read operation times out.
+        until a read operation times out.
 
         :param size: Maximum number of bytes to read in one iteration.
         :param time_out: Timeout value for getting the complete response.
-        :type size:int
-        :type time_out:int
+        :type size: int
+        :type time_out: int
         :returns: Content of response.
         :rtype: str
         """
