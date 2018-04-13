@@ -29,7 +29,7 @@ class MacSwap(object):
         :param interface: Interface id.
         :type node: dict
         :type interface: str or int
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] == NodeType.DUT:
             sw_if_index = Topology.get_interface_sw_index(node, interface)
@@ -50,7 +50,7 @@ class MacSwap(object):
         :param interface_name: Interface name.
         :type node: dict
         :type interface_name: str or int
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] == NodeType.DUT:
 

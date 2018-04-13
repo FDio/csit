@@ -57,7 +57,7 @@ class Notifications(Netconf):
 
         :param time_out: Timeout value for the read operation in seconds.
         :type time_out: int
-        :return: Data received from buffer.
+        :returns: Data received from buffer.
         :rtype: str
         """
 

@@ -37,7 +37,7 @@ class DHCPRelayKeywords(object):
         :type node: dict
         :type path: str
         :type data: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response is not
         200 = OK or 201 = ACCEPTED.

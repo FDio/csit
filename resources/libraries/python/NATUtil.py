@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -35,7 +35,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If setting of inside and outside interfaces for
-        NAT44 fails.
+            NAT44 fails.
         """
 
         try:
@@ -65,7 +65,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If setting of deterministic behaviour of NAT44
-        fails.
+            fails.
         """
 
         try:
@@ -84,8 +84,8 @@ class NATUtil(object):
         """Set NAT workers.
 
         :param node: DUT node.
-        :param lcores: list of cores, format: range e.g. 1-5 or list of ranges
-        e.g.: 1-5,18-22.
+        :param lcores: List of cores, format: range e.g. 1-5 or list of ranges
+            e.g.: 1-5,18-22.
         :type node: dict
         :type lcores: str
         :returns: Response of the command.
@@ -131,7 +131,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If command 'exec snat deterministic forward'
-        fails.
+            fails.
         """
 
         try:
@@ -156,7 +156,7 @@ class NATUtil(object):
         :returns: Response of the command.
         :rtype: str
         :raises RuntimeError: If command 'exec snat deterministic reverse'
-        fails.
+            fails.
         """
 
         try:

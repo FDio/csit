@@ -58,7 +58,7 @@ class TrafficScriptArg(object):
 
         :param arg_name: Argument name.
         :type arg_name: str
-        :return: Argument value.
+        :returns: Argument value.
         :rtype: str
         """
         arg_val = self._args.get(arg_name)

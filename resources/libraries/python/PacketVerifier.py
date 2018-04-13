@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,53 +13,55 @@
 
 """PacketVerifier module.
 
-    :Example:
+  Example. ::
 
-    >>> from scapy.all import *
-    >>> from PacketVerifier import *
-    >>> rxq = RxQueue('eth1')
-    >>> txq = TxQueue('eth1')
-    >>> src_mac = "AA:BB:CC:DD:EE:FF"
-    >>> dst_mac = "52:54:00:ca:5d:0b"
-    >>> src_ip = "11.11.11.10"
-    >>> dst_ip = "11.11.11.11"
-    >>> sent_packets = []
-    >>> pkt_send = Ether(src=src_mac, dst=dst_mac) /
-    ... IP(src=src_ip, dst=dst_ip) /
-    ... ICMP()
-    >>> sent_packets.append(pkt_send)
-    >>> txq.send(pkt_send)
-    >>> pkt_send = Ether(src=src_mac, dst=dst_mac) /
-    ... ARP(hwsrc=src_mac, psrc=src_ip, hwdst=dst_mac, pdst=dst_ip, op=2)
-    >>> sent_packets.append(pkt_send)
-    >>> txq.send(pkt_send)
-    >>> rxq.recv(100, sent_packets).show()
-    ###[ Ethernet ]###
-      dst       = aa:bb:cc:dd:ee:ff
-      src       = 52:54:00:ca:5d:0b
-      type      = 0x800
-    ###[ IP ]###
-      version   = 4L
-      ihl       = 5L
-      tos       = 0x0
-      len       = 28
-      id        = 43183
-      flags     =
-      frag      = 0L
-      ttl       = 64
-      proto     = icmp
-      chksum    = 0xa607
-      src       = 11.11.11.11
-      dst       = 11.11.11.10
-      options
-    ###[ ICMP ]###
-      type      = echo-reply
-      code      = 0
-      chksum    = 0xffff
-      id        = 0x0
-      seq       = 0x0
-    ###[ Padding ]###
-      load = 'RT\x00\xca]\x0b\xaa\xbb\xcc\xdd\xee\xff\x08\x06\x00\x01\x08\x00'
+    | >>> from scapy.all import *
+    | >>> from PacketVerifier import *
+    | >>> rxq = RxQueue('eth1')
+    | >>> txq = TxQueue('eth1')
+    | >>> src_mac = "AA:BB:CC:DD:EE:FF"
+    | >>> dst_mac = "52:54:00:ca:5d:0b"
+    | >>> src_ip = "11.11.11.10"
+    | >>> dst_ip = "11.11.11.11"
+    | >>> sent_packets = []
+    | >>> pkt_send = Ether(src=src_mac, dst=dst_mac) /
+    | ... IP(src=src_ip, dst=dst_ip) /
+    | ... ICMP()
+    | >>> sent_packets.append(pkt_send)
+    | >>> txq.send(pkt_send)
+    | >>> pkt_send = Ether(src=src_mac, dst=dst_mac) /
+    | ... ARP(hwsrc=src_mac, psrc=src_ip, hwdst=dst_mac, pdst=dst_ip, op=2)
+    | >>> sent_packets.append(pkt_send)
+    | >>> txq.send(pkt_send)
+    | >>> rxq.recv(100, sent_packets).show()
+    | ###[ Ethernet ]###
+    |   dst       = aa:bb:cc:dd:ee:ff
+    |   src       = 52:54:00:ca:5d:0b
+    |   type      = 0x800
+    | ###[ IP ]###
+    |   version   = 4L
+    |   ihl       = 5L
+    |   tos       = 0x0
+    |   len       = 28
+    |   id        = 43183
+    |   flags     =
+    |   frag      = 0L
+    |   ttl       = 64
+    |   proto     = icmp
+    |   chksum    = 0xa607
+    |   src       = 11.11.11.11
+    |   dst       = 11.11.11.10
+    |   options
+    | ###[ ICMP ]###
+    |   type      = echo-reply
+    |   code      = 0
+    |   chksum    = 0xffff
+    |   id        = 0x0
+    |   seq       = 0x0
+    | ###[ Padding ]###
+    |   load = 'RT\x00\xca]\x0b\xaa\xbb\xcc\xdd\xee\xff\x08\x06\x00\x01\x08\x00'
+
+  Example end.
 """
 
 import os

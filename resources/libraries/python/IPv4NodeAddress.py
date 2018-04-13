@@ -42,8 +42,8 @@ class IPv4NetworkGenerator(object):
 
     def next_network(self):
         """
-        :return: Next network in form (IPv4Network, subnet).
-        :raises: StopIteration if there are no more elements.
+        :returns: Next network in form (IPv4Network, subnet).
+        :raises StopIteration: If there are no more elements.
         """
         if len(self._networks):
             return self._networks.pop()

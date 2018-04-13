@@ -67,7 +67,7 @@ class Tap(object):
         :type if_index: int
         :type tap_name: str
         :type mac: str
-        :return: Returns a interface index.
+        :returns: Returns a interface index.
         :rtype: int
         """
         command = 'modify'

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -62,12 +62,14 @@ class HoneycombError(Exception):
 
     When raising this exception, put this information to the message in this
     order:
+
      - short description of the encountered problem (parameter msg),
      - relevant messages if there are any collected, e.g., from caught
        exception (optional parameter details),
      - relevant data if there are any collected (optional parameter details).
-     The logging is performed on two levels: 1. error - short description of the
-     problem; 2. debug - detailed information.
+
+    The logging is performed on two levels: 1. error - short description of the
+    problem; 2. debug - detailed information.
     """
 
     def __init__(self, msg, details='', enable_logging=True):
@@ -79,7 +81,7 @@ class HoneycombError(Exception):
 
         :param msg: Message to be displayed and logged.
         :param enable_logging: When True, logging is enabled, otherwise
-        logging is disabled.
+            logging is disabled.
         :type msg: str
         :type enable_logging: bool
         """
@@ -109,10 +111,11 @@ class HoneycombUtil(object):
     structure.
 
     There are also two supportive methods implemented:
-    - read_path_from_url_file which reads URL file and returns a path (see
-      docs/honeycomb_url_files.rst).
-    - parse_json_response which parses data from response in JSON representation
-      according to given path.
+
+      - read_path_from_url_file which reads URL file and returns a path (see
+        docs/honeycomb_url_files.rst).
+      - parse_json_response which parses data from response in JSON
+        representation according to given path.
     """
 
     def __init__(self):
@@ -120,11 +123,12 @@ class HoneycombUtil(object):
 
     @staticmethod
     def read_path_from_url_file(url_file):
-        """Read path from *.url file.
+        """Read path from .url file.
 
-        For more information about *.url file see docs/honeycomb_url_files.rst
+        For more information about .url file see docs/honeycomb_url_files.rst
+
         :param url_file: URL file. The argument contains only the name of file
-        without extension, not the full path.
+            without extension, not the full path.
         :type url_file: str
         :returns: Requested path.
         :rtype: str
@@ -143,36 +147,39 @@ class HoneycombUtil(object):
         Path format:
         The path is a tuple with items navigating to requested data. The items
         can be strings or tuples:
-        - string item represents a dictionary key in data,
-        - tuple item represents list item in data.
 
-        Example:
-        data = \
-        {
-            "interfaces": {
-                "interface": [
-                    {
-                        "name": "GigabitEthernet0/8/0",
-                        "enabled": "true",
-                        "type": "iana-if-type:ethernetCsmacd",
-                    },
-                    {
-                        "name": "local0",
-                        "enabled": "false",
-                        "type": "iana-if-type:ethernetCsmacd",
-                    }
-                ]
-            }
-        }
+          - string item represents a dictionary key in data,
+          - tuple item represents list item in data.
+
+        Example::
+
+          data = \
+          {
+              "interfaces": {
+                  "interface": [
+                      {
+                          "name": "GigabitEthernet0/8/0",
+                          "enabled": "true",
+                          "type": "iana-if-type:ethernetCsmacd",
+                      },
+                      {
+                          "name": "local0",
+                          "enabled": "false",
+                          "type": "iana-if-type:ethernetCsmacd",
+                      }
+                  ]
+              }
+          }
 
         path = ("interfaces", ("interface", "name", "local0"), "enabled")
         This path points to "false".
 
-        The tuple ("interface", "name", "local0") consists of:
-        index 0 - dictionary key pointing to a list,
-        index 1 - key which identifies an item in the list, it is also marked as
-                  the key in corresponding yang file.
-        index 2 - key value.
+        The tuple ("interface", "name", "local0") consists of::
+
+          index 0 - dictionary key pointing to a list,
+          index 1 - key which identifies an item in the list, it is also marked
+                    as the key in corresponding yang file.
+          index 2 - key value.
 
         :param data: Data received from Honeycomb REST API.
         :param path: Path to data we want to find.
@@ -290,13 +297,13 @@ class HoneycombUtil(object):
 
         :param node: Honeycomb node.
         :param url_file: URL file. The argument contains only the name of file
-        without extension, not the full path.
+            without extension, not the full path.
         :param path: Path which is added to the base path to identify the data.
         :type node: dict
         :type url_file: str
         :type path: str
         :returns: Status code and content of response.
-        :rtype tuple
+        :rtype: tuple
         """
 
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
@@ -319,7 +326,7 @@ class HoneycombUtil(object):
 
         :param node: Honeycomb node.
         :param url_file: URL file. The argument contains only the name of file
-        without extension, not the full path.
+            without extension, not the full path.
         :param data: Configuration data to be sent to Honeycomb.
         :param path: Path which is added to the base path to identify the data.
         :param data_representation: How the data is represented.
@@ -331,7 +338,7 @@ class HoneycombUtil(object):
         :returns: Status code and content of response.
         :rtype: tuple
         :raises HoneycombError: If the given data representation is not defined
-        in HEADERS.
+            in HEADERS.
         """
 
         try:
@@ -358,11 +365,11 @@ class HoneycombUtil(object):
 
         :param node: Honeycomb node.
         :param url_file: URL file. The argument contains only the name of file
-        without extension, not the full path.
+            without extension, not the full path.
         :param data: Configuration data to be sent to Honeycomb.
         :param data_representation: How the data is represented.
         :param timeout: How long to wait for the server to send data before
-        giving up.
+            giving up.
         :type node: dict
         :type url_file: str
         :type data: dict, str
@@ -371,7 +378,7 @@ class HoneycombUtil(object):
         :returns: Status code and content of response.
         :rtype: tuple
         :raises HoneycombError: If the given data representation is not defined
-        in HEADERS.
+            in HEADERS.
         """
 
         try:
@@ -392,13 +399,13 @@ class HoneycombUtil(object):
 
         :param node: Honeycomb node.
         :param url_file: URL file. The argument contains only the name of file
-        without extension, not the full path.
+            without extension, not the full path.
         :param path: Path which is added to the base path to identify the data.
         :type node: dict
         :type url_file: str
         :type path: str
         :returns: Status code and content of response.
-        :rtype tuple
+        :rtype: tuple
         """
 
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
@@ -411,7 +418,7 @@ class HoneycombUtil(object):
 
         :param node: Honeycomb node.
         :param suite_name: Name of the current test suite. ${SUITE_NAME}
-        variable in robotframework.
+            variable in robotframework.
         :type node: dict
         :type suite_name: str
         """
@@ -433,7 +440,8 @@ class HoneycombUtil(object):
         """Delete the Honeycomb log file for the current test suite.
 
         :param node: Honeycomb node.
-        :type node: dict"""
+        :type node: dict
+        """
 
         ssh = SSH()
         ssh.connect(node)

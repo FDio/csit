@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -50,7 +50,7 @@ class LispKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        200 = OK or 201 = ACCEPTED.
+            200 = OK or 201 = ACCEPTED.
         """
 
         if data:
@@ -142,7 +142,7 @@ class LispKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the return code is not 200:OK
-        or 404:NOT FOUND.
+            or 404:NOT FOUND.
         """
 
         ret_code, data = HcUtil.get_honeycomb_data(node, "config_lisp")
@@ -186,7 +186,7 @@ class LispKeywords(object):
         :param interface: An interface on the node.
         :param locator_set: Name for the new locator set.
         :param priority: Priority parameter for the locator.
-        :param weight. Weight parameter for the locator.
+        :param weight: Weight parameter for the locator.
         :type node: dict
         :type interface: str
         :type locator_set: str
@@ -491,7 +491,7 @@ class LispGPEKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
-        200 = OK or 201 = ACCEPTED.
+            200 = OK or 201 = ACCEPTED.
         """
 
         if data:
@@ -518,7 +518,7 @@ class LispGPEKeywords(object):
         :returns: LISP GPE operational data.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to GET is not
-        200 = OK.
+            200 = OK.
         """
 
         status_code, resp = HcUtil.get_honeycomb_data(node, "oper_lisp_gpe")
@@ -540,7 +540,7 @@ class LispGPEKeywords(object):
         :returns: LISP GPE mapping.
         :rtype: dict
         :raises HoneycombError: If the mapping is not present in operational
-        data.
+            data.
         """
 
         data = LispGPEKeywords.get_lispgpe_operational_data(node)
@@ -568,7 +568,7 @@ class LispGPEKeywords(object):
         :returns: LISP GPE config data.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to GET is not
-        200 = OK.
+            200 = OK.
         """
 
         status_code, resp = HcUtil.get_honeycomb_data(node, "config_lisp_gpe")
@@ -590,7 +590,7 @@ class LispGPEKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the return code is not 200:OK
-        or 404:NOT FOUND.
+            or 404:NOT FOUND.
         """
 
         ret_code, data = HcUtil.get_honeycomb_data(node, "config_lisp_gpe")

@@ -97,7 +97,7 @@ def extract_tarball_at_node(tarball, node):
     :param node: Dictionary created from topology.
     :type tarball: str
     :type node: dict
-    :return: nothing
+    :returns: nothing
     :raises RuntimeError: If extract tarball failed.
     """
     logger.console('Extracting tarball to {0} on {1}'.format(

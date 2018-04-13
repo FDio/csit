@@ -38,7 +38,7 @@ def pack_framework_dir():
 
     :returns: the temporary package file name.
     :rtype: str
-    :raises: If execute the tar command failed.
+    :raises RuntimeError: If execute the tar command failed.
     """
 
     tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="SFC-testing-")
@@ -86,7 +86,7 @@ def extract_tarball_at_node(tarball, node):
     :type tarball: str
     :type node: dict
     :returns: nothing
-    :raises: If unpack the file failed.
+    :raises RuntimeError: If unpack the file failed.
     """
     logger.console('Extracting tarball to {0} on {1}'.format(
         con.REMOTE_FW_DIR, node['host']))

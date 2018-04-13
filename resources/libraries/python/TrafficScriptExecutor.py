@@ -30,7 +30,7 @@ class TrafficScriptExecutor(object):
 
         :param string: String to escape.
         :type string: str
-        :return: Escaped string.
+        :returns: Escaped string.
         :rtype: str
         """
         return string.replace('"', '\\"').replace("$", "\\$")
@@ -103,7 +103,7 @@ class TrafficScriptExecutor(object):
         :type dst_mac: str
         :type src_ip: str
         :type dst_ip: str
-        :return: Traffic script arguments string.
+        :returns: Traffic script arguments string.
         :rtype: str
         """
         args = ('--rx_if {0} --tx_if {1} --src_mac {2} --dst_mac {3} --src_ip'

@@ -71,6 +71,7 @@ class Topology(object):
     "Active topology" contains initially data from the topology file and can be
     extended with additional data from the DUTs like internal interface indexes
     or names. Additional data which can be filled to the active topology are
+
         - additional internal representation (index, name, ...)
         - operational data (dynamic ports)
 
@@ -349,11 +350,11 @@ class Topology(object):
 
         :param node: The node topology directory.
         :param link_names: List of names of the link that a interface is
-        connected to.
+            connected to.
         :type node: dict
         :type link_names: list
         :returns: Dictionary of interface names that are connected to the given
-        links.
+            links.
         :rtype: dict
         """
         retval = {}
@@ -465,8 +466,7 @@ class Topology(object):
 
         :param node: Node in topology.
         :param interface: Name, sw_if_index, link name or key of an interface
-        on the node.
-        Valid formats are: sw_if_index, key, name.
+            on the node.
         :type node: dict
         :type interface: str or int
 
@@ -505,16 +505,14 @@ class Topology(object):
 
         :param node: Node in topology.
         :param interface: Name, sw_if_index, link name or key of an interface
-        on the node.
+            on the node.
         :param wanted_format: Format of return value wanted.
-        Valid options are: sw_if_index, key, name.
+            Valid options are: sw_if_index, key, name.
         :type node: dict
         :type interface: str or int
         :type wanted_format: str
-
         :returns: Interface name, interface key or sw_if_index.
         :rtype: str or int
-
         :raises TypeError, ValueError: If provided with invalid arguments.
         :raises RuntimeError: If the interface does not exist in topology.
         """
@@ -620,7 +618,7 @@ class Topology(object):
         on local network.
 
         :param nodes_info: Dictionary containing information on all nodes
-        in topology.
+            in topology.
         :param node: Node that contains specified interface.
         :param iface_key: Interface key from topology file.
         :type nodes_info: dict
@@ -786,7 +784,7 @@ class Topology(object):
         :type node2: dict
         :returns: Name of link connecting the two nodes together.
         :rtype: str
-        :raises: RuntimeError
+        :raises RuntimeError: If no links are found.
         """
         connecting_links = self.get_active_connecting_links(node1, node2)
         if len(connecting_links) == 0:
