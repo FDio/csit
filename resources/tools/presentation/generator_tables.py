@@ -595,7 +595,7 @@ def table_performance_trending_dashboard(table, input_data):
             else:
                 anomaly = "normal"
 
-            if not isnan(last) and not isnan(trend):
+            if not isnan(last) and not isnan(trend) and trend != 0:
                 # Change:
                 change = round(float(last - trend) / 1000000, 2)
                 # Relative change:
