@@ -209,7 +209,18 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.${DUT}.perf" \
-              --include mrrAND1t1cORmrrAND2t2c \
+              --include mrrAND64bAND1t1c \
+              --include mrrAND64bAND2t2c \
+              --include mrrAND64bAND4t4c \
+              --include mrrAND78bAND1t1c \
+              --include mrrAND78bAND2t2c \
+              --include mrrAND78bAND4t4c \
+              --include mrrANDimixAND1t1cANDvhost \
+              --include mrrANDimixAND2t2cANDvhost \
+              --include mrrANDimixAND4t4cANDvhost \
+              --include mrrANDimixAND1t1cANDmemif \
+              --include mrrANDimixAND2t2cANDmemif \
+              --include mrrANDimixAND4t4cANDmemif \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -364,6 +375,33 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.${DUT}.perf" \
+              --include ndrdiscAND1t1cAND64b \
+              --include ndrdiscAND2t2cAND64b \
+              --include pdrdiscAND1t1cAND64b \
+              --include pdrdiscAND2t2cAND64b \
+              --include ndrdiscAND1t1cAND78b \
+              --include ndrdiscAND2t2cAND78b \
+              --include pdrdiscAND1t1cAND78b \
+              --include pdrdiscAND2t2cAND78b \
+              --include ndrdiscAND4t4cAND64bANDl2bdmaclrnANDbase \
+              --include ndrdiscAND4t4cAND64bANDl2xcfwdANDbase \
+              --include ndrdiscAND4t4cAND64bANDip4fwdANDbase \
+              --include ndrdiscAND4t4cAND78bANDip6fwdANDbase \
+              --include ndrdiscAND4t4cAND64bANDl2bdmaclrnANDscale \
+              --include ndrdiscAND4t4cAND64bANDip4fwdANDscale \
+              --include ndrdiscAND4t4cAND78bANDip6fwdANDscale \
+              --include pdrdiscAND4t4cAND64bANDl2bdmaclrnANDbase \
+              --include pdrdiscAND4t4cAND64bANDl2xcfwdANDbase \
+              --include pdrdiscAND4t4cAND64bANDip4fwdANDbase \
+              --include pdrdiscAND4t4cAND78bANDip6fwdANDbase \
+              --include pdrdiscAND4t4cAND64bANDl2bdmaclrnANDscale \
+              --include pdrdiscAND4t4cAND64bANDip4fwdANDscale \
+              --include pdrdiscAND4t4cAND78bANDip6fwdANDscale \
+              --exclude ACL1 \
+              --exclude ACL10 \
+              --exclude 100_FLOWS \
+              --exclude 100k_FLOWS \
+              --exclude HC_PERF \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
