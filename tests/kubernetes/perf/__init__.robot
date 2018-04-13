@@ -43,6 +43,7 @@
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
+| | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
@@ -50,5 +51,6 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${False}
+| | Set Global Variable | ${uio_driver} | uio_pci_generic
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
 | | Set Global Variable | @{plugins_to_enable}
