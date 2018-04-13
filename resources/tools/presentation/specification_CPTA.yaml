@@ -90,7 +90,7 @@
       yaxis:
         showticklabels: True
         tickformat: ".3s"
-        title: "Throughput [Mpps]"
+        title: "Throughput [pps]"
         hoverformat: ".4s"
         range: []
         gridcolor: "rgb(238, 238, 238)"
