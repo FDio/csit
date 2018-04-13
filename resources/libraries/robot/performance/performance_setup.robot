@@ -294,6 +294,7 @@
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_model}
+| | Configure kernel module on all DUTs | vfio-pci | force_load=${True}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
 
