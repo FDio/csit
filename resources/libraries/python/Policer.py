@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -412,9 +412,10 @@ class Policer(object):
     def policer_classify_set_interface(self, interface):
         """Set policer classify interface.
 
+        .. note:: First set node with policer_set_node.
+
         :param interface: Interface name or sw_if_index.
         :type interface: str or int
-        .. note:: First set node with policer_set_node.
         """
         if isinstance(interface, basestring):
             self._sw_if_index = Topology.get_interface_sw_index(self._node,
@@ -437,7 +438,7 @@ class Policer(object):
     def dscp_cs0():
         """Return DSCP CS0.
 
-        :return: DSCP enum CS0 object.
+        :returns: DSCP enum CS0 object.
         :rtype: DSCP
         """
         return DSCP.CS0
@@ -446,7 +447,7 @@ class Policer(object):
     def dscp_cs1():
         """Return DSCP CS1.
 
-        :return: DSCP enum CS1 object.
+        :returns: DSCP enum CS1 object.
         :rtype: DSCP
         """
         return DSCP.CS1
@@ -455,7 +456,7 @@ class Policer(object):
     def dscp_cs2():
         """Return DSCP CS2.
 
-        :return: DSCP enum CS2 object.
+        :returns: DSCP enum CS2 object.
         :rtype: DSCP
         """
         return DSCP.CS2
@@ -464,7 +465,7 @@ class Policer(object):
     def dscp_cs3():
         """Return DSCP CS3.
 
-        :return: DSCP enum CS3 object.
+        :returns: DSCP enum CS3 object.
         :rtype: DSCP
         """
         return DSCP.CS3
@@ -473,7 +474,7 @@ class Policer(object):
     def dscp_cs4():
         """Return DSCP CS4.
 
-        :return: DSCP enum CS4 object.
+        :returns: DSCP enum CS4 object.
         :rtype: DSCP
         """
         return DSCP.CS4
@@ -482,7 +483,7 @@ class Policer(object):
     def dscp_cs5():
         """Return DSCP CS5.
 
-        :return: DSCP enum CS5 object.
+        :returns: DSCP enum CS5 object.
         :rtype: DSCP
         """
         return DSCP.CS5
@@ -491,7 +492,7 @@ class Policer(object):
     def dscp_cs6():
         """Return DSCP CS6.
 
-        :return: DSCP enum CS6 object.
+        :returns: DSCP enum CS6 object.
         :rtype: DSCP
         """
         return DSCP.CS6
@@ -500,7 +501,7 @@ class Policer(object):
     def dscp_cs7():
         """Return DSCP CS7.
 
-        :return: DSCP enum CS7 object.
+        :returns: DSCP enum CS7 object.
         :rtype: DSCP
         """
         return DSCP.CS7
@@ -509,7 +510,7 @@ class Policer(object):
     def dscp_ef():
         """Return DSCP EF.
 
-        :return: DSCP enum EF object.
+        :returns: DSCP enum EF object.
         :rtype: DSCP
         """
         return DSCP.EF
@@ -518,7 +519,7 @@ class Policer(object):
     def dscp_af11():
         """Return DSCP AF11.
 
-        :return: DSCP enum AF11 object.
+        :returns: DSCP enum AF11 object.
         :rtype: DSCP
         """
         return DSCP.AF11
@@ -527,7 +528,7 @@ class Policer(object):
     def dscp_af12():
         """Return DSCP AF12.
 
-        :return: DSCP enum AF12 object.
+        :returns: DSCP enum AF12 object.
         :rtype: DSCP
         """
         return DSCP.AF12
@@ -536,7 +537,7 @@ class Policer(object):
     def dscp_af13():
         """Return DSCP AF13.
 
-        :return: DSCP enum AF13 object.
+        :returns: DSCP enum AF13 object.
         :rtype: DSCP
         """
         return DSCP.AF13
@@ -545,7 +546,7 @@ class Policer(object):
     def dscp_af21():
         """Return DSCP AF21.
 
-        :return: DSCP enum AF21 object.
+        :returns: DSCP enum AF21 object.
         :rtype: DSCP
         """
         return DSCP.AF21
@@ -554,7 +555,7 @@ class Policer(object):
     def dscp_af22():
         """Return DSCP AF22.
 
-        :return: DSCP enum AF22 object.
+        :returns: DSCP enum AF22 object.
         :rtype: DSCP
         """
         return DSCP.AF22
@@ -563,7 +564,7 @@ class Policer(object):
     def dscp_af23():
         """Return DSCP AF23.
 
-        :return: DSCP enum AF23 object.
+        :returns: DSCP enum AF23 object.
         :rtype: DSCP
         """
         return DSCP.AF23
@@ -572,7 +573,7 @@ class Policer(object):
     def dscp_af31():
         """Return DSCP AF31.
 
-        :return: DSCP enum AF31 object.
+        :returns: DSCP enum AF31 object.
         :rtype: DSCP
         """
         return DSCP.AF31
@@ -581,7 +582,7 @@ class Policer(object):
     def dscp_af32():
         """Return DSCP AF32.
 
-        :return: DSCP enum AF32 object.
+        :returns: DSCP enum AF32 object.
         :rtype: DSCP
         """
         return DSCP.AF32
@@ -590,7 +591,7 @@ class Policer(object):
     def dscp_af33():
         """Return DSCP AF33.
 
-        :return: DSCP enum AF33 object.
+        :returns: DSCP enum AF33 object.
         :rtype: DSCP
         """
         return DSCP.AF33
@@ -601,7 +602,7 @@ class Policer(object):
 
         :param dscp: DSCP enum object.
         :type dscp: DSCP
-        :return: DSCP numeric value.
+        :returns: DSCP numeric value.
         :rtype: int
         """
         return dscp.num
