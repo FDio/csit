@@ -17,9 +17,6 @@ x520-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-1t1c-x520-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -36,9 +33,6 @@ x520-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-2t2c-x520-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -55,9 +49,6 @@ x520-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-4t4c-x520-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -77,9 +68,6 @@ x710-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-1t1c-x710-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -96,9 +84,6 @@ x710-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-2t2c-x710-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -115,9 +100,6 @@ x710-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-4t4c-x710-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -137,9 +119,6 @@ xl710-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-1t1c-xl710-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -156,9 +135,6 @@ xl710-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-2t2c-xl710-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>
 
@@ -175,8 +151,5 @@ xl710-78b-base-scale
 
     </b>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip6-4t4c-xl710-1.html"></iframe>
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>
-    /
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>
     <p><br><br></p>
     </center>

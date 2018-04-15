@@ -78,7 +78,7 @@
     plot-performance-trending:
       csit-vpp-perf-mrr-daily-master:
         start: 15
-        end: "lastCompletedBuild" # "lastSuccessfulBuild"  # take all from the 'start'
+        end: 17 #"lastCompletedBuild" # "lastSuccessfulBuild"  # take all from the 'start'
 
   plot-layouts:
     plot-cpta:
@@ -102,7 +102,8 @@
         showgrid: True
       xaxis:
         showticklabels: True
-        title: "csit-vpp-perf-mrr-daily-master/vpp-build"
+        # title: "csit-vpp-perf-mrr-daily-master/vpp-build"
+        title: '<a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>/<a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>'
         autorange: True
         showgrid: True
         gridcolor: "rgb(238, 238, 238)"
@@ -110,13 +111,14 @@
         fixedrange: False
         zeroline: False
         tickcolor: "rgb(238, 238, 238)"
+        # tickangle: 0
         showline: True
         linewidth: 1
         autotick: True
       margin:
         r: 20
-        b: 50
-        t: 0
+        b: 100
+        t: 5
         l: 70
       legend:
         orientation: "h"
@@ -191,7 +193,7 @@
   builds:
     csit-vpp-perf-mrr-daily-master:
       start: 15
-      end: "lastCompletedBuild"  # take all from the 'start'
+      end: 17 #"lastCompletedBuild"  # take all from the 'start'
 
 -
   type: "output"
