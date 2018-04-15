@@ -197,7 +197,7 @@ def _evaluate_results(in_data, trimmed_data, window=10):
     return results
 
 
-def _generate_trending_traces(in_data, period, moving_win_size=10,
+def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                               fill_missing=True, use_first=False,
                               show_moving_median=True, name="", color=""):
     """Generate the trending traces:
@@ -206,6 +206,7 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
      - outliers, regress, progress
 
     :param in_data: Full data set.
+    :param build_info: Information about the builds.
     :param period: Sampling period.
     :param moving_win_size: Window size.
     :param fill_missing: If the chosen sample is missing in the full set, its
@@ -215,6 +216,7 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
     :param name: Name of the plot
     :param color: Name of the color for the plot.
     :type in_data: OrderedDict
+    :type build_info: dict
     :type period: int
     :type moving_win_size: int
     :type fill_missing: bool
@@ -230,8 +232,11 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
         in_data = _select_data(in_data, period,
                                fill_missing=fill_missing,
                                use_first=use_first)
-
-    data_x = [key for key in in_data.keys()]
+    try:
+        data_x = ["{0}/{1}".format(key, build_info[str(key)][1].split("~")[-1])
+                  for key in in_data.keys()]
+    except KeyError:
+        data_x = [key for key in in_data.keys()]
     data_y = [val for val in in_data.values()]
     data_pd = pd.Series(data_y, index=data_x)
 
@@ -242,7 +247,10 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
     anomalies = pd.Series()
     anomalies_res = list()
     for idx, item in enumerate(in_data.items()):
-        item_pd = pd.Series([item[1], ], index=[item[0], ])
+        item_pd = pd.Series([item[1], ],
+                            index=["{0}/{1}".
+                            format(item[0],
+                                   build_info[str(item[0])][1].split("~")[-1]), ])
         if item[0] in outliers.keys():
             anomalies = anomalies.append(item_pd)
             anomalies_res.append(0.0)
@@ -371,11 +379,13 @@ def _generate_all_charts(spec, input_data):
             builds_lst.append(str(build["build"]))
 
     # Get "build ID": "date" dict:
-    build_dates = dict()
+    build_info = dict()
     for build in builds_lst:
         try:
-            build_dates[build] = \
-                input_data.metadata(job_name, build)["generated"][:14]
+            build_info[build] = (
+                input_data.metadata(job_name, build)["generated"][:14],
+                input_data.metadata(job_name, build)["version"]
+            )
         except KeyError:
             pass
 
@@ -383,7 +393,11 @@ def _generate_all_charts(spec, input_data):
     csv_table = list()
     header = "Build Number:," + ",".join(builds_lst) + '\n'
     csv_table.append(header)
-    header = "Build Date:," + ",".join(build_dates.values()) + '\n'
+    build_dates = [x[0] for x in build_info.values()]
+    header = "Build Date:," + ",".join(build_dates) + '\n'
+    csv_table.append(header)
+    vpp_versions = [x[1] for x in build_info.values()]
+    header = "VPP Version:," + ",".join(vpp_versions) + '\n'
     csv_table.append(header)
 
     results = list()
@@ -430,6 +444,7 @@ def _generate_all_charts(spec, input_data):
                 test_name = test_name.split('.')[-1]
                 trace, result = _generate_trending_traces(
                     test_data,
+                    build_info=build_info,
                     period=period,
                     moving_win_size=win_size,
                     fill_missing=True,
