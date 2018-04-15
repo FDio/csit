@@ -237,6 +237,10 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                   for key in in_data.keys()]
     except KeyError:
         data_x = [key for key in in_data.keys()]
+    # hover_text = ["vpp-build: {0}".format(x[1].split("~")[-1])
+    #               for x in build_info.values()]
+    # data_x = [key for key in in_data.keys()]
+
     data_y = [val for val in in_data.values()]
     data_pd = pd.Series(data_y, index=data_x)
 
@@ -250,7 +254,9 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
         item_pd = pd.Series([item[1], ],
                             index=["{0}/{1}".
                             format(item[0],
-                                   build_info[str(item[0])][1].split("~")[-1]), ])
+                                   build_info[str(item[0])][1].split("~")[-1]),
+                                   ])
+        #item_pd = pd.Series([item[1], ], index=[item[0], ])
         if item[0] in outliers.keys():
             anomalies = anomalies.append(item_pd)
             anomalies_res.append(0.0)
@@ -282,6 +288,8 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
             "color": color,
             "symbol": "circle",
         },
+        # text=hover_text,
+        # hoverinfo="x+y+text+name"
     )
     traces = [trace_samples, ]
 
