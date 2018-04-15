@@ -171,7 +171,7 @@ class ExecutionChecker(ResultVisitor):
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
 
-    REGEX_VERSION = re.compile(r"(stdout: 'vat# vat# Version:)(\s*)(.*)")
+    REGEX_VERSION = re.compile(r"(return STDOUT Version:\s*)(.*)")
 
     REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
 
@@ -244,9 +244,9 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("stdout: 'vat# vat# Version:"):
+        if msg.message.count("return STDOUT Version:"):
             self._version = str(re.search(self.REGEX_VERSION, msg.message).
-                                group(3))
+                                group(2))
             self._data["metadata"]["version"] = self._version
             self._msg_type = None
 
@@ -585,7 +585,7 @@ class ExecutionChecker(ResultVisitor):
         :type setup_kw: Keyword
         :returns: Nothing.
         """
-        if setup_kw.name.count("Vpp Show Version Verbose") \
+        if setup_kw.name.count("Show Vpp Version On All Duts") \
                 and not self._version:
             self._msg_type = "setup-version"
             setup_kw.messages.visit(self)
