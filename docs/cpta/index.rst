@@ -8,5 +8,4 @@ Continuous Performance Trending and Analysis
     introduction/index
     trending/index
     data/index
-    trending_long_term/index
     indices

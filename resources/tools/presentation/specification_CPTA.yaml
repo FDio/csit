@@ -102,7 +102,7 @@
         showgrid: True
       xaxis:
         showticklabels: True
-        title: "/csit/job/{job}/$id"
+        title: "csit-vpp-perf-mrr-daily-master/vpp-build"
         autorange: True
         showgrid: True
         gridcolor: "rgb(238, 238, 238)"
@@ -116,7 +116,7 @@
       margin:
         r: 20
         b: 50
-        t: 50
+        t: 0
         l: 70
       legend:
         orientation: "h"
@@ -287,8 +287,8 @@
       - "result"
       periods:
       - 1
-      - 14
-      # # - 60
+      # - 14
+      # - 60
       layout: "plot-cpta"
 
     - title: "VPP 2T2C L2 64B Packet Throughput - {period} Trending"
@@ -299,7 +299,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -311,7 +311,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -323,7 +323,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -335,7 +335,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -347,7 +347,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -361,7 +361,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -373,7 +373,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -385,7 +385,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -399,7 +399,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -411,7 +411,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -423,7 +423,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -435,7 +435,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -447,7 +447,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -459,7 +459,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -473,7 +473,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -485,7 +485,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -497,7 +497,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -509,7 +509,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -521,7 +521,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -533,7 +533,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -547,7 +547,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -559,7 +559,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -571,7 +571,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -585,7 +585,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -597,7 +597,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -609,7 +609,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -621,7 +621,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -633,7 +633,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -645,7 +645,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -659,7 +659,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -671,7 +671,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -683,7 +683,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -697,7 +697,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -709,7 +709,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -721,7 +721,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -735,7 +735,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -747,7 +747,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -759,7 +759,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -773,7 +773,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -785,7 +785,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -797,7 +797,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -811,7 +811,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -823,7 +823,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -835,7 +835,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -849,7 +849,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -861,7 +861,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -873,7 +873,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -887,7 +887,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -899,7 +899,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -911,7 +911,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -925,7 +925,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -937,7 +937,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -949,7 +949,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -963,7 +963,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -975,7 +975,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -987,7 +987,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1001,7 +1001,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1013,7 +1013,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1025,7 +1025,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1039,7 +1039,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1051,7 +1051,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1063,7 +1063,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1077,7 +1077,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1089,7 +1089,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1101,7 +1101,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1115,7 +1115,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1127,7 +1127,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1139,7 +1139,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1154,7 +1154,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1166,7 +1166,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1178,7 +1178,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1193,7 +1193,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1205,7 +1205,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1217,7 +1217,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1232,7 +1232,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1244,7 +1244,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1256,7 +1256,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1271,7 +1271,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1283,7 +1283,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1295,7 +1295,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1309,7 +1309,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1321,7 +1321,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1333,7 +1333,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1347,7 +1347,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1359,7 +1359,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1371,7 +1371,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1386,7 +1386,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1398,7 +1398,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1410,7 +1410,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1425,7 +1425,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1437,7 +1437,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1449,7 +1449,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1463,7 +1463,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1475,7 +1475,7 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
 
@@ -1487,6 +1487,6 @@
       - "result"
       periods:
       - 1
-      - 14
+      # - 14
       # - 60
       layout: "plot-cpta"
