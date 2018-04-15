@@ -387,7 +387,7 @@ def _generate_all_charts(spec, input_data):
                 input_data.metadata(job_name, build)["version"]
             )
         except KeyError:
-            pass
+            build_info[build] = ("", "")
 
     # Create the header:
     csv_table = list()
@@ -487,7 +487,11 @@ def _generate_all_charts(spec, input_data):
                             row[idx] = str(round(float(item) / 1000000, 2))
                         except ValueError:
                             pass
-                txt_table.add_row(row)
+                try:
+                    txt_table.add_row(row)
+                except Exception as err:
+                    logging.warning("Error occurred while generating TXT table:"
+                                    "\n{0}".format(err))
             line_nr += 1
         txt_table.align["Build Number:"] = "l"
     with open("{0}.txt".format(file_name), "w") as txt_file:
