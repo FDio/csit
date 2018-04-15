@@ -548,9 +548,9 @@ def table_performance_trending_dashboard(table, input_data):
     # Prepare the header of the tables
     header = ["Test case",
               "Thput trend [Mpps]",
-              "Change [Mpps]",
+              "Anomaly [Mpps]",
               "Change [%]",
-              "Anomaly"]
+              "Classification"]
     header_str = ",".join(header) + "\n"
 
     # Prepare data to the table:
@@ -587,14 +587,14 @@ def table_performance_trending_dashboard(table, input_data):
             t_stdev = list(t_data.rolling(window=win_size, min_periods=2).
                          std())[-2]
             if isnan(last):
-                anomaly = "outlier"
+                classification = "outlier"
                 last = list(pd_data)[-1]
             elif last < (trend - 3 * t_stdev):
-                anomaly = "regression"
+                classification = "regression"
             elif last > (trend + 3 * t_stdev):
-                anomaly = "progression"
+                classification = "progression"
             else:
-                anomaly = "normal"
+                classification = "normal"
 
             if not isnan(last) and not isnan(trend) and trend != 0:
                 # Change:
@@ -604,19 +604,26 @@ def table_performance_trending_dashboard(table, input_data):
 
                 tbl_lst.append([name,
                                 round(float(trend) / 1000000, 2),
-                                change,
+                                last,
                                 rel_change,
-                                anomaly])
+                                classification])
 
     # Sort the table according to the relative change
-    tbl_lst.sort(key=lambda rel: rel[-2], reverse=True)
+    # tbl_lst.sort(key=lambda rel: rel[-2], reverse=True)
+
+    # Sort the table according to the classification
+    tbl_sorted = list()
+    for classification in ("regression", "outlier", "progression", "normal"):
+        tbl_tmp = [item for item in tbl_lst if item[4] == classification]
+        tbl_tmp.sort(key=lambda rel: rel[0])
+        tbl_sorted.extend(tbl_tmp)
 
     file_name = "{0}.{1}".format(table["output-file"], table["output-file-ext"])
 
     logging.info("      Writing file: '{0}'".format(file_name))
     with open(file_name, "w") as file_handler:
         file_handler.write(header_str)
-        for test in tbl_lst:
+        for test in tbl_sorted:
             file_handler.write(",".join([str(item) for item in test]) + '\n')
 
     txt_file_name = "{0}.txt".format(table["output-file"])
