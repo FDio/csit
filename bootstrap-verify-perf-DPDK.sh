@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -x
+set -xo pipefail
 
 # Space separated list of available testbeds, described by topology files
 TOPOLOGIES="topologies/available/lf_testbed1.yaml \
@@ -23,8 +23,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
-
-PYBOT_ARGS=""
 
 JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
@@ -96,26 +94,24 @@ else
     exit 1
 fi
 
+PYBOT_ARGS="--consolewidth 150 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+
 case "$TEST_TAG" in
-    # run specific performance tests based on jenkins job type variable
+    # select specific performance tests based on jenkins job type variable
     VERIFY-PERF-MRR )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              -i mrrAND1t1cORmrrAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrAND1t1c'
+              'mrrAND2t2c')
         ;;
     * )
-        # run full performance test suite and exit on fail
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('perftest')
 esac
+
+# Catenate TAG selections by 'OR'
+printf -v INCLUDES " --include %s " "${TAGS[@]}"
+
+# Execute the test
+pybot ${PYBOT_ARGS}${INCLUDES} tests/
+RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins
 for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
