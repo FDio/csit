@@ -46,8 +46,7 @@
 | ... | Disable Honeycomb Feature | ${node} | BGP | AND
 | ... | Disable Honeycomb Feature | ${nodes['DUT2']} | BGP
 | ...
-# HONEYCOMB-409: BGP configuration via ODL is currently not fully supported
-| Force Tags | HC_FUNC | HC_REST_ONLY
+| Force Tags | HC_FUNC
 | ...
 | Documentation | *Honeycomb BGP management test suite.*
 
