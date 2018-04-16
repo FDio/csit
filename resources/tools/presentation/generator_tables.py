@@ -22,6 +22,7 @@ import pandas as pd
 
 from string import replace
 from math import isnan
+from xml.etree import ElementTree as ET
 
 from errors import PresentationError
 from utils import mean, stdev, relative_change, remove_outliers, find_outliers
@@ -597,19 +598,14 @@ def table_performance_trending_dashboard(table, input_data):
                 classification = "normal"
 
             if not isnan(last) and not isnan(trend) and trend != 0:
-                # Change:
-                change = round(float(last - trend) / 1000000, 2)
                 # Relative change:
                 rel_change = int(relative_change(float(trend), float(last)))
 
                 tbl_lst.append([name,
                                 round(float(trend) / 1000000, 2),
-                                last,
+                                round(float(last) / 1000000, 2),
                                 rel_change,
                                 classification])
-
-    # Sort the table according to the relative change
-    # tbl_lst.sort(key=lambda rel: rel[-2], reverse=True)
 
     # Sort the table according to the classification
     tbl_sorted = list()
@@ -618,7 +614,7 @@ def table_performance_trending_dashboard(table, input_data):
         tbl_tmp.sort(key=lambda rel: rel[0])
         tbl_sorted.extend(tbl_tmp)
 
-    file_name = "{0}.{1}".format(table["output-file"], table["output-file-ext"])
+    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
     logging.info("      Writing file: '{0}'".format(file_name))
     with open(file_name, "w") as file_handler:
@@ -639,3 +635,69 @@ def table_performance_trending_dashboard(table, input_data):
         txt_table.align["Test case"] = "l"
     with open(txt_file_name, "w") as txt_file:
         txt_file.write(str(txt_table))
+
+
+def table_performance_trending_dashboard_html(table, input_data):
+    """Generate the table(s) with algorithm:
+    table_performance_trending_dashboard_html specified in the specification
+    file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    try:
+        with open(table["input-file"], 'rb') as csv_file:
+            csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+            csv_lst = [item for item in csv_content]
+    except KeyError:
+        logging.warning("The input file is not defined.")
+        return
+    except csv.Error as err:
+        logging.warning("Not possible to process the file '{0}'.\n{1}".
+                        format(table["input-file"], err))
+        return
+
+    # Table:
+    dashboard = ET.Element("table", attrib=dict(width="100%", border='0'))
+
+    # Table header:
+    tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor="#6699ff"))
+    for idx, item in enumerate(csv_lst[0]):
+        alignment = "left" if idx == 0 else "right"
+        th = ET.SubElement(tr, "th", attrib=dict(align=alignment))
+        th.text = item
+
+    # Rows:
+    for r_idx, row in enumerate(csv_lst[1:]):
+        background = "#D4E4F7" if r_idx % 2 else "white"
+        tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor=background))
+
+        # Columns:
+        for c_idx, item in enumerate(row):
+            alignment = "left" if c_idx == 0 else "center"
+            td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
+            if c_idx == 4:
+                if item == "regression":
+                    td.set("bgcolor", "#FF0000")
+                elif item == "outlier":
+                    td.set("bgcolor", "#818181")
+                elif item == "progression":
+                    td.set("bgcolor", "#008000")
+            td.text = item
+
+    try:
+        with open(table["output-file"], 'w') as html_file:
+            logging.info("      Writing file: '{0}'".
+                         format(table["output-file"]))
+            html_file.write(".. raw:: html\n\n\t")
+            html_file.write(ET.tostring(dashboard))
+            html_file.write("\n\t<p><br><br></p>\n")
+    except KeyError:
+        logging.warning("The output file is not defined.")
+        return
