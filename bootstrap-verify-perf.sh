@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -x
+set -xo pipefail
 
 # Space separated list of available testbeds, described by topology files
 TOPOLOGIES="topologies/available/lf_testbed1.yaml \
@@ -24,8 +24,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
-
-PYBOT_ARGS="-W 150 -L TRACE"
 
 JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
@@ -151,222 +149,128 @@ else
     exit 1
 fi
 
+PYBOT_ARGS="--consolewidth 150 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+
 case "$TEST_TAG" in
-    # run specific performance tests based on jenkins job type variable
+    # select specific performance tests based on jenkins job type variable
     PERFTEST_DAILY )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
-              --include ndrdiscAND1t1cANDipsecORndrdiscAND2t2cANDipsec \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('ndrdiscANDnic_intel-x520-da2AND1t1c'
+              'ndrdiscANDnic_intel-x520-da2AND2t2c'
+              'ndrdiscAND1t1cANDipsec'
+              'ndrdiscAND2t2cANDipsec')
         ;;
     PERFTEST_SEMI_WEEKLY )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('ndrdiscANDnic_intel-x710AND1t1c'
+              'ndrdiscANDnic_intel-x710AND2t2c'
+              'ndrdiscANDnic_intel-xl710AND1t1c'
+              'ndrdiscANDnic_intel-xl710AND2t2c')
         ;;
     PERFTEST_MRR_DAILY )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include mrrAND64bAND1t1c \
-              --include mrrAND64bAND2t2c \
-              --include mrrAND64bAND4t4c \
-              --include mrrAND78bAND1t1c \
-              --include mrrAND78bAND2t2c \
-              --include mrrAND78bAND4t4c \
-              --include mrrANDimixAND1t1cANDvhost \
-              --include mrrANDimixAND2t2cANDvhost \
-              --include mrrANDimixAND4t4cANDvhost \
-              --include mrrANDimixAND1t1cANDmemif \
-              --include mrrANDimixAND2t2cANDmemif \
-              --include mrrANDimixAND4t4cANDmemif \
-              tests/
-        RETURN_STATUS=$(echo $?)
+       TAGS=('mrrAND64bAND1t1c'
+             'mrrAND64bAND2t2c'
+             'mrrAND64bAND4t4c'
+             'mrrAND78bAND1t1c'
+             'mrrAND78bAND2t2c'
+             'mrrAND78bAND4t4c'
+             'mrrANDimixAND1t1cANDvhost'
+             'mrrANDimixAND2t2cANDvhost'
+             'mrrANDimixAND4t4cANDvhost'
+             'mrrANDimixAND1t1cANDmemif'
+             'mrrANDimixAND2t2cANDmemif'
+             'mrrANDimixAND4t4cANDmemif')
         ;;
     VERIFY-PERF-NDRDISC )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscAND1t1cORndrdiscAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('ndrdiscAND1t1c'
+              'ndrdiscAND2t2c')
         ;;
     VERIFY-PERF-PDRDISC )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include pdrdiscAND1t1cORpdrdiscAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscAND1t1c'
+              'pdrdiscAND2t2c')
         ;;
     VERIFY-PERF-MRR )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include mrrAND1t1cORmrrAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrAND1t1c'
+              'mrrAND2t2c')
         ;;
     VERIFY-PERF-IP4 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip4baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
+              'mrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m')
         ;;
     VERIFY-PERF-IP6 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip6baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip6base'
+              'mrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m')
         ;;
     VERIFY-PERF-L2 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrdiscANDnic_intel-x520-da2AND1t1cANDl2bdbase \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
+              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
         ;;
     VERIFY-PERF-LISP )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDlisp \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDlisp')
         ;;
     VERIFY-PERF-VXLAN )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvxlan \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan')
         ;;
     VERIFY-PERF-VHOST )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost')
         ;;
     VERIFY-PERF-MEMIF )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
+              'pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif'
+              'mrrANDnic_intel-x520-da2AND1t1cANDmemif'
+              'mrrANDnic_intel-x520-da2AND2t2cANDmemif')
         ;;
     VERIFY-PERF-IPSECHW )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf.crypto" \
-              --include ndrdiscANDnic_intel-xl710AND1t1cANDipsechw \
-              --include ndrdiscANDnic_intel-xl710AND2t2cANDipsechw \
-              --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
-              --include mrrANDnic_intel-xl710AND2t2cANDipsechw \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscANDnic_intel-xl710AND1t1cANDipsechw'
+              'pdrdiscANDnic_intel-xl710AND2t2cANDipsechw'
+              'mrrANDnic_intel-xl710AND1t1cANDipsechw'
+              'mrrANDnic_intel-xl710AND2t2cANDipsechw')
         ;;
     VPP-VERIFY-PERF-IP4 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include mrrANDnic_intel-x520-da2AND1t1cANDip4baseORmrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
+              'mrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m')
         ;;
     VPP-VERIFY-PERF-IP6 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include mrrANDnic_intel-x520-da2AND1t1cANDip6baseORmrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip6base'
+              'mrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m')
         ;;
     VPP-VERIFY-PERF-L2 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include mrrANDnic_intel-x520-da2AND1t1cANDl2xcbaseORmrrANDnic_intel-x520-da2AND1t1cANDl2bdbase \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
+              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
         ;;
     VPP-VERIFY-PERF-LISP )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDlisp \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDlisp')
         ;;
     VPP-VERIFY-PERF-VXLAN )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan')
         ;;
     VPP-VERIFY-PERF-VHOST )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost')
         ;;
     VPP-VERIFY-PERF-MEMIF )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif \
-              --include pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif \
-              --include mrrANDnic_intel-x520-da2AND1t1cANDmemif \
-              --include mrrANDnic_intel-x520-da2AND2t2cANDmemif \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
+              'pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif'
+              'mrrANDnic_intel-x520-da2AND1t1cANDmemif'
+              'mrrANDnic_intel-x520-da2AND2t2cANDmemif')
         ;;
     VPP-VERIFY-PERF-ACL )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              --include pdrdiscANDnic_intel-x520-da2AND1t1cANDacl \
-              --include pdrdiscANDnic_intel-x520-da2AND2t2cANDacl \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDacl'
+              'pdrdiscANDnic_intel-x520-da2AND2t2cANDacl')
         ;;
     VPP-VERIFY-PERF-IPSECHW )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf.crypto" \
-              --include pdrdiscANDnic_intel-xl710AND1t1cANDipsechw \
-              --include pdrdiscANDnic_intel-xl710AND2t2cANDipsechw \
-              --include mrrANDnic_intel-xl710AND1t1cANDipsechw \
-              --include mrrANDnic_intel-xl710AND2t2cANDipsechw \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('pdrdiscANDnic_intel-xl710AND1t1cANDipsechw'
+              'pdrdiscANDnic_intel-xl710AND2t2cANDipsechw'
+              'mrrANDnic_intel-xl710AND1t1cANDipsechw'
+              'mrrANDnic_intel-xl710AND2t2cANDipsechw')
         ;;
     * )
-        # run full performance test suite and exit on fail
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
+        TAGS=('perftest')
 esac
+
+# Catenate TAG selections by 'OR'
+printf -v INCLUDES " --include %s " "${TAGS[@]}"
+
+# Execute the test
+pybot ${PYBOT_ARGS}${INCLUDES} tests/
+RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins
 for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
