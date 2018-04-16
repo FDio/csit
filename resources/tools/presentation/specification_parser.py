@@ -561,6 +561,13 @@ class Specification(object):
             except KeyError:
                 pass
 
+            try:
+                element["input-file"] = self._replace_tags(
+                    element["input-file"],
+                    self._specification["environment"]["paths"])
+            except KeyError:
+                pass
+
             # add data sets to the elements:
             if isinstance(element.get("data", None), str):
                 data_set = element["data"]
