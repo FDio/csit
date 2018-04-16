@@ -187,8 +187,8 @@ def execute_command(cmd):
 
     stdout, stderr = proc.communicate()
 
-    logging.debug(stdout)
-    logging.debug(stderr)
+    logging.info(stdout)
+    logging.info(stderr)
 
     if proc.returncode != 0:
         logging.error("    Command execution failed.")
