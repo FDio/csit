@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "883712d7_cce202b9",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-16T08:17:57Z",
+      "side": 1,
+      "message": "You can put it on the same column as \"with\"",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 12
+      },
+      "revId": "2eb37f3ad12d25d38326b9cfb4e74caff2086d81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1f47b44_e72e7d70",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-16T08:17:57Z",
+      "side": 1,
+      "message": "parameter",
+      "range": {
+        "startLine": 94,
+        "startChar": 43,
+        "endLine": 94,
+        "endChar": 47
+      },
+      "revId": "2eb37f3ad12d25d38326b9cfb4e74caff2086d81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61dc5cfc_2e0837f2",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-16T08:17:57Z",
+      "side": 1,
+      "message": "parameter",
+      "range": {
+        "startLine": 100,
+        "startChar": 43,
+        "endLine": 100,
+        "endChar": 47
+      },
+      "revId": "2eb37f3ad12d25d38326b9cfb4e74caff2086d81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8221540c_7949c86e",
+        "filename": "resources/libraries/python/SRv6.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-04-16T08:17:57Z",
+      "side": 1,
+      "message": "parameter\ncheck everywhere",
+      "range": {
+        "startLine": 105,
+        "startChar": 43,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "2eb37f3ad12d25d38326b9cfb4e74caff2086d81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
