@@ -117,7 +117,7 @@
         autotick: True
       margin:
         r: 20
-        b: 100
+        b: 150
         t: 5
         l: 70
       legend:
