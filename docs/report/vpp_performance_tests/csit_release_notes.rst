@@ -101,6 +101,19 @@ Measured improvements are in line with VPP code optimizations listed in
 `VPP-18.01 release notes
 <https://docs.fd.io/vpp/18.01/release_notes_1801.html>`_.
 
+MRR Throughput Changes
+~~~~~~~~~~~~~~~~~~~~~~
+
+MRR changes between releases are available in a CSV and
+pretty ASCII formats:
+
+  - `csv format for 1t1c <../_static/vpp/performance-changes-mrr-1t1c-full.csv>`_,
+  - `csv format for 2t2c <../_static/vpp/performance-changes-mrr-2t2c-full.csv>`_,
+  - `csv format for 4t4c <../_static/vpp/performance-changes-mrr-4t4c-full.csv>`_,
+  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-mrr-1t1c-full.txt>`_,
+  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-mrr-2t2c-full.txt>`_,
+  - `pretty ASCII format for 4t4c <../_static/vpp/performance-changes-mrr-4t4c-full.txt>`_.
+
 Known Issues
 ------------
 
