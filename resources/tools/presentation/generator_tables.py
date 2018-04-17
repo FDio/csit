@@ -530,6 +530,130 @@ def table_performance_comparison(table, input_data):
             out_file.write(line)
 
 
+def table_performance_comparison_mrr(table, input_data):
+    """Generate the table(s) with algorithm: table_performance_comparison_mrr
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    data = input_data.filter_data(table)
+
+    # Prepare the header of the tables
+    try:
+        header = ["Test case",
+                  "{0} Throughput [Mpps]".format(table["reference"]["title"]),
+                  "{0} stdev [Mpps]".format(table["reference"]["title"]),
+                  "{0} Throughput [Mpps]".format(table["compare"]["title"]),
+                  "{0} stdev [Mpps]".format(table["compare"]["title"]),
+                  "Change [%]"]
+        header_str = ",".join(header) + "\n"
+    except (AttributeError, KeyError) as err:
+        logging.error("The model is invalid, missing parameter: {0}".
+                      format(err))
+        return
+
+    # Prepare data to the table:
+    tbl_dict = dict()
+    for job, builds in table["reference"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                if tbl_dict.get(tst_name, None) is None:
+                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
+                                            "-".join(tst_data["name"].
+                                                     split("-")[1:]))
+                    tbl_dict[tst_name] = {"name": name,
+                                          "ref-data": list(),
+                                          "cmp-data": list()}
+                try:
+                    tbl_dict[tst_name]["ref-data"].\
+                        append(tst_data["result"]["throughput"])
+                except TypeError:
+                    pass  # No data in output.xml for this test
+
+    for job, builds in table["compare"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                try:
+                    tbl_dict[tst_name]["cmp-data"].\
+                        append(tst_data["result"]["throughput"])
+                except KeyError:
+                    pass
+                except TypeError:
+                    tbl_dict.pop(tst_name, None)
+
+    tbl_lst = list()
+    for tst_name in tbl_dict.keys():
+        item = [tbl_dict[tst_name]["name"], ]
+        if tbl_dict[tst_name]["ref-data"]:
+            data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
+                                     table["outlier-const"])
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        if tbl_dict[tst_name]["cmp-data"]:
+            data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
+                                     table["outlier-const"])
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        if item[1] is not None and item[3] is not None:
+            item.append(int(relative_change(float(item[1]), float(item[3]))))
+        if len(item) == 6:
+            tbl_lst.append(item)
+
+    # Sort the table according to the relative change
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Generate tables:
+    # All tests in csv:
+    tbl_names = ["{0}-1t1c-full{1}".format(table["output-file"],
+                                           table["output-file-ext"]),
+                 "{0}-2t2c-full{1}".format(table["output-file"],
+                                           table["output-file-ext"]),
+                 "{0}-4t4c-full{1}".format(table["output-file"],
+                                           table["output-file-ext"])
+                 ]
+    for file_name in tbl_names:
+        logging.info("      Writing file: '{0}'".format(file_name))
+        with open(file_name, "w") as file_handler:
+            file_handler.write(header_str)
+            for test in tbl_lst:
+                if file_name.split("-")[-2] in test[0]:  # cores
+                    test[0] = "-".join(test[0].split("-")[:-1])
+                    file_handler.write(",".join([str(item) for item in test]) +
+                                       "\n")
+
+    # All tests in txt:
+    tbl_names_txt = ["{0}-1t1c-full.txt".format(table["output-file"]),
+                     "{0}-2t2c-full.txt".format(table["output-file"]),
+                     "{0}-4t4c-full.txt".format(table["output-file"])
+                     ]
+
+    for i, txt_name in enumerate(tbl_names_txt):
+        txt_table = None
+        logging.info("      Writing file: '{0}'".format(txt_name))
+        with open(tbl_names[i], 'rb') as csv_file:
+            csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+            for row in csv_content:
+                if txt_table is None:
+                    txt_table = prettytable.PrettyTable(row)
+                else:
+                    txt_table.add_row(row)
+            txt_table.align["Test case"] = "l"
+        with open(txt_name, "w") as txt_file:
+            txt_file.write(str(txt_table))
+
+
 def table_performance_trending_dashboard(table, input_data):
     """Generate the table(s) with algorithm: table_performance_comparison
     specified in the specification file.
