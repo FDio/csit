@@ -20,6 +20,9 @@ VPP Performance Trending Dashboard
 .. include:: ../../_build/_static/vpp/performance-trending-dashboard-4t4c.rst
 
 
+Contents
+--------
+
 .. toctree::
     :maxdepth: 6
     :numbered:

@@ -164,19 +164,21 @@ def _evaluate_results(in_data, trimmed_data, window=10):
 
     if len(in_data) > 2:
         win_size = in_data.size if in_data.size < window else window
-        results = [0.0, ] * win_size
+        results = [0.0, ]
         median = in_data.rolling(window=win_size).median()
         stdev_t = trimmed_data.rolling(window=win_size, min_periods=2).std()
         m_vals = median.values
         s_vals = stdev_t.values
         d_vals = in_data.values
-        for day in range(win_size, in_data.size):
-            if np.isnan(m_vals[day - 1]) or np.isnan(s_vals[day - 1]):
+        for day in range(1, in_data.size):
+            if np.isnan(m_vals[day]) \
+                    or np.isnan(s_vals[day]) \
+                    or np.isnan(d_vals[day]):
                 results.append(0.0)
-            elif d_vals[day] < (m_vals[day - 1] - 3 * s_vals[day - 1]):
+            elif d_vals[day] < (m_vals[day] - 3 * s_vals[day]):
                 results.append(0.33)
-            elif (m_vals[day - 1] - 3 * s_vals[day - 1]) <= d_vals[day] <= \
-                    (m_vals[day - 1] + 3 * s_vals[day - 1]):
+            elif (m_vals[day] - 3 * s_vals[day]) <= d_vals[day] <= \
+                    (m_vals[day] + 3 * s_vals[day]):
                 results.append(0.66)
             else:
                 results.append(1.0)
@@ -244,7 +246,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     data_y = [val for val in in_data.values()]
     data_pd = pd.Series(data_y, index=data_x)
 
-    t_data, outliers = find_outliers(data_pd)
+    t_data, outliers = find_outliers(data_pd, outlier_const=1.5)
 
     results = _evaluate_results(data_pd, t_data, window=moving_win_size)
 
