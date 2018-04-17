@@ -220,6 +220,8 @@ case "$TEST_TAG" in
               --exclude VHOST \
               --exclude SCALE \
               --exclude DOT1Q \
+              --exclude MEMIF \
+              --exclude FEATURE \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
