@@ -164,19 +164,21 @@ def _evaluate_results(in_data, trimmed_data, window=10):
 
     if len(in_data) > 2:
         win_size = in_data.size if in_data.size < window else window
-        results = [0.0, ] * win_size
+        results = [0.0, ]
         median = in_data.rolling(window=win_size).median()
         stdev_t = trimmed_data.rolling(window=win_size, min_periods=2).std()
         m_vals = median.values
         s_vals = stdev_t.values
         d_vals = in_data.values
-        for day in range(win_size, in_data.size):
-            if np.isnan(m_vals[day - 1]) or np.isnan(s_vals[day - 1]):
+        for day in range(1, in_data.size):
+            if np.isnan(m_vals[day]) \
+                    or np.isnan(s_vals[day]) \
+                    or np.isnan(d_vals[day]):
                 results.append(0.0)
-            elif d_vals[day] < (m_vals[day - 1] - 3 * s_vals[day - 1]):
+            elif d_vals[day] < (m_vals[day] - 3 * s_vals[day]):
                 results.append(0.33)
-            elif (m_vals[day - 1] - 3 * s_vals[day - 1]) <= d_vals[day] <= \
-                    (m_vals[day - 1] + 3 * s_vals[day - 1]):
+            elif (m_vals[day] - 3 * s_vals[day]) <= d_vals[day] <= \
+                    (m_vals[day] + 3 * s_vals[day]):
                 results.append(0.66)
             else:
                 results.append(1.0)
@@ -197,7 +199,7 @@ def _evaluate_results(in_data, trimmed_data, window=10):
     return results
 
 
-def _generate_trending_traces(in_data, period, moving_win_size=10,
+def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                               fill_missing=True, use_first=False,
                               show_moving_median=True, name="", color=""):
     """Generate the trending traces:
@@ -206,6 +208,7 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
      - outliers, regress, progress
 
     :param in_data: Full data set.
+    :param build_info: Information about the builds.
     :param period: Sampling period.
     :param moving_win_size: Window size.
     :param fill_missing: If the chosen sample is missing in the full set, its
@@ -215,6 +218,7 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
     :param name: Name of the plot
     :param color: Name of the color for the plot.
     :type in_data: OrderedDict
+    :type build_info: dict
     :type period: int
     :type moving_win_size: int
     :type fill_missing: bool
@@ -230,18 +234,30 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
         in_data = _select_data(in_data, period,
                                fill_missing=fill_missing,
                                use_first=use_first)
-
+    # try:
+    #     data_x = ["{0}/{1}".format(key, build_info[str(key)][1].split("~")[-1])
+    #               for key in in_data.keys()]
+    # except KeyError:
+    #     data_x = [key for key in in_data.keys()]
+    hover_text = ["vpp-build: {0}".format(x[1].split("~")[-1])
+                  for x in build_info.values()]
     data_x = [key for key in in_data.keys()]
+
     data_y = [val for val in in_data.values()]
     data_pd = pd.Series(data_y, index=data_x)
 
-    t_data, outliers = find_outliers(data_pd)
+    t_data, outliers = find_outliers(data_pd, outlier_const=1.5)
 
     results = _evaluate_results(data_pd, t_data, window=moving_win_size)
 
     anomalies = pd.Series()
     anomalies_res = list()
     for idx, item in enumerate(in_data.items()):
+        # item_pd = pd.Series([item[1], ],
+        #                     index=["{0}/{1}".
+        #                     format(item[0],
+        #                            build_info[str(item[0])][1].split("~")[-1]),
+        #                            ])
         item_pd = pd.Series([item[1], ], index=[item[0], ])
         if item[0] in outliers.keys():
             anomalies = anomalies.append(item_pd)
@@ -274,6 +290,8 @@ def _generate_trending_traces(in_data, period, moving_win_size=10,
             "color": color,
             "symbol": "circle",
         },
+        text=hover_text,
+        hoverinfo="x+y+text+name"
     )
     traces = [trace_samples, ]
 
@@ -371,19 +389,25 @@ def _generate_all_charts(spec, input_data):
             builds_lst.append(str(build["build"]))
 
     # Get "build ID": "date" dict:
-    build_dates = dict()
+    build_info = dict()
     for build in builds_lst:
         try:
-            build_dates[build] = \
-                input_data.metadata(job_name, build)["generated"][:14]
+            build_info[build] = (
+                input_data.metadata(job_name, build)["generated"][:14],
+                input_data.metadata(job_name, build)["version"]
+            )
         except KeyError:
-            pass
+            build_info[build] = ("", "")
 
     # Create the header:
     csv_table = list()
     header = "Build Number:," + ",".join(builds_lst) + '\n'
     csv_table.append(header)
-    header = "Build Date:," + ",".join(build_dates.values()) + '\n'
+    build_dates = [x[0] for x in build_info.values()]
+    header = "Build Date:," + ",".join(build_dates) + '\n'
+    csv_table.append(header)
+    vpp_versions = [x[1] for x in build_info.values()]
+    header = "VPP Version:," + ",".join(vpp_versions) + '\n'
     csv_table.append(header)
 
     results = list()
@@ -430,6 +454,7 @@ def _generate_all_charts(spec, input_data):
                 test_name = test_name.split('.')[-1]
                 trace, result = _generate_trending_traces(
                     test_data,
+                    build_info=build_info,
                     period=period,
                     moving_win_size=win_size,
                     fill_missing=True,
@@ -472,7 +497,11 @@ def _generate_all_charts(spec, input_data):
                             row[idx] = str(round(float(item) / 1000000, 2))
                         except ValueError:
                             pass
-                txt_table.add_row(row)
+                try:
+                    txt_table.add_row(row)
+                except Exception as err:
+                    logging.warning("Error occurred while generating TXT table:"
+                                    "\n{0}".format(err))
             line_nr += 1
         txt_table.align["Build Number:"] = "l"
     with open("{0}.txt".format(file_name), "w") as txt_file:
