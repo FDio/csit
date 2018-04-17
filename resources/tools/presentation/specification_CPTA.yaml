@@ -227,6 +227,7 @@
   nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 10
+  evaluated-window: 14
 
 -
   type: "table"
@@ -245,6 +246,7 @@
   nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 10
+  evaluated-window: 14
 
 -
   type: "table"
@@ -263,6 +265,7 @@
   nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 10
+  evaluated-window: 14
 
 -
   type: "table"

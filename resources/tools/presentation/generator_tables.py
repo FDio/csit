@@ -574,38 +574,75 @@ def table_performance_trending_dashboard(table, input_data):
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
         if len(tbl_dict[tst_name]["data"]) > 2:
-            pd_data = pd.Series(tbl_dict[tst_name]["data"])
+            sample_lst = tbl_dict[tst_name]["data"]
+            pd_data = pd.Series(sample_lst)
             win_size = pd_data.size \
                 if pd_data.size < table["window"] else table["window"]
             # Test name:
             name = tbl_dict[tst_name]["name"]
-            # Throughput trend:
-            trend = list(pd_data.rolling(window=win_size, min_periods=2).
-                         median())[-2]
-            # Anomaly:
+
+            # Trend list:
+            trend_lst = list(pd_data.rolling(window=win_size, min_periods=2).
+                             median())
+            # Stdevs list:
             t_data, _ = find_outliers(pd_data)
-            last = list(t_data)[-1]
-            t_stdev = list(t_data.rolling(window=win_size, min_periods=2).
-                         std())[-2]
-            if isnan(last):
-                classification = "outlier"
-                last = list(pd_data)[-1]
-            elif last < (trend - 3 * t_stdev):
+            t_data_lst = list(t_data)
+            stdev_lst = list(t_data.rolling(window=win_size, min_periods=2).
+                             std())
+
+            rel_change_lst = [None, ]
+            classification_lst = [None, ]
+            for idx in range(1, len(trend_lst)):
+                # Relative changes list:
+                if not isnan(sample_lst[idx]) \
+                        and not isnan(trend_lst[idx])\
+                        and trend_lst[idx] != 0:
+                    rel_change_lst.append(
+                        int(relative_change(float(trend_lst[idx]),
+                                            float(sample_lst[idx]))))
+                else:
+                    rel_change_lst.append(None)
+                # Classification list:
+                if isnan(t_data_lst[idx]) or isnan(stdev_lst[idx]):
+                    classification_lst.append("outlier")
+                elif sample_lst[idx] < (trend_lst[idx] - 3*stdev_lst[idx]):
+                    classification_lst.append("regression")
+                elif sample_lst[idx] > (trend_lst[idx] + 3*stdev_lst[idx]):
+                    classification_lst.append("progression")
+                else:
+                    classification_lst.append("normal")
+
+            last_idx = len(sample_lst) - 1
+            first_idx = last_idx - int(table["evaluated-window"])
+            if first_idx < 0:
+                first_idx = 0
+
+            if "regression" in classification_lst[first_idx:]:
                 classification = "regression"
-            elif last > (trend + 3 * t_stdev):
+            elif "outlier" in classification_lst[first_idx:]:
+                classification = "outlier"
+            elif "progression" in classification_lst[first_idx:]:
                 classification = "progression"
             else:
                 classification = "normal"
 
-            if not isnan(last) and not isnan(trend) and trend != 0:
-                # Relative change:
-                rel_change = int(relative_change(float(trend), float(last)))
+            idx = len(classification_lst) - 1
+            while idx:
+                if classification_lst[idx] == classification:
+                    break
+                idx -= 1
 
-                tbl_lst.append([name,
-                                round(float(trend) / 1000000, 2),
-                                round(float(last) / 1000000, 2),
-                                rel_change,
-                                classification])
+            trend = round(float(trend_lst[-2]) / 1000000, 2) \
+                if not isnan(trend_lst[-2]) else ''
+            sample = round(float(sample_lst[idx]) / 1000000, 2) \
+                if not isnan(sample_lst[idx]) else ''
+            rel_change = rel_change_lst[idx] \
+                if rel_change_lst[idx] is not None else ''
+            tbl_lst.append([name,
+                            trend,
+                            sample,
+                            rel_change,
+                            classification])
 
     # Sort the table according to the classification
     tbl_sorted = list()
@@ -684,11 +721,11 @@ def table_performance_trending_dashboard_html(table, input_data):
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
             if c_idx == 4:
                 if item == "regression":
-                    td.set("bgcolor", "#FF0000")
+                    td.set("bgcolor", "#eca1a6")
                 elif item == "outlier":
-                    td.set("bgcolor", "#818181")
+                    td.set("bgcolor", "#d6cbd3")
                 elif item == "progression":
-                    td.set("bgcolor", "#008000")
+                    td.set("bgcolor", "#bdcebe")
             td.text = item
 
     try:
