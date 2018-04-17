@@ -606,7 +606,7 @@ def table_performance_comparison_mrr(table, input_data):
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
-        if item[1] is not None and item[3] is not None:
+        if item[1] is not None and item[3] is not None and item[1] != 0:
             item.append(int(relative_change(float(item[1]), float(item[3]))))
         if len(item) == 6:
             tbl_lst.append(item)
@@ -747,8 +747,10 @@ def table_performance_trending_dashboard(table, input_data):
                 classification = "outlier"
             elif "progression" in classification_lst[first_idx:]:
                 classification = "progression"
-            else:
+            elif "normal" in classification_lst[first_idx:]:
                 classification = "normal"
+            else:
+                classification = None
 
             idx = len(classification_lst) - 1
             while idx:
@@ -770,7 +772,7 @@ def table_performance_trending_dashboard(table, input_data):
 
     # Sort the table according to the classification
     tbl_sorted = list()
-    for classification in ("regression", "outlier", "progression", "normal"):
+    for classification in ("regression", "progression", "outlier", "normal"):
         tbl_tmp = [item for item in tbl_lst if item[4] == classification]
         tbl_tmp.sort(key=lambda rel: rel[0])
         tbl_sorted.extend(tbl_tmp)
