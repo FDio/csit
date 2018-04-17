@@ -22,6 +22,7 @@ import pandas as pd
 
 from string import replace
 from math import isnan
+from xml.etree import ElementTree as ET
 
 from errors import PresentationError
 from utils import mean, stdev, relative_change, remove_outliers, find_outliers
@@ -548,9 +549,9 @@ def table_performance_trending_dashboard(table, input_data):
     # Prepare the header of the tables
     header = ["Test case",
               "Thput trend [Mpps]",
-              "Change [Mpps]",
+              "Anomaly [Mpps]",
               "Change [%]",
-              "Anomaly"]
+              "Classification"]
     header_str = ",".join(header) + "\n"
 
     # Prepare data to the table:
@@ -573,50 +574,89 @@ def table_performance_trending_dashboard(table, input_data):
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
         if len(tbl_dict[tst_name]["data"]) > 2:
-            pd_data = pd.Series(tbl_dict[tst_name]["data"])
+            sample_lst = tbl_dict[tst_name]["data"]
+            pd_data = pd.Series(sample_lst)
             win_size = pd_data.size \
                 if pd_data.size < table["window"] else table["window"]
             # Test name:
             name = tbl_dict[tst_name]["name"]
-            # Throughput trend:
-            trend = list(pd_data.rolling(window=win_size, min_periods=2).
-                         median())[-2]
-            # Anomaly:
+
+            # Trend list:
+            trend_lst = list(pd_data.rolling(window=win_size, min_periods=2).
+                             median())
+            # Stdevs list:
             t_data, _ = find_outliers(pd_data)
-            last = list(t_data)[-1]
-            t_stdev = list(t_data.rolling(window=win_size, min_periods=2).
-                         std())[-2]
-            if isnan(last):
-                anomaly = "outlier"
-                last = list(pd_data)[-1]
-            elif last < (trend - 3 * t_stdev):
-                anomaly = "regression"
-            elif last > (trend + 3 * t_stdev):
-                anomaly = "progression"
+            t_data_lst = list(t_data)
+            stdev_lst = list(t_data.rolling(window=win_size, min_periods=2).
+                             std())
+
+            rel_change_lst = [None, ]
+            classification_lst = [None, ]
+            for idx in range(1, len(trend_lst)):
+                # Relative changes list:
+                if not isnan(sample_lst[idx]) \
+                        and not isnan(trend_lst[idx])\
+                        and trend_lst[idx] != 0:
+                    rel_change_lst.append(
+                        int(relative_change(float(trend_lst[idx]),
+                                            float(sample_lst[idx]))))
+                else:
+                    rel_change_lst.append(None)
+                # Classification list:
+                if isnan(t_data_lst[idx]) or isnan(stdev_lst[idx]):
+                    classification_lst.append("outlier")
+                elif sample_lst[idx] < (trend_lst[idx] - 3*stdev_lst[idx]):
+                    classification_lst.append("regression")
+                elif sample_lst[idx] > (trend_lst[idx] + 3*stdev_lst[idx]):
+                    classification_lst.append("progression")
+                else:
+                    classification_lst.append("normal")
+
+            last_idx = len(sample_lst) - 1
+            first_idx = last_idx - int(table["evaluated-window"])
+            if first_idx < 0:
+                first_idx = 0
+
+            if "regression" in classification_lst[first_idx:]:
+                classification = "regression"
+            elif "outlier" in classification_lst[first_idx:]:
+                classification = "outlier"
+            elif "progression" in classification_lst[first_idx:]:
+                classification = "progression"
             else:
-                anomaly = "normal"
+                classification = "normal"
 
-            if not isnan(last) and not isnan(trend) and trend != 0:
-                # Change:
-                change = round(float(last - trend) / 1000000, 2)
-                # Relative change:
-                rel_change = int(relative_change(float(trend), float(last)))
+            idx = len(classification_lst) - 1
+            while idx:
+                if classification_lst[idx] == classification:
+                    break
+                idx -= 1
 
-                tbl_lst.append([name,
-                                round(float(trend) / 1000000, 2),
-                                change,
-                                rel_change,
-                                anomaly])
+            trend = round(float(trend_lst[-2]) / 1000000, 2) \
+                if not isnan(trend_lst[-2]) else ''
+            sample = round(float(sample_lst[idx]) / 1000000, 2) \
+                if not isnan(sample_lst[idx]) else ''
+            rel_change = rel_change_lst[idx] \
+                if rel_change_lst[idx] is not None else ''
+            tbl_lst.append([name,
+                            trend,
+                            sample,
+                            rel_change,
+                            classification])
 
-    # Sort the table according to the relative change
-    tbl_lst.sort(key=lambda rel: rel[-2], reverse=True)
+    # Sort the table according to the classification
+    tbl_sorted = list()
+    for classification in ("regression", "outlier", "progression", "normal"):
+        tbl_tmp = [item for item in tbl_lst if item[4] == classification]
+        tbl_tmp.sort(key=lambda rel: rel[0])
+        tbl_sorted.extend(tbl_tmp)
 
-    file_name = "{0}.{1}".format(table["output-file"], table["output-file-ext"])
+    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
     logging.info("      Writing file: '{0}'".format(file_name))
     with open(file_name, "w") as file_handler:
         file_handler.write(header_str)
-        for test in tbl_lst:
+        for test in tbl_sorted:
             file_handler.write(",".join([str(item) for item in test]) + '\n')
 
     txt_file_name = "{0}.txt".format(table["output-file"])
@@ -632,3 +672,69 @@ def table_performance_trending_dashboard(table, input_data):
         txt_table.align["Test case"] = "l"
     with open(txt_file_name, "w") as txt_file:
         txt_file.write(str(txt_table))
+
+
+def table_performance_trending_dashboard_html(table, input_data):
+    """Generate the table(s) with algorithm:
+    table_performance_trending_dashboard_html specified in the specification
+    file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    try:
+        with open(table["input-file"], 'rb') as csv_file:
+            csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+            csv_lst = [item for item in csv_content]
+    except KeyError:
+        logging.warning("The input file is not defined.")
+        return
+    except csv.Error as err:
+        logging.warning("Not possible to process the file '{0}'.\n{1}".
+                        format(table["input-file"], err))
+        return
+
+    # Table:
+    dashboard = ET.Element("table", attrib=dict(width="100%", border='0'))
+
+    # Table header:
+    tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor="#6699ff"))
+    for idx, item in enumerate(csv_lst[0]):
+        alignment = "left" if idx == 0 else "right"
+        th = ET.SubElement(tr, "th", attrib=dict(align=alignment))
+        th.text = item
+
+    # Rows:
+    for r_idx, row in enumerate(csv_lst[1:]):
+        background = "#D4E4F7" if r_idx % 2 else "white"
+        tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor=background))
+
+        # Columns:
+        for c_idx, item in enumerate(row):
+            alignment = "left" if c_idx == 0 else "center"
+            td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
+            if c_idx == 4:
+                if item == "regression":
+                    td.set("bgcolor", "#eca1a6")
+                elif item == "outlier":
+                    td.set("bgcolor", "#d6cbd3")
+                elif item == "progression":
+                    td.set("bgcolor", "#bdcebe")
+            td.text = item
+
+    try:
+        with open(table["output-file"], 'w') as html_file:
+            logging.info("      Writing file: '{0}'".
+                         format(table["output-file"]))
+            html_file.write(".. raw:: html\n\n\t")
+            html_file.write(ET.tostring(dashboard))
+            html_file.write("\n\t<p><br><br></p>\n")
+    except KeyError:
+        logging.warning("The output file is not defined.")
+        return
