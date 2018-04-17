@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69862dc3_9be3cda0",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-17T11:09:08Z",
+      "side": 1,
+      "message": "Avoid using comments as abstraction. Instead, create keywords for the abstracted blocks of code.\n\nhttps://www.slideshare.net/pekkaklarck/robot-framework-dos-and-donts\n(slide 9)",
+      "range": {
+        "startLine": 638,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 1
+      },
+      "revId": "10baf24ab5142a387f2d6d47354a4c37e3d55395",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28193899_f548ecb3",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdrdisc.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-17T11:09:08Z",
+      "side": 1,
+      "message": "\"An alternative approach is using the Test Template setting in the Setting table, in which case the template is applied for all test cases in that test case file.\"\n\nhttp://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#basic-usage",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 14
+      },
+      "revId": "10baf24ab5142a387f2d6d47354a4c37e3d55395",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
