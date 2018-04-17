@@ -250,7 +250,7 @@ class ExecutionChecker(ResultVisitor):
             self._data["metadata"]["version"] = self._version
             self._msg_type = None
 
-            logging.debug("    VPP version: {0}".format(self._version))
+            logging.info("    VPP version: {0}".format(self._version))
 
     def _get_vat_history(self, msg):
         """Called when extraction of VAT command history is required.

@@ -226,7 +226,7 @@
   # to present all tests.
   nr-of-tests-shown: 20
   outlier-const: 1.5
-  window: 10
+  window: 14
   evaluated-window: 14
 
 -
@@ -245,7 +245,7 @@
   # to present all tests.
   nr-of-tests-shown: 20
   outlier-const: 1.5
-  window: 10
+  window: 14
   evaluated-window: 14
 
 -
@@ -264,7 +264,7 @@
   # to present all tests.
   nr-of-tests-shown: 20
   outlier-const: 1.5
-  window: 10
+  window: 14
   evaluated-window: 14
 
 -
