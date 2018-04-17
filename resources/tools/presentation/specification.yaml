@@ -90,6 +90,7 @@
   type: "configuration"
   data-sets:
     plot-vpp-http-server-performance:
+# TODO: Add the data sources
       csit-vpp-perf-1801-all:
       - 157
       - 158
@@ -147,6 +148,24 @@
       - 163  # sel
       - 167  # sel
       - 172  # sel acl only
+      csit-vpp-perf-1804-all:
+      - 1
+    vpp-performance-changes-mrr:
+      csit-vpp-perf-check-1801:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 11
+      - 12
+      - 13
+      csit-vpp-perf-check-1804:
+      - 1
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1801-all:
       - 122  # full
@@ -575,6 +594,23 @@
     - 169  # wrk
     - 170  # wrk
     - 172  # sel acl only
+    csit-vpp-perf-1804-all:
+    - 1
+    csit-vpp-perf-check-1801:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 11
+    - 12
+    - 13
+    csit-vpp-perf-check-1804:
+    - 1
     csit-ligato-perf-1710-all:
     - 5
     - 7
@@ -712,23 +748,22 @@
   algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-changes"
+#  reference:
+#    title: "Release 1710"
+#    data:
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
+#      - 14
+#      - 15
+#      - 16
+#      - 17
+#      - 18
+#      - 19
+#      - 20
   reference:
-    title: "Release 1710"
-    data:
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
-  compare:
     title: "Release 1801"
-# TODO: specify data sources
     data:
       csit-vpp-perf-1801-all:
       - 124  # sel
@@ -743,12 +778,55 @@
       - 163  # sel
       - 167  # sel
       - 172  # sel acl only
+  compare:
+    title: "Release 1804"
+    data:
+      csit-vpp-perf-1804-all:
+      - 1
   data: "vpp-performance-changes"
   filter: "all"
   parameters:
   - "name"
   - "parent"
   - "throughput"
+  # Number of the best and the worst tests presented in the table. Use 0 (zero)
+  # to present all tests.
+  nr-of-tests-shown: 20
+  outlier-const: 1.5
+
+-
+  type: "table"
+  title: "VPP Performance Changes - MRR"
+  algorithm: "table_performance_comparison_mrr"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-mrr"
+  reference:
+    title: "Release 1801"
+    data:
+      csit-vpp-perf-check-1801:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 11
+      - 12
+      - 13
+  compare:
+    title: "Release 1804"
+    data:
+      csit-vpp-perf-check-1804:
+      - 1
+  data: "vpp-performance-changes"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
   # Number of the best and the worst tests presented in the table. Use 0 (zero)
   # to present all tests.
   nr-of-tests-shown: 20
