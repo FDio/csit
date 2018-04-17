@@ -225,6 +225,7 @@
   nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 10
+  evaluated-window: 14
 
 -
   type: "table"
@@ -243,6 +244,7 @@
   nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 10
+  evaluated-window: 14
 
 -
   type: "table"
@@ -261,6 +263,28 @@
   nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 10
+  evaluated-window: 14
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 1t1c"
+  algorithm: "table_performance_trending_dashboard_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c.rst"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t2c"
+  algorithm: "table_performance_trending_dashboard_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c.rst"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 4t4c"
+  algorithm: "table_performance_trending_dashboard_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c.rst"
 
 
 ################################################################################
