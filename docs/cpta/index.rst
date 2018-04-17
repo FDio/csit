@@ -1,24 +1,11 @@
 Continuous Performance Trending and Analysis
 ============================================
 
-VPP Performance Trending Dashboard
-----------------------------------
-
-1t1c
-````
-
-.. include:: ../../_build/_static/vpp/performance-trending-dashboard-1t1c.rst
-
-2t2c
-````
-
-.. include:: ../../_build/_static/vpp/performance-trending-dashboard-2t2c.rst
-
-4t4c
-````
-
-.. include:: ../../_build/_static/vpp/performance-trending-dashboard-4t4c.rst
-
+This auto-generated document contains VPP performance trending graphs and data.
+It is generated using CSIT continuous trending test and analysis jobs and is
+updated daily. More detail is available on
+`CSIT Performance Trending and Analysis <https://wiki.fd.io/view/CSIT/PerformanceTrendingAnalysis>`_
+wiki page.
 
 Contents
 --------

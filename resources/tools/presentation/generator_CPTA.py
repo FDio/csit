@@ -389,7 +389,7 @@ def _generate_all_charts(spec, input_data):
             builds_lst.append(str(build["build"]))
 
     # Get "build ID": "date" dict:
-    build_info = dict()
+    build_info = OrderedDict()
     for build in builds_lst:
         try:
             build_info[build] = (
@@ -398,6 +398,9 @@ def _generate_all_charts(spec, input_data):
             )
         except KeyError:
             build_info[build] = ("", "")
+        logging.info("{}: {}, {}".format(build,
+                                         build_info[build][0],
+                                         build_info[build][1]))
 
     # Create the header:
     csv_table = list()
@@ -444,7 +447,7 @@ def _generate_all_charts(spec, input_data):
         for period in chart["periods"]:
             # Generate traces:
             traces = list()
-            win_size = 10 if period == 1 else 5 if period < 20 else 3
+            win_size = 14 if period == 1 else 5 if period < 20 else 3
             idx = 0
             for test_name, test_data in chart_data.items():
                 if not test_data:
