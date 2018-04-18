@@ -2169,6 +2169,9 @@
 | | | ... | ${dut1} | ${dut1-memif-${number}-if2} | ${dut1_if2}
 | | | Run Keyword If | ${number}==${nr} | Configure L2XC
 | | | ... | ${dut2} | ${dut2-memif-${number}-if2} | ${dut2_if2}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Show Memif Verbose | ${nodes['${dut}']}
 
 | Initialize L2 Bridge Domain for '${nr}' memif pairs in 3-node circular topology
 | | [Documentation]
@@ -2213,4 +2216,6 @@
 | | | ... | ${dut2-memif-${number}-if1} | ${number}
 | | | Add interface to bridge domain | ${dut2}
 | | | ... | ${dut2-memif-${number}-if2} | ${bd_id2}
-
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Show Memif Verbose | ${nodes['${dut}']}
