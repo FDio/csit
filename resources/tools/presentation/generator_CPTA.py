@@ -165,13 +165,15 @@ def _evaluate_results(in_data, trimmed_data, window=10):
     if len(in_data) > 2:
         win_size = in_data.size if in_data.size < window else window
         results = [0.0, ]
-        median = in_data.rolling(window=win_size).median()
+        median = in_data.rolling(window=win_size, min_periods=2).median()
         stdev_t = trimmed_data.rolling(window=win_size, min_periods=2).std()
         m_vals = median.values
         s_vals = stdev_t.values
         d_vals = in_data.values
+        t_vals = trimmed_data.values
         for day in range(1, in_data.size):
-            if np.isnan(m_vals[day]) \
+            if np.isnan(t_vals[day]) \
+                    or np.isnan(m_vals[day]) \
                     or np.isnan(s_vals[day]) \
                     or np.isnan(d_vals[day]):
                 results.append(0.0)
