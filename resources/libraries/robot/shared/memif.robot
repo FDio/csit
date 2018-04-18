@@ -28,6 +28,9 @@
 | | ... | Type: string
 | | ... | - ${memif_if2} - Name of the second Memif interface (Optional).
 | | ... | Type: string
+| | ... | - ${rxq} - RX queues. Type: integer
+| | ... | - ${txq} - TX queues. Type: integer
+| | ... | - ${role} - Memif role. Type: string
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${memif_if1}} - 1st Memif interface.
@@ -39,16 +42,19 @@
 | | ... | \| ${nodes['DUT1']} \| sock1 \| sock2 \| 1 \|
 | | ... | \| Set up memif interfaces on DUT node \
 | | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \
-| | ... | \| dut2_memif_if1 \| dut2_memif_if2 \|
+| | ... | \| dut2_memif_if1 \| dut2_memif_if2 \| 1 \| 1 \| slave \|
 | | ...
 | | [Arguments] | ${dut_node} | ${filename1} | ${filename2} | ${mid}=${1}
-| | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2
+| | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2 | ${rxq}=${1}
+| | ... | ${txq}=${1} | ${role}=slave
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
 | | ${memif_1}= | Create memif interface | ${dut_node}
-| | ... | ${filename1}${mid}-${sid_1} | ${mid} | ${sid_1}
+| | ... | ${filename1}${mid}-${sid_1} | ${mid} | ${sid_1} | rxq=${rxq}
+| | ... | txq=${txq} | role=${role}
 | | ${memif_2}= | Create memif interface | ${dut_node}
-| | ... | ${filename2}${mid}-${sid_2} | ${mid} | ${sid_2}
+| | ... | ${filename2}${mid}-${sid_2} | ${mid} | ${sid_2} | rxq=${rxq}
+| | ... | txq=${txq} | role=${role}
 | | Set Interface State | ${dut_node} | ${memif_1} | up
 | | Set Interface State | ${dut_node} | ${memif_2} | up
 | | Set Test Variable | ${${memif_if1}} | ${memif_1}
