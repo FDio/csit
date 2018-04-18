@@ -99,6 +99,9 @@ schema;type_node: &type_node
     host:
       required: yes
       type: str
+    arch:
+      required: yes
+      type: str
     port:
       type: int
     username:
