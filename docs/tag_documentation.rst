@@ -147,6 +147,12 @@ Performance testing tags
     Non Drop Rate evaluation of results. Loss acceptance of dropped packets is
     set to zero lost packets.
 
+.. topic:: NDRPDR
+
+    Single test finding both No Drop Rate and Partial Drop Rate simultaneously.
+    The search is done by optimized algorithm which performs
+    multiple trial runs at different durations and transmit rates.
+
 .. topic:: NDRCHK
 
     Performance tests where TG verifies DUTs' throughput at ref-NDR (reference

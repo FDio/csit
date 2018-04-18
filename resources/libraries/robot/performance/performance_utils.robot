@@ -502,12 +502,10 @@
 | | ...
 | | [Arguments] | ${result} | ${framesize} | ${topology_type}
 | | ...
-| | ${additional_trial_duration} = | Set Variable | ${5.0}
-| | ${rate_per_stream}= | Evaluate
-| | ... | ${result.ndr_interval.measured_low.target_tr} / 2.0
-| | Traffic should pass with no loss | ${additional_trial_duration}
-| | ... | ${rate_per_stream}pps | ${framesize} | ${topology_type}
-| | ... | fail_on_loss=${False}
+| | ${duration}= | Set Variable | 5.0
+| | ${rate_per_stream}= | Evaluate | ${result.ndr_interval.measured_low.target_tr} / 2.0
+| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
 
 | Display result of NDR search
 | | [Documentation]
