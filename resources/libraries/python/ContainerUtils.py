@@ -305,6 +305,7 @@ class ContainerEngine(object):
     def restart_vpp(self):
         """Restart VPP service inside a container."""
         self.execute('supervisorctl restart vpp')
+        self.execute('cat /tmp/supervisord.log')
 
     def create_vpp_startup_config(self,
                                   config_filename='/etc/vpp/startup.conf'):
@@ -627,6 +628,8 @@ class Docker(ContainerEngine):
 
         cpuset_mems = '--cpuset-mems={0}'.format(self.container.cpuset_mems)\
             if self.container.cpuset_mems is not None else ''
+        # Temporary workaround - disabling due to bug in memif
+        cpuset_mems = ''
 
         env = '{0}'.format(
             ' '.join('--env %s' % env for env in self.container.env))\
