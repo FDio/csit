@@ -25,18 +25,23 @@ class Memif(object):
         pass
 
     @staticmethod
-    def create_memif_interface(node, filename, mid, sid, role='master'):
+    def create_memif_interface(node, filename, mid, sid, rxq=1, txq=1,
+                               role='slave'):
         """Create Memif interface on the given node.
 
         :param node: Given node to create Memif interface on.
         :param filename: Memif interface socket filename.
         :param mid: Memif interface ID.
         :param sid: Socket ID.
+        :param rxq: Number of RX queues.
+        :param txq: Number of TX queues.
         :param role: Memif interface role [master|slave]. Default is master.
         :type node: dict
         :type filename: str
         :type mid: str
         :type sid: str
+        :type rxq: int
+        :type txq: int
         :type role: str
         :returns: SW interface index.
         :rtype: int
@@ -48,7 +53,8 @@ class Memif(object):
                 'memif_socket_filename_add_del.vat',
                 add_del='add', id=sid, filename='/tmp/'+filename)
             vat.vat_terminal_exec_cmd_from_template(
-                'memif_create.vat', id=mid, socket=sid, role=role)
+                'memif_create.vat', id=mid, socket=sid, rxq=rxq, txq=txq,
+                role=role)
             if 'sw_if_index' in vat.vat_stdout:
                 try:
                     sw_if_idx = int(vat.vat_stdout.split()[4])

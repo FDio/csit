@@ -60,7 +60,7 @@
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
-| ${container_cpus}= | ${3}
+| ${container_cpus}= | ${5}
 
 *** Keywords ***
 | Check RR for l2bdbasemaclrn-eth-2memif-1lxc
@@ -82,7 +82,7 @@
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize L2 Bridge Domain for '1' memif pairs in 3-node circular topology
+| | And Initialize L2 Bridge Domain for '1' memif pairs and '${rxq}' rxqueues in 3-node circular topology
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
