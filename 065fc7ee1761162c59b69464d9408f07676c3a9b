@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a598e8d_3d289319",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-18T14:08:03Z",
+      "side": 1,
+      "message": "I am not experienced enough to see which jobs/triggers are covered by this. How can I find out?",
+      "range": {
+        "startLine": 362,
+        "startChar": 4,
+        "endLine": 362,
+        "endChar": 7
+      },
+      "revId": "065fc7ee1761162c59b69464d9408f07676c3a9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6785a5e1_17f46834",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-18T14:08:03Z",
+      "side": 1,
+      "message": "I am under the impression that currently we prefer to run mainly MRR tests.\nPerhaps they are already triggered by line 366 (and NDR/PDR are not)?",
+      "range": {
+        "startLine": 367,
+        "startChar": 25,
+        "endLine": 367,
+        "endChar": 28
+      },
+      "revId": "065fc7ee1761162c59b69464d9408f07676c3a9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
