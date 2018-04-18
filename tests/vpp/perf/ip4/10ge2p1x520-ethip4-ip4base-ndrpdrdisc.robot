@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC | THIS
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | IP4BASE
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
