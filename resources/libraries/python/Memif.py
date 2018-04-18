@@ -73,6 +73,15 @@ class Memif(object):
                                  '{}'.format(node['host']))
 
     @staticmethod
+    def dump_memif(node):
+        """Dump Memif data for the given node.
+
+        :param node: Given node to show Memif data on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("memif_dump.vat", node, json_out=False)
+
     def show_memif(node):
         """Show Memif data for the given node.
 
@@ -80,7 +89,7 @@ class Memif(object):
         :type node: dict
         """
         vat = VatExecutor()
-        vat.execute_script("memif_dump.vat", node, json_out=False)
+        vat.execute_script("show_memif.vat", node, json_out=False)
 
     @staticmethod
     def clear_memif_socks(node, *socks):
