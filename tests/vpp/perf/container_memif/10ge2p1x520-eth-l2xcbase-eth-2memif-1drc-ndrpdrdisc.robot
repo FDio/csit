@@ -68,7 +68,7 @@
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
-| ${container_cpus}= | ${3}
+| ${container_cpus}= | ${5}
 
 *** Keywords ***
 | L2 Cross Connect over Memif Binary Search
@@ -85,7 +85,7 @@
 | | Add PCI Devices To DUTs In 3-node Single Link Topology
 | | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
-| | Initialize L2 xconnect for '${container_count}' memif pairs in 3-node circular topology
+| | Initialize L2 xconnect for '${container_count}' memif pairs and '${rxq}' rxqueues in 3-node circular topology
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}

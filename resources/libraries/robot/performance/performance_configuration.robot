@@ -2124,7 +2124,7 @@
 | | Configure deterministic mode for NAT44
 | | ... | ${dut1} | 20.0.0.0 | 18 | 200.0.0.0 | 30
 
-| Initialize L2 xconnect for '${nr}' memif pairs in 3-node circular topology
+| Initialize L2 xconnect for '${nr}' memif pairs and '${rxq}' rxqueues in 3-node circular topology
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Cross
 | | ... | connect each Memif interface with one physical interface or virtual
@@ -2151,7 +2151,7 @@
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Set up memif interfaces on DUT node | ${dut1}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
-| | | ... | dut1-memif-${number}-if2
+| | | ... | dut1-memif-${number}-if2 | ${rxq} | ${rxq}
 | | | ${dut1_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut1_if1}
 | | | ... | ${dut1-memif-${prev_index}-if2}
 | | | Configure L2XC | ${dut1} | ${dut1_xconnect_if1}
@@ -2160,7 +2160,7 @@
 | | | ${sock2}= | Set Variable | memif-DUT2_VNF
 | | | Set up memif interfaces on DUT node | ${dut2}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
-| | | ... | dut2-memif-${number}-if2
+| | | ... | dut2-memif-${number}-if2 | ${rxq} | ${rxq}
 | | | ${dut2_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut2_if1}
 | | | ... | ${dut2-memif-${prev_index}-if2}
 | | | Configure L2XC | ${dut2} | ${dut2_xconnect_if1}
@@ -2173,7 +2173,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Show Memif | ${nodes['${dut}']}
 
-| Initialize L2 Bridge Domain for '${nr}' memif pairs in 3-node circular topology
+| Initialize L2 Bridge Domain for '${nr}' memif pairs and '${rxq}' rxqueues in 3-node circular topology
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
 | | ... | Memif interface to separate L2 bridge domain with one physical or
@@ -2201,7 +2201,7 @@
 | | | ${sock2}= | Set Variable | memif-DUT1_VNF
 | | | Set up memif interfaces on DUT node | ${dut1}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
-| | | ... | dut1-memif-${number}-if2
+| | | ... | dut1-memif-${number}-if2 | ${rxq} | ${rxq}
 | | | ${bd_id2}= | Evaluate | ${number}+1
 | | | Add interface to bridge domain | ${dut1}
 | | | ... | ${dut1-memif-${number}-if1} | ${number}
@@ -2211,7 +2211,7 @@
 | | | ${sock2}= | Set Variable | memif-DUT2_VNF
 | | | Set up memif interfaces on DUT node | ${dut2}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
-| | | ... | dut2-memif-${number}-if2
+| | | ... | dut2-memif-${number}-if2 | ${rxq} | ${rxq}
 | | | Add interface to bridge domain | ${dut2}
 | | | ... | ${dut2-memif-${number}-if1} | ${number}
 | | | Add interface to bridge domain | ${dut2}
