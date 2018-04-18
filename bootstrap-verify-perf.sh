@@ -364,6 +364,16 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.${DUT}.perf" \
+              --include ndrpdrdiscAND1t1cAND64b \
+              --include ndrpdrdiscAND2t2cAND64b \
+              --include ndrpdrdiscAND4t4cAND64b \
+              --include ndrpdrdiscAND1t1cAND78b \
+              --include ndrpdrdiscAND2t2cAND78b \
+              --include ndrpdrdiscAND4t4cAND78b \
+              --exclude ACL1 \
+              --exclude ACL10 \
+              --exclude 100_FLOWS \
+              --exclude 100k_FLOWS \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
