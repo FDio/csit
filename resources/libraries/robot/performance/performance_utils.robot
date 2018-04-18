@@ -361,6 +361,7 @@
 | | ... | using an optimized search algorithm.
 | | ... | Display results as formatted test message.
 | | ... | Fail if a resulting lower bound has too high drop fraction.
+| | ... | Proceed with Perform additional measurements based on NDRPDR result.
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - L2 Frame Size [B] or special IMIX string. Type: int or str
@@ -395,6 +396,8 @@
 | | Display result of NDRPDR search | ${result} | ${frame_size}
 | | Check NDRPDR interval validity | ${result.pdr_interval} | ${allowed_drop_fraction}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
+| | Perform additional measurements based on NDRPDR result
+| | ... | ${result} | ${frame_size} | ${topology_type}
 
 | Display single bound
 | | [Documentation]
@@ -480,6 +483,30 @@
 | | ${lower_bound_df}= | Set Variable | ${interval.measured_low.drop_fraction}
 | | Run Keyword If | ${lower_bound_df} > ${allowed_drop_fraction}
 | | ... | Fail | Lower bound fraction ${lower_bound_df} does not reach ${allowed_drop_fraction}
+
+| Perform additional measurements based on NDRPDR result
+| | [Documentation]
+| | ... | Perform any additional measurements which are not directly needed
+| | ... | for determining NDR nor PDR, but which are needed for gathering
+| | ... | additional data for debug purposes.
+| | ... | Currently, just "Traffic should pass with no loss" is called.
+| | ... | TODO: Move latency measurements from optimized search here.
+| | ...
+| | ... | *Arguments:*
+| | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
+| | ... | - frame_size - L2 Frame Size [B] or special IMIX string. Type: int or str
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| Perform additional measurements based on NDRPDR result \
+| | ... | \| \${result} \| ${64} \| 3-node-IPv4
+| | ...
+| | [Arguments] | ${result} | ${framesize} | ${topology_type}
+| | ...
+| | ${duration}= | Set Variable | 5.0
+| | ${rate_per_stream}= | Evaluate | ${result.ndr_interval.measured_low.target_tr} / 2.0
+| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
 
 | Display result of NDR search
 | | [Documentation]
