@@ -363,7 +363,8 @@ case "$TEST_TAG" in
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.${DUT}.perf" \
+              -s "tests.${DUT}.perf.vm_vhost" \
+              --include NDRPDRDISC \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
