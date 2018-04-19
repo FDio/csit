@@ -20,6 +20,8 @@ TOPOLOGIES="topologies/available/lf_testbed1.yaml \
             topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PYTHONPATH=${SCRIPT_DIR}
+export DEBIAN_FRONTEND=noninteractive
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
@@ -41,31 +43,19 @@ then
     if [[ ${TEST_TAG} == *DAILY ]] || \
        [[ ${TEST_TAG} == *WEEKLY ]];
     then
-        # Download the latest VPP build .deb install packages
-        echo Downloading VPP packages...
+        echo Downloading latest VPP packages from NEXUS...
         bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
-
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-        # Take vpp package and get the vpp version
-        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
     else
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+        echo Downloading VPP packages of specific version from NEXUS...
+        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
         VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-        VPP_CLASSIFIER="-deb"
-        # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        # Temporary disable using dpdk
-        # wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
     fi
+    # Jenkins VPP deb paths (convert to full path)
+    VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+    # Take vpp package and get the vpp version
+    VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp_\(.*\)_amd64.deb' )"
 
-    # Temporary workaround as ligato docker file requires specific file name
-    rename -v 's/^(.*)-(\d.*)-deb.deb/$1_$2.deb/' *.deb
     cd ${SCRIPT_DIR}
 
 # If we run this script from vpp project we want to use local build
@@ -158,7 +148,6 @@ DOCKER_IMAGE="$( readlink -f prod_vpp_agent.tar.gz | tr '\n' ' ' )"
 cd ${SCRIPT_DIR}
 
 WORKING_TOPOLOGY=""
-export PYTHONPATH=${SCRIPT_DIR}
 
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
