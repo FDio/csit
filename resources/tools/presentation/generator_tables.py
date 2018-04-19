@@ -782,7 +782,7 @@ def table_performance_trending_dashboard(table, input_data):
                         break
                 for idx in range(index+1, len(classification_lst)):
                     if classification_lst[idx] == tmp_classification:
-                        if relative_change[idx] > relative_change[index]:
+                        if rel_change_lst[idx] > rel_change_lst[index]:
                             index = idx
 
             # if "regression" in classification_lst[first_idx:]:
