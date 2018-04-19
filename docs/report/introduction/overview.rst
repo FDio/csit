@@ -44,13 +44,6 @@ CSIT |release| report contains following main sections and sub-sections:
    executions; *Test Environment* - environment description; *Documentation* -
    CSIT source code documentation for DPDK performance tests.
 
-#. **Honeycomb Performance Tests** - Honeycomb performance tests executed in
-   physical FD.io testbeds; *Overview* - tested topologies, test coverage
-   and naming specifics; *CSIT Release Notes* - changes in CSIT |release|,
-   added tests, environment or methodology changes, known CSIT issues;
-   *Test Environment* - environment description; *Documentation* - source
-   code documentation for Honeycomb performance tests.
-
 #. **VPP Functional Tests** - VPP functional tests executed in virtual
    FD.io testbeds; *Overview* - tested virtual topologies, test coverage and
    naming specifics; *CSIT Release Notes* - changes in CSIT |release|, added
