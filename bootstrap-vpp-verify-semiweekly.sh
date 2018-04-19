@@ -39,14 +39,22 @@ mkdir ${SCRIPT_DIR}/tmp
 # Use tmp dir to store log files
 LOG_PATH="${SCRIPT_DIR}/tmp"
 
-if [ -f "/etc/redhat-release" ]; then
+OS_ID=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+
+if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
+    PACKAGE="rpm"
     sudo yum install -y python-devel python-virtualenv
-else
+elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
+    PACKAGE="deb"
     export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -y update
     sudo apt-get -y install libpython2.7-dev python-virtualenv
+else
+    echo "$OS_ID is not yet supported."
+    exit 1
 fi
 
 # 1st step: Download and prepare VPP packages
@@ -56,30 +64,26 @@ if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
-    case "$DISTRO" in
-        CENTOS )
-            PACKAGE=rpm
-            ;;
-        UBUNTU )
-            PACKAGE=deb
-    esac
     # Download the latest VPP build install packages
-    rm -f *.${PACKAGE}
-    echo Downloading VPP packages...
-    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
+    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+        --skip-install
 fi
 
-# Take vpp package and get the vpp version
-VPP_PKGS=(*.$PACKAGE)
+VIRL_DIR_LOC="/tmp/"
+VPP_PKGS=(vpp*.$PACKAGE)
+VPP_PKGS_FULL=("${VPP_PKGS[@]/#/${VIRL_DIR_LOC}}")
+echo ${VPP_PKGS[@]}
+
+VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_${DISTRO})
+VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_${DISTRO})
+
 case "$DISTRO" in
         CENTOS )
-            VPP_VER="$( expr match $(ls *.rpm | head -n 1) 'vpp-\(.*\).rpm' )"
+            VPP_VER="$( expr match $(ls vpp*.${PACKAGE} | head -n 1) 'vpp-\(.*\).rpm' )"
             ;;
         UBUNTU )
-            VPP_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
+            VPP_VER="$( expr match $(ls vpp*.${PACKAGE} | head -n 1) 'vpp-\(.*\)-deb.deb' )"
 esac
-
-echo ${VPP_PKGS[@]}
 
 set +x
 echo "****************************************************************************************************************************************"
@@ -116,16 +120,6 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 VIRL_SESSION_EXPIRY="620"
-
-case "$DISTRO" in
-        CENTOS )
-            VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
-            VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
-            ;;
-        UBUNTU )
-            VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
-            VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
-esac
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -201,18 +195,6 @@ do
     fi
 done
 
-
-VIRL_DIR_LOC="/tmp"
-VPP_PKGS_VIRL=(${VPP_PKGS[@]})
-
-# Prepend directory location at remote host to deb file list
-for index in "${!VPP_PKGS_VIRL[@]}"; do
-    VPP_PKGS_VIRL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_VIRL[${index}]}
-done
-
-echo "Updated file names: " ${VPP_PKGS_VIRL[@]}
-
-cat ${VIRL_PKEY}
 # Copy the files to VIRL host
 scp ${SSH_OPTIONS} *.${PACKAGE} \
     ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
