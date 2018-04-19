@@ -164,26 +164,26 @@ def _evaluate_results(in_data, trimmed_data, window=10):
 
     if len(in_data) > 2:
         win_size = in_data.size if in_data.size < window else window
-        results = [0.0, ]
+        results = [0.66, ]
         median = in_data.rolling(window=win_size, min_periods=2).median()
         stdev_t = trimmed_data.rolling(window=win_size, min_periods=2).std()
-        m_vals = median.values
-        s_vals = stdev_t.values
-        d_vals = in_data.values
-        t_vals = trimmed_data.values
-        for day in range(1, in_data.size):
-            if np.isnan(t_vals[day]) \
-                    or np.isnan(m_vals[day]) \
-                    or np.isnan(s_vals[day]) \
-                    or np.isnan(d_vals[day]):
+
+        first = True
+        for build_nr, value in in_data.iteritems():
+            if first:
+                first = False
+                continue
+            if np.isnan(trimmed_data[build_nr]) \
+                    or np.isnan(median[build_nr]) \
+                    or np.isnan(stdev_t[build_nr]) \
+                    or np.isnan(value):
                 results.append(0.0)
-            elif d_vals[day] < (m_vals[day] - 3 * s_vals[day]):
+            elif value < (median[build_nr] - 3 * stdev_t[build_nr]):
                 results.append(0.33)
-            elif (m_vals[day] - 3 * s_vals[day]) <= d_vals[day] <= \
-                    (m_vals[day] + 3 * s_vals[day]):
-                results.append(0.66)
-            else:
+            elif value > (median[build_nr] + 3 * stdev_t[build_nr]):
                 results.append(1.0)
+            else:
+                results.append(0.66)
     else:
         results = [0.0, ]
         try:
@@ -236,30 +236,23 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
         in_data = _select_data(in_data, period,
                                fill_missing=fill_missing,
                                use_first=use_first)
-    # try:
-    #     data_x = ["{0}/{1}".format(key, build_info[str(key)][1].split("~")[-1])
-    #               for key in in_data.keys()]
-    # except KeyError:
-    #     data_x = [key for key in in_data.keys()]
-    hover_text = ["vpp-build: {0}".format(x[1].split("~")[-1])
-                  for x in build_info.values()]
-    data_x = [key for key in in_data.keys()]
 
+    data_x = [key for key in in_data.keys()]
     data_y = [val for val in in_data.values()]
+
+    hover_text = list()
+    for idx in data_x:
+        hover_text.append("vpp-build: {0}".
+                          format(build_info[str(idx)][1].split("~")[-1]))
+
     data_pd = pd.Series(data_y, index=data_x)
 
     t_data, outliers = find_outliers(data_pd, outlier_const=1.5)
-
     results = _evaluate_results(data_pd, t_data, window=moving_win_size)
 
     anomalies = pd.Series()
     anomalies_res = list()
     for idx, item in enumerate(in_data.items()):
-        # item_pd = pd.Series([item[1], ],
-        #                     index=["{0}/{1}".
-        #                     format(item[0],
-        #                            build_info[str(item[0])][1].split("~")[-1]),
-        #                            ])
         item_pd = pd.Series([item[1], ], index=[item[0], ])
         if item[0] in outliers.keys():
             anomalies = anomalies.append(item_pd)
