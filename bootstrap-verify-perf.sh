@@ -35,35 +35,21 @@ mkdir -p ${LOG_ARCHIVE_DIR}
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
 then
-    mkdir vpp_download
-    cd vpp_download
-
     if [[ ${TEST_TAG} == *DAILY ]] || \
        [[ ${TEST_TAG} == *WEEKLY ]];
     then
-        # Download the latest VPP build .deb install packages
-        echo Downloading VPP packages...
+        echo Downloading latest VPP packages from NEXUS...
         bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
-
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-        # Take vpp package and get the vpp version
-        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
     else
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+        echo Downloading VPP packages of specific version from NEXUS...
+        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
         VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-        VPP_CLASSIFIER="-deb"
-        # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install --vpp ${VPP_STABLE_VER%_amd64} --dkms ${DPDK_STABLE_VER}
     fi
-
-    cd ${SCRIPT_DIR}
+    # Jenkins VPP deb paths (convert to full path)
+    VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+    # Take vpp package and get the vpp version
+    VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp_\(.*\)_amd64.deb' )"
 
 # If we run this script from vpp project we want to use local build
 elif [[ ${JOB_NAME} == vpp-* ]] ;
@@ -126,6 +112,7 @@ python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py \
     -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR} -p ${VPP_DEBS}
 if [ $? -eq 0 ]; then
     echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
+    rm vpp*
 else
     echo "Failed to copy vpp deb files to DUTs"
     exit 1
@@ -262,7 +249,7 @@ case "$TEST_TAG" in
               'mrrANDnic_intel-xl710AND2t2cANDipsechw')
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('mrrAND1t1cANDmemifANDnic_intel-x520-da2ANDdocker')
 esac
 
 # Catenate TAG selections by 'OR'
