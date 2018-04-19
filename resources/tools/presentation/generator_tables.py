@@ -355,7 +355,7 @@ def table_performance_comparison(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
-    data = input_data.filter_data(table)
+    data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
     try:
@@ -544,7 +544,7 @@ def table_performance_comparison_mrr(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
-    data = input_data.filter_data(table)
+    data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
     try:
@@ -668,14 +668,16 @@ def table_performance_trending_dashboard(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
-    data = input_data.filter_data(table)
+    data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
     header = ["Test case",
-              "Thput trend [Mpps]",
-              "Anomaly [Mpps]",
+              "Throughput Trend [Mpps]",
+              "Trend Compliance",
+              "Anomaly Value [Mpps]",
               "Change [%]",
-              "Classification"]
+              "#Outliers"
+              ]
     header_str = ",".join(header) + "\n"
 
     # Prepare data to the table:
@@ -688,55 +690,62 @@ def table_performance_trending_dashboard(table, input_data):
                                             "-".join(tst_data["name"].
                                                      split("-")[1:]))
                     tbl_dict[tst_name] = {"name": name,
-                                          "data": list()}
+                                          "data": dict()}
                 try:
-                    tbl_dict[tst_name]["data"]. \
-                        append(tst_data["result"]["throughput"])
+                    tbl_dict[tst_name]["data"][str(build)] =  \
+                        tst_data["result"]["throughput"]
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
         if len(tbl_dict[tst_name]["data"]) > 2:
-            sample_lst = tbl_dict[tst_name]["data"]
-            pd_data = pd.Series(sample_lst)
+
+            pd_data = pd.Series(tbl_dict[tst_name]["data"])
             win_size = pd_data.size \
                 if pd_data.size < table["window"] else table["window"]
             # Test name:
             name = tbl_dict[tst_name]["name"]
 
-            # Trend list:
-            trend_lst = list(pd_data.rolling(window=win_size, min_periods=2).
-                             median())
-            # Stdevs list:
-            t_data, _ = find_outliers(pd_data)
-            t_data_lst = list(t_data)
-            stdev_lst = list(t_data.rolling(window=win_size, min_periods=2).
-                             std())
+            median = pd_data.rolling(window=win_size, min_periods=2).median()
+            trimmed_data, _ = find_outliers(pd_data, outlier_const=1.5)
+            stdev_t = pd_data.rolling(window=win_size, min_periods=2).std()
 
             rel_change_lst = [None, ]
             classification_lst = [None, ]
-            for idx in range(1, len(trend_lst)):
+            median_lst = [None, ]
+            sample_lst = [None, ]
+            first = True
+            for build_nr, value in pd_data.iteritems():
+                if first:
+                    first = False
+                    continue
                 # Relative changes list:
-                if not isnan(sample_lst[idx]) \
-                        and not isnan(trend_lst[idx])\
-                        and trend_lst[idx] != 0:
+                if not isnan(value) \
+                        and not isnan(median[build_nr]) \
+                        and median[build_nr] != 0:
                     rel_change_lst.append(
-                        int(relative_change(float(trend_lst[idx]),
-                                            float(sample_lst[idx]))))
+                        int(relative_change(float(median[build_nr]),
+                                            float(value))))
                 else:
                     rel_change_lst.append(None)
+
                 # Classification list:
-                if isnan(t_data_lst[idx]) or isnan(stdev_lst[idx]):
+                if isnan(trimmed_data[build_nr]) \
+                        or isnan(median[build_nr]) \
+                        or isnan(stdev_t[build_nr]) \
+                        or isnan(value):
                     classification_lst.append("outlier")
-                elif sample_lst[idx] < (trend_lst[idx] - 3*stdev_lst[idx]):
+                elif value < (median[build_nr] - 3 * stdev_t[build_nr]):
                     classification_lst.append("regression")
-                elif sample_lst[idx] > (trend_lst[idx] + 3*stdev_lst[idx]):
+                elif value > (median[build_nr] + 3 * stdev_t[build_nr]):
                     classification_lst.append("progression")
                 else:
                     classification_lst.append("normal")
+                sample_lst.append(value)
+                median_lst.append(median[build_nr])
 
-            last_idx = len(sample_lst) - 1
+            last_idx = len(classification_lst) - 1
             first_idx = last_idx - int(table["evaluated-window"])
             if first_idx < 0:
                 first_idx = 0
@@ -752,28 +761,46 @@ def table_performance_trending_dashboard(table, input_data):
             else:
                 classification = None
 
+            nr_outliers = 0
+            consecutive_outliers = 0
+            failure = False
+            for item in classification_lst[first_idx:]:
+                if item == "outlier":
+                    nr_outliers += 1
+                    consecutive_outliers += 1
+                    if consecutive_outliers == 3:
+                        failure = True
+                else:
+                    consecutive_outliers = 0
+
             idx = len(classification_lst) - 1
             while idx:
                 if classification_lst[idx] == classification:
                     break
                 idx -= 1
 
-            trend = round(float(trend_lst[-2]) / 1000000, 2) \
-                if not isnan(trend_lst[-2]) else ''
+            if failure:
+                classification = "failure"
+            elif classification == "outlier":
+                classification = "normal"
+
+            trend = round(float(median_lst[-1]) / 1000000, 2) \
+                if not isnan(median_lst[-1]) else ''
             sample = round(float(sample_lst[idx]) / 1000000, 2) \
                 if not isnan(sample_lst[idx]) else ''
             rel_change = rel_change_lst[idx] \
                 if rel_change_lst[idx] is not None else ''
             tbl_lst.append([name,
                             trend,
-                            sample,
-                            rel_change,
-                            classification])
+                            classification,
+                            '-' if classification == "normal" else sample,
+                            '-' if classification == "normal" else rel_change,
+                            nr_outliers])
 
     # Sort the table according to the classification
     tbl_sorted = list()
-    for classification in ("regression", "progression", "outlier", "normal"):
-        tbl_tmp = [item for item in tbl_lst if item[4] == classification]
+    for classification in ("failure", "regression", "progression", "normal"):
+        tbl_tmp = [item for item in tbl_lst if item[2] == classification]
         tbl_tmp.sort(key=lambda rel: rel[0])
         tbl_sorted.extend(tbl_tmp)
 
@@ -832,7 +859,7 @@ def table_performance_trending_dashboard_html(table, input_data):
     # Table header:
     tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor="#6699ff"))
     for idx, item in enumerate(csv_lst[0]):
-        alignment = "left" if idx == 0 else "right"
+        alignment = "left" if idx == 0 else "center"
         th = ET.SubElement(tr, "th", attrib=dict(align=alignment))
         th.text = item
 
@@ -845,10 +872,10 @@ def table_performance_trending_dashboard_html(table, input_data):
         for c_idx, item in enumerate(row):
             alignment = "left" if c_idx == 0 else "center"
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
-            if c_idx == 4:
+            if c_idx == 2:
                 if item == "regression":
                     td.set("bgcolor", "#eca1a6")
-                elif item == "outlier":
+                elif item == "failure":
                     td.set("bgcolor", "#d6cbd3")
                 elif item == "progression":
                     td.set("bgcolor", "#bdcebe")
