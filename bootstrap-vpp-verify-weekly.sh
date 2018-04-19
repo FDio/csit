@@ -27,6 +27,7 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 VIRL_SESSION_EXPIRY="620"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PYTHONPATH=${SCRIPT_DIR}
 
 # Create tmp dir
 mkdir ${SCRIPT_DIR}/tmp
@@ -34,19 +35,43 @@ mkdir ${SCRIPT_DIR}/tmp
 # Use tmp dir to store log files
 LOG_PATH="${SCRIPT_DIR}/tmp"
 
-if [ -f "/etc/redhat-release" ]; then
+OS_ID=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+
+if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
+    PACKAGE="rpm"
     sudo yum install -y python-devel python-virtualenv
-    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
-    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
-else
+elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
+    PACKAGE="deb"
     export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -y update
     sudo apt-get -y install libpython2.7-dev python-virtualenv
-    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
-    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
+else
+    echo "$OS_ID is not yet supported."
+    exit 1
 fi
+
+# Temporarily download VPP packages from nexus.fd.io
+if [ "${#}" -ne "0" ]; then
+    arr=(${@})
+    echo ${arr[0]}
+else
+    # Download the specific VPP build install packages
+    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_${DISTRO})
+    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+        --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
+fi
+
+VIRL_DIR_LOC="/tmp"
+VPP_PKGS=(*.$PACKAGE)
+VPP_PKGS_FULL=("${VPP_PKGS[@]/#/${VIRL_DIR_LOC}}")
+echo ${VPP_PKGS[@]}
+
+VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_${DISTRO})
+VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_${DISTRO})
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -121,56 +146,6 @@ do
         VIRL_SERVERS=("${VIRL_SERVERS[@]:0:$element}" "${VIRL_SERVERS[@]:$[$element+1]}")
     fi
 done
-
-# Temporarily download VPP and DPDK packages from nexus.fd.io
-case "$DISTRO" in
-        CENTOS )
-            VPP_ARTIFACTS="vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins"
-            DPDK_ARTIFACTS=""
-            PACKAGE="rpm"
-            VPP_CLASSIFIER=""
-            DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
-            VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
-            VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
-            ;;
-        UBUNTU )
-            VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins"
-            DPDK_ARTIFACTS="vpp-dpdk-dkms"
-            PACKAGE="deb"
-            VPP_CLASSIFIER="-deb"
-            DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-            VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
-            VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-esac
-
-if [ "${#}" -ne "0" ]; then
-    arr=(${@})
-    echo ${arr[0]}
-    # Download DPDK parts not included in dpdk plugin of vpp build
-    for ARTIFACT in ${DPDK_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
-else
-    rm -f *.${PACKAGE}
-    for ARTIFACT in ${DPDK_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
-    for ARTIFACT in ${VPP_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${VPP_STABLE_VER}/${ARTIFACT}-${VPP_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
-fi
-
-VPP_PKGS=(*.$PACKAGE)
-echo ${VPP_PKGS[@]}
-VIRL_DIR_LOC="/tmp"
-VPP_PKGS_FULL=(${VPP_PKGS[@]})
-
-# Prepend directory location at remote host to deb file list
-for index in "${!VPP_PKGS_FULL[@]}"; do
-    VPP_PKGS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_FULL[${index}]}
-done
-
-echo "Updated file names: " ${VPP_PKGS_FULL[@]}
 
 # Copy the files to VIRL host
 scp ${SSH_OPTIONS} *.${PACKAGE} \
