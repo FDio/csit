@@ -671,12 +671,12 @@ def table_performance_trending_dashboard(table, input_data):
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
-    header = ["Test case",
+    header = ["Test Case",
               "Throughput Trend [Mpps]",
               "Trend Compliance",
-              "Anomaly Value [Mpps]",
+              "Top Anomaly [Mpps]",
               "Change [%]",
-              "#Outliers"
+              "Outliers [Number]"
               ]
     header_str = ",".join(header) + "\n"
 
@@ -724,9 +724,9 @@ def table_performance_trending_dashboard(table, input_data):
                 if not isnan(value) \
                         and not isnan(median[build_nr]) \
                         and median[build_nr] != 0:
-                    rel_change_lst.append(
-                        int(relative_change(float(median[build_nr]),
-                                            float(value))))
+                    rel_change_lst.append(round(
+                        relative_change(float(median[build_nr]), float(value)),
+                        2))
                 else:
                     rel_change_lst.append(None)
 
@@ -750,17 +750,6 @@ def table_performance_trending_dashboard(table, input_data):
             if first_idx < 0:
                 first_idx = 0
 
-            if "regression" in classification_lst[first_idx:]:
-                classification = "regression"
-            elif "outlier" in classification_lst[first_idx:]:
-                classification = "outlier"
-            elif "progression" in classification_lst[first_idx:]:
-                classification = "progression"
-            elif "normal" in classification_lst[first_idx:]:
-                classification = "normal"
-            else:
-                classification = None
-
             nr_outliers = 0
             consecutive_outliers = 0
             failure = False
@@ -773,23 +762,69 @@ def table_performance_trending_dashboard(table, input_data):
                 else:
                     consecutive_outliers = 0
 
-            idx = len(classification_lst) - 1
-            while idx:
-                if classification_lst[idx] == classification:
-                    break
-                idx -= 1
-
             if failure:
                 classification = "failure"
-            elif classification == "outlier":
+            elif "regression" in classification_lst[first_idx:]:
+                classification = "regression"
+            elif "progression" in classification_lst[first_idx:]:
+                classification = "progression"
+            else:
                 classification = "normal"
+
+            if classification == "normal":
+                index = len(classification_lst) - 1
+            else:
+                tmp_classification = "outlier" if classification == "failure" \
+                    else classification
+                for idx in range(first_idx, len(classification_lst)):
+                    if classification_lst[idx] == tmp_classification:
+                        index = idx
+                        break
+                for idx in range(index+1, len(classification_lst)):
+                    if classification_lst[idx] == tmp_classification:
+                        if relative_change[idx] > relative_change[index]:
+                            index = idx
+
+            # if "regression" in classification_lst[first_idx:]:
+            #     classification = "regression"
+            # elif "outlier" in classification_lst[first_idx:]:
+            #     classification = "outlier"
+            # elif "progression" in classification_lst[first_idx:]:
+            #     classification = "progression"
+            # elif "normal" in classification_lst[first_idx:]:
+            #     classification = "normal"
+            # else:
+            #     classification = None
+            #
+            # nr_outliers = 0
+            # consecutive_outliers = 0
+            # failure = False
+            # for item in classification_lst[first_idx:]:
+            #     if item == "outlier":
+            #         nr_outliers += 1
+            #         consecutive_outliers += 1
+            #         if consecutive_outliers == 3:
+            #             failure = True
+            #     else:
+            #         consecutive_outliers = 0
+            #
+            # idx = len(classification_lst) - 1
+            # while idx:
+            #     if classification_lst[idx] == classification:
+            #         break
+            #     idx -= 1
+            #
+            # if failure:
+            #     classification = "failure"
+            # elif classification == "outlier":
+            #     classification = "normal"
 
             trend = round(float(median_lst[-1]) / 1000000, 2) \
                 if not isnan(median_lst[-1]) else ''
-            sample = round(float(sample_lst[idx]) / 1000000, 2) \
-                if not isnan(sample_lst[idx]) else ''
-            rel_change = rel_change_lst[idx] \
-                if rel_change_lst[idx] is not None else ''
+            sample = round(float(sample_lst[index]) / 1000000, 2) \
+                if not isnan(sample_lst[index]) else ''
+            rel_change = rel_change_lst[index] \
+                if rel_change_lst[index] is not None else ''
             tbl_lst.append([name,
                             trend,
                             classification,
