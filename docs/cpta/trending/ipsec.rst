@@ -9,6 +9,7 @@ xl710-64b-base-scale
 
 .. raw:: html
 
+    <a name="xl710-64b-1t1c"></a>
     <center><b>
 
 :index:`xl710-ip4-ipsechw-64b-base-scale-1t1c-mrr`
@@ -25,6 +26,7 @@ xl710-64b-base-scale
 
 .. raw:: html
 
+    <a name="xl710-64b-2t2c"></a>
     <center><b>
 
 :index:`xl710-ip4-ipsechw-64b-base-scale-2t2c-mrr`
@@ -41,6 +43,7 @@ xl710-64b-base-scale
 
 .. raw:: html
 
+    <a name="xl710-64b-4t4c"></a>
     <center><b>
 
 :index:`xl710-ip4-ipsechw-64b-base-scale-4t4c-mrr`

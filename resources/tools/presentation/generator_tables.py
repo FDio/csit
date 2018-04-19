@@ -892,7 +892,7 @@ def table_performance_trending_dashboard_html(table, input_data):
     dashboard = ET.Element("table", attrib=dict(width="100%", border='0'))
 
     # Table header:
-    tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor="#6699ff"))
+    tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor="#7eade7"))
     for idx, item in enumerate(csv_lst[0]):
         alignment = "left" if idx == 0 else "center"
         th = ET.SubElement(tr, "th", attrib=dict(align=alignment))
@@ -907,6 +907,71 @@ def table_performance_trending_dashboard_html(table, input_data):
         for c_idx, item in enumerate(row):
             alignment = "left" if c_idx == 0 else "center"
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
+            # Name:
+            url = "../trending/"
+            file_name = ""
+            anchor = "#"
+            feature = ""
+            if c_idx == 0:
+                if "memif" in item:
+                    file_name = "container_memif.html"
+
+                elif "vhost" in item:
+                    if "l2xcbase" in item or "l2bdbasemaclrn" in item:
+                        file_name = "vm_vhost_l2.html"
+                    elif "ip4base" in item:
+                        file_name = "vm_vhost_ip4.html"
+
+                elif "ipsec" in item:
+                    file_name = "ipsec.html"
+
+                elif "ethip4lispip" in item or "ethip4vxlan" in item:
+                    file_name = "ip4_tunnels.html"
+
+                elif "ip4base" in item or "ip4scale" in item:
+                    file_name = "ip4.html"
+                    if "iacl" in item or "snat" in item or "cop" in item:
+                        feature = "-features"
+
+                elif "ip6base" in item or "ip6scale" in item:
+                    file_name = "ip6.html"
+
+                elif "l2xcbase" in item or "l2xcscale" in item \
+                        or "l2bdbasemaclrn" in item or "l2bdscale" in item:
+                    file_name = "l2.html"
+                    if "iacl" in item:
+                        feature = "-features"
+
+                if "x520" in item:
+                    anchor += "x520-"
+                elif "x710" in item:
+                    anchor += "x710-"
+                elif "xl710" in item:
+                    anchor += "xl710-"
+
+                if "64b" in item:
+                    anchor += "64b-"
+                elif "78b" in item:
+                    anchor += "78b"
+                elif "imix" in item:
+                    anchor += "imix-"
+                elif "9000b" in item:
+                    anchor += "9000b-"
+                elif "1518" in item:
+                    anchor += "1518b-"
+
+                if "1t1c" in item:
+                    anchor += "1t1c"
+                elif "2t2c" in item:
+                    anchor += "2t2c"
+                elif "4t4c" in item:
+                    anchor += "4t4c"
+
+                url = url + file_name + anchor + feature
+
+                ref = ET.SubElement(td, "a", attrib=dict(href=url))
+                ref.text = item
+
             if c_idx == 2:
                 if item == "regression":
                     td.set("bgcolor", "#eca1a6")
@@ -914,7 +979,8 @@ def table_performance_trending_dashboard_html(table, input_data):
                     td.set("bgcolor", "#d6cbd3")
                 elif item == "progression":
                     td.set("bgcolor", "#bdcebe")
-            td.text = item
+            if c_idx > 0:
+                td.text = item
 
     try:
         with open(table["output-file"], 'w') as html_file:

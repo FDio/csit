@@ -9,6 +9,7 @@ x520-78b-base-scale
 
 .. raw:: html
 
+    <a name="x520-78b-1t1c"></a>
     <center><b>
 
 :index:`x520-ip6-78b-base-scale-1t1c-mrr`
@@ -25,6 +26,7 @@ x520-78b-base-scale
 
 .. raw:: html
 
+    <a name="x520-78b-2t2c"></a>
     <center><b>
 
 :index:`x520-ip6-78b-base-scale-2t2c-mrr`
@@ -41,6 +43,7 @@ x520-78b-base-scale
 
 .. raw:: html
 
+    <a name="x520-78b-4t4c"></a>
     <center><b>
 
 :index:`x520-ip6-78b-base-scale-4t4c-mrr`
@@ -60,6 +63,7 @@ x710-78b-base-scale
 
 .. raw:: html
 
+    <a name="x710-78b-1t1c"></a>
     <center><b>
 
 :index:`x710-ip6-78b-base-scale-1t1c-mrr`
@@ -76,6 +80,7 @@ x710-78b-base-scale
 
 .. raw:: html
 
+    <a name="x710-78b-2t2c"></a>
     <center><b>
 
 :index:`x710-ip6-78b-base-scale-2t2c-mrr`
@@ -92,6 +97,7 @@ x710-78b-base-scale
 
 .. raw:: html
 
+    <a name="x710-78b-4t4c"></a>
     <center><b>
 
 :index:`x710-ip6-78b-base-scale-4t4c-mrr`
@@ -111,6 +117,7 @@ xl710-78b-base-scale
 
 .. raw:: html
 
+    <a name="xl710-78b-1t1c"></a>
     <center><b>
 
 :index:`xl710-ip6-78b-base-scale-1t1c-mrr`
@@ -127,6 +134,7 @@ xl710-78b-base-scale
 
 .. raw:: html
 
+    <a name="xl710-78b-2t2c"></a>
     <center><b>
 
 :index:`xl710-ip6-78b-base-scale-2t2c-mrr`
@@ -143,6 +151,7 @@ xl710-78b-base-scale
 
 .. raw:: html
 
+    <a name="xl710-78b-4t4c"></a>
     <center><b>
 
 :index:`xl710-ip6-78b-base-scale-4t4c-mrr`
