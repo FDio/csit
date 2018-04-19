@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,34 +20,43 @@ cat /etc/hosts
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
-if [ -f "/etc/redhat-release" ]; then
+OS_ID=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+
+if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
-    sudo yum install -y python-devel python-virtualenv
-    VPP_ARTIFACTS="vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS=""
     PACKAGE="rpm"
-    VPP_CLASSIFIER=""
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
-    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
-    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
-else
+    sudo yum install -y python-devel python-virtualenv
+elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
+    PACKAGE="deb"
     export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -y update
     sudo apt-get -y install libpython2.7-dev python-virtualenv
-    VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS="vpp-dpdk-dkms"
-    PACKAGE="deb"
-    VPP_CLASSIFIER="-deb"
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
-    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
+else
+    echo "$OS_ID is not yet supported."
+    exit 1
 fi
 
+# Temporarily download VPP and DPDK packages from nexus.fd.io
+if [ "${#}" -ne "0" ]; then
+    arr=(${@})
+    echo ${arr[0]}
+    SKIP_PATCH="skip_patchORskip_vpp_patch"
+else
+    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_${DISTRO})
+    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
+fi
+
+VIRL_DIR_LOC="/tmp/"
+VPP_PKGS=(*.$PACKAGE)
+VPP_PKGS_FULL=("${VPP_PKGS[@]/#/${VIRL_DIR_LOC}}")
+#VPP_PKGS="$( readlink -f *.$PACKAGE | tr '\n' ' ' )"
+echo ${VPP_PKGS[@]}
+
+VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_${DISTRO})
+VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_${DISTRO})
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 IPS_PER_VIRL=( "10.30.51.28:252"
                "10.30.51.29:252"
@@ -188,33 +197,6 @@ done
 
 echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 
-# Temporarily download VPP and DPDK packages from nexus.fd.io
-if [ "${#}" -ne "0" ]; then
-    arr=(${@})
-    echo ${arr[0]}
-    SKIP_PATCH="skip_patchORskip_vpp_patch"
-else
-    rm -f *.${PACKAGE}
-    for ARTIFACT in ${DPDK_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
-    for ARTIFACT in ${VPP_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${VPP_STABLE_VER}/${ARTIFACT}-${VPP_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
-fi
-
-VPP_PKGS=(*.$PACKAGE)
-echo ${VPP_PKGS[@]}
-VIRL_DIR_LOC="/tmp"
-VPP_PKGS_FULL=(${VPP_PKGS[@]})
-
-# Prepend directory location at remote host to package file list
-for index in "${!VPP_PKGS_FULL[@]}"; do
-    VPP_PKGS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_FULL[${index}]}
-done
-
-echo "Updated file names: " ${VPP_PKGS_FULL[@]}
-
 cat ${VIRL_PKEY}
 
 # Copy the files to VIRL hosts
@@ -226,8 +208,8 @@ for index in "${!VIRL_SERVER[@]}"; do
     if [ "${copy}" -eq "0" ]; then
         echo "VPP packages have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
     else
-        scp ${SSH_OPTIONS} *.${PACKAGE} \
-        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
+        scp ${SSH_OPTIONS} ${VPP_PKGS[@]} \
+        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}
 
         result=$?
         if [ "${result}" -ne "0" ]; then
@@ -261,10 +243,13 @@ for index in "${!VIRL_SERVER[@]}"; do
     # Set quota to lower value
     IP_QUOTA=$([ $max_ips -le $max_ips_from_sims ] && echo "$max_ips" || echo "$max_ips_from_sims")
     # Start the simulation
-    VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
-        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
-        "start-testcase -vv --quota ${IP_QUOTA} --copy ${VIRL_TOPOLOGY} \
-        --release ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
+    VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
+        "start-testcase -vv \
+            --quota ${IP_QUOTA} \
+            --copy ${VIRL_TOPOLOGY} \
+            --skip-install \
+            --release ${VIRL_RELEASE} \
+            ${VPP_PKGS_FULL[@]}")
         # TODO: remove param ${VPP_PKGS_FULL[@]} when start-testcase script is
         # updated on all virl servers
     retval=$?
