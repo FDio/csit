@@ -364,6 +364,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.${DUT}.perf" \
+              -i TCP \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
