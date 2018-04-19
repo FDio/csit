@@ -20,6 +20,8 @@ TOPOLOGIES="topologies/available/lf_testbed1.yaml \
             topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PYTHONPATH=${SCRIPT_DIR}
+export DEBIAN_FRONTEND=noninteractive
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
@@ -34,7 +36,6 @@ mkdir -p ${LOG_ARCHIVE_DIR}
 # we will download the DPDK in the robot
 
 WORKING_TOPOLOGY=""
-export PYTHONPATH=${SCRIPT_DIR}
 
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
