@@ -90,9 +90,9 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("crypto,ip4_tunnels.softwire,ip4_tunnels.vxlan" "ip4,ip4_tunnels.gre,ip4_tunnels.lisp,ip6_tunnels.vxlan,ip6_tunnels.lisp,vm_vhost.ip4,vm_vhost.ip6" "interfaces,ip6,l2bd,l2xc,vm_vhost.l2bd,vm_vhost.l2xc,telemetry")
+TEST_GROUPS=("crypto,interfaces,ip4,ip4_tunnels,ip6,ip6_tunnels,l2bd,l2xc,telemetry,vm_vhost")
 SUITE_PATH="tests.vpp.func"
-SKIP_PATCH="SKIP_PATCH"
+#SKIP_PATCH="SKIP_PATCH"
 
 # Create tmp dir
 mkdir ${SCRIPT_DIR}/tmp
@@ -318,8 +318,8 @@ function run_test_set() {
     IFS=","
     nr=$(echo $1)
     rm -f ${LOG_PATH}/test_run${nr}.log
-    exec &> >(while read line; do echo "$(date +'%H:%M:%S') $line" \
-     >> ${LOG_PATH}/test_run${nr}.log; done;)
+#    exec &> >(while read line; do echo "$(date +'%H:%M:%S') $line" \
+#     >> ${LOG_PATH}/test_run${nr}.log; done;)
     suite_str=""
     for suite in ${TEST_GROUPS[${nr}]}; do
         suite_str="${suite_str} --suite ${SUITE_PATH}.${suite}"
@@ -332,7 +332,6 @@ function run_test_set() {
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
-        --exclude ${SKIP_PATCH} \
         --noncritical EXPECTED_FAILING \
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/"
@@ -343,7 +342,6 @@ function run_test_set() {
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
-        --exclude ${SKIP_PATCH} \
         --noncritical EXPECTED_FAILING \
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/
@@ -353,49 +351,49 @@ function run_test_set() {
     echo ${local_run_rc} > ${LOG_PATH}/rc_test_run${nr}
 }
 
-set +x
-# Send to background an instance of the run_test_set() function for each number,
-# record the pid.
+#set +x
+## Send to background an instance of the run_test_set() function for each number,
+## record the pid.
 for index in "${!VIRL_SERVER[@]}"; do
-    run_test_set ${index} &
-    pid=$!
-    echo "Sent to background: Test_set${index} (pid=$pid)"
-    pids[$pid]=$index
+    run_test_set ${index}
+#    pid=$!
+#    echo "Sent to background: Test_set${index} (pid=$pid)"
+#    pids[$pid]=$index
 done
 
-echo
-echo -n "Waiting..."
-
-# Watch the stable of background processes.
-# If a pid goes away, remove it from the array.
-while [ -n "${pids[*]}" ]; do
-    for i in $(seq 0 9); do
-        sleep 1
-        echo -n "."
-    done
-    for pid in "${!pids[@]}"; do
-        if ! ps "$pid" >/dev/null; then
-            echo -e "\n"
-            echo "Test_set${pids[$pid]} with PID $pid finished."
-            unset pids[$pid]
-        fi
-    done
-    if [ -z "${!pids[*]}" ]; then
-        break
-    fi
-    echo -n -e "\nStill waiting for test set(s): ${pids[*]} ..."
-done
-
-echo
-echo "All test set runs finished."
-echo
-
-set -x
+#echo
+#echo -n "Waiting..."
+#
+## Watch the stable of background processes.
+## If a pid goes away, remove it from the array.
+#while [ -n "${pids[*]}" ]; do
+#    for i in $(seq 0 9); do
+#        sleep 1
+#        echo -n "."
+#    done
+#    for pid in "${!pids[@]}"; do
+#        if ! ps "$pid" >/dev/null; then
+#            echo -e "\n"
+#            echo "Test_set${pids[$pid]} with PID $pid finished."
+#            unset pids[$pid]
+#        fi
+#    done
+#    if [ -z "${!pids[*]}" ]; then
+#        break
+#    fi
+#    echo -n -e "\nStill waiting for test set(s): ${pids[*]} ..."
+#done
+#
+#echo
+#echo "All test set runs finished."
+#echo
+#
+#set -x
 
 RC=0
 for index in "${!VIRL_SERVER[@]}"; do
-    echo "Test_set${index} log:"
-    cat ${LOG_PATH}/test_run${index}.log
+#    echo "Test_set${index} log:"
+#    cat ${LOG_PATH}/test_run${index}.log
     RC_PARTIAL_RUN=$(cat ${LOG_PATH}/rc_test_run${index})
     if [ -z "$RC_PARTIAL_RUN" ]; then
         echo "Failed to retrieve return code from test run ${index}"
