@@ -49,11 +49,6 @@ is listed separately, as follows:
    Testpmd/L3FWD application runs in host user-mode. TRex is used as a traffic
    generator.
 
-#. **Honeycomb Performance** - Honeycomb performance tests are executed in
-   physical FD.io testbeds, focusing on the performance of Honeycomb management
-   and programming functionality of VPP. Tests cover a range of CRUD operations
-   executed against VPP.
-
 #. **VPP Functional** - VPP functional tests are executed in virtual
    FD.io testbeds focusing on VPP packet processing functionality, including
    network data plane and in -line control plane. Tests cover vNIC-to-vNIC
