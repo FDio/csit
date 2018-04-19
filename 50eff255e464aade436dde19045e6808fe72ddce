@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c55cf3d1_90aa3266",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 772
+      },
+      "writtenOn": "2018-04-19T16:57:42Z",
+      "side": 1,
+      "message": "why only master?  seems like this should be able to deal with multiple branches",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 55
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7c540e5_7bcc7d27",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 772
+      },
+      "writtenOn": "2018-04-19T16:57:42Z",
+      "side": 1,
+      "message": "you need this for curl but with apt and yum you can do it all in one shot.   And this is MUCH preferred for speed and reliability",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 35
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "226cb37b_45a7ce93",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 772
+      },
+      "writtenOn": "2018-04-19T16:57:42Z",
+      "side": 1,
+      "message": "nitpik..  why download twice...? but if you collapse it to one pull for all artifacts ill be happy",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 14
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ef9e97f_e1da8c08",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 772
+      },
+      "writtenOn": "2018-04-19T16:57:42Z",
+      "side": 1,
+      "message": "drop in \u0027or\u0027 for opensuse",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 39
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75e56f34_c3ccfdce",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 772
+      },
+      "writtenOn": "2018-04-19T16:57:42Z",
+      "side": 1,
+      "message": "opensuse list should be same minus selinux plus libvpp0",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 72
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
