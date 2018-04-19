@@ -78,7 +78,7 @@
     plot-performance-trending:
       csit-vpp-perf-mrr-daily-master:
         start: 15
-        end: "lastCompletedBuild" # "lastSuccessfulBuild"  # take all from the 'start'
+        end: 17 #"lastCompletedBuild" # "lastSuccessfulBuild"  # take all from the 'start'
 
   plot-layouts:
     plot-cpta:
@@ -193,7 +193,7 @@
   builds:
     csit-vpp-perf-mrr-daily-master:
       start: 15
-      end: "lastCompletedBuild"  # take all from the 'start'
+      end: 17 #"lastCompletedBuild"  # take all from the 'start'
 
 -
   type: "output"
