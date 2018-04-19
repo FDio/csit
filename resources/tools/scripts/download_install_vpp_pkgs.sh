@@ -13,69 +13,81 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -ex
+set -x -e -o pipefail
 
-URL="https://nexus.fd.io/service/local/artifact/maven/content"
-VER="RELEASE"
-GROUP="io.fd.vpp"
+OS_ID=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
 
-if [ -f "/etc/redhat-release" ]; then
-    trap 'rm -f *.rpm.md5; exit' EXIT
-    trap 'rm -f *.rpm.md5;rm -f *.rpm; exit' ERR
+NEXUSPROXY="https://nexus.fd.io"
 
-    VPP_REPO_URL_PATH="./VPP_REPO_URL_CENTOS"
-    if [ -e "$VPP_REPO_URL_PATH" ]; then
-        VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
-        REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
-        REPO=$(echo ${REPO%/io/fd/vpp/})
-    else
-        REPO='fd.io.master.centos7'
-    FILES=*.rpm
-    MD5FILES=*.rpm.md5
+function setup {
+    if [ "$OS_ID" == "ubuntu" ]; then
+        VPP_REPO_URL_PATH="./VPP_REPO_URL_UBUNTU"
+        if [ -e "$VPP_REPO_URL_PATH" ]; then
+            VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+            REPO_NAME=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+            REPO_NAME=$(echo ${REPO_NAME%io/fd/vpp/})
+        else
+            REPO_NAME='fd.io.master.ubuntu.xenial.main'
+        fi
+        REPO_URL="${NEXUSPROXY}/content/repositories/${REPO_NAME}"
+        echo "REPO_URL: ${REPO_URL}"
+
+        echo "deb ${REPO_URL} ./" | sudo tee /etc/apt/sources.list.d/99fd.io.list
+        sudo apt-get -y update \
+            -o Dir::Etc::sourcelist="sources.list.d/99fd.io.list" \
+            -o Acquire::AllowInsecureRepositories=true \
+            -o Dir::Etc::sourceparts="-" \
+            -o APT::Get::AllowUnauthenticated=true \
+            -o APT::Get::List-Cleanup="0" || true
+
+        ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
+
+        for ART in ${ARTIFACTS}; do
+            if [ "$1" != "--skip-install" ]; then
+                echo Installing VPP
+                sudo apt-get -y install ${ART} || true
+            else
+                echo Downloading VPP
+                apt-get -y download ${ART} \
+                    -o Acquire::AllowInsecureRepositories=true \
+                    -o APT::Get::AllowUnauthenticated=true || true
+            fi
+        done
+
+    elif [ "$OS_ID" == "centos" ]; then
+        VPP_REPO_URL_PATH="./VPP_REPO_URL_CENTOS"
+        if [ -e "$VPP_REPO_URL_PATH" ]; then
+            VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+            REPO_NAME=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+            REPO_NAME=$(echo ${REPO_NAME%/io/fd/vpp/})
+        else
+            REPO_NAME='fd.io.master.centos7'
+        fi
+        REPO_URL="${NEXUSPROXY}/content/repositories/${REPO_NAME}"
+        echo "REPO_URL: ${REPO_URL}"
+
+        sudo cat << EOF > fdio-master.repo
+[fdio-master]
+name=fd.io master branch latest merge
+baseurl=${REPO_URL}
+enabled=1
+gpgcheck=0
+EOF
+        sudo mv fdio-master.repo /etc/yum.repos.d/fdio-master.repo
+
+        ARTIFACTS="vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins"
+
+        for ART in ${ARTIFACTS}; do
+            if [ "$1" != "--skip-install" ]; then
+                echo Installing VPP
+                sudo yum -y install ${ART} || true
+            else
+                echo Downloading VPP
+                sudo yum -y install --downloadonly --downloaddir=. ${ART} || true
+            fi
+        done
     fi
+}
 
-    ARTIFACTS="vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins"
-    PACKAGE="rpm rpm.md5"
-    CLASS=""
-    VPP_INSTALL_COMMAND="rpm -ivh *.rpm"
-else
-    trap 'rm -f *.deb.md5; exit' EXIT
-    trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
-
-    VPP_REPO_URL_PATH="./VPP_REPO_URL_UBUNTU"
-    if [ -e "$VPP_REPO_URL_PATH" ]; then
-        VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
-        REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
-        REPO=$(echo ${REPO%/io/fd/vpp/})
-    else
-        REPO='fd.io.master.ubuntu.xenial.main'
-    FILES=*.deb
-    MD5FILES=*.deb.md5
-    fi
-
-    ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
-    VPP_INSTALL_COMMAND="dpkg -i *.deb"
-fi
-
-for ART in ${ARTIFACTS}; do
-    for PAC in $PACKAGE; do
-        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
-
-for FILE in ${FILES}; do
-    echo " "${FILE} >> ${FILE}.md5
-done
-
-for MD5FILE in ${MD5FILES}; do
-    md5sum -c ${MD5FILE} || exit
-done
-
-if [ "$1" != "--skip-install" ]; then
-    echo Installing VPP
-    sudo ${VPP_INSTALL_COMMAND}
-else
-    echo VPP Installation skipped
-fi
+setup $1
