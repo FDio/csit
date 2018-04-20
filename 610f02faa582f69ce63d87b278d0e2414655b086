@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bef1be1d_73226b2a",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 32
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-20T06:57:25Z",
+      "side": 1,
+      "message": "Consider adding after this a Show memif KW for valuable debug info if Memif was negotiated correctly:\n\n| | ${duts}\u003d | Get Matches | ${nodes} | DUT*\n| | :FOR | ${dut} | IN | @{duts}\n| | | Show Memif | ${nodes[\u0027${dut}\u0027]}",
+      "range": {
+        "startLine": 696,
+        "startChar": 0,
+        "endLine": 699,
+        "endChar": 70
+      },
+      "revId": "610f02faa582f69ce63d87b278d0e2414655b086",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
