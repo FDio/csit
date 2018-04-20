@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8753d5a0_44a708bc",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-20T10:34:08Z",
+      "side": 1,
+      "message": "That is why in CSIT we have VPP_REPO_URL_UBUNTU|CENTOS and in different branches it contains different repo.\n\nif [ -e \"$VPP_REPO_URL_PATH\" ]; then\nif this file exists use the repo from branch otherwise use just master as fallback",
+      "parentUuid": "c55cf3d1_90aa3266",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 55
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7c540e5_7bcc7d27",
         "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-19T16:57:42Z",
       "side": 1,
       "message": "you need this for curl but with apt and yum you can do it all in one shot.   And this is MUCH preferred for speed and reliability",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 35
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc4042c9_3d6a44ce",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-20T10:34:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7c540e5_7bcc7d27",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2552f747_1e99e6d9",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-20T10:34:08Z",
+      "side": 1,
+      "message": "not sure i understand. We want either download or install in case of input parameters.",
+      "parentUuid": "226cb37b_45a7ce93",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 14
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ef9e97f_e1da8c08",
         "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "187202f0_14f7f1c2",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-20T10:34:08Z",
+      "side": 1,
+      "message": "Sure will do. Just blind shooting it will work, not that i do have opensuse locally :)",
+      "parentUuid": "5ef9e97f_e1da8c08",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 39
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75e56f34_c3ccfdce",
         "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2018-04-19T16:57:42Z",
       "side": 1,
       "message": "opensuse list should be same minus selinux plus libvpp0",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 72
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01ef00cb_4b8c1093",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-20T10:34:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75e56f34_c3ccfdce",
       "range": {
         "startLine": 79,
         "startChar": 0,
