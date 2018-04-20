@@ -245,8 +245,8 @@
       csit-ligato-perf-1801-all:
       - 25  # full
     dpdk-perf-results:
-      csit-dpdk-perf-1801-all:
-      - 12
+      csit-dpdk-perf-1804-all:
+      - 15
     hc-func-results:
       csit-hc2vpp-verify-func-1801-ubuntu1604:
       - "lastSuccessfulBuild"
@@ -272,16 +272,19 @@
       - 167  # sel
       - 172  # sel acl only
     plot-dpdk-throughput-latency:
-      csit-dpdk-perf-1801-all:
-      - 1
-      - 3
+      csit-dpdk-perf-1804-all:
       - 4
       - 5
-      - 6
+      - 4
       - 7
       - 8
+      - 9
       - 10
+      - 11
       - 12
+      - 13
+      - 14
+      - 15
     plot-ligato-throughput-latency:
       csit-ligato-perf-1801-all:
       - 16  # sel
@@ -622,16 +625,6 @@
     - 13
     - 16
     - 17
-    csit-dpdk-perf-1801-all:
-    - 1
-    - 4
-    - 5
-    - 7
-    - 8
-    - 10
-    - 12
-    - 16
-    - 17
     csit-ligato-perf-1801-all:
     - 16  # sel
     - 17  # sel
@@ -643,17 +636,19 @@
     - 23  # sel
     - 24  # sel
     - 25  # full
-    csit-dpdk-perf-1801-all:
-    - 1
-    - 3
+    csit-dpdk-perf-1804-all:
     - 4
     - 5
-    - 6
+    - 4
     - 7
     - 8
     - 9
     - 10
+    - 11
     - 12
+    - 13
+    - 14
+    - 15
     csit-vpp-functional-1801-ubuntu1604-virl:
     - lastSuccessfulBuild
     csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
