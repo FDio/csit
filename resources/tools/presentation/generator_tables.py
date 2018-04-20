@@ -937,7 +937,8 @@ def table_performance_trending_dashboard_html(table, input_data):
                     file_name = "ip6.html"
 
                 elif "l2xcbase" in item or "l2xcscale" in item \
-                        or "l2bdbasemaclrn" in item or "l2bdscale" in item:
+                        or "l2bdbasemaclrn" in item or "l2bdscale" in item \
+                        or "l2dbbasemaclrn" in item or "l2dbscale" in item:
                     file_name = "l2.html"
                     if "iacl" in item:
                         feature = "-features"
