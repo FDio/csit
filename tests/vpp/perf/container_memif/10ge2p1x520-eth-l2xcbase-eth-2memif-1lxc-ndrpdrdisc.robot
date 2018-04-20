@@ -25,7 +25,9 @@
 | ...
 | Suite Teardown | Tear down 3-node performance topology with container
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Run Keywords
+| ... | Set up performance test
+| ... | AND | Restart VPP in all 'VNF' containers
 | ...
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
