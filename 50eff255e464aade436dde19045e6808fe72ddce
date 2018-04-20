@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "19034b0c_cee7c973",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 772
+      },
+      "writtenOn": "2018-04-20T16:50:21Z",
+      "side": 1,
+      "message": "its fine peter...it would be more work in the script...as only saying that if you were downloading a whole lot of stuff it would be better to download it and then just install it (if necessary) from the downloaded deb vs a second pull from the repo",
+      "parentUuid": "2552f747_1e99e6d9",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 14
+      },
+      "revId": "50eff255e464aade436dde19045e6808fe72ddce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ef9e97f_e1da8c08",
         "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
         "patchSetId": 1
