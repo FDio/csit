@@ -262,7 +262,7 @@ case "$TEST_TAG" in
               'mrrANDnic_intel-xl710AND2t2cANDipsechw')
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('mrrANDmemif')
 esac
 
 # Catenate TAG selections by 'OR'

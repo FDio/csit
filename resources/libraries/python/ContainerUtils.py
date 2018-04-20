@@ -156,6 +156,12 @@ class ContainerManager(object):
             self.engine.install_vpp()
             self.engine.restart_vpp()
 
+    def restart_vpp_in_all_containers(self):
+        """Restart VPP on all containers."""
+        for container in self.containers:
+            self.engine.container = self.containers[container]
+            self.engine.restart_vpp()
+
     def configure_vpp_in_all_containers(self, vat_template_file):
         """Configure VPP in all containers.
 
