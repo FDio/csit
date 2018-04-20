@@ -295,7 +295,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
         y=anomalies.values,
         mode='markers',
         hoverinfo="none",
-        showlegend=False,
+        showlegend=True,
         legendgroup=name,
         name="{name}: outliers".format(name=name),
         marker={
