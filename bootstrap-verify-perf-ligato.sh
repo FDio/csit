@@ -443,6 +443,10 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.${DUT}.perf" \
+              --include ndrdiscAND1t1cAND64b \
+              --include ndrdiscAND2t2cAND64b \
+              --include pdrdiscAND1t1cAND64b \
+              --include pdrdiscAND2t2cAND64b \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
