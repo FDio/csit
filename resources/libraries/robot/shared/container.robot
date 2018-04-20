@@ -101,6 +101,12 @@
 | | ...
 | | Run Keyword | ${group}.Install VPP In All Containers
 
+| Restart VPP in all '${group}' containers
+| | [Documentation] | Restart VPP on all container(s) in specific container
+| | ... | group on all DUT nodes.
+| | ...
+| | Run Keyword | ${group}.Restart VPP In All Containers
+
 | Configure VPP in all '${group}' containers
 | | [Documentation] | Configure VPP on all container(s) in specific container
 | | ... | group on all DUT nodes.
