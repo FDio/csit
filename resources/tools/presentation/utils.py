@@ -67,62 +67,70 @@ def relative_change(nr1, nr2):
 
     return float(((nr2 - nr1) / nr1) * 100)
 
+def remove_outliers(input_list, outlier_const=1.5, window=14):
+    """Return list with outliers removed, using split_outliers.
 
-def remove_outliers(input_data, outlier_const):
-    """
-
-    :param input_data: Data from which the outliers will be removed.
+    :param input_list: Data from which the outliers will be removed.
     :param outlier_const: Outlier constant.
-    :type input_data: list
+    :param window: How many preceding values to take into account.
+    :type input_list: list of floats
     :type outlier_const: float
+    :type window: int
     :returns: The input list without outliers.
-    :rtype: list
+    :rtype: list of floats
     """
 
-    data = np.array(input_data)
-    upper_quartile = np.percentile(data, 75)
-    lower_quartile = np.percentile(data, 25)
-    iqr = (upper_quartile - lower_quartile) * outlier_const
-    quartile_set = (lower_quartile - iqr, upper_quartile + iqr)
-    result_lst = list()
-    for y in data.tolist():
-        if quartile_set[0] <= y <= quartile_set[1]:
-            result_lst.append(y)
-    return result_lst
+    input_series = pd.Series()
+    for index, value in enumerate(input_list):
+        item_pd = pd.Series([value, ], index=[index, ])
+        input_series.append(item_pd)
+    output_series, _ = split_outliers(input_series, outlier_const=outlier_const,
+                                      window=window)
+    output_list = [y for x, y in output_series.items() if not np.isnan(y)]
+
+    return output_list
 
 
-def find_outliers(input_data, outlier_const=1.5):
+def split_outliers(input_series, outlier_const=1.5, window=14):
     """Go through the input data and generate two pandas series:
-    - input data without outliers
+    - input data with outliers replaced by NAN
     - outliers.
     The function uses IQR to detect outliers.
 
-    :param input_data: Data to be examined for outliers.
+    :param input_series: Data to be examined for outliers.
     :param outlier_const: Outlier constant.
-    :type input_data: pandas.Series
+    :param window: How many preceding values to take into account.
+    :type input_series: pandas.Series
     :type outlier_const: float
-    :returns: Tuple: input data with outliers removed; Outliers.
-    :rtype: tuple (trimmed_data, outliers)
+    :type window: int
+    :returns: Input data without outliers and Outliers.
+    :rtype: (pandas.Series, pandas.Series)
     """
 
-    upper_quartile = input_data.quantile(q=0.75)
-    lower_quartile = input_data.quantile(q=0.25)
-    iqr = (upper_quartile - lower_quartile) * outlier_const
-    low = lower_quartile - iqr
-    high = upper_quartile + iqr
+    list_data = list(input_series.items())
+    head_size = min(window, len(list_data))
+    head_list = list_data[:head_size]
     trimmed_data = pd.Series()
     outliers = pd.Series()
-    for item in input_data.items():
-        item_pd = pd.Series([item[1], ], index=[item[0], ])
-        if low <= item[1] <= high:
+    for item_x, item_y in head_list:
+        item_pd = pd.Series([item_y, ], index=[item_x, ])
+        trimmed_data = trimmed_data.append(item_pd)
+    for index, (item_x, item_y) in list(enumerate(list_data))[head_size:]:
+        y_rolling_list = [y for (x, y) in list_data[index - head_size:index]]
+        y_rolling_array = np.array(y_rolling_list)
+        q1 = np.percentile(y_rolling_array, 25)
+        q3 = np.percentile(y_rolling_array, 75)
+        iqr = (q3 - q1) * outlier_const
+        low, high = q1 - iqr, q3 + iqr
+        item_pd = pd.Series([item_y, ], index=[item_x, ])
+        if low <= item_y <= high:
             trimmed_data = trimmed_data.append(item_pd)
         else:
-            trimmed_data = trimmed_data.append(pd.Series([np.nan, ],
-                                                         index=[item[0], ]))
             outliers = outliers.append(item_pd)
+            nan_pd = pd.Series([np.nan, ], index=[item_x, ])
+            trimmed_data = trimmed_data.append(nan_pd)
 
     return trimmed_data, outliers
-
 
 def get_files(path, extension=None, full_path=True):
     """Generates the list of files to process.

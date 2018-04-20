@@ -25,7 +25,7 @@ from math import isnan
 from xml.etree import ElementTree as ET
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change, remove_outliers, find_outliers
+from utils import mean, stdev, relative_change, remove_outliers, split_outliers
 
 
 def generate_tables(spec, data):
@@ -405,14 +405,16 @@ def table_performance_comparison(table, input_data):
         item = [tbl_dict[tst_name]["name"], ]
         if tbl_dict[tst_name]["ref-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
-                                     table["outlier-const"])
+                                     outlier_constant=table["outlier-const"])
+            # TODO: Specify window size.
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
-                                     table["outlier-const"])
+                                     outlier_constant=table["outlier-const"])
+            # TODO: Specify window size.
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
@@ -594,14 +596,16 @@ def table_performance_comparison_mrr(table, input_data):
         item = [tbl_dict[tst_name]["name"], ]
         if tbl_dict[tst_name]["ref-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
-                                     table["outlier-const"])
+                                     outlier_const=table["outlier-const"])
+            # TODO: Specify window size.
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
-                                     table["outlier-const"])
+                                     outlier_const=table["outlier-const"])
+            # TODO: Specify window size.
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
@@ -708,7 +712,8 @@ def table_performance_trending_dashboard(table, input_data):
             name = tbl_dict[tst_name]["name"]
 
             median = pd_data.rolling(window=win_size, min_periods=2).median()
-            trimmed_data, _ = find_outliers(pd_data, outlier_const=1.5)
+            trimmed_data, _ = split_outliers(pd_data, outlier_const=1.5,
+                                             window=win_size)
             stdev_t = pd_data.rolling(window=win_size, min_periods=2).std()
 
             rel_change_lst = [None, ]

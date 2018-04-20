@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 
 from collections import OrderedDict
-from utils import find_outliers, archive_input_data, execute_command
+from utils import split_outliers, archive_input_data, execute_command
 
 
 # Command to build the html format of the report
@@ -247,7 +247,8 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
 
     data_pd = pd.Series(data_y, index=data_x)
 
-    t_data, outliers = find_outliers(data_pd, outlier_const=1.5)
+    t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
+                                      window=moving_win_size)
     results = _evaluate_results(data_pd, t_data, window=moving_win_size)
 
     anomalies = pd.Series()
