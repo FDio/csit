@@ -228,6 +228,8 @@
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
+  long-trend-window: 180
+  long-trend-threshold: 80  # Percent of the highest moving median value
 
 -
   type: "table"
@@ -247,6 +249,8 @@
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
+  long-trend-window: 180
+  long-trend-threshold: 80  # Percent of the highest moving median value
 
 -
   type: "table"
@@ -266,6 +270,8 @@
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
+  long-trend-window: 180
+  long-trend-threshold: 80  # Percent of the highest moving median value
 
 -
   type: "table"
