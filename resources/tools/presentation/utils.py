@@ -67,6 +67,7 @@ def relative_change(nr1, nr2):
 
     return float(((nr2 - nr1) / nr1) * 100)
 
+
 def remove_outliers(input_list, outlier_const=1.5, window=14):
     """Return list with outliers removed, using split_outliers.
 
