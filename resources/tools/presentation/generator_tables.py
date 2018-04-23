@@ -405,7 +405,7 @@ def table_performance_comparison(table, input_data):
         item = [tbl_dict[tst_name]["name"], ]
         if tbl_dict[tst_name]["ref-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
-                                     outlier_constant=table["outlier-const"])
+                                     outlier_const=table["outlier-const"])
             # TODO: Specify window size.
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
@@ -413,7 +413,7 @@ def table_performance_comparison(table, input_data):
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
-                                     outlier_constant=table["outlier-const"])
+                                     outlier_const=table["outlier-const"])
             # TODO: Specify window size.
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
