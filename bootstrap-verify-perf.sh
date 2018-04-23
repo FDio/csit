@@ -209,7 +209,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.${DUT}.perf" \
-              --include mrrAND1t1cORmrrAND2t2c \
+              --include THIS \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
