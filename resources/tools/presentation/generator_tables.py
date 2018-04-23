@@ -790,7 +790,8 @@ def table_performance_trending_dashboard(table, input_data):
                         break
                 for idx in range(index+1, len(classification_lst)):
                     if classification_lst[idx] == tmp_classification:
-                        if rel_change_lst[idx] > rel_change_lst[index]:
+                        if (abs(rel_change_lst[idx]) >
+                                abs(rel_change_lst[index])):
                             index = idx
 
             trend = round(float(median_lst[-1]) / 1000000, 2) \
