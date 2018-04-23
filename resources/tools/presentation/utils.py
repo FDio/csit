@@ -36,7 +36,10 @@ def mean(items):
     :rtype: float
     """
 
-    return float(sum(items)) / len(items)
+    if len(items):
+        return float(sum(items)) / len(items)
+    else:
+        return None
 
 
 def stdev(items):
