@@ -407,16 +407,22 @@ def table_performance_comparison(table, input_data):
             data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
                                      outlier_const=table["outlier-const"])
             # TODO: Specify window size.
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+            if data_t:
+                item.append(round(mean(data_t) / 1000000, 2))
+                item.append(round(stdev(data_t) / 1000000, 2))
+            else:
+                item.extend([None, None])
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
                                      outlier_const=table["outlier-const"])
             # TODO: Specify window size.
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+            if data_t:
+                item.append(round(mean(data_t) / 1000000, 2))
+                item.append(round(stdev(data_t) / 1000000, 2))
+            else:
+                item.extend([None, None])
         else:
             item.extend([None, None])
         if item[1] is not None and item[3] is not None:
@@ -598,16 +604,22 @@ def table_performance_comparison_mrr(table, input_data):
             data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
                                      outlier_const=table["outlier-const"])
             # TODO: Specify window size.
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+            if data_t:
+                item.append(round(mean(data_t) / 1000000, 2))
+                item.append(round(stdev(data_t) / 1000000, 2))
+            else:
+                item.extend([None, None])
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
                                      outlier_const=table["outlier-const"])
             # TODO: Specify window size.
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+            if data_t:
+                item.append(round(mean(data_t) / 1000000, 2))
+                item.append(round(stdev(data_t) / 1000000, 2))
+            else:
+                item.extend([None, None])
         else:
             item.extend([None, None])
         if item[1] is not None and item[3] is not None and item[1] != 0:
