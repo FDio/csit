@@ -796,11 +796,14 @@ def table_performance_trending_dashboard(table, input_data):
             else:
                 tmp_classification = "outlier" if classification == "failure" \
                     else classification
+                index = None
                 for idx in range(first_idx, len(classification_lst)):
                     if classification_lst[idx] == tmp_classification:
                         if rel_change_lst[idx]:
                             index = idx
                             break
+                if index is None:
+                    continue
                 for idx in range(index+1, len(classification_lst)):
                     if classification_lst[idx] == tmp_classification:
                         if rel_change_lst[idx]:
@@ -808,31 +811,43 @@ def table_performance_trending_dashboard(table, input_data):
                                     abs(rel_change_lst[index])):
                                 index = idx
 
-            trend = round(float(median_lst[-1]) / 1000000, 2) \
-                if not isnan(median_lst[-1]) else '-'
-            sample = round(float(sample_lst[index]) / 1000000, 2) \
-                if not isnan(sample_lst[index]) else '-'
-            rel_change = rel_change_lst[index] \
-                if rel_change_lst[index] is not None else '-'
-            if not isnan(max_median):
-                if not isnan(sample_lst[index]):
-                    long_trend_threshold = max_median * \
-                                           (table["long-trend-threshold"] / 100)
-                    if sample_lst[index] < long_trend_threshold:
-                        long_trend_classification = "failure"
+            logging.info("{}".format(name))
+            logging.info("sample_lst: {} - {}".format(len(sample_lst), sample_lst))
+            logging.info("median_lst: {} - {}".format(len(median_lst), median_lst))
+            logging.info("rel_change: {} - {}".format(len(rel_change_lst), rel_change_lst))
+            logging.info("classn_lst: {} - {}".format(len(classification_lst), classification_lst))
+            logging.info("index:      {}".format(index))
+            logging.info("classifica: {}".format(classification))
+
+            try:
+                trend = round(float(median_lst[-1]) / 1000000, 2) \
+                    if not isnan(median_lst[-1]) else '-'
+                sample = round(float(sample_lst[index]) / 1000000, 2) \
+                    if not isnan(sample_lst[index]) else '-'
+                rel_change = rel_change_lst[index] \
+                    if rel_change_lst[index] is not None else '-'
+                if not isnan(max_median):
+                    if not isnan(sample_lst[index]):
+                        long_trend_threshold = max_median * \
+                                               (table["long-trend-threshold"] / 100)
+                        if sample_lst[index] < long_trend_threshold:
+                            long_trend_classification = "failure"
+                        else:
+                            long_trend_classification = '-'
                     else:
-                        long_trend_classification = '-'
+                        long_trend_classification = "failure"
                 else:
-                    long_trend_classification = "failure"
-            else:
-                long_trend_classification = '-'
-            tbl_lst.append([name,
-                            trend,
-                            long_trend_classification,
-                            classification,
-                            '-' if classification == "normal" else sample,
-                            '-' if classification == "normal" else rel_change,
-                            nr_outliers])
+                    long_trend_classification = '-'
+                tbl_lst.append([name,
+                                trend,
+                                long_trend_classification,
+                                classification,
+                                '-' if classification == "normal" else sample,
+                                '-' if classification == "normal" else rel_change,
+                                nr_outliers])
+            except IndexError as err:
+                logging.error("{}".format(err))
+                continue
 
     # Sort the table according to the classification
     tbl_sorted = list()
