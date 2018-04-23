@@ -677,6 +677,7 @@ def table_performance_trending_dashboard(table, input_data):
     # Prepare the header of the tables
     header = ["Test Case",
               "Throughput Trend [Mpps]",
+              "Long Trend Compliance",
               "Trend Compliance",
               "Top Anomaly [Mpps]",
               "Change [%]",
@@ -706,12 +707,14 @@ def table_performance_trending_dashboard(table, input_data):
         if len(tbl_dict[tst_name]["data"]) > 2:
 
             pd_data = pd.Series(tbl_dict[tst_name]["data"])
-            win_size = pd_data.size \
-                if pd_data.size < table["window"] else table["window"]
+            win_size = min(pd_data.size, table["window"])
             # Test name:
             name = tbl_dict[tst_name]["name"]
 
             median = pd_data.rolling(window=win_size, min_periods=2).median()
+            median_idx = pd_data.size - table["long-trend-window"]
+            median_idx = 0 if median_idx < 0 else median_idx
+            max_median = max(median.values[median_idx:])
             trimmed_data, _ = split_outliers(pd_data, outlier_const=1.5,
                                              window=win_size)
             stdev_t = pd_data.rolling(window=win_size, min_periods=2).std()
@@ -790,48 +793,27 @@ def table_performance_trending_dashboard(table, input_data):
                         if rel_change_lst[idx] > rel_change_lst[index]:
                             index = idx
 
-            # if "regression" in classification_lst[first_idx:]:
-            #     classification = "regression"
-            # elif "outlier" in classification_lst[first_idx:]:
-            #     classification = "outlier"
-            # elif "progression" in classification_lst[first_idx:]:
-            #     classification = "progression"
-            # elif "normal" in classification_lst[first_idx:]:
-            #     classification = "normal"
-            # else:
-            #     classification = None
-            #
-            # nr_outliers = 0
-            # consecutive_outliers = 0
-            # failure = False
-            # for item in classification_lst[first_idx:]:
-            #     if item == "outlier":
-            #         nr_outliers += 1
-            #         consecutive_outliers += 1
-            #         if consecutive_outliers == 3:
-            #             failure = True
-            #     else:
-            #         consecutive_outliers = 0
-            #
-            # idx = len(classification_lst) - 1
-            # while idx:
-            #     if classification_lst[idx] == classification:
-            #         break
-            #     idx -= 1
-            #
-            # if failure:
-            #     classification = "failure"
-            # elif classification == "outlier":
-            #     classification = "normal"
-
             trend = round(float(median_lst[-1]) / 1000000, 2) \
-                if not isnan(median_lst[-1]) else ''
+                if not isnan(median_lst[-1]) else '-'
             sample = round(float(sample_lst[index]) / 1000000, 2) \
-                if not isnan(sample_lst[index]) else ''
+                if not isnan(sample_lst[index]) else '-'
             rel_change = rel_change_lst[index] \
-                if rel_change_lst[index] is not None else ''
+                if rel_change_lst[index] is not None else '-'
+            if not isnan(max_median):
+                if not isnan(sample_lst[index]):
+                    long_trend_threshold = max_median * \
+                                           (table["long-trend-threshold"] / 100)
+                    if sample_lst[index] < long_trend_threshold:
+                        long_trend_classification = "failure"
+                    else:
+                        long_trend_classification = '-'
+                else:
+                    long_trend_classification = "failure"
+            else:
+                long_trend_classification = '-'
             tbl_lst.append([name,
                             trend,
+                            long_trend_classification,
                             classification,
                             '-' if classification == "normal" else sample,
                             '-' if classification == "normal" else rel_change,
@@ -839,10 +821,13 @@ def table_performance_trending_dashboard(table, input_data):
 
     # Sort the table according to the classification
     tbl_sorted = list()
-    for classification in ("failure", "regression", "progression", "normal"):
-        tbl_tmp = [item for item in tbl_lst if item[2] == classification]
-        tbl_tmp.sort(key=lambda rel: rel[0])
-        tbl_sorted.extend(tbl_tmp)
+    for long_trend_class in ("failure", '-'):
+        tbl_long = [item for item in tbl_lst if item[2] == long_trend_class]
+        for classification in \
+                ("failure", "regression", "progression", "normal"):
+            tbl_tmp = [item for item in tbl_long if item[3] == classification]
+            tbl_tmp.sort(key=lambda rel: rel[0])
+            tbl_sorted.extend(tbl_tmp)
 
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
@@ -978,7 +963,7 @@ def table_performance_trending_dashboard_html(table, input_data):
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
 
-            if c_idx == 2:
+            if c_idx == 3:
                 if item == "regression":
                     td.set("bgcolor", "#eca1a6")
                 elif item == "failure":
