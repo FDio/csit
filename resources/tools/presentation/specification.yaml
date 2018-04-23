@@ -149,7 +149,8 @@
       - 167  # sel
       - 172  # sel acl only
       csit-vpp-perf-1804-all:
-      - 1
+      - 1   # sel
+      - 13  # sel
     vpp-performance-changes-mrr:
       csit-vpp-perf-check-1801:
       - 1
@@ -165,25 +166,14 @@
       - 12
       - 13
       csit-vpp-perf-check-1804:
-      - 1
+      - 1   # mrr
+      - 2   # mrr
+      - 3   # mrr
+      - 4   # mrr
     plot-throughput-speedup-analysis:
-      csit-vpp-perf-1801-all:
-      - 122  # full
-      - 126  # full
-      - 129  # full
-      - 140  # full
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
+      csit-vpp-perf-1804-all:
+      - 1   # sel
+      - 13  # sel
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
 #      - 9
@@ -233,11 +223,10 @@
 #      - 23  # sel
 #      - 24  # sel
     vpp-perf-results:
-      csit-vpp-perf-1801-all:
-      - 122
-      - 126
-      - 129
-      - 140
+      # Replace by full
+      csit-vpp-perf-1804-all:
+      - 1   # sel
+      - 13  # sel
     vpp-func-results:
       csit-vpp-functional-1801-ubuntu1604-virl:
       - "lastSuccessfulBuild"
@@ -254,23 +243,9 @@
       csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
       - 1
     plot-vpp-throughput-latency:
-      csit-vpp-perf-1801-all:
-      - 122  # full
-      - 126  # full
-      - 129  # full
-      - 140  # full
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
+      csit-vpp-perf-1804-all:
+      - 1   # sel
+      - 13  # sel
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1804-all:
       - 4
@@ -598,22 +573,26 @@
     - 170  # wrk
     - 172  # sel acl only
     csit-vpp-perf-1804-all:
-    - 1
+    - 1   # sel
+    - 13  # sel
     csit-vpp-perf-check-1801:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 11
-    - 12
-    - 13
+    - 1   # mrr
+    - 2   # mrr
+    - 3   # mrr
+    - 4   # mrr
+    - 5   # mrr
+    - 6   # mrr
+    - 7   # mrr
+    - 8   # mrr
+    - 9   # mrr
+    - 11  # mrr
+    - 12  # mrr
+    - 13  # mrr
     csit-vpp-perf-check-1804:
-    - 1
+    - 1   # mrr
+    - 2   # mrr
+    - 3   # mrr
+    - 4   # mrr
     csit-ligato-perf-1710-all:
     - 5
     - 7
