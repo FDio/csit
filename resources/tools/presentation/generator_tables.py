@@ -811,13 +811,17 @@ def table_performance_trending_dashboard(table, input_data):
                                     abs(rel_change_lst[index])):
                                 index = idx
 
-            logging.info("{}".format(name))
-            logging.info("sample_lst: {} - {}".format(len(sample_lst), sample_lst))
-            logging.info("median_lst: {} - {}".format(len(median_lst), median_lst))
-            logging.info("rel_change: {} - {}".format(len(rel_change_lst), rel_change_lst))
-            logging.info("classn_lst: {} - {}".format(len(classification_lst), classification_lst))
-            logging.info("index:      {}".format(index))
-            logging.info("classifica: {}".format(classification))
+            logging.debug("{}".format(name))
+            logging.debug("sample_lst: {} - {}".
+                          format(len(sample_lst), sample_lst))
+            logging.debug("median_lst: {} - {}".
+                          format(len(median_lst), median_lst))
+            logging.debug("rel_change: {} - {}".
+                          format(len(rel_change_lst), rel_change_lst))
+            logging.debug("classn_lst: {} - {}".
+                          format(len(classification_lst), classification_lst))
+            logging.debug("index:      {}".format(index))
+            logging.debug("classifica: {}".format(classification))
 
             try:
                 trend = round(float(median_lst[-1]) / 1000000, 2) \
@@ -828,12 +832,12 @@ def table_performance_trending_dashboard(table, input_data):
                     if rel_change_lst[index] is not None else '-'
                 if not isnan(max_median):
                     if not isnan(sample_lst[index]):
-                        long_trend_threshold = max_median * \
-                                               (table["long-trend-threshold"] / 100)
+                        long_trend_threshold = \
+                            max_median * (table["long-trend-threshold"] / 100)
                         if sample_lst[index] < long_trend_threshold:
                             long_trend_classification = "failure"
                         else:
-                            long_trend_classification = '-'
+                            long_trend_classification = 'normal'
                     else:
                         long_trend_classification = "failure"
                 else:
@@ -843,7 +847,8 @@ def table_performance_trending_dashboard(table, input_data):
                                 long_trend_classification,
                                 classification,
                                 '-' if classification == "normal" else sample,
-                                '-' if classification == "normal" else rel_change,
+                                '-' if classification == "normal" else
+                                rel_change,
                                 nr_outliers])
             except IndexError as err:
                 logging.error("{}".format(err))
