@@ -151,6 +151,8 @@
       csit-vpp-perf-1804-all:
       - 1   # sel
       - 13  # sel
+      - 14  # sel
+      - 16  # full
     vpp-performance-changes-mrr:
       csit-vpp-perf-check-1801:
       - 1
@@ -174,6 +176,8 @@
       csit-vpp-perf-1804-all:
       - 1   # sel
       - 13  # sel
+      - 14  # sel
+      - 16  # full
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
 #      - 9
@@ -223,12 +227,10 @@
 #      - 23  # sel
 #      - 24  # sel
     vpp-perf-results:
-      # Replace by full
       csit-vpp-perf-1804-all:
-      - 1   # sel
-      - 13  # sel
+      - 16  # full
     vpp-func-results:
-      csit-vpp-functional-1801-ubuntu1604-virl:
+      csit-vpp-functional-1804-ubuntu1604-virl:
       - "lastSuccessfulBuild"
     ligato-perf-results:
       csit-ligato-perf-1801-all:
@@ -240,12 +242,14 @@
       csit-hc2vpp-verify-func-1801-ubuntu1604:
       - "lastSuccessfulBuild"
     nsh-func-results:
-      csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
-      - 1
+      csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
+      - "lastSuccessfulBuild"
     plot-vpp-throughput-latency:
       csit-vpp-perf-1804-all:
       - 1   # sel
       - 13  # sel
+      - 14  # sel
+      - 16  # full
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1804-all:
       - 4
@@ -575,6 +579,8 @@
     csit-vpp-perf-1804-all:
     - 1   # sel
     - 13  # sel
+    - 14  # sel
+    - 16  # full
     csit-vpp-perf-check-1801:
     - 1   # mrr
     - 2   # mrr
@@ -593,17 +599,17 @@
     - 2   # mrr
     - 3   # mrr
     - 4   # mrr
-    csit-ligato-perf-1710-all:
-    - 5
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    - 12
-    - 13
-    - 16
-    - 17
+#    csit-ligato-perf-1710-all:
+#    - 5
+#    - 7
+#    - 8
+#    - 9
+#    - 10
+#    - 11
+#    - 12
+#    - 13
+#    - 16
+#    - 17
     csit-ligato-perf-1801-all:
     - 16  # sel
     - 17  # sel
@@ -628,12 +634,12 @@
     - 13
     - 14
     - 15
-    csit-vpp-functional-1801-ubuntu1604-virl:
-    - lastSuccessfulBuild
-    csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
-    - 1
+    csit-vpp-functional-1804-ubuntu1604-virl:
+    - "lastSuccessfulBuild"
+    csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
+    - "lastSuccessfulBuild"
     csit-hc2vpp-verify-func-1801-ubuntu1604:
-    - lastSuccessfulBuild
+    - "lastSuccessfulBuild"
 
 -
   type: "output"
