@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c528df04_02b3f03f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-24T17:07:01Z",
+      "side": 1,
+      "message": "See below.",
+      "parentUuid": "560fd6ab_23a3a827",
+      "range": {
+        "startLine": 29,
+        "startChar": 56,
+        "endLine": 29,
+        "endChar": 75
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d78395f_b3da6f04",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 99
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-24T10:57:31Z",
       "side": 1,
       "message": "I still cannot fully understand why we do not have TGRateProvider. As explained, how to connect IXIA there? What is Trex specific, that cannot be written as low-level driver wrapper for IXIA?\nThe original idea of CSIT to have TG independent is broken then.",
+      "range": {
+        "startLine": 541,
+        "startChar": 6,
+        "endLine": 541,
+        "endChar": 22
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d9f8246_cc85a1c6",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-24T17:07:01Z",
+      "side": 1,
+      "message": "UPDATE: I think I have a compromise, will submit in next patch. The comments below are just to ilustrate my initial views.\n\n\u003e how to connect IXIA there?\n\nNo idea. How do you connect IXIA to class TrafficGenerator? It is full of Trex specifics and I do not see any abstract class defining common API.\n\nI would probably create IxiaRateProvider (subclass of AbstractRateProvider) to hide IXIA specifics, and then class OptimizedIxiaSearch with line 631 replaced by the appropriate constructor.\n\n\u003e why we do not have TGRateProvider\n\nBecause I have no idea which specifics will be common for Trex and Ixia but not for other AbstractRateProviders (e.g. the simulator ones).\n\n\u003e What is Trex specific\n\nI would guess lines 579 and 585, not to mention 580-581.\n\n\u003e that cannot be written as low-level driver wrapper for IXIA?\n\nIxiaRateProvider would be such a wrapper.\n\nThe disconnect is perhaps in the fact that I refuse to think about adding \"elif tg_node[\u0027subtype\u0027] \u003d\u003d NodeSubTypeTG.IXIA:\" to the already bloated TrafficGenerator class.\n\n\u003e CSIT to have TG independent\n\nRight now, I can rename OptimizedTrexSearch to OptimizedSearch (and perform_optimized_trex_ndrpdr_search to perform_optimized_ndrpdr_search), add argument tg_type\u003dtrex (to the keyword, or better yet to the class constructor) and put line 631 under an if.\n\nOnce IXIA rate providex exists (so we know which arguments its constructor needs), the missing arguments could be added where needed.",
+      "parentUuid": "4d78395f_b3da6f04",
       "range": {
         "startLine": 541,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "43e3aa81_eef577dd",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-24T17:07:01Z",
+      "side": 1,
+      "message": "The abstract optimized search is calling measure() without specifying frame_size, traffic_type, warmup_time.\n\nAlso, TGDropRateSearchImpl.measure_loss() is not merged to TrafficGenerator, so I assumed there is a reason for that (aside of it already being quite fat already).",
+      "parentUuid": "44cf7354_fb6f9c44",
+      "range": {
+        "startLine": 558,
+        "startChar": 8,
+        "endLine": 558,
+        "endChar": 47
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6cef2a3f_014c786d",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 99
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "d00125ac_15acdc87",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-24T17:07:01Z",
+      "side": 1,
+      "message": "Ideally, we would have one file (e.g. DropRateSearch.py) for search algorithms abstracted from rate providers, another file (e.g. this TrafficGenerator.py) for rate providers (such as classes TrafficGenerator and TrexRateProvider) not related to any search logic, and a third file for integration classes such as TGDropRateSearchImpl and OptimizedTrexSearch.\n\nI figured that when this file already imports from DropRateSearch (and not the other way around), and TGDropRateSearchImpl is here (even if it is a search algorithm, not a mere TG controller), OptimizedTrexSearch can also be here.",
+      "parentUuid": "6cef2a3f_014c786d",
+      "range": {
+        "startLine": 589,
+        "startChar": 6,
+        "endLine": 589,
+        "endChar": 25
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24a85605_0854a8b4",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 99
@@ -105,6 +201,30 @@
       "writtenOn": "2018-04-24T10:57:31Z",
       "side": 1,
       "message": "Wouldn\u0027t it be better to have this as **kwargs?",
+      "range": {
+        "startLine": 592,
+        "startChar": 8,
+        "endLine": 592,
+        "endChar": 44
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e473db2_f45d4723",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-24T17:07:01Z",
+      "side": 1,
+      "message": "Considering the space the arguments take, maybe yes. But on the other hand, the arguments are split into three subsets for lines 631-635, and I imagine the splitting code will be harder to maintain than the current boilerplate.\nAnd no, I am not willing to make the 3 called methods accept **kwargs.\n\nThe proper way to deal with long argument lists is to structure them (see ProgressState), but in this case that would not save space overall.",
+      "parentUuid": "24a85605_0854a8b4",
       "range": {
         "startLine": 592,
         "startChar": 8,
