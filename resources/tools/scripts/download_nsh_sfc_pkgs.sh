@@ -15,9 +15,6 @@
 
 set -ex
 
-trap 'rm -f *.deb.md5; exit' EXIT
-trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
-
 STREAM=$1
 OS=$2
 
@@ -25,24 +22,29 @@ URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
 GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
-VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java vpp-api-python vpp-api-lua"
 NSH_ARTIFACTS="vpp-nsh-plugin"
 
-if [ "${OS}" == "ubuntu1404" ]; then
-    OS="ubuntu.trusty.main"
+if [ "${OS}" == "ubuntu1604" ]; then
+    trap 'rm -f *.deb.md5; exit' EXIT
+    trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
+        REPO_OS="ubuntu.xenial.main"
+    VPP_ARTIFACTS="vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins vpp-api-java vpp-api-python vpp-api-lua"
     PACKAGE="deb deb.md5"
     CLASS="deb"
-elif [ "${OS}" == "ubuntu1604" ]; then
-    OS="ubuntu.xenial.main"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
+    FILES="*.deb"
+    MD5FILES="*.deb.md5"
 elif [ "${OS}" == "centos7" ]; then
-    OS="centos7"
+    trap 'rm -f *.rpm.md5; exit' EXIT
+    trap 'rm -f *.rpm.md5;rm -f *.rpm; exit' ERR
+    REPO_OS="centos7"
+    VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java vpp-api-python vpp-api-lua"
     PACKAGE="rpm rpm.md5"
     CLASS="rpm"
+    FILES="*.rpm"
+    MD5FILES="*.rpm.md5"
 fi
 
-REPO="fd.io.${STREAM}.${OS}"
+REPO="fd.io.${STREAM}.${REPO_OS}"
 
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in $PACKAGE; do
@@ -56,10 +58,12 @@ for ART in ${NSH_ARTIFACTS}; do
     done
 done
 
-for FILE in *.deb; do
+VPP_PKGS=($(echo ${FILES}))
+for FILE in "${!VPP_PKGS[@]}"; do
     echo " "${FILE} >> ${FILE}.md5
 done
 
-for MD5FILE in *.md5; do
+MD5_PKGS=($(echo ${MD5FILES}))
+for MD5FILE in "${!MD5_PKGS[@]}"; do
     md5sum -c ${MD5FILE} || exit
 done
