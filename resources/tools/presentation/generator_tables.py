@@ -726,7 +726,11 @@ def table_performance_trending_dashboard(table, input_data):
             median = pd_data.rolling(window=win_size, min_periods=2).median()
             median_idx = pd_data.size - table["long-trend-window"]
             median_idx = 0 if median_idx < 0 else median_idx
-            max_median = max(median.values[median_idx:])
+            try:
+                max_median = max([x for x in median.values[median_idx:]
+                                  if not isnan(x)])
+            except ValueError:
+                max_median = None
             trimmed_data, _ = split_outliers(pd_data, outlier_const=1.5,
                                              window=win_size)
             stdev_t = pd_data.rolling(window=win_size, min_periods=2).std()
@@ -830,7 +834,7 @@ def table_performance_trending_dashboard(table, input_data):
                     if not isnan(sample_lst[index]) else '-'
                 rel_change = rel_change_lst[index] \
                     if rel_change_lst[index] is not None else '-'
-                if not isnan(max_median):
+                if max_median is not None:
                     if not isnan(sample_lst[index]):
                         long_trend_threshold = \
                             max_median * (table["long-trend-threshold"] / 100)
