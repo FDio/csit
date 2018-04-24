@@ -37,7 +37,7 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-STREAM="master"
+STREAM="stable.1804"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
@@ -158,14 +158,10 @@ for index in "${!VIRL_SERVER[@]}"; do
     if [ "${copy}" -eq "0" ]; then
         echo "files have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
     else
-        if [ "${OS}" == "centos7" ]; then
-            scp ${SSH_OPTIONS} *.rpm \
-                ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
-        else
-            scp ${SSH_OPTIONS} *.deb \
-                ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
-        fi
-         result=$?
+        scp ${SSH_OPTIONS} ${VPP_PKGS[@]} \
+        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
+
+        result=$?
         if [ "${result}" -ne "0" ]; then
             echo "Failed to copy files to VIRL host ${VIRL_SERVER[${index}]}"
             echo ${result}
