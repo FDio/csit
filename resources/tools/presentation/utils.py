@@ -92,16 +92,6 @@ def remove_outliers(input_list, outlier_const=1.5, window=14):
             result_lst.append(y)
     return result_lst
 
-    # input_series = pd.Series()
-    # for index, value in enumerate(input_list):
-    #     item_pd = pd.Series([value, ], index=[index, ])
-    #     input_series.append(item_pd)
-    # output_series, _ = split_outliers(input_series, outlier_const=outlier_const,
-    #                                   window=window)
-    # output_list = [y for x, y in output_series.items() if not np.isnan(y)]
-    #
-    # return output_list
-
 
 def split_outliers(input_series, outlier_const=1.5, window=14):
     """Go through the input data and generate two pandas series:
