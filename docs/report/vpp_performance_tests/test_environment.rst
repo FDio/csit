@@ -34,56 +34,50 @@ Tagged by **1T1C**
 
 ::
 
+    ip
+    {
+      heap-size 4G
+    }
     unix
     {
       cli-listen localhost:5002
       log /tmp/vpe.log
       nodaemon
     }
+    ip6
+    {
+      heap-size 4G
+      hash-buckets 2000000
+    }
+    heapsize 4G
+    plugins
+    {
+      plugin default
+      {
+        disable
+      }
+      plugin dpdk_plugin.so
+      {
+        enable
+      }
+    }
     cpu
     {
       corelist-workers 2
       main-core 1
     }
-    ip4
-    {
-      heap-size "4G"
-    }
-    ip6
-    {
-      heap-size "4G"
-      hash-buckets "2000000"
-    }
-    plugins
-    {
-      plugin pppoe_plugin.so { disable }
-      plugin kubeproxy_plugin.so { disable }
-      plugin ioam_plugin.so { disable }
-      plugin ila_plugin.so { disable }
-      plugin stn_plugin.so { disable }
-      plugin acl_plugin.so { disable }
-      plugin l2e_plugin.so { disable }
-      plugin sixrd_plugin.so { disable }
-      plugin nat_plugin.so { disable }
-      plugin ixge_plugin.so { disable }
-      plugin lb_plugin.so { disable }
-      plugin memif_plugin.so { disable }
-      plugin gtpu_plugin.so { disable }
-      plugin flowprobe_plugin.so { disable }
-    }
-    heapsize "4G"
     dpdk
     {
-      dev 0000:88:00.1
-      dev 0000:88:00.0
+      dev 0000:0a:00.0
+      dev 0000:0a:00.1
       no-multi-seg
+      uio-driver uio_pci_generic
+      log-level debug
       dev default
       {
-        num-rx-desc 2048
         num-rx-queues 1
-        num-tx-desc 2048
       }
-      socket-mem "1024,1024"
+      socket-mem 1024,1024
       no-tx-checksum-offload
     }
 
@@ -91,56 +85,50 @@ Tagged by **2T2C**
 
 ::
 
+    ip
+    {
+      heap-size 4G
+    }
     unix
     {
       cli-listen localhost:5002
       log /tmp/vpe.log
       nodaemon
     }
+    ip6
+    {
+      heap-size 4G
+      hash-buckets 2000000
+    }
+    heapsize 4G
+    plugins
+    {
+      plugin default
+      {
+        disable
+      }
+      plugin dpdk_plugin.so
+      {
+        enable
+      }
+    }
     cpu
     {
       corelist-workers 2,3
       main-core 1
     }
-    ip4
-    {
-      heap-size "4G"
-    }
-    ip6
-    {
-      heap-size "4G"
-      hash-buckets "2000000"
-    }
-    plugins
-    {
-      plugin pppoe_plugin.so { disable }
-      plugin kubeproxy_plugin.so { disable }
-      plugin ioam_plugin.so { disable }
-      plugin ila_plugin.so { disable }
-      plugin stn_plugin.so { disable }
-      plugin acl_plugin.so { disable }
-      plugin l2e_plugin.so { disable }
-      plugin sixrd_plugin.so { disable }
-      plugin nat_plugin.so { disable }
-      plugin ixge_plugin.so { disable }
-      plugin lb_plugin.so { disable }
-      plugin memif_plugin.so { disable }
-      plugin gtpu_plugin.so { disable }
-      plugin flowprobe_plugin.so { disable }
-    }
-    heapsize "4G"
     dpdk
     {
-      dev 0000:88:00.1
-      dev 0000:88:00.0
+      dev 0000:0a:00.0
+      dev 0000:0a:00.1
       no-multi-seg
+      uio-driver uio_pci_generic
+      log-level debug
       dev default
       {
-        num-rx-desc 2048
         num-rx-queues 1
-        num-tx-desc 2048
       }
-      socket-mem "1024,1024"
+      socket-mem 1024,1024
       no-tx-checksum-offload
     }
 
@@ -148,56 +136,50 @@ Tagged by **4T4C**
 
 ::
 
+    ip
+    {
+      heap-size 4G
+    }
     unix
     {
       cli-listen localhost:5002
       log /tmp/vpe.log
       nodaemon
     }
+    ip6
+    {
+      heap-size 4G
+      hash-buckets 2000000
+    }
+    heapsize 4G
+    plugins
+    {
+      plugin default
+      {
+        disable
+      }
+      plugin dpdk_plugin.so
+      {
+        enable
+      }
+    }
     cpu
     {
       corelist-workers 2,3,4,5
       main-core 1
     }
-    ip4
-    {
-      heap-size "4G"
-    }
-    ip6
-    {
-      heap-size "4G"
-      hash-buckets "2000000"
-    }
-    plugins
-    {
-      plugin pppoe_plugin.so { disable }
-      plugin kubeproxy_plugin.so { disable }
-      plugin ioam_plugin.so { disable }
-      plugin ila_plugin.so { disable }
-      plugin stn_plugin.so { disable }
-      plugin acl_plugin.so { disable }
-      plugin l2e_plugin.so { disable }
-      plugin sixrd_plugin.so { disable }
-      plugin nat_plugin.so { disable }
-      plugin ixge_plugin.so { disable }
-      plugin lb_plugin.so { disable }
-      plugin memif_plugin.so { disable }
-      plugin gtpu_plugin.so { disable }
-      plugin flowprobe_plugin.so { disable }
-    }
-    heapsize "4G"
     dpdk
     {
-      dev 0000:88:00.1
-      dev 0000:88:00.0
+      dev 0000:0a:00.0
+      dev 0000:0a:00.1
       no-multi-seg
+      uio-driver uio_pci_generic
+      log-level debug
       dev default
       {
-        num-rx-desc 2048
-        num-rx-queues 2
-        num-tx-desc 2048
+        num-rx-queues 1
       }
-      socket-mem "1024,1024"
+      socket-mem 1024,1024
       no-tx-checksum-offload
     }
 

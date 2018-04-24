@@ -19,10 +19,9 @@ Changes in CSIT |release|
        to container, then via "horizontal" memif to next container, and so on
        until the last container, then back to VPP and NIC;
 
-   - **VPP TCP/IP stack**
+   - **MRR tests**
 
-     - Added tests for VPP TCP/IP stack using VPP built-in HTTP server.
-       WRK traffic generator is used as a client-side;
+     - <placeholder>;
 
    - **SRv6**
 
@@ -30,11 +29,6 @@ Changes in CSIT |release|
        IPv6 and SRH (Segment Routing Header) encapsulation, decapsulation,
        lookups and rewrites based on configured End and End.DX6 SRv6 egress
        functions;
-
-   - **IPSecSW**
-
-     - SW computed IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in
-       combination with IPv4 routed-forwarding;
 
 #. Presentation and Analytics Layer
 
@@ -46,20 +40,7 @@ Changes in CSIT |release|
 
      - **Framework optimizations**
 
-       - Ability to run CSIT framework on ARM architecture;
-
-       - Overall stability improvements;
-
-     - **NDR and PDR throughput binary search change**
-
-       - Increased binary search resolution by reducing final step from
-         100kpps to 50kpps;
-
-     - **VPP plugin loaded as needed by tests**
-
-       - From this release only plugins required by tests are loaded at
-         VPP initialization time. Previously all plugins were loaded for
-         all tests;
+       - Performance test duration improvements and stability;
 
 Performance Changes
 -------------------
@@ -132,23 +113,15 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 | 3 | Lower than expected NDR throughput with         | CSIT-571   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
 |   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | QAT IPSec scale with 1000 tunnels (interfaces)  | VPP-1121   | VPP crashes during configuration of 1000 IPsec tunnels.         |
-|   | in 2t2c config, all tests are failing.          |            | 1t1c tests are not affected                                     |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 5 | rls1801 plugin related performance regression   | CSIT-925   | With all plugins loaded NDR, PDR and MaxRates vary              |
+| 4 | rls1801 plugin related performance regression   | CSIT-925   | With all plugins loaded NDR, PDR and MaxRates vary              |
 |   |                                                 |            | intermittently from 3% to 5% across multiple test executions.   |
 |   |                                                 |            | Requires plugin code bisecting.                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 6 | rls1801 generic small performance regression    | CSIT-926   | Generic performance regression of discovered NDR, PDR and       |
+| 5 | rls1801 generic small performance regression    | CSIT-926   | Generic performance regression of discovered NDR, PDR and       |
 |   | ip4base, l2xcbase, l2bdbase                     |            | MaxRates of -3%..-1% vs. rls1710, affects ip4base, l2xcbase,    |
 |   |                                                 |            | l2bdbase test suites. Not detected by CSIT performance trending |
 |   |                                                 |            | scheme as it was masked out by another issue CSIT-925.          |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 7 | rls1801 substantial NDR performance regression  | CSIT-927   | Much lower NDR for vhostvr1024 tests, with mean values          |
-|   | for vhost-user vring size of 1024               |            | regression of -17%..-42% vs. rls1710, but also very high        |
-|   |                                                 |            | standard deviation of up to 1.46 Mpps => poor repeatibility.    |
-|   |                                                 |            | Making mean values not fully representative.                    |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 8 | rls1801 substantial NDR/PDR regression for      | CSIT-928   | NDR regression of -7%..-15%, PDR regression of -3%..-15%        |
+| 6 | rls1801 substantial NDR/PDR regression for      | CSIT-928   | NDR regression of -7%..-15%, PDR regression of -3%..-15%        |
 |   | IPSec tunnel scale with HW QAT crypto-dev       |            | compared to rls1710.                                            |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
