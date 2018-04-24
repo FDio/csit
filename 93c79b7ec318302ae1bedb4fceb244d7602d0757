@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "560fd6ab_23a3a827",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-24T10:57:31Z",
+      "side": 1,
+      "message": "We have DropRateSearch library for any search related functions. This library is TG controller.",
+      "range": {
+        "startLine": 29,
+        "startChar": 56,
+        "endLine": 29,
+        "endChar": 75
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d78395f_b3da6f04",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-24T10:57:31Z",
+      "side": 1,
+      "message": "I still cannot fully understand why we do not have TGRateProvider. As explained, how to connect IXIA there? What is Trex specific, that cannot be written as low-level driver wrapper for IXIA?\nThe original idea of CSIT to have TG independent is broken then.",
+      "range": {
+        "startLine": 541,
+        "startChar": 6,
+        "endLine": 541,
+        "endChar": 22
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44cf7354_fb6f9c44",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-24T10:57:31Z",
+      "side": 1,
+      "message": "wouldn\u0027t it be better to merge this with previous class and replace args as **kwargs for variability?",
+      "range": {
+        "startLine": 558,
+        "startChar": 8,
+        "endLine": 558,
+        "endChar": 47
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6cef2a3f_014c786d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-24T10:57:31Z",
+      "side": 1,
+      "message": "We have DropRateSearch library for any search related functions. This library is TG controller.",
+      "range": {
+        "startLine": 589,
+        "startChar": 6,
+        "endLine": 589,
+        "endChar": 25
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24a85605_0854a8b4",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-24T10:57:31Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be better to have this as **kwargs?",
+      "range": {
+        "startLine": 592,
+        "startChar": 8,
+        "endLine": 592,
+        "endChar": 44
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
