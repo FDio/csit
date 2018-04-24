@@ -124,8 +124,8 @@ For detailed FD.io CSIT testbed specification and topology, as well as
 configuration and setup of SUTs and DUTs testbeds please refer to
 :ref:`test_environment`.
 
-Similar SUT compute node and DUT VPP settings can be arrived to in a
-standalone VPP setup by using a `vpp-config configuration tool
+Similar SUT compute node can be arrived to in a standalone VPP setup by using a
+`vpp-config configuration tool
 <https://wiki.fd.io/view/VPP/Configuration_Tool>`_ developed within the
 VPP project using CSIT recommended settings and scripts.
 
@@ -143,10 +143,6 @@ Performance tests are split into two main categories:
   - PDR - discovery of Partial Drop Rate, with specified non-zero packet loss
     currently set to 0.5%; followed by one-way packet latency measurements at
     100% of discovered PDR throughput.
-
-- Throughput verification - verification of packet forwarding rate against
-  previously discovered throughput rate. These tests are currently done against
-  0.9 of reference NDR, with reference rates updated periodically.
 
 CSIT |release| includes following performance test suites, listed per NIC type:
 
@@ -200,6 +196,8 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     with LISP-GPE overlay tunneling for IPv4-over-IPv4.
   - **VPP TCP/IP stack** - tests of VPP TCP/IP stack used with VPP built-in HTTP
     server.
+  - **Container memif connections** - VPP memif virtual interface tests to
+    interconnect VPP instances with L2XC and L2BD.
 
 - 2port10GE X710 Intel
 
@@ -207,6 +205,10 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     with MAC learning.
   - **VMs with vhost-user** - virtual topologies with 1 VM using vhost-user
     interfaces, with VPP forwarding modes incl. L2 Bridge-Domain.
+  - **Container memif connections** - VPP memif virtual interface tests to
+    interconnect VPP instances with L2XC and L2BD.
+  - **Container K8s Orchestrated Topologies** - Container topologies connected
+    over the memif virtual interface.
 
 - 2port10GE VIC1227 Cisco
 
@@ -360,14 +362,14 @@ environment settings:
 Methodology: LXC and Docker Containers memif
 --------------------------------------------
 
-CSIT |release| introduced additional tests taking advantage of VPP memif
-virtual interface (shared memory interface) tests to interconnect VPP
-instances. VPP vswitch instance runs in bare-metal user-mode handling
-Intel x520 NIC 10GbE interfaces and connecting over memif (Master side)
-virtual interfaces to more instances of VPP running in :abbr:`LXC (Linux
-Container)` or in Docker Containers,  both with memif virtual interfaces
-(Slave side). LXCs and Docker Containers run in a priviliged mode with
-VPP data plane worker threads pinned to dedicated physical CPU cores per
+CSIT |release| introduced additional tests taking advantage of VPP memif virtual
+interface (shared memory interface) tests to interconnect VPP instances. VPP
+vswitch instance runs in bare-metal user-mode handling Intel x520 NIC 10GbE,
+Intel x710 NIC 10GbE, Intel xl710 NIC 40GbE interfaces and connecting over memif
+(Slave side) virtual interfaces to more instances of VPP running in
+:abbr:`LXC (Linux Container)` or in Docker Containers, both with memif virtual
+interfaces (Master side). LXCs and Docker Containers run in a priviliged mode
+with VPP data plane worker threads pinned to dedicated physical CPU cores per
 usual CSIT practice. All VPP instances run the same version of software.
 This test topology is equivalent to existing tests with vhost-user and
 VMs as described earlier in :ref:`tested_physical_topologies`.
@@ -388,14 +390,13 @@ used to address the container networking orchestration that is
 integrated with K8s, including memif support.
 
 For these tests VPP vswitch instance runs in a Docker Container handling
-Intel x520 NIC 10GbE interfaces and connecting over memif (Master side)
+Intel x520 NIC 10GbE, Intel x710 NIC 10GbE interfaces and connecting over memif
 virtual interfaces to more instances of VPP running in Docker Containers
-with memif virtual interfaces (Slave side). All Docker Containers run in
-a priviliged mode with VPP data plane worker threads pinned to dedicated
-physical CPU cores per usual CSIT practice. All VPP instances run the
-same version of software. This test topology is equivalent to existing
-tests with vhost-user and VMs as described earlier in
-:ref:`tested_physical_topologies`.
+with memif virtual interfaces. All Docker Containers run in a priviliged mode
+with VPP data plane worker threads pinned to dedicated physical CPU cores per
+usual CSIT practice. All VPP instances run the same version of software. This
+test topology is equivalent to existing tests with vhost-user and VMs as
+described earlier in :ref:`tested_physical_topologies`.
 
 More information about CSIT Container Topologies Orchestrated by K8s is
 available in :ref:`container_orchestration_in_csit`.
