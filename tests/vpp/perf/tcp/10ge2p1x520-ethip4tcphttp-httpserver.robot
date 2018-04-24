@@ -48,7 +48,7 @@
 | | | ... | WITH NAME | ${dut}
 | | | Run keyword | ${dut}.Add TCP preallocated connections | 1000000
 | | | Run keyword | ${dut}.Add TCP preallocated half open connections | 1000000
-| | | Run keyword | ${dut}.Add session event queue length | 1000000
+| | | Run keyword | ${dut}.Add session event queue length | 100000
 | | | Run keyword | ${dut}.Add session preallocated sessions | 1000000
 | | | Run keyword | ${dut}.Add session v4 session table buckets | 500000
 | | | Run keyword | ${dut}.Add session v4 session table memory | 1g
