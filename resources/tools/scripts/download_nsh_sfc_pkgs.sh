@@ -28,18 +28,18 @@ NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java vpp-api-python vpp-api-lua"
 NSH_ARTIFACTS="vpp-nsh-plugin"
 
-if [ "${OS}" == "ubuntu1404" ]; then
-    OS="ubuntu.trusty.main"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
-elif [ "${OS}" == "ubuntu1604" ]; then
+if [ "${OS}" == "ubuntu1604" ]; then
     OS="ubuntu.xenial.main"
     PACKAGE="deb deb.md5"
     CLASS="deb"
+    FILES="*.deb"
+    MD5FILES="*.deb.md5"
 elif [ "${OS}" == "centos7" ]; then
     OS="centos7"
     PACKAGE="rpm rpm.md5"
     CLASS="rpm"
+    FILES="*.rpm"
+    MD5FILES="*.rpm.md5"
 fi
 
 REPO="fd.io.${STREAM}.${OS}"
@@ -56,10 +56,10 @@ for ART in ${NSH_ARTIFACTS}; do
     done
 done
 
-for FILE in *.deb; do
+for FILE in ${FILES}; do
     echo " "${FILE} >> ${FILE}.md5
 done
 
-for MD5FILE in *.md5; do
+for MD5FILE in ${MD5FILES}; do
     md5sum -c ${MD5FILE} || exit
 done
