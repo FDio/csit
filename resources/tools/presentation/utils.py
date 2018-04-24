@@ -123,9 +123,9 @@ def split_outliers(input_series, outlier_const=1.5, window=14):
         q1 = np.percentile(y_rolling_array, 25)
         q3 = np.percentile(y_rolling_array, 75)
         iqr = (q3 - q1) * outlier_const
-        low, high = q1 - iqr, q3 + iqr
+        low = q1 - iqr
         item_pd = pd.Series([item_y, ], index=[item_x, ])
-        if low <= item_y <= high:
+        if low <= item_y:
             trimmed_data = trimmed_data.append(item_pd)
         else:
             outliers = outliers.append(item_pd)
