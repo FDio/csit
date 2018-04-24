@@ -856,7 +856,7 @@ def table_performance_trending_dashboard(table, input_data):
 
     # Sort the table according to the classification
     tbl_sorted = list()
-    for long_trend_class in ("failure", '-'):
+    for long_trend_class in ("failure", 'normal', '-'):
         tbl_long = [item for item in tbl_lst if item[2] == long_trend_class]
         for classification in \
                 ("failure", "regression", "progression", "normal"):
