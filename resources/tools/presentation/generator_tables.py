@@ -723,7 +723,7 @@ def table_performance_trending_dashboard(table, input_data):
             last_key = pd_data.keys()[-1]
             win_size = min(pd_data.size, table["window"])
             win_first_idx = pd_data.size - win_size
-            key_14 = pd_data.keys()[-win_first_idx]
+            key_14 = pd_data.keys()[win_first_idx]
             long_win_size = min(pd_data.size, table["long-trend-window"])
 
             data_t, _ = split_outliers(pd_data, outlier_const=1.5,
@@ -777,13 +777,13 @@ def table_performance_trending_dashboard(table, input_data):
                 rel_change_last = nan
             else:
                 rel_change_last = round(
-                    (last_median_t - median_t_14) / median_t_14, 2)
+                    ((last_median_t - median_t_14) / median_t_14) * 100, 2)
 
             if isnan(max_median) or isnan(last_median_t) or max_median == 0.0:
                 rel_change_long = nan
             else:
                 rel_change_long = round(
-                    (last_median_t - max_median) / max_median, 2)
+                    ((last_median_t - max_median) / max_median) * 100, 2)
 
             logging.info("rel_change_last : {}".format(rel_change_last))
             logging.info("rel_change_long : {}".format(rel_change_long))
