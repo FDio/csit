@@ -500,7 +500,7 @@
     - title: "VPP 1T1C IPv4 64B Packet Throughput - {period} Trending"
       output-file-name: "ip4-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       periods:
@@ -512,7 +512,7 @@
     - title: "VPP 2T2C IPv4 64B Packet Throughput - {period} Trending"
       output-file-name: "ip4-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       periods:
@@ -524,7 +524,7 @@
     - title: "VPP 4T4C IPv4 64B Packet Throughput - {period} Trending"
       output-file-name: "ip4-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       periods:
@@ -612,7 +612,7 @@
     - title: "VPP 1T1C IPv4 64B Packet Throughput - {period} Trending"
       output-file-name: "ip4-1t1c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       periods:
@@ -624,7 +624,7 @@
     - title: "VPP 2T2C IPv4 64B Packet Throughput - {period} Trending"
       output-file-name: "ip4-2t2c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       periods:
@@ -636,7 +636,7 @@
     - title: "VPP 4T4C IPv4 64B Packet Throughput - {period} Trending"
       output-file-name: "ip4-4t4c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       periods:
