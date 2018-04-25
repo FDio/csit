@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bff72ff8_be2cba92",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 104
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-25T16:29:10Z",
+      "side": 1,
+      "message": "Fixed locally, but not rebasing the whole chain just yet.",
+      "range": {
+        "startLine": 29,
+        "startChar": 65,
+        "endLine": 29,
+        "endChar": 69
+      },
+      "revId": "84cf459b8876beb76f19a8785cff4c27425abb13",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
