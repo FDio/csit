@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f64fa33_d677ac42",
+        "filename": "docs/cpta/introduction/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-25T12:43:59Z",
+      "side": 1,
+      "message": "Do we really run MRR only for VPP, or do we run some tests also for other projects (such as DPDK)?\nI see some ndrpdrdisc suites in dpdk directory.",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "28f9f057aadad0b744dc91df3240caac7e311424",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
