@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "bb272f5c_dc2b6ee8",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-25T08:41:49Z",
+      "side": 1,
+      "message": "| No idea. How do you connect IXIA to class TrafficGenerator?\n\nInitially in CSIT this class was designed for doing the wrapper and common API. So in test there cannot be reference to particular TG. You can safely assume now that IXIA in terms of reporting back the measured data will be same. If not lets desing it properly. I am generally not against mods into this code it just that in some point we need unified API to wrap all TGs so TESTS must be independent. And I am not big fan of having 10+ layers of wrapping :)\n\n| Because I have no idea which specifics will be common for Trex and Ixia\n\nSee the TRex low level driver. I expect that to be the same. Low lever TG driver just report back measured data in unified way?\n\n| I would guess lines 579 and 585, not to mention 580-581.\n\nSame as above. This is responsibility of low level driver to have this aligned?\n\n| Right now, I can rename OptimizedTrexSearch to OptimizedSearch ...\u003c/snip\u003e\n\nI think it is good start to have at least TESTs independend on TG to avoid refacotr in future. The target is to avoid duplicating TESTs becaus of TG. It is topology file that defining TG here.\n\n| IxiaRateProvider would be such a wrapper.\n\nLooks ok to me (with few comments maybe) but as per above. Avoid any hard deps in tests\n\n| Once IXIA rate providex exists\n\nIt does, it is just that right now it is not public. Let me ask the status of making it public.",
+      "parentUuid": "6d9f8246_cc85a1c6",
+      "range": {
+        "startLine": 541,
+        "startChar": 6,
+        "endLine": 541,
+        "endChar": 22
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44cf7354_fb6f9c44",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 99
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "The abstract optimized search is calling measure() without specifying frame_size, traffic_type, warmup_time.\n\nAlso, TGDropRateSearchImpl.measure_loss() is not merged to TrafficGenerator, so I assumed there is a reason for that (aside of it already being quite fat already).",
       "parentUuid": "44cf7354_fb6f9c44",
+      "range": {
+        "startLine": 558,
+        "startChar": 8,
+        "endLine": 558,
+        "endChar": 47
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a42b79c_2b65d315",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-25T08:41:49Z",
+      "side": 1,
+      "message": "Let\u0027s assume that this is way forward. Would be possible to somehow make it compatible for binary search? Eg. having this new abstract provider to be prepared for new or old search algo? Can we migrate binary search to this?\nI am aiming for code simplicity and avoiding maintenance of older code path?",
+      "parentUuid": "43e3aa81_eef577dd",
       "range": {
         "startLine": 558,
         "startChar": 8,
@@ -190,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "977fa326_eeb40d69",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-25T08:41:49Z",
+      "side": 1,
+      "message": "| Ideally, ...\u003c/snip\u003e\n\nI like this idea\n\n| TGDropRateSearchImpl is here ...\n\nAgree that some refactor is needed.",
+      "parentUuid": "d00125ac_15acdc87",
+      "range": {
+        "startLine": 589,
+        "startChar": 6,
+        "endLine": 589,
+        "endChar": 25
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24a85605_0854a8b4",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 99
@@ -225,6 +297,30 @@
       "side": 1,
       "message": "Considering the space the arguments take, maybe yes. But on the other hand, the arguments are split into three subsets for lines 631-635, and I imagine the splitting code will be harder to maintain than the current boilerplate.\nAnd no, I am not willing to make the 3 called methods accept **kwargs.\n\nThe proper way to deal with long argument lists is to structure them (see ProgressState), but in this case that would not save space overall.",
       "parentUuid": "24a85605_0854a8b4",
+      "range": {
+        "startLine": 592,
+        "startChar": 8,
+        "endLine": 592,
+        "endChar": 44
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8bb5073_12049dab",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-25T08:41:49Z",
+      "side": 1,
+      "message": "Ideally we talked with Tibor to adopt some code model to be aliged on one side with \"Pythonic\" and other side to have some sort of schema.\n\nFar future we would like to see something like special class for kwargs parsing and having defined in clear way which are allowe, not poluting the code to much and bumping pylints to astronomical values and supresses. But i agree that this is not right place to start with this patch.\n\nIgnoring for now.",
+      "parentUuid": "0e473db2_f45d4723",
       "range": {
         "startLine": 592,
         "startChar": 8,
