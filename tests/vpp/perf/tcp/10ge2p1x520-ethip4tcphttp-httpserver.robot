@@ -46,6 +46,8 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
+| | | Run keyword | ${dut}.Add api segment global size | 2g
+| | | Run keyword | ${dut}.Add api segment api size | 1g
 | | | Run keyword | ${dut}.Add TCP preallocated connections | 1000000
 | | | Run keyword | ${dut}.Add TCP preallocated half open connections | 1000000
 | | | Run keyword | ${dut}.Add session event queue length | 100000
