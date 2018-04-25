@@ -136,15 +136,19 @@ class SSH(object):
         stderr = StringIO.StringIO()
         try:
             chan = self._ssh.get_transport().open_session(timeout=5)
+            peer = self._ssh.get_transport().getpeername()
         except AttributeError:
             self._reconnect()
             chan = self._ssh.get_transport().open_session(timeout=5)
+            peer = self._ssh.get_transport().getpeername()
         except SSHException:
             self._reconnect()
             chan = self._ssh.get_transport().open_session(timeout=5)
+            peer = self._ssh.get_transport().getpeername()
         chan.settimeout(timeout)
-        logger.trace('exec_command on {0}: {1}'
-                     .format(self._ssh.get_transport().getpeername(), cmd))
+
+        logger.trace('exec_command on {peer} with timeout {timeout}: {cmd}'
+                     .format(peer=peer, timeout=timeout, cmd=cmd))
 
         start = time()
         chan.exec_command(cmd)
@@ -157,10 +161,11 @@ class SSH(object):
 
             if time() - start > timeout:
                 raise SSHTimeout(
-                    'Timeout exception during execution of command: {0}\n'
-                    'Current contents of stdout buffer: {1}\n'
-                    'Current contents of stderr buffer: {2}\n'
-                    .format(cmd, stdout.getvalue(), stderr.getvalue())
+                    'Timeout exception during execution of command: {cmd}\n'
+                    'Current contents of stdout buffer: {stdout}\n'
+                    'Current contents of stderr buffer: {stderr}\n'
+                    .format(cmd=cmd, stdout=stdout.getvalue(),
+                            stderr=stderr.getvalue())
                 )
 
             sleep(0.1)
@@ -173,12 +178,12 @@ class SSH(object):
             stderr.write(chan.recv_stderr(self.__MAX_RECV_BUF))
 
         end = time()
-        logger.trace('exec_command on {0} took {1} seconds'.format(
-            self._ssh.get_transport().getpeername(), end-start))
+        logger.trace('exec_command on {peer} took {total} seconds'.
+                     format(peer=peer, total=end-start))
 
-        logger.trace('return RC {}'.format(return_code))
-        logger.trace('return STDOUT {}'.format(stdout.getvalue()))
-        logger.trace('return STDERR {}'.format(stderr.getvalue()))
+        logger.trace('return RC {rc}'.format(rc=return_code))
+        logger.trace('return STDOUT {stdout}'.format(stdout=stdout.getvalue()))
+        logger.trace('return STDERR {stderr}'.format(stderr=stderr.getvalue()))
         return return_code, stdout.getvalue(), stderr.getvalue()
 
     def exec_command_sudo(self, cmd, cmd_input=None, timeout=30):
