@@ -13,8 +13,6 @@
 
 """Traffic script executor library."""
 
-from robot.api import logger
-
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.ssh import SSH
 
@@ -55,7 +53,6 @@ class TrafficScriptExecutor(object):
         :raises RuntimeError: ARP reply timeout.
         :raises RuntimeError: Traffic script execution failed.
         """
-        logger.trace("{}".format(timeout))
         ssh = SSH()
         ssh.connect(node)
         cmd = ("cd {}; " +
@@ -65,12 +62,9 @@ class TrafficScriptExecutor(object):
                "resources/traffic_scripts/{} {}") \
                   .format(Constants.REMOTE_FW_DIR, script_file_name,
                           script_args)
-        (ret_code, stdout, stderr) = ssh.exec_command_sudo(
-            'sh -c "{}"'.format(TrafficScriptExecutor._escape(cmd)),
+        ret_code, stdout, stderr = ssh.exec_command_sudo(
+            'sh -c "{cmd}"'.format(cmd=TrafficScriptExecutor._escape(cmd)),
             timeout=timeout)
-        logger.debug("stdout: {}".format(stdout))
-        logger.debug("stderr: {}".format(stderr))
-        logger.debug("ret_code: {}".format(ret_code))
         if ret_code != 0:
             if "RuntimeError: ICMP echo Rx timeout" in stderr:
                 raise RuntimeError("ICMP echo Rx timeout")
