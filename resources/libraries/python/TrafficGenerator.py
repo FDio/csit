@@ -16,14 +16,17 @@
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
+from resources.libraries.python.DropRateSearch import DropRateSearch
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import NodeSubTypeTG
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.DropRateSearch import DropRateSearch
+from resources.libraries.python.search.AbstractRateProvider import AbstractRateProvider
+from resources.libraries.python.search.OptimizedSearchAlgorithm import OptimizedSearchAlgorithm
+from resources.libraries.python.search.ReceiveRateMeasurement import ReceiveRateMeasurement
 
-__all__ = ['TrafficGenerator', 'TGDropRateSearchImpl']
+__all__ = ['TGDropRateSearchImpl', 'TrafficGenerator', 'OptimizedTrexSearch']
 
 
 class TGDropRateSearchImpl(DropRateSearch):
@@ -42,7 +45,7 @@ class TGDropRateSearchImpl(DropRateSearch):
         :param loss_acceptance_type: Type of permitted loss.
         :param traffic_type: Traffic profile ([2,3]-node-L[2,3], ...).
         :param skip_warmup: Start TRex without warmup traffic if true.
-        :type rate: int
+        :type rate: float
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
@@ -66,7 +69,7 @@ class TGDropRateSearchImpl(DropRateSearch):
                 tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                        unit_rate, frame_size,
                                                        traffic_type,
-                                                       warmup_time=0)
+                                                       warmup_time=0.0)
             else:
                 tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                        unit_rate, frame_size,
@@ -97,8 +100,13 @@ class TGDropRateSearchImpl(DropRateSearch):
         return tg_instance.get_latency_int()
 
 
-class TrafficGenerator(object):
-    """Traffic Generator."""
+class TrafficGenerator(AbstractRateProvider):
+    """Traffic Generator.
+
+    FIXME: Describe API."""
+
+    # TODO: Decrease friction between various search and rate provider APIs.
+    # FIXME: Remove "trex" from lines which could work with other TGs.
 
     # use one instance of TrafficGenerator for all tests in test suite
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
@@ -374,7 +382,7 @@ class TrafficGenerator(object):
 
     def trex_stl_start_remote_exec(self, duration, rate, framesize,
                                    traffic_type, async_call=False,
-                                   latency=True, warmup_time=5):
+                                   latency=True, warmup_time=5.0):
         """Execute script on remote node over ssh to start traffic.
 
         :param duration: Time expresed in seconds for how long to send traffic.
@@ -384,13 +392,13 @@ class TrafficGenerator(object):
         :param async_call: If enabled then don't wait for all incomming trafic.
         :param latency: With latency measurement.
         :param warmup_time: Warmup time period.
-        :type duration: int
+        :type duration: float
         :type rate: str
         :type framesize: str
         :type traffic_type: str
         :type async_call: bool
         :type latency: bool
-        :type warmup_time: int
+        :type warmup_time: float
         :returns: Nothing
         :raises RuntimeError: In case of TG driver issue.
         """
@@ -418,7 +426,7 @@ class TrafficGenerator(object):
             "{9}'".  # --latency
             format(Constants.REMOTE_FW_DIR, profile_path, duration, framesize,
                    rate, warmup_time, _p0 - 1, _p1 - 1, _async, _latency),
-            timeout=int(duration) + 60)
+            timeout=float(duration) + 60)
 
         if int(ret) != 0:
             raise RuntimeError('TRex stateless runtime error')
@@ -470,7 +478,7 @@ class TrafficGenerator(object):
         :type rate: str
         :type framesize: str
         :type traffic_type: str
-        :type warmup_time: int
+        :type warmup_time: float
         :type async_call: bool
         :type latency: bool
         :returns: TG output.
@@ -490,7 +498,7 @@ class TrafficGenerator(object):
         if node['subtype'] is None:
             raise RuntimeError('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
-            self.trex_stl_start_remote_exec(int(duration), rate, framesize,
+            self.trex_stl_start_remote_exec(duration, rate, framesize,
                                             traffic_type, async_call, latency,
                                             warmup_time=warmup_time)
         else:
@@ -533,3 +541,101 @@ class TrafficGenerator(object):
         if loss > float(loss_acceptance):
             raise Exception("Traffic loss {} above loss acceptance: {}".format(
                 loss, loss_acceptance))
+
+    def set_rate_provider_defaults(self, frame_size, traffic_type,
+                                   warmup_time=0.0):
+        """Store values accessed by measure().
+
+        :param frame_size: Frame size identifier or value [B].
+        :param traffic_type: Traffic type identifier.
+        :param warmup_time: Traffic duration before measurement starts [s].
+        :type frame_size: str or int
+        :type traffic_type: str
+        :type warmup_time: float
+        :returns: None
+        """
+        self.frame_size = frame_size
+        self.traffic_type = str(traffic_type)
+        self.warmup_time = float(warmup_time)
+
+    def measure(self, duration, transmit_rate):
+        """Run bi-directional measurement, parse and return results.
+
+        :param duration: Trial duration [s].
+        :param transmit_rate: Target bidirectional transmit rate [pps].
+        :type duration: float
+        :type transmit_rate: float
+        :returns: Structure containing the result of the measurement.
+        :rtype: ReceiveRateMeasurement
+        :raises RuntimeError: If TG is not set, or if node is not TG,
+            or if subtype is not specified.
+        :raises NotImplementedError: If TG is not supported.
+        """
+        duration = float(duration)
+        transmit_rate = float(transmit_rate)
+        # Trex needs target Tr per stream, but reports aggregate Tx and Dx.
+        unit_rate = str(transmit_rate / 2.0) + "pps"
+        self.send_traffic_on_tg(duration, unit_rate, self.framesize,
+                                self.traffic_type, self.warmup_time,
+                                latency=True)
+        tx = int(self.get_sent())
+        dx = int(self.get_loss())
+        measurement = ReceiveRateMeasurement(duration, transmit_rate, tx, dx)
+        measurement.latency = self.get_latency_int()
+        return measurement
+
+
+class OptimizedTrexSearch(object):
+    """Class to be imported as Robot Library, containing a single keyword."""
+
+    def perform_optimized_trex_ndrpdr_search(self, frame_size, traffic_type,
+                                             fail_rate, line_rate,
+                                             allowed_drop_fraction=0.005,
+                                             final_relative_width=0.005,
+                                             final_trial_duration=30.0,
+                                             initial_trial_duration=1.0,
+                                             intermediate_phases=2,
+                                             timeout=600.0):
+        """Setup initialized TG, perform optimized search, return intervals.
+
+        :param frame_size: Frame size identifier or value [B].
+        :param traffic_type: Traffic type identifier.
+        :param fail_rate: Minimal target transmit rate [pps].
+        :param line_rate: Maximal target transmit rate [pps].
+        :param allowed_drop_fraction: Fraction of dropped packets for PDR [1].
+        :param final_relative_width: Final lower bound transmit rate
+            cannot be more distant that this multiple of upper bound [1].
+        :param final_trial_duration: Trial duration for the final phase [s].
+        :param initial_trial_duration: Trial duration for the initial phase
+            and also for the first intermediate phase [s].
+        :param intermediate_phases: Number of intermediate phases to perform
+            before the final phase [1].
+        :param timeout: The search will fail itself when not finished
+            before this overall time [s].
+        :type frame_size: str or int
+        :type traffic_type: str
+        :type fail_rate: float
+        :type line_rate: float
+        :type allowed_drop_fraction: float
+        :type final_relative_width: float
+        :type final_trial_duration: float
+        :type initial_trial_duration: float
+        :type intermediate_phases: int
+        :type timeout: float
+        :returns: Structure containing narrowed down intervals
+            and their measurements.
+        :rtype: NdrPdrResult
+        :raises RuntimeError: If total duration is larger than timeout.
+        """
+        # we need instance of TrafficGenerator instantiated by Robot Framework
+        # to be able to use trex_stl-*()
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        tg_instance.set_rate_provider_defaults(frame_size, traffic_type)
+        algorithm = OptimizedSearchAlgorithm(
+                tg_instance, final_trial_duration=final_trial_duration,
+                final_relative_width=final_relative_width,
+                intermediate_phases=intermediate_phases,
+                initial_trial_duration=initial_trial_duration, timeout=timeout)
+        result = algorithm.narrow_down_ndr_and_pdr(fail_rate, line_rate, allowed_drop_fraction)
+        return result
