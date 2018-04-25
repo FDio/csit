@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "059e7cc3_447564dd",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 99
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-25T13:54:36Z",
+      "side": 1,
+      "message": "\u003e Let me ask the status of making it public.\n\nIn the meantime we can discuss using a toy model:\nhttps://gerrit.fd.io/r/12125\n\nCurrent TrafficGenerator resembles the state solution, I prefer the factory solution.",
+      "parentUuid": "bb272f5c_dc2b6ee8",
+      "range": {
+        "startLine": 541,
+        "startChar": 6,
+        "endLine": 541,
+        "endChar": 22
+      },
+      "revId": "93c79b7ec318302ae1bedb4fceb244d7602d0757",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44cf7354_fb6f9c44",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 99
