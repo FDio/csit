@@ -16,8 +16,10 @@ Legend to table:
     - **Test Case** : name of CSIT test case, naming convention in
       `CSIT wiki <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
     - **Trend [Mpps]** : last value of trend.
-    - **Short-Term Change [%]** : Relative change of last trend value vs. last week trend value.
-    - **Long-Term Change [%]** : Relative change of last trend value vs. maximum of trend values over the last quarter except last week.
+    - **Short-Term Change [%]** : Relative change of last trend value vs. last
+      week trend value.
+    - **Long-Term Change [%]** : Relative change of last trend value vs. maximum
+      of trend values over the last quarter except last week.
     - **Regressions [#]** : Number of regressions detected.
     - **Progressions [#]** : Number of progressions detected.
     - **Outliers [#]** : Number of outliers detected.
