@@ -22,6 +22,30 @@
       "revId": "28f9f057aadad0b744dc91df3240caac7e311424",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6375b951_2c62ff2e",
+        "filename": "docs/cpta/introduction/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-25T13:08:36Z",
+      "side": 1,
+      "message": "this paragraph is what we report in trending tables. right now that\u0027s only for vpp. going forward we can add dpdk testpmd and l3fwd mrr tests, and start executing them regularly. today this is not the case.",
+      "parentUuid": "8f64fa33_d677ac42",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "28f9f057aadad0b744dc91df3240caac7e311424",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
