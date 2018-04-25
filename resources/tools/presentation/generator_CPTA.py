@@ -437,7 +437,8 @@ def _generate_all_charts(spec, input_data):
             tst_lst = list()
             for build in builds_lst:
                 item = tst_data.get(int(build), '')
-                tst_lst.append(str(item) if item else '')
+                tst_lst.append(str(item))
+                # tst_lst.append(str(item) if item else '')
             csv_table.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
 
         for period in chart["periods"]:
