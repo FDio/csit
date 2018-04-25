@@ -22,6 +22,7 @@ import pandas as pd
 
 from string import replace
 from math import isnan
+from numpy import nan
 from xml.etree import ElementTree as ET
 
 from errors import PresentationError
@@ -688,12 +689,12 @@ def table_performance_trending_dashboard(table, input_data):
 
     # Prepare the header of the tables
     header = ["Test Case",
-              "Throughput Trend [Mpps]",
-              "Long Trend Compliance",
-              "Trend Compliance",
-              "Top Anomaly [Mpps]",
-              "Change [%]",
-              "Outliers [Number]"
+              "Trend [Mpps]",
+              "Short-Term Change [%]",
+              "Long-Term Change [%]",
+              "Regressions [#]",
+              "Progressions [#]",
+              "Outliers [#]"
               ]
     header_str = ",".join(header) + "\n"
 
@@ -719,154 +720,81 @@ def table_performance_trending_dashboard(table, input_data):
         if len(tbl_dict[tst_name]["data"]) > 2:
 
             pd_data = pd.Series(tbl_dict[tst_name]["data"])
+            last_key = pd_data.keys()[-1]
             win_size = min(pd_data.size, table["window"])
+            key_14 = pd_data.keys()[-(pd_data.size - win_size)]
+            long_win_size = min(pd_data.size, table["long-trend-window"])
+
+            data_t, _ = split_outliers(pd_data, outlier_const=1.5,
+                                       window=win_size)
+
+            median_t = data_t.rolling(window=win_size, min_periods=2).median()
+            stdev_t = data_t.rolling(window=win_size, min_periods=2).std()
+            median_idx = pd_data.size - long_win_size
+            try:
+                max_median = max([x for x in median_t.values[median_idx:]
+                                  if not isnan(x)])
+            except ValueError:
+                max_median = nan
+            try:
+                last_median_t = median_t[last_key]
+            except KeyError:
+                last_median_t = nan
+            try:
+                median_t_14 = median_t[key_14]
+            except KeyError:
+                median_t_14 = nan
+
             # Test name:
             name = tbl_dict[tst_name]["name"]
 
-            median = pd_data.rolling(window=win_size, min_periods=2).median()
-            median_idx = pd_data.size - table["long-trend-window"]
-            median_idx = 0 if median_idx < 0 else median_idx
-            try:
-                max_median = max([x for x in median.values[median_idx:]
-                                  if not isnan(x)])
-            except ValueError:
-                max_median = None
-            trimmed_data, _ = split_outliers(pd_data, outlier_const=1.5,
-                                             window=win_size)
-            stdev_t = pd_data.rolling(window=win_size, min_periods=2).std()
-
-            rel_change_lst = [None, ]
-            classification_lst = [None, ]
-            median_lst = [None, ]
-            sample_lst = [None, ]
-            first = True
+            # Classification list:
+            classification_lst = list()
             for build_nr, value in pd_data.iteritems():
-                if first:
-                    first = False
-                    continue
-                # Relative changes list:
-                if not isnan(value) \
-                        and not isnan(median[build_nr]) \
-                        and median[build_nr] != 0:
-                    rel_change_lst.append(round(
-                        relative_change(float(median[build_nr]), float(value)),
-                        2))
-                else:
-                    rel_change_lst.append(None)
 
-                # Classification list:
-                if isnan(trimmed_data[build_nr]) \
-                        or isnan(median[build_nr]) \
+                if isnan(data_t[build_nr]) \
+                        or isnan(median_t[build_nr]) \
                         or isnan(stdev_t[build_nr]) \
                         or isnan(value):
                     classification_lst.append("outlier")
-                elif value < (median[build_nr] - 3 * stdev_t[build_nr]):
+                elif value < (median_t[build_nr] - 3 * stdev_t[build_nr]):
                     classification_lst.append("regression")
-                elif value > (median[build_nr] + 3 * stdev_t[build_nr]):
+                elif value > (median_t[build_nr] + 3 * stdev_t[build_nr]):
                     classification_lst.append("progression")
                 else:
                     classification_lst.append("normal")
-                sample_lst.append(value)
-                median_lst.append(median[build_nr])
 
-            last_idx = len(classification_lst) - 1
-            first_idx = last_idx - int(table["evaluated-window"])
-            if first_idx < 0:
-                first_idx = 0
-
-            nr_outliers = 0
-            consecutive_outliers = 0
-            failure = False
-            for item in classification_lst[first_idx:]:
-                if item == "outlier":
-                    nr_outliers += 1
-                    consecutive_outliers += 1
-                    if consecutive_outliers == 3:
-                        failure = True
-                else:
-                    consecutive_outliers = 0
-
-            if failure:
-                classification = "failure"
-            elif "regression" in classification_lst[first_idx:]:
-                classification = "regression"
-            elif "progression" in classification_lst[first_idx:]:
-                classification = "progression"
+            if isnan(last_median_t) or isnan(median_t_14) or median_t_14 == 0:
+                rel_change_last = nan
             else:
-                classification = "normal"
+                rel_change_last = round(
+                    (last_median_t - median_t_14) / median_t_14, 2)
 
-            if classification == "normal":
-                index = len(classification_lst) - 1
+            if isnan(max_median) or isnan(last_median_t) or max_median == 0:
+                rel_change_long = nan
             else:
-                tmp_classification = "outlier" if classification == "failure" \
-                    else classification
-                index = None
-                for idx in range(first_idx, len(classification_lst)):
-                    if classification_lst[idx] == tmp_classification:
-                        if rel_change_lst[idx]:
-                            index = idx
-                            break
-                if index is None:
-                    continue
-                for idx in range(index+1, len(classification_lst)):
-                    if classification_lst[idx] == tmp_classification:
-                        if rel_change_lst[idx]:
-                            if (abs(rel_change_lst[idx]) >
-                                    abs(rel_change_lst[index])):
-                                index = idx
+                rel_change_long = round(
+                    (last_median_t - max_median) / max_median, 2)
 
-            logging.debug("{}".format(name))
-            logging.debug("sample_lst: {} - {}".
-                          format(len(sample_lst), sample_lst))
-            logging.debug("median_lst: {} - {}".
-                          format(len(median_lst), median_lst))
-            logging.debug("rel_change: {} - {}".
-                          format(len(rel_change_lst), rel_change_lst))
-            logging.debug("classn_lst: {} - {}".
-                          format(len(classification_lst), classification_lst))
-            logging.debug("index:      {}".format(index))
-            logging.debug("classifica: {}".format(classification))
+            tbl_lst.append([name,
+                            '-' if isnan(last_median_t) else
+                            round(last_median_t / 1000000, 2),
+                            '-' if isnan(rel_change_last) else rel_change_last,
+                            '-' if isnan(rel_change_long) else rel_change_long,
+                            classification_lst[win_size:].count("regression"),
+                            classification_lst[win_size:].count("progression"),
+                            classification_lst[win_size:].count("outlier")])
 
-            try:
-                trend = round(float(median_lst[-1]) / 1000000, 2) \
-                    if not isnan(median_lst[-1]) else '-'
-                sample = round(float(sample_lst[index]) / 1000000, 2) \
-                    if not isnan(sample_lst[index]) else '-'
-                rel_change = rel_change_lst[index] \
-                    if rel_change_lst[index] is not None else '-'
-                if max_median is not None:
-                    if not isnan(sample_lst[index]):
-                        long_trend_threshold = \
-                            max_median * (table["long-trend-threshold"] / 100)
-                        if sample_lst[index] < long_trend_threshold:
-                            long_trend_classification = "failure"
-                        else:
-                            long_trend_classification = 'normal'
-                    else:
-                        long_trend_classification = "failure"
-                else:
-                    long_trend_classification = '-'
-                tbl_lst.append([name,
-                                trend,
-                                long_trend_classification,
-                                classification,
-                                '-' if classification == "normal" else sample,
-                                '-' if classification == "normal" else
-                                rel_change,
-                                nr_outliers])
-            except IndexError as err:
-                logging.error("{}".format(err))
-                continue
+    tbl_lst.sort(key=lambda rel: rel[0])
 
-    # Sort the table according to the classification
     tbl_sorted = list()
-    for long_trend_class in ("failure", 'normal', '-'):
-        tbl_long = [item for item in tbl_lst if item[2] == long_trend_class]
-        for classification in \
-                ("failure", "regression", "progression", "normal"):
-            tbl_tmp = [item for item in tbl_long if item[3] == classification]
-            tbl_tmp.sort(key=lambda rel: rel[0])
-            tbl_sorted.extend(tbl_tmp)
+    for nrr in range(table["window"], -1, -1):
+        tbl_reg = [item for item in tbl_lst if item[4] == nrr]
+        for nrp in range(table["window"], -1, -1):
+            tbl_pro = [item for item in tbl_reg if item[5] == nrp]
+            for nro in range(table["window"], -1, -1):
+                tbl_out = [item for item in tbl_pro if item[5] == nro]
+                tbl_sorted.extend(tbl_out)
 
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
@@ -1002,13 +930,6 @@ def table_performance_trending_dashboard_html(table, input_data):
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
 
-            if c_idx == 3:
-                if item == "regression":
-                    td.set("bgcolor", "#eca1a6")
-                elif item == "failure":
-                    td.set("bgcolor", "#d6cbd3")
-                elif item == "progression":
-                    td.set("bgcolor", "#bdcebe")
             if c_idx > 0:
                 td.text = item
 
