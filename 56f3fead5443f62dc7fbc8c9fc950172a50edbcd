@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b712331b_6c31c6e3",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-25T14:46:04Z",
+      "side": 1,
+      "message": "Please comment why do you need to test such old OS version?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 47
+      },
+      "revId": "56f3fead5443f62dc7fbc8c9fc950172a50edbcd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e223758d_8d4a7aa4",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-25T14:46:04Z",
+      "side": 1,
+      "message": "16.04 is quite old?",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "56f3fead5443f62dc7fbc8c9fc950172a50edbcd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88361f97_bfe11a46",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-25T14:46:04Z",
+      "side": 1,
+      "message": "I am missing the VIRL reservation algorithms and resource depletion. See bootstrap.sh",
+      "revId": "56f3fead5443f62dc7fbc8c9fc950172a50edbcd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
