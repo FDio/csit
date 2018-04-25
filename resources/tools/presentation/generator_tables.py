@@ -723,6 +723,7 @@ def table_performance_trending_dashboard(table, input_data):
             # Test name:
             name = tbl_dict[tst_name]["name"]
 
+            # FIXME: Use Trimmed Moving Median here, and everywhere else.
             median = pd_data.rolling(window=win_size, min_periods=2).median()
             median_idx = pd_data.size - table["long-trend-window"]
             median_idx = 0 if median_idx < 0 else median_idx
