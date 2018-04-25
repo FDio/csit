@@ -153,6 +153,8 @@
       - 13  # sel
       - 14  # sel
       - 16  # full
+      - 17  # sel
+      - 18  # full
     vpp-performance-changes-mrr:
       csit-vpp-perf-check-1801:
       - 1
@@ -178,6 +180,8 @@
       - 13  # sel
       - 14  # sel
       - 16  # full
+      - 17  # sel
+      - 18  # full
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
 #      - 9
@@ -229,6 +233,7 @@
     vpp-perf-results:
       csit-vpp-perf-1804-all:
       - 16  # full
+      - 18  # full
     vpp-func-results:
       csit-vpp-functional-1804-ubuntu1604-virl:
       - "lastSuccessfulBuild"
@@ -250,6 +255,8 @@
       - 13  # sel
       - 14  # sel
       - 16  # full
+      - 17  # sel
+      - 18  # full
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1804-all:
       - 4
@@ -581,6 +588,8 @@
     - 13  # sel
     - 14  # sel
     - 16  # full
+    - 17  # sel
+    - 18  # full
     csit-vpp-perf-check-1801:
     - 1   # mrr
     - 2   # mrr
