@@ -42,7 +42,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Library | resources.libraries.python.QemuUtils
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | THIS
 | ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE | VHOST | VM | VHOST_1024
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
