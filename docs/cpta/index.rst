@@ -15,6 +15,7 @@ Contents
     :numbered:
 
     introduction/index
+    methodology/index
     trending/index
     data/index
     indices
