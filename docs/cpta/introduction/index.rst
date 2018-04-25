@@ -4,35 +4,30 @@ VPP MRR Performance Dashboard
 Description
 -----------
 
-Dashboard tables list a summary of per test-case VPP MRR performance trend
-values and detected anomalies (Maximum Receive Rate - received packet rate
-under line rate load). Data comes from trending MRR jobs executed every 12
-hrs (2:00, 14:00 UTC). Trend, trend compliance and anomaly calculations are
-based on a rolling window of <N> samples, currently N=14 covering last 7 days.
-Separate tables are generated for tested VPP worker-thread-core combinations
-(1t1c, 2t2c, 4t4c).
+Dashboard tables list a summary of per test-case VPP MRR performance
+trend and trend compliance metrics, and detected number of anomalies.
+Data samples come from the CSIT VPP trending MRR jobs executed twice a
+day, every 12 hrs (02:00, 14:00 UTC). All trend and anomaly evaluation
+is based on a rolling window of <N=14> data samples, covering last 7
+days.
 
 Legend to table:
 
-    - **Test Case** : name of CSIT test case, see naming convention in
+    - **Test Case** : name of CSIT test case, naming convention in
       `CSIT wiki <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
-    - **Throughput Trend [Mpps]** : last value of trend calculated over a
-      rolling window.
-    - **Trend Compliance** : calculated based on detected anomalies over a
-      rolling window, listed in precedence order - i) **failure** if 3
-      consecutive outliers, ii) **regression** if any regressions, iii)
-      **progression** if any progressions, iv) **normal** if data compliant
-      with trend; test cases listed alphabetically within compliance category.
-    - **Top Anomaly [Mpps]** : i) outlier if **failure**, ii) drop
-      if **regression**, iii) gain if **progression**, iv) **-**
-      if normal i.e. within trend.
-    - **Change [%]** : **Top Anomaly** vs. **Throughput Trend**, **-** if
-      normal.
-    - **Outliers [Number]** : number of outliers detected over a rolling window.
+    - **Trend [Mpps]** : last value of trend.
+    - **Short-Term Change [%]** : Relative change of last trend value vs. last week trend value.
+    - **Long-Term Change [%]** : Relative change of last trend value vs. maximum of trend values over the last quarter except last week.
+    - **Regressions [#]** : Number of regressions detected.
+    - **Progressions [#]** : Number of progressions detected.
+    - **Outliers [#]** : Number of outliers detected.
 
-Tables are listed in sections 1.x. Followed by daily trending graphs in
-sections 2.x. Daily trending data used to generate the graphs is listed in
-sections 3.x.
+All trend and anomaly calculations are defined in :ref:`trending_methodology`.
+
+Tested VPP worker-thread-core combinations (1t1c, 2t2c, 4t4c) are listed
+in separate tables in section 1.x. Followed by trending methodology in
+section 2. and daily trending graphs in sections 3.x. Daily trending
+data used is provided in sections 4.x.
 
 VPP worker on 1t1c
 ------------------
