@@ -144,55 +144,53 @@ def _select_data(in_data, period, fill_missing=False, use_first=False):
     return OrderedDict(sorted(data_dict.items(), key=lambda t: t[0]))
 
 
-def _evaluate_results(in_data, trimmed_data, window=10):
+def _evaluate_results(trimmed_data, window=10):
     """Evaluates if the sample value is regress, normal or progress compared to
     previous data within the window.
     We use the intervals defined as:
-    - regress: less than median - 3 * stdev
-    - normal: between median - 3 * stdev and median + 3 * stdev
-    - progress: more than median + 3 * stdev
+    - regress: less than trimmed moving median - 3 * stdev
+    - normal: between trimmed moving median - 3 * stdev and median + 3 * stdev
+    - progress: more than trimmed moving median + 3 * stdev
+    where stdev is trimmed moving standard deviation.
 
-    :param in_data: Full data set.
-    :param trimmed_data: Full data set without the outliers.
-    :param window: Window size used to calculate moving median and moving stdev.
-    :type in_data: pandas.Series
+    :param trimmed_data: Full data set with the outliers replaced by nan.
+    :param window: Window size used to calculate moving average and moving stdev.
     :type trimmed_data: pandas.Series
     :type window: int
     :returns: Evaluated results.
     :rtype: list
     """
 
-    if len(in_data) > 2:
-        win_size = in_data.size if in_data.size < window else window
+    if len(trimmed_data) > 2:
+        win_size = trimmed_data.size if trimmed_data.size < window else window
         results = [0.66, ]
-        median = trimmed_data.rolling(window=win_size, min_periods=2).median()
-        stdev_t = trimmed_data.rolling(window=win_size, min_periods=2).std()
+        tmm = trimmed_data.rolling(window=win_size, min_periods=2).median()
+        tmstd = trimmed_data.rolling(window=win_size, min_periods=2).std()
 
         first = True
-        for build_nr, value in in_data.iteritems():
+        for build_nr, value in trimmed_data.iteritems():
             if first:
                 first = False
                 continue
-            if np.isnan(trimmed_data[build_nr]) \
-                    or np.isnan(median[build_nr]) \
-                    or np.isnan(stdev_t[build_nr]) \
-                    or np.isnan(value):
+            if (np.isnan(value) \
+                    or np.isnan(tmm[build_nr]) \
+                    or np.isnan(tmstd[build_nr])):
                 results.append(0.0)
-            elif value < (median[build_nr] - 3 * stdev_t[build_nr]):
+            elif value < (tmm[build_nr] - 3 * tmstd[build_nr]):
                 results.append(0.33)
-            elif value > (median[build_nr] + 3 * stdev_t[build_nr]):
+            elif value > (tmm[build_nr] + 3 * tmstd[build_nr]):
                 results.append(1.0)
             else:
                 results.append(0.66)
     else:
         results = [0.0, ]
         try:
-            median = np.median(in_data)
-            stdev = np.std(in_data)
-            if in_data.values[-1] < (median - 3 * stdev):
+            tmm = np.median(trimmed_data)
+            tmstd = np.std(trimmed_data)
+            if trimmed_data.values[-1] < (tmm - 3 * tmstd):
                 results.append(0.33)
-            elif (median - 3 * stdev) <= in_data.values[-1] <= (
-                    median + 3 * stdev):
+            elif (tmm - 3 * tmstd) <= trimmed_data.values[-1] <= (
+                    tmm + 3 * tmstd):
                 results.append(0.66)
             else:
                 results.append(1.0)
@@ -203,10 +201,10 @@ def _evaluate_results(in_data, trimmed_data, window=10):
 
 def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                               fill_missing=True, use_first=False,
-                              show_moving_median=True, name="", color=""):
+                              show_trend_line=True, name="", color=""):
     """Generate the trending traces:
      - samples,
-     - moving median (trending plot)
+     - trimmed moving median (trending line)
      - outliers, regress, progress
 
     :param in_data: Full data set.
@@ -214,9 +212,9 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     :param period: Sampling period.
     :param moving_win_size: Window size.
     :param fill_missing: If the chosen sample is missing in the full set, its
-    nearest neighbour is used.
+        nearest neighbour is used.
     :param use_first: Use the first sample even though it is not chosen.
-    :param show_moving_median: Show moving median (trending plot).
+    :param show_trend_line: Show moving median (trending plot).
     :param name: Name of the plot
     :param color: Name of the color for the plot.
     :type in_data: OrderedDict
@@ -225,7 +223,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     :type moving_win_size: int
     :type fill_missing: bool
     :type use_first: bool
-    :type show_moving_median: bool
+    :type show_trend_line: bool
     :type name: str
     :type color: str
     :returns: Generated traces (list) and the evaluated result (float).
@@ -237,8 +235,8 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                                fill_missing=fill_missing,
                                use_first=use_first)
 
-    data_x = [key for key in in_data.keys()]
-    data_y = [val for val in in_data.values()]
+    data_x = list(in_data.keys())
+    data_y = list(in_data.values())
 
     hover_text = list()
     for idx in data_x:
@@ -249,7 +247,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
 
     t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
                                       window=moving_win_size)
-    results = _evaluate_results(data_pd, t_data, window=moving_win_size)
+    results = _evaluate_results(t_data, window=moving_win_size)
 
     anomalies = pd.Series()
     anomalies_res = list()
@@ -328,12 +326,12 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     )
     traces.append(trace_anomalies)
 
-    if show_moving_median:
-        data_mean_y = pd.Series(data_y).rolling(
-            window=moving_win_size, min_periods=2).median()
-        trace_median = plgo.Scatter(
-            x=data_x,
-            y=data_mean_y,
+    if show_trend_line:
+        data_trend = t_data.rolling(window=moving_win_size,
+                                    min_periods=2).median()
+        trace_trend = plgo.Scatter(
+            x=data_trend.keys(),
+            y=data_trend.tolist(),
             mode='lines',
             line={
                 "shape": "spline",
@@ -342,7 +340,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
             },
             name='{name}-trend'.format(name=name)
         )
-        traces.append(trace_median)
+        traces.append(trace_trend)
 
     return traces, results[-1]
 
