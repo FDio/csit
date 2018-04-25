@@ -165,7 +165,7 @@ def _evaluate_results(in_data, trimmed_data, window=10):
     if len(in_data) > 2:
         win_size = in_data.size if in_data.size < window else window
         results = [0.66, ]
-        median = in_data.rolling(window=win_size, min_periods=2).median()
+        median = trimmed_data.rolling(window=win_size, min_periods=2).median()
         stdev_t = trimmed_data.rolling(window=win_size, min_periods=2).std()
 
         first = True

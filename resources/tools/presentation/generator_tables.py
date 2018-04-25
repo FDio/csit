@@ -722,7 +722,8 @@ def table_performance_trending_dashboard(table, input_data):
             pd_data = pd.Series(tbl_dict[tst_name]["data"])
             last_key = pd_data.keys()[-1]
             win_size = min(pd_data.size, table["window"])
-            key_14 = pd_data.keys()[-(pd_data.size - win_size)]
+            win_first_idx = pd_data.size - win_size
+            key_14 = pd_data.keys()[-win_first_idx]
             long_win_size = min(pd_data.size, table["long-trend-window"])
 
             data_t, _ = split_outliers(pd_data, outlier_const=1.5,
@@ -730,9 +731,9 @@ def table_performance_trending_dashboard(table, input_data):
 
             median_t = data_t.rolling(window=win_size, min_periods=2).median()
             stdev_t = data_t.rolling(window=win_size, min_periods=2).std()
-            median_idx = pd_data.size - long_win_size
+            median_first_idx = pd_data.size - long_win_size
             try:
-                max_median = max([x for x in median_t.values[median_idx:]
+                max_median = max([x for x in median_t.values[median_first_idx:]
                                   if not isnan(x)])
             except ValueError:
                 max_median = nan
@@ -747,6 +748,14 @@ def table_performance_trending_dashboard(table, input_data):
 
             # Test name:
             name = tbl_dict[tst_name]["name"]
+
+            logging.info("{}".format(name))
+            logging.info("pd_data : {}".format(pd_data))
+            logging.info("data_t : {}".format(data_t))
+            logging.info("median_t : {}".format(median_t))
+            logging.info("last_median_t : {}".format(last_median_t))
+            logging.info("median_t_14 : {}".format(median_t_14))
+            logging.info("max_median : {}".format(max_median))
 
             # Classification list:
             classification_lst = list()
@@ -764,26 +773,30 @@ def table_performance_trending_dashboard(table, input_data):
                 else:
                     classification_lst.append("normal")
 
-            if isnan(last_median_t) or isnan(median_t_14) or median_t_14 == 0:
+            if isnan(last_median_t) or isnan(median_t_14) or median_t_14 == 0.0:
                 rel_change_last = nan
             else:
                 rel_change_last = round(
                     (last_median_t - median_t_14) / median_t_14, 2)
 
-            if isnan(max_median) or isnan(last_median_t) or max_median == 0:
+            if isnan(max_median) or isnan(last_median_t) or max_median == 0.0:
                 rel_change_long = nan
             else:
                 rel_change_long = round(
                     (last_median_t - max_median) / max_median, 2)
 
-            tbl_lst.append([name,
-                            '-' if isnan(last_median_t) else
-                            round(last_median_t / 1000000, 2),
-                            '-' if isnan(rel_change_last) else rel_change_last,
-                            '-' if isnan(rel_change_long) else rel_change_long,
-                            classification_lst[win_size:].count("regression"),
-                            classification_lst[win_size:].count("progression"),
-                            classification_lst[win_size:].count("outlier")])
+            logging.info("rel_change_last : {}".format(rel_change_last))
+            logging.info("rel_change_long : {}".format(rel_change_long))
+
+            tbl_lst.append(
+                [name,
+                 '-' if isnan(last_median_t) else
+                 round(last_median_t / 1000000, 2),
+                 '-' if isnan(rel_change_last) else rel_change_last,
+                 '-' if isnan(rel_change_long) else rel_change_long,
+                 classification_lst[win_first_idx:].count("regression"),
+                 classification_lst[win_first_idx:].count("progression"),
+                 classification_lst[win_first_idx:].count("outlier")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
 
