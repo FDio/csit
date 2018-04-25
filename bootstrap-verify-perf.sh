@@ -15,9 +15,7 @@
 set -xo pipefail
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -190,8 +188,7 @@ case "$TEST_TAG" in
               'pdrdiscAND2t2c')
         ;;
     VERIFY-PERF-MRR )
-        TAGS=('mrrAND1t1c'
-              'mrrAND2t2c')
+        TAGS=('THIS')
         ;;
     VERIFY-PERF-IP4 )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
