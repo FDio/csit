@@ -140,7 +140,7 @@ def get_files(path, extension=None, full_path=True):
 
     :param path: Path to files.
     :param extension: Extension of files to process. If it is the empty string,
-    all files will be processed.
+        all files will be processed.
     :param full_path: If True, the files with full path are generated.
     :type path: str
     :type extension: str
