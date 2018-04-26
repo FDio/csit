@@ -1,1 +1,1 @@
-/restconf/config{odl_url_part}/hc2vpp-ietf-routing:routing/routing-instance/vpp-routing-instance/routing-protocols
+/restconf/config{odl_url_part}/hc2vpp-ietf-routing:routing/control-plane-protocols
