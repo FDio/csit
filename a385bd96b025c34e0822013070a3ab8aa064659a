@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "33772247_c8549db1",
+        "filename": "pylint.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-26T12:51:04Z",
+      "side": 1,
+      "message": "We are not quite ready for --py3k --enable\u003dall\njust yet.",
+      "range": {
+        "startLine": 5,
+        "startChar": 43,
+        "endLine": 5,
+        "endChar": 44
+      },
+      "revId": "a385bd96b025c34e0822013070a3ab8aa064659a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a86b6ac_7292bdf2",
         "filename": "requirements.txt",
         "patchSetId": 1
