@@ -414,6 +414,8 @@ def table_performance_comparison(table, input_data):
             for job, builds in item["data"].items():
                 for build in builds:
                     for tst_name, tst_data in data[job][str(build)].iteritems():
+                        if tbl_dict.get(tst_name, None) is None:
+                            continue
                         if tbl_dict[tst_name].get("history", None) is None:
                             tbl_dict[tst_name]["history"] = OrderedDict()
                         if tbl_dict[tst_name]["history"].get(item["title"],
