@@ -737,22 +737,23 @@
   algorithm: "table_performance_comparison"
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-changes"
-#  reference:
-#    title: "Release 1710"
-#    data:
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#      - 14
-#      - 15
-#      - 16
-#      - 17
-#      - 18
-#      - 19
-#      - 20
+  history:
+    -
+      title: "rls1710"
+      data:
+        csit-vpp-perf-1710-all:
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
   reference:
-    title: "Release 1801"
+    title: "rls1801"
     data:
       csit-vpp-perf-1801-all:
       - 124  # sel
@@ -768,7 +769,7 @@
       - 167  # sel
       - 172  # sel acl only
   compare:
-    title: "Release 1804"
+    title: "rls1804"
     data:
       csit-vpp-perf-1804-all:
       - 1

@@ -22,6 +22,7 @@ import pandas as pd
 
 from string import replace
 from math import isnan
+from collections import OrderedDict
 from numpy import nan
 from xml.etree import ElementTree as ET
 
@@ -360,12 +361,20 @@ def table_performance_comparison(table, input_data):
 
     # Prepare the header of the tables
     try:
-        header = ["Test case",
-                  "{0} Throughput [Mpps]".format(table["reference"]["title"]),
-                  "{0} stdev [Mpps]".format(table["reference"]["title"]),
-                  "{0} Throughput [Mpps]".format(table["compare"]["title"]),
-                  "{0} stdev [Mpps]".format(table["compare"]["title"]),
-                  "Change [%]"]
+        header = ["Test case", ]
+
+        history = table.get("history", None)
+        if history:
+            for item in history:
+                header.extend(
+                    ["{0} Throughput [Mpps]".format(item["title"]),
+                     "{0} Stdev [Mpps]".format(item["title"])])
+        header.extend(
+            ["{0} Throughput [Mpps]".format(table["reference"]["title"]),
+             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
+             "{0} Throughput [Mpps]".format(table["compare"]["title"]),
+             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
+             "Change [%]"])
         header_str = ",".join(header) + "\n"
     except (AttributeError, KeyError) as err:
         logging.error("The model is invalid, missing parameter: {0}".
@@ -400,10 +409,36 @@ def table_performance_comparison(table, input_data):
                     pass
                 except TypeError:
                     tbl_dict.pop(tst_name, None)
+    if history:
+        for item in history:
+            for job, builds in item["data"].items():
+                for build in builds:
+                    for tst_name, tst_data in data[job][str(build)].iteritems():
+                        if tbl_dict[tst_name].get("history", None) is None:
+                            tbl_dict[tst_name]["history"] = OrderedDict()
+                        if tbl_dict[tst_name]["history"].get(item["title"],
+                                                             None) is None:
+                            tbl_dict[tst_name]["history"][item["title"]] = \
+                                list()
+                        tbl_dict[tst_name]["history"][item["title"]].\
+                            append(tst_data["throughput"]["value"])
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
+        if history:
+            for hist_list in tbl_dict[tst_name]["history"].values():
+                for hist_data in hist_list:
+                    if hist_data:
+                        data_t = remove_outliers(
+                            hist_data, outlier_const=table["outlier-const"])
+                        if data_t:
+                            item.append(round(mean(data_t) / 1000000, 2))
+                            item.append(round(stdev(data_t) / 1000000, 2))
+                        else:
+                            item.extend([None, None])
+                    else:
+                        item.extend([None, None])
         if tbl_dict[tst_name]["ref-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
                                      outlier_const=table["outlier-const"])
@@ -426,9 +461,9 @@ def table_performance_comparison(table, input_data):
                 item.extend([None, None])
         else:
             item.extend([None, None])
-        if item[1] is not None and item[3] is not None:
-            item.append(int(relative_change(float(item[1]), float(item[3]))))
-        if len(item) == 6:
+        if item[-5] is not None and item[-3] is not None and item[-5] != 0:
+            item.append(int(relative_change(float(item[-5]), float(item[-3]))))
+        if len(item) == len(header):
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
