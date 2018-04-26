@@ -22,6 +22,30 @@
       "revId": "a385bd96b025c34e0822013070a3ab8aa064659a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96861960_0f34a022",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-26T07:59:28Z",
+      "side": 1,
+      "message": "We can. The current codebase will be marked with more warnings, but there are some 1.5.4 warnings already. Bump\u0026fix is better than fix\u0026bump\u0026fix_again. I assume warnings from 2.0 will be more helpful.\n\nThe main limitation is pylint.cfg, we do not want 2.0 to stop detecting some known warnings just because the cfg file has the old syntax. I do not have a good idea on how long does it take to update the cfg file.",
+      "parentUuid": "4a86b6ac_7292bdf2",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "a385bd96b025c34e0822013070a3ab8aa064659a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
