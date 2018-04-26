@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02d24f17_b7325739",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-26T11:13:47Z",
+      "side": 1,
+      "message": "1.5.4 is reporting the following warnings for pylint.cfg\n1.8.4 is not reporting any warnings, probably because the optims were removed (and are now silently ignored).\nWe should review them and make sure we still want them applied.\n\nWarning: option profile is obsolete and it is slated for removal in Pylint 1.6.\nWarning: option comment is obsolete and it is slated for removal in Pylint 1.6.\nWarning: option required-attributes is obsolete and it is slated for removal in Pylint 1.6.\nWarning: option ignore-iface-methods is obsolete and it is slated for removal in Pylint 1.6.\nWarning: option zope is obsolete and it is slated for removal in Pylint 1.6.",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "01106272fdc1cbf97d80a55fe757248cfea7829c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
