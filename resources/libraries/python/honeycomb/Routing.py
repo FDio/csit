@@ -98,7 +98,7 @@ class RoutingKeywords(object):
             protocol = "vpp-protocol-attributes"
 
         full_data = {
-            "routing-protocol": [
+            "control-plane-protocol": [
                 {
                     "name": name,
                     "description": "hc2vpp-csit test route",
@@ -116,7 +116,7 @@ class RoutingKeywords(object):
             ]
         }
 
-        path = "/routing-protocol/{0}".format(name)
+        path = "/control-plane-protocol/{0}".format(name)
         return RoutingKeywords._set_routing_table_properties(
             node, path, full_data)
 
@@ -132,7 +132,7 @@ class RoutingKeywords(object):
         :rtype: bytearray
         """
 
-        path = "/routing-protocol/{0}".format(name)
+        path = "/control-plane-protocol/{0}".format(name)
         return RoutingKeywords._set_routing_table_properties(node, path)
 
     @staticmethod
@@ -150,7 +150,7 @@ class RoutingKeywords(object):
         :raises HoneycombError: If the operation fails.
         """
 
-        path = "/routing-protocol/{0}".format(name)
+        path = "/control-plane-protocol/{0}".format(name)
         status_code, resp = HcUtil.\
             get_honeycomb_data(node, "oper_routing_table", path)
 
@@ -160,7 +160,7 @@ class RoutingKeywords(object):
                 "routing tables. Status code: {0}.".format(status_code))
 
         data = RoutingKeywords.clean_routing_oper_data(
-            resp['routing-protocol'][0]['static-routes']
+            resp['control-plane-protocol'][0]['static-routes']
             ['hc2vpp-ietf-{0}-unicast-routing:{0}'.format(ip_version)]['route'])
 
         return data
