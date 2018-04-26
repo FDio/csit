@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a1ae8f8_c522b04d",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-26T15:49:56Z",
+      "side": 1,
+      "message": "Oh, this is the cyclic import.\nget_vpp_pid() should be moved somewhere. ssh.py perhaps?",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 10
+      },
+      "revId": "3941af38a7c88bacf2f693026a881c79328be673",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
