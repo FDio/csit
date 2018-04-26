@@ -846,7 +846,8 @@ def table_performance_trending_dashboard(table, input_data):
         for nrp in range(table["window"], -1, -1):
             tbl_pro = [item for item in tbl_reg if item[5] == nrp]
             for nro in range(table["window"], -1, -1):
-                tbl_out = [item for item in tbl_pro if item[5] == nro]
+                tbl_out = [item for item in tbl_pro if item[6] == nro]
+                tbl_out.sort(key=lambda rel: rel[2])
                 tbl_sorted.extend(tbl_out)
 
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])

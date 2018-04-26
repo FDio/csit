@@ -222,14 +222,10 @@
   - "name"
   - "parent"
   - "result"
-  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-  # to present all tests.
-  nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
   long-trend-window: 180
-  long-trend-threshold: 80  # Percent of the highest moving median value
 
 -
   type: "table"
@@ -243,14 +239,10 @@
   - "name"
   - "parent"
   - "result"
-  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-  # to present all tests.
-  nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
   long-trend-window: 180
-  long-trend-threshold: 80  # Percent of the highest moving median value
 
 -
   type: "table"
@@ -264,14 +256,10 @@
   - "name"
   - "parent"
   - "result"
-  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-  # to present all tests.
-  nr-of-tests-shown: 20
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
   long-trend-window: 180
-  long-trend-threshold: 80  # Percent of the highest moving median value
 
 -
   type: "table"
