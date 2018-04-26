@@ -252,7 +252,6 @@ class ConfigBlaster(object):
 
         :param function: Function to be executed in each thread.
         :type function: function
-        :return: None
         """
 
         self.total_ok_rqsts = 0

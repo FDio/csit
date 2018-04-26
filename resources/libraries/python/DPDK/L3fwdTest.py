@@ -44,7 +44,6 @@ class L3fwdTest(object):
         :type lcores_list: str
         :type queue_nums: str
         :type jumbo_frames: str
-        :returns: none
         """
         if dut_node['type'] == NodeType.DUT:
             adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(nodes_info, dut_node,

@@ -79,7 +79,6 @@ def update_mac_addresses_for_node(node):
 
     :param node: Node from topology.
     :type node: dict
-    :return: None
     """
     for port_name, port in node['interfaces'].items():
         if 'driver' not in port:
@@ -128,7 +127,6 @@ def update_nodes_mac_addresses(topology):
 
     :param topology: Topology information with nodes.
     :type topology: dict
-    :return: None
     """
     for node in topology['nodes'].values():
         update_mac_addresses_for_node(node)

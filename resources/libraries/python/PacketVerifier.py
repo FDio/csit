@@ -180,7 +180,6 @@ def packet_reader(interface_name, queue):
     :param queue: Queue in which this function will push incoming packets.
     :type interface_name: str
     :type queue: multiprocessing.Queue
-    :returns: None
     """
     sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
 

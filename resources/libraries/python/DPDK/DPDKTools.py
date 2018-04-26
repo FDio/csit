@@ -37,7 +37,6 @@ class DPDKTools(object):
         :type dut_node: dict
         :type dut_if1: str
         :type dut_if2: str
-        :returns: none
         :raises RuntimeError: If it fails to bind the interfaces to igb_uio.
         """
         if dut_node['type'] == NodeType.DUT:
@@ -72,7 +71,6 @@ class DPDKTools(object):
         :type dut_node: dict
         :type dut_if1: str
         :type dut_if2: str
-        :returns: none
         :raises RuntimeError: If it fails to cleanup the dpdk.
         """
         if dut_node['type'] == NodeType.DUT:

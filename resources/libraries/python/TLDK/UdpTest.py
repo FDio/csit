@@ -73,7 +73,6 @@ class UdpTest(object):
         :type file_prefix: str
         :type dest_ip: str
         :type is_ipv4: bool
-        :returns: none.
         :raises RuntimeError: If failed to execute udpfwd test on the dut node.
         """
         pci_address = Topology.get_interface_pci_addr(dut_node, dut_if)

@@ -66,7 +66,6 @@ class VerifyPacket(object):
 
         :param payload_data: the payload data in the packet.
         :type payload_data: str
-        :returns: none
         :raises RuntimeError: If the vxlan protocol field verify fails.
         """
         # get the vxlan packet and check it
@@ -87,7 +86,6 @@ class VerifyPacket(object):
         :param test_type: the functional test type.
         :type payload_data: str
         :type test_type: str
-        :returns: none
         :raises RuntimeError: If the vxlangpe and nsh protocol
                               field verify fails.
         """
@@ -171,7 +169,6 @@ class VerifyPacket(object):
         :type ether: scapy.Ether
         :type frame_size: Integer
         :type test_type: str
-        :returns: none
         :raises RuntimeError: If the packet field verify fails.
         """
 
