@@ -13,10 +13,10 @@ Changes in CSIT |release|
        rate. MRR tests are used for continuous performance trending and
        for comparison between releases.
 
-   - **SRv6** : Initial SRv6 (Segment Routing IPv6) tests verifying
-       performance of IPv6 and SRH (Segment Routing Header)
-       encapsulation, decapsulation, lookups and rewrites based on
-       configured End and End.DX6 SRv6 egress functions.
+   - **Service Chaining with SRv6** : SRv6 (Segment Routing IPv6) proxy tests
+       verifying performance of Endpoint to SR-unaware appliance via
+       masquerading (End.AM), dynamic proxy (End.AD) or static proxy (End.AS)
+       functions.
 
 #. **Presentation and Analytics Layer (PAL)**
 
