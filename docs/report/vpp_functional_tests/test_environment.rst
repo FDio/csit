@@ -240,30 +240,47 @@ Example of DUT nodes configuration:::
     | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
     |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
     ||/ Name           Version       Architecture Description
-    +++-==============-=============-============-=============================================
-    ii  vpp            17.07-release amd64        Vector Packet Processing--executables
-    ii  vpp-dbg        17.07-release amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev        17.07-release amd64        Vector Packet Processing--development support
-    ii  vpp-dpdk-dev   17.07-release amd64        Vector Packet Processing--development support
-    ii  vpp-dpdk-dkms  17.07-release amd64        DPDK 2.1 igb_uio_driver
-    ii  vpp-lib        17.07-release amd64        Vector Packet Processing--runtime libraries
-    ii  vpp-plugins    17.07-release amd64        Vector Packet Processing--runtime plugins
+    +++-==============-=============-============-=================================================
+    ii  vpp            18.04-release amd64        Vector Packet Processing--executables
+    ii  vpp-dbg        18.04-release amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev        18.04-release amd64        Vector Packet Processing--development support
+    ii  vpp-dpdk-dkms  18.02-vpp1    amd64        DPDK Development Package for VPP - Kernel Modules
+    ii  vpp-lib        18.04-release amd64        Vector Packet Processing--runtime libraries
+    ii  vpp-plugins    18.04-release amd64        Vector Packet Processing--runtime plugins
 
 **VPP Startup Configuration**
 
-VPP startup configuration is common for all test cases.
+VPP startup configuration is common for all test cases except test cases related
+to SW Crypto device.
+
+**Default**
 
 ::
 
     $ cat /etc/vpp/startup.conf
     unix {
       nodaemon
-      log /tmp/vpp.log
+      log /var/log/vpp/vpp.log
       full-coredump
+      cli-listen /run/vpp/cli.sock
+      gid vpp
     }
 
     api-trace {
+    ## This stanza controls binary API tracing. Unless there is a very strong reason,
+    ## please leave this feature enabled.
       on
+    ## Additional parameters:
+    ##
+    ## To set the number of binary API trace records in the circular buffer, configure nitems
+    ##
+    ## nitems <nnn>
+    ##
+    ## To save the api message table decode tables, configure a filename. Results in /tmp/<filename>
+    ## Very handy for understanding api message changes between versions, identifying missing
+    ## plugins, and so forth.
+    ##
+    ## save-api-table <filename>
     }
 
     api-segment {
@@ -306,7 +323,7 @@ VPP startup configuration is common for all test cases.
         # scheduler-priority 50
     }
 
-    dpdk {
+    # dpdk {
         ## Change default settings for all intefaces
         # dev default {
             ## Number of receive queues, enables RSS
@@ -337,9 +354,19 @@ VPP startup configuration is common for all test cases.
         #	num-rx-queues 2
         # }
 
-        ## Change UIO driver used by VPP, Options are: uio_pci_generic, vfio-pci
-        ## and igb_uio (default)
-        # uio-driver uio_pci_generic
+        ## Specify bonded interface and its slaves via PCI addresses
+        ##
+        ## Bonded interface in XOR load balance mode (mode 2) with L3 and L4 headers
+        # vdev eth_bond0,mode=2,slave=0000:02:00.0,slave=0000:03:00.0,xmit_policy=l34
+        # vdev eth_bond1,mode=2,slave=0000:02:00.1,slave=0000:03:00.1,xmit_policy=l34
+        ##
+        ## Bonded interface in Active-Back up mode (mode 1)
+        # vdev eth_bond0,mode=1,slave=0000:02:00.0,slave=0000:03:00.0
+        # vdev eth_bond1,mode=1,slave=0000:02:00.1,slave=0000:03:00.1
+
+        ## Change UIO driver used by VPP, Options are: igb_uio, vfio-pci,
+        ## uio_pci_generic or auto (default)
+        # uio-driver vfio-pci
 
         ## Disable mutli-segment buffers, improves performance but
         ## disables Jumbo MTU support
@@ -347,12 +374,57 @@ VPP startup configuration is common for all test cases.
 
         ## Increase number of buffers allocated, needed only in scenarios with
         ## large number of interfaces and worker threads. Value is per CPU socket.
-        ## Default is 32768
+        ## Default is 16384
         # num-mbufs 128000
 
         ## Change hugepages allocation per-socket, needed only if there is need for
         ## larger number of mbufs. Default is 256M on each detected CPU socket
         # socket-mem 2048,2048
+
+        ## Disables UDP / TCP TX checksum offload. Typically needed for use
+        ## faster vector PMDs (together with no-multi-seg)
+        # no-tx-checksum-offload
+    # }
+
+
+    # plugins {
+        ## Adjusting the plugin path depending on where the VPP plugins are
+        #	path /home/bms/vpp/build-root/install-vpp-native/vpp/lib64/vpp_plugins
+
+        ## Disable all plugins by default and then selectively enable specific plugins
+        # plugin default { disable }
+        # plugin dpdk_plugin.so { enable }
+        # plugin acl_plugin.so { enable }
+
+        ## Enable all plugins by default and then selectively disable specific plugins
+        # plugin dpdk_plugin.so { disable }
+        # plugin acl_plugin.so { disable }
+    # }
+
+        ## Alternate syntax to choose plugin path
+        # plugin_path /home/bms/vpp/build-root/install-vpp-native/vpp/lib64/vpp_plugins
+
+**SW Crypto Device**
+
+::
+
+    $ cat /etc/vpp/startup.conf
+    unix
+    {
+      cli-listen /run/vpp/cli.sock
+      gid vpp
+      nodaemon
+      full-coredump
+      log /tmp/vpp.log
+    }
+    api-segment
+    {
+      gid vpp
+    }
+    dpdk
+    {
+      vdev cryptodev_aesni_gcm_pmd,socket_id=0
+      vdev cryptodev_aesni_mb_pmd,socket_id=0
     }
 
 TG Configuration

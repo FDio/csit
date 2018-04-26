@@ -23,12 +23,11 @@ Changes in CSIT |release|
 
      - <placeholder>;
 
-   - **SRv6**
+   - **Service Chaining with SRv6**
 
-     - Initial SRv6 (Segment Routing IPv6) tests verifying performance of
-       IPv6 and SRH (Segment Routing Header) encapsulation, decapsulation,
-       lookups and rewrites based on configured End and End.DX6 SRv6 egress
-       functions;
+     - SRv6 (Segment Routing IPv6) proxy tests verifying performance of
+       Endpoint to SR-unaware appliance via masquerading (End.AM), dynamic proxy
+       (End.AD) or static proxy (End.AS) functions;
 
 #. Presentation and Analytics Layer
 
