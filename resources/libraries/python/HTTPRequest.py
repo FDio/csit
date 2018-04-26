@@ -33,7 +33,7 @@ from requests.auth import HTTPBasicAuth
 @unique
 class HTTPCodes(IntEnum):
     """HTTP status codes"""
-    OK = 200
+    OK = 200  # HTTP standard code name.  # pylint: disable=invalid-name
     ACCEPTED = 201
     UNAUTHORIZED = 401
     FORBIDDEN = 403
