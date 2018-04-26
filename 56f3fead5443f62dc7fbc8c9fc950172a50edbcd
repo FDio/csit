@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3f1399a8_17d99bd8",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-26T06:44:45Z",
+      "side": 1,
+      "message": "There is no image of Ubuntu 14.04 on VIRL, so this will not work anymore.",
+      "parentUuid": "34fafcd6_75417909",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 47
+      },
+      "revId": "56f3fead5443f62dc7fbc8c9fc950172a50edbcd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e223758d_8d4a7aa4",
         "filename": "bootstrap-DMM.sh",
         "patchSetId": 10
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "773fc93f_eb87e7f1",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-26T06:44:45Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "8821499e_721c5e0e",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "56f3fead5443f62dc7fbc8c9fc950172a50edbcd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88361f97_bfe11a46",
         "filename": "bootstrap-DMM.sh",
         "patchSetId": 10
@@ -125,6 +173,24 @@
       "side": 1,
       "message": "sorry peter, could you please help me to understand the comment. For your information, we have referred the bootstarap-TLDK.sh to make this file",
       "parentUuid": "88361f97_bfe11a46",
+      "revId": "56f3fead5443f62dc7fbc8c9fc950172a50edbcd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fbaf3c6f_6ee79e77",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-26T06:44:45Z",
+      "side": 1,
+      "message": "Please check the bootstrap.sh. TLDK is not maintained for quite some time and thus not all the features are there.",
+      "parentUuid": "6d1dfa6c_4166b71e",
       "revId": "56f3fead5443f62dc7fbc8c9fc950172a50edbcd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
