@@ -87,7 +87,7 @@ def remove_outliers(input_list, outlier_const=1.5, window=14):
     iqr = (upper_quartile - lower_quartile) * outlier_const
     quartile_set = (lower_quartile - iqr, upper_quartile + iqr)
     result_lst = list()
-    for y in data.tolist():
+    for y in input_list:
         if quartile_set[0] <= y <= quartile_set[1]:
             result_lst.append(y)
     return result_lst
