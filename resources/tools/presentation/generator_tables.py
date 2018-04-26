@@ -422,8 +422,12 @@ def table_performance_comparison(table, input_data):
                                                              None) is None:
                             tbl_dict[tst_name]["history"][item["title"]] = \
                                 list()
-                        tbl_dict[tst_name]["history"][item["title"]].\
-                            append(tst_data["throughput"]["value"])
+                        try:
+                            tbl_dict[tst_name]["history"][item["title"]].\
+                                append(tst_data["throughput"]["value"])
+                        except (TypeError, KeyError):
+                            tbl_dict[tst_name]["history"][item["title"]]. \
+                                append('-')
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
