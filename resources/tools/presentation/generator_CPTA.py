@@ -172,13 +172,13 @@ def _evaluate_results(trimmed_data, window=10):
             if first:
                 first = False
                 continue
-            if (np.isnan(value) \
-                    or np.isnan(tmm[build_nr]) \
+            if (np.isnan(value)
+                    or np.isnan(tmm[build_nr])
                     or np.isnan(tmstd[build_nr])):
                 results.append(0.0)
-            elif value < (tmm[build_nr] - 3 * tmstd[build_nr]):
+            elif value < (tmm[build_nr] - 2 * tmstd[build_nr]):
                 results.append(0.33)
-            elif value > (tmm[build_nr] + 3 * tmstd[build_nr]):
+            elif value > (tmm[build_nr] + 2 * tmstd[build_nr]):
                 results.append(1.0)
             else:
                 results.append(0.66)
@@ -187,10 +187,10 @@ def _evaluate_results(trimmed_data, window=10):
         try:
             tmm = np.median(trimmed_data)
             tmstd = np.std(trimmed_data)
-            if trimmed_data.values[-1] < (tmm - 3 * tmstd):
+            if trimmed_data.values[-1] < (tmm - 2 * tmstd):
                 results.append(0.33)
-            elif (tmm - 3 * tmstd) <= trimmed_data.values[-1] <= (
-                    tmm + 3 * tmstd):
+            elif (tmm - 2 * tmstd) <= trimmed_data.values[-1] <= (
+                    tmm + 2 * tmstd):
                 results.append(0.66)
             else:
                 results.append(1.0)

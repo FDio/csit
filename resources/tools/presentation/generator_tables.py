@@ -806,9 +806,9 @@ def table_performance_trending_dashboard(table, input_data):
                         or isnan(stdev_t[build_nr]) \
                         or isnan(value):
                     classification_lst.append("outlier")
-                elif value < (median_t[build_nr] - 3 * stdev_t[build_nr]):
+                elif value < (median_t[build_nr] - 2 * stdev_t[build_nr]):
                     classification_lst.append("regression")
-                elif value > (median_t[build_nr] + 3 * stdev_t[build_nr]):
+                elif value > (median_t[build_nr] + 2 * stdev_t[build_nr]):
                     classification_lst.append("progression")
                 else:
                     classification_lst.append("normal")
