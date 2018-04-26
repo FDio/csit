@@ -204,6 +204,7 @@ class VatTerminal(object):
     __LINUX_PROMPT = (":~$ ", "~]$ ", "~]# ")
 
     def __init__(self, node, json_param=True):
+        """TODO: Should we document this constructor can raise RuntimeError?"""
         json_text = ' json' if json_param else ''
         self.json = json_param
         self._node = node
@@ -211,7 +212,7 @@ class VatTerminal(object):
         self._ssh.connect(self._node)
         try:
             self._tty = self._ssh.interactive_terminal_open()
-        except Exception:
+        except OSError:
             raise RuntimeError("Cannot open interactive terminal on node {0}".
                                format(self._node))
 
@@ -221,7 +222,7 @@ class VatTerminal(object):
                     self._tty,
                     'sudo -S {0}{1}'.format(Constants.VAT_BIN_NAME, json_text),
                     self.__VAT_PROMPT)
-            except Exception:
+            except OSError:
                 continue
             else:
                 break
@@ -253,9 +254,9 @@ class VatTerminal(object):
         """Execute command on the opened VAT terminal.
 
         :param cmd: Command to be executed.
-
         :returns: Command output in python representation of JSON format or
             None if not in JSON mode.
+        :raise RuntimeError: If VAT command execution fails.
         """
         VatHistory.add_to_vat_history(self._node, cmd)
         logger.debug("Executing command in VAT terminal: {0}".format(cmd))
@@ -263,7 +264,7 @@ class VatTerminal(object):
             out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
                                                               self.__VAT_PROMPT)
             self.vat_stdout = out
-        except Exception:
+        except OSError:
             self._exec_failure = True
             vpp_pid = get_vpp_pid(self._node)
             if vpp_pid:

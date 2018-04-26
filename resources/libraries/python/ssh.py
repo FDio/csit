@@ -92,11 +92,11 @@ class SSH(object):
                          format(self._ssh.get_transport().getpeername()))
             logger.debug('Connections: {0}'.
                          format(str(SSH.__existing_connections)))
-        except:
+        except RuntimeError as exc:
             if attempts > 0:
                 self._reconnect(attempts-1)
             else:
-                raise
+                raise exc
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -238,6 +238,7 @@ class SSH(object):
 
         :param time_out: Timeout in seconds.
         :returns: SSH channel with opened terminal.
+        :raise OSError: If receive attempt results in socket.timeout.
 
         .. warning:: Interruptingcow is used here, and it uses
            signal(SIGALRM) to let the operating system interrupt program
@@ -264,7 +265,8 @@ class SSH(object):
                     break
             except socket.timeout:
                 logger.error('Socket timeout: {0}'.format(buf))
-                raise Exception('Socket timeout: {0}'.format(buf))
+                # TODO: Find out which exception would callers appreciate here.
+                raise OSError('Socket timeout: {0}'.format(buf))
         return chan
 
     def interactive_terminal_exec_command(self, chan, cmd, prompt):
@@ -272,18 +274,19 @@ class SSH(object):
 
         interactive_terminal_open() method has to be called first!
 
-        :param chan: SSH channel with opened terminal.
-        :param cmd: Command to be executed.
-        :param prompt: Command prompt, sequence of characters used to
-        indicate readiness to accept commands.
-        :returns: Command output.
-
         .. warning:: Interruptingcow is used here, and it uses
            signal(SIGALRM) to let the operating system interrupt program
            execution. This has the following limitations: Python signal
            handlers only apply to the main thread, so you cannot use this
            from other threads. You must not use this in a program that
            uses SIGALRM itself (this includes certain profilers)
+
+        :param chan: SSH channel with opened terminal.
+        :param cmd: Command to be executed.
+        :param prompt: Command prompt, sequence of characters used to
+            indicate readiness to accept commands.
+        :returns: Command output.
+        :raise OSError: If receive attempt results in socket.timeout.
         """
         chan.sendall('{c}\n'.format(c=cmd))
         buf = ''
@@ -299,8 +302,9 @@ class SSH(object):
             except socket.timeout:
                 logger.error('Socket timeout during execution of command: '
                              '{0}\nBuffer content:\n{1}'.format(cmd, buf))
-                raise Exception('Socket timeout during execution of command: '
-                                '{0}\nBuffer content:\n{1}'.format(cmd, buf))
+                # TODO: Find out which exception would callers appreciate here.
+                raise OSError('Socket timeout during execution of command: '
+                              '{0}\nBuffer content:\n{1}'.format(cmd, buf))
         tmp = buf.replace(cmd.replace('\n', ''), '')
         for item in prompt:
             tmp.replace(item, '')
@@ -353,6 +357,7 @@ class SSH(object):
 def exec_cmd(node, cmd, timeout=600, sudo=False):
     """Convenience function to ssh/exec/return rc, out & err.
 
+    FIXME: Document :param, :type, :raise and similar.
     Returns (rc, stdout, stderr).
     """
     if node is None:
