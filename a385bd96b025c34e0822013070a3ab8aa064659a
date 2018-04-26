@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a86b6ac_7292bdf2",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-04-26T04:31:32Z",
+      "side": 1,
+      "message": "Any comments on if we can bump the version to e.g. 2.0?",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "a385bd96b025c34e0822013070a3ab8aa064659a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
