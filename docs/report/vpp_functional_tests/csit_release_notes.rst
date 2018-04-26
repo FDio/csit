@@ -4,14 +4,12 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. VPP functional test framework changes:
-
-   - improved stability of tests with nested-VM and QEMU;
-
 #. Code updates and optimizations in CSIT functional framework:
 
-   - IPSecSW tests - Software based IPSec encryption with CBC-SHA1 and
-     CBC-SHA ciphers, in combination with IPv4 routed-forwarding;
+   - VPP install test - VPP installation have been moved to separate test in
+   test suite setup phase to clearly indicate any issue with VPP installation;
+
+   - VPP verify test - test to check VPP responsiveness after installation;
 
 Known Issues
 ------------

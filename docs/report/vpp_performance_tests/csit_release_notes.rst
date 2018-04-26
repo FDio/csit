@@ -4,43 +4,38 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Added VPP performance tests
+#. **Added VPP performance tests**
 
-   - **Container Service Chain Topologies Orchestrated by K8s with VPP Memif**
+   - **MRR tests** : New MRR tests measure the packet forwarding rate
+       under the maximum load offered by traffic generator over a set
+       trial duration, regardless of packet loss. Maximum load for
+       specified Ethernet frame size is set to the bi-directional link
+       rate. MRR tests are used for continuous performance trending and
+       for comparison between releases.
 
-     - Added tests with VPP vswitch in container connecting a number of VPP-
-       in-container service chain topologies with L2 Cross-Connect and L2
-       Bridge-Domain configurations, orchestrated by Kubernetes. Added
-       following forwarding topologies: i) "Parallel" with packets flowing from
-       NIC via VPP to container and back to VPP and NIC; ii) "Chained" (a.k.a.
-       "Snake") with packets flowing via VPP to container, back to VPP, to next
-       container, back to VPP and so on until the last container in a chain,
-       then back to VPP and NIC; iii) "Horizontal" with packets flowing via VPP
-       to container, then via "horizontal" memif to next container, and so on
-       until the last container, then back to VPP and NIC;
+   - **Service Chaining with SRv6** : SRv6 (Segment Routing IPv6) proxy tests
+       verifying performance of Endpoint to SR-unaware appliance via
+       masquerading (End.AM), dynamic proxy (End.AD) or static proxy (End.AS)
+       functions.
 
-   - **MRR tests**
+#. **Presentation and Analytics Layer (PAL)**
 
-     - <placeholder>;
+     - Added continuous performance measuring, trending and anomaly
+       detection. Includes new PAL code and Jenkins jobs for Performance
+       Trending (PT) and Performance Analysis (PA) producing performance
+       trending dashboard and trendline graphs with summary and drill-
+       down views across all specified tests that can be reviewed and
+       inspected regularly by FD.io developers and users community.
 
-   - **SRv6**
+#. **Test Framework Optimizations**
 
-     - Initial SRv6 (Segment Routing IPv6) tests verifying performance of
-       IPv6 and SRH (Segment Routing Header) encapsulation, decapsulation,
-       lookups and rewrites based on configured End and End.DX6 SRv6 egress
-       functions;
+     - **Performance tests efficiency** : Qemu build/install
+     optimizations, warmup phase handling, vpp restart handling.
+     Resulted in improved stability and reduced total execution time by
+     30% for single pkt size e.g. 64B/78B.
 
-#. Presentation and Analytics Layer
-
-     - Added throughput speedup analysis for multi-core and multi-thread
-       VPP tests into Presentation and Analytics Layer (PAL) for automated
-       CSIT test results analysis;
-
-#. Other changes
-
-     - **Framework optimizations**
-
-       - Performance test duration improvements and stability;
+     - **General code housekeeping** : ongoing RF keywords
+     optimizations, removal of redundant RF keywords.
 
 Performance Changes
 -------------------
@@ -97,6 +92,8 @@ pretty ASCII formats:
 
 Known Issues
 ------------
+
+<to be updated before rls1804 release>
 
 Here is the list of known issues in CSIT |release| for VPP performance tests:
 
