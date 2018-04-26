@@ -9,7 +9,6 @@ CSIT 18.04
     dpdk_performance_tests/index
     vpp_functional_tests/index
     honeycomb_functional_tests/index
-    vpp_unit_tests/index
     nsh_sfc_functional_tests/index
     detailed_test_results/index
     test_configuration/index
