@@ -468,8 +468,8 @@ def table_performance_comparison(table, input_data):
                 item.extend([None, None])
         else:
             item.extend([None, None])
-        if item[-5] is not None and item[-3] is not None and item[-5] != 0:
-            item.append(int(relative_change(float(item[-5]), float(item[-3]))))
+        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
+            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         if len(item) == len(header):
             tbl_lst.append(item)
 
