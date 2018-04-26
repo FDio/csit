@@ -432,17 +432,20 @@ def table_performance_comparison(table, input_data):
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
         if history:
-            for hist_data in tbl_dict[tst_name]["history"].values():
-                if hist_data:
-                    data_t = remove_outliers(
-                        hist_data, outlier_const=table["outlier-const"])
-                    if data_t:
-                        item.append(round(mean(data_t) / 1000000, 2))
-                        item.append(round(stdev(data_t) / 1000000, 2))
+            if tbl_dict[tst_name].get("history", None) is not None:
+                for hist_data in tbl_dict[tst_name]["history"].values():
+                    if hist_data:
+                        data_t = remove_outliers(
+                            hist_data, outlier_const=table["outlier-const"])
+                        if data_t:
+                            item.append(round(mean(data_t) / 1000000, 2))
+                            item.append(round(stdev(data_t) / 1000000, 2))
+                        else:
+                            item.extend([None, None])
                     else:
                         item.extend([None, None])
-                else:
-                    item.extend([None, None])
+            else:
+                item.extend([None, None])
         if tbl_dict[tst_name]["ref-data"]:
             data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
                                      outlier_const=table["outlier-const"])
