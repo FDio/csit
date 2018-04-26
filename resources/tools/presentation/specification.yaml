@@ -244,7 +244,7 @@
       csit-dpdk-perf-1804-all:
       - 15
     hc-func-results:
-      csit-hc2vpp-verify-func-1801-ubuntu1604:
+      csit-hc2vpp-verify-func-1804-ubuntu1604:
       - "lastSuccessfulBuild"
     nsh-func-results:
       csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
@@ -647,7 +647,7 @@
     - "lastSuccessfulBuild"
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
     - "lastSuccessfulBuild"
-    csit-hc2vpp-verify-func-1801-ubuntu1604:
+    csit-hc2vpp-verify-func-1804-ubuntu1604:
     - "lastSuccessfulBuild"
 
 -
