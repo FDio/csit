@@ -43,7 +43,6 @@ class SFCTest(object):
         :type if1_adj_mac: str
         :type if2_adj_mac: str
         :type testtype: str
-        :returns: none
         :raises RuntimeError: If the script execute fails.
         """
 

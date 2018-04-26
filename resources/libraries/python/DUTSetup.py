@@ -421,8 +421,7 @@ class DUTSetup(object):
                         return None
                 if name == 'Driver:':
                     return value
-        else:
-            return None
+        return None
 
     @staticmethod
     def kernel_module_verify(node, module, force_load=False):

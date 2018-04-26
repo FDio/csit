@@ -316,7 +316,6 @@ class InterfaceUtil(object):
         :type node: dict
         :type pci_addr: str
         :type driver: str
-        :returns: None.
         :raises RuntimeError: If unbinding from the current driver fails.
         :raises RuntimeError: If binding to the new driver fails.
         """
@@ -397,9 +396,8 @@ class InterfaceUtil(object):
                         return None
                 if name == 'Driver:':
                     return value if value else None
-        else:
-            raise RuntimeError('Get interface driver for: {0}'
-                               .format(pci_addr))
+        raise RuntimeError('Get interface driver for: {0}'
+                           .format(pci_addr))
 
     @staticmethod
     def tg_set_interfaces_udev_rules(node):

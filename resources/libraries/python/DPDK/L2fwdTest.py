@@ -39,7 +39,6 @@ class L2fwdTest(object):
         :type nb_cores: str
         :type queue_nums: str
         :type jumbo_frames: str
-        :returns: none
         :raises RuntimeError: If the script "run_l2fwd.sh" fails.
         """
         if dut_node['type'] == NodeType.DUT:

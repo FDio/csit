@@ -132,7 +132,6 @@ class L2Util(object):
         :type sw_if_index: int
         :type bd_id: int
         :type shg: int
-        :returns: None
         """
         VatExecutor.cmd_from_template(node, "l2_bd_add_sw_if_index.vat",
                                       bd_id=bd_id, sw_if_index=sw_if_index,
