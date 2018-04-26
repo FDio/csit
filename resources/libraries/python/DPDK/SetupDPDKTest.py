@@ -34,7 +34,9 @@ __all__ = ["SetupDPDKTest"]
 
 
 def pack_framework_dir():
-    """Pack the testing WS into temp file, return its name."""
+    """Pack the testing WS into temp file, return its name.
+
+    :raise RunitmeError: If command return code is nonzero."""
 
     tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="DPDK-testing-")
     file_name = tmpfile.name
@@ -50,7 +52,7 @@ def pack_framework_dir():
 
     return_code = proc.wait()
     if return_code != 0:
-        raise Exception("Could not pack testing framework.")
+        raise RuntimeError("Could not pack testing framework.")
 
     return file_name
 
@@ -81,6 +83,7 @@ def extract_tarball_at_node(tarball, node):
     :type tarball: str
     :type node: dict
     :returns: nothing
+    :raise RuntimeError: If command returns nonzero return code.
     """
     logger.console('Extracting tarball to {0} on {1}'.format(
         con.REMOTE_FW_DIR, node['host']))
@@ -92,7 +95,7 @@ def extract_tarball_at_node(tarball, node):
     (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=30)
     if ret_code != 0:
         logger.error('Unpack error: {0}'.format(stderr))
-        raise Exception('Failed to unpack {0} at node {1}'.format(
+        raise RuntimeError('Failed to unpack {0} at node {1}'.format(
             tarball, node['host']))
 
 
@@ -103,6 +106,7 @@ def create_env_directory_at_node(node):
     :param node: Dictionary created from topology, will only install in the TG
     :type node: dict
     :returns: nothing
+    :raise RuntimeError: Of command returns nonzero return code.
     """
     logger.console('Extracting virtualenv, installing requirements.txt '
                    'on {0}'.format(node['host']))
@@ -114,7 +118,7 @@ def create_env_directory_at_node(node):
         .format(con.REMOTE_FW_DIR), timeout=100)
     if ret_code != 0:
         logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
-        raise Exception('Virtualenv setup failed')
+        raise RuntimeError('Virtualenv setup failed')
     else:
         logger.console('Virtualenv created on {0}'.format(node['host']))
 
@@ -125,6 +129,7 @@ def install_dpdk_test(node):
     :param node: Dictionary created from topology
     :type node: dict
     :returns: nothing
+    :raise RuntimeError: If command returns nonzero return code.
     """
     arch = Topology.get_node_arch(node)
     logger.console('Install the DPDK on {0} ({1})'.format(node['host'],
@@ -139,11 +144,10 @@ def install_dpdk_test(node):
 
     if ret_code != 0:
         logger.error('Install the DPDK error: {0}'.format(stderr))
-        raise Exception('Install the DPDK failed')
+        raise RuntimeError('Install the DPDK failed')
     else:
         logger.console('Install the DPDK on {0} success!'.format(node['host']))
 
-#pylint: disable=broad-except
 def setup_node(args):
     """Run all set-up methods for a node.
 
@@ -168,13 +172,12 @@ def setup_node(args):
             install_dpdk_test(node)
         if node['type'] == NodeType.TG:
             create_env_directory_at_node(node)
-    except Exception as exc:
+    except RuntimeError as exc:
         logger.error("Node setup failed, error:'{0}'".format(exc.message))
         return False
     else:
         logger.console('Setup of node {0} done'.format(node['host']))
         return True
-#pylint: enable=broad-except
 
 def delete_local_tarball(tarball):
     """Delete local tarball to prevent disk pollution.
