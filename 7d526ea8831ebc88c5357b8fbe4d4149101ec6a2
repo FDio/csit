@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75ac0ff2_34009f3d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T15:35:20Z",
+      "side": 1,
+      "message": "This is new, needed so we actually start gathering results from (some) XDR tests.",
+      "range": {
+        "startLine": 161,
+        "startChar": 24,
+        "endLine": 161,
+        "endChar": 30
+      },
+      "revId": "7d526ea8831ebc88c5357b8fbe4d4149101ec6a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
