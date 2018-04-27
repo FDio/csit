@@ -457,6 +457,7 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
                 pdr_rel_width = 0.0
             if max(ndr_rel_width, pdr_rel_width) > state.width_goal:
                 # We have to narrow some width.
+                # TODO: Prefer NDR, it could invalidate PDR (not vice versa).
                 if ndr_rel_width >= pdr_rel_width:
                     new_tr = self.half_step_up(ndr_rel_width, ndr_lo.target_tr)
                     logging.info("Bisecting for NDR at %s", new_tr)
