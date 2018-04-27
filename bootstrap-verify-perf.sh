@@ -158,6 +158,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.${DUT}.perf" \
               --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
+              --include ndrpdrANDnic_intel-x520-da2AND1t1cORndrpdrANDnic_intel-x520-da2AND2t2c \
               --include ndrdiscAND1t1cANDipsecORndrdiscAND2t2cANDipsec \
               tests/
         RETURN_STATUS=$(echo $?)
