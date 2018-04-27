@@ -22,6 +22,30 @@
       "revId": "c18bd2a59ac85e6b4cd805ca8b76f33fca98c0ea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d91749d_f64b1738",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T14:04:16Z",
+      "side": 1,
+      "message": "fixed by adjusting text.. and being specific what rates are used for 10ge and 40ge nics and links",
+      "parentUuid": "26beee0b_2bba2c02",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 10
+      },
+      "revId": "c18bd2a59ac85e6b4cd805ca8b76f33fca98c0ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
