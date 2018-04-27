@@ -912,8 +912,25 @@ def table_performance_trending_dashboard_html(table, input_data):
         th.text = item
 
     # Rows:
+    # blue = ("#e9f1fb", "#d4e4f7")
+    # green = ("#c6ecc6", "#9fdf9f")
+    # red = ("#ffcccc", "#ff9999")
+    # gray = ("#e6e6e6", "#cccccc")
+    colors = {"regression": ("#ffcccc", "#ff9999"),
+              "progression": ("#c6ecc6", "#9fdf9f"),
+              "outlier": ("#e6e6e6", "#cccccc"),
+              "normal": ("#e9f1fb", "#d4e4f7")}
     for r_idx, row in enumerate(csv_lst[1:]):
-        background = "#D4E4F7" if r_idx % 2 else "white"
+        if int(row[4]):
+            color = "regression"
+        elif int(row[5]):
+            color = "progression"
+        elif int(row[6]):
+            color = "outlier"
+        else:
+            color = "normal"
+        # background = "#D4E4F7" if r_idx % 2 else "white"
+        background = colors[color][r_idx % 2]
         tr = ET.SubElement(dashboard, "tr", attrib=dict(bgcolor=background))
 
         # Columns:
