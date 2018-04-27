@@ -92,6 +92,7 @@ metrics and detect anomalies, three simple evaluation formulas are
 used:
 
 ::
+
           Anomaly                                   Compliance        Evaluation
     Evaluation Formula                            Confidence Level      Result
     =============================================================================
