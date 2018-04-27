@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01ea45a6_e488f0f2",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T08:46:49Z",
+      "side": 1,
+      "message": "Are the dashes part of the official name?",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47a067ac_13c7e619",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T08:46:49Z",
+      "side": 1,
+      "message": "the forwarding rate under the maximum",
+      "range": {
+        "startLine": 27,
+        "startChar": 31,
+        "endLine": 27,
+        "endChar": 68
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12fa9eda_949de7c4",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T08:46:49Z",
+      "side": 1,
+      "message": "Do we explain this includes Ethernet headers, i.e. the CRC, but not the Inter Frame Gap, Preamble, or Start of Frame Delimiter (SFD)?\nThe most of that sentence is copied from what google has found [0], but already RFC 1242 defines data link frame size (3.5) and inter frame gap (3.7).\n\nAlso, I am not sure our code takes all this into account when converting between line rate units [bps] and [pps].\n\n[0] https://support.netrounds.com/hc/en-us/articles/201911666-Layer-2-Ethernet-frame-packet-sizes",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1493ab78_4a2cb91c",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T08:46:49Z",
+      "side": 1,
+      "message": "ranked data set of the rolling window of \u003cN\u003e values\n\nOr drop the rolling window part from lines 65, 68 and 70-71, as it is already implied by line 51.",
+      "range": {
+        "startLine": 54,
+        "startChar": 54,
+        "endLine": 54,
+        "endChar": 69
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e048485_61ebdd0c",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T08:46:49Z",
+      "side": 1,
+      "message": "We need to merge https://gerrit.fd.io/r/12235 for that.",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 24
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
