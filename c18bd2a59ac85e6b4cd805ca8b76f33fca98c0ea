@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26beee0b_2bba2c02",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T13:22:56Z",
+      "side": 1,
+      "message": "The future is already here: https://docs.fd.io/csit/master/trending/trending/ip4.html#xl710-64b-4t4c",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 10
+      },
+      "revId": "c18bd2a59ac85e6b4cd805ca8b76f33fca98c0ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
