@@ -10,3 +10,4 @@ VPP Functional Test Configs
 .. toctree::
 
     vpp_functional_configuration
+    vpp_functional_configuration_centos
