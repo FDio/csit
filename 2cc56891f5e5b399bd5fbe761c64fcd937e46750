@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "ca62610b_ddef56b6",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "of valid value",
+      "range": {
+        "startLine": 90,
+        "startChar": 36,
+        "endLine": 90,
+        "endChar": 44
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e048485_61ebdd0c",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -110,6 +133,190 @@
         "startChar": 8,
         "endLine": 112,
         "endChar": 24
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0bf0db2f_b8495e15",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "Trend",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 6
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "431156d9_4679b2a7",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "Is it too late to change this to Gathering?\nThe word \"trending\" culd be confused with phrases \"trend graphs\" or \"trending and anomaly detection\" used do describe what PA job does.",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 20
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee8421e4_c7f375c9",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "This is done only after downloading.\nAnd not only the new data is evaluated, but all data affecting graphs and tables (3 mounths for dashboard tables, possibly more for long running graphs).",
+      "range": {
+        "startLine": 196,
+        "startChar": 11,
+        "endLine": 196,
+        "endChar": 18
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b899d66_abdfc96a",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "This includes also the latest PT job mentioned above.",
+      "range": {
+        "startLine": 198,
+        "startChar": 34,
+        "endLine": 198,
+        "endChar": 39
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6cf957a_d339129c",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "This is done after downloading, before evaluating.",
+      "range": {
+        "startLine": 199,
+        "startChar": 11,
+        "endLine": 199,
+        "endChar": 29
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48633e92_e8f4b6a5",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "Remove trailing whitespace.",
+      "range": {
+        "startLine": 212,
+        "startChar": 68,
+        "endLine": 212,
+        "endChar": 69
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b953209c_e64f4dbe",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "We do not show this \"Result\", and I think we call the \"Reason\" Classification.",
+      "range": {
+        "startLine": 214,
+        "startChar": 33,
+        "endLine": 214,
+        "endChar": 46
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d869ba6_0a678061",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T10:04:43Z",
+      "side": 1,
+      "message": "I see only red dots (as Jenkins results) and nobody cares, so probably we do not need to document this part.",
+      "range": {
+        "startLine": 219,
+        "startChar": 38,
+        "endLine": 219,
+        "endChar": 48
       },
       "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
