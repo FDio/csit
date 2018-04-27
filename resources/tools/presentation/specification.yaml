@@ -237,10 +237,10 @@
       - 19  # full
     vpp-func-results:
       csit-vpp-functional-1804-ubuntu1604-virl:
-      - 131
+      - "lastSuccessfulBuild"
     vpp-func-results-centos:
       csit-vpp-functional-1804-centos7-virl:
-      - 136
+      - "lastSuccessfulBuild"
     ligato-perf-results:
       csit-ligato-perf-1801-all:
       - 25  # full
@@ -249,10 +249,10 @@
       - 13
     hc-func-results:
       csit-hc2vpp-verify-func-1804-ubuntu1604:
-      - 3
+      - "lastSuccessfulBuild"
     nsh-func-results:
       csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
-      - 7
+      - "lastSuccessfulBuild"
     plot-vpp-throughput-latency:
       csit-vpp-perf-1804-all:
       - 1   # sel - dry run
@@ -645,13 +645,13 @@
     - 12
     - 13
     csit-vpp-functional-1804-ubuntu1604-virl:
-    - 131
+    - "lastSuccessfulBuild"
     csit-vpp-functional-1804-centos7-virl:
-    - 136
+    - "lastSuccessfulBuild"
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
-    - 7
+    - "lastSuccessfulBuild"
     csit-hc2vpp-verify-func-1804-ubuntu1604:
-    - 3
+    - "lastSuccessfulBuild"
 
 -
   type: "output"
