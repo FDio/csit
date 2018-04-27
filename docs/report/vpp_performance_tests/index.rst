@@ -10,5 +10,6 @@ VPP Performance Tests
     throughput_speedup_multi_core/index
     packet_latency_graphs/index
     http_server_performance/index
+    mdr_search
     test_environment
     documentation/index
