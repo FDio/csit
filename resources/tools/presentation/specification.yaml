@@ -1230,7 +1230,7 @@
   title: "VPP Functional Results - CentOS"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTR,FUNC,VPP]}/vpp_functional_results_centos"
+  output-file: "{DIR[DTR,FUNC,VPP,CENTOS]}/vpp_functional_results_centos"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,FUNC,VPP,CENTOS]}"
   data:
@@ -1266,7 +1266,7 @@
   title: "VPP Functional Configuration - CentOS"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTC,FUNC,VPP]}/vpp_functional_configuration_centos"
+  output-file: "{DIR[DTC,FUNC,VPP,CENTOS]}/vpp_functional_configuration_centos"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,FUNC,VPP,CENTOS]}"
   data:
