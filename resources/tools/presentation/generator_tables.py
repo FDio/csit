@@ -775,8 +775,9 @@ def table_performance_trending_dashboard(table, input_data):
             stdev_t = data_t.rolling(window=win_size, min_periods=2).std()
             median_first_idx = pd_data.size - long_win_size
             try:
-                max_median = max([x for x in median_t.values[median_first_idx:]
-                                  if not isnan(x)])
+                max_median = max(
+                    [x for x in median_t.values[median_first_idx:-win_size]
+                     if not isnan(x)])
             except ValueError:
                 max_median = nan
             try:
