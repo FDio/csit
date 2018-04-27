@@ -791,14 +791,6 @@ def table_performance_trending_dashboard(table, input_data):
             # Test name:
             name = tbl_dict[tst_name]["name"]
 
-            logging.info("{}".format(name))
-            logging.info("pd_data : {}".format(pd_data))
-            logging.info("data_t : {}".format(data_t))
-            logging.info("median_t : {}".format(median_t))
-            logging.info("last_median_t : {}".format(last_median_t))
-            logging.info("median_t_14 : {}".format(median_t_14))
-            logging.info("max_median : {}".format(max_median))
-
             # Classification list:
             classification_lst = list()
             for build_nr, value in pd_data.iteritems():
