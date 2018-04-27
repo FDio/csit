@@ -8,3 +8,4 @@
 
         vpp_performance_configuration/index
         vpp_functional_configuration/index
+        vpp_functional_configuration_centos/index
