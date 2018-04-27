@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9a261e8_84f80dea",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T18:01:23Z",
+      "side": 1,
+      "message": "It might be worth to merge the latter two phases under \"Subsequent phases\", but that can be done after filling in the \u003ctext\u003e.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "564778989498518ac7c0bab09240dfafa3c47d87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b19c08e_928a1bd4",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T18:01:23Z",
+      "side": 1,
+      "message": "Stub available at https://gerrit.fd.io/r/12268\nwill have to chain with this gerrit, next week.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "564778989498518ac7c0bab09240dfafa3c47d87",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
