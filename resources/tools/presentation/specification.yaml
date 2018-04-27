@@ -81,6 +81,7 @@
   # List the directories which are deleted while cleaning the environment.
   # All directories MUST be defined in "paths" section.
   #- "DIR[BUILD,HTML]"
+  - "DIR[WORKING,DATA]"
 
   build-dirs:
   # List the directories where the results (build) is stored.

@@ -148,8 +148,9 @@ def clean_environment(env):
             try:
                 shutil.rmtree(dir_to_remove)
             except OSError:
-                raise PresentationError("Cannot remove the directory '{}'".
-                                        format(dir_to_remove))
+                pass
+                # raise PresentationError("Cannot remove the directory '{}'".
+                #                         format(dir_to_remove))
         else:
             logging.warning("The directory '{}' does not exist.".
                             format(dir_to_remove))
