@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "974e8351_1920866d",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-04-27T13:09:52Z",
+      "side": 1,
+      "message": "I see for example 40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.robot\nwhich uses 24.5Gbps as (unidirectional) line rate.\nWhich reminds me, we should probably mention we are measuring bidirectional traffic.",
+      "parentUuid": "8b992086_e72bcdf4",
+      "range": {
+        "startLine": 40,
+        "startChar": 24,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "ca41606d56c85dd65ce06e662f0b8fda30066c0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be069a2b_fe45e033",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 2
