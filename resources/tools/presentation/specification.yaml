@@ -41,6 +41,7 @@
     DIR[DTR,PERF,COT]: "{DIR[DTR]}/cot_performance_results"
     DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
     DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
+    DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
     DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
     DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
@@ -49,6 +50,7 @@
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
     DIR[DTC,PERF,VPP]: "{DIR[DTC]}/vpp_performance_configuration"
     DIR[DTC,FUNC,VPP]: "{DIR[DTC]}/vpp_functional_configuration"
+    DIR[DTC,FUNC,VPP,CENTOS]: "{DIR[DTC]}/vpp_functional_configuration_centos"
 
     # Detailed tests operational data
     DIR[DTO]: "{DIR[WORKING,SRC]}/test_operational_data"
@@ -236,6 +238,9 @@
     vpp-func-results:
       csit-vpp-functional-1804-ubuntu1604-virl:
       - 131
+    vpp-func-results-centos:
+      csit-vpp-functional-1804-centos7-virl:
+      - 136
     ligato-perf-results:
       csit-ligato-perf-1801-all:
       - 25  # full
@@ -641,6 +646,8 @@
     - 13
     csit-vpp-functional-1804-ubuntu1604-virl:
     - 131
+    csit-vpp-functional-1804-centos7-virl:
+    - 136
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
     - 7
     csit-hc2vpp-verify-func-1804-ubuntu1604:
@@ -966,6 +973,32 @@
 
 -
   type: "table"
+  title: "Detailed Test Results - VPP Functional Results - CentOS"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,FUNC,VPP,CENTOS]}/vpp_functional_results_centos"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data status"
+  rows: "generated"
+  data:
+    "vpp-func-results-centos"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "status"
+
+-
+  type: "table"
   title: "Test configuration - VPP Functional Test Configs"
   algorithm: "table_details"
   output-file-ext: ".csv"
@@ -980,6 +1013,28 @@
   rows: "generated"
   data:
     "vpp-func-results"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
+-
+  type: "table"
+  title: "Test configuration - VPP Functional Test Configs - CentOS"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,FUNC,VPP,CENTOS]}/vpp_functional_configuration_centos"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data:
+    "vpp-func-results-centos"
   filter: "all"
   parameters:
   - "parent"
@@ -1171,6 +1226,24 @@
 
 -
   type: "file"
+  title: "VPP Functional Results - CentOS"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,FUNC,VPP]}/vpp_functional_results_centos"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,FUNC,VPP,CENTOS]}"
+  data:
+    "vpp-func-results-centos"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 3  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
   title: "VPP Functional Configuration"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
@@ -1179,6 +1252,24 @@
   dir-tables: "{DIR[DTC,FUNC,VPP]}"
   data:
     "vpp-func-results"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 3  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
+  title: "VPP Functional Configuration - CentOS"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,FUNC,VPP]}/vpp_functional_configuration_centos"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,FUNC,VPP,CENTOS]}"
+  data:
+    "vpp-func-results-centos"
   filter: "all"
   parameters:
   - "name"
