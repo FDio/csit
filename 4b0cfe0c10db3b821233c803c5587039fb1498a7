@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e1ca9a0c_9f214c1e",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T13:51:38Z",
+      "side": 1,
+      "message": "to move it to the right, more central of the column",
+      "parentUuid": "1849202e_67069bf0",
+      "range": {
+        "startLine": 733,
+        "startChar": 15,
+        "endLine": 733,
+        "endChar": 23
+      },
+      "revId": "4b0cfe0c10db3b821233c803c5587039fb1498a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2292723b_9e467a48",
         "filename": "resources/tools/presentation/generator_tables.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-27T13:48:32Z",
       "side": 1,
       "message": "Not sure why we want spaces also here.",
+      "range": {
+        "startLine": 735,
+        "startChar": 28,
+        "endLine": 735,
+        "endChar": 30
+      },
+      "revId": "4b0cfe0c10db3b821233c803c5587039fb1498a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e2384cc_65f18087",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T13:51:38Z",
+      "side": 1,
+      "message": "to align bottom row with top row in case it works",
+      "parentUuid": "2292723b_9e467a48",
       "range": {
         "startLine": 735,
         "startChar": 28,
