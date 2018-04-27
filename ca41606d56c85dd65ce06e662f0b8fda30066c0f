@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "022a277e_8721d95f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T13:04:41Z",
+      "side": 1,
+      "message": "ok. reducing size to \u003c50char.\ni do suggest we update above wiki link - especially that it violates 50char in 1st line rule :)",
+      "parentUuid": "6de4bfc2_df59d8f2",
+      "range": {
+        "startLine": 7,
+        "startChar": 37,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "ca41606d56c85dd65ce06e662f0b8fda30066c0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6d5f2cf_d59e8eec",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-27T12:51:24Z",
       "side": 1,
       "message": "I checked, and we are good.\nThe overhead is taken into account [0].\n\n[0] https://gerrit.fd.io/r/gitweb?p\u003dcsit.git;a\u003dblob;f\u003dresources/libraries/robot/performance/performance_utils.robot;h\u003d4acaec9c333e0195a6e759e7614c72ebaec87504;hb\u003drefs/heads/master#l59",
+      "range": {
+        "startLine": 38,
+        "startChar": 45,
+        "endLine": 38,
+        "endChar": 48
+      },
+      "revId": "ca41606d56c85dd65ce06e662f0b8fda30066c0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b191f56e_fff81b4d",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T13:04:41Z",
+      "side": 1,
+      "message": "yes i know :)\nsorry for not commenting on it, but good you checked :)",
+      "parentUuid": "f6d5f2cf_d59e8eec",
       "range": {
         "startLine": 38,
         "startChar": 45,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8b992086_e72bcdf4",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T13:04:41Z",
+      "side": 1,
+      "message": "yes, as we need to introduce in the future higher rates for multi-core as they\u0027re hitting link ceiling - see 4t4c imix tests.\n\ndo you find it confusing?",
+      "parentUuid": "ea36928e_1307750e",
+      "range": {
+        "startLine": 40,
+        "startChar": 24,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "ca41606d56c85dd65ce06e662f0b8fda30066c0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be069a2b_fe45e033",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2018-04-27T12:51:24Z",
       "side": 1,
       "message": "Remove this part, to keep the phrase the same as in the previous items.",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 23
+      },
+      "revId": "ca41606d56c85dd65ce06e662f0b8fda30066c0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9d0a24d_2dce72c6",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T13:04:41Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "be069a2b_fe45e033",
       "range": {
         "startLine": 77,
         "startChar": 6,
