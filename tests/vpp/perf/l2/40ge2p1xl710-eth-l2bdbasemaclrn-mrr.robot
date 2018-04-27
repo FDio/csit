@@ -224,5 +224,5 @@
 | | ...
 | | [Tags] | IMIX | 4T4C | MTHREAD
 | | ...
-| | [Template] | Check RR for l2bdbasemaclrn BW limit
+| | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=IMIX_v4_1 | wt=4 | rxq=2
