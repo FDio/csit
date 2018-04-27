@@ -149,12 +149,11 @@
       - 167  # sel
       - 172  # sel acl only
       csit-vpp-perf-1804-all:
-      - 1   # sel
-      - 13  # sel
-      - 14  # sel
-      - 16  # full
-      - 17  # sel
-      - 18  # full
+      - 1   # sel - dry run
+      - 13  # sel - dry run
+      - 14  # sel - dry run
+      - 17  # sel - dry run
+      - 22  # sel
     vpp-performance-changes-mrr:
       csit-vpp-perf-check-1801:
       - 1
@@ -170,18 +169,19 @@
       - 12
       - 13
       csit-vpp-perf-check-1804:
-      - 1   # mrr
-      - 2   # mrr
-      - 3   # mrr
-      - 4   # mrr
+      - 1   # mrr - dry run
+      - 2   # mrr - dry run
+      - 3   # mrr - dry run
+      - 4   # mrr - dry run
+      - 5   # mrr
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1804-all:
-      - 1   # sel
-      - 13  # sel
-      - 14  # sel
-      - 16  # full
-      - 17  # sel
-      - 18  # full
+      - 1   # sel - dry run
+      - 13  # sel - dry run
+      - 14  # sel - dry run
+      - 17  # sel - dry run
+      - 19  # full
+      - 22  # sel
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
 #      - 9
@@ -232,8 +232,7 @@
 #      - 24  # sel
     vpp-perf-results:
       csit-vpp-perf-1804-all:
-      - 16  # full
-      - 18  # full
+      - 19  # full
     vpp-func-results:
       csit-vpp-functional-1804-ubuntu1604-virl:
       - 131
@@ -242,21 +241,21 @@
       - 25  # full
     dpdk-perf-results:
       csit-dpdk-perf-1804-all:
-      - 15
+      - 13
     hc-func-results:
       csit-hc2vpp-verify-func-1804-ubuntu1604:
-      - "lastSuccessfulBuild"
+      - 3
     nsh-func-results:
       csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
-      - "lastSuccessfulBuild"
+      - 7
     plot-vpp-throughput-latency:
       csit-vpp-perf-1804-all:
-      - 1   # sel
-      - 13  # sel
-      - 14  # sel
-      - 16  # full
-      - 17  # sel
-      - 18  # full
+      - 1   # sel - dry run
+      - 13  # sel - dry run
+      - 14  # sel - dry run
+      - 17  # sel - dry run
+      - 19  # full
+      - 22  # sel
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1804-all:
       - 4
@@ -269,8 +268,6 @@
       - 11
       - 12
       - 13
-      - 14
-      - 15
     plot-ligato-throughput-latency:
       csit-ligato-perf-1801-all:
       - 16  # sel
@@ -584,12 +581,12 @@
     - 170  # wrk
     - 172  # sel acl only
     csit-vpp-perf-1804-all:
-    - 1   # sel
-    - 13  # sel
-    - 14  # sel
-    - 16  # full
-    - 17  # sel
-    - 18  # full
+    - 1   # sel - dry run
+    - 13  # sel - dry run
+    - 14  # sel - dry run
+    - 17  # sel - dry run
+    - 19  # full
+    - 22  # sel
     csit-vpp-perf-check-1801:
     - 1   # mrr
     - 2   # mrr
@@ -604,10 +601,11 @@
     - 12  # mrr
     - 13  # mrr
     csit-vpp-perf-check-1804:
-    - 1   # mrr
-    - 2   # mrr
-    - 3   # mrr
-    - 4   # mrr
+    - 1   # mrr - dry run
+    - 2   # mrr - dry run
+    - 3   # mrr - dry run
+    - 4   # mrr - dry run
+    - 5   # mrr
 #    csit-ligato-perf-1710-all:
 #    - 5
 #    - 7
@@ -641,14 +639,12 @@
     - 11
     - 12
     - 13
-    - 14
-    - 15
     csit-vpp-functional-1804-ubuntu1604-virl:
     - 131
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
-    - "lastSuccessfulBuild"
+    - 7
     csit-hc2vpp-verify-func-1804-ubuntu1604:
-    - "lastSuccessfulBuild"
+    - 3
 
 -
   type: "output"
@@ -772,7 +768,11 @@
     title: "rls1804"
     data:
       csit-vpp-perf-1804-all:
-      - 1
+      - 1   # sel - dry run
+      - 13  # sel - dry run
+      - 14  # sel - dry run
+      - 17  # sel - dry run
+      - 22  # sel
   data: "vpp-performance-changes"
   filter: "all"
   parameters:
@@ -810,7 +810,11 @@
     title: "Release 1804"
     data:
       csit-vpp-perf-check-1804:
-      - 1
+      - 1   # mrr - dry run
+      - 2   # mrr - dry run
+      - 3   # mrr - dry run
+      - 4   # mrr - dry run
+      - 5   # mrr
   data: "vpp-performance-changes-mrr"
   filter: "all"
   parameters:
