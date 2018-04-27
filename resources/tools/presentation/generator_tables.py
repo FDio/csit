@@ -730,13 +730,13 @@ def table_performance_trending_dashboard(table, input_data):
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
-    header = ["Test Case",
+    header = ["        Test Case",
               "Trend [Mpps]",
-              "Short-Term Change [%]",
-              "Long-Term Change [%]",
-              "Regressions [#]",
-              "Progressions [#]",
-              "Outliers [#]"
+              "  Short-Term   Change [%]",
+              "  Long-Term   Change [%]",
+              "  Regressions [#]",
+              "  Progressions [#]",
+              "  Outliers [#]"
               ]
     header_str = ",".join(header) + "\n"
 
