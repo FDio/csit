@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e48837ce_870c45b3",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "they\u0027re not, removing",
+      "parentUuid": "01ea45a6_e488f0f2",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47a067ac_13c7e619",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-27T08:46:49Z",
       "side": 1,
       "message": "the forwarding rate under the maximum",
+      "range": {
+        "startLine": 27,
+        "startChar": 31,
+        "endLine": 27,
+        "endChar": 68
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ef18128_3e62673f",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "changing to: \nMRR tests measure the packet forwarding rate under the\nmaximum load offered by traffic generator over a set trial duration,\nregardless of packet loss. Maximum load set to [10GE|25GE|40GE|100GE]\nlink rate for specified Ethernet frame size.",
+      "parentUuid": "47a067ac_13c7e619",
       "range": {
         "startLine": 27,
         "startChar": 31,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1b71be19_528bf51e",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "we don\u0027t explain all differences here - but will add sure.\nchanging to:\n- Ethernet frame sizes: 64B (78B for IPv6 tests) for all tests, IMIX for\n  selected tests (vhost, memif); all quoted sizes include frame CRC, but\n  exclude per frame transmission overhead of 20B (preamble, inter frame\n  gap).\n- Maximum load offered: 10GE link rate for all tests, actual packet rate\n  depends on frame size and transmission overhead.",
+      "parentUuid": "12fa9eda_949de7c4",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1493ab78_4a2cb91c",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2018-04-27T08:46:49Z",
       "side": 1,
       "message": "ranked data set of the rolling window of \u003cN\u003e values\n\nOr drop the rolling window part from lines 65, 68 and 70-71, as it is already implied by line 51.",
+      "range": {
+        "startLine": 54,
+        "startChar": 54,
+        "endLine": 54,
+        "endChar": 69
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0a4b06d_205de9ab",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "dropped. leaving in line 51.",
+      "parentUuid": "1493ab78_4a2cb91c",
       "range": {
         "startLine": 54,
         "startChar": 54,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "daa84921_23c76f11",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "ca62610b_ddef56b6",
+      "range": {
+        "startLine": 90,
+        "startChar": 36,
+        "endLine": 90,
+        "endChar": 44
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e048485_61ebdd0c",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2018-04-27T08:46:49Z",
       "side": 1,
       "message": "We need to merge https://gerrit.fd.io/r/12235 for that.",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 24
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09fb3bc2_57dfdbeb",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "2e048485_61ebdd0c",
       "range": {
         "startLine": 112,
         "startChar": 8,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "a9a33e05_dc12a216",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "0bf0db2f_b8495e15",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 6
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "431156d9_4679b2a7",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -186,6 +354,53 @@
     },
     {
       "key": {
+        "uuid": "6bb463c8_8e154ee0",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "you mean \"Performance Gathering\" - that doesn\u0027t sound at all :)\n\ntrend graphs paint the data points that PT jobs measures. they also show results of PA trend-line calcs, anomaly detection and classification.\n\nif we change \"daily trending graphs\" and \"trend graphs\" to \"trendline graphs\", this could be much less confusing ?",
+      "parentUuid": "431156d9_4679b2a7",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 20
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff726ba7_a8a60356",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "per previous comment, for consistency updated to:\nCSIT PA runs performance analysis including trendline calculation, trend\ncompliance and anomaly detection using specified ..",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 48
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee8421e4_c7f375c9",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -197,6 +412,30 @@
       "writtenOn": "2018-04-27T10:04:43Z",
       "side": 1,
       "message": "This is done only after downloading.\nAnd not only the new data is evaluated, but all data affecting graphs and tables (3 mounths for dashboard tables, possibly more for long running graphs).",
+      "range": {
+        "startLine": 196,
+        "startChar": 11,
+        "endLine": 196,
+        "endChar": 18
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d552ef1d_42ac91d9",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "changed to:\n  #. Evalute new data from latest PT job against the rolling window of\n     \u003cN\u003e sets of historical data for trendline calculation, anomaly detection\n     and short-term trend compliance. And against long-term trendline metrics\n     for long-term trend compliance.",
+      "parentUuid": "ee8421e4_c7f375c9",
       "range": {
         "startLine": 196,
         "startChar": 11,
@@ -232,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "3f6fdc80_a6e69d01",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "changed to:\n  #. Download RF output.xml files from latest PT job and compressed\n     archived data.",
+      "parentUuid": "6b899d66_abdfc96a",
+      "range": {
+        "startLine": 198,
+        "startChar": 34,
+        "endLine": 198,
+        "endChar": 39
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6cf957a_d339129c",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -243,6 +506,30 @@
       "writtenOn": "2018-04-27T10:04:43Z",
       "side": 1,
       "message": "This is done after downloading, before evaluating.",
+      "range": {
+        "startLine": 199,
+        "startChar": 11,
+        "endLine": 199,
+        "endChar": 29
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f12cd364_d751d5a4",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "moved up",
+      "parentUuid": "a6cf957a_d339129c",
       "range": {
         "startLine": 199,
         "startChar": 11,
@@ -278,6 +565,30 @@
     },
     {
       "key": {
+        "uuid": "4d17fa66_b0168964",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "48633e92_e8f4b6a5",
+      "range": {
+        "startLine": 212,
+        "startChar": 68,
+        "endLine": 212,
+        "endChar": 69
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b953209c_e64f4dbe",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -301,6 +612,30 @@
     },
     {
       "key": {
+        "uuid": "d1e0f15d_b1196e4f",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "i just checked, and logs are not showing anything apart from some status codes, but they don\u0027t seem to be related to the evaluation.. so leaving it as is for now.. with a marker to be updated based on implementation",
+      "parentUuid": "b953209c_e64f4dbe",
+      "range": {
+        "startLine": 214,
+        "startChar": 33,
+        "endLine": 214,
+        "endChar": 46
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d869ba6_0a678061",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 4
@@ -312,6 +647,30 @@
       "writtenOn": "2018-04-27T10:04:43Z",
       "side": 1,
       "message": "I see only red dots (as Jenkins results) and nobody cares, so probably we do not need to document this part.",
+      "range": {
+        "startLine": 219,
+        "startChar": 38,
+        "endLine": 219,
+        "endChar": 48
+      },
+      "revId": "2cc56891f5e5b399bd5fbe761c64fcd937e46750",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51f79dd7_abaef34a",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T11:15:31Z",
+      "side": 1,
+      "message": "i would like to keep it per above. Tibor will update it based on implementation.",
+      "parentUuid": "7d869ba6_0a678061",
       "range": {
         "startLine": 219,
         "startChar": 38,
