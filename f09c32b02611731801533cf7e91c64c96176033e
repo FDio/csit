@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57499423_fb16a3d9",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-27T19:30:44Z",
+      "side": 1,
+      "message": "will change to \"subsequent phases\"",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 15
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
