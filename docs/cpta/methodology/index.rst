@@ -1,10 +1,10 @@
-Performance Trending Methodology
-================================
-
 .. _trending_methodology:
 
-Continuous Trending and Analysis
---------------------------------
+Trending Methodology
+====================
+
+Overview
+--------
 
 This document describes a high-level design of a system for continuous
 performance measuring, trending and change detection for FD.io VPP SW
@@ -22,8 +22,8 @@ trending dashboard and graphs with summary and drill-down views across
 all specified tests that can be reviewed and inspected regularly by
 FD.io developers and users community.
 
-Performance Trending Tests
---------------------------
+Performance Tests
+-----------------
 
 Performance trending is currently relying on the Maximum Receive Rate
 (MRR) tests. MRR tests measure the packet forwarding rate under the
@@ -51,13 +51,14 @@ Current parameters for performance trending MRR tests:
 - Trial duration: 10sec.
 - Execution frequency: twice a day, every 12 hrs (02:00, 14:00 UTC).
 
-In the future if tested VPP configuration can handle the packet rate
-higher than bi-directional 10GE link rate, e.g. all IMIX tests and
-64B/78B multi-core tests, a higher maximum load will be offered
-(25GE|40GE|100GE).
+Note: MRR tests should be reporting bi-directional link rate (or NIC
+rate, if lower) if tested VPP configuration can handle the packet rate
+higher than bi-directional link rate, e.g. large packet tests and/or
+multi-core tests. In other words MRR = min(VPP rate, bi-dir link rate,
+NIC rate).
 
-Performance Trend Analysis
---------------------------
+Trend Analysis
+--------------
 
 All measured performance trend data is treated as time-series data that
 can be modelled using normal distribution. After trimming the outliers,
@@ -65,12 +66,11 @@ the median and deviations from median are used for detecting performance
 change anomalies following the three-sigma rule of thumb (a.k.a.
 68-95-99.7 rule).
 
-Analysis Metrics
+Metrics
 ````````````````
 
-Following statistical metrics are proposed as performance trend
-indicators over the rolling window of last <N> sets of historical
-measurement data:
+Following statistical metrics are used as performance trend indicators
+over the rolling window of last <N> sets of historical measurement data:
 
 - Q1, Q2, Q3 : Quartiles, three points dividing a ranked data set
   of <N> values into four equal parts, Q2 is the median of the data.
@@ -135,8 +135,8 @@ respectively. This results in following trend compliance calculations:
   Short-Term Change     ((V - R) / R)     TMM[last]    TMM[last - 1week]
   Long-Term Change      ((V - R) / R)     TMM[last]    max(TMM[(last - 3mths)..(last - 1week)])
 
-Performance Trend Presentation
-------------------------------
+Trend Presentation
+------------------
 
 Performance Dashboard
 `````````````````````
@@ -168,8 +168,8 @@ data points, representing (trend job build Id, MRR value) and the actual
 vpp build number (b<XXX>) tested.
 
 
-Jenkins Jobs Description
-------------------------
+Jenkins Jobs
+------------
 
 Performance Trending (PT)
 `````````````````````````
@@ -231,13 +231,14 @@ PA is defined as follows:
 #. Evaluate new test data against trend metrics:
 
   #. If within the range of (TMA +/- 3*TMSD) => Result = Pass,
-     Reason = Normal. (to be updated base on final Jenkins code)
+     Reason = Normal. (to be updated base on the final Jenkins code).
   #. If below the range => Result = Fail, Reason = Regression.
   #. If above the range => Result = Pass, Reason = Progression.
 
 #. Generate and publish results
 
-  #. Relay evaluation result to job result. (to be updated base on final
-     Jenkins code)
+  #. Relay evaluation result to job result. (to be updated base on the
+     final Jenkins code).
   #. Generate a new set of trend summary dashboard and graphs.
-  #. Publish trend dashboard and graphs in html format on https://docs.fd.io/.
+  #. Publish trend dashboard and graphs in html format on
+     https://docs.fd.io/.
