@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea02e3cd_ecc1d884",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-04-28T12:13:20Z",
+      "side": 1,
+      "message": "remove this paragraph, as it\u0027s already covered by 40GE line above.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 18
+      },
+      "revId": "3f1fc42a594a52e5f892a770dab63f39fe2219c0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
