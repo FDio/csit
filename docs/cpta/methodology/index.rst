@@ -97,12 +97,12 @@ Outlier Detection
 Outlier evaluation of test result of value <X> follows the definition
 from previous section:
 
-  ::
-
-  Outlier Evaluation Formula      Evaluation Result
-  ====================================================
-  X < (Q1 - 1.5 * IQR)            Outlier
-  X >= (Q1 - 1.5 * IQR)           Valid (For Trending)
++----------------------------+----------------------+
+| Outlier Evaluation Formula | Evaluation Result    |
++----------------------------+----------------------+
+| X < (Q1 - 1.5 * IQR)       | Outlier              |
+| X >= (Q1 - 1.5 * IQR)      | Valid (For Trending) |
++----------------------------+----------------------+
 
 Anomaly Detection
 `````````````````
@@ -111,14 +111,14 @@ To verify compliance of test result of valid value <X> against defined
 trend metrics and detect anomalies, three simple evaluation formulas are
 used:
 
-  ::
-
-        Anomaly                                   Compliance        Evaluation
-  Evaluation Formula                            Confidence Level      Result
-  =============================================================================
-  (TMM - 3 * TMSD) <= X <= (TMM + 3 * TMSD)         99.73%            Normal
-  X < (TMM - 3 * TMSD)                              Anomaly         Regression
-  X > (TMM + 3 * TMSD)                              Anomaly         Progression
++-------------------------------------------+------------------+-------------+
+|       Anomaly                             |    Compliance    | Evaluation  |
+| Evaluation Formula                        | Confidence Level |   Result    |
++-------------------------------------------+------------------+-------------+
+| (TMM - 3 * TMSD) <= X <= (TMM + 3 * TMSD) |      99.73%      |   Normal    |
+| X < (TMM - 3 * TMSD)                      |      Anomaly     | Regression  |
+| X > (TMM + 3 * TMSD)                      |      Anomaly     | Progression |
++-------------------------------------------+------------------+-------------+
 
 TMM is used for the central trend reference point instead of TMA as it
 is more robust to anomalies.
@@ -133,13 +133,13 @@ ago, TMM[last - 1week] and to the maximum of trend values over last
 quarter except last week, max(TMM[(last - 3mths)..(last - 1week)]),
 respectively. This results in following trend compliance calculations:
 
-  ::
-
-       Trend
-  Compliance Metric     Change Formula    V(alue)      R(eference)
-  =============================================================================================
-  Short-Term Change     ((V - R) / R)     TMM[last]    TMM[last - 1week]
-  Long-Term Change      ((V - R) / R)     TMM[last]    max(TMM[(last - 3mths)..(last - 1week)])
++-------------------+----------------+-----------+------------------------------------------+
+|      Trend        |                |           |                                          |
+| Compliance Metric | Change Formula | V(alue)   | R(eference)                              |
++-------------------+----------------+-----------+------------------------------------------+
+| Short-Term Change | ((V - R) / R)  | TMM[last] | TMM[last - 1week]                        |
+| Long-Term Change  | ((V - R) / R)  | TMM[last] | max(TMM[(last - 3mths)..(last - 1week)]) |
++-------------------+----------------+-----------+------------------------------------------+
 
 Trend Presentation
 ------------------
