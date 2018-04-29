@@ -37,7 +37,6 @@ Current parameters for performance trending MRR tests:
   selected tests (vhost, memif); all quoted sizes include frame CRC, but
   exclude per frame transmission overhead of 20B (preamble, inter frame
   gap).
-
 - Maximum load offered: 10GE and 40GE link (sub-)rates depending on NIC
   tested, with the actual packet rate depending on frame size,
   transmission overhead and traffic generator NIC forwarding capacity.
@@ -72,24 +71,25 @@ Metrics
 Following statistical metrics are used as performance trend indicators
 over the rolling window of last <N> sets of historical measurement data:
 
-- Q1, Q2, Q3 : Quartiles, three points dividing a ranked data set
-  of <N> values into four equal parts, Q2 is the median of the data.
-- IQR = Q3 - Q1 : Inter Quartile Range, measure of variability, used
-  here to calculate and eliminate outliers.
-- Outliers : extreme values that are at least (1.5 * IQR) below Q1.
+- **Q1**, **Q2**, **Q3** : **Quartiles**, three points dividing a ranked
+  data set of <N> values into four equal parts, Q2 is the median of the
+  data.
+- **IQR** = Q3 - Q1 : **Inter Quartile Range**, measure of variability,
+  used here to calculate and eliminate outliers.
+- **Outliers** : extreme values that are at least (1.5 * IQR) below Q1.
 
   - Note: extreme values that are at least (1.5 * IQR) above Q3 are not
     considered outliers, and are likely to be classified as
     progressions.
 
-- TMA : Trimmed Moving Average, average across the data set of <N>
-  values without the outliers. Used here to calculate TMSD.
-- TMSD : Trimmed Moving Standard Deviation, standard deviation over the
-  data set of <N> values without the outliers,
-  requires calculating TMA. Used for anomaly detection.
-- TMM : Trimmed Moving Median, median across the data set of <N> values
-  excluding the outliers. Used as a trending value and as a reference
-  for anomaly detection.
+- **TMA** : **Trimmed Moving Average**, average across the data set of
+  <N> values without the outliers. Used here to calculate TMSD.
+- **TMSD** : **Trimmed Moving Standard Deviation**, standard deviation
+  over the data set of <N> values without the outliers, requires
+  calculating TMA. Used for anomaly detection.
+- **TMM** : **Trimmed Moving Median**, median across the data set of <N>
+  values excluding the outliers. Used as a trending value and as a
+  reference for anomaly detection.
 
 Outlier Detection
 `````````````````
@@ -97,12 +97,13 @@ Outlier Detection
 Outlier evaluation of test result of value <X> follows the definition
 from previous section:
 
-  ::
-
-  Outlier Evaluation Formula      Evaluation Result
-  ====================================================
-  X < (Q1 - 1.5 * IQR)            Outlier
-  X >= (Q1 - 1.5 * IQR)           Valid (For Trending)
++----------------------------+----------------------+
+| Outlier Evaluation Formula | Evaluation Result    |
++============================+======================+
+| X < (Q1 - 1.5 * IQR)       | Outlier              |
++----------------------------+----------------------+
+| X >= (Q1 - 1.5 * IQR)      | Valid (For Trending) |
++----------------------------+----------------------+
 
 Anomaly Detection
 `````````````````
@@ -111,14 +112,16 @@ To verify compliance of test result of valid value <X> against defined
 trend metrics and detect anomalies, three simple evaluation formulas are
 used:
 
-  ::
-
-        Anomaly                                   Compliance        Evaluation
-  Evaluation Formula                            Confidence Level      Result
-  =============================================================================
-  (TMM - 3 * TMSD) <= X <= (TMM + 3 * TMSD)         99.73%            Normal
-  X < (TMM - 3 * TMSD)                              Anomaly         Regression
-  X > (TMM + 3 * TMSD)                              Anomaly         Progression
++-------------------------------------------+------------------+-------------+
+|       Anomaly                             |    Compliance    | Evaluation  |
+| Evaluation Formula                        | Confidence Level |   Result    |
++===========================================+==================+=============+
+| (TMM - 3 * TMSD) <= X <= (TMM + 3 * TMSD) |      99.73%      |   Normal    |
++-------------------------------------------+------------------+-------------+
+| X < (TMM - 3 * TMSD)                      |      Anomaly     | Regression  |
++-------------------------------------------+------------------+-------------+
+| X > (TMM + 3 * TMSD)                      |      Anomaly     | Progression |
++-------------------------------------------+------------------+-------------+
 
 TMM is used for the central trend reference point instead of TMA as it
 is more robust to anomalies.
@@ -133,13 +136,14 @@ ago, TMM[last - 1week] and to the maximum of trend values over last
 quarter except last week, max(TMM[(last - 3mths)..(last - 1week)]),
 respectively. This results in following trend compliance calculations:
 
-  ::
-
-       Trend
-  Compliance Metric     Change Formula    V(alue)      R(eference)
-  =============================================================================================
-  Short-Term Change     ((V - R) / R)     TMM[last]    TMM[last - 1week]
-  Long-Term Change      ((V - R) / R)     TMM[last]    max(TMM[(last - 3mths)..(last - 1week)])
++-------------------+----------------+-----------+------------------------------------------+
+|      Trend        |                |           |                                          |
+| Compliance Metric | Change Formula | V(alue)   | R(eference)                              |
++===================+================+===========+==========================================+
+| Short-Term Change | ((V - R) / R)  | TMM[last] | TMM[last - 1week]                        |
++-------------------+----------------+-----------+------------------------------------------+
+| Long-Term Change  | ((V - R) / R)  | TMM[last] | max(TMM[(last - 3mths)..(last - 1week)]) |
++-------------------+----------------+-----------+------------------------------------------+
 
 Trend Presentation
 ------------------
@@ -183,21 +187,18 @@ Performance Trending (PT)
 CSIT PT runs regular performance test jobs measuring and collecting MRR
 data per test case. PT is designed as follows:
 
-#. PT job triggers:
+1. PT job triggers:
 
-  - Periodic e.g. daily.
-  - On-demand gerrit triggered.
+   a) Periodic e.g. daily.
+   b) On-demand gerrit triggered.
 
-#. Measurements and data calculations per test case:
+2. Measurements and data calculations per test case:
 
-  - MRR Max Received Rate
+  a) Max Received Rate (MRR) - send packets at link rate over a trial
+     period, count total received packets, divide by trial period.
 
-    - Measured: Unlimited tolerance of packet loss.
-    - Send packets at link rate, count total received packets, divide
-       by test trial period.
-
-#. Archive MRR per test case.
-#. Archive all counters collected at MRR.
+3. Archive MRR per test case.
+4. Archive all counters collected at MRR.
 
 Performance Analysis (PA)
 `````````````````````````
@@ -207,44 +208,42 @@ compliance and anomaly detection using specified trend analysis metrics
 over the rolling window of last <N> sets of historical measurement data.
 PA is defined as follows:
 
-#. PA job triggers:
+1. PA job triggers:
 
-  - By PT job at its completion.
-  - On-demand gerrit triggered.
+   a) By PT job at its completion.
+   b) On-demand gerrit triggered.
 
-#. Download and parse archived historical data and the new data:
+2. Download and parse archived historical data and the new data:
 
-  - Download RF output.xml files from latest PT job and compressed
-     archived data.
+   a) Download RF output.xml files from latest PT job and compressed
+      archived data.
+   b) Parse out the data filtering test cases listed in PA specification
+      (part of CSIT PAL specification file).
+   c) Evalute new data from latest PT job against the rolling window of
+      <N> sets of historical data for trendline calculation, anomaly
+      detection and short-term trend compliance. And against long-term
+      trendline metrics for long-term trend compliance.
 
-  - Parse out the data filtering test cases listed in PA specification
-     (part of CSIT PAL specification file).
-
-  - Evalute new data from latest PT job against the rolling window of
-     <N> sets of historical data for trendline calculation, anomaly
-     detection and short-term trend compliance. And against long-term
-     trendline metrics for long-term trend compliance.
-
-#. Calculate trend metrics for the rolling window of <N> sets of
+3. Calculate trend metrics for the rolling window of <N> sets of
    historical data:
 
-  - Calculate quartiles Q1, Q2, Q3.
-  - Trim outliers using IQR.
-  - Calculate TMA and TMSD.
-  - Calculate normal trending range per test case based on TMM and
-     TMSD.
+   a) Calculate quartiles Q1, Q2, Q3.
+   b) Trim outliers using IQR.
+   c) Calculate TMA and TMSD.
+   d) Calculate normal trending range per test case based on TMM and
+      TMSD.
 
-#. Evaluate new test data against trend metrics:
+4. Evaluate new test data against trend metrics:
 
-  - If within the range of (TMA +/- 3*TMSD) => Result = Pass,
-     Reason = Normal. (to be updated base on the final Jenkins code).
-  - If below the range => Result = Fail, Reason = Regression.
-  - If above the range => Result = Pass, Reason = Progression.
+   a) If within the range of (TMA +/- 3*TMSD) => Result = Pass,
+      Reason = Normal. (to be updated base on the final Jenkins code).
+   b) If below the range => Result = Fail, Reason = Regression.
+   c) If above the range => Result = Pass, Reason = Progression.
 
-#. Generate and publish results
+5. Generate and publish results
 
-  - Relay evaluation result to job result. (to be updated base on the
-     final Jenkins code).
-  - Generate a new set of trend summary dashboard and graphs.
-  - Publish trend dashboard and graphs in html format on
-     https://docs.fd.io/.
+   a) Relay evaluation result to job result. (to be updated base on the
+      final Jenkins code).
+   b) Generate a new set of trend summary dashboard and graphs.
+   c) Publish trend dashboard and graphs in html format on
+      https://docs.fd.io/.
