@@ -1,11 +1,11 @@
-Continuous Performance Trending and Analysis
-============================================
+Continuous Performance Trending
+===============================
 
-This auto-generated document contains VPP performance trending graphs and data.
-It is generated using CSIT continuous trending test and analysis jobs and is
-updated daily. More detail is available on
-`CSIT Performance Trending and Analysis <https://wiki.fd.io/view/CSIT/PerformanceTrendingAnalysis>`_
-wiki page.
+This document contains VPP performance dashboard, trendline graphs and
+performance test data. It is generated using FD.io CSIT continuous
+performance trending and analysis jobs and is updated daily. See
+:ref:`trending_methodology` section for more details including trend
+analysis and anomaly detection methodology.
 
 Contents
 --------

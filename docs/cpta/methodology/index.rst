@@ -97,6 +97,8 @@ Outlier Detection
 Outlier evaluation of test result of value <X> follows the definition
 from previous section:
 
+  ::
+
   Outlier Evaluation Formula      Evaluation Result
   ====================================================
   X < (Q1 - 1.5 * IQR)            Outlier
@@ -108,6 +110,8 @@ Anomaly Detection
 To verify compliance of test result of valid value <X> against defined
 trend metrics and detect anomalies, three simple evaluation formulas are
 used:
+
+  ::
 
         Anomaly                                   Compliance        Evaluation
   Evaluation Formula                            Confidence Level      Result
@@ -129,7 +133,9 @@ ago, TMM[last - 1week] and to the maximum of trend values over last
 quarter except last week, max(TMM[(last - 3mths)..(last - 1week)]),
 respectively. This results in following trend compliance calculations:
 
-  Trend
+  ::
+
+       Trend
   Compliance Metric     Change Formula    V(alue)      R(eference)
   =============================================================================================
   Short-Term Change     ((V - R) / R)     TMM[last]    TMM[last - 1week]
@@ -179,15 +185,15 @@ data per test case. PT is designed as follows:
 
 #. PT job triggers:
 
-  #. Periodic e.g. daily.
-  #. On-demand gerrit triggered.
+  - Periodic e.g. daily.
+  - On-demand gerrit triggered.
 
 #. Measurements and data calculations per test case:
 
-  #. MRR Max Received Rate
+  - MRR Max Received Rate
 
-    #. Measured: Unlimited tolerance of packet loss.
-    #. Send packets at link rate, count total received packets, divide
+    - Measured: Unlimited tolerance of packet loss.
+    - Send packets at link rate, count total received packets, divide
        by test trial period.
 
 #. Archive MRR per test case.
@@ -203,18 +209,18 @@ PA is defined as follows:
 
 #. PA job triggers:
 
-  #. By PT job at its completion.
-  #. On-demand gerrit triggered.
+  - By PT job at its completion.
+  - On-demand gerrit triggered.
 
 #. Download and parse archived historical data and the new data:
 
-  #. Download RF output.xml files from latest PT job and compressed
+  - Download RF output.xml files from latest PT job and compressed
      archived data.
 
-  #. Parse out the data filtering test cases listed in PA specification
+  - Parse out the data filtering test cases listed in PA specification
      (part of CSIT PAL specification file).
 
-  #. Evalute new data from latest PT job against the rolling window of
+  - Evalute new data from latest PT job against the rolling window of
      <N> sets of historical data for trendline calculation, anomaly
      detection and short-term trend compliance. And against long-term
      trendline metrics for long-term trend compliance.
@@ -222,23 +228,23 @@ PA is defined as follows:
 #. Calculate trend metrics for the rolling window of <N> sets of
    historical data:
 
-  #. Calculate quartiles Q1, Q2, Q3.
-  #. Trim outliers using IQR.
-  #. Calculate TMA and TMSD.
-  #. Calculate normal trending range per test case based on TMM and
+  - Calculate quartiles Q1, Q2, Q3.
+  - Trim outliers using IQR.
+  - Calculate TMA and TMSD.
+  - Calculate normal trending range per test case based on TMM and
      TMSD.
 
 #. Evaluate new test data against trend metrics:
 
-  #. If within the range of (TMA +/- 3*TMSD) => Result = Pass,
+  - If within the range of (TMA +/- 3*TMSD) => Result = Pass,
      Reason = Normal. (to be updated base on the final Jenkins code).
-  #. If below the range => Result = Fail, Reason = Regression.
-  #. If above the range => Result = Pass, Reason = Progression.
+  - If below the range => Result = Fail, Reason = Regression.
+  - If above the range => Result = Pass, Reason = Progression.
 
 #. Generate and publish results
 
-  #. Relay evaluation result to job result. (to be updated base on the
+  - Relay evaluation result to job result. (to be updated base on the
      final Jenkins code).
-  #. Generate a new set of trend summary dashboard and graphs.
-  #. Publish trend dashboard and graphs in html format on
+  - Generate a new set of trend summary dashboard and graphs.
+  - Publish trend dashboard and graphs in html format on
      https://docs.fd.io/.
