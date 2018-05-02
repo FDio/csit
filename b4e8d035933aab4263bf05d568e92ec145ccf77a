@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fccdbb7_1531a117",
+        "filename": "resources/libraries/python/search/AbstractRateProvider.py",
+        "patchSetId": 112
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T12:34:18Z",
+      "side": 1,
+      "message": "Sigh.\nWhat is the best practice of making Sphinx understand this is referring to the class, not to the eponymous module?\nThe most direct seems to be typing \"ReceiveRateMeasurement.ReceiveRateMeasurement\" here, but I would rather rename the file to ReceiveRateMeasurementModule.py, or better yet, put all the search classes back into one search.py file.\n\n\u003e docstring of resources.libraries.python.search.AbstractRateProvider.AbstractRateProvider.measure:None: WARNING: more than one target found for cross-reference u\u0027ReceiveRateMeasurement\u0027: resources.libraries.python.search.ReceiveRateMeasurement.ReceiveRateMeasurement, resources.libraries.python.search.ReceiveRateMeasurement",
+      "range": {
+        "startLine": 33,
+        "startChar": 16,
+        "endLine": 33,
+        "endChar": 38
+      },
+      "revId": "b4e8d035933aab4263bf05d568e92ec145ccf77a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
