@@ -38,6 +38,7 @@
     DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
     DIR[DTR,PERF,DPDK]: "{DIR[DTR]}/dpdk_performance_results"
     DIR[DTR,PERF,VPP]: "{DIR[DTR]}/vpp_performance_results"
+    DIR[DTR,MRR,VPP]: "{DIR[DTR]}/vpp_mrr_results"
     DIR[DTR,PERF,COT]: "{DIR[DTR]}/cot_performance_results"
     DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
     DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
@@ -257,6 +258,9 @@
     vpp-func-results-centos:
       csit-vpp-functional-1804-centos7-virl:
       - 175
+    vpp-mrr-results:
+      csit-vpp-perf-check-1804:
+      - 5   # mrr - full
     ligato-perf-results:
       csit-ligato-perf-1801-all:
       - 25  # full
@@ -984,6 +988,32 @@
 
 -
   type: "table"
+  title: "Detailed Test Results - VPP MRR Results"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP]}/vpp_mrr_results"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
+
+-
+  type: "table"
   title: "Detailed Test Results - VPP Functional Results"
   algorithm: "table_details"
   output-file-ext: ".csv"
@@ -1235,6 +1265,25 @@
   data:
     "vpp-perf-results"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
+  title: "VPP MRR Results"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP]}/vpp_mrr_results"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP]}"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
   parameters:
   - "name"
   - "doc"
