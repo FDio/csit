@@ -23,7 +23,7 @@
 | Suite Setup | Set up 3-node performance topology with wrk and DUT's NIC model
 | ... | Intel-XL710
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Set up tcp performance test
 | Test Teardown | Tear down performance test with wrk
 | ...
 | Documentation | *HTTP requests per seconds, connections per seconds and
@@ -72,7 +72,7 @@
 | | ... | ELSE IF | '${test_type}' == 'cps'
 | | ... | Run keywords
 | | ... | Set up HTTP server with paramters on the VPP node
-| | ... | 10000 | 64 | 4000m | AND
+| | ... | 31000 | 64 | 4000m | AND
 | | ... | Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
