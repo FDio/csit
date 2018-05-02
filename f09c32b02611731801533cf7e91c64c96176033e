@@ -2,6 +2,230 @@
   "comments": [
     {
       "key": {
+        "uuid": "71827804_186bc194",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "Keep \"Experimental :\" in the title, but remove \"experimental_\" from the filename, so that future edits are easier to review?\n\nI have seen Gerrit not recognizing the file history, if a Change affects both filename and a significant portion of the file content.",
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38c1e1ab_25e36ac4",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "Only indirectly. The bandwidth is only computed (in Robot) from the framerate when the test result is reported. The Python search itself only deals with a positive \"target_tr\" quantity, and does not care what it stands for (although documentation mentions pps as a unit).\nThe easiest improvement is to just delete the text in parenthesis.",
+      "range": {
+        "startLine": 6,
+        "startChar": 8,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1375d42b_dba0a59a",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "This is very close to Frame Loss Rate as defined in RFC 1242 [1]. FLR is both the process of the measurement and the resulting quantity (equal to Drop Fraction, it is a percentage, not a rate in frames per second). In FLR, transit rate is a chosen parameter, drop fraction is the measurement result.\n\nThe criterion (one per rate) in the sentence is called allowed_drop_fraction in the code. In this case, the fraction is the chosen parameter, and transmit rate which achieves it is the value the algorithm searches for, by repeatedly guessing the transmit rate and performing FLR trials.\n\nExisting documents (such as docs/tag_documentation.rst) are calling this criterion \"Loss Tolerance\" (LT).\n\n[1] https://tools.ietf.org/html/rfc1242#section-3.6",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a1eaaa0_97e5dc91",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "not above\n\nI know the exact equality is not probable, but the implementation relies on NDR \u003d\u003d PDR(PLR\u003d0.0).",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1926e9b5_9c914210",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "1 initial + 2 intermediate + 1 final \u003d 1 initial + 3 subsequent \u003d 4 phases (unless you mean only the subsequent ones).",
+      "range": {
+        "startLine": 27,
+        "startChar": 46,
+        "endLine": 27,
+        "endChar": 47
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd47d419_da15f10f",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "Maximal\n\nBut I guess MRR is a stable phrase already.\n\nRant warning: Nothing below matters.\n\nI like my syntagma [2] explicit whenever possible, so I dislike the recent \"noun pile buzzword freedom ambivalence lingo trend phrasing\".\nI only tolerate Receive Rate (instead of Received Rate or Rate of Receival) just because I got used to variable name receive_rate (my stylistic choices for variables are different than for written language).\n\n[2] https://en.wikipedia.org/wiki/Syntagmatic_analysis",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 9
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3b46850_3080639b",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "(lower_bound, upper_bound) interval\n\nNote the spaces. The \"interval\" word could stay in front as before.",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 33,
+        "endChar": 28
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ceb3b0b_4533011b",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "phase trial duration\n\nI remember \"measurement resolution\" as a compromise we agreed upon in one of our meetings, but I believe that was related to \"relative width goal\" (as used in lines 41-42), which is not a criterion for external search.",
+      "range": {
+        "startLine": 34,
+        "startChar": 25,
+        "endLine": 34,
+        "endChar": 47
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6faeb7a7_36c1b989",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "Why is this repeated in line 43 (but final measurement resolution is not)?",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb3cc009_8a8da04c",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T14:06:30Z",
+      "side": 1,
+      "message": "Not clear whether this \"overall\" includes the final phase or not.\nThe easiest fix is to drop the \"at lower duration\" part.",
+      "range": {
+        "startLine": 48,
+        "startChar": 14,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57499423_fb16a3d9",
         "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
         "patchSetId": 2
