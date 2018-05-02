@@ -27,6 +27,7 @@ from robot.api import ExecutionResult, ResultVisitor
 from robot import errors
 from collections import OrderedDict
 from string import replace
+from os import remove
 
 
 class ExecutionChecker(ResultVisitor):
@@ -794,7 +795,17 @@ class InputData(object):
                              format(build["build"]))
                 logging.info("    Processing the file '{0}'".
                              format(build["file-name"]))
+
                 data = InputData._parse_tests(job, build)
+
+                logging.info("    Removing the file '{0}'".
+                             format(build["file-name"]))
+                try:
+                    remove(build["file-name"])
+                    build["status"] = "processed"
+                except OSError as err:
+                    logging.error("   Cannot remove the file '{0}': {1}".
+                                  format(build["file-name"], err))
                 if data is None:
                     logging.error("Input data file from the job '{job}', build "
                                   "'{build}' is damaged. Skipped.".
