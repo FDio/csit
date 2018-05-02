@@ -21,7 +21,7 @@ import logging
 
 from os import walk, makedirs, environ
 from os.path import join, isdir
-from shutil import copy, Error
+from shutil import move, Error
 from math import sqrt
 
 from errors import PresentationError
@@ -264,8 +264,8 @@ def archive_input_data(spec):
             makedirs(dst)
 
         for data_file in data_files:
-            logging.info("      Copying the file: {0} ...".format(data_file))
-            copy(data_file, dst)
+            logging.info("      Moving the file: {0} ...".format(data_file))
+            move(data_file, dst)
 
     except (Error, OSError) as err:
         raise PresentationError("Not possible to archive the input data.",
