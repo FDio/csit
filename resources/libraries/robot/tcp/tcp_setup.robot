@@ -20,6 +20,28 @@
 | Documentation | L2 keywords to set up VPP to test tcp.
 
 *** Keywords ***
+| Create base startup configuration of VPP for TCP tests on all DUTs
+| | [Documentation] | Create base startup configuration of VPP for TCP related
+| | ... | tests to all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | | ... | WITH NAME | ${dut}
+| | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']}
+| | | Run keyword | ${dut}.Add Unix Log
+| | | Run keyword | ${dut}.Add Unix CLI Listen
+| | | Run keyword | ${dut}.Add Unix Nodaemon
+| | | Run keyword | ${dut}.Add DPDK Socketmem | 4096,4096
+| | | Run keyword | ${dut}.Add DPDK Log Level | debug
+| | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
+| | | Run keyword | ${dut}.Add Heapsize | 4G
+| | | Run keyword | ${dut}.Add Plugin | disable | default
+| | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
+| | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
+| | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
+| | | Run keyword | ${dut}.Add IP Heap Size | 4G
+
 | Set up HTTP server with paramters on the VPP node
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start HTTP server on
