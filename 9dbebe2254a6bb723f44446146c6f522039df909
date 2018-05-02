@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a904cc71_129e9c45",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-02T07:15:27Z",
+      "side": 1,
+      "message": "Is OSError the only error that could be catched?\nWhat about Socket.timeout, SSHException (http://docs.paramiko.org/en/2.4/api/ssh_exception.html#paramiko.ssh_exception.SSHException) in original function SSH.py#L236",
+      "range": {
+        "startLine": 215,
+        "startChar": 15,
+        "endLine": 215,
+        "endChar": 22
+      },
+      "revId": "9dbebe2254a6bb723f44446146c6f522039df909",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
