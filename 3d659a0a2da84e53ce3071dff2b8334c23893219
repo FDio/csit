@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2882afe_94f44a02",
+        "filename": "resources/libraries/python/search/NdrPdrResult.py",
+        "patchSetId": 111
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-02T07:19:19Z",
+      "side": 1,
+      "message": "Please use \"\".format() wherever possible",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 77
+      },
+      "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
