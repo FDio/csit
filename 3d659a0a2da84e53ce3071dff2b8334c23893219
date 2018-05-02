@@ -69,6 +69,30 @@
       "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08e34007_6cb5706d",
+        "filename": "resources/libraries/python/search/OptimizedSearchAlgorithm.py",
+        "patchSetId": 111
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-02T12:57:28Z",
+      "side": 1,
+      "message": "We are after pyhton2/3 compatible with most pythonic way possible. Speed i think is not the matter here. In whole CSIT we are using .format which is readable but...your choice? I just do not want to be pendantic too much.",
+      "parentUuid": "c666b169_115786f4",
+      "range": {
+        "startLine": 195,
+        "startChar": 21,
+        "endLine": 195,
+        "endChar": 61
+      },
+      "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
