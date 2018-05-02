@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5799eca7_18a2c490",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T12:19:30Z",
+      "side": 1,
+      "message": "Fixing this is out of scope of this change. Callers are only interested in whether the error is retriable of hopeless.",
+      "range": {
+        "startLine": 239,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 13
+      },
+      "revId": "0753a525a1a943c9dcbb4c55589120522a193b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64bc7c70_8841f15b",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T12:19:30Z",
+      "side": 1,
+      "message": "And its subclasses. For example paramiko\u0027s ChannelException looks like it should be also a subclass of IOError, but for some reason it is not.",
+      "range": {
+        "startLine": 240,
+        "startChar": 24,
+        "endLine": 240,
+        "endChar": 36
+      },
+      "revId": "0753a525a1a943c9dcbb4c55589120522a193b22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
