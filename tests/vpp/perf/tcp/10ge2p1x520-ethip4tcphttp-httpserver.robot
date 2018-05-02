@@ -72,7 +72,7 @@
 | | ... | ELSE IF | '${test_type}' == 'cps'
 | | ... | Run keywords
 | | ... | Set up HTTP server with paramters on the VPP node
-| | ... | 10000 | 64 | 4000m | AND
+| | ... | 31000 | 64 | 4000m | AND
 | | ... | Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
