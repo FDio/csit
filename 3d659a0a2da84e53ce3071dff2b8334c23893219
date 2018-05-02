@@ -46,6 +46,29 @@
       "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c666b169_115786f4",
+        "filename": "resources/libraries/python/search/OptimizedSearchAlgorithm.py",
+        "patchSetId": 111
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T12:00:44Z",
+      "side": 1,
+      "message": "Is this ok, or would you prefer the following? It would be longer, slower, but perhaps more readable:\n\n\"result before update: {result}\".format(result\u003dstate.result)",
+      "range": {
+        "startLine": 195,
+        "startChar": 21,
+        "endLine": 195,
+        "endChar": 61
+      },
+      "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
