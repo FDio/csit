@@ -22,6 +22,30 @@
       "revId": "9dbebe2254a6bb723f44446146c6f522039df909",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff928109_5ffc067a",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T12:19:30Z",
+      "side": 1,
+      "message": "No, but that is the point of http://pylint-messages.wikidot.com/messages:w0703\n\nWe should be only catching errors we think will hopefully not repeat the next iteration. But it is up to interactive_terminal_open to decide, and convert the retriable ones to IOError. We do not want to keep trying if we get TypeError, MemoryError or paramiko\u0027s BadHostKeyException.",
+      "parentUuid": "a904cc71_129e9c45",
+      "range": {
+        "startLine": 215,
+        "startChar": 15,
+        "endLine": 215,
+        "endChar": 22
+      },
+      "revId": "9dbebe2254a6bb723f44446146c6f522039df909",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
