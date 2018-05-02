@@ -222,6 +222,8 @@
   - "name"
   - "parent"
   - "result"
+  ignore-list:
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64B-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
@@ -239,6 +241,8 @@
   - "name"
   - "parent"
   - "result"
+  ignore-list:
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64B-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
@@ -256,6 +260,8 @@
   - "name"
   - "parent"
   - "result"
+  ignore-list:
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64B-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
@@ -1168,7 +1174,7 @@
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
 
       parameters:
       - "result"
@@ -1181,7 +1187,7 @@
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1193,7 +1199,7 @@
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1207,7 +1213,7 @@
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
 
       parameters:
       - "result"
@@ -1220,7 +1226,7 @@
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1232,7 +1238,7 @@
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1246,7 +1252,7 @@
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-1t1c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
 
       parameters:
       - "result"
@@ -1259,7 +1265,7 @@
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-2t2c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1271,7 +1277,7 @@
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-4t4c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1285,7 +1291,7 @@
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-1t1c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
 
       parameters:
       - "result"
@@ -1298,7 +1304,7 @@
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-2t2c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1310,7 +1316,7 @@
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-4t4c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1400,7 +1406,7 @@
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-1t1c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
 
       parameters:
       - "result"
@@ -1413,7 +1419,7 @@
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-2t2c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1425,7 +1431,7 @@
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-eth-4t4c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1439,7 +1445,7 @@
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-1t1c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
 
       parameters:
       - "result"
@@ -1452,7 +1458,7 @@
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-2t2c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
@@ -1464,7 +1470,7 @@
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - {period} Trending"
       output-file-name: "vm-vhost-imix-eth-4t4c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
       parameters:
       - "result"
       periods:
