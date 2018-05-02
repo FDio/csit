@@ -16,6 +16,7 @@
 | Library | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
+| Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | Documentation | Performance suite keywords - Suite and test setups and
 | ... | teardowns.
 
@@ -513,6 +514,12 @@
 | | ...
 | | Reset VAT History On All DUTs | ${nodes}
 | | Create base startup configuration of VPP on all DUTs
+
+| Set up tcp performance test
+| | [Documentation] | Common test setup for TCP performance tests.
+| | ...
+| | Reset VAT History On All DUTs | ${nodes}
+| | Create base startup configuration of VPP for TCP tests on all DUTs
 
 | Set up performance test with Ligato Kubernetes
 | | [Documentation] | Common test setup for performance tests with Ligato \
