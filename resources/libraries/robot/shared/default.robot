@@ -121,8 +121,9 @@
 | | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
-| | | Run keyword | ${dut}.Add DPDK Socketmem | 1024,1024
-| | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
+# | | | Run keyword | ${dut}.Add DPDK Socketmem | 1024,1024
+| | | Run keyword | ${dut}.Add DPDK Socketmem | 4096,4096
+# | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
 | | | Run keyword | ${dut}.Add Heapsize | 4G
