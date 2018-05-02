@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19b54d71_6f9c8248",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-02T10:03:04Z",
+      "side": 1,
+      "message": "there is no 14.04 image on VIRL",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "7daf79b1ce1ab94218a14ab5e8275aa92089f800",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
