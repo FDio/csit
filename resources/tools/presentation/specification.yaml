@@ -806,11 +806,14 @@
     title: "rls1804"
     data:
       csit-vpp-perf-1804-all:
-      - 1   # sel - dry run
-      - 13  # sel - dry run
-      - 14  # sel - dry run
-      - 17  # sel - dry run
+      - 21  # sel
       - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
   data: "vpp-performance-changes"
   filter: "all"
   parameters:
@@ -848,11 +851,14 @@
     title: "Release 1804"
     data:
       csit-vpp-perf-check-1804:
-      - 1   # mrr - dry run
-      - 2   # mrr - dry run
-      - 3   # mrr - dry run
-      - 4   # mrr - dry run
-      - 5   # mrr
+      - 5   # mrr - full
+      - 6   # mrr - sel
+      - 7   # mrr - sel
+      - 8   # mrr - sel
+      - 9   # mrr - sel
+      - 10  # mrr - sel
+      - 11  # mrr - sel
+      - 12  # mrr - sel
   data: "vpp-performance-changes-mrr"
   filter: "all"
   parameters:
