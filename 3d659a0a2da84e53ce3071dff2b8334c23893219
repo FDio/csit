@@ -93,6 +93,30 @@
       "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39d6f88e_e06050fb",
+        "filename": "resources/libraries/python/search/OptimizedSearchAlgorithm.py",
+        "patchSetId": 111
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T13:21:17Z",
+      "side": 1,
+      "message": "I have added the last line to wiki subsection [2] for the long-term solution.\nI will keep the old style logging for now, to avoid creating new patch sets, and also the speed is noticeable when used in simulation (see stats.py in https://gerrit.fd.io/r/11896 ).\n\n[2] https://wiki.fd.io/view/CSIT/Submitting_Patches#String_formatting_in_Python",
+      "parentUuid": "08e34007_6cb5706d",
+      "range": {
+        "startLine": 195,
+        "startChar": 21,
+        "endLine": 195,
+        "endChar": 61
+      },
+      "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
