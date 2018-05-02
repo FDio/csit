@@ -22,6 +22,30 @@
       "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eafafbd9_40dd8dd9",
+        "filename": "resources/libraries/python/search/NdrPdrResult.py",
+        "patchSetId": 111
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-02T11:19:21Z",
+      "side": 1,
+      "message": "Will do in the next patch.\n\nI have added a section to wiki: https://wiki.fd.io/view/CSIT/Submitting_Patches#String_formatting_in_Python",
+      "parentUuid": "a2882afe_94f44a02",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 77
+      },
+      "revId": "3d659a0a2da84e53ce3071dff2b8334c23893219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
