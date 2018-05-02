@@ -745,7 +745,7 @@ def table_performance_trending_dashboard(table, input_data):
     for job, builds in table["data"].items():
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
-                if tst_name in table["ignore-list"]:
+                if tst_name.lower() in table["ignore-list"]:
                     continue
                 if tbl_dict.get(tst_name, None) is None:
                     name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
