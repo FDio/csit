@@ -93,7 +93,7 @@
 | | [Tags] | 2T2C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=2 | rxq=2
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=2 | rxq=1
 | | ... | test_type=cps
 
 | tc03-4t4c-ethip4tcphttp-httpserver-cps
@@ -103,7 +103,7 @@
 | | [Tags] | 4T4C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=4 | rxq=4
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=4 | rxq=2
 | | ... | test_type=cps
 
 | tc04-1t1c-ethip4tcphttp-httpserver-rps
@@ -123,7 +123,7 @@
 | | [Tags] | 2T2C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=2 | rxq=2
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=2 | rxq=1
 | | ... | test_type=rps
 
 | tc06-4t4c-ethip4tcphttp-httpserver-rps
@@ -133,5 +133,5 @@
 | | [Tags] | 4T4C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=4 | rxq=4
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=4 | rxq=2
 | | ... | test_type=rps
