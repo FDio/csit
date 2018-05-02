@@ -22,6 +22,30 @@
       "revId": "7daf79b1ce1ab94218a14ab5e8275aa92089f800",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f22e5180_f4a00b13",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-02T14:16:32Z",
+      "side": 1,
+      "message": "we have run our DMM on ubuntu 16.04 , its working fine.",
+      "parentUuid": "19b54d71_6f9c8248",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "7daf79b1ce1ab94218a14ab5e8275aa92089f800",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
