@@ -103,7 +103,7 @@ def generate_html_report(release, spec, versions):
 
     cmd = HTML_BUILDER.format(
         release=release,
-        date=datetime.date.today().strftime('%d-%b-%Y'),
+        date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M (UTC)'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
     execute_command(cmd)
