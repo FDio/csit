@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "878d1123_af0708cd",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 112
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-03T11:03:58Z",
+      "side": 1,
+      "message": "No, Dx indeed. See line 586.",
+      "parentUuid": "fb817efa_48804613",
+      "range": {
+        "startLine": 580,
+        "startChar": 72,
+        "endLine": 580,
+        "endChar": 74
+      },
+      "revId": "b4e8d035933aab4263bf05d568e92ec145ccf77a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fccdbb7_1531a117",
         "filename": "resources/libraries/python/search/AbstractRateProvider.py",
         "patchSetId": 112
