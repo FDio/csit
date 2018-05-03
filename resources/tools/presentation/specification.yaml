@@ -50,6 +50,7 @@
     # Detailed test configurations
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
     DIR[DTC,PERF,VPP]: "{DIR[DTC]}/vpp_performance_configuration"
+    DIR[DTC,MRR,VPP]: "{DIR[DTC]}/vpp_mrr_configuration"
     DIR[DTC,FUNC,VPP]: "{DIR[DTC]}/vpp_functional_configuration"
     DIR[DTC,FUNC,VPP,CENTOS]: "{DIR[DTC]}/vpp_functional_configuration_centos"
 
@@ -161,10 +162,11 @@
       - 28  # sel
       - 29  # sel
       - 30  # sel
+      - 31  # sel
     vpp-performance-changes-mrr:
       csit-vpp-perf-check-1801:
-      - 1
-      - 2
+#      - 1
+#      - 2
       - 3
       - 4
       - 5
@@ -184,6 +186,7 @@
       - 10  # mrr - sel
       - 11  # mrr - sel
       - 12  # mrr - sel
+      - 13  # mrr - sel
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1804-all:
       - 19  # full
@@ -198,6 +201,7 @@
       - 28  # sel
       - 29  # sel
       - 30  # sel
+      - 31  # sel
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
 #      - 9
@@ -287,6 +291,7 @@
       - 28  # sel
       - 29  # sel
       - 30  # sel
+      - 31  # sel
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1804-all:
       - 4
@@ -624,9 +629,10 @@
     - 28  # sel
     - 29  # sel
     - 30  # sel
+    - 31  # sel
     csit-vpp-perf-check-1801:
-    - 1   # mrr
-    - 2   # mrr
+#    - 1   # mrr
+#    - 2   # mrr
     - 3   # mrr
     - 4   # mrr
     - 5   # mrr
@@ -646,6 +652,7 @@
     - 10  # mrr - sel
     - 11  # mrr - sel
     - 12  # mrr - sel
+    - 13  # mrr - sel
 #    csit-ligato-perf-1710-all:
 #    - 5
 #    - 7
@@ -818,6 +825,7 @@
       - 28  # sel
       - 29  # sel
       - 30  # sel
+      - 31  # sel
   data: "vpp-performance-changes"
   filter: "all"
   parameters:
@@ -839,8 +847,8 @@
     title: "Release 1801"
     data:
       csit-vpp-perf-check-1801:
-      - 1
-      - 2
+#      - 1
+#      - 2
       - 3
       - 4
       - 5
@@ -863,6 +871,7 @@
       - 10  # mrr - sel
       - 11  # mrr - sel
       - 12  # mrr - sel
+      - 13  # mrr - sel
   data: "vpp-performance-changes-mrr"
   filter: "all"
   parameters:
@@ -1011,6 +1020,28 @@
   - "parent"
   - "doc"
   - "msg"
+
+-
+  type: "table"
+  title: "Test configuration - VPP MRR Test Configs"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,MRR,VPP]}/vpp_mrr_test_configuration"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
 
 -
   type: "table"
@@ -1281,6 +1312,25 @@
   output-file: "{DIR[DTR,MRR,VPP]}/vpp_mrr_results"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,MRR,VPP]}"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
+  title: "VPP MRR Configuration"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,MRR,VPP]}/vpp_mrr_configuration"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,MRR,VPP]}"
   data:
     "vpp-mrr-results"
   filter: "'MRR'"
