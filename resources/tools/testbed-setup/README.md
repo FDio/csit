@@ -24,7 +24,7 @@ The process below assumes that there is a host used for boostrapping (referred
 to as "PXE boostrap server" below), and that the directory containig this README
 is available on the PXE bootstrap server in ~testuser/host-setup.
 
-### Prepare the PXE bootstrap server (one-time)
+### Prepare the PXE bootstrap server when there is no http server
 
   - `sudo apt-get install isc-dhcp-server tftpd-hpa nginx-light ansible`
   - edit dhcpd.conf and place it to /etc/dhcp/
@@ -35,20 +35,22 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
   - `sudo mkdir /mnt/cdrom`
   - `sudo mount -o loop ubuntu-16.04.2-server-amd64.iso /mnt/cdrom/`
   - `sudo cp -r /mnt/cdrom/install/netboot/* /var/lib/tftpboot/`
-  - `sudo mkdir /usr/share/nginx/html/ubuntu`
-  - `sudo cp -r /mnt/cdrom/* /usr/share/nginx/html/ubuntu/`
+  - figure out the server root of nginx, this is the filesystem path where nginx will look for files when responding to http requests
+  - `grep -r root /etc/nginx/`, save that to NGINX_ROOT
+  - `sudo mkdir -p ${NGINX_ROOT}/download/ubuntu`
+  - `sudo cp -r /mnt/cdrom/* ${NGINX_ROOT}/download/ubuntu/`
   - `sudo cp /mnt/cdrom/ubuntu/isolinux/ldlinux.c32 /var/lib/tftpboot`
   - `sudo cp /mnt/cdrom/ubuntu/isolinux/libcom32.c32 /var/lib/tftpboot`
   - `sudo cp /mnt/cdrom/ubuntu/isolinux/libutil.c32 /var/lib/tftpboot`
   - `sudo cp /mnt/cdrom/ubuntu/isolinux/chain.c32 /var/lib/tftpboot`
   - `sudo umount /mnt/cdrom`
   - edit ks.cfg and replace IP address with that of your PXE bootstrap server
-  - `sudo cp ks.cfg /usr/share/nginx/html/ks.cfg`
+  - `sudo cp ks.cfg ${NGINX_ROOT}/download/ks.cfg`
   - edit boot-screens_txt.cfg and replace IP address with that of your PXE bootstrap server
   - `sudo cp boot-screens_txt.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/txt.cfg`
   - `sudo cp syslinux.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/syslinux.cfg`
 
-### PREFERED: Prepare the PXE bootstrap server (alternative way without NGINX)
+### PREFERED: Prepare the PXE bootstrap server when an http server is already configured
 
   - `sudo apt-get install isc-dhcp-server tftpd-hpa ansible`
   - edit dhcpd.conf and place it to /etc/dhcp/
