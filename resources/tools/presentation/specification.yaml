@@ -266,8 +266,8 @@
       csit-vpp-perf-check-1804:
       - 5   # mrr - full
     ligato-perf-results:
-      csit-ligato-perf-1801-all:
-      - 25  # full
+      csit-ligato-perf-1804-all:
+      - 4  # full
     dpdk-perf-results:
       csit-dpdk-perf-1804-all:
       - 13
@@ -305,16 +305,13 @@
       - 12
       - 13
     plot-ligato-throughput-latency:
-      csit-ligato-perf-1801-all:
-      - 16  # sel
-      - 17  # sel
-      - 18  # sel
-      - 19  # sel
-      - 20  # sel
-      - 21  # sel
-      - 22  # sel
-      - 23  # sel
-      - 24  # sel
+      csit-ligato-perf-1804-all:
+      - 5   # sel
+      - 6   # sel
+      # - 7   # sel
+      # - 8   # sel
+      - 9   # sel
+      # - 10  # sel
 
   plot-layouts:
 
@@ -589,10 +586,10 @@
     - 19
     - 20
     csit-vpp-perf-1801-all:
-    - 122  # full
-    - 126  # full
-    - 129  # full
-    - 140  # full
+#    - 122  # full
+#    - 126  # full
+#    - 129  # full
+#    - 140  # full
     - 124  # sel
     - 127  # sel
     - 128  # sel
@@ -664,17 +661,25 @@
 #    - 13
 #    - 16
 #    - 17
-    csit-ligato-perf-1801-all:
-    - 16  # sel
-    - 17  # sel
-    - 18  # sel
-    - 19  # sel
-    - 20  # sel
-    - 21  # sel
-    - 22  # sel
-    - 23  # sel
-    - 24  # sel
-    - 25  # full
+#    csit-ligato-perf-1801-all:
+#    - 16  # sel
+#    - 17  # sel
+#    - 18  # sel
+#    - 19  # sel
+#    - 20  # sel
+#    - 21  # sel
+#    - 22  # sel
+#    - 23  # sel
+#    - 24  # sel
+#    - 25  # full
+    csit-ligato-perf-1804-all:
+    - 4   # full
+    - 5   # sel
+    - 6   # sel
+#    - 7   # sel
+#    - 8   # sel
+    - 9   # sel
+#    - 10  # sel
     csit-dpdk-perf-1804-all:
     - 4
     - 5
