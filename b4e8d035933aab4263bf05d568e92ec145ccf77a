@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "a66cad14_6c51a26e",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 112
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-03T08:51:10Z",
+      "side": 1,
+      "message": "Is it possible to list currently accepted values?",
+      "range": {
+        "startLine": 554,
+        "startChar": 8,
+        "endLine": 554,
+        "endChar": 53
+      },
+      "revId": "b4e8d035933aab4263bf05d568e92ec145ccf77a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54e07af3_10b99caf",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 112
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-03T08:51:10Z",
+      "side": 1,
+      "message": "Can be removed",
+      "range": {
+        "startLine": 559,
+        "startChar": 8,
+        "endLine": 559,
+        "endChar": 22
+      },
+      "revId": "b4e8d035933aab4263bf05d568e92ec145ccf77a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb817efa_48804613",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 112
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-03T08:51:10Z",
+      "side": 1,
+      "message": "Rx",
+      "range": {
+        "startLine": 580,
+        "startChar": 72,
+        "endLine": 580,
+        "endChar": 74
+      },
+      "revId": "b4e8d035933aab4263bf05d568e92ec145ccf77a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fccdbb7_1531a117",
         "filename": "resources/libraries/python/search/AbstractRateProvider.py",
         "patchSetId": 112
