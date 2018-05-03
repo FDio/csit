@@ -2,6 +2,144 @@
   "comments": [
     {
       "key": {
+        "uuid": "e37a8abb_5725b4a3",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "Suggest to remove it, as it seems to be a property of the hardware.",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 103,
+        "endChar": 43
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07753f5a_8ad07a30",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "Is this issue still observed ? Pointers ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 15
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5d72ddc_a52a832f",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "DPDK testpmd and VPP L2 path NDR throughput",
+      "range": {
+        "startLine": 110,
+        "startChar": 26,
+        "endLine": 110,
+        "endChar": 40
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e3a34a1_2dc6d868",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "Looking at the latest rls1804 report data, NDR rates for x710 (and xl710) are still much lower compared to x520, for VPP L2 paths and also for testpmd. IPv4 path looks better. PDR rates are comparable. Suggest to change description to: \"Suspected NIC firmware or DPDK driver issue affecting NDR throughput on xl710 and x710 NICs.\"",
+      "range": {
+        "startLine": 111,
+        "startChar": 69,
+        "endLine": 111,
+        "endChar": 83
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7bbedd2_cc91b4c4",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "L2 path throughput regression: NDR -2%..-8%, PDR -2%..-6%, MRR -2%..-5%.",
+      "range": {
+        "startLine": 113,
+        "startChar": 69,
+        "endLine": 113,
+        "endChar": 126
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02840cbf_f8634a58",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "L2 path throughput",
+      "range": {
+        "startLine": 113,
+        "startChar": 14,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e05c0b24_de716e97",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -18,6 +156,52 @@
         "startChar": 81,
         "endLine": 114,
         "endChar": 89
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72726189_47527afe",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "IPSec throughput regression: NDR -3%..-8%, PDR -2%..-8%, MRR -3%..-7%.",
+      "range": {
+        "startLine": 117,
+        "startChar": 69,
+        "endLine": 117,
+        "endChar": 123
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7d09f3d_0dc8d350",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-03T18:00:09Z",
+      "side": 1,
+      "message": "IPSec (software, no QAT HW) throughput regression.",
+      "range": {
+        "startLine": 117,
+        "startChar": 14,
+        "endLine": 117,
+        "endChar": 33
       },
       "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
