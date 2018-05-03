@@ -46,6 +46,30 @@
       "revId": "9dbebe2254a6bb723f44446146c6f522039df909",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae21888f_0a146911",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-03T11:23:40Z",
+      "side": 1,
+      "message": "Agree. Thanks for TODO",
+      "parentUuid": "ff928109_5ffc067a",
+      "range": {
+        "startLine": 215,
+        "startChar": 15,
+        "endLine": 215,
+        "endChar": 22
+      },
+      "revId": "9dbebe2254a6bb723f44446146c6f522039df909",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
