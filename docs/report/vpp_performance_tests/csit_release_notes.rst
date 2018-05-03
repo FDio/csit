@@ -110,15 +110,14 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 | 3 | Lower than expected NDR throughput with         | CSIT-571   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
 |   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | rls1801 plugin related performance regression   | CSIT-925   | With all plugins loaded NDR, PDR and MaxRates vary              |
-|   |                                                 |            | intermittently from 3% to 5% across multiple test executions.   |
-|   |                                                 |            | Requires plugin code bisecting.                                 |
+| 4 | rls1804 generic small performance regression    | CSIT-???   | Generic performance regression of discovered NDR, PDR and       |
+|   | l2xcbase, l2bdbase                              |            | MaxRates of -3%..-1% vs. rls1801, affects l2xcbase, l2bdbase    |
+|   |                                                 |            | test suites.                                                    |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 5 | rls1801 generic small performance regression    | CSIT-926   | Generic performance regression of discovered NDR, PDR and       |
-|   | ip4base, l2xcbase, l2bdbase                     |            | MaxRates of -3%..-1% vs. rls1710, affects ip4base, l2xcbase,    |
-|   |                                                 |            | l2bdbase test suites. Not detected by CSIT performance trending |
-|   |                                                 |            | scheme as it was masked out by another issue CSIT-925.          |
+| 5 | rls1804 substantial NDR/PDR regression for      | CSIT-???   | NDR regression of -3%..-8%, PDR regression of -4%..-8%          |
+|   | IPSec tunnel scale SW                           |            | compared to rls1801.                                            |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 6 | rls1801 substantial NDR/PDR regression for      | CSIT-928   | NDR regression of -7%..-15%, PDR regression of -3%..-15%        |
-|   | IPSec tunnel scale with HW QAT crypto-dev       |            | compared to rls1710.                                            |
+| 6 | rls1804 high failure rate of Container          | CSIT-???   | Tests failing to process packets indicating configuration       |
+|   | Orchestrated Topologies                         |            | issue. Suspecting orchestrating configuration issue             |
+|   |                                                 |            | (vpp-agent/sfc-controller).                                     |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
