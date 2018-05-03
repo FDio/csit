@@ -73,10 +73,6 @@ pretty ASCII formats:
   - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.txt>`_,
   - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.txt>`_.
 
-Measured improvements are in line with VPP code optimizations listed in
-`VPP-18.01 release notes
-<https://docs.fd.io/vpp/18.01/release_notes_1801.html>`_.
-
 MRR Throughput Changes
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -93,32 +89,27 @@ pretty ASCII formats:
 Known Issues
 ------------
 
-<to be updated before rls1804 release>
-
 Here is the list of known issues in CSIT |release| for VPP performance tests:
 
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | # | Issue                                           | Jira ID    | Description                                                     |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 1 | Vic1385 and Vic1227 low performance.            | VPP-664    | Low NDR performance.                                            |
-|   |                                                 |            |                                                                 |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | Sporadic (1 in 200) NDR discovery test failures | CSIT-570   | DPDK reporting rx-errors, indicating L1 issue. Suspected issue  |
+| 1 | Sporadic (1 in 200) NDR discovery test failures | CSIT-570   | DPDK reporting rx-errors, indicating L1 issue. Suspected issue  |
 |   | on x520.                                        |            | with HW combination of X710-X520 in LF testbeds. Not observed   |
 |   |                                                 |            | outside of LF testbeds.                                         |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | Lower than expected NDR throughput with         | CSIT-571   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
-|   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
+| 2 | Lower than expected DPDK testpmd and VPP L2     | CSIT-571   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
+|   | path NDR throughput with xl710 and x710 NICs,   |            | PDR throughput on XL710 and X710 NICs.                          |
+|   | compared to x520 NICs.                          |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | rls1801 plugin related performance regression   | CSIT-925   | With all plugins loaded NDR, PDR and MaxRates vary              |
-|   |                                                 |            | intermittently from 3% to 5% across multiple test executions.   |
-|   |                                                 |            | Requires plugin code bisecting.                                 |
+| 3 | Tagged Ethernet dot1q and dot1ad L2 path        | CSIT-1066  | Tagged Ethernet dot1q and dot1ad L2 path throughput regression: |
+|   | throughput regression.                          |            | NDR -2%..-5%, PDR -2%..-6%, MRR. Affects l2xc and l2bd          |
+|   |                                                 |            | performance tests.                                              |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 5 | rls1801 generic small performance regression    | CSIT-926   | Generic performance regression of discovered NDR, PDR and       |
-|   | ip4base, l2xcbase, l2bdbase                     |            | MaxRates of -3%..-1% vs. rls1710, affects ip4base, l2xcbase,    |
-|   |                                                 |            | l2bdbase test suites. Not detected by CSIT performance trending |
-|   |                                                 |            | scheme as it was masked out by another issue CSIT-925.          |
+| 4 | IPSec (software, no QAT HW) throughput          | CSIT-1064  | IPSec throughput regression: NDR -3%..-8%, PDR -2%..-8%, MRR    |
+|   | regression.                                     |            | -3%..-7%.                                                       |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 6 | rls1801 substantial NDR/PDR regression for      | CSIT-928   | NDR regression of -7%..-15%, PDR regression of -3%..-15%        |
-|   | IPSec tunnel scale with HW QAT crypto-dev       |            | compared to rls1710.                                            |
+| 5 | High failure rate of creating working container | CSIT-1065  | Orchestrated container topology tests failing data plane        |
+|   | topologies with K8s/Ligato orchestration.       |            | verification indicating configuration issue. Suspected issue    |
+|   |                                                 |            | with Ligato vpp-agent.                                          |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
