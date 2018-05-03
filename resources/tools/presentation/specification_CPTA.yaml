@@ -223,7 +223,7 @@
   - "parent"
   - "result"
   ignore-list:
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64B-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
@@ -242,7 +242,7 @@
   - "parent"
   - "result"
   ignore-list:
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64B-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
@@ -261,7 +261,7 @@
   - "parent"
   - "result"
   ignore-list:
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64B-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
   evaluated-window: 14
