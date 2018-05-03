@@ -6,3 +6,4 @@ report.html
 *.pyc
 *~
 *.log
+.idea
