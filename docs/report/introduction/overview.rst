@@ -33,8 +33,11 @@ CSIT |release| report contains following main sections and sub-sections:
    tests, performance changes, environment or methodology changes, known CSIT
    issues; *Packet Throughput Graphs* and *Packet Latency
    Graphs* - plotted NDR, PDR throughput and latency results from multiple
-   test job executions; *Test Environment* - environment description;
-   *Documentation* - CSIT source code documentation for VPP performance tests.
+   test job executions; *Throughput Speedup Multi-Core* - plotted core
+   configuration speedup comparision; *Test Environment* - environment
+   description; *VPP HTTP Server Performance Results* - plotted HTTP Server
+   performance; *Documentation* - CSIT source code documentation for VPP
+   performance tests.
 
 #. **DPDK Performance Tests** - DPDK performance tests executed in
    physical FD.io testbeds; *Overview* - tested topologies, test coverage;
@@ -57,12 +60,6 @@ CSIT |release| report contains following main sections and sub-sections:
    |release|, added tests, environment or methodology changes, known CSIT issues;
    *Test Environment* - environment description ;
    *Documentation* - source code documentation for Honeycomb functional tests.
-
-#. **VPP Unit Tests** - refers to VPP functional unit tests executed as
-   part of vpp make test verify option within the FD.io VPP project; listed in
-   this report to give a more complete view about executed VPP functional tests;
-   *Overview* - short overview of unit test framework and executed tests;
-   *Documentation* - source code documentation of VPP unit tests.
 
 #. **NSH_SFC Functional Tests** - NSH_SFC functional tests executed in
    virtual FD.io testbeds; *Overview* - tested virtual topologies, test
