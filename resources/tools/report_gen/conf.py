@@ -71,7 +71,8 @@ rst_epilog = """
 .. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h=rls1707
 .. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h=rls1707
 .. _VIRL topologies directory: https://git.fd.io/csit/tree/resources/tools/virl/topologies/?h=rls1707
-.. _VIRL images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h=rls1707
+.. _VIRL ubuntu images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h=rls1707
+.. _VIRL centos images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/centos/lists/?h=rls1707
 .. _VIRL nested: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/nested/?h=rls1707
 .. _CSIT Honeycomb Functional Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.func.honeycomb.html
 .. _CSIT Honeycomb Performance Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.perf.honeycomb.html
