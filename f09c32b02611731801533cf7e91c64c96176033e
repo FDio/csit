@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "23080fe5_ce49380c",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "ok. done in next patch set.",
+      "parentUuid": "71827804_186bc194",
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38c1e1ab_25e36ac4",
         "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2018-05-02T14:06:30Z",
       "side": 1,
       "message": "Only indirectly. The bandwidth is only computed (in Robot) from the framerate when the test result is reported. The Python search itself only deals with a positive \"target_tr\" quantity, and does not care what it stands for (although documentation mentions pps as a unit).\nThe easiest improvement is to just delete the text in parenthesis.",
+      "range": {
+        "startLine": 6,
+        "startChar": 8,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21cf8f8a_1e586ad7",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "38c1e1ab_25e36ac4",
       "range": {
         "startLine": 6,
         "startChar": 8,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "11786e84_55571fdd",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "I hear you. Adjusting text to indicate packet loss tolerance as MDR parameter, not loss rate. Going forward let\u0027s drive the refresh of rfc2544 to update the throughput section [2].\n\nNew text: MDR enables a single search to discover multiple\npacket throughput rates each associated with a distinct Packet Loss\nTolerance (PLT) criteria.\n\n[2] https://tools.ietf.org/html/rfc2544#section-26.1",
+      "parentUuid": "1375d42b_dba0a59a",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a1eaaa0_97e5dc91",
         "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
         "patchSetId": 2
@@ -76,6 +142,30 @@
       "writtenOn": "2018-05-02T14:06:30Z",
       "side": 1,
       "message": "not above\n\nI know the exact equality is not probable, but the implementation relies on NDR \u003d\u003d PDR(PLR\u003d0.0).",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e15afbfa_8f85dead",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "new text: ..Non-Drop Rate (NDR,\nwith zero packet loss, PLT\u003d0) and Partial Drop Rate (PDR, with non-zero\npacket loss rate that is below configured non-zero PLT)...",
+      "parentUuid": "2a1eaaa0_97e5dc91",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -134,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "04167ae8_378fd87a",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "Ack. Both Maximum and Maximal are correct adjectives here IMV. Maximum is more commonly used, see rfc2544, trfc1242, rfc3511..\n\n\"Transmit Rate\" and \"Receive Rate\" are common terms indicating a sustained measurement over a period. So sticking to them :) \n\nAnd as for syntagmatic analysis - we can take it offline :)",
+      "parentUuid": "fd47d419_da15f10f",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 9
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3b46850_3080639b",
         "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
         "patchSetId": 2
@@ -145,6 +259,30 @@
       "writtenOn": "2018-05-02T14:06:30Z",
       "side": 1,
       "message": "(lower_bound, upper_bound) interval\n\nNote the spaces. The \"interval\" word could stay in front as before.",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 33,
+        "endChar": 28
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4087c7fb_e60d61ba",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3b46850_3080639b",
       "range": {
         "startLine": 32,
         "startChar": 54,
@@ -180,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "60271ab5_9b1bba8b",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "rephrased: i.e. when search\n    criteria like PLT or interval width goal are violated.",
+      "parentUuid": "1ceb3b0b_4533011b",
+      "range": {
+        "startLine": 34,
+        "startChar": 25,
+        "endLine": 34,
+        "endChar": 47
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6faeb7a7_36c1b989",
         "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
         "patchSetId": 2
@@ -191,6 +353,30 @@
       "writtenOn": "2018-05-02T14:06:30Z",
       "side": 1,
       "message": "Why is this repeated in line 43 (but final measurement resolution is not)?",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5cac7895_b38ccd6e",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6faeb7a7_36c1b989",
       "range": {
         "startLine": 39,
         "startChar": 2,
@@ -226,6 +412,30 @@
     },
     {
       "key": {
+        "uuid": "03a2cd25_f6e2da89",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "edited: In general MDR is likely to execute more search trials overall, but\n  less trials at a set final duration.",
+      "parentUuid": "bb3cc009_8a8da04c",
+      "range": {
+        "startLine": 48,
+        "startChar": 14,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57499423_fb16a3d9",
         "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
         "patchSetId": 2
@@ -237,6 +447,30 @@
       "writtenOn": "2018-04-27T19:30:44Z",
       "side": 1,
       "message": "will change to \"subsequent phases\"",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 15
+      },
+      "revId": "f09c32b02611731801533cf7e91c64c96176033e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "938ef6dc_d4a1cafd",
+        "filename": "docs/report/vpp_performance_tests/experimental_mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T11:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57499423_fb16a3d9",
       "range": {
         "startLine": 71,
         "startChar": 0,
