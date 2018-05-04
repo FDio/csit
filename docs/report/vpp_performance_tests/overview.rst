@@ -235,8 +235,7 @@ CSIT |release| follows a common structured naming convention for all performance
 and system functional tests, introduced in CSIT |release-1|.
 
 The naming should be intuitive for majority of the tests. Complete description
-of CSIT test naming convention is provided on `CSIT test naming wiki
-<https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
+of CSIT test naming convention is provided on :ref:`csit_test_naming`.
 
 Methodology: Multi-Core and Multi-Threading
 -------------------------------------------
