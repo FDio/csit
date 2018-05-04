@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d22392d_f9fe1728",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T12:35:18Z",
+      "side": 1,
+      "message": "not above\n\nExample: If PLT\u003d0.5% and trial measurement at line rate X has drop fraction also exactly 0.5%, X becomes a valid PDR candidate (lower bound in fact) even if it is not _below_ PLT.",
+      "range": {
+        "startLine": 11,
+        "startChar": 22,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "f6baf34bd97a89d3401b5ddf584b5352067053ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "521aaa6d_a137ce14",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T12:35:18Z",
+      "side": 1,
+      "message": "Perhaps we can mention MDR tends to converge to lower values than binary search in these cases, and that MDR can take significantly _longer_ than binary search in the worst case.\n\nBut I do not have enough data to show the first fact; and for the second fact, the current implementation prefers aborting (failing the testcase) before searching too long.",
+      "range": {
+        "startLine": 59,
+        "startChar": 7,
+        "endLine": 59,
+        "endChar": 8
+      },
+      "revId": "f6baf34bd97a89d3401b5ddf584b5352067053ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de73d117_c84a275c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T12:35:18Z",
+      "side": 1,
+      "message": "Either single \"subsequent\" section, or two \"intermediate\" + \"final\" sections.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 10
+      },
+      "revId": "f6baf34bd97a89d3401b5ddf584b5352067053ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
