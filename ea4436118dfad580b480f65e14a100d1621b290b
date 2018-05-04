@@ -46,6 +46,30 @@
       "revId": "ea4436118dfad580b480f65e14a100d1621b290b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "003d7dc3_2020bdfa",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x520-ethip4-ip4base-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T11:58:49Z",
+      "side": 1,
+      "message": "- I would safely remove doc per testcase as Suite doc can contain general message and packet sizes are not worth of too much code overhead.\n- I agree with performance_template library with have KW unique named like ethip4-ip4base and than advanced TC would be just calling base KWs and adding feature. This was initial design long time ago. And will help automating them in future.\n- Agree that Configuration can be one KW with many _parameters_\n- Ipsec could have different KW...again we need to desing hierarchy structured KWs so we can then merge similar into bigger.",
+      "parentUuid": "237ffa88_298b7b3c",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "ea4436118dfad580b480f65e14a100d1621b290b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
