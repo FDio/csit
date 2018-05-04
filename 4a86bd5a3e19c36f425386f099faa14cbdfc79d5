@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ff6d1c9b_8930365d",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e37a8abb_5725b4a3",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 103,
+        "endChar": 43
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07753f5a_8ad07a30",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-03T18:00:09Z",
       "side": 1,
       "message": "Is this issue still observed ? Pointers ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 15
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "366cd8bf_5731baad",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Yes, issue is still valid. As per description. It seems to be L1 related between xl710 and x520. As outside LF on x520-x520 this is not replicable.",
+      "parentUuid": "07753f5a_8ad07a30",
       "range": {
         "startLine": 106,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0d0581ce_f814008d",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5d72ddc_a52a832f",
+      "range": {
+        "startLine": 110,
+        "startChar": 26,
+        "endLine": 110,
+        "endChar": 40
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e3a34a1_2dc6d868",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2018-05-03T18:00:09Z",
       "side": 1,
       "message": "Looking at the latest rls1804 report data, NDR rates for x710 (and xl710) are still much lower compared to x520, for VPP L2 paths and also for testpmd. IPv4 path looks better. PDR rates are comparable. Suggest to change description to: \"Suspected NIC firmware or DPDK driver issue affecting NDR throughput on xl710 and x710 NICs.\"",
+      "range": {
+        "startLine": 111,
+        "startChar": 69,
+        "endLine": 111,
+        "endChar": 83
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e14b1756_d1f7c32e",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e3a34a1_2dc6d868",
       "range": {
         "startLine": 111,
         "startChar": 69,
@@ -140,6 +236,54 @@
     },
     {
       "key": {
+        "uuid": "8cd526bd_db5f7ac6",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7bbedd2_cc91b4c4",
+      "range": {
+        "startLine": 113,
+        "startChar": 69,
+        "endLine": 113,
+        "endChar": 126
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "857df979_64057c0b",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02840cbf_f8634a58",
+      "range": {
+        "startLine": 113,
+        "startChar": 14,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e05c0b24_de716e97",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -151,6 +295,30 @@
       "writtenOn": "2018-05-03T10:07:54Z",
       "side": 1,
       "message": "-1%..-3%",
+      "range": {
+        "startLine": 114,
+        "startChar": 81,
+        "endLine": 114,
+        "endChar": 89
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a792350f_cc22351f",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e05c0b24_de716e97",
       "range": {
         "startLine": 114,
         "startChar": 81,
@@ -202,6 +370,54 @@
         "startChar": 14,
         "endLine": 117,
         "endChar": 33
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "948ed3d2_3de0d46e",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7d09f3d_0dc8d350",
+      "range": {
+        "startLine": 117,
+        "startChar": 14,
+        "endLine": 117,
+        "endChar": 33
+      },
+      "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7c7ac58_9115f79e",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T05:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72726189_47527afe",
+      "range": {
+        "startLine": 117,
+        "startChar": 69,
+        "endLine": 117,
+        "endChar": 123
       },
       "revId": "4a86bd5a3e19c36f425386f099faa14cbdfc79d5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
