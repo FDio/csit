@@ -22,6 +22,30 @@
       "revId": "ea4436118dfad580b480f65e14a100d1621b290b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "237ffa88_298b7b3c",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x520-ethip4-ip4base-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T10:43:41Z",
+      "side": 1,
+      "message": "Lines up to max_rate can become a small keyword: Calculate max framerate (arguments: framesize, max_nic_unidirectional_bitrate, max_nic_transmit_framerate).\n\n\u003e Create performance startup configuration on all VPP DUTs\n\nThis is the magic consuming ${wt} and ${rxq}. It could be possible to create such a universal keyword (with lots of optional arguments if needed to accomodate different suites).\n\n\u003e Apply startup configuration on all VPP DUTs\n\nI vaguely remember IPsec setting keys around here. Still, this bould be mergeable into a bigger magical universal keyword.\n\n\u003e Then Find NDR and PDR intervals using optimized search\n\nMRR tests will have all of the above (except min_rate). Could be part of the (even bigger) universal keyword, if we find a good way how to document the test message format.\n\nA reasonable compromise would be to create resources/libraries/robot/performance/performance_templates.robot which will list the test template keywords for each suite type. Each template keyword will have two calls. One call to a universal setup keyword (with optional arguments set for the given suite type) and one call to a test keyword (MRR, MDR, wrk, whatever).",
+      "parentUuid": "6d94a4b7_cc165c62",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "ea4436118dfad580b480f65e14a100d1621b290b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
