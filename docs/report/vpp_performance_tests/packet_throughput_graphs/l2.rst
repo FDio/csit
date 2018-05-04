@@ -26,12 +26,15 @@ in the graph below.
             \label{fig:64B-1t1c-l2-sel1-ndrdisc}
     \end{figure}
 
+*Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
+Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -40,8 +43,6 @@ git repository:
 
       $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
-*Figure 1a. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
 
 .. raw:: html
 
@@ -56,7 +57,7 @@ Switching (base).*
             \label{fig:64B-1t1c-l2-sel2-ndrdisc}
     \end{figure}
 
-*Figure 1b. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
+*Figure 2. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (feature).*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
@@ -90,12 +91,15 @@ in the graph below.
             \label{fig:64B-2t2c-l2-sel1-ndrdisc}
     \end{figure}
 
+*Figure 3. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
+Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -104,8 +108,6 @@ git repository:
 
       $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
-*Figure 2a. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
 
 .. raw:: html
 
@@ -120,7 +122,7 @@ Switching (base).*
             \label{fig:64B-2t2c-l2-sel2-ndrdisc}
     \end{figure}
 
-*Figure 2b. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
+*Figure 4. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (feature).*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
@@ -158,12 +160,15 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
             \label{fig:64B-1t1c-l2-sel1-pdrdisc}
     \end{figure}
 
+*Figure 5. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
+Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/l2/*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*pdrdisc" *
       :shell:
 
 .. only:: latex
@@ -172,8 +177,6 @@ git repository:
 
       $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
-*Figure 3a. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
 
 .. raw:: html
 
@@ -188,7 +191,7 @@ Switching (base).*
             \label{fig:64B-1t1c-l2-sel2-pdrdisc}
     \end{figure}
 
-*Figure 3b. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
+*Figure 6. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (feature).*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
@@ -222,12 +225,15 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
             \label{fig:64B-2t2c-l2-sel1-pdrdisc}
     \end{figure}
 
+*Figure 7. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
+Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/l2/*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*pdrdisc" *
       :shell:
 
 .. only:: latex
@@ -236,8 +242,6 @@ git repository:
 
       $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
-*Figure 4a. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
 
 .. raw:: html
 
@@ -252,7 +256,7 @@ Switching (base).*
             \label{fig:64B-2t2c-l2-sel2-pdrdisc}
     \end{figure}
 
-*Figure 4b. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
+*Figure 8. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Switching (feature).*
 
 .. only:: html
