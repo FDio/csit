@@ -425,10 +425,8 @@
 | | [Arguments] | ${text} | ${rate_total} | ${framesize} | ${latency}=${EMPTY}
 | | ...
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
-| | Set Test Message | ${\n}${text} | append=yes
-| | Set Test Message | ${\n}RATE: ${rate_total} pps | append=yes
-| | Set Test Message | ${\n}BANDWIDTH: ${bandwidth_total} Gbps (untagged)
-| | ... | append=yes
+| | Set Test Message | ${\n}${text}: ${rate_total} pps, | append=yes
+| | Set Test Message | ${SPACE}${bandwidth_total} Gbps (untagged) | append=yes
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY usec [min/avg/max] per stream: ${latency}
 | | ... | append=yes
@@ -455,16 +453,15 @@
 | | [Arguments] | ${result} | ${framesize}
 | | ...
 | | ${framesize}= | Get Frame Size | ${framesize}
-| | Set Test Message | NDR+PDR search results:
-| | Display single bound | NDR lower bound
+| | Display single bound | NDR_LOWER
 | | ... | ${result.ndr_interval.measured_low.transmit_rate} | ${framesize}
 | | ... | ${result.ndr_interval.measured_low.latency}
-| | Display single bound | NDR upper bound
+| | Display single bound | NDR_UPPER
 | | ... | ${result.ndr_interval.measured_high.transmit_rate} | ${framesize}
-| | Display single bound | PDR lower bound
+| | Display single bound | PDR_LOWER
 | | ... | ${result.pdr_interval.measured_low.transmit_rate} | ${framesize}
 | | ... | ${result.pdr_interval.measured_low.latency}
-| | Display single bound | PDR upper bound
+| | Display single bound | PDR_UPPER
 | | ... | ${result.pdr_interval.measured_high.transmit_rate} | ${framesize}
 
 | Check NDRPDR interval validity
