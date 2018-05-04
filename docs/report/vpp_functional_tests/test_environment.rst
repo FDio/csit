@@ -72,18 +72,20 @@ been tested with, is the following:
    by CSIT disk image build scripts.
 
    The exact list of installed packages and their versions (including the Linux
-   kernel package version) are included in `VIRL images lists`_.
+   kernel package version) are included in `VIRL ubuntu images lists`_.
 
    A replica of this VM image can be built by running the :command:`build.sh`
    script in CSIT repository.
 
 #. **CentOS VIRL image**
 
-   The Centos7.3 image is ready to be used but no tests running on it now.
-   Corresponding Jenkins jobs are under preparation.
+   This image implies Centos 7.4-1711, current as of yyyy-mm-dd (that is,
+   package versions are those that would have been installed by a
+   :command:`yum update`, :command:`yum upgrade` on that day), produced
+   by CSIT disk image build scripts.
 
    The exact list of installed packages and their versions (including the Linux
-   kernel package version) are included in `VIRL images lists`_.
+   kernel package version) are included in `VIRL centos images lists`_.
 
    A replica of this VM image can be built by running the :command:`build.sh`
    script in CSIT repository.
@@ -232,7 +234,7 @@ Example of DUT nodes configuration:::
 
 |vpp-release|
 
-**VPP Installed Packages**
+**VPP Installed Packages - Ubuntu**
 ::
 
     $ dpkg -l vpp\*
@@ -247,6 +249,106 @@ Example of DUT nodes configuration:::
     ii  vpp-dpdk-dkms  18.02-vpp1    amd64        DPDK Development Package for VPP - Kernel Modules
     ii  vpp-lib        18.04-release amd64        Vector Packet Processing--runtime libraries
     ii  vpp-plugins    18.04-release amd64        Vector Packet Processing--runtime plugins
+
+**VPP Installed Packages - Centos**
+::
+
+    $ rpm -qai vpp*
+    Name        : vpp
+    Version     : 18.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Fri 04 May 2018 02:47:36 AM EDT
+    Group       : Unspecified
+    Size        : 2311324
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-18.04-release.src.rpm
+    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
+    Build Host  : c29a51c12e88
+    Relocations : (not relocatable)
+    Summary     : Vector Packet Processing
+    Description :
+    This package provides VPP executables: vpp, vpp_api_test, vpp_json_test
+    vpp - the vector packet engine
+    vpp_api_test - vector packet engine API test tool
+    vpp_json_test - vector packet engine JSON test tool
+    Name        : vpp-lib
+    Version     : 18.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Fri 04 May 2018 02:47:36 AM EDT
+    Group       : System Environment/Libraries
+    Size        : 24949034
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-18.04-release.src.rpm
+    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
+    Build Host  : c29a51c12e88
+    Relocations : (not relocatable)
+    Summary     : VPP libraries
+    Description :
+    This package contains the VPP shared libraries, including:
+    vppinfra - foundation library supporting vectors, hashes, bitmaps, pools, and string formatting.
+    svm - vm library
+    vlib - vector processing library
+    vlib-api - binary API library
+    vnet -  network stack library
+    Name        : vpp-selinux-policy
+    Version     : 18.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Fri 04 May 2018 02:47:35 AM EDT
+    Group       : System Environment/Base
+    Size        : 86170
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-18.04-release.src.rpm
+    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
+    Build Host  : c29a51c12e88
+    Relocations : (not relocatable)
+    Summary     : VPP Security-Enhanced Linux (SELinux) policy
+    Description :
+    This package contains a tailored VPP SELinux policy
+    Name        : vpp-devel
+    Version     : 18.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Fri 04 May 2018 02:47:38 AM EDT
+    Group       : Development/Libraries
+    Size        : 10632218
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-18.04-release.src.rpm
+    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
+    Build Host  : c29a51c12e88
+    Relocations : (not relocatable)
+    Summary     : VPP header files, static libraries
+    Description :
+    This package contains the header files for VPP.
+    Install this package if you want to write a
+    program for compilation and linking with vpp lib.
+    vlib
+    vlibmemory
+    vnet - devices, classify, dhcp, ethernet flow, gre, ip, etc.
+    vpp-api
+    vppinfra
+    Name        : vpp-plugins
+    Version     : 18.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Fri 04 May 2018 02:47:37 AM EDT
+    Group       : System Environment/Libraries
+    Size        : 44145968
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-18.04-release.src.rpm
+    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
+    Build Host  : c29a51c12e88
+    Relocations : (not relocatable)
+    Summary     : Vector Packet Processing--runtime plugins
+    Description :
+    This package contains VPP plugins
 
 **VPP Startup Configuration**
 

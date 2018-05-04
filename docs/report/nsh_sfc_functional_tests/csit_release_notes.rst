@@ -6,10 +6,7 @@ Changes in CSIT |release|
 
 #. Added NSH SFC functional tests
 
-   - NSH SFC Classifier.
-   - NSH SFC Proxy Inbound.
-   - NSH SFC Proxy Outbound.
-   - NSH SFC SFF.
+   - None.
 
 Known Issues
 ------------
