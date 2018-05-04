@@ -68,6 +68,52 @@
       "revId": "d06bd141a62b139ca549bf276917ca4eeffcd250",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79b80489_d075d754",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T09:00:20Z",
+      "side": 1,
+      "message": "Tagged Ethernet dot1q and dot1ad L2 path throughput regression:",
+      "range": {
+        "startLine": 105,
+        "startChar": 69,
+        "endLine": 105,
+        "endChar": 76
+      },
+      "revId": "d06bd141a62b139ca549bf276917ca4eeffcd250",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be47a60b_06aacdec",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T09:00:20Z",
+      "side": 1,
+      "message": "Affects l2xc and l2bd performance tests.",
+      "range": {
+        "startLine": 106,
+        "startChar": 76,
+        "endLine": 106,
+        "endChar": 80
+      },
+      "revId": "d06bd141a62b139ca549bf276917ca4eeffcd250",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
