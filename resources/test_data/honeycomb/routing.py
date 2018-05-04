@@ -63,80 +63,86 @@ def get_variables(node, ip_version, out_interface):
     # route configuration used in tests
     tables_cfg = {
         "table1": {
-            "id": 1,
             "description": "single hop ipv4",
             "destination-prefix":
                 "{0}/{1}".format(ipv4_base["dst_net"], ipv4_base["prefix_len"]),
-            "next-hop": ipv4_base["next_hop"],
-            "outgoing-interface": out_interface,
-            "vpp-ipv4-route": {}
+            "next-hop": {
+                "next-hop-address" : ipv4_base["next_hop"],
+                "outgoing-interface": out_interface
+            },
+            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {}
         },
         "table2": {
-            "id": 1,
             "description": "multi hop ipv4",
             "destination-prefix":
                 "{0}/{1}".format(ipv4_base["dst_net"], ipv4_base["prefix_len"]),
-            "next-hop-list": {
-                "next-hop": [
-                    {
-                        "id": 1,
-                        "address": ipv4_base["next_hop1"],
-                        "outgoing-interface": out_interface,
-                        "weight": "1"
-                    },
-                    {
-                        "id": 2,
-                        "address": ipv4_base["next_hop2"],
-                        "outgoing-interface": out_interface,
-                        "weight": "1"
-                    }
-                ]
+            "next-hop":{
+                "next-hop-list": {
+                    "next-hop": [
+                        {
+                            "index": 1,
+                            "next-hop-address": ipv4_base["next_hop1"],
+                            "outgoing-interface": out_interface,
+                            "weight": "1"
+                        },
+                        {
+                            "index": 2,
+                            "next-hop-address": ipv4_base["next_hop2"],
+                            "outgoing-interface": out_interface,
+                            "weight": "1"
+                        }
+                    ]
+                }
             }
         },
         "table3": {
-            "id": 1,
             "description": "blackhole ipv4",
             "destination-prefix":
                 "{0}/{1}".format(ipv4_base["dst_net"], ipv4_base["prefix_len"]),
-            "special-next-hop": "receive"
+            "next-hop": {
+                "special-next-hop-enum": "blackhole"
+            }
         },
         "table4": {
-            "id": 1,
             "description": "single hop ipv6",
             "destination-prefix":
                 "{0}/{1}".format(ipv6_base["dst_net"], ipv6_base["prefix_len"]),
-            "next-hop": ipv6_base["next_hop"],
-            "outgoing-interface": out_interface,
-            "vpp-ipv6-route": {}
+            "next-hop": {
+                "next-hop-address": ipv6_base["next_hop"],
+                "outgoing-interface": out_interface
+            },
+            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {}
         },
         "table5": {
-            "id": 1,
             "description": "multi hop ipv6",
             "destination-prefix":
                 "{0}/{1}".format(ipv6_base["dst_net"], ipv6_base["prefix_len"]),
-            "next-hop-list": {
-                "next-hop": [
-                    {
-                        "id": 1,
-                        "address": ipv6_base["next_hop1"],
-                        "outgoing-interface": out_interface,
-                        "weight": "1"
-                    },
-                    {
-                        "id": 2,
-                        "address": ipv6_base["next_hop2"],
-                        "outgoing-interface": out_interface,
-                        "weight": "1"
-                    }
-                ]
+            "next-hop":{
+                "next-hop-list": {
+                    "next-hop": [
+                        {
+                            "index": 1,
+                            "next-hop-address": ipv6_base["next_hop1"],
+                            "outgoing-interface": out_interface,
+                            "weight": "1"
+                        },
+                        {
+                            "index": 2,
+                            "next-hop-address": ipv6_base["next_hop2"],
+                            "outgoing-interface": out_interface,
+                            "weight": "1"
+                        }
+                    ]
+                }
             }
         },
         "table6": {
-            "id": 1,
             "description": "blackhole ipv6",
             "destination-prefix":
                 "{0}/{1}".format(ipv6_base["dst_net"], ipv6_base["prefix_len"]),
-            "special-next-hop": "blackhole"
+            "next-hop":{
+                "special-next-hop-enum": "blackhole"
+            }
         }
     }
 
@@ -145,69 +151,83 @@ def get_variables(node, ip_version, out_interface):
         "table1_oper": {
             "destination-prefix":
                 "{0}/{1}".format(ipv4_base["dst_net"], ipv4_base["prefix_len"]),
-            "next-hop": ipv4_base["next_hop"],
-            "outgoing-interface": out_interface,
-            "vpp-ipv4-route-state": {}
+            "next-hop":{
+                "next-hop-address": ipv4_base["next_hop"],
+                "outgoing-interface": out_interface
+            },
+            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-1"}
         },
         "table2_oper": {
             "destination-prefix":
                 "{0}/{1}".format(ipv4_base["dst_net"], ipv4_base["prefix_len"]),
-            "next-hop-list": {
-                "next-hop": [
-                    {
-                        "address": ipv4_base["next_hop1"],
-                        "outgoing-interface": out_interface,
-                        "weight": 1
-                    },
-                    {
-                        "address": ipv4_base["next_hop2"],
-                        "outgoing-interface": out_interface,
-                        "weight": 1
-                    }
-                ]
+            "next-hop":{
+                "next-hop-list": {
+                    "next-hop": [
+                        {
+                            "index": 1,
+                            "next-hop-address": ipv4_base["next_hop1"],
+                            "outgoing-interface": out_interface,
+                            "vpp-ipv4-unicast-routing:weight": 1
+                        },
+                        {
+                            "index": 2,
+                            "next-hop-address": ipv4_base["next_hop2"],
+                            "outgoing-interface": out_interface,
+                            "vpp-ipv4-unicast-routing:weight": 1
+                        }
+                    ]
+                }
             },
-            'vpp-ipv4-route-state': {}
+            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-1"}
         },
         "table3_oper": {
             "destination-prefix":
                 "{0}/{1}".format(ipv4_base["dst_net"], ipv4_base["prefix_len"]),
-            "special-next-hop": "receive",
-            "vpp-ipv4-route-state": {}
+            "next-hop":{
+                "special-next-hop-enum": "blackhole"
+            },
+            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-1"}
         },
         "table4_oper": {
             "destination-prefix":
                 "{0}/{1}".format(ipv6_base["dst_net"],
                                  ipv6_base["prefix_len"]),
-            "next-hop": ipv6_base["next_hop"],
-            "outgoing-interface": out_interface,
-            "vpp-ipv6-route-state": {}
+            "next-hop":{
+                "next-hop-address": ipv6_base["next_hop"],
+                "outgoing-interface": out_interface
+            },
+            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {"classify-table": "classify-table-1"}
         },
         "table5_oper": {
             "destination-prefix":
                 "{0}/{1}".format(ipv6_base["dst_net"],
                                  ipv6_base["prefix_len"]),
-            "next-hop-list": {
-                "next-hop": [
-                    {
-                        "address": ipv6_base["next_hop1"],
-                        "outgoing-interface": out_interface,
-                        "weight": 1
-                    },
-                    {
-                        "address": ipv6_base["next_hop2"],
-                        "outgoing-interface": out_interface,
-                        "weight": 1
-                    }
-                ]
+            "next-hop":{
+                "next-hop-list": {
+                    "next-hop": [
+                        {
+                            "next-hop-address": ipv6_base["next_hop1"],
+                            "outgoing-interface": out_interface,
+                            "vpp-ipv6-unicast-routing:weight": 1
+                        },
+                        {
+                            "next-hop-address": ipv6_base["next_hop2"],
+                            "outgoing-interface": out_interface,
+                            "vpp-ipv6-unicast-routing:weight": 1
+                        }
+                    ]
+                }
             },
-            "vpp-ipv6-route-state": {}
+            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {"classify-table": "classify-table-1"}
         },
         "table6_oper": {
             "destination-prefix":
                 "{0}/{1}".format(ipv6_base["dst_net"],
                                  ipv6_base["prefix_len"]),
-            "special-next-hop": "blackhole",
-            'vpp-ipv6-route-state': {}
+            "next-hop":{
+                "special-next-hop-enum": "blackhole"
+            },
+            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {"classify-table": "classify-table-1"}
         }
     }
 
