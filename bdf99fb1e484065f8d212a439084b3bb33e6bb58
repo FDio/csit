@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d39203fc_161b064f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "suite using MDR search implementation",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "868fd245_b2594339",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "suite using two consecutive Binary searches (NDR/PDR)",
+      "range": {
+        "startLine": 19,
+        "startChar": 18,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec6efd78_3fade03b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "IMIX_v4_1",
+      "range": {
+        "startLine": 20,
+        "startChar": 43,
+        "endLine": 20,
+        "endChar": 47
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8146c32_aec0f0d3",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "9000B",
+      "range": {
+        "startLine": 20,
+        "startChar": 35,
+        "endLine": 20,
+        "endChar": 39
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af3d1dc_e4c0c262",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "rephrase as it can mislead reader of \"previous\" (in term of file-1). Maybe: The Binary search implemented suites?",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 13
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41fe1655_8a4fee46",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "similar to before comment. Maybe The suite that implements MDR search?",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ada320f_2289343e",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "Not sure about validity of statement. I understand what are you trying to say but...\nWarmup indeed is not trash away as before but on the other side initial measurement is warmup itself?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 43
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "895dd4cd_8e59fded",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "used for variety of telemetry data retrieval.",
+      "range": {
+        "startLine": 48,
+        "startChar": 49,
+        "endLine": 48,
+        "endChar": 73
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7799af92_682e6cb3",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "T\nremove leading: You can see...",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 14
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89174d3f_b1529279",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T10:46:00Z",
+      "side": 1,
+      "message": "test cases reporting poor repeatability of results.",
+      "range": {
+        "startLine": 72,
+        "startChar": 57,
+        "endLine": 72,
+        "endChar": 74
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
