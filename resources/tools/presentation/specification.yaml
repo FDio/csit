@@ -163,10 +163,9 @@
       - 29  # sel
       - 30  # sel
       - 31  # sel
+      - 35  # sel
     vpp-performance-changes-mrr:
       csit-vpp-perf-check-1801:
-#      - 1
-#      - 2
       - 3
       - 4
       - 5
@@ -178,7 +177,6 @@
       - 12
       - 13
       csit-vpp-perf-check-1804:
-      - 5   # mrr - full
       - 6   # mrr - sel
       - 7   # mrr - sel
       - 8   # mrr - sel
@@ -187,6 +185,8 @@
       - 11  # mrr - sel
       - 12  # mrr - sel
       - 13  # mrr - sel
+      - 14  # mrr - sel
+      - 15  # mrr - sel
     plot-throughput-speedup-analysis:
       csit-vpp-perf-1804-all:
       - 19  # full
@@ -202,6 +202,17 @@
       - 29  # sel
       - 30  # sel
       - 31  # sel
+      - 35  # sel
+    plot-ligato-throughput-speedup-analysis:
+      csit-ligato-perf-1804-all:
+      - 5   # sel
+      - 6   # sel
+      - 7   # sel
+      - 8   # sel
+      - 9   # sel
+      - 10  # sel
+      - 11  # sel
+      - 12  # sel
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
 #      - 9
@@ -258,10 +269,10 @@
       - 26  # full
     vpp-func-results:
       csit-vpp-functional-1804-ubuntu1604-virl:
-      - 168
+      - 199
     vpp-func-results-centos:
       csit-vpp-functional-1804-centos7-virl:
-      - 175
+      - 207
     vpp-mrr-results:
       csit-vpp-perf-check-1804:
       - 5   # mrr - full
@@ -292,6 +303,7 @@
       - 29  # sel
       - 30  # sel
       - 31  # sel
+      - 35  # sel
     plot-dpdk-throughput-latency:
       csit-dpdk-perf-1804-all:
       - 4
@@ -308,10 +320,12 @@
       csit-ligato-perf-1804-all:
       - 5   # sel
       - 6   # sel
-      # - 7   # sel
-      # - 8   # sel
+      - 7   # sel
+      - 8   # sel
       - 9   # sel
-      # - 10  # sel
+      - 10  # sel
+      - 11  # sel
+      - 12  # sel
 
   plot-layouts:
 
@@ -627,9 +641,8 @@
     - 29  # sel
     - 30  # sel
     - 31  # sel
+    - 35  # sel
     csit-vpp-perf-check-1801:
-#    - 1   # mrr
-#    - 2   # mrr
     - 3   # mrr
     - 4   # mrr
     - 5   # mrr
@@ -650,6 +663,8 @@
     - 11  # mrr - sel
     - 12  # mrr - sel
     - 13  # mrr - sel
+    - 14  # mrr - sel
+    - 15  # mrr - sel
 #    csit-ligato-perf-1710-all:
 #    - 5
 #    - 7
@@ -676,10 +691,12 @@
     - 4   # full
     - 5   # sel
     - 6   # sel
-#    - 7   # sel
-#    - 8   # sel
+    - 7   # sel
+    - 8   # sel
     - 9   # sel
-#    - 10  # sel
+    - 10  # sel
+    - 11  # sel
+    - 12  # sel
     csit-dpdk-perf-1804-all:
     - 4
     - 5
@@ -692,9 +709,9 @@
     - 12
     - 13
     csit-vpp-functional-1804-ubuntu1604-virl:
-    - 168
+    - 199
     csit-vpp-functional-1804-centos7-virl:
-    - 175
+    - 207
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
     - 7
     csit-hc2vpp-verify-func-1804-ubuntu1604:
@@ -1718,6 +1735,413 @@
     title: "78B-*-ethip6-ip6(base|scale)*pdrdisc"
     layout:
       "plot-throughput-speedup-analysis"
+
+## IP4_overlay - NDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ethip4-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## IP4_overlay - PDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ethip4-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## IP6_overlay - NDR
+#-
+#  type: "plot"
+#  title: "TSA: 78B-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ethip6-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '78B' and 'ENCAP' and 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "78B-*-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## IP6_overlay - PDR
+#-
+#  type: "plot"
+#  title: "TSA: 78B-*-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ethip6-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "78B-*-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## VM VHOST - NDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-XL710' and '64B' and 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-XL710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## VM VHOST - PDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-XL710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-XL710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*vhost.*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## CRYPTO - NDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*ipsec.*-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ipsechw-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-XL710' and '64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*ipsec.*-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## CRYPTO - PDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-.*ipsec.*-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ipsechw-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-XL710' and '64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-.*ipsec.*-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## Container memif - NDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-memif-tsa-ndrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-memif-tsa-pdrdisc"
+#  data:
+#    "plot-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## Container orchestrated - NDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-orchestrated-tsa-ndrdisc"
+#  data:
+#    "plot-ligato-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-container-orchestrated-tsa-ndrdisc"
+#  data:
+#    "plot-ligato-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X710' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+## Container orchestrated - PDR
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-orchestrated-tsa-pdrdisc"
+#  data:
+#    "plot-ligato-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and ''PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-container-orchestrated-tsa-pdrdisc"
+#  data:
+#    "plot-ligato-throughput-speedup-analysis"
+#  filter: "'NIC_Intel-X710' and '64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+#    layout:
+#      "plot-throughput-speedup-analysis"
 
 # Plot packets per second
 
@@ -3367,45 +3791,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 4500000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3425,45 +3812,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 8000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3483,45 +3833,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 4500000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3541,45 +3854,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 8000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 # Container orchestrated
 -
