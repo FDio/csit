@@ -6,17 +6,17 @@ Changes in CSIT |release|
 
 #. **Added VPP performance tests**
 
-   - *MRR tests :* New MRR tests measure the packet forwarding rate
-       under the maximum load offered by traffic generator over a set
-       trial duration, regardless of packet loss. Maximum load for
-       specified Ethernet frame size is set to the bi-directional link
-       rate. MRR tests are used for continuous performance trending and
-       for comparison between releases.
+   - *MRR tests* - New MRR tests measure the packet forwarding rate
+     under the maximum load offered by traffic generator over a set
+     trial duration, regardless of packet loss. Maximum load for
+     specified Ethernet frame size is set to the bi-directional link
+     rate. MRR tests are used for continuous performance trending and
+     for comparison between releases.
 
-   - *Service Chaining with SRv6 :* SRv6 (Segment Routing IPv6) proxy tests
-       verifying performance of Endpoint to SR-unaware appliance via
-       masquerading (End.AM), dynamic proxy (End.AD) or static proxy (End.AS)
-       functions.
+   - *Service Chaining with SRv6* - SRv6 (Segment Routing IPv6) proxy tests
+     verifying performance of Endpoint to SR-unaware appliance via
+     masquerading (End.AM), dynamic proxy (End.AD) or static proxy (End.AS)
+     functions.
 
 #. **Presentation and Analytics Layer (PAL)**
 
@@ -29,13 +29,13 @@ Changes in CSIT |release|
 
 #. **Test Framework Optimizations**
 
-     - *Performance tests efficiency :* Qemu build/install
-     optimizations, warmup phase handling, vpp restart handling.
-     Resulted in improved stability and reduced total execution time by
-     30% for single pkt size e.g. 64B/78B.
+     - *Performance tests efficiency* - Qemu build/install
+       optimizations, warmup phase handling, vpp restart handling.
+       Resulted in improved stability and reduced total execution time
+       by 30% for single pkt size e.g. 64B/78B.
 
-     - *General code housekeeping :* ongoing RF keywords
-     optimizations, removal of redundant RF keywords.
+     - *General code housekeeping* - ongoing RF keywords optimizations,
+       removal of redundant RF keywords.
 
 Performance Changes
 -------------------
@@ -93,16 +93,16 @@ In addition to reporting throughput changes between VPP releases, CSIT provides
 continuous performance trending for VPP master branch:
 
 #. `VPP Performance Dashboard <https://docs.fd.io/csit/master/trending/introduction/index.html>`_
-- per VPP test case throughput trend, trend compliance and summary of detected
-anomalies.
+   - per VPP test case throughput trend, trend compliance and summary of
+   detected anomalies.
 
 #. `Trending Methodology <https://docs.fd.io/csit/master/trending/methodology/index.html>`_
-- throughput test metrics, trend calculations and anomaly classification
-(progression, regression, outlier).
+   - throughput test metrics, trend calculations and anomaly
+   classification (progression, regression, outlier).
 
 #. `Trendline Graphs <https://docs.fd.io/csit/master/trending/trending/index.html>`_
-- per VPP build MRR throughput measurements against the trendline with anomaly
-highlights, with associated CSIT test jobs.
+   - per VPP build MRR throughput measurements against the trendline with
+   anomaly highlights, with associated CSIT test jobs.
 
 Known Issues
 ------------
