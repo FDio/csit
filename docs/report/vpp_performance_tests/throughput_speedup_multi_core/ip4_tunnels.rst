@@ -31,6 +31,9 @@ NIC 10ge2p1x520
             \label{fig:10ge2p1x520-64B-ethip4-tsa-ndrdisc}
     \end{figure}
 
+*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+NDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -45,9 +48,6 @@ git repository:
 
       $ cd tests/vpp/perf/ip4_tunnels
       $ grep -E "64B-(1t1c|2t2c|4t4c)-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
 
 PDR Throughput
 --------------
@@ -71,6 +71,9 @@ NIC 10ge2p1x520
             \label{fig:10ge2p1x520-64B-ethip4-tsa-pdrdisc}
     \end{figure}
 
+*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+PDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -85,6 +88,3 @@ git repository:
 
       $ cd tests/vpp/perf/ip4_tunnels
       $ grep -E "64B-(1t1c|2t2c|4t4c)-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
-
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*

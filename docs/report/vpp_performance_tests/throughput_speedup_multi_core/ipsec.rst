@@ -33,6 +33,9 @@ NIC 40ge2p1xl710
             \label{fig:40ge2p1xl710-64B-ipsechw-tsa-ndrdisc}
     \end{figure}
 
+*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+NDR Throughput for Phy-to-Phy IPSEC HW.*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -47,9 +50,6 @@ git repository:
 
       $ cd tests/vpp/perf/crypto
       $ grep -E "64B-(1t1c|2t2c|4t4c)-.*ipsec.*-ndrdisc" *
-
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPSEC HW.*
 
 PDR Throughput
 --------------
@@ -76,6 +76,9 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
             \label{fig:40ge2p1xl710-64B-ipsechw-tsa-pdrdisc}
     \end{figure}
 
+*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+PDR Throughput for Phy-to-Phy IPSEC HW.*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -90,6 +93,3 @@ git repository:
 
       $ cd tests/vpp/perf/crypto
       $ grep -E "64B-(1t1c|2t2c|4t4c)-.*ipsec.*-pdrdisc" *
-
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPSEC HW.*

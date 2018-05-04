@@ -31,6 +31,9 @@ NIC 10ge2p1x520
             \label{fig:10ge2p1x520-64B-ip4-tsa-ndrdisc}
     \end{figure}
 
+*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+NDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding.*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -45,9 +48,6 @@ git repository:
 
       $ cd tests/vpp/perf/ip4
       $ grep -E '64B-(1t1c|2t2c|4t4c)-ethip4-ip4(base|scale[a-z0-9]*)*-ndrdisc' 10ge2p1x520*
-
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding.*
 
 NIC 40ge2p1xl710
 ~~~~~~~~~~~~~~~~
@@ -65,6 +65,9 @@ NIC 40ge2p1xl710
             \label{fig:40ge2p1xl710-64B-ip4-tsa-ndrdisc}
     \end{figure}
 
+*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+NDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding.*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -79,9 +82,6 @@ git repository:
 
       $ cd tests/vpp/perf/ip4
       $ grep -P '64B-(1t1c|2t2c|4t4c)-ethip4-ip4(base|scale[a-z0-9]*)*-ndrdisc' 40ge2p1xl710*
-
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding.*
 
 PDR Throughput
 --------------
@@ -106,6 +106,9 @@ NIC 10ge2p1x520
             \label{fig:10ge2p1x520-64B-ip4-tsa-pdrdisc}
     \end{figure}
 
+*Figure 3. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+PDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding.*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -120,6 +123,3 @@ git repository:
 
       $ cd tests/vpp/perf/ip4
       $ grep -E '64B-(1t1c|2t2c|4t4c)-ethip4-ip4(base|scale[a-z0-9]*)*-ndrdisc' 10ge2p1x520*
-
-*Figure 3. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding.*
