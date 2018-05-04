@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e780d3d_5cd7148f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T14:11:55Z",
+      "side": 1,
+      "message": "+1",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 66
+      },
+      "revId": "e633f3ab9c9fdbb989e2ea8864990de111fec280",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e680ff65_461dbc52",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T14:11:55Z",
+      "side": 1,
+      "message": "\"Optimal\" sounds too strong, especially when the initial phase also functions as a warm-up.\nI would say it determines \"promising\" starting bounds.",
+      "range": {
+        "startLine": 30,
+        "startChar": 54,
+        "endLine": 30,
+        "endChar": 61
+      },
+      "revId": "e633f3ab9c9fdbb989e2ea8864990de111fec280",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0e56073_c749ce0e",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T14:11:55Z",
+      "side": 1,
+      "message": "Perhaps move this after current c), as subsequent phases do not care about receive rate (only about drop fraction in comparison to PLT)",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 4
+      },
+      "revId": "e633f3ab9c9fdbb989e2ea8864990de111fec280",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16bba529_81039161",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T14:11:55Z",
+      "side": 1,
+      "message": "This value does not affect the subsequent phases.",
+      "range": {
+        "startLine": 114,
+        "startChar": 5,
+        "endLine": 114,
+        "endChar": 9
+      },
+      "revId": "e633f3ab9c9fdbb989e2ea8864990de111fec280",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
