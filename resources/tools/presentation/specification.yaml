@@ -96,18 +96,17 @@
   data-sets:
     plot-vpp-http-server-performance:
 # TODO: Add the data sources
-      csit-vpp-perf-1801-all:
-      - 157
-      - 158
-      - 159
-      - 160
-      - 161
-      - 164
-      - 165
-      - 166
-      - 168
-      - 169
-      - 170
+      csit-vpp-perf-1804-all:
+      - 39  # wrk
+      - 40  # wrk
+      - 41  # wrk
+      - 42  # wrk
+      - 43  # wrk
+      - 44  # wrk
+      - 45  # wrk
+      - 46  # wrk
+      - 47  # wrk
+      - 48  # wrk
 # TODO: Add the data sources
 #    vpp-meltdown-impact:
 #      csit-vpp-perf-1707-all:
@@ -213,6 +212,8 @@
       - 10  # sel
       - 11  # sel
       - 12  # sel
+      - 13  # sel
+      - 14  # sel
 #    performance-improvements:
 #      csit-vpp-perf-1707-all:
 #      - 9
@@ -326,6 +327,8 @@
       - 10  # sel
       - 11  # sel
       - 12  # sel
+      - 13  # sel
+      - 14  # sel
 
   plot-layouts:
 
@@ -612,20 +615,9 @@
     - 143  # sel
     - 145  # sel
     - 146  # sel
-    - 157  # wrk
-    - 158  # wrk
-    - 159  # wrk
-    - 160  # wrk
-    - 161  # wrk
     - 162  # sel
     - 163  # sel
-    - 164  # wrk
-    - 165  # wrk
-    - 166  # wrk
     - 167  # sel
-    - 168  # wrk
-    - 169  # wrk
-    - 170  # wrk
     - 172  # sel acl only
     csit-vpp-perf-1804-all:
     - 19  # full
@@ -642,6 +634,16 @@
     - 30  # sel
     - 31  # sel
     - 35  # sel
+    - 39  # wrk
+    - 40  # wrk
+    - 41  # wrk
+    - 42  # wrk
+    - 43  # wrk
+    - 44  # wrk
+    - 45  # wrk
+    - 46  # wrk
+    - 47  # wrk
+    - 48  # wrk
     csit-vpp-perf-check-1801:
     - 3   # mrr
     - 4   # mrr
@@ -697,6 +699,8 @@
     - 10  # sel
     - 11  # sel
     - 12  # sel
+    - 13  # sel
+    - 14  # sel
     csit-dpdk-perf-1804-all:
     - 4
     - 5
@@ -884,7 +888,6 @@
     title: "Release 1804"
     data:
       csit-vpp-perf-check-1804:
-      - 5   # mrr - full
       - 6   # mrr - sel
       - 7   # mrr - sel
       - 8   # mrr - sel

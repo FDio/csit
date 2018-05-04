@@ -31,6 +31,9 @@ NIC 10ge2p1x520
             \label{fig:10ge2p1x520-64B-container-memif-tsa-ndrdisc}
     \end{figure}
 
+*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+NDR Throughput for Phy-to-Phy L2 Ethernet Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -45,9 +48,6 @@ git repository:
 
       $ cd tests/vpp/perf/container_memif
       $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-.*ndrdisc" *
-
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy L2 Ethernet Switching (base).*
 
 PDR Throughput
 --------------
@@ -71,6 +71,9 @@ NIC 10ge2p1x520
             \label{fig:10ge2p1x520-64B-container-memif-tsa-pdrdisc}
     \end{figure}
 
+*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
+PDR Throughput for Phy-to-Phy L2 Ethernet Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
@@ -85,6 +88,3 @@ git repository:
 
       $ cd tests/vpp/perf/container_memif
       $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-.*pdrdisc" *
-
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy L2 Ethernet Switching (base).*
