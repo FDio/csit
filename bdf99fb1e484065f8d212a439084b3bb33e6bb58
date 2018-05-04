@@ -163,6 +163,30 @@
     },
     {
       "key": {
+        "uuid": "86e973e1_eacbbcb8",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-04T16:28:56Z",
+      "side": 1,
+      "message": "Initial measurement acts also as a warmup. This makes the initial measurement highly unreliable, but it does not matter as the early trials are fast.\n\nChanged the formulation slightly in the recent patch set.",
+      "parentUuid": "3ada320f_2289343e",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 43
+      },
+      "revId": "bdf99fb1e484065f8d212a439084b3bb33e6bb58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "895dd4cd_8e59fded",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 6
