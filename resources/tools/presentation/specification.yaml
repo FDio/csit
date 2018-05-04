@@ -2120,7 +2120,7 @@
   output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-orchestrated-tsa-pdrdisc"
   data:
     "plot-ligato-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and ''PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
