@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d94a4b7_cc165c62",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x520-ethip4-ip4base-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-04T09:49:26Z",
+      "side": 1,
+      "message": "Mockup:\n| | Set Test Variable | ${framesize}\n| | Set Test Variable | ${min_rate} | ${20000}\n| | Set Test Variable | ${wt}\n| | Set Test Variable | ${rxq}\n| | ${get_framesize}\u003d | Get Frame Size | ${framesize}\n| | Set Test Variable | ${get_framesize}\n| | ${max_uniditrectional_rate}\u003d | Calculate pps | ${s_limit} | ${get_framesize}\n| | ${max_rate}\u003d | Evaluate | 2*${max_uniditrectional_rate}\n| | Given Create performance startup configuration on all VPP DUTs\n| | And Apply startup configuration on all VPP DUTs\n| | And Initialize IPv4 forwarding in 3-node circular topology\n| | Then Find NDR and PDR intervals using optimized search\n| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}\n\nThis assumes creating new KW as this is most repeating part of all TCs\n\nViews?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "ea4436118dfad580b480f65e14a100d1621b290b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
