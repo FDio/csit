@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95e6c52c_67ff14e2",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T08:55:45Z",
+      "side": 1,
+      "message": "Tagged Ethernet L2 path",
+      "range": {
+        "startLine": 105,
+        "startChar": 69,
+        "endLine": 105,
+        "endChar": 76
+      },
+      "revId": "d06bd141a62b139ca549bf276917ca4eeffcd250",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2bdcdfc_aba15f05",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T08:55:45Z",
+      "side": 1,
+      "message": "NDR -2%..-5%",
+      "range": {
+        "startLine": 105,
+        "startChar": 100,
+        "endLine": 105,
+        "endChar": 112
+      },
+      "revId": "d06bd141a62b139ca549bf276917ca4eeffcd250",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07cdc541_e9a602d1",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-04T08:55:45Z",
+      "side": 1,
+      "message": "Tagged Ethernet L2 path throughput regression.",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 43
+      },
+      "revId": "d06bd141a62b139ca549bf276917ca4eeffcd250",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
