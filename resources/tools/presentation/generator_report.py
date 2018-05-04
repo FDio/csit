@@ -48,7 +48,7 @@ HTML_BUILDER = 'sphinx-build -v -c . -a ' \
                '-b html -E ' \
                '-t html ' \
                '-D release={release} ' \
-               '-D version="{release} report\n{date}" ' \
+               '-D version="{release} report - {date}" ' \
                '{working_dir} ' \
                '{build_dir}/'
 
@@ -57,7 +57,7 @@ PDF_BUILDER = 'sphinx-build -v -c . -a ' \
               '-b latex -E ' \
               '-t latex ' \
               '-D release={release} ' \
-              '-D version="{release} report\n{date}" ' \
+              '-D version="{release} report - {date}" ' \
               '{working_dir} ' \
               '{build_dir}'
 

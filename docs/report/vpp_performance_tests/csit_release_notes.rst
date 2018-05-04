@@ -73,10 +73,6 @@ pretty ASCII formats:
   - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.txt>`_,
   - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.txt>`_.
 
-Measured improvements are in line with VPP code optimizations listed in
-`VPP-18.01 release notes
-<https://docs.fd.io/vpp/18.01/release_notes_1801.html>`_.
-
 MRR Throughput Changes
 ~~~~~~~~~~~~~~~~~~~~~~
 
