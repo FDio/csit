@@ -6,14 +6,14 @@ Changes in CSIT |release|
 
 #. **Added VPP performance tests**
 
-   - **MRR tests** : New MRR tests measure the packet forwarding rate
+   - *MRR tests :* New MRR tests measure the packet forwarding rate
        under the maximum load offered by traffic generator over a set
        trial duration, regardless of packet loss. Maximum load for
        specified Ethernet frame size is set to the bi-directional link
        rate. MRR tests are used for continuous performance trending and
        for comparison between releases.
 
-   - **Service Chaining with SRv6** : SRv6 (Segment Routing IPv6) proxy tests
+   - *Service Chaining with SRv6 :* SRv6 (Segment Routing IPv6) proxy tests
        verifying performance of Endpoint to SR-unaware appliance via
        masquerading (End.AM), dynamic proxy (End.AD) or static proxy (End.AS)
        functions.
@@ -29,12 +29,12 @@ Changes in CSIT |release|
 
 #. **Test Framework Optimizations**
 
-     - **Performance tests efficiency** : Qemu build/install
+     - *Performance tests efficiency :* Qemu build/install
      optimizations, warmup phase handling, vpp restart handling.
      Resulted in improved stability and reduced total execution time by
      30% for single pkt size e.g. 64B/78B.
 
-     - **General code housekeeping** : ongoing RF keywords
+     - *General code housekeeping :* ongoing RF keywords
      optimizations, removal of redundant RF keywords.
 
 Performance Changes
@@ -85,6 +85,24 @@ pretty ASCII formats:
   - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-mrr-1t1c-full.txt>`_,
   - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-mrr-2t2c-full.txt>`_,
   - `pretty ASCII format for 4t4c <../_static/vpp/performance-changes-mrr-4t4c-full.txt>`_.
+
+Throughput Trending
+-------------------
+
+In addition to reporting throughput changes between VPP releases, CSIT provides
+continuous performance trending for VPP master branch:
+
+#. `VPP Performance Dashboard <https://docs.fd.io/csit/master/trending/introduction/index.html>`_
+- per VPP test case throughput trend, trend compliance and summary of detected
+anomalies.
+
+#. `Trending Methodology <https://docs.fd.io/csit/master/trending/methodology/index.html>`_
+- throughput test metrics, trend calculations and anomaly classification
+(progression, regression, outlier).
+
+#. `Trendline Graphs <https://docs.fd.io/csit/master/trending/trending/index.html>`_
+- per VPP build MRR throughput measurements against the trendline with anomaly
+highlights, with associated CSIT test jobs.
 
 Known Issues
 ------------
