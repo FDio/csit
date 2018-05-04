@@ -1,1 +1,1 @@
-/restconf/operational{odl_url_part}/hc2vpp-ietf-routing:routing-state/routing-instance/vpp-routing-instance/routing-protocols
+/restconf/operational{odl_url_part}/hc2vpp-ietf-routing:routing/control-plane-protocols
