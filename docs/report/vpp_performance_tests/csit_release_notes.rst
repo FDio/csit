@@ -4,38 +4,36 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. **Added VPP performance tests**
+#. **VPP performance tests**
 
-   - *MRR tests :* New MRR tests measure the packet forwarding rate
-       under the maximum load offered by traffic generator over a set
-       trial duration, regardless of packet loss. Maximum load for
-       specified Ethernet frame size is set to the bi-directional link
-       rate. MRR tests are used for continuous performance trending and
-       for comparison between releases.
+  - *MRR tests* - New Maximum Receive Rate tests measure the packet
+    forwarding rate under the maximum load offered by traffic
+    generator over a set trial duration, regardless of packet loss.
+    MRR tests are used for continuous performance trending and for
+    comparison between releases.
 
-   - *Service Chaining with SRv6 :* SRv6 (Segment Routing IPv6) proxy tests
-       verifying performance of Endpoint to SR-unaware appliance via
-       masquerading (End.AM), dynamic proxy (End.AD) or static proxy (End.AS)
-       functions.
+  - *Service Chaining with SRv6* - New SRv6 (Segment Routing IPv6) proxy
+    tests measure performance of SRv6 Endpoint fronting SR-unaware
+    appliance via masquerading (End.AM), dynamic proxy (End.AD) or
+    static proxy (End.AS) SR functions.
 
-#. **Presentation and Analytics Layer (PAL)**
+#. **Presentation and Analytics Layer**
 
-     - Added continuous performance measuring, trending and anomaly
-       detection. Includes new PAL code and Jenkins jobs for Performance
-       Trending (PT) and Performance Analysis (PA) producing performance
-       trending dashboard and trendline graphs with summary and drill-
-       down views across all specified tests that can be reviewed and
-       inspected regularly by FD.io developers and users community.
+  - *Performance trending* - Added continuous performance trending and
+    analysis. New Performance Trending and Performance Analysis jobs
+    executed regular throughput tests, with results being subsequently
+    analysed and trend and anomalies summarized and presented in VPP
+    Performance Dashboard and trendline graphs.
 
 #. **Test Framework Optimizations**
 
-     - *Performance tests efficiency :* Qemu build/install
-     optimizations, warmup phase handling, vpp restart handling.
-     Resulted in improved stability and reduced total execution time by
-     30% for single pkt size e.g. 64B/78B.
+  - *Performance tests efficiency* - Qemu build/install optimizations,
+    warmup phase handling, vpp restart handling. Resulted in improved
+    stability and reduced total execution time by 30% for single pkt
+    size e.g. 64B/78B.
 
-     - *General code housekeeping :* ongoing RF keywords
-     optimizations, removal of redundant RF keywords.
+  - *General code housekeeping* - ongoing RF keywords optimizations,
+    removal of redundant RF keywords.
 
 Performance Changes
 -------------------
@@ -51,33 +49,33 @@ repeatability and makes the relative change of mean throughput value not
 fully representative for these tests. The root causes behind poor
 results repeatibility vary between the test cases.
 
-NDR Throughput Changes
-~~~~~~~~~~~~~~~~~~~~~~
+NDR Changes
+~~~~~~~~~~~
 
-NDR small packet throughput changes between releases are available in a CSV and
-pretty ASCII formats:
+NDR small packet throughput changes between releases are available in a
+CSV and pretty ASCII formats:
 
   - `csv format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.csv>`_,
   - `csv format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.csv>`_,
   - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.txt>`_,
   - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.txt>`_.
 
-PDR Throughput Changes
-~~~~~~~~~~~~~~~~~~~~~~
+PDR Changes
+~~~~~~~~~~~
 
-NDR small packet throughput changes between releases are available in a CSV and
-pretty ASCII formats:
+NDR small packet throughput changes between releases are available in a
+CSV and pretty ASCII formats:
 
   - `csv format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.csv>`_,
   - `csv format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.csv>`_,
   - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.txt>`_,
   - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.txt>`_.
 
-MRR Throughput Changes
-~~~~~~~~~~~~~~~~~~~~~~
+MRR Changes
+~~~~~~~~~~~
 
-MRR changes between releases are available in a CSV and
-pretty ASCII formats:
+MRR small packet throughput changes between releases are available in a
+CSV and pretty ASCII formats:
 
   - `csv format for 1t1c <../_static/vpp/performance-changes-mrr-1t1c-full.csv>`_,
   - `csv format for 2t2c <../_static/vpp/performance-changes-mrr-2t2c-full.csv>`_,
@@ -89,29 +87,29 @@ pretty ASCII formats:
 Throughput Trending
 -------------------
 
-In addition to reporting throughput changes between VPP releases, CSIT provides
-continuous performance trending for VPP master branch:
+In addition to reporting throughput changes between VPP releases, CSIT
+provides continuous performance trending for VPP master branch:
 
 #. `VPP Performance Dashboard <https://docs.fd.io/csit/master/trending/introduction/index.html>`_
-- per VPP test case throughput trend, trend compliance and summary of detected
-anomalies.
+   - per VPP test case throughput trend, trend compliance and summary of
+   detected anomalies.
 
 #. `Trending Methodology <https://docs.fd.io/csit/master/trending/methodology/index.html>`_
-- throughput test metrics, trend calculations and anomaly classification
-(progression, regression, outlier).
+   - throughput test metrics, trend calculations and anomaly
+   classification (progression, regression, outlier).
 
 #. `Trendline Graphs <https://docs.fd.io/csit/master/trending/trending/index.html>`_
-- per VPP build MRR throughput measurements against the trendline with anomaly
-highlights, with associated CSIT test jobs.
+   - per VPP build MRR throughput measurements against the trendline
+   with anomaly highlights, with associated CSIT test jobs.
 
 Known Issues
 ------------
 
-Here is the list of known issues in CSIT |release| for VPP performance tests:
+List of known issues in CSIT |release| for VPP performance tests:
 
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | # | Issue                                           | Jira ID    | Description                                                     |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
++===+=================================================+============+=================================================================+
 | 1 | Sporadic (1 in 200) NDR discovery test failures | CSIT-570   | DPDK reporting rx-errors, indicating L1 issue. Suspected issue  |
 |   | on x520.                                        |            | with HW combination of X710-X520 in LF testbeds. Not observed   |
 |   |                                                 |            | outside of LF testbeds.                                         |
@@ -125,7 +123,7 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 |   |                                                 |            | performance tests.                                              |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 4 | IPSec (software, no QAT HW) throughput          | CSIT-1064  | IPSec throughput regression: NDR -3%..-8%, PDR -2%..-8%, MRR    |
-|   | regression.                                     |            | -3%..-7%.                                                       |
+|   | regression.                                     |            | -3%..-7%. Affects IPSec SW tests, QAT HW tests not affected.    |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 5 | High failure rate of creating working container | CSIT-1065  | Orchestrated container topology tests failing data plane        |
 |   | topologies with K8s/Ligato orchestration.       |            | verification indicating configuration issue. Suspected issue    |
