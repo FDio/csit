@@ -6,34 +6,34 @@ Changes in CSIT |release|
 
 #. **VPP performance tests**
 
-  - *MRR tests* - New Maximum Receive Rate tests measure the packet
-    forwarding rate under the maximum load offered by traffic
-    generator over a set trial duration, regardless of packet loss.
-    MRR tests are used for continuous performance trending and for
-    comparison between releases.
+   - *MRR tests* - New Maximum Receive Rate tests measure the packet
+     forwarding rate under the maximum load offered by traffic
+     generator over a set trial duration, regardless of packet loss.
+     MRR tests are used for continuous performance trending and for
+     comparison between releases.
 
-  - *Service Chaining with SRv6* - New SRv6 (Segment Routing IPv6) proxy
-    tests measure performance of SRv6 Endpoint fronting SR-unaware
-    appliance via masquerading (End.AM), dynamic proxy (End.AD) or
-    static proxy (End.AS) SR functions.
+   - *Service Chaining with SRv6* - New SRv6 (Segment Routing IPv6) proxy
+     tests measure performance of SRv6 Endpoint fronting SR-unaware
+     appliance via masquerading (End.AM), dynamic proxy (End.AD) or
+     static proxy (End.AS) SR functions.
 
 #. **Presentation and Analytics Layer**
 
-  - *Performance trending* - Added continuous performance trending and
-    analysis. New Performance Trending and Performance Analysis jobs
-    executed regular throughput tests, with results being subsequently
-    analysed and trend and anomalies summarized and presented in VPP
-    Performance Dashboard and trendline graphs.
+   - *Performance trending* - Added continuous performance trending and
+     analysis. New Performance Trending and Performance Analysis jobs
+     executed regular throughput tests, with results being subsequently
+     analysed and trend and anomalies summarized and presented in VPP
+     Performance Dashboard and trendline graphs.
 
 #. **Test Framework Optimizations**
 
-  - *Performance tests efficiency* - Qemu build/install optimizations,
-    warmup phase handling, vpp restart handling. Resulted in improved
-    stability and reduced total execution time by 30% for single pkt
-    size e.g. 64B/78B.
+   - *Performance tests efficiency* - Qemu build/install optimizations,
+     warmup phase handling, vpp restart handling. Resulted in improved
+     stability and reduced total execution time by 30% for single pkt
+     size e.g. 64B/78B.
 
-  - *General code housekeeping* - ongoing RF keywords optimizations,
-    removal of redundant RF keywords.
+   - *General code housekeeping* - ongoing RF keywords optimizations,
+     removal of redundant RF keywords.
 
 Performance Changes
 -------------------
