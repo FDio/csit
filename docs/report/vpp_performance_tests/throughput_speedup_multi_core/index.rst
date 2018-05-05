@@ -18,6 +18,7 @@ threaded VPP configurations relative to 1-core configurations.
     l2
     ip4
     ip6
+    srv6
     ip4_tunnels
     ip6_tunnels
     vm_vhost
