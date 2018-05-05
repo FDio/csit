@@ -94,16 +94,16 @@ over the rolling window of last <N> sets of historical measurement data:
 Outlier Detection
 `````````````````
 
-Outlier evaluation of test result of value <X> follows the definition
-from previous section:
+Outlier evaluation of test result of value :math:`X_n` follows the
+definition from previous section:
 
-+----------------------------+----------------------+
-| Outlier Evaluation Formula | Evaluation Result    |
-+============================+======================+
-| X < (Q1 - 1.5 * IQR)       | Outlier              |
-+----------------------------+----------------------+
-| X >= (Q1 - 1.5 * IQR)      | Valid (For Trending) |
-+----------------------------+----------------------+
++--------------------------------------------+----------------------+
+| Outlier Evaluation Formula                 | Evaluation Result    |
++============================================+======================+
+| :math:`X_n < \left( Q1 - 1.5 IQR \right)`  | Outlier              |
++--------------------------------------------+----------------------+
+| :math:`X_n >= \left( Q1 - 1.5 IQR \right)` | Valid (For Trending) |
++--------------------------------------------+----------------------+
 
 Anomaly Detection
 `````````````````
@@ -112,16 +112,15 @@ To verify compliance of test result of valid value <X> against defined
 trend metrics and detect anomalies, three simple evaluation formulas are
 used:
 
-+-------------------------------------------+------------------+-------------+
-|       Anomaly                             |    Compliance    | Evaluation  |
-| Evaluation Formula                        | Confidence Level |   Result    |
-+===========================================+==================+=============+
-| (TMM - 3 * TMSD) <= X <= (TMM + 3 * TMSD) |      99.73%      |   Normal    |
-+-------------------------------------------+------------------+-------------+
-| X < (TMM - 3 * TMSD)                      |      Anomaly     | Regression  |
-+-------------------------------------------+------------------+-------------+
-| X > (TMM + 3 * TMSD)                      |      Anomaly     | Progression |
-+-------------------------------------------+------------------+-------------+
++---------------------------------------------------------------------------+-----------------------------+-------------------+
+| Anomaly Evaluation Formula                                                | Compliance Confidence Level | Evaluation Result |
++===========================================================================+=============================+===================+
+| :math:`\left( TMM - 3 TMSD \right) <= X_n <= \left( TMM + 3 TMSD \right)` | 99.73%                      | Normal            |
++---------------------------------------------------------------------------+-----------------------------+-------------------+
+| :math:`X_n < \left( TMM - 3 TMSD \right)`                                 | Anomaly                     | Regression        |
++---------------------------------------------------------------------------+-----------------------------+-------------------+
+| :math:`X_n > \left( TMM + 3 TMSD \right)`                                 | Anomaly                     | Progression       |
++---------------------------------------------------------------------------+-----------------------------+-------------------+
 
 TMM is used for the central trend reference point instead of TMA as it
 is more robust to anomalies.
@@ -136,14 +135,13 @@ ago, TMM[last - 1week] and to the maximum of trend values over last
 quarter except last week, max(TMM[(last - 3mths)..(last - 1week)]),
 respectively. This results in following trend compliance calculations:
 
-+-------------------+----------------+-----------+------------------------------------------+
-|      Trend        |                |           |                                          |
-| Compliance Metric | Change Formula | V(alue)   | R(eference)                              |
-+===================+================+===========+==========================================+
-| Short-Term Change | ((V - R) / R)  | TMM[last] | TMM[last - 1week]                        |
-+-------------------+----------------+-----------+------------------------------------------+
-| Long-Term Change  | ((V - R) / R)  | TMM[last] | max(TMM[(last - 3mths)..(last - 1week)]) |
-+-------------------+----------------+-----------+------------------------------------------+
++-------------------------+---------------------------------------------+--------------------------------+------------------------------------------------------------------------------------------------------------+
+| Trend Compliance Metric | Change Formula                              | Value                          | Reference                                                                                                  |
++=========================+=============================================+================================+============================================================================================================+
+| Short-Term Change       | :math:`\frac{Value - Reference}{Reference}` | :math:`TMM \left[ last \right] | :math:`TMM \left[ last - 1 week \right]`                                                                   |
++-------------------------+---------------------------------------------+--------------------------------+------------------------------------------------------------------------------------------------------------+
+| Long-Term Change        | :math:`\frac{Value - Reference}{Reference}` | :math:`TMM \left[ last \right] | :math:`max \left( TMM \left[ \left( last - 3 mths \right) .. \left( last - 1 week \right) \right] \right)` |
++-------------------------+---------------------------------------------+--------------------------------+------------------------------------------------------------------------------------------------------------+
 
 Trend Presentation
 ------------------
