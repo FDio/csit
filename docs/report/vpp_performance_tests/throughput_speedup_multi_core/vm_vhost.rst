@@ -54,7 +54,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-ndrdisc" 10ge2p1x520*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-ndrdisc" 10ge2p1x520*-ndrpdrdisc.robot
       :shell:
 
 .. only:: latex
@@ -62,7 +62,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-ndrdisc" 10ge2p1x520*
+      $ grep -E "grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-ndrdisc" 10ge2p1x520*-ndrpdrdisc.robot
 
 NIC 10ge2p1x710
 ~~~~~~~~~~~~~~~
@@ -194,7 +194,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-pdrdisc" 10ge2p1x520*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-pdrdisc" 10ge2p1x520*-ndrpdrdisc.robot
       :shell:
 
 .. only:: latex
@@ -202,7 +202,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-pdrdisc" 10ge2p1x520*
+      $ grep -E "grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-pdrdisc" 10ge2p1x520*-ndrpdrdisc.robot
 
 NIC 10ge2p1x710
 ~~~~~~~~~~~~~~~
