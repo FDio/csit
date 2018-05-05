@@ -95,7 +95,6 @@
   type: "configuration"
   data-sets:
     plot-vpp-http-server-performance:
-# TODO: Add the data sources
       csit-vpp-perf-1804-all:
       - 39  # wrk
       - 40  # wrk
@@ -1740,6 +1739,44 @@
     layout:
       "plot-throughput-speedup-analysis"
 
+# SRv6 - 10ge2p1x520 - NDR
+-
+  type: "plot"
+  title: "TSA: 78B-*-ethip6-ip6(base|scale)*ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-srv6-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'FEATURE' and 'NDRDISC' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "78B-*-ethip6-ip6(base|scale)*ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# SRv6 - 10ge2p1x520 - PDR
+-
+  type: "plot"
+  title: "TSA: 78B-*-ethip6-ip6(base|scale)*pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-srv6-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "78B-*-ethip6-ip6(base|scale)*pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
 # IP4_overlay - NDR
 -
   type: "plot"
@@ -2564,7 +2601,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' 'SRv6'"
+  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
