@@ -39,14 +39,14 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" 10ge2p1x520*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*ndrdisc" 10ge2p1x520*
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/10ge2p1x520*
+      $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*ndrdisc" tests/vpp/perf/l2/10ge2p1x520*
 
 NIC 40ge2p1xl710
 ~~~~~~~~~~~~~~~~
@@ -112,11 +112,11 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*pdrdisc" 10ge2p1x520*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*pdrdisc" 10ge2p1x520*
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*pdrdisc" tests/vpp/perf/l2/10ge2p1x520*
+      $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*pdrdisc" tests/vpp/perf/l2/10ge2p1x520*

@@ -41,7 +41,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-(1t1c|2t2c|4t4c)-.*ipsec.*-ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -49,7 +49,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*ipsec.*-ndrdisc" *
+      $ grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *
 
 PDR Throughput
 --------------
@@ -84,7 +84,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-(1t1c|2t2c|4t4c)-.*ipsec.*-pdrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -92,4 +92,4 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*ipsec.*-pdrdisc" *
+      $ grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *

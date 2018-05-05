@@ -22,22 +22,22 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
             \label{fig:64B-1t1c-l2-sel1-ndrdisc-lat50}
     \end{figure}
 
+*Figure 1a. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet
+Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" *
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
-
-*Figure 1a. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet
-Switching (base).*
+      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
 .. raw:: html
 
@@ -85,22 +85,22 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
             \label{fig:64B-2t2c-l2-sel1-ndrdisc-lat50}
     \end{figure}
 
+*Figure 2a. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet
+Switching (base).*
+
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" *
       :shell:
 
 .. only:: latex
 
    .. code-block:: bash
 
-      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/* && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/container_memif/*
-
-*Figure 2a. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet
-Switching (base).*
+      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
 
 .. raw:: html
 

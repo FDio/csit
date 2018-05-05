@@ -539,7 +539,7 @@
       autosize: False
       margin:
           't': 50
-          'b': 200
+          'b': 300
           'l': 50
           'r': 20
       showlegend: True
@@ -1879,7 +1879,7 @@
   output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  filter: "'NIC_Intel-X710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
@@ -1970,7 +1970,7 @@
   output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc"
   data:
     "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  filter: "'NIC_Intel-X710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
@@ -2416,7 +2416,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -2437,7 +2437,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -2458,7 +2458,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -2479,7 +2479,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -2489,6 +2489,91 @@
     whiskerwidth: 0
   layout:
     title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+    layout:
+      "plot-throughput"
+
+# VPP SRv6
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-ndrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6*srv6*ndrdisc"
+    layout:
+      "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-ndrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6*srv6*ndrdisc"
+    layout:
+      "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6*srv6*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-pdrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6*srv6*pdrdisc"
+    layout:
+      "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6*srv6*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-pdrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6*srv6*pdrdisc"
     layout:
       "plot-throughput"
 
@@ -2596,45 +2681,8 @@
     whiskerwidth: 0
   layout:
     title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [2000000, 6000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -2696,45 +2744,8 @@
     whiskerwidth: 0
   layout:
     title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [4000000, 12000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 # VPP VM VHOST
 -
@@ -2755,45 +2766,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-.*vhost.*-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 3500000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3089,45 +3063,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [2000000, 12000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3147,45 +3084,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [2000000, 12000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3247,45 +3147,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [20000000, 30000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3305,45 +3168,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [20000000, 30000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 # Plot latency
 
@@ -3473,7 +3299,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "latency"
   - "parent"
@@ -3492,7 +3318,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "latency"
   - "parent"
@@ -3500,6 +3326,45 @@
     boxmean: False
   layout:
     title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+    layout:
+      "plot-latency"
+
+# VPP SRv6
+-
+  type: "plot"
+  title: "VPP Latency 78B-1t1c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-ndrdisc-lat50"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-1t1c-ethip6*srv6*ndrdisc"
+    layout:
+      "plot-latency"
+
+-
+  type: "plot"
+  title: "VPP Latency 78B-2t2c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-ndrdisc-lat50"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-2t2c-ethip6*srv6*ndrdisc"
     layout:
       "plot-latency"
 
