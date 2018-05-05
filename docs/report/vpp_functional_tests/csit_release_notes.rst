@@ -4,21 +4,21 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Code updates and optimizations in CSIT functional framework:
+#. Optimizations in CSIT functional framework:
 
-   - VPP install test - VPP installation have been moved to separate test in
-   test suite setup phase to clearly indicate any issue with VPP installation;
+   - *VPP install test* - VPP installation has been moved to a separate test in
+     test suite setup phase to better identify any issues with VPP installation.
 
-   - VPP verify test - test to check VPP responsiveness after installation;
+   - *VPP verify test* - test to check VPP health after installation.
 
 Known Issues
 ------------
 
-Here is the list of known issues in CSIT |release| for VPP functional tests in VIRL:
+List of known issues in CSIT |release| for VPP functional tests in VIRL:
 
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| # | Issue                                           | Jira ID  | Description                                          |
-+---+-------------------------------------------------+----------+------------------------------------------------------+
+| # | .. centered:: Issue                             | Jira ID  | .. centered:: Description                            |
++===+=================================================+==========+======================================================+
 | 1 | DHCPv4 client: Client responses to DHCPv4 OFFER | CSIT-129 | Client replies with DHCPv4 REQUEST message when      |
 |   | sent with different XID.                        | VPP-99   | received DHCPv4 OFFER message with different (wrong) |
 |   |                                                 |          | XID.                                                 |
@@ -38,7 +38,7 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 |          | response to received  ICMPv6 Router Solicitation     |
 |   |                                                 |          | packet.                                              |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 5 | Vhost-user: QEMU reconnect does not work.       | CSIT-565 | Using QEMU 2.5.0 that does not support vhost-user    |
-|   |                                                 |          | reconnect. It requires moving CSIT VIRL environment  |
+| 5 | Vhost-user: QEMU reconnect does not work.       | CSIT-565 | Used QEMU 2.5.0 does not support vhost-user          |
+|   |                                                 |          | reconnect. Requires upgrading CSIT VIRL environment  |
 |   |                                                 |          | to QEMU 2.7.0.                                       |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
