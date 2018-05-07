@@ -694,14 +694,16 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Traffic should pass with no loss \| 10 \| 4.0mpps \| 64 \
+| | ... | \| Traffic should pass with maximum rate \| 10 \| 4.0mpps \| 64 \
 | | ... | \| 3-node-IPv4 \|
 | | ...
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${fail_no_traffic}=${True}
 | | ...
 | | ${results}= | Send traffic at specified rate | ${duration} | ${rate}
 | | ... | ${framesize} | ${topology_type}
 | | Display raw results | ${framesize} | ${results}
+| | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
 
 | Send traffic at specified rate
 | | [Documentation]
