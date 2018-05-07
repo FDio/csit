@@ -125,7 +125,7 @@ List of known issues in CSIT |release| for VPP performance tests:
 | 4 | IPSec (software, no QAT HW) throughput          | CSIT-1064  | IPSec throughput regression: NDR -3%..-8%, PDR -2%..-8%, MRR    |
 |   | regression.                                     |            | -3%..-7%. Affects IPSec SW tests, QAT HW tests not affected.    |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 5 | High failure rate of creating working container | CSIT-1065  | Orchestrated container topology tests failing data plane        |
-|   | topologies with K8s/Ligato orchestration.       |            | verification indicating configuration issue. Suspected issue    |
-|   |                                                 |            | with Ligato vpp-agent.                                          |
+| 5 | High failure rate of creating working container | CSIT-1065  | About 20% of orchestrated container topology tests failing data |
+|   | topologies with K8s/Ligato orchestration.       |            | plane verification indicating configuration issue. Suspected    |
+|   |                                                 |            | issue with Ligato vpp-agent.                                    |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
