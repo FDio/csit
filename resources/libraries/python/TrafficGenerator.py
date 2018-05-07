@@ -520,9 +520,20 @@ class TrafficGenerator(AbstractRateProvider):
         :raises Exception: If loss occured.
         """
         if self._loss is None:
-            raise Exception('The traffic generation has not been issued')
+            raise RuntimeError('The traffic generation has not been issued')
         if self._loss != '0':
-            raise Exception('Traffic loss occurred: {0}'.format(self._loss))
+            raise RuntimeError('Traffic loss occurred: {0}'.format(self._loss))
+
+    def traffic_pass_expected(self):
+        """Fail if no traffic passed.
+
+        :returns: nothing
+        :raises Exception: If no traffic passed.
+        """
+        if self._received is None:
+            raise RuntimeError('The traffic generation has not been issued')
+        if self._received == '0':
+            raise RuntimeError('No traffic passed')
 
     def partial_traffic_loss_accepted(self, loss_acceptance,
                                       loss_acceptance_type):
