@@ -127,12 +127,11 @@ results listed in this report:
 Functional Tests Naming
 -----------------------
 
-CSIT |release| follows a common structured naming convention for all
-performance and system functional tests, introduced in CSIT |release-1|.
+CSIT |release| follows a common structured naming convention for all performance
+and system functional tests, introduced in CSIT rls1701.
 
-The naming should be intuitive for majority of the tests. Complete
-description of CSIT test naming convention is provided on
-`CSIT test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
+The naming should be intuitive for majority of the tests. Complete description
+of CSIT test naming convention is provided on :ref:`csit_test_naming`..
 
 Here few illustrative examples of the new naming usage for functional test
 suites:
