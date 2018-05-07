@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "158a9e4b_b7559e93",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-07T05:46:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9784532_b397ea7e",
+      "range": {
+        "startLine": 73,
+        "startChar": 14,
+        "endLine": 73,
+        "endChar": 39
+      },
+      "revId": "477ce2865dcb6305281b08ce616c3d3100dc4e05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11e8a638_1e87e9ef",
         "filename": "bootstrap-DMM.sh",
         "patchSetId": 12
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f3fcb103_c1457990",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-07T05:46:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11e8a638_1e87e9ef",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "477ce2865dcb6305281b08ce616c3d3100dc4e05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa228b9e_2f860c78",
         "filename": "bootstrap-DMM.sh",
         "patchSetId": 12
@@ -59,6 +107,30 @@
       "writtenOn": "2018-05-03T11:16:03Z",
       "side": 1,
       "message": "This will effectively run only current functional test not your DMM. As it iterates ${TEST_GROUPS[${nr}]} and take a look on ${TEST_GROUPS[${nr}]} definition.",
+      "range": {
+        "startLine": 303,
+        "startChar": 8,
+        "endLine": 303,
+        "endChar": 20
+      },
+      "revId": "477ce2865dcb6305281b08ce616c3d3100dc4e05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fcdf359_db6c8f27",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-07T05:46:24Z",
+      "side": 1,
+      "message": "modified TEST_GROUPS definition, such that it calls only DMM func suite. Now we have only one base functional test, later we could classify the tests and modify TEST_GROUPS accordingly.",
+      "parentUuid": "aa228b9e_2f860c78",
       "range": {
         "startLine": 303,
         "startChar": 8,
