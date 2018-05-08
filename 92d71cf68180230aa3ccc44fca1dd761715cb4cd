@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d6fad62_f18b25ba",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "Should add observations..",
+      "range": {
+        "startLine": 16,
+        "startChar": 3,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dad2b409_4336a37d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "Assuming NDR ~\u003d PDR and roughly half of quoted i.e. ~116sec, then gain is ~23sec. If so, what\u0027s the expectation for 60sec final duration?",
+      "range": {
+        "startLine": 19,
+        "startChar": 35,
+        "endLine": 19,
+        "endChar": 40
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e400f96_9b93883e",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "Assuming NDR ~\u003d PDR and roughly half of quoted i.e. ~238sec, then gain is ~22sec. If so, what\u0027s the expectation for 60sec final duration?",
+      "range": {
+        "startLine": 19,
+        "startChar": 49,
+        "endLine": 19,
+        "endChar": 54
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "107284c3_c341d5ba",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "This should precede the comparison table.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 28
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "806429df_c380d651",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "Text should allow for easy comparison between the two algorithms, so should use the same terms.  Whether the search stop threshold is given as an absolute or as a relative parameter is immaterial for comparison, as long as a resulting value(s) are close enough.",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 38
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a85f1a45_af02715a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "I would remove, as it\u0027s immaterial for this comparison.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 55
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f66e8a54_77fe7f2c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "Believe this is not correct anymore.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b3faa9f_8e9d475a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "I would remove, as it\u0027s immaterial for this comparison.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 67
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c941080_b5f1f3be",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "Again, I would remove, as it\u0027s immaterial for this comparison.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f175cbc4_cf309264",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-08T20:52:41Z",
+      "side": 1,
+      "message": "Believe this is not correct anymore.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 32
+      },
+      "revId": "92d71cf68180230aa3ccc44fca1dd761715cb4cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
