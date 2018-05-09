@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35461dd5_46845f96",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:01:23Z",
+      "side": 1,
+      "message": "proposed edits:\nCSIT release 1804 contains two test suites that use the new MDR search\nto enable comparison against existing CSIT NDR and PDR binary searches.\nThe suites got chosen based on the level of consistency of their\nhistorical NDR/PDR results:\n\n1. 10Ge2P1X520-Ethip4-Ip4Base-Ndrpdr - yielding very consistent binary\n   search results.\n2. 10Ge2P1X520-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr - yielding\n   somewhat consistent results.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 28
+      },
+      "revId": "681a0c33dee85b435ed31afa9b2cd6ada7734c0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b62a92bf_8c526782",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:01:23Z",
+      "side": 1,
+      "message": "proposed edits:\nThe search part of CSIT binary search tests, includes a single 5-second\nwarmup and each trial measurement is set to 10 seconds.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 76
+      },
+      "revId": "681a0c33dee85b435ed31afa9b2cd6ada7734c0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c1ed1da_0dc83a40",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:01:23Z",
+      "side": 1,
+      "message": "proposed edits:\nNew tests with MDR search do not have any warmup, as initial\nmeasurements are not critical to the final result, the final trial\nduration is set 30 seconds. The final MDR search resolution a.k.a.\ninterval width is smaller than in CSIT binary search tests.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 72
+      },
+      "revId": "681a0c33dee85b435ed31afa9b2cd6ada7734c0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70a28b5b_b4ff148b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:01:23Z",
+      "side": 1,
+      "message": "proposed edits:\nThe \"projected\" durations are computed from CSIT NDR/PDR test runs, and\ncorrespond to binary search with 30 second trial durations. Basically,\n20 seconds were added for every trial measurement.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 61
+      },
+      "revId": "681a0c33dee85b435ed31afa9b2cd6ada7734c0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4192f40c_1f1b6dad",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:01:23Z",
+      "side": 1,
+      "message": "proposed edits:\nTable below compares overall test duration between the search tests. For\nsimplicity only data for 64B packet tests is listed, as it takes the\nlongest in all cases.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 70
+      },
+      "revId": "681a0c33dee85b435ed31afa9b2cd6ada7734c0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06dcf013_07cd1447",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:01:23Z",
+      "side": 1,
+      "message": "Assuming NDR ~\u003d PDR, if NDR and PDR collapsed into a single search, 557.6 becomes 228.8. MDR worst case gain is then 67.4s (228.8-131.2-30.2), or ~29%. If so, what\u0027s the expectation for 60sec final duration?",
+      "range": {
+        "startLine": 56,
+        "startChar": 35,
+        "endLine": 56,
+        "endChar": 40
+      },
+      "revId": "681a0c33dee85b435ed31afa9b2cd6ada7734c0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f97b0792_7bc37b39",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:01:23Z",
+      "side": 1,
+      "message": "Assuming NDR ~\u003d PDR, if NDR and PDR collapsed into a single search, 679.3 becomes 339.7. MDR worst case gain is then 30.1s (339.7-220.4-89.2), or ~9%. Not much, high stdev doesn\u0027t help here. If so, what\u0027s the expectation for 60sec final duration?",
+      "range": {
+        "startLine": 56,
+        "startChar": 50,
+        "endLine": 56,
+        "endChar": 55
+      },
+      "revId": "681a0c33dee85b435ed31afa9b2cd6ada7734c0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
