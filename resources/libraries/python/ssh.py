@@ -60,14 +60,27 @@ class SSH(object):
         """Connect to node prior to running exec_command or scp.
 
         If there already is a connection to the node, this method reuses it.
+
+        :param node: Node in topology.
+        :param attempts: Number of reconnect attempts.
+        :type node: dict
+        :type attempts: int
+        :raises IOError: If cannot connect to host.
         """
-        try:
-            self._node = node
-            node_hash = self._node_hash(node)
-            if node_hash in SSH.__existing_connections:
-                self._ssh = SSH.__existing_connections[node_hash]
-                logger.debug('reusing ssh: {0}'.format(self._ssh))
+        self._node = node
+        node_hash = self._node_hash(node)
+        if node_hash in SSH.__existing_connections:
+            self._ssh = SSH.__existing_connections[node_hash]
+            if self._ssh.get_transport().is_active():
+                logger.debug('Reusing SSH: {ssh}'.format(ssh=self._ssh))
             else:
+                if attempts > 0:
+                    self._reconnect(attempts-1)
+                else:
+                    raise IOError('Cannot connect to {host}'.
+                                  format(host=node['host']))
+        else:
+            try:
                 start = time()
                 pkey = None
                 if 'priv_key' in node:
@@ -84,19 +97,14 @@ class SSH(object):
                 self._ssh.get_transport().set_keepalive(10)
 
                 SSH.__existing_connections[node_hash] = self._ssh
-
-                logger.trace('connect took {} seconds'.format(time() - start))
-                logger.debug('new ssh: {0}'.format(self._ssh))
-
-            logger.debug('Connect peer: {0}'.
-                         format(self._ssh.get_transport().getpeername()))
-            logger.debug('Connections: {0}'.
-                         format(str(SSH.__existing_connections)))
-        except:
-            if attempts > 0:
-                self._reconnect(attempts-1)
-            else:
-                raise
+                logger.debug('New SSH to {peer} took {total} seconds: {ssh}'.
+                             format(
+                                 peer=self._ssh.get_transport().getpeername(),
+                                 total=(time() - start),
+                                 ssh=self._ssh))
+            except SSHException:
+                raise IOError('Cannot connect to {host}'.
+                              format(host=node['host']))
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -106,19 +114,22 @@ class SSH(object):
         """
         node_hash = self._node_hash(node)
         if node_hash in SSH.__existing_connections:
-            logger.debug('Disconnecting peer: {}, {}'.
-                         format(node['host'], node['port']))
+            logger.debug('Disconnecting peer: {host}, {port}'.
+                         format(host=node['host'], port=node['port']))
             ssh = SSH.__existing_connections.pop(node_hash)
             ssh.close()
 
     def _reconnect(self, attempts=0):
-        """Close the SSH connection and open it again."""
+        """Close the SSH connection and open it again.
 
+        :param attempts: Number of reconnect attempts.
+        :type attempts: int
+        """
         node = self._node
         self.disconnect(node)
         self.connect(node, attempts)
-        logger.debug('Reconnecting peer done: {}'.
-                     format(self._ssh.get_transport().getpeername()))
+        logger.debug('Reconnecting peer done: {host}, {port}'.
+                     format(host=node['host'], port=node['port']))
 
     def exec_command(self, cmd, timeout=10):
         """Execute SSH command on a new channel on the connected Node.
