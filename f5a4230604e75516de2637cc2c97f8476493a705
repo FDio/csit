@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "791262c2_78fb97b0",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "This results in the shorter overall search execution time when compared\nto a standard NDR/PDR binary search, while guaranteeing the same or\nsimilar results.",
+      "parentUuid": "a79c3aaa_26af99dd",
+      "range": {
+        "startLine": 17,
+        "startChar": 47,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f348e1a5_f8304cf6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-09T12:46:08Z",
       "side": 1,
       "message": "What about input rates?",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72625812_9e1aad97",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "What are the \"input rates\"?\nMeasured throughput rate results from transmitting or offering a packet rate load to DUT, and measuring received rate. Henceforth measured throughput is a function of transmit and receive rates. Stating that measured throughput is bi-directional directly implies both transmit and receive rates are bi-directional too.  Let\u0027s not introduce more terms like input and output, and stick to transmit, receive. Fair?",
+      "parentUuid": "f348e1a5_f8304cf6",
       "range": {
         "startLine": 23,
         "startChar": 10,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "068fefb2_0205e07f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "OK.\n2 * 14.88 Mpps 64B for 10GE link rate, 2 * 18.75 Mpps 64B for used 40GE NIC maximum rate (Fortville).",
+      "parentUuid": "0d6f50fd_7818e9c3",
+      "range": {
+        "startLine": 94,
+        "startChar": 27,
+        "endLine": 94,
+        "endChar": 28
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d430e9f_ff21723c",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2018-05-09T12:46:08Z",
       "side": 1,
       "message": "2 * 10k pps, just because the Trex latency measurement stream uses 2 * 9k (we could probably change that default value if needed).",
+      "range": {
+        "startLine": 98,
+        "startChar": 43,
+        "endLine": 98,
+        "endChar": 44
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07ec92ef_9de64b92",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "2 * 10kpps is too low. Can we pls come up with higher value, below which testing is pointless. Can we use 1/10th for 10GE and 1/40th for 40GE should be\na good start, approach similar to the one I proposed to signal MRR failures?",
+      "parentUuid": "6d430e9f_ff21723c",
       "range": {
         "startLine": 98,
         "startChar": 43,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5aec52a9_79c3860c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "y, pls.",
+      "parentUuid": "13b796fc_c715b46b",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 21
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47216a05_66c5d8e1",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -128,6 +248,30 @@
       "writtenOn": "2018-05-09T12:46:08Z",
       "side": 1,
       "message": "are",
+      "range": {
+        "startLine": 109,
+        "startChar": 37,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9cd0559_1df7ad56",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "Less phases are required for well behaving cases",
+      "parentUuid": "47216a05_66c5d8e1",
       "range": {
         "startLine": 109,
         "startChar": 37,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "fccc5764_2c5c8db6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "more phases may be required for worse behaving cases.",
+      "parentUuid": "aeb800a7_5fae53b1",
+      "range": {
+        "startLine": 110,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 23
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f390acec_d55ab5c1",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -174,6 +342,30 @@
       "writtenOn": "2018-05-09T12:46:08Z",
       "side": 1,
       "message": "Single intermediate phase might be quicker in most cases. We are using two, just to make sure the lack of warmup cannot harm us, and to lessen the time impact when the drop rate depends on duration. Possibly, 1 intermediate phase could have better average of overall duration (but also bigger standard deviation) also in the 2 suites used for comparison.\n\nIn the tests I have seen, 3 intermediate phases will always take longer. It may start making sense if we attempt to test with 10 minute final duration or similar.",
+      "range": {
+        "startLine": 113,
+        "startChar": 48,
+        "endLine": 113,
+        "endChar": 49
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b18388e1_b98b3ad8",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "Ack. But this text doesn\u0027t belong here. We should put it into a discussion points, to be verified empirically, yes?",
+      "parentUuid": "f390acec_d55ab5c1",
       "range": {
         "startLine": 113,
         "startChar": 48,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "d674ae71_c9f393e2",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "out: classify MRR2 as a valid lower_bound.\n\ncomment: MRR2 is already listed in 2.d).\nor do you mean that we should add \"1e) out: classify maximum_transmit_rate as a valid lower_bound\" and \"2e) classify MRR as a valid lower_bound\" ?",
+      "parentUuid": "aa84c0ba_4d4cacc8",
+      "range": {
+        "startLine": 137,
+        "startChar": 11,
+        "endLine": 137,
+        "endChar": 17
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6dfc7dac_389149e3",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "91e6130a_60e0f72f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "Your note is valid only and only if trial_duration \u003d minimum_trial_duration. If that is always the case, then I will remove this line from here.",
+      "parentUuid": "6dfc7dac_389149e3",
+      "range": {
+        "startLine": 149,
+        "startChar": 32,
+        "endLine": 149,
+        "endChar": 39
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84b26c1a_5223c428",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -243,6 +483,30 @@
       "writtenOn": "2018-05-09T12:46:08Z",
       "side": 1,
       "message": "Hmm, we can call it external sequence.\n\nIn high-level description, each subsequent phase runs external sequence (if needed) and then internal sequence.\nIn the practical implementation we also have a single bisection (if the input interval is large enough), then re-measurement of one bound, and only then external and internal sequences.",
+      "range": {
+        "startLine": 152,
+        "startChar": 3,
+        "endLine": 152,
+        "endChar": 21
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50f4d29b_5cd951bc",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "I don\u0027t follow your note. Best if you write it down using the same sequential convention, as in current text. thx.",
+      "parentUuid": "84b26c1a_5223c428",
       "range": {
         "startLine": 152,
         "startChar": 3,
