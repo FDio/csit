@@ -268,7 +268,7 @@
 | | ... | ${dut2_node} | ${address_application} | ${peer_application}
 | | And Honeycomb configures BGP route
 | | ... | ${dut2_node} | ${address_application} | ${dut1_route_ip6}
-| | ... | ${dut1_route_ip6_address} | ${dut1_route_ip6_id} | ipv6
+| | ... | ${dut1_route_ip6_prefix} | ${dut1_route_ip6_id} | ipv6
 | | And Sleep | 5s | Wait for route advertisement. Retry timer is 5 seconds.
 | | Then Routing data from Honeycomb should contain
 | | ... | ${dut1_node} | learned-protocol-0 | ipv6 | ${route_ip6_operational}
