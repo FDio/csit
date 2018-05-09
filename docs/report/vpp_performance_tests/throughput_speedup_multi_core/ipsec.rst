@@ -36,20 +36,8 @@ NIC 40ge2p1xl710
 *Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy IPSEC HW.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.
 
 PDR Throughput
 --------------
@@ -79,17 +67,5 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 *Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy IPSEC HW.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-ethip4ipsec(base|tpt).*-ndrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.

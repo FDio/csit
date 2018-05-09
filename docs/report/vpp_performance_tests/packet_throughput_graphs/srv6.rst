@@ -28,20 +28,8 @@ in the graph below.
 
 *Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/srv6 && grep -E "78B-1t1c-ethip6.*srv6.*ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/srv6
-      $ grep -E "78B-1t1c-ethip6.*srv6.*ndrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
 
 VPP NDR 78B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below.
@@ -61,20 +49,8 @@ in the graph below.
 
 *Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/srv6 && grep -E "78B-2t2c-ethip6.*srv6.*ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/srv6
-      $ grep -E "78B-2t2c-ethip6.*srv6.*ndrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -97,20 +73,8 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 
 *Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/srv6 && grep -E "78B-1t1c-ethip6.*srv6.*pdrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/srv6
-      $ grep -E "78B-1t1c-ethip6.*srv6.*pdrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
 
 VPP PDR 78B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.
@@ -131,17 +95,5 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 *Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-Phy IPv6
 Routed-Forwarding.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/srv6 && grep -E "78B-2t2c-ethip6.*srv6.*pdrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/srv6
-      $ grep -E "78B-2t2c-ethip6.*srv6.*pdrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.

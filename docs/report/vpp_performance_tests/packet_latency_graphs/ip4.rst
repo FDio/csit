@@ -24,20 +24,8 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
 
 *Figure 1. VPP 1thread 1core - packet latency for Phy-to-Phy IPv4 Routed-Forwarding.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/ip4 && grep -P '64B-1t1c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/ip4
-      $ grep -P '64B-1t1c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4?h=rls1804>`_.
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -56,17 +44,5 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 
 *Figure 2. VPP 2threads 2cores - packet latency for Phy-to-Phy IPv4 Routed-Forwarding.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/ip4 && grep -P '64B-2t2c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/ip4
-      $ grep -P '64B-2t2c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4?h=rls1804>`_.

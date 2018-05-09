@@ -30,6 +30,9 @@ in the graph below.
 *Figure 1a. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM vhost-user
 selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel2-ndrdisc.html"></iframe>
@@ -46,20 +49,8 @@ selected TCs.*
 *Figure 1b. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-1t1c-(eth|ethip4)-.*vhost.*-ndrdisc" *0-eth*-*-ndrpdrdisc.robot
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-1t1c-(eth|ethip4)-.*vhost.*-pdrdisc" *0-eth*-*-ndrpdrdisc.robot
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below.
@@ -80,6 +71,9 @@ in the graph below.
 *Figure 2a. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel2-ndrdisc.html"></iframe>
@@ -96,20 +90,8 @@ vhost-user selected TCs.*
 *Figure 2b. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-2t2c-(eth|ethip4)-.*vhost.*-ndrdisc" *0-eth*-*-ndrpdrdisc.robot
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-2t2c-(eth|ethip4)-.*vhost.*-pdrdisc" *0-eth*-*-ndrpdrdisc.robot
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -133,6 +115,9 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 *Figure 3a. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel2-pdrdisc.html"></iframe>
@@ -149,20 +134,8 @@ vhost-user selected TCs.*
 *Figure 3b. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-1t1c-(eth|ethip4)-.*vhost.*-pdrdisc" *0-eth*-*-ndrpdrdisc.robot
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-1t1c-(eth|ethip4)-.*vhost.*-pdrdisc" *0-eth*-*-ndrpdrdisc.robot
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.
@@ -183,6 +156,9 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 *Figure 4a. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel2-pdrdisc.html"></iframe>
@@ -199,17 +175,5 @@ vhost-user selected TCs.*
 *Figure 4b. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-2t2c-(eth|ethip4)-.*vhost.*-pdrdisc" *0-eth*-*-ndrpdrdisc.robot
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-2t2c-(eth|ethip4)-.*vhost.*-pdrdisc" *0-eth*-*-ndrpdrdisc.robot
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
