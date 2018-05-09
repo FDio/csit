@@ -25,19 +25,8 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
 *Figure 1a. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet
 Switching (base).*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
 
 .. raw:: html
 
@@ -55,20 +44,8 @@ git repository:
 *Figure 1b. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet
 Switching (feature).*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/l2
-      $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -88,19 +65,8 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 *Figure 2a. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet
 Switching (base).*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2/ && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
 
 .. raw:: html
 
@@ -118,17 +84,5 @@ git repository:
 *Figure 2b. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet
 Switching (feature).*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/l2
-      $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn).*-(iacl50(-state(ful|less)|sl)-(flows10k.*|10kflows.*)|oacl50-state(ful|less)-flows10k.*)-ndrdisc" *
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.

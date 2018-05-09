@@ -35,20 +35,8 @@ NIC 10ge2p1x520
 *Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/srv6 && grep -E '78B-(1t1c|2t2c|4t4c)-ethip6.*srv6.*ndrdisc' 10ge2p1x520*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/srv6
-      $ grep -E '78B-(1t1c|2t2c|4t4c)-ethip6.*srv6.*ndrdisc' 10ge2p1x520*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
 
 PDR Throughput
 --------------
@@ -76,17 +64,5 @@ NIC 10ge2p1x520
 *Figure 3. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/srv6 && grep -E '78B-(1t1c|2t2c|4t4c)-ethip6.*srv6.*pdrdisc' 10ge2p1x520*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/srv6
-      $ grep -E '78B-(1t1c|2t2c|4t4c)-ethip6.*srv6.*pdrdisc' 10ge2p1x520*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
