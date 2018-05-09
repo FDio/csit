@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC | THIS
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | IP4BASE
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
@@ -62,8 +62,10 @@
 | | ... | [Ver] Find NDR or PDR for ${framesize} frames using binary search\
 | | ... | start at 10GE linerate.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type} | ${trial_duration}
 | | ...
+| | ${perf_trial_duration}= | Set Variable | ${trial_duration}
+| | Set Test Variable | ${perf_trial_duration}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
@@ -88,25 +90,65 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4-ip4base-ndrdisc
+| tc01-64B-1t1c-ethip4-ip4base-ndrdisc-10
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THAT
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR | trial_duration=10
 
-| tc02-64B-1t1c-ethip4-ip4base-pdrdisc
+| tc02-64B-1t1c-ethip4-ip4base-pdrdisc-10
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THAT
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR | trial_duration=10
+
+| tc03-64B-1t1c-ethip4-ip4base-ndrdisc-30
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | using binary search start at 10GE linerate, step 50kpps.
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THAT
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR | trial_duration=30
+
+| tc04-64B-1t1c-ethip4-ip4base-pdrdisc-30
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
+| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THAT
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR | trial_duration=30
+
+| tc05-64B-1t1c-ethip4-ip4base-ndrdisc-60
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | using binary search start at 10GE linerate, step 50kpps.
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THAT
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR | trial_duration=60
+
+| tc06-64B-1t1c-ethip4-ip4base-pdrdisc-60
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
+| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THAT
+| | ...
+| | [Template] | Discover NDR or PDR for ethip4-ip4base
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR | trial_duration=60
 
 | tc03-1518B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
