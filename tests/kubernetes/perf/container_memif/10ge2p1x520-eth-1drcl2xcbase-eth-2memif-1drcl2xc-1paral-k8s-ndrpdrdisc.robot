@@ -176,7 +176,7 @@
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
-| tc02-64B-1t1-ceth-1drcl2xcbase-eth-2memif-1drcl2xc-1paral-k8s-pdrdisc
+| tc02-64B-1t1c-eth-1drcl2xcbase-eth-2memif-1drcl2xc-1paral-k8s-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.

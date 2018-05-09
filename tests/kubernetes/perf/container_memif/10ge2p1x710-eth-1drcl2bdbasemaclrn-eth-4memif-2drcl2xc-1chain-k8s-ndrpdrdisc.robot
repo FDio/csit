@@ -176,7 +176,7 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1ceth-1drcl2bdbasemaclrn-eth-4memif-2drcl2xc-1chain-k8s-ndrdisc
+| tc01-64B-1t1c-eth-1drcl2bdbasemaclrn-eth-4memif-2drcl2xc-1chain-k8s-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.

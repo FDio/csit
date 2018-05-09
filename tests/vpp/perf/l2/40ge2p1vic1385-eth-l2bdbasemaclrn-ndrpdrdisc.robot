@@ -186,7 +186,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at\
 | | ... | 18.75Mpps rate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDR | SKIP_PATCH
+| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
