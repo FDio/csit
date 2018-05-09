@@ -36,7 +36,7 @@
 | ...
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | THIS
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | IP4BASE
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
@@ -82,7 +82,7 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
 | | wt=1 | rxq=1 | framesize=${64}
 
