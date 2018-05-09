@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4d2476f1_2a0b3779",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e780d3d_5cd7148f",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 66
+      },
+      "revId": "e633f3ab9c9fdbb989e2ea8864990de111fec280",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e680ff65_461dbc52",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-04T14:11:55Z",
       "side": 1,
       "message": "\"Optimal\" sounds too strong, especially when the initial phase also functions as a warm-up.\nI would say it determines \"promising\" starting bounds.",
+      "range": {
+        "startLine": 30,
+        "startChar": 54,
+        "endLine": 30,
+        "endChar": 61
+      },
+      "revId": "e633f3ab9c9fdbb989e2ea8864990de111fec280",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de02bb6c_7f92cdd2",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-09T19:36:12Z",
+      "side": 1,
+      "message": "okay, can\u0027t find a better single term, so using promising :)",
+      "parentUuid": "e680ff65_461dbc52",
       "range": {
         "startLine": 30,
         "startChar": 54,
