@@ -36,7 +36,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -44,7 +44,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
+      $ grep -E "64B-1t1c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-ndrdisc" *
 
 VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below.
@@ -69,7 +69,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -77,7 +77,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
+      $ grep -E "64B-2t2c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-ndrdisc" *
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -105,7 +105,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-.*ipsec.*-pdrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-pdrdisc" *
       :shell:
 
 .. only:: latex
@@ -113,7 +113,7 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-1t1c-.*ipsec.*-pdrdisc" *
+      $ grep -E "64B-1t1c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-pdrdisc" *
 
 VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.
@@ -138,7 +138,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-.*ipsec.*-pdrdisc" *
+   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-pdrdisc" *
       :shell:
 
 .. only:: latex
@@ -146,4 +146,4 @@ git repository:
    .. code-block:: bash
 
       $ cd tests/vpp/perf/crypto
-      $ grep -E "64B-2t2c-.*ipsec.*-pdrdisc" *
+      $ grep -E "64B-2t2c-(ethip4ipsecbasetnl|ethip4ipsecscale1000tnl|ethip4ipsectptlispgpe)-.*-pdrdisc" *
