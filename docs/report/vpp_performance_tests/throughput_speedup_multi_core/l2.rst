@@ -34,19 +34,8 @@ NIC 10ge2p1x520
 *Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy L2 Ethernet Switching.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*ndrdisc" 10ge2p1x520*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*ndrdisc" tests/vpp/perf/l2/10ge2p1x520*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
 
 NIC 40ge2p1xl710
 ~~~~~~~~~~~~~~~~
@@ -67,19 +56,8 @@ NIC 40ge2p1xl710
 *Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy L2 Ethernet Switching.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" 40ge2p1xl710*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn|l2bdscale.*|l2dbscale.*)-(eth.*)*ndrdisc" tests/vpp/perf/l2/40ge2p1xl710*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
 
 PDR Throughput
 --------------
@@ -107,16 +85,5 @@ NIC 10ge2p1x520
 *Figure 3. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy L2 Ethernet Switching.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/l2 && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*pdrdisc" 10ge2p1x520*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(eth.*)*pdrdisc" tests/vpp/perf/l2/10ge2p1x520*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.

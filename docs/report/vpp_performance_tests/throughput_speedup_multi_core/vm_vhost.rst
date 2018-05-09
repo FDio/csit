@@ -33,6 +33,9 @@ NIC 10ge2p1x520
 *Figure 1a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
@@ -49,20 +52,8 @@ NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 *Figure 1b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-ndrdisc" 10ge2p1x520*-ndrpdrdisc.robot
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-ndrdisc" 10ge2p1x520*-ndrpdrdisc.robot
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 NIC 10ge2p1x710
 ~~~~~~~~~~~~~~~
@@ -83,20 +74,8 @@ NIC 10ge2p1x710
 *Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-ndrdisc" 10ge2p1x710*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-ndrdisc" 10ge2p1x710*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 NIC 40ge2p1xl710
 ~~~~~~~~~~~~~~~~
@@ -117,6 +96,9 @@ NIC 40ge2p1xl710
 *Figure 3a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
@@ -133,20 +115,8 @@ NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 *Figure 3b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-ndrdisc" 40ge2p1xl710*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-ndrdisc" 40ge2p1xl710*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 PDR Throughput
 --------------
@@ -173,6 +143,9 @@ NIC 10ge2p1x520
 *Figure 4a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
@@ -189,20 +162,8 @@ PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 *Figure 4b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-pdrdisc" 10ge2p1x520*-ndrpdrdisc.robot
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "grep -E "64B-(1t1c|2t2c|4t4c)-(eth|ethip4)-.*vhost.*-pdrdisc" 10ge2p1x520*-ndrpdrdisc.robot
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 NIC 10ge2p1x710
 ~~~~~~~~~~~~~~~
@@ -223,20 +184,8 @@ NIC 10ge2p1x710
 *Figure 5. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-pdrdisc" 10ge2p1x710*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-pdrdisc" 10ge2p1x710*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 NIC 40ge2p1xl710
 ~~~~~~~~~~~~~~~~
@@ -257,6 +206,9 @@ NIC 40ge2p1xl710
 *Figure 6a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
@@ -273,17 +225,5 @@ PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 *Figure 6b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
 PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/vm_vhost && grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-pdrdisc" 40ge2p1xl710*
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/vm_vhost
-      $ grep -E "64B-(1t1c|2t2c|4t4c)-.*vhost.*-pdrdisc" 40ge2p1xl710*
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
