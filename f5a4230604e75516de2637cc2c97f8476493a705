@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a79c3aaa_26af99dd",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "The full part of the sentence will be \"this results in guaranteeing\" or \"this guarantees\"?\nPerhaps \"in guaranteeing\" would make it more obvious we strive for the former, but having the word \"results\" in line 18 makes that cumbersome.",
+      "range": {
+        "startLine": 17,
+        "startChar": 47,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f348e1a5_f8304cf6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "What about input rates?",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d6f50fd_7818e9c3",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "I would insert \"for\" to visually delimit the rate from the NIC+link.",
+      "range": {
+        "startLine": 94,
+        "startChar": 27,
+        "endLine": 94,
+        "endChar": 28
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d430e9f_ff21723c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "2 * 10k pps, just because the Trex latency measurement stream uses 2 * 9k (we could probably change that default value if needed).",
+      "range": {
+        "startLine": 98,
+        "startChar": 43,
+        "endLine": 98,
+        "endChar": 44
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13b796fc_c715b46b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "Should I update the merged code to use the new parameter names?",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 21
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47216a05_66c5d8e1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "are",
+      "range": {
+        "startLine": 109,
+        "startChar": 37,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeb800a7_5fae53b1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "could help\n\nAlthough I think for vhost it will not help (but increase overal duration instead), because the number of trials needed in the final phase has more to do with system randomness than with the quality of intermediate results.",
+      "range": {
+        "startLine": 110,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 23
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f390acec_d55ab5c1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "Single intermediate phase might be quicker in most cases. We are using two, just to make sure the lack of warmup cannot harm us, and to lessen the time impact when the drop rate depends on duration. Possibly, 1 intermediate phase could have better average of overall duration (but also bigger standard deviation) also in the 2 suites used for comparison.\n\nIn the tests I have seen, 3 intermediate phases will always take longer. It may start making sense if we attempt to test with 10 minute final duration or similar.",
+      "range": {
+        "startLine": 113,
+        "startChar": 48,
+        "endLine": 113,
+        "endChar": 49
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa84c0ba_4d4cacc8",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "classify\n\nThat is also \"out:\" of the previous two measurements.\nWe are continuing with subsequent phases in any case, but they need to have bounds classified, in order to decide the search direction (external down, external up, or internal).",
+      "range": {
+        "startLine": 137,
+        "startChar": 11,
+        "endLine": 137,
+        "endChar": 17
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6dfc7dac_389149e3",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "The interval can become invalid only by re-measuring the bound at higher trial duration, but the first intermediate phase has the same trial duration as initial phase, so that never happens.\n\nInstead, initially invalid interval can become valid during external search.",
+      "range": {
+        "startLine": 149,
+        "startChar": 32,
+        "endLine": 149,
+        "endChar": 39
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84b26c1a_5223c428",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T12:46:08Z",
+      "side": 1,
+      "message": "Hmm, we can call it external sequence.\n\nIn high-level description, each subsequent phase runs external sequence (if needed) and then internal sequence.\nIn the practical implementation we also have a single bisection (if the input interval is large enough), then re-measurement of one bound, and only then external and internal sequences.",
+      "range": {
+        "startLine": 152,
+        "startChar": 3,
+        "endLine": 152,
+        "endChar": 21
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
