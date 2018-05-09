@@ -194,7 +194,7 @@ route_data_ipv6 = {
 table1_oper = {
     "destination-prefix": route_address_ipv4,
     "next-hop": "192.168.1.1",
-    "vpp-ipv4-unicast-routing:vpp-ipv4-route": {}
+    "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-0"}
 }
 
 # Peer configurations for traffic test
@@ -307,7 +307,7 @@ rib_operational = {
 
 route_operational = {
     "next-hop": {"next-hop-address": "192.168.1.3"},
-    "vpp-ipv4-unicast-routing:vpp-ipv4-route": {},
+    "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-0"},
     "destination-prefix": dut1_route_address
 }
 
@@ -348,6 +348,6 @@ rib_ip6_operational = {
 
 route_ip6_operational = {
     "next-hop": {"next-hop-address": "3ffe:63::1"},
-    "vpp-ipv6-unicast-routing:vpp-ipv6-route": {},
+    "vpp-ipv6-unicast-routing:vpp-ipv6-route": {"classify-table": "classify-table-0"},
     "destination-prefix": dut1_route_ip6_prefix
 }
