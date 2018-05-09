@@ -92,11 +92,11 @@ class SSH(object):
                          format(self._ssh.get_transport().getpeername()))
             logger.debug('Connections: {0}'.
                          format(str(SSH.__existing_connections)))
-        except RuntimeError as exc:
+        except:
             if attempts > 0:
                 self._reconnect(attempts-1)
             else:
-                raise exc
+                raise
 
     def disconnect(self, node):
         """Close SSH connection to the node.
