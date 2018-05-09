@@ -98,11 +98,10 @@ class RoutingKeywords(object):
             protocol = "vpp-protocol-attributes"
 
         full_data = {
-            "routing-protocol": [
+            "control-plane-protocol": [
                 {
                     "name": name,
                     "description": "hc2vpp-csit test route",
-                    "enabled": "true",
                     "type": "static",
                     protocol: {
                         "primary-vrf": vrf
@@ -116,7 +115,7 @@ class RoutingKeywords(object):
             ]
         }
 
-        path = "/routing-protocol/{0}".format(name)
+        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(name)
         return RoutingKeywords._set_routing_table_properties(
             node, path, full_data)
 
@@ -132,7 +131,7 @@ class RoutingKeywords(object):
         :rtype: bytearray
         """
 
-        path = "/routing-protocol/{0}".format(name)
+        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(name)
         return RoutingKeywords._set_routing_table_properties(node, path)
 
     @staticmethod
@@ -150,7 +149,7 @@ class RoutingKeywords(object):
         :raises HoneycombError: If the operation fails.
         """
 
-        path = "/routing-protocol/{0}".format(name)
+        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(name)
         status_code, resp = HcUtil.\
             get_honeycomb_data(node, "oper_routing_table", path)
 
@@ -160,7 +159,7 @@ class RoutingKeywords(object):
                 "routing tables. Status code: {0}.".format(status_code))
 
         data = RoutingKeywords.clean_routing_oper_data(
-            resp['routing-protocol'][0]['static-routes']
+            resp['control-plane-protocol'][0]['static-routes']
             ['hc2vpp-ietf-{0}-unicast-routing:{0}'.format(ip_version)]['route'])
 
         return data
@@ -219,21 +218,15 @@ class RoutingKeywords(object):
 
         interface = Topology.convert_interface_reference(
             node, interface, 'name')
-        interface_orig = interface
         interface = interface.replace('/', '%2F')
-        path = 'interface/' + interface
+        path = 'interface/' + interface + '/ipv6/ipv6-router-advertisements'
 
         if not slaac_data:
             status_code, _ = HcUtil.delete_honeycomb_data(
                 node, 'config_slaac', path)
         else:
             data = {
-                'interface': [
-                    {
-                        'name': interface_orig,
-                        'ipv6-router-advertisements': slaac_data
-                    }
-                ]
+                       'ipv6-router-advertisements': slaac_data
             }
 
             status_code, _ = HcUtil.put_honeycomb_data(
@@ -258,7 +251,7 @@ class RoutingKeywords(object):
         interface = Topology.convert_interface_reference(
             node, interface, 'name')
         interface = interface.replace('/', '%2F')
-        path = 'interface/' + interface
+        path = 'interface/' + interface + '/ipv6/ipv6-router-advertisements'
 
         status_code, resp = HcUtil.\
             get_honeycomb_data(node, "config_slaac", path)
@@ -268,7 +261,7 @@ class RoutingKeywords(object):
                 "Not possible to get operational information about SLAAC. "
                 "Status code: {0}.".format(status_code))
         try:
-            dict_of_str = resp['interface'][0][
+            dict_of_str = resp[
                 'hc2vpp-ietf-ipv6-unicast-routing:ipv6-router-advertisements']
             return {k: str(v) for k, v in dict_of_str.items()}
         except (KeyError, TypeError):
