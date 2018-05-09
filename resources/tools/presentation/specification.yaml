@@ -269,10 +269,10 @@
       - 49  # full
     vpp-func-results:
       csit-vpp-functional-1804-ubuntu1604-virl:
-      - 199
+      - 229
     vpp-func-results-centos:
       csit-vpp-functional-1804-centos7-virl:
-      - 207
+      - 238
     vpp-mrr-results:
       csit-vpp-perf-check-1804:
       - 5   # mrr - full
@@ -712,9 +712,9 @@
     - 12
     - 13
     csit-vpp-functional-1804-ubuntu1604-virl:
-    - 199
+    - 229
     csit-vpp-functional-1804-centos7-virl:
-    - 207
+    - 238
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
     - 7
     csit-hc2vpp-verify-func-1804-ubuntu1604:
