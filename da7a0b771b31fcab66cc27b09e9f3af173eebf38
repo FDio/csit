@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b48e88b_ae340630",
+        "filename": "resources/tools/testbed-setup/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T07:12:12Z",
+      "side": 1,
+      "message": "# Get",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 15
+      },
+      "revId": "da7a0b771b31fcab66cc27b09e9f3af173eebf38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6bf050a2_dfdf1ea8",
+        "filename": "resources/tools/testbed-setup/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T07:12:12Z",
+      "side": 1,
+      "message": "`grep -r root /etc/nginx/`, save that to NGINX_ROOT\nWhy not?\nNGINX_ROOT\u003d$(grep -r root /etc/nginx/)",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 55
+      },
+      "revId": "da7a0b771b31fcab66cc27b09e9f3af173eebf38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
