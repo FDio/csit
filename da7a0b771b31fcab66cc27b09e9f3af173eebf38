@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4cbccf58_006aee7f",
+        "filename": "resources/tools/testbed-setup/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T07:52:50Z",
+      "side": 1,
+      "message": "Then write that path needs to be save to ${NGINX_ROOT}",
+      "parentUuid": "8af28a09_11e1e22a",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 15
+      },
+      "revId": "da7a0b771b31fcab66cc27b09e9f3af173eebf38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bf050a2_dfdf1ea8",
         "filename": "resources/tools/testbed-setup/README.md",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "There could be multiple hits for root in the config file. Maybe I could think about a more complex command that would extract the path, but I\u0027m not sure it\u0027s actually worth the time.",
       "parentUuid": "6bf050a2_dfdf1ea8",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 55
+      },
+      "revId": "da7a0b771b31fcab66cc27b09e9f3af173eebf38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09703194_3a4501e3",
+        "filename": "resources/tools/testbed-setup/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T07:52:50Z",
+      "side": 1,
+      "message": "Then do not use this command if it will not parse out the desired value.",
+      "parentUuid": "bf8d301a_e70d61e4",
       "range": {
         "startLine": 39,
         "startChar": 4,
