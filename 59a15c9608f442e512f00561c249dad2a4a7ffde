@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff00108a_fd8a0445",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T13:05:04Z",
+      "side": 1,
+      "message": "fail_if_no_received?",
+      "range": {
+        "startLine": 527,
+        "startChar": 8,
+        "endLine": 527,
+        "endChar": 29
+      },
+      "revId": "59a15c9608f442e512f00561c249dad2a4a7ffde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "484f755c_a9ee3971",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-09T13:05:04Z",
+      "side": 1,
+      "message": "BuiltIn.Fail raises AssertionError, so we should raise it too.",
+      "range": {
+        "startLine": 534,
+        "startChar": 18,
+        "endLine": 534,
+        "endChar": 27
+      },
+      "revId": "59a15c9608f442e512f00561c249dad2a4a7ffde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
