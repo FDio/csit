@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aac6739_5c19bc64",
+        "filename": "resources/libraries/python/DMM/SetupDMMTest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T10:02:14Z",
+      "side": 1,
+      "message": "VIRL servers has no internet connectivity. Any packages that are not pre-installed on VIRL image will fail to download.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 65
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9439f021_e261ad6d",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T10:02:14Z",
+      "side": 1,
+      "message": "Can you please create separate patch with this file so after comments fix i will merge it to master",
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a08a439d_9e6934d0",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T10:02:14Z",
+      "side": 1,
+      "message": "print_to_stderr",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 45
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ae9f05e_3a37ce4f",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T10:02:14Z",
+      "side": 1,
+      "message": "catch all execeptions.\n\nexcept:",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 32
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2b978ef_c35306e2",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T10:02:14Z",
+      "side": 1,
+      "message": "catch all execeptions.\n\nexcept:",
+      "range": {
+        "startLine": 414,
+        "startChar": 0,
+        "endLine": 414,
+        "endChar": 32
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "563b3794_0899237c",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T10:02:14Z",
+      "side": 1,
+      "message": "catch all execeptions.\n\nexcept:",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 32
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39caec99_4302e79a",
+        "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-09T10:02:14Z",
+      "side": 1,
+      "message": "Trusty is not supported anymore.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 95
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
