@@ -155,7 +155,7 @@ def get_variables(node, ip_version, out_interface):
                 "next-hop-address": ipv4_base["next_hop"],
                 "outgoing-interface": out_interface
             },
-            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {}
+            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-1"}
         },
         "table2_oper": {
             "destination-prefix":
@@ -178,7 +178,7 @@ def get_variables(node, ip_version, out_interface):
                     ]
                 }
             },
-            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {}
+            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-1"}
         },
         "table3_oper": {
             "destination-prefix":
@@ -186,7 +186,7 @@ def get_variables(node, ip_version, out_interface):
             "next-hop":{
                 "special-next-hop-enum": "blackhole"
             },
-            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {}
+            "vpp-ipv4-unicast-routing:vpp-ipv4-route": {"classify-table": "classify-table-1"}
         },
         "table4_oper": {
             "destination-prefix":
@@ -196,7 +196,7 @@ def get_variables(node, ip_version, out_interface):
                 "next-hop-address": ipv6_base["next_hop"],
                 "outgoing-interface": out_interface
             },
-            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {}
+            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {"classify-table": "classify-table-1"}
         },
         "table5_oper": {
             "destination-prefix":
@@ -220,7 +220,7 @@ def get_variables(node, ip_version, out_interface):
                     ]
                 }
             },
-            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {}
+            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {"classify-table": "classify-table-1"}
         },
         "table6_oper": {
             "destination-prefix":
@@ -229,7 +229,7 @@ def get_variables(node, ip_version, out_interface):
             "next-hop":{
                 "special-next-hop-enum": "blackhole"
             },
-            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {}
+            "vpp-ipv6-unicast-routing:vpp-ipv6-route": {"classify-table": "classify-table-1"}
         }
     }
 
