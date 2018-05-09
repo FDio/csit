@@ -45,6 +45,53 @@
       "revId": "59a15c9608f442e512f00561c249dad2a4a7ffde",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fceb55e_d83dfc76",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-09T13:50:02Z",
+      "side": 1,
+      "message": "\u003e BuiltIn.Fail raises AssertionError, so we should raise it too.\n\nWe usually use RuntimeError",
+      "parentUuid": "484f755c_a9ee3971",
+      "range": {
+        "startLine": 534,
+        "startChar": 18,
+        "endLine": 534,
+        "endChar": 27
+      },
+      "revId": "59a15c9608f442e512f00561c249dad2a4a7ffde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07e5e178_88677e83",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-09T13:50:02Z",
+      "side": 1,
+      "message": "Too broad exception: RuntimeError wuold be better.",
+      "range": {
+        "startLine": 536,
+        "startChar": 18,
+        "endLine": 536,
+        "endChar": 27
+      },
+      "revId": "59a15c9608f442e512f00561c249dad2a4a7ffde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
