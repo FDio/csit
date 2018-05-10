@@ -601,7 +601,8 @@ class OptimizedSearch(object):
             frame_size, traffic_type, minimum_transmit_rate,
             maximum_transmit_rate, packet_loss_ratio=0.005,
             final_relative_width=0.005, final_trial_duration=30.0,
-            initial_trial_duration=1.0, intermediate_phases=2, timeout=600.0):
+            initial_trial_duration=1.0, number_of_intermediate_phases=2,
+            timeout=600.0):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
@@ -617,8 +618,8 @@ class OptimizedSearch(object):
         :param final_trial_duration: Trial duration for the final phase [s].
         :param initial_trial_duration: Trial duration for the initial phase
             and also for the first intermediate phase [s].
-        :param intermediate_phases: Number of intermediate phases to perform
-            before the final phase [1].
+        :param number_of_intermediate_phases: Number of intermediate phases
+            to perform before the final phase [1].
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
         :type frame_size: str or int
@@ -629,7 +630,7 @@ class OptimizedSearch(object):
         :type final_relative_width: float
         :type final_trial_duration: float
         :type initial_trial_duration: float
-        :type intermediate_phases: int
+        :type number_of_intermediate_phases: int
         :type timeout: float
         :returns: Structure containing narrowed down intervals
             and their measurements.
@@ -644,7 +645,7 @@ class OptimizedSearch(object):
         algorithm = OptimizedSearchAlgorithm(
             tg_instance, final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,
-            intermediate_phases=intermediate_phases,
+            number_of_intermediate_phases=number_of_intermediate_phases,
             initial_trial_duration=initial_trial_duration, timeout=timeout)
         result = algorithm.narrow_down_ndr_and_pdr(
             minimum_transmit_rate, maximum_transmit_rate, packet_loss_ratio)
