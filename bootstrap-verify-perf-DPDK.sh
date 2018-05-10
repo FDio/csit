@@ -103,7 +103,7 @@ case "$TEST_TAG" in
               'mrrAND2t2c')
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('THIS')
 esac
 
 # Catenate TAG selections by 'OR'
