@@ -368,9 +368,9 @@
 | | ... | *Arguments:*
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | - topology_type - Topology type. Type: string
-| | ... | - fail_rate - Lower limit of search [pps]. Type: float
-| | ... | - line_rate - Upper limit of search [pps]. Type: float
-| | ... | - allowed_drop_fraction - Accepted loss during search. Type: float
+| | ... | - minimum_transmit_rate - Lower limit of search [pps]. Type: float
+| | ... | - maximum_transmit_rate - Upper limit of search [pps]. Type: float
+| | ... | - packet_drop_ratio - Accepted loss during search. Type: float
 | | ... | - final_relative_width - Maximal width multiple of upper. Type: float
 | | ... | - final_trial_duration - Duration of final trials [s]. Type: float
 | | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
@@ -383,19 +383,20 @@
 | | ... | 3-node-IPv4 \| \${100000} \| \${14880952} \| \${0.005} \| \${0.005} \
 | | ... | \| \${30.0} \| \${1.0} \| \${2} \| ${600.0}
 | | ...
-| | [Arguments] | ${frame_size} | ${topology_type} | ${fail_rate} | ${line_rate}
-| | ... | ${allowed_drop_fraction}=${0.005} | ${final_relative_width}=${0.005}
-| | ... | ${final_trial_duration}=${30.0} | ${initial_trial_duration}=${1.0}
-| | ... | ${intermediate_phases}=${2} | ${timeout}=${600.0}
+| | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
+| | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${0.005}
+| | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
+| | ... | ${initial_trial_duration}=${1.0}
+| | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${600.0}
 | | ...
 | | ${result}= | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${topology_type} | ${fail_rate} | ${line_rate}
-| | ... | ${allowed_drop_fraction} | ${final_relative_width}
+| | ... | ${topology_type} | ${minimum_transmit_rate} | ${maximum_transmit_rate}
+| | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
-| | ... | ${intermediate_phases} | timeout=${timeout}
+| | ... | ${number_of_intermediate_phases} | timeout=${timeout}
 | | Display result of NDRPDR search | ${result} | ${frame_size}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
-| | ... | ${allowed_drop_fraction}
+| | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
 | | Perform additional measurements based on NDRPDR result
 | | ... | ${result} | ${frame_size} | ${topology_type}
@@ -471,20 +472,20 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - interval - Measured interval. Type: ReceiveRateInterval
-| | ... | - allowed_drop_fraction - Accepted loss (0.0 for NDR). Type: float
+| | ... | - packet_loss_ratio - Accepted loss (0.0 for NDR). Type: float
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Check NDRPDR interval validity \| \${result.pdr_interval} \
 | | ... | \| \${0.005}
 | | ...
-| | [Arguments] | ${interval} | ${allowed_drop_fraction}=${0.0}
+| | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | | ...
 | | ${lower_bound_df}= | Set Variable | ${interval.measured_low.drop_fraction}
-| | Return From Keyword If | ${lower_bound_df} <= ${allowed_drop_fraction}
+| | Return From Keyword If | ${lower_bound_df} <= ${packet_loss_ratio}
 | | ${messagge}= | Catenate | SEPARATOR=${SPACE}
 | | ... | Lower bound fraction ${lower_bound_df}
-| | ... | does not reach ${allowed_drop_fraction}.
+| | ... | does not reach ${packet_loss_ratio}.
 | | Fail | ${message}
 
 | Perform additional measurements based on NDRPDR result

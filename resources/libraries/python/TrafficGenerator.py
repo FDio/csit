@@ -597,9 +597,9 @@ class TrafficGenerator(AbstractRateProvider):
             duration, unit_rate, self.frame_size, self.traffic_type,
             self.warmup_time, latency=True)
         transmit_count = int(self.get_sent())
-        drop_count = int(self.get_loss())
+        loss_count = int(self.get_loss())
         measurement = ReceiveRateMeasurement(
-            duration, transmit_rate, transmit_count, drop_count)
+            duration, transmit_rate, transmit_count, loss_count)
         measurement.latency = self.get_latency_int()
         return measurement
 
@@ -609,18 +609,20 @@ class OptimizedSearch(object):
 
     @staticmethod
     def perform_optimized_ndrpdr_search(
-            frame_size, traffic_type, fail_rate, line_rate,
-            allowed_drop_fraction=0.005, final_relative_width=0.005,
-            final_trial_duration=30.0, initial_trial_duration=1.0,
-            intermediate_phases=2, timeout=600.0):
+            frame_size, traffic_type, minimum_transmit_rate,
+            maximum_transmit_rate, packet_loss_ratio=0.005,
+            final_relative_width=0.005, final_trial_duration=30.0,
+            initial_trial_duration=1.0, intermediate_phases=2, timeout=600.0):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_type: Module name as a traffic type identifier.
             See resources/traffic_profiles/trex for implemented modules.
-        :param fail_rate: Minimal target transmit rate [pps].
-        :param line_rate: Maximal target transmit rate [pps].
-        :param allowed_drop_fraction: Fraction of dropped packets for PDR [1].
+        :param minimum_transmit_rate: Minimal bidirectional
+            target transmit rate [pps].
+        :param maximum_transmit_rate: Maximal bidirectional
+            target transmit rate [pps].
+        :param packet_loss_ratio: Fraction of packets lost, for PDR [1].
         :param final_relative_width: Final lower bound transmit rate
             cannot be more distant that this multiple of upper bound [1].
         :param final_trial_duration: Trial duration for the final phase [s].
@@ -632,9 +634,9 @@ class OptimizedSearch(object):
             before this overall time [s].
         :type frame_size: str or int
         :type traffic_type: str
-        :type fail_rate: float
-        :type line_rate: float
-        :type allowed_drop_fraction: float
+        :type minimum_transmit_rate: float
+        :type maximum_transmit_rate: float
+        :type packet_loss_ratio: float
         :type final_relative_width: float
         :type final_trial_duration: float
         :type initial_trial_duration: float
@@ -656,5 +658,5 @@ class OptimizedSearch(object):
             intermediate_phases=intermediate_phases,
             initial_trial_duration=initial_trial_duration, timeout=timeout)
         result = algorithm.narrow_down_ndr_and_pdr(
-            fail_rate, line_rate, allowed_drop_fraction)
+            minimum_transmit_rate, maximum_transmit_rate, packet_loss_ratio)
         return result
