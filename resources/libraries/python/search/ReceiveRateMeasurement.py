@@ -17,38 +17,38 @@
 class ReceiveRateMeasurement(object):
     """Structure defining the result of single Rr measurement."""
 
-    def __init__(self, duration, target_tr, transmit_count, drop_count):
+    def __init__(self, duration, target_tr, transmit_count, loss_count):
         """Constructor, normalize primary and compute secondary quantities.
 
         :param duration: Measurement duration [s].
         :param target_tr: Target transmit rate [pps].
             If bidirectional traffic is measured, this is bidirectional rate.
         :param transmit_count: Number of packets transmitted [1].
-        :param drop_count: Number of packets transmitted but not received [1].
+        :param loss_count: Number of packets transmitted but not received [1].
         :type duration: float
         :type target_tr: float
         :type transmit_count: int
-        :type drop_count: int
+        :type loss_count: int
         """
         self.duration = float(duration)
         self.target_tr = float(target_tr)
         self.transmit_count = int(transmit_count)
-        self.drop_count = int(drop_count)
-        self.receive_count = transmit_count - drop_count
+        self.loss_count = int(loss_count)
+        self.receive_count = transmit_count - loss_count
         self.transmit_rate = transmit_count / self.duration
-        self.drop_rate = drop_count / self.duration
+        self.loss_rate = loss_count / self.duration
         self.receive_rate = self.receive_count / self.duration
-        self.drop_fraction = float(self.drop_count) / self.transmit_count
+        self.loss_fraction = float(self.loss_count) / self.transmit_count
         # TODO: Do we want to store also the real time (duration + overhead)?
 
     def __str__(self):
-        """Return string reporting input and drop fraction."""
+        """Return string reporting input and loss fraction."""
         return "d={dur!s},Tr={rate!s},Df={frac!s}".format(
-            dur=self.duration, rate=self.target_tr, frac=self.drop_fraction)
+            dur=self.duration, rate=self.target_tr, frac=self.loss_fraction)
 
     def __repr__(self):
         """Return string evaluable as a constructor call."""
         return ("ReceiveRateMeasurement(duration={dur!r},target_tr={rate!r}"
-                ",transmit_count={trans!r},drop_count={drop!r})".format(
+                ",transmit_count={trans!r},loss_count={loss!r})".format(
                     dur=self.duration, rate=self.target_tr,
-                    trans=self.transmit_count, drop=self.drop_count))
+                    trans=self.transmit_count, loss=self.loss_count))
