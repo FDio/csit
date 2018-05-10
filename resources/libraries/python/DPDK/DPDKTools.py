@@ -89,5 +89,41 @@ class DPDKTools(object):
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:
-                raise RuntimeError('Failed to cleanup the dpdk at node {name}'
-                                   .format(name=dut_node['host']))
+                raise RuntimeError('Failed to cleanup the dpdk at node {name}'.
+                                   format(name=dut_node['host']))
+
+    @staticmethod
+    def install_dpdk_test(node):
+        """
+        Prepare the DPDK test envrionment
+
+        :param node: Dictionary created from topology
+        :type node: dict
+        :returns: nothing
+        :raise RuntimeError: If command returns nonzero return code.
+        """
+        arch = Topology.get_node_arch(node)
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ret_code, _, _ = ssh.exec_command(
+            '{fwdir}/tests/dpdk/dpdk_scripts/install_dpdk.sh {arch}'.
+            format(fwdir=Constants.REMOTE_FW_DIR, arch=arch), timeout=600)
+
+        if ret_code != 0:
+            raise RuntimeError('Install the DPDK failed')
+
+    @staticmethod
+    def install_dpdk_test_on_all_duts(nodes):
+        """
+        Prepare the DPDK test envrionment on all DUTs.
+
+        :param nodes: Nodes from topology file.
+        :type nodes: dict
+        :returns: nothing
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DPDKTools.install_dpdk_test(node)
+
