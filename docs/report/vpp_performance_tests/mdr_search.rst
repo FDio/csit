@@ -83,7 +83,7 @@ MDR Search Phases
 -----------------
 
 Following is a brief description of the current MDR search
-implementation in FD.io CSIT .
+implementation in FD.io CSIT.
 
 MDR Input Parameters
 ````````````````````
@@ -115,95 +115,87 @@ MDR Input Parameters
 Initial phase
 `````````````
 
-1. First trial measures MRR.
+1. First trial measures at maximum rate and discovers MRR.
 
-   a) in: offered_transmit_rate = maximum_transmit_rate.
-   b) in: trial_duration = minimum_trial_duration.
+   a) in: trial_duration = initial_trial_duration.
+   b) in: offered_transmit_rate = maximum_transmit_rate.
    c) do: single trial.
-   d) out: mrr = measured receive rate.
+   d) out: measured loss ratio.
+   e) out: mrr = measured receive rate.
 
-2. Second trial measures MRR2.
+2. Second trial measures at MRR and discovers MRR2.
 
-   a) in: offered_transmit_rate = mrr.
-   b) in: trial_duration = minimum_trial_duration.
+   a) in: trial_duration = initial_trial_duration.
+   b) in: offered_transmit_rate = MRR.
    c) do: single trial.
-   d) out: mrr2 = measured receive rate.
+   d) out: measured loss ratio.
+   e) out: mrr2 = measured receive rate.
 
-3. Third trial checks if MRR2 is a valid lower_bound.
+3. Third trial measures at MRR2.
 
-   a) in: offered_transmit_rate = MRR2.
-   b) in: trial_duration = minimum_trial_duration.
+   a) in: trial_duration = initial_trial_duration.
+   b) in: offered_transmit_rate = MRR2.
    c) do: single trial.
-   d) out: verify MRR2 is a valid lower_bound.
+   d) out: measured loss ratio.
 
-Intermediate phase 1
-````````````````````
+Intermediate phases
+```````````````````
 
-1. Normal sequence
+1. Main loop.
+   a) in: trial_duration for the current phase.
+      initial_trial_duration for first intermediate phase,
+      final_trial_duration for the final phase,
+      geometric average of the two durations for the middle phase.
+   b) in: relative_width_goal for the current phase.
+      final_relative_width for the final phase,
+      double of final_relative_width for the middle phase,
+      quadruple of final_relative_width for the first intermediate phase.
+   c) in: ndr_interval, pdr_interval from previous loop iteration or previous phase.
+      If the previous phase is the initial phase, both intervals have
+      lower_bound = MRR2, uper_bound = MRR.
+   d) do: If a lower_bound (ndr first) is invalid, prepare a new (decreased) transmit rate to measure at.
+      The decreased rate is 3 * lower_bound - 2 * upper_bound, so the new interval will have double width.
+      Go to i).
+   e) do: If an upper_bound (ndr first) is invalid, prepare a new (increased) transmit rate to measure at.
+      The increased rate is 3 * upper_bound - 2 * lower_bound, so the new interval will have double width.
+      Go to i).
+   f) do: If both bounds are valid, but an interval does not meet the current width goal,
+      prepare a new (middle) transmit rate to measure at.
+      The middle rate is (lower bound + upper bound) / 2, so the new interval will have half width.
+      Go to i).
+   g) do: If some bound has still only been measured at a lower duration, prepare to re-measure
+      at the current duration (and the same transmit rate).
+      Lower bounds first, ndr before pdr otherwise.
+      Go to i).
+   h) This is only reached when a phase has reached its exit criteria.
+      Go to k).
+   i) do: Perform the trial measurement at the prepared transmit rate and trial_duration,
+      and classify its loss ratio.
+   j) do: Update bounds of both intervals, according to the classified measurement.
+      Go to next iteration c), taking the updated intervals as new input.
+   k) out: the updated ndr_interval and pdr_interval.
+      In final phase this is also considered as the result of the whole search.
+      For other phases, the next phase loop is started with the current results as an input.
 
-   a) in: ndr_interval = pdr_interval = (mrr, mrr2).
-   b) in: target_interval_width = 4 * final_relative_width.
-   c) in: trial_duration = minimum_trial_duration.
-   d) do: internal search
-      - binary search adjusting pdr_interval, ndr_interval.
-      - if any interval becomes invalid, go to 2.
-   e) out: ndr_interval, pdr_interval.
+Implementation details
+----------------------
 
-2. Exception sequence
+The algorithm as implemented contains additional details
+omitted from the description above.
+Here is a short description of them, without detailing their mutual interaction.
 
-   a) in: ndr_interval = (?, ?), pdr_interval = (?, ?).
-   b) in: trial_duration = minimum_trial_duration.
-   c) external search
-      - if upper_bound invalid, increase upper_bound.
-      - if lower_bound invalid, decrease lower_bound.
-      - if ndr_interval or pdr_interval invalid go to c.
-   d) out: ndr_interval, pdr_interval.
-   e) go to 1.
-
-Intermediate phase 2
-````````````````````
-
-1. Normal sequence
-
-   a) in: ndr_interval, pdr_interval.
-   b) in: target_interval_width = 2 * final_relative_width.
-   c) in: trial_duration = sqrt(final_trial_duration).
-   d) internal search
-      - binary search adjusting pdr_interval, ndr_interval.
-      - if any interval becomes invalid, go to 2.
-   d) out: ndr_interval, pdr_interval.
-
-2. Exception sequence
-
-   a) in: ndr_interval = (?, ?), pdr_interval = (?, ?).
-   b) in: trial_duration = sqrt(final_trial_duration).
-   c) external search
-      - if upper_bound invalid, increase upper_bound.
-      - if lower_bound invalid, decrease lower_bound.
-      - if ndr_interval or pdr_interval invalid go to c.
-   d) out: ndr_interval, pdr_interval.
-   e) go to 1.
-
-Final phase
-```````````
-
-1. Normal sequence
-
-   a) in: ndr_interval, pdr_interval.
-   b) in: target_interval_width = final_relative_width.
-   c) in: trial_duration = final_trial_duration.
-   d) internal search
-      - binary search adjusting pdr_interval, ndr_interval.
-      - if any interval becomes invalid, go to 2.
-   d) out: ndr_interval, pdr_interval. MDR search success.
-
-2. Exception sequence
-
-   a) in: ndr_interval = (?, ?), pdr_interval = (?, ?).
-   b) in: trial_duration = final_trial_duration.
-   c) external search
-      - if upper_bound invalid, increase upper_bound.
-      - if lower_bound invalid, decrease lower_bound.
-      - if ndr_interval or pdr_interval invalid go to c.
-   d) out: ndr_interval, pdr_interval.
-   e) go to 1.
+1) Logarithmic transmit rate.
+   In order to better fit the relative width goal, the interval doubling and halving
+   is done differently. For example, middle of 2 and 8 is 4, not 5.
+2) Optimistic maximum rate.
+   The increased rate is never higher than maximum rate, upper bound at that rate is always considered valid.
+3) Pessimistic minimum rate.
+   The decreased rate is never lower than minimum rate, if a lower bound at that rate is invalid,
+   a phase stops refining the interval further (until it gets re-measured).
+4) Conservative interval updates.
+   Measurements above current upper bound never update a valid upper bound, even if drop ratio is low.
+   Measurements below current lower bound always update any lower bound if drop ratio is high.
+5) Ensure sufficient interval width.
+   If the prepared increased or decreased rate will result in width less than the current goal,
+   increase/decrease more. This can happen if measurement for the other interval makes the current interval too narrow.
+   Similarly, take care the measurements in the initiah phase create wide enough interval.
