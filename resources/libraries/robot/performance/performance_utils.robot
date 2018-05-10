@@ -360,7 +360,7 @@
 | | ... | Find boundaries for RFC2544 compatible NDR and PDR values
 | | ... | using an optimized search algorithm.
 | | ... | Display results as formatted test message.
-| | ... | Fail if a resulting lower bound has too high drop fraction.
+| | ... | Fail if a resulting lower bound has too high loss fraction.
 | | ... | Proceed with Perform additional measurements based on NDRPDR result.
 | | ... | TODO: Should the trial duration of the additional
 | | ... | measurements be configurable?
@@ -370,7 +370,7 @@
 | | ... | - topology_type - Topology type. Type: string
 | | ... | - minimum_transmit_rate - Lower limit of search [pps]. Type: float
 | | ... | - maximum_transmit_rate - Upper limit of search [pps]. Type: float
-| | ... | - packet_drop_ratio - Accepted loss during search. Type: float
+| | ... | - packet_loss_ratio - Accepted loss during search. Type: float
 | | ... | - final_relative_width - Maximal width multiple of upper. Type: float
 | | ... | - final_trial_duration - Duration of final trials [s]. Type: float
 | | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
@@ -467,7 +467,7 @@
 
 | Check NDRPDR interval validity
 | | [Documentation]
-| | ... | Extract drop fraction of lower bound of the interval.
+| | ... | Extract loss ratio of lower bound of the interval.
 | | ... | Fail if it does not reach the allowed value.
 | | ...
 | | ... | *Arguments:*
@@ -481,10 +481,10 @@
 | | ...
 | | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | | ...
-| | ${lower_bound_df}= | Set Variable | ${interval.measured_low.drop_fraction}
-| | Return From Keyword If | ${lower_bound_df} <= ${packet_loss_ratio}
+| | ${lower_bound_lf}= | Set Variable | ${interval.measured_low.loss_fraction}
+| | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
 | | ${messagge}= | Catenate | SEPARATOR=${SPACE}
-| | ... | Lower bound fraction ${lower_bound_df}
+| | ... | Lower bound fraction ${lower_bound_lf}
 | | ... | does not reach ${packet_loss_ratio}.
 | | Fail | ${message}
 
