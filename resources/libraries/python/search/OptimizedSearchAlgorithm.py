@@ -73,7 +73,13 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
     or all of the following is true:
     Both bounds are valid, bound bounds are measured at the current phase
     trial duration, interval width is less than the width goal
-    for current phase."""
+    for current phase.
+
+    TODO: Reviwew and update this docstring according to rst docs.
+    TODO: Initial phase: Larger min width and search up on zero.
+    TODO: Support configurable number of Packet Loss Ratios.
+    TODO: Rename to MultipleDropRateSearch (or MultipleLossRatioSearch).
+    """
 
     class ProgressState(object):
         """Structure containing data to be passed around in recursion."""
@@ -439,7 +445,7 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
                     continue
             # If we are hitting maximum_transmit_rate,
             # it is still worth narrowing width,
-            # hoping large enough Df will happen.
+            # hoping large enough loss fraction will happen.
             # But if we are hitting the minimal rate (at current duration),
             # no additional measurement will help with that,
             # so we can stop narrowing in this phase.
@@ -473,7 +479,7 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
                 logging.info("re-measuring PDR lower bound")
                 self._measure_and_update_state(state, pdr_lo.target_tr)
                 continue
-            # Except when lower bounds have high Df, in that case
+            # Except when lower bounds have high loss fraction, in that case
             # we do not need to re-measure _upper_ bounds.
             if ndr_hi.duration < state.duration and ndr_rel_width > 0.0:
                 logging.info("re-measuring NDR upper bound")
