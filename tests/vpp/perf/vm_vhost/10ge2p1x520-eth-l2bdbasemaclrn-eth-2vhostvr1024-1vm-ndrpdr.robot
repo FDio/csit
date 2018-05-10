@@ -78,7 +78,7 @@
 | | ... | [Ver] Find NDR for ${framesize} frames \
 | | ... | using binary search start at 10GE linerate.
 | | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | [Arguments] | ${framesize} | ${wt} | ${rxq} | ${trial_duration}
 | | ...
 | | # Test Variables required for test and test teardown
 | | Set Test Variable | ${framesize}
@@ -108,13 +108,23 @@
 | | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR and PDR intervals using optimized search
-| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate} | final_trial_duration=${trial_duration} | final_relative_width=${0.00778}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr-10
 | | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
-| | framesize=${64} | wt=1 | rxq=1
+| | framesize=${64} | wt=1 | rxq=1 | trial_duration=10
+
+| tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr-30
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
+| | ...
+| | framesize=${64} | wt=1 | rxq=1 | trial_duration=30
+
+| tc03-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr-60
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
+| | ...
+| | framesize=${64} | wt=1 | rxq=1 | trial_duration=60
 
 | tc02-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 1T1C | STHREAD

@@ -386,7 +386,7 @@
 | | [Arguments] | ${frame_size} | ${topology_type} | ${fail_rate} | ${line_rate}
 | | ... | ${allowed_drop_fraction}=${0.005} | ${final_relative_width}=${0.005}
 | | ... | ${final_trial_duration}=${30.0} | ${initial_trial_duration}=${1.0}
-| | ... | ${intermediate_phases}=${2} | ${timeout}=${600.0}
+| | ... | ${intermediate_phases}=${2} | ${timeout}=${1200.0}
 | | ...
 | | ${result}= | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${topology_type} | ${fail_rate} | ${line_rate}
