@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f135e833_2617a2fc",
+        "filename": "resources/tools/testbed-setup/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-10T06:02:19Z",
+      "side": 1,
+      "message": "I would keep this as single bullet, the whole text. Can be on mulitple line by aligning first letters",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "449c283342c339ded860ec1b9805f45a4d4fa351",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
