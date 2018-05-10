@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "0f7c5cb9_57443b5a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-10T10:31:40Z",
+      "side": 1,
+      "message": "\u003e What are the \"input rates\"?\n\nInput parameters in form of rates, namely maximum_transmit_rate and minimum_transmit_rate.\nThey are target transmit rates (as opposed to measured transmit/loss rates this note is talking about), but they are also sum of equal unidirectional rates in both directions.\n\nJust replacing \"Measured\" with \"All\" will make me happy while keeping it simple.",
+      "parentUuid": "72625812_9e1aad97",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d6f50fd_7818e9c3",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -190,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "715f377d_4ba86b3d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-10T10:31:40Z",
+      "side": 1,
+      "message": "We can change the default, but \"1/10th for 10GE\" needs a quick computation with packet size (so no constant). Or we can assume 9000B packets as the worst case.\nUntil we have a new default, I will keep 2*10k pps in the code.",
+      "parentUuid": "07ec92ef_9de64b92",
+      "range": {
+        "startLine": 98,
+        "startChar": 43,
+        "endLine": 98,
+        "endChar": 44
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13b796fc_c715b46b",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -225,6 +273,30 @@
       "side": 1,
       "message": "y, pls.",
       "parentUuid": "13b796fc_c715b46b",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 21
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ad741a1_21724e72",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-10T10:31:40Z",
+      "side": 1,
+      "message": "Coming up soon.",
+      "parentUuid": "5aec52a9_79c3860c",
       "range": {
         "startLine": 106,
         "startChar": 4,
@@ -331,6 +403,30 @@
     },
     {
       "key": {
+        "uuid": "65d6bdbc_52d72f7c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-10T10:31:40Z",
+      "side": 1,
+      "message": "Required is a strong word. The search would still work fine, it would just take slightly more time to finish.",
+      "parentUuid": "fccc5764_2c5c8db6",
+      "range": {
+        "startLine": 110,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 23
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f390acec_d55ab5c1",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -366,6 +462,30 @@
       "side": 1,
       "message": "Ack. But this text doesn\u0027t belong here. We should put it into a discussion points, to be verified empirically, yes?",
       "parentUuid": "f390acec_d55ab5c1",
+      "range": {
+        "startLine": 113,
+        "startChar": 48,
+        "endLine": 113,
+        "endChar": 49
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4ad85ba_43c12dde",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-10T10:31:40Z",
+      "side": 1,
+      "message": "Yes. 2 is the number we chose after limited experimentation, more experimentation is needed before we start suggesting when it is a good idea to use different number.",
+      "parentUuid": "b18388e1_b98b3ad8",
       "range": {
         "startLine": 113,
         "startChar": 48,
