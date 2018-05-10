@@ -14,9 +14,11 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
-| Library | resources.libraries.python.DPDK.SetupDPDKTest
+| Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.DPDK.DPDKTools
 | Suite Setup | Run Keywords | Setup performance global Variables
-| ...         | AND          | Setup DPDK Test | ${nodes}
+| ...         | AND          | Setup Framework | ${nodes}
+| ...         | AND          | Install DPDK test on all DUTs | ${nodes}
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Numa Nodes
 | ...                        | ${nodes} | skip_tg=${True}
