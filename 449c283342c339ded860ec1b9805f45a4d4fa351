@@ -22,6 +22,30 @@
       "revId": "449c283342c339ded860ec1b9805f45a4d4fa351",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74840c51_bbed1672",
+        "filename": "resources/tools/testbed-setup/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-05-10T13:31:39Z",
+      "side": 1,
+      "message": "Yea, that makes sense, I\u0027ve redone the description one more time and left it all in one bullet point",
+      "parentUuid": "f135e833_2617a2fc",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "449c283342c339ded860ec1b9805f45a4d4fa351",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
