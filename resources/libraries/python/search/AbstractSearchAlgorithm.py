@@ -32,15 +32,15 @@ class AbstractSearchAlgorithm(object):
 
     @abstractmethod
     def narrow_down_ndr_and_pdr(
-            self, fail_rate, line_rate, allowed_drop_fraction):
+            self, fail_rate, line_rate, packet_loss_ratio):
         """Perform measurements to narrow down intervals, return them.
 
         :param fail_rate: Minimal target transmit rate [pps].
         :param line_rate: Maximal target transmit rate [pps].
-        :param allowed_drop_fraction: Fraction of dropped packets for PDR [1].
+        :param packet_loss_ratio: Fraction of packets lost, for PDR [1].
         :type fail_rate: float
         :type line_rate: float
-        :type allowed_drop_fraction: float
+        :type packet_loss_ratio: float
         :returns: Structure containing narrowed down intervals
             and their measurements.
         :rtype: NdrPdrResult
