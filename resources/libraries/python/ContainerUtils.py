@@ -439,16 +439,6 @@ class LXC(ContainerEngine):
         if int(ret) != 0:
             raise RuntimeError('Failed to create container.')
 
-        if self.container.host_dir and self.container.guest_dir:
-            entry = 'lxc.mount.entry = '\
-                '{c.host_dir} /var/lib/lxc/{c.name}/rootfs{c.guest_dir} ' \
-                'none bind,create=dir 0 0'.format(c=self.container)
-            ret, _, _ = self.container.ssh.exec_command_sudo(
-                "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'"
-                .format(e=entry, c=self.container))
-            if int(ret) != 0:
-                raise RuntimeError('Failed to write {c.name} config.'
-                                   .format(c=self.container))
         self._configure_cgroup('lxc')
 
     def create(self):
@@ -456,6 +446,20 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If creating the container fails.
         """
+        if self.container.mnt:
+            for mount in self.container.mnt:
+                entry = 'lxc.mount.entry = {host_dir} '\
+                    '/var/lib/lxc/{c.name}/rootfs{guest_dir} none ' \
+                    'bind,create=dir 0 0'.format(c=self.container,
+                                                 host_dir=mount.split(':')[0],
+                                                 guest_dir=mount.split(':')[1])
+                ret, _, _ = self.container.ssh.exec_command_sudo(
+                    "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'"
+                    .format(e=entry, c=self.container))
+                if int(ret) != 0:
+                    raise RuntimeError('Failed to write {c.name} config.'
+                                       .format(c=self.container))
+
         cpuset_cpus = '{0}'.format(
             ','.join('%s' % cpu for cpu in self.container.cpuset_cpus))\
             if self.container.cpuset_cpus else ''
@@ -469,8 +473,8 @@ class LXC(ContainerEngine):
         self._lxc_wait('RUNNING')
 
         # Workaround for LXC to be able to allocate all cpus including isolated.
-        cmd = 'cgset --copy-from / lxc/'
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset --copy-from / lxc/')
         if int(ret) != 0:
             raise RuntimeError('Failed to copy cgroup to LXC')
 
@@ -648,8 +652,9 @@ class Docker(ContainerEngine):
             ' '.join('--publish %s' % var for var in self.container.publish))\
             if self.container.publish else ''
 
-        volume = '--volume {c.host_dir}:{c.guest_dir}'.format(c=self.container)\
-            if self.container.host_dir and self.container.guest_dir else ''
+        volume = '{0}'.format(
+            ' '.join('--volume %s' % mnt for mnt in self.container.mnt))\
+            if self.container.mnt else ''
 
         cmd = 'docker run '\
             '--privileged --detach --interactive --tty --rm '\
@@ -676,8 +681,9 @@ class Docker(ContainerEngine):
         :type command: str
         :raises RuntimeError: If runnig the command in a container failed.
         """
-        cmd = "docker exec --interactive {c.name} /bin/sh -c '{command}'"\
-            .format(c=self.container, command=command)
+        cmd = "docker exec --interactive {c.name} "\
+            "/bin/sh -c '{command}; exit $?'".format(c=self.container,
+                                                     command=command)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret) != 0:
