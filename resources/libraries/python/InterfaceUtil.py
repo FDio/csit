@@ -909,6 +909,26 @@ class InterfaceUtil(object):
                                .format(node['host']))
 
     @staticmethod
+    def add_bond_eth_interface(node, ifc_name):
+        """
+
+        :return:
+        """
+        if_key = Topology.add_new_port(node, 'eth_bond')
+        Topology.update_interface_name(node, if_key, ifc_name)
+
+        vat_executor = VatExecutor()
+        vat_executor.execute_script_json_out("dump_interfaces.vat", node)
+        interface_dump_json = vat_executor.get_script_stdout()
+
+        sw_if_idx = VatJsonUtil.get_interface_sw_index_from_json(
+            interface_dump_json, ifc_name)
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        ifc_mac = VatJsonUtil.get_interface_mac_from_json(
+            interface_dump_json, sw_if_idx)
+        Topology.update_interface_mac_address(node, if_key, ifc_mac)
+
+    @staticmethod
     def vpp_enable_input_acl_interface(node, interface, ip_version,
                                        table_index):
         """Enable input acl on interface.
