@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4c6a1fc_ffb00c44",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T08:18:00Z",
+      "side": 1,
+      "message": "Document :param, :type and :raise.",
+      "range": {
+        "startLine": 62,
+        "startChar": 75,
+        "endLine": 62,
+        "endChar": 76
+      },
+      "revId": "b59da369982554cba8dc8e725afd55c16efb70b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
