@@ -149,7 +149,7 @@ else
     exit 1
 fi
 
-PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf.10ge2p1x710-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
@@ -264,7 +264,7 @@ case "$TEST_TAG" in
               'mrrANDnic_intel-xl710AND2t2cANDipsechw')
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('dpdk_lbond')
 esac
 
 # Catenate TAG selections by 'OR'
