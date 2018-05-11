@@ -36,7 +36,7 @@
 | ...
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | THIS
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | IP4BASE
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
@@ -64,7 +64,7 @@
 | | ... | [Ver] Find NDR and PDR for ${framesize} frames using optimized search\
 | | ... | start at 10GE linerate.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${trial_duration}
 | | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate} | ${20000}
@@ -78,13 +78,23 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
-| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate} | final_trial_duration=${trial_duration} | final_relative_width=${0.0102}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 1T1C | STHREAD
+| tc01-64B-1t1c-ethip4-ip4base-ndrpdr-10
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | ...
-| | wt=1 | rxq=1 | framesize=${64}
+| | wt=1 | rxq=1 | framesize=${64} | trial_duration=10
+
+| tc02-64B-1t1c-ethip4-ip4base-ndrpdr-30
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
+| | ...
+| | wt=1 | rxq=1 | framesize=${64} | trial_duration=30
+
+| tc03-64B-1t1c-ethip4-ip4base-ndrpdr-60
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
+| | ...
+| | wt=1 | rxq=1 | framesize=${64} | trial_duration=60
 
 | tc02-1518B-1t1c-ethip4-ip4base-ndrpdr
 | | [Tags] | 1518B | 1T1C | STHREAD
