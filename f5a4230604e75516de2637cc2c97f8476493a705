@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0bc597bf_5a1882f8",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "I agree with your new phrasing.",
+      "parentUuid": "9d88b4b7_da6af90d",
+      "range": {
+        "startLine": 17,
+        "startChar": 47,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f348e1a5_f8304cf6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "?",
       "parentUuid": "068fefb2_0205e07f",
+      "range": {
+        "startLine": 94,
+        "startChar": 27,
+        "endLine": 94,
+        "endChar": 28
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e08a4a57_29f237d6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "OK.",
+      "parentUuid": "d4ccd7c2_087ea22e",
       "range": {
         "startLine": 94,
         "startChar": 27,
@@ -500,6 +548,30 @@
     },
     {
       "key": {
+        "uuid": "25eecce9_e53aba23",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "OK.",
+      "parentUuid": "c8f05cbd_25eb2bb3",
+      "range": {
+        "startLine": 109,
+        "startChar": 37,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aeb800a7_5fae53b1",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -583,6 +655,30 @@
       "side": 1,
       "message": "more phases may be needed to reduce the overall search duration for worse behaving cases.",
       "parentUuid": "65d6bdbc_52d72f7c",
+      "range": {
+        "startLine": 110,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 23
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5930339c_df250e5b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "OK.",
+      "parentUuid": "f69d5677_af63e4be",
       "range": {
         "startLine": 110,
         "startChar": 15,
@@ -690,6 +786,30 @@
     },
     {
       "key": {
+        "uuid": "9f7a0e9a_56fc4ef1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "OK.",
+      "parentUuid": "0b36c48c_50eca2ea",
+      "range": {
+        "startLine": 113,
+        "startChar": 48,
+        "endLine": 113,
+        "endChar": 49
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa84c0ba_4d4cacc8",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -749,6 +869,30 @@
       "side": 1,
       "message": "?",
       "parentUuid": "d674ae71_c9f393e2",
+      "range": {
+        "startLine": 137,
+        "startChar": 11,
+        "endLine": 137,
+        "endChar": 17
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d2336aa_a8bd82fb",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "See https://gerrit.fd.io/r/12524",
+      "parentUuid": "97f25fe2_17810b36",
       "range": {
         "startLine": 137,
         "startChar": 11,
@@ -832,6 +976,30 @@
     },
     {
       "key": {
+        "uuid": "47ef7b4d_8d330dd2",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "See https://gerrit.fd.io/r/12524",
+      "parentUuid": "03538d51_26d1dfae",
+      "range": {
+        "startLine": 149,
+        "startChar": 32,
+        "endLine": 149,
+        "endChar": 39
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84b26c1a_5223c428",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 7
@@ -891,6 +1059,30 @@
       "side": 1,
       "message": "?",
       "parentUuid": "50f4d29b_5cd951bc",
+      "range": {
+        "startLine": 152,
+        "startChar": 3,
+        "endLine": 152,
+        "endChar": 21
+      },
+      "revId": "f5a4230604e75516de2637cc2c97f8476493a705",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2b8febf_52d2a67a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:11:04Z",
+      "side": 1,
+      "message": "See https://gerrit.fd.io/r/12524",
+      "parentUuid": "2f682ad4_94003443",
       "range": {
         "startLine": 152,
         "startChar": 3,
