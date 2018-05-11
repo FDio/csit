@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fd0f6e2_cc68d447",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T08:32:47Z",
+      "side": 1,
+      "message": "Do we have an agreement on this? Compare to [0].\nI propose \"document only if there is a return with a value (could be explicit None)\".\n\n[0] https://gerrit.fd.io/r/#/c/11390/112/resources/libraries/python/TrafficGenerator.py@559",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 26
+      },
+      "revId": "71ddf58643fcdcf72cc19103ea50675ba6177ae8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
