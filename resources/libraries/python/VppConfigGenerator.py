@@ -25,6 +25,22 @@ from resources.libraries.python.topology import Topology
 __all__ = ['VppConfigGenerator']
 
 
+def pci_dev_check(pci_dev):
+        """Check if provided PCI address is in correct format.
+
+        :param pci_dev: PCI address (expected format: xxxx:xx:xx.x).
+        :type pci_dev: str
+        :returns: True if PCI address is in correct format.
+        :raises ValueError: If PCI address is in incorrect format.
+        """
+        pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
+                             "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
+        if not pattern.match(pci_dev):
+            raise ValueError('PCI address {addr} is not in valid format '
+                             'xxxx:xx:xx.x'.format(addr=pci_dev))
+        return True
+
+
 class VppConfigGenerator(object):
     """VPP Configuration File Generator."""
 
@@ -100,6 +116,9 @@ class VppConfigGenerator(object):
             return
         if path[0] not in config:
             config[path[0]] = {}
+        elif isinstance(config[path[0]], str):
+            config[path[0]] = {} if config[path[0]] == '' \
+                else {config[path[0]]: ''}
         self.add_config_item(config[path[0]], value, path[1:])
 
     def dump_config(self, obj, level=-1):
@@ -205,17 +224,25 @@ class VppConfigGenerator(object):
 
         :param devices: PCI device(s) (format xxxx:xx:xx.x)
         :type devices: tuple
-        :raises ValueError: If PCI address format is not valid.
         """
-        pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
-                             "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
         for device in devices:
-            if not pattern.match(device):
-                raise ValueError('PCI address {} to be added to host {} '
-                                 'is not in valid format xxxx:xx:xx.x'.
-                                 format(device, self._hostname))
-            path = ['dpdk', 'dev {0}'.format(device)]
-            self.add_config_item(self._nodeconfig, '', path)
+            if pci_dev_check(device):
+                path = ['dpdk', 'dev {0}'.format(device)]
+                self.add_config_item(self._nodeconfig, '', path)
+
+    def add_dpdk_dev_parameter(self, device, parameter, value):
+        """Add parameter for DPDK device.
+
+        :param device: PCI device (format xxxx:xx:xx.x).
+        :param parameter: Parameter name.
+        :param value: Parameter value.
+        :type device: str
+        :type parameter: str
+        :type value: str
+        """
+        if pci_dev_check(device):
+            path = ['dpdk', 'dev {0}'.format(device), parameter]
+            self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_cryptodev(self, count):
         """Add DPDK Crypto PCI device configuration.
@@ -246,6 +273,29 @@ class VppConfigGenerator(object):
                 format(sw_pmd_type, str(socket_id))
             path = ['dpdk', cryptodev_config]
             self.add_config_item(self._nodeconfig, '', path)
+
+    def add_dpdk_eth_bond_dev(self, ethbond_id, mode, xmit_policy, *slaves):
+        """Add DPDK Eth_bond device configuration.
+
+        :param ethbond_id: Eth_bond device ID.
+        :param mode: Link bonding mode.
+        :param xmit_policy: Transmission policy.
+        :param slaves: PCI device(s) to be bonded (format xxxx:xx:xx.x).
+        :type ethbond_id: str or int
+        :type mode: str or int
+        :type xmit_policy: str
+        :type slaves: list
+        """
+        slaves_config = ',slave=' + \
+                        ',slave='.join(slave if pci_dev_check(slave) else ''
+                                       for slave in slaves)
+        ethbond_config = 'vdev eth_bond{id},mode={mode}{slaves},' \
+                         'xmit_policy={xmit_pol}'.format(id=ethbond_id,
+                                                         mode=mode,
+                                                         slaves=slaves_config,
+                                                         xmit_pol=xmit_policy)
+        path = ['dpdk', ethbond_config]
+        self.add_config_item(self._nodeconfig, '', path)
 
     def add_dpdk_dev_default_rxq(self, value):
         """Add DPDK dev default rxq configuration.
