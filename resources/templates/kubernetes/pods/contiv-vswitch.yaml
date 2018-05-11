@@ -28,6 +28,8 @@ spec:
       env:
         - name: MICROSERVICE_LABEL
           value: vswitch
+        - name: INITIAL_LOGLVL
+          value: debug
       volumeMounts:
         - name: vpp-config
           mountPath: /etc/vpp
