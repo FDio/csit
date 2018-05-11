@@ -405,6 +405,18 @@ Interface tags
 
     All test cases which uses Memif.
 
+.. topic:: DPDK_LBOND
+
+    All test cases which uses DPDK link bonding (BondEthernet interface).
+
+.. topic:: LBOND_MODE_XOR
+
+    All test cases which uses link bonding with mode XOR.
+
+.. topic:: LBOND_LB_l34
+
+    All test cases which uses link bonding with load-balance mode l34.
+
 Feature tags
 ------------
 
