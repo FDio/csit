@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a75afec_9d2ecb30",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:18:57Z",
+      "side": 1,
+      "message": "Make sure this is defined in such a place the reader will still recognize this term around 100 lines below.",
+      "range": {
+        "startLine": 61,
+        "startChar": 36,
+        "endLine": 61,
+        "endChar": 43
+      },
+      "revId": "f70f1f5ef882c2bbd6a5b3364413739f3a569524",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19b9661c_136ff9e1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:18:57Z",
+      "side": 1,
+      "message": "d) - h) is too verbose for this level. Replace with \"prepare new transmit rate to measure with according to conditions described below\" and add a subsection describing the conditions.",
+      "range": {
+        "startLine": 157,
+        "startChar": 3,
+        "endLine": 157,
+        "endChar": 5
+      },
+      "revId": "f70f1f5ef882c2bbd6a5b3364413739f3a569524",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6f48438_e8e096d4",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:18:57Z",
+      "side": 1,
+      "message": "Not sure the current level of detail leads to short enough descriptions.",
+      "range": {
+        "startLine": 186,
+        "startChar": 10,
+        "endLine": 186,
+        "endChar": 15
+      },
+      "revId": "f70f1f5ef882c2bbd6a5b3364413739f3a569524",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
