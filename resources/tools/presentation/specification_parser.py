@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -49,7 +49,6 @@ class Specification(object):
 
         self._specification = {"environment": dict(),
                                "configuration": dict(),
-                               "debug": dict(),
                                "static": dict(),
                                "input": dict(),
                                "output": dict(),
@@ -93,15 +92,6 @@ class Specification(object):
         :rtype: dict
         """
         return self._specification["static"]
-
-    @property
-    def debug(self):
-        """Getter - debug
-
-        :returns: Debug specification
-        :rtype: dict
-        """
-        return self._specification["debug"]
 
     @property
     def is_debug(self):
@@ -425,43 +415,6 @@ class Specification(object):
                         self.configuration["data-sets"][set_name][job] = builds
         logging.info("Done.")
 
-    def _parse_debug(self):
-        """Parse debug specification in the specification YAML file.
-        """
-
-        if int(self.environment["configuration"]["CFG[DEBUG]"]) != 1:
-            return None
-
-        logging.info("Parsing specification file: debug ...")
-
-        idx = self._get_type_index("debug")
-        if idx is None:
-            self.environment["configuration"]["CFG[DEBUG]"] = 0
-            return None
-
-        try:
-            for key, value in self._cfg_yaml[idx]["general"].items():
-                self._specification["debug"][key] = value
-
-            self._specification["input"]["builds"] = dict()
-            for job, builds in self._cfg_yaml[idx]["builds"].items():
-                if builds:
-                    self._specification["input"]["builds"][job] = list()
-                    for build in builds:
-                        self._specification["input"]["builds"][job].\
-                            append({"build": build["build"],
-                                    "status": "downloaded",
-                                    "file-name": self._replace_tags(
-                                        build["file"],
-                                        self.environment["paths"])})
-                else:
-                    logging.warning("No build is defined for the job '{}'. "
-                                    "Trying to continue without it.".
-                                    format(job))
-
-        except KeyError:
-            raise PresentationError("No data to process.")
-
     def _parse_input(self):
         """Parse input specification in the specification YAML file.
 
@@ -664,9 +617,7 @@ class Specification(object):
 
         self._parse_env()
         self._parse_configuration()
-        self._parse_debug()
-        if not self.debug:
-            self._parse_input()
+        self._parse_input()
         self._parse_output()
         self._parse_static()
         self._parse_elements()

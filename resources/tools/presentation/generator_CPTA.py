@@ -32,7 +32,7 @@ from utils import split_outliers, archive_input_data, execute_command
 HTML_BUILDER = 'sphinx-build -v -c conf_cpta -a ' \
                '-b html -E ' \
                '-t html ' \
-               '-D version="Generated on {date}" ' \
+               '-D version="{date}" ' \
                '{working_dir} ' \
                '{build_dir}/'
 
@@ -64,7 +64,7 @@ def generate_cpta(spec, data):
     ret_code = _generate_all_charts(spec, data)
 
     cmd = HTML_BUILDER.format(
-        date=datetime.date.today().strftime('%d-%b-%Y'),
+        date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
     execute_command(cmd)
