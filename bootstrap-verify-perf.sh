@@ -149,7 +149,7 @@ else
     exit 1
 fi
 
-PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf.vm_vhost.10ge2p1x520-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable

@@ -1506,6 +1506,10 @@
 | | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
 | | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
 | | Run keyword | DUT2.Add DPDK Dev | ${dut2_if1_pci} | ${dut2_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if2_pci}
+| | Set Test Variable | ${dut2_if1_pci}
+| | Set Test Variable | ${dut2_if2_pci}
 
 | Add PCI devices to DUTs in 2-node single link topology
 | | [Documentation]
@@ -1514,6 +1518,25 @@
 | | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
 | | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
 | | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if2_pci}
+
+| Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
+| | ... | configuration file.
+| | ...
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
+| | ... | vlan-strip-offload | off
+
+| Add DPDK bonded Etheret interfaces to DUTs in 3-node single link topology
+| | [Documentation]
+| | ... | Add DPDK bonded Etheret interfaces to VPP configuration file.
+| | ...
+| | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut1_if2_pci}
+| | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut2_if1_pci}
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | [Documentation]
