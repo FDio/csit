@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -821,9 +821,6 @@ def table_performance_trending_dashboard(table, input_data):
             else:
                 rel_change_long = round(
                     ((last_median_t - max_median) / max_median) * 100, 2)
-
-            logging.info("rel_change_last : {}".format(rel_change_last))
-            logging.info("rel_change_long : {}".format(rel_change_long))
 
             tbl_lst.append(
                 [name,
