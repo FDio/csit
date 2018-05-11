@@ -148,13 +148,45 @@ class VatJsonUtil(object):
             try:
                 if interface['sw_if_index'] == sw_if_index:
                     interface_name = interface['interface_name']
-                    logger.debug('Interface with name {} has sw_if_index {}.'
-                                 .format(interface_name, sw_if_index))
+                    logger.debug('Interface with sw_if_index {idx} has name'
+                                 ' {name}.'.format(idx=sw_if_index,
+                                                   name=interface_name))
                     return interface_name
             except KeyError:
                 pass
         raise ValueError('Interface with sw_if_index {} not found.'
                          .format(sw_if_index))
+
+    @staticmethod
+    def get_interface_mac_from_json(interface_dump_json, sw_if_index):
+        """Get interface MAC address from given JSON output by sw_if_index.
+
+        :param interface_dump_json: JSON output from dump_interface_list VAT
+            command.
+        :param sw_if_index: SW interface index.
+        :type interface_dump_json: str
+        :type sw_if_index: int
+        :returns: Interface MAC address.
+        :rtype: str
+        :raises ValueError: If interface not found in interface_dump_json.
+        """
+        logger.trace(interface_dump_json)
+        interface_list = JsonParser().parse_data(interface_dump_json)
+        for interface in interface_list:
+            try:
+                if interface['sw_if_index'] == sw_if_index:
+                    mac_from_json = interface['l2_address'][:6] \
+                        if 'l2_address' in interface.keys() else ''
+                    mac_address = ':'.join('{:02x}'.format(item)
+                                           for item in mac_from_json)
+                    logger.debug('Interface with sw_if_index {idx} has MAC'
+                                 ' address {addr}.'.format(idx=sw_if_index,
+                                                           addr=mac_address))
+                    return mac_address
+            except KeyError:
+                pass
+        raise ValueError('Interface with sw_if_index {idx} not found.'
+                         .format(idx=sw_if_index))
 
     @staticmethod
     def verify_vat_retval(vat_out, exp_retval=0, err_msg='VAT cmd failed'):

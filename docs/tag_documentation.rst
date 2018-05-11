@@ -405,6 +405,10 @@ Interface tags
 
     All test cases which uses Memif.
 
+.. topic:: DPDK_LBOND
+
+    All test cases which uses DPDK link bonding (BondEthernet interface).
+
 Feature tags
 ------------
 
