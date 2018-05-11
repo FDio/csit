@@ -20,6 +20,11 @@
 | | Execute Script | dump_interfaces.vat | ${node}
 | | Script Should Have Passed
 
+| VPP shows interfaces on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Execute Script | show_interface.vat | ${nodes['${dut}']}
+
 | Configure MTU on TG based on MTU on DUT
 | | [Documentation] | Type of the tg_node must be TG and dut_node must be DUT
 | | [Arguments] | ${tg_node} | ${dut_node}
