@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97af9f69_606b014f",
+        "filename": "resources/libraries/python/search/OptimizedSearchAlgorithm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-11T15:49:34Z",
+      "side": 1,
+      "message": "loss fraction\nBut overall, the comments could use a thorough re-read, so not a high priority right now.",
+      "range": {
+        "startLine": 442,
+        "startChar": 34,
+        "endLine": 442,
+        "endChar": 36
+      },
+      "revId": "a3d14e7cf128c5188a4e064042a64333ae64d191",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
