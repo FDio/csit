@@ -22,20 +22,17 @@
 | | ... |  all DUT nodes.
 | | ...
 | | ${group}= | Set Variable | VNF
-| | ${guest_dir}= | Set Variable | /mnt/host
-| | ${host_dir}= | Set Variable | /tmp
 | | ${skip_cpus}= | Evaluate | ${vpp_cpus}+${system_cpus}
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
 | | ... | engine=${container_engine} | WITH NAME | ${group}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${env}= | Create List | LC_ALL="en_US.UTF-8"
-| | | ... | DEBIAN_FRONTEND=noninteractive | ETCDV3_ENDPOINTS=172.17.0.1:2379
+| | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
+| | | ${mnt}= | Create List | /tmp:/mnt/host | /dev:/dev
 | | | ${cpu_node}= | Get interfaces numa node | ${nodes['${dut}']}
 | | | ... | ${dut1_if1} | ${dut1_if2}
 | | | Run Keyword | ${group}.Construct containers
-| | | ... | name=${dut}_${group} | node=${nodes['${dut}']}
-| | | ... | host_dir=${host_dir} | guest_dir=${guest_dir}
+| | | ... | name=${dut}_${group} | node=${nodes['${dut}']} | mnt=${mnt}
 | | | ... | image=${container_image} | cpu_count=${container_cpus}
 | | | ... | cpu_skip=${skip_cpus} | smt_used=${False} | cpuset_mems=${cpu_node}
 | | | ... | cpu_shared=${False} | env=${env} | count=${container_count}
@@ -47,7 +44,6 @@
 | | ${group}= | Set Variable | ETCD
 | | ${command}= | Set Variable
 | | ... | /usr/local/bin/etcd -advertise-client-urls http://0.0.0.0:2379 -listen-client-urls http://0.0.0.0:2379
-| | ${host_dir}= | Set Variable | /tmp
 | | ${image}= | Set Variable | quay.io/coreos/etcd:v3.2.5
 | | ${publish}= | Create List | 2379:2379
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
