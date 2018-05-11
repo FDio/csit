@@ -42,8 +42,8 @@ class ContainerManager(object):
         try:
             self.engine = globals()[engine]()
         except KeyError:
-            raise NotImplementedError('{e} is not implemented.'
-                                      .format(e=engine))
+            raise NotImplementedError('{engine} is not implemented.'.
+                                      format(engine=engine))
         self.containers = OrderedDict()
 
     def get_container_by_name(self, name):
@@ -58,8 +58,8 @@ class ContainerManager(object):
         try:
             return self.containers[name]
         except KeyError:
-            raise RuntimeError('Failed to get container with name: {n}'
-                               .format(n=name))
+            raise RuntimeError('Failed to get container with name: {name}'.
+                               format(name=name))
 
     def construct_container(self, **kwargs):
         """Construct container object on node with specified parameters.
@@ -75,7 +75,7 @@ class ContainerManager(object):
 
         # Set additional environmental variables
         setattr(self.engine.container, 'env',
-                'MICROSERVICE_LABEL={n}'.format(n=kwargs['name']))
+                'MICROSERVICE_LABEL={label}'.format(label=kwargs['name']))
 
         # Set cpuset.cpus cgroup
         skip_cnt = kwargs['cpu_skip']
@@ -259,9 +259,9 @@ class ContainerEngine(object):
         self.execute('sleep 3')
         self.execute('apt-get update')
         self.execute('apt-get install -y supervisor')
-        self.execute('echo "{0}" > {1}'
-                     .format(
-                         '[unix_http_server]\n'
+        self.execute('echo "{config}" > {config_file}'.
+                     format(
+                         config='[unix_http_server]\n'
                          'file  = /tmp/supervisor.sock\n\n'
                          '[rpcinterface:supervisor]\n'
                          'supervisor.rpcinterface_factory = '
@@ -275,8 +275,9 @@ class ContainerEngine(object):
                          'logfile=/tmp/supervisord.log\n'
                          'loglevel=debug\n'
                          'nodaemon=false\n\n',
-                         SUPERVISOR_CONF))
-        self.execute('supervisord -c {0}'.format(SUPERVISOR_CONF))
+                         config_file=SUPERVISOR_CONF))
+        self.execute('supervisord -c {config_file}'.
+                     format(config_file=SUPERVISOR_CONF))
 
     def install_vpp(self, install_dkms=False):
         """Install VPP inside a container.
@@ -289,23 +290,25 @@ class ContainerEngine(object):
         self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
         self.execute('apt-get update')
         if install_dkms:
-            self.execute('apt-get install -y dkms && '
-                         'dpkg -i --force-all {0}/install_dir/*.deb'
-                         .format(self.container.guest_dir))
+            self.execute(
+                'apt-get install -y dkms && '
+                'dpkg -i --force-all {guest_dir}/install_dir/*.deb'.
+                format(guest_dir=self.container.mnt[1].split(':')[1]))
         else:
-            self.execute('for i in $(ls -I \"*dkms*\" {0}/install_dir/); '
-                         'do dpkg -i --force-all {0}/install_dir/$i; done'
-                         .format(self.container.guest_dir))
+            self.execute(
+                'for i in $(ls -I \"*dkms*\" {guest_dir}/install_dir/); do '
+                'dpkg -i --force-all {guest_dir}/install_dir/$i; done'.
+                format(guest_dir=self.container.mnt[1].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')
-        self.execute('echo "{0}" >> {1}'
-                     .format(
-                         '[program:vpp]\n'
+        self.execute('echo "{config}" >> {config_file}'.
+                     format(
+                         config='[program:vpp]\n'
                          'command=/usr/bin/vpp -c /etc/vpp/startup.conf\n'
                          'autorestart=false\n'
                          'redirect_stderr=true\n'
                          'priority=1',
-                         SUPERVISOR_CONF))
+                         config_file=SUPERVISOR_CONF))
         self.execute('supervisorctl reload')
 
     def restart_vpp(self):
@@ -370,12 +373,12 @@ class ContainerEngine(object):
     def _configure_cgroup(self, name):
         """Configure the control group associated with a container.
 
-        By default the cpuset cgroup is using exclusive CPU/MEM. When Docker
+        By default the cpuset cgroup is using exclusive CPU/MEM. When Docker/LXC
         container is initialized a new cgroup /docker or /lxc is created under
         cpuset parent tree. This newly created cgroup is inheriting parent
         setting for cpu/mem exclusive parameter and thus cannot be overriden
-        within /docker or /lxc cgroup. This patch is supposed to set cpu/mem
-        exclusive parameter for both parent and subgroup.
+        within /docker or /lxc cgroup. This function is supposed to set cgroups
+        to allow coexistence of both engines.
 
         :param name: Name of cgroup.
         :type name: str
@@ -439,16 +442,6 @@ class LXC(ContainerEngine):
         if int(ret) != 0:
             raise RuntimeError('Failed to create container.')
 
-        if self.container.host_dir and self.container.guest_dir:
-            entry = 'lxc.mount.entry = '\
-                '{c.host_dir} /var/lib/lxc/{c.name}/rootfs{c.guest_dir} ' \
-                'none bind,create=dir 0 0'.format(c=self.container)
-            ret, _, _ = self.container.ssh.exec_command_sudo(
-                "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'"
-                .format(e=entry, c=self.container))
-            if int(ret) != 0:
-                raise RuntimeError('Failed to write {c.name} config.'
-                                   .format(c=self.container))
         self._configure_cgroup('lxc')
 
     def create(self):
@@ -456,27 +449,42 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If creating the container fails.
         """
+        if self.container.mnt:
+            for mount in self.container.mnt:
+                host_dir, guest_dir = mount.split(':')
+                entry = 'lxc.mount.entry = {host_dir} '\
+                    '/var/lib/lxc/{c.name}/rootfs{guest_dir} none ' \
+                    'bind,create=dir 0 0'.format(c=self.container,
+                                                 host_dir=host_dir,
+                                                 guest_dir=guest_dir)
+                ret, _, _ = self.container.ssh.exec_command_sudo(
+                    "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'".
+                    format(e=entry, c=self.container))
+                if int(ret) != 0:
+                    raise RuntimeError('Failed to write {c.name} config.'
+                                       .format(c=self.container))
+
         cpuset_cpus = '{0}'.format(
             ','.join('%s' % cpu for cpu in self.container.cpuset_cpus))\
             if self.container.cpuset_cpus else ''
 
-        cmd = 'lxc-start --name {c.name} --daemon'.format(c=self.container)
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'lxc-start --name {c.name} --daemon'.
+            format(c=self.container))
         if int(ret) != 0:
-            raise RuntimeError('Failed to start container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError('Failed to start container {c.name}.'.
+                               format(c=self.container))
         self._lxc_wait('RUNNING')
 
         # Workaround for LXC to be able to allocate all cpus including isolated.
-        cmd = 'cgset --copy-from / lxc/'
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'cgset --copy-from / lxc/')
         if int(ret) != 0:
             raise RuntimeError('Failed to copy cgroup to LXC')
 
-        cmd = 'lxc-cgroup --name {c.name} cpuset.cpus {cpus}'\
-            .format(c=self.container, cpus=cpuset_cpus)
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = self.container.ssh.exec_command_sudo(
+            'lxc-cgroup --name {c.name} cpuset.cpus {cpus}'.
+            format(c=self.container, cpus=cpuset_cpus))
         if int(ret) != 0:
             raise RuntimeError('Failed to set cpuset.cpus to container '
                                '{c.name}.'.format(c=self.container))
@@ -495,8 +503,8 @@ class LXC(ContainerEngine):
             ' '.join('--set-var %s' % env for env in self.container.env))\
             if self.container.env else ''
 
-        cmd = "lxc-attach {env} --name {c.name} -- /bin/sh -c '{command}'"\
-            .format(env=env, c=self.container, command=command)
+        cmd = "lxc-attach {env} --name {c.name} -- /bin/sh -c '{command}; "\
+            "exit $?'".format(env=env, c=self.container, command=command)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret) != 0:
@@ -648,8 +656,9 @@ class Docker(ContainerEngine):
             ' '.join('--publish %s' % var for var in self.container.publish))\
             if self.container.publish else ''
 
-        volume = '--volume {c.host_dir}:{c.guest_dir}'.format(c=self.container)\
-            if self.container.host_dir and self.container.guest_dir else ''
+        volume = '{0}'.format(
+            ' '.join('--volume %s' % mnt for mnt in self.container.mnt))\
+            if self.container.mnt else ''
 
         cmd = 'docker run '\
             '--privileged --detach --interactive --tty --rm '\
@@ -676,8 +685,8 @@ class Docker(ContainerEngine):
         :type command: str
         :raises RuntimeError: If runnig the command in a container failed.
         """
-        cmd = "docker exec --interactive {c.name} /bin/sh -c '{command}'"\
-            .format(c=self.container, command=command)
+        cmd = "docker exec --interactive {c.name} /bin/sh -c '{command}; "\
+            "exit $?'".format(c=self.container, command=command)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret) != 0:
