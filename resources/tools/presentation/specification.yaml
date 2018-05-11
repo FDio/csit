@@ -1,14 +1,5 @@
 -
   type: "environment"
-  configuration:
-    # Debug mode:
-    # - Skip:
-    #   - Download of input data files
-    # - Do:
-    #   - Read data from given zip / xml files
-    #   - Set the configuration as it is done in normal mode
-    # If the section "type: debug" is missing, CFG[DEBUG] is set to 0.
-    CFG[DEBUG]: 0
 
   paths:
     # Top level directories:
@@ -544,27 +535,6 @@
       showlegend: True
       width: 700
       height: 1000
-
--
-  type: "debug"
-  general:
-    input-format: "xml"  # zip or xml
-    extract: "robot-plugin/output.xml"  # Only for zip
-  builds:
-    # The files must be in the directory DIR[WORKING,DATA]
-    csit-vpp-perf-1801-all:
-    -
-      build: 1
-      file: "{DIR[WORKING,DATA]}/output.xml"
-    -
-      build: 2
-      file: "{DIR[WORKING,DATA]}/output.xml"
-    -
-      build: 3
-      file: "{DIR[WORKING,DATA]}/output.xml"
-    -
-      build: 4
-      file: "{DIR[WORKING,DATA]}/output.xml"
 
 -
   type: "static"

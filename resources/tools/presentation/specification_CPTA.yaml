@@ -16,15 +16,6 @@
 
 -
   type: "environment"
-  configuration:
-    # Debug mode:
-    # - Skip:
-    #   - Download of input data files
-    # - Do:
-    #   - Read data from given zip / xml files
-    #   - Set the configuration as it is done in normal mode
-    # If the section "type: debug" is missing, CFG[DEBUG] is set to 0.
-    CFG[DEBUG]: 0
 
   paths:
     # Top level directories:
@@ -102,7 +93,6 @@
         showgrid: True
       xaxis:
         showticklabels: True
-        # title: "csit-vpp-perf-mrr-daily-master/vpp-build"
         title: '<a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>/<a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>'
         autorange: True
         showgrid: True
@@ -130,66 +120,22 @@
         namelength: -1
 
 -
-  type: "debug"
-  general:
-    input-format: "xml"  # zip or xml
-    extract: "robot-plugin/output.xml"  # Only for zip
-  builds:
-    # The files must be in the directory DIR[WORKING,DATA]
-    csit-vpp-perf-mrr-daily-master:
-    -
-      build: 1
-      file: "{DIR[WORKING,DATA]}/output_mrr_1.xml"
-    -
-      build: 2
-      file: "{DIR[WORKING,DATA]}/output_mrr_2.xml"
-    -
-      build: 3
-      file: "{DIR[WORKING,DATA]}/output_mrr_3.xml"
-    -
-      build: 4
-      file: "{DIR[WORKING,DATA]}/output_mrr_4.xml"
-    -
-      build: 5
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-    -
-      build: 6
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-    -
-      build: 7
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-    -
-      build: 8
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-    -
-      build: 9
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-    -
-      build: 10
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-    -
-      build: 11
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-    -
-      build: 12
-      file: "{DIR[WORKING,DATA]}/output_mrr_5.xml"
-
--
   type: "static"
   src-path: "{DIR[RST]}"
   dst-path: "{DIR[WORKING,SRC]}"
 
 -
   type: "input"  # Ignored in debug mode
+#  general:
+#    file-name: "robot-plugin.zip"
+#    file-format: ".zip"
+#    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+#    extract: "robot-plugin/output.xml"
   general:
     file-name: "output.xml.gz"
     file-format: ".gz"
     download-path: "{job}/{build}/archives/{filename}"
     extract: "output.xml"
-#    file-name: "robot-plugin.zip"
-#    file-format: ".zip"
-#    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
-#    extract: "robot-plugin/output.xml"
   builds:
     csit-vpp-perf-mrr-daily-master:
       start: 15
