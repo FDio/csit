@@ -36,6 +36,7 @@
 | | | ... | image=${container_image} | cpu_count=${container_cpus}
 | | | ... | cpu_skip=${skip_cpus} | smt_used=${False} | cpuset_mems=${cpu_node}
 | | | ... | cpu_shared=${False} | env=${env} | count=${container_count}
+| | | ... | install_dkms=${container_install_dkms}
 | | Append To List | ${container_groups} | ${group}
 
 | Construct ETCD containers on all DUTs
