@@ -96,6 +96,7 @@
 | | ... | group on all DUT nodes.
 | | ...
 | | Run Keyword | ${group}.Install VPP In All Containers
+| | ... | install_dkms=${container_install_dkms}
 
 | Restart VPP in all '${group}' containers
 | | [Documentation] | Restart VPP on all container(s) in specific container
