@@ -279,17 +279,11 @@ class ContainerEngine(object):
         self.execute('supervisord -c {config_file}'.
                      format(config_file=SUPERVISOR_CONF))
 
-    def install_vpp(self, install_dkms=False):
-        """Install VPP inside a container.
-
-        :param install_dkms: If install dkms package. This will impact
-            install time. Dkms is required for installation of vpp-dpdk-dkms.
-            Default is false.
-        :type install_dkms: bool
-        """
+    def install_vpp(self):
+        """Install VPP inside a container."""
         self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
         self.execute('apt-get update')
-        if install_dkms:
+        if self.container.install_dkms:
             self.execute(
                 'apt-get install -y dkms && '
                 'dpkg -i --force-all {guest_dir}/install_dir/*.deb'.
