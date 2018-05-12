@@ -59,6 +59,7 @@
 | ${container_count}= | ${1}
 | ${container_engine}= | LXC
 | ${container_image}= | ${EMPTY}
+| ${container_install_dkms}= | ${TRUE}
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
@@ -96,7 +97,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1T1C | STHREAD | THIS
 | | [Template] | Check RR for l2bdbasemaclrn-eth-2memif-1lxc
 | | framesize=${64} | wt=1 | rxq=1
 
