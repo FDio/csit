@@ -109,7 +109,7 @@
 | | ... | group on all DUT nodes.
 | | ...
 | | Run Keyword | ${group}.Configure VPP In All Containers
-| | ... | memif_create_cnt.vat
+| | ... | memif_create_cnt.vat | topo=${container_topology}
 
 | Stop all '${group}' containers
 | | [Documentation] | Stop all container(s) in specific container group on all
