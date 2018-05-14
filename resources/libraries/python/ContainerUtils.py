@@ -21,6 +21,7 @@ from collections import OrderedDict, Counter
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
+from resources.libraries.python.topology import Topology
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 
@@ -162,33 +163,68 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             self.engine.restart_vpp()
 
-    def configure_vpp_in_all_containers(self, vat_template_file):
+    def configure_vpp_in_all_containers(self, chain_topology,
+                                        dut1_if=None, dut2_if=None):
         """Configure VPP in all containers.
 
-        :param vat_template_file: Template file name of a VAT script.
-        :type vat_template_file: str
+        :param chain_topology: Topology used for chaining containers can be
+            chain or cross_horiz. Chain topology is using 1 memif pair per
+            container. Cross_horiz topology is using 1 memif and 1 physical
+            interface in container (only single container can be configured).
+        :param dut1_if: Interface on DUT1 directly connected to DUT2.
+        :param dut2_if: Interface on DUT2 directly connected to DUT1.
+        :type container_topology: str
+        :type dut1_if: str
+        :type dut2_if: str
         """
         # Count number of DUTs based on node's host information
         dut_cnt = len(Counter([self.containers[container].node['host']
                                for container in self.containers]))
-        container_cnt = len(self.containers)
-        mod = container_cnt/dut_cnt
+        mod = len(self.containers)/dut_cnt
+        container_vat_template = 'memif_create_{topology}.vat'.format(
+            topology=chain_topology)
 
-        for i, container in enumerate(self.containers):
-            mid1 = i % mod + 1
-            mid2 = i % mod + 1
-            sid1 = i % mod * 2 + 1
-            sid2 = i % mod * 2 + 2
-            self.engine.container = self.containers[container]
-            self.engine.create_vpp_startup_config()
-            self.engine.create_vpp_exec_config(vat_template_file, mid1=mid1,
-                                               mid2=mid2, sid1=sid1, sid2=sid2,
-                                               socket1='memif-{c.name}-{sid}'
-                                               .format(c=self.engine.container,
-                                                       sid=sid1),
-                                               socket2='memif-{c.name}-{sid}'
-                                               .format(c=self.engine.container,
-                                                       sid=sid2))
+        if chain_topology == 'chain':
+            for i, container in enumerate(self.containers):
+                mid1 = i % mod + 1
+                mid2 = i % mod + 1
+                sid1 = i % mod * 2 + 1
+                sid2 = i % mod * 2 + 2
+                self.engine.container = self.containers[container]
+                self.engine.create_vpp_startup_config()
+                self.engine.create_vpp_exec_config(container_vat_template,
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    socket1='memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid1),
+                    socket2='memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid2))
+        elif chain_topology == 'cross_horiz':
+            if mod > 1:
+                raise RuntimeError('Container chain topology {topology} '
+                                   'supports only single container.'.
+                                   format(topology=chain_topology))
+            for i, container in enumerate(self.containers):
+                mid1 = i % mod + 1
+                sid1 = i % mod * 2 + 1
+                self.engine.container = self.containers[container]
+                if 'DUT1' in self.engine.container.name:
+                    if_pci = Topology.get_interface_pci_addr( \
+                        self.engine.container.node, dut1_if)
+                    if_name = Topology.get_interface_name( \
+                        self.engine.container.node, dut1_if)
+                if 'DUT2' in self.engine.container.name:
+                    if_pci = Topology.get_interface_pci_addr( \
+                        self.engine.container.node, dut2_if)
+                    if_name = Topology.get_interface_name( \
+                        self.engine.container.node, dut2_if)
+                self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
+                self.engine.create_vpp_exec_config(container_vat_template,
+                    mid1=mid1, sid1=sid1, if_name=if_name,
+                    socket1='memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid1))
+        else:
+            raise RuntimeError('Container topology {topology} not implemented'.
+                               format(topology=chain_topology))
 
     def stop_all_containers(self):
         """Stop all containers."""
@@ -310,12 +346,11 @@ class ContainerEngine(object):
         self.execute('supervisorctl restart vpp')
         self.execute('cat /tmp/supervisord.log')
 
-    def create_vpp_startup_config(self,
-                                  config_filename='/etc/vpp/startup.conf'):
+    def create_base_vpp_startup_config(self):
         """Create base startup configuration of VPP on container.
 
-        :param config_filename: Startup configuration file name.
-        :type config_filename: str
+        :returns: Base VPP startup configuration.
+        :rtype: VppConfigGenerator
         """
         cpuset_cpus = self.container.cpuset_cpus
 
@@ -331,12 +366,37 @@ class ContainerEngine(object):
         if cpuset_cpus:
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
+
+        return vpp_config
+
+    def create_vpp_startup_config(self):
+        """Create startup configuration of VPP without DPDK on container."""
+        vpp_config = self.create_base_vpp_startup_config()
         vpp_config.add_plugin('disable', 'dpdk_plugin.so')
 
+        # Apply configuration
         self.execute('mkdir -p /etc/vpp/')
-        self.execute('echo "{c}" | tee {f}'
-                     .format(c=vpp_config.get_config_str(),
-                             f=config_filename))
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
+
+    def create_vpp_startup_config_dpdk_dev(self, *devices):
+        """Create startup configuration of VPP with DPDK on container.
+
+        :param devices: List of PCI devices to add.
+        :type devices: list
+        """
+        vpp_config = self.create_base_vpp_startup_config()
+        vpp_config.add_dpdk_dev(*devices)
+        vpp_config.add_dpdk_no_tx_checksum_offload()
+        vpp_config.add_dpdk_log_level('debug')
+        vpp_config.add_plugin('disable', 'default')
+        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
+        vpp_config.add_plugin('enable', 'memif_plugin.so')
+
+        # Apply configuration
+        self.execute('mkdir -p /etc/vpp/')
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
 
     def create_vpp_exec_config(self, vat_template_file, **kwargs):
         """Create VPP exec configuration on container.
