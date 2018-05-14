@@ -1,0 +1,216 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5dd7e80_1197bd1b",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "Wrong doc.",
+      "range": {
+        "startLine": 230,
+        "startChar": 11,
+        "endLine": 230,
+        "endChar": 53
+      },
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c750f1a_07f2d70c",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "Why mixing both format and catenate?",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 79
+      },
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "089c354a_307aaf97",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "ethernet",
+      "range": {
+        "startLine": 1581,
+        "startChar": 18,
+        "endLine": 1581,
+        "endChar": 25
+      },
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56fd1043_bce1ced9",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1583,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "Ethernet",
+      "range": {
+        "startLine": 1583,
+        "startChar": 26,
+        "endLine": 1583,
+        "endChar": 33
+      },
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1c125bc_69f7c66a",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "topology",
+      "range": {
+        "startLine": 1588,
+        "startChar": 40,
+        "endLine": 1588,
+        "endChar": 47
+      },
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b5d5cb94_58477b55",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "Documentation",
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3325b1f_1aa40372",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "I would preferably have this loops implemented in pyhton. In python it will save space and parsing execution time for PAL. Views?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 32
+      },
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71f51c1a_a81c9dcc",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x520-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "missing bond tag",
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86cdb54f_16ffcb50",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x520-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "Add bonding there",
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d11f9dc_6086e2b7",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x520-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-14T07:38:59Z",
+      "side": 1,
+      "message": "After testing we can remove this (redundant info)",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 41
+      },
+      "revId": "ea9cc469fe7656608bc8967f4f47b8ff5e8bd70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
