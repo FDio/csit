@@ -59,3 +59,33 @@
 | | Set Interface State | ${dut_node} | ${memif_2} | up
 | | Set Test Variable | ${${memif_if1}} | ${memif_1}
 | | Set Test Variable | ${${memif_if2}} | ${memif_2}
+
+| Set up single memif interface on DUT node
+| | [Documentation] | Create single Memif interface on given VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${filename} - Socket filename for Memif interface. Type: string
+| | ... | - ${mid} - Memif interface ID. Type: integer
+| | ... | - ${memif_if} - Name of the Memif interface (Optional).
+| | ... | Type: string
+| | ... | - ${rxq} - RX queues. Type: integer
+| | ... | - ${txq} - TX queues. Type: integer
+| | ... | - ${role} - Memif role. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${${memif_if}} - Memif interface.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up single memif interface on DUT node \
+| | ... | \| ${nodes['DUT1']} \| sock1 \| 1 \| dut1_memif_if1 \| 1 \| 1 \
+| | ... | \| slave \|
+| | ...
+| | [Arguments] | ${dut_node} | ${filename} | ${mid}=${1}
+| | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=slave
+| | ${sid}= | Evaluate | (${mid}*2)-1
+| | ${memif}= | Create memif interface | ${dut_node} | ${filename}${mid}-${sid}
+| | ... | ${mid} | ${sid} | rxq=${rxq} | txq=${txq} | role=${role}
+| | Set Interface State | ${dut_node} | ${memif} | up
+| | Set Test Variable | ${${memif_if}} | ${memif}
