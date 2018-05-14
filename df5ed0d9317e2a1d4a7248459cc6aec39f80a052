@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96f56868_cc236583",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-14T13:28:40Z",
+      "side": 1,
+      "message": "I do not like the fact that the keys (and values) are not documented here. Are they documented anywhere?\nI prefer listing arguments explicitly.\nIf there is too many of them, group them to bigger structures, nested if needed. For example, see resources/libraries/python/search/NdrPdrResult.py",
+      "range": {
+        "startLine": 64,
+        "startChar": 34,
+        "endLine": 64,
+        "endChar": 42
+      },
+      "revId": "df5ed0d9317e2a1d4a7248459cc6aec39f80a052",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
