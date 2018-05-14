@@ -67,6 +67,7 @@
 | ${container_count}= | ${1}
 | ${container_engine}= | Docker
 | ${container_image}= | ubuntu:xenial-20180412
+| ${container_topology}= | chain
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}

@@ -60,6 +60,7 @@
 | ${container_count}= | ${1}
 | ${container_engine}= | LXC
 | ${container_image}= | ${EMPTY}
+| ${container_topology}= | chain
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}

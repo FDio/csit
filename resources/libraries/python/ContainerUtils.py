@@ -162,11 +162,13 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             self.engine.restart_vpp()
 
-    def configure_vpp_in_all_containers(self, vat_template_file):
+    def configure_vpp_in_all_containers(self, vat_template_file, topo=None):
         """Configure VPP in all containers.
 
         :param vat_template_file: Template file name of a VAT script.
+        :param topo: Topology can be chain or cross-pipe.
         :type vat_template_file: str
+        :type topo: str
         """
         # Count number of DUTs based on node's host information
         dut_cnt = len(Counter([self.containers[container].node['host']
@@ -174,21 +176,29 @@ class ContainerManager(object):
         container_cnt = len(self.containers)
         mod = container_cnt/dut_cnt
 
-        for i, container in enumerate(self.containers):
-            mid1 = i % mod + 1
-            mid2 = i % mod + 1
-            sid1 = i % mod * 2 + 1
-            sid2 = i % mod * 2 + 2
-            self.engine.container = self.containers[container]
-            self.engine.create_vpp_startup_config()
-            self.engine.create_vpp_exec_config(vat_template_file, mid1=mid1,
-                                               mid2=mid2, sid1=sid1, sid2=sid2,
-                                               socket1='memif-{c.name}-{sid}'
-                                               .format(c=self.engine.container,
-                                                       sid=sid1),
-                                               socket2='memif-{c.name}-{sid}'
-                                               .format(c=self.engine.container,
-                                                       sid=sid2))
+        if topo == 'chain':
+            for i, container in enumerate(self.containers):
+                mid1 = i % mod + 1
+                mid2 = i % mod + 1
+                sid1 = i % mod * 2 + 1
+                sid2 = i % mod * 2 + 2
+                self.engine.container = self.containers[container]
+                self.engine.create_vpp_startup_config()
+                self.engine.create_vpp_exec_config(vat_template_file,
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    socket1='memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid1),
+                    socket2='memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid2))
+        else if topo == 'cross-pipe':
+            for i, container in enumerate(self.containers):
+                mid1 = i % mod + 1
+                sid1 = i % mod * 2 + 1
+                self.engine.container = self.containers[container]
+                self.engine.create_vpp_startup_config('dummy')
+        else:
+            raise RuntimeError('Container topology {topo} not implemented'.
+                               format(topo=topo))
 
     def stop_all_containers(self):
         """Stop all containers."""
@@ -316,12 +326,11 @@ class ContainerEngine(object):
         self.execute('supervisorctl restart vpp')
         self.execute('cat /tmp/supervisord.log')
 
-    def create_vpp_startup_config(self,
-                                  config_filename='/etc/vpp/startup.conf'):
+    def create_base_vpp_startup_config(self):
         """Create base startup configuration of VPP on container.
 
-        :param config_filename: Startup configuration file name.
-        :type config_filename: str
+        :returns: Base VPP startup configuration.
+        :rtype: VppConfigGenerator
         """
         cpuset_cpus = self.container.cpuset_cpus
 
@@ -337,12 +346,35 @@ class ContainerEngine(object):
         if cpuset_cpus:
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
+
+        return vpp_config
+
+    def create_vpp_startup_config(self):
+        """Create startup configuration of VPP without DPDK on container."""
+        vpp_config = self.create_base_vpp_startup_config()
         vpp_config.add_plugin('disable', 'dpdk_plugin.so')
 
+        # Apply configuration
         self.execute('mkdir -p /etc/vpp/')
-        self.execute('echo "{c}" | tee {f}'
-                     .format(c=vpp_config.get_config_str(),
-                             f=config_filename))
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
+
+    def create_vpp_startup_config_dpdk_dev(self, *devices):
+        """Create startup configuration of VPP with DPDK on container.
+
+        :param devices: List of PCI devices to add.
+        :type devices: list
+        """
+        vpp_config = self.create_base_vpp_startup_config()
+        vpp_config.add_dpdk_dev(*devices)
+        vpp_config.add_plugin('disable', 'default')
+        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
+        vpp_config.add_plugin('enable', 'memif.so')
+
+        # Apply configuration
+        self.execute('mkdir -p /etc/vpp/')
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
 
     def create_vpp_exec_config(self, vat_template_file, **kwargs):
         """Create VPP exec configuration on container.
