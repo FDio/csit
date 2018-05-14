@@ -60,6 +60,7 @@
 | ${container_engine}= | Docker
 | ${container_image}= | ubuntu:xenial-20180412
 | ${container_install_dkms}= | ${FALSE}
+| ${container_topology}= | chain
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}

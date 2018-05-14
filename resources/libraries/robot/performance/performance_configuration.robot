@@ -1506,6 +1506,22 @@
 | | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
 | | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
 | | Run keyword | DUT2.Add DPDK Dev | ${dut2_if1_pci} | ${dut2_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if2_pci}
+| | Set Test Variable | ${dut2_if1_pci}
+| | Set Test Variable | ${dut2_if2_pci}
+
+| Add single PCI device to DUTs in 3-node single link topology
+| | [Documentation]
+| | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
+| | ... | Add single (last) PCI device on DUT2 to VPP configuration file.
+| | ...
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
+| | Run keyword | DUT2.Add DPDK Dev | ${dut2_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut2_if2_pci}
 
 | Add PCI devices to DUTs in 2-node single link topology
 | | [Documentation]
@@ -1514,6 +1530,16 @@
 | | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
 | | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
 | | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if2_pci}
+
+| Add single PCI device to DUTs in 2-node single link topology
+| | [Documentation]
+| | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
+| | ...
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if1_pci}
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | [Documentation]
