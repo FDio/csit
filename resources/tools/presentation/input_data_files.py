@@ -207,8 +207,8 @@ def download_and_unzip_data_file(spec, job, build):
             execute_command("gzip --keep {0}".format(new_name[:-3]))
         spec.set_input_file_name(job, build["build"], new_name[:-3])
 
-    if spec.input["file-name"].endswith(".zip"):
-        if is_zipfile(file_name):
+    if new_name.endswith(".zip"):
+        if is_zipfile(new_name):
             return _unzip_file(spec, job, build)
         else:
             return False
