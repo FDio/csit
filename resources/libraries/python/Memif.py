@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,7 +15,7 @@
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class Memif(object):
@@ -97,6 +97,17 @@ class Memif(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_memif.vat", node, json_out=False)
+
+    @staticmethod
+    def show_memif_on_all_duts(nodes):
+        """Show Memif data on all DUTs.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                Memif.show_memif(node)
 
     @staticmethod
     def clear_memif_socks(node, *socks):
