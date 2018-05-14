@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba61ce3c_28613456",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-14T13:29:04Z",
+      "side": 1,
+      "message": "This keyword requires (among other things) a variable ${container_install_dkms} to be defined (in an accessible scope).",
+      "range": {
+        "startLine": 22,
+        "startChar": 24,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "fd6fedc983a7d1796eb2531782be8a37b6d0921d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
