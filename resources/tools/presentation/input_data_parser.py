@@ -29,6 +29,8 @@ from collections import OrderedDict
 from string import replace
 from os import remove
 
+from input_data_files import download_and_unzip_data_file
+
 
 class ExecutionChecker(ResultVisitor):
     """Class to traverse through the test suite structure.
@@ -179,7 +181,7 @@ class ExecutionChecker(ResultVisitor):
     REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
                            r'tx\s(\d*),\srx\s(\d*)')
 
-    def __init__(self, **metadata):
+    def __init__(self, metadata):
         """Initialisation.
 
         :param metadata: Key-value pairs to be included in "metadata" part of
@@ -249,9 +251,8 @@ class ExecutionChecker(ResultVisitor):
             self._version = str(re.search(self.REGEX_VERSION, msg.message).
                                 group(2))
             self._data["metadata"]["version"] = self._version
+            self._data["metadata"]["generated"] = msg.timestamp
             self._msg_type = None
-
-            logging.info("    VPP version: {0}".format(self._version))
 
     def _get_vat_history(self, msg):
         """Called when extraction of VAT command history is required.
@@ -760,9 +761,10 @@ class InputData(object):
         :rtype: dict
         """
 
-        tree = ET.parse(build["file-name"])
-        root = tree.getroot()
-        generated = root.attrib["generated"]
+        metadata = {
+            "job": job,
+            "build": build
+        }
 
         with open(build["file-name"], 'r') as data_file:
             try:
@@ -771,46 +773,50 @@ class InputData(object):
                 logging.error("Error occurred while parsing output.xml: {0}".
                               format(err))
                 return None
-        checker = ExecutionChecker(job=job, build=build, generated=generated)
+        checker = ExecutionChecker(metadata)
         result.visit(checker)
 
         return checker.data
 
-    def read_data(self):
-        """Parse input data from input files and store in pandas' Series.
+    def download_and_parse_data(self):
+        """Download the input data files, parse input data from input files and
+        store in pandas' Series.
         """
 
-        logging.info("Parsing input files ...")
+        logging.info("Downloading and parsing input files ...")
 
         job_data = dict()
         for job, builds in self._cfg.builds.items():
-            logging.info("  Extracting data from the job '{0}' ...'".
+            logging.info("  Processing data from the job '{0}' ...".
                          format(job))
             builds_data = dict()
             for build in builds:
-                if build["status"] == "failed" \
-                        or build["status"] == "not found":
-                    continue
-                logging.info("    Extracting data from the build '{0}'".
+                logging.info("    Processing the build '{0}'".
                              format(build["build"]))
-                logging.info("    Processing the file '{0}'".
-                             format(build["file-name"]))
+                self._cfg.set_input_state(job, build["build"], "failed")
+                if not download_and_unzip_data_file(self._cfg, job, build):
+                    logging.error("It is not possible to download the input "
+                                  "data file from the job '{job}', build "
+                                  "'{build}', or it is damaged. Skipped.".
+                                  format(job=job, build=build["build"]))
+                    continue
 
+                logging.info("      Processing data from the build '{0}' ...".
+                             format(build["build"]))
                 data = InputData._parse_tests(job, build)
-
-                logging.info("    Removing the file '{0}'".
-                             format(build["file-name"]))
-                try:
-                    remove(build["file-name"])
-                    build["status"] = "processed"
-                except OSError as err:
-                    logging.error("   Cannot remove the file '{0}': {1}".
-                                  format(build["file-name"], err))
                 if data is None:
                     logging.error("Input data file from the job '{job}', build "
                                   "'{build}' is damaged. Skipped.".
                                   format(job=job, build=build["build"]))
                     continue
+
+                self._cfg.set_input_state(job, build["build"], "processed")
+
+                try:
+                    remove(build["file-name"])
+                except OSError as err:
+                    logging.error("Cannot remove the file '{0}': {1}".
+                                  format(build["file-name"], err))
 
                 build_data = pd.Series({
                     "metadata": pd.Series(data["metadata"].values(),
@@ -818,9 +824,9 @@ class InputData(object):
                     "suites": pd.Series(data["suites"].values(),
                                         index=data["suites"].keys()),
                     "tests": pd.Series(data["tests"].values(),
-                                       index=data["tests"].keys()),
-                    })
+                                       index=data["tests"].keys())})
                 builds_data[str(build["build"])] = build_data
+                build["status"] = "processed"
                 logging.info("    Done.")
 
             job_data[job] = pd.Series(builds_data.values(),

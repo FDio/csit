@@ -1,6 +1,0 @@
-Sphinx
-sphinx-rtd-theme
-plotly
-lxml==3.5.0
-robotframework==2.9.2
-sphinxcontrib-programoutput
