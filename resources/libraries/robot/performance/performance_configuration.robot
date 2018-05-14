@@ -1506,6 +1506,22 @@
 | | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
 | | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
 | | Run keyword | DUT2.Add DPDK Dev | ${dut2_if1_pci} | ${dut2_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if2_pci}
+| | Set Test Variable | ${dut2_if1_pci}
+| | Set Test Variable | ${dut2_if2_pci}
+
+| Add single PCI device to DUTs in 3-node single link topology
+| | [Documentation]
+| | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
+| | ... | Add single (last) PCI device on DUT2 to VPP configuration file.
+| | ...
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
+| | Run keyword | DUT2.Add DPDK Dev | ${dut2_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut2_if2_pci}
 
 | Add PCI devices to DUTs in 2-node single link topology
 | | [Documentation]
@@ -1514,6 +1530,16 @@
 | | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
 | | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
 | | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if2_pci}
+
+| Add single PCI device to DUTs in 2-node single link topology
+| | [Documentation]
+| | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
+| | ...
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if1_pci}
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | [Documentation]
@@ -2275,9 +2301,7 @@
 | | | Run Keyword If | ${number}==${nr} | Configure L2XC
 | | | ... | ${dut2} | ${dut2-memif-${number}-if2} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Show Memif | ${nodes['${dut}']}
+| | Show Memif on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain for '${nr}' memif pairs and '${rxq}' rxqueues in 3-node circular topology
 | | [Documentation]
@@ -2323,6 +2347,58 @@
 | | | Add interface to bridge domain | ${dut2}
 | | | ... | ${dut2-memif-${number}-if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Show Memif | ${nodes['${dut}']}
+| | Show Memif on all DUTs | ${nodes}
+
+| Initialize L2 xconnect for single memif in 3-node circular topology
+| | [Documentation]
+| | ... | Create single Memif interface on all defined VPP nodes. Cross
+| | ... | connect Memif interface with one physical interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${rxq} - Number of Memif RX queues. Type: integer
+| | ... | - ${number} - Memif ID. Type: integer
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for Memif are defined in following format:
+| | ... | - /tmp/memif-DUT1_VNF${number}-${sid}
+| | ...
+| | [Arguments] | ${rxq}=${1} | ${number}=${1}
+| | ${sock}= | Set Variable | memif-DUT1_VNF
+| | Set up single memif interface on DUT node | ${dut1} | ${sock}
+| | ... | ${number} | dut1-memif-${number}-if1 | ${rxq} | ${rxq}
+| | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1-memif-${number}-if1}
+| | ${sock}= | Set Variable | memif-DUT2_VNF
+| | Set up single memif interface on DUT node | ${dut2} | ${sock}
+| | ... | ${number} | dut2-memif-${number}-if1 | ${rxq} | ${rxq}
+| | Configure L2XC | ${dut2} | ${dut2_if2} | ${dut2-memif-${number}-if1}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Show Memif on all DUTs | ${nodes}
+
+| Initialize L2 Bridge Domain for single memif in 3-node circular topology
+| | [Documentation]
+| | ... | Create single Memif interface on all defined VPP nodes. Put Memif
+| | ... | interface to separate L2 bridge domain with one physical interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${rxq} - Number of Memif RX queues. Type: integer
+| | ... | - ${number} - Memif ID. Type: integer
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for Memif are defined in following format:
+| | ... | - /tmp/memif-DUT1_VNF${number}-${sid}
+| | ...
+| | [Arguments] | ${rxq}=${1} | ${number}=${1}
+| | ${sock}= | Set Variable | memif-DUT1_VNF
+| | Set up single memif interface on DUT node | ${dut1} | ${sock}
+| | ... | ${number} | dut1-memif-${number}-if1 | ${rxq} | ${rxq}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${number}
+| | Add interface to bridge domain | ${dut1} | ${dut1-memif-${number}-if1}
+| | ... | ${number}
+| | ${sock}= | Set Variable | memif-DUT2_VNF
+| | Set up single memif interface on DUT node | ${dut2} | ${sock}
+| | ... | ${number} | dut2-memif-${number}-if1 | ${rxq} | ${rxq}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${number}
+| | Add interface to bridge domain | ${dut2} | ${dut2-memif-${number}-if1}
+| | ... | ${number}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Show Memif on all DUTs | ${nodes}
