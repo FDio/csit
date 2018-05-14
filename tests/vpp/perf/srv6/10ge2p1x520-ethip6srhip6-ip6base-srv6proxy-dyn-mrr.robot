@@ -90,7 +90,9 @@
 | ${container_count}= | ${1}
 | ${container_engine}= | LXC
 | ${container_image}= | ${EMPTY}
+| ${container_chain_topology}= | chain
 | ${container_install_dkms}= | ${FALSE}
+| ${container_chain_topology}= | chain
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
