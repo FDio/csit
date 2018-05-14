@@ -96,11 +96,7 @@ def main():
         prepare_static_content(spec)
 
         data = InputData(spec)
-
-        if spec.output["output"] == "report":
-            data.download_and_parse_data(get_timestamp=False)
-        elif spec.output["output"] == "CPTA":
-            data.download_and_parse_data(get_timestamp=True)
+        data.download_and_parse_data()
 
         generate_tables(spec, data)
         generate_plots(spec, data)
@@ -114,12 +110,12 @@ def main():
             logging.info("Successfully finished.")
         ret_code = 0
 
-    # except (KeyError, ValueError, PresentationError) as err:
-    #     logging.info("Finished with an error.")
-    #     logging.critical(str(err))
-    # except Exception as err:
-    #     logging.info("Finished with an unexpected error.")
-    #     logging.critical(str(err))
+    except (KeyError, ValueError, PresentationError) as err:
+        logging.info("Finished with an error.")
+        logging.critical(str(err))
+    except Exception as err:
+        logging.info("Finished with an unexpected error.")
+        logging.critical(str(err))
     finally:
         if spec is not None:
             clean_environment(spec.environment)

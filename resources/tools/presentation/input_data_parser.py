@@ -251,6 +251,7 @@ class ExecutionChecker(ResultVisitor):
             self._version = str(re.search(self.REGEX_VERSION, msg.message).
                                 group(2))
             self._data["metadata"]["version"] = self._version
+            self._data["metadata"]["generated"] = msg.timestamp
             self._msg_type = None
 
     def _get_vat_history(self, msg):
@@ -748,17 +749,14 @@ class InputData(object):
         return self.data[job][build]["tests"]
 
     @staticmethod
-    def _parse_tests(job, build, get_timestamp=False):
+    def _parse_tests(job, build):
         """Process data from robot output.xml file and return JSON structured
         data.
 
         :param job: The name of job which build output data will be processed.
         :param build: The build which output data will be processed.
-        :param get_timestamp: If True, timestamp is read form the xml source
-            file.
         :type job: str
         :type build: dict
-        :type get_timestamp: bool
         :returns: JSON data structure.
         :rtype: dict
         """
@@ -767,10 +765,6 @@ class InputData(object):
             "job": job,
             "build": build
         }
-        if get_timestamp:
-            tree = ET.parse(build["file-name"])
-            root = tree.getroot()
-            metadata["generated"] = root.attrib["generated"]
 
         with open(build["file-name"], 'r') as data_file:
             try:
@@ -784,20 +778,16 @@ class InputData(object):
 
         return checker.data
 
-    def download_and_parse_data(self, get_timestamp=False):
+    def download_and_parse_data(self):
         """Download the input data files, parse input data from input files and
         store in pandas' Series.
-
-        :param get_timestamp: If True, timestamp is read form the xml source
-            file.
-        :type get_timestamp: bool
         """
 
         logging.info("Downloading and parsing input files ...")
 
         job_data = dict()
         for job, builds in self._cfg.builds.items():
-            logging.info("  Processing data from the job '{0}' ...'".
+            logging.info("  Processing data from the job '{0}' ...".
                          format(job))
             builds_data = dict()
             for build in builds:
@@ -813,8 +803,7 @@ class InputData(object):
 
                 logging.info("      Processing data from the build '{0}' ...".
                              format(build["build"]))
-                data = InputData._parse_tests(job, build,
-                                              get_timestamp=get_timestamp)
+                data = InputData._parse_tests(job, build)
                 if data is None:
                     logging.error("Input data file from the job '{job}', build "
                                   "'{build}' is damaged. Skipped.".
