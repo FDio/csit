@@ -22,9 +22,10 @@ URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
 GROUP="io.fd.vpp"
 HC_GROUP="io.fd.hc2vpp"
-NSH_GROUP="io.fd.nsh_sfc"
 HC_ARTIFACTS="honeycomb"
-NSH_ARTIFACTS="vpp-nsh-plugin"
+# TODO(CSIT-994): reenable NSH
+# NSH_GROUP="io.fd.nsh_sfc"
+# NSH_ARTIFACTS="vpp-nsh-plugin"
 
 if [ "${OS}" == "ubuntu1404" ]; then
     OS="ubuntu.trusty.main"
@@ -61,11 +62,12 @@ for ART in ${DPDK_ARTIFACTS}; do
     done
 done
 
-for ART in ${NSH_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
+# TODO(CSIT-994): reenable NSH
+# for ART in ${NSH_ARTIFACTS}; do
+#     for PAC in ${PACKAGE}; do
+#         curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+#     done
+# done
 
 # determine VPP dependency
 # use latest if honeycomb package does not depend on single VPP version, e.g. stable branches since HC2VPP-285
