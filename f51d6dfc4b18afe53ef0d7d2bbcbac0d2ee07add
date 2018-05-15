@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73f24357_5e5cd879",
+        "filename": "resources/test_data/honeycomb/bgp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-15T06:59:15Z",
+      "side": 1,
+      "message": "Please fix all line too long (\u003e80chars)",
+      "revId": "f51d6dfc4b18afe53ef0d7d2bbcbac0d2ee07add",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef692a11_2fea4795",
+        "filename": "resources/test_data/honeycomb/routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-15T06:59:15Z",
+      "side": 1,
+      "message": "Please fix all line too long (\u003e80chars)",
+      "revId": "f51d6dfc4b18afe53ef0d7d2bbcbac0d2ee07add",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
