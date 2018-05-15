@@ -14,7 +14,6 @@
 """Generation of Continuous Performance Trending and Analysis.
 """
 
-import datetime
 import logging
 import csv
 import prettytable
@@ -25,6 +24,8 @@ import numpy as np
 import pandas as pd
 
 from collections import OrderedDict
+from datetime import datetime, timedelta
+
 from utils import split_outliers, archive_input_data, execute_command
 
 
@@ -64,7 +65,7 @@ def generate_cpta(spec, data):
     ret_code = _generate_all_charts(spec, data)
 
     cmd = HTML_BUILDER.format(
-        date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
+        date=datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
     execute_command(cmd)
@@ -226,7 +227,8 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     :type show_trend_line: bool
     :type name: str
     :type color: str
-    :returns: Generated traces (list) and the evaluated result (float).
+    :returns: Generated traces (list), the evaluated result (float) and the
+        first and last date.
     :rtype: tuple(traces, result)
     """
 
@@ -239,11 +241,16 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     data_y = list(in_data.values())
 
     hover_text = list()
+    xaxis = list()
     for idx in data_x:
-        hover_text.append("vpp-build: {0}".
-                          format(build_info[str(idx)][1].split("~")[-1]))
+        hover_text.append("vpp-ref: {0}<br>csit-ref: mrr-daily-build-{1}".
+                          format(build_info[str(idx)][1].rsplit('~', 1)[0],
+                                 idx))
+        date = build_info[str(idx)][0]
+        xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
+                              int(date[9:11]), int(date[12:])))
 
-    data_pd = pd.Series(data_y, index=data_x)
+    data_pd = pd.Series(data_y, index=xaxis)
 
     t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
                                       window=moving_win_size)
@@ -251,7 +258,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
 
     anomalies = pd.Series()
     anomalies_res = list()
-    for idx, item in enumerate(in_data.items()):
+    for idx, item in enumerate(data_pd.items()):
         item_pd = pd.Series([item[1], ], index=[item[0], ])
         if item[0] in outliers.keys():
             anomalies = anomalies.append(item_pd)
@@ -272,7 +279,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                    [1.00, "green"]]
 
     trace_samples = plgo.Scatter(
-        x=data_x,
+        x=xaxis,
         y=data_y,
         mode='markers',
         line={
@@ -342,7 +349,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
         )
         traces.append(trace_trend)
 
-    return traces, results[-1]
+    return traces, results[-1], xaxis[0], xaxis[-1]
 
 
 def _generate_chart(traces, layout, file_name):
@@ -436,13 +443,12 @@ def _generate_all_charts(spec, input_data):
             for build in builds_lst:
                 item = tst_data.get(int(build), '')
                 tst_lst.append(str(item))
-                # tst_lst.append(str(item) if item else '')
             csv_table.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
 
         for period in chart["periods"]:
             # Generate traces:
             traces = list()
-            win_size = 14 if period == 1 else 5 if period < 20 else 3
+            win_size = 14
             idx = 0
             for test_name, test_data in chart_data.items():
                 if not test_data:
@@ -450,29 +456,36 @@ def _generate_all_charts(spec, input_data):
                                     format(test_name))
                     continue
                 test_name = test_name.split('.')[-1]
-                trace, result = _generate_trending_traces(
-                    test_data,
-                    build_info=build_info,
-                    period=period,
-                    moving_win_size=win_size,
-                    fill_missing=True,
-                    use_first=False,
-                    name='-'.join(test_name.split('-')[3:-1]),
-                    color=COLORS[idx])
+                trace, result, first_date, last_date = \
+                    _generate_trending_traces(
+                        test_data,
+                        build_info=build_info,
+                        period=period,
+                        moving_win_size=win_size,
+                        fill_missing=True,
+                        use_first=False,
+                        name='-'.join(test_name.split('-')[3:-1]),
+                        color=COLORS[idx])
                 traces.extend(trace)
                 results.append(result)
                 idx += 1
 
-            # Generate the chart:
-            chart["layout"]["xaxis"]["title"] = \
-                chart["layout"]["xaxis"]["title"].format(job=job_name)
-            _generate_chart(traces,
-                            chart["layout"],
-                            file_name="{0}-{1}-{2}{3}".format(
-                                spec.cpta["output-file"],
-                                chart["output-file-name"],
-                                period,
-                                spec.cpta["output-file-type"]))
+            if traces:
+                # Generate the chart:
+                chart["layout"]["xaxis"]["title"] = \
+                    chart["layout"]["xaxis"]["title"].format(job=job_name)
+                delta = timedelta(days=30)
+                start = last_date - delta
+                start = first_date if start < first_date else start
+                chart["layout"]["xaxis"]["range"] = [str(start.date()),
+                                                     str(last_date.date())]
+                _generate_chart(traces,
+                                chart["layout"],
+                                file_name="{0}-{1}-{2}{3}".format(
+                                    spec.cpta["output-file"],
+                                    chart["output-file-name"],
+                                    period,
+                                    spec.cpta["output-file-type"]))
 
         logging.info("  Done.")
 
