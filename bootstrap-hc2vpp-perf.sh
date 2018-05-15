@@ -31,7 +31,12 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
+JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
+LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
+JOB_ARCHIVE_DIR="archive"
+LOG_ARCHIVE_DIR="$WORKSPACE/archives"
+mkdir -p ${JOB_ARCHIVE_DIR}
+mkdir -p ${LOG_ARCHIVE_DIR}
 
 WORKING_TOPOLOGY=""
 export PYTHONPATH=${SCRIPT_DIR}
@@ -108,10 +113,13 @@ fi
               tests/
         RETURN_STATUS=$(echo $?)
 
-# Archive artifacts
-mkdir archive
-for i in ${ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+# Archive JOB artifacts in jenkins
+for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${JOB_ARCHIVE_DIR}/
+done
+# Archive JOB artifacts to logs.fd.io
+for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVE_DIR}/
 done
 
 exit ${RETURN_STATUS}

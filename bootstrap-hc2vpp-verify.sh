@@ -27,8 +27,12 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
-
+JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
+LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
+JOB_ARCHIVE_DIR="archive"
+LOG_ARCHIVE_DIR="$WORKSPACE/archives"
+mkdir -p ${JOB_ARCHIVE_DIR}
+mkdir -p ${LOG_ARCHIVE_DIR}
 OS=$1
 
 if [ -f "/etc/redhat-release" ]; then
@@ -236,10 +240,13 @@ RETURN_STATUS=$?
 scp ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/honeycomb.log . || true
 
-# Archive artifacts
-mkdir archive
-for i in ${ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+# Archive JOB artifacts in jenkins
+for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${JOB_ARCHIVE_DIR}/
+done
+# Archive JOB artifacts to logs.fd.io
+for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVE_DIR}/
 done
 
 exit ${RETURN_STATUS}
