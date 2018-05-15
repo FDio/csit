@@ -26,7 +26,7 @@
 | Suite Setup | Setup suite for Honeycomb performance tests
 | Suite Teardown | Run Keywords
 | ... | Stop VPP Service on DUT | ${node}
-| ... | AND | Archive Honeycomb Log File | ${node} | perf=${True}
+| ... | AND | Archive Honeycomb logs | ${node} | perf=${True}
 | ... | AND | Stop honeycomb service on DUTs | ${node}
 
 *** Keywords ***
