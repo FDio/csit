@@ -101,28 +101,42 @@
         linewidth: 1
         showgrid: True
       xaxis:
-        showticklabels: True
         # title: "csit-vpp-perf-mrr-daily-master/vpp-build"
         title: '<a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>/<a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>'
+        type: "date"
         autorange: True
+        fixedrange: False
         showgrid: True
         gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
-        fixedrange: False
-        zeroline: False
-        tickcolor: "rgb(238, 238, 238)"
-        # tickangle: 0
         showline: True
+        linecolor: "rgb(238, 238, 238)"
+        zeroline: False
         linewidth: 1
+        showticklabels: True
+        tickcolor: "rgb(238, 238, 238)"
         autotick: True
+        # tickformat: "%m%d"
+        rangeselector:
+          buttons:
+          - count: 1
+            label: "1m"
+            step: "month"
+            stepmode: "backward"
+          - count: 3
+            label: "3m"
+            step: "month"
+            stepmode: "backward"
+          - step: "all"
+        rangeslider: {}
       margin:
         r: 20
-        b: 50
+        b: 200
         t: 5
         l: 70
       legend:
         orientation: "h"
         traceorder: "normal"
+        y: -0.5
 #        tracegroupgap: 10
 #        bordercolor: "rgb(238, 238, 238)"
 #        borderwidth: 1
