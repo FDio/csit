@@ -32,5 +32,5 @@
 | ... | Stop Honeycomb service on DUTs | ${node} | AND
 | ... | Clear Honeycomb Log | ${node}
 | ...
-| Suite Teardown | Run Keywords | Archive Honeycomb log file | ${node} | AND
+| Suite Teardown | Run Keywords | Archive Honeycomb logs | ${node} | AND
 | ... | Cleanup Framework | ${nodes}
