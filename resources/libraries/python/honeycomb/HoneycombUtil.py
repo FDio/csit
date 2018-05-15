@@ -429,6 +429,31 @@ class HoneycombUtil(object):
                 hc_log=Const.REMOTE_HC_LOG))
 
     @staticmethod
+    def append_odl_log(node, odl_name, suite_name):
+        """Append ODL karaf log for the current test suite to the full log.
+
+        :param node: Honeycomb node.
+        :param odl_name: Name of ODL client version to use.
+        :param suite_name: Name of the current test suite. ${SUITE_NAME}
+            variable in robotframework.
+        :type node: dict
+        :type odl_name: str
+        :type suite_name: str
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ssh.exec_command(
+            "echo '{separator}' >> /tmp/karaf.log".format(separator="="*80))
+        ssh.exec_command(
+            "echo 'Log for suite: {suite}' >> /tmp/karaf.log".format(
+                suite=suite_name))
+        ssh.exec_command(
+            "cat /tmp/karaf_{odl_name}/data/log/karaf.log >> /tmp/karaf.log"
+            .format(odl_name=odl_name))
+
+    @staticmethod
     def clear_honeycomb_log(node):
         """Delete the Honeycomb log file for the current test suite.
 
@@ -463,3 +488,17 @@ class HoneycombUtil(object):
                 get=True,
                 timeout=60)
             ssh.exec_command("rm /tmp/honeycomb.log")
+
+    @staticmethod
+    def archive_odl_log(node):
+        """Copy ODL karaf log file from DUT node to VIRL for archiving.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "cp /tmp/karaf.log /scratch/"
+        ssh.exec_command_sudo(cmd, timeout=60)
