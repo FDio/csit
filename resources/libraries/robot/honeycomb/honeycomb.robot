@@ -134,8 +134,8 @@
 | | Configure Honeycomb service on DUTs | ${node}
 | | Check honeycomb startup state | ${node} | timeout=120
 
-| Archive Honeycomb log file
-| | [Documentation] | Copy honeycomb.log file from Honeycomb node\
+| Archive Honeycomb logs
+| | [Documentation] | Copies log files from Honeycomb node\
 | | ... | to test executor.
 | | ...
 | | ... | *Arguments:*
@@ -148,6 +148,7 @@
 | | ...
 | | [Arguments] | ${node} | ${perf}=${False}
 | | Archive Honeycomb log | ${node} | ${perf}
+| | Archive ODL log | ${node}
 
 | Configure ODL Client Service On DUT
 | | [Documentation] | Configure and start ODL client, then repeatedly check if
@@ -249,6 +250,7 @@
 | | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
 | | Run Keyword If | '${use_odl_client}' != '${NONE}'
 | | ... | Run Keywords
+| | ... | Append suite to ODL log file | ${node} | ${use_odl_client} | AND
 | | ... | Stop ODL Client | ${node} | /tmp | AND
 | | ... | Wait until keyword succeeds | 3min | 15sec
 | | ... | Check ODL shutdown state | ${node} | AND
@@ -331,6 +333,22 @@
 | | ...
 | | [Arguments] | ${node}
 | | Append Honeycomb log | ${node} | ${SUITE_NAME}
+
+| Append suite to ODL log file
+| | [Documentation] | Add the contents of ODL karaf.log for the current suite\
+| | ... | to the full log which will be archived.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - odl_name - name of ODL client version. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Append suite to ODL karaf log file \| ${nodes['DUT1']} \
+| | ... | \| Oxygen \|
+| | ...
+| | [Arguments] | ${node}
+| | Append ODL log | ${node} | ${odl_name} | ${SUITE_NAME}
 
 | Generate Honeycomb startup configuration for ODL test
 | | [Documentation] | Create HC startup configuration and apply to config

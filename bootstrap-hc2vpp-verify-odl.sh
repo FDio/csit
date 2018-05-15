@@ -27,8 +27,8 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
-LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
+JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log karaf.log)
+LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log karaf.log)
 JOB_ARCHIVE_DIR="archive"
 LOG_ARCHIVE_DIR="$WORKSPACE/archives"
 mkdir -p ${JOB_ARCHIVE_DIR}
@@ -247,6 +247,10 @@ RETURN_STATUS=$?
 # Get Honeycomb log file from virl host
 scp ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/honeycomb.log . || true
+
+# Get ODL karaf log file from virl host
+scp ${SSH_OPTIONS} \
+    ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/karaf.log . || true
 
 # Archive JOB artifacts in jenkins
 for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
