@@ -105,14 +105,28 @@
         showline: True
         linewidth: 1
         autotick: True
+        rangeselector:
+          buttons:
+          - count: 1
+            label: "1m"
+            step: "month"
+            stepmode: "backward"
+          - count: 3
+            label: "3m"
+            step: "month"
+            stepmode: "backward"
+          - step: "all"
+        rangeslider: {}
+        type: "date"
       margin:
         r: 20
-        b: 50
+        b: 200
         t: 5
         l: 70
       legend:
         orientation: "h"
         traceorder: "normal"
+        y: -0.5
 #        tracegroupgap: 10
 #        bordercolor: "rgb(238, 238, 238)"
 #        borderwidth: 1
