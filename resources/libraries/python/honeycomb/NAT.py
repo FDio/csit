@@ -75,10 +75,10 @@ class NATKeywords(object):
         if status_code != HTTPCodes.OK:
             raise HoneycombError("Could not retrieve NAT operational data.")
 
-        if "nat-state" not in resp.keys():
+        if "nat" not in resp.keys():
             raise HoneycombError(
-                "Unexpected format, response does not contain nat-state.")
-        return resp['nat-state']
+                "Unexpected format, response does not contain nat container.")
+        return resp['nat']
 
     @staticmethod
     def configure_nat_entries(node, data, instance=0, entry=1):
@@ -98,7 +98,7 @@ class NATKeywords(object):
 
         return NATKeywords._set_nat_properties(
             node,
-            '/nat-instances/nat-instance/{0}/'
+            '/instances/instance/{0}/'
             'mapping-table/mapping-entry/{1}/'.format(instance, entry),
             data)
 
