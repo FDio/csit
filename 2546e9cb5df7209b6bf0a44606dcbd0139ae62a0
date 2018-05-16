@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e6d7d84_a25070ec",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "s/PLT/PLR/ ? If so, this criteria for interval becoming invalid is not clear.",
+      "range": {
+        "startLine": 61,
+        "startChar": 67,
+        "endLine": 61,
+        "endChar": 70
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "671ef26c_9b37d618",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "What if we have \u003e2 intermediate phases?",
+      "range": {
+        "startLine": 149,
+        "startChar": 53,
+        "endLine": 149,
+        "endChar": 65
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0396a23d_7b9dfc3d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "What if we have \u003e2 intermediate phases?",
+      "range": {
+        "startLine": 152,
+        "startChar": 45,
+        "endLine": 152,
+        "endChar": 57
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a9df44f_f8ef44da",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "The execution sequence is unclear from this point onwards..",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 45
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb2d7fa3_e8addceb",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "When are those conditions checked?",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39489758_b9534a51",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "where is this condition defined? what is the value of \"lower_bound (ndr first)\", and how is this related to ndr_interval and or pdr_interval?",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 45
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "675bd5fe_6ad3a003",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "ndr_upper_bound or pdr_upper_bound?",
+      "range": {
+        "startLine": 170,
+        "startChar": 50,
+        "endLine": 170,
+        "endChar": 61
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "471e0889_00f6a0a1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-16T21:03:24Z",
+      "side": 1,
+      "message": "ndr_lower_bound or pdr_lower_bound?",
+      "range": {
+        "startLine": 170,
+        "startChar": 32,
+        "endLine": 170,
+        "endChar": 43
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
