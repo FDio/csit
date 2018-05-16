@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "707882fe_b089894c",
+        "filename": "resources/libraries/python/DMM/SetupDMMTest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-16T12:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aac6739_5c19bc64",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 65
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9439f021_e261ad6d",
         "filename": "resources/tools/virl/bin/start-testcase-DMM",
         "patchSetId": 13
@@ -65,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "50b0828c_0ed71793",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-16T12:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a08a439d_9e6934d0",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 45
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ae9f05e_3a37ce4f",
         "filename": "resources/tools/virl/bin/start-testcase-DMM",
         "patchSetId": 13
@@ -76,6 +124,30 @@
       "writtenOn": "2018-05-09T10:02:14Z",
       "side": 1,
       "message": "catch all execeptions.\n\nexcept:",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 32
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45c787e8_41a2c34b",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-16T12:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ae9f05e_3a37ce4f",
       "range": {
         "startLine": 376,
         "startChar": 0,
@@ -111,6 +183,30 @@
     },
     {
       "key": {
+        "uuid": "e70fc6a0_ceed9489",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-16T12:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2b978ef_c35306e2",
+      "range": {
+        "startLine": 414,
+        "startChar": 0,
+        "endLine": 414,
+        "endChar": 32
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "563b3794_0899237c",
         "filename": "resources/tools/virl/bin/start-testcase-DMM",
         "patchSetId": 13
@@ -134,6 +230,30 @@
     },
     {
       "key": {
+        "uuid": "74524e64_ba8ee6e3",
+        "filename": "resources/tools/virl/bin/start-testcase-DMM",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-16T12:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "563b3794_0899237c",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 32
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39caec99_4302e79a",
         "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
         "patchSetId": 13
@@ -145,6 +265,30 @@
       "writtenOn": "2018-05-09T10:02:14Z",
       "side": 1,
       "message": "Trusty is not supported anymore.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 95
+      },
+      "revId": "5473b0303aef274b55f8d8070e92cfa3dbe088e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7d7209c_da2eb6af",
+        "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-05-16T12:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39caec99_4302e79a",
       "range": {
         "startLine": 5,
         "startChar": 0,
