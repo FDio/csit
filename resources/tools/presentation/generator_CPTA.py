@@ -285,6 +285,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
         line={
             "width": 1
         },
+        legendgroup=name,
         name="{name}-thput".format(name=name),
         marker={
             "size": 5,
@@ -345,6 +346,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                 "width": 1,
                 "color": color,
             },
+            legendgroup=name,
             name='{name}-trend'.format(name=name)
         )
         traces.append(trace_trend)
@@ -474,11 +476,11 @@ def _generate_all_charts(spec, input_data):
                 # Generate the chart:
                 chart["layout"]["xaxis"]["title"] = \
                     chart["layout"]["xaxis"]["title"].format(job=job_name)
-                delta = timedelta(days=30)
-                start = last_date - delta
-                start = first_date if start < first_date else start
-                chart["layout"]["xaxis"]["range"] = [str(start.date()),
-                                                     str(last_date.date())]
+                # delta = timedelta(days=30)
+                # start = last_date - delta
+                # start = first_date if start < first_date else start
+                # chart["layout"]["xaxis"]["range"] = [str(start.date()),
+                #                                      str(last_date.date())]
                 _generate_chart(traces,
                                 chart["layout"],
                                 file_name="{0}-{1}-{2}{3}".format(
