@@ -65,7 +65,7 @@
 | | [Arguments] | ${node} | ${settings} | ${instance}=0
 | | ${data}= | Get NAT Oper data | ${node}
 | | ${data}= | Set Variable
-| | ... | ${data['nat-instances']['nat-instance'][${instance}]['mapping-table']}
+| | ... | ${data['instances']['instance'][${instance}]['mapping-table']}
 | | Compare data structures | ${data} | ${settings}
 
 | Honeycomb configures NAT on interface

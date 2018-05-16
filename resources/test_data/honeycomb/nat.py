@@ -33,8 +33,8 @@ def get_variables(node, interface):
 
     variables = {
         "nat_empty": {
-            'nat-instances': {
-                'nat-instance': [{
+            'instances': {
+                'instance': [{
                     'id': 0}]
             }
         },
