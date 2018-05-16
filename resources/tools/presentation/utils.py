@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -198,8 +198,10 @@ def execute_command(cmd):
 
     stdout, stderr = proc.communicate()
 
-    logging.info(stdout)
-    logging.info(stderr)
+    if stdout:
+        logging.info(stdout)
+    if stderr:
+        logging.info(stderr)
 
     if proc.returncode != 0:
         logging.error("    Command execution failed.")
@@ -250,10 +252,7 @@ def archive_input_data(spec):
 
     logging.info("    Archiving the input data files ...")
 
-    if spec.is_debug:
-        extension = spec.debug["input-format"]
-    else:
-        extension = spec.input["file-format"]
+    extension = spec.input["file-format"]
     data_files = get_files(spec.environment["paths"]["DIR[WORKING,DATA]"],
                            extension=extension)
     dst = spec.environment["paths"]["DIR[STATIC,ARCH]"]

@@ -7,15 +7,39 @@ performance trending and analysis jobs and is updated daily. See
 :ref:`trending_methodology` section for more details including trend
 analysis and anomaly detection methodology.
 
-Contents
---------
+.. toctree::
+   :maxdepth: 2
+   :caption: VPP Performance Dashboard
+
+   Dashboard <introduction/index>
 
 .. toctree::
-    :maxdepth: 6
-    :numbered:
+   :maxdepth: 2
+   :caption: Trending Methodology
 
-    introduction/index
-    methodology/index
-    trending/index
-    data/index
-    indices
+   Methodology <methodology/index>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Trendline Graphs
+
+   trending/l2
+   trending/ip4
+   trending/ip6
+   trending/ip4_tunnels
+   trending/vm_vhost_l2
+   trending/vm_vhost_ip4
+   trending/container_memif
+   trending/ipsec
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Performance Data
+
+   Download <data/index>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Indices and tables
+
+   Index <indices>
