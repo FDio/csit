@@ -400,9 +400,6 @@ def _generate_all_charts(spec, input_data):
             )
         except KeyError:
             build_info[build] = ("", "")
-        logging.info("{}: {}, {}".format(build,
-                                         build_info[build][0],
-                                         build_info[build][1]))
 
     # Create the header:
     csv_table = list()
