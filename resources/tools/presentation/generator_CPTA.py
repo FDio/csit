@@ -227,8 +227,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     :type show_trend_line: bool
     :type name: str
     :type color: str
-    :returns: Generated traces (list), the evaluated result (float) and the
-        first and last date.
+    :returns: Generated traces (list) and the evaluated result.
     :rtype: tuple(traces, result)
     """
 
@@ -285,6 +284,7 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
         line={
             "width": 1
         },
+        legendgroup=name,
         name="{name}-thput".format(name=name),
         marker={
             "size": 5,
@@ -345,11 +345,12 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
                 "width": 1,
                 "color": color,
             },
+            legendgroup=name,
             name='{name}-trend'.format(name=name)
         )
         traces.append(trace_trend)
 
-    return traces, results[-1], xaxis[0], xaxis[-1]
+    return traces, results[-1]
 
 
 def _generate_chart(traces, layout, file_name):
@@ -456,16 +457,15 @@ def _generate_all_charts(spec, input_data):
                                     format(test_name))
                     continue
                 test_name = test_name.split('.')[-1]
-                trace, result, first_date, last_date = \
-                    _generate_trending_traces(
-                        test_data,
-                        build_info=build_info,
-                        period=period,
-                        moving_win_size=win_size,
-                        fill_missing=True,
-                        use_first=False,
-                        name='-'.join(test_name.split('-')[3:-1]),
-                        color=COLORS[idx])
+                trace, result = _generate_trending_traces(
+                    test_data,
+                    build_info=build_info,
+                    period=period,
+                    moving_win_size=win_size,
+                    fill_missing=True,
+                    use_first=False,
+                    name='-'.join(test_name.split('-')[3:-1]),
+                    color=COLORS[idx])
                 traces.extend(trace)
                 results.append(result)
                 idx += 1
@@ -474,11 +474,6 @@ def _generate_all_charts(spec, input_data):
                 # Generate the chart:
                 chart["layout"]["xaxis"]["title"] = \
                     chart["layout"]["xaxis"]["title"].format(job=job_name)
-                delta = timedelta(days=30)
-                start = last_date - delta
-                start = first_date if start < first_date else start
-                chart["layout"]["xaxis"]["range"] = [str(start.date()),
-                                                     str(last_date.date())]
                 _generate_chart(traces,
                                 chart["layout"],
                                 file_name="{0}-{1}-{2}{3}".format(

@@ -77,6 +77,23 @@
   data-sets:
     plot-performance-trending:
       csit-vpp-perf-mrr-daily-master:
+#      - 15
+#      - 20
+#      - 25
+#      - 30
+#      - 35
+#      - 40
+#      - 45
+#      - 50
+#      - 55
+#      - 60
+#      - 65
+#      - 70
+#      - 75
+#      - 80
+#      - 85
+#      - 90
+#      - 95
         start: 15
         end: "lastCompletedBuild" # "lastSuccessfulBuild"  # take all from the 'start'
 
@@ -115,11 +132,19 @@
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
         autotick: True
-        # tickformat: "%m%d"
+        tickformat: "%m%d"
         rangeselector:
           buttons:
+          - count: 14
+            label: "2w"
+            step: "day"
+            stepmode: "backward"
           - count: 1
             label: "1m"
+            step: "month"
+            stepmode: "backward"
+          - count: 2
+            label: "2m"
             step: "month"
             stepmode: "backward"
           - count: 3
@@ -127,19 +152,20 @@
             step: "month"
             stepmode: "backward"
           - step: "all"
-        rangeslider: {}
+        # rangeslider: {}
       margin:
         r: 20
-        b: 200
+        # b: 200
         t: 5
         l: 70
       legend:
         orientation: "h"
-        traceorder: "normal"
-        y: -0.5
-#        tracegroupgap: 10
-#        bordercolor: "rgb(238, 238, 238)"
-#        borderwidth: 1
+        # y: -0.5
+        xanchor: "center"
+        traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
+        tracegroupgap: 20
+        bordercolor: "rgb(238, 238, 238)"
+        # borderwidth: 1
       hoverlabel:
         namelength: -1
 
@@ -206,6 +232,23 @@
 #    extract: "robot-plugin/output.xml"
   builds:
     csit-vpp-perf-mrr-daily-master:
+#    - 15
+#    - 20
+#    - 25
+#    - 30
+#    - 35
+#    - 40
+#    - 45
+#    - 50
+#    - 55
+#    - 60
+#    - 65
+#    - 70
+#    - 75
+#    - 80
+#    - 85
+#    - 90
+#    - 95
       start: 15
       end: "lastCompletedBuild"  # take all from the 'start'
 
