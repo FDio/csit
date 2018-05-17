@@ -25,6 +25,121 @@
     },
     {
       "key": {
+        "uuid": "620a944a_799751e6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "Using subsequent and intermediate phases as a category is confusing.\nDo we really need two terms to describe this simple relation: {subsequent phases} \u003d {intermediate phases} + {final phase} ?",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef344c1f_031f127d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "Why can\u0027t we use reverse geometric convergence, vs. an arbitrary \"large\" interval width?",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 77
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "239580f6_1ca98cc6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "Activated",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 38
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "407e8659_07988886",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "by",
+      "range": {
+        "startLine": 66,
+        "startChar": 37,
+        "endLine": 66,
+        "endChar": 44
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3a9e7b3_0ba574fa",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "by",
+      "range": {
+        "startLine": 69,
+        "startChar": 47,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd0f25d3_c3a0ae24",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -48,6 +163,76 @@
     },
     {
       "key": {
+        "uuid": "9208c5fd_34fe8783",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "OK. and exit is noted below \"by going to g)\" \u003d\u003e Good.",
+      "parentUuid": "bd0f25d3_c3a0ae24",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 173,
+        "endChar": 7
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93358513_3cc8a641",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "affect",
+      "range": {
+        "startLine": 180,
+        "startChar": 10,
+        "endLine": 180,
+        "endChar": 15
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6758d477_c68fbeb6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": ").",
+      "range": {
+        "startLine": 181,
+        "startChar": 30,
+        "endLine": 181,
+        "endChar": 32
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9b143da_45649199",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -64,6 +249,121 @@
         "startChar": 40,
         "endLine": 193,
         "endChar": 48
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8a0d342_5e73c75c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "1) If NDR lower_bound is invalid (the last measurement loss was higher than zero AND the transmit rate was equal or lower than the NDR lower_bound),",
+      "range": {
+        "startLine": 193,
+        "startChar": 6,
+        "endLine": 193,
+        "endChar": 71
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ee3cc60_4df8566f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "if PDR lower_bound is invalid (the last measurement loss was higher than PLR AND the transmit rate was equal or lower than the PDR lower_bound),",
+      "range": {
+        "startLine": 196,
+        "startChar": 14,
+        "endLine": 196,
+        "endChar": 75
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd254f80_7711866b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "if NDR upper_bound is invalid (the last measurement loss was zero AND the transmit rate was equal or higher than the NDR upper_bound),",
+      "range": {
+        "startLine": 199,
+        "startChar": 14,
+        "endLine": 199,
+        "endChar": 64
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae894fa7_92ae7cee",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "if PDR upper_bound is invalid (the last measurement loss was less or equal than PLR AND the transmit rate was equal or higher than the PDR upper_bound),",
+      "range": {
+        "startLine": 202,
+        "startChar": 14,
+        "endLine": 202,
+        "endChar": 82
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38446b33_470e48cb",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T16:27:21Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 210,
+        "startChar": 70,
+        "endLine": 210,
+        "endChar": 72
       },
       "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
