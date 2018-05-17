@@ -50,7 +50,6 @@
 | ... | MAC addresses are matching MAC addresses of the TG node interfaces.
 | ... | *[Ref] Applicable standard specifications:* SRv6 Network Programming -\
 | ... | draft 3.
-| ...
 
 *** Variables ***
 # X520-DA2 bandwidth limit
@@ -75,11 +74,13 @@
 # outer IPv6 header: 40B
 | ${srv6_overhead_nosrh}= | ${40}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip6-ip6src253
+| ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
 
 *** Keywords ***
 | Discover NDR or PDR for IPv6 routing over SRv6
+| | ...
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
@@ -90,7 +91,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | ${get_framesize}= | Get Frame Size | ${framesize}
 | | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in 3-node circular topology
