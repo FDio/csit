@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "9b8c31f1_70f562ab",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:14:00Z",
+      "side": 1,
+      "message": "See line 173. But will reformulate in the next patch.",
+      "parentUuid": "d566e6a5_c4e51732",
+      "range": {
+        "startLine": 171,
+        "startChar": 53,
+        "endLine": 171,
+        "endChar": 62
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7085cad_9d8703c6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -266,6 +290,30 @@
       "writtenOn": "2018-05-17T13:27:51Z",
       "side": 1,
       "message": "Assuming 2c) is hit continuously, are c)1..4) pursued progressively until each is re-measured at the current duration?",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 25
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9025fc6e_376a19ef",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:14:00Z",
+      "side": 1,
+      "message": "Yes.\nShould I write \"If NDR lower_bound has only been measured at lower duration, the new transmit rate is NDR lower_bound.\" in the 4 variations?",
+      "parentUuid": "51d8bc81_1073318b",
       "range": {
         "startLine": 213,
         "startChar": 0,
