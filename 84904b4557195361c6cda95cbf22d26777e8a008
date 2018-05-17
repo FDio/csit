@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7085cad_9d8703c6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:27:51Z",
+      "side": 1,
+      "message": "the last transmit rate",
+      "range": {
+        "startLine": 191,
+        "startChar": 61,
+        "endLine": 191,
+        "endChar": 79
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0f997a4_3aa13df6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:27:51Z",
+      "side": 1,
+      "message": "the last transmit rate",
+      "range": {
+        "startLine": 194,
+        "startChar": 66,
+        "endLine": 194,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bb5a8e5_0a09e2a6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:27:51Z",
+      "side": 1,
+      "message": "the last transmit rate",
+      "range": {
+        "startLine": 197,
+        "startChar": 66,
+        "endLine": 197,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18b6c699_d8c21bfa",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:27:51Z",
+      "side": 1,
+      "message": "the last transmit rate",
+      "range": {
+        "startLine": 200,
+        "startChar": 66,
+        "endLine": 200,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f13d517_05ed38c1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:27:51Z",
+      "side": 1,
+      "message": "prepared next transmit rate",
+      "range": {
+        "startLine": 205,
+        "startChar": 39,
+        "endLine": 205,
+        "endChar": 52
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac346420_57daec72",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:27:51Z",
+      "side": 1,
+      "message": "It may not matter, but the text indicates that both intervals are evaluated, and if so which one is chosen for the \"prepared next transmit rate\", as it can be only one? Unless two are prepared and then executed in sequence?",
+      "range": {
+        "startLine": 207,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 62
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51d8bc81_1073318b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:27:51Z",
+      "side": 1,
+      "message": "Assuming 2c) is hit continuously, are c)1..4) pursued progressively until each is re-measured at the current duration?",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 25
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
