@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "2be14843_c8865afa",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:48:22Z",
+      "side": 1,
+      "message": "trial duration - initial to final using a convergent series (geometric sequence used)",
+      "range": {
+        "startLine": 48,
+        "startChar": 57,
+        "endLine": 48,
+        "endChar": 71
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f28de65f_5296acc5",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:48:22Z",
+      "side": 1,
+      "message": "interval width - initial to final using a convergent series (reverse geometric sequence used)",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 22
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed3cbef7_6419a200",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:48:22Z",
+      "side": 1,
+      "message": "search with transmit",
+      "range": {
+        "startLine": 64,
+        "startChar": 24,
+        "endLine": 64,
+        "endChar": 32
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89a65052_60100626",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:48:22Z",
+      "side": 1,
+      "message": "if one of the bounds is invalid. Used to find a new valid bound by doubling the interval width.",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 67
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d566e6a5_c4e51732",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T13:48:22Z",
+      "side": 1,
+      "message": "need a clear condition here i.e. when it is not needed e.g. when bounds valid, interval width reached the current phase goal.\nQ: if no new rate, what happens? transmit at the same rate, move to the next phase? the move to the net phase is not captured anywhere, or at least I can\u0027t see..",
+      "range": {
+        "startLine": 171,
+        "startChar": 53,
+        "endLine": 171,
+        "endChar": 62
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7085cad_9d8703c6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
