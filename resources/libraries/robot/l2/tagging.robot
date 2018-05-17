@@ -58,6 +58,8 @@
 | | Set Test Variable | ${subif_index_1}
 | | Set Test Variable | ${subif_name_2}
 | | Set Test Variable | ${subif_index_2}
+| | Vpp Node Interfaces Ready Wait | ${DUT1}
+| | Vpp Node Interfaces Ready Wait | ${DUT2}
 
 | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
@@ -94,6 +96,8 @@
 | | Set Test Variable | ${subif_index_1}
 | | Set Test Variable | ${subif_name_2}
 | | Set Test Variable | ${subif_index_2}
+| | Vpp Node Interfaces Ready Wait | ${DUT1}
+| | Vpp Node Interfaces Ready Wait | ${DUT2}
 
 | Configure L2 tag rewrite method on interfaces
 | | [Arguments] | ${DUT1} | ${SUB_INT1} | ${DUT2} | ${SUB_INT2}
@@ -149,6 +153,7 @@
 | | ${vlan_name} | ${vlan_index}= | Create Vlan Subinterface
 | | ... | ${dut_node} | ${interface_name} | ${vlan_id}
 | | Set Interface State | ${dut_node} | ${vlan_index} | up
+| | Vpp Node Interfaces Ready Wait | ${dut_node}
 
 | Create tagged sub-interface
 | | [Documentation] | Create tagged sub-interface on DUT. Type of tagged \

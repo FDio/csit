@@ -23,13 +23,14 @@
 | Configure L2BD forwarding
 | | [Documentation] | Setup BD between 2 interfaces on VPP node and if learning
 | | ...             | is off set static L2FIB entry on second interface
-| | [Arguments] | ${node} | ${if1} | ${if2} | ${learn}=${TRUE} | ${mac}=${EMPTY}
-| | Set Interface State | ${node} | ${if1} | up
-| | Set Interface State | ${node} | ${if2} | up
-| | Vpp Add L2 Bridge Domain | ${node} | ${1} | ${if1} | ${if2} | ${learn}
+| | [Arguments] | ${dut_node} | ${if1} | ${if2} | ${learn}=${TRUE}
+| | ... | ${mac}=${EMPTY}
+| | Set Interface State | ${dut_node} | ${if1} | up
+| | Set Interface State | ${dut_node} | ${if2} | up
+| | Vpp Add L2 Bridge Domain | ${dut_node} | ${1} | ${if1} | ${if2} | ${learn}
 | | Run Keyword If | ${learn} == ${FALSE}
-| | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | ... | Vpp Add L2fib Entry | ${dut_node} | ${mac} | ${if2} | ${1}
+| | Vpp Node Interfaces Ready Wait | ${dut_node}
 
 | Configure path for 3-node BD-SHG test
 | | [Documentation] | Compute path for bridge domain split-horizon group testing
@@ -175,6 +176,7 @@
 | | ... | \| GigabitEthernet0/8/0 \| 3 \|
 | | [Arguments] | ${dut_node} | ${dut_if} | ${bd_id} | ${shg}=0
 | | Set Interface State | ${dut_node} | ${dut_if} | up
+| | Vpp Node Interfaces Ready Wait | ${dut_node}
 | | Add Interface To L2 BD | ${dut_node} | ${dut_if} | ${bd_id} | ${shg}
 
 | Add destination port to L2FIB
@@ -277,3 +279,4 @@
 | | Set Interface State | ${dut_node} | ${vhost_2} | up
 | | Set Test Variable | ${${vhost_if1}} | ${vhost_1}
 | | Set Test Variable | ${${vhost_if2}} | ${vhost_2}
+| | Vpp Node Interfaces Ready Wait | ${dut_node}
