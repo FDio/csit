@@ -787,18 +787,33 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - rate - Rate for sending packets. Type: string
-| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - framesize - L2 Frame Size [B]. Type: integer/string
 | | ... | - traffic_profile - Traffic profile. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance test with MACIP ACL \| 100000pps \| 64 \
-| | ... | \| ${traffic_profile} \|
+| | ... | \| Tear down performance test with SRv6 with encapsulation \
+| | ... | \| 100000pps \| 64 \| ${traffic_profile} \|
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
 | | ...
 | | Tear down performance discovery test | ${rate} | ${framesize}
 | | ... | ${traffic_profile}
+| | Run Keyword If Test Failed | Show SR Policies on all DUTs | ${nodes}
+| | Run Keyword If Test Failed
+| | ... | Show SR Steering Policies on all DUTs | ${nodes}
+| | Run Keyword If Test Failed | Show SR LocalSIDs on all DUTs | ${nodes}
+
+| Tear down mrr test with SRv6 with encapsulation
+| | [Documentation] | Common test teardown for mrr tests with SRv6 with \
+| | ... | encapsulation feature used.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down mrr test with SRv6 with encapsulation \|
+| | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
+| | Show VAT History On All DUTs | ${nodes}
 | | Run Keyword If Test Failed | Show SR Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
