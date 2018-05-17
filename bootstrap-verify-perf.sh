@@ -226,6 +226,10 @@ case "$TEST_TAG" in
               'mrrANDnic_intel-xl710AND1t1cANDipsechw'
               'mrrANDnic_intel-xl710AND2t2cANDipsechw')
         ;;
+    VERIFY-PERF-SRV6 )
+        TAGS=('mrrANDsrv6AND1t1c'
+              'mrrANDsrv6AND2t2c')
+        ;;
     VPP-VERIFY-PERF-IP4 )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
               'mrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m')
@@ -262,6 +266,10 @@ case "$TEST_TAG" in
               'pdrdiscANDnic_intel-xl710AND2t2cANDipsechw'
               'mrrANDnic_intel-xl710AND1t1cANDipsechw'
               'mrrANDnic_intel-xl710AND2t2cANDipsechw')
+        ;;
+    VPP-VERIFY-PERF-SRV6 )
+        TAGS=('mrrANDsrv6AND1t1c'
+              'mrrANDsrv6AND2t2c')
         ;;
     * )
         TAGS=('perftest')
