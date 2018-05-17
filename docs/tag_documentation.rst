@@ -413,9 +413,17 @@ Interface tags
 
     All test cases which uses DPDK link bonding.
 
+.. topic:: LBOND_VPP
+
+    All test cases which uses VPP link bonding.
+
 .. topic:: LBOND_MODE_XOR
 
     All test cases which uses link bonding with mode XOR.
+
+.. topic:: LBOND_MODE_LACP
+
+    All test cases which uses link bonding with mode LACP.
 
 .. topic:: LBOND_LB_L34
 

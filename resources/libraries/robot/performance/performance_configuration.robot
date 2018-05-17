@@ -755,7 +755,7 @@
 | | Remove Values From List | ${sid_list_dir0} | ${dut2_sid1}
 | | Run Keyword If | "${behavior}" == "static_proxy"
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.as
-| | ... | ${None} | ${dut2_nh} | ${None} | ${dut2_out_if} | ${dut2_in_if}
+| | ... | ${NONE} | ${dut2_nh} | ${NONE} | ${dut2_out_if} | ${dut2_in_if}
 | | ... | ${dut1_sid1} | @{sid_list_dir0}
 | | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
 | | ... | Configure SR LocalSID on DUT | ${dut2} | ${dut2_sid1} | end.ad
@@ -770,7 +770,7 @@
 | | Remove Values From List | ${sid_list_dir1} | ${dut1_sid2}
 | | Run Keyword If | "${behavior}" == "static_proxy"
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.as
-| | ... | ${None} | ${dut1_nh} | ${None} | ${dut1_out_if} | ${dut1_in_if}
+| | ... | ${NONE} | ${dut1_nh} | ${NONE} | ${dut1_out_if} | ${dut1_in_if}
 | | ... | ${dut2_sid2} | @{sid_list_dir1}
 | | ... | ELSE IF | "${behavior}" == "dynamic_proxy"
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.ad
@@ -924,7 +924,7 @@
 | Initialize L2 xconnect with Vhost-User and VLAN with DPDK link bonding in 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Setup VLAN
-| | ... | on EthernetBond interfaces between DUTs. Cross connect one Vhost
+| | ... | on BondEthernet interfaces between DUTs. Cross connect one Vhost
 | | ... | interface with physical interface towards TG and other Vhost interface
 | | ... | with VLAN sub-interface. All interfaces are brought up.
 | | ...
@@ -945,6 +945,59 @@
 | | Set interfaces in path in 3-node circular topology up
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
+| | ... | ${subid}
+| | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | ... | ${sock1} | ${sock2}
+| | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
+| | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
+| | Configure vhost interfaces for L2BD forwarding | ${dut2}
+| | ... | ${sock1} | ${sock2}
+| | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
+| | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
+
+| Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
+| | ... | link bonding (BondEthernet) interface on both VPP nodes. Enslave one
+| | ... | physical interface towards next DUT by BondEthernet interface. Setup
+| | ... | VLAN on BondEthernet interfaces between DUTs. Cross connect one Vhost
+| | ... | interface with physical interface towards TG and other Vhost interface
+| | ... | with VLAN sub-interface. All interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ... | - bond_mode - Link bonding mode. Type: string
+| | ... | - lb_mode - Load balance mode. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 xconnect with Vhost-User and VLAN with VPP link\
+| | ... | bonding in 3-node circular topology \| /tmp/sock1 \| /tmp/sock2 \
+| | ... | \| 10 \| pop-1 \| \| xor \| l34 \|
+| | ...
+| | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite} | ${bond_mode}
+| | ... | ${lb_mode}
+| | ...
+| | Set interfaces in path in 3-node circular topology up
+| | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
+| | ... | ${lb_mode}
+| | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
+| | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_eth_bond_if1}
+| | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
+| | ... | ${lb_mode}
+| | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_eth_bond_if1}
+| | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
@@ -1014,7 +1067,7 @@
 | | ... | - ${trex_stream2_subnet} - IP subnet used by T-Rex in direction 1->0.
 | | ... | Type: string
 | | ...
-| | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
+| | [Arguments] | ${dut} | ${dut_if1}=${NONE} | ${dut_if2}=${NONE}
 | | ${src_ip_int} = | Evaluate
 | | ... | int(ipaddress.ip_address(unicode($src_ip_start))) - $ip_step
 | | ... | modules=ipaddress
@@ -1035,9 +1088,9 @@
 | | | ${dport}= | Evaluate | $dport + $port_step
 | | | ${ipv4_limit_reached}= | Set Variable If
 | | | ... | $src_ip_int > $ip_limit_int or $src_ip_int > $ip_limit_int
-| | | ... | ${True}
+| | | ... | ${TRUE}
 | | | ${udp_limit_reached}= | Set Variable If
-| | | ... | $sport > $port_limit or $dport > $port_limit | ${True}
+| | | ... | $sport > $port_limit or $dport > $port_limit | ${TRUE}
 | | | Run Keyword If | $ipv4_limit_reached is True | Log
 | | | ... | Can't do more iterations - IPv4 address limit has been reached.
 | | | ... | WARN
@@ -1192,7 +1245,7 @@
 | | ... | - ${tg_mac_mask} - MAC address mask for traffic streams.
 | | ... | 00:00:00:00:00:00 is a wildcard mask. Type: string
 | | ...
-| | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
+| | [Arguments] | ${dut} | ${dut_if1}=${NONE} | ${dut_if2}=${NONE}
 | | ...
 | | ${src_ip_int} = | IP To Int | ${src_ip_start}
 | | ${src_ip_int} = | Evaluate | ${src_ip_int} - ${ip_step}
@@ -1538,7 +1591,7 @@
 | Initialize L2 bridge domains with Vhost-User and VLAN with DPDK link bonding in a 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Setup VLAN
-| | ... | on EthernetBond interfaces between DUTs. Add one Vhost-User interface
+| | ... | on BondEthernet interfaces between DUTs. Add one Vhost-User interface
 | | ... | into L2 bridge domains with learning enabled with physical interface
 | | ... | towards TG and other Vhost-User interface into L2 bridge domains with
 | | ... | learning enabled with VLAN sub-interface. All interfaces are brought
@@ -1564,6 +1617,67 @@
 | | Set interfaces in path in 3-node circular topology up
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
+| | ... | ${subid}
+| | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | ... | ${sock1} | ${sock2}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
+| | Configure vhost interfaces for L2BD forwarding | ${dut2}
+| | ... | ${sock1} | ${sock2}
+| | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
+| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+
+| Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
+| | ... | link bonding (BondEthernet) interface on both VPP nodes. Enslave one
+| | ... | physical interface towards next DUT by BondEthernet interface. Setup
+| | ... | VLAN on BondEthernet interfaces between DUTs. Add one Vhost-User
+| | ... | interface into L2 bridge domains with learning enabled with physical
+| | ... | interface towards TG and other Vhost-User interface into L2 bridge
+| | ... | domains with learning enabled with VLAN sub-interface. All interfaces
+| | ... | are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id1 - Bridge domain ID. Type: integer
+| | ... | - bd_id2 - Bridge domain ID. Type: integer
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ... | - bond_mode - Link bonding mode. Type: string
+| | ... | - lb_mode - Load balance mode. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domains with Vhost-User and VLAN with VPP\
+| | ... | link bonding in a 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \
+| | ... | \| /tmp/sock2 \| 10 \| pop-1 \| xor \| l34 \|
+| | ...
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
+| | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
+| | ...
+| | Set interfaces in path in 3-node circular topology up
+| | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
+| | ... | ${lb_mode}
+| | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
+| | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_eth_bond_if1}
+| | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
+| | ... | ${lb_mode}
+| | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_eth_bond_if1}
+| | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
@@ -1679,7 +1793,7 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${True}
+| | ... | ${TRUE}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
@@ -1695,7 +1809,7 @@
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
-| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
+| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
 | | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
@@ -1767,13 +1881,13 @@
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${TRUE}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${True}
+| | ... | ${TRUE}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
@@ -1789,7 +1903,7 @@
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
-| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
+| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
 | | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
@@ -1847,7 +1961,7 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${True}
+| | ... | ${TRUE}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
@@ -1864,7 +1978,7 @@
 | | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
-| | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
+| | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
 | | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
@@ -1946,13 +2060,13 @@
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${TRUE}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | ... | jumbo_frames=${jumbo_frames}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ... | jumbo_frames=${jumbo_frames}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${True}
+| | ... | ${TRUE}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
@@ -1969,7 +2083,7 @@
 | | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
-| | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
+| | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
 | | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
@@ -2005,7 +2119,7 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${True}
+| | ... | ${TRUE}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
@@ -2054,11 +2168,11 @@
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${TRUE}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${True}
+| | ... | ${TRUE}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
