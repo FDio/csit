@@ -476,6 +476,30 @@
     },
     {
       "key": {
+        "uuid": "daf6b31b_49cd94ba",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "430574c4_0ac326ea",
+      "range": {
+        "startLine": 191,
+        "startChar": 61,
+        "endLine": 191,
+        "endChar": 79
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0f997a4_3aa13df6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -511,6 +535,30 @@
       "side": 1,
       "message": "the last measurement of the same transmit rate\n\nBut see patch 32.",
       "parentUuid": "e0f997a4_3aa13df6",
+      "range": {
+        "startLine": 194,
+        "startChar": 66,
+        "endLine": 194,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "742c8243_d39d69ed",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f1bcfae_295e2098",
       "range": {
         "startLine": 194,
         "startChar": 66,
@@ -570,6 +618,30 @@
     },
     {
       "key": {
+        "uuid": "6ee37755_96d855cf",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e37c973d_590ba22e",
+      "range": {
+        "startLine": 197,
+        "startChar": 66,
+        "endLine": 197,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18b6c699_d8c21bfa",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -605,6 +677,30 @@
       "side": 1,
       "message": "the last measurement of the same transmit rate\n\nBut see patch 32.",
       "parentUuid": "18b6c699_d8c21bfa",
+      "range": {
+        "startLine": 200,
+        "startChar": 66,
+        "endLine": 200,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b55ab33_5d31602a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d48aec0_3e569fb5",
       "range": {
         "startLine": 200,
         "startChar": 66,
@@ -664,6 +760,30 @@
     },
     {
       "key": {
+        "uuid": "28dd546c_cfd5f25c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3838cde2_3e0a9926",
+      "range": {
+        "startLine": 205,
+        "startChar": 39,
+        "endLine": 205,
+        "endChar": 52
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac346420_57daec72",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -711,6 +831,30 @@
     },
     {
       "key": {
+        "uuid": "12a7fa53_c9f1f511",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "So you have already qualified a better approach than \"..starts with NDR, unless PDR interval is wider.\"",
+      "parentUuid": "f1acaa5d_a3dbebc3",
+      "range": {
+        "startLine": 207,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 62
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51d8bc81_1073318b",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -746,6 +890,54 @@
       "side": 1,
       "message": "Yes.\nShould I write \"If NDR lower_bound has only been measured at lower duration, the new transmit rate is NDR lower_bound.\" in the 4 variations?",
       "parentUuid": "51d8bc81_1073318b",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 25
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9558ee97_01c50d89",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51d8bc81_1073318b",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 25
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2cad4e8d_544474df",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:37:53Z",
+      "side": 1,
+      "message": "No, it\u0027s fine as is.",
+      "parentUuid": "9025fc6e_376a19ef",
       "range": {
         "startLine": 213,
         "startChar": 0,
