@@ -309,7 +309,7 @@ case "$TEST_TAG" in
         done
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('SINGLE_MEMIF')
 esac
 
 # Catenate TAG selections
