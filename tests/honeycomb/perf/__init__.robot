@@ -35,6 +35,7 @@
 | | ... | for performance testing.
 | | ...
 | | Set Global Variable | ${node}
+| | Get CPU Layout from all nodes | ${nodes}
 | | ${cores}= | Get Length | ${node['cpuinfo']}
 | | Set Global Variable | ${cores}
 | | Stop VPP Service on DUT | ${node}
