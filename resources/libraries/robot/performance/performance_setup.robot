@@ -429,6 +429,13 @@
 | | Set Suite Variable | @{plugins_to_enable}
 | | Append To List | ${plugins_to_enable} | srv6am_plugin.so
 
+| Set up performance test suite with LACP mode link bonding
+| | [Documentation]
+| | ... | Append lacp_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | lacp_plugin.so
+
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of
