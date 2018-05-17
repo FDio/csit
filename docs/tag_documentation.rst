@@ -405,6 +405,12 @@ Interface tags
 
     All test cases which uses Memif.
 
+.. topic:: SINGLE_MEMIF
+
+    All test cases which uses only single Memif connection per DUT. One DUT
+    instance is running in container having one physical interface exposed to
+    container.
+
 .. topic:: LBOND
 
     All test cases which uses link bonding (BondEthernet interface).
