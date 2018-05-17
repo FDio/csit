@@ -579,6 +579,121 @@
       "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "789f5618_3289e8a6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:46:15Z",
+      "side": 1,
+      "message": "the",
+      "range": {
+        "startLine": 352,
+        "startChar": 35,
+        "endLine": 352,
+        "endChar": 36
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2690cc04_e6b70f38",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:46:15Z",
+      "side": 1,
+      "message": "lower or upper",
+      "range": {
+        "startLine": 360,
+        "startChar": 62,
+        "endLine": 360,
+        "endChar": 76
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28285694_297ed7d7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:46:15Z",
+      "side": 1,
+      "message": "behaviour",
+      "range": {
+        "startLine": 364,
+        "startChar": 18,
+        "endLine": 364,
+        "endChar": 26
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49607a10_f274ed72",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:46:15Z",
+      "side": 1,
+      "message": "for comparison with MDR search at the same final trial duration.",
+      "range": {
+        "startLine": 380,
+        "startChar": 42,
+        "endLine": 380,
+        "endChar": 70
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "213b3068_27b97074",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T18:46:15Z",
+      "side": 1,
+      "message": "60 second",
+      "range": {
+        "startLine": 380,
+        "startChar": 17,
+        "endLine": 380,
+        "endChar": 26
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
