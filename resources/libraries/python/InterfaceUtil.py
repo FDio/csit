@@ -909,27 +909,119 @@ class InterfaceUtil(object):
                                .format(node['host']))
 
     @staticmethod
-    def add_bond_eth_interface(node, ifc_name):
+    def vpp_create_bond_interface(node, mode, load_balance=None, mac=None):
+        """Create bond interface on VPP node.
+
+        :param node: DUT node from topology.
+        :param mode: Link bonding mode.
+        :param load_balance: Load balance (optional, valid for xor and lacp
+            modes, otherwise ignored).
+        :param mac: MAC address to assign to the bond interface (optional).
+        :type node: dict
+        :type mode: str
+        :type load_balance: str
+        :type mac: str
+        :returns: Interface key (name) in topology.
+        :rtype: str
+        :raises RuntimeError: If it is not possible to create bond interface on
+            the node.
+        """
+        hw_addr = '' if mac is None else 'hw-addr {mac}'.format(mac=mac)
+        lb = '' if load_balance is None \
+            else 'lb {lb}'.format(lb=load_balance)
+
+        output = VatExecutor.cmd_from_template(
+            node, 'create_bond_interface.vat', mode=mode, lb=lb, mac=hw_addr)
+
+        if output[0].get('retval') == 0:
+            sw_if_idx = output[0].get('sw_if_index')
+            InterfaceUtil.add_bond_eth_interface(node, sw_if_idx=sw_if_idx)
+            if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
+            return if_key
+        else:
+            raise RuntimeError('Create bond interface failed on node "{n}"'
+                               .format(n=node['host']))
+
+    @staticmethod
+    def add_bond_eth_interface(node, ifc_name=None, sw_if_idx=None):
         """Add BondEthernet interface to current topology.
 
-        :param node: Node to add BondEthernet interface for.
+        :param node: DUT node from topology.
         :param ifc_name: Name of the BondEthernet interface.
+        :param sw_if_idx: SW interface index.
         :type node: dict
         :type ifc_name: str
+        :type sw_if_idx: int
         """
         if_key = Topology.add_new_port(node, 'eth_bond')
-        Topology.update_interface_name(node, if_key, ifc_name)
 
         vat_executor = VatExecutor()
         vat_executor.execute_script_json_out("dump_interfaces.vat", node)
         interface_dump_json = vat_executor.get_script_stdout()
 
-        sw_if_idx = VatJsonUtil.get_interface_sw_index_from_json(
-            interface_dump_json, ifc_name)
+        if ifc_name and sw_if_idx is None:
+            sw_if_idx = VatJsonUtil.get_interface_sw_index_from_json(
+                interface_dump_json, ifc_name)
         Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        if sw_if_idx and ifc_name is None:
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+        Topology.update_interface_name(node, if_key, ifc_name)
         ifc_mac = VatJsonUtil.get_interface_mac_from_json(
             interface_dump_json, sw_if_idx)
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
+
+    @staticmethod
+    def vpp_enslave_physical_interface(node, interface, bond_interface):
+        """Enslave physical interface to bond interface on VPP node.
+
+        :param node: DUT node from topology.
+        :param interface: Physical interface key from topology file.
+        :param bond_interface: Load balance
+        :type node: dict
+        :type interface: str
+        :type bond_interface: str
+        :raises RuntimeError: If it is not possible to enslave physical
+            interface to bond interface on the node.
+        """
+        ifc = Topology.get_interface_sw_index(node, interface)
+        bond_ifc = Topology.get_interface_sw_index(node, bond_interface)
+
+        output = VatExecutor.cmd_from_template(
+            node, 'enslave_physical_interface.vat', p_int=ifc, b_int=bond_ifc)
+
+        if output[0].get('retval') == 0:
+            pass
+        else:
+            raise RuntimeError('Enslave physical interface {ifc} to bond '
+                               'interface {bond} failed on node "{n}"'
+                               .format(ifc=interface, bond=bond_interface,
+                                       n=node['host']))
+
+    @staticmethod
+    def vpp_show_bond_data_on_node(node, details=False):
+        """Show (detailed) bond information on VPP node.
+
+        :param node: DUT node from topology.
+        :param details: If detailed information is required or not.
+        :type node: dict
+        :type details: bool
+        """
+        cmd = 'exec show bond details' if details else 'exec show bond'
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd(cmd)
+
+    @staticmethod
+    def vpp_show_bond_data_on_all_nodes(nodes, details=False):
+        """Show (detailed) bond information on all VPP nodes in DICT__nodes.
+
+        :param nodes: Nodes in the topology.
+        :param details: If detailed information is required or not.
+        :type nodes: dict
+        :type details: bool
+        """
+        for node_data in nodes.values():
+            if node_data['type'] == NodeType.DUT:
+                InterfaceUtil.vpp_show_bond_data_on_node(node_data, details)
 
     @staticmethod
     def vpp_enable_input_acl_interface(node, interface, ip_version,
