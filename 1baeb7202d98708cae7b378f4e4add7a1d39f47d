@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3add7964_20fd4e67",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "transmit",
+      "range": {
+        "startLine": 53,
+        "startChar": 70,
+        "endLine": 53,
+        "endChar": 77
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd0f25d3_c3a0ae24",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "I still feel lines 173 and 165 can be expressed in a simpler way.",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 173,
+        "endChar": 7
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9b143da_45649199",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "This assumes the reader was paying attention at lines 53-54.",
+      "range": {
+        "startLine": 193,
+        "startChar": 40,
+        "endLine": 193,
+        "endChar": 48
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
