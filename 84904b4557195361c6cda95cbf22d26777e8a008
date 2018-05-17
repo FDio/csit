@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe2ab519_0820ba96",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "I removed this item but updated the subsequent items to mention the geometric behavior.",
+      "parentUuid": "2be14843_c8865afa",
+      "range": {
+        "startLine": 48,
+        "startChar": 57,
+        "endLine": 48,
+        "endChar": 71
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f28de65f_5296acc5",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-17T13:48:22Z",
       "side": 1,
       "message": "interval width - initial to final using a convergent series (reverse geometric sequence used)",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 22
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4fb11b3_97ed2c23",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "I removed this item but updated the subsequent items to mention the geometric behavior.",
+      "parentUuid": "f28de65f_5296acc5",
       "range": {
         "startLine": 49,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2a37b010_feca4cc9",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "I went with \"measures at transmit\".",
+      "parentUuid": "ed3cbef7_6419a200",
+      "range": {
+        "startLine": 64,
+        "startChar": 24,
+        "endLine": 64,
+        "endChar": 32
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89a65052_60100626",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -82,6 +154,30 @@
       "writtenOn": "2018-05-17T13:48:22Z",
       "side": 1,
       "message": "if one of the bounds is invalid. Used to find a new valid bound by doubling the interval width.",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 67
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a86f7af7_771d5226",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "See patch set 32 lines 65-66 for my counter-offer.",
+      "parentUuid": "89a65052_60100626",
       "range": {
         "startLine": 65,
         "startChar": 27,
@@ -164,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "430574c4_0ac326ea",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "the last measurement of the same transmit rate\n\nBut see patch 32.",
+      "parentUuid": "b7085cad_9d8703c6",
+      "range": {
+        "startLine": 191,
+        "startChar": 61,
+        "endLine": 191,
+        "endChar": 79
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0f997a4_3aa13df6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -175,6 +295,30 @@
       "writtenOn": "2018-05-17T13:27:51Z",
       "side": 1,
       "message": "the last transmit rate",
+      "range": {
+        "startLine": 194,
+        "startChar": 66,
+        "endLine": 194,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f1bcfae_295e2098",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "the last measurement of the same transmit rate\n\nBut see patch 32.",
+      "parentUuid": "e0f997a4_3aa13df6",
       "range": {
         "startLine": 194,
         "startChar": 66,
@@ -210,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "e37c973d_590ba22e",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "the last measurement of the same transmit rate\n\nBut see patch 32.",
+      "parentUuid": "8bb5a8e5_0a09e2a6",
+      "range": {
+        "startLine": 197,
+        "startChar": 66,
+        "endLine": 197,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18b6c699_d8c21bfa",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -221,6 +389,30 @@
       "writtenOn": "2018-05-17T13:27:51Z",
       "side": 1,
       "message": "the last transmit rate",
+      "range": {
+        "startLine": 200,
+        "startChar": 66,
+        "endLine": 200,
+        "endChar": 84
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d48aec0_3e569fb5",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "the last measurement of the same transmit rate\n\nBut see patch 32.",
+      "parentUuid": "18b6c699_d8c21bfa",
       "range": {
         "startLine": 200,
         "startChar": 66,
@@ -256,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "3838cde2_3e0a9926",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "I went with \"new transmit rate\".",
+      "parentUuid": "3f13d517_05ed38c1",
+      "range": {
+        "startLine": 205,
+        "startChar": 39,
+        "endLine": 205,
+        "endChar": 52
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac346420_57daec72",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 30
@@ -267,6 +483,30 @@
       "writtenOn": "2018-05-17T13:27:51Z",
       "side": 1,
       "message": "It may not matter, but the text indicates that both intervals are evaluated, and if so which one is chosen for the \"prepared next transmit rate\", as it can be only one? Unless two are prepared and then executed in sequence?",
+      "range": {
+        "startLine": 207,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 62
+      },
+      "revId": "84904b4557195361c6cda95cbf22d26777e8a008",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1acaa5d_a3dbebc3",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T14:40:06Z",
+      "side": 1,
+      "message": "I added a line explaining the current implementation, but also added a TODO into the algorithm code to implement the better choice.",
+      "parentUuid": "ac346420_57daec72",
       "range": {
         "startLine": 207,
         "startChar": 6,
