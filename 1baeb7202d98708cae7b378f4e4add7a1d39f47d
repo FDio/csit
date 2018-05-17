@@ -233,6 +233,29 @@
     },
     {
       "key": {
+        "uuid": "aeb17402_e34c2e43",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "then",
+      "range": {
+        "startLine": 191,
+        "startChar": 34,
+        "endLine": 191,
+        "endChar": 35
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9b143da_45649199",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -279,6 +302,54 @@
     },
     {
       "key": {
+        "uuid": "0cc3af67_7202b5bc",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9b143da_45649199",
+      "range": {
+        "startLine": 193,
+        "startChar": 40,
+        "endLine": 193,
+        "endChar": 48
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2fcbd6e1_500c5e34",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "1) If the most recent measurement at NDR lower_bound transmit rate had the loss higher than zero (bound invalid) then",
+      "parentUuid": "a8a0d342_5e73c75c",
+      "range": {
+        "startLine": 193,
+        "startChar": 6,
+        "endLine": 193,
+        "endChar": 71
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ee3cc60_4df8566f",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -290,6 +361,30 @@
       "writtenOn": "2018-05-17T16:27:21Z",
       "side": 1,
       "message": "if PDR lower_bound is invalid (the last measurement loss was higher than PLR AND the transmit rate was equal or lower than the PDR lower_bound),",
+      "range": {
+        "startLine": 196,
+        "startChar": 14,
+        "endLine": 196,
+        "endChar": 75
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1cd7e17_644af50a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "2) Else, if the most recent measurement at PDR lower_bound transmit rate had the loss higher than PLR (bound invalid) then",
+      "parentUuid": "7ee3cc60_4df8566f",
       "range": {
         "startLine": 196,
         "startChar": 14,
@@ -325,6 +420,53 @@
     },
     {
       "key": {
+        "uuid": "62a00a09_4a8f1a11",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "3) Else, if the most recent measurement at NDR upper_bound transmit rate had no loss (bound invalid) then",
+      "range": {
+        "startLine": 199,
+        "startChar": 6,
+        "endLine": 199,
+        "endChar": 64
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62a64439_12fe9ccd",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd254f80_7711866b",
+      "range": {
+        "startLine": 199,
+        "startChar": 14,
+        "endLine": 199,
+        "endChar": 64
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae894fa7_92ae7cee",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -348,6 +490,52 @@
     },
     {
       "key": {
+        "uuid": "88b3f268_ac70a605",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "4) Else, if the most recent measurement at PDR upper_bound transmit rate had the loss lower or equal to PLR (bound invalid) then",
+      "range": {
+        "startLine": 202,
+        "startChar": 6,
+        "endLine": 202,
+        "endChar": 82
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b2fb8d1_e7e18f61",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "Else, if",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 13
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38446b33_470e48cb",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -364,6 +552,29 @@
         "startChar": 70,
         "endLine": 210,
         "endChar": 72
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7167958c_38340c0c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T17:48:23Z",
+      "side": 1,
+      "message": "Else, if",
+      "range": {
+        "startLine": 212,
+        "startChar": 6,
+        "endLine": 212,
+        "endChar": 13
       },
       "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
