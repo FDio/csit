@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1c65fa73_cc25b4a2",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "\u003e s/PLT/PLR/\n\nYes.\n\n\u003e criteria for interval becoming invalid is not clear.\n\nAgreed, will improve in next patch set.",
+      "parentUuid": "9e6d7d84_a25070ec",
+      "range": {
+        "startLine": 61,
+        "startChar": 67,
+        "endLine": 61,
+        "endChar": 70
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "671ef26c_9b37d618",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 28
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "bc01afd8_eb54e990",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "In the next patch I will describe the general behavior with \u003d\u003d2 as an example.",
+      "parentUuid": "671ef26c_9b37d618",
+      "range": {
+        "startLine": 149,
+        "startChar": 53,
+        "endLine": 149,
+        "endChar": 65
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0396a23d_7b9dfc3d",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 28
@@ -59,6 +107,30 @@
       "writtenOn": "2018-05-16T21:03:24Z",
       "side": 1,
       "message": "What if we have \u003e2 intermediate phases?",
+      "range": {
+        "startLine": 152,
+        "startChar": 45,
+        "endLine": 152,
+        "endChar": 57
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2c53d90_6cecc9d7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "In the next patch I will describe the general behavior with \u003d\u003d2 as an example.",
+      "parentUuid": "0396a23d_7b9dfc3d",
       "range": {
         "startLine": 152,
         "startChar": 45,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "348e86fb_174c985a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "At 1d). I am not sure how to make it more obvious.",
+      "parentUuid": "eb2d7fa3_e8addceb",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39489758_b9534a51",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 28
@@ -128,6 +224,30 @@
       "writtenOn": "2018-05-16T21:03:24Z",
       "side": 1,
       "message": "where is this condition defined? what is the value of \"lower_bound (ndr first)\", and how is this related to ndr_interval and or pdr_interval?",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 45
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c569f7ee_11aeefa2",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "This is meant as a shorthand for \"if ndr lower bound is invalid (then something with ndr interval) else if pdr lower bound is invalid (then the same thing with pdr interval)\".\nI will improve in the next patch.",
+      "parentUuid": "39489758_b9534a51",
       "range": {
         "startLine": 169,
         "startChar": 11,
@@ -179,6 +299,77 @@
         "startChar": 32,
         "endLine": 170,
         "endChar": 43
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "795357cc_ef5f79f8",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "I will improve in the next patch.",
+      "parentUuid": "471e0889_00f6a0a1",
+      "range": {
+        "startLine": 170,
+        "startChar": 32,
+        "endLine": 170,
+        "endChar": 43
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0888dc80_e8883b68",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "I will improve in the next patch.",
+      "parentUuid": "675bd5fe_6ad3a003",
+      "range": {
+        "startLine": 170,
+        "startChar": 50,
+        "endLine": 170,
+        "endChar": 61
+      },
+      "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0433262e_10275709",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-17T08:36:16Z",
+      "side": 1,
+      "message": "Explain why invalid bounds do not meet same-color thick lines.",
+      "range": {
+        "startLine": 313,
+        "startChar": 37,
+        "endLine": 313,
+        "endChar": 38
       },
       "revId": "2546e9cb5df7209b6bf0a44606dcbd0139ae62a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
