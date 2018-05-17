@@ -31,6 +31,7 @@ def pci_dev_check(pci_dev):
         :param pci_dev: PCI address (expected format: xxxx:xx:xx.x).
         :type pci_dev: str
         :returns: True if PCI address is in correct format.
+        :rtype: bool
         :raises ValueError: If PCI address is in incorrect format.
         """
         pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
