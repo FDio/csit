@@ -309,7 +309,7 @@ case "$TEST_TAG" in
         done
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('nic_intel-x710ANDsingle_memifANDndrpdrdisc')
 esac
 
 # Catenate TAG selections
