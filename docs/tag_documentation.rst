@@ -407,7 +407,11 @@ Interface tags
 
 .. topic:: DPDK_LBOND
 
-    All test cases which uses DPDK link bonding (BondEthernet interface).
+    All test cases which uses DPDK link bonding (EthernetBond interface).
+
+.. topic:: VPP_LBOND
+
+    All test cases which uses VPP link bonding (EthernetBond interface).
 
 Feature tags
 ------------
