@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d539bbe_ff740ae7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T12:30:38Z",
+      "side": 1,
+      "message": "if none of the bounds are invalid",
+      "range": {
+        "startLine": 192,
+        "startChar": 15,
+        "endLine": 192,
+        "endChar": 19
+      },
+      "revId": "1e8511f2f6f49cea6f047e386995f021deb4d8fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ecca0182_3ac65532",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-17T12:30:38Z",
+      "side": 1,
+      "message": "current phase interval width goal",
+      "range": {
+        "startLine": 193,
+        "startChar": 10,
+        "endLine": 193,
+        "endChar": 28
+      },
+      "revId": "1e8511f2f6f49cea6f047e386995f021deb4d8fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
