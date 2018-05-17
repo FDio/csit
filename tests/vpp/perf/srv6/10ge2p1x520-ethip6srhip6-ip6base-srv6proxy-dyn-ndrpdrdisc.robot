@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
-| ... | SRv6_PROXY_DYN | MEMIF | LXC
+| ... | SRv6_PROXY_DYN | MEMIF | LXC | THIS
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up 3-node performance topology with DUT's NIC model | L3
@@ -57,7 +57,6 @@
 | ... | MAC addresses are matching MAC addresses of the TG node interfaces.
 | ... | *[Ref] Applicable standard specifications:* SRv6 Network Programming -\
 | ... | draft 3 and Segment Routing for Service Chaining - internet draft 01.
-| ...
 
 *** Variables ***
 # X520-DA2 bandwidth limit
@@ -104,7 +103,10 @@
 
 *** Keywords ***
 | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via dynamic proxy behaviour
+| | ...
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| | ...
+| | Set Test Variable | ${pkt_trace} | ${True}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | Set Test Variable | ${rxq}
@@ -116,7 +118,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | ${get_framesize}= | Get Frame Size | ${framesize}
 | | And Run Keyword If | ${get_framesize} + ${srv6_overhead_3sids} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
