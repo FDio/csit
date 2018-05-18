@@ -31,6 +31,7 @@ analysis and anomaly detection methodology.
    trending/vm_vhost_ip4
    trending/container_memif
    trending/ipsec
+   trending/srv6
 
 .. toctree::
    :maxdepth: 2
