@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "62414813_e3e5205b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 35
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T14:05:02Z",
+      "side": 1,
+      "message": "I do not agree.\nThe parenthesis are not a sentence. The string inside the parenthesis are a sentence. The full stop belongs to the sentence.\n\nSee https://ell.stackexchange.com/a/1230",
+      "parentUuid": "5e1ba550_14f44d3e",
+      "range": {
+        "startLine": 125,
+        "startChar": 62,
+        "endLine": 125,
+        "endChar": 64
+      },
+      "revId": "d4e41101599db4a55a95c341df908930542118db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ad65080_10af8b2c",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 35
