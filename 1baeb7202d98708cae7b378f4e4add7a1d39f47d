@@ -140,6 +140,30 @@
     },
     {
       "key": {
+        "uuid": "45e51ea6_27f7494a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T10:51:37Z",
+      "side": 1,
+      "message": "We can replase \"subsequent\" with \"non-initial\".",
+      "parentUuid": "620a944a_799751e6",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef344c1f_031f127d",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -1214,6 +1238,30 @@
       "writtenOn": "2018-05-17T18:46:15Z",
       "side": 1,
       "message": "behaviour",
+      "range": {
+        "startLine": 364,
+        "startChar": 18,
+        "endLine": 364,
+        "endChar": 26
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ecabf046_479580e6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T10:51:37Z",
+      "side": 1,
+      "message": "American English does not write \u0027u\u0027 in these French words. Simiraly to \"colour\" vs \"color\".\nhttps://en.wikipedia.org/wiki/Behavior",
+      "parentUuid": "28285694_297ed7d7",
       "range": {
         "startLine": 364,
         "startChar": 18,
