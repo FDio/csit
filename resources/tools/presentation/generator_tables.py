@@ -925,6 +925,9 @@ def table_performance_trending_dashboard_html(table, input_data):
                 if "memif" in item:
                     file_name = "container_memif.html"
 
+                elif "srv6" in item:
+                    file_name = "srv6.html"
+
                 elif "vhost" in item:
                     if "l2xcbase" in item or "l2bdbasemaclrn" in item:
                         file_name = "vm_vhost_l2.html"
