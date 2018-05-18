@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2bf0d98e_3d3257e7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Pasted to patch 33.",
+      "parentUuid": "ad8a5335_aa427d4a",
+      "range": {
+        "startLine": 13,
+        "startChar": 54,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baddcd9d_4c914548",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-18T09:16:00Z",
       "side": 1,
       "message": "i.e. NDR, PDR",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 55
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5e4dcff_ec95d4f4",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "I went for \"NDR and two for PDR\", see patch 33.",
+      "parentUuid": "baddcd9d_4c914548",
       "range": {
         "startLine": 50,
         "startChar": 45,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8d967f07_109f4ce4",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3add7964_20fd4e67",
+      "range": {
+        "startLine": 53,
+        "startChar": 70,
+        "endLine": 53,
+        "endChar": 77
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5644b2ab_724215b3",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -82,6 +154,30 @@
       "writtenOn": "2018-05-18T09:16:00Z",
       "side": 1,
       "message": "and as such is associated with the measurement duration and recorded loss.",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 72
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5601525e_0a420a36",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "I went with \"and as such the value is associated with that measurement\u0027s duration and loss.\". See patch 33.",
+      "parentUuid": "5644b2ab_724215b3",
       "range": {
         "startLine": 54,
         "startChar": 6,
@@ -164,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "6e5653f0_297850ed",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "I replaced \"subsequent\" with \"non-initial\". Hopefully I did not edit some \"subsequent\" back since then.\n\nAlso, I went with \"Each phase (except the initial one) ends with all bounds valid.\", see patch 33.",
+      "parentUuid": "45e51ea6_27f7494a",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef344c1f_031f127d",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -210,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "d0042db1_a9b6801f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "I went with \"Start with a large (lower_bound, upper_bound) interval width and geometrically converge towards the width goal (measurement resolution) of the phase. Each phase halves the previous width goal.\"\nSee patch 33.",
+      "parentUuid": "3233df7c_d295a0f1",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 77
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "239580f6_1ca98cc6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -221,6 +365,30 @@
       "writtenOn": "2018-05-17T16:27:21Z",
       "side": 1,
       "message": "Activated",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 38
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e67ef8c2_bb50cf9f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "239580f6_1ca98cc6",
       "range": {
         "startLine": 65,
         "startChar": 29,
@@ -256,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "900d69b7_6c21ae2b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "407e8659_07988886",
+      "range": {
+        "startLine": 66,
+        "startChar": 37,
+        "endLine": 66,
+        "endChar": 44
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3a9e7b3_0ba574fa",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -267,6 +459,30 @@
       "writtenOn": "2018-05-17T16:27:21Z",
       "side": 1,
       "message": "by",
+      "range": {
+        "startLine": 69,
+        "startChar": 47,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf173639_75968035",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "I kept the comma. \"Halving\" would relate to \"measures\", but the algorithm does not measure by halving, it is halving by measuring.\n\nContrast to extrernal search, which really is seraching for a valid bound by doubling (and shifting) the interval.",
+      "parentUuid": "a3a9e7b3_0ba574fa",
       "range": {
         "startLine": 69,
         "startChar": 47,
@@ -302,6 +518,30 @@
     },
     {
       "key": {
+        "uuid": "a606aeb0_8369969e",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "I edited both final and intermediate phase description with respect to measurement resolution, see patch 33.",
+      "parentUuid": "92e4e408_243ce665",
+      "range": {
+        "startLine": 72,
+        "startChar": 21,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "285c216c_0d442988",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -313,6 +553,30 @@
       "writtenOn": "2018-05-18T09:16:00Z",
       "side": 1,
       "message": "binary search duration, while finding multiple drop rates.",
+      "range": {
+        "startLine": 80,
+        "startChar": 36,
+        "endLine": 80,
+        "endChar": 64
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89459bff_151da091",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Pasted to patch 33.",
+      "parentUuid": "285c216c_0d442988",
       "range": {
         "startLine": 80,
         "startChar": 36,
@@ -348,6 +612,30 @@
     },
     {
       "key": {
+        "uuid": "b2fa5c48_3a63f4f3",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45b9b75e_d33e9618",
+      "range": {
+        "startLine": 117,
+        "startChar": 61,
+        "endLine": 117,
+        "endChar": 62
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a33ce0ef_1425a03c",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -359,6 +647,30 @@
       "writtenOn": "2018-05-18T10:15:25Z",
       "side": 1,
       "message": "the",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 13
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c48f6948_71366570",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a33ce0ef_1425a03c",
       "range": {
         "startLine": 118,
         "startChar": 12,
@@ -394,6 +706,30 @@
     },
     {
       "key": {
+        "uuid": "dd42bad0_78be927d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4410c878_4a05f577",
+      "range": {
+        "startLine": 121,
+        "startChar": 15,
+        "endLine": 121,
+        "endChar": 16
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0048d0f_d8580b76",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -405,6 +741,30 @@
       "writtenOn": "2018-05-18T10:15:25Z",
       "side": 1,
       "message": ").",
+      "range": {
+        "startLine": 122,
+        "startChar": 62,
+        "endLine": 122,
+        "endChar": 63
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e58e67a_8adeeeb8",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0048d0f_d8580b76",
       "range": {
         "startLine": 122,
         "startChar": 62,
@@ -440,6 +800,30 @@
     },
     {
       "key": {
+        "uuid": "3b35de50_833436b0",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44b5bc09_106cbd26",
+      "range": {
+        "startLine": 156,
+        "startChar": 6,
+        "endLine": 156,
+        "endChar": 28
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1eba298f_feb4af10",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -463,6 +847,30 @@
     },
     {
       "key": {
+        "uuid": "8a58ca14_6f4503b4",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "I kept the sentence going using semicolon, see patch 33. Not sure what the best edit is.",
+      "parentUuid": "1eba298f_feb4af10",
+      "range": {
+        "startLine": 157,
+        "startChar": 6,
+        "endLine": 157,
+        "endChar": 26
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "993133a4_43b586b6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -474,6 +882,30 @@
       "writtenOn": "2018-05-18T10:15:25Z",
       "side": 1,
       "message": "consecutive",
+      "range": {
+        "startLine": 158,
+        "startChar": 40,
+        "endLine": 158,
+        "endChar": 45
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce00e9df_9404be94",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-18T11:07:36Z",
+      "side": 1,
+      "message": "Kept \"other\" but added \"interpolating\". I could use \"consecutive\" if I move the final phase case to the end.",
+      "parentUuid": "993133a4_43b586b6",
       "range": {
         "startLine": 158,
         "startChar": 40,
