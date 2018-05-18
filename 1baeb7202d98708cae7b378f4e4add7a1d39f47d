@@ -1181,6 +1181,144 @@
     },
     {
       "key": {
+        "uuid": "1ca8b5ad_4c6342f7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:55:39Z",
+      "side": 1,
+      "message": "This is similar to what\u0027s stated earlier, should be removed IMV.",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 300,
+        "endChar": 69
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc97cb61_921909cb",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:55:39Z",
+      "side": 1,
+      "message": "10 runs(?)",
+      "range": {
+        "startLine": 302,
+        "startChar": 32,
+        "endLine": 302,
+        "endChar": 39
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "161f710e_e927dbf9",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:55:39Z",
+      "side": 1,
+      "message": "This is unclear to me.",
+      "range": {
+        "startLine": 321,
+        "startChar": 3,
+        "endLine": 323,
+        "endChar": 47
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dbe9b957_d99ad2e7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:55:39Z",
+      "side": 1,
+      "message": "How is uncertainty calculated here?",
+      "range": {
+        "startLine": 328,
+        "startChar": 13,
+        "endLine": 328,
+        "endChar": 24
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fadb9beb_fd58f7cc",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:55:39Z",
+      "side": 1,
+      "message": "even though",
+      "range": {
+        "startLine": 337,
+        "startChar": 33,
+        "endLine": 337,
+        "endChar": 42
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3e97963_932388a7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:55:39Z",
+      "side": 1,
+      "message": "One exception is 10 second final trial duration, where MDR is almost 50% faster than NDR binary search. Most probably presence of 2 intermediate phases (instead of just 1) hurts there.",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 66
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "789f5618_3289e8a6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
