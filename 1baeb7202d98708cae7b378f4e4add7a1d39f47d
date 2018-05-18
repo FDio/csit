@@ -301,6 +301,236 @@
     },
     {
       "key": {
+        "uuid": "45b9b75e_d33e9618",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "the",
+      "range": {
+        "startLine": 117,
+        "startChar": 61,
+        "endLine": 117,
+        "endChar": 62
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a33ce0ef_1425a03c",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "the",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 13
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4410c878_4a05f577",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "(",
+      "range": {
+        "startLine": 121,
+        "startChar": 15,
+        "endLine": 121,
+        "endChar": 16
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0048d0f_d8580b76",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": ").",
+      "range": {
+        "startLine": 122,
+        "startChar": 62,
+        "endLine": 122,
+        "endChar": 63
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44b5bc09_106cbd26",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "Set to initial_trial_duration",
+      "range": {
+        "startLine": 156,
+        "startChar": 6,
+        "endLine": 156,
+        "endChar": 28
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1eba298f_feb4af10",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "set to final_trial_duration",
+      "range": {
+        "startLine": 157,
+        "startChar": 6,
+        "endLine": 157,
+        "endChar": 26
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "993133a4_43b586b6",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "consecutive",
+      "range": {
+        "startLine": 158,
+        "startChar": 40,
+        "endLine": 158,
+        "endChar": 45
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "091ee1de_081d1acf",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "Set to final_relative_width",
+      "range": {
+        "startLine": 163,
+        "startChar": 6,
+        "endLine": 163,
+        "endChar": 26
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd4264b8_c2241d62",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "doubled",
+      "range": {
+        "startLine": 164,
+        "startChar": 6,
+        "endLine": 164,
+        "endChar": 14
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66195c2b_5a096ffc",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "main loop",
+      "range": {
+        "startLine": 168,
+        "startChar": 51,
+        "endLine": 168,
+        "endChar": 55
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd0f25d3_c3a0ae24",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -348,6 +578,52 @@
     },
     {
       "key": {
+        "uuid": "ee57be86_87dcd6e4",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "d) do: If phase exit conditions are met, go to g).\nElse use the new transmit rate calculation procedure described in point 2.",
+      "range": {
+        "startLine": 172,
+        "startChar": 3,
+        "endLine": 174,
+        "endChar": 51
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf402588_c5d1f961",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "new",
+      "range": {
+        "startLine": 176,
+        "startChar": 47,
+        "endLine": 176,
+        "endChar": 55
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93358513_3cc8a641",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -387,6 +663,75 @@
         "startChar": 30,
         "endLine": 181,
         "endChar": 32
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3eeff3b_05b1c950",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "f) do: Update the bounds of both intervals, based on the new measurement. The actual update rules are numerous, as NDR external search can affect PDR interval and vice versa, but the result agrees with bounds definitions.",
+      "range": {
+        "startLine": 178,
+        "startChar": 3,
+        "endLine": 181,
+        "endChar": 32
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebed5542_613e403f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "updated",
+      "range": {
+        "startLine": 183,
+        "startChar": 11,
+        "endLine": 183,
+        "endChar": 22
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ae4bb07_34df87e4",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:15:25Z",
+      "side": 1,
+      "message": "2. New transmit rate calculation procedure (for 1.d):",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 49
       },
       "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
