@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "ad8a5335_aa427d4a",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T09:16:00Z",
+      "side": 1,
+      "message": "MDR reduces execution time even further by relying on shorter trial durations of intermediate steps, with only the final measurements conducted at the specified final trial duration.",
+      "range": {
+        "startLine": 13,
+        "startChar": 54,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baddcd9d_4c914548",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T09:16:00Z",
+      "side": 1,
+      "message": "i.e. NDR, PDR",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 55
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3add7964_20fd4e67",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -18,6 +64,29 @@
         "startChar": 70,
         "endLine": 53,
         "endChar": 77
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5644b2ab_724215b3",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T09:16:00Z",
+      "side": 1,
+      "message": "and as such is associated with the measurement duration and recorded loss.",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 72
       },
       "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -48,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "2f4e2b55_844fab55",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T09:16:00Z",
+      "side": 1,
+      "message": "All intermediate phases end with valid bounds.",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef344c1f_031f127d",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
@@ -59,6 +151,29 @@
       "writtenOn": "2018-05-17T16:27:21Z",
       "side": 1,
       "message": "Why can\u0027t we use reverse geometric convergence, vs. an arbitrary \"large\" interval width?",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 77
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3233df7c_d295a0f1",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T09:16:00Z",
+      "side": 1,
+      "message": "Start with a large (lower_bound, upper_bound) interval width and geometrically converge towards the final interval width, with the width halved in each consecutive phase.",
       "range": {
         "startLine": 59,
         "startChar": 4,
@@ -133,6 +248,52 @@
         "startChar": 47,
         "endLine": 69,
         "endChar": 48
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92e4e408_243ce665",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T09:16:00Z",
+      "side": 1,
+      "message": "that determines measurement resolution.",
+      "range": {
+        "startLine": 72,
+        "startChar": 21,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "285c216c_0d442988",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T09:16:00Z",
+      "side": 1,
+      "message": "binary search duration, while finding multiple drop rates.",
+      "range": {
+        "startLine": 80,
+        "startChar": 36,
+        "endLine": 80,
+        "endChar": 64
       },
       "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
