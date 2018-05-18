@@ -1088,6 +1088,75 @@
     },
     {
       "key": {
+        "uuid": "1892c7f1_62e6b851",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:35:14Z",
+      "side": 1,
+      "message": "Why do we need this?",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 36
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "825af17c_803d138b",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:35:14Z",
+      "side": 1,
+      "message": "Following statement contradicts this paragraph, so suggest to remove it.",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 33
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e1053c2_5b74698f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 32
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-18T10:35:14Z",
+      "side": 1,
+      "message": "Fairness of the following comparison has been achieved by\nsetting MDR final relative width to values causing the width to match\nthe binary NDR/PDR result. Each search algorithm has been run with three different (final) trial durations: 10s, 30s and 60s.",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 42
+      },
+      "revId": "1baeb7202d98708cae7b378f4e4add7a1d39f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "789f5618_3289e8a6",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 32
