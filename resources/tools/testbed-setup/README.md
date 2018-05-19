@@ -80,12 +80,14 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
 
 - set CIMC address
 - set CIMC username, password and hostname
+- set IPMI address
+- set IPMI username, password and hostname
 
 ### Bootstrap the host
 
-From PXE boostrap server:
+Optional: From PXE boostrap server in case of installing Haswell
 
-  - `cd ~testuser/host-setup/cimc`
+  - `cd resources/tools/testbed-setup/cimc`
   - Initialize args.ip: Power-Off, reset BIOS defaults, Enable console redir, get LOM MAC addr
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -i`
   - Adjust BIOS settings
@@ -94,7 +96,7 @@ From PXE boostrap server:
   - Reboot server with boot from PXE (restart immediately)
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -pxe`
 
-While Ubuntu install is running:
+Optional: If RAID is not created on Haswells. Execute while Ubuntu install is running
 
   - create RAID array. Reboot if needed.
       - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d --wipe`
@@ -104,34 +106,17 @@ While Ubuntu install is running:
   - Set the next boot from HDD (without restart)
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -hdd`
 
+Optional: If installing Skylake machine, connect to IPMI and boot from PXE via F12
+
 When installation is finished:
 
-  - `ssh-copy-id 10.30.51.x`
-  - `cd ~testuser/host-setup/playbooks`
-  - edit /etc/ansible/hosts; add the hosts you are installing. *REMOVE ANY HOSTS YOU ARE NOT CURRENTLY INSTALLING*.
-
-    Example for physical testbed hosts:
-    ~~~
-    [tg]
-    10.30.51.24 hostname=t3-tg1 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
-
-    [sut]
-    10.30.51.25 hostname=t3-sut1 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
-    10.30.51.26 hostname=t3-sut2 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
-    ~~~
-
-    Example for VIRL hosts -- use the "virl" tag and specify the flat network start and end addresses:
-
-    ~~~
-    [virl]
-    10.30.51.28 hostname=t4-virl1 virl_l2_start=10.30.52.2 virl_l2_end=10.30.52.253 virl_l2_network=10.30.52.0/24 virl_l2_ip=10.30.52.254 virl_public_port=eth0
-    ~~~
-
-  - `ansible-playbook --ask-sudo-pass 01-host-setup.yaml`
-  - `ansible-playbook reboot.yaml`
+  - Copy ssh keys for no pass access: `ssh-copy-id 10.30.51.x`
+  - Clone CSIT actual repo: `git clone https://gerrit.fd.io/r/csit`
+  - Go to ansible directory: `cd csit/resources/tools/testbed-setup/ansible`
+  - Edit production file and uncomment servers that are supposed to be installed: `ansible-playbook --ask-become-pass --inventory production site.yaml --list-hosts`
+  - Run ansible on selected hosts: `ansible-playbook --ask-become-pass --inventory production site.yaml`
 
 For non-VIRL hosts, stop here.
-
 
 ### VIRL installation
 

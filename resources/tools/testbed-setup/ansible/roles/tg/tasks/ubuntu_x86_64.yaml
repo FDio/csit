@@ -1,0 +1,9 @@
+---
+# file: roles/tg/tasks/ubuntu_x86_64.yaml
+
+- name: Install Unzip
+  apt:
+    name: 'unzip'
+    state: 'present'
+    update_cache: True
+  tags: install-unzip

@@ -1,0 +1,46 @@
+---
+# file: roles/common/tasks/main.yaml
+
+- name: Ubuntu specific
+  import_tasks: ubuntu_x86_64.yaml
+  when: ansible_distribution|lower == 'ubuntu' and ansible_machine == 'x86_64'
+
+- name: Set hostname
+  hostname:
+      name: '{{ hostname }}'
+  tags: set-hostname
+
+- name: Ensure hostname is in /etc/hosts
+  lineinfile:
+    path: '/etc/hosts'
+    regexp: '^{{ ansible_default_ipv4.address }}.+$'
+    line: '{{ ansible_default_ipv4.address }} {{ hostname }}.linuxfoundation.org'
+  tags: set-hostname
+
+- name: Set sudoers
+  lineinfile:
+    path: '/etc/sudoers'
+    state: 'present'
+    regexp: '^%admin ALL='
+    line: '%admin ALL=(ALL) ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+  tags: set-sudoers
+
+- name: Set sudoers
+  lineinfile:
+    path: '/etc/sudoers'
+    state: 'present'
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL:ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+  tags: set-sudoers
+
+- name: Copy grub file
+  template:
+   src: 'files/grub'
+   dest: '/etc/default/grub'
+   owner: 'root'
+   group: 'root'
+   mode: '644'
+  notify: ['Update GRUB']
+  tags: copy-grub

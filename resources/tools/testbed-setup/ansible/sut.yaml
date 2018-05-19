@@ -1,0 +1,11 @@
+---
+# file: sut.yaml
+
+- hosts: sut
+  remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - common
+    - sut
+    - tg_sut

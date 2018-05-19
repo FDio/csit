@@ -1,0 +1,4 @@
+---
+# file: host_vars/10.30.51.48.yaml
+
+hostname: "s11-t31-tg1"

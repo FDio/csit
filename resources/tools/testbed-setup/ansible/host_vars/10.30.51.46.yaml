@@ -1,0 +1,4 @@
+---
+# file: host_vars/10.30.51.46.yaml
+
+hostname: "s9-t31-sut1"
