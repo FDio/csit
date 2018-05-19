@@ -1,0 +1,4 @@
+---
+# file: host_vars/10.30.51.20.yaml
+
+hostname: "t2-tg1"

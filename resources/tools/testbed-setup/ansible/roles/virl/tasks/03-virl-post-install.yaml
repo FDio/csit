@@ -1,8 +1,4 @@
 ---
-- hosts: virl
-  remote_user: testuser
-  sudo: yes
-  tasks:
   - name: Add jenkins-in user
     user: name=jenkins-in shell=/bin/bash comment="Jenkins user"
   - name: Add jenkins-in user to sudoers
@@ -29,49 +25,56 @@
     lineinfile: dest=/etc/ssh/sshd_config state=present regexp='PermitUserEnvironment.*' line='PermitUserEnvironment yes'
   - name: Restart SSH daemon
     service: name=ssh state=restarted
-- hosts: virl
-  remote_user: jenkins-in
-  tasks:
   - name: clone csit git repository
     git: repo=https://gerrit.fd.io/r/csit
          dest=/home/jenkins-in/git/csit
+    become: jenkins-in
   - name: Link testcase-infra directory
     command: ln -sf /home/jenkins-in/git/csit/resources/tools/virl /home/jenkins-in/testcase-infra
     args:
       creates: /home/jenkins-in/testcase-infra
+    become: jenkins-in
   - name: Create bin directory
     file: path=/home/jenkins-in/bin state=directory mode=0755
+    become: jenkins-in
   - name: Link start-testcase executable
     command: ln -sf /home/jenkins-in/testcase-infra/bin/start-testcase /home/jenkins-in/bin/start-testcase
     args:
       creates: /home/jenkins-in/bin/start-testcase
+    become: jenkins-in
   - name: Link stop-testcase executable
     command: ln -sf /home/jenkins-in/testcase-infra/bin/stop-testcase /home/jenkins-in/bin/stop-testcase
     args:
       creates: /home/jenkins-in/bin/stop-testcase
+    become: jenkins-in
   - name: Link kill-idle-testcases executable
     command: ln -sf /home/jenkins-in/testcase-infra/bin/kill-idle-testcases /home/jenkins-in/bin/kill-idle-testcases
     args:
       creates: /home/jenkins-in/bin/kill-idle-testcases
+    become: jenkins-in
   - name: Copy SSH private key
     copy: src=files/virl/id_rsa_virl dest=/home/jenkins-in/.ssh/id_rsa_virl mode=600
+    become: jenkins-in
   - name: Copy SSH public key
     copy: src=files/virl/id_rsa_virl.pub dest=/home/jenkins-in/.ssh/id_rsa_virl.pub mode=644
+    become: jenkins-in
   - name: Copy SSH environment
     copy: src=files/virl/ssh_environment dest=/home/jenkins-in/.ssh/environment mode=644
+    become: jenkins-in
   - name: Add ~/bin to path
     lineinfile: dest=/home/jenkins-in/.bashrc state=present line='PATH=${HOME}/bin:$PATH'
+    become: jenkins-in
   - name: Update own IP address in start script
     shell: sed -i /home/jenkins-in/testcase-infra/bin/start-testcase -e 's/10.30.51.28/{{ ansible_default_ipv4["address"] }}/'
+    become: jenkins-in
   - name: Add authorized key
     lineinfile: dest=/home/jenkins-in/.ssh/authorized_keys line='ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD4gderzsZyoxHULjuvPHoJuKnkaGrykqtuoqs/k1/jUdxitPoY5eX2cVYqww7MiUif7zLsiXbt5mHtyxAYCluDxAuIcy1xgSZY3MpmmSqDie4A/FdVfCUqCcpf3TZKsRP0an1MNrKIe0JFZV+uU889IDRQRdboGMs3+4cn5b9fOutpv71qwFVrTm9PZbqfQonrrN8Jp4Mz3XaZDpK22xwDAWhYOZ0eV6CJWquUgbYAHE6/HHMvd0zeJKaWZCXO/1tOGOj6cjgoViHqbnCtmYCjmv/ir0IglzbUdWdOqQY5YkhnPonveV48lVKrmBipqgbDezAUQD8wOQ7HttpYpKgt jenkins-in@tb4-virl'
+    become: jenkins-in
 # All of the below will fail if VIRL user/project already exist
-- hosts: virl
-  remote_user: virl
-  tasks:
   - name: Create VIRL project
     shell: virl_uwm_client project-edit --name tb4-virl --enabled True  -i 400 -r 1024000 -c 500
     ignore_errors: true
+    become: virl
 #  - name: Delete VIRL project user
 #    shell: virl_uwm_client user-delete --name tb4-virl
 #    ignore_errors: true
@@ -81,3 +84,4 @@
   - name: Create VPP flavor
     shell: virl_uwm_client flavor-create --name vPP --ram 4096 --vcpus 2 --disk 0
     ignore_errors: true
+    become: virl

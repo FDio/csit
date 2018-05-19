@@ -1,0 +1,11 @@
+---
+# file: tg.yaml
+
+- hosts: tg
+  remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - common
+    - tg
+    - tg_sut

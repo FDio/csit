@@ -1,0 +1,90 @@
+---
+# file: roles/sut/tasks/ubuntu_x86_64.yaml
+
+- name: Install DKMS
+  apt:
+    name: 'dkms'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-dkms
+
+- name: Install pkg-config
+  apt:
+    name: 'pkg-config'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-pkg-config
+
+- name: Install libglib2.0-dev
+  apt:
+    name: 'libglib2.0-dev'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-libglib2.0-dev
+
+- name: Install autoconf
+  apt:
+    name: 'autoconf'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-autoconf
+
+- name: Install libtool
+  apt:
+    name: 'libtool'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-libtool
+
+- name: Install screen
+  apt:
+    name: 'screen'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-screen
+
+- name: Install libmbedcrypto0
+  apt:
+    name: 'libmbedcrypto0'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-libmbedcrypto0
+
+- name: Install libmbedtls10
+  apt:
+    name: 'libmbedtls10'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-libmbedtls10
+
+- name: Install libmbedx509-0
+  apt:
+    name: 'libmbedx509-0'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-libmbedx509-0
+
+- name: Install lxc
+  apt:
+    name: 'lxc'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-lxc
+
+- name: Install java
+  apt:
+    name: 'openjdk-8-jdk'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-java
