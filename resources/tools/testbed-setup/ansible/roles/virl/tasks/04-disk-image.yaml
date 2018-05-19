@@ -1,21 +1,19 @@
 ---
-- hosts: virl
-  remote_user: virl
-  tasks:
   - name: Create server image directory
     file: path=/home/virl/virl-server-image state=directory mode=0755
+    become: virl
   - name: Copy UBUNTU server image
     copy: src=/home/virl/virl-server-image/packer-csit-ubuntu-16.04.1_2017-10-21_2.0-qemu dest=/home/virl/virl-server-image/packer-csit-ubuntu-16.04.1_2017-10-21_2.0-qemu owner=virl group=virl mode=644
+    become: virl
   - name: Copy CENTOS server image
     copy: src=/home/virl/virl-server-image/packer-csit-centos-7.3-1611_2017-02-23_1.4-qemu dest=/home/virl/virl-server-image/packer-csit-centos-7.3-1611_2017-02-23_1.4-qemu owner=virl group=virl mode=644
+    become: virl
   - name: Import UBUNTU server image into glance
     shell: virl_uwm_client image-create --subtype server --version csit-ubuntu-16.04.1_2017-10-21_2.0 --image-on-server /home/virl/virl-server-image/packer-csit-ubuntu-16.04.1_2017-10-21_2.0-qemu
+    become: virl
   - name: Import CENTOS server image into glance
     shell: virl_uwm_client image-create --subtype server --version csit-centos-7.3-1611_2017-02-23_1.4 --image-on-server /home/virl/virl-server-image/packer-csit-centos-7.3-1611_2017-02-23_1.4-qemu
-- hosts: virl
-  remote_user: testuser
-  sudo: yes
-  tasks:
+    become: virl
   - name: Create common directory
     file: path=/nfs/common state=directory mode=0755
   - name: Create Nested VM directory

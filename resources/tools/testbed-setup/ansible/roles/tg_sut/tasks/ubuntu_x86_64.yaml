@@ -1,0 +1,182 @@
+---
+# file: roles/tg_sut/tasks/ubuntu_x86_64.yaml
+
+- name: Install python-dev
+  apt:
+    name: 'python-dev'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-python-dev
+
+- name: Install python-virtualenv
+  apt:
+    name: 'python-virtualenv'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-python-virtualenv
+
+- name: Install python pip
+  apt:
+    name: 'python-pip'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-python-pip
+
+- name: Install libpcap-dev
+  apt:
+    name: 'libpcap-dev'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-libpcap-dev
+
+- name: Install cpufrequtils
+  apt:
+    name: 'cpufrequtils'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-cpufrequtils
+
+- name: Install cgroup-support
+  apt:
+    name: 'cgroup-bin'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-cgroup-support
+
+- name: Install zlib1g-dev
+  apt:
+    name: 'zlib1g-dev'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-zlib1g-dev
+
+- name: Install libnuma-dev
+  apt:
+    name: 'libnuma-dev'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-libnuma-dev
+
+- name: Install Docker and role dependencies
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    install_recommends: False
+  with_items:
+    - "apt-transport-https"
+    - "ca-certificates"
+    - "software-properties-common"
+    - "cron"
+  tags: docker
+
+- name: Get upstream APT GPG key
+  apt_key:
+    id: "{{ docker_apt_key }}"
+    keyserver: "{{ ansible_local.core.keyserver
+                   if (ansible_local|d() and ansible_local.core|d() and
+                       ansible_local.core.keyserver)
+                   else 'hkp://pool.sks-keyservers.net' }}"
+    state: "present"
+  tags: docker
+
+- name: Configure upstream APT repository
+  apt_repository:
+    repo: "{{ docker_repository }}"
+    state: "present"
+    update_cache: True
+  tags: docker
+
+- name: Install Docker
+  apt:
+    name: "docker-{{ docker_edition }}={{ docker_apt_package_name }}"
+    state: "present"
+    update_cache: True
+    install_recommends: False
+    cache_valid_time: "{{ apt_cache_time }}"
+  tags: docker
+
+- name: Remove Upstart config file
+  file:
+    path: "/etc/default/docker"
+    state: "absent"
+  tags: docker
+
+- name: Ensure systemd directory exists
+  file:
+    path: "/etc/systemd/system"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  tags: docker
+
+- name: Generate systemd unit file
+  template:
+    src: "files/docker.service.j2"
+    dest: "/etc/systemd/system/docker.service"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  register: docker_register_systemd_service
+  tags: docker
+
+- name: Reload systemd daemon
+  command: "systemctl daemon-reload"
+  notify: ["Restart Docker"]
+  when: (docker_register_systemd_service and
+         docker_register_systemd_service | changed)
+  tags: docker
+
+- name: Add specific users to "docker" group
+  user:
+    name: "{{ item }}"
+    groups: "docker"
+    append: True
+  with_items: "{{ docker_users }}"
+  when: docker_users
+  tags: docker
+
+- name: Get upstream APT GPG key
+  apt_key:
+    id: "{{ kubernetes_apt_key }}"
+    keyserver: "{{ ansible_local.core.keyserver
+                   if (ansible_local|d() and ansible_local.core|d() and
+                       ansible_local.core.keyserver)
+                   else 'hkp://pool.sks-keyservers.net' }}"
+    state: "present"
+  tags: kubernetes
+
+- name: Configure upstream APT repository
+  apt_repository:
+    repo: "{{ kubernetes_repository }}"
+    state: "present"
+    update_cache: True
+  tags: kubernetes
+
+- name: Install kubeadm
+  apt:
+    name: "kubeadm={{ kubernetes_apt_package_name }}"
+    state: "present"
+    update_cache: True
+    install_recommends: False
+    cache_valid_time: "{{ apt_cache_time }}"
+  tags: kubernetes
+
+- name: Install kubectl
+  apt:
+    name: "kubectl={{ kubernetes_apt_package_name }}"
+    state: "present"
+    update_cache: True
+    install_recommends: False
+    cache_valid_time: "{{ apt_cache_time }}"
+  tags: kubernetes
+
+- name: Install kubelet
+  apt:
+    name: "kubelet={{ kubernetes_apt_package_name }}"
+    state: "present"
+    update_cache: True
+    install_recommends: False
+    cache_valid_time: "{{ apt_cache_time }}"
+  tags: kubernetes
+

@@ -1,0 +1,50 @@
+---
+# file: roles/common/tasks/ubuntu_x86_64.yaml
+
+- name: Copy apt sources file
+  template:
+    src: 'files/apt-sources.list'
+    dest: '/etc/apt/sources.list'
+  tags: apt-sources
+
+- name: Install python-apt
+  apt:
+    name: 'python-apt'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-python-apt
+
+- name: Install git
+  apt:
+    name: 'git'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-git
+
+- name: Install crudini
+  apt:
+    name: 'crudini'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-crudini
+
+- name: Install expect
+  apt:
+    name: 'expect'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-expect
+
+- name: Install socat
+  apt:
+    name: 'socat'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-socat
+
+- name: Install qemu
+  apt:
+    name: 'qemu-system-x86'
+    state: 'present'
+    update_cache: True
+  tags: apt-install-qemu
