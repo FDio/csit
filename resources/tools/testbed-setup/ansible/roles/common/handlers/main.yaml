@@ -1,0 +1,6 @@
+---
+# file: roles/common/handlers/main.yml
+
+- name: Update GRUB
+  command: update-grub
+  tags: grub

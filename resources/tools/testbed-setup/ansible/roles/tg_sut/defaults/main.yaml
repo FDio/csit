@@ -1,0 +1,30 @@
+---
+docker_edition: "ce"
+docker_channel: "edge"
+
+docker_version: "18.03.1"
+docker_install_docker_compose: True
+docker_compose_version: "1.21.0"
+
+docker_users: ['testuser']
+
+docker_daemon_options: []
+# Can be used to set environment variables for the Docker daemon, such as:
+# docker_daemon_environment:
+#   - "HTTP_PROXY=http://proxy.example.com:3128/"
+#   - "HTTPS_PROXY=http://proxy.example.com:3128/"
+#   - "NO_PROXY=localhost,127.0.0.1"
+docker_daemon_environment: []
+
+docker_apt_key: "9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
+docker_repository: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ docker_channel }}"
+docker_apt_package_name: "{{ docker_version }}~{{ docker_edition }}-0~{{ ansible_distribution | lower }}"
+
+apt_cache_time: 86400
+
+kubernetes_channel: "main"
+kubernetes_version: "1.9.7"
+
+kubernetes_apt_key: "54A647F9048D5688D7DA2ABE6A030B21BA07F4FB"
+kubernetes_repository: "deb http://apt.kubernetes.io/ kubernetes-{{ ansible_distribution_release }} {{ kubernetes_channel }}"
+kubernetes_apt_package_name: "{{ kubernetes_version }}-00"

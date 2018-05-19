@@ -107,28 +107,10 @@ While Ubuntu install is running:
 When installation is finished:
 
   - `ssh-copy-id 10.30.51.x`
-  - `cd ~testuser/host-setup/playbooks`
-  - edit /etc/ansible/hosts; add the hosts you are installing. *REMOVE ANY HOSTS YOU ARE NOT CURRENTLY INSTALLING*.
-
-    Example for physical testbed hosts:
-    ~~~
-    [tg]
-    10.30.51.24 hostname=t3-tg1 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
-
-    [sut]
-    10.30.51.25 hostname=t3-sut1 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
-    10.30.51.26 hostname=t3-sut2 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
-    ~~~
-
-    Example for VIRL hosts -- use the "virl" tag and specify the flat network start and end addresses:
-
-    ~~~
-    [virl]
-    10.30.51.28 hostname=t4-virl1 virl_l2_start=10.30.52.2 virl_l2_end=10.30.52.253 virl_l2_network=10.30.52.0/24 virl_l2_ip=10.30.52.254 virl_public_port=eth0
-    ~~~
-
-  - `ansible-playbook --ask-sudo-pass 01-host-setup.yaml`
-  - `ansible-playbook reboot.yaml`
+  - `cd ~testuser/host-setup/ansible`
+  - edit production file and uncomment servers that are supposed to be installed
+  - `ansible-playbook --ask-pass --inventory production site.yaml --list-hosts`
+  - `ansible-playbook --ask-pass --inventory production site.yaml`
 
 For non-VIRL hosts, stop here.
 
