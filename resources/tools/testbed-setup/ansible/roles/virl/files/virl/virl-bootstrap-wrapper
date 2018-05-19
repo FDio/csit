@@ -1,0 +1,58 @@
+#!/usr/bin/expect
+
+if ![ string equal $::env(USER) "root"] {
+  puts "Please re-run this script as root."
+  exit 1
+}
+
+log_file /tmp/virl-bootstrap.log
+set timeout 3600
+
+spawn  ./virl-bootstrap.py
+expect "Which step are you on"
+send "1\r"
+
+expect "Salt master"
+send "vsm-md.virl.info\r"
+
+expect "Which step are you on"
+send "2\r"
+
+expect "Salt id"
+send "{{ hostname }}\r"
+expect "Salt domain name"
+send "linuxfoundation.org\r"
+
+expect "Which step are you on"
+send "3\r"
+
+expect "System hostname"
+send "{{ hostname }}\r"
+expect "System Domain name"
+send "linuxfoundation.org\r"
+
+expect "Which step are you on"
+send "4\r"
+
+puts "*******************STEP 6*************************************************************************************************************************************************"
+expect "Which step are you on"
+send "6\r"
+expect "Salt installed"
+
+puts "*******************STEP 8*************************************************************************************************************************************************"
+expect "Which step are you on"
+send "8\r"
+
+expect "True"
+
+puts "*******************STEP 9*************************************************************************************************************************************************"
+expect "Which step are you on"
+send "9\r"
+
+expect "Failed:     0"
+
+puts "*******************STEP 11*************************************************************************************************************************************************"
+expect "Which step are you on"
+send "11\r"
+
+expect eof
