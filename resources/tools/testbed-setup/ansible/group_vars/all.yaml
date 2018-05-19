@@ -1,0 +1,4 @@
+---
+# file: group_vars/all.yaml
+
+ansible_python_interpreter: "/usr/bin/python2.7"
