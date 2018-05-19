@@ -1,0 +1,79 @@
+# change the minimum size of the hugepage pool.
+vm.nr_hugepages=4096
+
+# this file contains the maximum number of memory map areas a process
+# may have. memory map areas are used as a side-effect of calling
+# malloc, directly by mmap and mprotect, and also when loading shared
+# libraries.
+#
+# while most applications need less than a thousand maps, certain
+# programs, particularly malloc debuggers, may consume lots of them,
+# e.g., up to one or two maps per allocation.
+# must be greater than or equal to (2 * vm.nr_hugepages).
+vm.max_map_count=200000
+
+# hugetlb_shm_group contains group id that is allowed to create sysv
+# shared memory segment using hugetlb page.
+vm.hugetlb_shm_group=0
+
+# this control is used to define how aggressive the kernel will swap
+# memory pages.  higher values will increase agressiveness, lower values
+# decrease the amount of swap.  a value of 0 instructs the kernel not to
+# initiate swap until the amount of free and file-backed pages is less
+# than the high water mark in a zone.
+vm.swappiness=0
+
+# this parameter can be used to control the nmi watchdog
+# (i.e. the hard lockup detector) on x86 systems.
+#
+#    0 - disable the hard lockup detector
+#    1 - enable the hard lockup detector
+#
+# the hard lockup detector monitors each cpu for its ability to respond to
+# timer interrupts. the mechanism utilizes cpu performance counter registers
+# that are programmed to generate non-maskable interrupts (nmis) periodically
+# while a cpu is busy. hence, the alternative name 'nmi watchdog'.
+#
+# the nmi watchdog is disabled by default if the kernel is running as a guest
+# in a kvm virtual machine. this default can be overridden by adding
+#kernel. nmi_watchdog=1
+
+# shared memory max must be greator or equal to the total size of hugepages.
+# for 2mb pages, totalhugepagesize = vm.nr_hugepages * 2 * 1024 * 1024
+# if the existing kernel.shmmax setting  (cat /sys/proc/kernel/shmmax)
+# is greater than the calculated totalhugepagesize then set this parameter
+# to current shmmax value.
+kernel.shmmax=8589934592
+
+# this option can be used to select the type of process address
+# space randomization that is used in the system, for architectures
+# that support this feature.
+# 0 - turn the process address space randomization off.  this is the
+#     default for architectures that do not support this feature anyways,
+#     and kernels that are booted with the "norandmaps" parameter.
+kernel.randomize_va_space=0
+
+# this parameter can be used to control the soft lockup detector.
+#
+#    0 - disable the soft lockup detector
+#    1 - enable the soft lockup detector
+#
+# the soft lockup detector monitors cpus for threads that are hogging the cpus
+# without rescheduling voluntarily, and thus prevent the 'watchdog/n' threads
+# from running. the mechanism depends on the cpus ability to respond to timer
+# interrupts which are needed for the 'watchdog/n' threads to be woken up by
+# the watchdog timer function, otherwise the nmi watchdog - if enabled - can
+# detect a hard lockup condition.
+#kernel.soft_watchdog=0
+
+# this value can be used to control on which cpus the watchdog may run.
+# the default cpumask is all possible cores, but if no_hz_full is
+# enabled in the kernel config, and cores are specified with the
+# nohz_full= boot argument, those cores are excluded by default.
+# offline cores can be included in this mask, and if the core is later
+# brought online, the watchdog will be started based on the mask value.
+#
+# typically this value would only be touched in the nohz_full case
+# to re-enable cores that by default were not running the watchdog,
+# if a kernel lockup was suspected on those cores.
+kernel.watchdog_cpumask=0,18

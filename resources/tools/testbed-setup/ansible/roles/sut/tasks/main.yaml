@@ -1,0 +1,13 @@
+---
+# file: roles/common/tasks/main.yaml
+
+- name: Ubuntu specific
+  import_tasks: ubuntu_x86_64.yaml
+  when: ansible_distribution|lower == 'ubuntu'
+
+- name: Disable 80-vpp.conf
+  file:
+    src: /dev/null
+    dest: /etc/sysctl.d/80-vpp.conf
+    state: link
+  tags: 80-vpp

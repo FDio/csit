@@ -1,0 +1,6 @@
+---
+# file: roles/common/tasks/main.yaml
+
+- name: Ubuntu specific
+  import_tasks: ubuntu_x86_64.yaml
+  when: ansible_distribution|lower == 'ubuntu'

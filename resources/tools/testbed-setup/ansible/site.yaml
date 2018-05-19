@@ -1,0 +1,11 @@
+---
+# file: site.yaml
+
+- import_playbook: tg.yaml
+  tags: tg
+
+- import_playbook: sut.yaml
+  tags: sut
+
+- import_playbook: virl.yaml
+  tags: virl
