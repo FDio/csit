@@ -1,0 +1,68 @@
+---
+# file: roles/tg_sut/tasks/main.yaml
+
+- name: Ubuntu specific
+  import_tasks: ubuntu_x86_64.yaml
+  when: ansible_distribution|lower == 'ubuntu' and ansible_machine == 'x86_64'
+
+- name: Copy interfaces file
+  template:
+    src: 'files/interfaces_physical'
+    dest: '/etc/network/interfaces'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  tags: copy-interface-file
+
+- name: Copy sysctl file
+  template:
+    src: 'files/90-csit'
+    dest: '/etc/sysctl.d/90-csit.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  tags: copy-90-csit
+
+- name: Copy IRQ load balancing file
+  copy:
+    src: 'files/irqbalance'
+    dest: '/etc/default/irqbalance'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  tags: copy-irq
+
+- name: Copy cpufrequtils file
+  copy:
+    src: 'files/cpufrequtils'
+    dest: '/etc/default/cpufrequtils'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  tags: copy-cpufrequtils
+
+- name: Copy Python requirements file
+  copy:
+    src: 'files/requirements.txt'
+    dest: '/tmp/requirements.txt'
+  tags: copy-pip
+
+- name: Set isolcpus and pstate parameter
+  lineinfile:
+    path: '/etc/default/grub'
+    state: 'present'
+    regexp: '^GRUB_CMDLINE_LINUX='
+    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} intel_pstate=disable"'
+  notify: ['Update GRUB']
+  tags: set-grub
+
+- name: Set ondemand service to disable
+  service:
+    name: 'ondemand'
+    enabled: 'no'
+  tags: set-ondemand
+
+- name: Install PIP requirements
+  pip:
+    requirements: '/tmp/requirements.txt'
+  tags: install-pip
