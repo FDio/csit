@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "695794fa_bbd9fe5d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-21T15:28:04Z",
+      "side": 1,
+      "message": "Removal of this empty line had no effect in patch 1, so putting it back to resemble the rendered document more closely.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 0
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b67fa591_a663e27d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-21T15:28:04Z",
+      "side": 1,
+      "message": "This does work.",
+      "range": {
+        "startLine": 200,
+        "startChar": 3,
+        "endLine": 200,
+        "endChar": 4
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9e32961_ed0fb097",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-21T15:28:04Z",
+      "side": 1,
+      "message": "This creates the same item symbol (contrast to Overview, which creates different symbol at each level).\nEh, good enough for me.",
+      "range": {
+        "startLine": 202,
+        "startChar": 5,
+        "endLine": 202,
+        "endChar": 6
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
