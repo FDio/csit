@@ -178,8 +178,6 @@ class DUTSetup(object):
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.
                              format(Constants.REMOTE_FW_DIR,
                                     Constants.RESOURCES_LIB_SH), timeout=120)
-        logger.trace(stdout)
-        logger.trace(stderr)
         if int(ret_code) != 0:
             raise RuntimeError('DUT test setup script failed at node {name}'.
                                format(name=node['host']))
