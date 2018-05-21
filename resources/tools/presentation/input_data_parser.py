@@ -18,10 +18,11 @@
 - provide access to the data.
 """
 
+import multiprocessing
+import os
 import re
 import pandas as pd
 import logging
-import xml.etree.ElementTree as ET
 
 from robot.api import ExecutionResult, ResultVisitor
 from robot import errors
@@ -698,7 +699,7 @@ class InputData(object):
         self._cfg = spec
 
         # Data store:
-        self._input_data = None
+        self._input_data = pd.Series()
 
     @property
     def data(self):
@@ -749,14 +750,16 @@ class InputData(object):
         return self.data[job][build]["tests"]
 
     @staticmethod
-    def _parse_tests(job, build):
+    def _parse_tests(job, build, log):
         """Process data from robot output.xml file and return JSON structured
         data.
 
         :param job: The name of job which build output data will be processed.
         :param build: The build which output data will be processed.
+        :param log: List of log messages.
         :type job: str
         :type build: dict
+        :type log: list of tuples (severity, msg)
         :returns: JSON data structure.
         :rtype: dict
         """
@@ -770,54 +773,129 @@ class InputData(object):
             try:
                 result = ExecutionResult(data_file)
             except errors.DataError as err:
-                logging.error("Error occurred while parsing output.xml: {0}".
-                              format(err))
+                log.append(("ERROR", "Error occurred while parsing output.xml: "
+                                     "{0}".format(err)))
                 return None
         checker = ExecutionChecker(metadata)
         result.visit(checker)
 
         return checker.data
 
-    def download_and_parse_data(self):
+    def _download_and_parse_build(self, pid, data_queue, job, build, repeat):
+        """Download and parse the input data file.
+
+        :param pid: PID of the process executing this method.
+        :param data_queue: Shared memory between processes. Queue which keeps
+            the result data. This data is then read by the main process and used
+            in further processing.
+        :param job: Name of the Jenkins job which generated the processed input
+            file.
+        :param build: Information about the Jenkins build which generated the
+            processed input file.
+        :param repeat: Repeat the download specified number of times if not
+            successful.
+        :type pid: int
+        :type data_queue: multiprocessing.Manager().Queue()
+        :type job: str
+        :type build: dict
+        :type repeat: int
+        """
+
+        logs = list()
+
+        logging.info("  Processing the job/build: {0}: {1}".
+                     format(job, build["build"]))
+
+        logs.append(("INFO", "  Processing the job/build: {0}: {1}".
+                     format(job, build["build"])))
+
+        state = "failed"
+        success = False
+        data = None
+        do_repeat = repeat
+        while do_repeat:
+            success = download_and_unzip_data_file(self._cfg, job, build, pid,
+                                                   logs)
+            if success:
+                break
+            do_repeat -= 1
+        if not success:
+            logs.append(("ERROR", "It is not possible to download the input "
+                                  "data file from the job '{job}', build "
+                                  "'{build}', or it is damaged. Skipped.".
+                         format(job=job, build=build["build"])))
+        if success:
+            logs.append(("INFO", "  Processing data from the build '{0}' ...".
+                         format(build["build"])))
+            data = InputData._parse_tests(job, build, logs)
+            if data is None:
+                logs.append(("ERROR", "Input data file from the job '{job}', "
+                                      "build '{build}' is damaged. Skipped.".
+                             format(job=job, build=build["build"])))
+            else:
+                state = "processed"
+
+            try:
+                remove(build["file-name"])
+            except OSError as err:
+                logs.append(("ERROR", "Cannot remove the file '{0}': {1}".
+                             format(build["file-name"], err)))
+        logs.append(("INFO", "  Done."))
+
+        result = {
+            "data": data,
+            "state": state,
+            "job": job,
+            "build": build,
+            "logs": logs
+        }
+        data_queue.put(result)
+
+    def download_and_parse_data(self, repeat=1):
         """Download the input data files, parse input data from input files and
         store in pandas' Series.
+
+        :param repeat: Repeat the download specified number of times if not
+            successful.
+        :type repeat: int
         """
 
         logging.info("Downloading and parsing input files ...")
 
-        job_data = dict()
+        work_queue = multiprocessing.JoinableQueue()
+
+        manager = multiprocessing.Manager()
+
+        data_queue = manager.Queue()
+
+        cpus = multiprocessing.cpu_count()
+        workers = list()
+        for cpu in range(cpus):
+            worker = Worker(work_queue,
+                            data_queue,
+                            self._download_and_parse_build)
+            worker.daemon = True
+            worker.start()
+            workers.append(worker)
+            os.system("taskset -p -c {0} {1} > /dev/null 2>&1".
+                      format(cpu, worker.pid))
+
         for job, builds in self._cfg.builds.items():
-            logging.info("  Processing data from the job '{0}' ...".
-                         format(job))
-            builds_data = dict()
             for build in builds:
-                logging.info("    Processing the build '{0}'".
-                             format(build["build"]))
-                self._cfg.set_input_state(job, build["build"], "failed")
-                if not download_and_unzip_data_file(self._cfg, job, build):
-                    logging.error("It is not possible to download the input "
-                                  "data file from the job '{job}', build "
-                                  "'{build}', or it is damaged. Skipped.".
-                                  format(job=job, build=build["build"]))
-                    continue
+                work_queue.put((job, build, repeat))
 
-                logging.info("      Processing data from the build '{0}' ...".
-                             format(build["build"]))
-                data = InputData._parse_tests(job, build)
-                if data is None:
-                    logging.error("Input data file from the job '{job}', build "
-                                  "'{build}' is damaged. Skipped.".
-                                  format(job=job, build=build["build"]))
-                    continue
+        work_queue.join()
 
-                self._cfg.set_input_state(job, build["build"], "processed")
+        logging.info("Done.")
 
-                try:
-                    remove(build["file-name"])
-                except OSError as err:
-                    logging.error("Cannot remove the file '{0}': {1}".
-                                  format(build["file-name"], err))
+        while not data_queue.empty():
+            result = data_queue.get()
 
+            job = result["job"]
+            build_nr = result["build"]["build"]
+
+            if result["data"]:
+                data = result["data"]
                 build_data = pd.Series({
                     "metadata": pd.Series(data["metadata"].values(),
                                           index=data["metadata"].keys()),
@@ -825,15 +903,35 @@ class InputData(object):
                                         index=data["suites"].keys()),
                     "tests": pd.Series(data["tests"].values(),
                                        index=data["tests"].keys())})
-                builds_data[str(build["build"])] = build_data
-                build["status"] = "processed"
-                logging.info("    Done.")
 
-            job_data[job] = pd.Series(builds_data.values(),
-                                      index=builds_data.keys())
-            logging.info("  Done.")
+                if self._input_data.get(job, None) is None:
+                    self._input_data[job] = pd.Series()
+                self._input_data[job][str(build_nr)] = build_data
 
-        self._input_data = pd.Series(job_data.values(), index=job_data.keys())
+                self._cfg.set_input_file_name(job, build_nr,
+                                              result["build"]["file-name"])
+
+            self._cfg.set_input_state(job, build_nr, result["state"])
+
+            for item in result["logs"]:
+                if item[0] == "INFO":
+                    logging.info(item[1])
+                elif item[0] == "ERROR":
+                    logging.error(item[1])
+                elif item[0] == "DEBUG":
+                    logging.debug(item[1])
+                elif item[0] == "CRITICAL":
+                    logging.critical(item[1])
+                elif item[0] == "WARNING":
+                    logging.warning(item[1])
+
+        del data_queue
+
+        # Terminate all workers
+        for worker in workers:
+            worker.terminate()
+            worker.join()
+
         logging.info("Done.")
 
     @staticmethod
@@ -997,3 +1095,44 @@ class InputData(object):
                     merged_data[ID] = item_data
 
         return merged_data
+
+
+class Worker(multiprocessing.Process):
+    """Worker class used to download and process input files in separate
+    parallel processes.
+    """
+
+    def __init__(self, work_queue, data_queue, func):
+        """Initialization.
+
+        :param work_queue: Queue with items to process.
+        :param data_queue: Shared memory between processes. Queue which keeps
+            the result data. This data is then read by the main process and used
+            in further processing.
+        :param func: Function which is executed by the worker.
+        :type work_queue: multiprocessing.JoinableQueue
+        :type data_queue: multiprocessing.Manager().Queue()
+        :type func: Callable object
+        """
+        super(Worker, self).__init__()
+        self._work_queue = work_queue
+        self._data_queue = data_queue
+        self._func = func
+
+    def run(self):
+        """Method representing the process's activity.
+        """
+
+        while True:
+            try:
+                self.process(self._work_queue.get())
+            finally:
+                self._work_queue.task_done()
+
+    def process(self, item_to_process):
+        """Method executed by the runner.
+
+        :param item_to_process: Data to be processed by the function.
+        :type item_to_process: tuple
+        """
+        self._func(self.pid, self._data_queue, *item_to_process)
