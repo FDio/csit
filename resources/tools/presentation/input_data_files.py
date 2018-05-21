@@ -176,22 +176,30 @@ def download_and_unzip_data_file(spec, job, build):
     # Download the file from the defined source (Jenkins, logs.fd.io):
     success = _download_file(url, new_name)
 
+    if success and new_name.endswith(".zip"):
+        if not is_zipfile(new_name):
+            success = False
+
     # If not successful, download from docs.fd.io:
     if not success:
         logging.info("      Trying to download from https://docs.fd.io:")
         release = re.search(REGEX_RELEASE, job).group(2)
-        nexus_file_name = "{job}{sep}{build}{sep}{name}". \
-            format(job=job, sep=SEPARATOR, build=build["build"], name=file_name)
-        try:
-            release = "rls{0}".format(int(release))
-        except ValueError:
-            pass
-        url = "{url}/{release}/{dir}/{file}". \
-            format(url=spec.environment["urls"]["URL[NEXUS]"],
-                   release=release,
-                   dir=spec.environment["urls"]["DIR[NEXUS]"],
-                   file=nexus_file_name)
-        success = _download_file(url, new_name)
+        for rls in (release, "master"):
+            nexus_file_name = "{job}{sep}{build}{sep}{name}". \
+                format(job=job, sep=SEPARATOR, build=build["build"],
+                       name=file_name)
+            try:
+                rls = "rls{0}".format(int(rls))
+            except ValueError:
+                pass
+            url = "{url}/{release}/{dir}/{file}". \
+                format(url=spec.environment["urls"]["URL[NEXUS]"],
+                       release=rls,
+                       dir=spec.environment["urls"]["DIR[NEXUS]"],
+                       file=nexus_file_name)
+            success = _download_file(url, new_name)
+            if success:
+                break
 
     if success:
         spec.set_input_file_name(job, build["build"], new_name)
@@ -211,6 +219,7 @@ def download_and_unzip_data_file(spec, job, build):
         if is_zipfile(new_name):
             return _unzip_file(spec, job, build)
         else:
+            logging.error("Zip file '{0}' is corrupted.".format(new_name))
             return False
     else:
         return True

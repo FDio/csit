@@ -778,9 +778,13 @@ class InputData(object):
 
         return checker.data
 
-    def download_and_parse_data(self):
+    def download_and_parse_data(self, repeat=1):
         """Download the input data files, parse input data from input files and
         store in pandas' Series.
+
+        :param repeat: Repeat the download specified number of times if not
+            successful.
+        :type repeat: int
         """
 
         logging.info("Downloading and parsing input files ...")
@@ -794,7 +798,15 @@ class InputData(object):
                 logging.info("    Processing the build '{0}'".
                              format(build["build"]))
                 self._cfg.set_input_state(job, build["build"], "failed")
-                if not download_and_unzip_data_file(self._cfg, job, build):
+                success = False
+                do_repeat = repeat
+                while do_repeat:
+                    success = download_and_unzip_data_file(self._cfg, job,
+                                                           build)
+                    if success:
+                        break
+                    do_repeat -= 1
+                if not success:
                     logging.error("It is not possible to download the input "
                                   "data file from the job '{job}', build "
                                   "'{build}', or it is damaged. Skipped.".
