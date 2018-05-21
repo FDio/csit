@@ -130,33 +130,31 @@ Initial phase
 
 1. First trial measures at maximum rate and discovers MRR.
 
-   a) in: trial_duration = initial_trial_duration.
-   b) in: offered_transmit_rate = maximum_transmit_rate.
-   c) do: single trial.
-   d) out: measured loss ratio.
-   e) out: mrr = measured receive rate.
-
+   a) *in*: trial_duration = initial_trial_duration.
+   b) *in*: offered_transmit_rate = maximum_transmit_rate.
+   c) *do*: single trial.
+   d) *out*: measured loss ratio.
+   e) *out*: mrr = measured receive rate.
 2. Second trial measures at MRR and discovers MRR2.
 
-   a) in: trial_duration = initial_trial_duration.
-   b) in: offered_transmit_rate = MRR.
-   c) do: single trial.
-   d) out: measured loss ratio.
-   e) out: mrr2 = measured receive rate.
-
+   a) *in*: trial_duration = initial_trial_duration.
+   b) *in*: offered_transmit_rate = MRR.
+   c) *do*: single trial.
+   d) *out*: measured loss ratio.
+   e) *out*: mrr2 = measured receive rate.
 3. Third trial measures at MRR2.
 
-   a) in: trial_duration = initial_trial_duration.
-   b) in: offered_transmit_rate = MRR2.
-   c) do: single trial.
-   d) out: measured loss ratio.
+   a) *in*: trial_duration = initial_trial_duration.
+   b) *in*: offered_transmit_rate = MRR2.
+   c) *do*: single trial.
+   d) *out*: measured loss ratio.
 
 Non-initial phases
 ``````````````````
 
 1. Main loop:
 
-   a) in: trial_duration for the current phase.
+   a) *in*: trial_duration for the current phase.
       Set to initial_trial_duration for the first intermediate phase;
       to final_trial_duration for the final phase;
       or to the element of interpolating geometric sequence
@@ -164,23 +162,23 @@ Non-initial phases
       For example with two intermediate phases, trial_duration
       of the second intermediate phase is the geometric average
       of initial_strial_duration and final_trial_duration.
-   b) in: relative_width_goal for the current phase.
+   b) *in*: relative_width_goal for the current phase.
       Set to final_relative_width for the final phase;
       doubled for each preceding phase.
       For example with two intermediate phases,
       the first intermediate phase uses quadruple of final_relative_width
       and the second intermediate phase uses double of final_relative_width.
-   c) in: ndr_interval, pdr_interval from the previous main loop iteration
+   c) *in*: ndr_interval, pdr_interval from the previous main loop iteration
       or the previous phase.
       If the previous phase is the initial phase, both intervals have
       lower_bound = MRR2, uper_bound = MRR.
       Note that the initial phase is likely to create intervals with invalid bounds.
-   d) do: According to the procedure described in point 2,
+   d) *do*: According to the procedure described in point 2,
       either exit the phase by jumping to g),
       or prepare new transmit rate to measure with.
-   e) do: Perform the trial measurement at the new transmit rate
+   e) *do*: Perform the trial measurement at the new transmit rate
       and trial_duration, compute its loss ratio.
-   f) do: Update the bounds of both intervals, based on the new measurement.
+   f) *do*: Update the bounds of both intervals, based on the new measurement.
       The actual update rules are numerous, as NDR external search
       can affect PDR interval and vice versa, but the result
       agrees with rules of both internal and external search.
@@ -189,7 +187,7 @@ Non-initial phases
       (previously acting as the invalid lower_bound)
       becomes a new and valid upper_bound.
       Go to next iteration c), taking the updated intervals as new input.
-   g) out: current ndr_interval and pdr_interval.
+   g) *out*: current ndr_interval and pdr_interval.
       In the final phase this is also considered
       to be the result of the whole search.
       For other phases, the next phase loop is started
@@ -199,40 +197,37 @@ Non-initial phases
 
    a) If there is an invalid bound then prepare for external search:
 
-      1) If the most recent measurement at NDR lower_bound transmit rate
-         had the loss higher than zero, then
-         the new transmit rate is NDR lower_bound
-         decreased by two NDR interval widths.
-      2) Else, if the most recent measurement at PDR lower_bound
-         transmit rate had the loss higher than PLR, then
-         the new transmit rate is PDR lower_bound
-         decreased by two PDR interval widths.
-      3) Else, if the most recent measurement at NDR upper_bound
-         transmit rate had no loss, then
-         the new transmit rate is NDR upper_bound
-         increased by two NDR interval widths.
-      4) Else, if the most recent measurement at PDR upper_bound
-         transmit rate had the loss lower or equal to PLR, then
-         the new transmit rate is PDR upper_bound
-         increased by two PDR interval widths.
-
-   b) Else, if NDR (or PDR) interval does not meet the current phase width goal,
+      - *If* the most recent measurement at NDR lower_bound transmit rate
+        had the loss higher than zero, then
+        the new transmit rate is NDR lower_bound
+        decreased by two NDR interval widths.
+      - Else, *if* the most recent measurement at PDR lower_bound
+        transmit rate had the loss higher than PLR, then
+        the new transmit rate is PDR lower_bound
+        decreased by two PDR interval widths.
+      - Else, *if* the most recent measurement at NDR upper_bound
+        transmit rate had no loss, then
+        the new transmit rate is NDR upper_bound
+        increased by two NDR interval widths.
+      - Else, *if* the most recent measurement at PDR upper_bound
+        transmit rate had the loss lower or equal to PLR, then
+        the new transmit rate is PDR upper_bound
+        increased by two PDR interval widths.
+   b) Else, *if* NDR (or PDR) interval does not meet the current phase width goal,
       prepare for internal search. The new transmit rate is
       (lower bound + upper bound) / 2.
       It does not matter much which interval is investigated first.
       The current implementation starts with NDR, unless PDR interval is wider
       (but always preferring NDR is slightly better).
-
-   c) Else, if some bound has still only been measured at a lower duration,
+   c) Else, *if* some bound has still only been measured at a lower duration,
       prepare to re-measure at the current duration (and the same transmit rate).
       The order of priorities is:
 
-      1) NDR lower_bound,
-      2) PDR lower_bound,
-      3) NDR upper_bound,
-      4) PDR upper_bound.
-
-   d) Else do not prepare any new rate, to exit the phase.
+      - NDR lower_bound,
+      - PDR lower_bound,
+      - NDR upper_bound,
+      - PDR upper_bound.
+   d) *Else* do not prepare any new rate, to exit the phase.
       This ensures that at the end of each non-initial phase
       all intervals are valid, narrow enough, and measured
       at current phase trial duration.
@@ -244,23 +239,23 @@ The algorithm as implemented contains additional details
 omitted from the description above.
 Here is a short description of them, without detailing their mutual interaction.
 
-1) Logarithmic transmit rate.
+1) *Logarithmic transmit rate.*
    In order to better fit the relative width goal,
    the interval doubling and halving is done differently.
    For example, middle of 2 and 8 is 4, not 5.
-2) Optimistic maximum rate.
+2) *Optimistic maximum rate.*
    The increased rate is never higher than the maximum rate.
    Upper bound at that rate is always considered valid.
-3) Pessimistic minimum rate.
+3) *Pessimistic minimum rate.*
    The decreased rate is never lower than the minimum rate.
    If a lower bound at that rate is invalid,
    a phase stops refining the interval further (until it gets re-measured).
-4) Conservative interval updates.
+4) *Conservative interval updates.*
    Measurements above current upper bound never update a valid upper bound,
    even if drop ratio is low.
    Measurements below current lower bound always update any lower bound
    if drop ratio is high.
-5) Ensure sufficient interval width.
+5) *Ensure sufficient interval width.*
    Narrow intervals make external search take more time to find a valid bound.
    If the new transmit increased or decreased rate would result in width
    less than the current goal, increase/decrease more.
@@ -268,7 +263,7 @@ Here is a short description of them, without detailing their mutual interaction.
    makes the current interval too narrow.
    Similarly, take care the measurements in the initial phase
    create wide enough interval.
-6) Timeout for bad cases.
+6) *Timeout for bad cases.*
    The worst case for MDR search is when each phase converges to intervals
    way different than the results of the previous phase.
    Rather than suffer total search time several times larger
@@ -286,9 +281,9 @@ to enable comparison against existing CSIT NDR and PDR binary searches.
 The suites got chosen based on the level of consistency of their
 historical NDR/PDR results:
 
-#. 10Ge2P1X520-Ethip4-Ip4Base-Ndrpdr - yielding very consistent binary
+#. *10Ge2P1X520-Ethip4-Ip4Base-Ndrpdr* - yielding very consistent binary
    search results.
-#. 10Ge2P1X520-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr - yielding
+#. *10Ge2P1X520-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr* - yielding
    somewhat inconsistent results.
 
 Here "inconsistent" means the values found differ between runs,
