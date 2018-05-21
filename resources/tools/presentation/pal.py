@@ -96,7 +96,7 @@ def main():
         prepare_static_content(spec)
 
         data = InputData(spec)
-        data.download_and_parse_data()
+        data.download_and_parse_data(repeat=2)
 
         generate_tables(spec, data)
         generate_plots(spec, data)

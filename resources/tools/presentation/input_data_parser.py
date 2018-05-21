@@ -778,62 +778,141 @@ class InputData(object):
 
         return checker.data
 
-    def download_and_parse_data(self):
+    def _download_and_parse_build(self, job, build, repeat):
+        """
+
+        :param job:
+        :param build:
+        :param repeat:
+        :return:
+        """
+
+        logging.info("    Processing the build '{0}'".
+                     format(build["build"]))
+        self._cfg.set_input_state(job, build["build"], "failed")
+        success = False
+        do_repeat = repeat
+        while do_repeat:
+            success = download_and_unzip_data_file(self._cfg, job,
+                                                   build)
+            if success:
+                break
+            do_repeat -= 1
+        if not success:
+            logging.error("It is not possible to download the input "
+                          "data file from the job '{job}', build "
+                          "'{build}', or it is damaged. Skipped.".
+                          format(job=job, build=build["build"]))
+            return None
+
+        logging.info("      Processing data from the build '{0}' ...".
+                     format(build["build"]))
+        data = InputData._parse_tests(job, build)
+        if data is None:
+            logging.error("Input data file from the job '{job}', build "
+                          "'{build}' is damaged. Skipped.".
+                          format(job=job, build=build["build"]))
+            return None
+
+        self._cfg.set_input_state(job, build["build"], "processed")
+
+        try:
+            remove(build["file-name"])
+        except OSError as err:
+            logging.error("Cannot remove the file '{0}': {1}".
+                          format(build["file-name"], err))
+
+        build_data = pd.Series({
+            "metadata": pd.Series(data["metadata"].values(),
+                                  index=data["metadata"].keys()),
+            "suites": pd.Series(data["suites"].values(),
+                                index=data["suites"].keys()),
+            "tests": pd.Series(data["tests"].values(),
+                               index=data["tests"].keys())})
+        build["status"] = "processed"
+        logging.info("    Done.")
+        return build_data
+
+    def download_and_parse_data(self, repeat=1):
         """Download the input data files, parse input data from input files and
         store in pandas' Series.
+
+        :param repeat: Repeat the download specified number of times if not
+            successful.
+        :type repeat: int
         """
 
         logging.info("Downloading and parsing input files ...")
 
-        job_data = dict()
+        self._input_data = pd.Series()
+
+        # job_data = dict()
         for job, builds in self._cfg.builds.items():
             logging.info("  Processing data from the job '{0}' ...".
                          format(job))
             builds_data = dict()
             for build in builds:
-                logging.info("    Processing the build '{0}'".
-                             format(build["build"]))
-                self._cfg.set_input_state(job, build["build"], "failed")
-                if not download_and_unzip_data_file(self._cfg, job, build):
-                    logging.error("It is not possible to download the input "
-                                  "data file from the job '{job}', build "
-                                  "'{build}', or it is damaged. Skipped.".
-                                  format(job=job, build=build["build"]))
-                    continue
 
-                logging.info("      Processing data from the build '{0}' ...".
-                             format(build["build"]))
-                data = InputData._parse_tests(job, build)
-                if data is None:
-                    logging.error("Input data file from the job '{job}', build "
-                                  "'{build}' is damaged. Skipped.".
-                                  format(job=job, build=build["build"]))
-                    continue
+                build_data = self._download_and_parse_build(job, build, repeat)
 
-                self._cfg.set_input_state(job, build["build"], "processed")
+                if self._input_data.get(job, None) in None:
+                    self._input_data.append(
+                        pd.Series(pd.Series(), index=[job, ]))
+                self._input_data[job] = pd.Series(build_data,
+                                                  index=build["build", ])
 
-                try:
-                    remove(build["file-name"])
-                except OSError as err:
-                    logging.error("Cannot remove the file '{0}': {1}".
-                                  format(build["file-name"], err))
 
-                build_data = pd.Series({
-                    "metadata": pd.Series(data["metadata"].values(),
-                                          index=data["metadata"].keys()),
-                    "suites": pd.Series(data["suites"].values(),
-                                        index=data["suites"].keys()),
-                    "tests": pd.Series(data["tests"].values(),
-                                       index=data["tests"].keys())})
-                builds_data[str(build["build"])] = build_data
-                build["status"] = "processed"
-                logging.info("    Done.")
+                # logging.info("    Processing the build '{0}'".
+                #              format(build["build"]))
+                # self._cfg.set_input_state(job, build["build"], "failed")
+                # success = False
+                # do_repeat = repeat
+                # while do_repeat:
+                #     success = download_and_unzip_data_file(self._cfg, job,
+                #                                            build)
+                #     if success:
+                #         break
+                #     do_repeat -= 1
+                # if not success:
+                #     logging.error("It is not possible to download the input "
+                #                   "data file from the job '{job}', build "
+                #                   "'{build}', or it is damaged. Skipped.".
+                #                   format(job=job, build=build["build"]))
+                #     continue
+                #
+                # logging.info("      Processing data from the build '{0}' ...".
+                #              format(build["build"]))
+                # data = InputData._parse_tests(job, build)
+                # if data is None:
+                #     logging.error("Input data file from the job '{job}', build "
+                #                   "'{build}' is damaged. Skipped.".
+                #                   format(job=job, build=build["build"]))
+                #     continue
+                #
+                # self._cfg.set_input_state(job, build["build"], "processed")
+                #
+                # try:
+                #     remove(build["file-name"])
+                # except OSError as err:
+                #     logging.error("Cannot remove the file '{0}': {1}".
+                #                   format(build["file-name"], err))
+                #
+                # build_data = pd.Series({
+                #     "metadata": pd.Series(data["metadata"].values(),
+                #                           index=data["metadata"].keys()),
+                #     "suites": pd.Series(data["suites"].values(),
+                #                         index=data["suites"].keys()),
+                #     "tests": pd.Series(data["tests"].values(),
+                #                        index=data["tests"].keys())})
+                # builds_data[str(build["build"])] = build_data
+                # build["status"] = "processed"
+                # logging.info("    Done.")
 
-            job_data[job] = pd.Series(builds_data.values(),
-                                      index=builds_data.keys())
+            # job_data[job] = pd.Series(builds_data.values(),
+            #                           index=builds_data.keys())
             logging.info("  Done.")
 
-        self._input_data = pd.Series(job_data.values(), index=job_data.keys())
+        # self._input_data = pd.Series(job_data.values(), index=job_data.keys())
         logging.info("Done.")
 
     @staticmethod
