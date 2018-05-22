@@ -159,8 +159,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
-| | ... | ${False} | ${True}
 | | ...
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -171,11 +169,9 @@
 | | ... | ${tag_rewrite}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-\| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -198,8 +194,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
-| | ... | ${False} | ${True}
 | | ...
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -210,11 +204,9 @@
 | | ... | ${tag_rewrite}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -380,8 +372,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
-| | ... | ${False} | ${True}
 | | ...
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -392,11 +382,9 @@
 | | ... | ${tag_rewrite}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -419,8 +407,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
-| | ... | ${False} | ${True}
 | | ...
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -431,11 +417,9 @@
 | | ... | ${tag_rewrite}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -601,8 +585,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
-| | ... | ${False} | ${True}
 | | ...
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -613,11 +595,9 @@
 | | ... | ${tag_rewrite}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -640,8 +620,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
-| | ... | ${False} | ${True}
 | | ...
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -652,11 +630,9 @@
 | | ... | ${tag_rewrite}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
