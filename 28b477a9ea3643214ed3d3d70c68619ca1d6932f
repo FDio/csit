@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "2708adf1_37550147",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-22T09:20:43Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "8f129688_7e7b224f",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "490d4e00_dabd5d92",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 2
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "3f87a84d_3924047f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-22T09:20:43Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "2e7038fa_c5b38339",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 21
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "535ceb6d_8a2f8955",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 2
@@ -178,6 +226,30 @@
       "side": 1,
       "message": "I am reluctant to insert \"search\" here while not inserting it elsewhere (e.g. lines 35-37).\nAdded emphasis though.",
       "parentUuid": "535ceb6d_8a2f8955",
+      "range": {
+        "startLine": 74,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c30a8fc_b5aa1b9e",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-22T09:20:43Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "efda5b08_a6d47667",
       "range": {
         "startLine": 74,
         "startChar": 2,
@@ -496,6 +568,30 @@
     },
     {
       "key": {
+        "uuid": "d5b8da7c_f161b0ae",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-22T09:20:43Z",
+      "side": 1,
+      "message": "We should keep a sequential numbering format. \n\n1.\n  a)\n    (i)\n\nSee sphinx rtd manual:\n\nhttp://sphinx-rtd-theme.readthedocs.io/en/latest/demo/lists_tables.html\n\nhttps://media.readthedocs.org/pdf/sphinx-rtd-theme/latest/sphinx-rtd-theme.pdf",
+      "parentUuid": "91021b70_28e62154",
+      "range": {
+        "startLine": 202,
+        "startChar": 5,
+        "endLine": 202,
+        "endChar": 6
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d80d8494_ef98f678",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 2
@@ -590,6 +686,30 @@
     },
     {
       "key": {
+        "uuid": "7ece636c_907863d7",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-22T09:20:43Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "6ccfa9a4_3e8a064b",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 22
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ab89da4_1b95da67",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 2
@@ -637,6 +757,30 @@
     },
     {
       "key": {
+        "uuid": "8b354aab_8bd12c0d",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-22T09:20:43Z",
+      "side": 1,
+      "message": "Ok, Fair, I tried to make the title short, but clearly tried to hard :)",
+      "parentUuid": "80f4d1d1_5dd0e3e3",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 29
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0476dec8_5a17276f",
         "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
         "patchSetId": 2
@@ -672,6 +816,30 @@
       "side": 1,
       "message": "This section is not comparing effectiveness, it is introducing  the tests and comparing search parameters.\n\nEspecially line 302 talking about \"the following comparison\" (meaning the tables and conclusions in the following subsections) would look odd in a subsection named Comparison.",
       "parentUuid": "0476dec8_5a17276f",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 12
+      },
+      "revId": "28b477a9ea3643214ed3d3d70c68619ca1d6932f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e70b177f_094a572f",
+        "filename": "docs/report/vpp_performance_tests/mdr_search.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-05-22T09:20:43Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "49132121_6c5f8aa7",
       "range": {
         "startLine": 280,
         "startChar": 0,
