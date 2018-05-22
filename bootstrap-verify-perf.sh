@@ -206,13 +206,13 @@ case "$TEST_TAG" in
               'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
         ;;
     VERIFY-PERF-LISP )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDlisp')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
         ;;
     VERIFY-PERF-VXLAN )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvxlan')
         ;;
     VERIFY-PERF-VHOST )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost')
         ;;
     VERIFY-PERF-MEMIF )
         TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
@@ -236,16 +236,17 @@ case "$TEST_TAG" in
         ;;
     VPP-VERIFY-PERF-L2 )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
+              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase'
+              'mrrANDnic_intel-x520-da2AND1t1cANDdot1q')
         ;;
     VPP-VERIFY-PERF-LISP )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDlisp')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
         ;;
     VPP-VERIFY-PERF-VXLAN )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvxlan')
         ;;
     VPP-VERIFY-PERF-VHOST )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost')
         ;;
     VPP-VERIFY-PERF-MEMIF )
         TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
@@ -254,8 +255,8 @@ case "$TEST_TAG" in
               'mrrANDnic_intel-x520-da2AND2t2cANDmemif')
         ;;
     VPP-VERIFY-PERF-ACL )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDacl'
-              'pdrdiscANDnic_intel-x520-da2AND2t2cANDacl')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDacl'
+              'mrrANDnic_intel-x520-da2AND2t2cANDacl')
         ;;
     VPP-VERIFY-PERF-IPSECHW )
         TAGS=('pdrdiscANDnic_intel-xl710AND1t1cANDipsechw'
