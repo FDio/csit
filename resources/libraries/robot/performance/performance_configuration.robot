@@ -1443,7 +1443,7 @@
 | | ... | \| ${5} \|
 | | ... | \| Configure guest VM with dpdk-testpmd connected via vhost-user \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock-2-1 \| /tmp/sock-2-2 \| DUT1_VM2 \
-| | ... | \| qemu_id=${2} \|
+| | ... | \| qemu_id=${2} \| jumbo_frames=${True} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
 | | ... | ${count}=${5} | ${qemu_id}=${1} | ${jumbo_frames}=${False}
@@ -1610,7 +1610,7 @@
 | | ... | \| Configure guest VM with dpdk-testpmd-mac connected via vhost-user \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock-2-1 \| /tmp/sock-2-2 \| DUT1_VM2 \
 | | ... | \| 00:00:00:00:02:01 \| 00:00:00:00:02:02 \| ${6} \| ${5} \
-| | ... | \| qemu_id=${2} \|
+| | ... | \| qemu_id=${2} \| jumbo_frames=${True} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}

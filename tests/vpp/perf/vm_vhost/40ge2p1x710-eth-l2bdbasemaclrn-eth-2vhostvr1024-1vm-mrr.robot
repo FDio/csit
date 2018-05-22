@@ -78,6 +78,8 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
+| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
+| | ... | ${False} | ${True}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
@@ -88,9 +90,11 @@
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | jumbo_frames=${jumbo_frames}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
