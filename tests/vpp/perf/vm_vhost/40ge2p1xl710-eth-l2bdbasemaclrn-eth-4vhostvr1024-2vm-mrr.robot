@@ -81,6 +81,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
+| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
+| | ... | ${False} | ${True}
+| | Set Test Variable | ${jumbo_frames}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
