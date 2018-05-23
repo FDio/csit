@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0d9b788_e056e1bd",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-23T13:59:20Z",
+      "side": 1,
+      "message": "Nothing raised.",
+      "range": {
+        "startLine": 227,
+        "startChar": 8,
+        "endLine": 227,
+        "endChar": 63
+      },
+      "revId": "3e39e080578f5e2d15f6cdf2fb0aa113e04a2e2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45a4af18_ab7547bb",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 1623,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-23T13:59:20Z",
+      "side": 1,
+      "message": "I am missing documentation about bonding types and mode",
+      "range": {
+        "startLine": 1623,
+        "startChar": 0,
+        "endLine": 1623,
+        "endChar": 71
+      },
+      "revId": "3e39e080578f5e2d15f6cdf2fb0aa113e04a2e2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "664d6cee_777dbe7e",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-23T13:59:20Z",
+      "side": 1,
+      "message": "consider to move to default.robot where all the startup.conf KW are",
+      "range": {
+        "startLine": 1611,
+        "startChar": 0,
+        "endLine": 1626,
+        "endChar": 76
+      },
+      "revId": "3e39e080578f5e2d15f6cdf2fb0aa113e04a2e2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59371564_9674a843",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 1630,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-23T13:59:20Z",
+      "side": 1,
+      "message": "Consider to move to more general library",
+      "range": {
+        "startLine": 1628,
+        "startChar": 0,
+        "endLine": 1630,
+        "endChar": 64
+      },
+      "revId": "3e39e080578f5e2d15f6cdf2fb0aa113e04a2e2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73a60120_e3109006",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x520-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-05-23T13:59:20Z",
+      "side": 1,
+      "message": "I am missing the TAGS for which type of bonding is this suite (same for description) (XOR l23?)",
+      "revId": "3e39e080578f5e2d15f6cdf2fb0aa113e04a2e2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
