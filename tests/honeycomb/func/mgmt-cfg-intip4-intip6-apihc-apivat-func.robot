@@ -151,6 +151,9 @@
 | | [Documentation] | Check if Honeycomb API can configure interface\
 | | ... | vrf ID.
 | | ...
+# HC2VPP-331: Honeycomb fails to assign VRF to interface
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | [Teardown] | Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${0} | ipv4
 | | ...
