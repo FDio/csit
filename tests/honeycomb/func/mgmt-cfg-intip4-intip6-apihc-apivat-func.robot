@@ -224,6 +224,9 @@
 | | ... | on a physical interface, borrowing the IP address of another physical\
 | | ... | interface.
 | | ...
+# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | Given Honeycomb sets interface IPv4 address | ${node}
 | | ... | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | When Honeycomb adds unnumbered configuration to interface
@@ -243,6 +246,9 @@
 | TC12: Honeycomb removes interface unnumbered configuration
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from an interface.
+| | ...
+# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+| | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
