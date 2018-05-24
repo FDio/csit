@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06eced0c_6b7c1742",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-24T10:50:19Z",
+      "side": 1,
+      "message": "Consider introducing of LBOND tag to tag all tests of this kind.",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 408,
+        "endChar": 8
+      },
+      "revId": "894b8f15b8a3ec4c3109728b2fbcafd7025a6861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e298055_737860f8",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-24T10:50:19Z",
+      "side": 1,
+      "message": "LBOND_DPDK ? - same style",
+      "range": {
+        "startLine": 408,
+        "startChar": 11,
+        "endLine": 408,
+        "endChar": 21
+      },
+      "revId": "894b8f15b8a3ec4c3109728b2fbcafd7025a6861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "141107cf_e7b3e578",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 28
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-24T10:50:19Z",
+      "side": 1,
+      "message": "Capital L",
+      "range": {
+        "startLine": 416,
+        "startChar": 20,
+        "endLine": 416,
+        "endChar": 21
+      },
+      "revId": "894b8f15b8a3ec4c3109728b2fbcafd7025a6861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c17574a_be8294a5",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-24T10:50:19Z",
+      "side": 1,
+      "message": "It would be good to report if the format is wrong and the PCI dev is not used then.",
+      "range": {
+        "startLine": 290,
+        "startChar": 45,
+        "endLine": 290,
+        "endChar": 68
+      },
+      "revId": "894b8f15b8a3ec4c3109728b2fbcafd7025a6861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cffee1d6_ca984f0d",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-24T10:50:19Z",
+      "side": 1,
+      "message": "Consider moving to module with constancies if appropriate.",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 141,
+        "endChar": 75
+      },
+      "revId": "894b8f15b8a3ec4c3109728b2fbcafd7025a6861",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
