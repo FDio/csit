@@ -1,0 +1,34 @@
+Temporary notes, to be deleted.
+
+FIXME: Start describing the chosen algorithm.
+
+When we have seen some values x_i from assumedly
+Gaussian distribution with unknown parameters,
+there is an (un-normalized) prior,
+and posterior probability density for next value x is proportional to:
+  (x*x*X0s -2*x*X1s +X2s +(X0s*X2s - X1s*X1s))^(-X0s/2)
+Where X0s is number of previous values, X1s is their sum,
+X2s is sum of squares, in other words,
+  Xks = Sum[(x_i)^k]
+Ignoring normalization constant, this becomes
+  (1 + y*y)^(-n/2)
+where
+  y = (x - m) / Sqrt[D]
+with
+  n = X0s
+  m = X1s/X0s
+  D = X2s/X0s - m*m
+Mathematica says that normalized y density is
+  (1 + y*y)^(-n/2) * Gamma[n/2] / Sqrt[Pi] / Gamma[(n-1)/2]
+Distribution function (for arithmetic coding for least message length) is
+  y * Gamma[n/2] * Hypergeometric2F1[1/2,n/2,3/2,-y*y] / Sqrt[Pi]  / Gamma[(n-1)/2]
+
+Open questions:
+Do we use dynamic updating or length,model,probabilities?
++ LMP.
+If mode, Gauss or 1+y^2? How to code model parameters?
++ If sum_x_squared is fixed, both lead to uniform distribution on (nD) sphere.
+Do we compute last two points from parameters?
++ No, we do not even compute other poit probabilities, just the sphere area.
+If updating, how to code first two undetermined points?
++ Average uniform in (zero, max), sigma also uniform on the same interval.
