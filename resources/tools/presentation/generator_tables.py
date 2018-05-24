@@ -21,9 +21,8 @@ import prettytable
 import pandas as pd
 
 from string import replace
-from math import isnan
 from collections import OrderedDict
-from numpy import nan
+from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 
 from errors import PresentationError
@@ -730,13 +729,13 @@ def table_performance_trending_dashboard(table, input_data):
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
-    header = ["        Test Case",
+    header = ["Test Case",
               "Trend [Mpps]",
-              "  Short-Term   Change [%]",
-              "  Long-Term   Change [%]",
-              "  Regressions [#]",
-              "  Progressions [#]",
-              "  Outliers [#]"
+              "Short-Term Change [%]",
+              "Long-Term Change [%]",
+              "Regressions [#]",
+              "Progressions [#]",
+              "Outliers [#]"
               ]
     header_str = ",".join(header) + "\n"
 
@@ -752,7 +751,7 @@ def table_performance_trending_dashboard(table, input_data):
                                             "-".join(tst_data["name"].
                                                      split("-")[1:]))
                     tbl_dict[tst_name] = {"name": name,
-                                          "data": dict()}
+                                          "data": OrderedDict()}
                 try:
                     tbl_dict[tst_name]["data"][str(build)] =  \
                         tst_data["result"]["throughput"]
@@ -764,18 +763,16 @@ def table_performance_trending_dashboard(table, input_data):
         if len(tbl_dict[tst_name]["data"]) > 2:
 
             pd_data = pd.Series(tbl_dict[tst_name]["data"])
-            last_key = pd_data.keys()[-1]
-            win_size = min(pd_data.size, table["window"])
-            win_first_idx = pd_data.size - win_size
-            key_14 = pd_data.keys()[win_first_idx]
-            long_win_size = min(pd_data.size, table["long-trend-window"])
-
             data_t, _ = split_outliers(pd_data, outlier_const=1.5,
-                                       window=win_size)
-
+                                       window=table["window"])
+            last_key = data_t.keys()[-1]
+            win_size = min(data_t.size, table["window"])
+            win_first_idx = data_t.size - win_size
+            key_14 = data_t.keys()[win_first_idx]
+            long_win_size = min(data_t.size, table["long-trend-window"])
             median_t = data_t.rolling(window=win_size, min_periods=2).median()
             stdev_t = data_t.rolling(window=win_size, min_periods=2).std()
-            median_first_idx = pd_data.size - long_win_size
+            median_first_idx = median_t.size - long_win_size
             try:
                 max_median = max(
                     [x for x in median_t.values[median_first_idx:-win_size]
@@ -791,15 +788,10 @@ def table_performance_trending_dashboard(table, input_data):
             except KeyError:
                 median_t_14 = nan
 
-            # Test name:
-            name = tbl_dict[tst_name]["name"]
-
             # Classification list:
             classification_lst = list()
-            for build_nr, value in pd_data.iteritems():
-
-                if isnan(data_t[build_nr]) \
-                        or isnan(median_t[build_nr]) \
+            for build_nr, value in data_t.iteritems():
+                if isnan(median_t[build_nr]) \
                         or isnan(stdev_t[build_nr]) \
                         or isnan(value):
                     classification_lst.append("outlier")
@@ -823,7 +815,7 @@ def table_performance_trending_dashboard(table, input_data):
                     ((last_median_t - max_median) / max_median) * 100, 2)
 
             tbl_lst.append(
-                [name,
+                [tbl_dict[tst_name]["name"],
                  '-' if isnan(last_median_t) else
                  round(last_median_t / 1000000, 2),
                  '-' if isnan(rel_change_last) else rel_change_last,
