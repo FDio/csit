@@ -44,6 +44,9 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Receive packet on the second TG interface.
 | | ...
+# HC2VPP-331: Honeycomb fails to assign VRF to interface
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | ${table}= | Set Variable | table1
 | | Given Setup interfaces and neighbors for IPv4 routing test
 | | When Honeycomb configures routing table
@@ -66,12 +69,19 @@
 | | ... | verify that each destination MAC was used by exactly 50 packets.
 | | ... | Receive packet on the second TG interface.
 | | ...
+# HC2VPP-331: Honeycomb fails to assign VRF to interface
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | ${table}= | Set Variable | table2
 | | Given Setup interfaces and neighbors for IPv4 routing test
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop1} | ${next_hop_mac1}
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop2} | ${next_hop_mac2}
+| | ...
+# HC2VPP-331: Honeycomb fails to assign VRF to interface
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | When Honeycomb configures routing table
 | | ... | ${node} | table2 | ipv4 | ${table2} | ${1}
 | | Then Routing data from Honeycomb should contain
@@ -91,6 +101,9 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Make sure no packet is received on the second TG\
 | | ... | interface.
+| | ...
+# HC2VPP-331: Honeycomb fails to assign VRF to interface
+| | [Tags] | EXPECTED_FAILING
 | | ...
 | | ${table}= | Set Variable | table3
 | | Given Setup interfaces and neighbors for IPv4 routing test
@@ -113,6 +126,9 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Receive packet on the second TG interface.
 | | ...
+# HC2VPP-331: Honeycomb fails to assign VRF to interface
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | ${table}= | Set Variable | table4
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | When Honeycomb configures routing table
@@ -134,6 +150,9 @@
 | | ... | route destination. Receive all packets on the second TG interface and\
 | | ... | verify that each destination MAC was used by exactly 50 packets.
 | | ... | Receive packet on the second TG interface.
+| | ...
+# HC2VPP-331: Honeycomb fails to assign VRF to interface
+| | [Tags] | EXPECTED_FAILING
 | | ...
 | | ${table}= | Set Variable | table5
 | | Given Setup interfaces and neighbors for IPv6 routing test
