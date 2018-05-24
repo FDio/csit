@@ -471,6 +471,9 @@
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on a sub-interface, borrowing the IP address of a physical interface.
 | | ...
+# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | Given sub-interface ipv4 address from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And sub-interface ipv4 address from VAT should be empty
@@ -498,6 +501,9 @@
 | | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
 | | ... | ${super_if2}
 | | ...
+# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if2} | ${ipv4['address']} | ${ipv4['prefix-length']}
 | | And IPv4 address from VAT should be
@@ -524,6 +530,10 @@
 | TC24: Honeycomb can configure unnumbered interface using a sub-interface
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on an interface, borrowing the IP address of a sub-interface.
+| | ...
+# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | Given IPv4 address from Honeycomb should be empty | ${node} | ${super_if2}
 | | And ipv4 address from VAT should be empty | ${node} | ${super_if2}
 | | And sub-interface ipv4 address from Honeycomb should be empty
