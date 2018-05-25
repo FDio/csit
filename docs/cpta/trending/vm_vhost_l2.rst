@@ -17,7 +17,7 @@ x520-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-x520-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-x520.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -34,7 +34,7 @@ x520-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-x520-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-x520.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -51,7 +51,7 @@ x520-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-x520-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-x520.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -71,7 +71,7 @@ x710-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-x710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-x710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -88,7 +88,7 @@ x710-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-x710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-x710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -105,7 +105,7 @@ x710-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-x710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-x710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -125,7 +125,7 @@ xl710-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-1t1c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -142,7 +142,7 @@ xl710-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-2t2c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -159,7 +159,7 @@ xl710-64b-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-eth-4t4c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -179,7 +179,7 @@ x520-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-1t1c-x520-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-1t1c-x520.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -196,7 +196,7 @@ x520-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-2t2c-x520-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-2t2c-x520.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -213,7 +213,7 @@ x520-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-4t4c-x520-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-4t4c-x520.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -233,7 +233,7 @@ x710-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-1t1c-x710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-1t1c-x710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -250,7 +250,7 @@ x710-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-2t2c-x710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-2t2c-x710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -267,7 +267,7 @@ x710-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-4t4c-x710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-4t4c-x710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -287,7 +287,7 @@ xl710-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-1t1c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-1t1c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -304,7 +304,7 @@ xl710-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-2t2c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-2t2c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -321,6 +321,6 @@ xl710-imix-base
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-4t4c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-vm-vhost-imix-eth-4t4c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
