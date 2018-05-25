@@ -17,7 +17,7 @@ xl710-64b-base-scale
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -34,7 +34,7 @@ xl710-64b-base-scale
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -51,6 +51,6 @@ xl710-64b-base-scale
 .. raw:: html
 
     </b>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710-1.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
