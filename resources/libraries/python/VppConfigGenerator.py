@@ -265,6 +265,15 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'dev default', 'num-tx-queues']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_dev_default_mbufs(self, value):
+        """Add DPDK dev default num-mbufs configuration.
+
+        :param value: Default number of I/O buffers.
+        :type value: str
+        """
+        path = ['dpdk', 'dev default', 'num-mbufs']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_dev_default_rxd(self, value):
         """Add DPDK dev default rxd configuration.
 
