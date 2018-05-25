@@ -62,6 +62,8 @@ def table_details(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
     data = input_data.filter_data(table)
 
     # Prepare the header of the tables
@@ -128,10 +130,14 @@ def table_merged_details(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
     data = input_data.filter_data(table)
     data = input_data.merge_data(data)
     data.sort_index(inplace=True)
 
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
     suites = input_data.filter_data(table, data_set="suites")
     suites = input_data.merge_data(suites)
 
@@ -225,6 +231,8 @@ def table_performance_improvements(table, input_data):
         return None
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
     data = input_data.filter_data(table)
 
     # Prepare the header of the tables
@@ -356,6 +364,8 @@ def table_performance_comparison(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
@@ -594,6 +604,8 @@ def table_performance_comparison_mrr(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
@@ -726,6 +738,8 @@ def table_performance_trending_dashboard(table, input_data):
                  format(table.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables

@@ -14,6 +14,8 @@
 """Generation of Continuous Performance Trending and Analysis.
 """
 
+import multiprocessing
+import os
 import logging
 import csv
 import prettytable
@@ -24,9 +26,9 @@ import numpy as np
 import pandas as pd
 
 from collections import OrderedDict
-from datetime import datetime, timedelta
+from datetime import datetime
 
-from utils import split_outliers, archive_input_data, execute_command
+from utils import split_outliers, archive_input_data, execute_command, Worker
 
 
 # Command to build the html format of the report
@@ -85,66 +87,6 @@ def generate_cpta(spec, data):
     return ret_code
 
 
-def _select_data(in_data, period, fill_missing=False, use_first=False):
-    """Select the data from the full data set. The selection is done by picking
-    the samples depending on the period: period = 1: All, period = 2: every
-    second sample, period = 3: every third sample ...
-
-    :param in_data: Full set of data.
-    :param period: Sampling period.
-    :param fill_missing: If the chosen sample is missing in the full set, its
-    nearest neighbour is used.
-    :param use_first: Use the first sample even though it is not chosen.
-    :type in_data: OrderedDict
-    :type period: int
-    :type fill_missing: bool
-    :type use_first: bool
-    :returns: Reduced data.
-    :rtype: OrderedDict
-    """
-
-    first_idx = min(in_data.keys())
-    last_idx = max(in_data.keys())
-
-    idx = last_idx
-    data_dict = dict()
-    if use_first:
-        data_dict[first_idx] = in_data[first_idx]
-    while idx >= first_idx:
-        data = in_data.get(idx, None)
-        if data is None:
-            if fill_missing:
-                threshold = int(round(idx - period / 2)) + 1 - period % 2
-                idx_low = first_idx if threshold < first_idx else threshold
-                threshold = int(round(idx + period / 2))
-                idx_high = last_idx if threshold > last_idx else threshold
-
-                flag_l = True
-                flag_h = True
-                idx_lst = list()
-                inc = 1
-                while flag_l or flag_h:
-                    if idx + inc > idx_high:
-                        flag_h = False
-                    else:
-                        idx_lst.append(idx + inc)
-                    if idx - inc < idx_low:
-                        flag_l = False
-                    else:
-                        idx_lst.append(idx - inc)
-                    inc += 1
-
-                for i in idx_lst:
-                    if i in in_data.keys():
-                        data_dict[i] = in_data[i]
-                        break
-        else:
-            data_dict[idx] = data
-        idx -= period
-
-    return OrderedDict(sorted(data_dict.items(), key=lambda t: t[0]))
-
-
 def _evaluate_results(trimmed_data, window=10):
     """Evaluates if the sample value is regress, normal or progress compared to
     previous data within the window.
@@ -200,8 +142,7 @@ def _evaluate_results(trimmed_data, window=10):
     return results
 
 
-def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
-                              fill_missing=True, use_first=False,
+def _generate_trending_traces(in_data, build_info, moving_win_size=10,
                               show_trend_line=True, name="", color=""):
     """Generate the trending traces:
      - samples,
@@ -210,31 +151,19 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
 
     :param in_data: Full data set.
     :param build_info: Information about the builds.
-    :param period: Sampling period.
     :param moving_win_size: Window size.
-    :param fill_missing: If the chosen sample is missing in the full set, its
-        nearest neighbour is used.
-    :param use_first: Use the first sample even though it is not chosen.
     :param show_trend_line: Show moving median (trending plot).
     :param name: Name of the plot
     :param color: Name of the color for the plot.
     :type in_data: OrderedDict
     :type build_info: dict
-    :type period: int
     :type moving_win_size: int
-    :type fill_missing: bool
-    :type use_first: bool
     :type show_trend_line: bool
     :type name: str
     :type color: str
     :returns: Generated traces (list) and the evaluated result.
     :rtype: tuple(traces, result)
     """
-
-    if period > 1:
-        in_data = _select_data(in_data, period,
-                               fill_missing=fill_missing,
-                               use_first=use_first)
 
     data_x = list(in_data.keys())
     data_y = list(in_data.values())
@@ -353,26 +282,6 @@ def _generate_trending_traces(in_data, build_info, period, moving_win_size=10,
     return traces, results[-1]
 
 
-def _generate_chart(traces, layout, file_name):
-    """Generates the whole chart using pre-generated traces.
-
-    :param traces: Traces for the chart.
-    :param layout: Layout of the chart.
-    :param file_name: File name for the generated chart.
-    :type traces: list
-    :type layout: dict
-    :type file_name: str
-    """
-
-    # Create plot
-    logging.info("    Writing the file '{0}' ...".format(file_name))
-    plpl = plgo.Figure(data=traces, layout=layout)
-    try:
-        ploff.plot(plpl, show_link=False, auto_open=False, filename=file_name)
-    except plerr.PlotlyEmptyDataError:
-        logging.warning(" No data for the plot. Skipped.")
-
-
 def _generate_all_charts(spec, input_data):
     """Generate all charts specified in the specification file.
 
@@ -381,6 +290,95 @@ def _generate_all_charts(spec, input_data):
     :type spec: Specification
     :type input_data: InputData
     """
+
+    def _generate_chart(_, data_q, graph):
+        """Generates the chart.
+        """
+
+        logs = list()
+
+        logging.info("  Generating the chart '{0}' ...".
+                     format(graph.get("title", "")))
+        logs.append(("INFO", "  Generating the chart '{0}' ...".
+                     format(graph.get("title", ""))))
+
+        job_name = spec.cpta["data"].keys()[0]
+
+        csv_tbl = list()
+        res = list()
+
+        # Transform the data
+        logs.append(("INFO", "    Creating the data set for the {0} '{1}'.".
+                     format(graph.get("type", ""), graph.get("title", ""))))
+        data = input_data.filter_data(graph, continue_on_error=True)
+        if data is None:
+            logging.error("No data.")
+            return
+
+        chart_data = dict()
+        for job in data:
+            for index, bld in job.items():
+                for test_name, test in bld.items():
+                    if chart_data.get(test_name, None) is None:
+                        chart_data[test_name] = OrderedDict()
+                    try:
+                        chart_data[test_name][int(index)] = \
+                            test["result"]["throughput"]
+                    except (KeyError, TypeError):
+                        pass
+
+        # Add items to the csv table:
+        for tst_name, tst_data in chart_data.items():
+            tst_lst = list()
+            for bld in builds_lst:
+                itm = tst_data.get(int(bld), '')
+                tst_lst.append(str(itm))
+            csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
+        # Generate traces:
+        traces = list()
+        win_size = 14
+        index = 0
+        for test_name, test_data in chart_data.items():
+            if not test_data:
+                logs.append(("WARNING", "No data for the test '{0}'".
+                             format(test_name)))
+                continue
+            test_name = test_name.split('.')[-1]
+            trace, rslt = _generate_trending_traces(
+                test_data,
+                build_info=build_info,
+                moving_win_size=win_size,
+                name='-'.join(test_name.split('-')[3:-1]),
+                color=COLORS[index])
+            traces.extend(trace)
+            res.append(rslt)
+            index += 1
+
+        if traces:
+            # Generate the chart:
+            graph["layout"]["xaxis"]["title"] = \
+                graph["layout"]["xaxis"]["title"].format(job=job_name)
+            name_file = "{0}-{1}{2}".format(spec.cpta["output-file"],
+                                            graph["output-file-name"],
+                                            spec.cpta["output-file-type"])
+
+            logs.append(("INFO", "    Writing the file '{0}' ...".
+                         format(name_file)))
+            plpl = plgo.Figure(data=traces, layout=graph["layout"])
+            try:
+                ploff.plot(plpl, show_link=False, auto_open=False,
+                           filename=name_file)
+            except plerr.PlotlyEmptyDataError:
+                logs.append(("WARNING", "No data for the plot. Skipped."))
+
+        logging.info("  Done.")
+
+        data_out = {
+            "csv_table": csv_tbl,
+            "results": res,
+            "logs": logs
+        }
+        data_q.put(data_out)
 
     job_name = spec.cpta["data"].keys()[0]
 
@@ -401,6 +399,28 @@ def _generate_all_charts(spec, input_data):
         except KeyError:
             build_info[build] = ("", "")
 
+    work_queue = multiprocessing.JoinableQueue()
+    manager = multiprocessing.Manager()
+    data_queue = manager.Queue()
+    cpus = multiprocessing.cpu_count()
+
+    workers = list()
+    for cpu in range(cpus):
+        worker = Worker(work_queue,
+                        data_queue,
+                        _generate_chart)
+        worker.daemon = True
+        worker.start()
+        workers.append(worker)
+        os.system("taskset -p -c {0} {1} > /dev/null 2>&1".
+                  format(cpu, worker.pid))
+
+    for chart in spec.cpta["plots"]:
+        work_queue.put((chart, ))
+    work_queue.join()
+
+    results = list()
+
     # Create the header:
     csv_table = list()
     header = "Build Number:," + ",".join(builds_lst) + '\n'
@@ -412,74 +432,30 @@ def _generate_all_charts(spec, input_data):
     header = "VPP Version:," + ",".join(vpp_versions) + '\n'
     csv_table.append(header)
 
-    results = list()
-    for chart in spec.cpta["plots"]:
-        logging.info("  Generating the chart '{0}' ...".
-                     format(chart.get("title", "")))
+    while not data_queue.empty():
+        result = data_queue.get()
 
-        # Transform the data
-        data = input_data.filter_data(chart, continue_on_error=True)
-        if data is None:
-            logging.error("No data.")
-            return
+        results.extend(result["results"])
+        csv_table.extend(result["csv_table"])
 
-        chart_data = dict()
-        for job in data:
-            for idx, build in job.items():
-                for test_name, test in build.items():
-                    if chart_data.get(test_name, None) is None:
-                        chart_data[test_name] = OrderedDict()
-                    try:
-                        chart_data[test_name][int(idx)] = \
-                            test["result"]["throughput"]
-                    except (KeyError, TypeError):
-                        pass
+        for item in result["logs"]:
+            if item[0] == "INFO":
+                logging.info(item[1])
+            elif item[0] == "ERROR":
+                logging.error(item[1])
+            elif item[0] == "DEBUG":
+                logging.debug(item[1])
+            elif item[0] == "CRITICAL":
+                logging.critical(item[1])
+            elif item[0] == "WARNING":
+                logging.warning(item[1])
 
-        # Add items to the csv table:
-        for tst_name, tst_data in chart_data.items():
-            tst_lst = list()
-            for build in builds_lst:
-                item = tst_data.get(int(build), '')
-                tst_lst.append(str(item))
-            csv_table.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
+    del data_queue
 
-        for period in chart["periods"]:
-            # Generate traces:
-            traces = list()
-            win_size = 14
-            idx = 0
-            for test_name, test_data in chart_data.items():
-                if not test_data:
-                    logging.warning("No data for the test '{0}'".
-                                    format(test_name))
-                    continue
-                test_name = test_name.split('.')[-1]
-                trace, result = _generate_trending_traces(
-                    test_data,
-                    build_info=build_info,
-                    period=period,
-                    moving_win_size=win_size,
-                    fill_missing=True,
-                    use_first=False,
-                    name='-'.join(test_name.split('-')[3:-1]),
-                    color=COLORS[idx])
-                traces.extend(trace)
-                results.append(result)
-                idx += 1
-
-            if traces:
-                # Generate the chart:
-                chart["layout"]["xaxis"]["title"] = \
-                    chart["layout"]["xaxis"]["title"].format(job=job_name)
-                _generate_chart(traces,
-                                chart["layout"],
-                                file_name="{0}-{1}-{2}{3}".format(
-                                    spec.cpta["output-file"],
-                                    chart["output-file-name"],
-                                    period,
-                                    spec.cpta["output-file-type"]))
-
-        logging.info("  Done.")
+    # Terminate all workers
+    for worker in workers:
+        worker.terminate()
+        worker.join()
 
     # Write the tables:
     file_name = spec.cpta["output-file"] + "-trending"
