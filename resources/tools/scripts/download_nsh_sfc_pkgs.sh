@@ -18,13 +18,14 @@ set -ex
 trap 'rm -f *.deb.md5; exit' EXIT
 trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
 
-STREAM=$1
+STREAM="stable.1801"
 OS=$2
 
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
 GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
+NSH_VER="18.01_amd64"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java vpp-api-python vpp-api-lua"
 NSH_ARTIFACTS="vpp-nsh-plugin"
 
@@ -52,7 +53,7 @@ done
 
 for ART in ${NSH_ARTIFACTS}; do
     for PAC in $PACKAGE; do
-        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${NSH_VER}&c=${CLASS}" -O -J || exit
     done
 done
 
