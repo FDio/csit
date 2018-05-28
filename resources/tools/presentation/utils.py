@@ -274,6 +274,39 @@ def archive_input_data(spec):
     logging.info("    Done.")
 
 
+def classify_anomalies(data, window):
+    """
+
+    :param data:
+    :param window:
+    :return:
+    """
+
+    if len(data) < 3:
+        return None
+
+    win_size = data.size if data.size < window else window
+    results = ["normal", ]
+    tmm = data.rolling(window=win_size, min_periods=2).median()
+    tmstd = data.rolling(window=win_size, min_periods=2).std()
+
+    first = True
+    for build_nr, value in data.iteritems():
+        if first:
+            first = False
+            continue
+        if (np.isnan(value)
+                or np.isnan(tmm[build_nr])
+                or np.isnan(tmstd[build_nr])):
+            results.append("outlier")
+        elif value < (tmm[build_nr] - 3 * tmstd[build_nr]):
+            results.append("regression")
+        elif value > (tmm[build_nr] + 3 * tmstd[build_nr]):
+            results.append("progression")
+        else:
+            results.append("normal")
+
+
 class Worker(multiprocessing.Process):
     """Worker class used to process tasks in separate parallel processes.
     """
