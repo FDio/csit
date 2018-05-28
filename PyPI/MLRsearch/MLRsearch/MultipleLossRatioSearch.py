@@ -11,18 +11,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Module defining OptimizedSearchAlgorithm class."""
+"""Module defining MultipleLossRatioSearch class."""
 
 import logging
 import math
 import time
 
-from .AbstractSearchAlgorithm import AbstractSearchAlgorithm
-from .NdrPdrResult import NdrPdrResult
-from .ReceiveRateInterval import ReceiveRateInterval
+from AbstractSearchAlgorithm import AbstractSearchAlgorithm
+from NdrPdrResult import NdrPdrResult
+from ReceiveRateInterval import ReceiveRateInterval
 
 
-class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
+class MultipleLossRatioSearch(AbstractSearchAlgorithm):
     """Optimized binary search algorithm for finding NDR and PDR bounds.
 
     Traditional binary search algorithm needs initial interval
@@ -37,7 +37,7 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
     One improvement is searching for two intervals at once.
     The intervals are for NDR (No Drop Rate) and PDR (Partial Drop Rate).
 
-    Next improvement is that the initial interval does need to be valid.
+    Next improvement is that the initial interval does not need to be valid.
     Imagine initial interval (10, 11) where 11 is smaller
     than the searched value.
     The algorithm will try (11, 13) interval next, and if 13 is still smaller,
@@ -75,10 +75,8 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
     trial duration, interval width is less than the width goal
     for current phase.
 
-    TODO: Reviwew and update this docstring according to rst docs.
-    TODO: Initial phase: Larger min width and search up on zero.
+    TODO: Review and update this docstring according to rst docs.
     TODO: Support configurable number of Packet Loss Ratios.
-    TODO: Rename to MultipleDropRateSearch (or MultipleLossRatioSearch).
     """
 
     class ProgressState(object):
@@ -115,12 +113,12 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
             self.minimum_transmit_rate = float(minimum_transmit_rate)
             self.maximum_transmit_rate = float(maximum_transmit_rate)
 
-    def __init__(self, rate_provider, final_relative_width=0.005,
+    def __init__(self, measurer, final_relative_width=0.005,
                  final_trial_duration=30.0, initial_trial_duration=1.0,
                  number_of_intermediate_phases=2, timeout=600.0):
-        """Store rate provider and additional arguments.
+        """Store the measurer object and additional arguments.
 
-        :param rate_provider: Rate provider to use by this search object.
+        :param measurer: Rate provider to use by this search object.
         :param final_relative_width: Final lower bound transmit rate
             cannot be more distant that this multiple of upper bound [1].
         :param final_trial_duration: Trial duration for the final phase [s].
@@ -130,19 +128,88 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
             to perform before the final phase [1].
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
-        :type rate_provider: AbstractRateProvider
+        :type measurer: AbstractMeasurer
         :type final_relative_width: float
         :type final_trial_duration: float
         :type initial_trial_duration: int
         :type number_of_intermediate_phases: int
         :type timeout: float
         """
-        super(OptimizedSearchAlgorithm, self).__init__(rate_provider)
+        super(MultipleLossRatioSearch, self).__init__(measurer)
         self.final_trial_duration = float(final_trial_duration)
         self.final_relative_width = float(final_relative_width)
         self.number_of_intermediate_phases = int(number_of_intermediate_phases)
         self.initial_trial_duration = float(initial_trial_duration)
         self.timeout = float(timeout)
+
+
+    @staticmethod
+    def double_relative_width(relative_width):
+        """Return relative width corresponding to double logarithmic width.
+
+        :param relative_width: The base relative width to double.
+        :type relative_width: float
+        :returns: The relative width of double logarithmic size.
+        :rtype: float
+        """
+        return 1.999 * relative_width - relative_width * relative_width
+        # The number should be 2.0, but we want to avoid rounding errors,
+        # and ensure half of double is not larger than the original value.
+
+    @staticmethod
+    def double_step_down(relative_width, current_bound):
+        """Return rate of double logarithmic width below.
+
+        :param relative_width: The base relative width to double.
+        :param current_bound: The current target transmit rate to move [pps].
+        :type relative_width: float
+        :type current_bound: float
+        :returns: Transmit rate smaller by logarithmically double width [pps].
+        :rtype: float
+        """
+        return current_bound * (
+            1.0 - MultipleLossRatioSearch.double_relative_width(
+                relative_width))
+
+    @staticmethod
+    def double_step_up(relative_width, current_bound):
+        """Return rate of double logarithmic width above.
+
+        :param relative_width: The base relative width to double.
+        :param current_bound: The current target transmit rate to move [pps].
+        :type relative_width: float
+        :type current_bound: float
+        :returns: Transmit rate larger by logarithmically double width [pps].
+        :rtype: float
+        """
+        return current_bound / (
+            1.0 - MultipleLossRatioSearch.double_relative_width(
+                relative_width))
+
+    @staticmethod
+    def half_relative_width(relative_width):
+        """Return relative width corresponding to half logarithmic width.
+
+        :param relative_width: The base relative width to halve.
+        :type relative_width: float
+        :returns: The relative width of half logarithmic size.
+        :rtype: float
+        """
+        return 1.0 - math.sqrt(1.0 - relative_width)
+
+    @staticmethod
+    def half_step_up(relative_width, current_bound):
+        """Return rate of half logarithmic width above.
+
+        :param relative_width: The base relative width to halve.
+        :param current_bound: The current target transmit rate to move [pps].
+        :type relative_width: float
+        :type current_bound: float
+        :returns: Transmit rate larger by logarithmically half width [pps].
+        :rtype: float
+        """
+        return current_bound / (
+            1.0 - MultipleLossRatioSearch.half_relative_width(relative_width))
 
     def narrow_down_ndr_and_pdr(
             self, minimum_transmit_rate, maximum_transmit_rate,
@@ -163,26 +230,31 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
         minimum_transmit_rate = float(minimum_transmit_rate)
         maximum_transmit_rate = float(maximum_transmit_rate)
         packet_loss_ratio = float(packet_loss_ratio)
-        line_measurement = self.rate_provider.measure(
+        line_measurement = self.measurer.measure(
             self.initial_trial_duration, maximum_transmit_rate)
-        # 0.999 is to avoid rounding errors which make
-        # the subsequent logic think the width is too broad.
-        max_lo = max(
+        initial_width_goal = self.final_relative_width
+        for _ in range(self.number_of_intermediate_phases):
+            initial_width_goal = self.double_relative_width(initial_width_goal)
+        max_lo = maximum_transmit_rate * (1.0 - initial_width_goal)
+        mrr = max(
             minimum_transmit_rate,
-            maximum_transmit_rate * (1.0 - 0.999 * self.final_relative_width))
-        mrr = min(
-            max_lo, max(minimum_transmit_rate, line_measurement.receive_rate))
-        mrr_measurement = self.rate_provider.measure(
+            min(max_lo, line_measurement.receive_rate))
+        mrr_measurement = self.measurer.measure(
             self.initial_trial_duration, mrr)
         # Attempt to get narrower width.
-        max2_lo = max(
-            minimum_transmit_rate,
-            mrr * (1.0 - 0.999 * self.final_relative_width))
-        mrr2 = min(max2_lo, mrr_measurement.receive_rate)
-        if mrr2 > minimum_transmit_rate:
+        if mrr_measurement.loss_fraction > 0.0:
+            max2_lo = mrr * (1.0 - initial_width_goal)
+            mrr2 = min(max2_lo, mrr_measurement.receive_rate)
+        else:
+            mrr2 = mrr / (1.0 - initial_width_goal)
+        if mrr2 > minimum_transmit_rate and mrr2 < maximum_transmit_rate:
             line_measurement = mrr_measurement
-            mrr_measurement = self.rate_provider.measure(
+            mrr_measurement = self.measurer.measure(
                 self.initial_trial_duration, mrr2)
+            if mrr2 > mrr:
+                buf = line_measurement
+                line_measurement = mrr_measurement
+                mrr_measurement = buf
         starting_interval = ReceiveRateInterval(
             mrr_measurement, line_measurement)
         starting_result = NdrPdrResult(starting_interval, starting_interval)
@@ -209,7 +281,7 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
         logging.debug(
             "relative widths in goals: %s", state.result.width_in_goals(
                 self.final_relative_width))
-        measurement = self.rate_provider.measure(state.duration, transmit_rate)
+        measurement = self.measurer.measure(state.duration, transmit_rate)
         ndr_interval = self._new_interval(
             state.result.ndr_interval, measurement, 0.0)
         pdr_interval = self._new_interval(
@@ -274,83 +346,16 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
         # Fallback, the interval is unchanged by the measurement.
         return old_interval
 
-    @staticmethod
-    def double_relative_width(relative_width):
-        """Return relative width corresponding to double logarithmic width.
-
-        :param relative_width: The base relative width to double.
-        :type relative_width: float
-        :returns: The relative width of double logarithmic size.
-        :rtype: float
-        """
-        return 1.999 * relative_width - relative_width * relative_width
-        # The number should be 2.0, but we want to avoid rounding errors,
-        # and ensure half of double is not larger than the original value.
-
-    @staticmethod
-    def double_step_down(relative_width, current_bound):
-        """Return rate of double logarithmic width below.
-
-        :param relative_width: The base relative width to double.
-        :param current_bound: The current target transmit rate to move [pps].
-        :type relative_width: float
-        :type current_bound: float
-        :returns: Transmit rate smaller by logarithmically double width [pps].
-        :rtype: float
-        """
-        return current_bound * (
-            1.0 - OptimizedSearchAlgorithm.double_relative_width(
-                relative_width))
-
-    @staticmethod
-    def double_step_up(relative_width, current_bound):
-        """Return rate of double logarithmic width above.
-
-        :param relative_width: The base relative width to double.
-        :param current_bound: The current target transmit rate to move [pps].
-        :type relative_width: float
-        :type current_bound: float
-        :returns: Transmit rate larger by logarithmically double width [pps].
-        :rtype: float
-        """
-        return current_bound / (
-            1.0 - OptimizedSearchAlgorithm.double_relative_width(
-                relative_width))
-
-    @staticmethod
-    def half_relative_width(relative_width):
-        """Return relative width corresponding to half logarithmic width.
-
-        :param relative_width: The base relative width to halve.
-        :type relative_width: float
-        :returns: The relative width of half logarithmic size.
-        :rtype: float
-        """
-        return 1.0 - math.sqrt(1.0 - relative_width)
-
-    @staticmethod
-    def half_step_up(relative_width, current_bound):
-        """Return rate of half logarithmic width above.
-
-        :param relative_width: The base relative width to halve.
-        :param current_bound: The current target transmit rate to move [pps].
-        :type relative_width: float
-        :type current_bound: float
-        :returns: Transmit rate larger by logarithmically half width [pps].
-        :rtype: float
-        """
-        return current_bound / (
-            1.0 - OptimizedSearchAlgorithm.half_relative_width(relative_width))
-
     def ndrpdr(self, state):
         """Pefrom trials for this phase. Return the new state when done.
 
         :param state: State before this phase.
         :type state: ProgressState
-        :returns: The updates state.
+        :returns: The updated state.
         :rtype: ProgressState
         :raises RuntimeError: If total duration is larger than timeout.
         """
+        start_time = time.time()
         if state.phases > 0:
             # We need to finish preceding intermediate phases first.
             saved_phases = state.phases
@@ -373,11 +378,10 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
         logging.info(
             "starting iterations with duration %s and relative width goal %s",
             state.duration, state.width_goal)
-        start_time = time.time()
         while 1:
             if time.time() > start_time + self.timeout:
                 raise RuntimeError("Optimized search takes too long.")
-            # Order of priorities: improper bounds (nl, pl, nh, ph),
+            # Order of priorities: invalid bounds (nl, pl, nh, ph),
             # then narrowing relative Tr widths.
             # Durations are not priorities yet,
             # they will settle on their own hopefully.
@@ -455,19 +459,19 @@ class OptimizedSearchAlgorithm(AbstractSearchAlgorithm):
             if (pdr_lo.target_tr <= state.minimum_transmit_rate
                     and pdr_lo.loss_fraction > state.packet_loss_ratio):
                 pdr_rel_width = 0.0
-            if max(ndr_rel_width, pdr_rel_width) > state.width_goal:
-                # We have to narrow some width.
-                # TODO: Prefer NDR, it could invalidate PDR (not vice versa).
-                if ndr_rel_width >= pdr_rel_width:
-                    new_tr = self.half_step_up(ndr_rel_width, ndr_lo.target_tr)
-                    logging.info("Bisecting for NDR at %s", new_tr)
-                    state = self._measure_and_update_state(state, new_tr)
-                    continue
-                else:
-                    new_tr = self.half_step_up(pdr_rel_width, pdr_lo.target_tr)
-                    logging.info("Bisecting for PDR at %s", new_tr)
-                    state = self._measure_and_update_state(state, new_tr)
-                    continue
+            if ndr_rel_width > state.width_goal:
+                # We have to narrow NDR width first, as NDR internal search
+                # can invalidate PDR (but not vice versa).
+                new_tr = self.half_step_up(ndr_rel_width, ndr_lo.target_tr)
+                logging.info("Bisecting for NDR at %s", new_tr)
+                state = self._measure_and_update_state(state, new_tr)
+                continue
+            if pdr_rel_width > state.width_goal:
+                # PDR iternal search.
+                new_tr = self.half_step_up(pdr_rel_width, pdr_lo.target_tr)
+                logging.info("Bisecting for PDR at %s", new_tr)
+                state = self._measure_and_update_state(state, new_tr)
+                continue
             # We do not need to improve width, but there still might be
             # some measurements with smaller duration.
             # We need to re-measure with full duration, possibly
