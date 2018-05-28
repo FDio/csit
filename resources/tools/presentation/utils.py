@@ -274,6 +274,48 @@ def archive_input_data(spec):
     logging.info("    Done.")
 
 
+def classify_anomalies(data, window):
+    """Evaluates if the sample value is an outlier, regression, normal or
+    progression compared to the previous data within the window.
+    We use the intervals defined as:
+    - regress: less than trimmed moving median - 3 * stdev
+    - normal: between trimmed moving median - 3 * stdev and median + 3 * stdev
+    - progress: more than trimmed moving median + 3 * stdev
+    where stdev is trimmed moving standard deviation.
+
+    :param data: Full data set with the outliers replaced by nan.
+    :param window: Window size used to calculate moving average and moving
+        stdev.
+    :type data: pandas.Series
+    :type window: int
+    :returns: Evaluated results.
+    :rtype: list
+    """
+
+    if len(data) < 3:
+        return None
+
+    win_size = data.size if data.size < window else window
+    classification = ["normal", ]
+    tmm = data.rolling(window=win_size, min_periods=2).median()
+    tmstd = data.rolling(window=win_size, min_periods=2).std()
+
+    first = True
+    for build, value in data.iteritems():
+        if first:
+            first = False
+            continue
+        if np.isnan(value) or np.isnan(tmm[build]) or np.isnan(tmstd[build]):
+            classification.append("outlier")
+        elif value < (tmm[build] - 3 * tmstd[build]):
+            classification.append("regression")
+        elif value > (tmm[build] + 3 * tmstd[build]):
+            classification.append("progression")
+        else:
+            classification.append("normal")
+    return classification
+
+
 class Worker(multiprocessing.Process):
     """Worker class used to process tasks in separate parallel processes.
     """
