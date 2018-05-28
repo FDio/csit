@@ -28,7 +28,8 @@ import pandas as pd
 from collections import OrderedDict
 from datetime import datetime
 
-from utils import split_outliers, archive_input_data, execute_command, Worker
+from utils import split_outliers, archive_input_data, execute_command,\
+    classify_anomalies, Worker
 
 
 # Command to build the html format of the report
@@ -182,19 +183,33 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
 
     t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
                                       window=moving_win_size)
-    results = _evaluate_results(t_data, window=moving_win_size)
+    anomaly_classification = classify_anomalies(t_data, window=moving_win_size)
 
     anomalies = pd.Series()
-    anomalies_res = list()
-    for idx, item in enumerate(data_pd.items()):
-        item_pd = pd.Series([item[1], ], index=[item[0], ])
-        if item[0] in outliers.keys():
-            anomalies = anomalies.append(item_pd)
-            anomalies_res.append(0.0)
-        elif results[idx] in (0.33, 1.0):
-            anomalies = anomalies.append(item_pd)
-            anomalies_res.append(results[idx])
-    anomalies_res.extend([0.0, 0.33, 0.66, 1.0])
+    anomalies_colors = list()
+    anomaly_color = {
+        "outlier": 0.00,
+        "regression": 0.33,
+        "normal": 0.66,
+        "progression": 1.00
+    }
+    if anomaly_classification:
+        for idx, item in enumerate(data_pd.items()):
+            if anomaly_classification[idx] in \
+                    ("outlier", "regression", "progression"):
+                anomalies = anomalies.append(item)
+                anomalies_colors.append(
+                    anomaly_color[anomaly_classification[idx]])
+            anomalies_colors.extend([0.0, 0.33, 0.66, 1.0])
+    # for idx, item in enumerate(data_pd.items()):
+    #     if anomaly_classification[idx] is None:
+    #         continue
+    #     if anomaly_classification[idx] in \
+    #             ("outlier", "regression", "progression"):
+    #         item_pd = pd.Series([item[1], ], index=[item[0], ])
+    #         anomalies = anomalies.append(item_pd)
+    #         anomalies_colors.append(anomaly_color[anomaly_classification[idx]])
+    #     anomalies_colors.extend([0.0, 0.33, 0.66, 1.0])
 
     # Create traces
     color_scale = [[0.00, "grey"],
@@ -236,7 +251,7 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
         marker={
             "size": 15,
             "symbol": "circle-open",
-            "color": anomalies_res,
+            "color": anomalies_colors,
             "colorscale": color_scale,
             "showscale": True,
             "line": {
@@ -279,7 +294,7 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
         )
         traces.append(trace_trend)
 
-    return traces, results[-1]
+    return traces, anomaly_classification[-1]
 
 
 def _generate_all_charts(spec, input_data):
@@ -419,7 +434,7 @@ def _generate_all_charts(spec, input_data):
         work_queue.put((chart, ))
     work_queue.join()
 
-    results = list()
+    anomaly_classifications = list()
 
     # Create the header:
     csv_table = list()
@@ -435,7 +450,7 @@ def _generate_all_charts(spec, input_data):
     while not data_queue.empty():
         result = data_queue.get()
 
-        results.extend(result["results"])
+        anomaly_classifications.extend(result["results"])
         csv_table.extend(result["csv_table"])
 
         for item in result["logs"]:
@@ -488,16 +503,17 @@ def _generate_all_charts(spec, input_data):
 
     # Evaluate result:
     result = "PASS"
-    for item in results:
-        if item is None:
+    for classification in anomaly_classifications:
+        if classification is None:
             result = "FAIL"
             break
-        if item == 0.66 and result == "PASS":
+        if classification == "normal" and result == "PASS":
             result = "PASS"
-        elif item == 0.33 or item == 0.0:
+        elif classification == "progression" or classification == "outlier":
             result = "FAIL"
+            break
 
-    logging.info("Partial results: {0}".format(results))
+    logging.info("Partial results: {0}".format(anomaly_classifications))
     logging.info("Result: {0}".format(result))
 
     return result
