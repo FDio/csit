@@ -26,7 +26,8 @@ from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change, remove_outliers, split_outliers
+from utils import mean, stdev, relative_change, remove_outliers,\
+    split_outliers, classify_anomalies
 
 
 def generate_tables(spec, data):
@@ -774,60 +775,50 @@ def table_performance_trending_dashboard(table, input_data):
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
-        if len(tbl_dict[tst_name]["data"]) > 2:
+        if len(tbl_dict[tst_name]["data"]) < 3:
+            continue
 
-            pd_data = pd.Series(tbl_dict[tst_name]["data"])
-            data_t, _ = split_outliers(pd_data, outlier_const=1.5,
-                                       window=table["window"])
-            last_key = data_t.keys()[-1]
-            win_size = min(data_t.size, table["window"])
-            win_first_idx = data_t.size - win_size
-            key_14 = data_t.keys()[win_first_idx]
-            long_win_size = min(data_t.size, table["long-trend-window"])
-            median_t = data_t.rolling(window=win_size, min_periods=2).median()
-            stdev_t = data_t.rolling(window=win_size, min_periods=2).std()
-            median_first_idx = median_t.size - long_win_size
-            try:
-                max_median = max(
-                    [x for x in median_t.values[median_first_idx:-win_size]
-                     if not isnan(x)])
-            except ValueError:
-                max_median = nan
-            try:
-                last_median_t = median_t[last_key]
-            except KeyError:
-                last_median_t = nan
-            try:
-                median_t_14 = median_t[key_14]
-            except KeyError:
-                median_t_14 = nan
+        pd_data = pd.Series(tbl_dict[tst_name]["data"])
+        data_t, _ = split_outliers(pd_data, outlier_const=1.5,
+                                   window=table["window"])
+        last_key = data_t.keys()[-1]
+        win_size = min(data_t.size, table["window"])
+        win_first_idx = data_t.size - win_size
+        key_14 = data_t.keys()[win_first_idx]
+        long_win_size = min(data_t.size, table["long-trend-window"])
+        median_t = data_t.rolling(window=win_size, min_periods=2).median()
+        median_first_idx = median_t.size - long_win_size
+        try:
+            max_median = max(
+                [x for x in median_t.values[median_first_idx:-win_size]
+                 if not isnan(x)])
+        except ValueError:
+            max_median = nan
+        try:
+            last_median_t = median_t[last_key]
+        except KeyError:
+            last_median_t = nan
+        try:
+            median_t_14 = median_t[key_14]
+        except KeyError:
+            median_t_14 = nan
 
-            # Classification list:
-            classification_lst = list()
-            for build_nr, value in data_t.iteritems():
-                if isnan(median_t[build_nr]) \
-                        or isnan(stdev_t[build_nr]) \
-                        or isnan(value):
-                    classification_lst.append("outlier")
-                elif value < (median_t[build_nr] - 3 * stdev_t[build_nr]):
-                    classification_lst.append("regression")
-                elif value > (median_t[build_nr] + 3 * stdev_t[build_nr]):
-                    classification_lst.append("progression")
-                else:
-                    classification_lst.append("normal")
+        if isnan(last_median_t) or isnan(median_t_14) or median_t_14 == 0.0:
+            rel_change_last = nan
+        else:
+            rel_change_last = round(
+                ((last_median_t - median_t_14) / median_t_14) * 100, 2)
 
-            if isnan(last_median_t) or isnan(median_t_14) or median_t_14 == 0.0:
-                rel_change_last = nan
-            else:
-                rel_change_last = round(
-                    ((last_median_t - median_t_14) / median_t_14) * 100, 2)
+        if isnan(max_median) or isnan(last_median_t) or max_median == 0.0:
+            rel_change_long = nan
+        else:
+            rel_change_long = round(
+                ((last_median_t - max_median) / max_median) * 100, 2)
 
-            if isnan(max_median) or isnan(last_median_t) or max_median == 0.0:
-                rel_change_long = nan
-            else:
-                rel_change_long = round(
-                    ((last_median_t - max_median) / max_median) * 100, 2)
+        # Classification list:
+        classification_lst = classify_anomalies(data_t, window=14)
 
+        if classification_lst:
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
                  '-' if isnan(last_median_t) else
@@ -976,7 +967,7 @@ def table_performance_trending_dashboard_html(table, input_data):
                 if "64b" in item:
                     anchor += "64b-"
                 elif "78b" in item:
-                    anchor += "78b"
+                    anchor += "78b-"
                 elif "imix" in item:
                     anchor += "imix-"
                 elif "9000b" in item:

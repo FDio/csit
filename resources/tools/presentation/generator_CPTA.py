@@ -22,13 +22,13 @@ import prettytable
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
 import plotly.exceptions as plerr
-import numpy as np
 import pandas as pd
 
 from collections import OrderedDict
 from datetime import datetime
 
-from utils import split_outliers, archive_input_data, execute_command, Worker
+from utils import split_outliers, archive_input_data, execute_command,\
+    classify_anomalies, Worker
 
 
 # Command to build the html format of the report
@@ -87,61 +87,6 @@ def generate_cpta(spec, data):
     return ret_code
 
 
-def _evaluate_results(trimmed_data, window=10):
-    """Evaluates if the sample value is regress, normal or progress compared to
-    previous data within the window.
-    We use the intervals defined as:
-    - regress: less than trimmed moving median - 3 * stdev
-    - normal: between trimmed moving median - 3 * stdev and median + 3 * stdev
-    - progress: more than trimmed moving median + 3 * stdev
-    where stdev is trimmed moving standard deviation.
-
-    :param trimmed_data: Full data set with the outliers replaced by nan.
-    :param window: Window size used to calculate moving average and moving stdev.
-    :type trimmed_data: pandas.Series
-    :type window: int
-    :returns: Evaluated results.
-    :rtype: list
-    """
-
-    if len(trimmed_data) > 2:
-        win_size = trimmed_data.size if trimmed_data.size < window else window
-        results = [0.66, ]
-        tmm = trimmed_data.rolling(window=win_size, min_periods=2).median()
-        tmstd = trimmed_data.rolling(window=win_size, min_periods=2).std()
-
-        first = True
-        for build_nr, value in trimmed_data.iteritems():
-            if first:
-                first = False
-                continue
-            if (np.isnan(value)
-                    or np.isnan(tmm[build_nr])
-                    or np.isnan(tmstd[build_nr])):
-                results.append(0.0)
-            elif value < (tmm[build_nr] - 3 * tmstd[build_nr]):
-                results.append(0.33)
-            elif value > (tmm[build_nr] + 3 * tmstd[build_nr]):
-                results.append(1.0)
-            else:
-                results.append(0.66)
-    else:
-        results = [0.0, ]
-        try:
-            tmm = np.median(trimmed_data)
-            tmstd = np.std(trimmed_data)
-            if trimmed_data.values[-1] < (tmm - 3 * tmstd):
-                results.append(0.33)
-            elif (tmm - 3 * tmstd) <= trimmed_data.values[-1] <= (
-                    tmm + 3 * tmstd):
-                results.append(0.66)
-            else:
-                results.append(1.0)
-        except TypeError:
-            results.append(None)
-    return results
-
-
 def _generate_trending_traces(in_data, build_info, moving_win_size=10,
                               show_trend_line=True, name="", color=""):
     """Generate the trending traces:
@@ -182,29 +127,27 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
 
     t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
                                       window=moving_win_size)
-    results = _evaluate_results(t_data, window=moving_win_size)
+    anomaly_classification = classify_anomalies(t_data, window=moving_win_size)
 
     anomalies = pd.Series()
-    anomalies_res = list()
-    for idx, item in enumerate(data_pd.items()):
-        item_pd = pd.Series([item[1], ], index=[item[0], ])
-        if item[0] in outliers.keys():
-            anomalies = anomalies.append(item_pd)
-            anomalies_res.append(0.0)
-        elif results[idx] in (0.33, 1.0):
-            anomalies = anomalies.append(item_pd)
-            anomalies_res.append(results[idx])
-    anomalies_res.extend([0.0, 0.33, 0.66, 1.0])
+    anomalies_colors = list()
+    anomaly_color = {
+        "outlier": 0.0,
+        "regression": 0.33,
+        "normal": 0.66,
+        "progression": 1.0
+    }
+    if anomaly_classification:
+        for idx, item in enumerate(data_pd.items()):
+            if anomaly_classification[idx] in \
+                    ("outlier", "regression", "progression"):
+                anomalies = anomalies.append(pd.Series([item[1], ],
+                                                       index=[item[0], ]))
+                anomalies_colors.append(
+                    anomaly_color[anomaly_classification[idx]])
+        anomalies_colors.extend([0.0, 0.33, 0.66, 1.0])
 
     # Create traces
-    color_scale = [[0.00, "grey"],
-                   [0.25, "grey"],
-                   [0.25, "red"],
-                   [0.50, "red"],
-                   [0.50, "white"],
-                   [0.75, "white"],
-                   [0.75, "green"],
-                   [1.00, "green"]]
 
     trace_samples = plgo.Scatter(
         x=xaxis,
@@ -236,8 +179,15 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
         marker={
             "size": 15,
             "symbol": "circle-open",
-            "color": anomalies_res,
-            "colorscale": color_scale,
+            "color": anomalies_colors,
+            "colorscale": [[0.00, "grey"],
+                           [0.25, "grey"],
+                           [0.25, "red"],
+                           [0.50, "red"],
+                           [0.50, "white"],
+                           [0.75, "white"],
+                           [0.75, "green"],
+                           [1.00, "green"]],
             "showscale": True,
             "line": {
                 "width": 2
@@ -279,7 +229,7 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
         )
         traces.append(trace_trend)
 
-    return traces, results[-1]
+    return traces, anomaly_classification[-1]
 
 
 def _generate_all_charts(spec, input_data):
@@ -371,8 +321,6 @@ def _generate_all_charts(spec, input_data):
             except plerr.PlotlyEmptyDataError:
                 logs.append(("WARNING", "No data for the plot. Skipped."))
 
-        logging.info("  Done.")
-
         data_out = {
             "csv_table": csv_tbl,
             "results": res,
@@ -419,7 +367,7 @@ def _generate_all_charts(spec, input_data):
         work_queue.put((chart, ))
     work_queue.join()
 
-    results = list()
+    anomaly_classifications = list()
 
     # Create the header:
     csv_table = list()
@@ -435,7 +383,7 @@ def _generate_all_charts(spec, input_data):
     while not data_queue.empty():
         result = data_queue.get()
 
-        results.extend(result["results"])
+        anomaly_classifications.extend(result["results"])
         csv_table.extend(result["csv_table"])
 
         for item in result["logs"]:
@@ -487,17 +435,16 @@ def _generate_all_charts(spec, input_data):
         txt_file.write(str(txt_table))
 
     # Evaluate result:
-    result = "PASS"
-    for item in results:
-        if item is None:
-            result = "FAIL"
-            break
-        if item == 0.66 and result == "PASS":
-            result = "PASS"
-        elif item == 0.33 or item == 0.0:
-            result = "FAIL"
+    if anomaly_classifications:
+        result = "PASS"
+        for classification in anomaly_classifications:
+            if classification == "regression" or classification == "outlier":
+                result = "FAIL"
+                break
+    else:
+        result = "FAIL"
 
-    logging.info("Partial results: {0}".format(results))
+    logging.info("Partial results: {0}".format(anomaly_classifications))
     logging.info("Result: {0}".format(result))
 
     return result

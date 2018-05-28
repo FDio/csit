@@ -615,7 +615,7 @@
     - title: "VPP 1T1C IPv6 78B Packet Throughput - Trending"
       output-file-name: "ip6-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -623,7 +623,7 @@
     - title: "VPP 2T2C IPv6 78B Packet Throughput - Trending"
       output-file-name: "ip6-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -631,7 +631,7 @@
     - title: "VPP 4T4C IPv6 78B Packet Throughput - Trending"
       output-file-name: "ip6-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
       parameters:
       - "result"
       layout: "plot-cpta"
