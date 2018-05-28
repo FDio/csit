@@ -215,12 +215,14 @@ Non-initial phases
        transmit rate had the loss lower or equal to PLR, then
        the new transmit rate is PDR upper_bound
        increased by two PDR interval widths.
-   - Else, *if* NDR (or PDR) interval does not meet the current phase width goal,
-     prepare for internal search. The new transmit rate is
-     (lower bound + upper bound) / 2.
-     It does not matter much which interval is investigated first.
-     The current implementation starts with NDR, unless PDR interval is wider
-     (but always preferring NDR is slightly better).
+   - If interval width is higher than the current phase goal:
+
+     - Else, *if* NDR interval does not meet the current phase width goal,
+       prepare for internal search. The new transmit rate is
+       (NDR lower bound + NDR upper bound) / 2.
+     - Else, *if* PDR interval does not meet the current phase width goal,
+       prepare for internal search. The new transmit rate is
+       (PDR lower bound + PDR upper bound) / 2.
    - Else, *if* some bound has still only been measured at a lower duration,
      prepare to re-measure at the current duration (and the same transmit rate).
      The order of priorities is:
@@ -264,7 +266,7 @@ but without detailing their mutual interaction.
    Narrow intervals make external search take more time to find a valid bound.
    If the new transmit increased or decreased rate would result in width
    less than the current goal, increase/decrease more.
-   This can happen if measurement for the other interval
+   This can happen if the measurement for the other interval
    makes the current interval too narrow.
    Similarly, take care the measurements in the initial phase
    create wide enough interval.
@@ -314,6 +316,9 @@ Data in tables is based on result of 6 runs.
 
 Tables
 ``````
+
+.. note:: FIXME: Specify which codebase has been tested,
+          as there were patches merged after the 1804 release report.
 
 .. table:: Table 1. Search part of test duration.
 
