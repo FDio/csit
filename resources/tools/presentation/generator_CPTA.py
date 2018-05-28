@@ -28,7 +28,8 @@ import pandas as pd
 from collections import OrderedDict
 from datetime import datetime
 
-from utils import split_outliers, archive_input_data, execute_command, Worker
+from utils import split_outliers, archive_input_data, execute_command,\
+    classify_anomalies, Worker
 
 
 # Command to build the html format of the report
@@ -182,19 +183,37 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
 
     t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
                                       window=moving_win_size)
-    results = _evaluate_results(t_data, window=moving_win_size)
+    # results = _evaluate_results(t_data, window=moving_win_size)
+    results = classify_anomalies(t_data, window=moving_win_size)
 
     anomalies = pd.Series()
     anomalies_res = list()
+    anomaly_val = {
+        "outlier": 0.00,
+        "regression": 0.33,
+        "normal": 0.66,
+        "progression": 1.00
+    }
     for idx, item in enumerate(data_pd.items()):
-        item_pd = pd.Series([item[1], ], index=[item[0], ])
-        if item[0] in outliers.keys():
+        if results[idx] is None:
+            continue
+        if results[idx] in ("outlier", "regression", "progression"):
+            item_pd = pd.Series([item[1], ], index=[item[0], ])
             anomalies = anomalies.append(item_pd)
-            anomalies_res.append(0.0)
-        elif results[idx] in (0.33, 1.0):
-            anomalies = anomalies.append(item_pd)
-            anomalies_res.append(results[idx])
+            anomalies_res.append(anomaly_val[results[idx]])
     anomalies_res.extend([0.0, 0.33, 0.66, 1.0])
+
+    # anomalies = pd.Series()
+    # anomalies_res = list()
+    # for idx, item in enumerate(data_pd.items()):
+    #     item_pd = pd.Series([item[1], ], index=[item[0], ])
+    #     if item[0] in outliers.keys():
+    #         anomalies = anomalies.append(item_pd)
+    #         anomalies_res.append(0.0)
+    #     elif results[idx] in (0.33, 1.0):
+    #         anomalies = anomalies.append(item_pd)
+    #         anomalies_res.append(results[idx])
+    # anomalies_res.extend([0.0, 0.33, 0.66, 1.0])
 
     # Create traces
     color_scale = [[0.00, "grey"],

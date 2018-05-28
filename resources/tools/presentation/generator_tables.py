@@ -26,7 +26,8 @@ from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change, remove_outliers, split_outliers
+from utils import mean, stdev, relative_change, remove_outliers,\
+    split_outliers, classify_anomalies
 
 
 def generate_tables(spec, data):
@@ -803,18 +804,19 @@ def table_performance_trending_dashboard(table, input_data):
                 median_t_14 = nan
 
             # Classification list:
-            classification_lst = list()
-            for build_nr, value in data_t.iteritems():
-                if isnan(median_t[build_nr]) \
-                        or isnan(stdev_t[build_nr]) \
-                        or isnan(value):
-                    classification_lst.append("outlier")
-                elif value < (median_t[build_nr] - 3 * stdev_t[build_nr]):
-                    classification_lst.append("regression")
-                elif value > (median_t[build_nr] + 3 * stdev_t[build_nr]):
-                    classification_lst.append("progression")
-                else:
-                    classification_lst.append("normal")
+            classification_lst = classify_anomalies(data_t, window = 14)
+            # classification_lst = list()
+            # for build_nr, value in data_t.iteritems():
+            #     if isnan(median_t[build_nr]) \
+            #             or isnan(stdev_t[build_nr]) \
+            #             or isnan(value):
+            #         classification_lst.append("outlier")
+            #     elif value < (median_t[build_nr] - 3 * stdev_t[build_nr]):
+            #         classification_lst.append("regression")
+            #     elif value > (median_t[build_nr] + 3 * stdev_t[build_nr]):
+            #         classification_lst.append("progression")
+            #     else:
+            #         classification_lst.append("normal")
 
             if isnan(last_median_t) or isnan(median_t_14) or median_t_14 == 0.0:
                 rel_change_last = nan
