@@ -11,13 +11,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Module defining AbstractRateProvider class."""
+"""Module defining AbstractMeasurer class."""
 
 from abc import ABCMeta, abstractmethod
 
 
-class AbstractRateProvider(object):
-    """Abstract class defining common API for rate providers."""
+class AbstractMeasurer(object):
+    """Abstract class defining common API for measurement providers."""
 
     __metaclass__ = ABCMeta
 

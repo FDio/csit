@@ -1,5 +1,6 @@
 CSIT contributors, make sure each PyPI project
-has the following users listed as Owners:
+has the following users listed as Owners
+(both on pypi.org and on test.pypi.org if the project exists there):
 
 + vrpolakatcisco
 + tiborfrank
