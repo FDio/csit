@@ -22,8 +22,8 @@ from .ssh import SSH
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
-from .search.AbstractRateProvider import AbstractRateProvider
-from .search.OptimizedSearchAlgorithm import OptimizedSearchAlgorithm
+from .search.AbstractMeasurer import AbstractMeasurer
+from .search.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .search.ReceiveRateMeasurement import ReceiveRateMeasurement
 
 __all__ = ['TGDropRateSearchImpl', 'TrafficGenerator', 'OptimizedSearch']
@@ -101,7 +101,7 @@ class TGDropRateSearchImpl(DropRateSearch):
         return tg_instance.get_latency_int()
 
 
-class TrafficGenerator(AbstractRateProvider):
+class TrafficGenerator(AbstractMeasurer):
     """Traffic Generator.
 
     FIXME: Describe API."""
@@ -643,7 +643,7 @@ class OptimizedSearch(object):
         :type initial_trial_duration: float
         :type number_of_intermediate_phases: int
         :type timeout: float
-        :returns: Structure containing narrowed down intervals
+        :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
         :raises RuntimeError: If total duration is larger than timeout.
@@ -653,8 +653,8 @@ class OptimizedSearch(object):
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
         tg_instance.set_rate_provider_defaults(frame_size, traffic_type)
-        algorithm = OptimizedSearchAlgorithm(
-            tg_instance, final_trial_duration=final_trial_duration,
+        algorithm = MultipleLossRatioSearch(
+            measurer=tg_instance, final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,
             number_of_intermediate_phases=number_of_intermediate_phases,
             initial_trial_duration=initial_trial_duration, timeout=timeout)
