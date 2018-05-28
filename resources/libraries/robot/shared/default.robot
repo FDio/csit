@@ -253,6 +253,23 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
 
+| Add DPDK mbufs to all DUTs
+| | [Documentation] | Add DPDK num-mbufs to VPP startup configuration to all
+| | ... | DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - mbufs - Number of I/O buffers. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add DPDK mbufs to all DUTs \| 32768 \|
+| | ...
+| | [Arguments] | ${mbufs}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK mbufs | ${mbufs}
+
 | Add DPDK Uio Driver on all DUTs
 | | [Documentation] | Add DPDK uio driver to VPP startup configuration on all
 | | ... | DUTs.

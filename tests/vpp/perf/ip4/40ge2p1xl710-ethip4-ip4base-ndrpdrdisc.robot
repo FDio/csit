@@ -22,7 +22,7 @@
 | ... | WITH NAME | dut2_v4
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-XL710 | ETH | IP4FWD | BASE
+| ... | NIC_Intel-XL710 | ETH | IP4FWD | BASE | THIS
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-XL710
@@ -64,42 +64,67 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4-ip4base-ndrdisc
+| tc25-64B-16t16c-ethip4-ip4base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | [Cfg] DUT runs IPv4 routing config with 16 threads, 16 phy cores, \
+| | ... | 8 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 50kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add '16' worker threads and '8' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
+| | And Add DPDK mbufs to all DUTs | 65536
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc03-1518B-1t1c-ethip4-ip4base-ndrdisc
+| tc19-64B-8t8c-ethip4-ip4base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 24.5G rate, step 10kpps.
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
+| | ... | [Cfg] DUT runs IPv4 routing config with 8 threads, 8 phy cores, \
+| | ... | 4 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | using binary search start at 18.75Mpps rate, step 50kpps.
+| | [Tags] | 64B | 8T8C | MTHREAD | NDRDISC
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${50000}
+| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add '8' worker threads and '4' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
+| | And Add DPDK mbufs to all DUTs | 32768
+| | And Apply startup configuration on all VPP DUTs
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+
+| tc13-64B-4t4c-ethip4-ip4base-ndrdisc
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
+| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | using binary search start at 18.75Mpps rate, step 50kpps.
+| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${50000}
+| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -133,137 +158,19 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc09-1518B-2t2c-ethip4-ip4base-ndrdisc
+| tc01-64B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 24.5G rate, step 10kpps.
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc13-64B-4t4c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 50kpps.
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc15-1518B-4t4c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 24.5G rate, step 10kpps.
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc19-IMIX-1t1c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 24.5G rate, step 50kpps.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
-| | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc20-IMIX-2t2c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 thread, 2 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 24.5G rate, step 50kpps.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add no multi seg to all DUTs
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
-| | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv4 forwarding in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc21-IMIX-4t4c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 thread, 4 phy core, \
-| | ... | 2 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 24.5G rate, step 50kpps.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
-| | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | ${50000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
