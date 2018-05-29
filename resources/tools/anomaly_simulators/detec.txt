@@ -1,0 +1,68 @@
+Temporary notes, to be deleted.
+
+FIXME: Start describing the chosen algorithm.
+
+The real classifier is written, and it seem to work correctly.
+The real tests will need data from PAL.
+
+---
+
+Current simulator first generates the extected partition,
+and compares its bit content with non-partitioned population.
+That should predict whether the full detection algorithm
+will consider this partition to represent an anomaly
+(without detailing how would the algo find this partition).
+
+Current simulation results:
+10 samples, 9 subsamples, <1 sigma jump:
+ 1357 rounds isolated detected 0.0434782608696 averaged detected 0.0140014738394
+10 samples, 9 subsamples, no jump:
+ 5893 rounds isolated detected 0.0 averaged detected 0.000339385711862
+
+The snip below was caused by raduis wrongly being equated to stdev.
+
+---
+
+In current patch, the information content only detects
+when average jumps by ~1.5 stdevs. Not sure why.
+Either I have a bug, or I have some wrong assumption about
+multi-dimensional Euclidean geometry.
+
+By the way, the information content is quite good
+at detecting partitions with differing stdevs,
+so it is doing at least something right.
+Just for comparable stdevs it seems to be giving longer streaks
+less bits per sample than I would have thought.
+
+---
+
+When we have seen some values x_i from assumedly
+Gaussian distribution with unknown parameters,
+there is an (un-normalized) prior,
+and posterior probability density for next value x is proportional to:
+  (x*x*X0s -2*x*X1s +X2s +(X0s*X2s - X1s*X1s))^(-X0s/2)
+Where X0s is number of previous values, X1s is their sum,
+X2s is sum of squares, in other words,
+  Xks = Sum[(x_i)^k]
+Ignoring normalization constant, this becomes
+  (1 + y*y)^(-n/2)
+where
+  y = (x - m) / Sqrt[D]
+with
+  n = X0s
+  m = X1s/X0s
+  D = X2s/X0s - m*m
+Mathematica says that normalized y density is
+  (1 + y*y)^(-n/2) * Gamma[n/2] / Sqrt[Pi] / Gamma[(n-1)/2]
+Distribution function (for arithmetic coding for least message length) is
+  y * Gamma[n/2] * Hypergeometric2F1[1/2,n/2,3/2,-y*y] / Sqrt[Pi]  / Gamma[(n-1)/2]
+
+Open questions:
+Do we use dynamic updating or length,model,probabilities?
++ LMP.
+If mode, Gauss or 1+y^2? How to code model parameters?
++ If sum_x_squared is fixed, both lead to uniform distribution on (nD) sphere.
+Do we compute last two points from parameters?
++ No, we do not even compute other poit probabilities, just the sphere area.
+If updating, how to code first two undetermined points?
++ Average uniform in (zero, max), sigma also uniform on the same interval.
