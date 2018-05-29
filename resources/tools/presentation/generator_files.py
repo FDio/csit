@@ -141,9 +141,13 @@ def file_merged_test_results(file_spec, input_data):
 
     logging.info("    Writing file '{0}'".format(file_name))
 
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(file_spec.get("type", ""), file_spec.get("title", "")))
     tests = input_data.filter_data(file_spec)
     tests = input_data.merge_data(tests)
 
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(file_spec.get("type", ""), file_spec.get("title", "")))
     suites = input_data.filter_data(file_spec, data_set="suites")
     suites = input_data.merge_data(suites)
     suites.sort_index(inplace=True)
