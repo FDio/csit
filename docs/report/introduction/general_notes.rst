@@ -40,20 +40,6 @@ is listed separately, as follows:
    orchestrated by Kubernetes, with `Ligato <https://github.com/ligato>`_ for
    container networking. TRex is used as a traffic generator.
 
-#. **DPDK Performance** - VPP is using DPDK code to control and drive
-   the NICs and physical interfaces. Tests are used as a baseline to
-   profile performance of the DPDK sub-system. DPDK tests are executed in
-   physical FD.io testbeds, focusing on Testpmd/L3FWD data plane performance for
-   Phy-to-Phy (NIC-to-NIC). Tests cover a range of NICs, 10GE and 40GE
-   interfaces, range of multi-thread and multi-core configurations.
-   Testpmd/L3FWD application runs in host user-mode. TRex is used as a traffic
-   generator.
-
-#. **Honeycomb Performance** - Honeycomb performance tests are executed in
-   physical FD.io testbeds, focusing on the performance of Honeycomb management
-   and programming functionality of VPP. Tests cover a range of CRUD operations
-   executed against VPP.
-
 #. **VPP Functional** - VPP functional tests are executed in virtual
    FD.io testbeds focusing on VPP packet processing functionality, including
    network data plane and in -line control plane. Tests cover vNIC-to-vNIC

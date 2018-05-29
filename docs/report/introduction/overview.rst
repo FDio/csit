@@ -36,21 +36,6 @@ CSIT |release| report contains following main sections and sub-sections:
    test job executions; *Test Environment* - environment description;
    *Documentation* - CSIT source code documentation for VPP performance tests.
 
-#. **DPDK Performance Tests** - DPDK performance tests executed in
-   physical FD.io testbeds; *Overview* - tested topologies, test coverage;
-   *CSIT Release Notes* - changes in CSIT |release|, any known CSIT issues;
-   *Packet Throughput Graphs* and *Packet Latency Graphs*
-   - plotted NDR, PDR throughput and latency results from multiple test job
-   executions; *Test Environment* - environment description; *Documentation* -
-   CSIT source code documentation for DPDK performance tests.
-
-#. **Honeycomb Performance Tests** - Honeycomb performance tests executed in
-   physical FD.io testbeds; *Overview* - tested topologies, test coverage
-   and naming specifics; *CSIT Release Notes* - changes in CSIT |release|,
-   added tests, environment or methodology changes, known CSIT issues;
-   *Test Environment* - environment description; *Documentation* - source
-   code documentation for Honeycomb performance tests.
-
 #. **VPP Functional Tests** - VPP functional tests executed in virtual
    FD.io testbeds; *Overview* - tested virtual topologies, test coverage and
    naming specifics; *CSIT Release Notes* - changes in CSIT |release|, added
@@ -65,12 +50,6 @@ CSIT |release| report contains following main sections and sub-sections:
    *Test Environment* - environment description ;
    *Documentation* - source code documentation for Honeycomb functional tests.
 
-#. **VPP Unit Tests** - refers to VPP functional unit tests executed as
-   part of vpp make test verify option within the FD.io VPP project; listed in
-   this report to give a more complete view about executed VPP functional tests;
-   *Overview* - short overview of unit test framework and executed tests;
-   *Documentation* - source code documentation of VPP unit tests.
-
 #. **NSH_SFC Functional Tests** - NSH_SFC functional tests executed in
    virtual FD.io testbeds; *Overview* - tested virtual topologies, test
    coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
@@ -80,7 +59,7 @@ CSIT |release| report contains following main sections and sub-sections:
 
 #. **Detailed Test Results** - auto-generated results from CSIT jobs
    executions using CSIT Robot Framework output files as source data; *VPP
-   Performance Results*, *DPDK Performance Results*, *VPP Functional
+   Performance Results*, *VPP Functional
    Results*, *Honeycomb Functional Results*, *VPPtest Functional Results*.
 
 #. **Test Configuration** - auto-generated DUT configuration data from CSIT jobs
