@@ -18,15 +18,20 @@
 - provide access to the data.
 """
 
+import multiprocessing
+import os
 import re
 import pandas as pd
 import logging
-import xml.etree.ElementTree as ET
 
 from robot.api import ExecutionResult, ResultVisitor
 from robot import errors
 from collections import OrderedDict
 from string import replace
+from os import remove
+
+from input_data_files import download_and_unzip_data_file
+from utils import Worker
 
 
 class ExecutionChecker(ResultVisitor):
@@ -171,14 +176,14 @@ class ExecutionChecker(ResultVisitor):
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
 
-    REGEX_VERSION = re.compile(r"(stdout: 'vat# vat# Version:)(\s*)(.*)")
+    REGEX_VERSION = re.compile(r"(return STDOUT Version:\s*)(.*)")
 
     REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
 
     REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
                            r'tx\s(\d*),\srx\s(\d*)')
 
-    def __init__(self, **metadata):
+    def __init__(self, metadata):
         """Initialisation.
 
         :param metadata: Key-value pairs to be included in "metadata" part of
@@ -244,13 +249,12 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("stdout: 'vat# vat# Version:"):
+        if msg.message.count("return STDOUT Version:"):
             self._version = str(re.search(self.REGEX_VERSION, msg.message).
-                                group(3))
+                                group(2))
             self._data["metadata"]["version"] = self._version
+            self._data["metadata"]["generated"] = msg.timestamp
             self._msg_type = None
-
-            logging.debug("    VPP version: {0}".format(self._version))
 
     def _get_vat_history(self, msg):
         """Called when extraction of VAT command history is required.
@@ -585,7 +589,7 @@ class ExecutionChecker(ResultVisitor):
         :type setup_kw: Keyword
         :returns: Nothing.
         """
-        if setup_kw.name.count("Vpp Show Version Verbose") \
+        if setup_kw.name.count("Show Vpp Version On All Duts") \
                 and not self._version:
             self._msg_type = "setup-version"
             setup_kw.messages.visit(self)
@@ -696,7 +700,7 @@ class InputData(object):
         self._cfg = spec
 
         # Data store:
-        self._input_data = None
+        self._input_data = pd.Series()
 
     @property
     def data(self):
@@ -747,76 +751,186 @@ class InputData(object):
         return self.data[job][build]["tests"]
 
     @staticmethod
-    def _parse_tests(job, build):
+    def _parse_tests(job, build, log):
         """Process data from robot output.xml file and return JSON structured
         data.
 
         :param job: The name of job which build output data will be processed.
         :param build: The build which output data will be processed.
+        :param log: List of log messages.
         :type job: str
         :type build: dict
+        :type log: list of tuples (severity, msg)
         :returns: JSON data structure.
         :rtype: dict
         """
 
-        tree = ET.parse(build["file-name"])
-        root = tree.getroot()
-        generated = root.attrib["generated"]
+        metadata = {
+            "job": job,
+            "build": build
+        }
 
         with open(build["file-name"], 'r') as data_file:
             try:
                 result = ExecutionResult(data_file)
             except errors.DataError as err:
-                logging.error("Error occurred while parsing output.xml: {0}".
-                              format(err))
+                log.append(("ERROR", "Error occurred while parsing output.xml: "
+                                     "{0}".format(err)))
                 return None
-        checker = ExecutionChecker(job=job, build=build, generated=generated)
+        checker = ExecutionChecker(metadata)
         result.visit(checker)
 
         return checker.data
 
-    def read_data(self):
-        """Parse input data from input files and store in pandas' Series.
+    def _download_and_parse_build(self, pid, data_queue, job, build, repeat):
+        """Download and parse the input data file.
+
+        :param pid: PID of the process executing this method.
+        :param data_queue: Shared memory between processes. Queue which keeps
+            the result data. This data is then read by the main process and used
+            in further processing.
+        :param job: Name of the Jenkins job which generated the processed input
+            file.
+        :param build: Information about the Jenkins build which generated the
+            processed input file.
+        :param repeat: Repeat the download specified number of times if not
+            successful.
+        :type pid: int
+        :type data_queue: multiprocessing.Manager().Queue()
+        :type job: str
+        :type build: dict
+        :type repeat: int
         """
 
-        logging.info("Parsing input files ...")
+        logs = list()
 
-        job_data = dict()
+        logging.info("  Processing the job/build: {0}: {1}".
+                     format(job, build["build"]))
+
+        logs.append(("INFO", "  Processing the job/build: {0}: {1}".
+                     format(job, build["build"])))
+
+        state = "failed"
+        success = False
+        data = None
+        do_repeat = repeat
+        while do_repeat:
+            success = download_and_unzip_data_file(self._cfg, job, build, pid,
+                                                   logs)
+            if success:
+                break
+            do_repeat -= 1
+        if not success:
+            logs.append(("ERROR", "It is not possible to download the input "
+                                  "data file from the job '{job}', build "
+                                  "'{build}', or it is damaged. Skipped.".
+                         format(job=job, build=build["build"])))
+        if success:
+            logs.append(("INFO", "  Processing data from the build '{0}' ...".
+                         format(build["build"])))
+            data = InputData._parse_tests(job, build, logs)
+            if data is None:
+                logs.append(("ERROR", "Input data file from the job '{job}', "
+                                      "build '{build}' is damaged. Skipped.".
+                             format(job=job, build=build["build"])))
+            else:
+                state = "processed"
+
+            try:
+                remove(build["file-name"])
+            except OSError as err:
+                logs.append(("ERROR", "Cannot remove the file '{0}': {1}".
+                             format(build["file-name"], err)))
+        logs.append(("INFO", "  Done."))
+
+        result = {
+            "data": data,
+            "state": state,
+            "job": job,
+            "build": build,
+            "logs": logs
+        }
+        data_queue.put(result)
+
+    def download_and_parse_data(self, repeat=1):
+        """Download the input data files, parse input data from input files and
+        store in pandas' Series.
+
+        :param repeat: Repeat the download specified number of times if not
+            successful.
+        :type repeat: int
+        """
+
+        logging.info("Downloading and parsing input files ...")
+
+        work_queue = multiprocessing.JoinableQueue()
+        manager = multiprocessing.Manager()
+        data_queue = manager.Queue()
+        cpus = multiprocessing.cpu_count()
+
+        workers = list()
+        for cpu in range(cpus):
+            worker = Worker(work_queue,
+                            data_queue,
+                            self._download_and_parse_build)
+            worker.daemon = True
+            worker.start()
+            workers.append(worker)
+            os.system("taskset -p -c {0} {1} > /dev/null 2>&1".
+                      format(cpu, worker.pid))
+
         for job, builds in self._cfg.builds.items():
-            logging.info("  Extracting data from the job '{0}' ...'".
-                         format(job))
-            builds_data = dict()
             for build in builds:
-                if build["status"] == "failed" \
-                        or build["status"] == "not found":
-                    continue
-                logging.info("    Extracting data from the build '{0}'".
-                             format(build["build"]))
-                logging.info("    Processing the file '{0}'".
-                             format(build["file-name"]))
-                data = InputData._parse_tests(job, build)
-                if data is None:
-                    logging.error("Input data file from the job '{job}', build "
-                                  "'{build}' is damaged. Skipped.".
-                                  format(job=job, build=build["build"]))
-                    continue
+                work_queue.put((job, build, repeat))
 
+        work_queue.join()
+
+        logging.info("Done.")
+
+        while not data_queue.empty():
+            result = data_queue.get()
+
+            job = result["job"]
+            build_nr = result["build"]["build"]
+
+            if result["data"]:
+                data = result["data"]
                 build_data = pd.Series({
                     "metadata": pd.Series(data["metadata"].values(),
                                           index=data["metadata"].keys()),
                     "suites": pd.Series(data["suites"].values(),
                                         index=data["suites"].keys()),
                     "tests": pd.Series(data["tests"].values(),
-                                       index=data["tests"].keys()),
-                    })
-                builds_data[str(build["build"])] = build_data
-                logging.info("    Done.")
+                                       index=data["tests"].keys())})
 
-            job_data[job] = pd.Series(builds_data.values(),
-                                      index=builds_data.keys())
-            logging.info("  Done.")
+                if self._input_data.get(job, None) is None:
+                    self._input_data[job] = pd.Series()
+                self._input_data[job][str(build_nr)] = build_data
 
-        self._input_data = pd.Series(job_data.values(), index=job_data.keys())
+                self._cfg.set_input_file_name(job, build_nr,
+                                              result["build"]["file-name"])
+
+            self._cfg.set_input_state(job, build_nr, result["state"])
+
+            for item in result["logs"]:
+                if item[0] == "INFO":
+                    logging.info(item[1])
+                elif item[0] == "ERROR":
+                    logging.error(item[1])
+                elif item[0] == "DEBUG":
+                    logging.debug(item[1])
+                elif item[0] == "CRITICAL":
+                    logging.critical(item[1])
+                elif item[0] == "WARNING":
+                    logging.warning(item[1])
+
+        del data_queue
+
+        # Terminate all workers
+        for worker in workers:
+            worker.terminate()
+            worker.join()
+
         logging.info("Done.")
 
     @staticmethod
@@ -892,9 +1006,6 @@ class InputData(object):
         :returns: Filtered data.
         :rtype pandas.Series
         """
-
-        logging.info("    Creating the data set for the {0} '{1}'.".
-                     format(element.get("type", ""), element.get("title", "")))
 
         try:
             if element["filter"] in ("all", "template"):

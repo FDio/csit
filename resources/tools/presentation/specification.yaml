@@ -1,14 +1,5 @@
 -
   type: "environment"
-  configuration:
-    # Debug mode:
-    # - Skip:
-    #   - Download of input data files
-    # - Do:
-    #   - Read data from given zip / xml files
-    #   - Set the configuration as it is done in normal mode
-    # If the section "type: debug" is missing, CFG[DEBUG] is set to 0.
-    CFG[DEBUG]: 0
 
   paths:
     # Top level directories:
@@ -38,9 +29,11 @@
     DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
     DIR[DTR,PERF,DPDK]: "{DIR[DTR]}/dpdk_performance_results"
     DIR[DTR,PERF,VPP]: "{DIR[DTR]}/vpp_performance_results"
+    DIR[DTR,MRR,VPP]: "{DIR[DTR]}/vpp_mrr_results"
     DIR[DTR,PERF,COT]: "{DIR[DTR]}/cot_performance_results"
     DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
     DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
+    DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
     DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
     DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
@@ -48,7 +41,9 @@
     # Detailed test configurations
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
     DIR[DTC,PERF,VPP]: "{DIR[DTC]}/vpp_performance_configuration"
+    DIR[DTC,MRR,VPP]: "{DIR[DTC]}/vpp_mrr_configuration"
     DIR[DTC,FUNC,VPP]: "{DIR[DTC]}/vpp_functional_configuration"
+    DIR[DTC,FUNC,VPP,CENTOS]: "{DIR[DTC]}/vpp_functional_configuration_centos"
 
     # Detailed tests operational data
     DIR[DTO]: "{DIR[WORKING,SRC]}/test_operational_data"
@@ -79,6 +74,7 @@
   # List the directories which are deleted while cleaning the environment.
   # All directories MUST be defined in "paths" section.
   #- "DIR[BUILD,HTML]"
+  - "DIR[WORKING,DATA]"
 
   build-dirs:
   # List the directories where the results (build) is stored.
@@ -91,92 +87,8 @@
   data-sets:
     plot-vpp-http-server-performance:
       csit-vpp-perf-1801-all:
-      - 157
-      - 158
-      - 159
-      - 160
-      - 161
-      - 164
-      - 165
-      - 166
-      - 168
-      - 169
-      - 170
-# TODO: Add the data sources
-#    vpp-meltdown-impact:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#      csit-vpp-perf-1710-all:
-#      - 11l
-#      - 12
-#      - 13
-# TODO: Add the data sources
-#    vpp-spectre-impact:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
+      - 534  # wrk
     vpp-performance-changes:
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
-      csit-vpp-perf-1801-all:
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
-    plot-throughput-speedup-analysis:
-      csit-vpp-perf-1801-all:
-      - 122  # full
-      - 126  # full
-      - 129  # full
-      - 140  # full
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
-#    performance-improvements:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#      - 14
-#      - 15
-#      - 16
-#      - 17
-#      - 18
-#      - 19
-#      - 21
 #      csit-vpp-perf-1710-all:
 #      - 11
 #      - 12
@@ -188,58 +100,7 @@
 #      - 18
 #      - 19
 #      - 20
-#      csit-vpp-perf-1801-all:
-#      - 124
-#      - 127
-#      - 128
-#      csit-ligato-perf-1710-all:
-#      - 5
-#      - 7
-#      - 8
-#      - 9
-#      - 10
-#      - 11
-#      - 12
-#      - 13
-#      - 16
-#      - 17
-#      csit-ligato-perf-1801-all:
-#      - 16  # sel
-#      - 17  # sel
-#      - 18  # sel
-#      - 19  # sel
-#      - 20  # sel
-#      - 21  # sel
-#      - 22  # sel
-#      - 23  # sel
-#      - 24  # sel
-    vpp-perf-results:
       csit-vpp-perf-1801-all:
-      - 122
-      - 126
-      - 129
-      - 140
-    vpp-func-results:
-      csit-vpp-functional-1801-ubuntu1604-virl:
-      - "lastSuccessfulBuild"
-    ligato-perf-results:
-      csit-ligato-perf-1801-all:
-      - 25  # full
-    dpdk-perf-results:
-      csit-dpdk-perf-1801-all:
-      - 12
-    hc-func-results:
-      csit-hc2vpp-verify-func-1801-ubuntu1604:
-      - "lastSuccessfulBuild"
-    nsh-func-results:
-      csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
-      - 1
-    plot-vpp-throughput-latency:
-      csit-vpp-perf-1801-all:
-      - 122  # full
-      - 126  # full
-      - 129  # full
-      - 140  # full
       - 124  # sel
       - 127  # sel
       - 128  # sel
@@ -252,28 +113,52 @@
       - 163  # sel
       - 167  # sel
       - 172  # sel acl only
-    plot-dpdk-throughput-latency:
-      csit-dpdk-perf-1801-all:
-      - 1
+      - 535  # full
+      - 539  # full
+      - 533  # full
+      - 540  # full
+    plot-throughput-speedup-analysis:
+      csit-vpp-perf-1801-all:
+      - 535  # full
+      - 539  # full
+      - 533  # full
+      - 540  # full
+    plot-ligato-throughput-speedup-analysis:
+      csit-ligato-perf-1801-all:
+      - 27
+    vpp-perf-results:
+      csit-vpp-perf-1801-all:
+      - 535  # full
+      - 539  # full
+      - 533  # full
+      - 540  # full
+    vpp-func-results:
+      csit-vpp-functional-1801-ubuntu1604-virl:
+      - 454
+    vpp-func-results-centos:
+      csit-vpp-functional-1801-centos7-virl:
+      - 454
+    vpp-mrr-results:
+      csit-vpp-perf-check-1801:
+      - 18   # mrr - full
+    ligato-perf-results:
+      csit-ligato-perf-1801-all:
+      - 27  # full
+    hc-func-results:
+      csit-hc2vpp-verify-func-1801-ubuntu1604:
+      - "lastSuccessfulBuild"
+    nsh-func-results:
+      csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
       - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 10
-      - 12
+    plot-vpp-throughput-latency:
+      csit-vpp-perf-1801-all:
+      - 535  # full
+      - 539  # full
+      - 533  # full
+      - 540  # full
     plot-ligato-throughput-latency:
       csit-ligato-perf-1801-all:
-      - 16  # sel
-      - 17  # sel
-      - 18  # sel
-      - 19  # sel
-      - 20  # sel
-      - 21  # sel
-      - 22  # sel
-      - 23  # sel
-      - 24  # sel
+      - 27  # full
 
   plot-layouts:
 
@@ -492,27 +377,6 @@
       height: 1000
 
 -
-  type: "debug"
-  general:
-    input-format: "xml"  # zip or xml
-    extract: "robot-plugin/output.xml"  # Only for zip
-  builds:
-    # The files must be in the directory DIR[WORKING,DATA]
-    csit-vpp-perf-1801-all:
-    -
-      build: 1
-      file: "{DIR[WORKING,DATA]}/output.xml"
-    -
-      build: 2
-      file: "{DIR[WORKING,DATA]}/output.xml"
-    -
-      build: 3
-      file: "{DIR[WORKING,DATA]}/output.xml"
-    -
-      build: 4
-      file: "{DIR[WORKING,DATA]}/output.xml"
-
--
   type: "static"
   src-path: "{DIR[RST]}"
   dst-path: "{DIR[WORKING,SRC]}"
@@ -525,17 +389,6 @@
     download-path: "{job}/{build}/robot/report/*zip*/{filename}"
     extract: "robot-plugin/output.xml"
   builds:
-#    csit-vpp-perf-1707-all:
-#    - 9
-#    - 10
-#    - 13
-#    - 14
-#    - 15
-#    - 16
-#    - 17
-#    - 18
-#    - 19
-#    - 21
     csit-vpp-perf-1710-all:
     - 11
     - 12
@@ -548,10 +401,6 @@
     - 19
     - 20
     csit-vpp-perf-1801-all:
-    - 122  # full
-    - 126  # full
-    - 129  # full
-    - 140  # full
     - 124  # sel
     - 127  # sel
     - 128  # sel
@@ -560,21 +409,17 @@
     - 143  # sel
     - 145  # sel
     - 146  # sel
-    - 157  # wrk
-    - 158  # wrk
-    - 159  # wrk
-    - 160  # wrk
-    - 161  # wrk
     - 162  # sel
     - 163  # sel
-    - 164  # wrk
-    - 165  # wrk
-    - 166  # wrk
     - 167  # sel
-    - 168  # wrk
-    - 169  # wrk
-    - 170  # wrk
     - 172  # sel acl only
+    - 535  # 18.01.2 full
+    - 539  # 18.01.2 full
+    - 533  # 18.01.2 full
+    - 540  # 18.01.2 full
+    - 534  # 18.01.2 wrk
+    csit-vpp-perf-check-1801:
+    - 18  # mrr full
     csit-ligato-perf-1710-all:
     - 5
     - 7
@@ -586,42 +431,14 @@
     - 13
     - 16
     - 17
-    csit-dpdk-perf-1801-all:
-    - 1
-    - 4
-    - 5
-    - 7
-    - 8
-    - 10
-    - 12
-    - 16
-    - 17
     csit-ligato-perf-1801-all:
-    - 16  # sel
-    - 17  # sel
-    - 18  # sel
-    - 19  # sel
-    - 20  # sel
-    - 21  # sel
-    - 22  # sel
-    - 23  # sel
-    - 24  # sel
-    - 25  # full
-    csit-dpdk-perf-1801-all:
-    - 1
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 12
+    - 27  # full
     csit-vpp-functional-1801-ubuntu1604-virl:
-    - lastSuccessfulBuild
+    - 454
+    csit-vpp-functional-1801-centos7-virl:
+    - 454
     csit-nsh_sfc-verify-func-1801-ubuntu1604-virl:
-    - 1
+    - 3
     csit-hc2vpp-verify-func-1801-ubuntu1604:
     - lastSuccessfulBuild
 
@@ -638,74 +455,6 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
-#-
-#  type: "table"
-#  title: "Performance Impact of Meltdown Patches"
-#  algorithm: "table_performance_comparison"
-#  output-file-ext: ".csv"
-## TODO: specify dir
-#  output-file: "{DIR[STATIC,VPP]}/meltdown-impact"
-#  reference:
-#    title: "No Meltdown"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#  compare:
-#    title: "Meltdown Patches Applied"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#  data:
-#    "vpp-meltdown-impact"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-#  # to present all tests.
-#  nr-of-tests-shown: 20
-#
-#-
-#  type: "table"
-#  title: "Performance Impact of Spectre Patches"
-#  algorithm: "table_performance_comparison"
-#  output-file-ext: ".csv"
-## TODO: specify dir
-#  output-file: "{DIR[STATIC,VPP]}/meltdown-spectre-impact"
-#  reference:
-#    title: "No Spectre"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#  compare:
-#    title: "Spectre Patches Applied"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#  data:
-#    "vpp-spectre-impact"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-#  # to present all tests.
-#  nr-of-tests-shown: 20
-
 -
   type: "table"
   title: "VPP Performance Changes"
@@ -713,22 +462,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-changes"
   reference:
-    title: "Release 1710"
-    data:
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
-  compare:
-    title: "Release 1801"
-# TODO: specify data sources
+    title: "Release 18.01"
     data:
       csit-vpp-perf-1801-all:
       - 124  # sel
@@ -743,6 +477,25 @@
       - 163  # sel
       - 167  # sel
       - 172  # sel acl only
+#      csit-vpp-perf-1710-all:
+#      - 11
+#      - 12
+#      - 13
+#      - 14
+#      - 15
+#      - 16
+#      - 17
+#      - 18
+#      - 19
+#      - 20
+  compare:
+    title: "Release 18.01.2"
+    data:
+      csit-vpp-perf-1801-all:
+      - 535  # full
+      - 539  # full
+      - 533  # full
+      - 540  # full
   data: "vpp-performance-changes"
   filter: "all"
   parameters:
@@ -753,48 +506,6 @@
   # to present all tests.
   nr-of-tests-shown: 20
   outlier-const: 1.5
-
-#-
-#  type: "table"
-#  title: "Performance improvements"
-#  algorithm: "table_performance_improvements"
-#  template: "{DIR[DTR,PERF,VPP,IMPRV]}/tmpl_performance_improvements.csv"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance_improvements"
-#  columns:
-#  -
-#    title: "Test Name"
-#    data: "template 1"
-#  -
-#    title: "16.09 mean [Mpps]"
-#    data: "template 2"
-#  -
-#    title: "17.01 mean [Mpps]"
-#    data: "template 3"
-#  -
-#    title: "17.04 mean [Mpps]"
-#    data: "template 4"
-#  -
-#    title: "17.07 mean [Mpps]"
-#    data: "data csit-vpp-perf-1707-all mean"
-#  -
-#    title: "17.10 mean [Mpps]"
-#    data: "data csit-vpp-perf-1710-all csit-ligato-perf-1710-all mean"
-#  -
-#    title: "18.01 mean [Mpps]"
-#    data: "data csit-vpp-perf-1801-all csit-ligato-perf-1801-all mean"
-#  -
-#    title: "18.01 stdev [Mpps]"
-#    data: "data csit-vpp-perf-1801-all csit-ligato-perf-1801-all stdev"
-#  -
-#    title: "17.10 to 18.01 change [%]"
-#    data: "operation relative_change 5 6"
-#  rows: "generated"
-#  data:
-#    "performance-improvements"
-#  filter: "template"
-#  parameters:
-#  - "throughput"
 
 -
   type: "table"
@@ -868,6 +579,54 @@
 
 -
   type: "table"
+  title: "Detailed Test Results - VPP MRR Results"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP]}/vpp_mrr_results"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
+
+-
+  type: "table"
+  title: "Test configuration - VPP MRR Test Configs"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,MRR,VPP]}/vpp_mrr_test_configuration"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
+-
+  type: "table"
   title: "Detailed Test Results - VPP Functional Results"
   algorithm: "table_details"
   output-file-ext: ".csv"
@@ -885,6 +644,32 @@
   rows: "generated"
   data:
     "vpp-func-results"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "status"
+
+-
+  type: "table"
+  title: "Detailed Test Results - VPP Functional Results - CentOS"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,FUNC,VPP,CENTOS]}/vpp_functional_results_centos"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data status"
+  rows: "generated"
+  data:
+    "vpp-func-results-centos"
   filter: "all"
   parameters:
   - "name"
@@ -916,6 +701,28 @@
 
 -
   type: "table"
+  title: "Test configuration - VPP Functional Test Configs - CentOS"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,FUNC,VPP,CENTOS]}/vpp_functional_configuration_centos"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data:
+    "vpp-func-results-centos"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
+-
+  type: "table"
   title: "Detailed Test Results - Container Orchestrated Topologies Performance Results"
   algorithm: "table_details"
   output-file-ext: ".csv"
@@ -933,32 +740,6 @@
   rows: "generated"
   data:
     "ligato-perf-results"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "doc"
-  - "msg"
-
--
-  type: "table"
-  title: "Detailed Test Results - DPDK Performance Results"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
-  columns:
-  -
-    title: "Name"
-    data: "data name"
-  -
-    title: "Documentation"
-    data: "data doc"
-  -
-    title: "Status"
-    data: "data msg"
-  rows: "generated"
-  data:
-    "dpdk-perf-results"
   filter: "all"
   parameters:
   - "name"
@@ -1081,6 +862,44 @@
 
 -
   type: "file"
+  title: "VPP MRR Results"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP]}/vpp_mrr_results"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP]}"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
+  title: "VPP MRR Configuration"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,MRR,VPP]}/vpp_mrr_configuration"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,MRR,VPP]}"
+  data:
+    "vpp-mrr-results"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 2  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
   title: "VPP Functional Results"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
@@ -1089,6 +908,24 @@
   dir-tables: "{DIR[DTR,FUNC,VPP]}"
   data:
     "vpp-func-results"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 3  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
+  title: "VPP Functional Results - CentOS"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,FUNC,VPP,CENTOS]}/vpp_functional_results_centos"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,FUNC,VPP,CENTOS]}"
+  data:
+    "vpp-func-results-centos"
   filter: "all"
   parameters:
   - "name"
@@ -1117,6 +954,24 @@
 
 -
   type: "file"
+  title: "VPP Functional Configuration - CentOS"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,FUNC,VPP,CENTOS]}/vpp_functional_configuration_centos"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,FUNC,VPP,CENTOS]}"
+  data:
+    "vpp-func-results-centos"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  data-start-level: 3  # 0, 1, 2, ...
+  chapters-start-level: 2  # 0, 1, 2, ...
+
+-
+  type: "file"
   title: "Container Orchestrated Performance Results"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
@@ -1130,26 +985,6 @@
   - "name"
   - "doc"
   - "level"
-  data-start-level: 2  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
-
--
-  type: "file"
-  title: "DPDK Performance Results"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,PERF,DPDK]}"
-  data:
-    "dpdk-perf-results"
-  filter: "all"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  chapters:
-  - "suites"
   data-start-level: 2  # 0, 1, 2, ...
   chapters-start-level: 2  # 0, 1, 2, ...
 
@@ -1412,6 +1247,452 @@
   - "tags"
   layout:
     title: "78B-*-ethip6-ip6(base|scale)*pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# SRv6 - 10ge2p1x520 - NDR
+-
+  type: "plot"
+  title: "TSA: 78B-*-ethip6-ip6(base|scale)*ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-srv6-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'FEATURE' and 'NDRDISC' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "78B-*-ethip6-ip6(base|scale)*ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# SRv6 - 10ge2p1x520 - PDR
+-
+  type: "plot"
+  title: "TSA: 78B-*-ethip6-ip6(base|scale)*pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-srv6-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "78B-*-ethip6-ip6(base|scale)*pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# IP4_overlay - NDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ethip4-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# IP4_overlay - PDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ethip4-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# IP6_overlay - NDR
+-
+  type: "plot"
+  title: "TSA: 78B-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ethip6-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'ENCAP' and 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "78B-*-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# IP6_overlay - PDR
+-
+  type: "plot"
+  title: "TSA: 78B-*-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ethip6-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "78B-*-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# VM VHOST - NDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-XL710' and '64B' and 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-XL710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# VM VHOST - PDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-XL710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-XL710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*vhost.*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# CRYPTO - NDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*ipsec.*-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ipsechw-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-XL710' and '64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*ipsec.*-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# CRYPTO - PDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-.*ipsec.*-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ipsechw-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-XL710' and '64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-.*ipsec.*-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# Container memif - NDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-memif-tsa-ndrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# Container memif - PDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-memif-tsa-pdrdisc"
+  data:
+    "plot-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# Container orchestrated - NDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-orchestrated-tsa-ndrdisc"
+  data:
+    "plot-ligato-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-container-orchestrated-tsa-ndrdisc"
+  data:
+    "plot-ligato-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X710' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+# Container orchestrated - PDR
+-
+  type: "plot"
+  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-orchestrated-tsa-pdrdisc"
+  data:
+    "plot-ligato-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+    layout:
+      "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-container-orchestrated-tsa-pdrdisc"
+  data:
+    "plot-ligato-throughput-speedup-analysis"
+  filter: "'NIC_Intel-X710' and '64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
     layout:
       "plot-throughput-speedup-analysis"
 
@@ -1683,7 +1964,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -1704,7 +1985,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -1725,7 +2006,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -1746,7 +2027,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-pdrdisc"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "throughput"
   - "parent"
@@ -1756,6 +2037,91 @@
     whiskerwidth: 0
   layout:
     title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+    layout:
+      "plot-throughput"
+
+# VPP SRv6
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-ndrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6*srv6*ndrdisc"
+    layout:
+      "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-ndrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6*srv6*ndrdisc"
+    layout:
+      "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-1t1c-ethip6*srv6*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-pdrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-1t1c-ethip6*srv6*pdrdisc"
+    layout:
+      "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Performance 78B-2t2c-ethip6*srv6*pdrdisc"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-pdrdisc"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "78B-2t2c-ethip6*srv6*pdrdisc"
     layout:
       "plot-throughput"
 
@@ -1863,45 +2229,8 @@
     whiskerwidth: 0
   layout:
     title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [2000000, 6000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -1963,45 +2292,8 @@
     whiskerwidth: 0
   layout:
     title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [4000000, 12000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 # VPP VM VHOST
 -
@@ -2022,45 +2314,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-.*vhost.*-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 3500000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -2295,323 +2550,6 @@
     layout:
       "plot-throughput"
 
-# DPDK
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [2000000, 12000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [2000000, 12000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [20000000, 30000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [20000000, 30000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
-
 # Plot latency
 
 # VPP L2 sel1
@@ -2740,7 +2678,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "latency"
   - "parent"
@@ -2759,7 +2697,7 @@
   output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc-lat50"
   data:
     "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
   parameters:
   - "latency"
   - "parent"
@@ -2767,6 +2705,45 @@
     boxmean: False
   layout:
     title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+    layout:
+      "plot-latency"
+
+# VPP SRv6
+-
+  type: "plot"
+  title: "VPP Latency 78B-1t1c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-ndrdisc-lat50"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-1t1c-ethip6*srv6*ndrdisc"
+    layout:
+      "plot-latency"
+
+-
+  type: "plot"
+  title: "VPP Latency 78B-2t2c-ethip6*srv6*ndrdisc"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-ndrdisc-lat50"
+  data:
+    "plot-vpp-throughput-latency"
+  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: "78B-2t2c-ethip6*srv6*ndrdisc"
     layout:
       "plot-latency"
 
@@ -2965,83 +2942,6 @@
     layout:
       "plot-latency"
 
-# DPDK
--
-  type: "plot"
-  title: "DPDK Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "DPDK Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "DPDK Latency 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "DPDK Latency 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-    layout:
-      "plot-latency"
-
 # Ligato - Throughput
 
 # Container memif
@@ -3063,45 +2963,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 4500000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3121,45 +2984,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 8000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3179,45 +3005,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 4500000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 -
   type: "plot"
@@ -3237,45 +3026,8 @@
     whiskerwidth: 0
   layout:
     title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    xaxis:
-      autorange: True
-      autotick: False
-      fixedrange: False
-      gridcolor: "rgb(238, 238, 238)"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      tickmode: "linear"
-      title: "Indexed Test Cases"
-      zeroline: False
-    yaxis:
-      gridcolor: "rgb(238, 238, 238)'"
-      hoverformat: ".4s"
-      linecolor: "rgb(238, 238, 238)"
-      linewidth: 1
-      range: [0, 8000000]
-      showgrid: True
-      showline: True
-      showticklabels: True
-      tickcolor: "rgb(238, 238, 238)"
-      title: "Packets Per Second [pps]"
-      zeroline: False
-    boxmode: "group"
-    boxgroupgap: 0.5
-    autosize: False
-    margin:
-      t: 50
-      b: 20
-      l: 50
-      r: 20
-    showlegend: True
-    legend:
-      orientation: "h"
-    width: 700
-    height: 1000
+    layout:
+      "plot-throughput"
 
 # Container orchestrated
 -
