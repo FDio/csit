@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a0808a2_88e0226f",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-29T11:26:42Z",
+      "side": 1,
+      "message": ":raises from Base still applies.",
+      "range": {
+        "startLine": 228,
+        "startChar": 8,
+        "endLine": 228,
+        "endChar": 9
+      },
+      "revId": "2d751aecf2432051f8785c6bcdc28e4ede7df2ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7a641f7_9a030efc",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-29T11:26:42Z",
+      "side": 1,
+      "message": ":raises",
+      "range": {
+        "startLine": 243,
+        "startChar": 8,
+        "endLine": 243,
+        "endChar": 9
+      },
+      "revId": "2d751aecf2432051f8785c6bcdc28e4ede7df2ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
