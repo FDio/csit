@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,12 +16,9 @@ Download all data.
 """
 
 import re
-import gzip
-import logging
 
-from os import rename, remove
-from os.path import join, getsize
-from shutil import move
+from os import rename, mkdir
+from os.path import join
 from zipfile import ZipFile, is_zipfile, BadZipfile
 from httplib import responses
 from requests import get, codes, RequestException, Timeout, TooManyRedirects, \
@@ -39,216 +36,195 @@ SEPARATOR = "__"
 REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
 
-def download_data_files(spec):
-    """Download all data specified in the specification file in the section
-    type: input --> builds.
+def _download_file(url, file_name, log):
+    """Download a file with input data.
 
-    :param spec: Specification.
-    :type spec: Specification
-    :raises: PresentationError if there is no url defined for the job.
+    :param url: URL to the file to download.
+    :param file_name: Name of file to download.
+    :param log: List of log messages.
+    :type url: str
+    :type file_name: str
+    :type log: list of tuples (severity, msg)
+    :returns: True if the download was successful, otherwise False.
+    :rtype: bool
     """
 
-    for job, builds in spec.builds.items():
-        for build in builds:
-            if job.startswith("csit-"):
-                if spec.input["file-name"].endswith(".zip"):
-                    url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
-                elif spec.input["file-name"].endswith(".gz"):
-                    url = spec.environment["urls"]["URL[NEXUS,LOG]"]
-                else:
-                    logging.error("Not supported file format.")
-                    continue
-            elif job.startswith("hc2vpp-"):
-                url = spec.environment["urls"]["URL[JENKINS,HC]"]
-            else:
-                raise PresentationError("No url defined for the job '{}'.".
-                                        format(job))
-            file_name = spec.input["file-name"]
-            full_name = spec.input["download-path"].\
-                format(job=job, build=build["build"], filename=file_name)
-            url = "{0}/{1}".format(url, full_name)
-            new_name = join(
-                spec.environment["paths"]["DIR[WORKING,DATA]"],
-                "{job}{sep}{build}{sep}{name}".format(job=job,
-                                                      sep=SEPARATOR,
-                                                      build=build["build"],
-                                                      name=file_name))
-            logging.info(
-                "Downloading the file '{0}' to '{1}' ...".format(url, new_name))
+    success = False
+    try:
+        log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
 
-            status = "failed"
-            try:
-                response = get(url, stream=True)
-                code = response.status_code
+        response = get(url, stream=True)
+        code = response.status_code
 
-                if code != codes["OK"]:
-                    logging.warning(
-                        "Jenkins: {0}: {1}.".format(code, responses[code]))
-                    logging.info("Trying to download from Nexus:")
-                    spec.set_input_state(job, build["build"], "not found")
-                    if code == codes["not_found"]:
-                        release = re.search(REGEX_RELEASE, job).group(2)
-                        nexus_file_name = "{job}{sep}{build}{sep}{name}".\
-                            format(job=job, sep=SEPARATOR, build=build["build"],
-                                   name=file_name)
-                        try:
-                            release = "rls{0}".format(int(release))
-                        except ValueError:
-                            pass
-                        url = "{url}/{release}/{dir}/{file}".\
-                            format(url=spec.environment["urls"]["URL[NEXUS]"],
-                                   release=release,
-                                   dir=spec.environment["urls"]["DIR[NEXUS]"],
-                                   file=nexus_file_name)
-                        logging.info("Downloading the file '{0}' to '{1}' ...".
-                                     format(url, new_name))
-                        response = get(url, stream=True)
-                        code = response.status_code
-                        if code != codes["OK"]:
-                            logging.error(
-                                "Nexus: {0}: {1}".format(code, responses[code]))
-                            spec.set_input_state(
-                                job, build["build"], "not found")
-                            continue
+        log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
 
-                file_handle = open(new_name, "wb")
-                for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
-                    if chunk:
-                        file_handle.write(chunk)
-                file_handle.close()
+        if code != codes["OK"]:
+            return False
 
-                if spec.input["file-name"].endswith(".zip"):
-                    expected_length = None
-                    try:
-                        expected_length = int(response.
-                                              headers["Content-Length"])
-                        logging.debug("  Expected file size: {0}B".
-                                      format(expected_length))
-                    except KeyError:
-                        logging.debug("  No information about expected size.")
+        log.append(("INFO", "    Downloading the file '{0}' to '{1}' ...".
+                    format(url, file_name)))
 
-                    real_length = getsize(new_name)
-                    logging.debug("  Downloaded size: {0}B".format(real_length))
+        file_handle = open(file_name, "wb")
+        for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+            if chunk:
+                file_handle.write(chunk)
+        file_handle.close()
+        success = True
+    except ConnectionError as err:
+        log.append(("ERROR", "Not possible to connect to '{0}'.".format(url)))
+        log.append(("DEBUG", str(err)))
+    except HTTPError as err:
+        log.append(("ERROR", "Invalid HTTP response from '{0}'.".format(url)))
+        log.append(("DEBUG", str(err)))
+    except TooManyRedirects as err:
+        log.append(("ERROR", "Request exceeded the configured number "
+                             "of maximum re-directions."))
+        log.append(("DEBUG", str(err)))
+    except Timeout as err:
+        log.append(("ERROR", "Request timed out."))
+        log.append(("DEBUG", str(err)))
+    except RequestException as err:
+        log.append(("ERROR", "Unexpected HTTP request exception."))
+        log.append(("DEBUG", str(err)))
+    except (IOError, ValueError, KeyError) as err:
+        log.append(("ERROR", "Download failed."))
+        log.append(("DEBUG", str(err)))
 
-                    if expected_length:
-                        if real_length == expected_length:
-                            status = "downloaded"
-                            logging.info("{0}: {1}".format(code,
-                                                           responses[code]))
-                        else:
-                            logging.error("The file size differs from the "
-                                          "expected size.")
-                    else:
-                        status = "downloaded"
-                        logging.info("{0}: {1}".format(code, responses[code]))
-
-                elif spec.input["file-name"].endswith(".gz"):
-                    if "docs.fd.io" in url:
-                        execute_command("gzip --decompress --keep --force {0}".
-                                        format(new_name))
-                    else:
-                        rename(new_name, new_name[:-3])
-                        execute_command("gzip --keep {0}".format(new_name[:-3]))
-                    new_name = new_name[:-3]
-                    status = "downloaded"
-                    logging.info("{0}: {1}".format(code, responses[code]))
-
-            except ConnectionError as err:
-                logging.error("Not possible to connect to '{0}'.".format(url))
-                logging.debug(err)
-            except HTTPError as err:
-                logging.error("Invalid HTTP response from '{0}'.".format(url))
-                logging.debug(err)
-            except TooManyRedirects as err:
-                logging.error("Request exceeded the configured number "
-                              "of maximum re-directions.")
-                logging.debug(err)
-            except Timeout as err:
-                logging.error("Request timed out.")
-                logging.debug(err)
-            except RequestException as err:
-                logging.error("Unexpected HTTP request exception.")
-                logging.debug(err)
-            except (IOError, ValueError, KeyError) as err:
-                logging.error("Download failed.")
-                logging.debug("Reason: {0}".format(err))
-
-            spec.set_input_state(job, build["build"], status)
-            spec.set_input_file_name(job, build["build"], new_name)
-
-            if status == "failed":
-                logging.info("Removing the file '{0}'".format(new_name))
-                try:
-                    remove(new_name)
-                except OSError as err:
-                    logging.warning(str(err))
-                spec.set_input_file_name(job, build["build"], None)
-
-    unzip_files(spec)
+    log.append(("INFO", "    Download finished."))
+    return success
 
 
-def unzip_files(spec):
-    """Unzip downloaded zip files
+def _unzip_file(spec, build, pid, log):
+    """Unzip downloaded source file.
 
-    :param spec: Specification.
+    :param spec: Specification read form the specification file.
+    :param build: Information about the build.
+    :param log: List of log messages.
     :type spec: Specification
-    :raises: PresentationError if the zip file does not exist or it is not a
-    zip file.
+    :type build: dict
+    :type log: list of tuples (severity, msg)
+    :returns: True if the download was successful, otherwise False.
+    :rtype: bool
     """
 
-    if spec.is_debug:
-        data_file = spec.debug["extract"]
+    data_file = spec.input["extract"]
+    file_name = build["file-name"]
+    directory = spec.environment["paths"]["DIR[WORKING,DATA]"]
+    tmp_dir = join(directory, str(pid))
+    try:
+        mkdir(tmp_dir)
+    except OSError:
+        pass
+    new_name = "{0}{1}{2}".format(file_name.rsplit('.')[-2],
+                                  SEPARATOR,
+                                  data_file.split("/")[-1])
+
+    log.append(("INFO", "    Unzipping: '{0}' from '{1}'.".
+                format(data_file, file_name)))
+    try:
+        with ZipFile(file_name, 'r') as zip_file:
+            zip_file.extract(data_file, tmp_dir)
+        log.append(("INFO", "    Renaming the file '{0}' to '{1}'".
+                    format(join(tmp_dir, data_file), new_name)))
+        rename(join(tmp_dir, data_file), new_name)
+        build["file-name"] = new_name
+        return True
+    except (BadZipfile, RuntimeError) as err:
+        log.append(("ERROR", "Failed to unzip the file '{0}': {1}.".
+                    format(file_name, str(err))))
+        return False
+    except OSError as err:
+        log.append(("ERROR", "Failed to rename the file '{0}': {1}.".
+                    format(data_file, str(err))))
+        return False
+
+
+def download_and_unzip_data_file(spec, job, build, pid, log):
+    """Download and unzip a source file.
+
+    :param spec: Specification read form the specification file.
+    :param job: Name of the Jenkins job.
+    :param build: Information about the build.
+    :param pid: PID of the process executing this method.
+    :param log: List of log messages.
+    :type spec: Specification
+    :type job: str
+    :type build: dict
+    :type pid: int
+    :type log: list of tuples (severity, msg)
+    :returns: True if the download was successful, otherwise False.
+    :rtype: bool
+    """
+
+    if job.startswith("csit-"):
+        if spec.input["file-name"].endswith(".zip"):
+            url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
+        elif spec.input["file-name"].endswith(".gz"):
+            url = spec.environment["urls"]["URL[NEXUS,LOG]"]
+        else:
+            log.append(("ERROR", "Not supported file format."))
+            return False
+    elif job.startswith("hc2vpp-"):
+        url = spec.environment["urls"]["URL[JENKINS,HC]"]
     else:
-        data_file = spec.input["extract"]
+        raise PresentationError("No url defined for the job '{}'.".
+                                format(job))
+    file_name = spec.input["file-name"]
+    full_name = spec.input["download-path"]. \
+        format(job=job, build=build["build"], filename=file_name)
+    url = "{0}/{1}".format(url, full_name)
+    new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
+                    "{job}{sep}{build}{sep}{name}".
+                    format(job=job, sep=SEPARATOR, build=build["build"],
+                           name=file_name))
+    # Download the file from the defined source (Jenkins, logs.fd.io):
+    success = _download_file(url, new_name, log)
 
-    for job, builds in spec.builds.items():
-        for build in builds:
-            if build["status"] == "failed" or build["status"] == "not found":
-                continue
+    if success and new_name.endswith(".zip"):
+        if not is_zipfile(new_name):
+            success = False
+
+    # If not successful, download from docs.fd.io:
+    if not success:
+        log.append(("INFO", "    Trying to download from https://docs.fd.io:"))
+        release = re.search(REGEX_RELEASE, job).group(2)
+        for rls in (release, "master"):
+            nexus_file_name = "{job}{sep}{build}{sep}{name}". \
+                format(job=job, sep=SEPARATOR, build=build["build"],
+                       name=file_name)
             try:
-                status = "failed"
-                directory = spec.environment["paths"]["DIR[WORKING,DATA]"]
-                file_name = join(build["file-name"])
-
-                if build["status"] == "downloaded":
-                    logging.info("Unziping: '{0}' from '{1}'.".
-                                 format(data_file, file_name))
-                    new_name = "{0}{1}{2}".format(file_name.rsplit('.')[-2],
-                                                  SEPARATOR,
-                                                  data_file.split("/")[-1])
-                    try:
-                        if is_zipfile(file_name):
-                            with ZipFile(file_name, 'r') as zip_file:
-                                zip_file.extract(data_file, directory)
-                            logging.info("Moving {0} to {1} ...".
-                                         format(join(directory, data_file),
-                                                directory))
-                            move(join(directory, data_file), directory)
-                            logging.info("Renaming the file '{0}' to '{1}'".
-                                         format(join(directory,
-                                                     data_file.split("/")[-1]),
-                                                new_name))
-                            rename(join(directory, data_file.split("/")[-1]),
-                                   new_name)
-                            spec.set_input_file_name(job, build["build"],
-                                                     new_name)
-                        status = "unzipped"
-                        spec.set_input_state(job, build["build"], status)
-                    except (BadZipfile, RuntimeError) as err:
-                        logging.error("Failed to unzip the file '{0}': {1}.".
-                                      format(file_name, str(err)))
-                    except OSError as err:
-                        logging.error("Failed to rename the file '{0}': {1}.".
-                                      format(data_file, str(err)))
-                    finally:
-                        if status == "failed":
-                            spec.set_input_file_name(job, build["build"], None)
-                else:
-                    raise PresentationError("The file '{0}' does not exist or "
-                                            "it is not a zip file".
-                                            format(file_name))
-
-                spec.set_input_state(job, build["build"], status)
-
-            except KeyError:
+                rls = "rls{0}".format(int(rls))
+            except ValueError:
                 pass
+            url = "{url}/{release}/{dir}/{file}". \
+                format(url=spec.environment["urls"]["URL[NEXUS]"],
+                       release=rls,
+                       dir=spec.environment["urls"]["DIR[NEXUS]"],
+                       file=nexus_file_name)
+            success = _download_file(url, new_name, log)
+            if success:
+                break
+
+    if success:
+        build["file-name"] = new_name
+    else:
+        return False
+
+    if spec.input["file-name"].endswith(".gz"):
+        if "docs.fd.io" in url:
+            execute_command("gzip --decompress --keep --force {0}".
+                            format(new_name))
+        else:
+            rename(new_name, new_name[:-3])
+            execute_command("gzip --keep {0}".format(new_name[:-3]))
+        build["file-name"] = new_name[:-3]
+
+    if new_name.endswith(".zip"):
+        if is_zipfile(new_name):
+            return _unzip_file(spec, build, pid, log)
+        else:
+            log.append(("ERROR",
+                        "Zip file '{0}' is corrupted.".format(new_name)))
+            return False
+    else:
+        return True

@@ -1,4 +1,4 @@
-VPP Functional Test Configs - Ubuntu
+VPP Functional Test Configs - CentOS
 ====================================
 
 .. note::
@@ -9,4 +9,4 @@ VPP Functional Test Configs - Ubuntu
 
 .. toctree::
 
-    vpp_functional_configuration
+    vpp_functional_configuration_centos
