@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -51,35 +51,6 @@ class Environment(object):
         """
         return self._env
 
-    def _set_environment_variables(self):
-        """Set environment variables.
-        """
-        logging.info("Setting the environment variables ...")
-        # logging.debug("Environment variables before:\n{}".format(os.environ))
-
-        count = 1
-
-        for var, value in self._env["configuration"].items():
-            logging.debug("  {:3d} Setting the variable {} = {}".
-                          format(count, var, value))
-            os.environ[var] = str(value)
-            count += 1
-
-        for var, value in self._env["paths"].items():
-            logging.debug("  {:3d} Setting the variable {} = {}".
-                          format(count, var, value))
-            os.environ[var] = str(value)
-            count += 1
-
-        for var, value in self._env["urls"].items():
-            logging.debug("  {:3d} Setting the variable {} = {}".
-                          format(count, var, value))
-            os.environ[var] = str(value)
-            count += 1
-
-        # logging.debug("Environment variables after:\n{}".format(os.environ))
-        logging.info("Done.")
-
     def _make_dirs(self):
         """Create the directories specified in the 'make-dirs' part of
         'environment' section in the specification file.
@@ -122,7 +93,6 @@ class Environment(object):
         """Set the environment.
         """
 
-        self._set_environment_variables()
         self._make_dirs()
 
 
@@ -147,9 +117,10 @@ def clean_environment(env):
         if os.path.isdir(dir_to_remove):
             try:
                 shutil.rmtree(dir_to_remove)
-            except OSError:
-                raise PresentationError("Cannot remove the directory '{}'".
-                                        format(dir_to_remove))
+            except OSError as err:
+                logging.warning("Cannot remove the directory '{}'".
+                                format(dir_to_remove))
+                logging.debug(str(err))
         else:
             logging.warning("The directory '{}' does not exist.".
                             format(dir_to_remove))

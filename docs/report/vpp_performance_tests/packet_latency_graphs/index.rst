@@ -27,6 +27,7 @@ TGint2-to-SUT2-to-SUT1-to-TGint1.
     l2
     ip4
     ip6
+    srv6
     ip4_tunnels
     ip6_tunnels
     vm_vhost

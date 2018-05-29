@@ -59,6 +59,8 @@ def plot_performance_box(plot, input_data):
                  format(plot.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot)
     if data is None:
         logging.error("No data.")
@@ -129,6 +131,8 @@ def plot_latency_box(plot, input_data):
                  format(plot.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot)
     if data is None:
         logging.error("No data.")
@@ -236,6 +240,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
                  format(plot.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot)
     if data is None:
         logging.error("No data.")
@@ -335,6 +341,8 @@ def plot_http_server_performance_box(plot, input_data):
                  format(plot.get("title", "")))
 
     # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot)
     if data is None:
         logging.error("No data.")
