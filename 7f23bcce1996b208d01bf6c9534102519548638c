@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb6f7d30_d79279e2",
+        "filename": "resources/tools/scripts/download_install_vpp_pkgs.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-05-29T11:43:30Z",
+      "side": 1,
+      "message": "Which log should I look at to see this in action?",
+      "range": {
+        "startLine": 57,
+        "startChar": 28,
+        "endLine": 57,
+        "endChar": 51
+      },
+      "revId": "7f23bcce1996b208d01bf6c9534102519548638c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
