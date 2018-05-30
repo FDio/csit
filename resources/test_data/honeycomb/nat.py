@@ -42,16 +42,16 @@ def get_variables(node, interface):
             "mapping-entry": [{
                 "index": 1,
                 "type": "static",
-                "internal-src-address": "192.168.0.1",
-                "external-src-address": "192.168.1.1"
+                "internal-src-address": "192.168.0.1/32",
+                "external-src-address": "192.168.1.1/32"
             }]
         },
         "entry2": {
             "mapping-entry": [{
                 "index": 2,
                 "type": "static",
-                "internal-src-address": "192.168.0.2",
-                "external-src-address": "192.168.1.2"
+                "internal-src-address": "192.168.0.2/32",
+                "external-src-address": "192.168.1.2/32"
             }]
         },
         "entry1_2_oper": {
@@ -59,14 +59,14 @@ def get_variables(node, interface):
                 {
                     "index": 1,
                     "type": "static",
-                    "internal-src-address": "192.168.0.1",
-                    "external-src-address": "192.168.1.1"
+                    "internal-src-address": "192.168.0.1/32",
+                    "external-src-address": "192.168.1.1/32"
                 },
                 {
                     "index": 2,
                     "type": "static",
-                    "internal-src-address": "192.168.0.2",
-                    "external-src-address": "192.168.1.2"
+                    "internal-src-address": "192.168.0.2/32",
+                    "external-src-address": "192.168.1.2/32"
                 }
             ]
         },
