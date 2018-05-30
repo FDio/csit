@@ -139,3 +139,6 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 | 8 | rls1801 substantial NDR/PDR regression for      | CSIT-928   | NDR regression of -7%..-15%, PDR regression of -3%..-15%        |
 |   | IPSec tunnel scale with HW QAT crypto-dev       |            | compared to rls1710.                                            |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
+| 9 | NAT plugin requires ACL plugin enabled in VPP   | N/A        | Because of nodes order on interface feature all tests related   |
+|   | release 18.01.2                                 |            | to NAT plugin needs to have enabled ACL plugin too.             |
++---+-------------------------------------------------+------------+-----------------------------------------------------------------+
