@@ -25,6 +25,7 @@ HC_GROUP="io.fd.hc2vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 HC_ARTIFACTS="honeycomb"
 NSH_ARTIFACTS="vpp-nsh-plugin"
+NSH_VER="18.01_amd64"
 
 if [ "${OS}" == "ubuntu1404" ]; then
     OS="ubuntu.trusty.main"
@@ -63,7 +64,7 @@ done
 
 for ART in ${NSH_ARTIFACTS}; do
     for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${NSH_VER}&c=${CLASS}" -O -J || exit
     done
 done
 
@@ -83,9 +84,10 @@ else
 fi
 
 # download VPP packages
+VPP_VER="18.01.2-release_amd64"
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VPP_VER}&c=${CLASS}" -O -J || exit
     done
 done
 
