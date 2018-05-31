@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a90b0c7_602c9a79",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-31T08:21:53Z",
+      "side": 1,
+      "message": "if output[0].get(\u0027retval\u0027):",
+      "range": {
+        "startLine": 992,
+        "startChar": 8,
+        "endLine": 994,
+        "endChar": 13
+      },
+      "revId": "3decc45564ee43ec944e2b0879f300825210c503",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd8340c6_b33edfaa",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x520-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-05-31T08:21:53Z",
+      "side": 1,
+      "message": "ndrpdrdisc.robot",
+      "revId": "3decc45564ee43ec944e2b0879f300825210c503",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
