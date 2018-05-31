@@ -21,6 +21,7 @@ latency.
 import sys
 import argparse
 import json
+import time
 
 sys.path.insert(0, "/opt/trex-core-2.35/scripts/automation/"
                    "trex_control_plane/stl/")
@@ -183,7 +184,10 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
 
         if not async_start:
             # Block until done:
+            time_started = time.time()
             client.wait_on_traffic(ports=[port_0, port_1], timeout=duration+30)
+            time_waited = time.time()
+            print "trial time", time_waited - time_sarted
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -239,7 +243,7 @@ def main():
     It verifies the given command line arguments and runs "simple_burst"
     function.
     """
-
+    start_time = time.time()
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--profile",
                         required=True,
@@ -291,6 +295,8 @@ def main():
                  port_1=args.port_1,
                  latency=args.latency,
                  async_start=args.async)
+    end_time = time.time()
+    print "took overall [s]", end_time - start_time
 
 
 if __name__ == '__main__':
