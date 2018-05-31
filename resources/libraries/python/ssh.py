@@ -166,9 +166,11 @@ class SSH(object):
         while not chan.exit_status_ready() and timeout is not None:
             if chan.recv_ready():
                 stdout.write(chan.recv(self.__MAX_RECV_BUF))
+                continue
 
             if chan.recv_stderr_ready():
                 stderr.write(chan.recv_stderr(self.__MAX_RECV_BUF))
+                continue
 
             if time() - start > timeout:
                 raise SSHTimeout(
@@ -178,7 +180,7 @@ class SSH(object):
                     .format(cmd=cmd, stdout=stdout.getvalue(),
                             stderr=stderr.getvalue())
                 )
-
+            print "sleeping..."
             sleep(0.1)
         return_code = chan.recv_exit_status()
 
