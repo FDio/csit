@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import time
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
@@ -408,6 +409,7 @@ class TrafficGenerator(AbstractRateProvider):
         :returns: Nothing
         :raises RuntimeError: In case of TG driver issue.
         """
+        pre_start = time.time()
         ssh = SSH()
         ssh.connect(self._node)
 
@@ -418,6 +420,8 @@ class TrafficGenerator(AbstractRateProvider):
         profile_path = ("{0}/resources/traffic_profiles/trex/"
                         "{1}.py".format(Constants.REMOTE_FW_DIR,
                                         traffic_type))
+        pre_stop = time.time()
+        print "pre time", pre_stop - pre_start
         (ret, stdout, _) = ssh.exec_command(
             "sh -c "
             "'{0}/resources/tools/trex/trex_stateless_profile.py "
@@ -433,6 +437,7 @@ class TrafficGenerator(AbstractRateProvider):
             format(Constants.REMOTE_FW_DIR, profile_path, duration, framesize,
                    rate, warmup_time, _p0 - 1, _p1 - 1, _async, _latency),
             timeout=float(duration) + 60)
+        post_start = time.time()
 
         if int(ret) != 0:
             raise RuntimeError('TRex stateless runtime error')
@@ -456,6 +461,8 @@ class TrafficGenerator(AbstractRateProvider):
             self._latency = []
             self._latency.append(self._result.split(', ')[4].split('=')[1])
             self._latency.append(self._result.split(', ')[5].split('=')[1])
+        post_stop = time.time()
+        print "post time", post_stop - post_start
 
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG.

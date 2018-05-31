@@ -166,9 +166,11 @@ class SSH(object):
         while not chan.exit_status_ready() and timeout is not None:
             if chan.recv_ready():
                 stdout.write(chan.recv(self.__MAX_RECV_BUF))
+                continue
 
             if chan.recv_stderr_ready():
                 stderr.write(chan.recv_stderr(self.__MAX_RECV_BUF))
+                continue
 
             if time() - start > timeout:
                 raise SSHTimeout(
