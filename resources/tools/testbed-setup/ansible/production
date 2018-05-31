@@ -26,6 +26,7 @@ all:
           hosts:
             10.30.51.45: null #s2-t21-tg1
             10.30.51.48: null #s11-t31-tg1
+            10.30.51.49: null #s17-t33-tg1
         sut:
           hosts:
             10.30.51.44: null #s1-t21-sut1
