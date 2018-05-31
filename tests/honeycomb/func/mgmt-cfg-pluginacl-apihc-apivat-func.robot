@@ -102,6 +102,9 @@
 | | ... | to the other, using different IPv4 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | ...
+# HC2VPP-337: enable after ACL test failures in ODL tests are fixed
+| | [Tags] | HC_REST_ONLY
+| | ...
 | | [Teardown] | Bridged ACL test teardown
 | | ...
 | | Given Setup Interfaces And Bridge Domain For plugin-acl Test
@@ -138,6 +141,9 @@
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | ...
+# HC2VPP-337: enable after ACL test failures in ODL tests are fixed
+| | [Tags] | HC_REST_ONLY
+| | ...
 | | [Teardown] | Bridged ACL test teardown
 | | ...
 | | Given Setup interfaces and bridge domain for plugin-acl test
@@ -173,6 +179,9 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different ports. Receive all packets except\
 | | ... | those with ports in the filtered ranges.
+| | ...
+# HC2VPP-337: enable after ACL test failures in ODL tests are fixed
+| | [Tags] | HC_REST_ONLY
 | | ...
 | | [Teardown] | Bridged ACL test teardown
 | | ...
@@ -211,6 +220,9 @@
 | | ... | using IPs and ports. Receive all packets except those with\
 | | ... | both IPs and ports in the filtered ranges.
 | | ...
+# HC2VPP-337: enable after ACL test failures in ODL tests are fixed
+| | [Tags] | HC_REST_ONLY
+| | ...
 | | [Teardown] | Bridged ACL test teardown
 | | ...
 | | Given Setup Interfaces And Bridge Domain For plugin-acl Test
@@ -245,6 +257,9 @@
 | | ... | [Ver] Send ICMP packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with types and codes in the filtered ranges.
+| | ...
+# HC2VPP-337: enable after ACL test failures in ODL tests are fixed
+| | [Tags] | HC_REST_ONLY
 | | ...
 | | [Teardown] | Bridged ACL test teardown
 | | ...
@@ -283,6 +298,9 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
+| | ...
+# HC2VPP-337: enable after ACL test failures in ODL tests are fixed
+| | [Tags] | HC_REST_ONLY
 | | ...
 | | [Teardown] | Bridged ACL test teardown
 | | ...
