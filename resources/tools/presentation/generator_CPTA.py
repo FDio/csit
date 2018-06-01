@@ -27,7 +27,7 @@ import pandas as pd
 from collections import OrderedDict
 from datetime import datetime
 
-from utils import split_outliers, archive_input_data, execute_command,\
+from utils import archive_input_data, execute_command,\
     classify_anomalies, Worker
 
 
@@ -125,9 +125,7 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
 
     data_pd = pd.Series(data_y, index=xaxis)
 
-    t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
-                                      window=moving_win_size)
-    anomaly_classification = classify_anomalies(t_data, window=moving_win_size)
+    anomaly_classification = classify_anomalies(data_pd)
 
     anomalies = pd.Series()
     anomalies_colors = list()
@@ -213,7 +211,7 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
     traces.append(trace_anomalies)
 
     if show_trend_line:
-        data_trend = t_data.rolling(window=moving_win_size,
+        data_trend = data_pd.rolling(window=moving_win_size,
                                     min_periods=2).median()
         trace_trend = plgo.Scatter(
             x=data_trend.keys(),

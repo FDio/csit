@@ -26,8 +26,7 @@ from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 
 from errors import PresentationError
-from utils import mean, stdev, relative_change, remove_outliers,\
-    split_outliers, classify_anomalies
+from utils import mean, stdev, relative_change, classify_anomalies
 
 
 def generate_tables(spec, data):
@@ -445,20 +444,14 @@ def table_performance_comparison(table, input_data):
             if tbl_dict[tst_name].get("history", None) is not None:
                 for hist_data in tbl_dict[tst_name]["history"].values():
                     if hist_data:
-                        data_t = remove_outliers(
-                            hist_data, outlier_const=table["outlier-const"])
-                        if data_t:
-                            item.append(round(mean(data_t) / 1000000, 2))
-                            item.append(round(stdev(data_t) / 1000000, 2))
-                        else:
-                            item.extend([None, None])
+                        item.append(round(mean(hist_data) / 1000000, 2))
+                        item.append(round(stdev(hist_data) / 1000000, 2))
                     else:
                         item.extend([None, None])
             else:
                 item.extend([None, None])
         if tbl_dict[tst_name]["ref-data"]:
-            data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
-                                     outlier_const=table["outlier-const"])
+            data_t = tbl_dict[tst_name]["ref-data"]
             # TODO: Specify window size.
             if data_t:
                 item.append(round(mean(data_t) / 1000000, 2))
@@ -468,8 +461,7 @@ def table_performance_comparison(table, input_data):
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
-            data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
-                                     outlier_const=table["outlier-const"])
+            data_t = tbl_dict[tst_name]["cmp-data"]
             # TODO: Specify window size.
             if data_t:
                 item.append(round(mean(data_t) / 1000000, 2))
@@ -656,8 +648,7 @@ def table_performance_comparison_mrr(table, input_data):
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
         if tbl_dict[tst_name]["ref-data"]:
-            data_t = remove_outliers(tbl_dict[tst_name]["ref-data"],
-                                     outlier_const=table["outlier-const"])
+            data_t = tbl_dict[tst_name]["ref-data"]
             # TODO: Specify window size.
             if data_t:
                 item.append(round(mean(data_t) / 1000000, 2))
@@ -667,8 +658,7 @@ def table_performance_comparison_mrr(table, input_data):
         else:
             item.extend([None, None])
         if tbl_dict[tst_name]["cmp-data"]:
-            data_t = remove_outliers(tbl_dict[tst_name]["cmp-data"],
-                                     outlier_const=table["outlier-const"])
+            data_t = tbl_dict[tst_name]["cmp-data"]
             # TODO: Specify window size.
             if data_t:
                 item.append(round(mean(data_t) / 1000000, 2))
@@ -779,14 +769,12 @@ def table_performance_trending_dashboard(table, input_data):
             continue
 
         pd_data = pd.Series(tbl_dict[tst_name]["data"])
-        data_t, _ = split_outliers(pd_data, outlier_const=1.5,
-                                   window=table["window"])
-        last_key = data_t.keys()[-1]
-        win_size = min(data_t.size, table["window"])
-        win_first_idx = data_t.size - win_size
-        key_14 = data_t.keys()[win_first_idx]
-        long_win_size = min(data_t.size, table["long-trend-window"])
-        median_t = data_t.rolling(window=win_size, min_periods=2).median()
+        last_key = pd_data.keys()[-1]
+        win_size = min(pd_data.size, table["window"])
+        win_first_idx = pd_data.size - win_size
+        key_14 = pd_data.keys()[win_first_idx]
+        long_win_size = min(pd_data.size, table["long-trend-window"])
+        median_t = pd_data.rolling(window=win_size, min_periods=2).median()
         median_first_idx = median_t.size - long_win_size
         try:
             max_median = max(
@@ -816,7 +804,7 @@ def table_performance_trending_dashboard(table, input_data):
                 ((last_median_t - max_median) / max_median) * 100, 2)
 
         # Classification list:
-        classification_lst = classify_anomalies(data_t, window=14)
+        classification_lst = classify_anomalies(pd_data)
 
         if classification_lst:
             tbl_lst.append(

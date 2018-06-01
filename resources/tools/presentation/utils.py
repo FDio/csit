@@ -26,6 +26,7 @@ from shutil import move, Error
 from math import sqrt
 
 from errors import PresentationError
+from BitCountingClassifier import BitCountingClassifier
 
 
 def mean(items):
@@ -67,73 +68,6 @@ def relative_change(nr1, nr2):
     """
 
     return float(((nr2 - nr1) / nr1) * 100)
-
-
-def remove_outliers(input_list, outlier_const=1.5, window=14):
-    """Return list with outliers removed, using split_outliers.
-
-    :param input_list: Data from which the outliers will be removed.
-    :param outlier_const: Outlier constant.
-    :param window: How many preceding values to take into account.
-    :type input_list: list of floats
-    :type outlier_const: float
-    :type window: int
-    :returns: The input list without outliers.
-    :rtype: list of floats
-    """
-
-    data = np.array(input_list)
-    upper_quartile = np.percentile(data, 75)
-    lower_quartile = np.percentile(data, 25)
-    iqr = (upper_quartile - lower_quartile) * outlier_const
-    quartile_set = (lower_quartile - iqr, upper_quartile + iqr)
-    result_lst = list()
-    for y in input_list:
-        if quartile_set[0] <= y <= quartile_set[1]:
-            result_lst.append(y)
-    return result_lst
-
-
-def split_outliers(input_series, outlier_const=1.5, window=14):
-    """Go through the input data and generate two pandas series:
-    - input data with outliers replaced by NAN
-    - outliers.
-    The function uses IQR to detect outliers.
-
-    :param input_series: Data to be examined for outliers.
-    :param outlier_const: Outlier constant.
-    :param window: How many preceding values to take into account.
-    :type input_series: pandas.Series
-    :type outlier_const: float
-    :type window: int
-    :returns: Input data with NAN outliers and Outliers.
-    :rtype: (pandas.Series, pandas.Series)
-    """
-
-    list_data = list(input_series.items())
-    head_size = min(window, len(list_data))
-    head_list = list_data[:head_size]
-    trimmed_data = pd.Series()
-    outliers = pd.Series()
-    for item_x, item_y in head_list:
-        item_pd = pd.Series([item_y, ], index=[item_x, ])
-        trimmed_data = trimmed_data.append(item_pd)
-    for index, (item_x, item_y) in list(enumerate(list_data))[head_size:]:
-        y_rolling_list = [y for (x, y) in list_data[index - head_size:index]]
-        y_rolling_array = np.array(y_rolling_list)
-        q1 = np.percentile(y_rolling_array, 25)
-        q3 = np.percentile(y_rolling_array, 75)
-        iqr = (q3 - q1) * outlier_const
-        low = q1 - iqr
-        item_pd = pd.Series([item_y, ], index=[item_x, ])
-        if low <= item_y:
-            trimmed_data = trimmed_data.append(item_pd)
-        else:
-            outliers = outliers.append(item_pd)
-            nan_pd = pd.Series([np.nan, ], index=[item_x, ])
-            trimmed_data = trimmed_data.append(nan_pd)
-
-    return trimmed_data, outliers
 
 
 def get_files(path, extension=None, full_path=True):
@@ -274,45 +208,36 @@ def archive_input_data(spec):
     logging.info("    Done.")
 
 
-def classify_anomalies(data, window):
+def classify_anomalies(data):
     """Evaluates if the sample value is an outlier, regression, normal or
     progression compared to the previous data within the window.
-    We use the intervals defined as:
-    - regress: less than trimmed moving median - 3 * stdev
-    - normal: between trimmed moving median - 3 * stdev and median + 3 * stdev
-    - progress: more than trimmed moving median + 3 * stdev
-    where stdev is trimmed moving standard deviation.
 
     :param data: Full data set with the outliers replaced by nan.
-    :param window: Window size used to calculate moving average and moving
-        stdev.
     :type data: pandas.Series
-    :type window: int
     :returns: Evaluated results.
-    :rtype: list
+    :rtype: list of str
     """
-
-    if data.size < 3:
-        return None
-
-    win_size = data.size if data.size < window else window
-    tmm = data.rolling(window=win_size, min_periods=2).median()
-    tmstd = data.rolling(window=win_size, min_periods=2).std()
-
-    classification = ["normal", ]
-    first = True
-    for build, value in data.iteritems():
-        if first:
-            first = False
-            continue
-        if np.isnan(value) or np.isnan(tmm[build]) or np.isnan(tmstd[build]):
+    bare_data = [sample for _, sample in data.iteritems() if not np.isnan(sample)]
+    groups = BitCountingClassifier.classify(bare_data)
+    groups.reverse()
+    classification = []
+    # TODO: Put analogous iterator into anomaly library.
+    active_group = None
+    values_left = 0
+    for _, sample in data.iteritems():
+        if np.isnan(sample):
             classification.append("outlier")
-        elif value < (tmm[build] - 3 * tmstd[build]):
-            classification.append("regression")
-        elif value > (tmm[build] + 3 * tmstd[build]):
-            classification.append("progression")
-        else:
-            classification.append("normal")
+            continue
+        if values_left < 1 or active_group is None:
+            values_left = 0
+            while values_left < 1:
+                active_group = groups.pop()
+                values_left = len(active_group.values)
+            classification.append(active_group.metadata.classification)
+            values_left -= 1
+            continue
+        classification.append("normal")
+        values_left -= 1
     return classification
 
 
