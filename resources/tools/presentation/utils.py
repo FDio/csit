@@ -301,7 +301,7 @@ def classify_anomalies(data, window):
 
     classification = ["normal", ]
     first = True
-    for build, value in data.iteritems():
+    for build, value in iteritems(data):  # data.iteritems():
         if first:
             first = False
             continue
