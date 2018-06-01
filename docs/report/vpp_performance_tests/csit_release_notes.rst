@@ -65,7 +65,7 @@ Performance Changes
 -------------------
 
 Relative performance changes in measured packet throughput in CSIT
-|release| are calculated against the results from CSIT |release-1|
+|release| are calculated against the results from CSIT rls1801
 report. Listed mean and standard deviation values are computed based on
 a series of the same tests executed against respective VPP releases to
 verify test results repeatibility, with percentage change calculated for
