@@ -849,7 +849,7 @@
     - title: "VPP 1T1C VM vhost ethip4 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-ethip4-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -857,7 +857,7 @@
     - title: "VPP 2T2C VM vhost ethip4 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-ethip4-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -865,7 +865,7 @@
     - title: "VPP 4T4C VM vhost ethip4 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-ethip4-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -875,7 +875,7 @@
     - title: "VPP 1T1C VM vhost ethip4 IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-ethip4-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -883,7 +883,7 @@
     - title: "VPP 2T2C VM vhost ethip4 IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-ethip4-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -891,7 +891,7 @@
     - title: "VPP 4T4C VM vhost ethip4 IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-ethip4-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -901,7 +901,7 @@
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
 
       parameters:
       - "result"
@@ -910,7 +910,7 @@
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -918,7 +918,7 @@
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -928,7 +928,7 @@
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-1t1c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
 
       parameters:
       - "result"
@@ -937,7 +937,7 @@
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-2t2c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -945,7 +945,7 @@
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-4t4c-x520"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -955,7 +955,7 @@
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-1t1c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
 
       parameters:
       - "result"
@@ -964,7 +964,7 @@
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-2t2c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -972,7 +972,7 @@
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-4t4c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -982,7 +982,7 @@
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-1t1c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
 
       parameters:
       - "result"
@@ -991,7 +991,7 @@
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-2t2c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -999,7 +999,7 @@
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-4t4c-xl710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-XL710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1009,7 +1009,7 @@
     - title: "VPP 1T1C VM vhost ethip4 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-ethip4-1t1c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1017,7 +1017,7 @@
     - title: "VPP 2T2C VM vhost ethip4 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-ethip4-2t2c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1025,7 +1025,7 @@
     - title: "VPP 4T4C VM vhost ethip4 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-ethip4-4t4c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1035,7 +1035,7 @@
     - title: "VPP 1T1C VM vhost ethip4 IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-ethip4-1t1c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1043,7 +1043,7 @@
     - title: "VPP 2T2C VM vhost ethip4 IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-ethip4-2t2c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1051,7 +1051,7 @@
     - title: "VPP 4T4C VM vhost ethip4 IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-ethip4-4t4c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1061,7 +1061,7 @@
     - title: "VPP 1T1C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-1t1c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
 
       parameters:
       - "result"
@@ -1070,7 +1070,7 @@
     - title: "VPP 2T2C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-2t2c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1078,7 +1078,7 @@
     - title: "VPP 4T4C VM vhost eth 64B Packet Throughput - Trending"
       output-file-name: "vm-vhost-eth-4t4c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1088,7 +1088,7 @@
     - title: "VPP 1T1C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-1t1c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
 
       parameters:
       - "result"
@@ -1097,7 +1097,7 @@
     - title: "VPP 2T2C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-2t2c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1105,7 +1105,7 @@
     - title: "VPP 4T4C VM vhost eth IMIX Packet Throughput - Trending"
       output-file-name: "vm-vhost-imix-eth-4t4c-x710"
       data: "plot-performance-trending"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1182,6 +1182,56 @@
       output-file-name: "srv6-imix-4t4c-x520"
       data: "plot-performance-trending"
       filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'SRv6'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# Link Bonding - x520
+
+    - title: "VPP 1T1C Link Bonding 64B MRR Trending"
+      output-file-name: "lb-64b-1t1c-x520"
+      data: "plot-performance-trending"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'LBOND'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 2T2C Link Bonding 64B MRR Trending"
+      output-file-name: "lb-64b-2t2c-x520"
+      data: "plot-performance-trending"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'LBOND'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 4T4C Link Bonding 64B MRR Trending"
+      output-file-name: "lb-64b-4t4c-x520"
+      data: "plot-performance-trending"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'LBOND'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 1T1C Link Bonding IMIX MRR Trending"
+      output-file-name: "lb-imix-1t1c-x520"
+      data: "plot-performance-trending"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'LBOND'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 2T2C Link Bonding IMIX MRR Trending"
+      output-file-name: "lb-imix-2t2c-x520"
+      data: "plot-performance-trending"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'LBOND'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 4T4C Link Bonding IMIX MRR Trending"
+      output-file-name: "lb-imix-4t4c-x520"
+      data: "plot-performance-trending"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'LBOND'"
       parameters:
       - "result"
       layout: "plot-cpta"

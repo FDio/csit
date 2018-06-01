@@ -819,6 +819,8 @@ def table_performance_trending_dashboard(table, input_data):
         classification_lst = classify_anomalies(data_t, window=14)
 
         if classification_lst:
+            if isnan(rel_change_last) and isnan(rel_change_long):
+                continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
                  '-' if isnan(last_median_t) else
