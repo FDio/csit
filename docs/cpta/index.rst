@@ -32,6 +32,7 @@ analysis and anomaly detection methodology.
    trending/container_memif
    trending/ipsec
    trending/srv6
+   trending/link_bonding
 
 .. toctree::
    :maxdepth: 2
