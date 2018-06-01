@@ -46,6 +46,7 @@ def generate_files(spec, data):
         except NameError:
             logging.error("The algorithm '{0}' is not defined.".
                           format(file_spec["algorithm"]))
+            raise
     logging.info("Done.")
 
 

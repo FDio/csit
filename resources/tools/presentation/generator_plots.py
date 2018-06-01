@@ -42,6 +42,7 @@ def generate_plots(spec, data):
         except NameError:
             logging.error("The algorithm '{0}' is not defined.".
                           format(plot["algorithm"]))
+            raise
     logging.info("Done.")
 
 

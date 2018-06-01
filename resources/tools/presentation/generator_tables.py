@@ -46,6 +46,7 @@ def generate_tables(spec, data):
         except NameError:
             logging.error("The algorithm '{0}' is not defined.".
                           format(table["algorithm"]))
+            raise
     logging.info("Done.")
 
 
