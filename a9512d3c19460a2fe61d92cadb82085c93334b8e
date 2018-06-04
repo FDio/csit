@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23102cf1_fa03a089",
+        "filename": "resources/tools/presentation/generator_files.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-04T13:00:38Z",
+      "side": 1,
+      "message": "The idea was to continue with generation even if there is a single error. So the exception was not raised.",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 17
+      },
+      "revId": "a9512d3c19460a2fe61d92cadb82085c93334b8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
