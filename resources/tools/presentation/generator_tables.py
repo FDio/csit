@@ -43,9 +43,9 @@ def generate_tables(spec, data):
     for table in spec.tables:
         try:
             eval(table["algorithm"])(table, data)
-        except NameError:
-            logging.error("The algorithm '{0}' is not defined.".
-                          format(table["algorithm"]))
+        except NameError as err:
+            logging.error("Probably algorithm '{alg}' is not defined: {err}".
+                          format(alg=file_spec["algorithm"], err=repr(err))
     logging.info("Done.")
 
 
