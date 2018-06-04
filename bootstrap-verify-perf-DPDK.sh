@@ -98,6 +98,14 @@ PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKI
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
+    PERFTEST_MRR_DAILY )
+       TAGS=('mrrAND64bAND1t1c'
+             'mrrAND64bAND2t2c'
+             'mrrAND64bAND4t4c'
+             'mrrAND78bAND1t1c'
+             'mrrAND78bAND2t2c'
+             'mrrAND78bAND4t4c')
+        ;;
     VERIFY-PERF-MRR )
         TAGS=('mrrAND1t1c'
               'mrrAND2t2c')
