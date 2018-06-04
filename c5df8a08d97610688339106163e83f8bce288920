@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6eb1356_d689fdaa",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-04T12:57:26Z",
+      "side": 1,
+      "message": "Add an empty line for better readability.\n\"\"\"Create startup configuration of VPP without DPDK on container.\n\"\"\"",
+      "range": {
+        "startLine": 373,
+        "startChar": 8,
+        "endLine": 373,
+        "endChar": 76
+      },
+      "revId": "c5df8a08d97610688339106163e83f8bce288920",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10063cd5_dc5abeb3",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 2576,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-04T12:57:26Z",
+      "side": 1,
+      "message": "Add example",
+      "range": {
+        "startLine": 2576,
+        "startChar": 4,
+        "endLine": 2576,
+        "endChar": 19
+      },
+      "revId": "c5df8a08d97610688339106163e83f8bce288920",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53b1bf10_5435db1c",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 2601,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-04T12:57:26Z",
+      "side": 1,
+      "message": "Add example",
+      "range": {
+        "startLine": 2601,
+        "startChar": 4,
+        "endLine": 2601,
+        "endChar": 19
+      },
+      "revId": "c5df8a08d97610688339106163e83f8bce288920",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37a1c33b_d6b06254",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6srhip6-ip6base-srv6proxy-dyn-mrr.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-04T12:57:26Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 38
+      },
+      "revId": "c5df8a08d97610688339106163e83f8bce288920",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
