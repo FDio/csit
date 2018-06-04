@@ -36,12 +36,8 @@ def generate_plots(spec, data):
 
     logging.info("Generating the plots ...")
     for index, plot in enumerate(spec.plots):
-        try:
-            logging.info("  Plot nr {0}:".format(index + 1))
-            eval(plot["algorithm"])(plot, data)
-        except NameError:
-            logging.error("The algorithm '{0}' is not defined.".
-                          format(plot["algorithm"]))
+        logging.info("  Plot nr {0}:".format(index + 1))
+        eval(plot["algorithm"])(plot, data)
     logging.info("Done.")
 
 

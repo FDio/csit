@@ -41,11 +41,7 @@ def generate_files(spec, data):
 
     logging.info("Generating the files ...")
     for file_spec in spec.files:
-        try:
-            eval(file_spec["algorithm"])(file_spec, data)
-        except NameError:
-            logging.error("The algorithm '{0}' is not defined.".
-                          format(file_spec["algorithm"]))
+        eval(file_spec["algorithm"])(file_spec, data)
     logging.info("Done.")
 
 

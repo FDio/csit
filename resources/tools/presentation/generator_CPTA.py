@@ -27,7 +27,7 @@ import pandas as pd
 from collections import OrderedDict
 from datetime import datetime
 
-from utils import split_outliers, archive_input_data, execute_command,\
+from utils import archive_input_data, execute_command,\
     classify_anomalies, Worker
 
 
@@ -125,12 +125,11 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
 
     data_pd = pd.Series(data_y, index=xaxis)
 
-    t_data, outliers = split_outliers(data_pd, outlier_const=1.5,
-                                      window=moving_win_size)
-    anomaly_classification = classify_anomalies(t_data, window=moving_win_size)
+    anomaly_classification, avgs = classify_anomalies(data_pd)
 
     anomalies = pd.Series()
     anomalies_colors = list()
+    anomalies_avgs = list()
     anomaly_color = {
         "outlier": 0.0,
         "regression": 0.33,
@@ -145,6 +144,7 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
                                                        index=[item[0], ]))
                 anomalies_colors.append(
                     anomaly_color[anomaly_classification[idx]])
+                anomalies_avgs.append(avgs[idx])
         anomalies_colors.extend([0.0, 0.33, 0.66, 1.0])
 
     # Create traces
@@ -168,9 +168,24 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
     )
     traces = [trace_samples, ]
 
+    if show_trend_line:
+        trace_trend = plgo.Scatter(
+            x=xaxis,
+            y=avgs,
+            mode='lines',
+            line={
+                "shape": "linear",
+                "width": 1,
+                "color": color,
+            },
+            legendgroup=name,
+            name='{name}-trend'.format(name=name)
+        )
+        traces.append(trace_trend)
+
     trace_anomalies = plgo.Scatter(
         x=anomalies.keys(),
-        y=anomalies.values,
+        y=anomalies_avgs,
         mode='markers',
         hoverinfo="none",
         showlegend=True,
@@ -211,23 +226,6 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
         }
     )
     traces.append(trace_anomalies)
-
-    if show_trend_line:
-        data_trend = t_data.rolling(window=moving_win_size,
-                                    min_periods=2).median()
-        trace_trend = plgo.Scatter(
-            x=data_trend.keys(),
-            y=data_trend.tolist(),
-            mode='lines',
-            line={
-                "shape": "spline",
-                "width": 1,
-                "color": color,
-            },
-            legendgroup=name,
-            name='{name}-trend'.format(name=name)
-        )
-        traces.append(trace_trend)
 
     return traces, anomaly_classification[-1]
 
