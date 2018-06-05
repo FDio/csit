@@ -33,6 +33,7 @@ analysis and anomaly detection methodology.
    trending/ipsec
    trending/srv6
    trending/link_bonding
+   trending/dpdk
 
 .. toctree::
    :maxdepth: 2
