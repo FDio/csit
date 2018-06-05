@@ -819,8 +819,8 @@ def table_performance_trending_dashboard(table, input_data):
         classification_lst = classify_anomalies(data_t, window=14)
 
         if classification_lst:
-            if isnan(rel_change_last) and isnan(rel_change_long):
-                continue
+            # if isnan(rel_change_last) and isnan(rel_change_long):
+            #     continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
                  '-' if isnan(last_median_t) else
@@ -929,7 +929,9 @@ def table_performance_trending_dashboard_html(table, input_data):
             anchor = "#"
             feature = ""
             if c_idx == 0:
-                if "memif" in item:
+                if "dpdk" in item:
+                    file_name = "dpdk.html"
+                elif "memif" in item:
                     file_name = "container_memif.html"
 
                 elif "srv6" in item:
