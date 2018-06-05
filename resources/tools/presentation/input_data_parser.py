@@ -197,6 +197,9 @@ class ExecutionChecker(ResultVisitor):
         # VPP version
         self._version = None
 
+        # Timestamp
+        self._timestamp = None
+
         # Number of VAT History messages found:
         # 0 - no message
         # 1 - VAT History of DUT1
@@ -227,6 +230,7 @@ class ExecutionChecker(ResultVisitor):
         # Dictionary defining the methods used to parse different types of
         # messages
         self.parse_msg = {
+            "timestamp": self._get_timestamp,
             "setup-version": self._get_version,
             "teardown-vat-history": self._get_vat_history,
             "test-show-runtime": self._get_show_run
@@ -253,8 +257,19 @@ class ExecutionChecker(ResultVisitor):
             self._version = str(re.search(self.REGEX_VERSION, msg.message).
                                 group(2))
             self._data["metadata"]["version"] = self._version
-            self._data["metadata"]["generated"] = msg.timestamp
             self._msg_type = None
+
+    def _get_timestamp(self, msg):
+        """Called when extraction of timestamp is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
+        self._timestamp = msg.timestamp[:14]
+        self._data["metadata"]["generated"] = self._timestamp
+        self._msg_type = None
 
     def _get_vat_history(self, msg):
         """Called when extraction of VAT command history is required.
@@ -592,7 +607,13 @@ class ExecutionChecker(ResultVisitor):
         if setup_kw.name.count("Show Vpp Version On All Duts") \
                 and not self._version:
             self._msg_type = "setup-version"
-            setup_kw.messages.visit(self)
+
+        elif setup_kw.name.count("Setup performance global Variables") \
+                and not self._timestamp:
+            self._msg_type = "timestamp"
+        else:
+            return
+        setup_kw.messages.visit(self)
 
     def end_setup_kw(self, setup_kw):
         """Called when keyword ends. Default implementation does nothing.
