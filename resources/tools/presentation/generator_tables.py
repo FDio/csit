@@ -819,8 +819,8 @@ def table_performance_trending_dashboard(table, input_data):
         classification_lst = classify_anomalies(data_t, window=14)
 
         if classification_lst:
-            if isnan(rel_change_last) and isnan(rel_change_long):
-                continue
+            # if isnan(rel_change_last) and isnan(rel_change_long):
+            #     continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
                  '-' if isnan(last_median_t) else
@@ -845,7 +845,7 @@ def table_performance_trending_dashboard(table, input_data):
 
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
-    logging.info("      Writing file: '{0}'".format(file_name))
+    logging.info("    Writing file: '{0}'".format(file_name))
     with open(file_name, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_sorted:
@@ -853,7 +853,7 @@ def table_performance_trending_dashboard(table, input_data):
 
     txt_file_name = "{0}.txt".format(table["output-file"])
     txt_table = None
-    logging.info("      Writing file: '{0}'".format(txt_file_name))
+    logging.info("    Writing file: '{0}'".format(txt_file_name))
     with open(file_name, 'rb') as csv_file:
         csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
         for row in csv_content:
@@ -929,7 +929,10 @@ def table_performance_trending_dashboard_html(table, input_data):
             anchor = "#"
             feature = ""
             if c_idx == 0:
-                if "memif" in item:
+                if "testpmd" in item or "l3fwd" in item:
+                    file_name = "dpdk.html"
+
+                elif "memif" in item:
                     file_name = "container_memif.html"
 
                 elif "srv6" in item:
@@ -992,7 +995,7 @@ def table_performance_trending_dashboard_html(table, input_data):
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
 
-            if c_idx > 0:
+            else:
                 td.text = item
 
     try:
