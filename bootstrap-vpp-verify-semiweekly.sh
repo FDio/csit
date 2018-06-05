@@ -73,10 +73,10 @@ fi
 VPP_PKGS=(*.$PACKAGE)
 case "$DISTRO" in
         CENTOS )
-            VPP_VER="$( expr match $(ls *.rpm | head -n 1) 'vpp-\(.*\).rpm' )"
+            VPP_VER="$( expr match $(ls *.rpm | grep vpp- | head -n 1) 'vpp-\(.*\).rpm' )"
             ;;
         UBUNTU )
-            VPP_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
+            VPP_VER="$( expr match $(ls *.deb | grep vpp_ | head -n 1) 'vpp-\(.*\).deb' )"
 esac
 
 echo ${VPP_PKGS[@]}
