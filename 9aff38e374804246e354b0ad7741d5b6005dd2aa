@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebe9471a_001de788",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-06-05T11:07:34Z",
+      "side": 1,
+      "message": "Missing assignment sign\n- check all",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 13
+      },
+      "revId": "9aff38e374804246e354b0ad7741d5b6005dd2aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06391600_50e909ed",
+        "filename": "tests/dpdk/perf/10ge2p1x520-ethip4-ip4base-l3fwd-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-06-05T11:07:34Z",
+      "side": 1,
+      "message": "missing backslash at the end of line\n- check all",
+      "range": {
+        "startLine": 37,
+        "startChar": 41,
+        "endLine": 37,
+        "endChar": 43
+      },
+      "revId": "9aff38e374804246e354b0ad7741d5b6005dd2aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f050dfc9_9521a4ce",
+        "filename": "tests/dpdk/perf/10ge2p1x710-eth-l2xcbase-testpmd-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-06-05T11:07:34Z",
+      "side": 1,
+      "message": "X710",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 10
+      },
+      "revId": "9aff38e374804246e354b0ad7741d5b6005dd2aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
