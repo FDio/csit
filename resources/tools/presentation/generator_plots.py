@@ -41,7 +41,7 @@ def generate_plots(spec, data):
             eval(plot["algorithm"])(plot, data)
         except NameError as err:
             logging.error("Probably algorithm '{alg}' is not defined: {err}".
-                          format(alg=plot["algorithm"], err=repr(err))
+                          format(alg=plot["algorithm"], err=repr(err)))
     logging.info("Done.")
 
 
