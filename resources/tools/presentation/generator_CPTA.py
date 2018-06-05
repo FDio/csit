@@ -87,7 +87,7 @@ def generate_cpta(spec, data):
     return ret_code
 
 
-def _generate_trending_traces(in_data, build_info, moving_win_size=10,
+def _generate_trending_traces(in_data, job_name, build_info, moving_win_size=10,
                               show_trend_line=True, name="", color=""):
     """Generate the trending traces:
      - samples,
@@ -95,12 +95,14 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
      - outliers, regress, progress
 
     :param in_data: Full data set.
+    :param job_name: The name of job which generated the data.
     :param build_info: Information about the builds.
     :param moving_win_size: Window size.
     :param show_trend_line: Show moving median (trending plot).
     :param name: Name of the plot
     :param color: Name of the color for the plot.
     :type in_data: OrderedDict
+    :type job_name: str
     :type build_info: dict
     :type moving_win_size: int
     :type show_trend_line: bool
@@ -117,9 +119,9 @@ def _generate_trending_traces(in_data, build_info, moving_win_size=10,
     xaxis = list()
     for idx in data_x:
         hover_text.append("vpp-ref: {0}<br>csit-ref: mrr-daily-build-{1}".
-                          format(build_info[str(idx)][1].rsplit('~', 1)[0],
-                                 idx))
-        date = build_info[str(idx)][0]
+                          format(build_info[job_name][str(idx)][1].
+                                 rsplit('~', 1)[0], idx))
+        date = build_info[job_name][str(idx)][0]
         xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
                               int(date[9:11]), int(date[12:])))
 
@@ -252,7 +254,7 @@ def _generate_all_charts(spec, input_data):
         logs.append(("INFO", "  Generating the chart '{0}' ...".
                      format(graph.get("title", ""))))
 
-        job_name = spec.cpta["data"].keys()[0]
+        job_name = graph["data"].keys()[0]
 
         csv_tbl = list()
         res = list()
@@ -266,8 +268,10 @@ def _generate_all_charts(spec, input_data):
             return
 
         chart_data = dict()
-        for job in data:
-            for index, bld in job.items():
+        for job, job_data in data.iteritems():
+            if job != job_name:
+                continue
+            for index, bld in job_data.items():
                 for test_name, test in bld.items():
                     if chart_data.get(test_name, None) is None:
                         chart_data[test_name] = OrderedDict()
@@ -280,7 +284,7 @@ def _generate_all_charts(spec, input_data):
         # Add items to the csv table:
         for tst_name, tst_data in chart_data.items():
             tst_lst = list()
-            for bld in builds_lst:
+            for bld in builds_dict[job_name]:
                 itm = tst_data.get(int(bld), '')
                 tst_lst.append(str(itm))
             csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
@@ -296,6 +300,7 @@ def _generate_all_charts(spec, input_data):
             test_name = test_name.split('.')[-1]
             trace, rslt = _generate_trending_traces(
                 test_data,
+                job_name=job_name,
                 build_info=build_info,
                 moving_win_size=win_size,
                 name='-'.join(test_name.split('-')[3:-1]),
@@ -328,24 +333,30 @@ def _generate_all_charts(spec, input_data):
         }
         data_q.put(data_out)
 
-    job_name = spec.cpta["data"].keys()[0]
+    # job_name = spec.cpta["data"].keys()[0]
 
-    builds_lst = list()
-    for build in spec.input["builds"][job_name]:
-        status = build["status"]
-        if status != "failed" and status != "not found":
-            builds_lst.append(str(build["build"]))
+    builds_dict = dict()
+    for job in spec.input["builds"].keys():
+        if builds_dict.get(job, None) is None:
+            builds_dict[job] = list()
+        for build in spec.input["builds"][job]:
+            status = build["status"]
+            if status != "failed" and status != "not found":
+                builds_dict[job].append(str(build["build"]))
 
-    # Get "build ID": "date" dict:
-    build_info = OrderedDict()
-    for build in builds_lst:
-        try:
-            build_info[build] = (
-                input_data.metadata(job_name, build)["generated"][:14],
-                input_data.metadata(job_name, build)["version"]
-            )
-        except KeyError:
-            build_info[build] = ("", "")
+    # Create "build ID": "date" dict:
+    build_info = dict()
+    for job_name, job_data in builds_dict.items():
+        if build_info.get(job_name, None) is None:
+            build_info[job_name] = OrderedDict()
+        for build in job_data:
+            try:
+                build_info[job_name][build] = (
+                    input_data.metadata(job_name, build)["generated"][:14],
+                    input_data.metadata(job_name, build)["version"]
+                )
+            except KeyError:
+                build_info[build] = ("", "")
 
     work_queue = multiprocessing.JoinableQueue()
     manager = multiprocessing.Manager()
@@ -369,22 +380,22 @@ def _generate_all_charts(spec, input_data):
 
     anomaly_classifications = list()
 
-    # Create the header:
-    csv_table = list()
-    header = "Build Number:," + ",".join(builds_lst) + '\n'
-    csv_table.append(header)
-    build_dates = [x[0] for x in build_info.values()]
-    header = "Build Date:," + ",".join(build_dates) + '\n'
-    csv_table.append(header)
-    vpp_versions = [x[1] for x in build_info.values()]
-    header = "VPP Version:," + ",".join(vpp_versions) + '\n'
-    csv_table.append(header)
+    # # Create the header:
+    # csv_table = list()
+    # header = "Build Number:," + ",".join(builds_lst) + '\n'
+    # csv_table.append(header)
+    # build_dates = [x[0] for x in build_info.values()]
+    # header = "Build Date:," + ",".join(build_dates) + '\n'
+    # csv_table.append(header)
+    # vpp_versions = [x[1] for x in build_info.values()]
+    # header = "VPP Version:," + ",".join(vpp_versions) + '\n'
+    # csv_table.append(header)
 
     while not data_queue.empty():
         result = data_queue.get()
 
         anomaly_classifications.extend(result["results"])
-        csv_table.extend(result["csv_table"])
+        # csv_table.extend(result["csv_table"])
 
         for item in result["logs"]:
             if item[0] == "INFO":
@@ -405,34 +416,34 @@ def _generate_all_charts(spec, input_data):
         worker.terminate()
         worker.join()
 
-    # Write the tables:
-    file_name = spec.cpta["output-file"] + "-trending"
-    with open("{0}.csv".format(file_name), 'w') as file_handler:
-        file_handler.writelines(csv_table)
-
-    txt_table = None
-    with open("{0}.csv".format(file_name), 'rb') as csv_file:
-        csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
-        line_nr = 0
-        for row in csv_content:
-            if txt_table is None:
-                txt_table = prettytable.PrettyTable(row)
-            else:
-                if line_nr > 1:
-                    for idx, item in enumerate(row):
-                        try:
-                            row[idx] = str(round(float(item) / 1000000, 2))
-                        except ValueError:
-                            pass
-                try:
-                    txt_table.add_row(row)
-                except Exception as err:
-                    logging.warning("Error occurred while generating TXT table:"
-                                    "\n{0}".format(err))
-            line_nr += 1
-        txt_table.align["Build Number:"] = "l"
-    with open("{0}.txt".format(file_name), "w") as txt_file:
-        txt_file.write(str(txt_table))
+    # # Write the tables:
+    # file_name = spec.cpta["output-file"] + "-trending"
+    # with open("{0}.csv".format(file_name), 'w') as file_handler:
+    #     file_handler.writelines(csv_table)
+    #
+    # txt_table = None
+    # with open("{0}.csv".format(file_name), 'rb') as csv_file:
+    #     csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+    #     line_nr = 0
+    #     for row in csv_content:
+    #         if txt_table is None:
+    #             txt_table = prettytable.PrettyTable(row)
+    #         else:
+    #             if line_nr > 1:
+    #                 for idx, item in enumerate(row):
+    #                     try:
+    #                         row[idx] = str(round(float(item) / 1000000, 2))
+    #                     except ValueError:
+    #                         pass
+    #             try:
+    #                 txt_table.add_row(row)
+    #             except Exception as err:
+    #                 logging.warning("Error occurred while generating TXT table:"
+    #                                 "\n{0}".format(err))
+    #         line_nr += 1
+    #     txt_table.align["Build Number:"] = "l"
+    # with open("{0}.txt".format(file_name), "w") as txt_file:
+    #     txt_file.write(str(txt_table))
 
     # Evaluate result:
     if anomaly_classifications:
