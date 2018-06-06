@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "015bd5bd_7d2d00c1",
+        "filename": "bootstrap-vpp-verify-semiweekly.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-06T11:12:01Z",
+      "side": 1,
+      "message": "Can we get a run which runs no tests but prints output of \"ls *\"?\nThis will get easier to review when I see the actual filenames.",
+      "range": {
+        "startLine": 76,
+        "startChar": 37,
+        "endLine": 76,
+        "endChar": 41
+      },
+      "revId": "b6e85c44a73be0a0a4ba5417bb1fde9e31255319",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b0cface_76511d0b",
         "filename": "bootstrap-vpp-verify-semiweekly.sh",
         "patchSetId": 1
