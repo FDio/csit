@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73d7571e_10151a60",
+        "filename": "resources/libraries/python/DMM/DMMConstants.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 986
+      },
+      "writtenOn": "2018-06-06T21:19:19Z",
+      "side": 1,
+      "message": "remove extra line",
+      "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b5d4c155_f5855427",
+        "filename": "resources/libraries/python/DMM/DMMConstants.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 986
+      },
+      "writtenOn": "2018-06-06T21:19:19Z",
+      "side": 1,
+      "message": "remove extra line",
+      "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
