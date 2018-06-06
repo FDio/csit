@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b0cface_76511d0b",
+        "filename": "bootstrap-vpp-verify-semiweekly.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-06T08:58:23Z",
+      "side": 1,
+      "message": "Rewite to: \n\nVPP_VER\u003d\"$( expr match $(ls *.${PACKAGE}| grep vpp_ | head -n 1) \u0027vpp-\\(.*\\).deb\u0027 )\"\n\nBTW: How can grep vpp_ then match vpp- in Ubuntu?\nWhat about $(ls vpp*.deb | ...)?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 4
+      },
+      "revId": "b6e85c44a73be0a0a4ba5417bb1fde9e31255319",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
