@@ -45,6 +45,30 @@
       "revId": "b6e85c44a73be0a0a4ba5417bb1fde9e31255319",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fedb5b36_429c03a3",
+        "filename": "bootstrap-vpp-verify-semiweekly.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-07T08:36:48Z",
+      "side": 1,
+      "message": "VPP_STABLE_VER\u003d\"$( expr match $(ls vpp*.${PACKAGE} | head -n 1) \u0027vpp[-|_]\\(.*\\)\u0027.${PACKAGE} )\"  \n\nThis matches all. Bot Centos and Ubuntu and only vpp pakcages.",
+      "parentUuid": "7b0cface_76511d0b",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 4
+      },
+      "revId": "b6e85c44a73be0a0a4ba5417bb1fde9e31255319",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
