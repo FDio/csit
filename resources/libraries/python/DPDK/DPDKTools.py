@@ -100,7 +100,7 @@ class DPDKTools(object):
         :param node: Dictionary created from topology
         :type node: dict
         :returns: nothing
-        :raise RuntimeError: If command returns nonzero return code.
+        :raises RuntimeError: If command returns nonzero return code.
         """
         arch = Topology.get_node_arch(node)
 
@@ -126,4 +126,3 @@ class DPDKTools(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 DPDKTools.install_dpdk_test(node)
-

@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.tools.wrk.wrk
+| Library | resources.libraries.python.DPDK.DPDKTools
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
