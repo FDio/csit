@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.tools.wrk.wrk
+| Library | resources.libraries.python.DPDK.DPDKTools
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
@@ -318,6 +319,8 @@
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_model}
+#| | ${version}= | Get DPDK version | ${dut1}
+#| | Log | ${version} | INFO
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${topology_type}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -341,6 +344,8 @@
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_model}
+#| | ${version}= | Get DPDK version | ${dut1}
+#| | Log | ${version} | INFO
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}

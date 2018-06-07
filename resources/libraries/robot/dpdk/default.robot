@@ -107,4 +107,3 @@
 | | ... | ${nb_cores} | ${dut1_cpus} | ${rxqueues} | ${jumbo_frames}
 | | Start the l3fwd test | ${nodes} | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | ... | ${nb_cores} | ${dut2_cpus} | ${rxqueues} | ${jumbo_frames}
-
