@@ -22,7 +22,7 @@ virtualenv ${DIR[WORKING]}/env
 # Install python dependencies:
 pip install -r requirements.txt
 
-export PYTHONPATH=`pwd`
+export PYTHONPATH=`pwd`:`pwd`/jumpavg
 
 STATUS=$(python pal.py \
     --specification specification_CPTA.yaml \
