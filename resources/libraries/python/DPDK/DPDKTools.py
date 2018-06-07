@@ -100,7 +100,7 @@ class DPDKTools(object):
         :param node: Dictionary created from topology
         :type node: dict
         :returns: nothing
-        :raise RuntimeError: If command returns nonzero return code.
+        :raises RuntimeError: If command returns nonzero return code.
         """
         arch = Topology.get_node_arch(node)
 
@@ -127,3 +127,36 @@ class DPDKTools(object):
             if node['type'] == NodeType.DUT:
                 DPDKTools.install_dpdk_test(node)
 
+    @staticmethod
+    def get_dpdk_version(dut_node):
+        """Get DPDK version from DUT node.
+
+        :param dut_node: DUT node to get the DPDK version from.
+        :type dut_node: dict
+        :raises RuntimeError: If it is not possible to get the DPDK version.
+        :returns: DPDK version.
+        :rtype: str
+        """
+
+        arch = Topology.get_node_arch(dut_node)
+        if arch == "aarch64":
+            arch = "arm64"
+            machine = "armv8a"
+        else:
+            machine = "native"
+
+        cmd = "{dir}/{arch}-{machine}-linuxapp-gcc/app/testpmd -v".format(
+            dir=Constants.DPDK_DIR,
+            arch=arch,
+            machine=machine
+        )
+
+        ssh = SSH()
+        ssh.connect(dut_node)
+
+        ret_code, stdout, _ = ssh.exec_command(cmd)
+
+        if ret_code != 0:
+            raise RuntimeError('It is not possible to get the DPDK version.')
+
+        return stdout

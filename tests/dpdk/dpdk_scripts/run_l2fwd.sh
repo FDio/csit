@@ -89,6 +89,7 @@ TESTPMD_BIN=./${arch}-${machine}-linuxapp-gcc/app/testpmd
 if [ "$jumbo_frames" = "yes" ]; then
     sudo sh -c "screen -dmSL DPDK-test $TESTPMD_BIN \
         -l ${cpu_corelist} -n 4 --log-level 8 -- \
+        -v \
         --numa \
         --nb-ports=2 \
         --portmask=0x3 \

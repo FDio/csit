@@ -61,3 +61,6 @@ class Constants(object):
 
     # ODL Client Restconf listener port
     ODL_PORT = 8181
+
+    # DPDK directory:
+    DPDK_DIR = REMOTE_FW_DIR + '/dpdk-18.02'
