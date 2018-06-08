@@ -385,24 +385,31 @@ class DUTSetup(object):
     def get_pci_dev_driver(node, pci_addr):
         """Get current PCI device driver on node.
 
+        .. note::
+            # lspci -vmmks 0000:00:05.0
+            Slot:   00:05.0
+            Class:  Ethernet controller
+            Vendor: Red Hat, Inc
+            Device: Virtio network device
+            SVendor:        Red Hat, Inc
+            SDevice:        Device 0001
+            PhySlot:        5
+            Driver: virtio-pci
+
         :param node: DUT node.
         :param pci_addr: PCI device address.
         :type node: dict
         :type pci_addr: str
         :returns: Driver or None
         :raises RuntimeError: If PCI rescan or lspci command execution failed.
+        :raises RuntimeError: If it is not possible to get the interface driver
+            information from the node.
         """
         ssh = SSH()
         ssh.connect(node)
 
         for i in range(3):
-            logger.trace('Try {0}: Get interface driver'.format(i))
-            cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
-            ret_code, _, _ = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError("'{0}' failed on '{1}'"
-                                   .format(cmd, node['host']))
-
+            logger.trace('Try number {0}: Get PCI device driver'.format(i))
             cmd = 'lspci -vmmks {0}'.format(pci_addr)
             ret_code, stdout, _ = ssh.exec_command(cmd)
             if int(ret_code) != 0:
@@ -421,6 +428,16 @@ class DUTSetup(object):
                         return None
                 if name == 'Driver:':
                     return value
+
+            if i < 2:
+                logger.trace('Driver for PCI device {} not found, executing '
+                             'pci rescan and retrying'.format(pci_addr))
+                cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
+                ret_code, _, _ = ssh.exec_command_sudo(cmd)
+                if int(ret_code) != 0:
+                    raise RuntimeError("'{0}' failed on '{1}'"
+                                       .format(cmd, node['host']))
+
         return None
 
     @staticmethod
