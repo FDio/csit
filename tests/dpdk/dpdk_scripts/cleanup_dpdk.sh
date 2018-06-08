@@ -3,7 +3,7 @@
 set -x
 
 # Setting variables
-DPDK_VERSION=dpdk-18.02
+DPDK_DIR=dpdk
 ROOTDIR=/tmp/openvpp-testing
 TESTPMDLOG=screenlog.0
 PWDDIR=$(pwd)
@@ -72,7 +72,7 @@ fi
 sudo rm -f /dev/hugepages/*
 
 # Unbind interfaces
-cd ${ROOTDIR}/${DPDK_VERSION}/
+cd ${ROOTDIR}/${DPDK_DIR}/
 sudo ./usertools/dpdk-devbind.py -b ${port1_driver} ${port1_pci} || \
     { echo "Unbind ${port1_pci} failed"; exit 1; }
 sudo ./usertools/dpdk-devbind.py -b ${port2_driver} ${port2_pci} || \
