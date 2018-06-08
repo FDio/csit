@@ -3,7 +3,7 @@
 set -x
 
 # Setting variables
-DPDK_VERSION=dpdk-18.02
+DPDK_DIR=dpdk
 ROOTDIR=/tmp/openvpp-testing
 TESTPMDLOG=screenlog.0
 PWDDIR=$(pwd)
@@ -82,7 +82,7 @@ sudo rm -f /dev/hugepages/*
 
 sleep 2
 
-cd ${ROOTDIR}/${DPDK_VERSION}/
+cd ${ROOTDIR}/${DPDK_DIR}/
 rm -f ${TESTPMDLOG}
 TESTPMD_BIN=./${arch}-${machine}-linuxapp-gcc/app/testpmd
 

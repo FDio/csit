@@ -3,7 +3,7 @@
 set -x
 
 # Setting variables
-DPDK_VERSION=dpdk-18.02
+DPDK_DIR=dpdk
 ROOTDIR=/tmp/openvpp-testing
 PWDDIR=$(pwd)
 
@@ -18,7 +18,7 @@ else
     MACHINE="native"
 fi
 
-cd ${ROOTDIR}/${DPDK_VERSION}/
+cd ${ROOTDIR}/${DPDK_DIR}/
 
 modprobe uio
 echo "RC = $?"
