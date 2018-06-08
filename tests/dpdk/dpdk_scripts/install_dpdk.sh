@@ -15,24 +15,20 @@ else
     MACHINE="native"
 fi
 
-DPDK_VERSION=dpdk-18.02
-DPDK_DIR=${DPDK_VERSION}
-DPDK_PACKAGE=${DPDK_DIR}.tar.xz
+DPDK_DIR=dpdk
 ROOTDIR=/tmp/openvpp-testing
 PWDDIR=$(pwd)
 
-# Download the DPDK package
 cd ${ROOTDIR}
-wget "fast.dpdk.org/rel/${DPDK_PACKAGE}" || \
-    { echo "Failed to download $DPDK_PACKAGE"; exit 1; }
-tar xJvf ${DPDK_PACKAGE} || \
-    { echo "Failed to extract $DPDK_PACKAGE"; exit 1; }
+mkdir ${DPDK_DIR}
+tar -xvf dpdk*.tar.xz --strip=1 --directory dpdk || \
+    { echo "Failed to extract DPDK"; exit 1; }
 
 # Compile the DPDK
 cd ./${DPDK_DIR}
 sudo sed -i 's/^CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=n/CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=y/g' ./config/common_base
 make install T=${ARCH}-${MACHINE}-linuxapp-gcc -j || \
-    { echo "Failed to compile $DPDK_VERSION"; exit 1; }
+    { echo "Failed to compile DPDK"; exit 1; }
 cd ${PWDDIR}
 
 # Compile the l3fwd
