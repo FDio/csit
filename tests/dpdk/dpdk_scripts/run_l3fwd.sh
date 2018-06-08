@@ -3,7 +3,7 @@
 set -x
 
 # Setting variables
-DPDK_VERSION=dpdk-18.02
+DPDK_DIR=dpdk
 ROOTDIR=/tmp/openvpp-testing
 L3FWDLOG=screenlog.0
 PWDDIR=$(pwd)
@@ -84,7 +84,7 @@ sudo rm -f /dev/hugepages/*
 sleep 2
 
 #run the l3fwd
-cd ${ROOTDIR}/${DPDK_VERSION}/
+cd ${ROOTDIR}/${DPDK_DIR}/
 rm -f ${L3FWDLOG}
 if [ "$jumbo_frames" = "yes" ]; then
     sudo sh -c "screen -dmSL DPDK-test ./examples/l3fwd/build/app/l3fwd \
