@@ -396,13 +396,7 @@ class DUTSetup(object):
         ssh.connect(node)
 
         for i in range(3):
-            logger.trace('Try {0}: Get interface driver'.format(i))
-            cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
-            ret_code, _, _ = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError("'{0}' failed on '{1}'"
-                                   .format(cmd, node['host']))
-
+            logger.trace('Try number {0}: Get PCI device driver'.format(i))
             cmd = 'lspci -vmmks {0}'.format(pci_addr)
             ret_code, stdout, _ = ssh.exec_command(cmd)
             if int(ret_code) != 0:
@@ -417,10 +411,22 @@ class DUTSetup(object):
                 try:
                     name, value = line.split("\t", 1)
                 except ValueError:
-                    if name == "Driver:":
+                    if name != "Driver:":
+                        pass
+                    else:
                         return None
                 if name == 'Driver:':
-                    return value
+                    return value if value else None
+
+            if i < 3:
+                logger.trace('Driver for PCI device {} not found, executing '
+                             'pci rescan and retrying'.format(pci_addr))
+                cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
+                ret_code, _, _ = ssh.exec_command_sudo(cmd)
+                if int(ret_code) != 0:
+                    raise RuntimeError("'{0}' failed on '{1}'"
+                                       .format(cmd, node['host']))
+
         return None
 
     @staticmethod
