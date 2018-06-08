@@ -104,7 +104,10 @@ case "$TEST_TAG" in
              'mrrAND64bAND4t4c'
              'mrrAND78bAND1t1c'
              'mrrAND78bAND2t2c'
-             'mrrAND78bAND4t4c')
+             'mrrAND78bAND4t4c'
+             'mrrANDimixAND1t1c'
+             'mrrANDimixAND2t2c'
+             'mrrANDimixAND4t4c')
         ;;
     VERIFY-PERF-MRR )
         TAGS=('mrrAND1t1c'
