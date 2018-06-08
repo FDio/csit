@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,6 +20,8 @@ TOPOLOGIES="topologies/available/lf_testbed1.yaml \
             topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PYTHONPATH=${SCRIPT_DIR}
+export DEBIAN_FRONTEND=noninteractive
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
@@ -31,10 +33,27 @@ LOG_ARCHIVE_DIR="$WORKSPACE/archives"
 mkdir -p ${JOB_ARCHIVE_DIR}
 mkdir -p ${LOG_ARCHIVE_DIR}
 
-# we will download the DPDK in the robot
+# If we run this script from CSIT jobs we want to use stable version
+if [[ ${JOB_NAME} == csit-* ]] ;
+then
+    DPDK_REPO='https://fast.dpdk.org/rel/'
+    if [[ ${TEST_TAG} == *DAILY ]] || \
+       [[ ${TEST_TAG} == *WEEKLY ]];
+    then
+        echo Downloading latest DPDK packages from repo...
+        DPDK_STABLE_VER=$(wget --no-check-certificate --quiet -O - ${DPDK_REPO} | \
+            grep -v '2015' | grep -Eo 'dpdk-[^\"]+xz' | tail -1)
+    else
+        echo Downloading DPDK packages of specific version from repo...
+        DPDK_STABLE_VER='dpdk-18.05.tar.xz'
+    fi
+    wget --no-check-certificate --quiet ${DPDK_REPO}${DPDK_STABLE_VER}
+else
+    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
+    exit 1
+fi
 
 WORKING_TOPOLOGY=""
-export PYTHONPATH=${SCRIPT_DIR}
 
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
