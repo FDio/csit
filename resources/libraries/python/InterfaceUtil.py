@@ -19,6 +19,7 @@ from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
+from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
@@ -353,51 +354,11 @@ class InterfaceUtil(object):
         :type pci_addr: str
         :returns: Interface driver or None if not found.
         :rtype: str
+        :raises RuntimeError: If PCI rescan or lspci command execution failed.
         :raises RuntimeError: If it is not possible to get the interface driver
             information from the node.
-
-        .. note::
-            # lspci -vmmks 0000:00:05.0
-            Slot:   00:05.0
-            Class:  Ethernet controller
-            Vendor: Red Hat, Inc
-            Device: Virtio network device
-            SVendor:        Red Hat, Inc
-            SDevice:        Device 0001
-            PhySlot:        5
-            Driver: virtio-pci
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        for i in range(3):
-            logger.trace('Try {}: Get interface driver'.format(i))
-            cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
-            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError("'{0}' failed on '{1}'"
-                                   .format(cmd, node['host']))
-
-            cmd = 'lspci -vmmks {0}'.format(pci_addr)
-            (ret_code, stdout, _) = ssh.exec_command(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError("'{0}' failed on '{1}'"
-                                   .format(cmd, node['host']))
-
-            for line in stdout.splitlines():
-                if len(line) == 0:
-                    continue
-                try:
-                    (name, value) = line.split("\t", 1)
-                except ValueError:
-                    if name != "Driver:":
-                        pass
-                    else:
-                        return None
-                if name == 'Driver:':
-                    return value if value else None
-        raise RuntimeError('Get interface driver for: {0}'
-                           .format(pci_addr))
+        return DUTSetup.get_pci_dev_driver(node, pci_addr)
 
     @staticmethod
     def tg_set_interfaces_udev_rules(node):
