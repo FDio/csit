@@ -2,8 +2,6 @@
 
 set -x
 
-( cd new ; ./run_cpta.sh )
-
 # set default values in config array
 typeset -A DIR
 
@@ -24,15 +22,13 @@ virtualenv ${DIR[WORKING]}/env
 # Install python dependencies:
 pip install -r requirements.txt
 
-export PYTHONPATH=`pwd`
+export PYTHONPATH=`pwd`:`pwd`/jumpavg
 
 STATUS=$(python pal.py \
     --specification specification_CPTA.yaml \
     --logging INFO \
     --force)
 RETURN_STATUS=$?
-
-mv new/_build _build/new
 
 echo ${STATUS}
 exit ${RETURN_STATUS}
