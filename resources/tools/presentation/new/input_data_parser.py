@@ -176,7 +176,10 @@ class ExecutionChecker(ResultVisitor):
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
 
-    REGEX_VERSION = re.compile(r"(return STDOUT Version:\s*)(.*)")
+    REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*)(.*)")
+
+    REGEX_VERSION_DPDK = re.compile(r"(return STDOUT testpmd)([\d\D\n]*)"
+                                    r"(RTE Version: 'DPDK )(.*)(')")
 
     REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
 
@@ -196,6 +199,9 @@ class ExecutionChecker(ResultVisitor):
 
         # VPP version
         self._version = None
+
+        # Timestamp
+        self._timestamp = None
 
         # Number of VAT History messages found:
         # 0 - no message
@@ -227,7 +233,9 @@ class ExecutionChecker(ResultVisitor):
         # Dictionary defining the methods used to parse different types of
         # messages
         self.parse_msg = {
-            "setup-version": self._get_version,
+            "timestamp": self._get_timestamp,
+            "vpp-version": self._get_vpp_version,
+            "dpdk-version": self._get_dpdk_version,
             "teardown-vat-history": self._get_vat_history,
             "test-show-runtime": self._get_show_run
         }
@@ -241,7 +249,7 @@ class ExecutionChecker(ResultVisitor):
         """
         return self._data
 
-    def _get_version(self, msg):
+    def _get_vpp_version(self, msg):
         """Called when extraction of VPP version is required.
 
         :param msg: Message to process.
@@ -250,11 +258,40 @@ class ExecutionChecker(ResultVisitor):
         """
 
         if msg.message.count("return STDOUT Version:"):
-            self._version = str(re.search(self.REGEX_VERSION, msg.message).
+            self._version = str(re.search(self.REGEX_VERSION_VPP, msg.message).
                                 group(2))
             self._data["metadata"]["version"] = self._version
-            self._data["metadata"]["generated"] = msg.timestamp
             self._msg_type = None
+
+    def _get_dpdk_version(self, msg):
+        """Called when extraction of DPDK version is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
+        if msg.message.count("return STDOUT testpmd"):
+            try:
+                self._version = str(re.search(
+                    self.REGEX_VERSION_DPDK, msg.message). group(4))
+                self._data["metadata"]["version"] = self._version
+            except IndexError:
+                pass
+            finally:
+                self._msg_type = None
+
+    def _get_timestamp(self, msg):
+        """Called when extraction of timestamp is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
+        self._timestamp = msg.timestamp[:14]
+        self._data["metadata"]["generated"] = self._timestamp
+        self._msg_type = None
 
     def _get_vat_history(self, msg):
         """Called when extraction of VAT command history is required.
@@ -557,7 +594,11 @@ class ExecutionChecker(ResultVisitor):
             self._lookup_kw_nr += 1
             self._show_run_lookup_nr = 0
             self._msg_type = "test-show-runtime"
-            test_kw.messages.visit(self)
+        elif test_kw.name.count("Start The L2fwd Test") and not self._version:
+            self._msg_type = "dpdk-version"
+        else:
+            return
+        test_kw.messages.visit(self)
 
     def end_test_kw(self, test_kw):
         """Called when keyword ends. Default implementation does nothing.
@@ -591,8 +632,14 @@ class ExecutionChecker(ResultVisitor):
         """
         if setup_kw.name.count("Show Vpp Version On All Duts") \
                 and not self._version:
-            self._msg_type = "setup-version"
-            setup_kw.messages.visit(self)
+            self._msg_type = "vpp-version"
+
+        elif setup_kw.name.count("Setup performance global Variables") \
+                and not self._timestamp:
+            self._msg_type = "timestamp"
+        else:
+            return
+        setup_kw.messages.visit(self)
 
     def end_setup_kw(self, setup_kw):
         """Called when keyword ends. Default implementation does nothing.
