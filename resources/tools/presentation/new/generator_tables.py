@@ -700,7 +700,8 @@ def table_performance_comparison_mrr(table, input_data):
 
 
 def table_performance_trending_dashboard(table, input_data):
-    """Generate the table(s) with algorithm: table_performance_comparison
+    """Generate the table(s) with algorithm:
+    table_performance_trending_dashboard
     specified in the specification file.
 
     :param table: Table to generate.
@@ -723,8 +724,7 @@ def table_performance_trending_dashboard(table, input_data):
               "Short-Term Change [%]",
               "Long-Term Change [%]",
               "Regressions [#]",
-              "Progressions [#]",
-              "Outliers [#]"
+              "Progressions [#]"
               ]
     header_str = ",".join(header) + "\n"
 
@@ -749,59 +749,47 @@ def table_performance_trending_dashboard(table, input_data):
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
-        if len(tbl_dict[tst_name]["data"]) < 3:
+        if len(tbl_dict[tst_name]["data"]) < 2:
             continue
 
         data_t = pd.Series(tbl_dict[tst_name]["data"])
-        last_key = data_t.keys()[-1]
+
+        classification_lst, avgs = classify_anomalies(data_t)
+
         win_size = min(data_t.size, table["window"])
-        win_first_idx = data_t.size - win_size
-        key_14 = data_t.keys()[win_first_idx]
         long_win_size = min(data_t.size, table["long-trend-window"])
-        median_t = data_t.rolling(window=win_size, min_periods=2).median()
-        median_first_idx = median_t.size - long_win_size
         try:
-            max_median = max(
-                [x for x in median_t.values[median_first_idx:-win_size]
+            max_long_avg = max(
+                [x for x in avgs[-long_win_size:-win_size]
                  if not isnan(x)])
         except ValueError:
-            max_median = nan
-        try:
-            last_median_t = median_t[last_key]
-        except KeyError:
-            last_median_t = nan
-        try:
-            median_t_14 = median_t[key_14]
-        except KeyError:
-            median_t_14 = nan
+            max_long_avg = nan
+        last_avg = avgs[-1]
+        avg_week_ago = avgs[max(-win_size, -len(avgs))]
 
-        if isnan(last_median_t) or isnan(median_t_14) or median_t_14 == 0.0:
+        if isnan(last_avg) or isnan(avg_week_ago) or avg_week_ago == 0.0:
             rel_change_last = nan
         else:
             rel_change_last = round(
-                ((last_median_t - median_t_14) / median_t_14) * 100, 2)
+                ((last_avg - avg_week_ago) / avg_week_ago) * 100, 2)
 
-        if isnan(max_median) or isnan(last_median_t) or max_median == 0.0:
+        if isnan(max_long_avg) or isnan(last_avg) or max_long_avg == 0.0:
             rel_change_long = nan
         else:
             rel_change_long = round(
-                ((last_median_t - max_median) / max_median) * 100, 2)
-
-        # Classification list:
-        classification_lst, _ = classify_anomalies(data_t)
+                ((last_avg - max_long_avg) / max_long_avg) * 100, 2)
 
         if classification_lst:
             if isnan(rel_change_last) and isnan(rel_change_long):
                 continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
-                 '-' if isnan(last_median_t) else
-                 round(last_median_t / 1000000, 2),
+                 '-' if isnan(last_avg) else
+                 round(last_avg / 1000000, 2),
                  '-' if isnan(rel_change_last) else rel_change_last,
                  '-' if isnan(rel_change_long) else rel_change_long,
-                 classification_lst[win_first_idx:].count("regression"),
-                 classification_lst[win_first_idx:].count("progression"),
-                 classification_lst[win_first_idx:].count("outlier")])
+                 classification_lst[-long_win_size:].count("regression"),
+                 classification_lst[-long_win_size:].count("progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
 
@@ -809,11 +797,9 @@ def table_performance_trending_dashboard(table, input_data):
     for nrr in range(table["window"], -1, -1):
         tbl_reg = [item for item in tbl_lst if item[4] == nrr]
         for nrp in range(table["window"], -1, -1):
-            tbl_pro = [item for item in tbl_reg if item[5] == nrp]
-            for nro in range(table["window"], -1, -1):
-                tbl_out = [item for item in tbl_pro if item[6] == nro]
-                tbl_out.sort(key=lambda rel: rel[2])
-                tbl_sorted.extend(tbl_out)
+            tbl_out = [item for item in tbl_reg if item[5] == nrp]
+            tbl_out.sort(key=lambda rel: rel[2])
+            tbl_sorted.extend(tbl_out)
 
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
@@ -836,7 +822,6 @@ def table_performance_trending_dashboard(table, input_data):
         txt_table.align["Test case"] = "l"
     with open(txt_file_name, "w") as txt_file:
         txt_file.write(str(txt_table))
-
 
 def table_performance_trending_dashboard_html(table, input_data):
     """Generate the table(s) with algorithm:
@@ -877,15 +862,12 @@ def table_performance_trending_dashboard_html(table, input_data):
     # Rows:
     colors = {"regression": ("#ffcccc", "#ff9999"),
               "progression": ("#c6ecc6", "#9fdf9f"),
-              "outlier": ("#e6e6e6", "#cccccc"),
               "normal": ("#e9f1fb", "#d4e4f7")}
     for r_idx, row in enumerate(csv_lst[1:]):
         if int(row[4]):
             color = "regression"
         elif int(row[5]):
             color = "progression"
-        elif int(row[6]):
-            color = "outlier"
         else:
             color = "normal"
         background = colors[color][r_idx % 2]
