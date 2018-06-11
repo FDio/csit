@@ -450,24 +450,16 @@ def table_performance_comparison(table, input_data):
                         item.extend([None, None])
             else:
                 item.extend([None, None])
-        if tbl_dict[tst_name]["ref-data"]:
-            data_t = tbl_dict[tst_name]["ref-data"]
-            # TODO: Specify window size.
-            if data_t:
-                item.append(round(mean(data_t) / 1000000, 2))
-                item.append(round(stdev(data_t) / 1000000, 2))
-            else:
-                item.extend([None, None])
+        data_t = tbl_dict[tst_name]["ref-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
-        if tbl_dict[tst_name]["cmp-data"]:
-            data_t = tbl_dict[tst_name]["cmp-data"]
-            # TODO: Specify window size.
-            if data_t:
-                item.append(round(mean(data_t) / 1000000, 2))
-                item.append(round(stdev(data_t) / 1000000, 2))
-            else:
-                item.extend([None, None])
+        data_t = tbl_dict[tst_name]["cmp-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
         if item[-4] is not None and item[-2] is not None and item[-4] != 0:
@@ -647,24 +639,16 @@ def table_performance_comparison_mrr(table, input_data):
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
-        if tbl_dict[tst_name]["ref-data"]:
-            data_t = tbl_dict[tst_name]["ref-data"]
-            # TODO: Specify window size.
-            if data_t:
-                item.append(round(mean(data_t) / 1000000, 2))
-                item.append(round(stdev(data_t) / 1000000, 2))
-            else:
-                item.extend([None, None])
+        data_t = tbl_dict[tst_name]["ref-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
-        if tbl_dict[tst_name]["cmp-data"]:
-            data_t = tbl_dict[tst_name]["cmp-data"]
-            # TODO: Specify window size.
-            if data_t:
-                item.append(round(mean(data_t) / 1000000, 2))
-                item.append(round(stdev(data_t) / 1000000, 2))
-            else:
-                item.extend([None, None])
+        data_t = tbl_dict[tst_name]["cmp-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
         if item[1] is not None and item[3] is not None and item[1] != 0:
@@ -768,13 +752,13 @@ def table_performance_trending_dashboard(table, input_data):
         if len(tbl_dict[tst_name]["data"]) < 3:
             continue
 
-        pd_data = pd.Series(tbl_dict[tst_name]["data"])
-        last_key = pd_data.keys()[-1]
-        win_size = min(pd_data.size, table["window"])
-        win_first_idx = pd_data.size - win_size
-        key_14 = pd_data.keys()[win_first_idx]
-        long_win_size = min(pd_data.size, table["long-trend-window"])
-        median_t = pd_data.rolling(window=win_size, min_periods=2).median()
+        data_t = pd.Series(tbl_dict[tst_name]["data"])
+        last_key = data_t.keys()[-1]
+        win_size = min(data_t.size, table["window"])
+        win_first_idx = data_t.size - win_size
+        key_14 = data_t.keys()[win_first_idx]
+        long_win_size = min(data_t.size, table["long-trend-window"])
+        median_t = data_t.rolling(window=win_size, min_periods=2).median()
         median_first_idx = median_t.size - long_win_size
         try:
             max_median = max(
@@ -804,7 +788,7 @@ def table_performance_trending_dashboard(table, input_data):
                 ((last_median_t - max_median) / max_median) * 100, 2)
 
         # Classification list:
-        classification_lst, _ = classify_anomalies(pd_data)
+        classification_lst, _ = classify_anomalies(data_t)
 
         if classification_lst:
             if isnan(rel_change_last) and isnan(rel_change_long):
@@ -833,7 +817,7 @@ def table_performance_trending_dashboard(table, input_data):
 
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
-    logging.info("      Writing file: '{0}'".format(file_name))
+    logging.info("    Writing file: '{0}'".format(file_name))
     with open(file_name, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_sorted:
@@ -841,7 +825,7 @@ def table_performance_trending_dashboard(table, input_data):
 
     txt_file_name = "{0}.txt".format(table["output-file"])
     txt_table = None
-    logging.info("      Writing file: '{0}'".format(txt_file_name))
+    logging.info("    Writing file: '{0}'".format(txt_file_name))
     with open(file_name, 'rb') as csv_file:
         csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
         for row in csv_content:
@@ -917,7 +901,13 @@ def table_performance_trending_dashboard_html(table, input_data):
             anchor = "#"
             feature = ""
             if c_idx == 0:
-                if "memif" in item:
+                if "lbdpdk" in item or "lbvpp" in item:
+                    file_name = "link_bonding.html"
+
+                elif "testpmd" in item or "l3fwd" in item:
+                    file_name = "dpdk.html"
+
+                elif "memif" in item:
                     file_name = "container_memif.html"
 
                 elif "srv6" in item:
@@ -980,13 +970,12 @@ def table_performance_trending_dashboard_html(table, input_data):
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
 
-            if c_idx > 0:
+            else:
                 td.text = item
 
     try:
         with open(table["output-file"], 'w') as html_file:
-            logging.info("      Writing file: '{0}'".
-                         format(table["output-file"]))
+            logging.info("    Writing file: '{0}'".format(table["output-file"]))
             html_file.write(".. raw:: html\n\n\t")
             html_file.write(ET.tostring(dashboard))
             html_file.write("\n\t<p><br><br></p>\n")

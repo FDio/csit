@@ -10,7 +10,7 @@
     DIR[BUILD,LATEX]: "_build_latex"
 
     # Static .rst files
-    DIR[RST]: "../../../docs/report"
+    DIR[RST]: "../../../../docs/report"
 
     # Working directories
     ## Input data files (.zip, .xml)
