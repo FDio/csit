@@ -245,3 +245,9 @@ PA is defined as follows:
    b) Generate a new set of trend summary dashboard and graphs.
    c) Publish trend dashboard and graphs in html format on
       https://docs.fd.io/.
+
+Testbed HW configuration
+------------------------
+
+The testbed HW configuration is described on
+`FD.IO wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed#FD.IO_CSIT_testbed_-_Server_HW_Configuration>`_.
