@@ -16,6 +16,24 @@
       "revId": "27882271f650df4a3454bf8d9fe176550a6c595a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3f939d6_333c97a4",
+        "filename": "resources/tools/presentation/specification_CPTA.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-12T08:39:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d24ddeea_f869f118",
+      "revId": "27882271f650df4a3454bf8d9fe176550a6c595a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
