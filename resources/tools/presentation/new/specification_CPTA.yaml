@@ -24,7 +24,7 @@
     ## Build directories
     DIR[BUILD,HTML]: "_build"
     ## Static .rst files
-    DIR[RST]: "../../../../docs/cpta/new"
+    DIR[RST]: "../../../../docs/new/cpta"
 
     # Static html content
     DIR[STATIC]: "{DIR[BUILD,HTML]}/_static"
