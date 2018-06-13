@@ -276,6 +276,37 @@ case "$TEST_TAG" in
         TAGS=('mrrANDsrv6AND1t1c'
               'mrrANDsrv6AND2t2c')
         ;;
+    VERIFY-PERF-PATCH )
+        if [[ ! -z "$TEST_TAG_ARRAY" ]]; then
+            # If trigger contains tags, split them to array.
+            TEST_TAG_ARRAY=(${TEST_TAG_ARRAY//:/ })
+        else
+            # If nothing is specified, we will run pre-selected test by
+            # following tags. Items of array will be concatenated by OR in Robot
+            # Framework.
+            TEST_TAG_ARRAY=('mrrANDnic_intel-xl710AND1t1cAND64bANDip4base'
+                            'mrrANDnic_intel-xl710AND1t1cAND78bANDip6base'
+                            'mrrANDnic_intel-xl710AND1t1cAND64bANDl2xcbase'
+                            'mrrANDnic_intel-xl710AND1t1cAND64bANDl2bdbase')
+        fi
+        TAGS=()
+        for TAG in "${TEST_TAG_ARRAY[@]}"; do
+            if [[ ${TAG} == "!"* ]]; then
+                # Exclude tags are not prefixed.
+                TAGS+=("${TAG}")
+            else
+                # We will prefix with perftest to prevent running other tests
+                # (e.g. Functional).
+                prefix="perftestAND"
+                if [[ ${JOB_NAME} == vpp-* ]] ; then
+                    # Automatic prefixing for VPP jobs to limit the NIC used and
+                    #traffic evaluation to MRR.
+                    prefix="${prefix}mrrANDnic_intel-xl710AND"
+                fi
+                TAGS+=("$prefix${TAG}")
+            fi
+        done
+        ;;
     * )
         TAGS=('perftest')
 esac
