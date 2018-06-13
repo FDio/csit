@@ -204,7 +204,7 @@ case "$TEST_TAG" in
     VERIFY-PERF-L2 )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
               'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
-        ETAGS=('lbond_dpdk')
+              '!lbond_dpdk')
         ;;
     VERIFY-PERF-LISP )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
@@ -214,7 +214,7 @@ case "$TEST_TAG" in
         ;;
     VERIFY-PERF-VHOST )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost')
-        ETAGS=('lbond_dpdk')
+              '!lbond_dpdk')
         ;;
     VERIFY-PERF-MEMIF )
         TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
@@ -244,7 +244,7 @@ case "$TEST_TAG" in
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
               'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase'
               'mrrANDnic_intel-x520-da2AND1t1cANDdot1q')
-        ETAGS=('lbond_dpdk')
+              '!lbond_dpdk')
         ;;
     VPP-VERIFY-PERF-LISP )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
@@ -253,8 +253,8 @@ case "$TEST_TAG" in
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvxlan')
         ;;
     VPP-VERIFY-PERF-VHOST )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost')
-        ETAGS=('lbond_dpdk')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost'
+              '!lbond_dpdk')
         ;;
     VPP-VERIFY-PERF-MEMIF )
         TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
@@ -276,16 +276,53 @@ case "$TEST_TAG" in
         TAGS=('mrrANDsrv6AND1t1c'
               'mrrANDsrv6AND2t2c')
         ;;
+    VERIFY-PERF-PATCH )
+        if [[ ! -z "$TEST_TAG_ARRAY" ]]; then
+            # If trigger contains tags, split them to array.
+            TEST_TAG_ARRAY=(${TEST_TAG_ARRAY//:/ })
+        else
+            # If nothing is specified, we will run pre-selected test by
+            # following tags. Items of array will be concatenated by OR in Robot
+            # Framework.
+            TEST_TAG_ARRAY=('mrrANDnic_intel-xl710AND1t1cAND64bANDip4base'
+                            'mrrANDnic_intel-xl710AND1t1cAND78bANDip6base'
+                            'mrrANDnic_intel-xl710AND1t1cAND64bANDl2xcbase'
+                            'mrrANDnic_intel-xl710AND1t1cAND64bANDl2bdbase')
+        fi
+        TAGS=()
+        for TAG in "${TEST_TAG_ARRAY[@]}"; do
+            if [[ ${TAG} == "!"* ]]; then
+                # Exclude tags are not prefixed.
+                TAGS+=("${TAG}")
+            else
+                # We will prefix with perftest to prevent running other tests
+                # (e.g. Functional).
+                prefix="perftestAND"
+                if [[ ${JOB_NAME} == vpp-* ]] ; then
+                    # Automatic prefixing for VPP jobs to limit the NIC used and
+                    #traffic evaluation to MRR.
+                    prefix="${prefix}mrrANDnic_intel-xl710AND"
+                fi
+                TAGS+=("$prefix${TAG}")
+            fi
+        done
+        ;;
     * )
         TAGS=('perftest')
 esac
 
-# Catenate TAG selections by 'OR'
-if [[ ! -z "$TAGS" ]]; then printf -v INCLUDES " --include %s " "${TAGS[@]}"; fi
-if [[ ! -z "$ETAGS" ]]; then printf -v EXCLUDES " --exclude %s " "${ETAGS[@]}"; fi
+# Catenate TAG selections
+EXPANDED_TAGS=()
+for TAG in "${TAGS[@]}"; do
+    if [[ ${TAG} == "!"* ]]; then
+        EXPANDED_TAGS+=(" --exclude ${TAG#$"!"} ")
+    else
+        EXPANDED_TAGS+=(" --include ${TAG} ")
+    fi
+done
 
 # Execute the test
-pybot ${PYBOT_ARGS}${INCLUDES}${EXCLUDES} tests/
+pybot ${PYBOT_ARGS}${EXPANDED_TAGS} tests/
 RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins
