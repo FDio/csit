@@ -91,7 +91,7 @@
       height: 800
       yaxis:
         showticklabels: True
-        tickformat: ".3s"
+        tickformat: ".4s"
         title: "Throughput [pps]"
         hoverformat: ".4s"
         range: []
@@ -161,7 +161,7 @@
       height: 800
       yaxis:
         showticklabels: True
-        tickformat: ".3s"
+        tickformat: ".4s"
         title: "Throughput [pps]"
         hoverformat: ".4s"
         range: []
@@ -269,6 +269,8 @@
   - "parent"
   - "result"
   ignore-list:
+    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+    # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
@@ -288,6 +290,8 @@
   - "parent"
   - "result"
   ignore-list:
+    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+    # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
@@ -307,6 +311,8 @@
   - "parent"
   - "result"
   ignore-list:
+    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+    # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
   outlier-const: 1.5
   window: 14
@@ -333,6 +339,31 @@
   algorithm: "table_performance_trending_dashboard_html"
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c.rst"
+
+-
+  type: "table"
+  title: "Failed MRR tests"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests"
+  data: "plot-performance-trending-all"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "status"
+  ignore-list:
+    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+    # but it remains in the old output.xml files.
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+  window: 14
+
+-
+  type: "table"
+  title: "HTML Failed MRR tests"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests.rst"
 
 
 ################################################################################
