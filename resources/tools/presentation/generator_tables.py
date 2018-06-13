@@ -1010,3 +1010,80 @@ def table_performance_trending_dashboard_html(table, input_data):
     except KeyError:
         logging.warning("The output file is not defined.")
         return
+
+
+def table_failed_tests(table, input_data):
+    """Generate the table(s) with algorithm: table_failed_tests
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
+    data = input_data.filter_data(table)
+
+    # Prepare the header of the tables
+    header = ["Test Case",
+              "Fails [#]",
+              "Last Fail [Date]",
+              "Last Fail [VPP Build]",
+              "Last Fail [CSIT Build]"]
+
+    # Generate the data for the table according to the model in the table
+    # specification
+    tbl_dict = dict()
+    for job, builds in table["data"].items():
+        for build in builds:
+            build = str(build)
+            for tst_name, tst_data in data[job][build].iteritems():
+                if tst_name.lower() in table["ignore-list"]:
+                    continue
+                if tbl_dict.get(tst_name, None) is None:
+                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
+                                            "-".join(tst_data["name"].
+                                                     split("-")[1:]))
+                    tbl_dict[tst_name] = {"name": name,
+                                          "data": OrderedDict()}
+                try:
+                    tbl_dict[tst_name]["data"][build] = (
+                        tst_data["status"],
+                        input_data.metadata(job, build).get("generated", ""),
+                        input_data.metadata(job, build).get("version", ""),
+                        build)
+                except (TypeError, KeyError):
+                    pass  # No data in output.xml for this test
+
+    tbl_lst = list()
+    for tst_data in tbl_dict.values():
+        win_size = min(len(tst_data["data"]), table["window"])
+        fails_nr = 0
+        for val in tst_data["data"].values()[-win_size:]:
+            if val[0] == "FAIL":
+                fails_nr += 1
+                fails_last_date = val[1]
+                fails_last_vpp = val[2]
+                fails_last_csit = val[3]
+        if fails_nr:
+            tbl_lst.append([tst_data["name"],
+                            fails_nr,
+                            fails_last_date,
+                            fails_last_vpp,
+                            fails_last_csit])
+
+    tbl_lst.sort(key=lambda rel: rel[1])
+
+    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
+
+    logging.info("    Writing file: '{0}'".format(file_name))
+    with open(file_name, "w") as file_handler:
+        file_handler.write(",".join(header) + "\n")
+        for test in tbl_lst:
+            file_handler.write(",".join([str(item) for item in test]) + '\n')
