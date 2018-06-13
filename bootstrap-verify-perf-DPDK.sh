@@ -128,19 +128,54 @@ case "$TEST_TAG" in
              'mrrANDimixAND2t2c'
              'mrrANDimixAND4t4c')
         ;;
-    VERIFY-PERF-MRR )
-        TAGS=('mrrAND1t1c'
-              'mrrAND2t2c')
+    VERIFY-PERF-PATCH )
+        if [[ -z "$TEST_TAG_STRING" ]]; then
+            # If nothing is specified, we will run pre-selected tests by
+            # following tags. Items of array will be concatenated by OR in Robot
+            # Framework.
+            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1t1cAND64bANDip4base'
+                            'mrrANDnic_intel-x710AND1t1cAND78bANDip6base'
+                            'mrrANDnic_intel-x710AND1t1cAND64bANDl2bdbase')
+        else
+            # If trigger contains tags, split them into array.
+            TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
+        fi
+
+        TAGS=()
+
+        for TAG in "${TEST_TAG_ARRAY[@]}"; do
+            if [[ ${TAG} == "!"* ]]; then
+                # Exclude tags are not prefixed.
+                TAGS+=("${TAG}")
+            else
+                # We will prefix with perftest to prevent running other tests
+                # (e.g. Functional).
+                prefix="perftestAND"
+                if [[ ${JOB_NAME} == vpp-* ]] ; then
+                    # Automatic prefixing for VPP jobs to limit the NIC used and
+                    # traffic evaluation to MRR.
+                    prefix="${prefix}mrrANDnic_intel-x710AND"
+                fi
+                TAGS+=("$prefix${TAG}")
+            fi
+        done
         ;;
     * )
         TAGS=('perftest')
 esac
 
-# Catenate TAG selections by 'OR'
-printf -v INCLUDES " --include %s " "${TAGS[@]}"
+# Catenate TAG selections
+EXPANDED_TAGS=()
+for TAG in "${TAGS[@]}"; do
+    if [[ ${TAG} == "!"* ]]; then
+        EXPANDED_TAGS+=(" --exclude ${TAG#$"!"} ")
+    else
+        EXPANDED_TAGS+=(" --include ${TAG} ")
+    fi
+done
 
 # Execute the test
-pybot ${PYBOT_ARGS}${INCLUDES} tests/
+pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
 RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins

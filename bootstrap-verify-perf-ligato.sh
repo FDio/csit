@@ -258,97 +258,54 @@ case "$TEST_TAG" in
              'mrrANDimixAND2t2cANDmemif'
              'mrrANDimixAND4t4cANDmemif')
         ;;
-    VERIFY-PERF-NDRDISC )
-        TAGS=('ndrdiscAND1t1c'
-              'ndrdiscAND2t2c')
-        ;;
-    VERIFY-PERF-PDRDISC )
-        TAGS=('pdrdiscAND1t1c'
-              'pdrdiscAND2t2c')
-        ;;
-    VERIFY-PERF-MRR )
-        TAGS=('mrrAND1t1c'
-              'mrrAND2t2c')
-        ;;
-    VERIFY-PERF-IP4 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m')
-        ;;
-    VERIFY-PERF-IP6 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip6base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m')
-        ;;
-    VERIFY-PERF-L2 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
-        ;;
-    VERIFY-PERF-LISP )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDlisp')
-        ;;
-    VERIFY-PERF-VXLAN )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan')
-        ;;
-    VERIFY-PERF-VHOST )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost')
-        ;;
-    VERIFY-PERF-MEMIF )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
-              'pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif'
-              'mrrANDnic_intel-x520-da2AND1t1cANDmemif'
-              'mrrANDnic_intel-x520-da2AND2t2cANDmemif')
-        ;;
-    VERIFY-PERF-IPSECHW )
-        TAGS=('pdrdiscANDnic_intel-xl710AND1t1cANDipsechw'
-              'pdrdiscANDnic_intel-xl710AND2t2cANDipsechw'
-              'mrrANDnic_intel-xl710AND1t1cANDipsechw'
-              'mrrANDnic_intel-xl710AND2t2cANDipsechw')
-        ;;
-    VPP-VERIFY-PERF-IP4 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m')
-        ;;
-    VPP-VERIFY-PERF-IP6 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip6base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m')
-        ;;
-    VPP-VERIFY-PERF-L2 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
-        ;;
-    VPP-VERIFY-PERF-LISP )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDlisp')
-        ;;
-    VPP-VERIFY-PERF-VXLAN )
-        TAGS=('pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan')
-        ;;
-    VPP-VERIFY-PERF-VHOST )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDvhost')
-        ;;
-    VPP-VERIFY-PERF-MEMIF )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
-              'pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif'
-              'mrrANDnic_intel-x520-da2AND1t1cANDmemif'
-              'mrrANDnic_intel-x520-da2AND2t2cANDmemif')
-        ;;
-    VPP-VERIFY-PERF-ACL )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDacl'
-              'pdrdiscANDnic_intel-x520-da2AND2t2cANDacl')
-        ;;
-    VPP-VERIFY-PERF-IPSECHW )
-        TAGS=('pdrdiscANDnic_intel-xl710AND1t1cANDipsechw'
-              'pdrdiscANDnic_intel-xl710AND2t2cANDipsechw'
-              'mrrANDnic_intel-xl710AND1t1cANDipsechw'
-              'mrrANDnic_intel-xl710AND2t2cANDipsechw')
+    VERIFY-PERF-PATCH )
+        if [[ -z "$TEST_TAG_STRING" ]]; then
+            # If nothing is specified, we will run pre-selected tests by
+            # following tags. Items of array will be concatenated by OR in Robot
+            # Framework.
+            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1t1cAND64bANDip4base'
+                            'mrrANDnic_intel-x710AND1t1cAND78bANDip6base'
+                            'mrrANDnic_intel-x710AND1t1cAND64bANDl2bdbase')
+        else
+            # If trigger contains tags, split them into array.
+            TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
+        fi
+
+        TAGS=()
+
+        for TAG in "${TEST_TAG_ARRAY[@]}"; do
+            if [[ ${TAG} == "!"* ]]; then
+                # Exclude tags are not prefixed.
+                TAGS+=("${TAG}")
+            else
+                # We will prefix with perftest to prevent running other tests
+                # (e.g. Functional).
+                prefix="perftestAND"
+                if [[ ${JOB_NAME} == vpp-* ]] ; then
+                    # Automatic prefixing for VPP jobs to limit the NIC used and
+                    # traffic evaluation to MRR.
+                    prefix="${prefix}mrrANDnic_intel-x710AND"
+                fi
+                TAGS+=("$prefix${TAG}")
+            fi
+        done
         ;;
     * )
         TAGS=('perftest')
 esac
 
-# Catenate TAG selections by 'OR'
-printf -v INCLUDES " --include %s " "${TAGS[@]}"
+# Catenate TAG selections
+EXPANDED_TAGS=()
+for TAG in "${TAGS[@]}"; do
+    if [[ ${TAG} == "!"* ]]; then
+        EXPANDED_TAGS+=(" --exclude ${TAG#$"!"} ")
+    else
+        EXPANDED_TAGS+=(" --include ${TAG} ")
+    fi
+done
 
 # Execute the test
-pybot ${PYBOT_ARGS}${INCLUDES} tests/
+pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
 RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins
