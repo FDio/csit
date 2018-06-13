@@ -464,6 +464,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
+        test_result["status"] = test.status
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags):
@@ -507,6 +508,7 @@ class ExecutionChecker(ResultVisitor):
                 test_result["result"] = dict()
                 test_result["result"]["value"] = int(groups.group(2))
                 test_result["result"]["unit"] = groups.group(1)
+
             elif test_type in ("MRR", ):
                 groups = re.search(self.REGEX_MRR, test.message)
                 test_result["result"] = dict()
@@ -516,8 +518,6 @@ class ExecutionChecker(ResultVisitor):
                 test_result["result"]["throughput"] = int(
                     test_result["result"]["rx"] /
                     test_result["result"]["duration"])
-        else:
-            test_result["status"] = test.status
 
         self._test_ID = test.longname.lower()
         self._data["tests"][self._test_ID] = test_result
