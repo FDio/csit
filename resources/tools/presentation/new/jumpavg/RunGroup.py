@@ -11,8 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding RunGroup class."""
+
 
 class RunGroup(object):
+    """Effectively a named touple of data and metadata.
+
+    TODO: This feels like an abstract class.
+    Most uses assume restrictions on metadata type.
+    Can this be defined similarly to C++ templates?
+    """
 
     def __init__(self, metadata, values):
         """Create the group from metadata and values.
