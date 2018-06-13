@@ -866,6 +866,90 @@ def table_performance_trending_dashboard(table, input_data):
         txt_file.write(str(txt_table))
 
 
+def _generate_url(base, test_name):
+    """Generate URL to a trending plot from the name of the test case.
+
+    :param base: The base part of URL common to all test cases.
+    :param test_name: The name of the test case.
+    :type base: str
+    :type test_name: str
+    :returns: The URL to the plot with the trending data for the given test
+        case.
+    :rtype str
+    """
+
+    url = base
+    file_name = ""
+    anchor = "#"
+    feature = ""
+
+    if "lbdpdk" in test_name or "lbvpp" in test_name:
+        file_name = "link_bonding.html"
+
+    elif "testpmd" in test_name or "l3fwd" in test_name:
+        file_name = "dpdk.html"
+
+    elif "memif" in test_name:
+        file_name = "container_memif.html"
+
+    elif "srv6" in test_name:
+        file_name = "srv6.html"
+
+    elif "vhost" in test_name:
+        if "l2xcbase" in test_name or "l2bdbasemaclrn" in test_name:
+            file_name = "vm_vhost_l2.html"
+        elif "ip4base" in test_name:
+            file_name = "vm_vhost_ip4.html"
+
+    elif "ipsec" in test_name:
+        file_name = "ipsec.html"
+
+    elif "ethip4lispip" in test_name or "ethip4vxlan" in test_name:
+        file_name = "ip4_tunnels.html"
+
+    elif "ip4base" in test_name or "ip4scale" in test_name:
+        file_name = "ip4.html"
+        if "iacl" in test_name or "snat" in test_name or "cop" in test_name:
+            feature = "-features"
+
+    elif "ip6base" in test_name or "ip6scale" in test_name:
+        file_name = "ip6.html"
+
+    elif "l2xcbase" in test_name or "l2xcscale" in test_name \
+            or "l2bdbasemaclrn" in test_name or "l2bdscale" in test_name \
+            or "l2dbbasemaclrn" in test_name or "l2dbscale" in test_name:
+        file_name = "l2.html"
+        if "iacl" in test_name:
+            feature = "-features"
+
+    if "x520" in test_name:
+        anchor += "x520-"
+    elif "x710" in test_name:
+        anchor += "x710-"
+    elif "xl710" in test_name:
+        anchor += "xl710-"
+
+    if "64b" in test_name:
+        anchor += "64b-"
+    elif "78b" in test_name:
+        anchor += "78b-"
+    elif "imix" in test_name:
+        anchor += "imix-"
+    elif "9000b" in test_name:
+        anchor += "9000b-"
+    elif "1518" in test_name:
+        anchor += "1518b-"
+
+    if "1t1c" in test_name:
+        anchor += "1t1c"
+    elif "2t2c" in test_name:
+        anchor += "2t2c"
+    elif "4t4c" in test_name:
+        anchor += "4t4c"
+
+    return url + file_name + anchor + feature
+
+
 def table_performance_trending_dashboard_html(table, input_data):
     """Generate the table(s) with algorithm:
     table_performance_trending_dashboard_html specified in the specification
@@ -924,88 +1008,165 @@ def table_performance_trending_dashboard_html(table, input_data):
             alignment = "left" if c_idx == 0 else "center"
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
             # Name:
-            url = "../trending/"
-            file_name = ""
-            anchor = "#"
-            feature = ""
             if c_idx == 0:
-                if "lbdpdk" in item or "lbvpp" in item:
-                    file_name = "link_bonding.html"
-
-                elif "testpmd" in item or "l3fwd" in item:
-                    file_name = "dpdk.html"
-
-                elif "memif" in item:
-                    file_name = "container_memif.html"
-
-                elif "srv6" in item:
-                    file_name = "srv6.html"
-
-                elif "vhost" in item:
-                    if "l2xcbase" in item or "l2bdbasemaclrn" in item:
-                        file_name = "vm_vhost_l2.html"
-                    elif "ip4base" in item:
-                        file_name = "vm_vhost_ip4.html"
-
-                elif "ipsec" in item:
-                    file_name = "ipsec.html"
-
-                elif "ethip4lispip" in item or "ethip4vxlan" in item:
-                    file_name = "ip4_tunnels.html"
-
-                elif "ip4base" in item or "ip4scale" in item:
-                    file_name = "ip4.html"
-                    if "iacl" in item or "snat" in item or "cop" in item:
-                        feature = "-features"
-
-                elif "ip6base" in item or "ip6scale" in item:
-                    file_name = "ip6.html"
-
-                elif "l2xcbase" in item or "l2xcscale" in item \
-                        or "l2bdbasemaclrn" in item or "l2bdscale" in item \
-                        or "l2dbbasemaclrn" in item or "l2dbscale" in item:
-                    file_name = "l2.html"
-                    if "iacl" in item:
-                        feature = "-features"
-
-                if "x520" in item:
-                    anchor += "x520-"
-                elif "x710" in item:
-                    anchor += "x710-"
-                elif "xl710" in item:
-                    anchor += "xl710-"
-
-                if "64b" in item:
-                    anchor += "64b-"
-                elif "78b" in item:
-                    anchor += "78b-"
-                elif "imix" in item:
-                    anchor += "imix-"
-                elif "9000b" in item:
-                    anchor += "9000b-"
-                elif "1518" in item:
-                    anchor += "1518b-"
-
-                if "1t1c" in item:
-                    anchor += "1t1c"
-                elif "2t2c" in item:
-                    anchor += "2t2c"
-                elif "4t4c" in item:
-                    anchor += "4t4c"
-
-                url = url + file_name + anchor + feature
-
+                url = _generate_url("../trending/", item)
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
-
             else:
                 td.text = item
-
     try:
         with open(table["output-file"], 'w') as html_file:
             logging.info("    Writing file: '{0}'".format(table["output-file"]))
             html_file.write(".. raw:: html\n\n\t")
             html_file.write(ET.tostring(dashboard))
+            html_file.write("\n\t<p><br><br></p>\n")
+    except KeyError:
+        logging.warning("The output file is not defined.")
+        return
+
+
+def table_failed_tests(table, input_data):
+    """Generate the table(s) with algorithm: table_failed_tests
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
+    data = input_data.filter_data(table, continue_on_error=True)
+
+    # Prepare the header of the tables
+    header = ["Test Case",
+              "Fails [#]",
+              "Last Fail [Timestamp]",
+              "Last Fail [VPP Build]",
+              "Last Fail [CSIT Build]"]
+
+    # Generate the data for the table according to the model in the table
+    # specification
+    tbl_dict = dict()
+    for job, builds in table["data"].items():
+        for build in builds:
+            build = str(build)
+            for tst_name, tst_data in data[job][build].iteritems():
+                if tst_name.lower() in table["ignore-list"]:
+                    continue
+                if tbl_dict.get(tst_name, None) is None:
+                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
+                                            "-".join(tst_data["name"].
+                                                     split("-")[1:]))
+                    tbl_dict[tst_name] = {"name": name,
+                                          "data": OrderedDict()}
+                try:
+                    tbl_dict[tst_name]["data"][build] = (
+                        tst_data["status"],
+                        input_data.metadata(job, build).get("generated", ""),
+                        input_data.metadata(job, build).get("version", ""),
+                        build)
+                except (TypeError, KeyError):
+                    pass  # No data in output.xml for this test
+
+    tbl_lst = list()
+    for tst_data in tbl_dict.values():
+        win_size = min(len(tst_data["data"]), table["window"])
+        fails_nr = 0
+        for val in tst_data["data"].values()[-win_size:]:
+            if val[0] == "FAIL":
+                fails_nr += 1
+                fails_last_date = val[1]
+                fails_last_vpp = val[2]
+                fails_last_csit = val[3]
+        if fails_nr:
+            tbl_lst.append([tst_data["name"],
+                            fails_nr,
+                            fails_last_date,
+                            fails_last_vpp,
+                            "mrr-daily-build-{0}".format(fails_last_csit)])
+
+    tbl_lst.sort(key=lambda rel: rel[2], reverse=True)
+    tbl_sorted = list()
+    for nrf in range(table["window"], -1, -1):
+        tbl_fails = [item for item in tbl_lst if item[1] == nrf]
+        tbl_sorted.extend(tbl_fails)
+    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
+
+    logging.info("    Writing file: '{0}'".format(file_name))
+    with open(file_name, "w") as file_handler:
+        file_handler.write(",".join(header) + "\n")
+        for test in tbl_sorted:
+            file_handler.write(",".join([str(item) for item in test]) + '\n')
+
+
+def table_failed_tests_html(table, input_data):
+    """Generate the table(s) with algorithm: table_failed_tests_html
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    try:
+        with open(table["input-file"], 'rb') as csv_file:
+            csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+            csv_lst = [item for item in csv_content]
+    except KeyError:
+        logging.warning("The input file is not defined.")
+        return
+    except csv.Error as err:
+        logging.warning("Not possible to process the file '{0}'.\n{1}".
+                        format(table["input-file"], err))
+        return
+
+    # Table:
+    failed_tests = ET.Element("table", attrib=dict(width="100%", border='0'))
+
+    # Table header:
+    tr = ET.SubElement(failed_tests, "tr", attrib=dict(bgcolor="#7eade7"))
+    for idx, item in enumerate(csv_lst[0]):
+        alignment = "left" if idx == 0 else "center"
+        th = ET.SubElement(tr, "th", attrib=dict(align=alignment))
+        th.text = item
+
+    # Rows:
+    colors = {"very-bad": ("#ffcccc", "#ff9999"),
+              "bad": ("#e9f1fb", "#d4e4f7")}
+    for r_idx, row in enumerate(csv_lst[1:]):
+        if int(row[1]) > 7:
+            color = "very-bad"
+        else:
+            color = "bad"
+        background = colors[color][r_idx % 2]
+        tr = ET.SubElement(failed_tests, "tr", attrib=dict(bgcolor=background))
+
+        # Columns:
+        for c_idx, item in enumerate(row):
+            alignment = "left" if c_idx == 0 else "center"
+            td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
+            # Name:
+            if c_idx == 0:
+                url = _generate_url("../trending/", item)
+                ref = ET.SubElement(td, "a", attrib=dict(href=url))
+                ref.text = item
+            else:
+                td.text = item
+    try:
+        with open(table["output-file"], 'w') as html_file:
+            logging.info("    Writing file: '{0}'".format(table["output-file"]))
+            html_file.write(".. raw:: html\n\n\t")
+            html_file.write(ET.tostring(failed_tests))
             html_file.write("\n\t<p><br><br></p>\n")
     except KeyError:
         logging.warning("The output file is not defined.")

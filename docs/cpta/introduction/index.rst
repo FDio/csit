@@ -20,7 +20,29 @@ executed twice a day (target start: every 12 hrs, 02:00, 14:00 UTC). All
 trend and anomaly evaluation is based on a rolling window of <N=14> data
 samples, covering last 7 days.
 
-Legend to table:
+Failed tests
+------------
+
+The table lists the tests which failed over the <N=14> runs of the trending
+jobs.
+
+Legend to the table:
+
+    - **Test Case**: name of FD.io CSIT test case, naming convention
+      `here <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
+    - **Fails [#]**: number of fails of the tests over the period.
+    - **Last Fail [Date]**: the date and time when the test failed the last
+      time.
+    - **Last Fail [VPP Build]**: VPP build which was tested when the test failed
+      the last time.
+    - **Last Fail [CSIT Build]**: the last CSIT build where the test failed.
+
+.. include:: ../../../_build/_static/vpp/failed-tests.rst
+
+Dashboard
+---------
+
+Legend to the tables:
 
     - **Test Case** : name of FD.io CSIT test case, naming convention
       `here <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
@@ -39,16 +61,16 @@ section 2. and trendline graphs in sections 3.x. Performance test  data
 used for trendline graphs is provided in sections 4.x.
 
 VPP worker on 1t1c
-------------------
+``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c.rst
 
 VPP worker on 2t2c
-------------------
+``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c.rst
 
 VPP worker on 4t4c
-------------------
+``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c.rst
