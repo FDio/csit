@@ -11,13 +11,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding BitCountingMetadata class."""
+
 import math
 
 from AvgStdevMetadata import AvgStdevMetadata
 
 
 class BitCountingMetadata(AvgStdevMetadata):
-    """Class for metadata which includes information content."""
+    """Class for metadata which includes information content of a group.
+
+    The information content is based on an assumption
+    that the data consists of independent random values
+    from a normal distribution.
+    """
 
     def __init__(self, max_value, size=0, avg=0.0, stdev=0.0, prev_avg=None):
         """Construct the metadata by computing from the values needed.
