@@ -19,6 +19,8 @@ import subprocess
 import numpy as np
 import pandas as pd
 import logging
+import csv
+import prettytable
 
 from os import walk, makedirs, environ
 from os.path import join, isdir
@@ -314,6 +316,29 @@ def classify_anomalies(data, window):
         else:
             classification.append("normal")
     return classification
+
+
+def convert_csv_to_pretty_txt(csv_file, txt_file):
+    """Convert the given csv table to pretty text table.
+
+    :param csv_file: The path to the input csv file.
+    :param txt_file: The path to the output pretty text file.
+    :type csv_file: str
+    :type txt_file: str
+    """
+
+    txt_table = None
+    with open(csv_file, 'rb') as csv_file:
+        csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
+        for row in csv_content:
+            if txt_table is None:
+                txt_table = prettytable.PrettyTable(row)
+            else:
+                txt_table.add_row(row)
+        txt_table.align["Test case"] = "l"
+    if txt_table:
+        with open(txt_file, "w") as txt_file:
+            txt_file.write(str(txt_table))
 
 
 class Worker(multiprocessing.Process):
