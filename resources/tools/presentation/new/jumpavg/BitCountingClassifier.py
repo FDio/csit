@@ -11,24 +11,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding BitCountingClassifier class.
+
+This is the main class to be used by callers."""
+
+from AbstractGroupClassifier import AbstractGroupClassifier
 from BitCountingGroup import BitCountingGroup
 from BitCountingGroupList import BitCountingGroupList
 from BitCountingMetadataFactory import BitCountingMetadataFactory
 from ClassifiedMetadataFactory import ClassifiedMetadataFactory
 
 
-class BitCountingClassifier(object):
+class BitCountingClassifier(AbstractGroupClassifier):
+    """Classifier using Minimal Description Length principle."""
 
-    @staticmethod
-    def classify(values):
+    def classify(self, values):
         """Return the values in groups of optimal bit count.
 
-        TODO: Could we return BitCountingGroupList and let caller process it?
+        The current implementation could be a static method,
+        but we might support options in later versions,
+        for example for chosing encodings.
 
         :param values: Sequence of runs to classify.
         :type values: Iterable of float or of AvgStdevMetadata
         :returns: Classified group list.
-        :rtype: list of BitCountingGroup
+        :rtype: BitCountingGroupList
         """
         max_value = BitCountingMetadataFactory.find_max_value(values)
         factory = BitCountingMetadataFactory(max_value)
@@ -60,4 +67,4 @@ class BitCountingClassifier(object):
                 group.metadata = ClassifiedMetadataFactory.with_classification(
                     group.metadata, "progression")
             previous_average = group.metadata.avg
-        return partition.group_list
+        return partition

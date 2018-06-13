@@ -11,8 +11,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module for holding AvgStdevMetadata class."""
 
-class AvgStdevMetadata(object):
+from AbstractGroupMetadata import AbstractGroupMetadata
+
+
+class AvgStdevMetadata(AbstractGroupMetadata):
     """Class for metadata specifying the average and standard deviation."""
 
     def __init__(self, size=0, avg=0.0, stdev=0.0):

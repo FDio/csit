@@ -11,10 +11,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding AbstractGroupMetadata class."""
+
 from abc import ABCMeta, abstractmethod
 
 
 class AbstractGroupMetadata(object):
+    """Abstract classdefining API for metadata.
+
+    At this level, only __str__() and __repr() methods are required."""
 
     __metaclass__ = ABCMeta
 
