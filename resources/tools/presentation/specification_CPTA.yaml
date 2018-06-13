@@ -334,6 +334,29 @@
   input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c.csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c.rst"
 
+-
+  type: "table"
+  title: "Failed MRR tests"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests"
+  data: "plot-performance-trending-all"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "status"
+  ignore-list:
+  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+  window: 14
+
+-
+  type: "table"
+  title: "HTML Failed MRR tests"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests.rst"
+
 
 ################################################################################
 ###                                 C P T A                                  ###
