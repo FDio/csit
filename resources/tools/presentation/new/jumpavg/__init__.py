@@ -12,5 +12,5 @@
 # limitations under the License.
 
 """
-__init__ file for directory resources/tools/presentation/jumpavg
+__init__ file for "jumpavg" Python package.
 """
