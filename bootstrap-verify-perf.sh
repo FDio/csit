@@ -291,7 +291,7 @@ for TAG in "${TAGS[@]}"; do
 done
 
 # Execute the test
-pybot ${PYBOT_ARGS}${EXPANDED_TAGS} tests/
+pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
 RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins
