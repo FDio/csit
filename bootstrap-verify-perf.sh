@@ -203,8 +203,8 @@ case "$TEST_TAG" in
         ;;
     VERIFY-PERF-L2 )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase')
-        ETAGS=('lbond_dpdk')
+              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase'
+              'lbond_dpdk')
         ;;
     VERIFY-PERF-LISP )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
@@ -213,8 +213,8 @@ case "$TEST_TAG" in
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvxlan')
         ;;
     VERIFY-PERF-VHOST )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost')
-        ETAGS=('lbond_dpdk')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost'
+              'lbond_dpdk')
         ;;
     VERIFY-PERF-MEMIF )
         TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
@@ -243,8 +243,8 @@ case "$TEST_TAG" in
     VPP-VERIFY-PERF-L2 )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
               'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDdot1q')
-        ETAGS=('lbond_dpdk')
+              'mrrANDnic_intel-x520-da2AND1t1cANDdot1q'
+              'lbond_dpdk')
         ;;
     VPP-VERIFY-PERF-LISP )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
@@ -253,8 +253,8 @@ case "$TEST_TAG" in
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvxlan')
         ;;
     VPP-VERIFY-PERF-VHOST )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost')
-        ETAGS=('lbond_dpdk')
+        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost'
+              'lbond_dpdk')
         ;;
     VPP-VERIFY-PERF-MEMIF )
         TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
@@ -280,12 +280,18 @@ case "$TEST_TAG" in
         TAGS=('perftest')
 esac
 
-# Catenate TAG selections by 'OR'
-if [[ ! -z "$TAGS" ]]; then printf -v INCLUDES " --include %s " "${TAGS[@]}"; fi
-if [[ ! -z "$ETAGS" ]]; then printf -v EXCLUDES " --exclude %s " "${ETAGS[@]}"; fi
+# Catenate TAG selections
+EXPANDED_TAGS=()
+for TAG in "${TAGS[@]}"; do
+    if [[ ${TAG} == "!"* ]]; then
+        EXPANDED_TAGS+=(" --exclude ${TAG#$"!"} ")
+    else
+        EXPANDED_TAGS+=(" --include ${TAG} ")
+    fi
+done
 
 # Execute the test
-pybot ${PYBOT_ARGS}${INCLUDES}${EXCLUDES} tests/
+pybot ${PYBOT_ARGS}${EXPANDED_TAGS} tests/
 RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins
