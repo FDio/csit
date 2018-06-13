@@ -788,8 +788,8 @@ def table_performance_trending_dashboard(table, input_data):
                  round(last_avg / 1000000, 2),
                  '-' if isnan(rel_change_last) else rel_change_last,
                  '-' if isnan(rel_change_long) else rel_change_long,
-                 classification_lst[-long_win_size:].count("regression"),
-                 classification_lst[-long_win_size:].count("progression")])
+                 classification_lst[-win_size:].count("regression"),
+                 classification_lst[-win_size:].count("progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
 
@@ -822,6 +822,7 @@ def table_performance_trending_dashboard(table, input_data):
         txt_table.align["Test case"] = "l"
     with open(txt_file_name, "w") as txt_file:
         txt_file.write(str(txt_table))
+
 
 def table_performance_trending_dashboard_html(table, input_data):
     """Generate the table(s) with algorithm:

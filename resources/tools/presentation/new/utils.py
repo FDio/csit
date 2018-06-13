@@ -211,17 +211,19 @@ def archive_input_data(spec):
 def classify_anomalies(data):
     """Process the data and return anomalies and trending values.
 
-    Gathers data into groups with common trend value.
-    Decorates first value in the group to be an outlier, regression,
-    normal or progression.
+    Gather data into groups with average as trend value.
+    Decorate values within groups to be normal,
+    the first value of changed average as a regression, or a progression.
 
     :param data: Full data set with unavailable samples replaced by nan.
     :type data: pandas.Series
     :returns: Classification and trend values
     :rtype: 2-tuple, list of strings and list of floats
     """
-    bare_data = [sample for _, sample in data.iteritems()
-                 if not np.isnan(sample)]
+    # Nan mean something went wrong.
+    # Use 0.0 to cause that being reported as a severe regression.
+    bare_data = [0.0 if np.isnan(sample) else sample
+                 for _, sample in data.iteritems()]
     # TODO: Put analogous iterator into jumpavg library.
     groups = BitCountingClassifier.classify(bare_data)
     groups.reverse()  # Just to use .pop() for FIFO.
