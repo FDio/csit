@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding BitCountingMetadataFactory class."""
+
 import math
 
 from AvgStdevMetadata import AvgStdevMetadata
@@ -19,7 +21,10 @@ from BitCountingMetadata import BitCountingMetadata
 
 
 class BitCountingMetadataFactory(object):
-    """Class for factory which creates bit counting metadata from data."""
+    """Class for factory which creates bit counting metadata from data.
+
+    TODO: Summarize the methods?
+    """
 
     @staticmethod
     def find_max_value(values):

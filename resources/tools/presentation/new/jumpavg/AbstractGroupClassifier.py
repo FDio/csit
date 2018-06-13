@@ -11,10 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding AbstractGroupClassifier class."""
+
 from abc import ABCMeta, abstractmethod
 
 
 class AbstractGroupClassifier(object):
+    """Abstract class defining API for classifier.
+
+    The classifier is an object with classify() method
+    which divides data into groups containing metadata.
+    """
 
     __metaclass__ = ABCMeta
 

@@ -11,11 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding ClassifiedBitCountingMetadata class."""
+
 from BitCountingMetadata import BitCountingMetadata
 
 
 class ClassifiedBitCountingMetadata(BitCountingMetadata):
-    """Class for metadata which includes classification."""
+    """Class for metadata which includes classification.
+
+    TODO: Can we create ClassifiedMetadata and inherit (also) from that?
+    """
 
     def __init__(
             self, max_value, size=0, avg=0.0, stdev=0.0, prev_avg=None,

@@ -225,7 +225,7 @@ def classify_anomalies(data):
     bare_data = [0.0 if np.isnan(sample) else sample
                  for _, sample in data.iteritems()]
     # TODO: Put analogous iterator into jumpavg library.
-    groups = BitCountingClassifier.classify(bare_data)
+    groups = BitCountingClassifier().classify(bare_data)
     groups.reverse()  # Just to use .pop() for FIFO.
     classification = []
     avgs = []
@@ -239,7 +239,7 @@ def classify_anomalies(data):
             continue
         if values_left < 1 or active_group is None:
             values_left = 0
-            while values_left < 1:  # To ignore empty groups.
+            while values_left < 1:  # Ignore empty groups (should not happen).
                 active_group = groups.pop()
                 values_left = len(active_group.values)
             avg = active_group.metadata.avg

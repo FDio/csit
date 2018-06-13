@@ -11,10 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Module holding BitCountingGroup class."""
+
 from RunGroup import RunGroup
 
 
 class BitCountingGroup(RunGroup):
+    """RunGroup with BitCountingMetadata.
+
+    Support with_run_added() method to simplify extending the group.
+    As bit content has to be re-counted, metadata factory is stored.
+    """
 
     def __init__(self, metadata_factory, values=[]):
         """Create the group from metadata factory and values.
