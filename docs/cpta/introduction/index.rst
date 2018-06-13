@@ -20,6 +20,20 @@ executed twice a day (target start: every 12 hrs, 02:00, 14:00 UTC). All
 trend and anomaly evaluation is based on a rolling window of <N=14> data
 samples, covering last 7 days.
 
+Failed tests
+------------
+
+.. csv-table::
+    :header-rows: 1
+    :widths: auto
+    :align: center
+    :file: ../../../_build/_static/vpp/failed-tests.csv
+
+.. include:: ../../../_build/_static/vpp/failed-tests.rst
+
+Dashboard
+---------
+
 Legend to table:
 
     - **Test Case** : name of FD.io CSIT test case, naming convention
@@ -39,16 +53,16 @@ section 2. and trendline graphs in sections 3.x. Performance test  data
 used for trendline graphs is provided in sections 4.x.
 
 VPP worker on 1t1c
-------------------
+``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c.rst
 
 VPP worker on 2t2c
-------------------
+``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c.rst
 
 VPP worker on 4t4c
-------------------
+``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c.rst
