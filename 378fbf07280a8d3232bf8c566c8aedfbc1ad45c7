@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7acd8105_7beaebd1",
+        "filename": "resources/tools/presentation/specification_CPTA.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-14T12:39:01Z",
+      "side": 1,
+      "message": "Why is this one ignored?\nWe should fix it, stop running it, or keep in the table to deal with it later.",
+      "range": {
+        "startLine": 350,
+        "startChar": 61,
+        "endLine": 350,
+        "endChar": 65
+      },
+      "revId": "378fbf07280a8d3232bf8c566c8aedfbc1ad45c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
