@@ -68,6 +68,55 @@ The group boundaries are selected based on `Minimum Description Length`_.
 
 TODO: Decide the level of detail for describing group selection.
 
+Minimum Description Length
+--------------------------
+
+`Minimum Description Length`_ (MDL) is a particular formalization
+of `Occam's razor`_ principle.
+
+The general formulation mandates to evaluate a large set of models,
+but for anomaly detection purposes, it is usefuls to consider
+a smaller set of models, so that scoring and comparing them is easier.
+
+For each candidate model, the data should be losslessly compressed,
+which includes model definitions, encoded model parameters,
+and the raw data encoded based on probabilities computed by the model.
+The model resulting in shortest compressed message is the "the" correct model.
+
+For our model set (groups of normally distributed samples),
+we need to encode group length (which penalizes too many groups),
+group average (more on that later), group stdev and then all the samples.
+
+Luckily, the "all the samples" part turns out to be quite easy to compute.
+If sample values are considered as coordinates in (multi-dimensional)
+Euclidean space, fixing stdev means the point with allowed coordinates
+lays on a sphere. Fixing average intersects the sphere with a (hyper)-plane,
+and Gaussian probability density on the resulting sphere is constant.
+So the only contribution is the "area" of the sphere, which only depends
+on the number of samples and stdev.
+
+A somehow ambiguous part is in choosing which encoding
+is used for group size, average and stdev.
+Diferent encodings cause different biases to large or small values.
+In our implementation we have chosen probability density
+corresponding to uniform distribution (from zero to maximal sample value)
+for stdev and average of the first group,
+but for averages of subsequent groups we have chosen a distribution
+which disourages deliminating groups with averages close together.
+
+One part of our implementation which is not precise enough
+is handling of measurement precision.
+The minimal difference in MRR values is currently 0.1 pps
+(the difference of one packet over 10 second trial),
+but the code assumes the precision is 1.0.
+Also, all the calculations assume 1.0 is totally negligible,
+compared to stdev value.
+
+The resulting group distribution looks good
+if samples are distributed normally enough within a group.
+But for obviously different distributions (for example `bimodal distribution`_)
+the groups tend to focus on less relevant factors (such as "outlier" density).
+
 Anomaly Detection
 `````````````````
 
@@ -75,37 +124,23 @@ Once the trend data is divided into groups, each group has its population averag
 The start of the following group is marked as a regression (or progression)
 if the new group's average is lower (higher) then the previous group's.
 
-Metrics
-```````
-
-TODO: Only needed for current trend compliance.
-
-Following statistical metrics are used as performance trend indicators
-over the rolling window of last <N> sets of historical measurement data:
-
-- **TMM** : **Trimmed Moving Median**, median across the data set of <N>
-  values excluding the outliers. Used as a trending value and as a
-  reference for anomaly detection.
-
 Trend Compliance
 ````````````````
 
-TODO: Apply new detection algorithm also to trend compliance.
-
 Trend compliance metrics are targeted to provide an indication of trend
 changes over a short-term (i.e. weekly) and a long-term (i.e.
-quarterly), comparing the last trend value, TMM[last], to one from week
-ago, TMM[last - 1week] and to the maximum of trend values over last
-quarter except last week, max(TMM[(last - 3mths)..(last - 1week)]),
+quarterly), comparing the last group average AVG[last], to the one from week
+ago, AVG[last - 1week] and to the maximum of trend values over last
+quarter except last week, max(AVG[last - 3mths]..ANV[last - 1week]),
 respectively. This results in following trend compliance calculations:
 
-+-------------------------+---------------------------------+-----------+------------------------------------------+
-| Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                |
-+=========================+=================================+===========+==========================================+
-| Short-Term Change       | (Value - Reference) / Reference | TMM[last] | TMM[last - 1week]                        |
-+-------------------------+---------------------------------+-----------+------------------------------------------+
-| Long-Term Change        | (Value - Reference) / Reference | TMM[last] | max(TMM[(last - 3mths)..(last - 1week)]) |
-+-------------------------+---------------------------------+-----------+------------------------------------------+
++-------------------------+---------------------------------+-----------+-------------------------------------------+
+| Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                 |
++=========================+=================================+===========+===========================================+
+| Short-Term Change       | (Value - Reference) / Reference | AVG[last] | AVG[last - 1week]                         |
++-------------------------+---------------------------------+-----------+-------------------------------------------+
+| Long-Term Change        | (Value - Reference) / Reference | AVG[last] | max(AVG[last - 3mths]..AVG[last - 1week]) |
++-------------------------+---------------------------------+-----------+-------------------------------------------+
 
 Trend Presentation
 ------------------
@@ -131,9 +166,10 @@ associated gruop averages. The graphs are constructed as follows:
 - Y-axis represents MRR throughput in Mpps.
 - Markers to indicate anomaly classification:
 
-  - Outlier - gray circle around MRR value point.
   - Regression - red circle.
   - Progression - green circle.
+
+- The line shows average of each group.
 
 In addition the graphs show dynamic labels while hovering over graph
 data points, representing (trend job build Id, MRR value) and the actual
@@ -184,12 +220,12 @@ PA is defined as follows:
 
 3. Re-calculate new groups and their averages.
 
-4. Evaluate new test data (TODO: Update.):
+4. Evaluate new test data:
 
-   a) If within the range of (TMA +/- 3*TMSD) => Result = Pass,
+   a) If the existing group is prolonged => Result = Pass,
       Reason = Normal. (to be updated base on the final Jenkins code).
-   b) If below the range => Result = Fail, Reason = Regression.
-   c) If above the range => Result = Pass, Reason = Progression.
+   b) If a new group is detected with lower average => Result = Fail, Reason = Regression.
+   c) If a new group is detected with higher average => Result = Pass, Reason = Progression.
 
 5. Generate and publish results
 
@@ -206,3 +242,5 @@ The testbed HW configuration is described on
 `this FD.IO wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed#FD.IO_CSIT_testbed_-_Server_HW_Configuration>`_.
 
 .. _Minimum Description Length: https://en.wikipedia.org/wiki/Minimum_description_length
+.. _Occam's razor: https://en.wikipedia.org/wiki/Occam%27s_razor
+.. _bimodal distribution: https://en.wikipedia.org/wiki/Bimodal_distribution
