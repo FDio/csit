@@ -35,77 +35,57 @@ mkdir -p ${LOG_ARCHIVE_DIR}
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
 then
-    mkdir -p vpp/build-root
-    cd vpp/build-root
+    mkdir -p vpp_download
+    cd vpp_download
 
     if [[ ${TEST_TAG} == *DAILY ]] || \
        [[ ${TEST_TAG} == *WEEKLY ]];
     then
         # Download the latest VPP build .deb install packages
         echo Downloading VPP packages...
-        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
-
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-        # Take vpp package and get the vpp version
-        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
+        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+            --skip-install
     else
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+        echo Downloading VPP packages of specific version from NEXUS...
+        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
         VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-        VPP_CLASSIFIER="-deb"
-        # Download vpp build from nexus and set VPP_DEBS variable
-        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        # Temporary disable using dpdk
-        # wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+        #Temporary till arch will not be removed from VPP_STABLE_VER_UBUNTU
+        VPP_STABLE_VER=${VPP_STABLE_VER%_amd64}
+        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+            --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
     fi
+    # Jenkins VPP deb paths (convert to full path)
+    VPP_DEBS="$( readlink -f vpp*.deb | tr '\n' ' ' )"
 
-    # Temporary workaround as ligato docker file requires specific file name
-    rename -v 's/^(.*)-(\d.*)-deb.deb/$1_$2.deb/' *.deb
     cd ${SCRIPT_DIR}
 
 # If we run this script from vpp project we want to use local build
 elif [[ ${JOB_NAME} == vpp-* ]] ;
 then
-    mkdir -p vpp/build-root
     # Use local packages provided as argument list
     # Jenkins VPP deb paths (convert to full path)
     VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
-    # Take vpp package and get the vpp version
-    VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
-    # Move files to build-root for packing
-    for deb in ${VPP_DEBS}; do mv ${deb} vpp/build-root/; done
 else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
     exit 1
 fi
 
 # Extract VPP API to specific folder
-dpkg -x vpp/build-root/vpp_${VPP_STABLE_VER}.deb /tmp/vpp
-# Compress all VPP debs and remove temporary directory
-tar -zcvf ${SCRIPT_DIR}/vpp.tar.gz vpp/* && rm -R vpp
+dpkg -x vpp_download/vpp_*.deb /tmp/vpp
 
-LIGATO_REPO_URL=$(cat ${SCRIPT_DIR}/LIGATO_REPO_URL)
+LIGATO_REPO_URL='https://github.com/ligato/'
 VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
 DOCKER_DEB="docker-ce_18.03.0~ce-0~ubuntu_amd64.deb"
 
 # Clone & checkout stable vnf-agent
-cd .. && git clone ${LIGATO_REPO_URL}/vpp-agent
+cd .. && git clone -b ${VPP_AGENT_STABLE_VER} --single-branch \
+    ${LIGATO_REPO_URL}/vpp-agent vpp-agent
 # If the git clone fails, complain clearly and exit
 if [ $? != 0 ]; then
-    echo "Failed to run: git clone --depth 1 ${LIGATO_REPO_URL}/vpp-agent"
+    echo "Failed to run: git clone ${LIGATO_REPO_URL}/vpp-agent"
     exit 1
 fi
-cd vpp-agent && git checkout ${VPP_AGENT_STABLE_VER}
-# If the git checkout fails, complain clearly and exit
-if [ $? != 0 ]; then
-    echo "Failed to run: git checkout ${VPP_AGENT_STABLE_VER}"
-    exit 1
-fi
+cd vpp-agent
 
 # Install Docker
 wget -q https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/${DOCKER_DEB}
@@ -123,31 +103,30 @@ sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
 
 # Start dev_vpp_agent container as daemon
 sudo docker run --rm -itd --name agentcnt dev_vpp_agent bash
+
 # Copy latest vpp api into running container
 sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
+for f in ${SCRIPT_DIR}/vpp_download/*; do
+    sudo docker cp $f agentcnt:/opt/vpp-agent/dev/vpp/build-root/
+done
+
 # Recompile vpp-agent
 sudo docker exec -i agentcnt \
-    script -qec '. ~/.bashrc; cd /root/go/src/github.com/ligato/vpp-agent && make generate && make install'
+    script -qec '. ~/.bashrc; cd /go/src/github.com/ligato/vpp-agent && make generate && make install'
 if [ $? != 0 ]; then
     echo "Failed to build vpp-agent in Docker image."
     exit 1
 fi
-# Extract vpp-agent
-rm -rf agent
-mkdir -p agent
-sudo docker cp agentcnt:/root/go/bin/vpp-agent agent/
-sudo docker cp agentcnt:/root/go/bin/vpp-agent-ctl agent/
-sudo docker cp agentcnt:/root/go/bin/agentctl agent/
-tar -zcvf ${SCRIPT_DIR}/../vpp-agent/docker/prod_vpp_agent/agent.tar.gz agent
-# Kill running container
-sudo docker rm -f agentcnt
+# Save container state
+sudo docker commit `sudo docker ps -q` dev_vpp_agent:latest
 
 # Build prod_vpp_agent docker image
-cd ${SCRIPT_DIR}/../vpp-agent/docker/prod_vpp_agent/ &&\
-    mv ${SCRIPT_DIR}/vpp.tar.gz . &&\
-    sudo docker build -t prod_vpp_agent --no-cache .
+cd docker/prod/ &&\
+    sudo docker build --tag prod_vpp_agent --no-cache .
 # Export Docker image
 sudo docker save prod_vpp_agent | gzip > prod_vpp_agent.tar.gz
+# Kill running agentcnt container
+sudo docker rm -f agentcnt
 # If image build fails, complain clearly and exit
 if [ $? != 0 ]; then
     echo "Failed to build vpp-agent Docker image."
