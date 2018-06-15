@@ -1,5 +1,0 @@
-CSIT contributors, make sure each PyPI project
-has the following users listed as Owners:
-
-+ vrpolakatcisco
-+ tiborfrank
