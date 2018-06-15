@@ -14,7 +14,7 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 
 setup(
     name="jumpavg",
-    version="0.1.2",  # This is currently the only place listing the version.
+    version="0.1.3",  # This is currently the only place listing the version.
     description="Library for finding changes in time series by grouping results.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
