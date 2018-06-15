@@ -1,0 +1,4 @@
+---
+# file: host_vars/10.30.51.53.yaml
+
+hostname: "s6-t22-tg1"
