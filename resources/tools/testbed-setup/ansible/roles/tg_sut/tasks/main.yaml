@@ -52,7 +52,7 @@
     path: '/etc/default/grub'
     state: 'present'
     regexp: '^GRUB_CMDLINE_LINUX='
-    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} intel_pstate=disable"'
+    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} numa_balancing=disable intel_pstate=disable"'
   notify: ['Update GRUB']
   tags: set-grub
 
