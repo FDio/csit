@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5b67191_0efe07bf",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-15T07:43:34Z",
+      "side": 1,
+      "message": "The fi should come before this comment.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 6
+      },
+      "revId": "cf705037126ff621b782597e1012027f418f8743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
