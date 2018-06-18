@@ -70,6 +70,30 @@
       "revId": "378fbf07280a8d3232bf8c566c8aedfbc1ad45c7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b467a0b6_0a814484",
+        "filename": "resources/tools/presentation/specification_CPTA.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-18T06:16:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa8676cb_7676cc9f",
+      "range": {
+        "startLine": 350,
+        "startChar": 61,
+        "endLine": 350,
+        "endChar": 65
+      },
+      "revId": "378fbf07280a8d3232bf8c566c8aedfbc1ad45c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
