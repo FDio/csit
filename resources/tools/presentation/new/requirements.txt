@@ -1,4 +1,4 @@
-jumpavg==0.1.0
+jumpavg==0.1.2
 Sphinx
 sphinx-rtd-theme
 robotframework==2.9.2
