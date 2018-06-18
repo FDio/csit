@@ -611,7 +611,7 @@ def table_performance_comparison_mrr(table, input_data):
                                           "cmp-data": list()}
                 try:
                     tbl_dict[tst_name]["ref-data"].\
-                        append(tst_data["result"]["throughput"])
+                        append(tst_data["result"]["receive rate"])
                 except TypeError:
                     pass  # No data in output.xml for this test
 
@@ -620,7 +620,7 @@ def table_performance_comparison_mrr(table, input_data):
             for tst_name, tst_data in data[job][str(build)].iteritems():
                 try:
                     tbl_dict[tst_name]["cmp-data"].\
-                        append(tst_data["result"]["throughput"])
+                        append(tst_data["result"]["receive rate"])
                 except KeyError:
                     pass
                 except TypeError:
@@ -723,7 +723,7 @@ def table_performance_trending_dashboard(table, input_data):
                                           "data": OrderedDict()}
                 try:
                     tbl_dict[tst_name]["data"][str(build)] =  \
-                        tst_data["result"]["throughput"]
+                        tst_data["result"]["receive_rate"]
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
 
