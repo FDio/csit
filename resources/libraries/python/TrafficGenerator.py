@@ -22,9 +22,9 @@ from .ssh import SSH
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
-from .search.AbstractMeasurer import AbstractMeasurer
-from .search.MultipleLossRatioSearch import MultipleLossRatioSearch
-from .search.ReceiveRateMeasurement import ReceiveRateMeasurement
+from MLRsearch.AbstractMeasurer import AbstractMeasurer
+from MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
+from MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 
 __all__ = ['TGDropRateSearchImpl', 'TrafficGenerator', 'OptimizedSearch']
 
