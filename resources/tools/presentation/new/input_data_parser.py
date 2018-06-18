@@ -29,6 +29,7 @@ from robot import errors
 from collections import OrderedDict
 from string import replace
 from os import remove
+from jumpavg.AvgStdevMetadataFactory import AvgStdevMetadataFactory
 
 from input_data_files import download_and_unzip_data_file
 from utils import Worker
@@ -38,6 +39,7 @@ class ExecutionChecker(ResultVisitor):
     """Class to traverse through the test suite structure.
 
     The functionality implemented in this class generates a json structure:
+    TODO: Update for MRR.
 
     Performance tests:
 
@@ -185,6 +187,8 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
                            r'tx\s(\d*),\srx\s(\d*)')
+
+    REGEX_BMRR = re.compile(r'Maximum Receive Rate Results \[(.*)\]')
 
     def __init__(self, metadata):
         """Initialisation.
@@ -464,6 +468,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
+        # TODO: Keep updated list of tags for test type.
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags):
@@ -475,6 +480,8 @@ class ExecutionChecker(ResultVisitor):
                 test_type = "TCP"
             elif "MRR" in tags:
                 test_type = "MRR"
+            elif "FRMOBL" in tags:
+                test_type = "BMRR"
             else:
                 return
 
@@ -501,21 +508,30 @@ class ExecutionChecker(ResultVisitor):
                 if test_type == "PDR":
                     test_result["lossTolerance"] = str(re.search(
                         self.REGEX_TOLERANCE, test.message).group(1))
-
+            # FIXME: NDR does not need "result" key, so why others do?
             elif test_type in ("TCP", ):
                 groups = re.search(self.REGEX_TCP, test.message)
                 test_result["result"] = dict()
                 test_result["result"]["value"] = int(groups.group(2))
                 test_result["result"]["unit"] = groups.group(1)
-            elif test_type in ("MRR", ):
+            elif test_type in ("MRR", "BMRR"):
                 groups = re.search(self.REGEX_MRR, test.message)
                 test_result["result"] = dict()
-                test_result["result"]["duration"] = int(groups.group(1))
-                test_result["result"]["tx"] = int(groups.group(2))
-                test_result["result"]["rx"] = int(groups.group(3))
-                test_result["result"]["throughput"] = int(
-                    test_result["result"]["rx"] /
-                    test_result["result"]["duration"])
+                if groups is not None:
+                    test_result["result"]["duration"] = float(groups.group(1))
+                    test_result["result"]["tx"] = int(groups.group(2))
+                    test_result["result"]["rx"] = int(groups.group(3))
+                    test_result["result"]["receive rate"] = float(
+                        test_result["result"]["rx"] /
+                        test_result["result"]["duration"])
+                else:
+                    groups = re.search(self.REGEX_BMRR, test.message)
+                    items_as_string = groups.group(1)
+                    items_as_floats = [float(item.strip()) for item
+                                       in items_as_string.split(",")]
+                    rate = AvgStdevMetadataFactory.from_data(items_as_floats)
+                    test_result["result"]["receive rate"] = rate
+            # else: logging.warn("Unknown type {type}".format(type=test_type)
         else:
             test_result["status"] = test.status
 
