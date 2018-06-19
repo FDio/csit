@@ -136,9 +136,8 @@ def _generate_trending_traces(in_data, job_name, build_info,
     anomalies_colors = list()
     anomalies_avgs = list()
     anomaly_color = {
-        "outlier": 0.0,
-        "regression": 0.33,
-        "normal": 0.66,
+        "regression": 0.0,
+        "normal": 0.5,
         "progression": 1.0
     }
     if anomaly_classification:
@@ -150,7 +149,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 anomalies_colors.append(
                     anomaly_color[anomaly_classification[idx]])
                 anomalies_avgs.append(avgs[idx])
-        anomalies_colors.extend([0.0, 0.33, 0.66, 1.0])
+        anomalies_colors.extend([0.0, 0.5, 1.0])
 
     # Create traces
 
@@ -193,20 +192,17 @@ def _generate_trending_traces(in_data, job_name, build_info,
         y=anomalies_avgs,
         mode='markers',
         hoverinfo="none",
-        showlegend=True,
-        legendgroup=name,
+        showlegend=False,
         name="{name}-anomalies".format(name=name),
         marker={
             "size": 15,
             "symbol": "circle-open",
             "color": anomalies_colors,
-            "colorscale": [[0.00, "grey"],
-                           [0.25, "grey"],
-                           [0.25, "red"],
-                           [0.50, "red"],
-                           [0.50, "white"],
-                           [0.75, "white"],
-                           [0.75, "green"],
+            "colorscale": [[0.00, "red"],
+                           [0.33, "red"],
+                           [0.33, "white"],
+                           [0.66, "white"],
+                           [0.66, "green"],
                            [1.00, "green"]],
             "showscale": True,
             "line": {
@@ -221,8 +217,8 @@ def _generate_trending_traces(in_data, job_name, build_info,
                     "size": 14
                 },
                 "tickmode": 'array',
-                "tickvals": [0.125, 0.375, 0.625, 0.875],
-                "ticktext": ["Outlier", "Regression", "Normal", "Progression"],
+                "tickvals": [0.167, 0.500, 0.833],
+                "ticktext": ["Regression", "Normal", "Progression"],
                 "ticks": "",
                 "ticklen": 0,
                 "tickangle": -90,
