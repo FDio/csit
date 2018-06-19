@@ -20,6 +20,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
+| Resource | resources/libraries/robot/honeycomb/fib.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Variables | resources/test_data/honeycomb/interface_ip.py
@@ -151,12 +152,9 @@
 | | [Documentation] | Check if Honeycomb API can configure interface\
 | | ... | vrf ID.
 | | ...
-# HC2VPP-331: Honeycomb fails to assign VRF to interface
-| | [Tags] | EXPECTED_FAILING
+| | [Teardown] | Honeycomb interface VRF Test Teardown | ${node} | ${interface}
 | | ...
-| | [Teardown] | Honeycomb sets interface VRF ID
-| | ... | ${node} | ${interface} | ${0} | ipv4
-| | ...
+| | Honeycomb configures FIB table | ${node} | ipv4 | ${1}
 | | When Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${1} | ipv4
 | | Then Interface VRF ID from Honeycomb should be
@@ -314,3 +312,8 @@
 | | Honeycomb removes interface IPv6 addresses | ${node} | ${interface}
 | | Honeycomb clears all interface IPv4 neighbors | ${node} | ${interface}
 | | Honeycomb clears all interface IPv6 neighbors | ${node} | ${interface}
+
+| Honeycomb interface VRF Test Teardown
+| | [Arguments] | ${node} | ${interface}
+| | Honeycomb sets interface VRF ID | ${node} | ${interface} | ${0} | ipv4
+| | Honeycomb removes FIB configuration | ${node} | ipv4 | ${1}
