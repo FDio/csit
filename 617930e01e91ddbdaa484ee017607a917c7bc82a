@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd48829d_dd77d143",
+        "filename": "docs/new/cpta/methodology/index.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-19T12:23:21Z",
+      "side": 1,
+      "message": "Turned this TODO into a new paragraph, see patch 8 line 113.",
+      "parentUuid": "77e6f4e0_6d11c9d8",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 64
+      },
+      "revId": "617930e01e91ddbdaa484ee017607a917c7bc82a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8961e023_cad3a737",
         "filename": "docs/new/cpta/methodology/index.rst",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2018-06-18T14:53:04Z",
       "side": 1,
       "message": "Wow, nice description, took me a while to digest :)\nWhat is not clear is the actual implemented criteria for grouping the samples.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 35
+      },
+      "revId": "617930e01e91ddbdaa484ee017607a917c7bc82a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af955d61_a9cb9070",
+        "filename": "docs/new/cpta/methodology/index.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-19T12:23:21Z",
+      "side": 1,
+      "message": "Added more detail as a new paragraph, see patch 8 line 113.",
+      "parentUuid": "8961e023_cad3a737",
       "range": {
         "startLine": 91,
         "startChar": 0,
