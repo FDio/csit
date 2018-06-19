@@ -163,8 +163,10 @@ def _generate_trending_traces(in_data, job_name, build_info, moving_win_size=10,
         line={
             "width": 1
         },
+        showlegend=True,
         legendgroup=name,
-        name="{name}-thput".format(name=name),
+        # name="{name}-thput".format(name=name),
+        name="{name}".format(name=name),
         marker={
             "size": 5,
             "color": color,
@@ -180,7 +182,7 @@ def _generate_trending_traces(in_data, job_name, build_info, moving_win_size=10,
         y=anomalies.values,
         mode='markers',
         hoverinfo="none",
-        showlegend=True,
+        showlegend=False,
         legendgroup=name,
         name="{name}-anomalies".format(name=name),
         marker={
@@ -231,6 +233,7 @@ def _generate_trending_traces(in_data, job_name, build_info, moving_win_size=10,
                 "width": 1,
                 "color": color,
             },
+            showlegend=False,
             legendgroup=name,
             name='{name}-trend'.format(name=name)
         )
