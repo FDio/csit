@@ -33,6 +33,7 @@
 | | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
 | | Honeycomb Set Interface State | ${node} | ${interface} | ${state}
+| | Vpp Node Interfaces Ready Wait | ${node}
 
 | Interface state from Honeycomb should be
 | | [Documentation] | Retrieves interface admin state through Honeycomb and\
