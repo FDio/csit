@@ -1,0 +1,16 @@
+Failed Tests
+============
+
+The table lists the tests which failed over the <N=14> runs of the trending
+jobs.
+
+Legend to the table:
+
+    - **Test Case**: name of FD.io CSIT test case, naming convention
+      `here <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
+    - **Failures [#]**: number of test failures over the trending period.
+    - **Last Failure [Time]**: timestamp of last failure.
+    - **Last Failure [VPP-Build-Id]**: VPP build as of last failure.
+    - **Last Failure [CSIT-Job-Build-Id]**: CSIT build as of last failure.
+
+.. include:: ../../../_build/_static/vpp/failed-tests.rst

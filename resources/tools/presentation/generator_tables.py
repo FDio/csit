@@ -970,10 +970,10 @@ def table_failed_tests(table, input_data):
 
     # Prepare the header of the tables
     header = ["Test Case",
-              "Fails [#]",
-              "Last Fail [Timestamp]",
-              "Last Fail [VPP Build]",
-              "Last Fail [CSIT Build]"]
+              "Failures [#]",
+              "Last Failure [Time]",
+              "Last Failure [VPP-Build-Id]",
+              "Last Failure [CSIT-Job-Build-Id]"]
 
     # Generate the data for the table according to the model in the table
     # specification
@@ -1070,14 +1070,9 @@ def table_failed_tests_html(table, input_data):
         th.text = item
 
     # Rows:
-    colors = {"very-bad": ("#ffcccc", "#ff9999"),
-              "bad": ("#e9f1fb", "#d4e4f7")}
+    colors = ("#e9f1fb", "#d4e4f7")
     for r_idx, row in enumerate(csv_lst[1:]):
-        if int(row[1]) > 7:
-            color = "very-bad"
-        else:
-            color = "bad"
-        background = colors[color][r_idx % 2]
+        background = colors[r_idx % 2]
         tr = ET.SubElement(failed_tests, "tr", attrib=dict(bgcolor=background))
 
         # Columns:

@@ -12,6 +12,7 @@ analysis and anomaly detection methodology.
    :caption: VPP Performance Dashboard
 
    Dashboard <introduction/index>
+   Failed Tests <introduction/failures>
 
 .. toctree::
    :maxdepth: 2
