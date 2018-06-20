@@ -1,4 +1,3 @@
-MLRsearch==0.1.1
 robotframework==2.9.2
 paramiko==1.16.0
 scp==0.10.2
