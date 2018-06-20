@@ -2,8 +2,6 @@
 
 set -x
 
-( cd new ; ./run_cpta.sh )
-
 # set default values in config array
 typeset -A DIR
 
@@ -31,8 +29,6 @@ STATUS=$(python pal.py \
     --logging INFO \
     --force)
 RETURN_STATUS=$?
-
-mv new/_build _build/new
 
 echo ${STATUS}
 exit ${RETURN_STATUS}

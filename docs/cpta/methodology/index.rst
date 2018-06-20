@@ -60,88 +60,94 @@ Trend Analysis
 --------------
 
 All measured performance trend data is treated as time-series data that
-can be modelled using normal distribution. After trimming the outliers,
-the median and deviations from median are used for detecting performance
-change anomalies following the three-sigma rule of thumb (a.k.a.
-68-95-99.7 rule).
+can be modelled as concatenation of groups, each group modelled
+using normal distribution. While sometimes the samples within a group
+are far from being distributed normally, we do not have a better tractable model.
 
-Metrics
-````````````````
+The group boundaries are selected based on `Minimum Description Length`_.
 
-Following statistical metrics are used as performance trend indicators
-over the rolling window of last <N> sets of historical measurement data:
+Minimum Description Length
+--------------------------
 
-- **Q1**, **Q2**, **Q3** : **Quartiles**, three points dividing a ranked
-  data set of <N> values into four equal parts, Q2 is the median of the
-  data.
-- **IQR** = Q3 - Q1 : **Inter Quartile Range**, measure of variability,
-  used here to calculate and eliminate outliers.
-- **Outliers** : extreme values that are at least (1.5 * IQR) below Q1.
+`Minimum Description Length`_ (MDL) is a particular formalization
+of `Occam's razor`_ principle.
 
-  - Note: extreme values that are at least (1.5 * IQR) above Q3 are not
-    considered outliers, and are likely to be classified as
-    progressions.
+The general formulation mandates to evaluate a large set of models,
+but for anomaly detection purposes, it is usefuls to consider
+a smaller set of models, so that scoring and comparing them is easier.
 
-- **TMA** : **Trimmed Moving Average**, average across the data set of
-  <N> values without the outliers. Used here to calculate TMSD.
-- **TMSD** : **Trimmed Moving Standard Deviation**, standard deviation
-  over the data set of <N> values without the outliers, requires
-  calculating TMA. Used for anomaly detection.
-- **TMM** : **Trimmed Moving Median**, median across the data set of <N>
-  values excluding the outliers. Used as a trending value and as a
-  reference for anomaly detection.
+For each candidate model, the data should be compressed losslessly,
+which includes model definitions, encoded model parameters,
+and the raw data encoded based on probabilities computed by the model.
+The model resulting in shortest compressed message is the "the" correct model.
 
-Outlier Detection
-`````````````````
+For our model set (groups of normally distributed samples),
+we need to encode group length (which penalizes too many groups),
+group average (more on that later), group stdev and then all the samples.
 
-Outlier evaluation of test result of value *X* follows the definition
-from previous section:
+Luckily, the "all the samples" part turns out to be quite easy to compute.
+If sample values are considered as coordinates in (multi-dimensional)
+Euclidean space, fixing stdev means the point with allowed coordinates
+lays on a sphere. Fixing average intersects the sphere with a (hyper)-plane,
+and Gaussian probability density on the resulting sphere is constant.
+So the only contribution is the "area" of the sphere, which only depends
+on the number of samples and stdev.
 
-+----------------------------+----------------------+
-| Outlier Evaluation Formula | Evaluation Result    |
-+============================+======================+
-| X < (Q1 - 1.5 * IQR)       | Outlier              |
-+----------------------------+----------------------+
-| X >= (Q1 - 1.5 * IQR)      | Valid (For Trending) |
-+----------------------------+----------------------+
+A somehow ambiguous part is in choosing which encoding
+is used for group size, average and stdev.
+Diferent encodings cause different biases to large or small values.
+In our implementation we have chosen probability density
+corresponding to uniform distribution (from zero to maximal sample value)
+for stdev and average of the first group,
+but for averages of subsequent groups we have chosen a distribution
+which disourages deliminating groups with averages close together.
+
+One part of our implementation which is not precise enough
+is handling of measurement precision.
+The minimal difference in MRR values is currently 0.1 pps
+(the difference of one packet over 10 second trial),
+but the code assumes the precision is 1.0.
+Also, all the calculations assume 1.0 is totally negligible,
+compared to stdev value.
+
+The group selection algorithm currently has no parameters,
+all the aforementioned encodings and handling of precision is hardcoded.
+In principle, every group selection is examined, and the one encodable
+with least amount of bits is selected.
+As the bit amount for a selection is just sum of bits for every group,
+finding the best selection takes number of comparisons
+quadratically increasing with the size of data,
+the overall time complexity being probably cubic.
+
+The resulting group distribution looks good
+if samples are distributed normally enough within a group.
+But for obviously different distributions (for example `bimodal distribution`_)
+the groups tend to focus on less relevant factors (such as "outlier" density).
 
 Anomaly Detection
 `````````````````
 
-To verify compliance of test result of valid value <X> against defined
-trend metrics and detect anomalies, three simple evaluation formulas are
-used:
-
-+-------------------------------------------+-----------------------------+-------------------+
-| Anomaly Evaluation Formula                | Compliance Confidence Level | Evaluation Result |
-+===========================================+=============================+===================+
-| (TMM - 3 * TMSD) <= X <= (TMM + 3 * TMSD) | 99.73%                      | Normal            |
-+-------------------------------------------+-----------------------------+-------------------+
-| X < (TMM - 3 * TMSD)                      | Anomaly                     | Regression        |
-+-------------------------------------------+-----------------------------+-------------------+
-| X > (TMM + 3 * TMSD)                      | Anomaly                     | Progression       |
-+-------------------------------------------+-----------------------------+-------------------+
-
-TMM is used for the central trend reference point instead of TMA as it
-is more robust to anomalies.
+Once the trend data is divided into groups, each group has its population average.
+The start of the following group is marked as a regression (or progression)
+if the new group's average is lower (higher) then the previous group's.
 
 Trend Compliance
 ````````````````
 
 Trend compliance metrics are targeted to provide an indication of trend
 changes over a short-term (i.e. weekly) and a long-term (i.e.
-quarterly), comparing the last trend value, TMM[last], to one from week
-ago, TMM[last - 1week] and to the maximum of trend values over last
-quarter except last week, max(TMM[(last - 3mths)..(last - 1week)]),
+quarterly), comparing the last group average AVG[last], to the one from week
+ago, AVG[last - 1week] and to the maximum of trend values over last
+quarter except last week, max(AVG[last - 3mths]..ANV[last - 1week]),
 respectively. This results in following trend compliance calculations:
 
-+-------------------------+---------------------------------+-----------+------------------------------------------+
-| Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                |
-+=========================+=================================+===========+==========================================+
-| Short-Term Change       | (Value - Reference) / Reference | TMM[last] | TMM[last - 1week]                        |
-+-------------------------+---------------------------------+-----------+------------------------------------------+
-| Long-Term Change        | (Value - Reference) / Reference | TMM[last] | max(TMM[(last - 3mths)..(last - 1week)]) |
-+-------------------------+---------------------------------+-----------+------------------------------------------+
++-------------------------+---------------------------------+-----------+-------------------------------------------+
+| Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                 |
++=========================+=================================+===========+===========================================+
+| Short-Term Change       | (Value - Reference) / Reference | AVG[last] | AVG[last - 1week]                         |
++-------------------------+---------------------------------+-----------+-------------------------------------------+
+| Long-Term Change        | (Value - Reference) / Reference | AVG[last] | max(AVG[last - 3mths]..AVG[last - 1week]) |
++-------------------------+---------------------------------+-----------+-------------------------------------------+
 
 Trend Presentation
 ------------------
@@ -160,16 +166,17 @@ Trendline Graphs
 ````````````````
 
 Trendline graphs show per test case measured MRR throughput values with
-associated trendlines. The graphs are constructed as follows:
+associated gruop averages. The graphs are constructed as follows:
 
 - X-axis represents performance trend job build Id (csit-vpp-perf-mrr-
   daily-master-build).
 - Y-axis represents MRR throughput in Mpps.
 - Markers to indicate anomaly classification:
 
-  - Outlier - gray circle around MRR value point.
   - Regression - red circle.
   - Progression - green circle.
+
+- The line shows average of each group.
 
 In addition the graphs show dynamic labels while hovering over graph
 data points, representing (trend job build Id, MRR value) and the actual
@@ -217,26 +224,15 @@ PA is defined as follows:
       archived data.
    b) Parse out the data filtering test cases listed in PA specification
       (part of CSIT PAL specification file).
-   c) Evalute new data from latest PT job against the rolling window of
-      <N> sets of historical data for trendline calculation, anomaly
-      detection and short-term trend compliance. And against long-term
-      trendline metrics for long-term trend compliance.
 
-3. Calculate trend metrics for the rolling window of <N> sets of
-   historical data:
+3. Re-calculate new groups and their averages.
 
-   a) Calculate quartiles Q1, Q2, Q3.
-   b) Trim outliers using IQR.
-   c) Calculate TMA and TMSD.
-   d) Calculate normal trending range per test case based on TMM and
-      TMSD.
+4. Evaluate new test data:
 
-4. Evaluate new test data against trend metrics:
-
-   a) If within the range of (TMA +/- 3*TMSD) => Result = Pass,
+   a) If the existing group is prolonged => Result = Pass,
       Reason = Normal. (to be updated base on the final Jenkins code).
-   b) If below the range => Result = Fail, Reason = Regression.
-   c) If above the range => Result = Pass, Reason = Progression.
+   b) If a new group is detected with lower average => Result = Fail, Reason = Regression.
+   c) If a new group is detected with higher average => Result = Pass, Reason = Progression.
 
 5. Generate and publish results
 
@@ -251,3 +247,7 @@ Testbed HW configuration
 
 The testbed HW configuration is described on
 `this FD.IO wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed#FD.IO_CSIT_testbed_-_Server_HW_Configuration>`_.
+
+.. _Minimum Description Length: https://en.wikipedia.org/wiki/Minimum_description_length
+.. _Occam's razor: https://en.wikipedia.org/wiki/Occam%27s_razor
+.. _bimodal distribution: https://en.wikipedia.org/wiki/Bimodal_distribution
