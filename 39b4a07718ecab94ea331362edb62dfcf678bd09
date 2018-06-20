@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f86b2070_665ebe15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-20T12:06:04Z",
+      "side": 1,
+      "message": "I prefer good old RTFM approach: https://gerrit.fd.io/r/13147\ncomplete with TODOs for eager contributors.",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "39b4a07718ecab94ea331362edb62dfcf678bd09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
