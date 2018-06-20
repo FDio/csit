@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6cc6e5c6_118f2774",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-20T16:05:10Z",
+      "side": 1,
+      "message": "I think only virl testbeds. At least I do not see pip failing on physical testbeds.",
+      "range": {
+        "startLine": 13,
+        "startChar": 3,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "39b4a07718ecab94ea331362edb62dfcf678bd09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f86b2070_665ebe15",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
