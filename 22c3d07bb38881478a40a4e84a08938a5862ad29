@@ -45,6 +45,30 @@
       "revId": "22c3d07bb38881478a40a4e84a08938a5862ad29",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86f61374_f862472f",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-06-21T08:27:44Z",
+      "side": 1,
+      "message": "Nope, thanks for the catch.\n\nThis is here to skip the execution in the last iteration, since it wouldn\u0027t really accomplish anything. I\u0027ll change it to 2.",
+      "parentUuid": "89dad338_33cacd03",
+      "range": {
+        "startLine": 432,
+        "startChar": 15,
+        "endLine": 432,
+        "endChar": 20
+      },
+      "revId": "22c3d07bb38881478a40a4e84a08938a5862ad29",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
