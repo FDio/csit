@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acf9e078_c52a9140",
+        "filename": "resources/libraries/python/honeycomb/FIB.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-06-21T06:52:13Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 87,
+        "startChar": 20,
+        "endLine": 87,
+        "endChar": 88
+      },
+      "revId": "18d8a1608549136e4946836ce7f166fada34c58d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
