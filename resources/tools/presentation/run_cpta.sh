@@ -30,5 +30,7 @@ STATUS=$(python pal.py \
     --force)
 RETURN_STATUS=$?
 
+cp -r new _build/
+
 echo ${STATUS}
 exit ${RETURN_STATUS}
