@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.Routing.RoutingKeywords
 | Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.InterfaceUtil
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
@@ -21,6 +22,7 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/routing.robot
+| Resource | resources/libraries/robot/honeycomb/fib.robot
 | ...
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
 | ...
@@ -44,9 +46,6 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Receive packet on the second TG interface.
 | | ...
-# HC2VPP-331: Honeycomb fails to assign VRF to interface
-| | [Tags] | EXPECTED_FAILING
-| | ...
 | | ${table}= | Set Variable | table1
 | | Given Setup interfaces and neighbors for IPv4 routing test
 | | When Honeycomb configures routing table
@@ -69,18 +68,12 @@
 | | ... | verify that each destination MAC was used by exactly 50 packets.
 | | ... | Receive packet on the second TG interface.
 | | ...
-# HC2VPP-331: Honeycomb fails to assign VRF to interface
-| | [Tags] | EXPECTED_FAILING
-| | ...
 | | ${table}= | Set Variable | table2
 | | Given Setup interfaces and neighbors for IPv4 routing test
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop1} | ${next_hop_mac1}
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop2} | ${next_hop_mac2}
-| | ...
-# HC2VPP-331: Honeycomb fails to assign VRF to interface
-| | [Tags] | EXPECTED_FAILING
 | | ...
 | | When Honeycomb configures routing table
 | | ... | ${node} | table2 | ipv4 | ${table2} | ${1}
@@ -101,9 +94,6 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Make sure no packet is received on the second TG\
 | | ... | interface.
-| | ...
-# HC2VPP-331: Honeycomb fails to assign VRF to interface
-| | [Tags] | EXPECTED_FAILING
 | | ...
 | | ${table}= | Set Variable | table3
 | | Given Setup interfaces and neighbors for IPv4 routing test
@@ -126,9 +116,6 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Receive packet on the second TG interface.
 | | ...
-# HC2VPP-331: Honeycomb fails to assign VRF to interface
-| | [Tags] | EXPECTED_FAILING
-| | ...
 | | ${table}= | Set Variable | table4
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | When Honeycomb configures routing table
@@ -150,9 +137,6 @@
 | | ... | route destination. Receive all packets on the second TG interface and\
 | | ... | verify that each destination MAC was used by exactly 50 packets.
 | | ... | Receive packet on the second TG interface.
-| | ...
-# HC2VPP-331: Honeycomb fails to assign VRF to interface
-| | [Tags] | EXPECTED_FAILING
 | | ...
 | | ${table}= | Set Variable | table5
 | | Given Setup interfaces and neighbors for IPv6 routing test
@@ -180,8 +164,6 @@
 | | ... | destination. Make sure no packet is received on the second TG\
 | | ... | interface.
 | | ...
-# HC2VPP-254 Operational data for Blackhole IPv6 route is incorrect
-| | [Tags] | EXPECTED_FAILING
 | | ${table}= | Set Variable | table6
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | When Honeycomb configures routing table
@@ -200,10 +182,12 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Import Variables | resources/test_data/honeycomb/routing.py
 | | ... | ${nodes['DUT1']} | ipv4 | ${dut_to_tg_if2}
+| | Setup vrf FIBs | ${dut_node} | ${1}
 | | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if1} | ${1}
 | | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if2} | ${1}
 | | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Vpp Node Interfaces Ready Wait | ${dut_node}
 | | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_len}
 | | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
@@ -218,12 +202,12 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Import Variables | resources/test_data/honeycomb/routing.py
 | | ... | ${nodes['DUT1']} | ipv6 | ${dut_to_tg_if2}
-| | Honeycomb sets interface VRF ID
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${1} | ipv6
-| | Honeycomb sets interface VRF ID
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${1} | ipv6
+| | Setup vrf FIBs | ${dut_node} | ${1}
+| | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if1} | ${1}
+| | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if2} | ${1}
 | | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Vpp Node Interfaces Ready Wait | ${dut_node}
 | | Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_len}
 | | Honeycomb sets interface IPv6 address | ${dut_node}
@@ -241,6 +225,7 @@
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Log routing configuration from VAT | ${node}
 | | Honeycomb removes routing configuration | ${node} | ${routing_table}
+| | Remove vrf FIBs | ${node} | ${1}
 
 | Setup vrf IDs
 | | ...
@@ -250,3 +235,17 @@
 | | ... | ${node} | ${interface} | ${vrf} | ipv4
 | | Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${vrf} | ipv6
+
+| Setup vrf FIBs
+| | ...
+| | [Arguments] | ${node} | ${vrf}
+| | ...
+| | Honeycomb configures FIB table | ${node} | ipv4 | ${vrf}
+| | Honeycomb configures FIB table | ${node} | ipv6 | ${vrf}
+
+| Remove vrf FIBs
+| | ...
+| | [Arguments] | ${node} | ${vrf}
+| | ...
+| | Honeycomb removes FIB configuration | ${node} | ipv4 | ${vrf}
+| | Honeycomb removes FIB configuration | ${node} | ipv6 | ${vrf}
