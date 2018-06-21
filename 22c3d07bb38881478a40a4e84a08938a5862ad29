@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66c91ea5_9f7a81fa",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-21T07:53:27Z",
+      "side": 1,
+      "message": "Move this block before line 388.",
+      "range": {
+        "startLine": 397,
+        "startChar": 8,
+        "endLine": 397,
+        "endChar": 17
+      },
+      "revId": "22c3d07bb38881478a40a4e84a08938a5862ad29",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89dad338_33cacd03",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-21T07:53:27Z",
+      "side": 1,
+      "message": "Can this condition ever be false?",
+      "range": {
+        "startLine": 432,
+        "startChar": 15,
+        "endLine": 432,
+        "endChar": 20
+      },
+      "revId": "22c3d07bb38881478a40a4e84a08938a5862ad29",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
