@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/honeycomb/sub_interface.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
+| Library | resources.libraries.python.InterfaceUtil
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
 | ...
 | Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
@@ -73,6 +74,7 @@
 | | ... | ${node} | ${super_if} | up
 | | When Honeycomb sets the sub-interface up
 | | ... | ${node} | ${super_if} | ${sub_if_id}
+| | Vpp Node Interfaces Ready Wait | ${node}
 | | Then Sub-interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | up | up
 | | And sub-interface state from VAT should be
