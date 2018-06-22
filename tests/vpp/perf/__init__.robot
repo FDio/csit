@@ -28,6 +28,11 @@
 | ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
 | Suite Teardown | Cleanup Framework | ${nodes}
 
+*** Variables ***
+| # FIXME: With BMRR, this is the number of trials instead.
+| # Rename, probably with ALL_CAPS to signal we allow pybot caller to override.
+| ${perf_trial_duration} | ${10}
+
 *** Keywords ***
 | Setup performance global Variables
 | | [Documentation]
@@ -40,18 +45,19 @@
 | | ... | - perf_vm_image - Guest VM disk image
 | | ... | - perf_qemu_path - Path prefix to QEMU binary
 | | ... | - use_tuned_cfs - Switch to set scheduler policy
+| | ... | - smt_used - Wheter to use SMT mapping
 | | ... | - qemu_build - Whether Qemu will be built
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
 | | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
-| | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
 | | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.5.0
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
+| | Set Global Variable | ${smt_used} | ${False}
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
