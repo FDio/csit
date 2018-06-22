@@ -15,9 +15,10 @@
 set -xo pipefail
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_3n_hsw_testbed1.yaml \
-            topologies/available/lf_3n_hsw_testbed2.yaml \
-            topologies/available/lf_3n_hsw_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_2n_skx_testbed21.yaml \
+            topologies/available/lf_2n_skx_testbed22.yaml \
+            topologies/available/lf_2n_skx_testbed23.yaml \
+            topologies/available/lf_2n_skx_testbed24.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
@@ -137,6 +138,9 @@ else
 fi
 
 PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+if [ ! -z $NUM_BMRR_TRIALS ]; then
+    PYBOT_ARGS="$PYBOT_ARGS --variable perf_trial_duration:$NUM_BMRR_TRIALS"
+fi
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
@@ -177,8 +181,7 @@ case "$TEST_TAG" in
               'pdrdiscAND2t2c')
         ;;
     VERIFY-PERF-MRR )
-        TAGS=('mrrAND1t1c'
-              'mrrAND2t2c')
+        TAGS=('frmobl')
         ;;
     VERIFY-PERF-IP4 )
         TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
@@ -308,6 +311,9 @@ for TAG in "${TAGS[@]}"; do
         EXPANDED_TAGS+=(" --include ${TAG} ")
     fi
 done
+
+# Override with THIS.
+EXPANDED_TAGS=(" --include THIS")
 
 # Execute the test
 pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
