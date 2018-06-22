@@ -585,30 +585,6 @@
 | | ... | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ... | append=yes
 
-| Display raw results
-| | [Documentation]
-| | ... | Display raw results from TG in total received/send packets over trial
-| | ... | duration in seconds.
-| | ...
-| | ... | *Arguments:*
-| | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - results - Measured results. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Display raw results \| 64 \| results \|
-| | ...
-| | [Arguments] | ${framesize} | ${results}
-| | ...
-| | ${framesize}= | Get Frame Size | ${framesize}
-| | @{tokens}= | Split String | ${results} | ,
-| | @{received}= | Split String | @{tokens}[1] | =
-| | @{sent}= | Split String | @{tokens}[2] | =
-| | ${total_received} = | Set Variable | @{received}[1]
-| | ${total_sent} = | Set Variable | @{sent}[1]
-| | Set Test Message | MaxReceivedRate_Results [pkts/${perf_trial_duration}sec]:
-| | Set Test Message | tx ${total_sent}, rx ${total_received} | append=yes
-
 | Measure latency pps
 | | [Documentation]
 | | ... | Send traffic at specified rate. Measure min/avg/max latency
@@ -682,55 +658,89 @@
 | | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
 | | ... | ${loss_acceptance} | ${loss_acceptance_type}
 
+| Append aggregate results
+| | [Documentation]
+| | ... | Append to test message, results from TG in total received packets
+| | ... | over aggregate trial duration.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rr_list - List of receive rates measured [pps]. Type: list of float
+| | ... | - trial_duration - Duration of one trial [s], default 1. Type: float
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Append aggregate result \| [1.0, 2.0] \| ${1.0} \|
+| | ...
+| | [Arguments] | ${results} | ${trial_duration}=${1.0}
+| | ...
+| | ${total_received} = | Set Variable | ${0}
+| | :FOR | ${rate} | IN | @{rr_list}
+| | | ${total_received} = | Evaluate | ${total_received} + ${rate}
+| | ${trial_count} = | Get_Length | ${rr_list}
+| | ${total_duration} = | Evaluate | ${trial_count} * ${trial_duration}
+| | Set Test Message | TODO: Remove the fake tx result. | append=yes
+| | Set Test Message | MaxReceivedRate_Results [pkts/${total_duration}sec]:
+| | ... | append=yes
+| | Set Test Message | tx ${total_received}, rx ${total_received} | append=yes
+
 | Traffic should pass with maximum rate
 | | [Documentation]
 | | ... | Send traffic at maximum rate.
 | | ...
 | | ... | *Arguments:*
-| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - subsamples - How many trials in this measurement. Type:int
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
 | | ... | - topology_type - Topology type. Type: string
-| | ... | Type: boolean
+| | ... | - trial_duration - Duration of single trial [s]. Type: float
+| | ... | - fail_no_traffic - Whether to fail on zero receive count. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Traffic should pass with maximum rate \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \|
+| | ... | \| Traffic should pass with maximum rate \| ${10} \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \| ${1.0} | ${False}
 | | ...
-| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${fail_no_traffic}=${True}
+| | [Arguments] | ${subsamples} | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${trial_duration}=${1.0} | ${fail_no_traffic}=${True}
 | | ...
-| | ${results}= | Send traffic at specified rate | ${duration} | ${rate}
-| | ... | ${framesize} | ${topology_type}
-| | Display raw results | ${framesize} | ${results}
+| | ${results}= | Send traffic at specified rate | ${trial_duration} | ${rate}
+| | ... | ${framesize} | ${topology_type} | ${subsamples}
+| | Set Test Message | Maximum Receive Rate Results ${results}
+| | Append aggregate results | ${results} | ${trial_duration}
 | | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
 
 | Send traffic at specified rate
 | | [Documentation]
 | | ... | Send traffic at specified rate.
+| | ... | Return list of measured receive rates.
 | | ...
 | | ... | *Arguments:*
-| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - trial_duration - Duration of single trial [s]. Type: float
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B]. Type: integer/string
 | | ... | - topology_type - Topology type. Type: string
-| | ... | Type: boolean
+| | ... | - subsamples - How many trials in this measurement. Type: int
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send traffic at specific rate \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \|
+| | ... | \| Send traffic at specific rate \| ${1.0} \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \| ${10}
 | | ...
-| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | [Arguments] | ${trial_duration} | ${rate} | ${framesize}
+| | ... | ${topology_type} | ${subsamples}=${1}
 | | ...
-| | Clear and show runtime counters with running traffic | ${duration}
+| | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | Run Keyword If | ${dut_stats}==${True} | Clear all counters on all DUTs
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
-| | ${results} = | Send traffic on tg | ${duration} | ${rate} | ${framesize}
-| | ... | ${topology_type} | warmup_time=0
+| | ${results}= | Create List
+| | :FOR | ${i} | IN RANGE | ${subsamples}
+| | | Send traffic on tg | ${trial_duration} | ${rate} | ${framesize}
+| | | ... | ${topology_type} | warmup_time=0
+| | | ${rx}= | Get Received
+| | | ${rr}= | Evaluate | ${rx} / ${trial_duration}
+| | | Append To List | ${results} | ${rr}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
