@@ -116,6 +116,7 @@ nodes:
         pci_address: "0000:18:00.0"
         ip4_address: "172.16.10.1"
         driver: i40e
+        uio_driver: vfio-pci
         link: link1
         model: Intel-XL710
       port2:
@@ -124,6 +125,7 @@ nodes:
         pci_address: "0000:18:00.1"
         ip4_address: "172.16.20.1"
         driver: i40e
+        uio_driver: vfio-pci
         link: link2
         model: Intel-XL710
       port3:
@@ -132,6 +134,7 @@ nodes:
         pci_address: "0000:18:00.2"
         ip4_address: "172.16.30.1"
         driver: i40e
+        uio_driver: vfio-pci
         link: link3
         model: Intel-X710
       port4:
@@ -140,6 +143,7 @@ nodes:
         pci_address: "0000:18:00.3"
         ip4_address: "172.16.40.1"
         driver: i40e
+        uio_driver: vfio-pci
         link: link4
         model: Intel-X710
       port5:
@@ -148,6 +152,7 @@ nodes:
         pci_address: "0000:3b:00.0"
         ip4_address: "172.16.50.1"
         driver: i40e
+        uio_driver: vfio-pci
         link: link5
         model: Intel-XXV710
       port6:
@@ -156,5 +161,6 @@ nodes:
         pci_address: "0000:3b:00.1"
         ip4_address: "172.16.60.1"
         driver: i40e
+        uio_driver: vfio-pci
         link: link6
         model: Intel-XXV710
