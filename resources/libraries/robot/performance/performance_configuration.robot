@@ -781,6 +781,14 @@
 | | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| Initialize L2 xconnect in 2-node circular topology
+| | [Documentation]
+| | ... | Setup L2 xconnect topology by cross connecting two interfaces on
+| | ... | each DUT. Interfaces are brought up.
+| | ... |
+| | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | Initialize L2 xconnect in 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 xconnect topology by cross connecting two interfaces on
@@ -1697,6 +1705,24 @@
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
+| Add PCI devices to DUTs in 2-node single link topology
+| | [Documentation]
+| | ... | Add PCI devices to VPP configuration file.
+| | ...
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if2_pci}
+
+| Add single PCI device to DUTs in 2-node single link topology
+| | [Documentation]
+| | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
+| | ...
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
+| | Set Test Variable | ${dut1_if1_pci}
+
 | Add PCI devices to DUTs in 3-node single link topology
 | | [Documentation]
 | | ... | Add PCI devices to VPP configuration file.
@@ -1723,24 +1749,6 @@
 | | Run keyword | DUT2.Add DPDK Dev | ${dut2_if2_pci}
 | | Set Test Variable | ${dut1_if1_pci}
 | | Set Test Variable | ${dut2_if2_pci}
-
-| Add PCI devices to DUTs in 2-node single link topology
-| | [Documentation]
-| | ... | Add PCI devices to VPP configuration file.
-| | ...
-| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
-| | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
-| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
-| | Set Test Variable | ${dut1_if1_pci}
-| | Set Test Variable | ${dut1_if2_pci}
-
-| Add single PCI device to DUTs in 2-node single link topology
-| | [Documentation]
-| | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
-| | ...
-| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
-| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
-| | Set Test Variable | ${dut1_if1_pci}
 
 | Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
