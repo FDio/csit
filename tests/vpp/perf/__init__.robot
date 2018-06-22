@@ -19,12 +19,19 @@
 | Library | resources.libraries.python.CpuUtils
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
+| ...         | AND          | Kernel module verify on all DUTs | ${nodes}
+| ...                        | ${uio_driver} | force_load=${True}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Show Vpp Version On All Duts | ${nodes}
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes
 | ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
 | Suite Teardown | Cleanup Framework | ${nodes}
+
+*** Variables ***
+| # FIXME: With BMRR, this is the number of trials instead.
+| # Rename, probably with ALL_CAPS to signal we allow pybot caller to override.
+| ${perf_trial_duration} | ${10}
 
 *** Keywords ***
 | Setup performance global Variables
@@ -44,7 +51,6 @@
 | | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
-| | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
@@ -53,6 +59,6 @@
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
-| | Set Global Variable | ${uio_driver} | uio_pci_generic
+| | Set Global Variable | ${uio_driver} | igb_uio
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
 | | Set Global Variable | @{plugins_to_enable}
