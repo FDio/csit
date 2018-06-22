@@ -173,6 +173,9 @@ class ExecutionChecker(ResultVisitor):
                                r'LAT_\d+%PDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
                                r'\s\'(-?\d+/-?\d+/-?\d+)\'\][\D\d]*')
 
+    REGEX_NDR_LOWER = re.compile(r'NDR_LOWER:\s(\d*\.\d*)')
+    REGEX_PDR_LOWER = re.compile(r'PDR_LOWER:\s(\d*\.\d*)')
+
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
 
@@ -472,6 +475,8 @@ class ExecutionChecker(ResultVisitor):
                 test_type = "NDR"
             elif "PDRDISC" in tags:
                 test_type = "PDR"
+            elif "NDRPDR" in tags:
+                test_type = "NDRPDR"
             elif "TCP" in tags:
                 test_type = "TCP"
             elif "MRR" in tags:
@@ -502,6 +507,14 @@ class ExecutionChecker(ResultVisitor):
                 if test_type == "PDR":
                     test_result["lossTolerance"] = str(re.search(
                         self.REGEX_TOLERANCE, test.message).group(1))
+
+            elif test_type in ("MDRPDR", ):
+                test_result["rate"] = dict()
+                groups = re.search(self.REGEXP_NDR_LOWER, test.message)
+                test_result["rate"]["ndr"] = float(groups.group(1))
+                groups = re.search(self.REGEXP_PDR_LOWER, test.message)
+                test_result["rate"]["pdr"] = float(groups.group(1))
+                # TODO: Extract also latency.
 
             elif test_type in ("TCP", ):
                 groups = re.search(self.REGEX_TCP, test.message)
