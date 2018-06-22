@@ -20,6 +20,7 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VPPUtil import VPPUtil
+from resources.libraries.python.topology import Topology
 
 
 class DUTSetup(object):
@@ -468,20 +469,43 @@ class DUTSetup(object):
                                    '{1}'.format(module, node['host']))
 
     @staticmethod
-    def kernel_module_verify_on_all_duts(nodes, module, force_load=False):
-        """Verify if kernel module is loaded on all DUTs. If parameter force
-        load is set to True, then try to load the modules.
+    def verify_uio_driver_on_all_duts(nodes):
+        """Verify if uio driver kernel module is loaded on all DUTs. If module
+        is not present it will try to load it.
 
         :param node: DUT nodes.
-        :param module: Module to verify.
-        :param force_load: If True then try to load module.
         :type node: dict
-        :type module: str
-        :type force_load: bool
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                DUTSetup.kernel_module_verify(node, module, force_load)
+                uio_driver = Topology.get_uio_driver(node)
+                DUTSetup.kernel_module_verify(node, uio_driver, force_load=True)
+
+    @staticmethod
+    def verify_uio_driver_on_all_duts(nodes):
+        """Verify if uio driver kernel module is loaded on all DUTs. If module
+        is not present it will try to load it.
+
+        :param node: DUT nodes.
+        :type node: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                uio_driver = Topology.get_uio_driver(node)
+                DUTSetup.kernel_module_verify(node, uio_driver, force_load=True)
+
+    @staticmethod
+    def verify_uio_driver_on_all_duts(nodes):
+        """Verify if uio driver kernel module is loaded on all DUTs. If module
+        is not present it will try to load it.
+
+        :param node: DUT nodes.
+        :type node: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                uio_driver = Topology.get_uio_driver(node)
+                DUTSetup.kernel_module_verify(node, uio_driver, force_load=True)
 
     @staticmethod
     def kernel_module_load(node, module):
