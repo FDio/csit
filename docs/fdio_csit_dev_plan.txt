@@ -1,0 +1,90 @@
+fdio_csit_dev_plan.txt - DRAFT
+
+FD.io CSIT-CPL Development Plan
+===============================
+
+Proposed Organisation
+---------------------
+
+(I know it's fairly basic stuff as FD.io CSIT-CPL is still quite a small
+team taking into account active contributors, but it should clarify
+roles/responsibilities, especially when/if the team grows.)
+
+* Each work area gets assigned roles/owners.
+  - Technical Lead (TL) - overall responsibility incl. design, detailed
+    work plan and estimates, DT coordination, managing dependencies.
+  - Development Team (DT) - doing work following the TL.
+  - Project Lead (PL) - involved in all work areas at higher level,
+    focusing
+    on requirements definitions, design and work reviews, acceptance.
+  - For work areas with large number of deliverables there could be
+    multiple TLs e.g. for operations, framework or test volume refactor.
+  - Proposed owner markup with suffix strings: "[TL;DT1..DTn;PL]".
+
+* Further work breakdown for each work area maintained in FD.io CSIT git
+  repo:
+  - Separate .txt (or .rst, .md) file per work area.
+  - Updates subject to git reviews.
+  - Keep it still abstract, that is avoid task level.
+  - Tasks tracked in Jira, under Epics, CSIT-CPL Epics scheme to be
+    reviewed.
+
+Plan Timeline
+-------------
+
+* Current release cycle:
+  - FD.io CSIT-CPL rls18.07, associated with VPP-18.07.
+* Sub-sequent releases:
+  - FD.io CSIT-CPL rls18.10, rls1812, ..
+  - Work not completed fully in current release cycle to be addressed in
+    follow-on release(s).
+
+Plan Summary
+------------
+
+* Infrastructure, Framework, Tools
+  * New Skylake testbed infra to increase FD.io CSIT-CPL lab capacity.
+    [PM;EK,PM;MK]
+  * Introduce 2-node performance tests for new Skylake testbed infra.
+    [TF;JG,PM,TF;MK]
+  * Productize duration aware multi-rate MLR search. [VP;PM,VP;MK]
+  * Improve continuous performance trending: anomaly detection tunings,
+    add dpdk. [TF;TF,VP;MK]
+  * Complete and phase into production continuous per VPP patch
+    performance tests. [PM;PM,TF,VP;MK]
+  * Implement proper per-packet latency measurements, reporting and
+    analytics with TRex HdrHistogram. [TF;PM,TF,VP;MK]
+  * Evolve presentation and analytics layer (PAL) addressing the main
+    weaknesses of current design in response to growing volumes of test
+    measurement and telemetry data. [TF;EK,PM,TF,VP;MK]
+  * Start migration from CSIT_VIRL to VPP_Paths (make_test) and
+    VPP_Devices integration tests. [JG;EK,JG,TF;MK]
+  * Continue to enhance CSIT-CPL reports and trending doc pages and
+    supporting backend PAL and test code addressing wider set of data
+    plane workloads and improving CI/CD trending communication to
+    FD.io community. [TF;PM,TF,VP;MK]
+  * Automate VPP performance regression search. [TF;TF,VP;MK]
+  * Other refactor: VAT to PAPI, data driven tests, suite duration,
+    infra overhead. [VP;JG,PM,TF,VP;MK]
+
+* Testing, Performance
+  * New tests: more TCP stack, SRv6, memif; AVF driver (no DPDK).
+    [MK;JG,PM,TF,VP;MK]
+  * VPP_Path: migration of P0 VIRL tests to VPP_matk_test, followed by
+    qualification of VIRL P1, P2 tests; adding use case driven
+    functional tests.
+  * VPP_Device: new use cases per VPP_Device design note <add link>.
+  * VPP_Path_Device: continue to add relevant tests.
+
+* Support, Community
+  * FD.io Operations. [All]
+  * FD.io CSIT-CPL community. [All]
+  * ARM, Atom servers. [?]
+
+* Collaboration, Communication
+  * API changes across VPP major versions. [?]
+  * Plugin dependencies. [?]
+  * DPDK driver dependencies. [?]
+
+---
+end
