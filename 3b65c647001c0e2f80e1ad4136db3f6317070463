@@ -22,6 +22,30 @@
       "revId": "3b65c647001c0e2f80e1ad4136db3f6317070463",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b2bd268_f6df6296",
+        "filename": "bootstrap-vpp-verify-weekly.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-06-25T09:58:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91322f93_f548ae3b",
+      "range": {
+        "startLine": 152,
+        "startChar": 51,
+        "endLine": 152,
+        "endChar": 52
+      },
+      "revId": "3b65c647001c0e2f80e1ad4136db3f6317070463",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
