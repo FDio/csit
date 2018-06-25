@@ -14,6 +14,7 @@
 """Module holding AvgStdevMetadataFactory class."""
 
 import math
+import logging
 
 from AvgStdevMetadata import AvgStdevMetadata
 
@@ -46,6 +47,20 @@ class AvgStdevMetadataFactory(object):
         if sum_0 < 1:
             return AvgStdevMetadata()
         avg = sum_1 / sum_0
-        stdev = math.sqrt(sum_2 / sum_0 - avg * avg)
+        try:
+            sums = sum_2 / sum_0
+            avgs = avg * avg
+            stdev = math.sqrt((sum_2 / sum_0) - (avg * avg))
+        except Exception as err:
+            logging.error("{}".format(err))
+            logging.info("sum_0: {}".format(sum_0))
+            logging.info("sum_1: {}".format(sum_1))
+            logging.info("sum_2: {}".format(sum_2))
+            logging.info("avg:   {}".format(avg))
+            logging.info("sum_2 / sum_0: {}".format(sum_2 / sum_0))
+            logging.info("avg * avg:     {}".format(avg * avg))
+            logging.info("sum_2 / sum_0 - avg * avg: {}".format(
+                sum_2 / sum_0 - avg * avg))
+            return AvgStdevMetadata()
         ret_obj = AvgStdevMetadata(size=sum_0, avg=avg, stdev=stdev)
         return ret_obj

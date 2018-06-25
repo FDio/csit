@@ -280,7 +280,7 @@ def _generate_all_charts(spec, input_data):
                         chart_data[test_name] = OrderedDict()
                     try:
                         chart_data[test_name][int(index)] = \
-                            test["result"]["throughput"]
+                            test["result"]["receive-rate"].avg
                     except (KeyError, TypeError):
                         pass
 
