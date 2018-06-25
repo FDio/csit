@@ -103,7 +103,7 @@
         linewidth: 1
         showgrid: True
       xaxis:
-        title: '<a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>/<a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>'
+        title: 'Date [YYMM]<br><a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-vpp-perf-mrr-daily-master-build</a>/<a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-build</a>'
         type: "date"
         autorange: True
         fixedrange: False
@@ -136,20 +136,17 @@
             step: "month"
             stepmode: "backward"
           - step: "all"
-        # rangeslider: {}
       margin:
         r: 20
-        # b: 200
-        t: 5
+        b: 0
+        t: 0
         l: 70
       legend:
         orientation: "h"
-        # y: -0.5
         xanchor: "center"
         traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
         tracegroupgap: 20
         bordercolor: "rgb(238, 238, 238)"
-        # borderwidth: 1
       hoverlabel:
         namelength: -1
 
@@ -173,7 +170,7 @@
         linewidth: 1
         showgrid: True
       xaxis:
-        title: '<a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-dpdk-perf-mrr-weekly-master</a>/<a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-build</a>'
+        title: 'Date [YYMM]<br><a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-dpdk-perf-mrr-weekly-master</a>/<a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-build</a>'
         type: "date"
         autorange: True
         fixedrange: False
@@ -208,12 +205,11 @@
           - step: "all"
       margin:
         r: 20
-        # b: 200
-        t: 5
-        l: 70
+        b: 0
+        t: 0
+        l: 20
       legend:
         orientation: "h"
-        # y: -0.5
         xanchor: "center"
         traceorder: "normal"
         tracegroupgap: 20
