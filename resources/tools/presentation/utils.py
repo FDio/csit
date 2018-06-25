@@ -217,13 +217,13 @@ def classify_anomalies(data):
     the first value of changed average as a regression, or a progression.
 
     :param data: Full data set with unavailable samples replaced by nan.
-    :type data: pandas.Series
+    :type data: OrderedDict
     :returns: Classification and trend values
     :rtype: 2-tuple, list of strings and list of floats
     """
     # Nan mean something went wrong.
     # Use 0.0 to cause that being reported as a severe regression.
-    bare_data = [0.0 if np.isnan(sample) else sample
+    bare_data = [0.0 if np.isnan(sample.avg) else sample
                  for _, sample in data.iteritems()]
     # TODO: Put analogous iterator into jumpavg library.
     groups = BitCountingClassifier().classify(bare_data)
@@ -234,9 +234,9 @@ def classify_anomalies(data):
     values_left = 0
     avg = 0.0
     for _, sample in data.iteritems():
-        if np.isnan(sample):
+        if np.isnan(sample.avg):
             classification.append("outlier")
-            avgs.append(sample)
+            avgs.append(sample.avg)
             continue
         if values_left < 1 or active_group is None:
             values_left = 0
