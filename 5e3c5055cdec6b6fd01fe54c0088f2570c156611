@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "033c8763_5aaa17d5",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-25T09:02:22Z",
+      "side": 1,
+      "message": "Technically but, this has more wider impact then \"lets just upgrade this and that\".",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fcdb355b_2efeeb09",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-25T09:02:22Z",
+      "side": 1,
+      "message": "Yes, working on that. Should be ready this week.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 83
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18b5191b_de6bb810",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-25T09:02:22Z",
+      "side": 1,
+      "message": "CSIT was designed around few major principles:\n1) Internet ethiquette to not downloading everything from intefernet for every test case, saving the bandwidth and of course other things. I like this apprach thus i have been thinking on another approach to this\n2) Complete freeze of system. To make testing efficient and effective and deteministic you need to freeze anything that could have impact on stability and focus on verify CSIT/VPP code. Not debuging all the dependencies. (not only PIP, but also APT/YUM). This way CSIT code is very stable with very low rate of failures. Also APT/YUM is not changing so we cannot blame TB OS/packages for perf because simply they did not change since installation of TB. We are in PIP offline so no package will pass without our knowledge although few improvements like pip freeze are possible. Very important thing is that we do not need to care about between patch changes of TB as it is fully controlled. COnsistent state is very important.\n3) Optimization. Having PIP be installed every time it also consumes time. I would prefer to PIP packages be created on machine directly in virtualenv to avoid using internet connection.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "072fd3ac_9638ca7e",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-25T09:02:22Z",
+      "side": 1,
+      "message": "Long term, due to many factors. We are missing evaluation critearia.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 68
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
