@@ -65,7 +65,7 @@ else
         --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
 fi
 
-VIRL_DIR_LOC="/tmp"
+VIRL_DIR_LOC="/tmp/"
 VPP_PKGS=(vpp*.$PACKAGE)
 VPP_PKGS_FULL=("${VPP_PKGS[@]/#/${VIRL_DIR_LOC}}")
 echo ${VPP_PKGS[@]}
@@ -149,7 +149,7 @@ done
 
 # Copy the files to VIRL host
 scp ${SSH_OPTIONS} ${VPP_PKGS[@]} \
-    ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
+    ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}
 
 result=$?
 if [ "${result}" -ne "0" ]; then
