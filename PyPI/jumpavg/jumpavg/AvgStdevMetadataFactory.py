@@ -46,6 +46,11 @@ class AvgStdevMetadataFactory(object):
         if sum_0 < 1:
             return AvgStdevMetadata()
         avg = sum_1 / sum_0
-        stdev = math.sqrt(sum_2 / sum_0 - avg * avg)
+        var = (sum_2 / sum_0) - (avg * avg)
+        var = 0.0 if var < 0.0 else var
+        try:
+            stdev = math.sqrt(var)
+        except ValueError:
+            return AvgStdevMetadata()
         ret_obj = AvgStdevMetadata(size=sum_0, avg=avg, stdev=stdev)
         return ret_obj
