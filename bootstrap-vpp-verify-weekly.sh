@@ -65,7 +65,7 @@ else
         --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
 fi
 
-VIRL_DIR_LOC="/tmp"
+VIRL_DIR_LOC="/tmp/"
 VPP_PKGS=(vpp*.$PACKAGE)
 VPP_PKGS_FULL=("${VPP_PKGS[@]/#/${VIRL_DIR_LOC}}")
 echo ${VPP_PKGS[@]}
