@@ -223,7 +223,7 @@ def classify_anomalies(data):
     """
     # Nan mean something went wrong.
     # Use 0.0 to cause that being reported as a severe regression.
-    bare_data = [0.0 if np.isnan(sample) else sample
+    bare_data = [0.0 if np.isnan(sample.avg) else sample
                  for _, sample in data.iteritems()]
     # TODO: Put analogous iterator into jumpavg library.
     groups = BitCountingClassifier().classify(bare_data)
@@ -234,9 +234,9 @@ def classify_anomalies(data):
     values_left = 0
     avg = 0.0
     for _, sample in data.iteritems():
-        if np.isnan(sample):
+        if np.isnan(sample.avg):
             classification.append("outlier")
-            avgs.append(sample)
+            avgs.append(sample.avg)
             continue
         if values_left < 1 or active_group is None:
             values_left = 0

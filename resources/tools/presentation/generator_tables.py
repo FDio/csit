@@ -17,7 +17,7 @@
 
 import logging
 import csv
-import pandas as pd
+#import pandas as pd
 
 from string import replace
 from collections import OrderedDict
@@ -184,6 +184,8 @@ def table_merged_details(table, input_data):
 def table_performance_improvements(table, input_data):
     """Generate the table(s) with algorithm: table_performance_improvements
     specified in the specification file.
+
+    # FIXME: Not used now.
 
     :param table: Table to generate.
     :param input_data: Data to process.
@@ -569,6 +571,8 @@ def table_performance_comparison_mrr(table, input_data):
     """Generate the table(s) with algorithm: table_performance_comparison_mrr
     specified in the specification file.
 
+    # TODO: Use AvgStdevMetadata data type.
+
     :param table: Table to generate.
     :param input_data: Data to process.
     :type table: pandas.Series
@@ -611,7 +615,7 @@ def table_performance_comparison_mrr(table, input_data):
                                           "cmp-data": list()}
                 try:
                     tbl_dict[tst_name]["ref-data"].\
-                        append(tst_data["result"]["throughput"])
+                        append(tst_data["result"]["receive-rate"].avg)
                 except TypeError:
                     pass  # No data in output.xml for this test
 
@@ -620,7 +624,7 @@ def table_performance_comparison_mrr(table, input_data):
             for tst_name, tst_data in data[job][str(build)].iteritems():
                 try:
                     tbl_dict[tst_name]["cmp-data"].\
-                        append(tst_data["result"]["throughput"])
+                        append(tst_data["result"]["receive-rate"].avg)
                 except KeyError:
                     pass
                 except TypeError:
@@ -684,6 +688,8 @@ def table_performance_trending_dashboard(table, input_data):
     table_performance_trending_dashboard
     specified in the specification file.
 
+    # TODO: Use AvgStdevMetadata data type.
+
     :param table: Table to generate.
     :param input_data: Data to process.
     :type table: pandas.Series
@@ -723,21 +729,31 @@ def table_performance_trending_dashboard(table, input_data):
                                           "data": OrderedDict()}
                 try:
                     tbl_dict[tst_name]["data"][str(build)] =  \
-                        tst_data["result"]["throughput"]
+                        tst_data["result"]["receive-rate"]
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
 
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
-        if len(tbl_dict[tst_name]["data"]) < 2:
+        data_t = tbl_dict[tst_name]["data"]
+        if len(data_t) < 2:
             continue
-
-        data_t = pd.Series(tbl_dict[tst_name]["data"])
 
         classification_lst, avgs = classify_anomalies(data_t)
 
-        win_size = min(data_t.size, table["window"])
-        long_win_size = min(data_t.size, table["long-trend-window"])
+        win_size = min(len(data_t), table["window"])
+        long_win_size = min(len(data_t), table["long-trend-window"])
+
+
+        # if len(tbl_dict[tst_name]["data"]) < 2:
+        #     continue
+        #
+        # data_t = pd.Series(tbl_dict[tst_name]["data"])
+        #
+        # classification_lst, avgs = classify_anomalies(data_t)
+        #
+        # win_size = min(data_t.size, table["window"])
+        # long_win_size = min(data_t.size, table["long-trend-window"])
         try:
             max_long_avg = max(
                 [x for x in avgs[-long_win_size:-win_size]
