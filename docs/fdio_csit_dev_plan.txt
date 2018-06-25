@@ -1,0 +1,84 @@
+fdio_csit_dev_plan.txt - DRAFT
+
+FD.io CSIT High-Level Development Plan
+======================================
+
+Proposed Work Organisation
+--------------------------
+
+* Each work area is covered by owners.
+  - Technical Lead (TL) - overall responsibility incl. design, detailed
+    work plan, DT coordination, managing dependencies.
+  - Development Team (DT) - doing work following the TL.
+  - Project Lead (PL) - involved in all work areas at higher level,
+    focusing on requirements definitions, design and work reviews,
+    acceptance.
+  - For work areas with large number of deliverables there could be
+    multiple TLs e.g. for operations, framework or test refactor.
+  - FD.io CSIT owners' initials listed with suffix strings:
+    "[TL;DT1..DTn;PL]", contact details at the end of this note.
+
+* Actual work breakdown tracked in FD.io CSIT jira:
+  - Tasks tracked in Jira under CSIT Epics.
+
+Plan Timeline
+-------------
+
+* Current release cycle:
+  - FD.io CSIT rls18.07, associated with VPP-18.07.
+* Sub-sequent releases:
+  - FD.io CSIT rls18.10, rls1812, ..
+  - Work not completed fully in current release cycle marked as backlog
+    for follow-on release(s).
+
+Plan Summary
+------------
+
+* Infrastructure, Framework, Tools
+  * New Skylake testbed infra to increase FD.io CSIT lab capacity.
+    [PM;EK,PM;MK]
+  * Introduce 2-node performance tests for new Skylake testbed infra.
+    [TF;JG,PM,TF;MK]
+  * Productize duration aware multi-rate MLR search. [VP;PM,VP;MK]
+  * Improve continuous performance trending: anomaly detection tunings,
+    add dpdk. [TF;TF,VP;MK]
+  * Complete and phase into production continuous per VPP patch
+    performance tests. [PM;PM,TF,VP;MK]
+  * Implement proper per-packet latency measurements, reporting and
+    analytics with TRex HdrHistogram. [TF;PM,TF,VP;MK]
+  * Evolve presentation and analytics layer (PAL) addressing growing
+    volumes of test measurement and telemetry data. [TF;EK,PM,TF,VP;MK]
+  * Start migration from CSIT_VIRL to VPP_Path (make_test) and
+    VPP_Device integration tests. [JG;EK,JG,TF;MK]
+  * Enhance CSIT reports, trending pages, PAL backend and trending test
+    code addressing wider set of data plane workloads and automate
+    CI/CD trending communication to FD.io community. [TF;PM,TF,VP;MK]
+  * Automate VPP performance regression search. [TF;TF,VP;MK]
+  * Other refactor: VAT to PAPI, data driven tests, suite duration,
+    infra overhead. [VP;JG,PM,TF,VP;MK]
+
+* Testing, Performance
+  * New tests: more TCP stack, SRv6, memif; AVF driver (no DPDK).
+    [MK;JG,PM,TF,VP;MK]
+  * VPP_Path: migration of P0 VIRL tests to VPP_make_test, followed by
+    qualification of VIRL P1, P2 tests; adding use case driven
+    functional tests.
+  * VPP_Device: new use cases per VPP_Device design note <add link>.
+  * VPP_Path_Device: continue to add relevant tests.
+
+* Other
+  * FD.io Operations. [All]
+  * ARM, Atom servers. [?]
+  * API changes across VPP major versions. [?]
+  * Plugin dependencies. [?]
+  * DPDK driver dependencies. [?]
+
+FD.io CSIT Contributors
+-----------------------
+
+* JG - Jan Gelety <jgelety@cisco.com>, irc: jgelety.
+* EK - Ed Kern <ejk@cisco.com>, irc: snergster.
+* MK - Maciek Konstantynowicz <mkonstan@cisco.com>, irc: mackonstan.
+* PM - Peter Mikus <pmikus@cisco.com>, irc: pmikus.
+* TF - Tibor Frank <tifrank@cisco.com>, irc: tifrank.
+* VP - Vratko Polak <vrpolak@cisco.com>, irc: vrpolak.
