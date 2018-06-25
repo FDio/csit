@@ -86,7 +86,13 @@ Optional: If RAID is not created on Haswells. Execute while Ubuntu install is ru
   - Set the next boot from HDD (without restart)
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -hdd`
 
-Optional: If installing Skylake machine, connect to IPMI and boot from PXE via F12
+Optional: If installing Skylake machine
+
+    - Get MAC address of LAN0
+    - `ipmitool -U ADMIN -H $HOST_ADDRESS raw 0x30 0x21 | tail -c 18`
+    - Reboot into PXE for next boot only
+    - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN chassis bootdev pxe`
+
 
 When installation is finished:
 

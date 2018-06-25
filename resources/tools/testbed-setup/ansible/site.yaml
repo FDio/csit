@@ -10,5 +10,5 @@
 - import_playbook: vppdevice.yaml
   tags: vppdevice
 
-- import_playbook: virl.yaml
-  tags: virl
+#- import_playbook: virl.yaml
+#  tags: virl
