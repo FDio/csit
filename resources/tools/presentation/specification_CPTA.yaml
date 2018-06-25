@@ -136,20 +136,18 @@
             step: "month"
             stepmode: "backward"
           - step: "all"
-        # rangeslider: {}
       margin:
         r: 20
         # b: 200
-        t: 5
+        t: 0
         l: 70
+        autoexpand: False
       legend:
         orientation: "h"
-        # y: -0.5
         xanchor: "center"
         traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
         tracegroupgap: 20
         bordercolor: "rgb(238, 238, 238)"
-        # borderwidth: 1
       hoverlabel:
         namelength: -1
 
@@ -209,11 +207,11 @@
       margin:
         r: 20
         # b: 200
-        t: 5
-        l: 70
+        t: 0
+        l: 20
+        autoexpand: False
       legend:
         orientation: "h"
-        # y: -0.5
         xanchor: "center"
         traceorder: "normal"
         tracegroupgap: 20
