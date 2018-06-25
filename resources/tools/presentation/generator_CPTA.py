@@ -22,7 +22,6 @@ import prettytable
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
 import plotly.exceptions as plerr
-import pandas as pd
 
 from collections import OrderedDict
 from datetime import datetime
@@ -116,23 +115,40 @@ def _generate_trending_traces(in_data, job_name, build_info,
     hover_text = list()
     xaxis = list()
     for idx in data_x:
-        if "dpdk" in job_name:
-            hover_text.append("dpdk-ref: {0}<br>csit-ref: mrr-weekly-build-{1}".
-                              format(build_info[job_name][str(idx)][1].
-                                     rsplit('~', 1)[0], idx))
-        elif "vpp" in job_name:
-            hover_text.append("vpp-ref: {0}<br>csit-ref: mrr-daily-build-{1}".
-                              format(build_info[job_name][str(idx)][1].
-                                     rsplit('~', 1)[0], idx))
         date = build_info[job_name][str(idx)][0]
+        hover_str = ("date: {0}<br>"
+                     "value: {1:,}<br>"
+                     "{2}-ref: {3}<br>"
+                     "csit-ref: mrr-{4}-build-{5}")
+        if "dpdk" in job_name:
+            hover_text.append(hover_str.format(
+                date,
+                int(in_data[idx].avg),
+                "dpdk",
+                build_info[job_name][str(idx)][1].
+                rsplit('~', 1)[0],
+                "weekly",
+                idx))
+        elif "vpp" in job_name:
+            hover_text.append(hover_str.format(
+                date,
+                int(in_data[idx].avg),
+                "vpp",
+                build_info[job_name][str(idx)][1].
+                rsplit('~', 1)[0],
+                "daily",
+                idx))
+
         xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
                               int(date[9:11]), int(date[12:])))
 
-    data_pd = pd.Series(data_y, index=xaxis)
+    data_pd = OrderedDict()
+    for key, value in zip(xaxis, data_y):
+        data_pd[key] = value
 
     anomaly_classification, avgs = classify_anomalies(data_pd)
 
-    anomalies = pd.Series()
+    anomalies = OrderedDict()
     anomalies_colors = list()
     anomalies_avgs = list()
     anomaly_color = {
@@ -141,11 +157,10 @@ def _generate_trending_traces(in_data, job_name, build_info,
         "progression": 1.0
     }
     if anomaly_classification:
-        for idx, item in enumerate(data_pd.items()):
+        for idx, (key, value) in enumerate(data_pd.iteritems()):
             if anomaly_classification[idx] in \
                     ("outlier", "regression", "progression"):
-                anomalies = anomalies.append(pd.Series([item[1], ],
-                                                       index=[item[0], ]))
+                anomalies[key] = value
                 anomalies_colors.append(
                     anomaly_color[anomaly_classification[idx]])
                 anomalies_avgs.append(avgs[idx])
@@ -155,7 +170,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
 
     trace_samples = plgo.Scatter(
         x=xaxis,
-        y=data_y,
+        y=[y.avg for y in data_y],
         mode='markers',
         line={
             "width": 1
@@ -169,7 +184,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             "symbol": "circle",
         },
         text=hover_text,
-        hoverinfo="x+y+text+name"
+        hoverinfo="text"
     )
     traces = [trace_samples, ]
 
@@ -185,7 +200,9 @@ def _generate_trending_traces(in_data, job_name, build_info,
             },
             showlegend=False,
             legendgroup=name,
-            name='{name}-trend'.format(name=name)
+            name='{name}'.format(name=name),
+            text=["{0:,}".format(int(avg)) for avg in avgs],
+            hoverinfo="text+name"
         )
         traces.append(trace_trend)
 
@@ -280,7 +297,7 @@ def _generate_all_charts(spec, input_data):
                         chart_data[test_name] = OrderedDict()
                     try:
                         chart_data[test_name][int(index)] = \
-                            test["result"]["throughput"]
+                            test["result"]["receive-rate"]
                     except (KeyError, TypeError):
                         pass
 
@@ -289,6 +306,8 @@ def _generate_all_charts(spec, input_data):
             tst_lst = list()
             for bld in builds_dict[job_name]:
                 itm = tst_data.get(int(bld), '')
+                if not isinstance(itm, str):
+                    itm = itm.avg
                 tst_lst.append(str(itm))
             csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
         # Generate traces:
