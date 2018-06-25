@@ -17,6 +17,9 @@ x520-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-1t1c-x520.html"></iframe>
     <p><br><br></p>
     </center>
@@ -34,6 +37,9 @@ x520-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-2t2c-x520.html"></iframe>
     <p><br><br></p>
     </center>
@@ -51,6 +57,9 @@ x520-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-4t4c-x520.html"></iframe>
     <p><br><br></p>
     </center>
@@ -71,6 +80,9 @@ x710-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-1t1c-x710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -88,6 +100,9 @@ x710-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-2t2c-x710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -105,6 +120,9 @@ x710-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-4t4c-x710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -125,6 +143,9 @@ xl710-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-1t1c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -142,6 +163,9 @@ xl710-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-2t2c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -159,6 +183,9 @@ xl710-64b
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-64b-4t4c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -179,6 +206,9 @@ x520-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-1t1c-x520.html"></iframe>
     <p><br><br></p>
     </center>
@@ -196,6 +226,9 @@ x520-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-2t2c-x520.html"></iframe>
     <p><br><br></p>
     </center>
@@ -213,6 +246,9 @@ x520-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-4t4c-x520.html"></iframe>
     <p><br><br></p>
     </center>
@@ -233,6 +269,9 @@ x710-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-1t1c-x710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -250,6 +289,9 @@ x710-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-2t2c-x710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -267,6 +309,9 @@ x710-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-4t4c-x710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -287,6 +332,9 @@ xl710-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-1t1c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -304,6 +352,9 @@ xl710-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-2t2c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
@@ -321,6 +372,9 @@ xl710-imix
 .. raw:: html
 
     </b>
+    Links to builds:
+    <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-dpdk-imix-4t4c-xl710.html"></iframe>
     <p><br><br></p>
     </center>
