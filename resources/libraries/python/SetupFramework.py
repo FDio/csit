@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -47,17 +47,17 @@ def pack_framework_dir():
         directory = None
 
     if directory is not None:
-        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-",
+        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="csit-testing-",
                                      dir="{0}".format(directory))
     else:
-        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-")
+        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="csit-testing-")
     file_name = tmpfile.name
     tmpfile.close()
 
     proc = Popen(
         split("tar --sparse --exclude-vcs --exclude=output*.xml "
-              "--exclude=./tmp --exclude=*.deb --exclude=*.rpm -zcf {0} .".
-              format(file_name)), stdout=PIPE, stderr=PIPE)
+              "--exclude=./tmp --exclude=*.deb --exclude=*.rpm -zcf {0} ."
+              .format(file_name)), stdout=PIPE, stderr=PIPE)
     (stdout, stderr) = proc.communicate()
 
     logger.debug(stdout)
@@ -65,7 +65,7 @@ def pack_framework_dir():
 
     return_code = proc.wait()
     if return_code != 0:
-        raise Exception("Could not pack testing framework.")
+        raise RuntimeError("Could not pack testing framework.")
 
     return file_name
 
@@ -98,18 +98,16 @@ def extract_tarball_at_node(tarball, node):
     :returns: nothing
     :raises Excpetion: When failed to unpack tarball.
     """
-    logger.console('Extracting tarball to {0} on {1}'.format(
-        con.REMOTE_FW_DIR, node['host']))
+    logger.console('Extracting tarball to {0} on {1}'
+                   .format(con.REMOTE_FW_DIR, node['host']))
     ssh = SSH()
     ssh.connect(node)
-
-    cmd = 'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; ' \
-        'rm -f {0}'.format(tarball, con.REMOTE_FW_DIR)
-    (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=30)
+    (ret_code, _, _) = ssh.exec_command(
+        'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; rm -f {0}'
+        .format(tarball, con.REMOTE_FW_DIR), timeout=30)
     if ret_code != 0:
-        logger.error('Unpack error: {0}'.format(stderr))
-        raise Exception('Failed to unpack {0} at node {1}'.format(
-            tarball, node['host']))
+        raise RuntimeError('Failed to unpack {0} at node {1}'
+                           .format(tarball, node['host']))
 
 
 def create_env_directory_at_node(node):
@@ -120,19 +118,18 @@ def create_env_directory_at_node(node):
     :returns: nothing
     :raises Exception: When failed to setup virtualenv.
     """
-    logger.console('Extracting virtualenv, installing requirements.txt '
-                   'on {0}'.format(node['host']))
+    logger.console('Extracting virtualenv, installing requirements.txt on {0}'
+                   .format(node['host']))
     ssh = SSH()
     ssh.connect(node)
-    (ret_code, stdout, stderr) = ssh.exec_command(
+    (ret_code, _, _) = ssh.exec_command(
         'cd {0} && rm -rf env && '
         'virtualenv --system-site-packages --never-download env && '
         '. env/bin/activate && '
         'pip install -r requirements.txt'
         .format(con.REMOTE_FW_DIR), timeout=100)
     if ret_code != 0:
-        logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
-        raise Exception('Virtualenv setup failed')
+        raise RuntimeError('Virtualenv setup failed')
     else:
         logger.console('Virtualenv created on {0}'.format(node['host']))
 
@@ -155,9 +152,9 @@ def setup_node(args):
         extract_tarball_at_node(remote_tarball, node)
         if node['type'] == NodeType.TG:
             create_env_directory_at_node(node)
-    except Exception as exc:
-        logger.error("Node {0} setup failed, error:'{1}'".format(node['host'],
-                                                                 exc.message))
+    except RuntimeError as exc:
+        logger.error("Node {0} setup failed, error:'{1}'"
+                     .format(node['host'], exc.message))
         return False
     else:
         logger.console('Setup of node {0} done'.format(node['host']))
@@ -174,42 +171,24 @@ def delete_local_tarball(tarball):
     call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
-def delete_openvpp_testing_stuff(node):
-    """Delete openvpp-testing directory and tarball in /tmp/ on given node.
+def delete_framework_dir(node):
+    """Delete framework directory in /tmp/ on given node.
 
-    :param node: Node to delete openvpp-testing stuff on.
+    :param node: Node to delete framework directory on.
     :type node: dict
     """
-    logger.console('Deleting openvpp-testing directory and tarball on {0}'
+    logger.console('Deleting framework directory on {0}'
                    .format(node['host']))
     ssh = SSH()
     ssh.connect(node)
-    (ret_code, stdout, stderr) = ssh.exec_command(
-        'cd {0} && sudo rm -rf openvpp-testing*'.format(
-            con.REMOTE_FW_DIR), timeout=100)
-    if ret_code != 0:
-        logger.console('Deleting opvenvpp-testing stuff failed on node {0}: {1}'
-                       .format(node, stdout + stderr))
-
-
-def remove_env_directory_at_node(node):
-    """Remove virtualenv directory on given node.
-
-    :param node: Node to remove virtualenv on.
-    :type node: dict
-    """
-    logger.console('Removing virtualenv directory on {0}'.format(node['host']))
-    ssh = SSH()
-    ssh.connect(node)
-    (ret_code, stdout, stderr) = ssh.exec_command(
-        'cd {0} && sudo rm -rf openvpp-testing*'
+    (ret_code, _, _) = ssh.exec_command(
+        'sudo rm -rf {0}'
         .format(con.REMOTE_FW_DIR), timeout=100)
     if ret_code != 0:
-        logger.console('Virtualenv removing failed on node {0}: {1}'.format(
-            node, stdout + stderr))
+        logger.console('Deleting framework directory failed on node {0}'
+                       .format(node))
 
 
-# pylint: disable=broad-except
 def cleanup_node(node):
     """Run all clean-up methods for a node.
 
@@ -222,12 +201,10 @@ def cleanup_node(node):
     :rtype: bool
     """
     try:
-        delete_openvpp_testing_stuff(node)
-        if node['type'] == NodeType.TG:
-            remove_env_directory_at_node(node)
-    except Exception as exc:
-        logger.error("Node {0} cleanup failed, error:'{1}'".format(
-            node['host'], exc.message))
+        delete_framework_dir(node)
+    except RuntimeError as exc:
+        logger.error("Node {0} cleanup failed, error:'{1}'"
+                     .format(node['host'], exc.message))
         return False
     else:
         logger.console('Cleanup of node {0} done'.format(node['host']))
@@ -248,6 +225,7 @@ class SetupFramework(object):
 
         :param nodes: Topology nodes.
         :type nodes: dict
+        :raises RuntimeError: When failed to setup framework.
         """
 
         tarball = pack_framework_dir()
@@ -271,11 +249,17 @@ class SetupFramework(object):
             'Executing node setups in parallel, waiting for processes to end')
         result.wait()
 
-        logger.info('Results: {0}'.format(result.get()))
+        results = result.get()
+        node_success = all(results)
+        logger.info('Results: {0}'.format(results))
 
-        logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
-        logger.console('All nodes are ready')
+        if node_success:
+            logger.console('All nodes are ready')
+        else:
+            logger.console('Failed to setup framework on all the nodes')
+            raise RuntimeError('Failed to setup framework on all the nodes')
+
 
 
 class CleanupFramework(object):
@@ -303,7 +287,11 @@ class CleanupFramework(object):
             'Executing node cleanups in parallel, waiting for processes to end')
         result.wait()
 
-        logger.info('Results: {0}'.format(result.get()))
+        results = result.get()
+        node_success = all(results)
+        logger.info('Results: {0}'.format(results))
 
-        logger.trace('All topology nodes cleaned up')
-        logger.console('All nodes cleaned up')
+        if node_success:
+            logger.console('All nodes cleaned up')
+        else:
+            logger.console('Failed to cleaned up framework on all the nodes')
