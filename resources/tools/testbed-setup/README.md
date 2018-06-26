@@ -92,6 +92,10 @@ Optional: If installing Skylake machine
     - `ipmitool -U ADMIN -H $HOST_ADDRESS raw 0x30 0x21 | tail -c 18`
     - Reboot into PXE for next boot only
     - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN chassis bootdev pxe`
+    - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN power reset`
+    - For live watching SOL (Serial-over-LAN console)
+    - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN sol activate`
+    - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN sol deactivate`
 
 
 When installation is finished:
