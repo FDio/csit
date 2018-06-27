@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16bc5611_0b3f56e4",
+        "filename": "PyPI/jumpavg/jumpavg/AvgStdevMetadataFactory.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T13:27:08Z",
+      "side": 0,
+      "message": "Put this into abs() if negative values are possible.",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "2ca419cc7795615c3954ca3e499b99599ae44706",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63529f46_8bf536d6",
+        "filename": "resources/tools/presentation/requirements.txt",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T13:27:08Z",
+      "side": 0,
+      "message": "How do imports work if you comment this out?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "2ca419cc7795615c3954ca3e499b99599ae44706",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
