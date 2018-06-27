@@ -28,6 +28,7 @@ __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
 # TODO: load priv key
 
+logging.getLogger("paramiko").setLevel(logging.WARNING)
 
 class SSHTimeout(Exception):
     """This exception is raised when a timeout occurs."""
