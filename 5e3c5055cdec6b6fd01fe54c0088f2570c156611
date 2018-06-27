@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d17e5387_e9ed9958",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T17:13:39Z",
+      "side": 1,
+      "message": "What does your first \"this\" stand for?\nAre you talking about an implementation of the TODO introducing new risks, or just about such implementation still not making virl images flexible enough?",
+      "parentUuid": "033c8763_5aaa17d5",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fcdb355b_2efeeb09",
         "filename": "requirements.txt",
         "patchSetId": 4
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a403ae46_2c7bc4bc",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T17:13:39Z",
+      "side": 1,
+      "message": "\u003e not downloading everything from internet\n\nWe are not there yet. Looking at a console output [0], I see two kinds of download (from Internet to Jenkins executor):\n\n  02:05:46  Get:26 http://ca.archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [796 kB]\n  02:06:21    Downloading https://files.pythonhosted.org/packages/ee/cd/d20c1e121b09697bf4d7b1b9edde6573fc7d54eefc56860f457a7edfc0de/scapy-2.3.1.zip (1.1MB)\n\n\u003e Complete freeze of system.\n\u003e This way CSIT code is very stable\n\nI agree, we should fix everything we do not want to change. But sometimes we want to change some things in the middle of the release cycle. Typically the things we want to change are in CSIT git repo. Packages listed in this file do not affect the VPP performance, but they limit what can we use for driving the tests and for initial processing of the results.\n\n\u003e we do not need to care about between patch changes of TB\n\u003e as it is fully controlled\n\nFor the test to work, we need a machine to run VPP (SUT), a machinde to run Trex (TG) and a machine to run Robot (no acronym). Is the Robot machine the part of testbed, or is it outside (as Jenkis and Nexus)?\nAlso, we are already allowing some flexibility for utilities such as traffic profiles.\n\n\u003e I would prefer to PIP packages be created on machine\n\u003e directly in virtualenv to avoid using internet connection.\n\nWe can use the executor to download package archive from Internet (or approproate LF cache), push it where needed, and pip install there from the archive file.\n\n\u003e Full automated and unattended CI/CD.\n\u003e This principle must be met.\n\nThis principle is not met for changes which affect virl images.\nIt is not clear which type of change does require automatic verification, and which does not.\n\n\u003e no manual intervention during gerrit verify\n\nIf there is a manual \"script\" to follow, it can be scripted (assuming we deal with various credentials).\nAt least I think the manual \"script\" can be made deterministic enough to not require any intelligent agent.\nSo, I believe automatic process can be created. I am just not sure if it is worth the time right now, as the number of edits to verify will be quite low for 1807.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master/180/console-timestamp.log.gz",
+      "parentUuid": "9f7d7d38_18fac533",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "072fd3ac_9638ca7e",
         "filename": "requirements.txt",
         "patchSetId": 4
@@ -106,6 +154,30 @@
       "writtenOn": "2018-06-25T09:02:22Z",
       "side": 1,
       "message": "Long term, due to many factors. We are missing evaluation critearia.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 68
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1726de8d_f697fa09",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T17:13:39Z",
+      "side": 1,
+      "message": "I imagine something like current virl verify, just more stable. Select few tests (both functional and performance) required to pass.",
+      "parentUuid": "072fd3ac_9638ca7e",
       "range": {
         "startLine": 31,
         "startChar": 0,
