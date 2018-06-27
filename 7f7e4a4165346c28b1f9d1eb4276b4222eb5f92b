@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "5e36b1f2_33431354",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-iacldstbase-ndrpdrdisc.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T05:44:42Z",
+      "side": 1,
+      "message": "Pls move to *** Settings *** section above",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 76
+      },
+      "revId": "7f7e4a4165346c28b1f9d1eb4276b4222eb5f92b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83c4798a_3100440b",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-iacldstbase-ndrpdrdisc.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T05:44:42Z",
+      "side": 1,
+      "message": "Can you please follow the code structure used in other suites? With named params. Thanks.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 63
+      },
+      "revId": "7f7e4a4165346c28b1f9d1eb4276b4222eb5f92b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14aa1a47_6e3d89ec",
         "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-iacldstbase-ndrpdrdisc.robot",
         "patchSetId": 2
