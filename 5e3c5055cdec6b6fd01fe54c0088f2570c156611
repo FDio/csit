@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "9f7d7d38_18fac533",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T07:12:35Z",
+      "side": 1,
+      "message": "4) Full automated and unattended CI/CD. This principle must be met. This means no manual intervention during gerrit verify (like changing enviromentent variables, packages, and so on) which you are now doing.",
+      "parentUuid": "18b5191b_de6bb810",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "072fd3ac_9638ca7e",
         "filename": "requirements.txt",
         "patchSetId": 4
