@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3e566e7_880f23c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:19:44Z",
+      "side": 1,
+      "message": "detect",
+      "range": {
+        "startLine": 9,
+        "startChar": 46,
+        "endLine": 9,
+        "endChar": 53
+      },
+      "revId": "37bad0a9a432a3a7ad4d905bec97b6dc72e5c4b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1919c048_433e14f4",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:19:44Z",
+      "side": 1,
+      "message": "RuntimeError\nApplies elsewhere.",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "37bad0a9a432a3a7ad4d905bec97b6dc72e5c4b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2d336f0_c4679f62",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:19:44Z",
+      "side": 1,
+      "message": "I think RuntimeError is narrow enough, so this is not needed.",
+      "range": {
+        "startLine": 137,
+        "startChar": 10,
+        "endLine": 137,
+        "endChar": 30
+      },
+      "revId": "37bad0a9a432a3a7ad4d905bec97b6dc72e5c4b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29b7d04a_a8b024c9",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:19:44Z",
+      "side": 1,
+      "message": "Do we want to raise something expected in line 205?",
+      "range": {
+        "startLine": 187,
+        "startChar": 20,
+        "endLine": 187,
+        "endChar": 21
+      },
+      "revId": "37bad0a9a432a3a7ad4d905bec97b6dc72e5c4b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00d3d707_4ec03fe9",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:19:44Z",
+      "side": 1,
+      "message": "Document return values.",
+      "range": {
+        "startLine": 259,
+        "startChar": 12,
+        "endLine": 259,
+        "endChar": 18
+      },
+      "revId": "37bad0a9a432a3a7ad4d905bec97b6dc72e5c4b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
