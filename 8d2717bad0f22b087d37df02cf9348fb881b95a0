@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "10ced3a1_eb3e68ba",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T13:55:08Z",
+      "side": 1,
+      "message": "Until we have some Jira tasks, ownership should be stored somewhere.\nI can imagine myself actively forgetting I am PL for \"other refactor\".",
+      "parentUuid": "68b7a3ce_a2892de3",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "8d2717bad0f22b087d37df02cf9348fb881b95a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f65aea61_bbcc1feb",
         "filename": "docs/fdio_csit_dev_plan.txt",
         "patchSetId": 2
