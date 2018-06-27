@@ -1,0 +1,308 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8428007_388868c1",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 1508,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Line too long \u003e80char",
+      "range": {
+        "startLine": 1496,
+        "startChar": 0,
+        "endLine": 1508,
+        "endChar": 7
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7477fc6_1e1b551c",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Line too long \u003e80ch",
+      "range": {
+        "startLine": 1535,
+        "startChar": 0,
+        "endLine": 1536,
+        "endChar": 98
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c63ce37b_48e9093b",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "1 blank line",
+      "range": {
+        "startLine": 638,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 0
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "342ca93f_f94981ea",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Documentation part is missing. Missing argument documentation",
+      "range": {
+        "startLine": 640,
+        "startChar": 0,
+        "endLine": 641,
+        "endChar": 59
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00177987_dafe1016",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-vxlansrc253.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Please add copyright and documentation of profile (see other profile for inspiration)",
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15f7c72a_1f0c84e9",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-vxlansrc253.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 89
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3af942cc_ed3ca12e",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-vxlansrc253.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 89
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6960e16f_7b8731a6",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 7
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef5bb4e9_6364294f",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 85
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef842ce7_595bb400",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "| | And Run Keyword If | ${max_pkt_size} \u003c ${1522}\n| | ... | Add no multi seg to all DUTs",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 36
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14f8abd2_3a652a68",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Add:\n| | ${jumbo_frames}\u003d | Set Variable If\n| | ... | ${max_pkt_size} \u003c ${1522} | ${False} | ${True}",
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23818147_7f3ea5e9",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "Add Vm parameter:\n\n| | ... | jumbo_frames\u003d${jumbo_frames}",
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96df25f7_fca977be",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "reason for this?",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 65
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "03d1f878_4540f78e",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-27T06:02:48Z",
+      "side": 1,
+      "message": "PLease use the code formating with named variables (check other suites for inspiration)",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 63
+      },
+      "revId": "8858eff3584b6238a17c9c7d6797603e675e8ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
