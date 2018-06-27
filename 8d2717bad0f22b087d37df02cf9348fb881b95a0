@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c88ed8a0_8d217982",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:20:38Z",
+      "side": 1,
+      "message": "It would be nice to have a list with full names, somewhere.",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "8d2717bad0f22b087d37df02cf9348fb881b95a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f65aea61_bbcc1feb",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:20:38Z",
+      "side": 1,
+      "message": "make",
+      "range": {
+        "startLine": 73,
+        "startChar": 48,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "8d2717bad0f22b087d37df02cf9348fb881b95a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c032fe65_19e56f59",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T12:20:38Z",
+      "side": 1,
+      "message": "This reads like a subgroup within CSIT, focused on Continuous Performance Lab, as if there were other subgroups (Continuous Functionality Lab, or Release Report Group, or even Honeycomb Testing Group). But there are no such subgroups.\n\nThis document should be talking about CSIT as a whole, including possible items not related to performance testing.",
+      "range": {
+        "startLine": 81,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 18
+      },
+      "revId": "8d2717bad0f22b087d37df02cf9348fb881b95a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
