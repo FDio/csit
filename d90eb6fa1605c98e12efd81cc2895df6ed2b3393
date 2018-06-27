@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa4e66e1_1d86c511",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-27T14:48:33Z",
+      "side": 1,
+      "message": "This \"then\" part looks to be the same as lines 120-128. Is there a job_name which do not need this?",
+      "range": {
+        "startLine": 129,
+        "startChar": 30,
+        "endLine": 129,
+        "endChar": 31
+      },
+      "revId": "d90eb6fa1605c98e12efd81cc2895df6ed2b3393",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
