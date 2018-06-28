@@ -30,22 +30,25 @@ class AvgStdevMetadataFactory(object):
         :returns: The metadata matching the values.
         :rtype: AvgStdevMetadata
         """
-        sum_0 = 0
-        sum_1 = 0.0
-        sum_2 = 0.0
+        # Using Welford method to be more resistant to rounding errors.
+        # Adapted from code for sample standard deviation at:
+        # https://www.johndcook.com/blog/standard_deviation/
+        # The logic of plus operator is taken from
+        # https://www.johndcook.com/blog/skewness_kurtosis/
+        size = 0
+        avg = 0.0
+        moment_2 = 0.0
         for value in values:
-            if isinstance(value, AvgStdevMetadata):
-                sum_0 += value.size
-                sum_1 += value.avg * value.size
-                sum_2 += value.stdev * value.stdev * value.size
-                sum_2 += value.avg * value.avg * value.size
-            else:  # The value is assumed to be float.
-                sum_0 += 1
-                sum_1 += value
-                sum_2 += value * value
-        if sum_0 < 1:
+            if not isinstance(value, AvgStdevMetadata):
+                value = AvgStdevMetadata(size=1, avg=value)
+            old_size = size
+            delta = value.avg - avg
+            size += value.size
+            avg += delta * value.size / size
+            moment_2 += value.stdev * value.stdev * value.size
+            moment_2 += delta * delta * old_size * value.size / size
+        if size < 1:
             return AvgStdevMetadata()
-        avg = sum_1 / sum_0
-        stdev = math.sqrt(sum_2 / sum_0 - avg * avg)
-        ret_obj = AvgStdevMetadata(size=sum_0, avg=avg, stdev=stdev)
+        stdev = math.sqrt(moment_2 / size)
+        ret_obj = AvgStdevMetadata(size=size, avg=avg, stdev=stdev)
         return ret_obj
