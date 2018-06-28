@@ -121,7 +121,7 @@
 
 | tc05-64B-2t2c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single\
 | | ... | trial throughput test.
@@ -133,7 +133,7 @@
 
 | tc06-1518B-2t2c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
 | | ... | trial throughput test.
@@ -145,7 +145,7 @@
 
 | tc07-9000B-2t2c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
@@ -157,7 +157,7 @@
 
 | tc08-IMIX-2t2c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
 | | ... | trial throughput test.
@@ -170,7 +170,7 @@
 
 | tc09-64B-4t4c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 4 phy cores, 2 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single\
 | | ... | trial throughput test.
@@ -182,7 +182,7 @@
 
 | tc10-1518B-4t4c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 4 phy cores, 2 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
 | | ... | trial throughput test.
@@ -194,7 +194,7 @@
 
 | tc11-9000B-4t4c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 4 phy cores, 2 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
@@ -206,7 +206,7 @@
 
 | tc12-IMIX-4t4c-eth-l2xcbase-testpmd-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with \
 | | ... | 4 phy cores, 2 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
 | | ... | trial throughput test.

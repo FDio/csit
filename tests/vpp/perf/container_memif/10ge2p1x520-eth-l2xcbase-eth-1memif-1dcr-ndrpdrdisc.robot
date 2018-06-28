@@ -280,7 +280,7 @@
 
 | tc17-64B-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
@@ -290,7 +290,7 @@
 
 | tc18-64B-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
@@ -300,7 +300,7 @@
 
 | tc19-1518B-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
@@ -310,7 +310,7 @@
 
 | tc20-1518B-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
@@ -320,7 +320,7 @@
 
 | tc21-9000B-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
@@ -330,7 +330,7 @@
 
 | tc22-9000B-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
@@ -340,7 +340,7 @@
 
 | tc23-IMIX-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
@@ -351,7 +351,7 @@
 
 | tc24-IMIX-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.

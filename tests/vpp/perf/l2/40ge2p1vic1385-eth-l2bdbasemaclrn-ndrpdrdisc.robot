@@ -328,7 +328,7 @@
 
 | tc21-IMIX-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 4 thread, 4 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with  4 phy core,\
 | | ... | 2 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frame size using binary search start at\
 | | ... | 24.5G rate, step 50kpps.

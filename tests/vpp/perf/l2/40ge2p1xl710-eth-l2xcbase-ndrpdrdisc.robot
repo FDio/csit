@@ -246,7 +246,7 @@
 
 | tc21-IMIX-4t4c-eth-l2xcbase-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core, \
+| | ... | [Cfg] DUT runs L2XC switching config with  4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
 | | ... | using binary search start at 24.5G rate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
