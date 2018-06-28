@@ -22,6 +22,30 @@
       "revId": "d05159d1b13036b5781070f33806e3aee08d5b61",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53bd3c79_655be5df",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T12:16:22Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "e9e8a0a9_f67f8ada",
+      "range": {
+        "startLine": 524,
+        "startChar": 20,
+        "endLine": 524,
+        "endChar": 26
+      },
+      "revId": "d05159d1b13036b5781070f33806e3aee08d5b61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
