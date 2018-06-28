@@ -57,6 +57,8 @@ schema;type_interfaces:
           required: yes
         driver: &type_interface_mapping_driver
           type: str
+        uio_driver: &type_interface_mapping_uio_driver
+          type: str
         model:
           type: str
           enum: [Cisco-VIC-1227, Cisco-VIC-1385, Intel-X520-DA2,
