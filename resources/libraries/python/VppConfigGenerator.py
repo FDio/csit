@@ -352,6 +352,15 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'socket-mem']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_num_mbufs(self, value):
+        """Add DPDK number of I/O buffers.
+
+        :param value: Number of I/O buffers.
+        :type value: int
+        """
+        path = ['dpdk', 'num-mbufs']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_uio_driver(self, value=None):
         """Add DPDK uio-driver configuration.
 
