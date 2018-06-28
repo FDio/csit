@@ -15,7 +15,6 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.SetupFramework
-| Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Suite Setup | Run Keywords | Setup Functional Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${VPP_PKG_DIR}

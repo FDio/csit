@@ -28,6 +28,7 @@
 | ... | Stop VPP Service on DUT | ${node}
 | ... | AND | Archive Honeycomb Logs | ${node} | perf=${True}
 | ... | AND | Stop honeycomb service on DUTs | ${node}
+| ... | AND | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup suite for Honeycomb performance tests

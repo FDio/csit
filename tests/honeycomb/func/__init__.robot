@@ -17,7 +17,6 @@
 
 *** Settings ***
 | Library | resources.libraries.python.SetupFramework
-| Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources/libraries/python/honeycomb/HcPersistence.py
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot

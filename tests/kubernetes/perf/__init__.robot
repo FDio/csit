@@ -29,8 +29,8 @@
 | ...         | AND          | Update all numa nodes | ${nodes}
 | ...                        | skip_tg=${True}
 | ...         | AND          | Update NIC interface names on all duts | ${nodes}
-| ...
-| Suite Teardown | Destroy Kubernetes on all duts | ${nodes}
+| Suite Teardown | Run Keywords | Destroy Kubernetes on all duts | ${nodes}
+| ...            | AND          | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables

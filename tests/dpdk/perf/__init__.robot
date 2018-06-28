@@ -22,6 +22,7 @@
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Numa Nodes
 | ...                        | ${nodes} | skip_tg=${True}
+| Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables
