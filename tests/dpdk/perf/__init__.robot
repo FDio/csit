@@ -15,6 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.DPDK.DPDKTools
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
@@ -22,6 +23,7 @@
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Numa Nodes
 | ...                        | ${nodes} | skip_tg=${True}
+| Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables

@@ -224,8 +224,7 @@ class SetupFramework(object):
 
         :param nodes: Topology nodes.
         :type nodes: dict
-        :returns: True - success, False - error
-        :rtype: bool
+        :raises RuntimeError: If setup framework failed.
         """
 
         tarball = pack_framework_dir()
@@ -256,10 +255,8 @@ class SetupFramework(object):
         delete_local_tarball(tarball)
         if node_success:
             logger.console('All nodes are ready')
-            return True
         else:
-            logger.console('Failed to setup framework')
-            return False
+            raise RuntimeError('Failed to setup framework')
 
 
 class CleanupFramework(object):
@@ -271,8 +268,7 @@ class CleanupFramework(object):
 
         :param nodes: Topology nodes.
         :type nodes: dict
-        :returns: True - success, False - error
-        :rtype: bool
+        :raises RuntimeError: If cleanup framework failed.
         """
         # Turn off logging since we use multiprocessing
         log_level = BuiltIn().set_log_level('NONE')
@@ -295,7 +291,5 @@ class CleanupFramework(object):
 
         if node_success:
             logger.console('All nodes cleaned up')
-            return True
         else:
-            logger.console('Failed to cleaned up framework')
-            return False
+            raise RuntimeError('Failed to cleaned up framework')

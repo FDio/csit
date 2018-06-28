@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.topology.Topology
 | Library | Collections
 | Suite Setup | Run Keywords | Setup performance global Variables
@@ -29,8 +30,8 @@
 | ...         | AND          | Update all numa nodes | ${nodes}
 | ...                        | skip_tg=${True}
 | ...         | AND          | Update NIC interface names on all duts | ${nodes}
-| ...
-| Suite Teardown | Destroy Kubernetes on all duts | ${nodes}
+| Suite Teardown | Run Keywords | Destroy Kubernetes on all duts | ${nodes}
+| ...            | AND          | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables
