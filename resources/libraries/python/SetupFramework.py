@@ -84,6 +84,7 @@ def copy_tarball_to_node(tarball, node):
     ssh.connect(node)
 
     ssh.scp(tarball, "/tmp/")
+    logger.console('Copying tarball to {0} done'.format(node['host']))
 
 
 def extract_tarball_at_node(tarball, node):
@@ -108,6 +109,8 @@ def extract_tarball_at_node(tarball, node):
     if ret_code != 0:
         raise RuntimeError('Failed to extract {0} at node {1}'
                            .format(tarball, node['host']))
+    logger.console('Extracting tarball to {0} on {1} done'
+                   .format(con.REMOTE_FW_DIR, node['host']))
 
 
 def create_env_directory_at_node(node):
@@ -131,8 +134,8 @@ def create_env_directory_at_node(node):
     if ret_code != 0:
         raise RuntimeError('Virtualenv setup including requirements.txt on {0}'
                            .format(node['host']))
-    else:
-        logger.console('Virtualenv on {0} created'.format(node['host']))
+
+    logger.console('Virtualenv on {0} created'.format(node['host']))
 
 
 def setup_node(args):
