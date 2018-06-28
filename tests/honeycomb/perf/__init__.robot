@@ -21,6 +21,7 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/performance.robot
 | Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.honeycomb.Performance
 | Suite Setup | Setup suite for Honeycomb performance tests
@@ -28,6 +29,7 @@
 | ... | Stop VPP Service on DUT | ${node}
 | ... | AND | Archive Honeycomb Logs | ${node} | perf=${True}
 | ... | AND | Stop honeycomb service on DUTs | ${node}
+| ... | AND | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup suite for Honeycomb performance tests
