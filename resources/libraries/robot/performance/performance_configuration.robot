@@ -101,8 +101,7 @@
 | | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
 | | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
 | | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
-| | ... | /30 prefix on DUT1 link. Set routing on DUT node with prefix /24 and
-| | ... | next hop of neighbour DUT interface IPv4 address.
+| | ... | /30 prefix on DUT1 link.
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
@@ -513,6 +512,23 @@
 | | Policer Classify Set Match IP | 10.10.10.2 | ${False}
 | | Policer Set Configuration
 
+| Initialize IPv6 forwarding in 2-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
+| | ... | topology. Get the interface MAC addresses and setup neighbour on all
+| | ... | VPP interfaces. Setup IPv6 addresses with /128 prefixes on all
+| | ... | interfaces.
+| | ...
+| | ${prefix}= | Set Variable | 64
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2001:1::1 | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | 2001:2::1 | ${prefix}
+| | Suppress ICMPv6 router advertisement message | ${nodes}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if2} | 2001:2::2 | ${tg1_if2_mac}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | Initialize IPv6 forwarding in 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
@@ -537,6 +553,7 @@
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:3::1 | ${dut1_if2_mac}
 | | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | 2001:3::2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
+| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | [Documentation]
@@ -579,6 +596,7 @@
 | | ... | interface=${dut2_if1} | count=${count}
 | | Vpp Route Add | ${dut2} | 2001:2::0 | ${host_prefix} | 2001:5::2
 | | ... | interface=${dut2_if2} | count=${count}
+| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize IPv6 iAcl whitelist in 3-node circular topology
 | | [Documentation]
