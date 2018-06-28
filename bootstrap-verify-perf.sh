@@ -308,6 +308,8 @@ for TAG in "${TAGS[@]}"; do
         EXPANDED_TAGS+=(" --include ${TAG} ")
     fi
 done
+# And now override all that logic.
+EXPANDED_TAGS=(" --include THIS")
 
 # Execute the test
 pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
