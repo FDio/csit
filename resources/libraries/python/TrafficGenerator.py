@@ -35,8 +35,9 @@ class TGDropRateSearchImpl(DropRateSearch):
     def __init__(self):
         super(TGDropRateSearchImpl, self).__init__()
 
-    def measure_loss(self, rate, frame_size, loss_acceptance,
-                     loss_acceptance_type, traffic_type, skip_warmup=False):
+    def measure_loss(
+            self, rate, frame_size, loss_acceptance, loss_acceptance_type,
+            traffic_type, skip_warmup=False, latency=False):
         """Runs the traffic and evaluate the measured results.
 
         :param rate: Offered traffic load.
@@ -67,14 +68,13 @@ class TGDropRateSearchImpl(DropRateSearch):
         elif tg_instance.node['subtype'] == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
             if skip_warmup:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_type,
-                                                       warmup_time=0.0)
+                tg_instance.trex_stl_start_remote_exec(
+                    self.get_duration(), unit_rate, frame_size, traffic_type,
+                    warmup_time=0.0, latency=latency)
             else:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_type)
+                tg_instance.trex_stl_start_remote_exec(
+                    self.get_duration(), unit_rate, frame_size, traffic_type,
+                    latency=latency)
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
@@ -505,9 +505,9 @@ class TrafficGenerator(AbstractMeasurer):
         if node['subtype'] is None:
             raise RuntimeError('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
-            self.trex_stl_start_remote_exec(duration, rate, framesize,
-                                            traffic_type, async_call, latency,
-                                            warmup_time=warmup_time)
+            self.trex_stl_start_remote_exec(
+                duration, rate, framesize, traffic_type, async_call,
+                latency=latency, warmup_time=warmup_time)
         else:
             raise NotImplementedError("TG subtype not supported")
 
