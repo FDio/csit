@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2a4258a0_135fcb4f",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-28T05:41:36Z",
+      "side": 1,
+      "message": "First one. See below. Technically virtualenv can be copied but AFAIK portability can suffer per package. E.g Setup.py sometime compile code base on platform. Do you know if it will work between x86 and ARM?",
+      "parentUuid": "d17e5387_e9ed9958",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fcdb355b_2efeeb09",
         "filename": "requirements.txt",
         "patchSetId": 4
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "d4005f51_50e410f2",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-28T05:41:36Z",
+      "side": 1,
+      "message": "\u003e \u003e not downloading everything from internet\n \u003e \n \u003e We are not there yet. Looking at a console output [0], I see two\n \u003e kinds of download (from Internet to Jenkins executor):\n \u003e \n \u003e 02:05:46  Get:26 http://ca.archive.ubuntu.com/ubuntu\n \u003e xenial-updates/main amd64 Packages [796 kB]\n \u003e 02:06:21    Downloading https://files.pythonhosted.org/packages/ee/cd/d20c1e121b09697bf4d7b1b9edde6573fc7d54eefc56860f457a7edfc0de/scapy-2.3.1.zip\n \u003e (1.1MB)\n \u003e \n\nThis was planned to address but...lack of time. APT Packages are pre-cached so i think there is minimal traffic for regular jobs (see CI-MAN). Re PyPI - https://jira.fd.io/browse/CSIT-143, who is going to take this :)\nGenerally i am not happy still with level of traffic and overhead, hopefully i will address some of these in near future.\n\n \u003e Packages listed in this file do not affect the VPP\n \u003e performance, but they limit what can we use for driving the tests\n \u003e and for initial processing of the results.\n \u003e \n\nTypical example is SSH it does not affect VPP perf of course, nor the VPP func. But upgrading it on the fly can cause instability of CSIT breaking the trust. Being in mercy of Paramiko devs to fix the bug in whatever time is pain. We need to be carefull what and when to upgrade + all the changes should be verified multiple times.\nSure this might not impact our own PyPI but i am talking more general.\n\n \u003e For the test to work, we need a machine to run VPP (SUT), a\n \u003e machinde to run Trex (TG) and a machine to run Robot (no acronym).\n \u003e Is the Robot machine the part of testbed, or is it outside (as\n \u003e Jenkis and Nexus)?\n\nRobot machine is now Jenkins. But some of the code is executed on machines. Example is scapy + trex (obviously) + in future we won\u0027t avoid PAPI as remote library.\n\n \u003e Also, we are already allowing some flexibility for utilities such\n \u003e as traffic profiles.\n\nYes traffic profiles are executed on machines. + PAPI in future.\n\n \u003e We can use the executor to download package archive from Internet\n \u003e (or approproate LF cache), push it where needed, and pip install\n \u003e there from the archive file.\n\nAgree this can work, we just need to check portability (per above x86/ARM). THe cache is then simple.\n\n \u003e This principle is not met for changes which affect virl images.\n \u003e It is not clear which type of change does require automatic\n \u003e verification, and which does not.\n\nNot sure what do you mean. Can you more verbose? If you mean VIRL images they are versioned and it is not problem to test new VIRL image separately. I think the only exception is PAL now which live its own life doing post merge rather per patch. MOstly it is lack of playground to upload per patch results of PAL + resource overhead as PAL is resource eager.\n\n \u003e If there is a manual \"script\" to follow, it can be scripted\n \u003e (assuming we deal with various credentials).\n \u003e At least I think the manual \"script\" can be made deterministic\n \u003e enough to not require any intelligent agent.\n \u003e So, I believe automatic process can be created. I am just not sure\n \u003e if it is worth the time right now, as the number of edits to verify\n \u003e will be quite low for 1807.\n \u003e \n \u003e [0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master/180/console-timestamp.log.gz\n\nScripted sure, time allocation is now questionable as we have lot of other work on the list. But in future, sure lets open TWS.\n\nGENERALLY: I would wait for VIRL decommision for sure. It is not worth of doing anything now as most func tests will be removed anyway. With this lot of PIPs can be removed + new vpp_path environment will be defined differently with this in mind. Perf tests are quite self defined with very low dependency on external libs. But not sure about PAPI, need to evaluate.",
+      "parentUuid": "a403ae46_2c7bc4bc",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "072fd3ac_9638ca7e",
         "filename": "requirements.txt",
         "patchSetId": 4
@@ -178,6 +226,30 @@
       "side": 1,
       "message": "I imagine something like current virl verify, just more stable. Select few tests (both functional and performance) required to pass.",
       "parentUuid": "072fd3ac_9638ca7e",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 68
+      },
+      "revId": "5e3c5055cdec6b6fd01fe54c0088f2570c156611",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b02aca09_153586f8",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-28T05:41:36Z",
+      "side": 1,
+      "message": "Agree that this will help us in future when migrating to newer versions selecting is maybe not the right way (depend on complexity of TC) but generally once all other issues will be solved, yes.",
+      "parentUuid": "1726de8d_f697fa09",
       "range": {
         "startLine": 31,
         "startChar": 0,
