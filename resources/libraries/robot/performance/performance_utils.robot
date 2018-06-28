@@ -730,7 +730,7 @@
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
 | | ${results} = | Send traffic on tg | ${duration} | ${rate} | ${framesize}
-| | ... | ${topology_type} | warmup_time=0
+| | ... | ${topology_type} | warmup_time=0 | latency=${False}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}

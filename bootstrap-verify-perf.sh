@@ -294,6 +294,7 @@ case "$TEST_TAG" in
                 TAGS+=("$prefix${TAG}")
             fi
         done
+        TAGS=("THIS")
         ;;
     * )
         TAGS=('perftest')
