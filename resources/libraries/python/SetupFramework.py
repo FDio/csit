@@ -56,6 +56,7 @@ def pack_framework_dir():
 
     proc = Popen(
         split("tar --sparse --exclude-vcs --exclude=output*.xml "
+              "--exclude=./env "
               "--exclude=./tmp --exclude=*.deb --exclude=*.rpm -zcf {0} ."
               .format(file_name)), stdout=PIPE, stderr=PIPE)
     (stdout, stderr) = proc.communicate()
