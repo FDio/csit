@@ -26,20 +26,20 @@ __all__ = ['VppConfigGenerator']
 
 
 def pci_dev_check(pci_dev):
-        """Check if provided PCI address is in correct format.
+    """Check if provided PCI address is in correct format.
 
-        :param pci_dev: PCI address (expected format: xxxx:xx:xx.x).
-        :type pci_dev: str
-        :returns: True if PCI address is in correct format.
-        :rtype: bool
-        :raises ValueError: If PCI address is in incorrect format.
-        """
-        pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
-                             "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
-        if not pattern.match(pci_dev):
-            raise ValueError('PCI address {addr} is not in valid format '
-                             'xxxx:xx:xx.x'.format(addr=pci_dev))
-        return True
+    :param pci_dev: PCI address (expected format: xxxx:xx:xx.x).
+    :type pci_dev: str
+    :returns: True if PCI address is in correct format.
+    :rtype: bool
+    :raises ValueError: If PCI address is in incorrect format.
+    """
+    pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
+                         "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
+    if not pattern.match(pci_dev):
+        raise ValueError('PCI address {addr} is not in valid format '
+                         'xxxx:xx:xx.x'.format(addr=pci_dev))
+    return True
 
 
 class VppConfigGenerator(object):
@@ -352,12 +352,16 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'socket-mem']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_dpdk_uio_driver(self, value):
+    def add_dpdk_uio_driver(self, value=None):
         """Add DPDK uio-driver configuration.
 
-        :param value: DPDK uio-driver configuration.
+        :param value: DPDK uio-driver configuration. By default, driver will be
+                      loaded automatically from Topology file, still leaving
+                      option to manually override by parameter.
         :type value: str
         """
+        if value is None:
+            value = Topology.get_uio_driver(self._node)
         path = ['dpdk', 'uio-driver']
         self.add_config_item(self._nodeconfig, value, path)
 
