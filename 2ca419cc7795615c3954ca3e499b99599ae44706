@@ -45,6 +45,30 @@
       "revId": "2ca419cc7795615c3954ca3e499b99599ae44706",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "237e42f7_89f44157",
+        "filename": "resources/tools/presentation/requirements.txt",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 0,
+      "message": "This is only a development version, this line will come back with higher version.\nAll changes will be implemented in \"pypi version\".\nI added path to csit/PyPI/jumpavg to PYTHONPATH in my sandbox.",
+      "parentUuid": "63529f46_8bf536d6",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "2ca419cc7795615c3954ca3e499b99599ae44706",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }

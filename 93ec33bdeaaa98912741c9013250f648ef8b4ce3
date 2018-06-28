@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "be45248f_ebc246cf",
+        "filename": "PyPI/jumpavg/jumpavg/AvgStdevMetadataFactory.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 1,
+      "message": "Yes, it seems so. I got small (-0.015 compared to 20M) negative numbers instead of zero. So I decided to replace them by zero value.",
+      "parentUuid": "067485ea_2d583784",
+      "range": {
+        "startLine": 50,
+        "startChar": 21,
+        "endLine": 50,
+        "endChar": 30
+      },
+      "revId": "93ec33bdeaaa98912741c9013250f648ef8b4ce3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ab5eac9_2318538f",
         "filename": "PyPI/jumpavg/jumpavg/AvgStdevMetadataFactory.py",
         "patchSetId": 27
@@ -36,6 +60,30 @@
       "writtenOn": "2018-06-27T13:27:08Z",
       "side": 1,
       "message": "This should not be needed. I think Python does not support +Inf or NaN.",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 11
+      },
+      "revId": "93ec33bdeaaa98912741c9013250f648ef8b4ce3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0babd56_3deaed94",
+        "filename": "PyPI/jumpavg/jumpavg/AvgStdevMetadataFactory.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 1,
+      "message": "Agree, this is only developing version.",
+      "parentUuid": "8ab5eac9_2318538f",
       "range": {
         "startLine": 51,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "918e9b9c_1a06b5dd",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 1,
+      "message": "Developing version, fixed.",
+      "parentUuid": "a1cbcb34_2f0fdad3",
+      "range": {
+        "startLine": 121,
+        "startChar": 38,
+        "endLine": 121,
+        "endChar": 43
+      },
+      "revId": "93ec33bdeaaa98912741c9013250f648ef8b4ce3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d0caef9_8c71f38f",
         "filename": "resources/tools/presentation/generator_CPTA.py",
         "patchSetId": 27
@@ -82,6 +154,30 @@
       "writtenOn": "2018-06-27T13:27:08Z",
       "side": 1,
       "message": "I think you can write:\n   idx, (x, y)\nto make line 161 more readable.",
+      "range": {
+        "startLine": 158,
+        "startChar": 12,
+        "endLine": 158,
+        "endChar": 21
+      },
+      "revId": "93ec33bdeaaa98912741c9013250f648ef8b4ce3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f9f1dbc_ba64c504",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d0caef9_8c71f38f",
       "range": {
         "startLine": 158,
         "startChar": 12,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "70162f56_3d555d59",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 1,
+      "message": "Just to make the hover info more readable. The displayed precision without decimals is enough.",
+      "parentUuid": "45518baf_91f05986",
+      "range": {
+        "startLine": 202,
+        "startChar": 33,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "93ec33bdeaaa98912741c9013250f648ef8b4ce3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "477cab20_23d8b044",
         "filename": "resources/tools/presentation/input_data_parser.py",
         "patchSetId": 27
@@ -128,6 +248,30 @@
       "writtenOn": "2018-06-27T13:27:08Z",
       "side": 1,
       "message": "As the test message will be compatible with both patterns during the transition period, the BMRR pattern should be tried first to get longer history of more precise detection.",
+      "range": {
+        "startLine": 522,
+        "startChar": 40,
+        "endLine": 522,
+        "endChar": 49
+      },
+      "revId": "93ec33bdeaaa98912741c9013250f648ef8b4ce3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "20af9694_b5cf25f8",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "477cab20_23d8b044",
       "range": {
         "startLine": 522,
         "startChar": 40,
