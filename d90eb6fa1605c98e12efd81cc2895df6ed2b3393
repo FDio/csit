@@ -22,6 +22,30 @@
       "revId": "d90eb6fa1605c98e12efd81cc2895df6ed2b3393",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24db8756_e01e52f5",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-06-28T07:08:44Z",
+      "side": 1,
+      "message": "The string is different. However, I will simplify it.",
+      "parentUuid": "aa4e66e1_1d86c511",
+      "range": {
+        "startLine": 129,
+        "startChar": 30,
+        "endLine": 129,
+        "endChar": 31
+      },
+      "revId": "d90eb6fa1605c98e12efd81cc2895df6ed2b3393",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
