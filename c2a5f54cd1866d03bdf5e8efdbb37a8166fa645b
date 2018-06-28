@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "673e209d_9cec1b42",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4src254.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-28T13:04:41Z",
+      "side": 1,
+      "message": "I do not see any difference from trex-sl-3n-ethip4-ip4src254.py\nBut I guess it is consistent with trex-sl-2n-ethip4-ip4src253.py being already identical to trex-sl-3n-ethip4-ip4src253.py.",
+      "revId": "c2a5f54cd1866d03bdf5e8efdbb37a8166fa645b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd882d7c_9c83a452",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4src254.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-28T13:04:41Z",
+      "side": 1,
+      "message": "As this file is a mere copy, I agree that Copyright year should not be updated.",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "c2a5f54cd1866d03bdf5e8efdbb37a8166fa645b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
