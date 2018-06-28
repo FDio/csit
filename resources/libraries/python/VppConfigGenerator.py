@@ -352,12 +352,16 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'socket-mem']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_dpdk_uio_driver(self, value):
+    def add_dpdk_uio_driver(self, value=None):
         """Add DPDK uio-driver configuration.
 
-        :param value: DPDK uio-driver configuration.
+        :param value: DPDK uio-driver configuration. By default, driver will be
+                      loaded automatically from Topology file, still leaving
+                      option to manually override by parameter.
         :type value: str
         """
+        if value is None:
+            value = Topology.get_uio_driver(self._node)
         path = ['dpdk', 'uio-driver']
         self.add_config_item(self._nodeconfig, value, path)
 
