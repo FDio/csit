@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "d44193bc_d4d81dba",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-06-28T11:50:49Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "70162f56_3d555d59",
+      "range": {
+        "startLine": 202,
+        "startChar": 33,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "93ec33bdeaaa98912741c9013250f648ef8b4ce3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "477cab20_23d8b044",
         "filename": "resources/tools/presentation/input_data_parser.py",
         "patchSetId": 27
