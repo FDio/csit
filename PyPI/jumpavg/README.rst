@@ -20,6 +20,15 @@ Usage
 
 TODO.
 
+Change log
+----------
+
+TODO: Move into separate file?
+
+0.1.3: Changed stdev computation to avoid negative variance due to rounding errors.
+
+0.1.2: First version published in PyPI.
+
 .. _PAL: https://wiki.fd.io/view/CSIT/Design_Optimizations#Presentation_and_Analytics_Layer
 .. _CSIT: https://wiki.fd.io/view/CSIT
 .. _fd.io: https://fd.io/
