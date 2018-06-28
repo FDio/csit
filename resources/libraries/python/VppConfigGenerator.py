@@ -160,7 +160,7 @@ class VppConfigGenerator(object):
             value = self._vpp_logfile
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_unix_cli_listen(self, value='localhost:5002'):
+    def add_unix_cli_listen(self, value='/run/vpp/cli.sock'):
         """Add UNIX cli-listen configuration.
 
         :param value: CLI listen address and port or path to CLI socket.
@@ -590,9 +590,8 @@ class VppConfigGenerator(object):
             for _ in range(retries):
                 time.sleep(1)
                 ret, stdout, _ = \
-                    ssh.exec_command('echo show pci | nc 0 5002 || '
-                                     'echo "VPP not yet running"')
-                if ret == 0 and 'VPP not yet running' not in stdout:
+                    ssh.exec_command_sudo('vppctl show pci')
+                if ret == 0 and 'Connection refused' not in stdout:
                     break
             else:
                 raise RuntimeError('VPP failed to restart on node {name}'.
