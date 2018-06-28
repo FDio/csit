@@ -132,6 +132,36 @@
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
 
+| Add '${m}' worker threads and '${n}' rxqueues in 2-node single-link circular topology
+| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
+| | ... | configuration on all DUTs in 2-node single-link topology.
+| | ...
+| | ${m_int}= | Convert To Integer | ${m}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | skip_cnt=${1} | cpu_cnt=${1}
+| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | skip_cnt=${2} | cpu_cnt=${m_int}
+| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
+| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
+| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
+
+| Add '${m}' worker threads using SMT and '${n}' rxqueues in 2-node single-link circular topology
+| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
+| | ... | configuration on all DUTs in 2-node single-link topology.
+| | ...
+| | ${m_int}= | Convert To Integer | ${m}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | skip_cnt=${1} | cpu_cnt=${1} | smt_used=${True}
+| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | skip_cnt=${2} | cpu_cnt=${m_int} | smt_used=${True}
+| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
+| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
+| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
+
 # The following keyword results in lines longer than 80 characters.
 # FIXME: Rename the keyword, possibly moving arguments out of the keyword name.
 | Add '${m}' worker threads and '${n}' rxqueues in 3-node single-link circular topology
@@ -158,21 +188,6 @@
 | | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
 | | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
 
-| Add '${m}' worker threads and '${n}' rxqueues in 2-node single-link circular topology
-| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
-| | ... | configuration on all DUTs in 2-node single-link topology.
-| | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1}
-| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int}
-| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
-
 | Add '${m}' worker threads using SMT and '${n}' rxqueues in 3-node single-link circular topology
 | | [Documentation] | Setup M worker threads using SMT and N rxqueues in vpp\
 | | ... | startup configuration on all DUTs in 3-node single-link topology.
@@ -196,21 +211,6 @@
 | | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
 | | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
 | | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
-
-| Add '${m}' worker threads using SMT and '${n}' rxqueues in 2-node single-link circular topology
-| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
-| | ... | configuration on all DUTs in 2-node single-link topology.
-| | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1} | smt_used=${True}
-| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int} | smt_used=${True}
-| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
 
 | Add no multi seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
