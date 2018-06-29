@@ -52,7 +52,7 @@
     path: '/etc/default/grub'
     state: 'present'
     regexp: '^GRUB_CMDLINE_LINUX='
-    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} numa_balancing=disable intel_pstate=disable"'
+    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt"'
   notify: ['Update GRUB']
   tags: set-grub
 
@@ -66,3 +66,7 @@
   pip:
     requirements: '/tmp/requirements.txt'
   tags: install-pip
+
+- name: Load vfio-pci by default
+  raw: 'echo vfio-pci | sudo tee -a /etc/modules'
+  tags: load-vfio-pci
