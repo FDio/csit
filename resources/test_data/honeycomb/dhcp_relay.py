@@ -32,7 +32,7 @@ prefix_length_v6 = 64
 relay1 = {
     "relay": [
         {
-            "address-type": "ipv4",
+            "address-family": "vpp-fib-table-management:ipv4",
             "rx-vrf-id": 0,
             "gateway-address": dut_to_tg_if1_ip,
             "server": [
@@ -46,7 +46,7 @@ relay1 = {
 }
 
 relay1_oper = {
-    "address-type": "dhcp:ipv4",
+    "address-family": "vpp-fib-table-management:ipv4",
     "rx-vrf-id": 0,
     "gateway-address": dut_to_tg_if1_ip,
     "server": [
@@ -60,7 +60,7 @@ relay1_oper = {
 relay2 = {
     "relay": [
         {
-            "address-type": "ipv4",
+            "address-family": "vpp-fib-table-management:ipv4",
             "rx-vrf-id": 0,
             "gateway-address": dut_to_tg_if1_ip,
             "server": [
@@ -78,7 +78,7 @@ relay2 = {
 }
 
 relay2_oper = {
-    "address-type": "dhcp:ipv4",
+    "address-family": "vpp-fib-table-management:ipv4",
     "rx-vrf-id": 0,
     "gateway-address": dut_to_tg_if1_ip,
     "server": [
@@ -96,7 +96,7 @@ relay2_oper = {
 relay_v6 = {
     "relay": [
         {
-            "address-type": "ipv6",
+            "address-family": "vpp-fib-table-management:ipv6",
             "rx-vrf-id": 0,
             "gateway-address": dut_to_tg_if1_ip6,
             "server": [
@@ -110,7 +110,7 @@ relay_v6 = {
 }
 
 relay_v6_oper = {
-    "address-type": "dhcp:ipv6",
+    "address-family": "vpp-fib-table-management:ipv6",
     "rx-vrf-id": 0,
     "gateway-address": dut_to_tg_if1_ip6,
     "server": [
