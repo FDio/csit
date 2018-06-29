@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "315116f4_17ea0172",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-29T12:19:48Z",
+      "side": 1,
+      "message": "This seems to be working on both ubuntu. Testing required.",
+      "range": {
+        "startLine": 593,
+        "startChar": 0,
+        "endLine": 594,
+        "endChar": 67
+      },
+      "revId": "b1bc458ca89bdec17e6f960be4f2cbf1018fa07a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "127ce1d0_6f9bfcb7",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-29T12:19:48Z",
+      "side": 1,
+      "message": "It is good to check whether plugin is loaded or we are at least able to load it.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 28
+      },
+      "revId": "b1bc458ca89bdec17e6f960be4f2cbf1018fa07a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
