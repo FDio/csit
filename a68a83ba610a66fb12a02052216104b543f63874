@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef345705_57b6565b",
+        "filename": "topologies/available/lf_2n_skx_testbed22.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-06-29T14:00:55Z",
+      "side": 1,
+      "message": "# TODO: We need to add possibility to configure driver there instead of init.robot for more transparency and also to use different driver for different TB.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 28
+      },
+      "revId": "a68a83ba610a66fb12a02052216104b543f63874",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
