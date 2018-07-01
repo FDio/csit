@@ -442,19 +442,17 @@ class DUTSetup(object):
 
     @staticmethod
     def kernel_module_verify(node, module, force_load=False):
-        """Verify if kernel module is loaded on all DUTs. If parameter force
+        """Verify if kernel module is loaded on node. If parameter force
         load is set to True, then try to load the modules.
 
-        :param node: DUT node.
+        :param node: Node.
         :param module: Module to verify.
         :param force_load: If True then try to load module.
         :type node: dict
         :type module: str
         :type force_load: bool
-        :returns: nothing
         :raises RuntimeError: If module is not loaded or failed to load.
         """
-
         ssh = SSH()
         ssh.connect(node)
 
@@ -468,6 +466,22 @@ class DUTSetup(object):
             else:
                 raise RuntimeError('Kernel module {0} is not loaded on host '
                                    '{1}'.format(module, node['host']))
+
+    @staticmethod
+    def kernel_module_verify_on_all_duts(nodes, module, force_load=False):
+        """Verify if kernel module is loaded on all DUTs. If parameter force
+        load is set to True, then try to load the modules.
+
+        :param node: DUT nodes.
+        :param module: Module to verify.
+        :param force_load: If True then try to load module.
+        :type node: dict
+        :type module: str
+        :type force_load: bool
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.kernel_module_verify(node, module, force_load)
 
     @staticmethod
     def kernel_module_load(node, module):
