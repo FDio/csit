@@ -81,7 +81,7 @@
 | | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***

@@ -115,7 +115,7 @@
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'static_proxy' behaviour in 3-node circular topology
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***

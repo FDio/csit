@@ -72,7 +72,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***

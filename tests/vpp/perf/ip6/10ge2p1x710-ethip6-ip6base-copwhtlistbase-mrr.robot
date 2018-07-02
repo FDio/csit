@@ -80,7 +80,7 @@
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***

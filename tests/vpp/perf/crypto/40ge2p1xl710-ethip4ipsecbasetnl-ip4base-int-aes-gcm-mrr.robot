@@ -100,7 +100,7 @@
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | And Set interfaces in path in 3-node circular topology up
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
