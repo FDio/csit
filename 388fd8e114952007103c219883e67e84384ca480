@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d90c114a_aaeac97e",
+        "filename": "resources/tools/disk-image-builder/ubuntu/run-listmaker.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-02T15:57:14Z",
+      "side": 1,
+      "message": "I see you are building DMM binaries inside Robot test, which runs on Virl VM. Those VMs are inflexible, as they do not have access to internet.\nThis file you are editing is not being run from jobs, it is run manually when a new Virl VM disk imake is being created.\nI recommend to change your logic such that DMM binaries are built on the Jenkins slave directly, and then your bootstrap can take those files as arguments and copy them to the VIRL VMs.\n\nSee this [0] job configuration as an example. One script builds .deb files (see line with \"build-root/vagrant/build.sh\") and another script passes it to bootstrap \"./bootstrap.sh *.deb\".\n\n[0] https://jenkins.fd.io/view/vpp/job/vpp-csit-verify-virl-master/configure",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 16
+      },
+      "revId": "388fd8e114952007103c219883e67e84384ca480",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
