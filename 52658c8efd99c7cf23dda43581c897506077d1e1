@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a02330d7_b4e6d91d",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-02T05:41:22Z",
+      "side": 1,
+      "message": "line too long (80chars)",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 85
+      },
+      "revId": "52658c8efd99c7cf23dda43581c897506077d1e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98728e7f_557ee181",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-02T05:41:22Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 103
+      },
+      "revId": "52658c8efd99c7cf23dda43581c897506077d1e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c43fb00_1dbd0a71",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-02T05:41:22Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 109
+      },
+      "revId": "52658c8efd99c7cf23dda43581c897506077d1e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "308603ee_6350dfed",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-02T05:41:22Z",
+      "side": 1,
+      "message": "I think this is redundant now. As parameters are named in TC itself.",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 88
+      },
+      "revId": "52658c8efd99c7cf23dda43581c897506077d1e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c58d716_fbad1a1c",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-02T05:41:22Z",
+      "side": 1,
+      "message": "Not needed. They are part of whole suite force tags above. Remove from everywhere.",
+      "range": {
+        "startLine": 172,
+        "startChar": 13,
+        "endLine": 172,
+        "endChar": 26
+      },
+      "revId": "52658c8efd99c7cf23dda43581c897506077d1e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
