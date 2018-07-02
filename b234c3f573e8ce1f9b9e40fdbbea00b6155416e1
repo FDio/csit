@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff21051f_83de3d86",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-vxlansrc253.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-02T10:42:16Z",
+      "side": 1,
+      "message": "The -2n- part of the filename suggests this profile is intended for 2-node testbed, but the suite is for 3-node testbed.\nName this file \"trex-sl-3n-ethip4-vxlansrc253.py\", or perhaps \"trex-sl-ethip4-vxlansrc253.py\" (as the profile content does not depend on the number of testbed nodes).",
+      "revId": "b234c3f573e8ce1f9b9e40fdbbea00b6155416e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5cbab8a2_56b36c35",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-vxlansrc253.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-02T10:42:16Z",
+      "side": 1,
+      "message": "Just \"1\", without \"A\".",
+      "range": {
+        "startLine": 21,
+        "startChar": 48,
+        "endLine": 21,
+        "endChar": 50
+      },
+      "revId": "b234c3f573e8ce1f9b9e40fdbbea00b6155416e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb6984a6_bdc9a1ca",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-02T10:42:16Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "b234c3f573e8ce1f9b9e40fdbbea00b6155416e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
