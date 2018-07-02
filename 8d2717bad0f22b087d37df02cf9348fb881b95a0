@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "23b0fe69_196e78c5",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-02T05:45:22Z",
+      "side": 1,
+      "message": "Yes but brief checking 90% has JIRA tasks already created, (Skylakes, 2-node, PAL, migration of make-test, per-patch testing). Just few addition/changes needed.",
+      "parentUuid": "10ced3a1_eb3e68ba",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "8d2717bad0f22b087d37df02cf9348fb881b95a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f65aea61_bbcc1feb",
         "filename": "docs/fdio_csit_dev_plan.txt",
         "patchSetId": 2
