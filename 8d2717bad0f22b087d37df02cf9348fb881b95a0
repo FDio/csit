@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "7cffe16f_8c27baf4",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-02T13:14:04Z",
+      "side": 1,
+      "message": "This document has been created to provide a high level plan, to have it reviewed, and to track changes to it over time. Jira tasks are not high-level, hard to review and even harder to track changes.\nMoreover, Jira tasks are created later, each task has single assignee (instead of development team) and PL is not explicit.\n\nI think the assignment of people fits better into this document than into the tasks.",
+      "parentUuid": "23b0fe69_196e78c5",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "8d2717bad0f22b087d37df02cf9348fb881b95a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f65aea61_bbcc1feb",
         "filename": "docs/fdio_csit_dev_plan.txt",
         "patchSetId": 2
