@@ -23,6 +23,11 @@ Operation logic
 
 TODO.
 
+Change log
+----------
+
+0.1.1: The first version published in PyPI.
+
 .. _CSIT: https://wiki.fd.io/view/CSIT
 .. _fd.io: https://fd.io/
 .. _LFN: https://www.linuxfoundation.org/projects/networking/
