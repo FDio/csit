@@ -66,7 +66,7 @@
 | | ... | ${get_framesize} < ${1522} | no | yes
 | | ...
 | | Given Start L2FWD '${wt}' worker threads and '${rxq}' rxqueues with jumbo frames '${jumbo_frames}'
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***

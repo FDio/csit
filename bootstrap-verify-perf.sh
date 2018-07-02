@@ -137,6 +137,12 @@ else
 fi
 
 PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+if [ ! -z $NUM_BMRR_TRIALS ]; then
+    PYBOT_ARGS="$PYBOT_ARGS --variable trial_multiplicity:$NUM_BMRR_TRIALS"
+fi
+if [ ! -z $TRIAL_DURATION ]; then
+    PYBOT_ARGS="$PYBOT_ARGS --variable perf_trial_duration:$TRIAL_DURATION"
+fi
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable

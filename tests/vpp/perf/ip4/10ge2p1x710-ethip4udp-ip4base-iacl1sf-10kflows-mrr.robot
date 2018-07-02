@@ -91,7 +91,7 @@
 | | When Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in 3-node circular topology
 | | ${traffic_profile}= | Set Variable | trex-sl-3n-ethip4udp-10u1000p-conc
 | | Set Test Variable | ${traffic_profile}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***

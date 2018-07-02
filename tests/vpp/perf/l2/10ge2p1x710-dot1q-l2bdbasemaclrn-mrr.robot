@@ -79,7 +79,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains with VLAN dot1q sub-interfaces in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***

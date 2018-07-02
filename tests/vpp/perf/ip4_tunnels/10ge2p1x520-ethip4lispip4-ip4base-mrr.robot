@@ -83,7 +83,7 @@
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate | ${trial_multiplicity}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
