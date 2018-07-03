@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "859bfc87_19e919e4",
+        "filename": "PyPI/MLRsearch/setup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-03T05:19:19Z",
+      "side": 0,
+      "message": "if",
+      "range": {
+        "startLine": 31,
+        "startChar": 43,
+        "endLine": 31,
+        "endChar": 45
+      },
+      "revId": "21af99fef1c4dd45651704678b2ee545f55dfb88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ced76b8_b3ec8ea6",
+        "filename": "PyPI/MLRsearch/setup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-03T05:19:19Z",
+      "side": 0,
+      "message": "Is it still binary?",
+      "range": {
+        "startLine": 35,
+        "startChar": 14,
+        "endLine": 35,
+        "endChar": 20
+      },
+      "revId": "21af99fef1c4dd45651704678b2ee545f55dfb88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
