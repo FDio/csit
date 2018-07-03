@@ -484,6 +484,19 @@ class DUTSetup(object):
                 DUTSetup.kernel_module_verify(node, module, force_load)
 
     @staticmethod
+    def verify_uio_driver_on_all_duts(nodes):
+        """Verify if uio driver kernel module is loaded on all DUTs. If module
+        is not present it will try to load it.
+
+        :param node: DUT nodes.
+        :type node: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                uio_driver = Topology.get_uio_driver(node)
+                DUTSetup.kernel_module_verify(node, uio_driver, force_load=True)
+
+    @staticmethod
     def kernel_module_load(node, module):
         """Load kernel module on node.
 
