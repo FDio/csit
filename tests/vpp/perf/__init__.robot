@@ -19,8 +19,7 @@
 | Library | resources.libraries.python.CpuUtils
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
-| ...         | AND          | Kernel module verify on all DUTs | ${nodes}
-| ...                        | ${uio_driver} | force_load=${True}
+| ...         | AND          | Verify UIO Driver on all DUTs | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Show Vpp Version On All Duts | ${nodes}
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
@@ -55,6 +54,5 @@
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
-| | Set Global Variable | ${uio_driver} | igb_uio
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
 | | Set Global Variable | @{plugins_to_enable}
