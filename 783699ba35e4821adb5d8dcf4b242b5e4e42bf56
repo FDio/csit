@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4789c2_3e65d00a",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-03T10:56:12Z",
+      "side": 1,
+      "message": "as you renamed profile you need to reference it here. PLease remove -2n-",
+      "range": {
+        "startLine": 73,
+        "startChar": 23,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "783699ba35e4821adb5d8dcf4b242b5e4e42bf56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
