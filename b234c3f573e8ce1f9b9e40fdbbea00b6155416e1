@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "77de40c7_365acdf7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-vxlansrc253.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-03T05:34:27Z",
+      "side": 1,
+      "message": "Agree, please rename to either -3n- or remove.",
+      "parentUuid": "ff21051f_83de3d86",
+      "revId": "b234c3f573e8ce1f9b9e40fdbbea00b6155416e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cbab8a2_56b36c35",
         "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-vxlansrc253.py",
         "patchSetId": 13
