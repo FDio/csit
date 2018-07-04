@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d349d120_638d650d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 48
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-04T16:52:23Z",
+      "side": 1,
+      "message": "CSIT-1178:\nWill be added if next patch set is required.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c48ef379_aedc91ce",
         "filename": "tests/__init__.robot",
         "patchSetId": 48
