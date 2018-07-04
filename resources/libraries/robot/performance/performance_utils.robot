@@ -385,7 +385,7 @@
 | | ...
 | | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
 | | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${0.005}
-| | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
+| | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${10.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${600.0}
 | | ...
@@ -483,7 +483,7 @@
 | | ...
 | | ${lower_bound_lf}= | Set Variable | ${interval.measured_low.loss_fraction}
 | | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
-| | ${messagge}= | Catenate | SEPARATOR=${SPACE}
+| | ${message}= | Catenate | SEPARATOR=${SPACE}
 | | ... | Lower bound fraction ${lower_bound_lf}
 | | ... | does not reach ${packet_loss_ratio}.
 | | Fail | ${message}
