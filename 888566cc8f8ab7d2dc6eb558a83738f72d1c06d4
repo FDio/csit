@@ -22,6 +22,30 @@
       "revId": "888566cc8f8ab7d2dc6eb558a83738f72d1c06d4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b057764a_f83e21dd",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 26
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-04T18:36:03Z",
+      "side": 1,
+      "message": "I was not sure which approach to use as each has pros/cons but agree that this way it could take more lines and it is explicit. I will change, if we are sure we will not use in teardowns.",
+      "parentUuid": "f8b907a9_22c055f5",
+      "range": {
+        "startLine": 141,
+        "startChar": 39,
+        "endLine": 141,
+        "endChar": 56
+      },
+      "revId": "888566cc8f8ab7d2dc6eb558a83738f72d1c06d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
