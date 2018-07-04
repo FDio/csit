@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7ac32de_126a58bd",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 43
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-04T12:52:26Z",
+      "side": 1,
+      "message": "In next patch I will add support via BuiltIn.Get_Variable_Value, I just have not decided yet which override should take priority.",
+      "range": {
+        "startLine": 24,
+        "startChar": 20,
+        "endLine": 24,
+        "endChar": 49
+      },
+      "revId": "9230e00d73a43af06475ebf200a3eaba3b85998d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
