@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "356ac59a_bece4429",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-04T14:08:40Z",
+      "side": 1,
+      "message": "Did we decide on having a separate list with full names and/or LF usernames (IRC handles, e-mails, ...)?",
+      "range": {
+        "startLine": 38,
+        "startChar": 14,
+        "endLine": 38,
+        "endChar": 16
+      },
+      "revId": "9b7578d8d4d54241132b5aac96c2ecd4874a9d48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
