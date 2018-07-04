@@ -110,7 +110,7 @@
 | | ... | jumbo_frames=${jumbo_frames}
 | | And Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
