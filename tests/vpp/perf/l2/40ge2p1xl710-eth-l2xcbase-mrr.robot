@@ -77,7 +77,7 @@
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect in 3-node circular topology
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 
