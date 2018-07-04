@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8b907a9_22c055f5",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 26
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-04T15:55:08Z",
+      "side": 1,
+      "message": "What is the reasoning behind this not being an explicit argument? This patch way you need more lines in the suites, and there is no direct documentation on these required test variables.\n\nIn my opinion, test variables are only useful when test teardown reads them and the values vary per test case.\n\nAnd by \"explicit argument\" I mean the [Arguments] section. Not embeding them into keyword name (as in line 155), because that can make it impossible for a line to fit into 80 characters.",
+      "range": {
+        "startLine": 141,
+        "startChar": 39,
+        "endLine": 141,
+        "endChar": 56
+      },
+      "revId": "888566cc8f8ab7d2dc6eb558a83738f72d1c06d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
