@@ -71,7 +71,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in 3-node circular topology
 | | And Initialize IPv6 iAcl whitelist in 3-node circular topology
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
