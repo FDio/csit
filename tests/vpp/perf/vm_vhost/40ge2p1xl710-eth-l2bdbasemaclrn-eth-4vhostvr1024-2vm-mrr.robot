@@ -92,7 +92,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
 | | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
