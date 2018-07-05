@@ -25,6 +25,121 @@
     },
     {
       "key": {
+        "uuid": "54ec711f_1841a006",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-05T17:41:41Z",
+      "side": 1,
+      "message": "Remove please, it does not look like merge and production ready with the following sentence. \nAlso what does it mean \"fake TX\"?",
+      "range": {
+        "startLine": 681,
+        "startChar": 0,
+        "endLine": 681,
+        "endChar": 73
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5167783_84f7f920",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-05T17:41:41Z",
+      "side": 1,
+      "message": "specified",
+      "range": {
+        "startLine": 727,
+        "startChar": 29,
+        "endLine": 727,
+        "endChar": 37
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72fb665a_d0ec5024",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-05T17:41:41Z",
+      "side": 1,
+      "message": "Do you expect the users to put there 1.5s? Or 1.5558s? How does it affect the report in PPS (packet per SECOND) results?",
+      "range": {
+        "startLine": 727,
+        "startChar": 48,
+        "endLine": 727,
+        "endChar": 51
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d6e4ba1_c79c7347",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-05T17:41:41Z",
+      "side": 1,
+      "message": "LTL \u003e80",
+      "range": {
+        "startLine": 745,
+        "startChar": 75,
+        "endLine": 745,
+        "endChar": 83
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed9c8b76_d52fe081",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-05T17:41:41Z",
+      "side": 1,
+      "message": "Why to move TODO? If you want to move do it now. No TODO pls otherwise we will end in too many todos :)",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c48ef379_aedc91ce",
         "filename": "tests/__init__.robot",
         "patchSetId": 48
@@ -36,6 +151,30 @@
       "writtenOn": "2018-07-04T16:50:27Z",
       "side": 1,
       "message": "Hello reviewers. These names will be present in ci-management repository, so we need to make sure they are high quality with minimal risk of user confusion and contributor \"urge to rename\". Any ideas on a scalable naming scheme?",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "437a2218_be755b0f",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-05T17:41:41Z",
+      "side": 1,
+      "message": "We were thinking about this, but generaly lets maybe try following:\nscope_area_name\nSee below \"perf_trial_duration\" - It is for perf then it is about trial measurment and what meaning is carrying. So in yours, perf_trial_multiplicity. Of course there can be other naming scheme but i suggest and prefer top-down left-right. Not too many levels like max 4.",
+      "parentUuid": "c48ef379_aedc91ce",
       "range": {
         "startLine": 57,
         "startChar": 29,
