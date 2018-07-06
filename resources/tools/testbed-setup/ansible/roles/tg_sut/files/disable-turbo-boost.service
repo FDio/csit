@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable Turbo Boost on Intel CPU
+
+[Service]
+ExecStart=/bin/sh -c 'for core in `cat /proc/cpuinfo | grep processor | awk \'{print $3}\'`; do sudo wrmsr -p$core 0x1a0 0x4000850089; done'
+ExecStop=/bin/sh -c 'for core in `cat /proc/cpuinfo | grep processor | awk \'{print $3}\'`; do sudo wrmsr -p$core 0x1a0 0x850089; done'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

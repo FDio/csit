@@ -52,7 +52,7 @@
     path: '/etc/default/grub'
     state: 'present'
     regexp: '^GRUB_CMDLINE_LINUX='
-    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt"'
+    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off"'
   notify: ['Update GRUB']
   tags: set-grub
 
@@ -68,5 +68,34 @@
   tags: install-pip
 
 - name: Load vfio-pci by default
-  raw: 'echo vfio-pci | sudo tee -a /etc/modules'
+  lineinfile:
+    path: '/etc/modules'
+    state: 'present'
+    line: 'vfio-pci'
   tags: load-vfio-pci
+
+- name: Load msr by default
+  lineinfile:
+    path: '/etc/modules'
+    state: 'present'
+    line: 'msr'
+  tags: disable-turbo-boost
+
+- name: Disable Turbo-Boost by service
+  copy:
+    src: 'files/disable-turbo-boost.service'
+    dest: '/etc/systemd/system/disable-turbo-boost.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  when: >
+        inventory_hostname in groups['skylake']
+  tags: disable-turbo-boost
+
+- name: Disable Turbo-Boost by service on startup
+  service:
+    name: disable-turbo-boost
+    enabled: yes
+  when: >
+        inventory_hostname in groups['skylake']
+  tags: disable-turbo-boost
