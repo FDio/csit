@@ -95,7 +95,7 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -105,7 +105,7 @@
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -115,7 +115,7 @@
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -125,7 +125,7 @@
 
 | tc04-1518B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -135,7 +135,7 @@
 
 | tc05-9000B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1
-| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1C | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -145,7 +145,7 @@
 
 | tc06-9000B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1
-| | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -155,7 +155,7 @@
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -165,7 +165,7 @@
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -175,7 +175,7 @@
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -185,7 +185,7 @@
 
 | tc10-1518B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -195,7 +195,7 @@
 
 | tc11-9000B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1
-| | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -205,7 +205,7 @@
 
 | tc12-9000B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1
-| | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -215,7 +215,7 @@
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${64} | min_rate=${50000} | wt=4 | rxq=2
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -225,7 +225,7 @@
 
 | tc14-64B-4t4c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${64} | min_rate=${50000} | wt=4 | rxq=2
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -235,7 +235,7 @@
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${1518} | min_rate=${50000} | wt=4 | rxq=2
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -245,7 +245,7 @@
 
 | tc16-1518B-4t4c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${1518} | min_rate=${50000} | wt=4 | rxq=2
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -255,7 +255,7 @@
 
 | tc17-9000B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2
-| | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -265,7 +265,7 @@
 
 | tc18-9000B-4t4c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2
-| | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
