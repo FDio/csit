@@ -68,7 +68,7 @@
 | | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048

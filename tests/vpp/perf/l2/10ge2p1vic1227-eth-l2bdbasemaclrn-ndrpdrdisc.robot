@@ -71,7 +71,7 @@
 | | Set Test Documentation | frames using binary search start at\ | append=True
 | | Set Test Documentation | 10GE linerate, step ${threshold}pps. | append=True
 | | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
+| | Add PCI devices to all DUTs
 | | Run Keyword If | ${framesize} < ${1522} | Add no multi seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | Initialize L2 bridge domain in 3-node circular topology
@@ -97,7 +97,7 @@
 | | Set Test Documentation | LT=${perf_pdr_loss_acceptance} | append=True
 | | Set Test Documentation | ${perf_pdr_loss_acceptance_type}. | append=True
 | | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
+| | Add PCI devices to all DUTs
 | | Run Keyword If | ${framesize} < ${1522} | Add no multi seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | Initialize L2 bridge domain in 3-node circular topology

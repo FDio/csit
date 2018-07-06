@@ -325,7 +325,7 @@ class SSH(object):
         """
         chan.close()
 
-    def scp(self, local_path, remote_path, get=False, timeout=10):
+    def scp(self, local_path, remote_path, get=False, timeout=30):
         """Copy files from local_path to remote_path or vice versa.
 
         connect() method has to be called first!
