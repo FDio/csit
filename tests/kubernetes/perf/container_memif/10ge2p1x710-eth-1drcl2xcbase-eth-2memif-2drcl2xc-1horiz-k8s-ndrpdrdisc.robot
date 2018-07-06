@@ -180,7 +180,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
@@ -191,7 +191,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
 
@@ -203,7 +203,7 @@
 | | ... | linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | NDRDISC
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
@@ -215,7 +215,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
 
@@ -226,7 +226,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
@@ -237,7 +237,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
 
@@ -248,7 +248,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
 
@@ -259,7 +259,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR
 
@@ -271,7 +271,7 @@
 | | ... | linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
 
@@ -283,7 +283,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR
 
@@ -294,7 +294,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
 
@@ -305,6 +305,6 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Cross Connect Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR

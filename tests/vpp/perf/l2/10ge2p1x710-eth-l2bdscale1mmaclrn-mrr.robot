@@ -84,7 +84,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1C
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${64} | wt=1 | rxq=1
 
@@ -95,7 +95,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD
+| | [Tags] | 1518B | 1C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${1518} | wt=1 | rxq=1
@@ -107,7 +107,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD
+| | [Tags] | 9000B | 1C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${9000} | wt=1 | rxq=1
@@ -120,7 +120,7 @@
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD
+| | [Tags] | IMIX | 1C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1
@@ -132,7 +132,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 64B | 2C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${64} | wt=2 | rxq=1
@@ -144,7 +144,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${1518} | wt=2 | rxq=1
@@ -156,7 +156,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${9000} | wt=2 | rxq=1
@@ -169,7 +169,7 @@
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD
+| | [Tags] | IMIX | 2C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1
@@ -181,7 +181,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD
+| | [Tags] | 64B | 4C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${64} | wt=4 | rxq=2
@@ -193,7 +193,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD
+| | [Tags] | 1518B | 4C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${1518} | wt=4 | rxq=2
@@ -205,7 +205,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=${9000} | wt=4 | rxq=2
@@ -218,7 +218,7 @@
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD
+| | [Tags] | IMIX | 4C
 | | ...
 | | [Template] | Check RR for L2BD eth-l2bdscale
 | | framesize=IMIX_v4_1 | wt=4 | rxq=2

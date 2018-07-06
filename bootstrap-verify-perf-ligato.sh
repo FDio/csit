@@ -221,44 +221,44 @@ else
     exit 1
 fi
 
-PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+PYBOT_ARGS="--consolewidth 100 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
     PERFTEST_DAILY )
-        TAGS=('ndrdiscANDnic_intel-x520-da2AND1t1c'
-              'ndrdiscANDnic_intel-x520-da2AND2t2c'
-              'ndrdiscAND1t1cANDipsec'
-              'ndrdiscAND2t2cANDipsec')
+        TAGS=('ndrdiscANDnic_intel-x520-da2AND1c'
+              'ndrdiscANDnic_intel-x520-da2AND2c'
+              'ndrdiscAND1cANDipsec'
+              'ndrdiscAND2cANDipsec')
         ;;
     PERFTEST_SEMI_WEEKLY )
-        TAGS=('ndrdiscANDnic_intel-x710AND1t1c'
-              'ndrdiscANDnic_intel-x710AND2t2c'
-              'ndrdiscANDnic_intel-xl710AND1t1c'
-              'ndrdiscANDnic_intel-xl710AND2t2c')
+        TAGS=('ndrdiscANDnic_intel-x710AND1c'
+              'ndrdiscANDnic_intel-x710AND2c'
+              'ndrdiscANDnic_intel-xl710AND1c'
+              'ndrdiscANDnic_intel-xl710AND2c')
         ;;
     PERFTEST_MRR_DAILY )
-       TAGS=('mrrAND64bAND1t1c'
-             'mrrAND64bAND2t2c'
-             'mrrAND64bAND4t4c'
-             'mrrAND78bAND1t1c'
-             'mrrAND78bAND2t2c'
-             'mrrAND78bAND4t4c'
-             'mrrANDimixAND1t1cANDvhost'
-             'mrrANDimixAND2t2cANDvhost'
-             'mrrANDimixAND4t4cANDvhost'
-             'mrrANDimixAND1t1cANDmemif'
-             'mrrANDimixAND2t2cANDmemif'
-             'mrrANDimixAND4t4cANDmemif')
+       TAGS=('mrrAND64bAND1c'
+             'mrrAND64bAND2c'
+             'mrrAND64bAND4c'
+             'mrrAND78bAND1c'
+             'mrrAND78bAND2c'
+             'mrrAND78bAND4c'
+             'mrrANDimixAND1cANDvhost'
+             'mrrANDimixAND2cANDvhost'
+             'mrrANDimixAND4cANDvhost'
+             'mrrANDimixAND1cANDmemif'
+             'mrrANDimixAND2cANDmemif'
+             'mrrANDimixAND4cANDmemif')
         ;;
     VERIFY-PERF-PATCH )
         if [[ -z "$TEST_TAG_STRING" ]]; then
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1t1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1t1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1t1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
+                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
+                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
