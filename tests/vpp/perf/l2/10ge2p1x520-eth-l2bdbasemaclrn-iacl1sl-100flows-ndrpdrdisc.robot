@@ -107,7 +107,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -119,7 +119,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
@@ -131,7 +131,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -143,7 +143,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
@@ -155,7 +155,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -167,7 +167,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR
