@@ -115,10 +115,10 @@
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 18.75Mpps rate, step 50kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1
 | | ... | s_limit=${s_18.75Mpps} | search_type=NDR
@@ -126,10 +126,10 @@
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at\
 | | ... | 24.5G rate, step 50kpps.
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search BW limit
 | | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1
 | | ... | s_limit=${s_24.5G} | search_type=NDR
@@ -140,7 +140,7 @@
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 18.75Mpps rate, step 50kpps.
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1
 | | ... | s_limit=${s_18.75Mpps} | search_type=NDR
@@ -151,7 +151,7 @@
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 24.5G rate, step 50kpps.
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
 | | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1
 | | ... | s_limit=${s_24.5G} | search_type=NDR
@@ -162,7 +162,7 @@
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 18.75Mpps rate, step 50kpps.
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=4 | rxq=2
 | | ... | s_limit=${s_18.75Mpps} | search_type=NDR
@@ -173,7 +173,7 @@
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at\
 | | ... | 24.5G rate, step 50kpps.
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
 | | framesize=${1518} | min_rate=${50000} | wt=4 | rxq=2
 | | ... | s_limit=${s_24.5G} | search_type=NDR
@@ -181,10 +181,10 @@
 | tc19-IMIX-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at\
 | | ... | 24.5G rate, step 50kpps.
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search BW limit
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=1 | rxq=1
 | | ... | s_limit=${s_24.5G} | search_type=NDR
@@ -195,7 +195,7 @@
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at\
 | | ... | 24.5G rate, step 50kpps.
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=2 | rxq=1
 | | ... | s_limit=${s_24.5G} | search_type=NDR
@@ -206,7 +206,7 @@
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at\
 | | ... | 24.5G rate, step 50kpps.
-| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=4 | rxq=2
 | | ... | s_limit=${s_24.5G} | search_type=NDR
