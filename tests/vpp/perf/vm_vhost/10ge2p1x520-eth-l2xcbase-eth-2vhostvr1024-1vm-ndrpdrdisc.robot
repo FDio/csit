@@ -79,7 +79,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -109,7 +109,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -140,7 +140,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -170,7 +170,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -202,7 +202,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -233,7 +233,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -264,7 +264,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -294,7 +294,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -325,7 +325,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -355,7 +355,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -387,7 +387,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -418,7 +418,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -449,7 +449,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -479,7 +479,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -510,7 +510,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -540,7 +540,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -572,7 +572,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
@@ -603,7 +603,7 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology

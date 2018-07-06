@@ -132,85 +132,51 @@
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
 
-# The following keyword results in lines longer than 80 characters.
-# FIXME: Rename the keyword, possibly moving arguments out of the keyword name.
+| Add worker threads and rxqueues to all DUTs
+| | [Documentation] | Setup worker threads and rxqueues in vpp startup
+| | ... | configuration on all DUTs. Based on the SMT configuration of DUT if
+| | ... | enabled keyword will automatically map also the sibling logical cores.
+| | ... | Keyword will automatically set the appropriate test TAGs in format
+| | ... | mTnC, where m=logical_core_count and n=physical_core_count.
+| | ...
+| | ... | *Arguments:*
+| | ... | - cpu_cnt - Number of physical cores to use. Type: integer
+| | ... | - rx_queues - Number of RX queues. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add worker threads and rxqueues to all DUTs \| ${1} \| ${1} \|
+| | ...
+| | [Arguments] | ${cpu_cnt} | ${rx_queues}
+| | ...
+| | ${cpu_count_int} | Convert to Integer | ${cpu_cnt}
+| | ${thr_count_int} | Convert to Integer | ${cpu_cnt}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
+| | | ... | skip_cnt=${1} | cpu_cnt=${1}
+| | | ${cpu_wt}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
+| | | ... | skip_cnt=${2} | cpu_cnt=${cpu_count_int} | smt_used=${smt_used}
+| | | Run keyword | ${dut}.Add CPU Main Core | ${cpu_main}
+| | | Run keyword | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
+| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rx_queues}
+| | | ${thr_count_int}= | Run keyword if | ${smt_used} |
+| | | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
+| | | ... | ${thr_count_int}
+| | | Run keyword if | ${thr_count_int} > 1
+| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
+| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+
+# FIXME: Remove the keyword after refactor of suites. Currently kept for
+# backward compatibility only.
 | Add '${m}' worker threads and '${n}' rxqueues in 3-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
 | | ... | configuration on all DUTs in 3-node single-link topology.
 | | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1}
-| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int}
-| | ${dut2_cpu_main}= | Cpu list per node str | ${dut2} | ${dut2_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1}
-| | ${dut2_cpu_w}= | Cpu list per node str | ${dut2} | ${dut2_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int}
-| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
-| | Run keyword | DUT2.Add CPU Main Core | ${dut2_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
-| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
-| | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
-
-| Add '${m}' worker threads and '${n}' rxqueues in 2-node single-link circular topology
-| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
-| | ... | configuration on all DUTs in 2-node single-link topology.
-| | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1}
-| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int}
-| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
-
-| Add '${m}' worker threads using SMT and '${n}' rxqueues in 3-node single-link circular topology
-| | [Documentation] | Setup M worker threads using SMT and N rxqueues in vpp\
-| | ... | startup configuration on all DUTs in 3-node single-link topology.
-| | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1} | smt_used=${True}
-| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int} | smt_used=${True}
-| | ${dut2_cpu_main}= | Cpu list per node str | ${dut2} | ${dut2_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1} | smt_used=${True}
-| | ${dut2_cpu_w}= | Cpu list per node str | ${dut2} | ${dut2_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int} | smt_used=${True}
-| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
-| | Run keyword | DUT2.Add CPU Main Core | ${dut2_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
-| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
-| | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
-
-| Add '${m}' worker threads using SMT and '${n}' rxqueues in 2-node single-link circular topology
-| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
-| | ... | configuration on all DUTs in 2-node single-link topology.
-| | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${1} | smt_used=${True}
-| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int} | smt_used=${True}
-| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
-| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
-| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
+| | Add worker threads and rxqueues to all DUTs | ${m} | ${n}
 
 | Add no multi seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
