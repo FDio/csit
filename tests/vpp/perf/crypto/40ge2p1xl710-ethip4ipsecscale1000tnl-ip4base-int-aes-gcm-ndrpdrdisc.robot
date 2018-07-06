@@ -76,11 +76,11 @@
 | tc01-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | configured with 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | # FIXME: Move repeated lines into a keyword.
 | | ${framesize}= | Set Variable | ${64}
@@ -112,11 +112,11 @@
 | tc02-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | configured with 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -148,11 +148,11 @@
 | tc03-1518B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | configured with 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -183,11 +183,11 @@
 | tc04-1518B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnel AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | configured with 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -219,12 +219,12 @@
 | tc05-IMIX-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | configured with 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames\
 | | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
@@ -256,12 +256,12 @@
 | tc06-IMIX-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | configured with 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
@@ -294,11 +294,11 @@
 | tc07-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
+| | ... | configured with 2 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -329,11 +329,11 @@
 | tc08-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
+| | ... | configured with 2 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps and loss tolerance of 0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}

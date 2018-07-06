@@ -56,10 +56,10 @@
 *** Test Cases ***
 | tc01-78B-1t1c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 78 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 78B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 78B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -77,10 +77,10 @@
 
 | tc02-78B-1t1c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 78 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 78B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -99,10 +99,10 @@
 
 | tc03-1518B-1t1c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -120,10 +120,10 @@
 
 | tc04-1518B-1t1c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -142,10 +142,10 @@
 
 | tc05-9000B-1t1c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -162,10 +162,10 @@
 
 | tc06-9000B-1t1c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -183,10 +183,10 @@
 
 | tc07-78B-2t2c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 78 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 78B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 2C | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -204,10 +204,10 @@
 
 | tc08-78B-2t2c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 78 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 78B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -226,10 +226,10 @@
 
 | tc09-1518B-2t2c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -247,10 +247,10 @@
 
 | tc10-1518B-2t2c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -269,10 +269,10 @@
 
 | tc11-9000B-2t2c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -289,10 +289,10 @@
 
 | tc12-9000B-2t2c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -310,10 +310,10 @@
 
 | tc13-78B-4t4c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 78 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 78B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 4C | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -331,10 +331,10 @@
 
 | tc14-78B-4t4c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 78 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 78B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -353,10 +353,10 @@
 
 | tc15-1518B-4t4c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -374,10 +374,10 @@
 
 | tc16-1518B-4t4c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -396,10 +396,10 @@
 
 | tc17-9000B-4t4c-ethip6-ip6base-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -416,10 +416,10 @@
 
 | tc18-9000B-4t4c-ethip6-ip6base-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
+| | ... | [Cfg] DUT runs IPv6 routing config with 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}

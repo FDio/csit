@@ -109,11 +109,11 @@
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-macip-iacl1sl-100flows-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with MACIP ACL with\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with MACIP ACLs
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -121,11 +121,11 @@
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-macip-iacl1sl-100flows-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with MACIP ACL with\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with MACIP ACLs
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
@@ -133,11 +133,11 @@
 | tc03-64B-2t2c-eth-l2bdbasemaclrn-macip-iacl1sl-100flows-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with MACIP ACL with\
-| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with MACIP ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -145,11 +145,11 @@
 | tc04-64B-2t2c-eth-l2bdbasemaclrn-macip-iacl1sl-100flows-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with MACIP ACL with\
-| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with MACIP ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
@@ -157,11 +157,11 @@
 | tc05-64B-4t4c-eth-l2bdbasemaclrn-macip-iacl1sl-100flows-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with MACIP ACL with\
-| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with MACIP ACLs
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -169,11 +169,11 @@
 | tc06-64B-4t4c-eth-l2bdbasemaclrn-macip-iacl1sl-100flows-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with MACIP ACL with\
-| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with MACIP ACLs
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR

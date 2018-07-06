@@ -72,11 +72,11 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -104,11 +104,11 @@
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -137,11 +137,11 @@
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -169,11 +169,11 @@
 
 | tc04-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -202,12 +202,12 @@
 
 | tc05-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
 | | ... | size using binary search start at 40GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
@@ -235,12 +235,12 @@
 
 | tc06-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
 | | ... | size using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
@@ -268,11 +268,11 @@
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -300,11 +300,11 @@
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -333,11 +333,11 @@
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -365,11 +365,11 @@
 
 | tc10-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -398,12 +398,12 @@
 
 | tc11-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
 | | ... | size using binary search start at 40GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
@@ -431,12 +431,12 @@
 
 | tc12-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
 | | ... | size using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
@@ -465,11 +465,11 @@
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -497,11 +497,11 @@
 
 | tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -530,11 +530,11 @@
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -562,11 +562,11 @@
 
 | tc16-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -595,12 +595,12 @@
 
 | tc17-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
 | | ... | size using binary search start at 40GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
@@ -628,12 +628,12 @@
 
 | tc18-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
 | | ... | size using binary search start at 40GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}

@@ -97,123 +97,123 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1C
 | | framesize=${64} | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD
+| | [Tags] | 1518B | 1C
 | | framesize=${1518} | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD
+| | [Tags] | 9000B | 1C
 | | framesize=${9000} | wt=1 | rxq=1
 
 | tc04-IMIX-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD
+| | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1
 
 | tc05-64B-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 64B | 2C
 | | framesize=${64} | wt=2 | rxq=1
 
 | tc06-1518B-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 1 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2C
 | | framesize=${1518} | wt=2 | rxq=1
 
 | tc07-9000B-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 1 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2C
 | | framesize=${9000} | wt=2 | rxq=1
 
 | tc08-IMIX-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD
+| | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1
 
 | tc09-64B-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD
+| | [Tags] | 64B | 4C
 | | framesize=${64} | wt=4 | rxq=2
 
 | tc10-1518B-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD
+| | [Tags] | 1518B | 4C
 | | framesize=${1518} | wt=4 | rxq=2
 
 | tc11-9000B-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4C
 | | framesize=${9000} | wt=4 | rxq=2
 
 | tc12-IMIX-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD
+| | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | wt=4 | rxq=2

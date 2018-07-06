@@ -54,11 +54,11 @@
 | tc01-64B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
+| | ... | filters config with 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -84,11 +84,11 @@
 | tc02-64B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
+| | ... | filters config with 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -115,11 +115,11 @@
 | tc03-1480B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
+| | ... | filters config with 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 1480 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps.
-| | [Tags] | 1480B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1480B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${1480}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -145,11 +145,11 @@
 | tc04-1480B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
+| | ... | filters config with 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 1480 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1480B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1480B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1480}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -176,11 +176,11 @@
 | tc05-9000B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
+| | ... | filters config with 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -205,11 +205,11 @@
 | tc06-9000B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
+| | ... | filters config with 1 phy core, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -235,11 +235,11 @@
 | tc07-64B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
+| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps.
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -265,11 +265,11 @@
 | tc08-64B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
+| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -296,11 +296,11 @@
 | tc09-1480B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
+| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 1480 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps.
-| | [Tags] | 1480B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1480B | 2C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1480}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -326,11 +326,11 @@
 | tc10-1480B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
+| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 1480 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1480B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1480B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1480}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -357,11 +357,11 @@
 | tc11-9000B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
+| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -386,11 +386,11 @@
 | tc12-9000B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
+| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -416,11 +416,11 @@
 | tc13-64B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
+| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps.
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -446,11 +446,11 @@
 | tc14-64B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
+| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -477,11 +477,11 @@
 | tc15-1480B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
+| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 1480 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps.
-| | [Tags] | 1480B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1480B | 4C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1480}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -507,11 +507,11 @@
 | tc16-1480B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
+| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 1480 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1480B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1480B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1480}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -538,11 +538,11 @@
 | tc17-9000B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
+| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
@@ -567,11 +567,11 @@
 | tc18-9000B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
+| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
