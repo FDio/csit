@@ -58,10 +58,10 @@
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4vxlan-l2xcbase-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC forwarding config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs L2XC forwarding config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -79,10 +79,10 @@
 
 | tc02-64B-1t1c-ethip4vxlan-l2xcbase-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC forwarding config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs L2XC forwarding config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -101,10 +101,10 @@
 
 | tc03-1518B-1t1c-ethip4vxlan-l2xcbase-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC forwarding config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs L2XC forwarding config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -121,10 +121,10 @@
 
 | tc04-1518B-1t1c-ethip4vxlan-l2xcbase-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC forwarding config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs L2XC forwarding config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -142,10 +142,10 @@
 
 | tc05-9000B-1t1c-ethip4vxlan-l2xcbase-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC forwarding config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs L2XC forwarding config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1C | NDRDISC
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -162,10 +162,10 @@
 
 | tc06-9000B-1t1c-ethip4vxlan-l2xcbase-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC forwarding config with 1 thread, 1 phy core, \
+| | ... | [Cfg] DUT runs L2XC forwarding config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -186,7 +186,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -207,7 +207,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -229,7 +229,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -249,7 +249,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -270,7 +270,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -290,7 +290,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -311,7 +311,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -332,7 +332,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -354,7 +354,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps.
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -374,7 +374,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -395,7 +395,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
@@ -415,7 +415,7 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}

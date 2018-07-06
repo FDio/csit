@@ -74,49 +74,49 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${64} | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-eth-l2bdbasemaclrn-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD
+| | [Tags] | 1518B | 1C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${1518} | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-eth-l2bdbasemaclrn-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD
+| | [Tags] | 9000B | 1C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${9000} | wt=1 | rxq=1
 
 | tc04-IMIX-1t1c-eth-l2bdbasemaclrn-mrr
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
 | | ... | trial throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD
+| | [Tags] | IMIX | 1C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1
@@ -128,7 +128,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 64B | 2C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${64} | wt=2 | rxq=1
@@ -140,7 +140,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${1518} | wt=2 | rxq=1
@@ -152,7 +152,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${9000} | wt=2 | rxq=1
@@ -165,7 +165,7 @@
 | | ... | trial throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD
+| | [Tags] | IMIX | 2C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1
@@ -177,7 +177,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD
+| | [Tags] | 64B | 4C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${64} | wt=4 | rxq=2
@@ -189,7 +189,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD
+| | [Tags] | 1518B | 4C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${1518} | wt=4 | rxq=2
@@ -201,7 +201,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Tags] | 9000B | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=${9000} | wt=4 | rxq=2
@@ -214,7 +214,7 @@
 | | ... | trial throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD
+| | [Tags] | IMIX | 4C
 | | ...
 | | [Template] | Check RR for l2bdbasemaclrn
 | | framesize=IMIX_v4_1 | wt=4 | rxq=2

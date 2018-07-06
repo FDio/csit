@@ -97,66 +97,66 @@
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 \
+| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 \
 | | ... | phy core, 1 receive queue per NIC port. [Ver] Find NDR for 64 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
 
 | tc02-64B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 \
+| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 \
 | | ... | phy core, 1 receive queue per NIC port. [Ver] Find PDR for 64 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps, LT=0.5%.
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
 
 | tc03-1518B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 \
+| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 \
 | | ... | phy core, 1 receive queue per NIC port. [Ver] Find NDR for 1518 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps.
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
 
 | tc04-1518B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 \
+| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 \
 | | ... | phy core, 1 receive queue per NIC port. [Ver] Find PDR for 1518 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
 
 | tc05-9000B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 \
+| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 \
 | | ... | phy core, 1 receive queue per NIC port. [Ver] Find NDR for 9000 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 10kpps.
-| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc06-9000B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 \
+| | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 \
 | | ... | phy core, 1 receive queue per NIC port. [Ver] Find PDR for 9000 \
 | | ... | Byte frames using binary search start at 10GE linerate, step 10kpps, \
 | | ... | LT=0.5%.
-| | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
@@ -167,7 +167,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Find NDR for 64 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps.
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -178,7 +178,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Find PDR for 64 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps, LT=0.5%.
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
@@ -189,7 +189,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Find NDR for 1518 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps.
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
@@ -200,7 +200,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Find PDR for 1518 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
@@ -211,7 +211,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Find NDR for 9000 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 10kpps.
-| | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
@@ -222,7 +222,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Find PDR for 9000 \
 | | ... | Byte frames using binary search start at 10GE linerate, step 10kpps, \
 | | ... | LT=0.5%.
-| | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
@@ -233,7 +233,7 @@
 | | ... | phy cores, 2 receive queue per NIC port. [Ver] Find NDR for 64 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps.
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
@@ -244,7 +244,7 @@
 | | ... | phy cores, 2 receive queue per NIC port. [Ver] Find PDR for 64 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps, LT=0.5%.
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR
@@ -255,7 +255,7 @@
 | | ... | phy cores, 2 receive queue per NIC port. [Ver] Find NDR for 1518 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps.
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
@@ -266,7 +266,7 @@
 | | ... | phy cores, 2 receive queue per NIC port. [Ver] Find PDR for 1518 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 50kpps, LT=0.5%.
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR
@@ -277,7 +277,7 @@
 | | ... | phy cores, 2 receive queue per NIC port. [Ver] Find NDR for 9000 \
 | | ... | Byte frames using binary search start at 10GE linerate, step \
 | | ... | 10kpps.
-| | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=NDR
@@ -288,7 +288,7 @@
 | | ... | phy cores, 2 receive queue per NIC port. [Ver] Find PDR for 9000 \
 | | ... | Byte frames using binary search start at 10GE linerate, step 10kpps, \
 | | ... | LT=0.5%.
-| | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base-ipolicemarkbase
 | | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=PDR

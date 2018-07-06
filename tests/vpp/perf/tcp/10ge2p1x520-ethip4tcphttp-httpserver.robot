@@ -80,7 +80,7 @@
 | | [Documentation]
 | | ... | Measure number of connections per second using wrk.
 | | ...
-| | [Tags] | 1T1C | TCP_CPS
+| | [Tags] | 1C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=1 | rxq=1
@@ -90,7 +90,7 @@
 | | [Documentation]
 | | ... | Measure number of connections per second using wrk.
 | | ...
-| | [Tags] | 2T2C | TCP_CPS
+| | [Tags] | 2C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=2 | rxq=2
@@ -100,7 +100,7 @@
 | | [Documentation]
 | | ... | Measure number of connections per second using wrk.
 | | ...
-| | [Tags] | 4T4C | TCP_CPS
+| | [Tags] | 4C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=4 | rxq=4
@@ -110,7 +110,7 @@
 | | [Documentation]
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
-| | [Tags] | 1T1C | TCP_RPS
+| | [Tags] | 1C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=1 | rxq=1
@@ -120,7 +120,7 @@
 | | [Documentation]
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
-| | [Tags] | 2T2C | TCP_RPS
+| | [Tags] | 2C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=2 | rxq=2
@@ -130,7 +130,7 @@
 | | [Documentation]
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
-| | [Tags] | 4T4C | TCP_RPS
+| | [Tags] | 4C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=4 | rxq=4
