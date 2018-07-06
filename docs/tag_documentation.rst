@@ -592,38 +592,39 @@ Multi-threading tags
 
     All test cases with packet processing on two sockets.
 
-.. topic:: SMT
-
-    All test cases with symmetric Multi-Threading (HyperThreading) enabled.
-
-.. topic:: NOSMT
-
-    All test cases with symmetric Multi-Threading (HyperThreading) disabled.
-
 .. topic:: 1T1C
 
     1 worker thread pinned to 1 dedicated physical core. 1 receive queue per
-    interface. Main thread pinned to core 0.
+    interface. Main thread pinned to core 1.
 
 .. topic:: 2T2C
 
     2 worker threads pinned to 2 dedicated physical cores. 1 receive queue per
-    interface. Main thread pinned to core 0.
+    interface. Main thread pinned to core 1.
 
 .. topic:: 4T4C
 
     4 worker threads pinned to 4 dedicated physical cores. 2 receive queues per
-    interface. Main thread pinned to core 0.
+    interface. Main thread pinned to core 1.
 
-.. topic:: 6T6C
+.. topic:: 2T1C
 
-    6 worker threads pinned to 6 dedicated physical cores. 3 receive queues per
-    interface. Main thread pinned to core 0.
+    2 worker thread pinned to 1 dedicated physical core. 1 receive queue per
+    interface. Main thread pinned to core 1. Threads are pinned to sibling cores
+    automatically if SMT is enabled.
 
-.. topic:: 8T8C
+.. topic:: 4T2C
 
-    8 worker threads pinned to 8 dedicated physical cores. 4 receive queues per
-    interface. Main thread pinned to core 0.
+    4 worker threads pinned to 2 dedicated physical cores. 2 receive queue per
+    interface. Main thread pinned to core 1. Threads are pinned to sibling cores
+    automatically if SMT is enabled.
+
+.. topic:: 8T4C
+
+    8 worker threads pinned to 4 dedicated physical cores. 4 receive queues per
+    interface. Main thread pinned to core 1. Threads are pinned to sibling cores
+    automatically if SMT is enabled.
+
 
 Honeycomb tags
 --------------

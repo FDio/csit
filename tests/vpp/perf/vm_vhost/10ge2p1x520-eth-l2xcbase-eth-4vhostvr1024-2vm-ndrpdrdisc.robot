@@ -116,7 +116,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | STHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -128,7 +128,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
@@ -140,7 +140,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | STHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
@@ -152,7 +152,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
@@ -165,7 +165,7 @@
 | | ... | size using binary search start at 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | STHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
@@ -178,7 +178,7 @@
 | | ... | size using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
@@ -190,7 +190,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | MTHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -202,7 +202,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
@@ -214,7 +214,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
@@ -226,7 +226,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
@@ -239,7 +239,7 @@
 | | ... | size using binary search start at 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
@@ -252,7 +252,7 @@
 | | ... | size using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
@@ -264,7 +264,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | MTHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -276,7 +276,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=PDR
@@ -288,7 +288,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=NDR
@@ -300,7 +300,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=PDR
@@ -313,7 +313,7 @@
 | | ... | size using binary search start at 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
@@ -326,7 +326,7 @@
 | | ... | size using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for eth-l2xcbase-eth-4vhostvr1024-2vm
 | | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR

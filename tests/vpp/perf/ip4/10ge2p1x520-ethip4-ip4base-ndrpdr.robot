@@ -82,61 +82,61 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1C | STHREAD
 | | ...
 | | wt=1 | rxq=1 | framesize=${64}
 
 | tc02-1518B-1t1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 1518B | 1T1C | STHREAD
+| | [Tags] | 1518B | 1C | STHREAD
 | | ...
 | | wt=1 | rxq=1 | framesize=${1518}
 
 | tc03-9000B-1t1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 1518B | 1T1C | STHREAD
+| | [Tags] | 1518B | 1C | STHREAD
 | | ...
 | | wt=1 | rxq=1 | framesize=${9000}
 
 | tc04-IMIX-1t1c-ethip4-ip4base-ndrpdr
-| | [Tags] | IMIX | 1T1C | STHREAD
+| | [Tags] | IMIX | 1C | STHREAD
 | | ...
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1
 
 | tc05-64B-2t2c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 64B | 2C | MTHREAD
 | | ...
 | | wt=2 | rxq=1 | framesize=${64}
 
 | tc06-1518B-2t2c-ethip4-ip4base-ndrpdr
-| | [Tags] | 1518B | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2C | MTHREAD
 | | ...
 | | wt=2 | rxq=1 | framesize=${1518}
 
 | tc07-9000B-2t2c-ethip4-ip4base-ndrpdr
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2C | MTHREAD
 | | ...
 | | wt=2 | rxq=1 | framesize=${9000}
 
 | tc08-IMIX-2t2c-ethip4-ip4base-ndrpdr
-| | [Tags] | IMIX | 2T2C | MTHREAD
+| | [Tags] | IMIX | 2C | MTHREAD
 | | ...
 | | wt=2 | rxq=1 | framesize=IMIX_v4_1
 
 | tc09-64B-4t4c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 4T4C | MTHREAD
+| | [Tags] | 64B | 4C | MTHREAD
 | | ...
 | | wt=4 | rxq=2 | framesize=${64}
 
 | tc10-1518B-4t4c-ethip4-ip4base-ndrpdr
-| | [Tags] | 1518B | 4T4C | MTHREAD
+| | [Tags] | 1518B | 4C | MTHREAD
 | | ...
 | | wt=4 | rxq=2 | framesize=${1518}
 
 | tc11-9000B-4t4c-ethip4-ip4base-ndrpdr
-| | [Tags] | 9000B | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4C | MTHREAD
 | | ...
 | | wt=4 | rxq=2 | framesize=${9000}
 
 | tc12-IMIX-4t4c-ethip4-ip4base-ndrpdr
-| | [Tags] | IMIX | 4T4C | MTHREAD
+| | [Tags] | IMIX | 4C | MTHREAD
 | | ...
 | | wt=4 | rxq=2 | framesize=IMIX_v4_1

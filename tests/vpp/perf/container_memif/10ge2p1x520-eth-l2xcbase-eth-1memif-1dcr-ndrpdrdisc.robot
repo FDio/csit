@@ -121,7 +121,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | STHREAD | NDRDISC
 | | framesize=${64} | wt=1 | rxq=1 | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -131,7 +131,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC
+| | [Tags] | 64B | 1C | STHREAD | PDRDISC
 | | framesize=${64} | wt=1 | rxq=1 | search_type=PDR
 
 | tc03-1518B-1t1c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -141,7 +141,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | STHREAD | NDRDISC
 | | framesize=${1518} | wt=1 | rxq=1 | search_type=NDR
 
 | tc04-1518B-1t1c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -151,7 +151,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC
+| | [Tags] | 1518B | 1C | STHREAD | PDRDISC
 | | framesize=${1518} | wt=1 | rxq=1 | search_type=PDR
 
 | tc05-9000B-1t1c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -161,7 +161,7 @@
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1C | STHREAD | NDRDISC
 | | framesize=${9000} | wt=1 | rxq=1 | search_type=NDR
 
 | tc06-9000B-1t1c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -171,7 +171,7 @@
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC
+| | [Tags] | 9000B | 1C | STHREAD | PDRDISC
 | | framesize=${9000} | wt=1 | rxq=1 | search_type=PDR
 
 | tc07-IMIX-1t1c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -182,7 +182,7 @@
 | | ... | linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | STHREAD | NDRDISC
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1 | search_type=NDR
 
 | tc08-IMIX-1t1c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -193,7 +193,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC
+| | [Tags] | IMIX | 1C | STHREAD | PDRDISC
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1 | search_type=PDR
 
 | tc09-64B-2t2c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -203,7 +203,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | MTHREAD | NDRDISC
 | | framesize=${64} | wt=2 | rxq=1 | search_type=NDR
 
 | tc10-64B-2t2c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -213,7 +213,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | MTHREAD | PDRDISC
+| | [Tags] | 64B | 1C | MTHREAD | PDRDISC
 | | framesize=${64} | wt=2 | rxq=1 | search_type=PDR
 
 | tc11-1518B-2t2c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -223,7 +223,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 1518B | 2C | MTHREAD | NDRDISC
 | | framesize=${1518} | wt=2 | rxq=1 | search_type=NDR
 
 | tc12-1518B-2t2c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -233,7 +233,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC
+| | [Tags] | 1518B | 2C | MTHREAD | PDRDISC
 | | framesize=${1518} | wt=2 | rxq=1 | search_type=PDR
 
 | tc13-9000B-2t2c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -243,7 +243,7 @@
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 9000B | 2C | MTHREAD | NDRDISC
 | | framesize=${9000} | wt=2 | rxq=1 | search_type=NDR
 
 | tc14-9000B-2t2c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -253,7 +253,7 @@
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC
+| | [Tags] | 9000B | 2C | MTHREAD | PDRDISC
 | | framesize=${9000} | wt=2 | rxq=1 | search_type=PDR
 
 | tc15-IMIX-2t2c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -264,7 +264,7 @@
 | | ... | linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | IMIX | 2C | MTHREAD | NDRDISC
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1 | search_type=NDR
 
 | tc16-IMIX-2t2c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -275,7 +275,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC
+| | [Tags] | IMIX | 2C | MTHREAD | PDRDISC
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1 | search_type=PDR
 
 | tc17-64B-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -285,7 +285,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | MTHREAD | NDRDISC
 | | framesize=${64} |  wt=4 | rxq=2 | search_type=NDR
 
 | tc18-64B-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -295,7 +295,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC
+| | [Tags] | 64B | 4C | MTHREAD | PDRDISC
 | | framesize=${64} |  wt=4 | rxq=2 | search_type=PDR
 
 | tc19-1518B-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -305,7 +305,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 1518B | 4C | MTHREAD | NDRDISC
 | | framesize=${1518} |  wt=4 | rxq=2| search_type=NDR
 
 | tc20-1518B-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -315,7 +315,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC
+| | [Tags] | 1518B | 4C | MTHREAD | PDRDISC
 | | framesize=${1518} |  wt=4 | rxq=2 | search_type=PDR
 
 | tc21-9000B-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -325,7 +325,7 @@
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 9000B | 4C | MTHREAD | NDRDISC
 | | framesize=${9000} |  wt=4 | rxq=2 | search_type=NDR
 
 | tc22-9000B-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -335,7 +335,7 @@
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC
+| | [Tags] | 9000B | 4C | MTHREAD | PDRDISC
 | | framesize=${9000} |  wt=4 | rxq=2 | search_type=PDR
 
 | tc23-IMIX-4t4c-eth-l2xcbase-eth-1memif-1dcr-ndrdisc
@@ -346,7 +346,7 @@
 | | ... | linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | IMIX | 4C | MTHREAD | NDRDISC
 | | framesize=IMIX_v4_1 |  wt=4 | rxq=2 | search_type=NDR
 
 | tc24-IMIX-4t4c-eth-l2xcbase-eth-1memif-1dcr-pdrdisc
@@ -357,5 +357,5 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD | PDRDISC
+| | [Tags] | IMIX | 4C | MTHREAD | PDRDISC
 | | framesize=IMIX_v4_1 | wt=4 | rxq=2 | search_type=PDR
