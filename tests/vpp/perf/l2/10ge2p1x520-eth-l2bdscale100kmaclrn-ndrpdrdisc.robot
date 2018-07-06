@@ -69,7 +69,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
+| | Add PCI devices to all DUTs
 | | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | Initialize L2 bridge domain in 3-node circular topology
