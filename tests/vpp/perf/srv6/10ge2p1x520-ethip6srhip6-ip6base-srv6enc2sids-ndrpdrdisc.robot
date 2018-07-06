@@ -93,7 +93,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with encapsulation with '2' x SID 'with' decapsulation in 3-node circular topology

@@ -41,7 +41,7 @@
 | | [Arguments] | ${traffic_profile} | ${wt} | ${rxq} | ${test_type}
 | | ...
 | | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
+| | Add PCI devices to all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator

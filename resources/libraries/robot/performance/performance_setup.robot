@@ -484,13 +484,13 @@
 
 # Suite teardowns
 
-| Tear down 3-node performance topology
+| Tear down 2-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ...
 | | Teardown traffic generator | ${tg}
 
-| Tear down 3-node performance topology with container
+| Tear down 2-node performance topology with container
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown and container
 | | ... | destroy.
@@ -499,13 +499,13 @@
 | | :FOR | ${group} | IN | @{container_groups}
 | | | Destroy all '${group}' containers
 
-| Tear down 2-node performance topology
+| Tear down 3-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ...
 | | Teardown traffic generator | ${tg}
 
-| Tear down 2-node performance topology with container
+| Tear down 3-node performance topology with container
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown and container
 | | ... | destroy.
@@ -720,6 +720,14 @@
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
 
+| Tear down DPDK 2-node performance topology
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown.
+| | ... | Cleanup DPDK test environment.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
+
 | Tear down DPDK 3-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
@@ -728,14 +736,6 @@
 | | Teardown traffic generator | ${tg}
 | | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Cleanup DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
-
-| Tear down DPDK 2-node performance topology
-| | [Documentation]
-| | ... | Suite teardown phase with traffic generator teardown.
-| | ... | Cleanup DPDK test environment.
-| | ...
-| | Teardown traffic generator | ${tg}
-| | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Tear down performance discovery test with NAT
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
