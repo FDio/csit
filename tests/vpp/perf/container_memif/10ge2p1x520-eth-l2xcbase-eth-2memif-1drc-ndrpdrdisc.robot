@@ -103,69 +103,69 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC
+| | [Tags] | 64B | 1C | PDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
 
 | tc03-IMIX-1t1c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | NDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
 | tc04-IMIX-1t1c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC
+| | [Tags] | IMIX | 1C | PDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
 
 | tc05-1518B-1t1c-eth-l2xcbase-eth-2memif-1dcr-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
 | tc06-1518B-1t1c-eth-l2xcbase-eth-2memif-1dcr-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC
+| | [Tags] | 1518B | 1C | PDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
 
@@ -176,7 +176,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
 
@@ -187,7 +187,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC
+| | [Tags] | 64B | 2C | PDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR
 
@@ -199,7 +199,7 @@
 | | ... | linerate, step 50kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | IMIX | 2C | NDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
 
@@ -211,7 +211,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC
+| | [Tags] | IMIX | 2C | PDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR
 
@@ -222,7 +222,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 1518B | 2C | NDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
 
@@ -233,6 +233,6 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC
+| | [Tags] | 1518B | 2C | PDRDISC
 | | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR

@@ -127,74 +127,74 @@
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IP4 routing config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs IP4 routing config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc02-64B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IP4 routing config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs IP4 routing config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc03-1518B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IP4 routing config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs IP4 routing config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
 
 | tc04-1518B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IP4 routing config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs IP4 routing config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
 
 | tc05-IMIX-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IP4 routing config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs IP4 routing config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 framesize using binary search start at\
 | | ... | 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 
 | tc06-IMIX-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs IP4 routing config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs IP4 routing config with 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for IMIX_v4_1 framesize using binary search start at\
 | | ... | 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
@@ -206,7 +206,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | STHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -218,7 +218,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
@@ -230,7 +230,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 2T2C | STHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
@@ -242,7 +242,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 2T2C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
@@ -255,7 +255,7 @@
 | | ... | 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | STHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
@@ -268,7 +268,7 @@
 | | ... | 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
@@ -280,7 +280,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 4T4C | STHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -292,7 +292,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 4T4C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=PDR
@@ -304,7 +304,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 1518B | 4T4C | STHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=NDR
@@ -316,7 +316,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 4T4C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=PDR
@@ -329,7 +329,7 @@
 | | ... | 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | STHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
@@ -342,7 +342,7 @@
 | | ... | 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv4 forwarding with VM
 | | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR

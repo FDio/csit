@@ -74,12 +74,12 @@
 | tc01-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
-| | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
+| | ... | IPsec is in transport mode. DUTs are configured with 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | # FIXME: Move repeated lines into a keyword.
 | | ${framesize}= | Set Variable | ${64}
@@ -107,12 +107,12 @@
 | tc02-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
-| | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
+| | ... | IPsec is in transport mode. DUTs are configured with 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -140,12 +140,12 @@
 | tc03-1518B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
-| | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
+| | ... | IPsec is in transport mode. DUTs are configured with 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -171,12 +171,12 @@
 | tc04-1518B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
-| | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
+| | ... | IPsec is in transport mode. DUTs are configured with 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -203,12 +203,12 @@
 | tc05-IMIX-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
-| | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
+| | ... | IPsec is in transport mode. DUTs are configured with 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
@@ -235,12 +235,12 @@
 | tc06-IMIX-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] Each DUT is configured with LISP and IPsec in each direction.\
-| | ... | IPsec is in transport mode. DUTs are configured with 1 thread, 1 phy\
+| | ... | IPsec is in transport mode. DUTs are configured with 1 phy\
 | | ... | core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
@@ -273,7 +273,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -305,7 +305,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -338,7 +338,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
@@ -370,7 +370,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}

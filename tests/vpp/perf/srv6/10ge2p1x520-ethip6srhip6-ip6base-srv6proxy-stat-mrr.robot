@@ -122,11 +122,11 @@
 | tc01-78B-1t1c-ethip6srhip6-ip6base-srv6proxy-stat-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 over SRv6 routing with static SRv6 proxy config\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 78B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 78B | 1T1C | STHREAD
+| | [Tags] | 78B | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=1 | rxq=1 | framesize=${78}
@@ -134,11 +134,11 @@
 | tc02-1518B-1t1c-ethip6srhip6-ip6base-srv6proxy-stat-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 over SRv6 routing with static SRv6 proxy config\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD
+| | [Tags] | 1518B | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=1 | rxq=1 | framesize=${1518}
@@ -146,11 +146,11 @@
 | tc03-9000B-1t1c-ethip6srhip6-ip6base-srv6proxy-stat-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 over SRv6 routing with static SRv6 proxy config\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 1T1C | STHREAD
+| | [Tags] | 9000B | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=1 | rxq=1 | framesize=${9000}
@@ -158,12 +158,12 @@
 | tc04-IMIX-1t1c-ethip6srhip6-ip6base-srv6proxy-stat-mrr
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 over SRv6 routing with static SRv6 proxy config\
-| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 1T1C | STHREAD
+| | [Tags] | IMIX | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=1 | rxq=1 | framesize=IMIX_v4_1
@@ -175,7 +175,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 78B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 78B | 2T2C | MTHREAD
+| | [Tags] | 78B | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=2 | rxq=1 | framesize=${78}
@@ -187,7 +187,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=2 | rxq=1 | framesize=${1518}
@@ -199,7 +199,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=2 | rxq=1 | framesize=${9000}
@@ -212,7 +212,7 @@
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 2T2C | MTHREAD
+| | [Tags] | IMIX | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=2 | rxq=1 | framesize=IMIX_v4_1
@@ -224,7 +224,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 78B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 78B | 4T4C | MTHREAD
+| | [Tags] | 78B | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=4 | rxq=2 | framesize=${78}
@@ -236,7 +236,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD
+| | [Tags] | 1518B | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=4 | rxq=2 | framesize=${1518}
@@ -248,7 +248,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 9000B | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=4 | rxq=2 | framesize=${9000}
@@ -261,7 +261,7 @@
 | | ... | throughput test.
 | | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
-| | [Tags] | IMIX | 4T4C | MTHREAD
+| | [Tags] | IMIX | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via static proxy behaviour
 | | wt=4 | rxq=2 | framesize=IMIX_v4_1

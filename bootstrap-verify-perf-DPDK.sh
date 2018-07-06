@@ -118,24 +118,24 @@ PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKI
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
     PERFTEST_MRR_DAILY )
-       TAGS=('mrrAND64bAND1t1c'
-             'mrrAND64bAND2t2c'
-             'mrrAND64bAND4t4c'
-             'mrrAND78bAND1t1c'
-             'mrrAND78bAND2t2c'
-             'mrrAND78bAND4t4c'
-             'mrrANDimixAND1t1c'
-             'mrrANDimixAND2t2c'
-             'mrrANDimixAND4t4c')
+       TAGS=('mrrAND64bAND1c'
+             'mrrAND64bAND2c'
+             'mrrAND64bAND4c'
+             'mrrAND78bAND1c'
+             'mrrAND78bAND2c'
+             'mrrAND78bAND4c'
+             'mrrANDimixAND1c'
+             'mrrANDimixAND2c'
+             'mrrANDimixAND4c')
         ;;
     VERIFY-PERF-PATCH )
         if [[ -z "$TEST_TAG_STRING" ]]; then
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1t1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1t1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1t1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
+                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
+                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
