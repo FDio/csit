@@ -112,61 +112,61 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 64B | 1T1C | STHREAD
+| | [Tags] | 64B | 1C | STHREAD
 | | ...
 | | framesize=${64} | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 1518B | 1T1C | STHREAD
+| | [Tags] | 1518B | 1C | STHREAD
 | | ...
 | | framesize=${1518} | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 9000B | 1T1C | STHREAD
+| | [Tags] | 9000B | 1C | STHREAD
 | | ...
 | | framesize=${9000} | wt=1 | rxq=1
 
 | tc04-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | IMIX | 1T1C | STHREAD
+| | [Tags] | IMIX | 1C | STHREAD
 | | ...
 | | framesize=IMIX_v4_1 | wt=1 | rxq=1
 
 | tc05-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 64B | 2T2C | MTHREAD
+| | [Tags] | 64B | 2C | MTHREAD
 | | ...
 | | framesize=${64} | wt=2 | rxq=1
 
 | tc06-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 1518B | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2C | MTHREAD
 | | ...
 | | framesize=${1518} | wt=2 | rxq=1
 
 | tc07-9000B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 9000B | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2C | MTHREAD
 | | ...
 | | framesize=${9000} | wt=2 | rxq=1
 
 | tc08-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | IMIX | 2T2C | MTHREAD
+| | [Tags] | IMIX | 2C | MTHREAD
 | | ...
 | | framesize=IMIX_v4_1 | wt=2 | rxq=1
 
 | tc09-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 64B | 4T4C | MTHREAD
+| | [Tags] | 64B | 4C | MTHREAD
 | | ...
 | | framesize=${64} | wt=4 | rxq=2
 
 | tc10-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 1518B | 4T4C | MTHREAD
+| | [Tags] | 1518B | 4C | MTHREAD
 | | ...
 | | framesize=${1518} | wt=4 | rxq=2
 
 | tc11-9000B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 9000B | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4C | MTHREAD
 | | ...
 | | framesize=${9000} | wt=4 | rxq=2
 
 | tc12-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | IMIX | 4T4C | MTHREAD
+| | [Tags] | IMIX | 4C | MTHREAD
 | | ...
 | | framesize=IMIX_v4_1 | wt=4 | rxq=2

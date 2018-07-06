@@ -115,7 +115,7 @@
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 78B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 78B | 1C | STHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
@@ -127,7 +127,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 78B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=PDR
@@ -139,7 +139,7 @@
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 78B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 2C | MTHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=2 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
@@ -151,7 +151,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 78B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=2 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=PDR
@@ -163,7 +163,7 @@
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 78B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 4C | MTHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=4 | rxq=2 | framesize=${78} | min_rate=${50000} | search_type=NDR
@@ -175,7 +175,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 78B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=4 | rxq=2 | framesize=${78} | min_rate=${50000} | search_type=PDR
@@ -187,7 +187,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1C | STHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
@@ -199,7 +199,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
@@ -211,7 +211,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 1518B | 2C | MTHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
@@ -223,7 +223,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
@@ -235,7 +235,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 1518B | 4C | MTHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
@@ -247,7 +247,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | ...
-| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR

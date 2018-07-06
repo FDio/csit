@@ -136,141 +136,46 @@ else
     exit 1
 fi
 
-PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+PYBOT_ARGS="--consolewidth 100 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
     PERFTEST_DAILY )
-        TAGS=('ndrdiscANDnic_intel-x520-da2AND1t1c'
-              'ndrdiscANDnic_intel-x520-da2AND2t2c'
-              'ndrpdrANDnic_intel-x520-da2AND1t1c'
-              'ndrpdrANDnic_intel-x520-da2AND2t2c'
-              'ndrdiscAND1t1cANDipsec'
-              'ndrdiscAND2t2cANDipsec')
+        TAGS=('ndrdiscANDnic_intel-x520-da2AND1c'
+              'ndrdiscANDnic_intel-x520-da2AND2c'
+              'ndrpdrANDnic_intel-x520-da2AND1c'
+              'ndrpdrANDnic_intel-x520-da2AND2c'
+              'ndrdiscAND1cANDipsec'
+              'ndrdiscAND2cANDipsec')
         ;;
     PERFTEST_SEMI_WEEKLY )
-        TAGS=('ndrdiscANDnic_intel-x710AND1t1c'
-              'ndrdiscANDnic_intel-x710AND2t2c'
-              'ndrdiscANDnic_intel-xl710AND1t1c'
-              'ndrdiscANDnic_intel-xl710AND2t2c')
+        TAGS=('ndrdiscANDnic_intel-x710AND1c'
+              'ndrdiscANDnic_intel-x710AND2c'
+              'ndrdiscANDnic_intel-xl710AND1c'
+              'ndrdiscANDnic_intel-xl710AND2c')
         ;;
     PERFTEST_MRR_DAILY )
-       TAGS=('mrrAND64bAND1t1c'
-             'mrrAND64bAND2t2c'
-             'mrrAND64bAND4t4c'
-             'mrrAND78bAND1t1c'
-             'mrrAND78bAND2t2c'
-             'mrrAND78bAND4t4c'
-             'mrrANDimixAND1t1cANDvhost'
-             'mrrANDimixAND2t2cANDvhost'
-             'mrrANDimixAND4t4cANDvhost'
-             'mrrANDimixAND1t1cANDmemif'
-             'mrrANDimixAND2t2cANDmemif'
-             'mrrANDimixAND4t4cANDmemif')
-        ;;
-    VERIFY-PERF-NDRDISC )
-        TAGS=('ndrdiscAND1t1c'
-              'ndrdiscAND2t2c')
-        ;;
-    VERIFY-PERF-PDRDISC )
-        TAGS=('pdrdiscAND1t1c'
-              'pdrdiscAND2t2c')
-        ;;
-    VERIFY-PERF-MRR )
-        TAGS=('mrrAND1t1c'
-              'mrrAND2t2c')
-        ;;
-    VERIFY-PERF-IP4 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m')
-        ;;
-    VERIFY-PERF-IP6 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip6base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m')
-        ;;
-    VERIFY-PERF-L2 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase'
-              '!lbond_dpdk')
-        ;;
-    VERIFY-PERF-LISP )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
-        ;;
-    VERIFY-PERF-VXLAN )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvxlan')
-        ;;
-    VERIFY-PERF-VHOST )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost'
-              '!lbond_dpdk')
-        ;;
-    VERIFY-PERF-MEMIF )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
-              'pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif'
-              'mrrANDnic_intel-x520-da2AND1t1cANDmemif'
-              'mrrANDnic_intel-x520-da2AND2t2cANDmemif')
-        ;;
-    VERIFY-PERF-IPSECHW )
-        TAGS=('pdrdiscANDnic_intel-xl710AND1t1cANDipsechw'
-              'pdrdiscANDnic_intel-xl710AND2t2cANDipsechw'
-              'mrrANDnic_intel-xl710AND1t1cANDipsechw'
-              'mrrANDnic_intel-xl710AND2t2cANDipsechw')
-        ;;
-    VERIFY-PERF-SRV6 )
-        TAGS=('mrrANDsrv6AND1t1c'
-              'mrrANDsrv6AND2t2c')
-        ;;
-    VPP-VERIFY-PERF-IP4 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip4base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m')
-        ;;
-    VPP-VERIFY-PERF-IP6 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDip6base'
-              'mrrANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m')
-        ;;
-    VPP-VERIFY-PERF-L2 )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDl2xcbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDl2bdbase'
-              'mrrANDnic_intel-x520-da2AND1t1cANDdot1q'
-              '!lbond_dpdk')
-        ;;
-    VPP-VERIFY-PERF-LISP )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDlisp')
-        ;;
-    VPP-VERIFY-PERF-VXLAN )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvxlan')
-        ;;
-    VPP-VERIFY-PERF-VHOST )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDvhost'
-              '!lbond_dpdk')
-        ;;
-    VPP-VERIFY-PERF-MEMIF )
-        TAGS=('pdrdiscANDnic_intel-x520-da2AND1t1cANDmemif'
-              'pdrdiscANDnic_intel-x520-da2AND2t2cANDmemif'
-              'mrrANDnic_intel-x520-da2AND1t1cANDmemif'
-              'mrrANDnic_intel-x520-da2AND2t2cANDmemif')
-        ;;
-    VPP-VERIFY-PERF-ACL )
-        TAGS=('mrrANDnic_intel-x520-da2AND1t1cANDacl'
-              'mrrANDnic_intel-x520-da2AND2t2cANDacl')
-        ;;
-    VPP-VERIFY-PERF-IPSECHW )
-        TAGS=('pdrdiscANDnic_intel-xl710AND1t1cANDipsechw'
-              'pdrdiscANDnic_intel-xl710AND2t2cANDipsechw'
-              'mrrANDnic_intel-xl710AND1t1cANDipsechw'
-              'mrrANDnic_intel-xl710AND2t2cANDipsechw')
-        ;;
-    VPP-VERIFY-PERF-SRV6 )
-        TAGS=('mrrANDsrv6AND1t1c'
-              'mrrANDsrv6AND2t2c')
+       TAGS=('mrrAND64bAND1c'
+             'mrrAND64bAND2c'
+             'mrrAND64bAND4c'
+             'mrrAND78bAND1c'
+             'mrrAND78bAND2c'
+             'mrrAND78bAND4c'
+             'mrrANDimixAND1cANDvhost'
+             'mrrANDimixAND2cANDvhost'
+             'mrrANDimixAND4cANDvhost'
+             'mrrANDimixAND1cANDmemif'
+             'mrrANDimixAND2cANDmemif'
+             'mrrANDimixAND4cANDmemif')
         ;;
     VERIFY-PERF-PATCH )
         if [[ -z "$TEST_TAG_STRING" ]]; then
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1t1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1t1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1t1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
+                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
+                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
