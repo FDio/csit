@@ -67,7 +67,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
+| | Add PCI devices to all DUTs
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | Add DPDK dev default RXD to all DUTs | 2048
@@ -94,7 +94,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
+| | Add PCI devices to all DUTs
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | Add DPDK dev default RXD to all DUTs | 2048

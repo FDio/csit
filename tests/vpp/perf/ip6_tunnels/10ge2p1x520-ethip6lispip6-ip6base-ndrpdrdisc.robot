@@ -67,7 +67,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -97,7 +97,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -128,7 +128,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -158,7 +158,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -189,7 +189,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6} | ${dut1_to_tg_ip6} | ${dut2_to_dut1_ip6}
@@ -218,7 +218,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6} | ${dut1_to_tg_ip6} | ${dut2_to_dut1_ip6}
@@ -248,7 +248,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -278,7 +278,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -309,7 +309,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -339,7 +339,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -370,7 +370,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6} | ${dut1_to_tg_ip6} | ${dut2_to_dut1_ip6}
@@ -399,7 +399,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6} | ${dut1_to_tg_ip6} | ${dut2_to_dut1_ip6}
@@ -429,7 +429,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -459,7 +459,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -490,7 +490,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -520,7 +520,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
@@ -551,7 +551,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6} | ${dut1_to_tg_ip6} | ${dut2_to_dut1_ip6}
@@ -580,7 +580,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6} | ${dut1_to_tg_ip6} | ${dut2_to_dut1_ip6}
