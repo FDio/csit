@@ -92,7 +92,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -132,7 +132,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -174,7 +174,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
@@ -214,7 +214,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
@@ -257,7 +257,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
@@ -299,7 +299,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
@@ -339,7 +339,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -379,7 +379,7 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}
 | | And Add DPDK dev default RXD to all DUTs | 2048
