@@ -130,7 +130,7 @@
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${max_pkt_size}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | Given Add '${num_of_threads}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
+| | Add PCI devices to all DUTs
 | | And Run Keyword If | ${max_pkt_size} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs

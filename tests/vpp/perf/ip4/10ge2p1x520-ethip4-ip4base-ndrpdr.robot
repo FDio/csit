@@ -72,7 +72,7 @@
 | | ${max_uniditrectional_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
 | | ${max_rate}= | Evaluate | 2*${max_uniditrectional_rate}
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
