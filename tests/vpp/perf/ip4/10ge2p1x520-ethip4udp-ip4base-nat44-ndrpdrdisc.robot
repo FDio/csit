@@ -72,7 +72,7 @@
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ...
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Add NAT to all DUTs
