@@ -117,7 +117,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} + ${srv6_overhead_3sids} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
