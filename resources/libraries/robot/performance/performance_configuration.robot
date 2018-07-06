@@ -96,6 +96,26 @@
 | | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | ${tg_if1_ip4} | ${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | ${tg_if2_ip4} | ${dut2_if2}
 
+| Initialize IPv4 forwarding in 2-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
+| | ... | /30 prefix on DUT1 link. Set routing on DUT node with prefix /24 and
+| | ... | next hop of neighbour DUT interface IPv4 address.
+| | ...
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
+| | ... | 10.10.10.1 | 24
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+| | ... | 20.20.20.1 | 24
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | Initialize IPv4 forwarding in 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
@@ -126,26 +146,6 @@
 | | ... | 20.20.20.1 | 24
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
-| | All Vpp Interfaces Ready Wait | ${nodes}
-
-| Initialize IPv4 forwarding in 2-node circular topology
-| | [Documentation]
-| | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
-| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
-| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
-| | ... | /30 prefix on DUT1 link. Set routing on DUT node with prefix /24 and
-| | ... | next hop of neighbour DUT interface IPv4 address.
-| | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.3 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 20.20.20.3 | ${tg1_if2_mac}
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
-| | ... | 10.10.10.2 | 24
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
-| | ... | 20.20.20.2 | 24
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize IPv4 forwarding with scaling in 3-node circular topology
@@ -781,6 +781,14 @@
 | | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| Initialize L2 xconnect in 2-node circular topology
+| | [Documentation]
+| | ... | Setup L2 xconnect topology by cross connecting two interfaces on
+| | ... | each DUT. Interfaces are brought up.
+| | ... |
+| | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | Initialize L2 xconnect in 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 xconnect topology by cross connecting two interfaces on
@@ -1012,6 +1020,25 @@
 | | ... | ${sock1} | ${sock2}
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
+
+| Initialize L2 bridge domain in 2-node circular topology
+| | [Documentation]
+| | ... | Setup L2 DB topology by adding two interfaces on DUT into BD
+| | ... | that is created automatically with index 1. Learning is enabled.
+| | ... | Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id - Bridge domain ID. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain in 2-node circular topology \| 1 \|
+| | ...
+| | [Arguments] | ${bd_id}=${1}
+| | ...
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id}
+| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 bridge domain in 3-node circular topology
 | | [Documentation]
@@ -1766,50 +1793,30 @@
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
-| Add PCI devices to DUTs in 3-node single link topology
+| Add PCI devices to all DUTs
 | | [Documentation]
 | | ... | Add PCI devices to VPP configuration file.
 | | ...
-| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
-| | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if1}
-| | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
-| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
-| | Run keyword | DUT2.Add DPDK Dev | ${dut2_if1_pci} | ${dut2_if2_pci}
-| | Set Test Variable | ${dut1_if1_pci}
-| | Set Test Variable | ${dut1_if2_pci}
-| | Set Test Variable | ${dut2_if1_pci}
-| | Set Test Variable | ${dut2_if2_pci}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | | Run keyword | ${dut}.Add DPDK Dev | ${if1_pci} | ${if2_pci}
+| | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
+| | | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
 
-| Add single PCI device to DUTs in 3-node single link topology
-| | [Documentation]
-| | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
-| | ... | Add single (last) PCI device on DUT2 to VPP configuration file.
-| | ...
-| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
-| | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
-| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
-| | Run keyword | DUT2.Add DPDK Dev | ${dut2_if2_pci}
-| | Set Test Variable | ${dut1_if1_pci}
-| | Set Test Variable | ${dut2_if2_pci}
-
-| Add PCI devices to DUTs in 2-node single link topology
-| | [Documentation]
-| | ... | Add PCI devices to VPP configuration file.
-| | ...
-| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
-| | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
-| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
-| | Set Test Variable | ${dut1_if1_pci}
-| | Set Test Variable | ${dut1_if2_pci}
-
-| Add single PCI device to DUTs in 2-node single link topology
+| Add single PCI device to all DUTs
 | | [Documentation]
 | | ... | Add single (first) PCI device on DUT1 to VPP configuration file.
 | | ...
-| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
-| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci}
-| | Set Test Variable | ${dut1_if1_pci}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_pci}= | Run Keyword If | ${dut} == 'DUT1' | Get Interface PCI Addr
+| | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ELSE | Get Interface PCI Addr
+| | | ... | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | Run keyword | ${dut}.Add DPDK Dev | ${if1_pci}
+| | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
 
 | Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
