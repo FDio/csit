@@ -85,7 +85,7 @@
 | | ... | ip4 | dst | 10.10.10.2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
