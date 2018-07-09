@@ -325,7 +325,7 @@
     plot-cps:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -342,7 +342,7 @@
         hoverformat: ".4s"
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
-        range: []
+        # range: []
         rangemode: "tozero"
         showgrid: True
         showline: True
@@ -367,7 +367,7 @@
     plot-rps:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -384,7 +384,7 @@
         hoverformat: ".4s"
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
-        range: []
+        # range: []
         rangemode: "tozero"
         showgrid: True
         showline: True
@@ -409,7 +409,7 @@
     plot-throughput:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -426,7 +426,7 @@
         hoverformat: ".4s"
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
-        range: []
+        # range: []
         showgrid: True
         showline: True
         showticklabels: True
@@ -450,7 +450,7 @@
     plot-latency:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -467,7 +467,7 @@
         hoverformat: ""
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
-        range: []
+        # range: []
         showgrid: True
         showline: True
         showticklabels: True
@@ -491,7 +491,7 @@
     plot-throughput-speedup-analysis:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -509,7 +509,7 @@
         hoverformat: ".4s"
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
-        range: []
+        # range: []
         showgrid: True
         showline: True
         showticklabels: True
