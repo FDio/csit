@@ -14,18 +14,24 @@
 
 set -xo pipefail
 
+# TOPOLOGY
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_3n_hsw_testbed1.yaml \
-            topologies/available/lf_3n_hsw_testbed2.yaml \
-            topologies/available/lf_3n_hsw_testbed3.yaml"
+TOPOLOGIES_3N_HSW="topologies/available/lf_3n_hsw_testbed1.yaml \
+                   topologies/available/lf_3n_hsw_testbed2.yaml \
+                   topologies/available/lf_3n_hsw_testbed3.yaml"
+TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed22.yaml \
+                   topologies/available/lf_2n_skx_testbed23.yaml"
+TOPOLOGIES_3N_SKX=""
 
+# SYSTEM
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 export DEBIAN_FRONTEND=noninteractive
 
-# Reservation dir
+# RESERVATION
 RESERVATION_DIR="/tmp/reservation_dir"
 
+# ARCHIVE
 JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 JOB_ARCHIVE_DIR="archive"
@@ -33,35 +39,61 @@ LOG_ARCHIVE_DIR="$WORKSPACE/archives"
 mkdir -p ${JOB_ARCHIVE_DIR}
 mkdir -p ${LOG_ARCHIVE_DIR}
 
-# If we run this script from CSIT jobs we want to use stable version
-if [[ ${JOB_NAME} == csit-* ]] ;
-then
-    DPDK_REPO='https://fast.dpdk.org/rel/'
-    if [[ ${TEST_TAG} == *DAILY ]] || \
-       [[ ${TEST_TAG} == *WEEKLY ]];
-    then
-        echo Downloading latest DPDK packages from repo...
-        DPDK_STABLE_VER=$(wget --no-check-certificate --quiet -O - ${DPDK_REPO} | \
-            grep -v '2015' | grep -Eo 'dpdk-[^\"]+xz' | tail -1)
-    else
-        echo Downloading DPDK packages of specific version from repo...
-        DPDK_STABLE_VER='dpdk-18.05.tar.xz'
-    fi
-    wget --no-check-certificate --quiet ${DPDK_REPO}${DPDK_STABLE_VER}
-else
-    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
-    exit 1
-fi
+# JOB SETTING
+case ${JOB_NAME} in
+    *2n-skx*)
+        TOPOLOGIES=$TOPOLOGIES_2N_SKX
+        TOPOLOGIES_TAGS="2_node_*_link_topo"
+        ;;
+    *3n-skx*)
+        TOPOLOGIES=$TOPOLOGIES_3N_SKX
+        TOPOLOGIES_TAGS="3_node_*_link_topo"
+        ;;
+    *)
+        TOPOLOGIES=$TOPOLOGIES_3N_HSW
+        TOPOLOGIES_TAGS="3_node_*_link_topo"
+        ;;
+esac
+case ${JOB_NAME} in
+    *hc2vpp*)
+        DUT="hc2vpp"
+        ;;
+    *vpp*)
+        DUT="vpp"
+        ;;
+    *ligato*)
+        DUT="kubernetes"
+        ;;
+    *dpdk*)
+        DUT="dpdk"
 
-WORKING_TOPOLOGY=""
+        # If we run this script from CSIT jobs we want to use stable version
+        DPDK_REPO='https://fast.dpdk.org/rel/'
+        if [[ ${TEST_TAG} == *DAILY ]] || \
+           [[ ${TEST_TAG} == *WEEKLY ]];
+        then
+            echo Downloading latest DPDK packages from repo...
+            DPDK_STABLE_VER=$(wget --no-check-certificate --quiet -O - ${DPDK_REPO} | \
+                grep -v '2015' | grep -Eo 'dpdk-[^\"]+xz' | tail -1)
+        else
+            echo Downloading DPDK packages of specific version from repo...
+            DPDK_STABLE_VER='dpdk-18.05.tar.xz'
+        fi
+        wget --no-check-certificate --quiet ${DPDK_REPO}${DPDK_STABLE_VER}
+        ;;
+    *)
+        echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
+        exit 1
+        ;;
+esac
 
+
+# ENVIRONMENT PREPARATION
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
 virtualenv --system-site-packages env
 . env/bin/activate
-
-echo pip install
 pip install -r requirements.txt
 
 # We iterate over available topologies and wait until we reserve topology
@@ -95,25 +127,11 @@ function cancel_all {
 # On script exit we cancel the reservation
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
-# Based on job we will identify DUT
-if [[ ${JOB_NAME} == *hc2vpp* ]] ;
-then
-    DUT="hc2vpp"
-elif [[ ${JOB_NAME} == *vpp* ]] ;
-then
-    DUT="vpp"
-elif [[ ${JOB_NAME} == *ligato* ]] ;
-then
-    DUT="kubernetes"
-elif [[ ${JOB_NAME} == *dpdk* ]] ;
-then
-    DUT="dpdk"
-else
-    echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
-    exit 1
-fi
-
-PYBOT_ARGS="--consolewidth 120 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+# CSIT EXECUTION
+PYBOT_ARGS="--consolewidth 100 \
+            --loglevel TRACE \
+            --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+            --suite tests.${DUT}.perf"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
@@ -170,7 +188,7 @@ for TAG in "${TAGS[@]}"; do
     if [[ ${TAG} == "!"* ]]; then
         EXPANDED_TAGS+=(" --exclude ${TAG#$"!"} ")
     else
-        EXPANDED_TAGS+=(" --include ${TAG} ")
+        EXPANDED_TAGS+=(" --include ${TOPOLOGIES_TAGS}AND${TAG} ")
     fi
 done
 
