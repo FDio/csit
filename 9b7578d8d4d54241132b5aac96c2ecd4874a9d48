@@ -22,6 +22,30 @@
       "revId": "9b7578d8d4d54241132b5aac96c2ecd4874a9d48",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25c70990_89d386e5",
+        "filename": "docs/fdio_csit_dev_plan.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-09T12:00:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "356ac59a_bece4429",
+      "range": {
+        "startLine": 38,
+        "startChar": 14,
+        "endLine": 38,
+        "endChar": 16
+      },
+      "revId": "9b7578d8d4d54241132b5aac96c2ecd4874a9d48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
