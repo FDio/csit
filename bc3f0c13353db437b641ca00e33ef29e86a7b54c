@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ca6ee6af_85b42b0b",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T10:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "710ef6d4_726c6f37",
+      "range": {
+        "startLine": 619,
+        "startChar": 67,
+        "endLine": 619,
+        "endChar": 80
+      },
+      "revId": "bc3f0c13353db437b641ca00e33ef29e86a7b54c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "885df861_37acb0b8",
         "filename": "docs/tag_documentation.rst",
         "patchSetId": 4
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Yes it does,\nSMT on: (2*wt)T(wt)C \u003d e.g wt\u003d2 -\u003e 4T2C\nSMT off: (wt)T(wt)C \u003d e.g. wt\u003d4 -\u003e 4T4C\n\nMakes sense?",
       "parentUuid": "885df861_37acb0b8",
+      "range": {
+        "startLine": 620,
+        "startChar": 18,
+        "endLine": 620,
+        "endChar": 35
+      },
+      "revId": "bc3f0c13353db437b641ca00e33ef29e86a7b54c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7d7d592_78f8a124",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T10:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e70aa4d_c18b9d3a",
       "range": {
         "startLine": 620,
         "startChar": 18,
