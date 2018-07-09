@@ -94,7 +94,6 @@
         tickformat: ".4s"
         title: "Throughput [pps]"
         hoverformat: ".4s"
-        range: []
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
         showline: True
@@ -115,7 +114,7 @@
         linewidth: 1
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
-        autotick: True
+        tickmode: "auto"
         tickformat: "%m%d"
         rangeselector:
           buttons:
