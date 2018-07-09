@@ -14,19 +14,25 @@
 
 set -xo pipefail
 
+# TOPOLOGY
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_3n_hsw_testbed1.yaml \
-            topologies/available/lf_3n_hsw_testbed2.yaml \
-            topologies/available/lf_3n_hsw_testbed3.yaml"
+TOPOLOGIES_3N_HSW="topologies/available/lf_3n_hsw_testbed1.yaml \
+                   topologies/available/lf_3n_hsw_testbed2.yaml \
+                   topologies/available/lf_3n_hsw_testbed3.yaml"
+TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed22.yaml \
+                   topologies/available/lf_2n_skx_testbed23.yaml"
+TOPOLOGIES_3N_SKX=""
 
+# SYSTEM
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 export DEBIAN_FRONTEND=noninteractive
 
-# Reservation dir
+# RESERVATION
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
+# ARCHIVE
 JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 JOB_ARCHIVE_DIR="archive"
@@ -34,47 +40,76 @@ LOG_ARCHIVE_DIR="$WORKSPACE/archives"
 mkdir -p ${JOB_ARCHIVE_DIR}
 mkdir -p ${LOG_ARCHIVE_DIR}
 
-# If we run this script from CSIT jobs we want to use stable vpp version
-if [[ ${JOB_NAME} == csit-* ]] ;
-then
-    if [[ ${TEST_TAG} == *DAILY ]] || \
-       [[ ${TEST_TAG} == *WEEKLY ]];
-    then
-        echo Downloading latest VPP packages from NEXUS...
-        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
-            --skip-install
-    else
-        echo Downloading VPP packages of specific version from NEXUS...
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-        #Temporary if arch will not be removed from VPP_STABLE_VER_UBUNTU
-        #VPP_STABLE_VER=${VPP_STABLE_VER%_amd64}
-        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
-            --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
-    fi
-    # Jenkins VPP deb paths (convert to full path)
-    VPP_DEBS="$( readlink -f vpp*.deb | tr '\n' ' ' )"
+# JOB SETTING
+case ${JOB_NAME} in
+    *2n-skx*)
+        TOPOLOGIES=$TOPOLOGIES_2N_SKX
+        TOPOLOGIES_TAGS="2_NODE_SINGLE_LINK_TOPO"
+        ;;
+    *3n-skx*)
+        TOPOLOGIES=$TOPOLOGIES_3N_SKX
+        TOPOLOGIES_TAGS="3_NODE_SINGLE_LINK_TOPO"
+        ;;
+    *)
+        TOPOLOGIES=$TOPOLOGIES_3N_HSW
+        TOPOLOGIES_TAGS="3_NODE_SINGLE_LINK_TOPO"
+        ;;
+esac
+case ${JOB_NAME} in
+    *hc2vpp*)
+        DUT="hc2vpp"
+        ;;
+    *vpp*)
+        DUT="vpp"
 
-# If we run this script from vpp project we want to use local build
-elif [[ ${JOB_NAME} == vpp-* ]] ;
-then
-    # Use local packages provided as argument list
-    # Jenkins VPP deb paths (convert to full path)
-    VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
-else
-    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
-    exit 1
-fi
+        case ${JOB_NAME} in
+            csit-vpp-*)
+                # Use downloaded packages with specific version
+                if [[ ${TEST_TAG} == *DAILY ]] || \
+                   [[ ${TEST_TAG} == *WEEKLY ]];
+                then
+                    echo Downloading latest VPP packages from NEXUS...
+                    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+                        --skip-install
+                else
+                    echo Downloading VPP packages of specific version from NEXUS...
+                    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
+                    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+                    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+                        --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
+                fi
+                # Jenkins VPP deb paths (convert to full path)
+                DUT_PKGS="$( readlink -f ${DUT}*.deb | tr '\n' ' ' )"
+                ;;
+            vpp-csit-*)
+                # Use local packages provided as argument list
+                # Jenkins VPP deb paths (convert to full path)
+                DUT_PKGS="$( readlink -f $@ | tr '\n' ' ' )"
+                ;;
+            *)
+                echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
+                exit 1
+                ;;
+        esac
+        ;;
+    *ligato*)
+        DUT="kubernetes"
+        ;;
+    *dpdk*)
+        DUT="dpdk"
+        ;;
+    *)
+        echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
+        exit 1
+        ;;
+esac
 
-WORKING_TOPOLOGY=""
-
+# ENVIRONMENT PREPARE
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
 virtualenv --system-site-packages env
 . env/bin/activate
-
-echo pip install
 pip install -r requirements.txt
 
 # We iterate over available topologies and wait until we reserve topology
@@ -110,33 +145,19 @@ function cancel_all {
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
 python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py \
-    -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR} -p ${VPP_DEBS}
+    -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR} -p ${DUT_PKGS}
 if [ $? -eq 0 ]; then
-    echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
+    echo "DUT installed on hosts from: ${WORKING_TOPOLOGY}"
 else
-    echo "Failed to copy vpp deb files to DUTs"
+    echo "Failed to copy DUT packages files to hosts from: ${WORKING_TOPOLOGY}"
     exit 1
 fi
 
-# Based on job we will identify DUT
-if [[ ${JOB_NAME} == *hc2vpp* ]] ;
-then
-    DUT="hc2vpp"
-elif [[ ${JOB_NAME} == *vpp* ]] ;
-then
-    DUT="vpp"
-elif [[ ${JOB_NAME} == *ligato* ]] ;
-then
-    DUT="kubernetes"
-elif [[ ${JOB_NAME} == *dpdk* ]] ;
-then
-    DUT="dpdk"
-else
-    echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
-    exit 1
-fi
-
-PYBOT_ARGS="--consolewidth 100 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
+# CSIT EXECUTION
+PYBOT_ARGS="--consolewidth 100 \
+            --loglevel TRACE \
+            --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+            --suite tests.${DUT}.perf"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
@@ -210,7 +231,7 @@ for TAG in "${TAGS[@]}"; do
     if [[ ${TAG} == "!"* ]]; then
         EXPANDED_TAGS+=(" --exclude ${TAG#$"!"} ")
     else
-        EXPANDED_TAGS+=(" --include ${TAG} ")
+        EXPANDED_TAGS+=(" --include $TOPOLOGIES_TAGS${TAG} ")
     fi
 done
 
