@@ -181,7 +181,7 @@
 | | ${table_index_2} | ${skip_n_2} | ${match_n_2}=
 | | ... | And Vpp Creates Classify Table L3 | ${dut1_node} | ${ip_version} | dst
 | | And Vpp Configures Classify Session L3
-| | ... | ${dut1_node} | deny | ${table_index_1} | ${skip_n_1} | ${match_n_2}
+| | ... | ${dut1_node} | deny | ${table_index_1} | ${skip_n_1} | ${match_n_1}
 | | ... | ${ip_version} | src | ${test_src_ip}
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index_2} | ${skip_n_2} | ${match_n_2}
