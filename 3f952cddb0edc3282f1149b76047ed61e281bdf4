@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d67ec596_92b9d7c2",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 53
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-07-09T15:15:54Z",
+      "side": 1,
+      "message": "Is it possible to shorten the generated string?",
+      "range": {
+        "startLine": 684,
+        "startChar": 4,
+        "endLine": 684,
+        "endChar": 14
+      },
+      "revId": "3f952cddb0edc3282f1149b76047ed61e281bdf4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07cf3588_66d035ad",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 53
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-07-09T15:15:54Z",
+      "side": 1,
+      "message": "trial / trials depending on the number of trials.",
+      "range": {
+        "startLine": 687,
+        "startChar": 28,
+        "endLine": 687,
+        "endChar": 34
+      },
+      "revId": "3f952cddb0edc3282f1149b76047ed61e281bdf4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87430112_2c756907",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 53
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-07-09T15:15:54Z",
+      "side": 1,
+      "message": "Maximum Receive Rate Results pkts/s:",
+      "range": {
+        "startLine": 689,
+        "startChar": 28,
+        "endLine": 689,
+        "endChar": 56
+      },
+      "revId": "3f952cddb0edc3282f1149b76047ed61e281bdf4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
