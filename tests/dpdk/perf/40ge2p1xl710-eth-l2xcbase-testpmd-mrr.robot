@@ -69,7 +69,7 @@
 | | ${jumbo_frames}= | Set Variable If
 | | ... | ${get_framesize} < ${1522} | no | yes
 | | ...
-| | Given Start L2FWD '${wt}' worker threads and '${rxq}' rxqueues with jumbo frames '${jumbo_frames}'
+| | Given Start L2FWD on all DUTs | ${wt} | ${rxq} | ${jumbo_frames}
 | | Then Traffic should pass with maximum rate | ${perf_trial_duration}
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
