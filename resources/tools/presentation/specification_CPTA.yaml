@@ -115,7 +115,7 @@
         linewidth: 1
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
-        autotick: True
+        tickmode: "auto"
         tickformat: "%m%d"
         rangeselector:
           buttons:

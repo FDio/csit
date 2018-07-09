@@ -325,7 +325,7 @@
     plot-cps:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -367,7 +367,7 @@
     plot-rps:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -409,7 +409,7 @@
     plot-throughput:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -450,7 +450,7 @@
     plot-latency:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
@@ -491,7 +491,7 @@
     plot-throughput-speedup-analysis:
       xaxis:
         autorange: True
-        autotick: False
+        # autotick: False
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
         linecolor: "rgb(238, 238, 238)"
