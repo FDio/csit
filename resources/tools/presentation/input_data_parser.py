@@ -199,6 +199,12 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_BMRR = re.compile(r'Maximum Receive Rate Results \[(.*)\]')
 
+    REGEX_TC_TAG = re.compile(r'\d+[tT]\d+[cC]')
+
+    REGEX_TC_NAME_OLD = re.compile(r'-\d+[tT]\d+[cC]-')
+
+    REGEX_TC_NAME_NEW = re.compile(r'-\d+[cC]-')
+
     def __init__(self, metadata):
         """Initialisation.
 
