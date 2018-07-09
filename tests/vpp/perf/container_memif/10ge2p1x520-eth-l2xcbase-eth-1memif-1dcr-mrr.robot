@@ -103,7 +103,7 @@
 | | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
 | | ... | throughput test.
 | | ...
-| | [Tags] | 64B | 1C | THIS
+| | [Tags] | 64B | 1C
 | | framesize=${64} | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
