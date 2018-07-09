@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6aa8d005_3e158560",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 51
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-09T12:26:11Z",
+      "side": 1,
+      "message": "This is a response to patch level comment containing \"it is not clear from message, duration and units\".\nI think this message is more verbose than it should be.",
+      "range": {
+        "startLine": 684,
+        "startChar": 4,
+        "endLine": 684,
+        "endChar": 14
+      },
+      "revId": "646bb122152e301c034892ca2df899e4518301b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
