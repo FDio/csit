@@ -197,7 +197,8 @@ class ExecutionChecker(ResultVisitor):
     REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
                            r'tx\s(\d*),\srx\s(\d*)')
 
-    REGEX_BMRR = re.compile(r'Maximum Receive Rate Results \[(.*)\]')
+    REGEX_BMRR = re.compile(r'Maximum Receive Rate trial results'
+                            r' in packets per second: \[(.*)\]')
 
     def __init__(self, metadata):
         """Initialisation.
