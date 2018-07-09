@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "710ef6d4_726c6f37",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T09:08:40Z",
+      "side": 1,
+      "message": "\u003e Does this mean each thread is pinned to its own logical core, but\n \u003e those logical cores are handled by the same physical core? \n\nYes\n\n \u003e the only information not implied by the first sentence is that the\n \u003e pinning is done on logical core level (and that we do not pin both\n \u003e threads to the same logical core), but I am not sure \"sibling\n \u003e cores\" describes that directly enough.\n\nAck, got your point. I will try to rephrase in next patch set",
+      "parentUuid": "72c823cb_94a4fd6d",
+      "range": {
+        "startLine": 619,
+        "startChar": 67,
+        "endLine": 619,
+        "endChar": 80
+      },
+      "revId": "bc3f0c13353db437b641ca00e33ef29e86a7b54c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "885df861_37acb0b8",
         "filename": "docs/tag_documentation.rst",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-09T08:41:17Z",
       "side": 1,
       "message": "Can this dynamic tag be even generated if SMT is disabled?\nIf yes, what is the pinning situation in that case?",
+      "range": {
+        "startLine": 620,
+        "startChar": 18,
+        "endLine": 620,
+        "endChar": 35
+      },
+      "revId": "bc3f0c13353db437b641ca00e33ef29e86a7b54c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e70aa4d_c18b9d3a",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T09:08:40Z",
+      "side": 1,
+      "message": "Yes it does,\nSMT on: (2*wt)T(wt)C \u003d e.g wt\u003d2 -\u003e 4T2C\nSMT off: (wt)T(wt)C \u003d e.g. wt\u003d4 -\u003e 4T4C\n\nMakes sense?",
+      "parentUuid": "885df861_37acb0b8",
       "range": {
         "startLine": 620,
         "startChar": 18,
