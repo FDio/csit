@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f05f447e_34fa9597",
+        "filename": "tests/dpdk/perf/10ge2p1x520-eth-l2xcbase-testpmd-mrr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-09T12:32:09Z",
+      "side": 1,
+      "message": "Oh. Only now I realized that with SMT on, \"wt\u003d1\" means there will be 2 worker threads. Can we rename \"wt\" to \"phc\" everywhere?",
+      "range": {
+        "startLine": 83,
+        "startChar": 22,
+        "endLine": 83,
+        "endChar": 26
+      },
+      "revId": "6a6126b2f26607263e4543a1e0b5012ab2f0601b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
