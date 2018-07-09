@@ -376,6 +376,30 @@
       "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51a15d90_b6761800",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T11:48:11Z",
+      "side": 1,
+      "message": "Maybe auto prefixing? so code will not contain long names? You decide.",
+      "parentUuid": "e6c323a1_c9b3e612",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
