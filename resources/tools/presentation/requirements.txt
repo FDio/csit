@@ -8,5 +8,5 @@ pytz
 python-dateutil
 numpy
 pandas
-plotly
+plotly==3.0.0
 PTable
