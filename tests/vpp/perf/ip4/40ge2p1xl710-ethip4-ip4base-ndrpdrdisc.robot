@@ -69,7 +69,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 50kpps.
-| | [Tags] | 64B | 1C | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC | THIS
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
