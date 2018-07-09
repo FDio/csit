@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a2a58d77_ddda531a",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T11:46:04Z",
+      "side": 1,
+      "message": "Hmm now i get it, please remove as it is poluted and...",
+      "parentUuid": "e11f20be_669a2508",
+      "range": {
+        "startLine": 681,
+        "startChar": 0,
+        "endLine": 681,
+        "endChar": 73
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5167783_84f7f920",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 48
@@ -212,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "7e8456b6_56716aff",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T11:46:04Z",
+      "side": 1,
+      "message": "I was more concerned about refactor. Sometimes it is easier to avoid TODO which may lead to refactors. No sure wher eto put this. I encourage others to comment.",
+      "parentUuid": "aff5fe00_abaeacc6",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c48ef379_aedc91ce",
         "filename": "tests/__init__.robot",
         "patchSetId": 48
@@ -295,6 +343,30 @@
       "side": 1,
       "message": "Good point. I guess our application name is \"CSIT\". Will update.",
       "parentUuid": "602fe55f_33e4c801",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6c323a1_c9b3e612",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T11:46:04Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "9d67afb8_36720863",
       "range": {
         "startLine": 57,
         "startChar": 29,
