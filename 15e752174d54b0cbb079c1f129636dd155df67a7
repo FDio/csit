@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0c660e88_1f8f16ac",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T07:30:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2586342_f9f215c1",
+      "range": {
+        "startLine": 788,
+        "startChar": 7,
+        "endLine": 788,
+        "endChar": 9
+      },
+      "revId": "15e752174d54b0cbb079c1f129636dd155df67a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10be99d8_4acae7e5",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-09T07:10:54Z",
       "side": 1,
       "message": "Also on DUT2",
+      "range": {
+        "startLine": 1810,
+        "startChar": 10,
+        "endLine": 1810,
+        "endChar": 74
+      },
+      "revId": "15e752174d54b0cbb079c1f129636dd155df67a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a8b2b0c_a93661ca",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 1810,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-09T07:30:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10be99d8_4acae7e5",
       "range": {
         "startLine": 1810,
         "startChar": 10,
