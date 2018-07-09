@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e11f20be_669a2508",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-09T11:36:22Z",
+      "side": 1,
+      "message": "Fake in the sense that the reported number is just a copy of receive rate number. But I will remove, as PAL does not require MRR-compatible string anymore.",
+      "parentUuid": "54ec711f_1841a006",
+      "range": {
+        "startLine": 681,
+        "startChar": 0,
+        "endLine": 681,
+        "endChar": 73
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5167783_84f7f920",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 48
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "82680375_ad8d2aa9",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-09T11:36:22Z",
+      "side": 1,
+      "message": "I expect users to put for example 0.5 there, if we are able to decrease Trex time overhead.\nLine 743 is converting receive count to receive rate.",
+      "parentUuid": "72fb665a_d0ec5024",
+      "range": {
+        "startLine": 727,
+        "startChar": 48,
+        "endLine": 727,
+        "endChar": 51
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d6e4ba1_c79c7347",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 48
@@ -128,6 +176,30 @@
       "writtenOn": "2018-07-05T17:41:41Z",
       "side": 1,
       "message": "Why to move TODO? If you want to move do it now. No TODO pls otherwise we will end in too many todos :)",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aff5fe00_abaeacc6",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-09T11:36:22Z",
+      "side": 1,
+      "message": "I was not sure where to move it to, but I will do it now.",
+      "parentUuid": "ed9c8b76_d52fe081",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -199,6 +271,30 @@
       "side": 1,
       "message": "\u003e perf_trial_multiplicity. Of course there can be other naming scheme\n \u003e but i suggest and prefer top-down left-right. Not too many levels\n \u003e like max 4.\n\nEnviroment variable: I know this is purely testing env with \"disclaimer\" however it is good practice to at least set naming to follow the application it was set by. Eg. having environment variable: PATH can very easily conflict with existing one.",
       "parentUuid": "437a2218_be755b0f",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "348981178eab158703c3e955bdc8e3fee0d7df94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d67afb8_36720863",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-09T11:36:22Z",
+      "side": 1,
+      "message": "Good point. I guess our application name is \"CSIT\". Will update.",
+      "parentUuid": "602fe55f_33e4c801",
       "range": {
         "startLine": 57,
         "startChar": 29,
