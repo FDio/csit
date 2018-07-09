@@ -22,88 +22,56 @@
 | Library | Collections
 
 *** Keywords ***
-| Start L2FWD '${m}' worker threads and '${n}' rxqueues with jumbo frames '${b}'
-| | [Documentation] | Start the l2fwd with M worker threads without SMT
-| | ... | and rxqueues N and B (yes or no) jumbo frames in all DUTs.
+
+| Start L2FWD on all DUTs
+| | [Documentation] | Start the l2fwd with M worker threads and rxqueues N and
+| | ... | jumbo support frames on/off on all DUTs.
 | | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${cpu_cnt}= | Evaluate | ${m_int}+1
-| | ${nb_cores}= | Convert to String | ${m}
-| | ${rxqueues}= | Convert to String | ${n}
-| | ${jumbo_frames}= | Convert to String | ${b}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${dut1_cpus}= | Cpu Range Per Node Str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${cpu_cnt}
-| | ${dut2_cpus}= | Cpu Range Per Node Str | ${dut2} | ${dut2_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${cpu_cnt}
-| | Start the l2fwd test | ${dut1} | ${dut1_cpus} | ${nb_cores} | ${rxqueues}
-| | ... | ${jumbo_frames}
-| | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
-| | ... | ${jumbo_frames}
-
-| Start L2FWD '${m}' worker threads using SMT and '${n}' rxqueues with jumbo frames '${b}'
-| | [Documentation] | Start the l2fwd with M worker threads with SMT
-| | ... | and rxqueues N and B (yes or no) jumbo frames in all DUTs.
+| | [Arguments] | ${cpu_cnt} | ${rx_queues} | ${jumbo_frames}
 | | ...
-| | ${m_int}= | Convert To Integer | ${m}
-| | ${cpu_cnt}= | Evaluate | ${m_int}+1
-| | ${nb_cores_int}= | Evaluate | ${m_int}*2
-| | ${nb_cores}= | Convert to String | ${nb_cores_int}
-| | ${rxqueues}= | Convert to String | ${n}
-| | ${jumbo_frames}= | Convert to String | ${b}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${dut1_cpus}= | Cpu Range Per Node Str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${cpu_cnt} | smt_used=${True}
-| | ${dut2_cpus}= | Cpu Range Per Node Str | ${dut2} | ${dut2_numa}
-| | ... | skip_cnt=${1} | cpu_cnt=${cpu_cnt} | smt_used=${True}
-| | Start the l2fwd test | ${dut1} | ${dut1_cpus} | ${nb_cores} | ${rxqueues}
-| | ... | ${jumbo_frames}
-| | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
-| | ... | ${jumbo_frames}
+| | ${cpu_count_int} | Convert to Integer | ${cpu_cnt}
+| | ${thr_count_int} | Convert to Integer | ${cpu_cnt}
+| | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
+| | ${nb_cores}= | Set Variable | ${cpu_count_int}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${cpus}= | Cpu Range Per Node Str | ${nodes['${dut}']} | ${numa}
+| | | ... | skip_cnt=${1} | cpu_cnt=${dp_cores} | smt_used=${smt_used}
+| | | Start the l2fwd test | ${nodes['${dut}']} | ${cpus} | ${nb_cores}
+| | | ... | ${rxqueues} | ${jumbo_frames}
+| | | ${thr_count_int}= | Run keyword if | ${smt_used} |
+| | | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
+| | | ... | ${thr_count_int}
+| | | Run keyword if | ${thr_count_int} > 1
+| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
+| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 
-| Start L3FWD '${m}' worker threads and '${n}' rxqueues with jumbo frames '${b}'
-| | [Documentation] | Start the l3fwd with M worker threads without SMT
-| | ... | and rxqueues N and B(yes or no) jumbo frames in all DUTs.
-| | ${cpu_cnt}= | Convert To Integer | ${m}
-| | ${nb_cores}= | Convert to String | ${m}
-| | ${rxqueues}= | Convert to String | ${n}
-| | ${jumbo_frames}= | Convert to String | ${b}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${dut1_cpus}= | Cpu List Per Node Str | ${dut1} | ${dut1_numa}
-| | ... | cpu_cnt=${cpu_cnt}
-| | ${dut2_cpus}= | Cpu List Per Node Str | ${dut2} | ${dut2_numa}
-| | ... | cpu_cnt=${cpu_cnt}
-| | Start the l3fwd test | ${nodes} | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | ... | ${nb_cores} | ${dut1_cpus} | ${rxqueues} | ${jumbo_frames}
-| | Start the l3fwd test | ${nodes} | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | ... | ${nb_cores} | ${dut2_cpus} | ${rxqueues} | ${jumbo_frames}
-
-| Start L3FWD '${m}' worker threads using SMT and '${n}' rxqueues with jumbo frames '${b}'
-| | [Documentation] | Start the l3fwd with M worker threads with SMT
-| | ... | and rxqueues N and B(yes or no) jumbo frames in all DUTs.
-| | ${cpu_cnt}= | Convert To Integer | ${m}
-| | ${nb_cores_int}= | Evaluate | ${cpu_cnt}*2
-| | ${nb_cores}= | Convert to String | ${nb_cores_int}
-| | ${rxqueues}= | Convert to String | ${n}
-| | ${jumbo_frames}= | Convert to String | ${b}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${dut1_cpus}= | Cpu List Per Node Str | ${dut1} | ${dut1_numa}
-| | ... | cpu_cnt=${cpu_cnt} | smt_used=${True}
-| | ${dut2_cpus}= | Cpu List Per Node Str | ${dut2} | ${dut2_numa}
-| | ... | cpu_cnt=${cpu_cnt} | smt_used=${True}
-| | Start the l3fwd test | ${nodes} | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | ... | ${nb_cores} | ${dut1_cpus} | ${rxqueues} | ${jumbo_frames}
-| | Start the l3fwd test | ${nodes} | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | ... | ${nb_cores} | ${dut2_cpus} | ${rxqueues} | ${jumbo_frames}
+| Start L3FWD on all DUTs
+| | [Documentation] | Start the l3fwd with M worker threads and rxqueues N and
+| | ... | jumbo support frames on/off on all DUTs.
+| | ...
+| | [Arguments] | ${cpu_cnt} | ${rx_queues} | ${jumbo_frames}
+| | ...
+| | ${cpu_count_int} | Convert to Integer | ${cpu_cnt}
+| | ${thr_count_int} | Convert to Integer | ${cpu_cnt}
+| | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
+| | ${nb_cores}= | Set Variable | ${cpu_count_int}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${cpus}= | Cpu List Per Node Str | ${nodes['${dut}']} | ${numa}
+| | | ... | skip_cnt=${1} | cpu_cnt=${nb_cores} | smt_used=${smt_used}
+| | | Start the l3fwd test | ${nodes} | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ... | ${${dut}_if2} | ${nb_cores} | ${cpus} | ${rxqueues}
+| | | ... | ${jumbo_frames}
+| | | ${thr_count_int}= | Run keyword if | ${smt_used} |
+| | | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
+| | | ... | ${thr_count_int}
+| | | Run keyword if | ${thr_count_int} > 1
+| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
+| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
