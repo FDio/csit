@@ -29,6 +29,8 @@
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -69,7 +71,7 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
-| Discover NDR or PDR for L2 xconnect with VM
+| Local template
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
 | | ...
 | | Set Test Variable | ${use_tuned_cfs} | ${True}
@@ -86,7 +88,7 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -119,8 +121,8 @@
 | | ...
 | | [Tags] | 64B | 1C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -131,8 +133,8 @@
 | | ...
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc03-1518B-1t1c-etc-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -143,8 +145,8 @@
 | | ...
 | | [Tags] | 1518B | 1C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${1518} | min_rate=${10000} | search_type=NDR
 
 | tc04-1518B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -155,8 +157,8 @@
 | | ...
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${1518} | min_rate=${10000} | search_type=PDR
 
 | tc05-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -168,8 +170,8 @@
 | | ...
 | | [Tags] | IMIX | 1C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 
 | tc06-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -181,8 +183,8 @@
 | | ...
 | | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
 
 | tc07-64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -193,8 +195,8 @@
 | | ...
 | | [Tags] | 64B | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc08-64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -205,8 +207,8 @@
 | | ...
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc09-1518B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -217,8 +219,8 @@
 | | ...
 | | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${1518} | min_rate=${10000} | search_type=NDR
 
 | tc10-1518B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -229,8 +231,8 @@
 | | ...
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${1518} | min_rate=${10000} | search_type=PDR
 
 | tc11-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -242,8 +244,8 @@
 | | ...
 | | [Tags] | IMIX | 2C | NDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 
 | tc12-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -255,8 +257,8 @@
 | | ...
 | | [Tags] | IMIX | 2C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
 
 | tc13-64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -267,8 +269,8 @@
 | | ...
 | | [Tags] | 64B | 4C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc14-64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -279,8 +281,8 @@
 | | ...
 | | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc15-1518B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -291,8 +293,8 @@
 | | ...
 | | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${1518} | min_rate=${10000} | search_type=NDR
 
 | tc16-1518B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -303,8 +305,8 @@
 | | ...
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${1518} | min_rate=${10000} | search_type=PDR
 
 | tc17-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
@@ -316,8 +318,8 @@
 | | ...
 | | [Tags] | IMIX | 4C | NDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 
 | tc18-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
@@ -329,5 +331,5 @@
 | | ...
 | | [Tags] | IMIX | 4C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 xconnect with VM
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR

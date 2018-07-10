@@ -26,6 +26,8 @@
 | Test Setup | Set up tcp performance test
 | Test Teardown | Tear down performance test with wrk
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *HTTP requests per seconds, connections per seconds and
 | ... | throughput measurement.*
 | ...
@@ -83,7 +85,7 @@
 | | [Tags] | 1C | TCP_CPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=1 | rxq=1
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | phy_cores=${1}
 | | ... | test_type=cps
 
 | tc02-2t2c-ethip4tcphttp-httpserver-cps
@@ -113,7 +115,7 @@
 | | [Tags] | 1C | TCP_RPS
 | | ...
 | | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=1 | rxq=1
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | phy_cores=${1}
 | | ... | test_type=rps
 
 | tc05-2t2c-ethip4tcphttp-httpserver-rps
