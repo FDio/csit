@@ -25,6 +25,8 @@
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *Raw results IPv6 routing test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -51,7 +53,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip6-ip6src253
 
 *** Keywords ***
-| Check RR for ethip6-ip6base
+| Local template
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with ${wt} thread(s), ${wt}\
 | | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
@@ -67,7 +69,7 @@
 | | ${max_rate}= | Set Variable If
 | | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -88,8 +90,8 @@
 | | ...
 | | [Tags] | 78B | 1C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${78} | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=${78} | phy_cores=${1}
 
 | tc02-1518B-1t1c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -100,8 +102,8 @@
 | | ...
 | | [Tags] | 1518B | 1C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${1518} | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=${1518} | phy_cores=${1}
 
 | tc03-9000B-1t1c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -112,8 +114,8 @@
 | | ...
 | | [Tags] | 9000B | 1C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${9000} | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=${9000} | phy_cores=${1}
 
 | tc04-IMIX-1t1c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -125,8 +127,8 @@
 | | ...
 | | [Tags] | IMIX | 1C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=IMIX_v4_1 | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=IMIX_v4_1 | phy_cores=${1}
 
 | tc05-78B-2t2c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -137,8 +139,8 @@
 | | ...
 | | [Tags] | 78B | 2C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${78} | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=${78} | phy_cores=${2}
 
 | tc06-1518B-2t2c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -149,8 +151,8 @@
 | | ...
 | | [Tags] | 1518B | 2C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${1518} | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=${1518} | phy_cores=${2}
 
 | tc07-9000B-2t2c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -161,8 +163,8 @@
 | | ...
 | | [Tags] | 9000B | 2C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${9000} | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=${9000} | phy_cores=${2}
 
 | tc08-IMIX-2t2c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -174,8 +176,8 @@
 | | ...
 | | [Tags] | IMIX | 2C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=IMIX_v4_1 | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=IMIX_v4_1 | phy_cores=${2}
 
 | tc09-78B-4t4c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -186,8 +188,8 @@
 | | ...
 | | [Tags] | 78B | 4C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${78} | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=${78} | phy_cores=${4}
 
 | tc10-1518B-4t4c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -198,8 +200,8 @@
 | | ...
 | | [Tags] | 1518B | 4C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${1518} | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=${1518} | phy_cores=${4}
 
 | tc11-9000B-4t4c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -210,8 +212,8 @@
 | | ...
 | | [Tags] | 9000B | 4C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=${9000} | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=${9000} | phy_cores=${4}
 
 | tc12-IMIX-4t4c-ethip6-ip6base-mrr
 | | [Documentation]
@@ -223,5 +225,5 @@
 | | ...
 | | [Tags] | IMIX | 4C
 | | ...
-| | [Template] | Check RR for ethip6-ip6base
-| | framesize=IMIX_v4_1 | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=IMIX_v4_1 | phy_cores=${4}

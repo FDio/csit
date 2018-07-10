@@ -26,6 +26,8 @@
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -120,7 +122,7 @@
 | | ... | 18.75Mpps rate, step 50kpps.
 | | [Tags] | 64B | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1
+| | framesize=${64}  | phy_cores=${1}
 | | ... | s_limit=${s_18.75Mpps} | search_type=NDR
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
@@ -131,7 +133,7 @@
 | | ... | 24.5G rate, step 50kpps.
 | | [Tags] | 1518B | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search BW limit
-| | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1
+| | framesize=${1518}  | phy_cores=${1}
 | | ... | s_limit=${s_24.5G} | search_type=NDR
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
@@ -142,7 +144,7 @@
 | | ... | 18.75Mpps rate, step 50kpps.
 | | [Tags] | 64B | 2C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1
+| | framesize=${64}  | phy_cores=${2}
 | | ... | s_limit=${s_18.75Mpps} | search_type=NDR
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
@@ -153,7 +155,7 @@
 | | ... | 24.5G rate, step 50kpps.
 | | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
-| | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1
+| | framesize=${1518}  | phy_cores=${2}
 | | ... | s_limit=${s_24.5G} | search_type=NDR
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
@@ -164,7 +166,7 @@
 | | ... | 18.75Mpps rate, step 50kpps.
 | | [Tags] | 64B | 4C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=4 | rxq=2
+| | framesize=${64}  | phy_cores=${4}
 | | ... | s_limit=${s_18.75Mpps} | search_type=NDR
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
@@ -175,7 +177,7 @@
 | | ... | 24.5G rate, step 50kpps.
 | | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
-| | framesize=${1518} | min_rate=${50000} | wt=4 | rxq=2
+| | framesize=${1518}  | phy_cores=${4}
 | | ... | s_limit=${s_24.5G} | search_type=NDR
 
 | tc19-IMIX-1t1c-eth-l2bdbasemaclrn-ndrdisc
@@ -186,7 +188,7 @@
 | | ... | 24.5G rate, step 50kpps.
 | | [Tags] | IMIX | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search BW limit
-| | framesize=IMIX_v4_1 | min_rate=${50000} | wt=1 | rxq=1
+| | framesize=IMIX_v4_1  | phy_cores=${1}
 | | ... | s_limit=${s_24.5G} | search_type=NDR
 
 | tc20-IMIX-2t2c-eth-l2bdbasemaclrn-ndrdisc
@@ -197,7 +199,7 @@
 | | ... | 24.5G rate, step 50kpps.
 | | [Tags] | IMIX | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
-| | framesize=IMIX_v4_1 | min_rate=${50000} | wt=2 | rxq=1
+| | framesize=IMIX_v4_1  | phy_cores=${2}
 | | ... | s_limit=${s_24.5G} | search_type=NDR
 
 | tc21-IMIX-4t4c-eth-l2bdbasemaclrn-ndrdisc
@@ -208,6 +210,6 @@
 | | ... | 24.5G rate, step 50kpps.
 | | [Tags] | IMIX | 4C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search BW limit
-| | framesize=IMIX_v4_1 | min_rate=${50000} | wt=4 | rxq=2
+| | framesize=IMIX_v4_1  | phy_cores=${4}
 | | ... | s_limit=${s_24.5G} | search_type=NDR
 

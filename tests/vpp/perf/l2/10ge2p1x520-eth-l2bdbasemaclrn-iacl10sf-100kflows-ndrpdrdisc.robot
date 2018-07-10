@@ -29,6 +29,8 @@
 | Test Teardown | Tear down performance test with ACL
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with ACL*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -73,7 +75,7 @@
 | ${trex_stream2_subnet}= | 20.20.20.0/24
 
 *** Keywords ***
-| Discover NDR or PDR for L2 Bridge Domain with ACLs
+| Local template
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -81,7 +83,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
@@ -109,8 +111,8 @@
 | | ...
 | | [Tags] | 64B | 1C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${64}  | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateful-flows100k-pdrdisc
 | | [Documentation]
@@ -121,8 +123,8 @@
 | | ...
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${64}  | search_type=PDR
 
 | tc03-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateful-flows100k-ndrdisc
 | | [Documentation]
@@ -133,8 +135,8 @@
 | | ...
 | | [Tags] | 64B | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${64}  | search_type=NDR
 
 | tc04-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateful-flows100k-pdrdisc
 | | [Documentation]
@@ -145,8 +147,8 @@
 | | ...
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${64}  | search_type=PDR
 
 | tc05-64B-4t4c-eth-l2bdbasemaclrn-iacl10-stateful-flows100k-ndrdisc
 | | [Documentation]
@@ -157,8 +159,8 @@
 | | ...
 | | [Tags] | 64B | 4C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${64}  | search_type=NDR
 
 | tc06-64B-4t4c-eth-l2bdbasemaclrn-iacl10-stateful-flows100k-pdrdisc
 | | [Documentation]
@@ -169,5 +171,5 @@
 | | ...
 | | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${64}  | search_type=PDR

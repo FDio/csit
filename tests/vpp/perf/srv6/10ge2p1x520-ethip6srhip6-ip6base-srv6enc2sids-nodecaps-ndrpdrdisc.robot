@@ -26,6 +26,8 @@
 | Test Teardown | Tear down performance test with SRv6 with encapsulation
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *Packet throughput Segment routing over IPv6 dataplane with\
 | ... | two SIDs (SRH inserted) without decapsulation test cases*
 | ...
@@ -79,7 +81,7 @@
 | ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
 
 *** Keywords ***
-| Discover NDR or PDR for IPv6 routing over SRv6
+| Local template
 | | ...
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
 | | ...
@@ -91,7 +93,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -116,8 +118,8 @@
 | | ...
 | | [Tags] | 78B | 1C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${78}  | search_type=NDR
 
 | tc02-78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-pdrdisc
 | | [Documentation]
@@ -128,8 +130,8 @@
 | | ...
 | | [Tags] | 78B | 1C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${78}  | search_type=PDR
 
 | tc03-78B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrdisc
 | | [Documentation]
@@ -140,8 +142,8 @@
 | | ...
 | | [Tags] | 78B | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${78}  | search_type=NDR
 
 | tc04-78B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-pdrdisc
 | | [Documentation]
@@ -152,8 +154,8 @@
 | | ...
 | | [Tags] | 78B | 2C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${78}  | search_type=PDR
 
 | tc05-78B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrdisc
 | | [Documentation]
@@ -164,8 +166,8 @@
 | | ...
 | | [Tags] | 78B | 4C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=${78} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${78}  | search_type=NDR
 
 | tc06-78B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-pdrdisc
 | | [Documentation]
@@ -176,8 +178,8 @@
 | | ...
 | | [Tags] | 78B | 4C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=${78} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${78}  | search_type=PDR
 
 | tc07-1518B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrdisc
 | | [Documentation]
@@ -188,8 +190,8 @@
 | | ...
 | | [Tags] | 1518B | 1C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${1518}  | search_type=NDR
 
 | tc08-1518B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-pdrdisc
 | | [Documentation]
@@ -200,8 +202,8 @@
 | | ...
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${1} | framesize=${1518}  | search_type=PDR
 
 | tc09-1518B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrdisc
 | | [Documentation]
@@ -212,8 +214,8 @@
 | | ...
 | | [Tags] | 1518B | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${1518}  | search_type=NDR
 
 | tc10-1518B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-pdrdisc
 | | [Documentation]
@@ -224,8 +226,8 @@
 | | ...
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${2} | framesize=${1518}  | search_type=PDR
 
 | tc11-1518B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrdisc
 | | [Documentation]
@@ -236,8 +238,8 @@
 | | ...
 | | [Tags] | 1518B | 4C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${1518}  | search_type=NDR
 
 | tc12-1518B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-pdrdisc
 | | [Documentation]
@@ -248,5 +250,5 @@
 | | ...
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | [Template] | Local template
+| | phy_cores=${4} | framesize=${1518}  | search_type=PDR

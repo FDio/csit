@@ -28,6 +28,8 @@
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *RFC2544: Pkt throughput L2XC test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -68,7 +70,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -89,7 +91,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -111,7 +113,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -132,7 +134,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -154,7 +156,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
@@ -174,7 +176,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
@@ -195,7 +197,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -216,7 +218,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -238,7 +240,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -259,7 +261,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -281,7 +283,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
@@ -301,7 +303,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
@@ -322,7 +324,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -343,7 +345,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -365,7 +367,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -386,7 +388,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -408,7 +410,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
@@ -428,7 +430,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology

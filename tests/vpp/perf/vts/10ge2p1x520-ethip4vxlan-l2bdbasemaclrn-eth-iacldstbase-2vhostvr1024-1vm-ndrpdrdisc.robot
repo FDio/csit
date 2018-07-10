@@ -29,6 +29,8 @@
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with VXLANoIPv4
 | ... | and vhost*
 | ...
@@ -107,7 +109,7 @@
 
 
 *** Keywords ***
-| Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| Local template
 | | [Arguments] | ${num_of_threads} | ${rxq} | ${pkt_framesize} | ${search_type}
 | | ... | ${acl_type}=${EMPTY}
 | | [Documentation]
@@ -171,159 +173,159 @@
 | tc01-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | 64B | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${64} | search_type=NDR
 
 | tc02-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | 64B | 2C | PDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${64} | search_type=PDR
 
 | tc03-150B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | 150B | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${150} | search_type=NDR
 
 | tc04-150B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | 150B | 2C | PDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${150} | search_type=PDR
 
 | tc05-200B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | 200B | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${200} | search_type=NDR
 
 | tc06-200B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | 200B | 2C | PDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${200} | search_type=PDR
 
 | tc07-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | IMIX | 2C | NDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=IMIX_v4_1 | search_type=NDR
 
 | tc08-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | IMIX | 2C | PDRDISC
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=IMIX_v4_1 | search_type=PDR
 
 | tc09-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | 64B | 2C | NDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${64} | search_type=NDR
 | | ... | acl_type=permit
 
 | tc10-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | 64B | 2C | PDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${64} | search_type=PDR
 | | ... | acl_type=permit
 
 | tc11-150B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | 150B | 2C | NDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${150} | search_type=NDR
 | | ... | acl_type=permit
 
 | tc12-150B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | 150B | 2C | PDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${150} | search_type=PDR
 | | ... | acl_type=permit
 
 | tc13-200B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | 200B | 2C | NDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${200} | search_type=NDR
 | | ... | acl_type=permit
 
 | tc14-200B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | 200B | 2C | PDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${200} | search_type=PDR
 | | ... | acl_type=permit
 
 | tc15-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | IMIX | 2C | NDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=IMIX_v4_1 | search_type=NDR
 | | ... | acl_type=permit
 
 | tc16-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | IMIX | 2C | PDRDISC | ACL_PERMIT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=IMIX_v4_1 | search_type=PDR
 | | ... | acl_type=permit
 
 | tc17-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | 64B | 2C | NDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${64} | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc18-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | 64B | 2C | PDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${64} | search_type=PDR
 | | ... | acl_type=permit+reflect
 
 | tc19-150B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | 150B | 2C | NDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${150} | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc20-150B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | 150B | 2C | PDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${150} | search_type=PDR
 | | ... | acl_type=permit+reflect
 
 | tc21-200B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | 200B | 2C | NDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${200} | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc22-200B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | 200B | 2C | PDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=${200} | search_type=PDR
 | | ... | acl_type=permit+reflect
 
 | tc23-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | IMIX | 2C | NDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=IMIX_v4_1 | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc24-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | IMIX | 2C | PDRDISC | ACL_PERMIT_REFLECT
 | | ...
-| | [Template] | Discover NDR or PDR for IPv4 forwarding with VHOST/VXLAN and ACL
+| | [Template] | Local template
 | | num_of_threads=2 | rxq=2 | pkt_framesize=IMIX_v4_1 | search_type=PDR
 | | ... | acl_type=permit+reflect
