@@ -1,6 +1,4 @@
-#!/usr/bin/python
-
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,6 +44,16 @@ rst_py_module = """
     :members:
     :undoc-members:
     :show-inheritance:
+"""
+
+rst_rf_suite_setup = """
+.. robot-settings::
+   :source: {}
+"""
+
+rst_rf_variables = """
+.. robot-variables::
+   :source: {}
 """
 
 rst_rf_keywords = """
@@ -145,7 +153,7 @@ def write_toc(fh, path, dirs):
     :param fh: File handler of the rst file.
     :param path: Path to package.
     :param dirs: List of directories to be included in ToC.
-    :type fh: file
+    :type fh: BinaryIO
     :type path: str
     :type dirs: list
     """
@@ -160,7 +168,7 @@ def write_module_title(fh, module_name):
 
     :param fh: File handler of the rst file.
     :param module_name: The name of module used for title.
-    :type fh: file
+    :type fh: BinaryIO
     :type module_name: str
     """
     title = "{} suite".format(module_name)
@@ -202,17 +210,24 @@ def generate_py_rst_files():
                                               module_name))
 
 
-def generate_rf_rst_files(file_names, incl_tests=True, incl_keywords=True):
+def generate_rf_rst_files(file_names, incl_tests=True, incl_keywords=True,
+                          incl_suite_setup=False, incl_variables=False):
     """Generate rst files for the given robot modules.
 
     :param file_names: List of file names to be included in the documentation
     (rst files).
-    :param incl_tests: If true, tests will be included in the documentation.
-    :param incl_keywords: If true, keywords will be included in the
+    :param incl_tests: If True, tests will be included in the documentation.
+    :param incl_keywords: If True, keywords will be included in the
+    documentation.
+    :param incl_suite_setup: If True, the suite setup will be included in the
+    documentation.
+    :param incl_variables: If True, the variables will be included in the
     documentation.
     :type file_names: set
     :type incl_tests: bool
     :type incl_keywords: bool
+    :type incl_suite_setup: bool
+    :type incl_variables: bool
     """
 
     for file_name in file_names:
@@ -232,10 +247,14 @@ def generate_rf_rst_files(file_names, incl_tests=True, incl_keywords=True):
                 module_name = file.split('.')[0]
                 write_module_title(fh, module_name)
                 path = join(join(*module_path), module_name + RF_EXT)
-                if incl_tests:
-                    fh.write(rst_rf_tests.format(path))
+                if incl_suite_setup:
+                    fh.write(rst_rf_suite_setup.format(path))
+                if incl_variables:
+                    fh.write(rst_rf_variables.format(path))
                 if incl_keywords:
                     fh.write(rst_rf_keywords.format(path))
+                if incl_tests:
+                    fh.write(rst_rf_tests.format(path))
 
 
 def generate_kw_rst_files():
@@ -255,7 +274,9 @@ def generate_tests_rst_files():
     tests = get_files(PATH_TESTS, RF_EXT)
     file_names = create_rst_file_names_set(tests, TESTS_DIR)
 
-    generate_rf_rst_files(file_names)
+    generate_rf_rst_files(file_names,
+                          incl_suite_setup=True,
+                          incl_variables=True)
 
 
 if __name__ == '__main__':
