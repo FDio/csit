@@ -23,7 +23,10 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
+| ...
 | Test Teardown | Tear down performance mrr test
+| ...
+| Test Template | Local template
 | ...
 | Documentation | *Raw results IPv4 IPsec tunnel mode performance test suite.*
 | ...
@@ -66,16 +69,21 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
-| Check RR for IPv4 routing with IPSec HW cryptodev
+| Local template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config with ${wt} thread(s),\
-| | ... | ${wt} phy core(s), ${rxq} receive queue(s) per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
+| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config.
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | # Test Variables required for test teardown
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
+| | ...
 | | Set Test Variable | ${framesize}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_rate}= | Calculate pps | ${s_24.5G}
@@ -85,11 +93,11 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522}
+| | And Run Keyword If | ${get_framesize} + ${ipsec_overhead} < ${1522}
 | | ... | Add no multi seg to all DUTs
-| | And Add cryptodev to all DUTs | ${${wt}}
+| | And Add cryptodev to all DUTs | ${${phy_cores}}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
@@ -105,106 +113,37 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
 | | [Tags] | 64B | 1C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=${64} | wt=1 | rxq=1
+| | framesize=${64} | phy_cores=${1}
 
 | tc02-1518B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
-| | ... | trial throughput test.
 | | [Tags] | 1518B | 1C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=${1518} | wt=1 | rxq=1
-
-# TODO: Add check to make test fail if rx=0.
-# TODO: Add 9000B test cases when they start passing.
+| | framesize=${1518} | phy_cores=${1}
 
 | tc04-IMIX-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
-| | ... | trial throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | [Tags] | IMIX | 1C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=IMIX_v4_1 | wt=1 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${1}
 
 | tc05-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
 | | [Tags] | 64B | 2C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=${64} | wt=2 | rxq=1
+| | framesize=${64} | phy_cores=${2}
 
 | tc06-1518B-2t2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
-| | ... | trial throughput test.
 | | [Tags] | 1518B | 2C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=${1518} | wt=2 | rxq=1
+| | framesize=${1518} | phy_cores=${2}
 
 | tc08-IMIX-2t2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
-| | ... | trial throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | [Tags] | IMIX | 2C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=IMIX_v4_1 | wt=2 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${2}
 
 | tc09-64B-4t4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 4 phy cores, 2 receive queues per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
 | | [Tags] | 64B | 4C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=${64} | wt=4 | rxq=2
+| | framesize=${64} | phy_cores=${4}
 
 | tc10-1518B-4t4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 4 phy cores, 2 receive queues per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
-| | ... | trial throughput test.
 | | [Tags] | 1518B | 4C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=${1518} | wt=4 | rxq=2
+| | framesize=${1518} | phy_cores=${4}
 
 | tc12-IMIX-4t4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 4 phy cores, 2 receive queues per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
-| | ... | trial throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | [Tags] | IMIX | 4C
-| | ...
-| | [Template] | Check RR for IPv4 routing with IPSec HW cryptodev
-| | framesize=IMIX_v4_1 | wt=4 | rxq=2
+| | framesize=IMIX_v4_1 | phy_cores=${4}
