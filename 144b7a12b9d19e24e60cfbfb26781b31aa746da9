@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3b81aefc_80ee81e0",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-10T09:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "405343b4_7d2ef5f1",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 57
+      },
+      "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73d7571e_10151a60",
         "filename": "resources/libraries/python/DMM/DMMConstants.py",
         "patchSetId": 18
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "371a09e7_be8fdec7",
+        "filename": "resources/libraries/python/DMM/DMMConstants.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-10T09:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73d7571e_10151a60",
+      "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5d4c155_f5855427",
         "filename": "resources/libraries/python/DMM/DMMConstants.py",
         "patchSetId": 18
@@ -53,6 +95,24 @@
       "writtenOn": "2018-06-06T21:19:19Z",
       "side": 1,
       "message": "remove extra line",
+      "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd02535b_d18634e4",
+        "filename": "resources/libraries/python/DMM/DMMConstants.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-10T09:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5d4c155_f5855427",
       "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "5eae2ad0_33999165",
+        "filename": "resources/libraries/python/DMM/SetupDMMTest.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-10T09:57:40Z",
+      "side": 1,
+      "message": "yes you were correct,fixed now",
+      "parentUuid": "30f1114a_748fa013",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "20164780_47e17933",
         "filename": "resources/libraries/robot/dmm/dmm_utils.robot",
         "patchSetId": 18
@@ -93,6 +177,30 @@
       "writtenOn": "2018-06-08T14:22:58Z",
       "side": 1,
       "message": "Please, use capital letter at begging of KW words:\nSet Suite Variable",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 22
+      },
+      "revId": "144b7a12b9d19e24e60cfbfb26781b31aa746da9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c039ddf7_5b88f19f",
+        "filename": "resources/libraries/robot/dmm/dmm_utils.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-10T09:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20164780_47e17933",
       "range": {
         "startLine": 57,
         "startChar": 4,
