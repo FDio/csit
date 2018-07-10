@@ -22,6 +22,30 @@
       "revId": "27c42f868311a607bc78e41faae80e440078d7ed",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f9d30f9_0d122d5e",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 58
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-10T15:18:07Z",
+      "side": 1,
+      "message": "I think the percentage says whether the result is relevant for performance of VPP (when far from 100%), instead of performance of TG, NIC, line and other stuff (when close to 100%).\nWhat is your reason for implying that TX is \"saying anything\"?",
+      "parentUuid": "169581ad_f04ded3a",
+      "range": {
+        "startLine": 687,
+        "startChar": 0,
+        "endLine": 688,
+        "endChar": 75
+      },
+      "revId": "27c42f868311a607bc78e41faae80e440078d7ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
