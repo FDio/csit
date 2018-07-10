@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -39,7 +39,6 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - perf_trial_duration - Duration of traffic run [s]
 | | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - pkt_trace - Switch to enable packet trace for test
@@ -47,7 +46,6 @@
 | | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
-| | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${pkt_trace} | ${False}
