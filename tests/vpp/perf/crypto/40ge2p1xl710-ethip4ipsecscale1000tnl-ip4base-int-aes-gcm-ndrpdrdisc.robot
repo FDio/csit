@@ -82,7 +82,6 @@
 | | ...
 | | [Tags] | 64B | 1C | NDRDISC
 | | ...
-| | # FIXME: Move repeated lines into a keyword.
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${50000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -91,7 +90,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
@@ -126,7 +125,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
@@ -163,7 +162,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -198,7 +197,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -236,7 +235,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -273,7 +272,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -308,7 +307,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}
@@ -343,7 +342,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}

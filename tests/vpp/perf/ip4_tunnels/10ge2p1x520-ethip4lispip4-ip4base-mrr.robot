@@ -27,6 +27,8 @@
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *Raw results Lisp test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -53,16 +55,21 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
-| Check RR for ethip4lispip4-ip4base
-| | ...
+| Local template
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist filters\
-| | ... | config with ${wt} thread(s), ${wt} phy core(s), ${rxq} receive\
-| | ... | queue(s) per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
+| | ... | config.
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+| | ...
+| | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
 | | ...
 | | # Test Variables required for test execution and test teardown
 | | Set Test Variable | ${framesize}
@@ -70,7 +77,7 @@
 | | ${max_rate}= | Calculate pps | ${s_limit}
 | | ... | ${get_framesize + ${lisp_overhead}}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize + ${lisp_overhead}} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -88,160 +95,49 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 phy core, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 64B | 1C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=1 | rxq=1 | framesize=${64}
+| | phy_cores=${1} | framesize=${64}
 
 | tc02-1480B-1t1c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 phy core, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 1480B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 1480B | 1C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=1 | rxq=1 | framesize=${1480}
+| | phy_cores=${1} | framesize=${1480}
 
 | tc03-9000B-1t1c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 phy core, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 9000B | 1C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=1 | rxq=1 | framesize=${9000}
+| | phy_cores=${1} | framesize=${9000}
 
 | tc04-IMIX-1t1c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 1 phy core, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
-| | ... | throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 1C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${1} | framesize=IMIX_v4_1
 
 | tc05-64B-2t2c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 64B | 2C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=2 | rxq=1 | framesize=${64}
+| | phy_cores=${2} | framesize=${64}
 
 | tc06-1480B-2t2c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 1480B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 1480B | 2C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=2 | rxq=1 | framesize=${1480}
+| | phy_cores=${2} | framesize=${1480}
 
 | tc07-9000B-2t2c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 9000B | 2C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=2 | rxq=1 | framesize=${9000}
+| | phy_cores=${2} | framesize=${9000}
 
 | tc08-IMIX-2t2c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 2 phy cores, 1 receive queue per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
-| | ... | throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 2C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${2} | framesize=IMIX_v4_1
 
 | tc09-64B-4t4c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 64B | 4C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=4 | rxq=2 | framesize=${64}
+| | phy_cores=${4} | framesize=${64}
 
 | tc10-1480B-4t4c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 1480B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 1480B | 4C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=4 | rxq=2 | framesize=${1480}
+| | phy_cores=${4} | framesize=${1480}
 
 | tc11-9000B-4t4c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 9000B | 4C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=4 | rxq=2 | framesize=${9000}
+| | phy_cores=${4} | framesize=${9000}
 
 | tc12-IMIX-4t4c-ethip4lispip4-ip4base-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
-| | ... | filters config with 4 phy cores, 2 receive queues per NIC\
-| | ... | port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
-| | ... | throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 4C
-| | ...
-| | [Template] | Check RR for ethip4lispip4-ip4base
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1
+| | phy_cores=${4} | framesize=IMIX_v4_1

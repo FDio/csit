@@ -70,7 +70,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -93,7 +93,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -116,7 +116,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -139,7 +139,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -162,7 +162,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -185,7 +185,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -209,7 +209,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -233,7 +233,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
@@ -257,7 +257,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Add DPDK dev default RXD to all DUTs | 2048
