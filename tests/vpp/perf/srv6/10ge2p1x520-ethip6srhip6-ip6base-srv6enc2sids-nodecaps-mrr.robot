@@ -84,7 +84,7 @@
 | | ${max_rate}= | Calculate pps | ${s_limit}
 | | ... | ${get_framesize} + ${srv6_overhead_2sids}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -103,7 +103,7 @@
 | | [Tags] | 78B | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${78}
+| | phy_cores=${1} | framesize=${78}
 
 | tc02-1518B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -115,7 +115,7 @@
 | | [Tags] | 1518B | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${1518}
+| | phy_cores=${1} | framesize=${1518}
 
 | tc03-9000B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -127,7 +127,7 @@
 | | [Tags] | 9000B | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=${9000}
+| | phy_cores=${1} | framesize=${9000}
 
 | tc04-IMIX-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -140,7 +140,7 @@
 | | [Tags] | IMIX | 1C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${1} | framesize=IMIX_v4_1
 
 | tc05-78B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -152,7 +152,7 @@
 | | [Tags] | 78B | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=${78}
+| | phy_cores=${2} | framesize=${78}
 
 | tc06-1518B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -164,7 +164,7 @@
 | | [Tags] | 1518B | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=${1518}
+| | phy_cores=${2} | framesize=${1518}
 
 | tc07-9000B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -176,7 +176,7 @@
 | | [Tags] | 9000B | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=${9000}
+| | phy_cores=${2} | framesize=${9000}
 
 | tc08-IMIX-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -189,7 +189,7 @@
 | | [Tags] | IMIX | 2C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${2} | framesize=IMIX_v4_1
 
 | tc09-78B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -201,7 +201,7 @@
 | | [Tags] | 78B | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=${78}
+| | phy_cores=${4} | framesize=${78}
 
 | tc10-1518B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -213,7 +213,7 @@
 | | [Tags] | 1518B | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=${1518}
+| | phy_cores=${4} | framesize=${1518}
 
 | tc11-9000B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -225,7 +225,7 @@
 | | [Tags] | 9000B | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=${9000}
+| | phy_cores=${4} | framesize=${9000}
 
 | tc12-IMIX-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Documentation]
@@ -238,4 +238,4 @@
 | | [Tags] | IMIX | 4C
 | | ...
 | | [Template] | Check RR for IPv6 routing over SRv6
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1
+| | phy_cores=${4} | framesize=IMIX_v4_1

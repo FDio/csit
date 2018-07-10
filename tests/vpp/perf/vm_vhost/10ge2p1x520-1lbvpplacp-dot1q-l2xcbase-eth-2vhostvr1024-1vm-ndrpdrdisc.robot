@@ -106,7 +106,7 @@
 | | ${jumbo_frames}= | Set Variable If
 | | ... | ${get_framesize + ${vlan_overhead}} < ${1522} | ${False} | ${True}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
 | | And Run Keyword If | ${get_framesize + ${vlan_overhead}} < ${1522}
@@ -145,7 +145,7 @@
 | | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${1} | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc02-64B-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -157,7 +157,7 @@
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${1} | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc03-1518B-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -169,7 +169,7 @@
 | | [Tags] | 1518B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${1} | framesize=${1518} | min_rate=${10000} | search_type=NDR
 
 | tc04-1518B-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -181,7 +181,7 @@
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${1} | framesize=${1518} | min_rate=${10000} | search_type=PDR
 
 | tc05-9000B-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -193,7 +193,7 @@
 | | [Tags] | 9000B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${1} | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc06-9000B-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -205,7 +205,7 @@
 | | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${1} | framesize=${9000} | min_rate=${10000} | search_type=PDR
 
 | tc07-IMIX-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -218,7 +218,7 @@
 | | [Tags] | IMIX | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
+| | phy_cores=${1} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 
 | tc08-IMIX-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -231,7 +231,7 @@
 | | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
+| | phy_cores=${1} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
 
 | tc09-64B-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -243,7 +243,7 @@
 | | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${2} | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc10-64B-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -255,7 +255,7 @@
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${2} | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc11-1518B-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -267,7 +267,7 @@
 | | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${2} | framesize=${1518} | min_rate=${10000} | search_type=NDR
 
 | tc12-1518B-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -279,7 +279,7 @@
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${2} | framesize=${1518} | min_rate=${10000} | search_type=PDR
 
 | tc13-9000B-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -291,7 +291,7 @@
 | | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${2} | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc14-9000B-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -303,7 +303,7 @@
 | | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${2} | framesize=${9000} | min_rate=${10000} | search_type=PDR
 
 | tc15-IMIX-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -316,7 +316,7 @@
 | | [Tags] | IMIX | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
+| | phy_cores=${2} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 
 | tc16-IMIX-2t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -329,7 +329,7 @@
 | | [Tags] | IMIX | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
+| | phy_cores=${2} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
 
 | tc17-64B-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -341,7 +341,7 @@
 | | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${4} | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc18-64B-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -353,7 +353,7 @@
 | | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${4} | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc19-1518B-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -365,7 +365,7 @@
 | | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${4} | framesize=${1518} | min_rate=${10000} | search_type=NDR
 
 | tc20-1518B-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -377,7 +377,7 @@
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${4} | framesize=${1518} | min_rate=${10000} | search_type=PDR
 
 | tc21-9000B-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -389,7 +389,7 @@
 | | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${4} | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc22-9000B-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -401,7 +401,7 @@
 | | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${4} | framesize=${9000} | min_rate=${10000} | search_type=PDR
 
 | tc23-IMIX-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
@@ -414,7 +414,7 @@
 | | [Tags] | IMIX | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
+| | phy_cores=${4} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 
 | tc24-IMIX-4t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
@@ -427,4 +427,4 @@
 | | [Tags] | IMIX | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for 1lbvpp-dot1q-l2xcbase-eth-2vhostvr1024-1vm
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
+| | phy_cores=${4} | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR

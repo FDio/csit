@@ -53,19 +53,23 @@
 | Check RR for ethip4-ip4base-iacldstbase
 | | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with ${wt} thread(s), ${wt}\
-| | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
+| | ... | [Cfg] DUT runs IPv4 routing config with ${phy_cores} phy core(s).
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | # Test Variables required for test execution and test teardown
+| | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
+| | ...
 | | Set Test Variable | ${framesize}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -99,7 +103,7 @@
 | | [Tags] | 64B | 1C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=1 | rxq=1 | framesize=${64}
+| | phy_cores=${1} | framesize=${64}
 
 | tc02-1518B-1t1c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -111,7 +115,7 @@
 | | [Tags] | 1518B | 1C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=1 | rxq=1 | framesize=${1518}
+| | phy_cores=${1} | framesize=${1518}
 
 | tc03-9000B-1t1c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -123,7 +127,7 @@
 | | [Tags] | 9000B | 1CC
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=1 | rxq=1 | framesize=${9000}
+| | phy_cores=${1} | framesize=${9000}
 
 | tc04-IMIX-1t1c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -136,7 +140,7 @@
 | | [Tags] | IMIX | 1C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${1} | framesize=IMIX_v4_1
 
 | tc05-64B-2t2c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -148,7 +152,7 @@
 | | [Tags] | 64B | 2C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=2 | rxq=1 | framesize=${64}
+| | phy_cores=${2} | framesize=${64}
 
 | tc06-1518B-2t2c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -160,7 +164,7 @@
 | | [Tags] | 1518B | 2C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=2 | rxq=1 | framesize=${1518}
+| | phy_cores=${2} | framesize=${1518}
 
 | tc07-9000B-2t2c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -172,7 +176,7 @@
 | | [Tags] | 9000B | 2C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=2 | rxq=1 | framesize=${9000}
+| | phy_cores=${2} | framesize=${9000}
 
 | tc08-IMIX-2t2c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -185,7 +189,7 @@
 | | [Tags] | IMIX | 2C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${2} | framesize=IMIX_v4_1
 
 | tc09-64B-4t4c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -197,7 +201,7 @@
 | | [Tags] | 64B | 4C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=4 | rxq=2 | framesize=${64}
+| | phy_cores=${4} | framesize=${64}
 
 | tc10-1518B-4t4c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -209,7 +213,7 @@
 | | [Tags] | 1518B | 4C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=4 | rxq=2 | framesize=${1518}
+| | phy_cores=${4} | framesize=${1518}
 
 | tc11-9000B-4t4c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -221,7 +225,7 @@
 | | [Tags] | 9000B | 4C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=4 | rxq=2 | framesize=${9000}
+| | phy_cores=${4} | framesize=${9000}
 
 | tc12-IMIX-4t4c-ethip4-ip4base-iacldstbase-mrr
 | | [Documentation]
@@ -234,4 +238,4 @@
 | | [Tags] | IMIX | 4C
 | | ...
 | | [Template] | Check RR for ethip4-ip4base-iacldstbase
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1
+| | phy_cores=${4} | framesize=IMIX_v4_1
