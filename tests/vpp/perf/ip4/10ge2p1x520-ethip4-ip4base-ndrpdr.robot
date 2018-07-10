@@ -48,7 +48,7 @@
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
-| Test Template | Discover NDRPDR for ethip4-ip4base
+| Test Template | Local template
 
 *** Variables ***
 # X520-DA2 bandwidth limit
@@ -57,21 +57,21 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
-| Discover NDRPDR for ethip4-ip4base
+| Local template
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ${wt} thread(s), ${wt}\
 | | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
 | | ... | [Ver] Find NDR and PDR for ${framesize} frames using optimized search\
 | | ... | start at 10GE linerate.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize}
+| | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate} | ${20000}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_uniditrectional_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
 | | ${max_rate}= | Evaluate | 2*${max_uniditrectional_rate}
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -83,60 +83,48 @@
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ndrpdr
 | | [Tags] | 64B | 1C
-| | ...
-| | wt=1 | rxq=1 | framesize=${64}
+| | phy_cores=${1} | framesize=${64}
 
 | tc02-1518B-1t1c-ethip4-ip4base-ndrpdr
 | | [Tags] | 1518B | 1C
-| | ...
-| | wt=1 | rxq=1 | framesize=${1518}
+| | phy_cores=${1} | framesize=${1518}
 
 | tc03-9000B-1t1c-ethip4-ip4base-ndrpdr
 | | [Tags] | 1518B | 1C
-| | ...
-| | wt=1 | rxq=1 | framesize=${9000}
+| | phy_cores=${1} | framesize=${9000}
 
 | tc04-IMIX-1t1c-ethip4-ip4base-ndrpdr
 | | [Tags] | IMIX | 1C
-| | ...
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${1} | framesize=IMIX_v4_1
 
 | tc05-64B-2t2c-ethip4-ip4base-ndrpdr
 | | [Tags] | 64B | 2C
-| | ...
-| | wt=2 | rxq=1 | framesize=${64}
+| | phy_cores=${2} | framesize=${64}
 
 | tc06-1518B-2t2c-ethip4-ip4base-ndrpdr
 | | [Tags] | 1518B | 2C
-| | ...
-| | wt=2 | rxq=1 | framesize=${1518}
+| | phy_cores=${2} | framesize=${1518}
 
 | tc07-9000B-2t2c-ethip4-ip4base-ndrpdr
 | | [Tags] | 9000B | 2C
-| | ...
-| | wt=2 | rxq=1 | framesize=${9000}
+| | phy_cores=${2} | framesize=${9000}
 
 | tc08-IMIX-2t2c-ethip4-ip4base-ndrpdr
 | | [Tags] | IMIX | 2C
-| | ...
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1
+| | phy_cores=${2} | framesize=IMIX_v4_1
 
 | tc09-64B-4t4c-ethip4-ip4base-ndrpdr
 | | [Tags] | 64B | 4C
-| | ...
-| | wt=4 | rxq=2 | framesize=${64}
+| | phy_cores=${4} | framesize=${64}
 
 | tc10-1518B-4t4c-ethip4-ip4base-ndrpdr
 | | [Tags] | 1518B | 4C
-| | ...
-| | wt=4 | rxq=2 | framesize=${1518}
+| | phy_cores=${4} | framesize=${1518}
 
 | tc11-9000B-4t4c-ethip4-ip4base-ndrpdr
 | | [Tags] | 9000B | 4C
-| | ...
-| | wt=4 | rxq=2 | framesize=${9000}
+| | phy_cores=${4} | framesize=${9000}
 
 | tc12-IMIX-4t4c-ethip4-ip4base-ndrpdr
 | | [Tags] | IMIX | 4C
-| | ...
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1
+| | phy_cores=${4} | framesize=IMIX_v4_1

@@ -89,7 +89,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -123,7 +123,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -158,7 +158,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -192,7 +192,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -229,7 +229,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -265,7 +265,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 1
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -300,7 +300,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -334,7 +334,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -369,7 +369,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -403,7 +403,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -440,7 +440,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -476,7 +476,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 2
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -511,7 +511,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -545,7 +545,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -580,7 +580,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -614,7 +614,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -651,7 +651,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
@@ -687,7 +687,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | 4
 | | And Add PCI devices to all DUTs
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
