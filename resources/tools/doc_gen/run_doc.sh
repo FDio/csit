@@ -39,7 +39,7 @@ pip install -r ${WORKING_DIR}/requirements.txt
 export PYTHONPATH=`pwd`
 
 # Generate rst files:
-./gen_rst.py
+python gen_rst.py
 
 # Remove all rst files from ./${WORKING_DIR}/env directory - we do not need them
 find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f
