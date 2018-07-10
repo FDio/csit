@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "2049f5e9_0ba40e3c",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 53
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-10T13:27:36Z",
+      "side": 1,
+      "message": "Removed entirely. There is just one line with results now.",
+      "parentUuid": "07cf3588_66d035ad",
+      "range": {
+        "startLine": 687,
+        "startChar": 28,
+        "endLine": 687,
+        "endChar": 34
+      },
+      "revId": "3f952cddb0edc3282f1149b76047ed61e281bdf4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87430112_2c756907",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 53
@@ -59,6 +83,30 @@
       "writtenOn": "2018-07-09T15:15:54Z",
       "side": 1,
       "message": "Maximum Receive Rate Results pkts/s:",
+      "range": {
+        "startLine": 689,
+        "startChar": 28,
+        "endLine": 689,
+        "endChar": 56
+      },
+      "revId": "3f952cddb0edc3282f1149b76047ed61e281bdf4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afe51929_215133c3",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 53
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-10T13:27:36Z",
+      "side": 1,
+      "message": "Used slightly more verbose line, see current patch.",
+      "parentUuid": "87430112_2c756907",
       "range": {
         "startLine": 689,
         "startChar": 28,
