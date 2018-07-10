@@ -484,6 +484,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
         test_result["status"] = test.status
+        self._test_ID = test.longname.lower()
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags or
@@ -502,6 +503,28 @@ class ExecutionChecker(ResultVisitor):
                 return
 
             test_result["type"] = test_type
+
+            # Replace info about cores (e.g. -1c-) with the info about threads
+            # and cores (e.g. -1t14c-) in the long test case names if necessary.
+            groups = re.search(self.REGEX_TC_NAME_OLD, self._test_ID)
+            if not groups:
+                tag_count = 0
+                for tag in test_result["tags"]:
+                    groups = re.search(self.REGEX_TC_TAG, tag)
+                    if groups:
+                        tag_count += 1
+                        tag_tc = tag
+
+                if tag_count == 1:
+                    self._test_ID = re.sub(self.REGEX_TC_NAME_NEW,
+                                           "-{0}-".format(tag_tc.lower()),
+                                           self._test_ID,
+                                           count=1)
+                else:
+                    test_result["status"] = "FAIL"
+                    logging.error("The test '{0}' has no or more than one "
+                                  "multi-threading tags.".format(self._test_ID))
+                    return
 
             if test_type in ("NDR", "PDR"):
                 try:
@@ -546,7 +569,6 @@ class ExecutionChecker(ResultVisitor):
                         AvgStdevMetadataFactory.from_data([
                             float(groups.group(3)) / float(groups.group(1)), ])
 
-        self._test_ID = test.longname.lower()
         self._data["tests"][self._test_ID] = test_result
 
     def end_test(self, test):
