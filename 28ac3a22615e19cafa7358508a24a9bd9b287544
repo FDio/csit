@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ce31ca2_88637efb",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-10T12:02:15Z",
+      "side": 0,
+      "message": "This reminds me of an improvement: https://jira.fd.io/browse/CSIT-1188",
+      "range": {
+        "startLine": 315,
+        "startChar": 8,
+        "endLine": 315,
+        "endChar": 21
+      },
+      "revId": "28ac3a22615e19cafa7358508a24a9bd9b287544",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}

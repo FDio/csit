@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ad24363_29d7e0f3",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-10T12:02:15Z",
+      "side": 1,
+      "message": "-2t1c- is a more realistic example.",
+      "range": {
+        "startLine": 508,
+        "startChar": 30,
+        "endLine": 508,
+        "endChar": 37
+      },
+      "revId": "8056502bc0931ca608b5c623328b1f2239d80892",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
