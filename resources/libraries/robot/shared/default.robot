@@ -141,17 +141,17 @@
 | | ... | mTnC, where m=logical_core_count and n=physical_core_count.
 | | ...
 | | ... | *Arguments:*
-| | ... | - cpu_cnt - Number of physical cores to use. Type: integer
+| | ... | - phy_cores - Number of physical cores to use. Type: integer
 | | ... | - rx_queues - Number of RX queues. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Add worker threads and rxqueues to all DUTs \| ${1} \| ${1} \|
 | | ...
-| | [Arguments] | ${cpu_cnt} | ${rx_queues}
+| | [Arguments] | ${phy_cores} | ${rx_queues}=${None}
 | | ...
-| | ${cpu_count_int} | Convert to Integer | ${cpu_cnt}
-| | ${thr_count_int} | Convert to Integer | ${cpu_cnt}
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
@@ -161,23 +161,24 @@
 | | | ... | skip_cnt=${1} | cpu_cnt=${1}
 | | | ${cpu_wt}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${2} | cpu_cnt=${cpu_count_int} | smt_used=${smt_used}
+| | | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | | ... | Evaluate | int(${cpu_count_int}*2)
+| | | ... | ELSE | Set variable | ${thr_count_int}
+| | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
+| | | ... | Set variable | ${rx_queues}
+| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
+| | | ... | Set variable | ${1}
+| | | ... | ELSE | Set variable | ${rxq_count_int}
 | | | Run keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run keyword | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rx_queues}
-| | | ${thr_count_int}= | Run keyword if | ${smt_used} |
-| | | ... | Evaluate | int(${cpu_count_int}*2) | ELSE | Set variable
-| | | ... | ${thr_count_int}
+| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
-
-# FIXME: Remove the keyword after refactor of suites. Currently kept for
-# backward compatibility only.
-| Add '${m}' worker threads and '${n}' rxqueues in 3-node single-link circular topology
-| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
-| | ... | configuration on all DUTs in 3-node single-link topology.
-| | ...
-| | Add worker threads and rxqueues to all DUTs | ${m} | ${n}
+| | Set Test Variable | ${smt_used}
+| | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${rxq_count_int}
 
 | Add no multi seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
@@ -257,7 +258,11 @@
 | | [Arguments] | ${count}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
+| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | | ... | Evaluate | int(${count}*2)
+| | | ... | ELSE | Set variable | ${count}
+| | | Run keyword | ${dut}.Add DPDK Cryptodev | ${thr_count_int}
 
 | Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
 | | [Documentation] | Add required number of SW crypto devices of given type
@@ -274,12 +279,20 @@
 | | ... | topology \| aesni-mb \| ${2} \|
 | | ...
 | | [Arguments] | ${sw_pmd_type} | ${count}
+| | ${smt_used}= | Is SMT enabled | ${nodes['DUT1']['cpuinfo']}
+| | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | ... | Evaluate | int(${count}*2)
+| | ... | ELSE | Set variable | ${count}
 | | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT1']} | ${dut1_if2}
 | | Run keyword | DUT1.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
-| | ... | ${count}
+| | ... | ${thr_count_int}
+| | ${smt_used}= | Is SMT enabled | ${nodes['DUT2']['cpuinfo']}
+| | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | ... | Evaluate | int(${count}*2)
+| | ... | ELSE | Set variable | ${count}
 | | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT2']} | ${dut2_if1}
 | | Run keyword | DUT2.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
-| | ... | ${count}
+| | ... | ${thr_count_int}
 
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write startup configuration and restart VPP on all DUTs.

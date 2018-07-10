@@ -55,7 +55,7 @@
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
-| Test Template | Find NDRPDR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+| Test Template | Local template
 
 *** Variables ***
 | ${perf_qemu_qsz}= | 1024
@@ -71,16 +71,14 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
-| Find NDRPDR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+| Local template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ${wt} thread, ${wt} phy\
-| | ... | core, ${rxq} receive queue per NIC port.
+| | ... | [Cfg] DUT runs L2BD switching config with ${phy_cores} phy cores.
 | | ... | [Ver] Find NDR for ${framesize} frames \
 | | ... | using binary search start at 10GE linerate.
 | | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | # Test Variables required for test and test teardown
 | | Set Test Variable | ${framesize}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_unidirectional_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
@@ -92,7 +90,7 @@
 | | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
 | | ... | ${False} | ${True}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -113,60 +111,48 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 64B | 1C
-| | ...
-| | framesize=${64} | wt=1 | rxq=1
+| | framesize=${64} | phy_cores=${1}
 
 | tc02-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 1C
-| | ...
-| | framesize=${1518} | wt=1 | rxq=1
+| | framesize=${1518} | phy_cores=${1}
 
 | tc03-9000B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 9000B | 1C
-| | ...
-| | framesize=${9000} | wt=1 | rxq=1
+| | framesize=${9000} | phy_cores=${1}
 
 | tc04-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | IMIX | 1C
-| | ...
-| | framesize=IMIX_v4_1 | wt=1 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${1}
 
 | tc05-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 64B | 2C
-| | ...
-| | framesize=${64} | wt=2 | rxq=1
+| | framesize=${64} | phy_cores=${2}
 
 | tc06-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 2C
-| | ...
-| | framesize=${1518} | wt=2 | rxq=1
+| | framesize=${1518} | phy_cores=${2}
 
 | tc07-9000B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 9000B | 2C
-| | ...
-| | framesize=${9000} | wt=2 | rxq=1
+| | framesize=${9000} | phy_cores=${2}
 
 | tc08-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | IMIX | 2C
-| | ...
-| | framesize=IMIX_v4_1 | wt=2 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${2}
 
 | tc09-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 64B | 4C
-| | ...
-| | framesize=${64} | wt=4 | rxq=2
+| | framesize=${64} | phy_cores=${4}
 
 | tc10-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 4C
-| | ...
-| | framesize=${1518} | wt=4 | rxq=2
+| | framesize=${1518} | phy_cores=${4}
 
 | tc11-9000B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 9000B | 4C
-| | ...
-| | framesize=${9000} | wt=4 | rxq=2
+| | framesize=${9000} | phy_cores=${4}
 
 | tc12-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | IMIX | 4C
-| | ...
-| | framesize=IMIX_v4_1 | wt=4 | rxq=2
+| | framesize=IMIX_v4_1 | phy_cores=${4}

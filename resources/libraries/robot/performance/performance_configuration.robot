@@ -687,6 +687,10 @@
 | | ... | routing for IPv6 with defined behaviour function and configure IPv6
 | | ... | routes on both DUT nodes.
 | | ...
+| | ... | *Note:*
+| | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
+| | ... | and rxqueues to all DUTs
+| | ...
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -694,9 +698,11 @@
 | | ${sock1}= | Set Variable | memif-DUT1_VNF
 | | ${sock2}= | Set Variable | memif-DUT2_VNF
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
-| | ... | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2 | ${rxq} | ${rxq}
+| | ... | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2 | ${rxq_count_int}
+| | ... | ${rxq_count_int}
 | | Set up memif interfaces on DUT node | ${dut2} | ${sock2} | ${sock2}
-| | ... | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2 | ${rxq} | ${rxq}
+| | ... | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2 | ${rxq_count_int}
+| | ... | ${rxq_count_int}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Show Memif | ${nodes['${dut}']}
@@ -2554,7 +2560,7 @@
 | | Configure deterministic mode for NAT44
 | | ... | ${dut1} | 20.0.0.0 | 18 | 200.0.0.0 | 30
 
-| Initialize L2 xconnect for '${nr}' memif pairs and '${rxq}' rxqueues in 3-node circular topology
+| Initialize L2 xconnect for '${nr}' memif pairs in 3-node circular topology
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Cross
 | | ... | connect each Memif interface with one physical interface or virtual
@@ -2567,9 +2573,13 @@
 | | ... | Socket paths for Memif are defined in following format:
 | | ... | - /tmp/memif-DUT1_VNF${number}-${sid}
 | | ...
+| | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
+| | ... | and rxqueues to all DUTs
+| | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize L2 xconnect for 1 Memif in 3-node circular topology \|
+| | ... | \| Initialize L2 xconnect for 1 memif pairs in 3-node circular \
+| | ... | topology \|
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
@@ -2581,7 +2591,7 @@
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Set up memif interfaces on DUT node | ${dut1}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
-| | | ... | dut1-memif-${number}-if2 | ${rxq} | ${rxq}
+| | | ... | dut1-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
 | | | ${dut1_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut1_if1}
 | | | ... | ${dut1-memif-${prev_index}-if2}
 | | | Configure L2XC | ${dut1} | ${dut1_xconnect_if1}
@@ -2590,7 +2600,7 @@
 | | | ${sock2}= | Set Variable | memif-DUT2_VNF
 | | | Set up memif interfaces on DUT node | ${dut2}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
-| | | ... | dut2-memif-${number}-if2 | ${rxq} | ${rxq}
+| | | ... | dut2-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
 | | | ${dut2_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut2_if1}
 | | | ... | ${dut2-memif-${prev_index}-if2}
 | | | Configure L2XC | ${dut2} | ${dut2_xconnect_if1}
@@ -2602,7 +2612,7 @@
 | | All Vpp Interfaces Ready Wait | ${nodes}
 | | Show Memif on all DUTs | ${nodes}
 
-| Initialize L2 Bridge Domain for '${nr}' memif pairs and '${rxq}' rxqueues in 3-node circular topology
+| Initialize L2 Bridge Domain for '${nr}' memif pairs in 3-node circular topology
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
 | | ... | Memif interface to separate L2 bridge domain with one physical or
@@ -2630,7 +2640,7 @@
 | | | ${sock2}= | Set Variable | memif-DUT1_VNF
 | | | Set up memif interfaces on DUT node | ${dut1}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
-| | | ... | dut1-memif-${number}-if2 | ${rxq} | ${rxq}
+| | | ... | dut1-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
 | | | ${bd_id2}= | Evaluate | ${number}+1
 | | | Add interface to bridge domain | ${dut1}
 | | | ... | ${dut1-memif-${number}-if1} | ${number}
@@ -2640,7 +2650,7 @@
 | | | ${sock2}= | Set Variable | memif-DUT2_VNF
 | | | Set up memif interfaces on DUT node | ${dut2}
 | | | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
-| | | ... | dut2-memif-${number}-if2 | ${rxq} | ${rxq}
+| | | ... | dut2-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
 | | | Add interface to bridge domain | ${dut2}
 | | | ... | ${dut2-memif-${number}-if1} | ${number}
 | | | Add interface to bridge domain | ${dut2}
@@ -2654,26 +2664,30 @@
 | | ... | connect Memif interface with one physical interface.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${rxq} - Number of Memif RX queues. Type: integer
 | | ... | - ${number} - Memif ID. Type: integer
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
 | | ... | - /tmp/memif-DUT1_VNF${number}-${sid}
 | | ...
+| | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
+| | ... | and rxqueues to all DUTs
+| | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 xconnect for single memif in 3-node circular \
-| | ... | topology \| 1 \| 1 \|
+| | ... | topology \| 1 \|
 | | ...
-| | [Arguments] | ${rxq}=${1} | ${number}=${1}
+| | [Arguments] | ${number}=${1}
 | | ${sock}= | Set Variable | memif-DUT1_VNF
 | | Set up single memif interface on DUT node | ${dut1} | ${sock}
-| | ... | ${number} | dut1-memif-${number}-if1 | ${rxq} | ${rxq}
+| | ... | ${number} | dut1-memif-${number}-if1 | ${rxq_count_int}
+| | ... | ${rxq_count_int}
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1-memif-${number}-if1}
 | | ${sock}= | Set Variable | memif-DUT2_VNF
 | | Set up single memif interface on DUT node | ${dut2} | ${sock}
-| | ... | ${number} | dut2-memif-${number}-if1 | ${rxq} | ${rxq}
+| | ... | ${number} | dut2-memif-${number}-if1 | ${rxq_count_int}
+| | ... | ${rxq_count_int}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${dut2-memif-${number}-if1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 | | Show Memif on all DUTs | ${nodes}
@@ -2684,28 +2698,32 @@
 | | ... | interface to separate L2 bridge domain with one physical interface.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${rxq} - Number of Memif RX queues. Type: integer
 | | ... | - ${number} - Memif ID. Type: integer
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
 | | ... | - /tmp/memif-DUT1_VNF${number}-${sid}
 | | ...
+| | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
+| | ... | and rxqueues to all DUTs
+| | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 Bridge Domain for single memif in 3-node circular \
-| | ... | topology \| 1 \| 1 \|
+| | ... | topology \| 1 \|
 | | ...
-| | [Arguments] | ${rxq}=${1} | ${number}=${1}
+| | [Arguments] | ${number}=${1}
 | | ${sock}= | Set Variable | memif-DUT1_VNF
 | | Set up single memif interface on DUT node | ${dut1} | ${sock}
-| | ... | ${number} | dut1-memif-${number}-if1 | ${rxq} | ${rxq}
+| | ... | ${number} | dut1-memif-${number}-if1 | ${rxq_count_int}
+| | ... | ${rxq_count_int}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${number}
 | | Add interface to bridge domain | ${dut1} | ${dut1-memif-${number}-if1}
 | | ... | ${number}
 | | ${sock}= | Set Variable | memif-DUT2_VNF
 | | Set up single memif interface on DUT node | ${dut2} | ${sock}
-| | ... | ${number} | dut2-memif-${number}-if1 | ${rxq} | ${rxq}
+| | ... | ${number} | dut2-memif-${number}-if1 | ${rxq_count_int}
+| | ... | ${rxq_count_int}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${number}
 | | Add interface to bridge domain | ${dut2} | ${dut2-memif-${number}-if1}
 | | ... | ${number}

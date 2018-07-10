@@ -26,6 +26,8 @@
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *RFC2544: Pkt throughput IPv4 routing test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -55,14 +57,15 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
-| Discover NDR or PDR for ethip4-ip4base
+| Local template
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ${wt} thread(s), ${wt}\
 | | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
 | | ... | [Ver] Find NDR or PDR for ${framesize} frames using binary search\
 | | ... | start at 10GE linerate.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| | [Arguments] | ${phy_cores} | ${framesize} | ${search_type}
+| | ... | ${rxq}=${None} | ${min_rate}=${50000}
 | | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -71,7 +74,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -89,181 +92,73 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${64}  | search_type=NDR
 
 | tc02-64B-1t1c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${64}  | search_type=PDR
 
 | tc03-1518B-1t1c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 1518B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=NDR
 
 | tc04-1518B-1t1c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=PDR
 
 | tc05-9000B-1t1c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${1} | framesize=${9000} | search_type=NDR
 
 | tc06-9000B-1t1c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${1} | framesize=${9000} | search_type=PDR
 
 | tc07-64B-2t2c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 2C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${64}  | search_type=NDR
 
 | tc08-64B-2t2c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${64}  | search_type=PDR
 
 | tc09-1518B-2t2c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=NDR
 
 | tc10-1518B-2t2c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=PDR
 
 | tc11-9000B-2t2c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${2} | framesize=${9000} | search_type=NDR
 
 | tc12-9000B-2t2c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${2} | framesize=${9000} | search_type=PDR
 
 | tc13-64B-4t4c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 64B | 4C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${64}  | search_type=NDR
 
 | tc14-64B-4t4c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${64}  | search_type=PDR
 
 | tc15-1518B-4t4c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps.
 | | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=NDR
 
 | tc16-1518B-4t4c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=PDR
 
 | tc17-9000B-4t4c-ethip4-ip4base-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${4} | framesize=${9000} | search_type=NDR
 
 | tc18-9000B-4t4c-ethip4-ip4base-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${4} | framesize=${9000} | search_type=PDR

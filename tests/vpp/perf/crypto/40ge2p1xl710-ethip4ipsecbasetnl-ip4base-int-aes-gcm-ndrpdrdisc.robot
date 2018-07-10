@@ -28,6 +28,8 @@
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *IPv4 IPsec tunnel mode performance test suite.*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -73,16 +75,25 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
-| Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
+| Local template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config with ${wt} thread(s),\
-| | ... | ${wt} phy core(s), ${rxq} receive queue(s) per NIC port.
-| | ... | [Ver] Measure NDR or PDR for ${framesize} by bisecting between\
-| | ... | ${min_rate} and computed max rate, using trial loss rate measurements.
+| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config.
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Ver] Find ${search_type} for ${framesize}B frames using binary search\
+| | ... | start at linerate, step ${min_rate}pps.
 | | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - search_type - NDR or PDR. Type: string
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+| | ... | - min_rate - Min rate for binary search, default value: ${50000}.
+| | ... | Type: integer
 | | ...
-| | # Test Variables required for test teardown
+| | [Arguments] | ${framesize} | ${phy_cores} | ${search_type}
+| | ... | ${rxq}=${None} | ${min_rate}=${50000}
+| | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
@@ -96,10 +107,11 @@
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Add no multi seg to all DUTs
-| | And Add cryptodev to all DUTs | ${${wt}}
+| | And Run Keyword If | ${get_framesize} + ${ipsec_overhead_gcm} < ${1522}
+| | ... | Add no multi seg to all DUTs
+| | And Add cryptodev to all DUTs | ${${phy_cores}}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
@@ -122,99 +134,33 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | framesize=${64} | phy_cores=${1} | search_type=NDR
 
 | tc02-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
-| | ...
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | framesize=${64} | phy_cores=${1} | search_type=PDR
 
 | tc03-1518B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | framesize=${1518} | phy_cores=${1} | search_type=NDR
 
 | tc04-1518B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
-| | ...
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | framesize=${1518} | phy_cores=${1} | search_type=PDR
 
 | tc05-IMIX-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for IMIX_v4_1 frames\
-| | ... | using binary search start at 40GE linerate, step 50kpps.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=NDR
+| | framesize=IMIX_v4_1 | phy_cores=${1} | search_type=NDR
 
 | tc06-IMIX-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 40GE\
-| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=PDR
+| | framesize=IMIX_v4_1 | phy_cores=${1} | search_type=PDR
 
 | tc07-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 2 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 2C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | framesize=${64} | phy_cores=${2} | search_type=NDR
 
 | tc08-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
-| | ... | with 2 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 50kpps and loss tolerance of 0.5%.
-| | ...
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with IPSec HW cryptodev
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | framesize=${64} | phy_cores=${2} | search_type=PDR

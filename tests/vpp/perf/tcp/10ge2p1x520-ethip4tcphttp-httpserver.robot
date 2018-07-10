@@ -26,6 +26,8 @@
 | Test Setup | Set up tcp performance test
 | Test Teardown | Tear down performance test with wrk
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *HTTP requests per seconds, connections per seconds and
 | ... | throughput measurement.*
 | ...
@@ -37,10 +39,11 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Keywords ***
-| Measure throughput or rps or cps
-| | [Arguments] | ${traffic_profile} | ${wt} | ${rxq} | ${test_type}
+| Local template
+| | [Arguments] | ${traffic_profile} | ${phy_cores} | ${test_type}
+| | ... | ${rxq}=${None}
 | | ...
-| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | Add PCI devices to all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
@@ -81,9 +84,7 @@
 | | ... | Measure number of connections per second using wrk.
 | | ...
 | | [Tags] | 1C | TCP_CPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=1 | rxq=1
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | phy_cores=${1}
 | | ... | test_type=cps
 
 | tc02-2t2c-ethip4tcphttp-httpserver-cps
@@ -91,9 +92,7 @@
 | | ... | Measure number of connections per second using wrk.
 | | ...
 | | [Tags] | 2C | TCP_CPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=2 | rxq=2
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | phy_cores=${2}
 | | ... | test_type=cps
 
 | tc03-4t4c-ethip4tcphttp-httpserver-cps
@@ -101,9 +100,7 @@
 | | ... | Measure number of connections per second using wrk.
 | | ...
 | | [Tags] | 4C | TCP_CPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | wt=4 | rxq=4
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | phy_cores=${4}
 | | ... | test_type=cps
 
 | tc04-1t1c-ethip4tcphttp-httpserver-rps
@@ -111,9 +108,7 @@
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
 | | [Tags] | 1C | TCP_RPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=1 | rxq=1
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | phy_cores=${1}
 | | ... | test_type=rps
 
 | tc05-2t2c-ethip4tcphttp-httpserver-rps
@@ -121,9 +116,7 @@
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
 | | [Tags] | 2C | TCP_RPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=2 | rxq=2
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | phy_cores=${2}
 | | ... | test_type=rps
 
 | tc06-4t4c-ethip4tcphttp-httpserver-rps
@@ -131,7 +124,5 @@
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
 | | [Tags] | 4C | TCP_RPS
-| | ...
-| | [Template] | Measure throughput or rps or cps
-| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | wt=4 | rxq=4
+| | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | phy_cores=${4}
 | | ... | test_type=rps

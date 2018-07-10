@@ -31,7 +31,9 @@
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
-| Documentation |  *Raw results L2XC test cases*
+| Test Template | Local template
+| ...
+| Documentation | *Raw results L2XC test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
@@ -66,161 +68,79 @@
 | ${container_cpus}= | ${5}
 
 *** Keywords ***
-| Check RR for l2xcbase-eth-2memif-1lxc
+| Local template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with ${wt} thread(s), ${wt}\
-| | ... | phy core(s), ${rxq} receive queue(s) per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
+| | ... | [Cfg] DUT runs L2XC switching config.
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | # Test Variables required for test teardown
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
+| | ...
 | | Set Test Variable | ${framesize}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize L2 xconnect for '1' memif pairs and '${rxq}' rxqueues in 3-node circular topology
+| | And Initialize L2 xconnect for '1' memif pairs in 3-node circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 64B | 1C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${64} | wt=1 | rxq=1
+| | framesize=${64} | phy_cores=${1}
 
 | tc02-1518B-1t1c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 1518B | 1C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${1518} | wt=1 | rxq=1
+| | framesize=${1518} | phy_cores=${1}
 
 | tc03-9000B-1t1c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 9000B | 1C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${9000} | wt=1 | rxq=1
+| | framesize=${9000} | phy_cores=${1}
 
 | tc04-IMIX-1t1c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
-| | ... | throughput test.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | ...
 | | [Tags] | IMIX | 1C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=IMIX_v4_1 | wt=1 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${1}
 
 | tc05-64B-2t2c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 64B | 2C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${64} | wt=2 | rxq=1
+| | framesize=${64} | phy_cores=${2}
 
 | tc06-1518B-2t2c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 1518B | 2C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${1518} | wt=2 | rxq=1
+| | framesize=${1518} | phy_cores=${2}
 
 | tc07-9000B-2t2c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 9000B | 2C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${9000} | wt=2 | rxq=1
+| | framesize=${9000} | phy_cores=${2}
 
 | tc08-IMIX-2t2c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
-| | ... | throughput test.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | ...
 | | [Tags] | IMIX | 2C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=IMIX_v4_1 | wt=2 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${2}
 
 | tc09-64B-4t4c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 64B | 4C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${64} | wt=4 | rxq=2
+| | framesize=${64} | phy_cores=${4}
 
 | tc10-1518B-4t4c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 1518B | 4C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${1518} | wt=4 | rxq=2
+| | framesize=${1518} | phy_cores=${4}
 
 | tc11-9000B-4t4c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single trial\
-| | ... | throughput test.
-| | ...
 | | [Tags] | 9000B | 4C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=${9000} | wt=4 | rxq=2
+| | framesize=${9000} | phy_cores=${4}
 
 | tc12-IMIX-4t4c-eth-l2xcbase-eth-2memif-1lxc-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single trial\
-| | ... | throughput test.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | ...
 | | [Tags] | IMIX | 4C
-| | [Template] | Check RR for l2xcbase-eth-2memif-1lxc
-| | framesize=IMIX_v4_1 | wt=4 | rxq=2
+| | framesize=IMIX_v4_1 | phy_cores=${4}

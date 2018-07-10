@@ -31,6 +31,8 @@
 | Test Teardown | Tear down performance discovery test with NAT
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *NAT44 performance test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -60,9 +62,9 @@
 | ${traffic_profile} | trex-sl-3n-ethip4udp-4000u15p
 
 *** Keywords ***
-| Discover NDR or PDR for IPv4 routing with NAT44
-| | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| Local template
+| | [Arguments] | ${phy_cores} | ${framesize} | ${search_type}
+| | ... | ${rxq}=${None} | ${min_rate}=${50000}
 | | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -72,7 +74,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -91,235 +93,73 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${64}  | search_type=NDR
 
 | tc02-64B-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${64}  | search_type=PDR
 
 | tc03-1518B-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=NDR
 
 | tc04-1518B-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=PDR
 
 | tc05-IMIX-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for IMIX frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | IMIX | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=IMIX_v4_1  | search_type=NDR
 
 | tc06-IMIX-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for IMIX frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | IMIX | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=IMIX_v4_1  | search_type=PDR
 
 | tc07-64B-2t2c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 2C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${64}  | search_type=NDR
 
 | tc08-64B-2t2c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${64}  | search_type=PDR
 
 | tc09-1518B-2t2c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 2C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=NDR
 
 | tc10-1518B-2t2c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=PDR
 
 | tc11-IMIX-2t2c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for IMIX frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | IMIX | 2C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=IMIX_v4_1  | search_type=NDR
 
 | tc12-IMIX-2t2c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 2 phy cores,\
-| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for IMIX frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | IMIX | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=IMIX_v4_1  | search_type=PDR
 
 | tc13-64B-4t4c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 4C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${64}  | search_type=NDR
 
 | tc14-64B-4t4c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${64}  | search_type=PDR
 
 | tc15-1518B-4t4c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 4C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=NDR
 
 | tc16-1518B-4t4c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=PDR
 
 | tc17-IMIX-4t4c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find NDR for IMIX frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | IMIX | 4C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=IMIX_v4_1  | search_type=NDR
 
 | tc18-IMIX-4t4c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 4 phy cores,\
-| | ... | 2 receive queues per NIC port. NAT44 is configured between DUTs -\
-| | ... | 4000 users and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for IMIX frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | IMIX | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv4 routing with NAT44
-| | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=IMIX_v4_1  | search_type=PDR

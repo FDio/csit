@@ -32,6 +32,8 @@
 | Test Teardown | Tear down performance test with SRv6 with encapsulation
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *Packet throughput Segment routing over IPv6 dataplane with\
 | ... | Masquerading SRv6 proxy test cases*
 | ...
@@ -103,20 +105,19 @@
 | ${container_cpus}= | ${5}
 
 *** Keywords ***
-| Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | ...
-| | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
+| Local template
+| | [Arguments] | ${phy_cores} | ${framesize} | ${search_type}
+| | ... | ${min_rate}=${50000} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
-| | Set Test Variable | ${rxq}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_rate}= | Calculate pps | ${s_limit}
 | | ... | ${get_framesize} + ${srv6_overhead_3sids}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} + ${srv6_overhead_3sids} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -134,145 +135,49 @@
 
 *** Test Cases ***
 | tc01-78B-1t1c-ethip6srhip6-ip6base-srv6proxy-masq-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 78B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${78}  | search_type=NDR
 
 | tc02-78B-1t1c-ethip6srhip6-ip6base-srv6proxy-masq-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 78 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps, LT=0.5%.
-| | ...
 | | [Tags] | 78B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${78}  | search_type=PDR
 
 | tc03-78B-2t2c-ethip6srhip6-ip6base-srv6proxy-masq-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 78B | 2C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=2 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${78}  | search_type=NDR
 
 | tc04-78B-2t2c-ethip6srhip6-ip6base-srv6proxy-masq-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 78 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps, LT=0.5%.
-| | ...
 | | [Tags] | 78B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=2 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${78}  | search_type=PDR
 
 | tc05-78B-4t4c-ethip6srhip6-ip6base-srv6proxy-masq-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 4 phy cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 78B | 4C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=4 | rxq=2 | framesize=${78} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${78}  | search_type=NDR
 
 | tc06-78B-4t4c-ethip6srhip6-ip6base-srv6proxy-masq-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 4 phy cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for 78 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps, LT=0.5%.
-| | ...
 | | [Tags] | 78B | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=4 | rxq=2 | framesize=${78} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${78}  | search_type=PDR
 
 | tc07-1518B-1t1c-ethip6srhip6-ip6base-srv6proxy-masq-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 1C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=NDR
 
 | tc08-1518B-1t1c-ethip6srhip6-ip6base-srv6proxy-masq-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps, LT=0.5%.
-| | ...
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=PDR
 
 | tc09-1518B-2t2c-ethip6srhip6-ip6base-srv6proxy-masq-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 2C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=NDR
 
 | tc10-1518B-2t2c-ethip6srhip6-ip6base-srv6proxy-masq-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps, LT=0.5%.
-| | ...
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=PDR
 
 | tc11-1518B-4t4c-ethip6srhip6-ip6base-srv6proxy-masq-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 4 phy cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps.
-| | ...
 | | [Tags] | 1518B | 4C | NDRDISC
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=NDR
 
 | tc12-1518B-4t4c-ethip6srhip6-ip6base-srv6proxy-masq-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 over SRv6 routing with masquerading SRv6 proxy\
-| | ... | config with 4 phy cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 50kpps, LT=0.5%.
-| | ...
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
-| | ...
-| | [Template] | Discover NDR or PDR for IPv6 routing over SRv6 with endpoint to SR-unaware Service Function via masquerading proxy behaviour
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=PDR
