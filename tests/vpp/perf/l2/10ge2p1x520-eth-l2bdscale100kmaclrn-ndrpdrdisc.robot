@@ -92,7 +92,7 @@
 | | ... | linerate, step 50kpps.
 | | [Tags] | 64B | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
+| | framesize=${64}  | phy_cores=${1} | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -102,7 +102,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
+| | framesize=${64}  | phy_cores=${1} | search_type=PDR
 
 | tc03-1518B-1t1c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -112,7 +112,7 @@
 | | ... | linerate, step 50kpps.
 | | [Tags] | 1518B | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
+| | framesize=${1518}  | phy_cores=${1} | search_type=NDR
 
 | tc04-1518B-1t1c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -122,7 +122,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${1518} | min_rate=${50000} | wt=1 | rxq=1 | search_type=PDR
+| | framesize=${1518}  | phy_cores=${1} | search_type=PDR
 
 | tc05-9000B-1t1c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -132,7 +132,7 @@
 | | ... | linerate, step 10kpps.
 | | [Tags] | 9000B | 1C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
+| | framesize=${9000} | min_rate=${10000} | phy_cores=${1} | search_type=NDR
 
 | tc06-9000B-1t1c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -142,7 +142,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1 | search_type=PDR
+| | framesize=${9000} | min_rate=${10000} | phy_cores=${1} | search_type=PDR
 
 | tc07-64B-2t2c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -152,7 +152,7 @@
 | | ... | linerate, step 50kpps.
 | | [Tags] | 64B | 2C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
+| | framesize=${64}  | phy_cores=${2} | search_type=NDR
 
 | tc08-64B-2t2c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -162,7 +162,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR
+| | framesize=${64}  | phy_cores=${2} | search_type=PDR
 
 | tc09-1518B-2t2c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -172,7 +172,7 @@
 | | ... | linerate, step 50kpps.
 | | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1 | search_type=NDR
+| | framesize=${1518}  | phy_cores=${2} | search_type=NDR
 
 | tc10-1518B-2t2c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -182,7 +182,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${1518} | min_rate=${50000} | wt=2 | rxq=1 | search_type=PDR
+| | framesize=${1518}  | phy_cores=${2} | search_type=PDR
 
 | tc11-9000B-2t2c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -192,7 +192,7 @@
 | | ... | linerate, step 10kpps.
 | | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1 | search_type=NDR
+| | framesize=${9000} | min_rate=${10000} | phy_cores=${2} | search_type=NDR
 
 | tc12-9000B-2t2c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -202,7 +202,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1 | search_type=PDR
+| | framesize=${9000} | min_rate=${10000} | phy_cores=${2} | search_type=PDR
 
 | tc13-64B-4t4c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -212,7 +212,7 @@
 | | ... | linerate, step 50kpps.
 | | [Tags] | 64B | 4C | NDRDISC
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=4 | rxq=2 | search_type=NDR
+| | framesize=${64}  | phy_cores=${4} | search_type=NDR
 
 | tc14-64B-4t4c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -222,7 +222,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${64} | min_rate=${50000} | wt=4 | rxq=2 | search_type=PDR
+| | framesize=${64}  | phy_cores=${4} | search_type=PDR
 
 | tc15-1518B-4t4c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -232,7 +232,7 @@
 | | ... | linerate, step 50kpps.
 | | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${1518} | min_rate=${50000} | wt=4 | rxq=2 | search_type=NDR
+| | framesize=${1518}  | phy_cores=${4} | search_type=NDR
 
 | tc16-1518B-4t4c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -242,7 +242,7 @@
 | | ... | linerate, step 50kpps, LT=0.5%.
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${1518} | min_rate=${50000} | wt=4 | rxq=2 | search_type=PDR
+| | framesize=${1518}  | phy_cores=${4} | search_type=PDR
 
 | tc17-9000B-4t4c-eth-l2bdscale100kmaclrn-ndrdisc
 | | [Documentation]
@@ -252,7 +252,7 @@
 | | ... | linerate, step 10kpps.
 | | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2 | search_type=NDR
+| | framesize=${9000} | min_rate=${10000} | phy_cores=${4} | search_type=NDR
 
 | tc18-9000B-4t4c-eth-l2bdscale100kmaclrn-pdrdisc
 | | [Documentation]
@@ -262,5 +262,5 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | [Template] | L2 Bridge Domain Binary Search
-| | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2 | search_type=PDR
+| | framesize=${9000} | min_rate=${10000} | phy_cores=${4} | search_type=PDR
 

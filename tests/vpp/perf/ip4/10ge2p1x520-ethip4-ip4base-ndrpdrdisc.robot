@@ -71,7 +71,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -96,7 +96,7 @@
 | | [Tags] | 64B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${64}  | search_type=NDR
 
 | tc02-64B-1t1c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -106,7 +106,7 @@
 | | [Tags] | 64B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${64}  | search_type=PDR
 
 | tc03-1518B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -116,7 +116,7 @@
 | | [Tags] | 1518B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=NDR
 
 | tc04-1518B-1t1c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -126,7 +126,7 @@
 | | [Tags] | 1518B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${1} | framesize=${1518}  | search_type=PDR
 
 | tc05-9000B-1t1c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -136,7 +136,7 @@
 | | [Tags] | 9000B | 1C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${1} | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc06-9000B-1t1c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -146,7 +146,7 @@
 | | [Tags] | 9000B | 1C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=1 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${1} | framesize=${9000} | min_rate=${10000} | search_type=PDR
 
 | tc07-64B-2t2c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -156,7 +156,7 @@
 | | [Tags] | 64B | 2C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${64}  | search_type=NDR
 
 | tc08-64B-2t2c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -166,7 +166,7 @@
 | | [Tags] | 64B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${64}  | search_type=PDR
 
 | tc09-1518B-2t2c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -176,7 +176,7 @@
 | | [Tags] | 1518B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=NDR
 
 | tc10-1518B-2t2c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -186,7 +186,7 @@
 | | [Tags] | 1518B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${2} | framesize=${1518}  | search_type=PDR
 
 | tc11-9000B-2t2c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -196,7 +196,7 @@
 | | [Tags] | 9000B | 2C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${2} | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc12-9000B-2t2c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -206,7 +206,7 @@
 | | [Tags] | 9000B | 2C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=2 | rxq=1 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${2} | framesize=${9000} | min_rate=${10000} | search_type=PDR
 
 | tc13-64B-4t4c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -216,7 +216,7 @@
 | | [Tags] | 64B | 4C | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${64}  | search_type=NDR
 
 | tc14-64B-4t4c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -226,7 +226,7 @@
 | | [Tags] | 64B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${64} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${64}  | search_type=PDR
 
 | tc15-1518B-4t4c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -236,7 +236,7 @@
 | | [Tags] | 1518B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=NDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=NDR
 
 | tc16-1518B-4t4c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -246,7 +246,7 @@
 | | [Tags] | 1518B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${50000} | search_type=PDR
+| | phy_cores=${4} | framesize=${1518}  | search_type=PDR
 
 | tc17-9000B-4t4c-ethip4-ip4base-ndrdisc
 | | [Documentation]
@@ -256,7 +256,7 @@
 | | [Tags] | 9000B | 4C | NDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=NDR
+| | phy_cores=${4} | framesize=${9000} | min_rate=${10000} | search_type=NDR
 
 | tc18-9000B-4t4c-ethip4-ip4base-pdrdisc
 | | [Documentation]
@@ -266,4 +266,4 @@
 | | [Tags] | 9000B | 4C | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for ethip4-ip4base
-| | wt=4 | rxq=2 | framesize=${9000} | min_rate=${10000} | search_type=PDR
+| | phy_cores=${4} | framesize=${9000} | min_rate=${10000} | search_type=PDR
