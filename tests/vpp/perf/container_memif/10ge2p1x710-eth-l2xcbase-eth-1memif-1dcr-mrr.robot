@@ -91,7 +91,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect for single memif in 3-node circular topology
 | | ... | ${rxq}
-| | Then Traffic should pass with maximum rate | ${perf_trial_duration}
+| | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
