@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "900a936a_841bcd60",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-10T19:39:34Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this also include \"2_NODE_DOUBLE_LINK_TOPO\"?",
+      "range": {
+        "startLine": 47,
+        "startChar": 24,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "298fbe911e79994a5ac2a0d5a1da5a91113da6e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "973b50ff_a2669c9c",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-10T19:39:34Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this also include \"3_NODE_DOUBLE_LINK_TOPO\"?",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 49
+      },
+      "revId": "298fbe911e79994a5ac2a0d5a1da5a91113da6e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13b592f7_66cbb8b5",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 3
