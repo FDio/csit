@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "64c41660_0130840b",
+        "filename": "tests/vpp/perf/container_memif/10ge2p1x520-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-10T08:53:16Z",
+      "side": 1,
+      "message": "Possible to do althought it will add some overhead to refactor time.",
+      "parentUuid": "e96ce560_8ef6fdc7",
+      "range": {
+        "startLine": 28,
+        "startChar": 15,
+        "endLine": 28,
+        "endChar": 27
+      },
+      "revId": "680097335171832a40dfc1296fc6ad71aeba121c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88abba03_e46a97ff",
         "filename": "tests/vpp/perf/container_memif/10ge2p1x520-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr.robot",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-10T08:30:38Z",
       "side": 1,
       "message": "Hmm. Can we make things even more uniform and call this keyword \"Local Template\" or something like that? That would simplify suite autogeneration in the future.",
+      "range": {
+        "startLine": 34,
+        "startChar": 18,
+        "endLine": 34,
+        "endChar": 61
+      },
+      "revId": "680097335171832a40dfc1296fc6ad71aeba121c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a96704fb_3284bbb1",
+        "filename": "tests/vpp/perf/container_memif/10ge2p1x520-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-10T08:53:16Z",
+      "side": 1,
+      "message": "Idea in past was that these templates would not be there.\nSimply we will create dedicated file in library that will contain those. Then having unique name is essential, this will offload suites by much. Uniqueness can be derived from name of suite. E.g.: eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr",
+      "parentUuid": "88abba03_e46a97ff",
       "range": {
         "startLine": 34,
         "startChar": 18,
