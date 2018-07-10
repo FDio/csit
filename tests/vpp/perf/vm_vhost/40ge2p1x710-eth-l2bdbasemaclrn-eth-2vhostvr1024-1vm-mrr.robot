@@ -27,6 +27,8 @@
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
+| Test Template | Local template
+| ...
 | Documentation | *Raw results L2BD test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -61,7 +63,7 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
-| Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+| Local template
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ${wt} thread, ${wt} phy\
 | | ... | core, ${rxq} receive queue per NIC port.
@@ -81,7 +83,7 @@
 | | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
 | | ... | ${False} | ${True}
 | | ...
-| | Given Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
@@ -109,8 +111,8 @@
 | | ...
 | | [Tags] | 64B | 1C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${64} | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=${64} | phy_cores=${1}
 
 | tc02-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -121,8 +123,8 @@
 | | ...
 | | [Tags] | 1518B | 1C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${1518} | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=${1518} | phy_cores=${1}
 
 | tc03-9000B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -133,8 +135,8 @@
 | | ...
 | | [Tags] | 9000B | 1C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${9000} | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=${9000} | phy_cores=${1}
 
 | tc04-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -146,8 +148,8 @@
 | | ...
 | | [Tags] | IMIX | 1C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=IMIX_v4_1 | wt=1 | rxq=1
+| | [Template] | Local template
+| | framesize=IMIX_v4_1 | phy_cores=${1}
 
 | tc05-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -158,8 +160,8 @@
 | | ...
 | | [Tags] | 64B | 2C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${64} | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=${64} | phy_cores=${2}
 
 | tc06-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -170,8 +172,8 @@
 | | ...
 | | [Tags] | 1518B | 2C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${1518} | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=${1518} | phy_cores=${2}
 
 | tc07-9000B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -182,8 +184,8 @@
 | | ...
 | | [Tags] | 9000B | 2C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${9000} | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=${9000} | phy_cores=${2}
 
 | tc08-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -195,8 +197,8 @@
 | | ...
 | | [Tags] | IMIX | 2C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=IMIX_v4_1 | wt=2 | rxq=1
+| | [Template] | Local template
+| | framesize=IMIX_v4_1 | phy_cores=${2}
 
 | tc09-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -207,8 +209,8 @@
 | | ...
 | | [Tags] | 64B | 4C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${64} | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=${64} | phy_cores=${4}
 
 | tc10-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -219,8 +221,8 @@
 | | ...
 | | [Tags] | 1518B | 4C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${1518} | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=${1518} | phy_cores=${4}
 
 | tc11-9000B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -231,8 +233,8 @@
 | | ...
 | | [Tags] | 9000B | 4C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=${9000} | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=${9000} | phy_cores=${4}
 
 | tc12-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Documentation]
@@ -244,5 +246,5 @@
 | | ...
 | | [Tags] | IMIX | 4C
 | | ...
-| | [Template] | Check RR for eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
-| | framesize=IMIX_v4_1 | wt=4 | rxq=2
+| | [Template] | Local template
+| | framesize=IMIX_v4_1 | phy_cores=${4}
