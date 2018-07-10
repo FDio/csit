@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c7b7d45_4ced6890",
+        "filename": "tests/vpp/perf/container_memif/10ge2p1x520-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-10T12:36:12Z",
+      "side": 1,
+      "message": "\"B\", or \" byte\" should be appended for numerical values, but not for IMIX string.\nNot sure how to make that work without messing up line 79, so I guess just add a TODO to revisit after release.",
+      "range": {
+        "startLine": 75,
+        "startChar": 44,
+        "endLine": 75,
+        "endChar": 56
+      },
+      "revId": "3cd6a0febfd8bdc24cea7fa7fdd75edb021de195",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
