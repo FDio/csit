@@ -312,7 +312,6 @@ def _generate_all_charts(spec, input_data):
             csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
         # Generate traces:
         traces = list()
-        win_size = 14
         index = 0
         for test_name, test_data in chart_data.items():
             if not test_data:
