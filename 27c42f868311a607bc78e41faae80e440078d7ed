@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "169581ad_f04ded3a",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 58
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-10T14:53:43Z",
+      "side": 1,
+      "message": "No, we moved from percentage to absolute PPS some time ago as percentage is not saying anything. What is 100% (10GE, 25GE, 100GE) that is why we displayed absolute TX?",
+      "range": {
+        "startLine": 687,
+        "startChar": 0,
+        "endLine": 688,
+        "endChar": 75
+      },
+      "revId": "27c42f868311a607bc78e41faae80e440078d7ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
