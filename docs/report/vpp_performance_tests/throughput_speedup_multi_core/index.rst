@@ -1,3 +1,5 @@
+.. _throughput_speedup_multi_core:
+
 Throughput Speedup Multi-Core
 =============================
 
