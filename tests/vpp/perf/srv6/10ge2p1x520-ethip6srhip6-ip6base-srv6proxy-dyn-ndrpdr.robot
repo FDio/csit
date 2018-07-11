@@ -140,7 +140,7 @@
 | tc01-78B-1c-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr
 | | [Documentation] | TODO: Generate at runtime.
 | | ...
-| | [Tags] | 78B | 1C
+| | [Tags] | 78B | 1C | THIS
 | | ...
 | | framesize=${78} | phy_cores=${1}
 
