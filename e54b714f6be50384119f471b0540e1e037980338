@@ -79,6 +79,29 @@
       "revId": "e54b714f6be50384119f471b0540e1e037980338",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f2026f9_1a51efd2",
+        "filename": "tests/vpp/perf/srv6/regenerate_testcases.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-11T13:49:59Z",
+      "side": 1,
+      "message": "The downside is that all the suites in the directory have to contain the same testcase arguments. This is an example, we do not have testcases for 9000B nor IMIX.\nBut I think it is an upside. There is no good reason for suites in the same directory having different sets of testcases. Jobs can always filter-out some (using tags) if needed.\n\nIf there is a directory where suites differ by arguments (for example different framesizes due to different overheads), it is always possible use multiple globs with differing lines 28-33.",
+      "range": {
+        "startLine": 18,
+        "startChar": 27,
+        "endLine": 18,
+        "endChar": 41
+      },
+      "revId": "e54b714f6be50384119f471b0540e1e037980338",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
