@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "081dba53_eed1ab7e",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T13:48:56Z",
+      "side": 1,
+      "message": "B",
+      "revId": "e54b714f6be50384119f471b0540e1e037980338",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2e42a7e_5cfca9e4",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T13:48:56Z",
+      "side": 1,
+      "message": "bits? or Bytes? please change to B",
+      "range": {
+        "startLine": 112,
+        "startChar": 9,
+        "endLine": 112,
+        "endChar": 10
+      },
+      "revId": "e54b714f6be50384119f471b0540e1e037980338",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28dabeb3_eb5f7776",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T13:48:56Z",
+      "side": 1,
+      "message": "Remove unless something meaningfull in it. We do not want to present out TODOs",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 7
+      },
+      "revId": "e54b714f6be50384119f471b0540e1e037980338",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2156a849_425958d1",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T13:48:56Z",
+      "side": 1,
+      "message": "lets maybe agree on minimum set. like 1c/2c/4c each 64|78B, 1518, IMIX_v4_1 and 9000B, 9000B only in case it was there before (due to various reason)",
+      "revId": "e54b714f6be50384119f471b0540e1e037980338",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
