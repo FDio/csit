@@ -41,6 +41,44 @@ THEME_OVERRIDES = """/* override table width restrictions */
     line-height: 18px;
     margin-bottom: 0px;
 }
+.wy-menu-vertical a {
+    display: inline-block;
+    line-height: 18px;
+    padding: 0 2em;
+    display: block;
+    position: relative;
+    font-size: 90%;
+    color: #d9d9d9
+}
+.wy-menu-vertical li.current a {
+    color: gray;
+    border-right: solid 1px #c9c9c9;
+    padding: 0 3em;
+}
+.wy-menu-vertical li.toctree-l2.current > a {
+    background: #c9c9c9;
+    padding: 0 3em;
+}
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+    display: block;
+    background: #c9c9c9;
+    padding: 0 4em;
+}
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current > a {
+    color: #404040;
+    padding: 0 1.618em;
+    font-weight: bold;
+    position: relative;
+    background: #fcfcfc;
+    border: none;
+        border-top-width: medium;
+        border-bottom-width: medium;
+        border-top-style: none;
+        border-bottom-style: none;
+        border-top-color: currentcolor;
+        border-bottom-color: currentcolor;
+    padding-left: 1.618em -4px;
+}
 """
 
 # Command to build the html format of the report
@@ -48,7 +86,7 @@ HTML_BUILDER = 'sphinx-build -v -c . -a ' \
                '-b html -E ' \
                '-t html ' \
                '-D release={release} ' \
-               '-D version="{release} report - {date}" ' \
+               '-D version="Report v{report_version} - {date}" ' \
                '{working_dir} ' \
                '{build_dir}/'
 
@@ -57,18 +95,20 @@ PDF_BUILDER = 'sphinx-build -v -c . -a ' \
               '-b latex -E ' \
               '-t latex ' \
               '-D release={release} ' \
-              '-D version="{release} report - {date}" ' \
+              '-D version="Report v{report_version} - {date}" ' \
               '{working_dir} ' \
               '{build_dir}'
 
 
-def generate_report(release, spec):
+def generate_report(release, spec, report_version):
     """Generate all formats and versions of the report.
 
     :param release: Release string of the product.
     :param spec: Specification read from the specification file.
+    :param report_version: Version of the report.
     :type release: str
     :type spec: Specification
+    :type report_version: str
     """
 
     logging.info("Generating the report ...")
@@ -79,7 +119,7 @@ def generate_report(release, spec):
     }
 
     for report_format, versions in spec.output["format"].items():
-        report[report_format](release, spec, versions)
+        report[report_format](release, spec, versions, report_version)
 
     archive_input_data(spec)
     archive_report(spec)
@@ -87,15 +127,17 @@ def generate_report(release, spec):
     logging.info("Done.")
 
 
-def generate_html_report(release, spec, versions):
+def generate_html_report(release, spec, versions, report_version):
     """Generate html format of the report.
 
     :param release: Release string of the product.
     :param spec: Specification read from the specification file.
     :param versions: List of versions to generate.
+    :param report_version: Version of the report.
     :type release: str
     :type spec: Specification
     :type versions: list
+    :type report_version: str
     """
 
     logging.info("  Generating the html report, give me a few minutes, please "
@@ -103,6 +145,7 @@ def generate_html_report(release, spec, versions):
 
     cmd = HTML_BUILDER.format(
         release=release,
+        report_version=report_version,
         date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
@@ -119,15 +162,17 @@ def generate_html_report(release, spec, versions):
     logging.info("  Done.")
 
 
-def generate_pdf_report(release, spec, versions):
+def generate_pdf_report(release, spec, versions, report_version):
     """Generate html format of the report.
 
     :param release: Release string of the product.
     :param spec: Specification read from the specification file.
     :param versions: List of versions to generate. Not implemented yet.
+    :param report_version: Version of the report.
     :type release: str
     :type spec: Specification
     :type versions: list
+    :type report_version: str
     """
 
     logging.info("  Generating the pdf report, give me a few minutes, please "
@@ -148,6 +193,7 @@ def generate_pdf_report(release, spec, versions):
     build_dir = spec.environment["paths"]["DIR[BUILD,LATEX]"]
     cmd = PDF_BUILDER.format(
         release=release,
+        report_version=report_version,
         date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=build_dir)
@@ -163,10 +209,11 @@ def generate_pdf_report(release, spec, versions):
         'pdflatex -interaction nonstopmode csit.tex || true'.
         format(build_dir=build_dir),
         'cd {build_dir} && '
-        'cp csit.pdf ../{archive_dir}/csit_{release}.pdf'.
+        'cp csit.pdf ../{archive_dir}/csit_{release}_{report_version}.pdf'.
         format(build_dir=build_dir,
                archive_dir=archive_dir,
-               release=release)
+               release=release,
+               report_version=report_version)
     ]
 
     for cmd in cmds:

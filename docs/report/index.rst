@@ -2,15 +2,100 @@ CSIT 18.07
 ==========
 
 .. toctree::
-    :numbered:
+    :maxdepth: 2
+    :caption: Introduction
 
-    introduction/index
-    vpp_performance_tests/index
-    dpdk_performance_tests/index
-    vpp_functional_tests/index
-    honeycomb_functional_tests/index
-    nsh_sfc_functional_tests/index
-    detailed_test_results/index
-    test_configuration/index
-    test_operational_data/index
-    csit_framework_documentation/index
+    introduction/overview
+    introduction/general_notes
+
+.. toctree::
+    :maxdepth: 2
+    :caption: VPP Performance Tests
+
+    vpp_performance_tests/overview
+    vpp_performance_tests/csit_release_notes
+    vpp_performance_tests/methodology
+    vpp_performance_tests/packet_throughput_graphs/index
+    vpp_performance_tests/throughput_speedup_multi_core/index
+    vpp_performance_tests/packet_latency_graphs/index
+    vpp_performance_tests/http_server_performance/index
+    vpp_performance_tests/mdr_search
+    vpp_performance_tests/test_environment
+    vpp_performance_tests/documentation/index
+
+.. toctree::
+    :maxdepth: 2
+    :caption: DPDK Performance Tests
+
+    dpdk_performance_tests/overview
+    dpdk_performance_tests/csit_release_notes
+    dpdk_performance_tests/packet_throughput_graphs/index
+    dpdk_performance_tests/packet_latency_graphs/index
+    dpdk_performance_tests/test_environment
+    dpdk_performance_tests/documentation
+
+.. toctree::
+    :maxdepth: 2
+    :caption: VPP Functional Tests
+
+    vpp_functional_tests/overview
+    vpp_functional_tests/csit_release_notes
+    vpp_functional_tests/test_environment
+    vpp_functional_tests/documentation
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Honeycomb Functional Tests
+
+    honeycomb_functional_tests/overview
+    honeycomb_functional_tests/csit_release_notes
+    honeycomb_functional_tests/test_environment
+    honeycomb_functional_tests/documentation
+
+.. toctree::
+    :maxdepth: 2
+    :caption: NSH_SFC Functional Tests
+
+    nsh_sfc_functional_tests/overview
+    nsh_sfc_functional_tests/csit_release_notes
+    nsh_sfc_functional_tests/test_environment
+    nsh_sfc_functional_tests/documentation
+
+.. only:: html
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Detailed Test Results
+
+        detailed_test_results/vpp_performance_results/index
+        detailed_test_results/vpp_mrr_results/index
+        detailed_test_results/cot_performance_results/index
+        detailed_test_results/dpdk_performance_results/index
+        detailed_test_results/vpp_functional_results/index
+        detailed_test_results/vpp_functional_results_centos/index
+        detailed_test_results/honeycomb_functional_results/index
+        detailed_test_results/nshsfc_functional_results/index
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Test Configuration
+
+        test_configuration/vpp_performance_configuration/index
+        test_configuration/vpp_mrr_configuration/index
+        test_configuration/vpp_functional_configuration/index
+        test_configuration/vpp_functional_configuration_centos/index
+
+    .. toctree::
+        :maxdepth: 2
+        :caption: Test Operational Data
+
+        test_operational_data/vpp_performance_operational_data/index
+
+.. toctree::
+    :maxdepth: 2
+    :caption: CSIT Framework Documentation
+
+    csit_framework_documentation/csit_design
+    csit_framework_documentation/csit_test_naming
+    csit_framework_documentation/pal_lld
+    csit_framework_documentation/csit_tag_description
