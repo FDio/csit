@@ -500,6 +500,8 @@ class ExecutionChecker(ResultVisitor):
             elif "FRMOBL" in tags or "BMRR" in tags:
                 test_type = "BMRR"
             else:
+                test_result["status"] = "FAIL"
+                self._data["tests"][self._test_ID] = test_result
                 return
 
             test_result["type"] = test_type
@@ -527,6 +529,7 @@ class ExecutionChecker(ResultVisitor):
                                                  count=1)
                 else:
                     test_result["status"] = "FAIL"
+                    self._data["tests"][self._test_ID] = test_result
                     logging.error("The test '{0}' has no or more than one "
                                   "multi-threading tags.".format(self._test_ID))
                     return
