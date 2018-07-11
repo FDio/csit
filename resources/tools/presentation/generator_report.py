@@ -41,6 +41,39 @@ THEME_OVERRIDES = """/* override table width restrictions */
     line-height: 18px;
     margin-bottom: 0px;
 }
+.wy-menu-vertical a {
+    display: inline-block;
+    line-height: 18px;
+    padding: 0 2em;
+    display: block;
+    position: relative;
+    font-size: 90%;
+    color: #d9d9d9
+}
+.wy-menu-vertical li.current a {
+    color: gray;
+    border-right: solid 1px #c9c9c9;
+    padding: 0 2.427em;
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+    display: block;
+    background: #c9c9c9;
+    padding: 0 4.045em;
+}
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current > a {
+    color: #404040;
+    padding: 0 1.618em;
+    font-weight: bold;
+    position: relative;
+    background: #fcfcfc;
+    border: none;
+        border-top-width: medium;
+        border-bottom-width: medium;
+        border-top-style: none;
+        border-bottom-style: none;
+        border-top-color: currentcolor;
+        border-bottom-color: currentcolor;
+    padding-left: 1.618em -4px;
+}
 """
 
 # Command to build the html format of the report
@@ -48,7 +81,7 @@ HTML_BUILDER = 'sphinx-build -v -c . -a ' \
                '-b html -E ' \
                '-t html ' \
                '-D release={release} ' \
-               '-D version="{release} report - {date}" ' \
+               '-D version="Report v0.1 - {date}" ' \
                '{working_dir} ' \
                '{build_dir}/'
 
@@ -57,7 +90,7 @@ PDF_BUILDER = 'sphinx-build -v -c . -a ' \
               '-b latex -E ' \
               '-t latex ' \
               '-D release={release} ' \
-              '-D version="{release} report - {date}" ' \
+              '-D version="Report v0.1 - {date}" ' \
               '{working_dir} ' \
               '{build_dir}'
 

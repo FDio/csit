@@ -45,7 +45,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'FD.io CSIT'
+project = u'FD.io CSIT rls18.07 Report'
 copyright = u'2018, FD.io'
 author = u'FD.io CSIT'
 
