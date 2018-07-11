@@ -7,10 +7,10 @@ typeset -A DIR
 
 DIR[WORKING]=_tmp
 
-# Install system dependencies
-sudo apt-get -y update
-sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
-    zlib1g-dev unzip
+## Install system dependencies
+#sudo apt-get -y update
+#sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
+#    zlib1g-dev unzip
 
 # Create working directories
 mkdir ${DIR[WORKING]}
