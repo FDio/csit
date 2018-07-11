@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "33f43207_88575847",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T19:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "900a936a_841bcd60",
+      "range": {
+        "startLine": 47,
+        "startChar": 24,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "298fbe911e79994a5ac2a0d5a1da5a91113da6e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "973b50ff_a2669c9c",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-10T19:39:34Z",
       "side": 1,
       "message": "Shouldn\u0027t this also include \"3_NODE_DOUBLE_LINK_TOPO\"?",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 49
+      },
+      "revId": "298fbe911e79994a5ac2a0d5a1da5a91113da6e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b3cc3f9_89753831",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T19:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "973b50ff_a2669c9c",
       "range": {
         "startLine": 51,
         "startChar": 8,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "df1c7f28_3d47e3de",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T19:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba0965f9_67bb1a98",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 21
+      },
+      "revId": "298fbe911e79994a5ac2a0d5a1da5a91113da6e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08a2328a_ed0e1d14",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 3
@@ -105,6 +177,30 @@
       "writtenOn": "2018-07-11T07:32:43Z",
       "side": 1,
       "message": "Add AND",
+      "range": {
+        "startLine": 234,
+        "startChar": 36,
+        "endLine": 234,
+        "endChar": 58
+      },
+      "revId": "298fbe911e79994a5ac2a0d5a1da5a91113da6e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7968a93e_14aa693b",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T19:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08a2328a_ed0e1d14",
       "range": {
         "startLine": 234,
         "startChar": 36,
