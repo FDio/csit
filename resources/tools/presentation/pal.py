@@ -48,6 +48,10 @@ def parse_args():
                         default="master",
                         type=str,
                         help="Release string of the product.")
+    parser.add_argument("-v", "--version",
+                        default="0.1",
+                        type=str,
+                        help="Version of the product.")
     parser.add_argument("-l", "--logging",
                         choices=["DEBUG", "INFO", "WARNING",
                                  "ERROR", "CRITICAL"],
@@ -103,7 +107,7 @@ def main():
         generate_files(spec, data)
 
         if spec.output["output"] == "report":
-            generate_report(args.release, spec)
+            generate_report(args.release, spec, args.version)
             logging.info("Successfully finished.")
         elif spec.output["output"] == "CPTA":
             sys.stdout.write(generate_cpta(spec, data))
