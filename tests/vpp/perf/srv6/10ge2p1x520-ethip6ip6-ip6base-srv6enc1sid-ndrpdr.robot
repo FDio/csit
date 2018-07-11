@@ -112,7 +112,7 @@
 | tc01-78b-1c-ethip6ip6-ip6base-srv6enc1sid-ndrdisc
 | | [Documentation] | TODO: Generate at runtime.
 | | ...
-| | [Tags] | 78B | 1C
+| | [Tags] | 78B | 1C | THIS
 | | ...
 | | framesize=${78} | phy_cores=${1}
 
