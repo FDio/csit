@@ -1033,6 +1033,8 @@ class InputData(object):
             worker.join()
 
         logging.info("Done.")
+        logging.warn(repr(self._input_data["csit-vpp-perf-verify-master"]["125"]["tests"]["tests.vpp.perf.ip4.40ge2p1xl710-ethip4-ip4base-ndrpdrdisc.tc01-64b-1t1c-ethip4-ip4base-ndrdisc"]["throughput"]))
+        logging.warn(repr(self._input_data["csit-vpp-perf-verify-master"]["125"]["tests"]["tests.vpp.perf.ip4.40ge2p1xl710-ethip4-ip4base-mrr.tc01-64b-1t1c-ethip4-ip4base-mrr"]["result"]))
 
     @staticmethod
     def _end_of_tag(tag_filter, start=0, closer="'"):

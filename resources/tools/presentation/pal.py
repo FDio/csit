@@ -98,17 +98,17 @@ def main():
         data = InputData(spec)
         data.download_and_parse_data(repeat=2)
 
-        generate_tables(spec, data)
-        generate_plots(spec, data)
-        generate_files(spec, data)
-
-        if spec.output["output"] == "report":
-            generate_report(args.release, spec)
-            logging.info("Successfully finished.")
-        elif spec.output["output"] == "CPTA":
-            sys.stdout.write(generate_cpta(spec, data))
-            logging.info("Successfully finished.")
-        ret_code = 0
+#        generate_tables(spec, data)
+#        generate_plots(spec, data)
+#        generate_files(spec, data)
+#
+#        if spec.output["output"] == "report":
+#            generate_report(args.release, spec)
+#            logging.info("Successfully finished.")
+#        elif spec.output["output"] == "CPTA":
+#            sys.stdout.write(generate_cpta(spec, data))
+#            logging.info("Successfully finished.")
+#        ret_code = 0
 
     except (KeyError, ValueError, PresentationError) as err:
         logging.info("Finished with an error.")
