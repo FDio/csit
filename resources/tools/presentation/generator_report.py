@@ -41,6 +41,15 @@ THEME_OVERRIDES = """/* override table width restrictions */
     line-height: 18px;
     margin-bottom: 0px;
 }
+.wy-menu-vertical a {
+    display: inline-block;
+    line-height: 18px;
+    padding: 0 2em;
+    display: block;
+    position: relative;
+    font-size: 90%;
+    color: #d9d9d9
+}
 """
 
 # Command to build the html format of the report
