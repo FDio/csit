@@ -529,7 +529,6 @@ class ExecutionChecker(ResultVisitor):
                     test_result["status"] = "FAIL"
                     logging.error("The test '{0}' has no or more than one "
                                   "multi-threading tags.".format(self._test_ID))
-                    return
 
             if test_type in ("NDR", "PDR"):
                 try:
