@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3a0c8b3_e5e5e645",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 2566,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-07-11T08:06:30Z",
+      "side": 1,
+      "message": "Please, add note that the KW uses test variable ${rxq_count_int} set by KW Add worker threads and rxqueues to all DUTs",
+      "range": {
+        "startLine": 2566,
+        "startChar": 11,
+        "endLine": 2566,
+        "endChar": 15
+      },
+      "revId": "8e8f04469fb6ee4c06cfd9901dad8dea480591dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
