@@ -103,6 +103,19 @@ CSV and pretty ASCII formats:
     with Robot Framework result files csit-vpp-perf-mrr-daily-master__*__output.xml.gz
     `archived here <https://docs.fd.io/csit/master/trending/_static/archive/>`_.
 
+Comparison Across Testbeds
+--------------------------
+
+.. warning::
+
+    TODO: Add:
+
+    Table 1.
+    Test Case     3-Node Hsw    3-Node Skx    Skx vs. Hsw Delta [%]
+
+    Table 2.
+    Test Case     3-Node Skx    2-Node Skx    2-Node vs. 3-Node Delta [%]
+
 Throughput Trending
 -------------------
 
