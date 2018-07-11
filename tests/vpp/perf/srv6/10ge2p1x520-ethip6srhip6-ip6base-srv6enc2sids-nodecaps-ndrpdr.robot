@@ -113,7 +113,7 @@
 
 *** Test Cases ***
 | tc01-78B-1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr
-| | [Tags] | 78B | 1C
+| | [Tags] | 78B | 1C | THIS
 | | ...
 | | framesize=${78} | phy_cores=${1}
 
