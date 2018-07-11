@@ -22,6 +22,30 @@
       "revId": "b84fa924686bccfc91bfd15d825731010675b128",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8bb3481_1ada7dcd",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-11T12:31:45Z",
+      "side": 1,
+      "message": "Yeah i was thinking about it, currently i am focusing mainly on refactor so nothing is broken from TC point of view.",
+      "parentUuid": "1adf9821_530c5f13",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 42
+      },
+      "revId": "b84fa924686bccfc91bfd15d825731010675b128",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
