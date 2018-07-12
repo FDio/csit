@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "221f8cf0_27499f5e",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdr.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-12T11:36:42Z",
+      "side": 1,
+      "message": "${get_framesize} + ${srv6_overhead_nosrh} \u003c ${1522}\n\nNot sure who forget it there. Collective fault i guess. Replace in every file where overhead is. Another example of some automation?",
+      "range": {
+        "startLine": 104,
+        "startChar": 25,
+        "endLine": 104,
+        "endChar": 41
+      },
+      "revId": "a0835e83bfce2e8aa2443b3f523f001fefa46f77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
