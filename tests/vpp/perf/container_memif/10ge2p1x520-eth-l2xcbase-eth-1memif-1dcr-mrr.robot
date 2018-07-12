@@ -101,7 +101,7 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
-| | [Tags] | 64B | 1C | THIS
+| | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-1518B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
