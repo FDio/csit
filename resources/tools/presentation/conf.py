@@ -93,13 +93,13 @@ rst_epilog = """
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1604/
 .. _FD.io DPDK compile job: https://jenkins.fd.io/view/deb-dpdk/job/deb_dpdk-merge-{sdpdkrelease}-ubuntu1604/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
-""".format(release='rls1804',
-           prev_release='rls1801',
-           srelease='1804',
-           vpprelease='18.04',
-           vpp_prev_release='18.01',
-           dpdkrelease='18.02',
-           sdpdkrelease='1802',
+""".format(release='rls1807',
+           prev_release='rls1804',
+           srelease='1807',
+           vpprelease='18.07',
+           vpp_prev_release='18.04',
+           dpdkrelease='18.05',
+           sdpdkrelease='1805',
            trex_version='v2.35',
            csit_ubuntu_ver='csit-ubuntu-16.04.1_2018-03-07_2.1',
            csit_centos_ver='csit-centos-7.4-1711_2018-03-20_1.9')
