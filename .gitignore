@@ -3,7 +3,10 @@ outputs
 output.xml
 log.html
 report.html
+pylint.log
+lines.log
 *.pyc
 *~
 *.log
 .idea
+.tox/**
