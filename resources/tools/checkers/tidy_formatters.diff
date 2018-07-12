@@ -1,0 +1,20 @@
+@@ -96,8 +96,8 @@ class TsvFormatter(_DataFileFormatter):
+ 
+ 
+ class TxtFormatter(_DataFileFormatter):
+-    _test_or_keyword_name_width = 18
+-    _setting_and_variable_name_width = 14
++    _test_or_keyword_name_width = 1
++    _setting_and_variable_name_width = 1
+ 
+     def _format_row(self, row, table=None):
+         row = self._escape(row)
+@@ -138,7 +138,7 @@ class PipeFormatter(TxtFormatter):
+         return [self._escape_empty(self._escape_pipes(cell)) for cell in row]
+ 
+     def _escape_empty(self, cell):
+-        return cell or '  '
++        return cell or ''
+ 
+     def _escape_pipes(self, cell):
+         if ' | ' in cell:
