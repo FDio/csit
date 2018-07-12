@@ -70,6 +70,54 @@
       "revId": "4085eed530f098b2cb9ee0447a24a8a2341d450c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da8308ea_c6bad138",
+        "filename": "tests/vpp/perf/ip4/2n10ge2p1x710-ethip4-ip4base-mrr.robot",
+        "patchSetId": 39
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-12T11:36:14Z",
+      "side": 1,
+      "message": "\u003e We do not want to duplicate information\n\u003e for console output readability\n\nHaving the boundary between the two principles not exact is bad for testcase autogeneration.\n\nFor now, testcase names from my scripts will include everything in the suite name except the 2n10ge2p1x710 (or 2n1l-10ge2p1x710) part.",
+      "parentUuid": "eb2eabc3_a962e55d",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 81,
+        "endChar": 34
+      },
+      "revId": "4085eed530f098b2cb9ee0447a24a8a2341d450c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ecb9c6e_4d2a8643",
+        "filename": "tests/vpp/perf/ip4/2n10ge2p1x710-ethip4-ip4base-mrr.robot",
+        "patchSetId": 39
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-12T11:36:14Z",
+      "side": 1,
+      "message": "\u003e 2n1l-10ge2p1x710\n\nLooks good, assuming all existing suites get 3n1l- prefix.",
+      "parentUuid": "34624440_c182f5e9",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 81,
+        "endChar": 34
+      },
+      "revId": "4085eed530f098b2cb9ee0447a24a8a2341d450c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
