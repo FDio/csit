@@ -46,6 +46,30 @@
       "revId": "b84fa924686bccfc91bfd15d825731010675b128",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d462796_26117f04",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-12T10:52:42Z",
+      "side": 1,
+      "message": "Looks like that calculating just thread count is not saving anything as it just wraps N*2 formula. But to do it properly it requires maybe some other approach accross library to always get correct number based on TC preference. Regarding smt_used, it does not make sense to create new KW as there is L1 KW in Python library for that CpuUtil. Also we will need to create separate KW for RXQ count as it depends on threads and also number of interfaces. With introducing double link this may become issue having it there. To avoid risk of already huge patchset I am opening new patchset for this modifications.",
+      "parentUuid": "1adf9821_530c5f13",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 42
+      },
+      "revId": "b84fa924686bccfc91bfd15d825731010675b128",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
