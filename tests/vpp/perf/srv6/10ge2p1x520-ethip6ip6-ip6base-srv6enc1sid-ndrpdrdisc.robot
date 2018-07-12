@@ -112,7 +112,7 @@
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 78B | 1C | NDRDISC
+| | [Tags] | 78B | 1C | NDRDISC | THIS
 | | ...
 | | [Template] | Discover NDR or PDR for IPv6 routing over SRv6
 | | wt=1 | rxq=1 | framesize=${78} | min_rate=${50000} | search_type=NDR
