@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc36ec8e_fb396b91",
+        "filename": "tests/vpp/perf/ip4/2n10ge2p1x710-ethip4-ip4base-mrr.robot",
+        "patchSetId": 39
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-12T10:24:44Z",
+      "side": 1,
+      "message": "How will the trending handle the graphs. Do we want -2n- to be in graph\u0027s name? If yes, the testcase name could be tc01-64B-1c-2n-ethip4-ip4base-mrr. And autogeneration script would create that if this suite name is 10ge2p1x710-2n-ethip4-ip4base-mrr.robot\n\nBut I guess NIC name is in graph name while not in testcase name, so this comment is irrelevant.\n\nAnyway, 2n as part of \"2n10ge2p1x710\" looks ugly to me. Was there a discussion about how to fit testbed size into our naming schemes?",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 81,
+        "endChar": 34
+      },
+      "revId": "4085eed530f098b2cb9ee0447a24a8a2341d450c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
