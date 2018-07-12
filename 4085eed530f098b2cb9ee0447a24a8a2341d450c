@@ -46,6 +46,30 @@
       "revId": "4085eed530f098b2cb9ee0447a24a8a2341d450c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb2eabc3_a962e55d",
+        "filename": "tests/vpp/perf/ip4/2n10ge2p1x710-ethip4-ip4base-mrr.robot",
+        "patchSetId": 39
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-12T11:22:05Z",
+      "side": 1,
+      "message": "\u003e If yes, the testcase name could be tc01-64B-1c-2n-ethip4-ip4base-mrr.\n\nWe do not want to duplicate information in TC name as unique identificator is always suite/tc (full name). PAL is anyway splitting the names as it wants. Having eth-l2xc... in TC name is anyway just for console output readability. Maybe even numbering is pointeless in TC names.",
+      "parentUuid": "bc36ec8e_fb396b91",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 81,
+        "endChar": 34
+      },
+      "revId": "4085eed530f098b2cb9ee0447a24a8a2341d450c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
