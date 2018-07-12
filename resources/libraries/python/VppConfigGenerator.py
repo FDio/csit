@@ -424,6 +424,15 @@ class VppConfigGenerator(object):
         path = ['ip', 'heap-size']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_statseg_size(self, value):
+        """Add stats segment heap size configuration.
+
+        :param value: Stats heapsize amount.
+        :type value: str
+        """
+        path = ['statseg', 'size']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_plugin(self, state, *plugins):
         """Add plugin section for specific plugin(s).
 
