@@ -22,6 +22,30 @@
       "revId": "19ee59c08459454ebe620d5be8b2c44a32b50bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "164ccdf1_179df899",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdr.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-12T10:09:39Z",
+      "side": 1,
+      "message": "Those are useful in human-editable places, but test cases are not that anymore. Will remove.",
+      "parentUuid": "8ac87ccc_f2718c2e",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 7
+      },
+      "revId": "19ee59c08459454ebe620d5be8b2c44a32b50bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
