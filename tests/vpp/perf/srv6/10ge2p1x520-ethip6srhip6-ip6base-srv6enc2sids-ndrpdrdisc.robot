@@ -88,15 +88,16 @@
 | | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit}
-| | ... | ${get_framesize} + ${srv6_overhead_2sids}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
+| | ${get_framesize} = | Get Frame Size | ${framesize} | ${srv6_overhead_2sids}
+| | ${max_rate} = | Calculate pps | ${s_limit} | ${get_framesize}
+| | ${binary_min} = | Set Variable | ${min_rate}
+| | ${binary_max} = | Set Variable | ${max_rate}
+| | ${threshold} = | Set Variable | ${min_rate}
+| | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
+| | And Run Keyword If | ${get_framesize} < ${1522}
+| | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with encapsulation with '2' x SID 'with' decapsulation in 3-node circular topology
 | | Then Run Keyword If | '${search_type}' == 'NDR'
