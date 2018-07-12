@@ -108,7 +108,7 @@
 
 *** Test Cases ***
 | tc01-78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-ndrdisc
-| | [Tags] | 78B | 1C | NDRDISC
+| | [Tags] | 78B | 1C | NDRDISC | THIS
 | | phy_cores=${1} | framesize=${78}  | search_type=NDR
 
 | tc02-78B-1t1c-ethip6ip6-ip6base-srv6enc1sid-pdrdisc
