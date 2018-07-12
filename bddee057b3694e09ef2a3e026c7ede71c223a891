@@ -252,6 +252,29 @@
       "revId": "bddee057b3694e09ef2a3e026c7ede71c223a891",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3569e3c5_dc404419",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x520-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-07-12T12:40:21Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 82
+      },
+      "revId": "bddee057b3694e09ef2a3e026c7ede71c223a891",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
