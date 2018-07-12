@@ -92,13 +92,13 @@
 | | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit}
-| | ... | ${get_framesize} + ${srv6_overhead_2sids}
+| | ${get_framesize} = | Get Frame Size | ${framesize} | ${srv6_overhead_2sids}
+| | ${max_rate} = | Calculate pps | ${s_limit} | ${get_framesize}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
+| | And Run Keyword If | ${get_framesize} < ${1522}
+| | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with encapsulation with '2' x SID 'without' decapsulation in 3-node circular topology
 | | Then Traffic should pass with maximum rate

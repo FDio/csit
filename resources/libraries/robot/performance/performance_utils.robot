@@ -62,21 +62,28 @@
 
 | Get Frame Size
 | | [Documentation]
-| | ... | Framesize can be either integer in case of a single packet
+| | ... | Argument framesize can be either integer in case of a single packet
 | | ... | in stream, or set of packets in case of IMIX type or simmilar.
-| | ... | This keyword returns average framesize.
+| | ... | This keyword returns average framesize,
+| | ... | while taking into account encapsulation overhead, if any.
 | | ...
 | | ... | *Arguments:*
-| | ... | - framesize - Framesize. Type: integer or string
+| | ... | - framesize - Framesize in bytes. Type: integer or string
+| | ... | - overhead - Overhead in bytes. Default: 0. Type: integer
+| | ...
+| | ... | *Returns:*
+| | ... | - Calculated encapsulated average framesize. Type: integer or float
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Get Frame Size \| IMIX_v4_1 \|
+| | ... | \| Get Frame Size \| IMIX_v4_1 \| \${40}
 | | ...
-| | [Arguments] | ${framesize}
+| | [Arguments] | ${framesize} | ${overhead}=${0}
 | | ...
-| | Return From Keyword If | '${framesize}' == 'IMIX_v4_1' | ${353.83333}
-| | Return From Keyword | ${framesize}
+| | ${size} = | Set Variable If | '${framesize}' == 'IMIX_v4_1'
+| | ... | ${353.83333} | ${framesize}
+| | ${size_with_overhead} = | Evaluate | ${size} + ${overhead}
+| | Return From Keyword | ${size_with_overhead}
 
 | Find NDR using linear search and pps
 | | [Documentation]
@@ -483,7 +490,7 @@
 | | ...
 | | ${lower_bound_lf}= | Set Variable | ${interval.measured_low.loss_fraction}
 | | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
-| | ${messagge}= | Catenate | SEPARATOR=${SPACE}
+| | ${message}= | Catenate | SEPARATOR=${SPACE}
 | | ... | Lower bound fraction ${lower_bound_lf}
 | | ... | does not reach ${packet_loss_ratio}.
 | | Fail | ${message}

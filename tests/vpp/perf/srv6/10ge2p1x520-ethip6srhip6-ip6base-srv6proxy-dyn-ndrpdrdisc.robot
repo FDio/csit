@@ -111,15 +111,15 @@
 | | ...
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit}
-| | ... | ${get_framesize} + ${srv6_overhead_3sids}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
+| | ${get_framesize} = | Get Frame Size | ${framesize} | ${srv6_overhead_3sids}
+| | ${max_rate} = | Calculate pps | ${s_limit} | ${get_framesize}
+| | ${binary_min} = | Set Variable | ${min_rate}
+| | ${binary_max} = | Set Variable | ${max_rate}
+| | ${threshold} = | Set Variable | ${min_rate}
+| | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} + ${srv6_overhead_3sids} < ${1522}
+| | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'dynamic_proxy' behaviour in 3-node circular topology
