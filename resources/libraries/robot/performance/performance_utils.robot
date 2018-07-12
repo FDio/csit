@@ -483,7 +483,7 @@
 | | ...
 | | ${lower_bound_lf}= | Set Variable | ${interval.measured_low.loss_fraction}
 | | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
-| | ${messagge}= | Catenate | SEPARATOR=${SPACE}
+| | ${message}= | Catenate | SEPARATOR=${SPACE}
 | | ... | Lower bound fraction ${lower_bound_lf}
 | | ... | does not reach ${packet_loss_ratio}.
 | | Fail | ${message}
