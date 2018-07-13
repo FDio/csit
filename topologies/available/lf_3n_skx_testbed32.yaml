@@ -10,7 +10,7 @@ nodes:
   TG:
     type: TG
     subtype: TREX
-    host: "10.30.51.48"
+    host: "10.30.51.60"
     arch: x86_64
     port: 22
     username: testuser
@@ -18,7 +18,7 @@ nodes:
     interfaces:
       port1:
         # s13-t31-tg1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:58"
+        mac_address: "3c:fd:fe:a8:af:08"
         pci_address: "0000:18:00.0"
         ip4_address: "172.16.10.2"
         driver: i40e
@@ -26,7 +26,7 @@ nodes:
         model: Intel-XL710
       port2:
         # s13-t31-tg1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:59"
+        mac_address: "3c:fd:fe:a8:af:09"
         pci_address: "0000:18:00.1"
         ip4_address: "172.16.20.2"
         driver: i40e
@@ -34,7 +34,7 @@ nodes:
         model: Intel-XL710
       port3:
         # s13-t31-tg1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:5a"
+        mac_address: "3c:fd:fe:a8:af:0a"
         pci_address: "0000:18:00.2"
         ip4_address: "172.16.30.2"
         driver: i40e
@@ -42,7 +42,7 @@ nodes:
         model: Intel-X710
       port4:
         # s13-t31-tg1-c2/p4 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:5b"
+        mac_address: "3c:fd:fe:a8:af:0b"
         pci_address: "0000:18:00.3"
         ip4_address: "172.16.40.2"
         driver: i40e
@@ -50,7 +50,7 @@ nodes:
         model: Intel-X710
       port5:
         # s13-t31-tg1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
-        mac_address: "3c:fd:fe:bd:f9:40"
+        mac_address: "3c:fd:fe:bd:fa:1c"
         pci_address: "0000:3b:00.0"
         ip4_address: "172.16.50.2"
         driver: i40e
@@ -58,7 +58,7 @@ nodes:
         model: Intel-XXV710
       port6:
         # s13-t31-tg1-c4/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
-        mac_address: "3c:fd:fe:bd:f9:41"
+        mac_address: "3c:fd:fe:bd:fa:1d"
         pci_address: "0000:3b:00.1"
         ip4_address: "172.16.60.2"
         driver: i40e
@@ -66,7 +66,7 @@ nodes:
         model: Intel-XXV710
       port7:
         # s13-t31-tg1-c10/p1 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:30"
+        mac_address: "3c:fd:fe:a8:ab:e0"
         pci_address: "0000:d8:00.0"
         ip4_address: "172.16.70.2"
         driver: i40e
@@ -74,7 +74,7 @@ nodes:
         model: Intel-XL710
       port8:
         # s13-t31-tg1-c10/p2 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:31"
+        mac_address: "3c:fd:fe:a8:ab:e1"
         pci_address: "0000:d8:00.1"
         ip4_address: "172.16.70.1"
         driver: i40e
@@ -82,7 +82,7 @@ nodes:
         model: Intel-XL710
       port9:
         # s13-t31-tg1-c10/p3 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:32"
+        mac_address: "3c:fd:fe:a8:ab:e2"
         pci_address: "0000:d8:00.2"
         ip4_address: "172.16.80.2"
         driver: i40e
@@ -90,7 +90,7 @@ nodes:
         model: Intel-X710
       port10:
         # s13-t31-tg1-c10/p4 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:33"
+        mac_address: "3c:fd:fe:a8:ab:e3"
         pci_address: "0000:d8:00.3"
         ip4_address: "172.16.80.1"
         driver: i40e
@@ -98,7 +98,7 @@ nodes:
         model: Intel-X710
   DUT1:
     type: DUT
-    host: "10.30.51.46"
+    host: "10.30.51.58"
     arch: x86_64
     port: 22
     username: testuser
@@ -111,48 +111,48 @@ nodes:
       netconf_port: 2831
     interfaces:
       port1:
-        # s11-t31-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:38"
+        # s14-t32-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:a8:ae:60"
         pci_address: "0000:18:00.0"
         ip4_address: "172.16.10.1"
         driver: i40e
         link: link1
         model: Intel-XL710
       port2:
-        # s11-t31-sut1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:39"
+        # s14-t32-sut1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
+          mac_address: "3c:fd:fe:a8:ae:61"
         pci_address: "0000:18:00.1"
         ip4_address: "172.16.120.1"
         driver: i40e
         link: link21
         model: Intel-XL710
       port3:
-        # s11-t31-sut1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:3a"
+        # s14-t32-sut1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:a8:ae:62"
         pci_address: "0000:18:00.2"
         ip4_address: "172.16.30.1"
         driver: i40e
         link: link3
         model: Intel-X710
       port4:
-        # s11-t31-sut1-c2/p4 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:af:3b"
+        # s14-t32-sut1-c2/p4 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:a8:ae:63"
         pci_address: "0000:18:00.3"
         ip4_address: "172.16.140.1"
         driver: i40e
         link: link22
         model: Intel-X710
       port5:
-        # s11-t31-sut1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
-        mac_address: "3c:fd:fe:bd:f9:34"
+        # s14-t32-sut1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:bd:f9:38"
         pci_address: "0000:3b:00.0"
         ip4_address: "172.16.50.1"
         driver: i40e
         link: link5
         model: Intel-XXV710
       port6:
-        # s11-t31-sut1-c4/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
-        mac_address: "3c:fd:fe:bd:f9:35"
+        # s14-t32-sut1-c4/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:bd:f9:39"
         pci_address: "0000:3b:00.1"
         ip4_address: "172.16.160.1"
         driver: i40e
@@ -160,7 +160,7 @@ nodes:
         model: Intel-XXV710
   DUT2:
     type: DUT
-    host: "10.30.51.47"
+    host: "10.30.51.59"
     arch: x86_64
     port: 22
     username: testuser
@@ -173,48 +173,48 @@ nodes:
       netconf_port: 2831
     interfaces:
       port1:
-        # s12-t31-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:aa:a8"
+        # s15-t32-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:a8:ae:c0"
         pci_address: "0000:18:00.0"
         ip4_address: "172.16.20.1"
         driver: i40e
         link: link2
         model: Intel-XL710
       port2:
-        # s12-t31-sut1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:aa:a9"
+        # s15-t32-sut1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:a8:ae:c1"
         pci_address: "0000:18:00.1"
         ip4_address: "172.16.120.2"
         driver: i40e
         link: link21
         model: Intel-XL710
       port3:
-        # s12-t31-sut1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:aa:aa"
+        # s15-t32-sut1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:a8:ae:c2"
         pci_address: "0000:18:00.2"
         ip4_address: "172.16.40.1"
         driver: i40e
         link: link4
         model: Intel-X710
       port4:
-        # s12-t31-sut1-c2/p4 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:aa:ab"
+        # s15-t32-sut1-c2/p4 - 10GE port1 on Intel NIC x710 4p10GE.
+        mac_address: "3c:fd:fe:a8:ae:c3"
         pci_address: "0000:18:00.3"
         ip4_address: "172.16.140.2"
         driver: i40e
         link: link22
         model: Intel-X710
       port5:
-        # s12-t31-sut1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
-        mac_address: "3c:fd:fe:bd:f9:3c"
+        # s15-t32-sut1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:bd:f8:fc"
         pci_address: "0000:3b:00.0"
         ip4_address: "172.16.60.1"
         driver: i40e
         link: link6
         model: Intel-XXV710
       port6:
-        # s12-t31-sut1-c4/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
-        mac_address: "3c:fd:fe:bd:f9:3d"
+        # s15-t32-sut1-c4/p2 - 25GE port2 on Intel NIC xxv710 2p25GE.
+        mac_address: "3c:fd:fe:bd:f8:fd"
         pci_address: "0000:3b:00.1"
         ip4_address: "172.16.160.2"
         driver: i40e

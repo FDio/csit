@@ -23,8 +23,8 @@ docker_apt_package_name: "{{ docker_version }}~{{ docker_edition }}~3-0~{{ ansib
 apt_cache_time: 86400
 
 kubernetes_channel: "main"
-kubernetes_version: "1.10.3"
+kubernetes_version: "1.11.0-00"
 
 kubernetes_apt_key: "54A647F9048D5688D7DA2ABE6A030B21BA07F4FB"
 kubernetes_repository: "deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes_channel }}"
-kubernetes_apt_package_name: "{{ kubernetes_version }}-00"
+kubernetes_apt_package_name: "{{ kubernetes_version }}"

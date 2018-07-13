@@ -124,7 +124,7 @@
   command: "systemctl daemon-reload"
   notify: ["Restart Docker"]
   when: (docker_register_systemd_service and
-         docker_register_systemd_service | changed)
+         docker_register_systemd_service is changed)
   tags: restart-docker
 
 - name: Set specific users to "docker" group
