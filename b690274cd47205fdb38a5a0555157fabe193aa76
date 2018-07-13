@@ -140,6 +140,30 @@
       "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5ecc822_fd6af27a",
+        "filename": "tests/vpp/perf/srv6/regenerate_testcases.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-13T14:44:11Z",
+      "side": 1,
+      "message": "I prefer \"named lambdas\" aka functions. See add_testcases, currently in Regenerator.py",
+      "parentUuid": "c689a2d9_6fb7ad77",
+      "range": {
+        "startLine": 39,
+        "startChar": 45,
+        "endLine": 39,
+        "endChar": 46
+      },
+      "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
