@@ -22,6 +22,30 @@
       "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2079f31_f2e727ca",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-13T11:55:17Z",
+      "side": 1,
+      "message": "Oh, right. We also have tests which do not configure VPP.\n\nI see two possible solutions:\n\n1. Add optional argument to current keyword, for example ${configure_vpp}\u003d${True}\n\n2. Split into two keywords. \"Get Max Rate And Jumbo\" (for non-VPP tests) with most of logic, and reduce \"Get Max Rate And Jumbo And Handle Multi Seg\" (for VPP tests) to call that and then \"Add no multi seg to all DUTs\".\n\nEither way, this can be done in a subsequent Change, as both solutions are backward compatible.",
+      "parentUuid": "3c239309_22dbe627",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 64
+      },
+      "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
