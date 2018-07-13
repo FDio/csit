@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12ca2d66_3d01d00a",
+        "filename": "tests/vpp/perf/srv6/regenerate_testcases.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-13T14:44:11Z",
+      "side": 1,
+      "message": "All of this can be moved to resources, and called (with argument ip6\u003dTrue). Will create another patch set.",
+      "range": {
+        "startLine": 53,
+        "startChar": 8,
+        "endLine": 53,
+        "endChar": 10
+      },
+      "revId": "55e5adb7b1eff925e8a6c9fe4cba98706c40defd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
