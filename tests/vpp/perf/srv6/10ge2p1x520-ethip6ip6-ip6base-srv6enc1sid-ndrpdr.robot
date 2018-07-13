@@ -132,7 +132,7 @@
 | | framesize=${1518} | phy_cores=${4}
 
 | tc07-9000B-1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
-| | [Tags] | 9000B | 1C
+| | [Tags] | 9000B | 1C | THIS
 | | framesize=${9000} | phy_cores=${1}
 
 | tc08-9000B-2c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
