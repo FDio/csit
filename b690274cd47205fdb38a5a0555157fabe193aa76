@@ -69,6 +69,30 @@
       "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87b04edf_2a401a17",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-13T12:30:21Z",
+      "side": 1,
+      "message": "\u003e But some suites do need that, and having it everywhere is better\n \u003e for copying suites.\n\n+1 let have suites as most unified.",
+      "parentUuid": "726e4d75_d8549c95",
+      "range": {
+        "startLine": 94,
+        "startChar": 18,
+        "endLine": 94,
+        "endChar": 26
+      },
+      "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
