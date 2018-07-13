@@ -23,8 +23,8 @@ TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed21.yaml \
                    topologies/available/lf_2n_skx_testbed22.yaml \
                    topologies/available/lf_2n_skx_testbed23.yaml \
                    topologies/available/lf_2n_skx_testbed24.yaml"
-TOPOLOGIES_3N_SKX="topologies/available/lf_2n_skx_testbed31.yaml \
-                   topologies/available/lf_2n_skx_testbed32.yaml"
+TOPOLOGIES_3N_SKX="topologies/available/lf_3n_skx_testbed31.yaml \
+                   topologies/available/lf_3n_skx_testbed32.yaml"
 
 # SYSTEM
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -151,9 +151,7 @@ case "$TEST_TAG" in
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64b')
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
