@@ -35,7 +35,7 @@ class L3fwdTest(object):
         :param nb_cores: The cores number for the forwarding
         :param lcores_list: The lcore list string for the l3fwd routing
         :param queue_nums: The queues number for the NIC
-        :param jumbo_frames: Is jumbo frames or not. Accepted: yes / no
+        :param jumbo_frames: Is jumbo frames or not. Accepted: true / false
         :type nodes_info: dict
         :type dut_node: dict
         :type dut_if1: str
@@ -43,7 +43,7 @@ class L3fwdTest(object):
         :type nb_cores: str
         :type lcores_list: str
         :type queue_nums: str
-        :type jumbo_frames: str
+        :type jumbo_frames: bool
         """
         if dut_node['type'] == NodeType.DUT:
             adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(nodes_info, dut_node,
@@ -72,11 +72,12 @@ class L3fwdTest(object):
             ssh = SSH()
             ssh.connect(dut_node)
 
+            jumbo = 'yes' if jumbo_frames else 'no'
             cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l3fwd.sh ' \
                   '"{lcores}" "{ports}" {mac1} {mac2} {jumbo}'.\
                   format(fwdir=Constants.REMOTE_FW_DIR, lcores=lcores_list,
                          ports=port_config.rstrip(','), mac1=adj_mac0,
-                         mac2=adj_mac1, jumbo=jumbo_frames)
+                         mac2=adj_mac1, jumbo=jumbo)
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:
@@ -107,6 +108,7 @@ class L3fwdTest(object):
         # detect which is the port 0
         if min(if_pci0, if_pci1) != if_pci0:
             if_key0, if_key1 = if_key1, if_key0
+            L3fwdTest.patch_l3fwd(dut_node, 'patch_l3fwd_flip_routes')
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface( \
                                  nodes_info, dut_node, if_key0)
@@ -117,3 +119,28 @@ class L3fwdTest(object):
         adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if_key1)
 
         return adj_mac0, adj_mac1
+
+    @staticmethod
+    def patch_l3fwd(node, patch):
+        """
+        Patch l3fwd application and recompile.
+
+        :param node: Dictionary created from topology
+        :param patch: Patch to apply.
+        :type node: dict
+        :type patch: str
+        :raises RuntimeError: If command returns nonzero return code.
+        """
+        arch = Topology.get_node_arch(node)
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ret_code, _, _ = ssh.exec_command(
+            '{fwdir}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh {arch} '
+            '{fwdir}/tests/dpdk/dpdk_scripts/{patch}'.
+            format(fwdir=Constants.REMOTE_FW_DIR, arch=arch, patch=patch),
+                   timeout=600)
+
+        if ret_code != 0:
+            raise RuntimeError('Patch l3fwd failed.')
