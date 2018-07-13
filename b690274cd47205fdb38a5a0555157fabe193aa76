@@ -46,6 +46,29 @@
       "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "726e4d75_d8549c95",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-13T12:03:33Z",
+      "side": 1,
+      "message": "Most suites do not need this, so perhaps creating a keyword or optional argument to skip this could save some space.\nBut some suites do need that, and having it everywhere is better for copying suites.\n\nI tend to prefer copyability to shortness.",
+      "range": {
+        "startLine": 94,
+        "startChar": 18,
+        "endLine": 94,
+        "endChar": 26
+      },
+      "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
