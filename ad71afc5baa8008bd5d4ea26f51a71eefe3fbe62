@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36a7a084_0b98a0e9",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-13T11:39:21Z",
+      "side": 0,
+      "message": "This result [0] proves this value does not need to be set as test variable. Unless there is some special handling in teardown only executed on test failure.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-hsw/16/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 36
+      },
+      "revId": "ad71afc5baa8008bd5d4ea26f51a71eefe3fbe62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
