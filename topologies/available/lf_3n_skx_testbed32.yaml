@@ -120,7 +120,7 @@ nodes:
         model: Intel-XL710
       port2:
         # s14-t32-sut1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
-          mac_address: "3c:fd:fe:a8:ae:61"
+        mac_address: "3c:fd:fe:a8:ae:61"
         pci_address: "0000:18:00.1"
         ip4_address: "172.16.120.1"
         driver: i40e
