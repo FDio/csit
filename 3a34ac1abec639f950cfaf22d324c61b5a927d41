@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5767d4ad_180ef005",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-13T08:26:46Z",
+      "side": 1,
+      "message": "Be aware that adding ovrhd to ${353.83333} is wrong as IMIX is (28x64B; 16x570B; 4x1518B) but for purpose of this commit it is ok. We chould address it in separate commit i guess",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 62
+      },
+      "revId": "3a34ac1abec639f950cfaf22d324c61b5a927d41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
