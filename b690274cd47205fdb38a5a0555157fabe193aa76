@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c239309_22dbe627",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-13T11:31:28Z",
+      "side": 1,
+      "message": "Do you plan to move this outside as for example DPDK test does not use this. Should i copy the whole KW for DPDK or non VPP TCs?\nOtherwise looks good.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 64
+      },
+      "revId": "b690274cd47205fdb38a5a0555157fabe193aa76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
