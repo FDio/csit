@@ -26,6 +26,8 @@
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | Tear down DPDK 3-node performance topology
 | ...
+| Test template | Local template
+| ...
 | Documentation | *Raw results IPv4 routing test cases*
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
@@ -48,170 +50,70 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst253_l3fwd
 
 *** Keywords ***
-| Check RR for ethip4-ip4base-l3fwd
+| Local template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with ${wt} phy core(s),\
-| | ... | ${rxq} receive queue(s) per NIC port.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config.\
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure MaxReceivedRate for ${framesize} frames using single\
 | | ... | trial throughput test.
 | | ...
-| | [Arguments] | ${framesize} | ${wt} | ${rxq}
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${jumbo_frames}= | Set Variable If
 | | ... | ${get_framesize} < ${1522} | no | yes
 | | ...
-| | Given Start L3FWD on all DUTs | ${wt} | ${rxq} | ${jumbo_frames}
+| | Given Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo_frames}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 64B | 1C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${64} | wt=1 | rxq=1
+| | framesize=${64} | phy_cores=${1}
 
 | tc02-1518B-1t1c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 1518B | 1C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${1518} | wt=1 | rxq=1
+| | framesize=${1518} | phy_cores=${1}
 
 | tc03-9000B-1t1c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 9000B | 1C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${9000} | wt=1 | rxq=1
+| | framesize=${9000} | phy_cores=${1}
 
 | tc04-IMIX-1t1c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
-| | ... | trial throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 1C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=IMIX_v4_1 | wt=1 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${1}
 
 | tc05-64B-2t2c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 64B | 2C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${64} | wt=2 | rxq=1
+| | framesize=${64} | phy_cores=${2}
 
 | tc06-1518B-2t2c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 1518B | 2C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${1518} | wt=2 | rxq=1
+| | framesize=${1518} | phy_cores=${2}
 
 | tc07-9000B-2t2c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 9000B | 2C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${9000} | wt=2 | rxq=1
+| | framesize=${9000} | phy_cores=${2}
 
 | tc08-IMIX-2t2c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 2 phy cores, 1 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
-| | ... | trial throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 2C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=IMIX_v4_1 | wt=2 | rxq=1
+| | framesize=IMIX_v4_1 | phy_cores=${2}
 
 | tc09-64B-4t4c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 4 phy cores, 2 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 64B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 64B | 4C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${64} | wt=4 | rxq=2
+| | framesize=${64} | phy_cores=${4}
 
 | tc10-1518B-4t4c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 4 phy cores, 2 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 1518B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 1518B | 4C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${1518} | wt=4 | rxq=2
+| | framesize=${1518} | phy_cores=${4}
 
 | tc11-9000B-4t4c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 4 phy cores, 2 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for 9000B frames using single\
-| | ... | trial throughput test.
-| | ...
 | | [Tags] | 9000B | 4C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=${9000} | wt=4 | rxq=2
+| | framesize=${9000} | phy_cores=${4}
 
 | tc12-IMIX-4t4c-ethip4-ip4base-l3fwd-mrr
-| | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with \
-| | ... | 4 phy cores, 2 receive queue per NIC port.
-| | ... | [Ver] Measure MaxReceivedRate for IMIX_v4_1 frames using single\
-| | ... | trial throughput test.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
 | | [Tags] | IMIX | 4C
-| | ...
-| | [Template] | Check RR for ethip4-ip4base-l3fwd
-| | framesize=IMIX_v4_1 | wt=4 | rxq=2
+| | framesize=IMIX_v4_1 | phy_cores=${4}
