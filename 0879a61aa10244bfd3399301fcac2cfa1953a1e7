@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d4fd0d1_87a84569",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-13T17:18:56Z",
+      "side": 1,
+      "message": "These values look like strings. Perhaps remove the Accepted field as it says nothing not already implied by line 46.",
+      "range": {
+        "startLine": 38,
+        "startChar": 63,
+        "endLine": 38,
+        "endChar": 75
+      },
+      "revId": "0879a61aa10244bfd3399301fcac2cfa1953a1e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
