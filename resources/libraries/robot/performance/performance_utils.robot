@@ -38,10 +38,98 @@
 | ... | and PDR.
 
 *** Keywords ***
+| Get Max Rate And Jumbo
+| | [Documentation]
+| | ... | Argument framesize can be either integer in case of a single packet
+| | ... | in stream, or IMIX string defining mix of packets.
+| | ... | For jumbo frames detection, the maximal packet size is relevant.
+| | ... | For maximal transmit rate, the average packet size is relevant.
+| | ... | In both cases, encapsulation overhead (if any) has effect.
+| | ... | The maximal rate is computed from line limit bandwidth,
+| | ... | but NICs also have an independent limit in packet rate.
+| | ... | For some NICs, the limit is not reachable (bps limit is stricter),
+| | ... | in those cases None is used (meaning no limiting).
+| | ...
+| | ... | This keyword returns computed maximal unidirectional transmit rate
+| | ... | and jumbo boolean (some suites need that).
+| | ...
+| | ... | *Arguments:*
+| | ... | - bps_limit - Line rate limit in bps. Type: integer
+| | ... | - framesize - Framesize in bytes. Type: integer or string
+| | ... | - overhead - Overhead in bytes. Default: 0. Type: integer
+| | ... | - pps_limit - NIC limit rate value in pps. Type: integer or None
+| | ...
+| | ... | *Returns:*
+| | ... | - 2-tuple, consisting of:
+| | ... |   - Calculated unidirectional maximal transmit rate.
+| | ... |     Type: integer or float
+| | ... |   - Jumbo boolean, true if jumbo packet support has to be enabled.
+| | ... |     Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Get Max Rate And Jumbo | \${10000000} \| IMIX_v4_1 \
+| | ... | \| overhead=\${40} \| pps_limit=\${18750000}
+| | ...
+| | [Arguments] | ${bps_limit} | ${framesize}
+| | ... | ${overhead}=${0} | ${pps_limit}=${None}
+| | ...
+| | ${avg_size} = | Set Variable If | '${framesize}' == 'IMIX_v4_1'
+| | ... | ${353.83333} | ${framesize}
+| | ${max_size} = | Set Variable If | '${framesize}' == 'IMIX_v4_1'
+| | ... | ${1518} | ${framesize}
+| | # swo := size_with_overhead
+| | ${avg_swo} = | Evaluate | ${avg_size} + ${overhead}
+| | ${max_swo} = | Evaluate | ${max_size} + ${overhead}
+| | ${jumbo} = | Set Variable If | ${max_swo} < 1522
+| | ... | ${False} | ${True}
+| | # For testing None see: https://groups.google.com/\
+| | #                       forum/#!topic/robotframework-users/XntFz0ocD9E
+| | ${limit_set} = | Set Variable | ${pps_limit != None}
+| | ${rate} = | Evaluate | (${bps_limit}/((${avg_swo}+20)*8)).__trunc__()
+| | ${max_rate} = | Set Variable If | ${limit_set} and ${rate} > ${pps_limit}
+| | ... | ${pps_limit} | ${rate}
+| | Return From Keyword | ${max_rate} | ${jumbo}
+
+| Get Max Rate And Jumbo And Handle Multi Seg
+| | [Documentation]
+| | ... | This keyword adds correct multi seg configuration,
+| | ... | then returns the result of Get Max Rate And Jumbo keyword.
+| | ...
+| | ... | See Documentation of Get Max Rate And Jumbo for more details.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bps_limit - Line rate limit in bps. Type: integer
+| | ... | - framesize - Framesize in bytes. Type: integer or string
+| | ... | - overhead - Overhead in bytes. Default: 0. Type: integer
+| | ... | - pps_limit - NIC limit rate value in pps. Type: integer or None
+| | ...
+| | ... | *Returns:*
+| | ... | - 2-tuple, consisting of:
+| | ... |   - Calculated unidirectional maximal transmit rate.
+| | ... |     Type: integer or float
+| | ... |   - Jumbo boolean, true if jumbo packet support has to be enabled.
+| | ... |     Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Get Max Rate And Jumbo And Handle Multi Seg | \${10000000} \
+| | ... | \| IMIX_v4_1 \| overhead=\${40} \| pps_limit=\${18750000}
+| | ...
+| | [Arguments] | ${bps_limit} | ${framesize}
+| | ... | ${overhead}=${0} | ${pps_limit}=${None}
+| | ...
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
+| | ... | ${bps_limit} | ${framesize} | ${overhead} | ${pps_limit}
+| | Run Keyword If | not ${jumbo} | Add no multi seg to all DUTs
+| | Return From Keyword | ${max_rate} | ${jumbo}
+
 | Calculate pps
 | | [Documentation]
 | | ... | Calculate pps for given rate and L2 frame size,
 | | ... | additional 20B are added to L2 frame size as padding.
+| | ...
+| | ... | FIXME: Migrate callers to Get Max Rate And Jumbo
 | | ...
 | | ... | *Arguments*
 | | ... | - bps - Rate in bps. Type: integer
@@ -65,6 +153,8 @@
 | | ... | Framesize can be either integer in case of a single packet
 | | ... | in stream, or set of packets in case of IMIX type or simmilar.
 | | ... | This keyword returns average framesize.
+| | ...
+| | ... | FIXME: Migrate callers to Get Max Rate And Jumbo
 | | ...
 | | ... | *Arguments:*
 | | ... | - framesize - Framesize. Type: integer or string
@@ -481,11 +571,13 @@
 | | ...
 | | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | | ...
-| | ${lower_bound_lf}= | Set Variable | ${interval.measured_low.loss_fraction}
+| | ${lower_bound_lf} = | Set Variable | ${interval.measured_low.loss_fraction}
 | | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
-| | ${messagge}= | Catenate | SEPARATOR=${SPACE}
-| | ... | Lower bound fraction ${lower_bound_lf}
-| | ... | does not reach ${packet_loss_ratio}.
+| | ${message}= | Catenate | SEPARATOR=${SPACE}
+| | ... | Minimal rate loss fraction ${lower_bound_lf}
+| | ... | does not reach target ${packet_loss_ratio}.
+| | ${message} = | Set Variable If | ${lower_bound_lf} >= 1.0
+| | ... | ${message}${\n}Zero packets forwarded! | ${message}
 | | Fail | ${message}
 
 | Perform additional measurements based on NDRPDR result
