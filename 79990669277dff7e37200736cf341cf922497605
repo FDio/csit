@@ -22,6 +22,30 @@
       "revId": "79990669277dff7e37200736cf341cf922497605",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df5812db_f79d3c7c",
+        "filename": "resources/libraries/robot/dpdk/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-13T15:37:21Z",
+      "side": 1,
+      "message": "\u003e Is it on/off or yes/no? Can we agree on ${True}/${False}, or other\n \u003e pair friendly to:\n \u003e | | Run Keyword If | ${jumbo} | Do Stuff\n\nI\u0027d like to but very deep in \"Start the l2fwd test\" there is .sh script that is accepting only strings anyway. So at L2fwdTest/L3fwdTest.py there must convertor back to yes/no",
+      "parentUuid": "8618f6ce_9730f3ad",
+      "range": {
+        "startLine": 33,
+        "startChar": 40,
+        "endLine": 33,
+        "endChar": 46
+      },
+      "revId": "79990669277dff7e37200736cf341cf922497605",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
