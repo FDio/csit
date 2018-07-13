@@ -62,7 +62,7 @@
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${jumbo_frames}= | Set Variable If
-| | ... | ${get_framesize} < ${1522} | no | yes
+| | ... | ${get_framesize} < ${1522} | ${False} | ${True}
 | | ...
 | | Given Start L3FWD on all DUTs | ${wt} | ${rxq} | ${jumbo_frames}
 | | Then Traffic should pass with maximum rate

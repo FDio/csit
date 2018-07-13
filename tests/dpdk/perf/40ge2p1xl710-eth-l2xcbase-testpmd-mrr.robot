@@ -67,7 +67,7 @@
 | | ${max_rate}= | Set Variable If
 | | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
 | | ${jumbo_frames}= | Set Variable If
-| | ... | ${get_framesize} < ${1522} | no | yes
+| | ... | ${get_framesize} < ${1522} | ${False} | ${True}
 | | ...
 | | Given Start L2FWD on all DUTs | ${wt} | ${rxq} | ${jumbo_frames}
 | | Then Traffic should pass with maximum rate

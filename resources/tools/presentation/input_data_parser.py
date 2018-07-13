@@ -653,6 +653,7 @@ class ExecutionChecker(ResultVisitor):
             self._show_run_lookup_nr = 0
             self._msg_type = "test-show-runtime"
         elif test_kw.name.count("Start The L2fwd Test") and not self._version:
+            # TODO: Examine tags instead of keyword in the previous line.
             self._msg_type = "dpdk-version"
         else:
             return

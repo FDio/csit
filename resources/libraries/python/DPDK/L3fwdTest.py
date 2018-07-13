@@ -35,7 +35,7 @@ class L3fwdTest(object):
         :param nb_cores: The cores number for the forwarding
         :param lcores_list: The lcore list string for the l3fwd routing
         :param queue_nums: The queues number for the NIC
-        :param jumbo_frames: Is jumbo frames or not. Accepted: yes / no
+        :param jumbo_frames: True if jumbo frames are used.
         :type nodes_info: dict
         :type dut_node: dict
         :type dut_if1: str
@@ -43,7 +43,7 @@ class L3fwdTest(object):
         :type nb_cores: str
         :type lcores_list: str
         :type queue_nums: str
-        :type jumbo_frames: str
+        :type jumbo_frames: boolean
         """
         if dut_node['type'] == NodeType.DUT:
             adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(nodes_info, dut_node,
@@ -76,7 +76,7 @@ class L3fwdTest(object):
                   '"{lcores}" "{ports}" {mac1} {mac2} {jumbo}'.\
                   format(fwdir=Constants.REMOTE_FW_DIR, lcores=lcores_list,
                          ports=port_config.rstrip(','), mac1=adj_mac0,
-                         mac2=adj_mac1, jumbo=jumbo_frames)
+                         mac2=adj_mac1, jumbo="yes" if jumbo_frames else "no")
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:

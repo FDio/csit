@@ -33,12 +33,12 @@ class L2fwdTest(object):
         :param cpu_cores: The DPDK run cores.
         :param nb_cores: The cores number for the forwarding.
         :param queue_nums: The queues number for the NIC.
-        :param jumbo_frames: Are jumbo frames used or not.
+        :param jumbo_frames: True when jumbo frames used.
         :type dut_node: dict
         :type cpu_cores: str
         :type nb_cores: str
         :type queue_nums: str
-        :type jumbo_frames: str
+        :type jumbo_frames: boolean
         :raises RuntimeError: If the script "run_l2fwd.sh" fails.
         """
         if dut_node['type'] == NodeType.DUT:
@@ -50,7 +50,7 @@ class L2fwdTest(object):
                   '{nb_cores} {queues} {jumbo} {arch}'.\
                   format(fwdir=Constants.REMOTE_FW_DIR, cpu_cores=cpu_cores,
                          nb_cores=nb_cores, queues=queue_nums,
-                         jumbo=jumbo_frames, arch=arch)
+                         jumbo="yes" if jumbo_frames else "no", arch=arch)
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:

@@ -25,7 +25,8 @@
 
 | Start L2FWD on all DUTs
 | | [Documentation] | Start the l2fwd with M worker threads and rxqueues N and
-| | ... | jumbo support frames on/off on all DUTs.
+| | ... | optional jumbo frames support on all DUTs.
+| | ... | - jumbo_frames argument is a boolean.
 | | ...
 | | [Arguments] | ${cpu_cnt} | ${rx_queues} | ${jumbo_frames}
 | | ...
@@ -51,7 +52,8 @@
 
 | Start L3FWD on all DUTs
 | | [Documentation] | Start the l3fwd with M worker threads and rxqueues N and
-| | ... | jumbo support frames on/off on all DUTs.
+| | ... | optional jumbo frames support on all DUTs.
+| | ... | - jumbo_frames argument is a boolean.
 | | ...
 | | [Arguments] | ${cpu_cnt} | ${rx_queues} | ${jumbo_frames}
 | | ...
