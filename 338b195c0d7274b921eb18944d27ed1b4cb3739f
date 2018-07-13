@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9541d558_22dfb3ca",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-13T11:44:06Z",
+      "side": 1,
+      "message": "Can we get back to more sane sizes when we verify this [0] is the fix VPP needed?\n\n[0] https://gerrit.fd.io/r/13454",
+      "range": {
+        "startLine": 129,
+        "startChar": 46,
+        "endLine": 129,
+        "endChar": 48
+      },
+      "revId": "338b195c0d7274b921eb18944d27ed1b4cb3739f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
