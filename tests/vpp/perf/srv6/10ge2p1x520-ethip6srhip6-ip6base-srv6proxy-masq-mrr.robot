@@ -115,15 +115,10 @@
 | | ...
 | | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit}
-| | ... | ${get_framesize} + ${srv6_overhead_3sids}
-| | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} + ${srv6_overhead_3sids} < ${1522}
-| | ... | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_limit} | ${framesize} | overhead=${srv6_overhead_3sids}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'masquerading' behaviour in 3-node circular topology
 | | Then Traffic should pass with maximum rate
