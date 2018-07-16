@@ -64,6 +64,11 @@ THEME_OVERRIDES = """/* override table width restrictions */
     background: #c9c9c9;
     padding: 0 4em;
 }
+.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
+    display: block;
+    background: #bdbdbd;
+    padding: 0 5em;
+}
 .wy-menu-vertical li.on a, .wy-menu-vertical li.current > a {
     color: #404040;
     padding: 0 2em;

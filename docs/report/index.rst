@@ -9,7 +9,7 @@ CSIT 18.07
     introduction/general_notes
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: VPP Performance Tests
 
     vpp_performance_tests/overview
@@ -24,7 +24,7 @@ CSIT 18.07
     vpp_performance_tests/documentation/index
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: DPDK Performance Tests
 
     dpdk_performance_tests/overview
