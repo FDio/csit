@@ -34,6 +34,7 @@ and their indices.
     presented in this report version: **10**.
 
 .. toctree::
+    :maxdepth: 1
 
     l2
     ip4
