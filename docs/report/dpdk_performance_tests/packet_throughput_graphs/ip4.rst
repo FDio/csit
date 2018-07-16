@@ -1,5 +1,5 @@
-IPv4 Routed-Forwarding
-======================
+L3fwd
+=====
 
 Following sections include summary graphs ofL3FWD Phy-to-Phy performance with
 packet routed forwarding, including NDR throughput (zero packet loss)
@@ -7,144 +7,328 @@ and PDR throughput (<0.5% packet loss). Performance is reported for L3FWD
 running in multiple configurations of L3FWD pmd thread(s), a.k.a. L3FWD
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
-~~~~~~~~~~~~~~
+3n-hsw-x520
+~~~~~~~~~~~
 
-Testpmd NDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below.
+base-scale
+----------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-ipv4-ndrdisc.html"></iframe>
+1t1c
+....
 
-.. raw:: latex
+2t2c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-ipv4-ndrdisc}
-            \label{fig:64B-1t1c-ipv4-ndrdisc-dpdk}
-    \end{figure}
+pdr
+```
 
-*Figure 1. L3FWD 1thread 1core - NDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding
-Looping.*
+1t1c
+....
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
+2t2c
+....
 
-.. only:: html
+features
+--------
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
-      :shell:
+ndr
+```
 
-.. only:: latex
+1t1c
+....
 
-   .. code-block:: bash
+2t2c
+....
 
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
+pdr
+```
 
-Testpmd NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below.
+1t1c
+....
 
-.. raw:: html
+2t2c
+....
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-ipv4-ndrdisc.html"></iframe>
+3n-hsw-x710
+~~~~~~~~~~~
 
-.. raw:: latex
+base-scale
+----------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-ipv4-ndrdisc}
-            \label{fig:64B-2t2c-ipv4-ndrdisc-dpdk}
-    \end{figure}
+ndr
+```
 
-*Figure 2. L3FWD 2threads 2cores - NDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding
-Looping.*
+1t1c
+....
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
+2t2c
+....
 
-.. only:: html
+pdr
+```
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
-      :shell:
+1t1c
+....
 
-.. only:: latex
+2t2c
+....
 
-   .. code-block:: bash
+features
+--------
 
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
+ndr
+```
 
-PDR Throughput
-~~~~~~~~~~~~~~
+1t1c
+....
 
-L3FWD PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+2t2c
+....
 
-.. raw:: html
+pdr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-ipv4-pdrdisc.html"></iframe>
+1t1c
+....
 
-.. raw:: latex
+2t2c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-ipv4-pdrdisc}
-            \label{fig:64B-1t1c-ipv4-pdrdisc-dpdk}
-    \end{figure}
+3n-hsw-xl710
+~~~~~~~~~~~~
 
-*Figure 3. L3FWD 1thread 1core - PDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding
-Looping.*
+base-scale
+----------
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
+ndr
+```
 
-.. only:: html
+1t1c
+....
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc' *
-      :shell:
+2t2c
+....
 
-.. only:: latex
+pdr
+```
 
-   .. code-block:: bash
+1t1c
+....
 
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc' *
+2t2c
+....
 
-L3FWD PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+features
+--------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-ipv4-pdrdisc.html"></iframe>
+1t1c
+....
 
-.. raw:: latex
+2t2c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-ipv4-pdrdisc}
-            \label{fig:64B-2t2c-ipv4-pdrdisc-dpdk}
-    \end{figure}
+pdr
+```
 
-*Figure 4. L3FWD 2thread 2core - PDR Throughput for Phy-to-Phy IPv4 Routed-Forwarding
-Looping.*
+1t1c
+....
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
+2t2c
+....
 
-.. only:: html
+3n-skx-x710
+~~~~~~~~~~~
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc' *
-      :shell:
+base-scale
+----------
 
-.. only:: latex
+ndr
+```
 
-   .. code-block:: bash
+2t1c
+....
 
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc' *
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+2n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,5 @@
-IPSec Crypto HW: IP4 Routed-Forwarding
-======================================
+IPSec IPv4 Routing
+==================
 
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically
@@ -11,61 +11,127 @@ Performance is reported for VPP running in multiple configurations of
 VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
 
-NDR Throughput
---------------
+3n-hsw-x520
+~~~~~~~~~~~
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 40ge2p1xl710 network interface card.
+64b-1t1c-base_and_scale
+-----------------------
 
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
 
-.. raw:: html
+64b-2t2c-base_and_scale
+-----------------------
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-ipsechw-tsa-ndrdisc.html"></iframe>
 
-.. raw:: latex
+64b-1t1c-features
+-----------------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-ipsechw-tsa-ndrdisc}
-            \label{fig:40ge2p1xl710-64B-ipsechw-tsa-ndrdisc}
-    \end{figure}
 
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPSEC HW.*
+64b-2t2c-features
+-----------------
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.
 
-PDR Throughput
---------------
+3n-hsw-x710
+~~~~~~~~~~~
 
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 40ge2p1xl710 network interface card.
+64b-1t1c-base_and_scale
+-----------------------
 
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
 
-VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+64b-2t2c-base_and_scale
+-----------------------
 
-.. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-ipsechw-tsa-pdrdisc.html"></iframe>
+64b-1t1c-features
+-----------------
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-ipsechw-tsa-pdrdisc}
-            \label{fig:40ge2p1xl710-64B-ipsechw-tsa-pdrdisc}
-    \end{figure}
+64b-2t2c-features
+-----------------
 
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPSEC HW.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+64b-1t1c-base_and_scale
+-----------------------
+
+
+64b-2t2c-base_and_scale
+-----------------------
+
+
+3n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+
+64b-4t2c-base_and_scale
+-----------------------
+
+
+64b-2t1c-features
+-----------------
+
+
+64b-4t2c-features
+-----------------
+
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+
+64b-4t2c-base_and_scale
+-----------------------
+
+
+64b-2t1c-features
+-----------------
+
+
+64b-4t2c-features
+-----------------
+
+
+2n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+
+64b-4t2c-base_and_scale
+-----------------------
+
+
+64b-2t1c-features
+-----------------
+
+
+64b-4t2c-features
+-----------------
+
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+
+64b-4t2c-base_and_scale
+-----------------------
+
+
+64b-2t1c-features
+-----------------
+
+
+64b-4t2c-features
+-----------------
+

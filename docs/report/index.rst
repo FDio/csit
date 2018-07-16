@@ -10,7 +10,7 @@ CSIT 18.07
 
 .. toctree::
     :maxdepth: 2
-    :caption: VPP Performance Tests
+    :caption: VPP Performance
 
     vpp_performance_tests/overview
     vpp_performance_tests/csit_release_notes
@@ -25,7 +25,7 @@ CSIT 18.07
 
 .. toctree::
     :maxdepth: 2
-    :caption: DPDK Performance Tests
+    :caption: DPDK Performance
 
     dpdk_performance_tests/overview
     dpdk_performance_tests/csit_release_notes
@@ -36,7 +36,7 @@ CSIT 18.07
 
 .. toctree::
     :maxdepth: 2
-    :caption: VPP Functional Tests
+    :caption: VPP Functional
 
     vpp_functional_tests/overview
     vpp_functional_tests/csit_release_notes
@@ -45,7 +45,7 @@ CSIT 18.07
 
 .. toctree::
     :maxdepth: 2
-    :caption: Honeycomb Functional Tests
+    :caption: HoneyComb Functional
 
     honeycomb_functional_tests/overview
     honeycomb_functional_tests/csit_release_notes
@@ -54,7 +54,7 @@ CSIT 18.07
 
 .. toctree::
     :maxdepth: 2
-    :caption: NSH_SFC Functional Tests
+    :caption: NSH_SFC Functional
 
     nsh_sfc_functional_tests/overview
     nsh_sfc_functional_tests/csit_release_notes
@@ -65,7 +65,7 @@ CSIT 18.07
 
     .. toctree::
         :maxdepth: 2
-        :caption: Detailed Test Results
+        :caption: Detailed Results
 
         detailed_test_results/vpp_performance_results/index
         detailed_test_results/vpp_mrr_results/index
@@ -82,6 +82,7 @@ CSIT 18.07
 
         test_configuration/vpp_performance_configuration/index
         test_configuration/vpp_mrr_configuration/index
+        test_configuration/cot_performance_configuration/index
         test_configuration/vpp_functional_configuration/index
         test_configuration/vpp_functional_configuration_centos/index
 
@@ -99,3 +100,9 @@ CSIT 18.07
     csit_framework_documentation/csit_test_naming
     csit_framework_documentation/pal_lld
     csit_framework_documentation/csit_tag_description
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Indices and tables
+
+    Index <indices>
