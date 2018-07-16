@@ -1,5 +1,6 @@
-VM vhost Connections
-====================
+KVM VM vHost
+============
+
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically
 for tested 2t2c (2threads, 2cores) and 4t4c scenarios. 1t1c throughput
@@ -8,222 +9,666 @@ used for the graphs comes from Phy-to-Phy 64B performance tests with
 VM vhost-user, including NDR throughput (zero packet loss) and
 PDR throughput (<0.5% packet loss).
 
-NDR Throughput
---------------
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1807>`_.
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520, 10ge2p1x710 and 40ge2p1xl710 network interface cards.
+3n-hsw-x520
+~~~~~~~~~~~
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+64b-base_and_scale
+------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x520-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
     \end{figure}
-
-*Figure 1a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x520-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
     \end{figure}
 
-*Figure 1b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-NIC 10ge2p1x710
-~~~~~~~~~~~~~~~
+64b-features
+------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x520-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc}
-            \label{fig:10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-features-ndr-tsa}
+            \label{fig:vhost-3n-hsw-x520-64b-features-ndr-tsa}
     \end{figure}
-
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x520-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-features-pdr-tsa}
+            \label{fig:vhost-3n-hsw-x520-64b-features-pdr-tsa}
     \end{figure}
 
-*Figure 3a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+3n-hsw-x710
+~~~~~~~~~~~
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
     \end{figure}
-
-*Figure 3b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-PDR Throughput
---------------
-
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520, 10ge2p1x710 and 40ge2p1xl710 network interface cards.
-
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
     \end{figure}
 
-*Figure 4a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+64b-features
+------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-features-ndr-tsa}
+            \label{fig:vhost-3n-hsw-x710-64b-features-ndr-tsa}
     \end{figure}
-
-*Figure 4b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-NIC 10ge2p1x710
-~~~~~~~~~~~~~~~
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-x710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc}
-            \label{fig:10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-features-pdr-tsa}
+            \label{fig:vhost-3n-hsw-x710-64b-features-pdr-tsa}
     \end{figure}
 
-*Figure 5. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
+3n-hsw-xl710
+~~~~~~~~~~~~
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
     \end{figure}
-
-*Figure 6a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
     \end{figure}
 
-*Figure 6b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+64b-features
+------------
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-xl710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-features-ndr-tsa}
+            \label{fig:vhost-3n-hsw-xl710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-hsw-xl710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-features-pdr-tsa}
+            \label{fig:vhost-3n-hsw-xl710-64b-features-pdr-tsa}
+    \end{figure}
+
+3n-skx-x710
+~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xl710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xl710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xl710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xl710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xl710-64b-features-ndr-tsa}
+            \label{fig:vhost-3n-skx-xl710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xl710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xl710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xl710-64b-features-pdr-tsa}
+            \label{fig:vhost-3n-skx-xl710-64b-features-pdr-tsa}
+    \end{figure}
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xxv710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xxv710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xxv710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-features-ndr-tsa}
+            \label{fig:vhost-3n-skx-xxv710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-3n-skx-xxv710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-features-pdr-tsa}
+            \label{fig:vhost-3n-skx-xxv710-64b-features-pdr-tsa}
+    \end{figure}
+
+2n-skx-x710
+~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-x710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-2n-skx-x710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-x710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-2n-skx-x710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-x710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-features-ndr-tsa}
+            \label{fig:vhost-2n-skx-x710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-x710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-features-pdr-tsa}
+            \label{fig:vhost-2n-skx-x710-64b-features-pdr-tsa}
+    \end{figure}
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-xxv710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-xxv710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-xxv710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-features-ndr-tsa}
+            \label{fig:vhost-2n-skx-xxv710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: vhost-2n-skx-xxv710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-features-pdr-tsa}
+            \label{fig:vhost-2n-skx-xxv710-64b-features-pdr-tsa}
+    \end{figure}
