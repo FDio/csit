@@ -235,6 +235,9 @@ for TAG in "${TAGS[@]}"; do
     fi
 done
 
+# Override selection
+EXPANDED_TAGS=(" --include THIS")
+
 # Execute the test
 pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
 RETURN_STATUS=$(echo $?)
