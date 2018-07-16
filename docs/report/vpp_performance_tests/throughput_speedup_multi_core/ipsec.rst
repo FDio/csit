@@ -11,61 +11,159 @@ Performance is reported for VPP running in multiple configurations of
 VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
 
-NDR Throughput
---------------
+3n-hsw-x520
+~~~~~~~~~~~
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 40ge2p1xl710 network interface card.
+base-scale
+----------
 
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
+ndr
+```
 
-.. raw:: html
+pdr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-ipsechw-tsa-ndrdisc.html"></iframe>
+features
+--------
 
-.. raw:: latex
+ndr
+```
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-ipsechw-tsa-ndrdisc}
-            \label{fig:40ge2p1xl710-64B-ipsechw-tsa-ndrdisc}
-    \end{figure}
+pdr
+```
 
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPSEC HW.*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.
+base-scale
+----------
 
-PDR Throughput
---------------
+ndr
+```
 
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 40ge2p1xl710 network interface card.
+pdr
+```
 
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
+features
+--------
 
-VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+ndr
+```
 
-.. raw:: html
+pdr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-ipsechw-tsa-pdrdisc.html"></iframe>
+3n-hsw-xl710
+~~~~~~~~~~~~
 
-.. raw:: latex
+base-scale
+----------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-ipsechw-tsa-pdrdisc}
-            \label{fig:40ge2p1xl710-64B-ipsechw-tsa-pdrdisc}
-    \end{figure}
+ndr
+```
 
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPSEC HW.*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+2n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+
+
+
+
+
+
+
+
+
