@@ -1,5 +1,5 @@
-L2 Ethernet Interface Loop
-==========================
+Testpmd
+=======
 
 This section includes summary graphs of Testpmd Phy-to-Phy packet
 latency with L2 Ethernet Interface Loop measured at 50% of discovered
@@ -7,68 +7,376 @@ NDR throughput rate. Latency is reported for Testpmd running in multiple
 configurations of Testpmd pmd thread(s), a.k.a. Testpmd data plane
 thread(s), and their physical CPU core(s) placement.
 
-Testpmd packet latency - running in configuration of **one worker thread (1t) on one
-physical core (1c)** - is presented in the figure below.
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/dpdk/perf?h=rls1807>`_.
+
+3n-hsw-x520
+~~~~~~~~~~~
+
+64b-1t1c-base
+-------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-l2-ndrdisc-lat50.html"></iframe>
+    <center><b>
+
+:index:`Latency: testpmd-3n-hsw-x520-64b-1t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-ndrdisc-lat50}
-            \label{fig:64B-1t1c-l2-ndrdisc-lat50-dpdk}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat50}
+            \label{fig:testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat50}
     \end{figure}
 
-*Figure 1. Testpmd 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet Looping.*
-
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-1t1c-eth-l2xcbase-testpmd-ndrdisc' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-1t1c-eth-l2xcbase-testpmd-ndrdisc' *
-
-Testpmd packet latency - running in configuration of **two worker threads (2t)
-on two physical cores (2c)** - is presented in the figure below.
+64b-2t2c-base
+-------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-l2-ndrdisc-lat50.html"></iframe>
+    <center><b>
+
+:index:`Latency: testpmd-3n-hsw-x520-64b-2t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-ndrdisc-lat50}
-            \label{fig:64B-2t2c-l2-ndrdisc-lat50-dpdk}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat50}
+            \label{fig:testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat50}
     \end{figure}
 
-*Figure 2. Testpmd 2thread 2core - packet latency for Phy-to-Phy L2 Ethernet Looping.*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
+64b-1t1c-base
+-------------
 
-.. only:: html
+.. raw:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-2t2c-eth-l2xcbase-testpmd-ndrdisc' *
-      :shell:
+    <center><b>
 
-.. only:: latex
+:index:`Latency: testpmd-3n-hsw-x710-64b-1t1c-base-ndr`
 
-   .. code-block:: bash
+.. raw:: html
 
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-2t2c-eth-l2xcbase-testpmd-ndrdisc' *
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat50}
+            \label{fig:testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat50}
+    \end{figure}
+
+64b-2t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-3n-hsw-x710-64b-2t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat50}
+            \label{fig:testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat50}
+    \end{figure}
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+64b-1t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-3n-hsw-xl710-64b-1t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat50}
+            \label{fig:testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat50}
+    \end{figure}
+
+64b-2t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-3n-hsw-xl710-64b-2t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat50}
+            \label{fig:testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat50}
+    \end{figure}
+
+3n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-3n-skx-x710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat50}
+            \label{fig:testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat50}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-3n-skx-x710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat50}
+            \label{fig:testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat50}
+    \end{figure}
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-3n-skx-xxv710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat50}
+            \label{fig:testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat50}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-3n-skx-xxv710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat50}
+            \label{fig:testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat50}
+    \end{figure}
+
+2n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-2n-skx-x710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat50}
+            \label{fig:testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat50}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-2n-skx-x710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat50}
+            \label{fig:testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat50}
+    \end{figure}
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-2n-skx-xxv710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat50}
+            \label{fig:testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat50}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: testpmd-2n-skx-xxv710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat50}
+            \label{fig:testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat50}
+    \end{figure}
