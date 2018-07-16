@@ -1,5 +1,5 @@
-VPP MRR Results
-===============
+VPP Performance MRR
+===================
 
 .. note::
 

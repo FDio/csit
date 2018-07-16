@@ -1,7 +1,7 @@
 .. _csit-design:
 
-CSIT Design
-===========
+Design
+======
 
 FD.io CSIT system design needs to meet continuously expanding
 requirements of FD.io projects including VPP, related sub-systems (e.g.
