@@ -1,5 +1,5 @@
-Packet Latency Graphs
-=====================
+Packet Latency
+==============
 
 Plotted results are generated from a single execution of CSIT NDR discovery
 test. Box plots are used to show the Minimum, Median and Maximum packet
@@ -23,6 +23,7 @@ TGint2-to-SUT2-to-SUT1-to-TGint1.
     files csit-vpp-perf-|srelease|-\*.zip `archived here <../../_static/archive/>`_.
 
 .. toctree::
+    :maxdepth: 1
 
     l2
     ip4
@@ -34,3 +35,4 @@ TGint2-to-SUT2-to-SUT1-to-TGint1.
     container_memif
     container_orchestrated
     ipsec
+    vts
