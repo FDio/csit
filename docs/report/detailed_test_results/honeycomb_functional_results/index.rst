@@ -1,5 +1,5 @@
-Honeycomb Functional Results
-============================
+HoneyComb Functional
+====================
 
 .. note::
 

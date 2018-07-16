@@ -1,7 +1,7 @@
 .. _csit_test_naming:
 
-CSIT Test Naming
-================
+Test Naming
+===========
 
 Background
 ----------
