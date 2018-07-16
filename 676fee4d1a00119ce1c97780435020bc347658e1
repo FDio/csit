@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "0752754a_af85e3bf",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-16T13:26:56Z",
+      "side": 1,
+      "message": "Which rendered doc?\n\nI have run the run_doc.sh script and\nand looked at resources/tools/doc_gen/_build/resources.libraries.robot.performance.html\n\nThe examples look like a string (as opposed to a table) with or without the final pipe.\n\nShould I look somewhere else?",
+      "parentUuid": "8c75ef22_b783067b",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 54
+      },
+      "revId": "676fee4d1a00119ce1c97780435020bc347658e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83485a72_8e5eb7c8",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 29
