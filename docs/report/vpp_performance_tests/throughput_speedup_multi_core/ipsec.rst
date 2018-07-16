@@ -1,5 +1,5 @@
-IPSec Crypto HW: IP4 Routed-Forwarding
-======================================
+IPSec IPv4 Routing
+==================
 
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically
@@ -11,61 +11,666 @@ Performance is reported for VPP running in multiple configurations of
 VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
 
-NDR Throughput
---------------
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1807>`_.
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 40ge2p1xl710 network interface card.
+3n-hsw-x520
+~~~~~~~~~~~
 
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
+64b-base_and_scale
+------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-ipsechw-tsa-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x520-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-ipsechw-tsa-ndrdisc}
-            \label{fig:40ge2p1xl710-64B-ipsechw-tsa-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+            \label{fig:ipsec-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
     \end{figure}
-
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPSEC HW.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.
-
-PDR Throughput
---------------
-
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 40ge2p1xl710 network interface card.
-
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
-
-VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-ipsechw-tsa-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x520-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-ipsechw-tsa-pdrdisc}
-            \label{fig:40ge2p1xl710-64B-ipsechw-tsa-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+            \label{fig:ipsec-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
     \end{figure}
 
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPSEC HW.*
+64b-features
+------------
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1804>`_.
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x520-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x520-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x520-64b-features-ndr-tsa}
+            \label{fig:ipsec-3n-hsw-x520-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x520-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x520-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x520-64b-features-pdr-tsa}
+            \label{fig:ipsec-3n-hsw-x520-64b-features-pdr-tsa}
+    \end{figure}
+
+3n-hsw-x710
+~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ipsec-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ipsec-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x710-64b-features-ndr-tsa}
+            \label{fig:ipsec-3n-hsw-x710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-x710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-x710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-x710-64b-features-pdr-tsa}
+            \label{fig:ipsec-3n-hsw-x710-64b-features-pdr-tsa}
+    \end{figure}
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-xl710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ipsec-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-xl710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ipsec-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-xl710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-features-ndr-tsa}
+            \label{fig:ipsec-3n-hsw-xl710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-hsw-xl710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-features-pdr-tsa}
+            \label{fig:ipsec-3n-hsw-xl710-64b-features-pdr-tsa}
+    \end{figure}
+
+3n-skx-x710
+~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xl710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ipsec-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xl710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ipsec-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xl710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xl710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xl710-64b-features-ndr-tsa}
+            \label{fig:ipsec-3n-skx-xl710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xl710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xl710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xl710-64b-features-pdr-tsa}
+            \label{fig:ipsec-3n-skx-xl710-64b-features-pdr-tsa}
+    \end{figure}
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xxv710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ipsec-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xxv710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ipsec-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xxv710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xxv710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xxv710-64b-features-ndr-tsa}
+            \label{fig:ipsec-3n-skx-xxv710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-3n-skx-xxv710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-skx-xxv710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-skx-xxv710-64b-features-pdr-tsa}
+            \label{fig:ipsec-3n-skx-xxv710-64b-features-pdr-tsa}
+    \end{figure}
+
+2n-skx-x710
+~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-x710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ipsec-2n-skx-x710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-x710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-x710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ipsec-2n-skx-x710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-x710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-x710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-x710-64b-features-ndr-tsa}
+            \label{fig:ipsec-2n-skx-x710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-x710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-x710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-x710-64b-features-pdr-tsa}
+            \label{fig:ipsec-2n-skx-x710-64b-features-pdr-tsa}
+    \end{figure}
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-xxv710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ipsec-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-xxv710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ipsec-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+64b-features
+------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-xxv710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-xxv710-64b-features-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-xxv710-64b-features-ndr-tsa}
+            \label{fig:ipsec-2n-skx-xxv710-64b-features-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ipsec-2n-skx-xxv710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-2n-skx-xxv710-64b-features-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-2n-skx-xxv710-64b-features-pdr-tsa}
+            \label{fig:ipsec-2n-skx-xxv710-64b-features-pdr-tsa}
+    \end{figure}
