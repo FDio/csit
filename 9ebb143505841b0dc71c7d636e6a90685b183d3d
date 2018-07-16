@@ -70,6 +70,29 @@
       "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5a7322f_54388032",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-ndrpdr.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-16T15:56:12Z",
+      "side": 1,
+      "message": "If we decide to lower payload size, I will probably want to rename this variable, so that generator script can parse for its value.",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 24
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
