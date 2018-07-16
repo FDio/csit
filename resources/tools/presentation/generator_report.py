@@ -214,7 +214,7 @@ def generate_pdf_report(release, spec, versions, report_version):
         'pdflatex -interaction nonstopmode csit.tex || true'.
         format(build_dir=build_dir),
         'cd {build_dir} && '
-        'cp csit.pdf ../{archive_dir}/csit_{release}_{report_version}.pdf'.
+        'cp csit.pdf ../{archive_dir}/csit_{release}_v{report_version}.pdf'.
         format(build_dir=build_dir,
                archive_dir=archive_dir,
                release=release,
