@@ -1,5 +1,5 @@
-VPP MRR Test Configs
-====================
+VPP Performance MRR
+===================
 
 .. note::
 
