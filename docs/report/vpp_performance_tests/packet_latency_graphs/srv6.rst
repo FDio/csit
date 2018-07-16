@@ -1,5 +1,5 @@
-SRv6
-====
+SRv6 Routing
+============
 
 This section includes summary graphs of VPP Phy-to-Phy packet latency
 with SRv6 measured at 50% of discovered NDR throughput
@@ -7,42 +7,128 @@ rate. Latency is reported for VPP running in multiple configurations of
 VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
 
-VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph below.
 
-.. raw:: html
+3n-hsw-x520
+~~~~~~~~~~~
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-srv6-ndrdisc-lat50.html"></iframe>
+78b-1t1c-base_and_scale
+-----------------------
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-1t1c-ethip6-srv6-ndrdisc-lat50}
-            \label{fig:78B-1t1c-ethip6-srv6-ndrdisc-lat50}
-    \end{figure}
+78b-2t2c-base_and_scale
+-----------------------
 
-*Figure 1. VPP 1thread 1core - packet latency for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
+78b-1t1c-features
+-----------------
 
-VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
-.. raw:: html
+78b-2t2c-features
+-----------------
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-srv6-ndrdisc-lat50.html"></iframe>
 
-.. raw:: latex
+3n-hsw-x710
+~~~~~~~~~~~
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-2t2c-ethip6-srv6-ndrdisc-lat50}
-            \label{fig:78B-2t2c-ethip6-srv6-ndrdisc-lat50}
-    \end{figure}
+78b-1t1c-base_and_scale
+-----------------------
 
-*Figure 2. VPP 2threads 2cores - packet latency for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
+78b-2t2c-base_and_scale
+-----------------------
+
+
+78b-1t1c-features
+-----------------
+
+
+78b-2t2c-features
+-----------------
+
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+78b-1t1c-base_and_scale
+-----------------------
+
+
+78b-2t2c-base_and_scale
+-----------------------
+
+
+3n-skx-x710
+~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+2n-skx-x710
+~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+

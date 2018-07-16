@@ -1,5 +1,5 @@
-IPv6 Overlay Tunnels
-====================
+IPv6 Tunnels
+============
 
 Following sections include summary graphs of VPP Phy-to-Phy performance
 with IPv6 Overlay Tunnels, including NDR throughput (zero packet loss)
@@ -7,96 +7,128 @@ and PDR throughput (<0.5% packet loss). Performance is reported for VPP
 running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
-~~~~~~~~~~~~~~
 
-VPP NDR 78B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below.
+3n-hsw-x520
+~~~~~~~~~~~
 
-.. raw:: html
+78b-1t1c-base_and_scale
+-----------------------
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-ndrdisc.html"></iframe>
 
-.. raw:: latex
+78b-2t2c-base_and_scale
+-----------------------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-1t1c-ethip6-ndrdisc}
-            \label{fig:78B-1t1c-ethip6-ndrdisc}
-    \end{figure}
 
-*Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy IPv6 Overlay
-Tunnels.*
+78b-1t1c-features
+-----------------
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip6_tunnels?h=rls1804>`_.
 
-VPP NDR 78B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below.
+78b-2t2c-features
+-----------------
 
-.. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-ndrdisc.html"></iframe>
+3n-hsw-x710
+~~~~~~~~~~~
 
-.. raw:: latex
+78b-1t1c-base_and_scale
+-----------------------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-2t2c-ethip6-ndrdisc}
-            \label{fig:78B-2t2c-ethip6-ndrdisc}
-    \end{figure}
 
-*Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy IPv6 Overlay
-Tunnels.*
+78b-2t2c-base_and_scale
+-----------------------
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip6_tunnels?h=rls1804>`_.
 
-PDR Throughput
-~~~~~~~~~~~~~~
+78b-1t1c-features
+-----------------
 
-VPP PDR 78B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
 
-.. raw:: html
+78b-2t2c-features
+-----------------
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-pdrdisc.html"></iframe>
 
-.. raw:: latex
+3n-hsw-xl710
+~~~~~~~~~~~~
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-1t1c-ethip6-pdrdisc}
-            \label{fig:78B-1t1c-ethip6-pdrdisc}
-    \end{figure}
+78b-1t1c-base_and_scale
+-----------------------
 
-*Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-Phy IPv6 Overlay
-Tunnels.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip6_tunnels?h=rls1804>`_.
+78b-2t2c-base_and_scale
+-----------------------
 
-VPP PDR 78B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
 
-.. raw:: html
+3n-skx-x710
+~~~~~~~~~~~
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-pdrdisc.html"></iframe>
+78b-2t1c-base_and_scale
+-----------------------
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-2t2c-ethip6-pdrdisc}
-            \label{fig:78B-2t2c-ethip6-pdrdisc}
-    \end{figure}
+78b-4t2c-base_and_scale
+-----------------------
 
-*Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-Phy IPv6 Overlay
-Tunnels.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip6_tunnels?h=rls1804>`_.
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+2n-skx-x710
+~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
