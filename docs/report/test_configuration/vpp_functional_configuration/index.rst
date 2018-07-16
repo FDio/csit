@@ -1,5 +1,5 @@
-VPP Functional Test Configs - Ubuntu
-====================================
+VPP Functional Ubuntu
+=====================
 
 .. note::
 
