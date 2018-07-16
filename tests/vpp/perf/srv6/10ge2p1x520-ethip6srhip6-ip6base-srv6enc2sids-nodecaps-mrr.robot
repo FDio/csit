@@ -89,66 +89,62 @@
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
-| | ...
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit}
-| | ... | ${get_framesize} + ${srv6_overhead_2sids}
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_limit} | ${framesize} | overhead=${srv6_overhead_2sids}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with encapsulation with '2' x SID 'without' decapsulation in 3-node circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-78B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| tc01-78B-1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Tags] | 78B | 1C
-| | phy_cores=${1} | framesize=${78}
+| | framesize=${78} | phy_cores=${1}
 
-| tc02-1518B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-| | [Tags] | 1518B | 1C
-| | phy_cores=${1} | framesize=${1518}
-
-| tc03-9000B-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-| | [Tags] | 9000B | 1C
-| | phy_cores=${1} | framesize=${9000}
-
-| tc04-IMIX-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-| | [Tags] | IMIX | 1C
-| | phy_cores=${1} | framesize=IMIX_v4_1
-
-| tc05-78B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| tc02-78B-2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Tags] | 78B | 2C
-| | phy_cores=${2} | framesize=${78}
+| | framesize=${78} | phy_cores=${2}
 
-| tc06-1518B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-| | [Tags] | 1518B | 2C
-| | phy_cores=${2} | framesize=${1518}
-
-| tc07-9000B-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-| | [Tags] | 9000B | 2C
-| | phy_cores=${2} | framesize=${9000}
-
-| tc08-IMIX-2t2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-| | [Tags] | IMIX | 2C
-| | phy_cores=${2} | framesize=IMIX_v4_1
-
-| tc09-78B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| tc03-78B-4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Tags] | 78B | 4C
-| | phy_cores=${4} | framesize=${78}
+| | framesize=${78} | phy_cores=${4}
 
-| tc10-1518B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| tc04-1518B-1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Tags] | 1518B | 4C
-| | phy_cores=${4} | framesize=${1518}
+| | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| tc07-9000B-1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Tags] | 9000B | 4C
-| | phy_cores=${4} | framesize=${9000}
+| | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| tc10-IMIX-1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
 | | [Tags] | IMIX | 4C
-| | phy_cores=${4} | framesize=IMIX_v4_1
+| | framesize=IMIX_v4_1 | phy_cores=${4}
