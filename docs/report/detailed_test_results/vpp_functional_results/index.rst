@@ -1,5 +1,5 @@
-VPP Functional Results - Ubuntu
-===============================
+VPP Functional Ubuntu
+=====================
 
 .. note::
 
