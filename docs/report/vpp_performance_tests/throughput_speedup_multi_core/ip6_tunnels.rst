@@ -1,5 +1,5 @@
-IPv6 Overlay Tunnels
-====================
+IPv6 Tunnels
+============
 
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically
@@ -9,58 +9,128 @@ Performance is reported for VPP
 running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
---------------
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card.
+3n-hsw-x520
+~~~~~~~~~~~
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+78b-1t1c-base_and_scale
+-----------------------
 
-.. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-78B-ethip6-tsa-ndrdisc.html"></iframe>
+78b-2t2c-base_and_scale
+-----------------------
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-78B-ethip6-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-78B-ethip6-tsa-ndrdisc}
-    \end{figure}
+78b-1t1c-features
+-----------------
 
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPv6 Overlay Tunnels.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip6_tunnels?h=rls1804>`_.
+78b-2t2c-features
+-----------------
 
-PDR Throughput
---------------
 
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card.
+3n-hsw-x710
+~~~~~~~~~~~
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+78b-1t1c-base_and_scale
+-----------------------
 
-.. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-78B-ethip6-tsa-pdrdisc.html"></iframe>
+78b-2t2c-base_and_scale
+-----------------------
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-78B-ethip6-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-78B-ethip6-tsa-pdrdisc}
-    \end{figure}
+78b-1t1c-features
+-----------------
 
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPv6 Overlay Tunnels.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip6_tunnels?h=rls1804>`_.
+78b-2t2c-features
+-----------------
+
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+78b-1t1c-base_and_scale
+-----------------------
+
+
+78b-2t2c-base_and_scale
+-----------------------
+
+
+3n-skx-x710
+~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+2n-skx-x710
+~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+78b-2t1c-base_and_scale
+-----------------------
+
+
+78b-4t2c-base_and_scale
+-----------------------
+
+
+78b-2t1c-features
+-----------------
+
+
+78b-4t2c-features
+-----------------
+

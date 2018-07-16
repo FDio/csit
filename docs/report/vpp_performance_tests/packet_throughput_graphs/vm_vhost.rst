@@ -1,5 +1,5 @@
-VM vhost Connections
-====================
+KVM VM vHost
+============
 
 Following sections include summary graphs of VPP Phy-to-VM(s)-to-Phy
 performance with VM virtio and VPP vhost-user virtual interfaces,
@@ -8,172 +8,1248 @@ packet loss). Performance is reported for VPP running in multiple
 configurations of VPP worker thread(s), a.k.a. VPP data plane thread(s),
 and their physical CPU core(s) placement.
 
-NDR Throughput
-~~~~~~~~~~~~~~
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1807>`_.
 
-VPP NDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below.
+3n-hsw-x520
+~~~~~~~~~~~
+
+64b-1t1c-base_and_scale
+-----------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel1-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-1t1c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel1-ndrdisc}
-            \label{fig:64B-1t1c-vhost-sel1-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-1t1c-base_and_scale-ndr}
+            \label{fig:vhost-3n-hsw-x520-64b-1t1c-base_and_scale-ndr}
     \end{figure}
-
-*Figure 1a. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM vhost-user
-selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel2-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-1t1c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel2-ndrdisc}
-            \label{fig:64B-1t1c-vhost-sel2-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-1t1c-base_and_scale-pdr}
+            \label{fig:vhost-3n-hsw-x520-64b-1t1c-base_and_scale-pdr}
     \end{figure}
 
-*Figure 1b. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below.
+64b-2t2c-base_and_scale
+-----------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel1-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-2t2c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel1-ndrdisc}
-            \label{fig:64B-2t2c-vhost-sel1-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-2t2c-base_and_scale-ndr}
+            \label{fig:vhost-3n-hsw-x520-64b-2t2c-base_and_scale-ndr}
     \end{figure}
-
-*Figure 2a. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel2-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-2t2c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-2t2c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel2-ndrdisc}
-            \label{fig:64B-2t2c-vhost-sel2-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-2t2c-base_and_scale-pdr}
+            \label{fig:vhost-3n-hsw-x520-64b-2t2c-base_and_scale-pdr}
     \end{figure}
 
-*Figure 2b. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-PDR Throughput
-~~~~~~~~~~~~~~
-
-VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+64b-1t1c-features
+-----------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel1-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-1t1c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel1-pdrdisc}
-            \label{fig:64B-1t1c-vhost-sel1-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-1t1c-features-ndr}
+            \label{fig:vhost-3n-hsw-x520-64b-1t1c-features-ndr}
     \end{figure}
-
-*Figure 3a. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel2-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-1t1c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel2-pdrdisc}
-            \label{fig:64B-1t1c-vhost-sel2-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-1t1c-features-pdr}
+            \label{fig:vhost-3n-hsw-x520-64b-1t1c-features-pdr}
     \end{figure}
 
-*Figure 3b. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+64b-2t2c-features
+-----------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel1-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-2t2c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-2t2c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel1-pdrdisc}
-            \label{fig:64B-2t2c-vhost-sel1-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-2t2c-features-ndr}
+            \label{fig:vhost-3n-hsw-x520-64b-2t2c-features-ndr}
     \end{figure}
-
-*Figure 4a. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel2-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x520-64b-2t2c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x520-64b-2t2c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel2-pdrdisc}
-            \label{fig:64B-2t2c-vhost-sel2-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x520-64b-2t2c-features-pdr}
+            \label{fig:vhost-3n-hsw-x520-64b-2t2c-base_and_scale-features}
     \end{figure}
 
-*Figure 4b. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+64b-1t1c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-1t1c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-1t1c-base_and_scale-ndr}
+            \label{fig:vhost-3n-hsw-x710-64b-1t1c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-1t1c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-1t1c-base_and_scale-pdr}
+            \label{fig:vhost-3n-hsw-x710-64b-1t1c-base_and_scale-pdr}
+    \end{figure}
+
+64b-2t2c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-2t2c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-2t2c-base_and_scale-ndr}
+            \label{fig:vhost-3n-hsw-x710-64b-2t2c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-2t2c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-2t2c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-2t2c-base_and_scale-pdr}
+            \label{fig:vhost-3n-hsw-x710-64b-2t2c-base_and_scale-pdr}
+    \end{figure}
+
+64b-1t1c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-1t1c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-1t1c-features-ndr}
+            \label{fig:vhost-3n-hsw-x710-64b-1t1c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-1t1c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-1t1c-features-pdr}
+            \label{fig:vhost-3n-hsw-x710-64b-1t1c-features-pdr}
+    \end{figure}
+
+64b-2t2c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-2t2c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-2t2c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-2t2c-features-ndr}
+            \label{fig:vhost-3n-hsw-x710-64b-2t2c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-x710-64b-2t2c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-x710-64b-2t2c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-x710-64b-2t2c-features-pdr}
+            \label{fig:vhost-3n-hsw-x710-64b-2t2c-base_and_scale-features}
+    \end{figure}
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+64b-1t1c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr}
+            \label{fig:vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr}
+            \label{fig:vhost-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr}
+    \end{figure}
+
+64b-2t2c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr}
+            \label{fig:vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr}
+            \label{fig:vhost-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr}
+    \end{figure}
+
+3n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-2t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-2t1c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-2t1c-base_and_scale-ndr}
+            \label{fig:vhost-3n-skx-x710-64b-2t1c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-2t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-2t1c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-2t1c-base_and_scale-pdr}
+            \label{fig:vhost-3n-skx-x710-64b-2t1c-base_and_scale-pdr}
+    \end{figure}
+
+64b-4t2c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-4t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-4t2c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-4t2c-base_and_scale-ndr}
+            \label{fig:vhost-3n-skx-x710-64b-4t2c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-4t2c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-4t2c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-4t2c-base_and_scale-pdr}
+            \label{fig:vhost-3n-skx-x710-64b-4t2c-base_and_scale-pdr}
+    \end{figure}
+
+64b-2t1c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-2t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-2t1c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-2t1c-features-ndr}
+            \label{fig:vhost-3n-skx-x710-64b-2t1c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-2t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-2t1c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-2t1c-features-pdr}
+            \label{fig:vhost-3n-skx-x710-64b-2t1c-features-pdr}
+    \end{figure}
+
+64b-4t2c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-4t2c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-4t2c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-4t2c-features-ndr}
+            \label{fig:vhost-3n-skx-x710-64b-4t2c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-x710-64b-4t2c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-x710-64b-4t2c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-x710-64b-4t2c-features-pdr}
+            \label{fig:vhost-3n-skx-x710-64b-4t2c-base_and_scale-features}
+    \end{figure}
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
+            \label{fig:vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
+            \label{fig:vhost-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
+    \end{figure}
+
+64b-4t2c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
+            \label{fig:vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
+            \label{fig:vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
+    \end{figure}
+
+64b-2t1c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-2t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-2t1c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-2t1c-features-ndr}
+            \label{fig:vhost-3n-skx-xxv710-64b-2t1c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-2t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-2t1c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-2t1c-features-pdr}
+            \label{fig:vhost-3n-skx-xxv710-64b-2t1c-features-pdr}
+    \end{figure}
+
+64b-4t2c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-4t2c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-4t2c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-4t2c-features-ndr}
+            \label{fig:vhost-3n-skx-xxv710-64b-4t2c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-3n-skx-xxv710-64b-4t2c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-3n-skx-xxv710-64b-4t2c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-3n-skx-xxv710-64b-4t2c-features-pdr}
+            \label{fig:vhost-3n-skx-xxv710-64b-4t2c-base_and_scale-features}
+    \end{figure}
+
+2n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-2t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-2t1c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-2t1c-base_and_scale-ndr}
+            \label{fig:vhost-2n-skx-x710-64b-2t1c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-2t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-2t1c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-2t1c-base_and_scale-pdr}
+            \label{fig:vhost-2n-skx-x710-64b-2t1c-base_and_scale-pdr}
+    \end{figure}
+
+64b-4t2c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-4t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-4t2c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-4t2c-base_and_scale-ndr}
+            \label{fig:vhost-2n-skx-x710-64b-4t2c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-4t2c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-4t2c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-4t2c-base_and_scale-pdr}
+            \label{fig:vhost-2n-skx-x710-64b-4t2c-base_and_scale-pdr}
+    \end{figure}
+
+64b-2t1c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-2t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-2t1c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-2t1c-features-ndr}
+            \label{fig:vhost-2n-skx-x710-64b-2t1c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-2t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-2t1c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-2t1c-features-pdr}
+            \label{fig:vhost-2n-skx-x710-64b-2t1c-features-pdr}
+    \end{figure}
+
+64b-4t2c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-4t2c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-4t2c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-4t2c-features-ndr}
+            \label{fig:vhost-2n-skx-x710-64b-4t2c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-x710-64b-4t2c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-x710-64b-4t2c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-x710-64b-4t2c-features-pdr}
+            \label{fig:vhost-2n-skx-x710-64b-4t2c-base_and_scale-features}
+    \end{figure}
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
+            \label{fig:vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
+            \label{fig:vhost-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
+    \end{figure}
+
+64b-4t2c-base_and_scale
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
+            \label{fig:vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
+            \label{fig:vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
+    \end{figure}
+
+64b-2t1c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-2t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-2t1c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-2t1c-features-ndr}
+            \label{fig:vhost-2n-skx-xxv710-64b-2t1c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-2t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-2t1c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-2t1c-features-pdr}
+            \label{fig:vhost-2n-skx-xxv710-64b-2t1c-features-pdr}
+    \end{figure}
+
+64b-4t2c-features
+-----------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-4t2c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-4t2c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-4t2c-features-ndr}
+            \label{fig:vhost-2n-skx-xxv710-64b-4t2c-features-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Pkt Thput vhost-2n-skx-xxv710-64b-4t2c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-2n-skx-xxv710-64b-4t2c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-2n-skx-xxv710-64b-4t2c-features-pdr}
+            \label{fig:vhost-2n-skx-xxv710-64b-4t2c-base_and_scale-features}
+    \end{figure}

@@ -1,5 +1,5 @@
-VPP Functional Test Configs - CentOS
-====================================
+VPP Functional CentOS
+=====================
 
 .. note::
 
