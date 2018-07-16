@@ -1,5 +1,5 @@
-IPv4 Overlay Tunnels
-====================
+IPv4 Tunnels
+============
 
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically
@@ -9,58 +9,355 @@ Performance is reported for VPP
 running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
---------------
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4_tunnels?h=rls1807>`_.
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card.
+3n-hsw-x520
+~~~~~~~~~~~
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+64b-base_and_scale
+------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-ethip4-tsa-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-hsw-x520-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-ethip4-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-64B-ethip4-tsa-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
     \end{figure}
-
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4_tunnels?h=rls1804>`_.
-
-PDR Throughput
---------------
-
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card.
-
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-ethip4-tsa-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-hsw-x520-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-ethip4-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-64B-ethip4-tsa-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
     \end{figure}
 
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4_tunnels?h=rls1804>`_.
+64b-base_and_scale
+------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-hsw-x710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-hsw-x710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+64b-base_and_scale
+------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+3n-skx-x710
+~~~~~~~~~~~
+
+64b-base_and_scale
+------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-skx-xl710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-skx-xl710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-base_and_scale
+------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-skx-xxv710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-3n-skx-xxv710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+2n-skx-x710
+~~~~~~~~~~~
+
+64b-base_and_scale
+------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-2n-skx-x710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-2n-skx-x710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-2n-skx-x710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-x710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-2n-skx-x710-64b-base_and_scale-pdr-tsa}
+    \end{figure}
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-base_and_scale
+------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-2n-skx-xxv710-64b-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup: ip4tun-2n-skx-xxv710-64b-base_and_scale-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+    \end{figure}

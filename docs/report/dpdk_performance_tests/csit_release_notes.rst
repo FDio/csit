@@ -1,5 +1,5 @@
-CSIT Release Notes
-==================
+Release Notes
+=============
 
 Changes in CSIT |release|
 -------------------------

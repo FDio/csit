@@ -1,5 +1,5 @@
-CSIT TAGs Descriptions
-======================
+CSIT RF Tags Descriptions
+=========================
 
 All CSIT test cases are labelled with Robot Framework tags used to allow for
 easy test case type identification, test case grouping and selection for
