@@ -173,112 +173,112 @@
 *** Test Cases ***
 | tc01-64B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | 64B | 2C | NDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=${64} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${64} | search_type=NDR
 
 | tc02-64B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | 64B | 2C | PDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=${64} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${64} | search_type=PDR
 
 | tc03-150B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | 150B | 2C | NDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=${150} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${150} | search_type=NDR
 
 | tc04-150B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | 150B | 2C | PDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=${150} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${150} | search_type=PDR
 
 | tc05-200B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | 200B | 2C | NDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=${200} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${200} | search_type=NDR
 
 | tc06-200B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | 200B | 2C | PDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=${200} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${200} | search_type=PDR
 
 | tc07-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Tags] | IMIX | 2C | NDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=IMIX_v4_1 | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=IMIX_v4_1 | search_type=NDR
 
 | tc08-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Tags] | IMIX | 2C | PDRDISC
-| | ${phy_cores}=${2} | pkt_framesize=IMIX_v4_1 | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=IMIX_v4_1 | search_type=PDR
 
 | tc09-64B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | 64B | 2C | NDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=${64} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${64} | search_type=NDR
 | | ... | acl_type=permit
 
 | tc10-64B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | 64B | 2C | PDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=${64} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${64} | search_type=PDR
 | | ... | acl_type=permit
 
 | tc11-150B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | 150B | 2C | NDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=${150} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${150} | search_type=NDR
 | | ... | acl_type=permit
 
 | tc12-150B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | 150B | 2C | PDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=${150} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${150} | search_type=PDR
 | | ... | acl_type=permit
 
 | tc13-200B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | 200B | 2C | NDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=${200} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${200} | search_type=NDR
 | | ... | acl_type=permit
 
 | tc14-200B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | 200B | 2C | PDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=${200} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${200} | search_type=PDR
 | | ... | acl_type=permit
 
 | tc15-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-ndrdisc
 | | [Tags] | IMIX | 2C | NDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=IMIX_v4_1 | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=IMIX_v4_1 | search_type=NDR
 | | ... | acl_type=permit
 
 | tc16-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-acl-pdrdisc
 | | [Tags] | IMIX | 2C | PDRDISC | ACL_PERMIT
-| | ${phy_cores}=${2} | pkt_framesize=IMIX_v4_1 | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=IMIX_v4_1 | search_type=PDR
 | | ... | acl_type=permit
 
 | tc17-64B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | 64B | 2C | NDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=${64} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${64} | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc18-64B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | 64B | 2C | PDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=${64} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${64} | search_type=PDR
 | | ... | acl_type=permit+reflect
 
 | tc19-150B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | 150B | 2C | NDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=${150} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${150} | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc20-150B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | 150B | 2C | PDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=${150} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${150} | search_type=PDR
 | | ... | acl_type=permit+reflect
 
 | tc21-200B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | 200B | 2C | NDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=${200} | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=${200} | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc22-200B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | 200B | 2C | PDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=${200} | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=${200} | search_type=PDR
 | | ... | acl_type=permit+reflect
 
 | tc23-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-ndrdisc
 | | [Tags] | IMIX | 2C | NDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=IMIX_v4_1 | search_type=NDR
+| | phy_cores=${2} | pkt_framesize=IMIX_v4_1 | search_type=NDR
 | | ... | acl_type=permit+reflect
 
 | tc24-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-aclreflect-pdrdisc
 | | [Tags] | IMIX | 2C | PDRDISC | ACL_PERMIT_REFLECT
-| | ${phy_cores}=${2} | pkt_framesize=IMIX_v4_1 | search_type=PDR
+| | phy_cores=${2} | pkt_framesize=IMIX_v4_1 | search_type=PDR
 | | ... | acl_type=permit+reflect
