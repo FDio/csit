@@ -1,5 +1,5 @@
-VPP Functional CentOS
-=====================
+VPP K8s Container Memif
+=======================
 
 .. note::
 
@@ -7,6 +7,6 @@ VPP Functional CentOS
     functional jobs`_, ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
-.. toctree::
+.. warning::
 
-    vpp_functional_results_centos
+    TODO: Add link to git directory with configuration files.
