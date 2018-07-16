@@ -1,7 +1,7 @@
 .. _throughput_speedup_multi_core:
 
-Throughput Speedup Multi-Core
-=============================
+Speedup Multi-Core
+==================
 
 Throughput Speedup Multi-Core graphs are generated based on results from
 multiple executions of the same CSIT performance tests across the three
@@ -16,6 +16,7 @@ threaded VPP configurations relative to 1-core configurations.
     files csit-vpp-perf-\*.zip `archived here <../../_static/archive/>`_.
 
 .. toctree::
+    :maxdepth: 1
 
     l2
     ip4
