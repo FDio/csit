@@ -23,6 +23,7 @@ TGint2-to-SUT2-to-SUT1-to-TGint1.
     files csit-vpp-perf-|srelease|-\*.zip `archived here <../../_static/archive/>`_.
 
 .. toctree::
+    :maxdepth: 1
 
     l2
     ip4

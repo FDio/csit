@@ -8,222 +8,159 @@ used for the graphs comes from Phy-to-Phy 64B performance tests with
 VM vhost-user, including NDR throughput (zero packet loss) and
 PDR throughput (<0.5% packet loss).
 
-NDR Throughput
---------------
+3n-hsw-x520
+~~~~~~~~~~~
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520, 10ge2p1x710 and 40ge2p1xl710 network interface cards.
+base-scale
+----------
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+ndr
+```
 
-.. raw:: html
+pdr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc.html"></iframe>
+features
+--------
 
-.. raw:: latex
+ndr
+```
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc}
-    \end{figure}
+pdr
+```
 
-*Figure 1a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+base-scale
+----------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
+pdr
+```
 
-.. raw:: latex
+features
+--------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc}
-    \end{figure}
+ndr
+```
 
-*Figure 1b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+3n-hsw-xl710
+~~~~~~~~~~~~
 
-NIC 10ge2p1x710
-~~~~~~~~~~~~~~~
+base-scale
+----------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
+pdr
+```
 
-.. raw:: latex
+features
+--------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc}
-            \label{fig:10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc}
-    \end{figure}
+ndr
+```
 
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+3n-skx-x710
+~~~~~~~~~~~
 
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
+base-scale
+----------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc.html"></iframe>
+pdr
+```
 
-.. raw:: latex
+features
+--------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc}
-    \end{figure}
+ndr
+```
 
-*Figure 3a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+3n-skx-xxv710
+~~~~~~~~~~~~~
 
-.. raw:: html
+base-scale
+----------
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc.html"></iframe>
+ndr
+```
 
-.. raw:: latex
+pdr
+```
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc}
-    \end{figure}
+features
+--------
 
-*Figure 3b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+ndr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+pdr
+```
 
-PDR Throughput
---------------
+2n-skx-x710
+~~~~~~~~~~~
 
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520, 10ge2p1x710 and 40ge2p1xl710 network interface cards.
+base-scale
+----------
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+ndr
+```
 
-.. raw:: html
+pdr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc.html"></iframe>
+features
+--------
 
-.. raw:: latex
+ndr
+```
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc}
-    \end{figure}
+pdr
+```
 
-*Figure 4a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+2n-skx-xxv710
+~~~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+base-scale
+----------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
+pdr
+```
 
-.. raw:: latex
+features
+--------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc}
-    \end{figure}
+ndr
+```
 
-*Figure 4b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
-NIC 10ge2p1x710
-~~~~~~~~~~~~~~~
 
-.. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc}
-            \label{fig:10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc}
-    \end{figure}
 
-*Figure 5. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
 
-NIC 40ge2p1xl710
-~~~~~~~~~~~~~~~~
 
-.. raw:: html
-
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc.html"></iframe>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc}
-    \end{figure}
-
-*Figure 6a. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-.. raw:: html
-
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc.html"></iframe>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc}
-            \label{fig:40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc}
-    \end{figure}
-
-*Figure 6b. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy VM vhost-user selected TCs.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
