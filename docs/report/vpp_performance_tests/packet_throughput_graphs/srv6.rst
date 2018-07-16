@@ -1,5 +1,5 @@
-SRv6
-====
+SRv6 Routing
+============
 
 Following sections include summary graphs of VPP Phy-to-Phy performance
 with SRv6, including NDR throughput (zero packet loss)
@@ -7,93 +7,102 @@ and PDR throughput (<0.5% packet loss). Performance is reported for VPP
 running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
-~~~~~~~~~~~~~~
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1807>`_.
 
-VPP NDR 78B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below.
+3n-hsw-x520
+~~~~~~~~~~~
+
+78b-1t1c-features
+-----------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-srv6-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: srv6-3n-hsw-x520-78b-1t1c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-1t1c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-1t1c-ethip6-srv6-ndrdisc}
-            \label{fig:78B-1t1c-ethip6-srv6-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-1t1c-features-ndr}
+            \label{fig:srv6-3n-hsw-x520-78b-1t1c-features-ndr}
     \end{figure}
-
-*Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy SRv6.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
-
-VPP NDR 78B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-srv6-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: srv6-3n-hsw-x520-78b-1t1c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-1t1c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-2t2c-ethip6-srv6-ndrdisc}
-            \label{fig:78B-2t2c-ethip6-srv6-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-1t1c-features-pdr}
+            \label{fig:srv6-3n-hsw-x520-78b-1t1c-features-pdr}
     \end{figure}
 
-*Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy SRv6.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
-
-PDR Throughput
-~~~~~~~~~~~~~~
-
-VPP PDR 78B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+78b-2t2c-features
+-----------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-srv6-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: srv6-3n-hsw-x520-78b-2t2c-features-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-2t2c-features-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-1t1c-ethip6-srv6-pdrdisc}
-            \label{fig:78B-1t1c-ethip6-srv6-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-2t2c-features-ndr}
+            \label{fig:srv6-3n-hsw-x520-78b-2t2c-features-ndr}
     \end{figure}
-
-*Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-Phy SRv6.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
-
-VPP PDR 78B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-srv6-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: srv6-3n-hsw-x520-78b-2t2c-features-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-2t2c-features-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{78B-2t2c-ethip6-srv6-pdrdisc}
-            \label{fig:78B-2t2c-ethip6-srv6-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-2t2c-features-pdr}
+            \label{fig:srv6-3n-hsw-x520-78b-2t2c-features-pdr}
     \end{figure}
-
-*Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-Phy IPv6
-Routed-Forwarding.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
