@@ -1,5 +1,5 @@
-VM vhost Connections
-====================
+KVM VM vHost
+============
 
 This section includes summary graphs of VPP Phy-to-VM(s)-to-Phy packet
 latency with with VM virtio and VPP vhost-user virtual interfaces
@@ -8,82 +8,314 @@ for VPP running in multiple configurations of VPP worker thread(s),
 a.k.a. VPP data plane thread(s), and their physical CPU core(s)
 placement.
 
-VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph below.
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1807>`_.
+
+3n-hsw-x520
+~~~~~~~~~~~
+
+64b-1t1c-base_and_scale-l2sw
+----------------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel1-ndrdisc-lat50.html"></iframe>
+    <center><b>
+
+:index:`Latency: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel1-ndrdisc-lat50}
-            \label{fig:64B-1t1c-vhost-sel1-ndrdisc-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50}
     \end{figure}
 
-*Figure 1a. VPP 1thread 1core - packet latency for Phy-to-VM-to-Phy VM
-vhost-user selected TCs (ipv4).*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+64b-2t2c-base_and_scale-l2sw
+----------------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel2-ndrdisc-lat50.html"></iframe>
+    <center><b>
+
+:index:`Latency: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel2-ndrdisc-lat50}
-            \label{fig:64B-1t1c-vhost-sel2-ndrdisc-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50}
     \end{figure}
 
-*Figure 1b. VPP 1thread 1core - packet latency for Phy-to-VM-to-Phy VM
-vhost-user selected TCs (l2).*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
-
-VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
+64b-1t1c-base_and_scale-ip4
+---------------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel1-ndrdisc-lat50.html"></iframe>
+    <center><b>
+
+:index:`Latency: vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel1-ndrdisc-lat50}
-            \label{fig:64B-2t2c-vhost-sel1-ndrdisc-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50}
     \end{figure}
 
-*Figure 2a. VPP 2threads 2cores - packet latency for Phy-to-VM-to-Phy VM
-vhost-user selected TCs (ipv4).*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+64b-2t2c-base_and_scale-ip4
+---------------------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel2-ndrdisc-lat50.html"></iframe>
+    <center><b>
+
+:index:`Latency: vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel2-ndrdisc-lat50}
-            \label{fig:64B-2t2c-vhost-sel2-ndrdisc-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50}
     \end{figure}
 
-*Figure 2b. VPP 2threads 2cores - packet latency for Phy-to-VM-to-Phy VM
-vhost-user selected TCs (l2).*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+64b-1t1c-base_and_scale-l2sw
+----------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50}
+    \end{figure}
+
+64b-2t2c-base_and_scale-l2sw
+----------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50}
+    \end{figure}
+
+64b-1t1c-base_and_scale-ip4
+---------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50}
+    \end{figure}
+
+64b-2t2c-base_and_scale-ip4
+---------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50}
+    \end{figure}
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+64b-1t1c-base_and_scale-l2sw
+----------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50}
+    \end{figure}
+
+64b-2t2c-base_and_scale-l2sw
+----------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50}
+    \end{figure}
+
+64b-1t1c-base_and_scale-ip4
+---------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50}
+    \end{figure}
+
+64b-2t2c-base_and_scale-ip4
+---------------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Latency: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50}
+            \label{fig:vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50}
+    \end{figure}
