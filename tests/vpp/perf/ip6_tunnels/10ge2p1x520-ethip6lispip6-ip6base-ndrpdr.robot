@@ -108,7 +108,7 @@
 | | framesize=${1518} | phy_cores=${1}
 
 | tc05-1518B-2c-ethip6lispip6-ip6base-ndrpdr
-| | [Tags] | 1518B | 2C
+| | [Tags] | 1518B | 2C | THIS
 | | framesize=${1518} | phy_cores=${2}
 
 | tc06-1518B-4c-ethip6lispip6-ip6base-ndrpdr

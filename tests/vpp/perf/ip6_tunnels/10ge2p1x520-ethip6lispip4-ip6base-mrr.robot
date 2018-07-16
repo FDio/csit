@@ -86,7 +86,7 @@
 
 *** Test Cases ***
 | tc01-78B-1c-ethip6lispip4-ip6base-mrr
-| | [Tags] | 78B | 1C
+| | [Tags] | 78B | 1C | THIS
 | | framesize=${78} | phy_cores=${1}
 
 | tc02-78B-2c-ethip6lispip4-ip6base-mrr
