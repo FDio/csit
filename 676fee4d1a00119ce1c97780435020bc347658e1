@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "89a062cc_4b95956b",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-16T10:42:31Z",
+      "side": 1,
+      "message": "I mean, I do not understand why we are putting pipe at the end of example string, when our code does not have pipes at line ends.\n\nBut I agree it is better to have it consistent, and most example strings do contain the pipe.",
+      "parentUuid": "124bdcc6_6b1045e7",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 54
+      },
+      "revId": "676fee4d1a00119ce1c97780435020bc347658e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83485a72_8e5eb7c8",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 29
