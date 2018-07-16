@@ -1,5 +1,5 @@
-Container memif Connections
-===========================
+LXC/DRC Container Memif
+=======================
 
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically
@@ -9,58 +9,162 @@ Performance is reported for VPP
 running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
---------------
+3n-hsw-x520
+~~~~~~~~~~~
 
-VPP NDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card.
+base-scale
+----------
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+ndr
+```
 
-.. raw:: html
+pdr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-container-memif-tsa-ndrdisc.html"></iframe>
+features
+--------
 
-.. raw:: latex
+ndr
+```
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-container-memif-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-64B-container-memif-tsa-ndrdisc}
-    \end{figure}
+pdr
+```
 
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy L2 Ethernet Switching (base).*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/container_memif?h=rls1804>`_.
+base-scale
+----------
 
-PDR Throughput
---------------
+ndr
+```
 
-VPP PDR 64B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card.
+pdr
+```
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
+features
+--------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-64B-container-memif-tsa-pdrdisc.html"></iframe>
+pdr
+```
 
-.. raw:: latex
+3n-hsw-xl710
+~~~~~~~~~~~~
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-64B-container-memif-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-64B-container-memif-tsa-pdrdisc}
-    \end{figure}
+base-scale
+----------
 
-*Figure 2. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy L2 Ethernet Switching (base).*
+ndr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/container_memif?h=rls1804>`_.
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+2n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

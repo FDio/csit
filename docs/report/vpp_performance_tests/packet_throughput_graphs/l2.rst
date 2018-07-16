@@ -7,174 +7,750 @@ and PDR throughput (<0.5% packet loss). Performance is reported for VPP
 running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
-~~~~~~~~~~~~~~
+CSIT source code for the test cases used for above plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1807>`_.
 
-VPP NDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below.
+3n-hsw-x520
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+1t1c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel1-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-base-scale-1t1c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-base-scale-1t1c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-sel1-ndrdisc}
-            \label{fig:64B-1t1c-l2-sel1-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-base-scale-1t1c-ndr}
+            \label{fig:3n-hsw-x520-l2sw-64b-base-scale-1t1c-ndr}
     \end{figure}
 
-*Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
-
+2t2c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel2-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-base-scale-2t2c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-base-scale-2t2c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-sel2-ndrdisc}
-            \label{fig:64B-1t1c-l2-sel2-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-base-scale-2t2c-ndr}
+            \label{fig:3n-hsw-x520-l2sw-64b-base-scale-2t2c-ndr}
     \end{figure}
 
-*Figure 2. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (feature).*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
-
-VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below.
+1t1c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel1-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-base-scale-1t1c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-base-scale-1t1c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-sel1-ndrdisc}
-            \label{fig:64B-2t2c-l2-sel1-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-base-scale-1t1c-pdr}
+            \label{fig:3n-hsw-x520-l2sw-64b-base-scale-1t1c-pdr}
     \end{figure}
 
-*Figure 3. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
+2t2c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel2-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-base-scale-2t2c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-base-scale-2t2c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-sel2-ndrdisc}
-            \label{fig:64B-2t2c-l2-sel2-ndrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-base-scale-2t2c-pdr}
+            \label{fig:3n-hsw-x520-l2sw-64b-base-scale-2t2c-pdr}
     \end{figure}
 
-*Figure 4. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (feature).*
+features
+--------
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
+ndr
+```
 
-
-PDR Throughput
-~~~~~~~~~~~~~~
-
-VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+1t1c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel1-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-features-1t1c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-features-1t1c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-sel1-pdrdisc}
-            \label{fig:64B-1t1c-l2-sel1-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-features-1t1c-ndr}
+            \label{fig:3n-hsw-x520-l2sw-64b-features-1t1c-ndr}
     \end{figure}
 
-*Figure 5. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
+2t2c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel2-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-features-2t2c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-features-2t2c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-sel2-pdrdisc}
-            \label{fig:64B-1t1c-l2-sel2-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-features-2t2c-ndr}
+            \label{fig:3n-hsw-x520-l2sw-64b-features-2t2c-ndr}
     \end{figure}
 
-*Figure 6. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (feature).*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
-
-VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+1t1c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel1-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-features-1t1c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-features-1t1c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-sel1-pdrdisc}
-            \label{fig:64B-2t2c-l2-sel1-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-features-1t1c-pdr}
+            \label{fig:3n-hsw-x520-l2sw-64b-features-1t1c-pdr}
     \end{figure}
 
-*Figure 7. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (base).*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
+2t2c
+....
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel2-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x520-l2sw-64b-features-2t2c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-l2sw-64b-features-2t2c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-sel2-pdrdisc}
-            \label{fig:64B-2t2c-l2-sel2-pdrdisc}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-l2sw-64b-features-2t2c-pdr}
+            \label{fig:3n-hsw-x520-l2sw-64b-features-2t2c-pdr}
     \end{figure}
 
-*Figure 8. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching (feature).*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1804>`_.
+base-scale
+----------
+
+ndr
+```
+
+1t1c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-base-scale-1t1c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-base-scale-1t1c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-base-scale-1t1c-ndr}
+            \label{fig:3n-hsw-x710-l2sw-64b-base-scale-1t1c-ndr}
+    \end{figure}
+
+2t2c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-base-scale-2t2c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-base-scale-2t2c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-base-scale-2t2c-ndr}
+            \label{fig:3n-hsw-x710-l2sw-64b-base-scale-2t2c-ndr}
+    \end{figure}
+
+pdr
+```
+
+1t1c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-base-scale-1t1c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-base-scale-1t1c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-base-scale-1t1c-pdr}
+            \label{fig:3n-hsw-x710-l2sw-64b-base-scale-1t1c-pdr}
+    \end{figure}
+
+2t2c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-base-scale-2t2c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-base-scale-2t2c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-base-scale-2t2c-pdr}
+            \label{fig:3n-hsw-x710-l2sw-64b-base-scale-2t2c-pdr}
+    \end{figure}
+
+features
+--------
+
+ndr
+```
+
+1t1c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-features-1t1c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-features-1t1c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-features-1t1c-ndr}
+            \label{fig:3n-hsw-x710-l2sw-64b-features-1t1c-ndr}
+    \end{figure}
+
+2t2c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-features-2t2c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-features-2t2c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-features-2t2c-ndr}
+            \label{fig:3n-hsw-x710-l2sw-64b-features-2t2c-ndr}
+    \end{figure}
+
+pdr
+```
+
+1t1c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-features-1t1c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-features-1t1c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-features-1t1c-pdr}
+            \label{fig:3n-hsw-x710-l2sw-64b-features-1t1c-pdr}
+    \end{figure}
+
+2t2c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-x710-l2sw-64b-features-2t2c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x710-l2sw-64b-features-2t2c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x710-l2sw-64b-features-2t2c-pdr}
+            \label{fig:3n-hsw-x710-l2sw-64b-features-2t2c-pdr}
+    \end{figure}
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+1t1c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-xl710-l2sw-64b-base-scale-1t1c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-l2sw-64b-base-scale-1t1c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-l2sw-64b-base-scale-1t1c-ndr}
+            \label{fig:3n-hsw-xl710-l2sw-64b-base-scale-1t1c-ndr}
+    \end{figure}
+
+2t2c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-xl710-l2sw-64b-base-scale-2t2c-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-l2sw-64b-base-scale-2t2c-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-l2sw-64b-base-scale-2t2c-ndr}
+            \label{fig:3n-hsw-xl710-l2sw-64b-base-scale-2t2c-ndr}
+    \end{figure}
+
+pdr
+```
+
+1t1c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-xl710-l2sw-64b-base-scale-1t1c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-l2sw-64b-base-scale-1t1c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-l2sw-64b-base-scale-1t1c-pdr}
+            \label{fig:3n-hsw-xl710-l2sw-64b-base-scale-1t1c-pdr}
+    \end{figure}
+
+2t2c
+....
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: 3n-hsw-xl710-l2sw-64b-base-scale-2t2c-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-l2sw-64b-base-scale-2t2c-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-l2sw-64b-base-scale-2t2c-pdr}
+            \label{fig:3n-hsw-xl710-l2sw-64b-base-scale-2t2c-pdr}
+    \end{figure}
+
+3n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+2n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+
+
+
+
+
+
+
+
+
+
