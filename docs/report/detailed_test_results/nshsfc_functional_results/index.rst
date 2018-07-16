@@ -1,5 +1,5 @@
-NSH SFC Functional Results
-==========================
+NSH SFC Functional
+==================
 
 .. note::
 
