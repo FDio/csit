@@ -8,172 +8,324 @@ packet loss). Performance is reported for VPP running in multiple
 configurations of VPP worker thread(s), a.k.a. VPP data plane thread(s),
 and their physical CPU core(s) placement.
 
-NDR Throughput
-~~~~~~~~~~~~~~
 
-VPP NDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below.
+3n-hsw-x520
+~~~~~~~~~~~
 
-.. raw:: html
+base-scale
+----------
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel1-ndrdisc.html"></iframe>
+ndr
+```
 
-.. raw:: latex
+1t1c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel1-ndrdisc}
-            \label{fig:64B-1t1c-vhost-sel1-ndrdisc}
-    \end{figure}
+2t2c
+....
 
-*Figure 1a. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM vhost-user
-selected TCs.*
+pdr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+1t1c
+....
 
-.. raw:: html
+2t2c
+....
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel2-ndrdisc.html"></iframe>
+features
+--------
 
-.. raw:: latex
+ndr
+```
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel2-ndrdisc}
-            \label{fig:64B-1t1c-vhost-sel2-ndrdisc}
-    \end{figure}
+1t1c
+....
 
-*Figure 1b. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+2t2c
+....
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+pdr
+```
 
-VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below.
+1t1c
+....
 
-.. raw:: html
+2t2c
+....
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel1-ndrdisc.html"></iframe>
+3n-hsw-x710
+~~~~~~~~~~~
 
-.. raw:: latex
+base-scale
+----------
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel1-ndrdisc}
-            \label{fig:64B-2t2c-vhost-sel1-ndrdisc}
-    \end{figure}
+ndr
+```
 
-*Figure 2a. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+1t1c
+....
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+2t2c
+....
 
-.. raw:: html
+pdr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel2-ndrdisc.html"></iframe>
+1t1c
+....
 
-.. raw:: latex
+2t2c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel2-ndrdisc}
-            \label{fig:64B-2t2c-vhost-sel2-ndrdisc}
-    \end{figure}
+features
+--------
 
-*Figure 2b. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+ndr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+1t1c
+....
 
-PDR Throughput
-~~~~~~~~~~~~~~
+2t2c
+....
 
-VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+pdr
+```
 
-.. raw:: html
+1t1c
+....
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel1-pdrdisc.html"></iframe>
+2t2c
+....
 
-.. raw:: latex
+3n-hsw-xl710
+~~~~~~~~~~~~
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel1-pdrdisc}
-            \label{fig:64B-1t1c-vhost-sel1-pdrdisc}
-    \end{figure}
+base-scale
+----------
 
-*Figure 3a. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+ndr
+```
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+1t1c
+....
 
-.. raw:: html
+2t2c
+....
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-sel2-pdrdisc.html"></iframe>
+pdr
+```
 
-.. raw:: latex
+1t1c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-vhost-sel2-pdrdisc}
-            \label{fig:64B-1t1c-vhost-sel2-pdrdisc}
-    \end{figure}
+2t2c
+....
 
-*Figure 3b. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+features
+--------
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+ndr
+```
 
-VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+1t1c
+....
 
-.. raw:: html
+2t2c
+....
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel1-pdrdisc.html"></iframe>
+pdr
+```
 
-.. raw:: latex
+1t1c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel1-pdrdisc}
-            \label{fig:64B-2t2c-vhost-sel1-pdrdisc}
-    \end{figure}
+2t2c
+....
 
-*Figure 4a. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+3n-skx-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+base-scale
+----------
 
-.. raw:: html
+ndr
+```
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-sel2-pdrdisc.html"></iframe>
+2t1c
+....
 
-.. raw:: latex
+4t2c
+....
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-vhost-sel2-pdrdisc}
-            \label{fig:64B-2t2c-vhost-sel2-pdrdisc}
-    \end{figure}
+pdr
+```
 
-*Figure 4b. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user selected TCs.*
+2t1c
+....
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls1804>`_.
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+2n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+features
+--------
+
+ndr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+pdr
+```
+
+2t1c
+....
+
+4t2c
+....
+
+
+
+
+
+
