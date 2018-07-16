@@ -97,26 +97,6 @@
       - 46  # wrk
       - 47  # wrk
       - 48  # wrk
-# TODO: Add the data sources
-#    vpp-meltdown-impact:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#      csit-vpp-perf-1710-all:
-#      - 11l
-#      - 12
-#      - 13
-# TODO: Add the data sources
-#    vpp-spectre-impact:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
     vpp-performance-changes:
       csit-vpp-perf-1710-all:
       - 11
@@ -204,54 +184,6 @@
       - 12  # sel
       - 13  # sel
       - 14  # sel
-#    performance-improvements:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#      - 14
-#      - 15
-#      - 16
-#      - 17
-#      - 18
-#      - 19
-#      - 21
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#      - 14
-#      - 15
-#      - 16
-#      - 17
-#      - 18
-#      - 19
-#      - 20
-#      csit-vpp-perf-1801-all:
-#      - 124
-#      - 127
-#      - 128
-#      csit-ligato-perf-1710-all:
-#      - 5
-#      - 7
-#      - 8
-#      - 9
-#      - 10
-#      - 11
-#      - 12
-#      - 13
-#      - 16
-#      - 17
-#      csit-ligato-perf-1801-all:
-#      - 16  # sel
-#      - 17  # sel
-#      - 18  # sel
-#      - 19  # sel
-#      - 20  # sel
-#      - 21  # sel
-#      - 22  # sel
-#      - 23  # sel
-#      - 24  # sel
     vpp-perf-results:
       csit-vpp-perf-1804-all:
       - 19  # full
@@ -279,7 +211,7 @@
     nsh-func-results:
       csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
       - 7
-    plot-vpp-throughput-latency:
+    plot-vpp-throughput-latency-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -539,17 +471,6 @@
     download-path: "{job}/{build}/robot/report/*zip*/{filename}"
     extract: "robot-plugin/output.xml"
   builds:
-#    csit-vpp-perf-1707-all:
-#    - 9
-#    - 10
-#    - 13
-#    - 14
-#    - 15
-#    - 16
-#    - 17
-#    - 18
-#    - 19
-#    - 21
     csit-vpp-perf-1710-all:
     - 11
     - 12
@@ -686,80 +607,12 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
-
-#-
-#  type: "table"
-#  title: "Performance Impact of Meltdown Patches"
-#  algorithm: "table_performance_comparison"
-#  output-file-ext: ".csv"
-## TODO: specify dir
-#  output-file: "{DIR[STATIC,VPP]}/meltdown-impact"
-#  reference:
-#    title: "No Meltdown"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#  compare:
-#    title: "Meltdown Patches Applied"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#  data:
-#    "vpp-meltdown-impact"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-#  # to present all tests.
-#  nr-of-tests-shown: 20
-#
-#-
-#  type: "table"
-#  title: "Performance Impact of Spectre Patches"
-#  algorithm: "table_performance_comparison"
-#  output-file-ext: ".csv"
-## TODO: specify dir
-#  output-file: "{DIR[STATIC,VPP]}/meltdown-spectre-impact"
-#  reference:
-#    title: "No Spectre"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1707-all:
-#      - 9
-#      - 10
-#      - 13
-#  compare:
-#    title: "Spectre Patches Applied"
-## TODO: specify data sources
-#    data:
-#      csit-vpp-perf-1710-all:
-#      - 11
-#      - 12
-#      - 13
-#  data:
-#    "vpp-spectre-impact"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "throughput"
-#  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-#  # to present all tests.
-#  nr-of-tests-shown: 20
 
 -
   type: "table"
@@ -867,48 +720,6 @@
   # to present all tests.
   nr-of-tests-shown: 20
   outlier-const: 1.5
-
-#-
-#  type: "table"
-#  title: "Performance improvements"
-#  algorithm: "table_performance_improvements"
-#  template: "{DIR[DTR,PERF,VPP,IMPRV]}/tmpl_performance_improvements.csv"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,VPP,IMPRV]}/performance_improvements"
-#  columns:
-#  -
-#    title: "Test Name"
-#    data: "template 1"
-#  -
-#    title: "16.09 mean [Mpps]"
-#    data: "template 2"
-#  -
-#    title: "17.01 mean [Mpps]"
-#    data: "template 3"
-#  -
-#    title: "17.04 mean [Mpps]"
-#    data: "template 4"
-#  -
-#    title: "17.07 mean [Mpps]"
-#    data: "data csit-vpp-perf-1707-all mean"
-#  -
-#    title: "17.10 mean [Mpps]"
-#    data: "data csit-vpp-perf-1710-all csit-ligato-perf-1710-all mean"
-#  -
-#    title: "18.01 mean [Mpps]"
-#    data: "data csit-vpp-perf-1801-all csit-ligato-perf-1801-all mean"
-#  -
-#    title: "18.01 stdev [Mpps]"
-#    data: "data csit-vpp-perf-1801-all csit-ligato-perf-1801-all stdev"
-#  -
-#    title: "17.10 to 18.01 change [%]"
-#    data: "operation relative_change 5 6"
-#  rows: "generated"
-#  data:
-#    "performance-improvements"
-#  filter: "template"
-#  parameters:
-#  - "throughput"
 
 -
   type: "table"
@@ -1481,6 +1292,7 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
+################################################################################
 # Plots VPP HTTP Server Performance
 -
   type: "plot"
@@ -1526,639 +1338,24 @@
     layout:
       "plot-rps"
 
-# Plot Throughput Speedup Analysis
-
-# L2 - 10ge2p1x520 - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-l2-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'NDRDISC' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'LXC' and not 'DOCKER'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# L2 - 40ge2p1xl710 - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-l2-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and 'BASE' and 'NDRDISC' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'LXC' and not 'DOCKER'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# L2 - 10ge2p1x520 - PDR
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-l2-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'LXC' and not 'DOCKER'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IPv4 - 10ge2p1x520 - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-ethip4-ip4(base|scale)*ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ip4-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'IP4FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST' and not 'FEATURE' and not 'DOT1Q' and not 'IPSEC'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-ethip4-ip4(base|scale)*ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IPv4 - 40ge2p1xl710 - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-ethip4-ip4(base|scale)*ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ip4-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST' and not 'FEATURE' and not 'DOT1Q' and not 'IPSEC'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-ethip4-ip4(base|scale)*ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IPv4 - 10ge2p1x520 - PDR
--
-  type: "plot"
-  title: "TSA: 64B-*-ethip4-ip4(base|scale)*pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ip4-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'IP4FWD' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and not 'VHOST' and not 'FEATURE' and not 'DOT1Q' and not 'IPSEC'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-ethip4-ip4(base|scale)*pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IPv6 - 10ge2p1x520 - NDR
--
-  type: "plot"
-  title: "TSA: 78B-*-ethip6-ip6(base|scale)*ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ip6-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and 'IP6FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "78B-*-ethip6-ip6(base|scale)*ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IPv6 - 40ge2p1xl710 - NDR
--
-  type: "plot"
-  title: "TSA: 78B-*-ethip6-ip6(base|scale)*ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-78B-ip6-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '78B' and 'IP6FWD' and ('BASE' or 'SCALE') and 'NDRDISC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "78B-*-ethip6-ip6(base|scale)*ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IPv6 - 10ge2p1x520 - PDR
--
-  type: "plot"
-  title: "TSA: 78B-*-ethip6-ip6(base|scale)*pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ip6-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and 'IP6FWD' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "78B-*-ethip6-ip6(base|scale)*pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# SRv6 - 10ge2p1x520 - NDR
--
-  type: "plot"
-  title: "TSA: 78B-*-ethip6-ip6(base|scale)*ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-srv6-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and 'FEATURE' and 'NDRDISC' and 'IP6FWD' and 'SRv6'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "78B-*-ethip6-ip6(base|scale)*ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# SRv6 - 10ge2p1x520 - PDR
--
-  type: "plot"
-  title: "TSA: 78B-*-ethip6-ip6(base|scale)*pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-srv6-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and 'IP6FWD' and 'SRv6'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "78B-*-ethip6-ip6(base|scale)*pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IP4_overlay - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ethip4-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IP4_overlay - PDR
--
-  type: "plot"
-  title: "TSA: 64B-*-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-ethip4-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IP6_overlay - NDR
--
-  type: "plot"
-  title: "TSA: 78B-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ethip6-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and 'ENCAP' and 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "78B-*-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# IP6_overlay - PDR
--
-  type: "plot"
-  title: "TSA: 78B-*-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-78B-ethip6-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "78B-*-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# VM VHOST - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel1-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
+################################################################################
+# Packet Throughput - VPP L2
 
 -
   type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel1-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel2-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel2-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# VM VHOST - PDR
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel1-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel1-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-vhost-sel2-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-vhost-sel2-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-.*vhost.*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-vhost-sel2-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and 'PDRDISC' and not 'NDRDISC' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# CRYPTO - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-.*ipsec.*-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ipsechw-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# CRYPTO - PDR
--
-  type: "plot"
-  title: "TSA: 64B-*-.*ipsec.*-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/40ge2p1xl710-64B-ipsechw-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-XL710' and '64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-.*ipsec.*-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# Container memif - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-memif-tsa-ndrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# Container memif - PDR
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-memif-tsa-pdrdisc"
-  data:
-    "plot-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# Container orchestrated - NDR
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-orchestrated-tsa-ndrdisc"
-  data:
-    "plot-ligato-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-container-orchestrated-tsa-ndrdisc"
-  data:
-    "plot-ligato-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X710' and '64B' and ('BASE' or 'SCALE') and 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# Container orchestrated - PDR
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x520-64B-container-orchestrated-tsa-pdrdisc"
-  data:
-    "plot-ligato-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X520-DA2' and '64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "TSA: 64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/10ge2p1x710-64B-container-orchestrated-tsa-pdrdisc"
-  data:
-    "plot-ligato-throughput-speedup-analysis"
-  filter: "'NIC_Intel-X710' and '64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: "64B-*-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput-speedup-analysis"
-
-# Plot packets per second
-
-# VPP L2 sel1
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-  # each tag is enclosed with ' (apostrophe).
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2167,19 +1364,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'PDRDISC' and not 'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2188,19 +1390,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2209,19 +1416,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'PDRDISC' and not 'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2230,20 +1442,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
-# VPP L2 sel2
 -
   type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2252,19 +1469,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'PDRDISC' and not 'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2273,19 +1496,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2294,19 +1523,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'FEATURE' and ('ACL10' or 'ACL50') and '10k_FLOWS' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'PDRDISC' and not 'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2315,20 +1550,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
-# VPP IP4
 -
   type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2337,19 +1576,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'PDRDISC' and not 'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2358,19 +1602,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2379,19 +1628,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'PDRDISC' and not 'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2400,20 +1654,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
-# VPP IP6
 -
   type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-features-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2422,19 +1681,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-features-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'PDRDISC' and not 'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2443,19 +1708,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-features-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2464,19 +1735,25 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-features-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'FEATURE' and
+           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           'PDRDISC' and not 'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2485,20 +1762,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
-# VPP SRv6
 -
   type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6*srv6*ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2507,19 +1788,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-1t1c-ethip6*srv6*ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6*srv6*ndrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'PDRDISC' and not 'NDRDISC' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2528,19 +1814,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-2t2c-ethip6*srv6*ndrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6*srv6*pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2549,19 +1840,24 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-1t1c-ethip6*srv6*pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
 -
   type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6*srv6*pdrdisc"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'FEATURE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'PDRDISC' and not 'NDRDISC' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           not 'VHOST' and
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -2570,1321 +1866,9 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "78B-2t2c-ethip6*srv6*pdrdisc"
-    layout:
-      "plot-throughput"
+    title: ""  # No title
+    layout: "plot-throughput"
 
-# VPP IP4_overlay
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
 
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
 
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
 
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP IP6_overlay
--
-  type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP VM VHOST
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP VM VHOST SELECTION
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*vhost.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*vhost.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# VPP CRYPTO
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-.*ipsec.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-.*ipsec.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-.*ipsec.*-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-.*ipsec.*-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# DPDK
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "DPDK Performance 64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-pdrdisc"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# Plot latency
-
-# VPP L2 sel1
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP L2 sel2
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('FEATURE' and 'ACL50' and '10k_FLOWS') and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP4
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP4FWD' and not 'ACL1' and not 'ACL10' and not '100_FLOWS' and not '100k_FLOWS' and not 'IPSEC' and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP6
--
-  type: "plot"
-  title: "VPP Latency 78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and ('BASE' or 'SCALE' or 'FEATURE') and 'NDRDISC' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP SRv6
--
-  type: "plot"
-  title: "VPP Latency 78B-1t1c-ethip6*srv6*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-srv6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '1T1C' and 'IP6FWD' and 'SRv6'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-1t1c-ethip6*srv6*ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 78B-2t2c-ethip6*srv6*ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-srv6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'FEATURE' and 'NDRDISC' and '2T2C' and 'IP6FWD' and 'SRv6'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-2t2c-ethip6*srv6*ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP4_overlay
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ethip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ethip4-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP IP6_overlay
--
-  type: "plot"
-  title: "VPP Latency 78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-1t1c-ethip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/78B-2t2c-ethip6-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'78B' and 'ENCAP' and 'NDRDISC' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP VM VHOST
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel1-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP VM VHOST selection
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-vhost-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-.*vhost.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-vhost-sel2-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'NDRDISC' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'DOT1Q' and not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-.*vhost.*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# VPP CRYPTO
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-ipsechw-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-.*ipsec.*-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-ipsechw-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and not 'VHOST' and 'IP4FWD' and 'NDRDISC' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-.*ipsec.*-ndrdisc"
-    layout:
-      "plot-latency"
-
-# DPDK
--
-  type: "plot"
-  title: "DPDK Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-l2-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "DPDK Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-l2-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "DPDK Latency 64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-1t1c-ipv4-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "DPDK Latency 64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc-lat50"
-  data:
-    "plot-dpdk-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc"
-    layout:
-      "plot-latency"
-
-# Ligato - Throughput
-
-# Container memif
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-ndrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-pdrdisc"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# Container orchestrated
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc"
-  data:
-    "plot-ligato-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc"
-  data:
-    "plot-ligato-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-pdrdisc"
-  data:
-    "plot-ligato-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Performance 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-pdrdisc"
-  data:
-    "plot-ligato-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'PDRDISC' and not 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-pdrdisc"
-    layout:
-      "plot-throughput"
-
-# Ligato - Latency
-
-# Container memif
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-memif-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-memif-ndrdisc-lat50"
-  data:
-    "plot-vpp-throughput-latency"
-  filter: "'64B' and 'BASE' and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-latency"
-
-# Container orchestrated
--
-  type: "plot"
-  title: "VPP Latency 64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-1t1c-container-orchestrated-ndrdisc-lat50"
-  data:
-    "plot-ligato-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency 64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/64B-2t2c-container-orchestrated-ndrdisc-lat50"
-  data:
-    "plot-ligato-throughput-latency"
-  filter: "'64B' and ('BASE' or 'SCALE') and 'NDRDISC' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-memif-ndrdisc"
-    layout:
-      "plot-latency"

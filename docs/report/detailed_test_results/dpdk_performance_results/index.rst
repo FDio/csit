@@ -1,5 +1,5 @@
-DPDK Performance Results
-===========================
+DPDK Performance
+================
 
 .. note::
 
