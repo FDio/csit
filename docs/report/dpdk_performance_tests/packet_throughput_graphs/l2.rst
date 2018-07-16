@@ -1,5 +1,5 @@
-L2 Ethernet Interface Loop
-==========================
+Testpmd
+=======
 
 Following sections include summary graphs of DPDK Testpmd Phy-to-Phy performance
 with L2 Ethernet Interface Loop, including NDR throughput (zero packet loss)
@@ -7,144 +7,684 @@ and PDR throughput (<0.5% packet loss). Performance is reported for Testpmd
 running in multiple configurations of Testpmd pmd thread(s), a.k.a. Testpmd
 data plane thread(s), and their physical CPU core(s) placement.
 
-NDR Throughput
-~~~~~~~~~~~~~~
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/dpdk/perf?h=rls1807>`_.
 
-Testpmd NDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below.
+3n-hsw-x520
+~~~~~~~~~~~
+
+64b-1t1c-base
+-------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-l2-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-x520-64b-1t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x520-64b-1t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-ndrdisc}
-            \label{fig:64B-1t1c-l2-ndrdisc-dpdk}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x520-64b-1t1c-base-ndr}
+            \label{fig:testpmd-3n-hsw-x520-64b-1t1c-base-ndr}
     \end{figure}
-
-*Figure 1. Testpmd 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
-Looping.*
-
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-1t1c-eth-l2xcbase-testpmd-ndrdisc' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-1t1c-eth-l2xcbase-testpmd-ndrdisc' *
-
-Testpmd NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-l2-ndrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-x520-64b-1t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x520-64b-1t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-ndrdisc}
-            \label{fig:64B-2t2c-l2-ndrdisc-dpdk}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x520-64b-1t1c-base-pdr}
+            \label{fig:testpmd-3n-hsw-x520-64b-1t1c-base-pdr}
     \end{figure}
 
-*Figure 2. Testpmd 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
-Looping.*
-
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-2t2c-eth-l2xcbase-testpmd-ndrdisc' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-2t2c-eth-l2xcbase-testpmd-ndrdisc' *
-
-PDR Throughput
-~~~~~~~~~~~~~~
-
-Testpmd PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
+64b-2t2c-base
+-------------
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-l2-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-x520-64b-2t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x520-64b-2t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-l2-pdrdisc}
-            \label{fig:64B-1t1c-l2-pdrdisc-dpdk}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x520-64b-2t2c-base-ndr}
+            \label{fig:testpmd-3n-hsw-x520-64b-2t2c-base-ndr}
     \end{figure}
-
-*Figure 3. Testpmd 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Looping.*
-
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-1t1c-eth-l2xcbase-testpmd-pdrdisc' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-1t1c-eth-l2xcbase-testpmd-pdrdisc' *
-
-Testpmd PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
-in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-l2-pdrdisc.html"></iframe>
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-x520-64b-2t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x520-64b-2t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-l2-pdrdisc}
-            \label{fig:64B-2t2c-l2-pdrdisc-dpdk}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x520-64b-2t2c-base-pdr}
+            \label{fig:testpmd-3n-hsw-x520-64b-2t2c-base-pdr}
     \end{figure}
 
-*Figure 4. Testpmd 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Looping.*
+3n-hsw-x710
+~~~~~~~~~~~
 
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
+64b-1t1c-base
+-------------
 
-.. only:: html
+.. raw:: html
 
-   .. program-output:: cd ../../../../../ && set +x && cd tests/dpdk/perf && grep -P '64B-2t2c-eth-l2xcbase-testpmd-pdrdisc' *
-      :shell:
+    <center><b>
 
-.. only:: latex
+:index:`Throughput: testpmd-3n-hsw-x710-64b-1t1c-base-ndr`
 
-   .. code-block:: bash
+.. raw:: html
 
-      $ cd tests/dpdk/perf
-      $ grep -P '64B-2t2c-eth-l2xcbase-testpmd-pdrdisc' *
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x710-64b-1t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x710-64b-1t1c-base-ndr}
+            \label{fig:testpmd-3n-hsw-x710-64b-1t1c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-x710-64b-1t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x710-64b-1t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x710-64b-1t1c-base-pdr}
+            \label{fig:testpmd-3n-hsw-x710-64b-1t1c-base-pdr}
+    \end{figure}
+
+64b-2t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-x710-64b-2t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x710-64b-2t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x710-64b-2t2c-base-ndr}
+            \label{fig:testpmd-3n-hsw-x710-64b-2t2c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-x710-64b-2t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-x710-64b-2t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-x710-64b-2t2c-base-pdr}
+            \label{fig:testpmd-3n-hsw-x710-64b-2t2c-base-pdr}
+    \end{figure}
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+64b-1t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-xl710-64b-1t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-xl710-64b-1t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-xl710-64b-1t1c-base-ndr}
+            \label{fig:testpmd-3n-hsw-xl710-64b-1t1c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-xl710-64b-1t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-xl710-64b-1t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-xl710-64b-1t1c-base-pdr}
+            \label{fig:testpmd-3n-hsw-xl710-64b-1t1c-base-pdr}
+    \end{figure}
+
+64b-2t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-xl710-64b-2t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-xl710-64b-2t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-xl710-64b-2t2c-base-ndr}
+            \label{fig:testpmd-3n-hsw-xl710-64b-2t2c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-hsw-xl710-64b-2t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-hsw-xl710-64b-2t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-hsw-xl710-64b-2t2c-base-pdr}
+            \label{fig:testpmd-3n-hsw-xl710-64b-2t2c-base-pdr}
+    \end{figure}
+
+3n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-x710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-x710-64b-2t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-x710-64b-2t1c-base-ndr}
+            \label{fig:testpmd-3n-skx-x710-64b-2t1c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-x710-64b-2t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-x710-64b-2t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-x710-64b-2t1c-base-pdr}
+            \label{fig:testpmd-3n-skx-x710-64b-2t1c-base-pdr}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-x710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-x710-64b-4t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-x710-64b-4t2c-base-ndr}
+            \label{fig:testpmd-3n-skx-x710-64b-4t2c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-x710-64b-4t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-x710-64b-4t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-x710-64b-4t2c-base-pdr}
+            \label{fig:testpmd-3n-skx-x710-64b-4t2c-base-pdr}
+    \end{figure}
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-xxv710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-xxv710-64b-2t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-xxv710-64b-2t1c-base-ndr}
+            \label{fig:testpmd-3n-skx-xxv710-64b-2t1c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-xxv710-64b-2t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-xxv710-64b-2t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-xxv710-64b-2t1c-base-pdr}
+            \label{fig:testpmd-3n-skx-xxv710-64b-2t1c-base-pdr}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-xxv710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-xxv710-64b-4t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-xxv710-64b-4t2c-base-ndr}
+            \label{fig:testpmd-3n-skx-xxv710-64b-4t2c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-3n-skx-xxv710-64b-4t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-3n-skx-xxv710-64b-4t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-3n-skx-xxv710-64b-4t2c-base-pdr}
+            \label{fig:testpmd-3n-skx-xxv710-64b-4t2c-base-pdr}
+    \end{figure}
+
+2n-skx-x710
+~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-x710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-x710-64b-2t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-x710-64b-2t1c-base-ndr}
+            \label{fig:testpmd-2n-skx-x710-64b-2t1c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-x710-64b-2t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-x710-64b-2t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-x710-64b-2t1c-base-pdr}
+            \label{fig:testpmd-2n-skx-x710-64b-2t1c-base-pdr}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-x710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-x710-64b-4t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-x710-64b-4t2c-base-ndr}
+            \label{fig:testpmd-2n-skx-x710-64b-4t2c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-x710-64b-4t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-x710-64b-4t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-x710-64b-4t2c-base-pdr}
+            \label{fig:testpmd-2n-skx-x710-64b-4t2c-base-pdr}
+    \end{figure}
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+64b-2t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-xxv710-64b-2t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-xxv710-64b-2t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-xxv710-64b-2t1c-base-ndr}
+            \label{fig:testpmd-2n-skx-xxv710-64b-2t1c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-xxv710-64b-2t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-xxv710-64b-2t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-xxv710-64b-2t1c-base-pdr}
+            \label{fig:testpmd-2n-skx-xxv710-64b-2t1c-base-pdr}
+    \end{figure}
+
+64b-4t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-xxv710-64b-4t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-xxv710-64b-4t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-xxv710-64b-4t2c-base-ndr}
+            \label{fig:testpmd-2n-skx-xxv710-64b-4t2c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Throughput: testpmd-2n-skx-xxv710-64b-4t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/testpmd-2n-skx-xxv710-64b-4t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{testpmd-2n-skx-xxv710-64b-4t2c-base-pdr}
+            \label{fig:testpmd-2n-skx-xxv710-64b-4t2c-base-pdr}
+    \end{figure}
