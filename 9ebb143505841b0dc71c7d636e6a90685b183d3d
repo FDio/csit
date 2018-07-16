@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4daf62c2_34643495",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-16T10:47:23Z",
+      "side": 1,
+      "message": "Speaking about documentation, I have noticed that log.html only shows first line [0]. As opposed to showing full suite documentation. I guess it is caused by the suite documentation having escaped endlines.\n\nDo we want to have full keyword documentation visible in log.html, is are the one-lines considered a feature? In the latter case, we should apply rules similar to commit messages, so that the one visible line is gramatically correct.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-hsw/21/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2",
+      "range": {
+        "startLine": 79,
+        "startChar": 74,
+        "endLine": 79,
+        "endChar": 77
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
