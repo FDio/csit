@@ -22,6 +22,30 @@
       "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8334e994_2b4cfb9a",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-16T10:58:47Z",
+      "side": 1,
+      "message": "Yes, it is escape at the end. Escaping is important for postprocessing as well as every \\n is causing new line and it looks weird. Not sure if this is bug in our RF version.",
+      "parentUuid": "4daf62c2_34643495",
+      "range": {
+        "startLine": 79,
+        "startChar": 74,
+        "endLine": 79,
+        "endChar": 77
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
