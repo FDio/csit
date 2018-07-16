@@ -244,7 +244,7 @@ class SSH(object):
             command = 'sudo -S {c}'.format(c=command)
         return self.exec_command(command, timeout)
 
-    def interactive_terminal_open(self, time_out=30):
+    def interactive_terminal_open(self, time_out=45):
         """Open interactive terminal on a new channel on the connected Node.
 
         :param time_out: Timeout in seconds.
