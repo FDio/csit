@@ -9,60 +9,158 @@ used for the graphs comes from Phy-to-Phy 78B performance tests with VPP
 SRv6, including NDR throughput (zero packet loss) and
 PDR throughput (<0.5% packet loss).
 
-NDR Throughput
---------------
+3n-hsw-x520
+~~~~~~~~~~~
 
-VPP NDR 78B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card.
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-hsw-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-hsw-xl710
+~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+3n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+2n-skx-x710
+~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
+
+2n-skx-xxv710
+~~~~~~~~~~~~~
+
+base-scale
+----------
+
+ndr
+```
+
+pdr
+```
+
+features
+--------
+
+ndr
+```
+
+pdr
+```
 
 
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
 
-.. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-78B-srv6-tsa-ndrdisc.html"></iframe>
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-78B-srv6-tsa-ndrdisc}
-            \label{fig:10ge2p1x520-78B-srv6-tsa-ndrdisc}
-    \end{figure}
 
-*Figure 1. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-NDR Throughput for Phy-to-Phy SRv6.*
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.
 
-PDR Throughput
---------------
-
-VPP PDR 78B packet throughput speedup ratio is presented in the graphs
-below for 10ge2p1x520 network interface card. PDR
-measured for 0.5% packet loss ratio.
-
-NIC 10ge2p1x520
-~~~~~~~~~~~~~~~
-
-.. raw:: html
-
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/10ge2p1x520-78B-srv6-tsa-pdrdisc.html"></iframe>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{10ge2p1x520-78B-srv6-tsa-pdrdisc}
-            \label{fig:10ge2p1x520-78B-srv6-tsa-pdrdisc}
-    \end{figure}
-
-*Figure 3. Throughput Speedup Analysis - Multi-Core Speedup Ratio - Normalized
-PDR Throughput for Phy-to-Phy SRv6.*
-
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1804>`_.

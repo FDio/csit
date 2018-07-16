@@ -16,6 +16,7 @@ threaded VPP configurations relative to 1-core configurations.
     files csit-vpp-perf-\*.zip `archived here <../../_static/archive/>`_.
 
 .. toctree::
+    :maxdepth: 1
 
     l2
     ip4
