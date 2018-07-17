@@ -29,6 +29,7 @@
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
+| Resource | resources/libraries/robot/l2/l2_patch.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
@@ -803,6 +804,16 @@
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.am
 | | ... | next_hop=${dut1_nh} | out_if=${dut1_out_if} | in_if=${dut1_in_if}
 | | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| Initialize L2 patch
+| | [Documentation]
+| | ... | Setup L2 patch topology by cross connecting two interfaces on
+| | ... | each DUT. Interfaces are brought up.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Configure L2patch | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 xconnect in 2-node circular topology
