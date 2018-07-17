@@ -29,7 +29,7 @@ do
         varname=$(echo "$line" | cut -d '=' -f 1)
         cfg[$varname]=$(echo "$line" | cut -d '=' -f 2-)
     fi
-done < ${script_dir}/../config/config
+done < ${SCRIPT_DIR}/config/config
 
 trap "k8s_utils.destroy" ERR
 
