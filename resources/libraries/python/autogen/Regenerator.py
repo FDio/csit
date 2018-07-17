@@ -56,6 +56,13 @@ class Regenerator(object):
         :type tc_kwargs_list: list of tuple or None
         """
 
+        def get_suite_id(filename):
+            dash_split = filename.split("-", 1)
+            if len(dash_split[0]) <= 4:
+                # It was something like "2n1l", we need one more split.
+                dash_split = dash_split[1].split("-", 1)
+            return dash_split[1].split(".", 1)[0]
+
         def add_testcase(file_out, num, **kwargs):
             file_out.write(testcase.generate(num=num, **kwargs))
             return num + 1
@@ -86,7 +93,7 @@ class Regenerator(object):
                 text = file_in.read()
                 text_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
             # TODO: Make the following work for 2n suites.
-            suite_id = filename.split("-", 1)[1].split(".", 1)[0]
+            suite_id = get_suite_id(filename)
             print "Regenerating suite_id:", suite_id
             testcase = self.testcase_class(suite_id)
             with open(filename, "w") as file_out:

@@ -14,28 +14,27 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-XXV710 | ETH | IP6FWD | BASE | IP6BASE
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | ETH | IP6FWD | BASE | IP6BASE
 | ...
-| Suite Setup | Set up 2-node performance topology with DUT's NIC model
-| ... | L3 | Intel-XXV710
-| Suite Teardown | Tear down 2-node performance topology
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
+| ... | L3 | Intel-X710
+| Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| ...
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *Packet throughput IPv6 routing test cases*
+| Documentation | *RFC2544: Pkt throughput IPv6 routing test cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and two
-| ... | static IPv6 /64 route entries. DUT1 tested with 2p25GE NIC X710 by
-| ... | Intel.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6
+| ... | routing and two static IPv6 /64 route entries. DUT1 and DUT2 tested with
+| ... | 2p10GE NIC X710 by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
@@ -49,40 +48,35 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# XXV710-DA2 bandwidth limit ~50Gbps/2=25Gbps
-| ${s_25G} | ${25000000000}
-# XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps} | ${18750000}
+# X710-DA2 bandwidth limit
+| ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip6-ip6src253
+| ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 routing config.\
+| | ... | [Cfg] DUT runs IPv6 routing config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
 | | ... | *Arguments:*
 | | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
-| | ... |   Type: integer, string
+| | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${20000}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_25G} | ${get_framesize}
-| | ${max_rate}= | Set Variable If
-| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
+| | Set Test Variable | ${min_rate} | ${10000}
+| | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_25G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv6 forwarding in 2-node circular topology
+| | And Initialize IPv6 forwarding in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
