@@ -15,11 +15,12 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | MRR
-| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | TNL_1000
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
+| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | BASE
 | ...
 | Suite Setup | Set up IPSec performance test suite | L3 | Intel-XL710
 | ... | HW_cryptodev
+| ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -28,7 +29,7 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *Raw results IPv4 IPsec tunnel mode performance test suite.*
+| Documentation | *IPv4 IPsec tunnel mode performance test suite.*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
@@ -63,15 +64,15 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${32}
-| ${overhead}= | ${58}
-| ${n_tunnels}= | ${1000}
+| ${overhead}= | ${54}
+| ${n_tunnels}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling CBC-SHA1 config.
+| | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
 | | ... | trial throughput test.
@@ -84,8 +85,8 @@
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | ${encr_alg} = | Crypto Alg AES CBC 128
-| | ${auth_alg} = | Integ Alg SHA1 96
+| | ${encr_alg} = | Crypto Alg AES GCM 128
+| | ${auth_alg} = | Integ Alg AES GCM 128
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
@@ -98,59 +99,64 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Initialize IPSec in 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
-| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | And Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4}
+| | ... | ${dut1_if2}
+| | And Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4}
+| | ... | ${dut2_if1}
+| | And VPP IPsec Add Multiple Tunnels
+| | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
+| | ... | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${laddr_ip4} | ${raddr_ip4}
+| | ... | ${addr_range}
 | | And Set interfaces in path in 3-node circular topology up
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr
+| tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
