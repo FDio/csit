@@ -1,0 +1,1 @@
+l2_patch_add_del rx_sw_if_index {interface1} tx_sw_if_index {interface2}
