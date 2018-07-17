@@ -423,12 +423,20 @@ class KubernetesUtils(object):
         :param kwargs: Key-value pairs used to create configuration.
         :param kwargs: dict
         """
+        smt_used = CpuUtils.is_smt_enabled(kwargs['node']['cpuinfo'])
+
         cpuset_cpus = \
             CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
                                                 cpu_node=kwargs['cpu_node'],
-                                                skip_cnt=kwargs['cpu_skip'],
-                                                cpu_cnt=kwargs['cpu_cnt'],
-                                                smt_used=kwargs['smt_used'])
+                                                skip_cnt=2,
+                                                cpu_cnt=kwargs['phy_cores'],
+                                                smt_used=smt_used)
+        cpuset_main = \
+            CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
+                                                cpu_node=kwargs['cpu_node'],
+                                                skip_cnt=1,
+                                                cpu_cnt=1,
+                                                smt_used=smt_used)
 
         # Create config instance
         vpp_config = VppConfigGenerator()
@@ -436,15 +444,18 @@ class KubernetesUtils(object):
         vpp_config.add_unix_cli_listen(value='0.0.0.0:5002')
         vpp_config.add_unix_nodaemon()
         vpp_config.add_dpdk_socketmem('1024,1024')
-        vpp_config.add_heapsize('3G')
+        vpp_config.add_heapsize('4G')
+        vpp_config.add_ip_heap_size('4G')
+        vpp_config.add_ip6_heap_size('4G')
         vpp_config.add_ip6_hash_buckets('2000000')
-        vpp_config.add_ip6_heap_size('3G')
-        if kwargs['framesize'] < 1522:
+        if not kwargs['jumbo']:
             vpp_config.add_dpdk_no_multi_seg()
-        vpp_config.add_dpdk_dev_default_rxq(kwargs['rxq'])
+        vpp_config.add_dpdk_no_tx_checksum_offload()
+        vpp_config.add_dpdk_dev_default_rxq(kwargs['rxq_count_int'])
         vpp_config.add_dpdk_dev(kwargs['if1'], kwargs['if2'])
+        vpp_config.add_dpdk_num_mbufs(kwargs['num_mbufs_int'])
         # We will pop first core from list to be main core
-        vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
+        vpp_config.add_cpu_main_core(str(cpuset_main.pop(0)))
         # if this is not only core in list, the rest will be used as workers.
         if cpuset_cpus:
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
@@ -458,20 +469,21 @@ class KubernetesUtils(object):
         :param kwargs: Key-value pairs used to create configuration.
         :param kwargs: dict
         """
+        smt_used = CpuUtils.is_smt_enabled(kwargs['node']['cpuinfo'])
         skip_cnt = kwargs['cpu_skip'] + (kwargs['i'] - 1) * \
-            (kwargs['cpu_cnt'] - 1)
+            (kwargs['phy_cores'] - 1)
         cpuset_cpus = \
             CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
                                                 cpu_node=kwargs['cpu_node'],
                                                 skip_cnt=skip_cnt,
-                                                cpu_cnt=kwargs['cpu_cnt']-1,
-                                                smt_used=kwargs['smt_used'])
+                                                cpu_cnt=kwargs['phy_cores']-1,
+                                                smt_used=smt_used)
         cpuset_main = \
             CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
                                                 cpu_node=kwargs['cpu_node'],
                                                 skip_cnt=1,
                                                 cpu_cnt=1,
-                                                smt_used=kwargs['smt_used'])
+                                                smt_used=smt_used)
         # Create config instance
         vpp_config = VppConfigGenerator()
         vpp_config.set_node(kwargs['node'])
