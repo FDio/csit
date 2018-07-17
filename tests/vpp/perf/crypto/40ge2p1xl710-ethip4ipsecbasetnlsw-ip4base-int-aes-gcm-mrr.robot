@@ -26,7 +26,7 @@
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
-| Test Template | Local template
+| Test Template | Local Template
 | ...
 | Documentation | *Raw results IPv4 IPsec tunnel mode performance test suite.*
 | ...
@@ -64,13 +64,13 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${32}
-| ${ipsec_overhead}= | ${54}
+| ${overhead}= | ${54}
 | ${n_tunnels}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
-| Local template
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPSec tunneling AES GCM config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
@@ -85,21 +85,16 @@
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_24.5G}
-| | ... | ${get_framesize} + ${ipsec_overhead}
-| | ${max_rate}= | Set Variable If
-| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
+| | ${encr_alg} = | Crypto Alg AES GCM 128
+| | ${auth_alg} = | Integ Alg AES GCM 128
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} + ${ipsec_overhead} < ${1522}
-| | ... | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_24.5G} | ${framesize} | overhead=${overhead}
+| | ... | pps_limit=${s_18.75Mpps}
 | | And Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
-| | ... | aesni_gcm | ${${phy_cores}}
+| | ... | aesni_gcm | ${phy_cores}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
@@ -114,37 +109,50 @@
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
-
-| tc04-IMIX-1t1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc05-64B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2t2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
-
-| tc08-IMIX-2t2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc09-64B-4t4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4t4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | 9000B | 4C
+| | framesize=${9000} | phy_cores=${4}
+
+| tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
