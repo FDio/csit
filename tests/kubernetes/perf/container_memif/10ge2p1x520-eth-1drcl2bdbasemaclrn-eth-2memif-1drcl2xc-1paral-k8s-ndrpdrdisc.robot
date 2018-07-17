@@ -175,7 +175,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 50kpps.
 | | ...
-| | [Tags] | 64B | 1C | NDRDISC
+| | [Tags] | 64B | 1C | NDRDISC | THIS
 | | [Template] | L2 Bridge Domain Binary Search
 | | framesize=${64} | min_rate=${50000} | wt=1 | rxq=1 | search_type=NDR
 
