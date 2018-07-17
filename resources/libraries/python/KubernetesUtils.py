@@ -436,11 +436,13 @@ class KubernetesUtils(object):
         vpp_config.add_unix_cli_listen(value='0.0.0.0:5002')
         vpp_config.add_unix_nodaemon()
         vpp_config.add_dpdk_socketmem('1024,1024')
-        vpp_config.add_heapsize('3G')
+        vpp_config.add_heapsize('4G')
+        vpp_config.add_ip_heap_size('4G')
+        vpp_config.add_ip6_heap_size('4G')
         vpp_config.add_ip6_hash_buckets('2000000')
-        vpp_config.add_ip6_heap_size('3G')
         if kwargs['framesize'] < 1522:
             vpp_config.add_dpdk_no_multi_seg()
+        vpp_config.add_dpdk_no_tx_checksum_offload
         vpp_config.add_dpdk_dev_default_rxq(kwargs['rxq'])
         vpp_config.add_dpdk_dev(kwargs['if1'], kwargs['if2'])
         # We will pop first core from list to be main core
