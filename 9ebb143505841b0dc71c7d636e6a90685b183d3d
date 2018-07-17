@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "9b69c2d1_3069b1d0",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-17T08:14:12Z",
+      "side": 1,
+      "message": "format can be escaped \\{\\}",
+      "range": {
+        "startLine": 54,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 76
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "594316d5_be9db84a",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-17T08:14:12Z",
+      "side": 1,
+      "message": "TODO verify 1522 close/open interval. Lower priority but i think per DPDK it is \u003c\u003d1522 not \u003c1522. I will check.",
+      "range": {
+        "startLine": 84,
+        "startChar": 48,
+        "endLine": 84,
+        "endChar": 52
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6dffb46_098c0d24",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-17T08:14:12Z",
+      "side": 1,
+      "message": "I think warning not needed here but ok.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 74
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db6ce76c_a2fd70e4",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-17T08:14:12Z",
+      "side": 1,
+      "message": "contains",
+      "range": {
+        "startLine": 456,
+        "startChar": 27,
+        "endLine": 456,
+        "endChar": 34
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4daf62c2_34643495",
         "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr.robot",
         "patchSetId": 31
@@ -61,6 +153,30 @@
       "side": 1,
       "message": "Confirmed [1], escaped endline makes the next line to be visible in log.html, at the cost of endline turning into space, thus making the text less nice.\n\nIf we want also arguments and example visible, we need to escape all endlines.\n\nI guess we need to do something else to make the text not only visible but also formatted.\n\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-hsw/23/archives/log.html.gz#s1-s1-s1-s1-s1-t1-k2",
       "parentUuid": "8334e994_2b4cfb9a",
+      "range": {
+        "startLine": 79,
+        "startChar": 74,
+        "endLine": 79,
+        "endChar": 77
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d0684a6_c7464746",
+        "filename": "tests/vpp/perf/srv6/10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-17T08:14:12Z",
+      "side": 1,
+      "message": "Lower prio for this release. Lets focus maily on TCs. Documentation neeed to be rewriten in next releases as it is mainly useless now not reflecting suite itself.",
+      "parentUuid": "65aabc10_3eef7684",
       "range": {
         "startLine": 79,
         "startChar": 74,
