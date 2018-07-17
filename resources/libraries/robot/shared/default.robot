@@ -183,6 +183,73 @@
 | | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${rxq_count_int}
 
+| Create Kubernetes VSWITCH startup config on all DUTs
+| | [Documentation] | Create base startup configuration of VSWITCH in Kubernetes
+| | ... | deploy to all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${jumbo} - Jumbo packet. Type: boolean
+| | ... | - ${phy_cores} - Physical cores. Type: integer
+| | ... | - ${rxq} - RX queues. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Create Kubernetes VSWITCH startup config on all DUTs \| ${True} \
+| | ... | \| ${1} \| ${1}
+| | ...
+| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${jumbo}=${False}
+| | ...
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${num_mbufs_int} | Convert to Integer | 16384
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | | ... | Evaluate | int(${cpu_count_int}*2)
+| | | ... | ELSE | Set variable | ${thr_count_int}
+| | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
+| | | ... | Set variable | ${rx_queues}
+| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
+| | | ... | Set variable | ${1}
+| | | ... | ELSE | Set variable | ${rxq_count_int}
+| | | ${num_mbufs_int}= | Evaluate | int(${num_mbufs_int}*${rxq_count_int})
+| | | ${config}= | Run keyword | Create Kubernetes VSWITCH startup config
+| | | ... | node=${nodes['${dut}']} | phy_cores=${phy_cores}
+| | | ... | cpu_node=${numa} | jumbo=${jumbo} | rxq_count_int=${rxq_count_int}
+| | | ... | num_mbufs_int=${num_mbufs_int}
+| | | ... | filename=/tmp/vswitch.conf | if1=${if1_pci} | if2=${if2_pci}
+| | | Run keyword if | ${thr_count_int} > 1
+| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
+| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | Set Test Variable | ${smt_used}
+| | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${rxq_count_int}
+
+| Create Kubernetes VNF'${i}' startup config on all DUTs
+| | [Documentation] | Create base startup configuration of VNF in Kubernetes
+| | ... | deploy to all DUTs.
+| | ...
+| | ${i_int}= | Convert To Integer | ${i}
+| | ${cpu_skip}= | Evaluate | ${vswitch_cpus}+${system_cpus}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
+| | ... | ${dut2_if1} | ${dut2_if2}
+| | ${config}= | Run keyword | Create Kubernetes VNF startup config
+| | ... | node=${dut1} | phy_cores=${vnf_cpus} | cpu_node=${dut1_numa}
+| | ... | cpu_skip=${cpu_skip} | filename=/tmp/vnf${i}.conf
+| | ... | i=${i_int}
+| | ${config}= | Run keyword | Create Kubernetes VNF startup config
+| | ... | node=${dut2} | phy_cores=${vnf_cpus} | cpu_node=${dut2_numa}
+| | ... | cpu_skip=${cpu_skip} | filename=/tmp/vnf${i}.conf
+| | ... | i=${i_int}
+
 | Add no multi seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
 | | ...
