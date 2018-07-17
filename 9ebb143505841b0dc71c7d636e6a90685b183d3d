@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6cdeddc9_75c18800",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-17T08:35:49Z",
+      "side": 1,
+      "message": "It can be escaped, byt by doubling the curlies.\nhttps://stackoverflow.com/questions/5466451/how-can-i-print-literal-curly-brace-characters-in-python-string-and-also-use-fo",
+      "parentUuid": "9b69c2d1_3069b1d0",
+      "range": {
+        "startLine": 54,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 76
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "594316d5_be9db84a",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 31
@@ -82,6 +106,30 @@
       "writtenOn": "2018-07-17T08:14:12Z",
       "side": 1,
       "message": "contains",
+      "range": {
+        "startLine": 456,
+        "startChar": 27,
+        "endLine": 456,
+        "endChar": 34
+      },
+      "revId": "9ebb143505841b0dc71c7d636e6a90685b183d3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb866075_31e8d60d",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-17T08:35:49Z",
+      "side": 1,
+      "message": "Right, both variable and type are \"result\", so Documentation should not be talking about \"results\". Will fix.",
+      "parentUuid": "db6ce76c_a2fd70e4",
       "range": {
         "startLine": 456,
         "startChar": 27,
