@@ -217,6 +217,36 @@ class L2Util(object):
                                                     interface2=sw_iface1)
 
     @staticmethod
+    def vpp_setup_bidirectional_l2_patch(node, interface1, interface2):
+        """Create bidirectional l2 patch between 2 interfaces on vpp node.
+
+        :param node: Node to add bidirectional cross-connect.
+        :param interface1: First interface name or sw_if_index.
+        :param interface2: Second interface name or sw_if_index.
+        :type node: dict
+        :type interface1: str or int
+        :type interface2: str or int
+        """
+
+        if isinstance(interface1, basestring):
+            sw_iface1 = Topology().get_interface_sw_index(node, interface1)
+        else:
+            sw_iface1 = interface1
+
+        if isinstance(interface2, basestring):
+            sw_iface2 = Topology().get_interface_sw_index(node, interface2)
+        else:
+            sw_iface2 = interface2
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template('l2_patch.vat',
+                                                    interface1=sw_iface1,
+                                                    interface2=sw_iface2)
+            vat.vat_terminal_exec_cmd_from_template('l2_patch.vat',
+                                                    interface1=sw_iface2,
+                                                    interface2=sw_iface1)
+
+    @staticmethod
     def linux_add_bridge(node, br_name, if_1, if_2, set_up=True):
         """Bridge two interfaces on linux node.
 
