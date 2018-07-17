@@ -50,6 +50,5 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${False}
-| | Set Global Variable | ${uio_driver} | uio_pci_generic
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
 | | Set Global Variable | @{plugins_to_enable}
