@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dde98c1_3b3a1682",
+        "filename": "tests/vpp/perf/ip6/10ge2p1x710-ethip6-ip6base-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-17T16:51:43Z",
+      "side": 1,
+      "message": "Most suites in this directory have \"| ...\" also after this line. Not sure which do I like more, so I do not care for now.",
+      "range": {
+        "startLine": 24,
+        "startChar": 37,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "66dc3dae2a379ece4b5f97fbb90d04e71aefed2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
