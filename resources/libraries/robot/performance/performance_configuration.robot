@@ -1895,6 +1895,7 @@
 | | ... | Type: integer
 | | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
 | | ... | Type: bool
+| | ... | - use_tuned_cfs - FIXME.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1997,6 +1998,7 @@
 | | ... | - count - number of cpus which will be allocated for qemu. Type: int
 | | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
 | | ... | Type: bool
+| | ... | - use_tuned_cfs - FIXME.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2061,6 +2063,7 @@
 | | ... | Type: integer
 | | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
 | | ... | Type: bool
+| | ... | - use_tuned_cfs - FIXME.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2175,6 +2178,7 @@
 | | ... | - count - number of cpus which will be allocated for qemu. Type: int
 | | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
 | | ... | Type: bool
+| | ... | - use_tuned_cfs - FIXME.
 | | ...
 | | ... | *Example:*
 | | ...
