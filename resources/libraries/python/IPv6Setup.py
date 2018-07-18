@@ -221,10 +221,11 @@ class IPv6Setup(object):
         :type interface: str
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
-        VatExecutor.cmd_from_template(node,
-                                      'sw_interface_ip6nd_ra_config.vat',
-                                      sw_if_id=sw_if_index,
-                                      param='surpress')
+        if sw_if_index:
+            VatExecutor.cmd_from_template(node,
+                                          'sw_interface_ip6nd_ra_config.vat',
+                                          sw_if_id=sw_if_index,
+                                          param='surpress')
 
     @staticmethod
     def vpp_ra_send_after_interval(node, interface, interval=2):
@@ -239,10 +240,11 @@ class IPv6Setup(object):
         :type interval: int
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
-        VatExecutor.cmd_from_template(node,
-                                      'sw_interface_ip6nd_ra_config.vat',
-                                      sw_if_id=sw_if_index,
-                                      param='interval {0}'.format(interval))
+        if sw_if_index:
+            VatExecutor.cmd_from_template(node,
+                                          'sw_interface_ip6nd_ra_config.vat',
+                                          sw_if_id=sw_if_index,
+                                          param='interval {0}'.format(interval))
 
     def vpp_all_ra_suppress_link_layer(self, nodes):
         """Suppress ICMPv6 router advertisement message for link scope address
