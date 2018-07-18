@@ -7,6 +7,7 @@ CSIT 18.07
 
     introduction/overview
     introduction/general_notes
+    introduction/physical_testbeds
 
 .. toctree::
     :maxdepth: 2
