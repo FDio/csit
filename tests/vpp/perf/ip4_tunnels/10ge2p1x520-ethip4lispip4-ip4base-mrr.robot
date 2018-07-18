@@ -27,7 +27,7 @@
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
-| Test Template | Local template
+| Test Template | Local Template
 | ...
 | Documentation | *Raw results Lisp test cases*
 | ...
@@ -50,12 +50,12 @@
 *** Variables ***
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
-| ${lisp_overhead}= | ${8}
+| ${overhead}= | ${8}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
-| Local template
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist filters\
 | | ... | config.
@@ -69,18 +69,12 @@
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
-| | ...
-| | # Test Variables required for test execution and test teardown
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit}
-| | ... | ${get_framesize + ${lisp_overhead}}
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize + ${lisp_overhead}} < ${1522}
-| | ... | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
@@ -94,50 +88,50 @@
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4lispip4-ip4base-mrr
+| tc01-64B-1c-ethip4lispip4-ip4base-mrr
 | | [Tags] | 64B | 1C
-| | phy_cores=${1} | framesize=${64}
+| | framesize=${64} | phy_cores=${1}
 
-| tc02-1480B-1t1c-ethip4lispip4-ip4base-mrr
-| | [Tags] | 1480B | 1C
-| | phy_cores=${1} | framesize=${1480}
-
-| tc03-9000B-1t1c-ethip4lispip4-ip4base-mrr
-| | [Tags] | 9000B | 1C
-| | phy_cores=${1} | framesize=${9000}
-
-| tc04-IMIX-1t1c-ethip4lispip4-ip4base-mrr
-| | [Tags] | IMIX | 1C
-| | phy_cores=${1} | framesize=IMIX_v4_1
-
-| tc05-64B-2t2c-ethip4lispip4-ip4base-mrr
+| tc02-64B-2c-ethip4lispip4-ip4base-mrr
 | | [Tags] | 64B | 2C
-| | phy_cores=${2} | framesize=${64}
+| | framesize=${64} | phy_cores=${2}
 
-| tc06-1480B-2t2c-ethip4lispip4-ip4base-mrr
-| | [Tags] | 1480B | 2C
-| | phy_cores=${2} | framesize=${1480}
-
-| tc07-9000B-2t2c-ethip4lispip4-ip4base-mrr
-| | [Tags] | 9000B | 2C
-| | phy_cores=${2} | framesize=${9000}
-
-| tc08-IMIX-2t2c-ethip4lispip4-ip4base-mrr
-| | [Tags] | IMIX | 2C
-| | phy_cores=${2} | framesize=IMIX_v4_1
-
-| tc09-64B-4t4c-ethip4lispip4-ip4base-mrr
+| tc03-64B-4c-ethip4lispip4-ip4base-mrr
 | | [Tags] | 64B | 4C
-| | phy_cores=${4} | framesize=${64}
+| | framesize=${64} | phy_cores=${4}
 
-| tc10-1480B-4t4c-ethip4lispip4-ip4base-mrr
-| | [Tags] | 1480B | 4C
-| | phy_cores=${4} | framesize=${1480}
+| tc04-1518B-1c-ethip4lispip4-ip4base-mrr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
 
-| tc11-9000B-4t4c-ethip4lispip4-ip4base-mrr
+| tc05-1518B-2c-ethip4lispip4-ip4base-mrr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-ethip4lispip4-ip4base-mrr
+| | [Tags] | 1518B | 4C
+| | framesize=${1518} | phy_cores=${4}
+
+| tc07-9000B-1c-ethip4lispip4-ip4base-mrr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-ethip4lispip4-ip4base-mrr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-ethip4lispip4-ip4base-mrr
 | | [Tags] | 9000B | 4C
-| | phy_cores=${4} | framesize=${9000}
+| | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-ethip4lispip4-ip4base-mrr
+| tc10-IMIX-1c-ethip4lispip4-ip4base-mrr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-ethip4lispip4-ip4base-mrr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-ethip4lispip4-ip4base-mrr
 | | [Tags] | IMIX | 4C
-| | phy_cores=${4} | framesize=IMIX_v4_1
+| | framesize=IMIX_v4_1 | phy_cores=${4}
