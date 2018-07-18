@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.Policer
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X710 | IP4FWD | BASE | DOT1Q
+| ... | NIC_Intel-X710 | IP4FWD | BASE | POLICE_MARK
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X710
