@@ -38,26 +38,22 @@
 | Documentation | Performance suite keywords - configuration.
 
 *** Keywords ***
-| Set interfaces in path in 2-node circular topology up
+| Set interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on nodes in 2-node circular
-| | ... | topology.*
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
+| | ... | maximal MTU.*
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Vpp Node Interfaces Ready Wait | ${dut1}
-
-| Set interfaces in path in 3-node circular topology up
-| | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on nodes in 3-node circular
-| | ... | topology.*
-| | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
-| | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Vpp Node Interfaces Ready Wait | ${dut2}
+# TODO: Rework KW to set all interfaces in path UP and set MTU (including
+# software interfaces. Run KW at the end phase of VPP setup to split
+# from other "functial" configuration. This will allow modularity of this
+# library
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | | VPP Node Interfaces Ready Wait | ${nodes['${dut}']}
 
 | Initialize IPSec in 3-node circular topology
 | | [Documentation]
@@ -96,6 +92,7 @@
 | | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
 | | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | ${tg_if1_ip4} | ${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | ${tg_if2_ip4} | ${dut2_if2}
+| | Set interfaces in path up
 
 | Initialize IPv4 forwarding in 2-node circular topology
 | | [Documentation]
@@ -104,8 +101,6 @@
 | | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
 | | ... | /30 prefix on DUT1 link.
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
@@ -114,7 +109,7 @@
 | | ... | 10.10.10.1 | 24
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
 | | ... | 20.20.20.1 | 24
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize IPv4 forwarding in 3-node circular topology
 | | [Documentation]
@@ -124,10 +119,6 @@
 | | ... | /30 prefix on DUT1-DUT2 link. Set routing on both DUT nodes with
 | | ... | prefix /24 and next hop of neighbour DUT interface IPv4 address.
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -146,7 +137,7 @@
 | | ... | 20.20.20.1 | 24
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | [Documentation]
@@ -166,10 +157,6 @@
 | | ...
 | | [Arguments] | ${count}
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -190,7 +177,7 @@
 | | ... | count=${count}
 | | Vpp Route Add | ${dut2} | 20.0.0.0 | 32 | 3.3.3.1 | ${dut2_if2}
 | | ... | count=${count}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize IPv4 forwarding with vhost in 3-node circular topology
 | | [Documentation]
@@ -225,7 +212,7 @@
 | | ...
 | | [Arguments] | ${sock1} | ${sock2}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
 | | ... | ${sock1} | ${sock2} | dut1_vhost_if1 | dut1_vhost_if2
 | | ${dut1_vif1}= | Set Variable | ${dut1_vhost_if1}
@@ -350,7 +337,7 @@
 | | ... | \| IPv4 forwarding with Vhost-User for '2' VMs initialized in \
 | | ... | a 3-node circular topology \|
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
 | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nr}
 | | Add Fib Table | ${dut1} | ${fib_table_1}
@@ -528,7 +515,7 @@
 | | Suppress ICMPv6 router advertisement message | ${nodes}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if2} | 2001:2::2 | ${tg1_if2_mac}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize IPv6 forwarding in 3-node circular topology
 | | [Documentation]
@@ -554,7 +541,7 @@
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:3::1 | ${dut1_if2_mac}
 | | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | 2001:3::2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | [Documentation]
@@ -597,7 +584,7 @@
 | | ... | interface=${dut2_if1} | count=${count}
 | | Vpp Route Add | ${dut2} | 2001:2::0 | ${host_prefix} | 2001:5::2
 | | ... | interface=${dut2_if2} | count=${count}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize IPv6 iAcl whitelist in 3-node circular topology
 | | [Documentation]
@@ -696,6 +683,7 @@
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
 | | ... | ${tg_if1_ip6_subnet}2 | ${dut1_if1}
+| | Set interfaces in path up
 
 | Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via '${behavior}' behaviour in 3-node circular topology
 | | [Documentation]
@@ -719,9 +707,13 @@
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
 | | ... | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2 | ${rxq_count_int}
 | | ... | ${rxq_count_int}
+| | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if1}
+| | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if2}
 | | Set up memif interfaces on DUT node | ${dut2} | ${sock2} | ${sock2}
 | | ... | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2 | ${rxq_count_int}
 | | ... | ${rxq_count_int}
+| | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if1}
+| | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if2}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Show Memif | ${nodes['${dut}']}
@@ -804,7 +796,7 @@
 | | ... | Configure SR LocalSID on DUT | ${dut1} | ${dut1_sid2} | end.am
 | | ... | next_hop=${dut1_nh} | out_if=${dut1_out_if} | in_if=${dut1_in_if}
 | | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize L2 patch
 | | [Documentation]
@@ -814,7 +806,7 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Configure L2patch | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize L2 xconnect in 2-node circular topology
 | | [Documentation]
@@ -822,7 +814,7 @@
 | | ... | each DUT. Interfaces are brought up.
 | | ...
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize L2 xconnect in 3-node circular topology
 | | [Documentation]
@@ -831,7 +823,7 @@
 | | ... |
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize L2 xconnect with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -841,7 +833,7 @@
 | | ... | between DUTs. VXLAN sub-interfaces has same IPv4 address as
 | | ... | interfaces.
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1 | 24
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2 | 24
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -949,7 +941,7 @@
 | | ...
 | | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
@@ -985,9 +977,12 @@
 | | ...
 | | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
+| | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
@@ -1029,15 +1024,17 @@
 | | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite} | ${bond_mode}
 | | ... | ${lb_mode}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
 | | ... | ${dut1_eth_bond_if1}
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
 | | ... | ${dut2_eth_bond_if1}
 | | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
@@ -1073,7 +1070,7 @@
 | | ...
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize L2 bridge domain in 3-node circular topology
 | | [Documentation]
@@ -1094,7 +1091,7 @@
 | | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Configure IPv4 ACLs
 | | [Documentation]
@@ -1216,8 +1213,8 @@
 | | ...
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Set interfaces in path up
 
 | Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in 3-node circular topology
 | | [Documentation]
@@ -1244,10 +1241,6 @@
 | | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
 | | ... | - ${dut2_if2} - DUT2 interface towards TG.
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -1266,8 +1259,8 @@
 | | ... | ${dut2} | ${dut2_if2} | 20.20.20.1 | 24
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
-| | All Vpp Interfaces Ready Wait | ${nodes}
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Set interfaces in path up
 
 | Configure MACIP ACLs
 | | [Documentation]
@@ -1387,8 +1380,8 @@
 | | ...
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
 | | Configure MACIP ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Set interfaces in path up
 
 | Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | [Documentation]
@@ -1482,7 +1475,7 @@
 | | ... | between DUTs. VXLAN sub-interfaces has same IPv4 address as
 | | ... | interfaces.
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
 | | ... | 24
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
@@ -1497,7 +1490,6 @@
 | | ... | 172.16.0.2 | 172.16.0.1
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
 | | Configure L2BD forwarding | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
-| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -1522,11 +1514,11 @@
 | | ...
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
 | | ... | 24
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
 | | ... | 24
+| | Set interfaces in path up
 | | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
 | | ... | 172.16.0.1 | 172.16.0.2
 | | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
@@ -1585,6 +1577,7 @@
 | | ... | ${dut1_vxlans} | ${dut2_vxlans} | ${dut1_route_subnet} |
 | | ... | ${dut1_route_mask} | ${dut2_route_subnet} | ${dut2_route_mask}
 | | ...
+| | Set interfaces in path up
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} |
 | | ... | ${dut1_address} | ${dut1_address_subnet}
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2} |
@@ -1664,7 +1657,7 @@
 | | ...
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
@@ -1674,7 +1667,6 @@
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 bridge domains with Vhost-User and VLAN in a 3-node circular topology
 | | [Documentation]
@@ -1700,7 +1692,7 @@
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
@@ -1745,9 +1737,12 @@
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
+| | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
@@ -1797,15 +1792,17 @@
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | ...
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
 | | ... | ${dut1_eth_bond_if1}
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
+| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
 | | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
 | | ... | ${dut2_eth_bond_if1}
 | | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
@@ -2347,10 +2344,6 @@
 | | [Arguments] | ${dut1_dut2_address} | ${dut1_tg_address}
 | | ... | ${dut2_dut1_address} | ${dut2_tg_address} | ${duts_prefix}
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -2369,7 +2362,7 @@
 | | ... | ${dut2_dut1_address} | ${duts_prefix}
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
 | | ... | ${dut2_tg_address} | ${duts_prefix}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 
 | Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | [Documentation] | Setup Lisp GPE IPv4 forwarding over IPsec.
@@ -2404,7 +2397,6 @@
 | | ... | ${dut2} | ${dut2_if1} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
 | | ... | ${dut2_to_dut1_ip4} | ${dut1_to_dut2_ip4}
-| | Set interfaces in path in 3-node circular topology up
 
 | Initialize LISP IPv6 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
@@ -2447,6 +2439,7 @@
 | | ... | ${dut2_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_address}
 | | ... | ${dut1_if2_mac}
+| | Set interfaces in path up
 
 | Initialize LISP IPv4 over IPv6 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
@@ -2475,10 +2468,6 @@
 | | ... | ${dut2_dut1_ip6_address} | ${dut2_tg_ip4_address}
 | | ... | ${prefix4} | ${prefix6}
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -2498,6 +2487,7 @@
 | | ... | ${dut2_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip6_address}
 | | ... | ${dut1_if2_mac}
+| | Set interfaces in path up
 
 | Initialize LISP IPv6 over IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
@@ -2526,10 +2516,6 @@
 | | ... | ${dut2_dut1_ip4_address} | ${dut2_tg_ip6_address}
 | | ... | ${prefix6} | ${prefix4}
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
@@ -2549,6 +2535,7 @@
 | | ... | ${dut2_if1_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip4_address}
 | | ... | ${dut1_if2_mac}
+| | Set interfaces in path up
 
 | Initialize NAT44 in 3-node circular topology
 | | [Documentation] | Initialization of 3-node topology with NAT44 between DUTs:
@@ -2558,11 +2545,7 @@
 | | ... | - create routes
 | | ... | - set NAT44 - only on DUT1
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 | | ...
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 10.0.0.1 | 20
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 11.0.0.1 | 20
@@ -2610,10 +2593,6 @@
 | | ... | \| Initialize L2 xconnect for 1 memif pairs in 3-node circular \
 | | ... | topology \|
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
 | | | ${sock1}= | Set Variable | memif-DUT1_VNF
 | | | ${sock2}= | Set Variable | memif-DUT1_VNF
@@ -2638,7 +2617,7 @@
 | | | ... | ${dut1} | ${dut1-memif-${number}-if2} | ${dut1_if2}
 | | | Run Keyword If | ${number}==${nr} | Configure L2XC
 | | | ... | ${dut2} | ${dut2-memif-${number}-if2} | ${dut2_if2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain for '${nr}' memif pairs in 3-node circular topology
@@ -2684,7 +2663,7 @@
 | | | ... | ${dut2-memif-${number}-if1} | ${number}
 | | | Add interface to bridge domain | ${dut2}
 | | | ... | ${dut2-memif-${number}-if2} | ${bd_id2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
 | Initialize L2 xconnect for single memif in 3-node circular topology
