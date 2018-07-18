@@ -79,7 +79,7 @@
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Set interfaces in path in 3-node circular topology up
+| | And Set interfaces in path up
 | | When Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And Configure L2 tag rewrite method on interfaces
