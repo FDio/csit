@@ -105,7 +105,6 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
-| | And Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
 | | When Initialize L2 bridge domains with Vhost-User and VLAN with DPDK link bonding in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite}
