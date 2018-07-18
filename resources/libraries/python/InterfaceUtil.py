@@ -123,6 +123,53 @@ class InterfaceUtil(object):
             InterfaceUtil.set_interface_ethernet_mtu(node, ifc, 1500)
 
     @staticmethod
+    def vpp_set_interface_mtu(node, interface, mtu=9200):
+        """Set Ethernet MTU on interface.
+
+        :param node: VPP node.
+        :param interface: Interface to setup MTU. Default: 9200.
+        :param mtu: Ethernet MTU size in Bytes.
+        :type node: dict
+        :type interface: str or int
+        :type mtu: int
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        if sw_if_index:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "hw_interface_set_mtu.vat", sw_if_index=sw_if_index,
+                    mtu=mtu)
+
+    @staticmethod
+    def vpp_set_interfaces_mtu_on_node(node, mtu=9200):
+        """Set Ethernet MTU on all interfaces.
+
+        :param node: VPP node.
+        :param mtu: Ethernet MTU size in Bytes. Default: 9200.
+        :type node: dict
+        :type mtu: int
+        """
+        for interface in node['interfaces']:
+            InterfaceUtil.vpp_set_interface_mtu(node, interface, mtu)
+
+    @staticmethod
+    def vpp_set_interfaces_mtu_on_all_duts(nodes, mtu=9200):
+        """Set Ethernet MTU on all interfaces on all DUTs.
+
+        :param nodes: VPP nodes.
+        :param mtu: Ethernet MTU size in Bytes. Default: 9200.
+        :type nodes: dict
+        :type mtu: int
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                InterfaceUtil.vpp_set_interfaces_mtu_on_node(node, mtu)
+
+    @staticmethod
     def vpp_node_interfaces_ready_wait(node, timeout=10):
         """Wait until all interfaces with admin-up are in link-up state.
 
