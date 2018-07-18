@@ -32,7 +32,7 @@
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
-| Test Template | Local template
+| Test Template | Local Template
 | ...
 | Documentation |  *Raw results L2XC test cases*
 | ...
@@ -73,7 +73,7 @@
 | ${container_cpus}= | ${5}
 
 *** Keywords ***
-| Local template
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
@@ -88,63 +88,60 @@
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add single PCI device to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect for single memif in 3-node circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| tc01-64B-1c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
-
-| tc03-9000B-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
-
-| tc04-IMIX-1t1c-eth-l2xcbase-eth-1memif-1dcr-mrr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc05-64B-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| tc02-64B-2c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
-
-| tc07-9000B-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
-
-| tc08-IMIX-2t2c-eth-l2xcbase-eth-1memif-1dcr-mrr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc09-64B-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| tc03-64B-4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| tc04-1518B-1c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| tc07-9000B-1c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| tc10-IMIX-1c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-eth-l2xcbase-eth-1memif-1dcr-mrr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-eth-l2xcbase-eth-1memif-1dcr-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
