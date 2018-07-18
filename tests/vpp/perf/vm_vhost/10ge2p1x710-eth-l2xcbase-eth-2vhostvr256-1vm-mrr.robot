@@ -27,7 +27,7 @@
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
-| Test Template | Local template
+| Test Template | Local Template
 | ...
 | Documentation | *Raw results L2XC test cases with vhost*
 | ...
@@ -61,7 +61,7 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
-| Local template
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
@@ -76,79 +76,74 @@
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | ${jumbo_frames}= | Set Variable If | ${get_framesize} < ${1522}
-| | ... | ${False} | ${True}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User in 3-node circular topology
 | | ... | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo_frames}
+| | ... | jumbo_frames=${jumbo}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo_frames}
+| | ... | jumbo_frames=${jumbo}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| tc01-64B-1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
-
-| tc03-9000B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
-
-| tc04-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc05-64B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| tc02-64B-2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
-
-| tc07-9000B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
-
-| tc08-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc09-64B-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| tc03-64B-4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| tc04-1518B-1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| tc07-9000B-1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| tc10-IMIX-1c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-eth-l2xcbase-eth-2vhostvr256-1vm-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
