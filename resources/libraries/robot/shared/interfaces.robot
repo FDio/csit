@@ -33,3 +33,19 @@
 | | ${eth_mtu}= | Evaluate | ${mtu} - 14 - 4
 | | Set Interface Ethernet MTU | ${tg_node} | ${tg_port} | ${eth_mtu}
 
+| Configure MTU on HW interfaces on all DUTs
+| | [Documentation] | Setup MTU in Bytes for all HW interfaces on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nodes - Topology nodes. Type: dictionary
+| | ... | - mtu - Physical layer MTU size [Bytes]. Default: 9214B. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure MTU on HW interfaces on all DUTs \| ${nodes} \
+| | ... | \| ${9214} \|
+| | ...
+| | [Arguments] | ${nodes} | ${mtu}=${9214}
+| | ...
+| | ${eth_mtu}= | Evaluate | ${mtu} - 14
+| | VPP set MTU HW interfaces on all DUTs | ${nodes} | ${eth_mtu}
