@@ -103,7 +103,7 @@
 | | &{vxlan2} = | Create Dictionary | vni=24 | vtep=172.27.0.2
 | | @{dut1_vxlans} = | Create List | ${vxlan1}
 | | @{dut2_vxlans} = | Create List | ${vxlan2}
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
 | | ... | ${sock1} | ${sock2}
 | | When Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
