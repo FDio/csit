@@ -1,0 +1,1 @@
+hw_interface_set_mtu sw_if_index {sw_if_index} mtu {mtu}
