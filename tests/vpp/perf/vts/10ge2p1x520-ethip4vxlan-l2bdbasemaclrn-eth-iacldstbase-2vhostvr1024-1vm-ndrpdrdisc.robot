@@ -143,7 +143,7 @@
 | | @{dut2_vxlans}= | Create List | ${vxlan2}
 | | ${jumbo_frames}= | Set Variable If
 | | ... | ${max_pkt_size} < ${1522} | ${False} | ${True}
-| | Set interfaces in path in 3-node circular topology up
+| | Set interfaces in path up
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
 | | ... | ${sock1} | ${sock2}
 | | When Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology

@@ -32,4 +32,3 @@
 | | # Ethernet MTU is physical layer MTU minus size of Ethernet header and FCS
 | | ${eth_mtu}= | Evaluate | ${mtu} - 14 - 4
 | | Set Interface Ethernet MTU | ${tg_node} | ${tg_port} | ${eth_mtu}
-
