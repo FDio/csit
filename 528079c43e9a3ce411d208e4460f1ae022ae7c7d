@@ -22,6 +22,30 @@
       "revId": "528079c43e9a3ce411d208e4460f1ae022ae7c7d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad629d3d_9c404eae",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-19T11:26:50Z",
+      "side": 1,
+      "message": "replaced with \"ring topology\" :)",
+      "parentUuid": "8eb0e119_818c16c5",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "528079c43e9a3ce411d208e4460f1ae022ae7c7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
