@@ -69,7 +69,9 @@
 | | ${jumbo_frames}= | Set Variable If
 | | ... | ${get_framesize} < ${1522} | ${False} | ${True}
 | | ...
-| | Given Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo_frames}
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
+| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | Given Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
