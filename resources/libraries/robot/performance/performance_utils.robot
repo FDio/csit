@@ -575,13 +575,16 @@
 | | ...
 | | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | | ...
-| | ${lower_bound_lf} = | Set Variable | ${interval.measured_low.loss_fraction}
+| | ${lower_bound} = | Set Variable | ${interval.measured_low}
+| | ${lower_bound_lf} = | Set Variable | ${lower_bound.loss_fraction}
 | | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
 | | ${message}= | Catenate | SEPARATOR=${SPACE}
 | | ... | Minimal rate loss fraction ${lower_bound_lf}
 | | ... | does not reach target ${packet_loss_ratio}.
+| | ${message_zero} = | Set Variable | Zero packets forwarded!
+| | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
 | | ${message} = | Set Variable If | ${lower_bound_lf} >= 1.0
-| | ... | ${message}${\n}Zero packets forwarded! | ${message}
+| | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
 | | Fail | ${message}
 
 | Perform additional measurements based on NDRPDR result
