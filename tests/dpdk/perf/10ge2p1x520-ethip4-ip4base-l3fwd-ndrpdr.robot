@@ -26,7 +26,7 @@
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | Tear down DPDK 3-node performance topology
 | ...
-| Test template | Local template
+| Test Template | Local Template
 | ...
 | Documentation | *Raw results IPv4 routing test cases*
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -52,7 +52,7 @@
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst253_l3fwd
 
 *** Keywords ***
-| Local template
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs L3 IPv4 routing config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
@@ -61,61 +61,59 @@
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${20000}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${jumbo_frames}= | Set Variable If
-| | ... | ${get_framesize} < ${1522} | ${False} | ${True}
+| | Set Test Variable | ${min_rate} | ${10000}
 | | ...
-| | Given Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo_frames}
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
+| | ... | ${s_limit} | ${framesize}
+| | Given Start L3FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4-ip4base-l3fwd-ndrpdr
+| tc01-64B-1c-ethip4-ip4base-l3fwd-ndrpdr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1t1c-ethip4-ip4base-l3fwd-ndrpdr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
-
-| tc03-9000B-1t1c-ethip4-ip4base-l3fwd-ndrpdr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
-
-| tc04-IMIX-1t1c-ethip4-ip4base-l3fwd-ndrpdr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc05-64B-2t2c-ethip4-ip4base-l3fwd-ndrpdr
+| tc02-64B-2c-ethip4-ip4base-l3fwd-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2t2c-ethip4-ip4base-l3fwd-ndrpdr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
-
-| tc07-9000B-2t2c-ethip4-ip4base-l3fwd-ndrpdr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
-
-| tc08-IMIX-2t2c-ethip4-ip4base-l3fwd-ndrpdr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc09-64B-4t4c-ethip4-ip4base-l3fwd-ndrpdr
+| tc03-64B-4c-ethip4-ip4base-l3fwd-ndrpdr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4t4c-ethip4-ip4base-l3fwd-ndrpdr
+| tc04-1518B-1c-ethip4-ip4base-l3fwd-ndrpdr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-ethip4-ip4base-l3fwd-ndrpdr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-ethip4-ip4base-l3fwd-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4t4c-ethip4-ip4base-l3fwd-ndrpdr
+| tc07-9000B-1c-ethip4-ip4base-l3fwd-ndrpdr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-ethip4-ip4base-l3fwd-ndrpdr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-ethip4-ip4base-l3fwd-ndrpdr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-ethip4-ip4base-l3fwd-ndrpdr
+| tc10-IMIX-1c-ethip4-ip4base-l3fwd-ndrpdr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-ethip4-ip4base-l3fwd-ndrpdr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-ethip4-ip4base-l3fwd-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
