@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a8a30e6d_eddf8fdf",
+        "filename": "resources/tools/disk-image-builder/ubuntu/run-listmaker.sh",
+        "patchSetId": 66
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-19T15:43:11Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "8bd98ab7_ae552220",
+      "revId": "ffa4d5d2f3165da02684990792e70d6f97bfb1c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98a5f620_87ebb5ff",
         "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
         "patchSetId": 66
@@ -30,6 +48,30 @@
       "writtenOn": "2018-07-18T11:21:01Z",
       "side": 1,
       "message": "Dont\u0027t you want to use the same mechanics as in run_dmm script to detect safe kill?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 2
+      },
+      "revId": "ffa4d5d2f3165da02684990792e70d6f97bfb1c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "81bff4af_5db7a54e",
+        "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
+        "patchSetId": 66
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-19T15:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98a5f620_87ebb5ff",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "6b5a6703_94c93a5a",
+        "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
+        "patchSetId": 66
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-19T15:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8c40f79_4ffd9437",
+      "range": {
+        "startLine": 65,
+        "startChar": 15,
+        "endLine": 65,
+        "endChar": 69
+      },
+      "revId": "ffa4d5d2f3165da02684990792e70d6f97bfb1c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f0f4089_5331b199",
         "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
         "patchSetId": 66
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "bb0807bf_0194d0ce",
+        "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
+        "patchSetId": 66
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-19T15:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f0f4089_5331b199",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "ffa4d5d2f3165da02684990792e70d6f97bfb1c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50550f7f_d1922871",
         "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
         "patchSetId": 66
@@ -99,6 +189,30 @@
       "writtenOn": "2018-07-18T11:21:01Z",
       "side": 1,
       "message": "would be nice to detect number of nodes first. 2 sockets may not always be there.",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 95
+      },
+      "revId": "ffa4d5d2f3165da02684990792e70d6f97bfb1c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2433289_cb8fc617",
+        "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
+        "patchSetId": 66
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-07-19T15:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50550f7f_d1922871",
       "range": {
         "startLine": 77,
         "startChar": 4,
