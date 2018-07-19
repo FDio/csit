@@ -36,7 +36,5 @@
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
 | | ...
-| | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
-| | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${False}
