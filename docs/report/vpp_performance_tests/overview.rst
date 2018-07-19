@@ -3,131 +3,231 @@ Overview
 
 .. _tested_physical_topologies:
 
-Tested Physical Topologies
---------------------------
+(editor: remove above tag: ".. _tested_physical_topologies:")
 
-CSIT VPP performance tests are executed on physical baremetal servers hosted by
-:abbr:`LF (Linux Foundation)` FD.io project. Testbed physical topology is shown
-in the figure below.::
+For description of physical testbeds used for VPP performance tests
+please refer to :ref:`physical_testbeds`.
 
-        +------------------------+           +------------------------+
-        |                        |           |                        |
-        |  +------------------+  |           |  +------------------+  |
-        |  |                  |  |           |  |                  |  |
-        |  |                  <----------------->                  |  |
-        |  |       DUT1       |  |           |  |       DUT2       |  |
-        |  +--^---------------+  |           |  +---------------^--+  |
-        |     |                  |           |                  |     |
-        |     |            SUT1  |           |  SUT2            |     |
-        +------------------------+           +------------------^-----+
-              |                                                 |
-              |                                                 |
-              |                  +-----------+                  |
-              |                  |           |                  |
-              +------------------>    TG     <------------------+
-                                 |           |
-                                 +-----------+
+Logical Topologies
+------------------
 
-SUT1 and SUT2 are two System Under Test servers (Cisco UCS C240, each with two
-Intel XEON CPUs), TG is a Traffic Generator (TG, another Cisco UCS C240, with
-two Intel XEON CPUs). SUTs run VPP SW application in Linux user-mode as a
-Device Under Test (DUT). TG runs TRex SW application as a packet Traffic
-Generator. Physical connectivity between SUTs and to TG is provided using
-different NIC models that need to be tested for performance. Currently
-installed and tested NIC models include:
+CSIT VPP performance tests are executed on physical testbeds described
+in :ref:`physical_testbeds`. Based on the packet path thru SUT, three
+distinct logical topology types are used for VPP DUT data plane testing:
 
-#. 2port10GE X520-DA2 Intel.
-#. 2port10GE X710 Intel.
-#. 2port10GE VIC1227 Cisco.
-#. 2port40GE VIC1385 Cisco.
-#. 2port40GE XL710 Intel.
+#. NIC-to-NIC switching topologies.
+#. VM service switching topologies.
+#. Container service switching topologies.
 
-From SUT and DUT perspective, all performance tests involve forwarding packets
-between two physical Ethernet ports (10GE or 40GE). Due to the number of
-listed NIC models tested and available PCI slot capacity in SUT servers, in
-all of the above cases both physical ports are located on the same NIC. In
-some test cases this results in measured packet throughput being limited not
-by VPP DUT but by either the physical interface or the NIC capacity.
+NIC-to-NIC Switching
+~~~~~~~~~~~~~~~~~~~~
 
-Going forward CSIT project will be looking to add more hardware into FD.io
-performance labs to address larger scale multi-interface and multi-NIC
-performance testing scenarios.
+The most baseline logical topology for software data plane application
+like VPP is NIC-to-NIC switching. Tested topologies for 2-Node and
+3-Node testbeds are shown in figures below.
 
-For service chain topology test cases that require DUT (VPP) to communicate with
-VirtualMachines (VMs) or with Linux/Docker Containers (Ctrs) over
-vhost-user/memif interfaces, N of VM/Ctr instances are created on SUT1
-and SUT2. Three types of service chain topologies are tested in CSIT |release|:
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-2n-nic2nic}
+            \label{fig:logical-2n-nic2nic}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: logical-2n-nic2nic.svg
+        :alt: logical-2n-nic2nic
+        :align: center
+
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-3n-nic2nic}
+            \label{fig:logical-3n-nic2nic}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: logical-3n-nic2nic.svg
+        :alt: logical-3n-nic2nic
+        :align: center
+
+SUTs run VPP application in Linux user-mode as a Device Under Test
+(DUT). TG runs TRex application. Physical connectivity between SUTs and
+TG is provided using different NIC models that need to be tested for
+performance.
+
+From SUT and DUT perspective, all performance tests involve forwarding
+packets between two physical Ethernet ports (10GE, 25GE, 40GE, 100GE).
+In most cases both physical ports on SUT are located on the same NIC.
+The only exception is 100GE NIC, where only one port per NIC can be
+driven at linerate due to PCIe Gen3 x16 slot bandwidth limiations.
+
+Note that reported DUT (VPP) performance results are specific to the
+SUTs tested. SUTs with other processor than the ones used in FD.io lab
+are likely to yield different results. A good rule of thumb, that can be
+applied to estimate VPP packet thoughput for NIC-to-NIC switching
+topology, is to expect the forwarding performance to be proportional to
+CPU core frequency, assuming CPU is the only limiting factor and all
+other SUT parameters are equivalent to FD.io CSIT environment.
+
+VM Service Switching
+~~~~~~~~~~~~~~~~~~~~
+
+VM service switching topology test cases require DUT (VPP) to
+communicate with VirtualMachines (VMs) over vhost-user virtual
+interfaces.
+
+Two types of VM service topologies are tested in CSIT |release|:
 
 #. "Parallel" topology with packets flowing from NIC via DUT (VPP) to
-   VM/Container and back to VPP and NIC;
+   VM and back to VPP and NIC.
 
-#. "Chained" topology (a.k.a. "Snake") with packets flowing via DUT (VPP) to
-   VM/Container, back to DUT, then to the next VM/Container, back to DUT and
-   so on until the last VM/Container in a chain, then back to DUT and NIC;
-
-#. "Horizontal" topology with packets flowing via DUT (VPP) to Container,
-   then via "horizontal" memif to the next Container, and so on until the
-   last Container, then back to DUT and NIC. "Horizontal" topology is not
-   supported for VMs;
+#. "Chained" topology (a.k.a. "Snake") with packets flowing via DUT
+   (VPP) to VM, back to DUT, then to the next VM, back to DUT and so on
+   and so forth until the last VM in a chain, then back to DUT and NIC.
 
 For each of the above topologies, DUT (VPP) is tested in a range of L2
-or IPv4/IPv6 configurations depending on the test suite. A sample DUT
-"Chained" service topology with N of VM/Ctr instances is shown in the
-figure below. Packet flow thru the DUTs and VMs/Ctrs is marked with
-``***``::
+or IPv4/IPv6 configurations depending on the test suite. Sample DUT
+"Chained" VM service topologies for 2-Node and 3-Node testbeds with each
+SUT running N of VM instances is shown in the figures below.
 
-        +-------------------------+           +-------------------------+
-        | +---------+ +---------+ |           | +---------+ +---------+ |
-        | |VM/Ctr[1]| |VM/Ctr[N]| |           | |VM/Ctr[1]| |VM/Ctr[N]| |
-        | |  *****  | |  *****  | |           | |  *****  | |  *****  | |
-        | +--^---^--+ +--^---^--+ |           | +--^---^--+ +--^---^--+ |
-        |   *|   |*     *|   |*   |           |   *|   |*     *|   |*   |
-        | +--v---v-------v---v--+ |           | +--v---v-------v---v--+ |
-        | |  *   *       *   *  |*|***********|*|  *   *       *   *  | |
-        | |  *   *********   ***<-|-----------|->***   *********   *  | |
-        | |  *    DUT1          | |           | |       DUT2       *  | |
-        | +--^------------------+ |           | +------------------^--+ |
-        |   *|                    |           |                    |*   |
-        |   *|            SUT1    |           |  SUT2              |*   |
-        +-------------------------+           +-------------------------+
-            *|                                                     |*
-            *|                                                     |*
-            *|                    +-----------+                    |*
-            *|                    |           |                    |*
-            *+-------------------->    TG     <--------------------+*
-            **********************|           |**********************
-                                  +-----------+
+.. only:: latex
 
-In above "Chained" topology, packets are switched by DUT multiple times:
-twice for a single VM/Ctr, three times for two VMs/Ctrs, N+1 times for N
-VMs/Ctrs. Hence the external throughput rates measured by TG and listed
-in this report must be multiplied by (N+1) to represent the actual DUT
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-2n-vm-vhost}
+            \label{fig:logical-2n-vm-vhost}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: logical-2n-vm-vhost.svg
+        :alt: logical-2n-vm-vhost
+        :align: center
+
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-3n-vm-vhost}
+            \label{fig:logical-3n-vm-vhost}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: logical-3n-vm-vhost.svg
+        :alt: logical-3n-vm-vhost
+        :align: center
+
+In above "Chained" VM topologies, packets are switched by DUT multiple
+times: twice for a single VM, three times for two VMs, N+1 times for N
+VMs. Hence the external throughput rates measured by TG and listed in
+this report must be multiplied by (N+1) to represent the actual DUT
 aggregate packet forwarding rate.
+
+For "Parallel" service topology packets are always switched twice by DUT
+per service chain.
+
+Note that reported DUT (VPP) performance results are specific to the
+SUTs tested. SUTs with other processor than the ones used in FD.io lab
+are likely to yield different results. Similarly to NIC-to-NIC switching
+topology, here one can also expect the forwarding performance to be
+proportional to CPU core frequency, assuming CPU is the only limiting
+factor and all other SUT parameters are equivalent to FD.io CSIT
+environment. However due to much higher dependency on intensive memory
+operations and sensitivity to Linux kernel scheduler settings and
+behaviour, this estimation may not always yield good enough accuracy.
+
+Container Service Switching
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Container service switching topology test cases require DUT (VPP) to
+communicate with Containers (Ctrs) over memif virtual interfaces.
+
+Three types of VM service topologies are tested in CSIT |release|:
+
+#. "Parallel" topology with packets flowing from NIC via DUT (VPP) to
+   Container and back to VPP and NIC.
+
+#. "Chained" topology (a.k.a. "Snake") with packets flowing via DUT
+   (VPP) to Container, back to DUT, then to the next Container, back to
+   DUT and so on and so forth until the last Container in a chain, then
+   back to DUT and NIC.
+
+#. "Horizontal" topology with packets flowing via DUT (VPP) to
+   Container, then via "horizontal" memif to the next Container, and so
+   on until the last Container, then back to DUT and NIC.
+
+For each of the above topologies, DUT (VPP) is tested in a range of L2
+or IPv4/IPv6 configurations depending on the test suite. Sample DUT
+"Chained" Container service topologies for 2-Node and 3-Node testbeds
+with each SUT running N of Container instances is shown in the figures
+below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-2n-container-memif}
+            \label{fig:logical-2n-container-memif}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: logical-2n-container-memif.svg
+        :alt: logical-2n-container-memif
+        :align: center
+
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+        \centering
+            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-3n-container-memif}
+            \label{fig:logical-3n-container-memif}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: logical-3n-container-memif.svg
+        :alt: logical-3n-container-memif
+        :align: center
+
+In above "Chained" Container topologies, packets are switched by DUT
+multiple times: twice for a single Container, three times for two
+Containers, N+1 times for N Containers. Hence the external throughput
+rates measured by TG and listed in this report must be multiplied by
+(N+1) to represent the actual DUT aggregate packet forwarding rate.
 
 For a "Parallel" and "Horizontal" service topologies packets are always
 switched by DUT twice per service chain.
 
-Note that reported DUT (VPP) performance results are specific to the SUTs
-tested. Current :abbr:`LF (Linux Foundation)` FD.io SUTs are based on Intel
-XEON E5-2699v3 2.3GHz CPUs. SUTs with other CPUs are likely to yield different
-results. A good rule of thumb, that can be applied to estimate VPP packet
-thoughput for Phy-to-Phy (NIC-to-NIC, PCI-to-PCI) topology, is to expect
-the forwarding performance to be proportional to CPU core frequency,
-assuming CPU is the only limiting factor and all other SUT parameters
-equivalent to FD.io CSIT environment. The same rule of thumb can be also
-applied for Phy-to-VM/Ctr-to-Phy (NIC-to-VM/Ctr-to-NIC) topology, but due to
-much higher dependency on intensive memory operations and sensitivity to Linux
-kernel scheduler settings and behaviour, this estimation may not always yield
-good enough accuracy.
-
-For detailed FD.io CSIT testbed specification and topology, as well as
-configuration and setup of SUTs and DUTs testbeds please refer to
-:ref:`test_environment`.
-
-Similar SUT compute node can be arrived to in a standalone VPP setup by using a
-`vpp-config configuration tool
-<https://wiki.fd.io/view/VPP/Configuration_Tool>`_ developed within the
-VPP project using CSIT recommended settings and scripts.
+Note that reported DUT (VPP) performance results are specific to the
+SUTs tested. SUTs with other processor than the ones used in FD.io lab
+are likely to yield different results. One can expect the forwarding
+performance to be proportional to CPU core frequency, assuming CPU is
+the only limiting factor and all other SUT parameters are equivalent to
+FD.io CSIT environment. However due to much higher dependency on
+intensive memory operations and sensitivity to Linux kernel scheduler
+settings and behaviour, this estimation may not always yield good enough
+accuracy.
 
 Performance Tests Coverage
 --------------------------
