@@ -64,63 +64,59 @@
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${20000}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${get_framesize}
-| | ${max_rate}= | Set Variable If
-| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
-| | ${jumbo_frames}= | Set Variable If
-| | ... | ${get_framesize} < ${1522} | ${False} | ${True}
+| | Set Test Variable | ${min_rate} | ${10000}
 | | ...
-| | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo_frames}
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
+| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-testpmd-ndrpdr
+| tc01-64B-1c-eth-l2xcbase-testpmd-ndrpdr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1t1c-eth-l2xcbase-testpmd-ndrpdr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
-
-| tc03-9000B-1t1c-eth-l2xcbase-testpmd-ndrpdr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
-
-| tc04-IMIX-1t1c-eth-l2xcbase-testpmd-ndrpdr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc05-64B-2t2c-eth-l2xcbase-testpmd-ndrpdr
+| tc02-64B-2c-eth-l2xcbase-testpmd-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2t2c-eth-l2xcbase-testpmd-ndrpdr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
-
-| tc07-9000B-2t2c-eth-l2xcbase-testpmd-ndrpdr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
-
-| tc08-IMIX-2t2c-eth-l2xcbase-testpmd-ndrpdr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc09-64B-4t4c-eth-l2xcbase-testpmd-ndrpdr
+| tc03-64B-4c-eth-l2xcbase-testpmd-ndrpdr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4t4c-eth-l2xcbase-testpmd-ndrpdr
+| tc04-1518B-1c-eth-l2xcbase-testpmd-ndrpdr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-eth-l2xcbase-testpmd-ndrpdr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-eth-l2xcbase-testpmd-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4t4c-eth-l2xcbase-testpmd-ndrpdr
+| tc07-9000B-1c-eth-l2xcbase-testpmd-ndrpdr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-eth-l2xcbase-testpmd-ndrpdr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-eth-l2xcbase-testpmd-ndrpdr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-eth-l2xcbase-testpmd-ndrpdr
+| tc10-IMIX-1c-eth-l2xcbase-testpmd-ndrpdr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-eth-l2xcbase-testpmd-ndrpdr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-eth-l2xcbase-testpmd-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
