@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8eb0e119_818c16c5",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-19T08:31:59Z",
+      "side": 1,
+      "message": "Is this a technical term?\n\nFor me, it does not say how many links are there (as \"ring topology\" would).",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "528079c43e9a3ce411d208e4460f1ae022ae7c7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
