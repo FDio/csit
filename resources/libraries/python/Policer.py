@@ -294,17 +294,23 @@ class Policer(object):
         """Set policer CB.
 
         :param cb: Committed Burst size.
-        :type cb: int
+        :type cb: int or str
         """
-        self._cb = cb
+        if cb == "IMIX_v4_1":
+            self._cb = 1518
+        else:
+            self._cb = cb
 
     def policer_set_eb(self, eb):
         """Set policer EB.
 
         :param eb: Excess Burst size.
-        :type eb: int
+        :type eb: int or str
         """
-        self._eb = eb
+        if eb == "IMIX_v4_1":
+            self._eb = 1518
+        else:
+            self._eb = eb
 
     def policer_set_rate_type_kbps(self):
         """Set policer rate type to kbps."""
