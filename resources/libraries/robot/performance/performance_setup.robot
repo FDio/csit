@@ -758,6 +758,16 @@
 | | Show NAT verbose | ${dut1}
 | | Show NAT verbose | ${dut2}
 
+| Tear down mrr test with NAT
+| | [Documentation] | Common test teardown for mrr performance \
+| | ... | tests with NAT feature used.
+| | ...
+| | ... | \| Tear down mrr test with NAT \|
+| | ...
+| | Tear down performance mrr test
+| | Show NAT verbose | ${dut1}
+| | Show NAT verbose | ${dut2}
+
 | Tear down performance test with ACL
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
 | | ... | tests with ACL feature used.
@@ -776,6 +786,19 @@
 | | ...
 | | Tear down performance discovery test | ${rate} | ${framesize}
 | | ... | ${traffic_profile}
+| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Run Keyword And Ignore Error
+| | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
+
+| Tear down mrr test with ACL
+| | [Documentation] | Common test teardown for mrr performance \
+| | ... | tests with ACL feature used.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down mrr test with ACL \|
+| | ...
+| | Tear down performance mrr test
 | | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
