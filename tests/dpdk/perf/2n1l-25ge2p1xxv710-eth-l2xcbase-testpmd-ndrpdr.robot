@@ -64,15 +64,11 @@
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${20000}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_24.5G} | ${get_framesize}
-| | ${max_rate}= | Set Variable If
-| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
-| | ${jumbo_frames}= | Set Variable If
-| | ... | ${get_framesize} < ${1522} | ${False} | ${True}
+| | Set Test Variable | ${min_rate} | ${10000}
 | | ...
-| | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo_frames}
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
+| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 

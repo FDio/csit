@@ -60,13 +60,9 @@
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${jumbo_frames}= | Set Variable If
-| | ... | ${get_framesize} < ${1522} | ${False} | ${True}
-| | ...
-| | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo_frames}
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
+| | ... | ${s_limit} | ${framesize}
+| | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
