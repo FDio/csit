@@ -93,7 +93,7 @@
 
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
-| | ... | If parameter force_load is set to True, then try to initialize.
+| | ... | If parameter force_load is set to True, then try to load.
 | | ...
 | | ... | *Arguments:*
 | | ... | - module - Module to verify. Type: string
@@ -105,10 +105,8 @@
 | | ...
 | | [Arguments] | ${module} | ${force_load}=${False}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Kernel Module Verify | ${nodes['${dut}']} | ${module}
-| | | ... | force_load=${force_load}
+| | Verify Kernel Module on All DUTs | ${nodes} | ${module}
+| | ... | force_load=${force_load}
 
 | Create base startup configuration of VPP on all DUTs
 | | [Documentation] | Create base startup configuration of VPP to all DUTs.
