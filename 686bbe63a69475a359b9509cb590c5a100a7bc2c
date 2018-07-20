@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45acad9f_97ba254b",
+        "filename": "bootstrap-hc2vpp-integration-odl.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-20T17:38:54Z",
+      "side": 1,
+      "message": "Tags are not case sensitive, and it is better to use case to highlight the operator:\nhc_nshORhc_rest_only\n\nhttp://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#tag-patterns",
+      "range": {
+        "startLine": 241,
+        "startChar": 14,
+        "endLine": 241,
+        "endChar": 34
+      },
+      "revId": "686bbe63a69475a359b9509cb590c5a100a7bc2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
