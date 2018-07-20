@@ -86,6 +86,24 @@
 | | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
 | | All VPP Interfaces Ready Wait | ${nodes}
 
+| Initialize AVF interfaces
+| | [Documentation]
+| | ... | Initialize AVF interfaces on each DUT. Interfaces are brought up.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1_vf0}
+| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_if2_vf0}
+| | | ${dut_eth_vf_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | | ... | ${if1_pci}
+| | | ${dut_eth_vf_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | | ... | ${if2_pci}
+| | | Set Test Variable | ${${dut}_if1} | ${dut_eth_vf_if1}
+| | | Set Test Variable | ${${dut}_if2} | ${dut_eth_vf_if2}
+| | Set interfaces in path up
+
 | Initialize IPSec in 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
@@ -1929,8 +1947,8 @@
 | | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut2_if1_pci}
 
 | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Add Bond Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name}
-| | Add Bond Eth Interface | ${dut2} | ${dut2_eth_bond_if1_name}
+| | Add Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name} | ifc_pfx=eth_bond
+| | Add Eth Interface | ${dut2} | ${dut2_eth_bond_if1_name} | ifc_pfx=eth_bond
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | [Documentation]
