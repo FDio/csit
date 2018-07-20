@@ -232,11 +232,12 @@ fi
 rm -rf ~/*karaf*
 cp /nfs/common/karaf_${ODL} ~
 
+# TODO(CSIT-994): reenable NSH
 PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --suite "tests.honeycomb.func" \
     --include HC_FUNC \
-    --exclude HC_REST_ONLY \
+    --exclude HC_NSHORHC_REST_ONLY \
     --noncritical EXPECTED_FAILING \
     --variable HC_ODL:${ODL} \
     tests/
