@@ -26,6 +26,7 @@ class DefaultTestcase(Testcase):
             Example: ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr
         :type suite_id: str
         """
+        self.suite_id = suite_id
         template_string = r'''
 | ${tc_num}-${frame_str}-${cores_str}c-''' + suite_id + r'''
 | | [Tags] | ${frame_str} | ${cores_str}C
