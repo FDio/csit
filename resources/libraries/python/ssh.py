@@ -393,14 +393,29 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
     return ret_code, stdout, stderr
 
 
-def exec_cmd_no_error(node, cmd, timeout=600, sudo=False):
+def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
     """Convenience function to ssh/exec/return out & err.
 
     Verifies that return code is zero.
 
-    Returns (stdout, stderr).
+    :param node: DUT node.
+    :param cmd: Command to be executed.
+    :param timeout: Timeout value in seconds. Default: 600.
+    :param sudo: Sudo privilege execution flag. Default: False.
+    :param message: Error message in case of failure. Default: None.
+    :type node: dict
+    :type cmd: str
+    :type timeout: int
+    :type sudo: bool
+    :type message: str
+    :returns: Stdout, Stderr.
+    :rtype: tuple(str, str)
+    :raise RuntimeError: If bash return code is not 0.
     """
-    (ret_code, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
-    assert_equal(ret_code, 0, 'Command execution failed: "{}"\n{}'.
-                 format(cmd, stderr))
+    ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
+    msg = ('Command execution failed: "{cmd}"\n{stderr}'.
+           format(cmd=cmd, stderr=stderr) if message is None else message)
+    if ret_code != 0:
+        raise RuntimeError(msg)
+
     return stdout, stderr
