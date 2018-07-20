@@ -24,6 +24,7 @@ from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
+from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
 
 
@@ -1163,21 +1164,75 @@ class InterfaceUtil(object):
                                .format(node))
 
     @staticmethod
-    def set_linux_interface_mac(node, interface, mac, namespace=None):
+    def set_linux_interface_mac(node, interface, mac, namespace=None,
+                                vf_id=None):
         """Set MAC address for interface in linux.
 
         :param node: Node where to execute command.
         :param interface: Interface in namespace.
         :param mac: MAC to be assigned to interface.
         :param namespace: Execute command in namespace. Optional
+        :param vf_id: Virtual function id. Optional
         :type node: dict
         :type interface: str
         :type mac: str
         :type namespace: str
+        :type vf_id: int
         """
-        if namespace is not None:
-            cmd = 'ip netns exec {} ip link set {} address {}'.format(
-                namespace, interface, mac)
-        else:
-            cmd = 'ip link set {} address {}'.format(interface, mac)
+        vf_str = 'vf {}'.format(vf_id) if vf_id is not None else ''
+        ns_str = 'ip netns exec {}'.format(namespace) if namespace else ''
+
+        cmd = '{} ip link set dev {} {} mac {}'.format(ns_str, interface,
+                                                       vf_str, mac)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def init_avf_interface(node, iface_key, numvfs=1):
+        """Init PCI device by creating VFs and bind them to vfio-pci for AVF
+        driver testing on DUT.
+
+        :param node: DUT node.
+        :param iface_key: Interface key from topology file.
+        :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
+        :type node: dict
+        :iface_key: str
+        :type numvfs: int
+        :returns: nothing
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        # Read PCI address and driver.
+        pf_pci_addr=Topology.get_interface_pci_addr(node, iface_key)
+        pf_mac_addr=Topology.get_interface_mac(node, iface_key).split(":")
+        uio_driver = Topology.get_uio_driver(node)
+        kernel_driver=Topology.get_interface_driver(node, iface_key)
+        current_driver = DUTSetup.get_pci_dev_driver(node,
+            pf_pci_addr.replace(':', r'\:'))
+
+        if current_driver != kernel_driver:
+            # PCI device must be re-bound to kernel driver before creating VFs.
+            DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
+            # Stop VPP to prevent deadlock.
+            VPPUtil.stop_vpp_service(node)
+            # Unbind from current driver.
+            DUTSetup.pci_driver_unbind(node, pf_pci_addr)
+            # Bind to kernel driver.
+            DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
+
+        # Initialize PCI VFs
+        DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
+
+        # Set MAC address and ind each virtual function to uio driver.
+        for vf_id in range(numvfs):
+            vf_mac_addr = ":".join([pf_mac_addr[0], pf_mac_addr[2],
+                                   pf_mac_addr[3], pf_mac_addr[4],
+                                   pf_mac_addr[5], "{:02x}".format(vf_id)])
+
+            pf_dev = '`basename /sys/bus/pci/devices/{pci}/net/*`'.\
+                format(pci=pf_pci_addr)
+            InterfaceUtil.set_linux_interface_mac(node, pf_dev, vf_mac_addr,
+                                                  vf_id=vf_id)
+
+            DUTSetup.pci_vf_driver_unbind(node, pf_pci_addr, vf_id)
+            DUTSetup.pci_vf_driver_bind(node, pf_pci_addr, vf_id, uio_driver)
