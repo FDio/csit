@@ -252,7 +252,7 @@ class DUTSetup(object):
     def crypto_device_verify(node, force_init=False, numvfs=32):
         """Verify if Crypto QAT device virtual functions are initialized on all
         DUTs. If parameter force initialization is set to True, then try to
-        initialize or disable QAT.
+        initialize or remove VFs on QAT.
 
         :param node: DUT node.
         :param force_init: If True then try to initialize to specific value.
@@ -261,37 +261,22 @@ class DUTSetup(object):
         :type force_init: bool
         :type numvfs: int
         :returns: nothing
-        :raises RuntimeError: If QAT is not initialized or failed to initialize.
+        :raises RuntimeError: If QAT VFs are not created and force init is set
+                              to False.
         """
-
         ssh = SSH()
         ssh.connect(node)
 
-        cryptodev = Topology.get_cryptodev(node)
-        cmd = 'cat /sys/bus/pci/devices/{0}/sriov_numvfs'.\
-            format(cryptodev.replace(':', r'\:'))
+        pci_addr = Topology.get_cryptodev(node)
+        sriov_numvfs = DUTSetup.get_sriov_numvfs(node, pci_addr)
 
-        # Try to read number of VFs from PCI address of QAT device
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command(cmd)
-            if int(ret_code) == 0:
-                try:
-                    sriov_numvfs = int(stdout)
-                except ValueError:
-                    logger.trace('Reading sriov_numvfs info failed on {0}'.
-                                 format(node['host']))
-                else:
-                    if sriov_numvfs != numvfs:
-                        if force_init:
-                            # QAT is not initialized and we want to initialize
-                            # with numvfs
-                            DUTSetup.crypto_device_init(node, numvfs)
-                        else:
-                            raise RuntimeError('QAT device {0} is not '
-                                               'initialized to {1} on host {2}'
-                                               .format(cryptodev, numvfs,
-                                                       node['host']))
-                    break
+        if sriov_numvfs != numvfs:
+            if force_init:
+                # QAT is not initialized and we want to initialize with numvfs
+                DUTSetup.crypto_device_init(node, numvfs)
+            else:
+                raise RuntimeError('QAT device failed to create VFs on {host}'.
+                                   format(node['host']))
 
     @staticmethod
     def crypto_device_init(node, numvfs):
@@ -304,33 +289,110 @@ class DUTSetup(object):
         :returns: nothing
         :raises RuntimeError: If failed to stop VPP or QAT failed to initialize.
         """
-        cryptodev = Topology.get_cryptodev(node)
-
-        # QAT device must be re-bound to kernel driver before initialization
-        driver = 'dh895xcc'
-        kernel_module = 'qat_dh895xcc'
-        current_driver = DUTSetup.get_pci_dev_driver(
-            node, cryptodev.replace(':', r'\:'))
-
-        DUTSetup.kernel_module_verify(node, kernel_module, force_load=True)
-
-        VPPUtil.stop_vpp_service(node)
-        if current_driver is not None:
-            DUTSetup.pci_driver_unbind(node, cryptodev)
-        DUTSetup.pci_driver_bind(node, cryptodev, driver)
-
         ssh = SSH()
         ssh.connect(node)
 
+        pci_addr = Topology.get_cryptodev(node)
+
+        # QAT device must be re-bound to kernel driver before initialization
+        DUTSetup.verify_kernel_module(node, 'qat_dh895xcc', force_load=True)
+
+        # Stop VPP to prevent deadlock.
+        VPPUtil.stop_vpp_service(node)
+
+        current_driver = DUTSetup.get_pci_dev_driver(
+            node, pci_addr.replace(':', r'\:'))
+        if current_driver is not None:
+            DUTSetup.pci_driver_unbind(node, pci_addr)
+
+        # Bind to kernel driver
+        DUTSetup.pci_driver_bind(node, pci_addr, 'dh895xcc')
+
         # Initialize QAT VFs
         if numvfs > 0:
-            cmd = 'echo "{0}" | tee /sys/bus/pci/devices/{1}/sriov_numvfs'.\
-                format(numvfs, cryptodev.replace(':', r'\:'), timeout=180)
-            ret_code, _, _ = ssh.exec_command_sudo("sh -c '{0}'".format(cmd))
+            DUTSetup.set_sriov_numvfs(node, pci_addr, numvfs)
 
-            if int(ret_code) != 0:
-                raise RuntimeError('Failed to initialize {0} VFs on QAT device '
-                                   ' on host {1}'.format(numvfs, node['host']))
+    @staticmethod
+    def get_virtfn_pci_addr(node, pf_pci_addr, vf_id):
+        """Get PCI address of Virtual Function.
+
+        :param node: DUT node.
+        :param pf_pci_addr: Physical Function PCI address.
+        :param vf_id: Virtual Function number.
+        :type node: dict
+        :type pf_pci_addr: str
+        :type vf_id: int
+        :returns: Virtual Function PCI address.
+        :rtype: int
+        :raises RuntimeError: If failed to get Virtual Function PCI address.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        ret_code, stdout, _ = ssh.exec_command_sudo("sh -c "
+            "'basename $(readlink /sys/bus/pci/devices/{pci}/virtfn{vf_id})'".
+            format(pci=pf_pci_addr, vf_id=vf_id))
+
+        if int(ret_code) == 0:
+            return stdout.strip()
+        raise RuntimeError('Failed to get virtual function PCI address.')
+
+    @staticmethod
+    def get_sriov_numvfs(node, pf_pci_addr):
+        """Get number of SR-IOV VFs.
+
+        :param node: DUT node.
+        :param pf_pci_addr: Physical Function PCI device address.
+        :type node: dict
+        :type pf_pci_addr: str
+        :returns: Number of VFs.
+        :rtype: int
+        :raises RuntimeError: If PCI device is not SR-IOV capable.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        for _ in range(3):
+            ret_code, stdout, _ = ssh.exec_command(
+                'cat /sys/bus/pci/devices/{pci}/sriov_numvfs'.
+                format(pci=pf_pci_address.replace(':', r'\:')))
+            if int(ret_code) == 0:
+                try:
+                    sriov_numvfs = int(stdout)
+                except ValueError:
+                    logger.trace('Reading sriov_numvfs info failed on {host}'.
+                                 format(host=node['host']))
+                else:
+                    return sriov_numvfs
+            else:
+                raise RuntimeError('PCI device {pci} is not SR-IOV device.'.
+                                   format(pci=pf_pci_addr))
+
+    @staticmethod
+    def set_sriov_numvfs(node, pci_addr, numvfs=0):
+        """Init or reset SR-IOV virtual functions by setting its number on PCI
+        device on DUT. Setting to zero removes all VFs.
+
+        :param node: DUT node.
+        :param pci_addr: Physical Function PCI device address.
+        :param numvfs: Number of VFs to initialize, 0 - removes the VFs.
+        :type node: dict
+        :type pci_addr: str
+        :type numvfs: int
+        :raises RuntimeError: Failed to create VFs on PCI.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        ret_code, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo {num} | tee /sys/bus/pci/devices/{pci}/sriov_numvfs'".
+            format(num=numvfs, pci=pf_pci_addr.replace(':', r'\:'), timeout=60))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to create {num} VFs on {pci} device '
+                               'on {host}'.
+                               format(num=numvfs, pci=pf_pci_addr,
+                                      host=node['host']))
 
     @staticmethod
     def pci_driver_unbind(node, pci_addr):
@@ -340,20 +402,20 @@ class DUTSetup(object):
         :param pci_addr: PCI device address.
         :type node: dict
         :type pci_addr: str
-        :returns: nothing
         :raises RuntimeError: If PCI device unbind failed.
         """
-
         ssh = SSH()
         ssh.connect(node)
 
-        ret_code, _, _ = ssh.exec_command_sudo(
-            "sh -c 'echo {0} | tee /sys/bus/pci/devices/{1}/driver/unbind'"
-            .format(pci_addr, pci_addr.replace(':', r'\:')), timeout=180)
+        ret_code, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo {pci} | tee /sys/bus/pci/devices/{pcie}/driver/unbind'".
+            format(pci=pci_addr, pcie=pci_addr.replace(':', r'\:')), timeout=60)
 
         if int(ret_code) != 0:
-            raise RuntimeError('Failed to unbind PCI device {0} from driver on '
-                               'host {1}'.format(pci_addr, node['host']))
+            raise RuntimeError('Failed to unbind PCI device {pci} from {driver}'
+                               ' on {host}'.
+                               format(pci=pci_addr, driver=driver,
+                                      host=ode['host']))
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
@@ -365,21 +427,95 @@ class DUTSetup(object):
         :type node: dict
         :type pci_addr: str
         :type driver: str
-        :returns: nothing
         :raises RuntimeError: If PCI device bind failed.
         """
-
         ssh = SSH()
         ssh.connect(node)
 
-        ret_code, _, _ = ssh.exec_command_sudo(
-            "sh -c 'echo {0} | tee /sys/bus/pci/drivers/{1}/bind'".format(
-                pci_addr, driver), timeout=180)
+        ret_code1, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo {driver} | tee /sys/bus/pci/devices/{pci}/driver_override'".
+            format(driver=driver, pci=pci_addr.replace(':', r'\:')), timeout=60)
+
+        ret_code2, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo {pci} | tee /sys/bus/pci/drivers/{driver}/bind'".
+            format(pci=pci_addr, driver=driver), timeout=60)
+
+        ret_code3, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo  | tee /sys/bus/pci/devices/{pci}/driver_override'".
+            format(pci=pci_addr.replace(':', r'\:')), timeout=60)
+
+        if any([ret_code1, ret_code2, ret_code3]):
+            raise RuntimeError('Failed to bind PCI device {pci} to {driver} on '
+                               'host {host}'.
+                               format(pci=pci_addr, driver=driver,
+                                      host=node['host']))
+
+    @staticmethod
+    def pci_vf_driver_unbind(node, pf_pci_addr, vf_id):
+        """Unbind Virtual Function from driver on node.
+
+        :param node: DUT node.
+        :param pf_pci_addr: PCI device address.
+        :param vf_id: Virtual Function ID.
+        :type node: dict
+        :type pf_pci_addr: str
+        :type vf_id: int
+        :raises RuntimeError: If Virtual Function unbind failed.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
+        vf_path = "/sys/bus/pci/devices/{pf_pci_addr}/virtfn{vf_id}".\
+            format(pf_pci_addr=pf_pci_addr.replace(':', r'\:'), vf_id=vf_id)
+
+        ret_code, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo {vf_pci_addr} | tee {vf_path}/driver/unbind'".
+            format(vf_pci_addr=vf_pci_addr, vf_path=vf_path), timeout=60)
 
         if int(ret_code) != 0:
-            raise RuntimeError('Failed to bind PCI device {0} to {1} driver on '
-                               'host {2}'.format(pci_addr, driver,
-                                                 node['host']))
+            raise RuntimeError('Failed to unbind VF {vf_pci_addr} to on {host}'.
+                               format(vf_pci_addr=vf_pci_addr,
+                                      host=node['host']))
+
+    @staticmethod
+    def pci_vf_driver_bind(node, pf_pci_addr, vf_id, driver):
+        """Bind Virtual Function to driver on node.
+
+        :param node: DUT node.
+        :param pf_pci_addr: PCI device address.
+        :param vf_id: Virtual Function ID.
+        :param driver: Driver to bind.
+        :type node: dict
+        :type pf_pci_addr: str
+        :type vf_id: int
+        :type driver: str
+        :raises RuntimeError: If PCI device bind failed.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
+        vf_path = "/sys/bus/pci/devices/{pf_pci_addr}/virtfn{vf_id}".\
+            format(pf_pci_addr=pf_pci_addr.replace(':', r'\:'), vf_id=vf_id)
+
+        ret_code1, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo {driver} | tee {vf_path}/driver_override'".
+            format(driver=driver, vf_path=vf_path), timeout=60)
+
+        ret_code2, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo {vf_pci_addr} | tee /sys/bus/pci/drivers/{driver}/bind'".
+            format(vf_pci_addr=vf_pci_addr, driver=driver), timeout=60)
+
+        ret_code3, _, _ = ssh.exec_command_sudo("sh -c "
+            "'echo  | tee {vf_path}/driver_override'".
+            format(vf_path=vf_path), timeout=60)
+
+        if any([ret_code1, ret_code2, ret_code3]):
+            raise RuntimeError('Failed to bind VF {vf_pci_addr} to {driver} on '
+                               '{host}'.
+                               format(vf_pci_addr=vf_pci_addr, driver=driver,
+                                      host=node['host']))
 
     @staticmethod
     def get_pci_dev_driver(node, pci_addr):
@@ -441,7 +577,7 @@ class DUTSetup(object):
         return None
 
     @staticmethod
-    def kernel_module_verify(node, module, force_load=False):
+    def verify_kernel_module(node, module, force_load=False):
         """Verify if kernel module is loaded on node. If parameter force
         load is set to True, then try to load the modules.
 
@@ -456,19 +592,20 @@ class DUTSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = 'grep -w {0} /proc/modules'.format(module)
-        ret_code, _, _ = ssh.exec_command(cmd)
+        ret_code, _, _ = ssh.exec_command('grep -w {module} /proc/modules'.
+                                          format(module=module))
 
         if int(ret_code) != 0:
             if force_load:
                 # Module is not loaded and we want to load it
-                DUTSetup.kernel_module_load(node, module)
+                DUTSetup.load_kernel_module(node, module)
             else:
-                raise RuntimeError('Kernel module {0} is not loaded on host '
-                                   '{1}'.format(module, node['host']))
+                raise RuntimeError('Kernel module {module} is not loaded on '
+                                   'host {host}'.
+                                   format(module=module, host=node['host']))
 
     @staticmethod
-    def kernel_module_verify_on_all_duts(nodes, module, force_load=False):
+    def verify_kernel_module_on_all_duts(nodes, module, force_load=False):
         """Verify if kernel module is loaded on all DUTs. If parameter force
         load is set to True, then try to load the modules.
 
@@ -481,7 +618,7 @@ class DUTSetup(object):
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                DUTSetup.kernel_module_verify(node, module, force_load)
+                DUTSetup.verify_kernel_module(node, module, force_load)
 
     @staticmethod
     def verify_uio_driver_on_all_duts(nodes):
@@ -494,10 +631,10 @@ class DUTSetup(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 uio_driver = Topology.get_uio_driver(node)
-                DUTSetup.kernel_module_verify(node, uio_driver, force_load=True)
+                DUTSetup.verify_kernel_module(node, uio_driver, force_load=True)
 
     @staticmethod
-    def kernel_module_load(node, module):
+    def load_kernel_module(node, module):
         """Load kernel module on node.
 
         :param node: DUT node.
@@ -507,15 +644,15 @@ class DUTSetup(object):
         :returns: nothing
         :raises RuntimeError: If loading failed.
         """
-
         ssh = SSH()
         ssh.connect(node)
 
-        ret_code, _, _ = ssh.exec_command_sudo("modprobe {0}".format(module))
+        ret_code, _, _ = ssh.exec_command_sudo("modprobe {module}".
+                                               format(module=module))
 
         if int(ret_code) != 0:
-            raise RuntimeError('Failed to load {0} kernel module on host {1}'.
-                               format(module, node['host']))
+            raise RuntimeError('Failed to load {module} on host {host}'.
+                               format(module=module, host=node['host']))
 
     @staticmethod
     def vpp_enable_traces_on_all_duts(nodes):
@@ -614,6 +751,21 @@ class DUTSetup(object):
                 ssh.disconnect(node)
 
     @staticmethod
+    def verify_vpp_on_dut(node):
+        """Verify that VPP is installed on DUT node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises RuntimeError: If failed to restart VPP, get VPP version
+            or get VPP interfaces.
+        """
+
+        logger.debug("Verify VPP on node {0}".format(node['host']))
+
+        DUTSetup.vpp_show_version_verbose(node)
+        DUTSetup.vpp_show_interfaces(node)
+
+    @staticmethod
     def verify_vpp_on_all_duts(nodes):
         """Verify that VPP is installed on all DUT nodes.
 
@@ -629,17 +781,3 @@ class DUTSetup(object):
             if node['type'] == NodeType.DUT:
                 DUTSetup.verify_vpp_on_dut(node)
 
-    @staticmethod
-    def verify_vpp_on_dut(node):
-        """Verify that VPP is installed on DUT node.
-
-        :param node: DUT node.
-        :type node: dict
-        :raises RuntimeError: If failed to restart VPP, get VPP version
-            or get VPP interfaces.
-        """
-
-        logger.debug("Verify VPP on node {0}".format(node['host']))
-
-        DUTSetup.vpp_show_version_verbose(node)
-        DUTSetup.vpp_show_interfaces(node)
