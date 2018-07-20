@@ -816,6 +816,28 @@
 | | | Configure L2patch | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| Initialize L2 patch with AVF interfaces
+| | [Documentation]
+| | ... | Setup L2 patch topology by cross connecting two interfaces on
+| | ... | each DUT. Interfaces are brought up. AVF interfaces are created and
+| | ... | used.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1_vf0}
+| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_if2_vf0}
+| | | ${dut_eth_avf_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | | ... | ${if1_pci}
+| | | ${dut_eth_avf_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | | ... | ${if2_pci}
+| | | Configure L2patch | ${nodes['${dut}']} | ${dut_eth_avf_if1}
+| | | ... | ${dut_eth_avf_if2}
+| | | Set Interface State | ${nodes['${dut}']} | ${dut_eth_avf_if1} | up
+| | | Set Interface State | ${nodes['${dut}']} | ${dut_eth_avf_if2} | up
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | Initialize L2 xconnect in 2-node circular topology
 | | [Documentation]
 | | ... | Setup L2 xconnect topology by cross connecting two interfaces on
