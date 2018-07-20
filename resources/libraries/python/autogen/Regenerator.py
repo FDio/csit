@@ -59,24 +59,26 @@ class Regenerator(object):
         protocol_to_min_framesize = {
             "ip4": 64,
             "ip6": 78,
-            "vxlan+ip4": 114
+            "vxlan+ip4": 114  # What is the real minimum for latency stream?
         }
 
-        def get_suite_id(filename):
+        def get_iface_and_suite_id(filename):
             dash_split = filename.split("-", 1)
             if len(dash_split[0]) <= 4:
                 # It was something like "2n1l", we need one more split.
                 dash_split = dash_split[1].split("-", 1)
-            return dash_split[1].split(".", 1)[0]
+            return dash_split[0], dash_split[1].split(".", 1)[0]
 
-        def add_testcase(file_out, num, **kwargs):
-            file_out.write(testcase.generate(num=num, **kwargs))
+        def add_testcase(testcase, iface, file_out, num, **kwargs):
+            # TODO: Is there a better way to disable some combinations?
+            if kwargs["framesize"] != 9000 or "vic1227" not in iface:
+                file_out.write(testcase.generate(num=num, **kwargs))
             return num + 1
 
-        def add_testcases(file_out, tc_kwargs_list):
+        def add_testcases(testcase, iface, file_out, tc_kwargs_list):
             num = 1
             for tc_kwargs in tc_kwargs_list:
-                num = add_testcase(file_out, num, **tc_kwargs)
+                num = add_testcase(testcase, iface, file_out, num, **tc_kwargs)
 
         print "Regenerator starts at {cwd}".format(cwd=getcwd())
         min_framesize = protocol_to_min_framesize[protocol]
@@ -95,15 +97,14 @@ class Regenerator(object):
             {"framesize": "IMIX_v4_1", "phy_cores": 4}
         ]
         for filename in glob(pattern):
+            print "Regenerating filename:", filename
             with open(filename, "r") as file_in:
                 text = file_in.read()
                 text_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
-            # TODO: Make the following work for 2n suites.
-            suite_id = get_suite_id(filename)
-            print "Regenerating suite_id:", suite_id
+            iface, suite_id = get_iface_and_suite_id(filename)
             testcase = self.testcase_class(suite_id)
             with open(filename, "w") as file_out:
                 file_out.write(text_prolog)
-                add_testcases(file_out, kwargs_list)
+                add_testcases(testcase, iface, file_out, kwargs_list)
         print "Regenerator ends."
         print  # To make autogen check output more readable.
