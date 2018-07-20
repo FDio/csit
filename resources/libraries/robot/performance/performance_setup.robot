@@ -346,6 +346,37 @@
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
+| Set up SRIOV 3-node performance topology with DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that sets default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ... | Then it configures PCI device with VFs on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ... | - crypto_type - Crypto device type - HW_cryptodev or SW_cryptodev
+| | ... | (Optional). Type: string, default value: HW_cryptodev
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up SRIOV performance test suite \| L2 \
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model} | ${vf_driver}
+| | ... | ${numvfs}=${1}
+| | ...
+| | Set variables in 3-node circular topology with DUT interface model
+| | ... | ${nic_model}
+| | Run Keyword If | '${vf_driver}' == 'AVF'
+| | ... | Configure AVF interfaces on all DUTs | force_init=${True}
+| | ... | numvfs=${numvfs}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2}
+| | ... | ${topology_type}
+
 | Set up IPSec performance test suite
 | | [Documentation]
 | | ... | Suite preparation phase that sets default startup configuration of
