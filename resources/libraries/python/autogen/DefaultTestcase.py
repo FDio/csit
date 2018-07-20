@@ -13,7 +13,7 @@
 
 """Module with utilities for autogeneration of non-customizable testcases."""
 
-from Testcase import Testcase
+from .Testcase import Testcase
 
 
 class DefaultTestcase(Testcase):
