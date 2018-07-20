@@ -233,11 +233,12 @@ if [ "$?" -ne "0" ]; then
     echo "However, the tests will start."
 fi
 
+# TODO(CSIT-994): reenable NSH
 PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --suite "tests.honeycomb.func" \
     --include HC_FUNC \
-    --exclude HC_REST_ONLY \
+    --exclude hc_nshORhc_rest_only \
     --noncritical EXPECTED_FAILING \
     --variable HC_ODL:${ODL} \
     tests/
