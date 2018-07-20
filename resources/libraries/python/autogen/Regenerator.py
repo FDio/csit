@@ -36,7 +36,7 @@ class Regenerator(object):
         """
         self.testcase_class = testcase_class
 
-    def regenerate_glob(self, pattern, is_ip6=False, tc_kwargs_list=None):
+    def regenerate_glob(self, pattern, protocol="ip4", tc_kwargs_list=None):
         """Regenerate files matching glob pattern based on arguments.
 
         In the current working directory, find all files matching
@@ -56,6 +56,12 @@ class Regenerator(object):
         :type tc_kwargs_list: list of tuple or None
         """
 
+        protocol_to_min_framesize = {
+            "ip4": 64,
+            "ip6": 78,
+            "vxlan+ip4": 114
+        }
+
         def get_suite_id(filename):
             dash_split = filename.split("-", 1)
             if len(dash_split[0]) <= 4:
@@ -73,8 +79,8 @@ class Regenerator(object):
                 num = add_testcase(file_out, num, **tc_kwargs)
 
         print "Regenerator starts at {cwd}".format(cwd=getcwd())
-        min_framesize = 78 if is_ip6 else 64
-        kwargs_list = tc_kwargs_list if tc_kwargs_list is not None else [
+        min_framesize = protocol_to_min_framesize[protocol]
+        kwargs_list = tc_kwargs_list if tc_kwargs_list else [
             {"framesize": min_framesize, "phy_cores": 1},
             {"framesize": min_framesize, "phy_cores": 2},
             {"framesize": min_framesize, "phy_cores": 4},
