@@ -2762,3 +2762,33 @@
 | | ... | ${number}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 | | Show Memif on all DUTs | ${nodes}
+
+| Configure ACLs on a single interface
+| | [Documentation]
+| | ... | Configure ACL
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - dut_if - DUT node interface name. Type: string
+| | ... | - acl_apply_type - To what path apply the ACL - input or output.
+| | ... | - acl_action - Action for the rule - deny, permit, permit+reflect.
+| | ... | - subnets - Subnets to apply the specific ACL. Type: list
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure ACLs on a single interface \| ${nodes['DUT1']}
+| | ... | \| ... \| GigabitEthernet0/7/0 \| input \| permit | 0.0.0.0/0
+| | ...
+| | [Arguments] | ${dut} | ${dut_if} | ${acl_apply_type} | ${acl_action}
+| | ... | @{subnets}
+| | Set Test variable | ${acl} | ${EMPTY}
+| | :FOR | ${subnet} | IN | @{subnets}
+| | | ${acl} = | Run Keyword If | '${acl}' == '${EMPTY}'
+| | | ... | Set Variable | ipv4 ${acl_action} src ${subnet}
+| | | ... | ELSE
+| | | ... | Catenate | SEPARATOR=, | ${acl}
+| | | ... | ipv4 ${acl_action} src ${subnet}
+| | Add Replace Acl Multi Entries | ${dut} | rules=${acl}
+| | @{acl_list} = | Create List | ${0}
+| | Set Acl List For Interface | ${dut} | ${dut_if} | ${acl_apply_type}
+| | ... | ${acl_list}
