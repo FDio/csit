@@ -22,13 +22,14 @@
 | ... | Set up 3-node performance topology with DUT's NIC model | L2
 | ... | Intel-X520-DA2
 | ... | AND | Set up performance test suite with ACL
+| ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
-| Test Template | Local template
+| Test Template | Local Template
 | ...
 | Documentation | *Raw results L2BD test cases with ACL*
 | ...
@@ -73,7 +74,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip4udp-10u1000p-conc
 
 *** Keywords ***
-| Local template
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD config with ACLs with ${phy_cores} phy
 | | ... | core(s).
@@ -86,66 +87,62 @@
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | [Arguments] | ${phy_cores} | ${framesize} | ${rxq}=${None}
-| | ...
-| | Set Test Variable | ${framesize}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
+| tc01-64B-1c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
 | | [Tags] | 64B | 1C
-| | phy_cores=${1} | framesize=${64}
+| | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
-| | [Tags] | 1518B | 1C
-| | phy_cores=${1} | framesize=${1518}
-
-| tc03-9000B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
-| | [Tags] | 9000B | 1C
-| | phy_cores=${1} | framesize=${9000}
-
-| tc04-IMIX-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
-| | [Tags] | IMIX | 1C
-| | phy_cores=${1} | framesize=IMIX_v4_1
-
-| tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
+| tc02-64B-2c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
 | | [Tags] | 64B | 2C
-| | phy_cores=${2} | framesize=${64}
+| | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
-| | [Tags] | 1518B | 2C
-| | phy_cores=${2} | framesize=${1518}
-
-| tc07-9000B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
-| | [Tags] | 9000B | 2C
-| | phy_cores=${2} | framesize=${9000}
-
-| tc08-IMIX-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
-| | [Tags] | IMIX | 2C
-| | phy_cores=${2} | framesize=IMIX_v4_1
-
-| tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
+| tc03-64B-4c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
 | | [Tags] | 64B | 4C
-| | phy_cores=${4} | framesize=${64}
+| | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4t4c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
+| tc04-1518B-1c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
 | | [Tags] | 1518B | 4C
-| | phy_cores=${4} | framesize=${1518}
+| | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4t4c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
+| tc07-9000B-1c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
 | | [Tags] | 9000B | 4C
-| | phy_cores=${4} | framesize=${9000}
+| | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr
+| tc10-IMIX-1c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr
 | | [Tags] | IMIX | 4C
-| | phy_cores=${4} | framesize=IMIX_v4_1
+| | framesize=IMIX_v4_1 | phy_cores=${4}

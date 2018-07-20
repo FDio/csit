@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,6 +19,7 @@
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L2 | Intel-XXV710
+| ...
 | Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -26,9 +27,9 @@
 | Test Teardown | Tear down performance discovery test | ${min_rate}pps
 | ... | ${framesize} | ${traffic_profile}
 | ...
-| Test Template | Local template
+| Test Template | Local Template
 | ...
-| Documentation | *Packet throughput L2BD test cases*
+| Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
@@ -49,15 +50,15 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# XXV710-DA2 bandwidth limit ~50Gbps/2=25Gbps
-| ${s_25G} | ${25000000000}
+# XXV710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
+| ${s_24.5G} | ${24500000000}
 # XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps} | ${18750000}
 # Traffic profile:
 | ${traffic_profile} | trex-sl-2n-ethip4-ip4src254
 
 *** Keywords ***
-| Local template
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 switching config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
@@ -72,15 +73,11 @@
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${20000}
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_25G} | ${get_framesize}
-| | ${max_rate}= | Set Variable If
-| | ... | ${max_rate} > ${s_18.75Mpps} | ${s_18.75Mpps} | ${max_rate}
+| | Set Test Variable | ${min_rate} | ${10000}
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add no multi seg to all DUTs
+| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
+| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
@@ -89,50 +86,50 @@
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrpdr
+| tc01-64B-1c-eth-l2bdbasemaclrn-ndrpdr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1t1c-eth-l2bdbasemaclrn-ndrpdr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
-
-| tc03-9000B-1t1c-eth-l2bdbasemaclrn-ndrpdr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
-
-| tc04-IMIX-1t1c-eth-l2bdbasemaclrn-ndrpdr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc05-64B-2t2c-eth-l2bdbasemaclrn-ndrpdr
+| tc02-64B-2c-eth-l2bdbasemaclrn-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2t2c-eth-l2bdbasemaclrn-ndrpdr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
-
-| tc07-9000B-2t2c-eth-l2bdbasemaclrn-ndrpdr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
-
-| tc08-IMIX-2t2c-eth-l2bdbasemaclrn-ndrpdr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc09-64B-4t4c-eth-l2bdbasemaclrn-ndrpdr
+| tc03-64B-4c-eth-l2bdbasemaclrn-ndrpdr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4t4c-eth-l2bdbasemaclrn-ndrpdr
+| tc04-1518B-1c-eth-l2bdbasemaclrn-ndrpdr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-eth-l2bdbasemaclrn-ndrpdr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-eth-l2bdbasemaclrn-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4t4c-eth-l2bdbasemaclrn-ndrpdr
+| tc07-9000B-1c-eth-l2bdbasemaclrn-ndrpdr
+| | [Tags] | 9000B | 1C
+| | framesize=${9000} | phy_cores=${1}
+
+| tc08-9000B-2c-eth-l2bdbasemaclrn-ndrpdr
+| | [Tags] | 9000B | 2C
+| | framesize=${9000} | phy_cores=${2}
+
+| tc09-9000B-4c-eth-l2bdbasemaclrn-ndrpdr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4t4c-eth-l2bdbasemaclrn-ndrpdr
+| tc10-IMIX-1c-eth-l2bdbasemaclrn-ndrpdr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-eth-l2bdbasemaclrn-ndrpdr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
+
+| tc12-IMIX-4c-eth-l2bdbasemaclrn-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
