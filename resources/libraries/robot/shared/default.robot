@@ -91,9 +91,33 @@
 | | | Crypto Device Verify | ${nodes['${dut}']} | force_init=${force_init}
 | | | ... | numvfs=${numvfs}
 
+| Configure AVF interfaces on all DUTs
+| | [Documentation] | Configure virtual functions for AVF interfaces on PCI
+| | ... | interface on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs
+| | ... | (Optional). Type: integer, default value: ${1}
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure AVF device on all DUTs \| ${True} \|
+| | ...
+| | [Arguments] | ${numvfs}=${1}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ... | numvfs=${numvfs}
+| | | ${if2_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ... | numvfs=${numvfs}
+# Currently only one AVF is supported.
+| | | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
+| | | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}
+
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
-| | ... | If parameter force_load is set to True, then try to initialize.
+| | ... | If parameter force_load is set to True, then try to load.
 | | ...
 | | ... | *Arguments:*
 | | ... | - module - Module to verify. Type: string
@@ -105,10 +129,8 @@
 | | ...
 | | [Arguments] | ${module} | ${force_load}=${False}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Kernel Module Verify | ${nodes['${dut}']} | ${module}
-| | | ... | force_load=${force_load}
+| | Verify Kernel Module on All DUTs | ${nodes} | ${module}
+| | ... | force_load=${force_load}
 
 | Create base startup configuration of VPP on all DUTs
 | | [Documentation] | Create base startup configuration of VPP to all DUTs.
@@ -189,6 +211,13 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK No Multi Seg
+
+| Add DPDK no PCI to all DUTs
+| | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK no PCI
 
 | Add DPDK dev default RXD to all DUTs
 | | [Documentation] | Add DPDK num-rx-desc to VPP startup configuration to all
