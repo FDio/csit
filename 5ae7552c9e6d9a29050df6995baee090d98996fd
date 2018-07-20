@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc3ac022_50866923",
+        "filename": "tests/vpp/perf/vts/10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-2vhostvr1024-1vm-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-20T05:39:06Z",
+      "side": 0,
+      "message": "This sequence is missing in refactored version. Can you please re-add and retest?\nThis is quite important because there is non standard traffic profile. Trex cannot fit VXLAN into 64B but it is dummy so it will create header, then no space left in packet and will write relevant info outside and rewrite (basicall packet overflow). That is why ACL then cannot read packet properly as it is malformed. \n\nIf this will be confirmed we need to put this TODO into TRex driver to FIX permanently.",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 65
+      },
+      "revId": "5ae7552c9e6d9a29050df6995baee090d98996fd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
