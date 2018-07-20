@@ -874,6 +874,20 @@
 | | Run Keyword And Ignore Error
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
 
+| Tear down mrr test with MACIP ACL
+| | [Documentation] | Common test teardown for mrr performance \
+| | ... | tests with MACIP ACL feature used.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down mrr test with MACIP ACL \|
+| | ...
+| | Tear down performance mrr test
+| | Run Keyword If Test Failed | Run Keyword And Ignore Error
+| | ... | Vpp Log Macip Acl Settings | ${dut1}
+| | Run Keyword And Ignore Error
+| | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
+
 | Tear down performance test with Ligato Kubernetes
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
 | | ... | tests with Ligato Kubernetes.
