@@ -24,6 +24,7 @@ from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
+from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
 
 
@@ -940,25 +941,28 @@ class InterfaceUtil(object):
 
         if output[0].get('retval') == 0:
             sw_if_idx = output[0].get('sw_if_index')
-            InterfaceUtil.add_bond_eth_interface(node, sw_if_idx=sw_if_idx)
+            InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx
+                                            ifc_pfx='eth_bond')
             if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
             return if_key
         else:
-            raise RuntimeError('Create bond interface failed on "{host}"'
-                               .format(host=node['host']))
+            raise RuntimeError('Create bond interface failed on "{host}"'.
+                               format(host=node['host']))
 
     @staticmethod
-    def add_bond_eth_interface(node, ifc_name=None, sw_if_idx=None):
-        """Add BondEthernet interface to current topology.
+    def add_eth_interface(node, ifc_name=None, sw_if_idx=None, ifc_pfx=None):
+        """Add ethernet interface to current topology.
 
         :param node: DUT node from topology.
-        :param ifc_name: Name of the BondEthernet interface.
+        :param ifc_name: Name of the interface.
         :param sw_if_idx: SW interface index.
+        :param ifc_pfx: Interface key prefix.
         :type node: dict
         :type ifc_name: str
         :type sw_if_idx: int
+        :type ifc_pfx: str
         """
-        if_key = Topology.add_new_port(node, 'eth_bond')
+        if_key = Topology.add_new_port(node, ifc_pfx)
 
         vat_executor = VatExecutor()
         vat_executor.execute_script_json_out("dump_interfaces.vat", node)
@@ -974,6 +978,34 @@ class InterfaceUtil(object):
         ifc_mac = VatJsonUtil.get_interface_mac_from_json(
             interface_dump_json, sw_if_idx)
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
+
+    @staticmethod
+    def vpp_create_avf_interface(node, vf_pci_addr):
+        """Create AVF interface on VPP node.
+
+        :param node: DUT node from topology.
+        :param vf_pci_addr: Virtual Function PCI address.
+        :type node: dict
+        :type vf_pci_addr: str
+        :returns: Interface key (name) in topology.
+        :rtype: str
+        :raises RuntimeError: If it is not possible to create AVF interface on
+            the node.
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template('create_avf_interface.vat',
+                                                    vf_pci_addr=vf_pci_addr)
+            output = vat.vat_stdout
+
+        if output is not None:
+            sw_if_idx = int(output.split()[4])
+            InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx
+                                            ifc_pfx='eth_avf')
+            if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
+            return if_key
+        else:
+            raise RuntimeError('Create AVF interface failed on {host}'.
+                               format(host=node['host']))
 
     @staticmethod
     def vpp_enslave_physical_interface(node, interface, bond_interface):
@@ -1209,21 +1241,141 @@ class InterfaceUtil(object):
                                .format(node))
 
     @staticmethod
-    def set_linux_interface_mac(node, interface, mac, namespace=None):
+    def set_linux_interface_mac(node, interface, mac, namespace=None,
+                                vf_id=None):
         """Set MAC address for interface in linux.
 
         :param node: Node where to execute command.
         :param interface: Interface in namespace.
         :param mac: MAC to be assigned to interface.
         :param namespace: Execute command in namespace. Optional
+        :param vf_id: Virtual Function id. Optional
         :type node: dict
         :type interface: str
         :type mac: str
         :type namespace: str
+        :type vf_id: int
         """
-        if namespace is not None:
-            cmd = 'ip netns exec {} ip link set {} address {}'.format(
-                namespace, interface, mac)
-        else:
-            cmd = 'ip link set {} address {}'.format(interface, mac)
+        mac_str = 'vf {vf_id} mac {mac}'.format(vf_id=vf_id, mac=mac) \
+            if vf_id is not None else 'address {mac}'.format(mac=mac)
+        ns_str = 'ip netns exec {ns}'.format(ns=namespace) if namespace else ''
+
+        cmd = ('{ns} ip link set {interface} {mac}'.
+               format(ns=ns_str, interface=interface, mac=mac_str))
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def set_linux_interface_trust_on(node, interface, namespace=None,
+                                     vf_id=None):
+        """Set trust on (promisc) for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param namespace: Execute command in namespace. Optional
+        :param vf_id: Virtual Function id. Optional
+        :type node: dict
+        :type interface: str
+        :type namespace: str
+        :type vf_id: int
+        """
+        trust_str = 'vf {vf_id} trust on'.format(vf_id=vf_id) \
+            if vf_id is not None else 'trust on'
+        ns_str = 'ip netns exec {ns}'.format(ns=namespace) if namespace else ''
+
+        cmd = ('{ns} ip link set dev {interface} {trust}'.
+               format(ns=ns_str, interface=interface, trust=trust_str))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def set_linux_interface_spoof_off(node, interface, namespace=None,
+                                      vf_id=None):
+        """Set spoof off for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param namespace: Execute command in namespace. Optional
+        :param vf_id: Virtual Function id. Optional
+        :type node: dict
+        :type interface: str
+        :type namespace: str
+        :type vf_id: int
+        """
+        spoof_str = 'vf {vf_id} spoof off'.format(vf_id=vf_id) \
+            if vf_id is not None else 'spoof off'
+        ns_str = 'ip netns exec {ns}'.format(ns=namespace) if namespace else ''
+
+        cmd = ('{ns} ip link set dev {interface} {spoof}'.
+               format(ns=ns_str, interface=interface, spoof=spoof_str))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def init_avf_interface(node, ifc_key, numvfs=1, topology_type='L2'):
+        """Init PCI device by creating VFs and bind them to vfio-pci for AVF
+        driver testing on DUT.
+
+        :param node: DUT node.
+        :param iface_key: Interface key from topology file.
+        :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
+        :param topology_type: Topology type.
+        :type node: dict
+        :iface_key: str
+        :type numvfs: int
+        :typ topology_type: str
+        :returns: Virtual Function topology interface keys.
+        :rtype: list
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        # Read PCI address and driver.
+        pf_pci_addr = Topology.get_interface_pci_addr(node, ifc_key)
+        pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")
+        uio_driver = Topology.get_uio_driver(node)
+        kernel_driver = Topology.get_interface_driver(node, ifc_key)
+        current_driver = DUTSetup.get_pci_dev_driver(node,\
+            pf_pci_addr.replace(':', r'\:'))
+
+        if current_driver != kernel_driver:
+            # PCI device must be re-bound to kernel driver before creating VFs.
+            DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
+            # Stop VPP to prevent deadlock.
+            VPPUtil.stop_vpp_service(node)
+            # Unbind from current driver.
+            DUTSetup.pci_driver_unbind(node, pf_pci_addr)
+            # Bind to kernel driver.
+            DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
+
+        # Initialize PCI VFs
+        DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
+
+        vf_ifc_keys = []
+        # Set MAC address and bind each virtual function to uio driver.
+        for vf_id in range(numvfs):
+            vf_mac_addr = ":".join([pf_mac_addr[0], pf_mac_addr[2],
+                                    pf_mac_addr[3], pf_mac_addr[4],
+                                    pf_mac_addr[5], "{:02x}".format(vf_id)])
+
+            pf_dev = '`basename /sys/bus/pci/devices/{pci}/net/*`'.\
+                format(pci=pf_pci_addr)
+            InterfaceUtil.set_linux_interface_trust_on(node, pf_dev,
+                                                       vf_id=vf_id)
+            if topology_type == 'L2':
+                InterfaceUtil.set_linux_interface_spoof_off(node, pf_dev,
+                                                            vf_id=vf_id)
+            InterfaceUtil.set_linux_interface_mac(node, pf_dev, vf_mac_addr,
+                                                  vf_id=vf_id)
+
+            DUTSetup.pci_vf_driver_unbind(node, pf_pci_addr, vf_id)
+            DUTSetup.pci_vf_driver_bind(node, pf_pci_addr, vf_id, uio_driver)
+
+            # Add newly created ports into topology file
+            vf_ifc_name = '{pf_if_key}_vf'.format(pf_if_key=ifc_key)
+            vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
+            vf_ifc_key = Topology.add_new_port(node, vf_ifc_name)
+            Topology.update_interface_name(node, vf_ifc_key,
+                                           vf_ifc_name+str(vf_id+1))
+            Topology.update_interface_mac_address(node, vf_ifc_key, vf_mac_addr)
+            Topology.update_interface_pci_address(node, vf_ifc_key, vf_pci_addr)
+            vf_ifc_keys.append(vf_ifc_key)
+
+        return vf_ifc_keys
