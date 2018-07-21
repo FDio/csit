@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b01a1230_4a1b8335",
+        "filename": "resources/libraries/bash/shell/nic_driver_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-21T07:44:39Z",
+      "side": 1,
+      "message": "TODO: Remove completely",
+      "revId": "79569e924221f363425be90798c9f2eef0f93d3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
