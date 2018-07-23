@@ -1,5 +1,5 @@
-KVM VM vHost
-============
+KVM VMs vhost-user
+==================
 
 Following sections include summary graphs of VPP Phy-to-VM(s)-to-Phy
 performance with VM virtio and VPP vhost-user virtual interfaces,
