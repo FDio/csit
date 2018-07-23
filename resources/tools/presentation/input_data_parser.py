@@ -206,6 +206,8 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_TC_NAME_NEW = re.compile(r'-\d+[cC]-')
 
+    REGEX_TC_NUMBER = re.compile(r'tc[0-9]{2}-')
+
     def __init__(self, metadata):
         """Initialisation.
 
@@ -477,6 +479,9 @@ class ExecutionChecker(ResultVisitor):
         tags = [str(tag) for tag in test.tags]
         test_result = dict()
         test_result["name"] = test.name.lower()
+        # Remove TC number from the TC name (not needed):
+        test_result["name"] = re.sub(self.REGEX_TC_NUMBER, "",
+                                     test.name.lower())
         test_result["parent"] = test.parent.name.lower()
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
@@ -485,7 +490,9 @@ class ExecutionChecker(ResultVisitor):
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
         test_result["status"] = test.status
-        self._test_ID = test.longname.lower()
+        # Remove TC number from the TC long name (backward compatibility):
+        self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", test.longname.lower())
+
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags or
