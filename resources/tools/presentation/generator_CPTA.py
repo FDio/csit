@@ -323,7 +323,7 @@ def _generate_all_charts(spec, input_data):
                 test_data,
                 job_name=job_name,
                 build_info=build_info,
-                name='-'.join(test_name.split('-')[3:-1]),
+                name='-'.join(test_name.split('-')[2:-1]),
                 color=COLORS[index])
             traces.extend(trace)
             res.append(rslt)
