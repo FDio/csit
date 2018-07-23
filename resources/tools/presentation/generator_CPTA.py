@@ -296,8 +296,7 @@ def _generate_all_charts(spec, input_data):
                     if chart_data.get(test_name, None) is None:
                         chart_data[test_name] = OrderedDict()
                     try:
-                        chart_data[test_name][int(index)] = \
-                            test["result"]["receive-rate"]
+                        chart_data[test_name][int(index)] = test["result"]
                     except (KeyError, TypeError):
                         pass
 
