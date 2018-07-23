@@ -55,10 +55,10 @@ NDR Changes
 NDR small packet throughput changes between releases are available in a
 CSV and pretty ASCII formats:
 
-  - `csv format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.csv>`_,
-  - `csv format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.csv>`_,
-  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-ndr-1t1c-full.txt>`_,
-  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-ndr-2t2c-full.txt>`_.
+  - `csv format for 1t1c <../_static/vpp/performance-changes-1t1c-ndr.csv>`_,
+  - `csv format for 2t2c <../_static/vpp/performance-changes-2t2c-ndr.csv>`_,
+  - `pretty ASCII format for 1t1c <../_static/performance-changes-1t1c-ndr.txt>`_,
+  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-2t2c-ndr.txt>`_.
 
 .. note::
 
@@ -72,10 +72,10 @@ PDR Changes
 NDR small packet throughput changes between releases are available in a
 CSV and pretty ASCII formats:
 
-  - `csv format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.csv>`_,
-  - `csv format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.csv>`_,
-  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-pdr-1t1c-full.txt>`_,
-  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-pdr-2t2c-full.txt>`_.
+  - `csv format for 1t1c <../_static/vpp/performance-changes-1t1c-pdr.csv>`_,
+  - `csv format for 2t2c <../_static/vpp/performance-changes-2t2c-pdr.csv>`_,
+  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-1t1c-pdr.txt>`_,
+  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-2t2c-pdr.txt>`_.
 
 .. note::
 
@@ -89,12 +89,12 @@ MRR Changes
 MRR small packet throughput changes between releases are available in a
 CSV and pretty ASCII formats:
 
-  - `csv format for 1t1c <../_static/vpp/performance-changes-mrr-1t1c-full.csv>`_,
-  - `csv format for 2t2c <../_static/vpp/performance-changes-mrr-2t2c-full.csv>`_,
-  - `csv format for 4t4c <../_static/vpp/performance-changes-mrr-4t4c-full.csv>`_,
-  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-mrr-1t1c-full.txt>`_,
-  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-mrr-2t2c-full.txt>`_,
-  - `pretty ASCII format for 4t4c <../_static/vpp/performance-changes-mrr-4t4c-full.txt>`_.
+  - `csv format for 1t1c <../_static/vpp/performance-changes-1t1c-mrr.csv>`_,
+  - `csv format for 2t2c <../_static/vpp/performance-changes-2t2c-mrr.csv>`_,
+  - `csv format for 4t4c <../_static/vpp/performance-changes-4t4c-mrr.csv>`_,
+  - `pretty ASCII format for 1t1c <../_static/vpp/performance-changes-1t1c-mrr.txt>`_,
+  - `pretty ASCII format for 2t2c <../_static/vpp/performance-changes-2t2c-mrr.txt>`_,
+  - `pretty ASCII format for 4t4c <../_static/vpp/performance-changes-4t4c-mrr.txt>`_.
 
 .. note::
 
