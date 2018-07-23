@@ -23,6 +23,9 @@ have the same value, only a horizontal line is plotted.
     performance jobs`_, ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
+    CSIT source code for the test cases used for plots can be found in
+    `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls1807>`_.
+
 Connections per second
 ----------------------
 
@@ -39,23 +42,6 @@ Connections per second
             \label{fig:http-server-performance-cps}
     \end{figure}
 
-*Figure 1. VPP HTTP Server Performance - Connections per Second*
-
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/tcp && grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-cps' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/tcp
-      $ grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-cps' *
-
 Requests per second
 -------------------
 
@@ -71,20 +57,3 @@ Requests per second
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{http-server-performance-rps}
             \label{fig:http-server-performance-rps}
     \end{figure}
-
-*Figure 2. VPP HTTP Server Performance - Requests per Second*
-
-CSIT source code for the test cases used for above plots can be found in CSIT
-git repository:
-
-.. only:: html
-
-   .. program-output:: cd ../../../../../ && set +x && cd tests/vpp/perf/tcp && grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-rps' *
-      :shell:
-
-.. only:: latex
-
-   .. code-block:: bash
-
-      $ cd tests/vpp/perf/tcp
-      $ grep -HE '(1t1c|2t2c|4t4c)-ethip4tcphttp-httpserver-rps' *
