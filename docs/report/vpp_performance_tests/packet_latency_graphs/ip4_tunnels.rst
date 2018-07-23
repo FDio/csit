@@ -25,7 +25,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -34,8 +34,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 64b-2t2c-base_and_scale
@@ -50,7 +50,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -59,8 +59,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat}
     \end{figure}
 
 3n-hsw-x710
@@ -78,7 +78,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -87,8 +87,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 64b-2t2c-base_and_scale
@@ -103,7 +103,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -112,8 +112,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat}
     \end{figure}
 
 3n-skx-x710
@@ -131,7 +131,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -140,8 +140,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 64b-4t2c-base_and_scale
@@ -156,7 +156,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -165,8 +165,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
 
 3n-skx-xxv710
@@ -184,7 +184,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -193,8 +193,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 64b-4t2c-base_and_scale
@@ -209,7 +209,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -218,8 +218,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
 
 2n-skx-x710
@@ -237,7 +237,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -246,8 +246,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 64b-4t2c-base_and_scale
@@ -262,7 +262,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -271,8 +271,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
 
 2n-skx-xxv710
@@ -290,7 +290,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -299,8 +299,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 64b-4t2c-base_and_scale
@@ -315,7 +315,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -324,6 +324,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50}
-            \label{fig:ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat}
+            \label{fig:ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
