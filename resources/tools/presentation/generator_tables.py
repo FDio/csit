@@ -334,6 +334,8 @@ def table_performance_improvements(table, input_data):
 def _read_csv_template(file_name):
     """Read the template from a .csv file.
 
+    # FIXME: Not used now.
+
     :param file_name: Name / full path / relative path of the file to read.
     :type file_name: str
     :returns: Data from the template as list (lines) of lists (items on line).
@@ -373,16 +375,21 @@ def table_performance_comparison(table, input_data):
     try:
         header = ["Test case", ]
 
+        if table["include-tests"] == "MRR":
+            hdr_param = "Receive Rate"
+        else:
+            hdr_param = "Throughput"
+
         history = table.get("history", None)
         if history:
             for item in history:
                 header.extend(
-                    ["{0} Throughput [Mpps]".format(item["title"]),
+                    ["{0} {1} [Mpps]".format(item["title"], hdr_param),
                      "{0} Stdev [Mpps]".format(item["title"])])
         header.extend(
-            ["{0} Throughput [Mpps]".format(table["reference"]["title"]),
+            ["{0} {1} [Mpps]".format(table["reference"]["title"], hdr_param),
              "{0} Stdev [Mpps]".format(table["reference"]["title"]),
-             "{0} Throughput [Mpps]".format(table["compare"]["title"]),
+             "{0} {1} [Mpps]".format(table["compare"]["title"], hdr_param),
              "{0} Stdev [Mpps]".format(table["compare"]["title"]),
              "Change [%]"])
         header_str = ",".join(header) + "\n"
@@ -396,45 +403,122 @@ def table_performance_comparison(table, input_data):
     for job, builds in table["reference"]["data"].items():
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
-                if tbl_dict.get(tst_name, None) is None:
+                tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
+                    replace("-ndrpdr", "").replace("-pdrdisc", "").\
+                    replace("-ndrdisc", "").replace("-pdr", "").\
+                    replace("-ndr", "")
+                logging.info("\n\n")
+                logging.info(tst_name_mod)
+                if tbl_dict.get(tst_name_mod, None) is None:
                     name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
                                             "-".join(tst_data["name"].
-                                                     split("-")[1:]))
-                    tbl_dict[tst_name] = {"name": name,
-                                          "ref-data": list(),
-                                          "cmp-data": list()}
+                                                     split("-")[1:-1]))
+                    tbl_dict[tst_name_mod] = {"name": name,
+                                              "ref-data": list(),
+                                              "cmp-data": list()}
                 try:
-                    tbl_dict[tst_name]["ref-data"].\
-                        append(tst_data["throughput"]["value"])
+                    # TODO: Re-work when NDRPDRDISC tests are not used
+                    if table["include-tests"] == "MRR":
+                        tbl_dict[tst_name_mod]["ref-data"]. \
+                            append(tst_data["result"]["receive-rate"].avg)
+                    elif table["include-tests"] == "PDR":
+                        if tst_data["type"] == "PDR":
+                            tbl_dict[tst_name_mod]["ref-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["ref-data"].append(
+                                tst_data["throughput"]["PDR"]["LOWER"])
+                    elif table["include-tests"] == "NDR":
+                        if tst_data["type"] == "NDR":
+                            tbl_dict[tst_name_mod]["ref-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["ref-data"].append(
+                                tst_data["throughput"]["NDR"]["LOWER"])
+                    else:
+                        continue
                 except TypeError:
                     pass  # No data in output.xml for this test
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
+                tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
+                    replace("-ndrpdr", "").replace("-pdrdisc", ""). \
+                    replace("-ndrdisc", "").replace("-pdr", ""). \
+                    replace("-ndr", "")
+                logging.info("\n\n")
+                logging.info(tst_name_mod)
                 try:
-                    tbl_dict[tst_name]["cmp-data"].\
-                        append(tst_data["throughput"]["value"])
+                    # TODO: Re-work when NDRPDRDISC tests are not used
+                    if table["include-tests"] == "MRR":
+                        tbl_dict[tst_name_mod]["cmp-data"]. \
+                            append(tst_data["result"]["receive-rate"].avg)
+                    elif table["include-tests"] == "PDR":
+                        if tst_data["type"] == "PDR":
+                            tbl_dict[tst_name_mod]["cmp-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["cmp-data"].append(
+                                tst_data["throughput"]["PDR"]["LOWER"])
+                    elif table["include-tests"] == "NDR":
+                        if tst_data["type"] == "NDR":
+                            tbl_dict[tst_name_mod]["cmp-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["cmp-data"].append(
+                                tst_data["throughput"]["NDR"]["LOWER"])
+                    else:
+                        continue
                 except KeyError:
                     pass
                 except TypeError:
-                    tbl_dict.pop(tst_name, None)
+                    tbl_dict.pop(tst_name_mod, None)
     if history:
         for item in history:
             for job, builds in item["data"].items():
                 for build in builds:
                     for tst_name, tst_data in data[job][str(build)].iteritems():
-                        if tbl_dict.get(tst_name, None) is None:
+                        tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
+                            replace("-ndrpdr", "").replace("-pdrdisc", ""). \
+                            replace("-ndrdisc", "").replace("-pdr", ""). \
+                            replace("-ndr", "")
+                        logging.info("\n\n")
+                        logging.info(tst_name_mod)
+                        if tbl_dict.get(tst_name_mod, None) is None:
                             continue
-                        if tbl_dict[tst_name].get("history", None) is None:
-                            tbl_dict[tst_name]["history"] = OrderedDict()
-                        if tbl_dict[tst_name]["history"].get(item["title"],
+                        if tbl_dict[tst_name_mod].get("history", None) is None:
+                            tbl_dict[tst_name_mod]["history"] = OrderedDict()
+                        if tbl_dict[tst_name_mod]["history"].get(item["title"],
                                                              None) is None:
-                            tbl_dict[tst_name]["history"][item["title"]] = \
+                            tbl_dict[tst_name_mod]["history"][item["title"]] = \
                                 list()
                         try:
-                            tbl_dict[tst_name]["history"][item["title"]].\
-                                append(tst_data["throughput"]["value"])
+                            # TODO: Re-work when NDRPDRDISC tests are not used
+                            if table["include-tests"] == "MRR":
+                                tbl_dict[tst_name_mod]["history"][item["title"
+                                ]].append(tst_data["result"]["receive-rate"].
+                                          avg)
+                            elif table["include-tests"] == "PDR":
+                                if tst_data["type"] == "PDR":
+                                    tbl_dict[tst_name_mod]["history"][
+                                        item["title"]].\
+                                        append(tst_data["throughput"]["value"])
+                                elif tst_data["type"] == "NDRPDR":
+                                    tbl_dict[tst_name_mod]["history"][item[
+                                        "title"]].append(tst_data["throughput"][
+                                        "PDR"]["LOWER"])
+                            elif table["include-tests"] == "NDR":
+                                if tst_data["type"] == "NDR":
+                                    tbl_dict[tst_name_mod]["history"][
+                                        item["title"]].\
+                                        append(tst_data["throughput"]["value"])
+                                elif tst_data["type"] == "NDRPDR":
+                                    tbl_dict[tst_name_mod]["history"][item[
+                                        "title"]].append(tst_data["throughput"][
+                                        "NDR"]["LOWER"])
+                            else:
+                                continue
                         except (TypeError, KeyError):
                             pass
 
@@ -471,99 +555,14 @@ def table_performance_comparison(table, input_data):
     # Sort the table according to the relative change
     tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
 
-    # Generate tables:
-    # All tests in csv:
-    tbl_names = ["{0}-ndr-1t1c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"]),
-                 "{0}-ndr-2t2c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"]),
-                 "{0}-ndr-4t4c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"]),
-                 "{0}-pdr-1t1c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"]),
-                 "{0}-pdr-2t2c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"]),
-                 "{0}-pdr-4t4c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"])
-                 ]
-    for file_name in tbl_names:
-        logging.info("      Writing file: '{0}'".format(file_name))
-        with open(file_name, "w") as file_handler:
-            file_handler.write(header_str)
-            for test in tbl_lst:
-                if (file_name.split("-")[-3] in test[0] and    # NDR vs PDR
-                        file_name.split("-")[-2] in test[0]):  # cores
-                    test[0] = "-".join(test[0].split("-")[:-1])
-                    file_handler.write(",".join([str(item) for item in test]) +
-                                       "\n")
+    # Generate csv tables:
+    csv_file = "{0}.csv".format(table["output-file"])
+    with open(csv_file, "w") as file_handler:
+        file_handler.write(header_str)
+        for test in tbl_lst:
+            file_handler.write(",".join([str(item) for item in test]) + "\n")
 
-    # All tests in txt:
-    tbl_names_txt = ["{0}-ndr-1t1c-full.txt".format(table["output-file"]),
-                     "{0}-ndr-2t2c-full.txt".format(table["output-file"]),
-                     "{0}-ndr-4t4c-full.txt".format(table["output-file"]),
-                     "{0}-pdr-1t1c-full.txt".format(table["output-file"]),
-                     "{0}-pdr-2t2c-full.txt".format(table["output-file"]),
-                     "{0}-pdr-4t4c-full.txt".format(table["output-file"])
-                     ]
-
-    for i, txt_name in enumerate(tbl_names_txt):
-        logging.info("      Writing file: '{0}'".format(txt_name))
-        convert_csv_to_pretty_txt(tbl_names[i], txt_name)
-
-    # Selected tests in csv:
-    input_file = "{0}-ndr-1t1c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"])
-    with open(input_file, "r") as in_file:
-        lines = list()
-        for line in in_file:
-            lines.append(line)
-
-    output_file = "{0}-ndr-1t1c-top{1}".format(table["output-file"],
-                                               table["output-file-ext"])
-    logging.info("      Writing file: '{0}'".format(output_file))
-    with open(output_file, "w") as out_file:
-        out_file.write(header_str)
-        for i, line in enumerate(lines[1:]):
-            if i == table["nr-of-tests-shown"]:
-                break
-            out_file.write(line)
-
-    output_file = "{0}-ndr-1t1c-bottom{1}".format(table["output-file"],
-                                                  table["output-file-ext"])
-    logging.info("      Writing file: '{0}'".format(output_file))
-    with open(output_file, "w") as out_file:
-        out_file.write(header_str)
-        for i, line in enumerate(lines[-1:0:-1]):
-            if i == table["nr-of-tests-shown"]:
-                break
-            out_file.write(line)
-
-    input_file = "{0}-pdr-1t1c-full{1}".format(table["output-file"],
-                                               table["output-file-ext"])
-    with open(input_file, "r") as in_file:
-        lines = list()
-        for line in in_file:
-            lines.append(line)
-
-    output_file = "{0}-pdr-1t1c-top{1}".format(table["output-file"],
-                                               table["output-file-ext"])
-    logging.info("      Writing file: '{0}'".format(output_file))
-    with open(output_file, "w") as out_file:
-        out_file.write(header_str)
-        for i, line in enumerate(lines[1:]):
-            if i == table["nr-of-tests-shown"]:
-                break
-            out_file.write(line)
-
-    output_file = "{0}-pdr-1t1c-bottom{1}".format(table["output-file"],
-                                                  table["output-file-ext"])
-    logging.info("      Writing file: '{0}'".format(output_file))
-    with open(output_file, "w") as out_file:
-        out_file.write(header_str)
-        for i, line in enumerate(lines[-1:0:-1]):
-            if i == table["nr-of-tests-shown"]:
-                break
-            out_file.write(line)
+    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
 
 
 def table_performance_comparison_mrr(table, input_data):
@@ -722,7 +721,7 @@ def table_performance_trending_dashboard(table, input_data):
                     tbl_dict[tst_name] = {"name": name,
                                           "data": OrderedDict()}
                 try:
-                    tbl_dict[tst_name]["data"][str(build)] =  \
+                    tbl_dict[tst_name]["data"][str(build)] = \
                         tst_data["result"]["receive-rate"]
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
