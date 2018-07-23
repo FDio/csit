@@ -802,15 +802,12 @@
       - 31  # sel
       - 35  # sel
   data: "vpp-performance-changes"
-  filter: "all"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "all" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
   parameters:
   - "name"
   - "parent"
   - "throughput"
-  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-  # to present all tests.
-  nr-of-tests-shown: 20
-  outlier-const: 1.5
 
 -
   type: "table"
@@ -852,10 +849,6 @@
   - "name"
   - "parent"
   - "result"
-  # Number of the best and the worst tests presented in the table. Use 0 (zero)
-  # to present all tests.
-  nr-of-tests-shown: 20
-  outlier-const: 1.5
 
 -
   type: "table"
@@ -7996,103 +7989,6 @@
 
 ################################################################################
 
-# Packet Throughput - VPP vhost l2sw 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
 # Packet Throughput - VPP vhost ip4 3n-hsw-x520
 -
   type: "plot"
@@ -8106,10 +8002,7 @@
            'NDRDISC' and 
            '1T1C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8133,10 +8026,7 @@
            'NDRDISC' and 
            '2T2C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8160,10 +8050,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8187,6 +8074,31 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and 
            'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP vhost l2sw 3n-hsw-x520
+-
+  type: "plot"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and 
+           'NDRDISC' and 
+           '1T1C' and 
+           'VHOST' and 
            not 'VXLAN' and 
            not 'IP4FWD' and 
            not 'DOT1Q' and 
@@ -8202,44 +8114,22 @@
     title: ""  # No title
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
+  filter: "'NIC_Intel-X520-DA2' and
            '64B' and 
            'NDRDISC' and 
            '2T2C' and 
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -8253,17 +8143,20 @@
 
 -
   type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
+  filter: "'NIC_Intel-X520-DA2' and
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and 
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -8277,17 +8170,20 @@
 
 -
   type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
+  filter: "'NIC_Intel-X520-DA2' and
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and 
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -8312,10 +8208,7 @@
            'NDRDISC' and 
            '1T1C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8339,10 +8232,7 @@
            'NDRDISC' and 
            '2T2C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8366,10 +8256,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8393,6 +8280,31 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and 
            'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP vhost l2sw 3n-hsw-x710
+-
+  type: "plot"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and 
+           'NDRDISC' and 
+           '1T1C' and 
+           'VHOST' and 
            not 'VXLAN' and 
            not 'IP4FWD' and 
            not 'DOT1Q' and 
@@ -8408,44 +8320,22 @@
     title: ""  # No title
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
+  filter: "'NIC_Intel-X710' and
            '64B' and 
            'NDRDISC' and 
            '2T2C' and 
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -8459,17 +8349,20 @@
 
 -
   type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
+  filter: "'NIC_Intel-X710' and
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and 
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -8483,17 +8376,20 @@
 
 -
   type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
+  filter: "'NIC_Intel-X710' and
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and 
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -8518,10 +8414,7 @@
            'NDRDISC' and 
            '1T1C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8545,10 +8438,7 @@
            'NDRDISC' and 
            '2T2C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8572,10 +8462,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and 
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -8593,6 +8480,112 @@
   algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'PDRDISC' and not 'NDRDISC' and
+           '2T2C' and 
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP vhost l2sw 3n-hsw-xl710
+-
+  type: "plot"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'NDRDISC' and 
+           '1T1C' and 
+           'VHOST' and 
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'NDRDISC' and 
+           '2T2C' and 
+           'VHOST' and 
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'PDRDISC' and not 'NDRDISC' and
+           '1T1C' and 
+           'VHOST' and 
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and 
@@ -10083,10 +10076,10 @@
 # Packet Latency - VPP L2 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -10107,10 +10100,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -10131,10 +10124,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -10156,10 +10149,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -10182,10 +10175,10 @@
 # Packet Latency - VPP L2 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10206,10 +10199,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10230,10 +10223,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10255,10 +10248,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10281,10 +10274,10 @@
 # Packet Latency - VPP L2 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -10305,10 +10298,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -10330,10 +10323,10 @@
 # Packet Latency - VPP L2 3n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10354,10 +10347,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10378,10 +10371,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-x710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-x710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10403,10 +10396,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-x710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-x710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10429,10 +10422,10 @@
 # Packet Latency - VPP L2 3n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10453,10 +10446,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10477,10 +10470,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10502,10 +10495,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10528,10 +10521,10 @@
 # Packet Latency - VPP L2 2n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10552,10 +10545,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10576,10 +10569,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10601,10 +10594,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10627,10 +10620,10 @@
 # Packet Latency - VPP L2 2n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10651,10 +10644,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10675,10 +10668,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10700,10 +10693,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: l2sw-2n-skx-xxv710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10728,10 +10721,10 @@
 # Packet Latency - VPP Container Memif 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -10752,10 +10745,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -10777,10 +10770,10 @@
 # Packet Latency - VPP Container Memif 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10801,10 +10794,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10826,10 +10819,10 @@
 # Packet Latency - VPP Container Memif 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -10850,10 +10843,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -10875,10 +10868,10 @@
 # Packet Latency - VPP Container Memif 3n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10899,10 +10892,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10924,10 +10917,10 @@
 # Packet Latency - VPP Container Memif 3n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10948,10 +10941,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -10973,10 +10966,10 @@
 # Packet Latency - VPP Container Memif 2n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -10997,10 +10990,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11022,10 +11015,10 @@
 # Packet Latency - VPP Container Memif 2n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11046,10 +11039,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11073,10 +11066,10 @@
 # Packet Latency - VPP Container Memif 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -11097,10 +11090,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -11122,10 +11115,10 @@
 # Packet Latency - VPP Container Memif 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11146,10 +11139,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11171,10 +11164,10 @@
 # Packet Latency - VPP Container Memif 3n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11195,10 +11188,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11220,10 +11213,10 @@
 # Packet Latency - VPP Container Memif 3n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11244,10 +11237,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11269,10 +11262,10 @@
 # Packet Latency - VPP Container Memif 2n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11293,10 +11286,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11318,10 +11311,10 @@
 # Packet Latency - VPP Container Memif 2n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11342,10 +11335,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11369,10 +11362,10 @@
 # Packet Latency - VPP IPv4 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -11393,10 +11386,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -11417,10 +11410,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -11442,10 +11435,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -11468,10 +11461,10 @@
 # Packet Latency - VPP IPv4 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11492,10 +11485,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11516,10 +11509,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11541,10 +11534,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11567,10 +11560,10 @@
 # Packet Latency - VPP IPv4 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -11591,10 +11584,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -11616,10 +11609,10 @@
 # Packet Latency - VPP IPv4 3n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11640,10 +11633,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11664,10 +11657,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11689,10 +11682,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11715,10 +11708,10 @@
 # Packet Latency - VPP IPv4 3n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11739,10 +11732,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11763,10 +11756,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-xxv710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11788,10 +11781,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-3n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip4-3n-skx-xxv710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-xxv710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11814,10 +11807,10 @@
 # Packet Latency - VPP IPv4 2n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11838,10 +11831,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11862,10 +11855,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-x710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-x710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11887,10 +11880,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-x710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-x710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -11913,10 +11906,10 @@
 # Packet Latency - VPP IPv4 2n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11937,10 +11930,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11961,10 +11954,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-xxv710-64b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -11986,10 +11979,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4-2n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip4-2n-skx-xxv710-64b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -12014,10 +12007,10 @@
 # Packet Latency - VPP Ipv4 tunnels 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -12038,10 +12031,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -12063,10 +12056,10 @@
 # Packet Latency - VPP Ipv4 tunnels 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -12087,10 +12080,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -12112,10 +12105,10 @@
 # Packet Latency - VPP Ipv4 tunnels 3n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -12136,10 +12129,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -12161,10 +12154,10 @@
 # Packet Latency - VPP Ipv4 tunnels 3n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -12185,10 +12178,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -12210,10 +12203,10 @@
 # Packet Latency - VPP Ipv4 tunnels 2n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -12234,10 +12227,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -12260,10 +12253,10 @@
 # Packet Latency - VPP Ipv4 tunnels 2n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -12284,10 +12277,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -12311,10 +12304,10 @@
 # Packet Latency - VPP IPv6 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
@@ -12336,10 +12329,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
@@ -12361,10 +12354,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x520-78b-1t1c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x520-78b-1t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
@@ -12387,10 +12380,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x520-78b-2t2c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x520-78b-2t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
@@ -12414,10 +12407,10 @@
 # Packet Latency - VPP IPv6 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12439,10 +12432,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12464,10 +12457,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x710-78b-1t1c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x710-78b-1t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-1t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12490,10 +12483,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-x710-78b-2t2c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-x710-78b-2t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-2t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12517,10 +12510,10 @@
 # Packet Latency - VPP IPv6 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '78B' and
@@ -12542,10 +12535,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '78B' and
@@ -12568,10 +12561,10 @@
 # Packet Latency - VPP IPv6 3n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12593,10 +12586,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12618,10 +12611,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-x710-78b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-x710-78b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12644,10 +12637,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-x710-78b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-x710-78b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12671,10 +12664,10 @@
 # Packet Latency - VPP IPv6 3n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12696,10 +12689,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12721,10 +12714,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-xxv710-78b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-xxv710-78b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12747,10 +12740,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-3n-skx-xxv710-78b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip6-3n-skx-xxv710-78b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12774,10 +12767,10 @@
 # Packet Latency - VPP IPv6 2n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12799,10 +12792,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12824,10 +12817,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-x710-78b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-x710-78b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12850,10 +12843,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-x710-78b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-x710-78b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
@@ -12877,10 +12870,10 @@
 # Packet Latency - VPP IPv6 2n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12902,10 +12895,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12927,10 +12920,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-xxv710-78b-2t1c-features-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-xxv710-78b-2t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-2t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12953,10 +12946,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6-2n-skx-xxv710-78b-4t2c-features-ndr-lat50"
+  title: "VPP Latency: ip6-2n-skx-xxv710-78b-4t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-4t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
@@ -12982,10 +12975,10 @@
 # Packet Latency - VPP IPv6 tunnels 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
@@ -13005,10 +12998,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
@@ -13031,10 +13024,10 @@
 # Packet Latency - VPP IPSec 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Latency: ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -13055,10 +13048,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -13082,10 +13075,10 @@
 # Packet Latency - VPP SRv6 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat50"
+  title: "VPP Latency: srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and 
@@ -13105,10 +13098,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat50"
+  title: "VPP Latency: srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and 
@@ -13128,58 +13121,58 @@
 
 ################################################################################
 
-# Packet Latency - VPP vhost l2sw 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
 # Packet Latency - VPP vhost ip4 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and 
+           'NDRDISC' and 
+           '1T1C' and 
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: ""  # No title
+    layout: "plot-latency"
+
+-
+  type: "plot"
+  title: "VPP Latency: vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and 
+           'NDRDISC' and 
+           '2T2C' and 
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: ""  # No title
+    layout: "plot-latency"
+
+# Packet Latency - VPP vhost l2sw 3n-hsw-x520
+-
+  type: "plot"
+  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and 
@@ -13201,10 +13194,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and 
@@ -13215,51 +13208,6 @@
            not 'IP4FWD' and 
            not 'DOT1Q' and 
            not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
-# Packet Latency - VPP vhost l2sw 3n-hsw-x710
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
   - "parent"
@@ -13272,10 +13220,55 @@
 # Packet Latency - VPP vhost ip4 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and 
+           'NDRDISC' and 
+           '1T1C' and 
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: ""  # No title
+    layout: "plot-latency"
+
+-
+  type: "plot"
+  title: "VPP Latency: vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and 
+           'NDRDISC' and 
+           '2T2C' and 
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: ""  # No title
+    layout: "plot-latency"
+
+# Packet Latency - VPP vhost l2sw 3n-hsw-x710
+-
+  type: "plot"
+  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and 
@@ -13297,10 +13290,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and 
@@ -13311,51 +13304,6 @@
            not 'IP4FWD' and 
            not 'DOT1Q' and 
            not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
-# Packet Latency - VPP vhost l2sw 3n-hsw-xl710
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
   - "parent"
@@ -13368,10 +13316,55 @@
 # Packet Latency - VPP vhost ip4 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'NDRDISC' and 
+           '1T1C' and 
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: ""  # No title
+    layout: "plot-latency"
+
+-
+  type: "plot"
+  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-latency-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'NDRDISC' and 
+           '2T2C' and 
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "latency"
+  - "parent"
+  traces:
+    boxmean: False
+  layout:
+    title: ""  # No title
+    layout: "plot-latency"
+
+# Packet Latency - VPP vhost l2sw 3n-hsw-xl710
+-
+  type: "plot"
+  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and 
@@ -13393,10 +13386,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and 
@@ -13417,13 +13410,14 @@
     layout: "plot-latency"
 
 ################################################################################
+
 # Packet Latency - VPP VTS 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: vts-3n-hsw-x520-64b-1t1c-ndr-lat50"
+  title: "VPP Latency: vts-3n-hsw-x520-64b-1t1c-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-64b-1t1c-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-64b-1t1c-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -13441,10 +13435,10 @@
 
 -
   type: "plot"
-  title: "VPP Latency: vts-3n-hsw-x520-64b-2t2c-ndr-lat50"
+  title: "VPP Latency: vts-3n-hsw-x520-64b-2t2c-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-64b-2t2c-ndr-lat50"
+  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-64b-2t2c-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -13465,10 +13459,10 @@
 # Packet Latency - DPDK l3fwd 3n-hsw-x520
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -13489,10 +13483,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -13514,10 +13508,10 @@
 # Packet Latency - DPDK l3fwd 3n-hsw-x710
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13538,10 +13532,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13563,10 +13557,10 @@
 # Packet Latency - DPDK l3fwd 3n-hsw-xl710
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -13587,10 +13581,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -13612,10 +13606,10 @@
 # Packet Latency - DPDK l3fwd 3n-skx-x710
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13636,10 +13630,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13661,10 +13655,10 @@
 # Packet Latency - DPDK l3fwd 3n-skx-xxv710
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -13685,10 +13679,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -13710,10 +13704,10 @@
 # Packet Latency - DPDK l3fwd 2n-skx-x710
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13734,10 +13728,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13759,10 +13753,10 @@
 # Packet Latency - DPDK l3fwd 2n-skx-xxv710
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -13783,10 +13777,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -13810,10 +13804,10 @@
 # Packet Latency - DPDK testpmd 3n-hsw-x520
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -13834,10 +13828,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -13859,10 +13853,10 @@
 # Packet Latency - DPDK testpmd 3n-hsw-x710
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13883,10 +13877,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13908,10 +13902,10 @@
 # Packet Latency - DPDK testpmd 3n-hsw-xl710
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -13932,10 +13926,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
@@ -13957,10 +13951,10 @@
 # Packet Latency - DPDK testpmd 3n-skx-x710
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -13981,10 +13975,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -14006,10 +14000,10 @@
 # Packet Latency - DPDK testpmd 3n-skx-xxv710
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -14030,10 +14024,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -14055,10 +14049,10 @@
 # Packet Latency - DPDK testpmd 2n-skx-x710
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -14079,10 +14073,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -14104,10 +14098,10 @@
 # Packet Latency - DPDK testpmd 2n-skx-xxv710
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -14128,10 +14122,10 @@
 
 -
   type: "plot"
-  title: "DPDK Latency: testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  title: "DPDK Latency: testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat50"
+  output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -17058,47 +17052,6 @@
 
 ################################################################################
 
-# Speedup - VPP vhost l2sw 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'PDRDISC' and not 'NDRDISC' and
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
 # Speedup - VPP vhost ip4 3n-hsw-x520
 -
   type: "plot"
@@ -17111,10 +17064,7 @@
            '64B' and 
            'NDRDISC' and
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -17134,6 +17084,27 @@
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP vhost l2sw 3n-hsw-x520
+-
+  type: "plot"
+  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+  data: "plot-throughput-speedup-analysis-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and 
+           'NDRDISC' and
+           'VHOST' and 
            not 'VXLAN' and 
            not 'IP4FWD' and 
            not 'DOT1Q' and 
@@ -17146,39 +17117,21 @@
     title: ""  # No title
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP vhost l2sw 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X710' and
+  filter: "'NIC_Intel-X520-DA2' and
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -17199,10 +17152,7 @@
            '64B' and 
            'NDRDISC' and
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -17222,6 +17172,27 @@
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP vhost l2sw 3n-hsw-x710
+-
+  type: "plot"
+  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+  data: "plot-throughput-speedup-analysis-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and 
+           'NDRDISC' and
+           'VHOST' and 
            not 'VXLAN' and 
            not 'IP4FWD' and 
            not 'DOT1Q' and 
@@ -17234,39 +17205,21 @@
     title: ""  # No title
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP vhost l2sw 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and
-           'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
+  filter: "'NIC_Intel-X710' and
            '64B' and 
            'PDRDISC' and not 'NDRDISC' and
            'VHOST' and 
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
   parameters:
   - "throughput"
   - "parent"
@@ -17287,10 +17240,7 @@
            '64B' and 
            'NDRDISC' and
            'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
-           not '2VM'"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
   - "parent"
@@ -17305,6 +17255,50 @@
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+  data: "plot-throughput-speedup-analysis-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'PDRDISC' and not 'NDRDISC' and
+           'VHOST' and 
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP vhost l2sw 3n-hsw-xl710
+-
+  type: "plot"
+  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  data: "plot-throughput-speedup-analysis-3n-hsw"
+  filter: "'NIC_Intel-XL710' and
+           '64B' and 
+           'NDRDISC' and
+           'VHOST' and 
+           not 'VXLAN' and 
+           not 'IP4FWD' and 
+           not 'DOT1Q' and 
+           not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and 
