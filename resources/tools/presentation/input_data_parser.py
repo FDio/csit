@@ -65,13 +65,91 @@ class ExecutionChecker(ResultVisitor):
             }
         }
         "tests": {
+            # NDRPDR tests:
             "ID": {
                 "name": "Test name",
                 "parent": "Name of the parent of the test",
-                "doc": "Test documentation"
-                "msg": "Test message"
+                "doc": "Test documentation",
+                "msg": "Test message",
+                "vat-history": "DUT1 and DUT2 VAT History",
+                "show-run": "Show Run",
                 "tags": ["tag 1", "tag 2", "tag n"],
-                "type": "PDR" | "NDR" | "TCP" | "MRR" | "BMRR",
+                "type": "NDRPDR",
+                "status": "PASS" | "FAIL",
+                "throughput": {
+                    "NDR": {
+                        "LOWER": float,
+                        "UPPER": float
+                    },
+                    "PDR": {
+                        "LOWER": float,
+                        "UPPER": float
+                    }
+                },
+                "latency": {
+                    "NDR": {
+                        "direction1": {
+                            "min": float,
+                            "avg": float,
+                            "max": float
+                        },
+                        "direction2": {
+                            "min": float,
+                            "avg": float,
+                            "max": float
+                        }
+                    },
+                    "PDR": {
+                        "direction1": {
+                            "min": float,
+                            "avg": float,
+                            "max": float
+                        },
+                        "direction2": {
+                            "min": float,
+                            "avg": float,
+                            "max": float
+                        }
+                    }
+                }
+            }
+
+            # TCP tests:
+            "ID": {
+                "name": "Test name",
+                "parent": "Name of the parent of the test",
+                "doc": "Test documentation",
+                "msg": "Test message",
+                "tags": ["tag 1", "tag 2", "tag n"],
+                "type": "TCP",
+                "status": "PASS" | "FAIL",
+                "result": int
+            }
+
+            # MRR, BMRR tests:
+            "ID": {
+                "name": "Test name",
+                "parent": "Name of the parent of the test",
+                "doc": "Test documentation",
+                "msg": "Test message",
+                "tags": ["tag 1", "tag 2", "tag n"],
+                "type": "MRR" | "BMRR",
+                "status": "PASS" | "FAIL",
+                "result": {
+                    "receive-rate": AvgStdevMetadata,
+                }
+            }
+
+            # TODO: Remove when definitely no NDRPDRDISC tests are used:
+            # NDRPDRDISC tests:
+            "ID": {
+                "name": "Test name",
+                "parent": "Name of the parent of the test",
+                "doc": "Test documentation",
+                "msg": "Test message",
+                "tags": ["tag 1", "tag 2", "tag n"],
+                "type": "PDR" | "NDR",
+                "status": "PASS" | "FAIL",
                 "throughput": {  # Only type: "PDR" | "NDR"
                     "value": int,
                     "unit": "pps" | "bps" | "percentage"
@@ -111,13 +189,6 @@ class ExecutionChecker(ResultVisitor):
                             "max": int
                         }
                     }
-                },
-                "result": {  # Only type: "TCP"
-                    "value": int,
-                    "unit": "cps" | "rps"
-                },
-                "result": {  # Only type: "MRR" | "BMRR"
-                    "receive-rate": AvgStdevMetadata,
                 },
                 "lossTolerance": "lossTolerance",  # Only type: "PDR"
                 "vat-history": "DUT1 and DUT2 VAT History"
@@ -170,8 +241,15 @@ class ExecutionChecker(ResultVisitor):
     .. note:: ID is the lowercase full path to the test.
     """
 
+    # TODO: Remove when definitely no NDRPDRDISC tests are used:
     REGEX_RATE = re.compile(r'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)\s(\w+)')
 
+    REGEX_NDRPDR_RATE = re.compile(r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
+                                   r'NDR_UPPER:\s(\d+.\d+).*\n'
+                                   r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
+                                   r'PDR_UPPER:\s(\d+.\d+)')
+
+    # TODO: Remove when definitely no NDRPDRDISC tests are used:
     REGEX_LAT_NDR = re.compile(r'^[\D\d]*'
                                r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
                                r'\s\'(-?\d+/-?\d+/-?\d+)\'\]\s\n'
@@ -183,6 +261,9 @@ class ExecutionChecker(ResultVisitor):
     REGEX_LAT_PDR = re.compile(r'^[\D\d]*'
                                r'LAT_\d+%PDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
                                r'\s\'(-?\d+/-?\d+/-?\d+)\'\][\D\d]*')
+
+    REGEX_NDRPDR_LAT = re.compile(r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+                                  r'LATENCY.*\[\'(.*)\', \'(.*)\'\]')
 
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
@@ -363,6 +444,7 @@ class ExecutionChecker(ResultVisitor):
                 except KeyError:
                     pass
 
+    # TODO: Remove when definitely no NDRPDRDISC tests are used:
     def _get_latency(self, msg, test_type):
         """Get the latency data from the test message.
 
@@ -408,6 +490,74 @@ class ExecutionChecker(ResultVisitor):
             latency["direction2"]["10"] = dict(zip(keys, latencies[5]))
 
         return latency
+
+    def _get_ndrpdr_throughput(self, msg):
+        """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
+        message.
+
+        :param msg: The test message to be parsed.
+        :type msg: str
+        :returns: Parsed data as a dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+
+        throughput = {
+            "NDR": {"LOWER": -1.0, "UPPER": -1.0},
+            "PDR": {"LOWER": -1.0, "UPPER": -1.0}
+        }
+        status = "FAIL"
+        groups = re.search(self.REGEX_NDRPDR_RATE, msg)
+
+        if groups is not None:
+            try:
+                throughput["NDR"]["LOWER"] = float(groups.group(1))
+                throughput["NDR"]["UPPER"] = float(groups.group(2))
+                throughput["PDR"]["LOWER"] = float(groups.group(3))
+                throughput["PDR"]["UPPER"] = float(groups.group(4))
+                status = "PASS"
+            except (IndexError, ValueError):
+                pass
+
+        return throughput, status
+
+    def _get_ndrpdr_latency(self, msg):
+        """Get LATENCY from the test message.
+
+        :param msg: The test message to be parsed.
+        :type msg: str
+        :returns: Parsed data as a dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+
+        latency = {
+            "NDR": {
+                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
+                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
+            },
+            "PDR": {
+                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
+                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
+            }
+        }
+        status = "FAIL"
+        groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+
+        if groups is not None:
+            keys = ("min", "avg", "max")
+            try:
+                latency["NDR"]["direction1"] = dict(
+                    zip(keys, [float(l) for l in groups.group(1).split('/')]))
+                latency["NDR"]["direction2"] = dict(
+                    zip(keys, [float(l) for l in groups.group(2).split('/')]))
+                latency["PDR"]["direction1"] = dict(
+                    zip(keys, [float(l) for l in groups.group(3).split('/')]))
+                latency["PDR"]["direction2"] = dict(
+                    zip(keys, [float(l) for l in groups.group(4).split('/')]))
+                status = "PASS"
+            except (IndexError, ValueError):
+                pass
+
+        return latency, status
 
     def visit_suite(self, suite):
         """Implements traversing through the suite and its direct children.
@@ -489,18 +639,24 @@ class ExecutionChecker(ResultVisitor):
         test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
+        test_result["type"] = "FUNC"
         test_result["status"] = test.status
         # Remove TC number from the TC long name (backward compatibility):
         self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", test.longname.lower())
 
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
+                                      "NDRPDR" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags or
                                       "BMRR" in tags):
+            # TODO: Remove when definitely no NDRPDRDISC tests are used:
             if "NDRDISC" in tags:
                 test_type = "NDR"
+            # TODO: Remove when definitely no NDRPDRDISC tests are used:
             elif "PDRDISC" in tags:
                 test_type = "PDR"
+            elif "NDRPDR" in tags:
+                test_type = "NDRPDR"
             elif "TCP" in tags:
                 test_type = "TCP"
             elif "MRR" in tags:
@@ -542,6 +698,7 @@ class ExecutionChecker(ResultVisitor):
                                   "multi-threading tags.".format(self._test_ID))
                     return
 
+            # TODO: Remove when definitely no NDRPDRDISC tests are used:
             if test_type in ("NDR", "PDR"):
                 try:
                     rate_value = str(re.search(
@@ -564,11 +721,15 @@ class ExecutionChecker(ResultVisitor):
                     test_result["lossTolerance"] = str(re.search(
                         self.REGEX_TOLERANCE, test.message).group(1))
 
+            elif test_type in ("NDRPDR", ):
+                test_result["throughput"], test_result["status"] = \
+                    self._get_ndrpdr_throughput(test.message)
+                test_result["latency"], test_result["status"] = \
+                    self._get_ndrpdr_latency(test.message)
+
             elif test_type in ("TCP", ):
                 groups = re.search(self.REGEX_TCP, test.message)
-                test_result["result"] = dict()
-                test_result["result"]["value"] = int(groups.group(2))
-                test_result["result"]["unit"] = groups.group(1)
+                test_result["result"] = int(groups.group(2))
 
             elif test_type in ("MRR", "BMRR"):
                 test_result["result"] = dict()
@@ -1130,6 +1291,8 @@ class InputData(object):
 
         if params is None:
             params = element.get("parameters", None)
+            if params:
+                params.append("type")
 
         data = pd.Series()
         try:
