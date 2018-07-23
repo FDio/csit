@@ -31,33 +31,24 @@ if [ "${OS}" == "ubuntu1404" ]; then
     PACKAGE="deb deb.md5"
     CLASS="deb"
     VPP_ARTIFACTS="vpp vpp-dbg vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS="vpp-dpdk-dkms"
 elif [ "${OS}" == "ubuntu1604" ]; then
     OS="ubuntu.xenial.main"
     PACKAGE="deb deb.md5"
     CLASS="deb"
     VPP_ARTIFACTS="vpp vpp-dbg vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS="vpp-dpdk-dkms"
 elif [ "${OS}" == "centos7" ]; then
     OS="centos7"
     PACKAGE="rpm rpm.md5"
     CLASS=""
     VPP_ARTIFACTS="vpp vpp-debuginfo vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS=""
 fi
 
 REPO="fd.io.${STREAM}.${OS}"
 
-# download latest honeycomb, vpp-dpdk and nsh packages
+# download latest honeycomb and nsh packages
 for ART in ${HC_ARTIFACTS}; do
     for PAC in ${PACKAGE}; do
         curl "${URL}?r=${REPO}&g=${HC_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
-
-for ART in ${DPDK_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
     done
 done
 
