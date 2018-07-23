@@ -1,5 +1,5 @@
-KVM VM vHost
-============
+KVM VMs vhost-user
+==================
 
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically

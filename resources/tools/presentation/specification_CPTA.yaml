@@ -172,13 +172,10 @@
 -
   type: "output"
   output:
-#   "report"
     "CPTA"  # Continuous Performance Trending and Analysis
   format:
     html:
     - full
-    pdf:
-    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -191,7 +188,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c"
   data: "plot-performance-trending-all"
-  filter: "'MRR' and '1T1C'"
+  filter: "'MRR' and '1T1C' and not 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -212,7 +209,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c"
   data: "plot-performance-trending-all"
-  filter: "'MRR' and '2T2C'"
+  filter: "'MRR' and '2T2C' and not 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -233,7 +230,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c"
   data: "plot-performance-trending-all"
-  filter: "'MRR' and '4T4C'"
+  filter: "'MRR' and '4T4C' and not 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
@@ -275,7 +272,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/failed-tests"
   data: "plot-performance-trending-all"
-  filter: "'MRR'"
+  filter: "'MRR' and not 'NIC_Intel-XXV710'"
   parameters:
   - "name"
   - "parent"
