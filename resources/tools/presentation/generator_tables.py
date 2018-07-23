@@ -334,6 +334,8 @@ def table_performance_improvements(table, input_data):
 def _read_csv_template(file_name):
     """Read the template from a .csv file.
 
+    # FIXME: Not used now.
+
     :param file_name: Name / full path / relative path of the file to read.
     :type file_name: str
     :returns: Data from the template as list (lines) of lists (items on line).
@@ -722,7 +724,7 @@ def table_performance_trending_dashboard(table, input_data):
                     tbl_dict[tst_name] = {"name": name,
                                           "data": OrderedDict()}
                 try:
-                    tbl_dict[tst_name]["data"][str(build)] =  \
+                    tbl_dict[tst_name]["data"][str(build)] = \
                         tst_data["result"]["receive-rate"]
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
