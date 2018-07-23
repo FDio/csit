@@ -28,7 +28,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -37,8 +37,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50}
-            \label{fig:ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
+            \label{fig:ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 64b-2t2c-base_and_scale
@@ -53,7 +53,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -62,6 +62,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50}
-            \label{fig:ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
+            \label{fig:ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
     \end{figure}
