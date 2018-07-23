@@ -717,9 +717,11 @@ def table_performance_trending_dashboard(table, input_data):
                 if tst_name.lower() in table["ignore-list"]:
                     continue
                 if tbl_dict.get(tst_name, None) is None:
+                    # name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
+                    #                         "-".join(tst_data["name"].
+                    #                                  split("-")[1:]))
                     name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
-                                            "-".join(tst_data["name"].
-                                                     split("-")[1:]))
+                                            tst_data["name"])
                     tbl_dict[tst_name] = {"name": name,
                                           "data": OrderedDict()}
                 try:
@@ -986,9 +988,11 @@ def table_failed_tests(table, input_data):
                 if tst_name.lower() in table["ignore-list"]:
                     continue
                 if tbl_dict.get(tst_name, None) is None:
+                    # name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
+                    #                         "-".join(tst_data["name"].
+                    #                                  split("-")[1:]))
                     name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
-                                            "-".join(tst_data["name"].
-                                                     split("-")[1:]))
+                                            tst_data["name"])
                     tbl_dict[tst_name] = {"name": name,
                                           "data": OrderedDict()}
                 try:
