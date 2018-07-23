@@ -71,7 +71,7 @@ class ExecutionChecker(ResultVisitor):
                 "doc": "Test documentation"
                 "msg": "Test message"
                 "tags": ["tag 1", "tag 2", "tag n"],
-                "type": "PDR" | "NDR" | "TCP" | "MRR" | "BMRR",
+                "type": "PDR" | "NDR" | "NDRPDR" | "TCP" | "MRR" | "BMRR",
                 "throughput": {  # Only type: "PDR" | "NDR"
                     "value": int,
                     "unit": "pps" | "bps" | "percentage"
@@ -172,6 +172,11 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_RATE = re.compile(r'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)\s(\w+)')
 
+    REGEX_NDRPDR_RATE = re.compile(r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
+                                   r'NDR_UPPER:\s(\d+.\d+).*\n'
+                                   r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
+                                   r'PDR_UPPER:\s(\d+.\d+)')
+
     REGEX_LAT_NDR = re.compile(r'^[\D\d]*'
                                r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
                                r'\s\'(-?\d+/-?\d+/-?\d+)\'\]\s\n'
@@ -183,6 +188,9 @@ class ExecutionChecker(ResultVisitor):
     REGEX_LAT_PDR = re.compile(r'^[\D\d]*'
                                r'LAT_\d+%PDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
                                r'\s\'(-?\d+/-?\d+/-?\d+)\'\][\D\d]*')
+
+    REGEX_NDRPDR_LAT = re.compile(r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
+                                  r'LATENCY.*\[\'(.*)\', \'(.*)\'\]')
 
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
@@ -409,6 +417,80 @@ class ExecutionChecker(ResultVisitor):
 
         return latency
 
+    def _get_ndrpdr_throughput(self, msg):
+        """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
+        message.
+
+        :param msg: The test message to be parsed.
+        :type msg: str
+        :returns: Parsed data as a dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+
+        throughput = {
+            "NDR": {
+                "LOWER": -1.0,
+                "UPPER": -1.0},
+            "PDR": {
+                "LOWER": -1.0,
+                "UPPER": -1.0}
+        }
+        status = "FAIL"
+        groups = re.search(self.REGEX_NDRPDR_RATE, msg)
+        logging.info("Groups: {}".format(groups))
+
+        if groups is not None:
+            try:
+                throughput["NDR"]["LOWER"] = float(groups.group(1))
+                throughput["NDR"]["UPPER"] = float(groups.group(2))
+                throughput["PDR"]["LOWER"] = float(groups.group(3))
+                throughput["PDR"]["UPPER"] = float(groups.group(4))
+                status = "PASS"
+            except (IndexError, ValueError):
+                pass
+
+        return throughput, status
+
+    def _get_ndrpdr_latency(self, msg):
+        """Get LATENCY from the test message.
+
+        :param msg: The test message to be parsed.
+        :type msg: str
+        :returns: Parsed data as a dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+
+        latency = {
+            "NDR": {
+                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
+                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
+            },
+            "PDR": {
+                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
+                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
+            }
+        }
+        status = "FAIL"
+        groups = re.search(self.REGEX_NDRPDR_LAT, msg)
+        logging.info("Groups: {}".format(groups))
+
+        if groups is not None:
+            keys = ("min", "avg", "max")
+            try:
+                latency["NDR"]["direction1"] = dict(
+                    zip(keys, [float(l) for l in groups.group(1).split('/')]))
+                latency["NDR"]["direction2"] = dict(
+                    zip(keys, [float(l) for l in groups.group(2).split('/')]))
+                latency["PDR"]["direction1"] = dict(
+                    zip(keys, [float(l) for l in groups.group(3).split('/')]))
+                latency["PDR"]["direction2"] = dict(
+                    zip(keys, [float(l) for l in groups.group(4).split('/')]))
+                status = "PASS"
+            except (IndexError, ValueError):
+                pass
+
+        return latency, status
+
     def visit_suite(self, suite):
         """Implements traversing through the suite and its direct children.
 
@@ -494,6 +576,7 @@ class ExecutionChecker(ResultVisitor):
         self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", test.longname.lower())
 
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
+                                      "NDRPDR" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags or
                                       "BMRR" in tags):
@@ -501,6 +584,8 @@ class ExecutionChecker(ResultVisitor):
                 test_type = "NDR"
             elif "PDRDISC" in tags:
                 test_type = "PDR"
+            elif "NDRPDR" in tags:
+                test_type = "NDRPDR"
             elif "TCP" in tags:
                 test_type = "TCP"
             elif "MRR" in tags:
@@ -564,6 +649,12 @@ class ExecutionChecker(ResultVisitor):
                     test_result["lossTolerance"] = str(re.search(
                         self.REGEX_TOLERANCE, test.message).group(1))
 
+            elif test_type in ("NDRPDR", ):
+                test_result["result"] = dict()
+                test_result["result"]["throughput"], test_result["status"] = \
+                    self._get_ndrpdr_throughput(test.message)
+                test_result["result"]["latency"], test_result["status"] = \
+                    self._get_ndrpdr_latency(test.message)
             elif test_type in ("TCP", ):
                 groups = re.search(self.REGEX_TCP, test.message)
                 test_result["result"] = dict()
@@ -574,9 +665,8 @@ class ExecutionChecker(ResultVisitor):
                 test_result["result"] = dict()
                 groups = re.search(self.REGEX_BMRR, test.message)
                 if groups is not None:
-                    items_str = groups.group(1)
                     items_float = [float(item.strip()) for item
-                                   in items_str.split(",")]
+                                   in groups.group(1).split(",")]
                     test_result["result"]["receive-rate"] = \
                         AvgStdevMetadataFactory.from_data(items_float)
                 else:
@@ -1042,6 +1132,20 @@ class InputData(object):
             worker.terminate()
             worker.join()
 
+        logging.info("DATA:\n{}".format(
+            self._input_data["csit-vpp-perf-verify-master-3n-hsw"]["45"][
+                "tests"][
+                "tests.vpp.perf.vm vhost."
+                "10ge2p1x520-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr."
+                "64b-1t1c-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"][
+                "result"]["throughput"]))
+        logging.info("DATA:\n{}".format(
+            self._input_data["csit-vpp-perf-verify-master-3n-hsw"]["45"][
+                "tests"][
+                "tests.vpp.perf.vm vhost."
+                "10ge2p1x520-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr."
+                "64b-1t1c-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"][
+                "result"]["latency"]))
         logging.info("Done.")
 
     @staticmethod
