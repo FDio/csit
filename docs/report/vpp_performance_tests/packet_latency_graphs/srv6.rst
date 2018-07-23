@@ -25,7 +25,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -34,8 +34,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat50}
-            \label{fig:srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat}
+            \label{fig:srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat}
     \end{figure}
 
 78b-2t2c-features
@@ -50,7 +50,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -59,6 +59,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat50}
-            \label{fig:srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat50}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat}
+            \label{fig:srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat}
     \end{figure}

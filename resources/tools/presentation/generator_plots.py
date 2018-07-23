@@ -59,8 +59,9 @@ def plot_performance_box(plot, input_data):
                  format(plot.get("title", "")))
 
     # Transform the data
+    plot_title = plot.get("title", "")
     logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
+                 format(plot.get("type", ""), plot_title))
     data = input_data.filter_data(plot)
     if data is None:
         logging.error("No data.")
@@ -74,7 +75,20 @@ def plot_performance_box(plot, input_data):
                 if y_vals.get(test["parent"], None) is None:
                     y_vals[test["parent"]] = list()
                 try:
-                    y_vals[test["parent"]].append(test["throughput"]["value"])
+                    if test["type"] in ("NDR", "PDR"):
+                        y_vals[test["parent"]].\
+                            append(test["throughput"]["value"])
+                    elif test["type"] in ("NDRPDR", ):
+                        if "-pdr" in plot_title.lower():
+                            y_vals[test["parent"]].\
+                                append(test["throughput"]["PDR"]["LOWER"])
+                        elif "-ndr" in plot_title.lower():
+                            y_vals[test["parent"]]. \
+                                append(test["throughput"]["NDR"]["LOWER"])
+                        else:
+                            continue
+                    else:
+                        continue
                 except (KeyError, TypeError):
                     y_vals[test["parent"]].append(None)
 
@@ -92,7 +106,8 @@ def plot_performance_box(plot, input_data):
     df = pd.DataFrame(y_vals)
     df.head()
     for i, col in enumerate(df.columns):
-        name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', ''))
+        name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', '').
+                                 replace('-ndrpdr', ''))
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=df[col],
                                name=name,
@@ -131,8 +146,9 @@ def plot_latency_box(plot, input_data):
                  format(plot.get("title", "")))
 
     # Transform the data
+    plot_title = plot.get("title", "")
     logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
+                 format(plot.get("type", ""), plot_title))
     data = input_data.filter_data(plot)
     if data is None:
         logging.error("No data.")
@@ -153,18 +169,50 @@ def plot_latency_box(plot, input_data):
                         list()   # direction2, max
                     ]
                 try:
-                    y_tmp_vals[test["parent"]][0].append(
-                        test["latency"]["direction1"]["50"]["min"])
-                    y_tmp_vals[test["parent"]][1].append(
-                        test["latency"]["direction1"]["50"]["avg"])
-                    y_tmp_vals[test["parent"]][2].append(
-                        test["latency"]["direction1"]["50"]["max"])
-                    y_tmp_vals[test["parent"]][3].append(
-                        test["latency"]["direction2"]["50"]["min"])
-                    y_tmp_vals[test["parent"]][4].append(
-                        test["latency"]["direction2"]["50"]["avg"])
-                    y_tmp_vals[test["parent"]][5].append(
-                        test["latency"]["direction2"]["50"]["max"])
+                    if test["type"] in ("NDR", "PDR"):
+                        y_tmp_vals[test["parent"]][0].append(
+                            test["latency"]["direction1"]["50"]["min"])
+                        y_tmp_vals[test["parent"]][1].append(
+                            test["latency"]["direction1"]["50"]["avg"])
+                        y_tmp_vals[test["parent"]][2].append(
+                            test["latency"]["direction1"]["50"]["max"])
+                        y_tmp_vals[test["parent"]][3].append(
+                            test["latency"]["direction2"]["50"]["min"])
+                        y_tmp_vals[test["parent"]][4].append(
+                            test["latency"]["direction2"]["50"]["avg"])
+                        y_tmp_vals[test["parent"]][5].append(
+                            test["latency"]["direction2"]["50"]["max"])
+                    elif test["type"] in ("NDRPDR", ):
+                        if "-pdr" in plot_title.lower():
+                            y_tmp_vals[test["parent"]][0].append(
+                                test["latency"]["PDR"]["direction1"]["min"])
+                            y_tmp_vals[test["parent"]][1].append(
+                                test["latency"]["PDR"]["direction1"]["avg"])
+                            y_tmp_vals[test["parent"]][2].append(
+                                test["latency"]["PDR"]["direction1"]["max"])
+                            y_tmp_vals[test["parent"]][3].append(
+                                test["latency"]["PDR"]["direction2"]["min"])
+                            y_tmp_vals[test["parent"]][4].append(
+                                test["latency"]["PDR"]["direction2"]["avg"])
+                            y_tmp_vals[test["parent"]][5].append(
+                                test["latency"]["PDR"]["direction2"]["max"])
+                        elif "-ndr" in plot_title.lower():
+                            y_tmp_vals[test["parent"]][0].append(
+                                test["latency"]["NDR"]["direction1"]["min"])
+                            y_tmp_vals[test["parent"]][1].append(
+                                test["latency"]["NDR"]["direction1"]["avg"])
+                            y_tmp_vals[test["parent"]][2].append(
+                                test["latency"]["NDR"]["direction1"]["max"])
+                            y_tmp_vals[test["parent"]][3].append(
+                                test["latency"]["NDR"]["direction2"]["min"])
+                            y_tmp_vals[test["parent"]][4].append(
+                                test["latency"]["NDR"]["direction2"]["avg"])
+                            y_tmp_vals[test["parent"]][5].append(
+                                test["latency"]["NDR"]["direction2"]["max"])
+                        else:
+                            continue
+                    else:
+                        continue
                 except (KeyError, TypeError):
                     pass
 
@@ -190,7 +238,8 @@ def plot_latency_box(plot, input_data):
         return
 
     for i, col in enumerate(df.columns):
-        name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', ''))
+        name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', '').
+                                 replace('-ndrpdr', ''))
         traces.append(plgo.Box(x=['TGint1-to-SUT1-to-SUT2-to-TGint2',
                                   'TGint1-to-SUT1-to-SUT2-to-TGint2',
                                   'TGint1-to-SUT1-to-SUT2-to-TGint2',
