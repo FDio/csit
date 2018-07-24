@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d06bd2f_b5f2ef8f",
+        "filename": "tests/vpp/perf/l2/40ge2p1vic1385-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T18:03:38Z",
+      "side": 1,
+      "message": "Not sure how this gets there. Need to find real limits. RIght now just rename.",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 11
+      },
+      "revId": "364e00700fc7c2ae31f272b2277310ab7d4fd688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fab1b513_5fd06e59",
+        "filename": "tests/vpp/perf/l2/40ge2p1vic1385-eth-l2bdbasemaclrn-ndrpdr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T18:03:38Z",
+      "side": 1,
+      "message": "Same as above. Vic is Cisco",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 51
+      },
+      "revId": "364e00700fc7c2ae31f272b2277310ab7d4fd688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
