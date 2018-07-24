@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e9b15cbc_78779297",
+        "filename": "tests/vpp/perf/l2/40ge2p1vic1385-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-24T18:21:48Z",
+      "side": 1,
+      "message": "Have you noticed the (TG) part? I believe it implies we have not been able to find the limit of this NIC, because the xl710 on TG did not allow Trex to pump more.\n\nI have edited 10ge2p1vic1227 suite before realizing there are two different VICs.",
+      "parentUuid": "8d06bd2f_b5f2ef8f",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 11
+      },
+      "revId": "364e00700fc7c2ae31f272b2277310ab7d4fd688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fab1b513_5fd06e59",
         "filename": "tests/vpp/perf/l2/40ge2p1vic1385-eth-l2bdbasemaclrn-ndrpdr.robot",
         "patchSetId": 12
