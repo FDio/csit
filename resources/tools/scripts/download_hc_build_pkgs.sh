@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,82 +15,67 @@
 
 set -ex
 
-STREAM=$1
-OS=$2
-
-# Download the latest VPP and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
-VPP_GROUP="io.fd.vpp"
-NSH_GROUP="io.fd.nsh_sfc"
-NSH_ARTIFACTS="vpp-nsh-plugin"
+GROUP="io.fd.vpp"
 
-if [ "${OS}" == "ubuntu1404" ]; then
-    OS="ubuntu.trusty.main"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
-    VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
-elif [ "${OS}" == "ubuntu1604" ]; then
-    OS="ubuntu.xenial.main"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
-    VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
-elif [ "${OS}" == "centos7" ]; then
-    OS="centos7"
+if [ -f "/etc/redhat-release" ]; then
+    trap 'rm -f *.rpm.md5; exit' EXIT
+    trap 'rm -f *.rpm.md5;rm -f *.rpm; exit' ERR
+
+    VPP_REPO_URL_PATH="./VPP_REPO_URL_CENTOS"
+    if [ -e "$VPP_REPO_URL_PATH" ]; then
+        VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+        REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+        REPO=$(echo ${REPO%/io/fd/vpp/})
+    else
+        REPO='fd.io.master.centos7'
+    FILES=*.rpm
+    MD5FILES=*.rpm.md5
+    fi
+
+    ARTIFACTS="vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins"
     PACKAGE="rpm rpm.md5"
     CLASS=""
-    VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins vpp-api-java"
-fi
-
-REPO="fd.io.${STREAM}.${OS}"
-
-for ART in ${VPP_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${VPP_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
-
-for ART in ${NSH_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
-
-# verify downloaded packages
-if [ "${OS}" == "centos7" ]; then
-    FILES=*.rpm
+    VPP_INSTALL_COMMAND="rpm -ivh *.rpm"
 else
+    trap 'rm -f *.deb.md5; exit' EXIT
+    trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
+
+    VPP_REPO_URL_PATH="./VPP_REPO_URL_UBUNTU"
+    if [ -e "$VPP_REPO_URL_PATH" ]; then
+        VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+        REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+        REPO=$(echo ${REPO%/io/fd/vpp/})
+    else
+        REPO='fd.io.master.ubuntu.xenial.main'
     FILES=*.deb
+    MD5FILES=*.deb.md5
+    fi
+
+    ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
+    PACKAGE="deb deb.md5"
+    CLASS="deb"
+    VPP_INSTALL_COMMAND="dpkg -i *.deb"
 fi
+
+for ART in ${ARTIFACTS}; do
+    for PAC in $PACKAGE; do
+        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+    done
+done
 
 for FILE in ${FILES}; do
     echo " "${FILE} >> ${FILE}.md5
 done
-for MD5FILE in *.md5; do
+
+for MD5FILE in ${MD5FILES}; do
     md5sum -c ${MD5FILE} || exit
-    rm ${MD5FILE}
 done
 
-# install vpp-api-java, this extracts jvpp .jar files into usr/share/java
-if [ "${OS}" == "centos7" ]; then
-    sudo rpm --nodeps --install vpp-api-java*
+if [ "$1" != "--skip-install" ]; then
+    echo Installing VPP
+    sudo ${VPP_INSTALL_COMMAND}
 else
-    sudo dpkg --ignore-depends=vpp --install vpp-api-java*
+    echo VPP Installation skipped
 fi
-
-# install jvpp jars into maven repo, so that maven picks them up when building hc2vpp
-version=`../jvpp/version`
-
-current_dir=`pwd`
-cd /usr/share/java
-
-for item in jvpp*.jar; do
-    # Example filename: jvpp-registry-17.01-20161206.125556-1.jar
-    # ArtifactId = jvpp-registry
-    # Version = 17.01
-    basefile=$(basename -s .jar "$item")
-    artifactId=$(echo "$basefile" | cut -d '-' -f 1-2)
-    mvn install:install-file -Dfile=${item} -DgroupId=io.fd.vpp -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
-done
-
-cd ${current_dir}
