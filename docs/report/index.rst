@@ -19,7 +19,6 @@ CSIT 18.07
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency_graphs/index
     vpp_performance_tests/http_server_performance/index
-    vpp_performance_tests/mdr_search
     vpp_performance_tests/test_environment
     vpp_performance_tests/documentation/index
 

@@ -1,16 +1,16 @@
-Experimental: MDR Search
-========================
+MLRsearch Algorithm
+===================
 
-Multiple Drop Rate (MDR) Search is a new search algorithm implemented in
-FD.io CSIT project. MDR discovers multiple packet throughput rates in a
-single search, with each rate associated with a distinct Packet Loss
-Ratio (PLR) criteria.
+Multiple Loss Rate search (MLRsearch) is a new search algorithm
+implemented in FD.io CSIT project. MLRsearch discovers multiple packet
+throughput rates in a single search, with each rate associated with a
+distinct Packet Loss Ratio (PLR) criteria.
 
 Two throughput measurements used in FD.io CSIT are Non-Drop Rate (NDR,
 with zero packet loss, PLR=0) and Partial Drop Rate (PDR, with packet
-loss rate not greater than the configured non-zero PLR). MDR search
+loss rate not greater than the configured non-zero PLR). MLRsearch
 discovers NDR and PDR in a single pass reducing required execution time
-compared to separate binary searches for NDR and PDR. MDR reduces
+compared to separate binary searches for NDR and PDR. MLRsearch reduces
 execution time even further by relying on shorter trial durations
 of intermediate steps, with only the final measurements
 conducted at the specified final trial duration.
@@ -18,7 +18,7 @@ This results in the shorter overall search
 execution time when compared to a standard NDR/PDR binary search,
 while guaranteeing the same or similar results.
 
-If needed, MDR can be easily adopted to discover more throughput rates
+If needed, MLRsearch can be easily adopted to discover more throughput rates
 with different pre-defined PLRs.
 
 .. Note:: All throughput rates are *always* bi-directional
@@ -28,9 +28,9 @@ with different pre-defined PLRs.
 Overview
 ---------
 
-The main properties of MDR search:
+The main properties of MLRsearch:
 
-- MDR is a duration aware multi-phase multi-rate search algorithm.
+- MLRsearch is a duration aware multi-phase multi-rate search algorithm.
 
   - Initial phase determines promising starting interval for the search.
   - Intermediate phases progress towards defined final search criteria.
@@ -75,27 +75,27 @@ The main properties of MDR search:
   width goal that determines resolution of the overall search.
   Intermediate phases together with the final phase are called non-initial phases.
 
-The main benefits of MDR search vs. binary search include:
+The main benefits of MLRsearch vs. binary search include:
 
-- In general MDR is likely to execute more search trials overall, but
+- In general MLRsearch is likely to execute more search trials overall, but
   less trials at a set final duration.
 - In well behaving cases it greatly reduces (>50%) the overall duration
   compared to a single PDR (or NDR) binary search duration,
   while finding multiple drop rates.
-- In all cases MDR yields the same or similar results to binary search.
-- Note: both binary search and MDR are susceptible to reporting
+- In all cases MLRsearch yields the same or similar results to binary search.
+- Note: both binary search and MLRsearch are susceptible to reporting
   non-repeatable results across multiple runs for very bad behaving
   cases.
 
 Caveats:
 
-- Worst case MDR can take longer than a binary search e.g. in case of
+- Worst case MLRsearch can take longer than a binary search e.g. in case of
   drastic changes in behaviour for trials at varying durations.
 
 Search Implementation
 ---------------------
 
-Following is a brief description of the current MDR search
+Following is a brief description of the current MLRsearch
 implementation in FD.io CSIT.
 
 Input Parameters
@@ -107,11 +107,11 @@ Input Parameters
    defaults: 2 * 14.88 Mpps for 64B 10GE link rate,
    2 * 18.75 Mpps for 64B 40GE NIC maximum rate.
 #. *minimum_transmit_rate* - minimum packet transmit rate to be used for
-   measurements. MDR search fails if lower transmit rate needs to be
+   measurements. MLRsearch fails if lower transmit rate needs to be
    used to meet search criteria. Default: 2 * 10 kpps (could be higher).
 #. *final_trial_duration* - required trial duration for final rate
    measurements. Default: 30 sec.
-#. *initial_trial_duration* - trial duration for initial MDR phase.
+#. *initial_trial_duration* - trial duration for initial MLRsearch phase.
    Default: 1 sec.
 #. *final_relative_width* - required measurement resolution expressed as
    (lower_bound, upper_bound) interval width relative to upper_bound.
@@ -119,7 +119,7 @@ Input Parameters
 #. *packet_loss_ratio* - maximum acceptable PLR search criteria for
    PDR measurements. Default: 0.5%.
 #. *number_of_intermediate_phases* - number of phases between the initial
-   phase and the final phase. Impacts the overall MDR search duration.
+   phase and the final phase. Impacts the overall MLRsearch duration.
    Less phases are required for well behaving cases, more phases
    may be needed to reduce the overall search duration for worse behaving cases.
    Default (2). (Value chosen based on limited experimentation to date.
@@ -239,7 +239,7 @@ Non-initial phases
 Implementation Deviations
 -------------------------
 
-This document so far has been describing a simplified version of MDR search algorithm.
+This document so far has been describing a simplified version of MLRsearch algorithm.
 The full algorithm as implemented contains additional logic,
 which makes some of the details (but not general ideas) above incorrect.
 Here is a short description of the additional logic as a list of principles,
@@ -271,141 +271,11 @@ but without detailing their mutual interaction.
    Similarly, take care the measurements in the initial phase
    create wide enough interval.
 6. *Timeout for bad cases.*
-   The worst case for MDR search is when each phase converges to intervals
+   The worst case for MLRsearch is when each phase converges to intervals
    way different than the results of the previous phase.
    Rather than suffer total search time several times larger
    than pure binary search, the implemented tests fail themselves
    when the search takes too long (given by argument *timeout*).
-
-Test Effectiveness Comparison
------------------------------
-
-Introduction
-````````````
-
-CSIT release 1804 contains two test suites that use the new MDR search
-to enable comparison against existing CSIT NDR and PDR binary searches.
-The suites got chosen based on the level of consistency of their
-historical NDR/PDR results:
-
-#. *10Ge2P1X520-Ethip4-Ip4Base-Ndrpdr* - yielding very consistent binary
-   search results.
-#. *10Ge2P1X520-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr* - yielding
-   somewhat inconsistent results.
-
-Here "inconsistent" means the values found differ between runs,
-even though the setup and the test are exactly the same.
-
-The search part of CSIT binary search tests requires a single 5-second warmup
-and each trial measurement is set to 10 seconds.
-
-New tests with MDR search do not have any warmup, as initial measurements
-are not critical to the final result.
-
-Fairness of the following comparison has been achieved
-by setting MDR final relative width to values causing the width to match
-the binary NDR/PDR result.
-Each search algorithm has been run with three different
-(final) trial durations: 10s, 30s and 60s.
-
-Tables below compares overall test duration between the search tests.
-For simplicity only data for single thread 64B packet tests is listed,
-as it takes the longest in all cases.
-
-Data in tables is based on result of 6 runs.
-
-Tables
-``````
-
-.. note:: The comparison was done for the MDR code
-          before https://gerrit.fd.io/r/12761
-
-.. table:: Table 1. Search part of test duration.
-
-   ====================  ==========  ===========  ===========  ==========  ===========  ===========
-   Duration+-avgdev [s]  IP4 10s     IP4 30s      IP4 60s      Vhost 10s   Vhost 30s    Vhost 60s
-   ====================  ==========  ===========  ===========  ==========  ===========  ===========
-   MDR (both intervals)  50.8+-1.2   109.0+-10.0  202.8+-11.7  80.5+-9.0   201.9+-20.6  474.9+-58.2
-   NDR binary            98.9+-0.1   278.6+-0.1   548.8+-0.1   119.8+-0.1  339.3+-0.1   669.6+-0.2
-   PDR binary            98.9+-0.1   278.6+-0.1   548.8+-0.1   119.7+-0.1  339.3+-0.1   669.5+-0.1
-   NDR+PDR sum           197.8+-0.1  557.2+-0.2   1097.6+-0.1  239.5+-0.1  678.7+-0.1   1339.2+-0.1
-   ====================  ==========  ===========  ===========  ==========  ===========  ===========
-
-.. note:: Here "avgdev" is the estimated difference between
-   the average duration computed from the limited sample
-   and a true average duration as its hypothetical limit for infinite samples.
-   To get the usual "standard deviation" of duration, "avgdev" has to be multiplied
-   by the square root of the number of samples.
-   For the subtle details see `estimation of standard deviation`_,
-   we used zero ACF and c4==1.
-
-.. table:: Table 2. MDR duration as percentage of NDR duration.
-
-   ====================================  =========  =========  =========  =========  =========  =========
-   Fraction+-stdev [%]                   IP4 10s    IP4 30s    IP4 60s    Vhost 10s  Vhost 30s  Vhost 60s
-   ====================================  =========  =========  =========  =========  =========  =========
-   MDR duration divided by NDR duration  51.4+-1.2  39.1+-3.6  37.0+-2.1  67.2+-7.5  59.5+-6.1  70.9+-8.7
-   ====================================  =========  =========  =========  =========  =========  =========
-
-.. note:: Here "stdev" is standard deviation as computed by the
-   `simplified error propagation formula`_.
-
-Conclusions
-```````````
-
-In consistent tests, MDR is on average more than 50% faster
-than a single NDR binary search (even though MDR also detects PDR).
-
-One exception is 10 second final trial duration,
-where MDR is (only) almost 50% faster than NDR binary search.
-Most probably presence of 2 intermediate phases (instead of just 1) hurts there.
-
-In inconsistent tests MDR is still somewhat faster than NDR binary search,
-but it is not by 50%, and it is hard to quantify as MDR samples have wildly
-varying durations.
-
-Search Time Graphs
-------------------
-
-The following graphs were created from the data gathered from comparison runs,
-for the vhost tests.
-The vertical axis has always the same values,
-zoomed into the interesting part of the search space.
-The faint blue vertical lines separate the phases of MDR search.
-The bound lines are sloped just to help locate the previous value,
-in reality the bounds are updated instantly at the end of the measurement.
-
-The graphs do not directly show when a particular bound is invalid.
-However this can be gleaned indirectly by identifying
-that the measurement does not satisfy that bound's validity conditions
-(see point 2a).
-Also, the external search follows, and the measurement previously acting
-as and invalid upper or lower bound starts acting instead
-as a valid lower or upper bound, respectively.
-
-The following three graphs are for MDR with 10 second final trial duration,
-showing different behavior in this inconsistent test,
-and different amount of "work" done by each phase.
-Also the horizontal axis has the same scaling here.
-
-.. image:: MDR_10_1.svg
-.. image:: MDR_10_2.svg
-.. image:: MDR_10_3.svg
-
-The next graph is for MDR with 60 second final trial duration,
-to showcase the final phase takes the most of the overall search time.
-The scaling of the horizontal axis is different.
-
-.. image:: MDR_60.svg
-
-Finally, here are two graphs showing NDR and PDR binary searches.
-The trial duration is again 60 seconds,
-but scaling of horizontal axis is once again different.
-This shows the binary search spends most time measuring outside
-the interesting rate region.
-
-.. image:: NDR_60.svg
-.. image:: PDR_60.svg
 
 .. _binary search: https://en.wikipedia.org/wiki/Binary_search
 .. _exponential search: https://en.wikipedia.org/wiki/Exponential_search
