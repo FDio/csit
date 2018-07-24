@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2adcd89a_ce1b9355",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T18:36:56Z",
+      "side": 1,
+      "message": "there one spare X710 used as loop of TRex to itself. In future we can add various back-to back test for that (not necessarily with TRex)",
+      "range": {
+        "startLine": 122,
+        "startChar": 10,
+        "endLine": 122,
+        "endChar": 34
+      },
+      "revId": "97ff3f2be4c64b7eb692c4d72b29f29e8b994dc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26265c50_7b66ed6d",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T18:36:56Z",
+      "side": 1,
+      "message": "specification",
+      "range": {
+        "startLine": 131,
+        "startChar": 25,
+        "endLine": 131,
+        "endChar": 37
+      },
+      "revId": "97ff3f2be4c64b7eb692c4d72b29f29e8b994dc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "221b4ef9_abb66c3f",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T18:36:56Z",
+      "side": 1,
+      "message": "specification",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 183,
+        "endChar": 36
+      },
+      "revId": "97ff3f2be4c64b7eb692c4d72b29f29e8b994dc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
