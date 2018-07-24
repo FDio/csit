@@ -7,6 +7,7 @@ CSIT 18.07
 
     introduction/overview
     introduction/general_notes
+    introduction/methodology
 
 .. toctree::
     :maxdepth: 2
@@ -14,7 +15,6 @@ CSIT 18.07
 
     vpp_performance_tests/overview
     vpp_performance_tests/csit_release_notes
-    vpp_performance_tests/methodology
     vpp_performance_tests/packet_throughput_graphs/index
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency_graphs/index
