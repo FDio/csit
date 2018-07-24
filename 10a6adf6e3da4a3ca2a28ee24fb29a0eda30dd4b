@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27fc67f3_63ea8284",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-24T14:43:34Z",
+      "side": 1,
+      "message": "9 kpps\nhttps://github.com/FDio/csit/blob/master/resources/traffic_profiles/trex/profile_trex_stateless_base_class.py#L160\n\n10 kpps is just a more round number to use as min_value in MLRsearch.",
+      "range": {
+        "startLine": 85,
+        "startChar": 10,
+        "endLine": 85,
+        "endChar": 16
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5b35908_7c2d9e85",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-24T14:43:34Z",
+      "side": 1,
+      "message": "Are we mentioning also other automatic tweaking of VPP parameters CSIT does?\n\nI know about number of receive queues, number of IO memory buffers, enabling \"no seg\" if framesizes are small enough, and soon overriding MTU values on physical interfaces. And memory size for statistics, although I am not sure how impactful that is.",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 9
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb89ef03_d926a1e8",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-24T14:43:34Z",
+      "side": 1,
+      "message": "Has anybody asked about previous 4t4c results? We know from MRR trending that average is bad, but not because of hitting some memory bandwidth limit, but due to high stdev of trials.",
+      "range": {
+        "startLine": 151,
+        "startChar": 31,
+        "endLine": 151,
+        "endChar": 38
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
