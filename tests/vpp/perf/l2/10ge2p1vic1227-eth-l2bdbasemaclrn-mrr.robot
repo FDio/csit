@@ -48,7 +48,7 @@
 
 *** Variables ***
 # Cisco-VIC-1227 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit} | ${30000000000}
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
