@@ -70,7 +70,7 @@
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${20000}
+| | Set Test Variable | ${min_rate} | ${10000}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
