@@ -7,6 +7,8 @@ please refer to :ref:`physical_testbeds`.
 Logical Topologies
 ------------------
 
+.. _tested_logical_topologies:
+
 CSIT VPP performance tests are executed on physical testbeds described
 in :ref:`physical_testbeds`. Based on the packet path thru server SUTs,
 three distinct logical topology types are used for VPP DUT data plane
