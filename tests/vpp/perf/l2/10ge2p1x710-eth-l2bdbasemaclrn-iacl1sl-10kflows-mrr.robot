@@ -52,7 +52,7 @@
 
 *** Variables ***
 # X710-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
+| ${s_limit}= | ${35000000000}
 
 # ACL test setup
 | ${acl_action}= | permit
