@@ -15,7 +15,7 @@
 
 set -x
 
-STREAM=$1
+STREAM="stable.1807"
 OS=$2
 
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
