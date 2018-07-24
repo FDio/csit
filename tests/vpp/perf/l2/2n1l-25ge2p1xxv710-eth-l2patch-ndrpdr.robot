@@ -50,7 +50,7 @@
 
 *** Variables ***
 # XXV710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_24.5G} | ${24500000000}
+| ${s_24.5G} | ${35000000000}
 # XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps} | ${18750000}
 # Traffic profile:
