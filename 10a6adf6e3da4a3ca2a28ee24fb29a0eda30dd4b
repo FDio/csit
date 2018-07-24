@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "d3ff7be8_b50f57ef",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T18:48:57Z",
+      "side": 1,
+      "message": "One on the list is mbuf by eqoutation threads*16536? Where 16536 is default MBUF size. Heapsizes/rxd/txd are currently static as we are lack of formulas :).",
+      "parentUuid": "5026bb52_b30bf049",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 9
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb89ef03_d926a1e8",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "Not to my knowledge. We haven\u0027t paid close attention for 4t4c tests stdev due to lack of time.. But we should :)",
       "parentUuid": "fb89ef03_d926a1e8",
+      "range": {
+        "startLine": 151,
+        "startChar": 31,
+        "endLine": 151,
+        "endChar": 38
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c959345_6b908ae3",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T18:48:57Z",
+      "side": 1,
+      "message": "Per my knowledge high standard deviation is with VHOSTs where we are lack of multiqueue - on. This means RXQ\u003d2 is not working. And then of course Crypto is non working for 4t4c as ipsec interface from the nature does not support rxq\u003d2 (obviously?), then vxlan is known issue. And we can enumerate rest. Why we in past create only 2t2c test for encapsulation was not laziness but some of them just cant work with 5-tuple rxq load share. Memif is i guess very shiny example how implementation should look. We can put VHOST multiQ on the list of rls1810. FOr others we can do scales like 256 vxlans where we can demonstrate the power of VPP and rxq properly working.",
+      "parentUuid": "ce62d862_e9dcf714",
       "range": {
         "startLine": 151,
         "startChar": 31,
