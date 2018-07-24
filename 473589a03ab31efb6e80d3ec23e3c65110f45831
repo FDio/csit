@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37129008_cc000ce4",
+        "filename": "resources/tools/scripts/download_hc_build_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T07:59:53Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "473589a03ab31efb6e80d3ec23e3c65110f45831",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
