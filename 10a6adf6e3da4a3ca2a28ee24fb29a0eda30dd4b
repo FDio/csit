@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b19ea9d3_92e5c554",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-24T17:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27fc67f3_63ea8284",
+      "range": {
+        "startLine": 85,
+        "startChar": 10,
+        "endLine": 85,
+        "endChar": 16
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5b35908_7c2d9e85",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "667a2531_e8d046c4",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-24T17:29:23Z",
+      "side": 1,
+      "message": "I have addressed the receive queue part in update text, see patch set 2. MTU and no-multi-seg belong in throughput subsection, where we list frame sizes. Heap memory settings for scale tests - shall we add a separate section for scale tests? Any other auto tweaking that needs taken care of?",
+      "parentUuid": "a5b35908_7c2d9e85",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 9
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb89ef03_d926a1e8",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-07-24T14:43:34Z",
       "side": 1,
       "message": "Has anybody asked about previous 4t4c results? We know from MRR trending that average is bad, but not because of hitting some memory bandwidth limit, but due to high stdev of trials.",
+      "range": {
+        "startLine": 151,
+        "startChar": 31,
+        "endLine": 151,
+        "endChar": 38
+      },
+      "revId": "10a6adf6e3da4a3ca2a28ee24fb29a0eda30dd4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce62d862_e9dcf714",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-24T17:29:23Z",
+      "side": 1,
+      "message": "Not to my knowledge. We haven\u0027t paid close attention for 4t4c tests stdev due to lack of time.. But we should :)",
+      "parentUuid": "fb89ef03_d926a1e8",
       "range": {
         "startLine": 151,
         "startChar": 31,
