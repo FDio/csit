@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "badc8e48_92d9ce52",
+        "filename": "docs/report/vpp_performance_tests/documentation/mlr_search.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-24T16:54:45Z",
+      "side": 1,
+      "message": "Should we mention this comparison has been performed just before CSIT 1804? I mean, it is useful to have it in 1807 report, as this is the first release without ndrpdrdisc, but there were some minor chanes to the MLRsearch code since (as implied by line 321).\n\nI think 1810 report should end this file at line 279, as MLRsearch becomes the new standard we do not need to compare to anything. Similarly as we did not compare binary search to linear search (which we still keep the code for around, by the way).",
+      "range": {
+        "startLine": 280,
+        "startChar": 19,
+        "endLine": 280,
+        "endChar": 29
+      },
+      "revId": "e0e5b6ce0df20f0799efce2e03189a516b6d2698",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
