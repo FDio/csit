@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97931c21_95fd4dd1",
+        "filename": "tests/vpp/perf/ip6/2n1l-25ge2p1xxv710-ethip6-ip6base-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T11:21:48Z",
+      "side": 1,
+      "message": "24.5",
+      "range": {
+        "startLine": 77,
+        "startChar": 37,
+        "endLine": 77,
+        "endChar": 42
+      },
+      "revId": "7ba46cdc31d9ac821673aec3fcf4bf0eaad462e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98477883_36af2e13",
+        "filename": "tests/vpp/perf/ip6/2n1l-25ge2p1xxv710-ethip6-ip6base-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-24T11:21:48Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 69
+      },
+      "revId": "7ba46cdc31d9ac821673aec3fcf4bf0eaad462e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
