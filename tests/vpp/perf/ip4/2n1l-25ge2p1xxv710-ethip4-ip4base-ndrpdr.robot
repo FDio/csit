@@ -49,8 +49,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# XXV710-DA2 bandwidth limit ~50Gbps/2=25Gbps
-| ${s_25G} | ${25000000000}
+# XXV710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
+| ${s_24.5G} | ${24500000000}
 # XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps} | ${18750000}
 # Traffic profile:
@@ -77,7 +77,7 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_25G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in 2-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
