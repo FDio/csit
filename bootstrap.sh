@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,91 +17,16 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export PYTHONPATH=${SCRIPT_DIR}
-
-OS_ID=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
-OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
-
-if [ "$OS_ID" == "centos" ]; then
-    DISTRO="CENTOS"
-    PACKAGE="rpm"
-    sudo yum install -y python-devel python-virtualenv
-elif [ "$OS_ID" == "ubuntu" ]; then
-    DISTRO="UBUNTU"
-    PACKAGE="deb"
-    export DEBIAN_FRONTEND=noninteractive
-    sudo apt-get -y update
-    sudo apt-get -y install libpython2.7-dev python-virtualenv
-else
-    echo "$OS_ID is not yet supported."
-    exit 1
-fi
-
-# Temporarily download VPP and DPDK packages from nexus.fd.io
-if [ "${#}" -ne "0" ]; then
-    arr=(${@})
-    echo ${arr[0]}
-    SKIP_PATCH="skip_patchORskip_vpp_patch"
-else
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_${DISTRO})
-    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
-        --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
-fi
-
-VIRL_DIR_LOC="/tmp/"
-VPP_PKGS=(vpp*.$PACKAGE)
-VPP_PKGS_FULL=("${VPP_PKGS[@]/#/${VIRL_DIR_LOC}}")
-echo ${VPP_PKGS[@]}
-
-VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_${DISTRO})
-VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_${DISTRO})
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
-IPS_PER_VIRL=( "10.30.51.28:252"
-               "10.30.51.29:252"
-               "10.30.51.30:252" )
-SIMS_PER_VIRL=( "10.30.51.28:13"
-               "10.30.51.29:13"
-               "10.30.51.30:13" )
-IPS_PER_SIMULATION=5
-
-function get_max_ip_nr() {
-    virl_server=$1
-    IP_VALUE="0"
-    for item in "${IPS_PER_VIRL[@]}" ; do
-        if [ "${item%%:*}" == "${virl_server}" ]
-        then
-            IP_VALUE=${item#*:}
-            break
-        fi
-    done
-    echo "$IP_VALUE"
-}
-
-function get_max_sim_nr() {
-    virl_server=$1
-    SIM_VALUE="0"
-    for item in "${SIMS_PER_VIRL[@]}" ; do
-        if [ "${item%%:*}" == "${virl_server}" ]
-        then
-            SIM_VALUE=${item#*:}
-            break
-        fi
-    done
-    echo "$SIM_VALUE"
-}
+VIRL_SERVER=""
 
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SESSION_EXPIRY="620"
 
-SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
-
-TEST_GROUPS=("crypto,ip4_tunnels.softwire,ip4_tunnels.vxlan" "ip4,ip4_tunnels.gre,ip4_tunnels.lisp,ip6_tunnels.vxlan,ip6_tunnels.lisp,vm_vhost.ip4,vm_vhost.ip6" "interfaces,ip6,l2bd,l2xc,vm_vhost.l2bd,vm_vhost.l2xc,telemetry")
-SUITE_PATH="tests.vpp.func"
-SKIP_PATCH="SKIP_PATCH"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Create tmp dir
 mkdir ${SCRIPT_DIR}/tmp
@@ -109,8 +34,21 @@ mkdir ${SCRIPT_DIR}/tmp
 # Use tmp dir to store log files
 LOG_PATH="${SCRIPT_DIR}/tmp"
 
-# Use tmp dir for tarballs
-export TMPDIR="${SCRIPT_DIR}/tmp"
+if [ -f "/etc/redhat-release" ]; then
+    DISTRO="CENTOS"
+    sudo yum install -y python-devel python-virtualenv
+    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
+    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
+else
+    DISTRO="UBUNTU"
+    export DEBIAN_FRONTEND=noninteractive
+    sudo apt-get -y update
+    sudo apt-get -y install libpython2.7-dev python-virtualenv
+    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
+    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
+fi
+
+SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
 function ssh_do() {
     echo
@@ -151,133 +89,141 @@ EOF
 chmod 600 ${VIRL_PKEY}
 
 #
-# The server must be reachable and have a "status" file with
-# the content "PRODUCTION" to be selected.
+# Pick a random host from the array of VIRL servers, and attempt
+# to reach it and verify it's status.
 #
-# If the server is not reachable or does not have the correct
-# status remove it from the array and start again.
+# The server must be reachable, and have a "status" file with
+# the content "PRODUCTION", to be selected.
+#
+# If the server is not reachable, or does not have the correct
+# status, remove it from the array and start again.
 #
 # Abort if there are no more servers left in the array.
 #
-VIRL_PROD_SERVERS=()
-for index in "${!VIRL_SERVERS[@]}"; do
-    virl_server_status=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVERS[$index]} cat $VIRL_SERVER_STATUS_FILE 2>&1)
-    echo VIRL HOST ${VIRL_SERVERS[$index]} status is \"$virl_server_status\"
+while [[ ! "$VIRL_SERVER" ]]
+do
+    num_hosts=${#VIRL_SERVERS[@]}
+    if [ $num_hosts == 0 ]
+    then
+        echo "No more VIRL candidate hosts available, failing."
+        exit 127
+    fi
+    element=$[ $RANDOM % $num_hosts ]
+    virl_server_candidate=${VIRL_SERVERS[$element]}
+    virl_server_status=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${virl_server_candidate} cat $VIRL_SERVER_STATUS_FILE 2>&1)
+    echo VIRL HOST $virl_server_candidate status is \"$virl_server_status\"
     if [ "$virl_server_status" == "$VIRL_SERVER_EXPECTED_STATUS" ]
     then
-        # Candidate is in good status. Add to array.
-        VIRL_PROD_SERVERS+=(${VIRL_SERVERS[$index]})
+        # Candidate is in good status. Select this server.
+        VIRL_SERVER="$virl_server_candidate"
+    else
+        # Candidate is in bad status. Remove from array.
+        VIRL_SERVERS=("${VIRL_SERVERS[@]:0:$element}" "${VIRL_SERVERS[@]:$[$element+1]}")
     fi
 done
 
-VIRL_SERVERS=("${VIRL_PROD_SERVERS[@]}")
-echo "VIRL servers in production: ${VIRL_SERVERS[@]}"
-num_hosts=${#VIRL_SERVERS[@]}
-if [ $num_hosts == 0 ]
-then
-    echo "No more VIRL candidate hosts available, failing."
+# Temporarily download VPP and DPDK packages from nexus.fd.io
+case "$DISTRO" in
+        CENTOS )
+            VPP_ARTIFACTS="vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins"
+            DPDK_ARTIFACTS=""
+            PACKAGE="rpm"
+            VPP_CLASSIFIER=""
+            DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
+            VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
+            VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
+            ;;
+        UBUNTU )
+            VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins"
+            DPDK_ARTIFACTS="vpp-dpdk-dkms"
+            PACKAGE="deb"
+            VPP_CLASSIFIER="-deb"
+            DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
+            VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+            VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+esac
+
+if [ "${#}" -ne "0" ]; then
+    arr=(${@})
+    echo ${arr[0]}
+    # Download DPDK parts not included in dpdk plugin of vpp build
+    for ARTIFACT in ${DPDK_ARTIFACTS}; do
+        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
+    done
+else
+    rm -f *.${PACKAGE}
+    for ARTIFACT in ${DPDK_ARTIFACTS}; do
+        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
+    done
+    for ARTIFACT in ${VPP_ARTIFACTS}; do
+        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${VPP_STABLE_VER}/${ARTIFACT}-${VPP_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
+    done
+fi
+
+VPP_PKGS=(*.$PACKAGE)
+echo ${VPP_PKGS[@]}
+VIRL_DIR_LOC="/tmp"
+VPP_PKGS_FULL=(${VPP_PKGS[@]})
+
+# Prepend directory location at remote host to deb file list
+for index in "${!VPP_PKGS_FULL[@]}"; do
+    VPP_PKGS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_FULL[${index}]}
+done
+
+echo "Updated file names: " ${VPP_PKGS_FULL[@]}
+
+# Copy the files to VIRL host
+scp ${SSH_OPTIONS} *.${PACKAGE} \
+    ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
+
+result=$?
+if [ "${result}" -ne "0" ]; then
+    echo "Failed to copy vpp deb files to virl host"
+    echo ${result}
+    exit ${result}
+fi
+
+# Start a simulation on VIRL server
+echo "Starting simulation on VIRL server"
+
+function stop_virl_simulation {
+    ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER}\
+        "stop-testcase ${VIRL_SID}"
+}
+
+VIRL_SID=$(ssh ${SSH_OPTIONS} \
+    ${VIRL_USERNAME}@${VIRL_SERVER} \
+    "start-testcase -vv --copy ${VIRL_TOPOLOGY} \
+    --expiry ${VIRL_SESSION_EXPIRY} \
+    --release ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
+retval=$?
+if [ ${retval} -ne "0" ]; then
+    echo "VIRL simulation start failed"
+    exit ${retval}
+fi
+
+if [[ ! "${VIRL_SID}" =~ session-[a-zA-Z0-9_]{6} ]]; then
+    echo "No VIRL session ID reported."
     exit 127
 fi
 
-# Get the LOAD of each server based on number of active simulations (testcases)
-VIRL_SERVER_LOAD=()
-for index in "${!VIRL_SERVERS[@]}"; do
-    VIRL_SERVER_LOAD[${index}]=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVERS[$index]} "list-testcases | grep session | wc -l")
-done
-
-# Pick for each TEST_GROUP least loaded server
-VIRL_SERVER=()
-for index in "${!TEST_GROUPS[@]}"; do
-    least_load_server_idx=$(echo "${VIRL_SERVER_LOAD[*]}" | tr -s ' ' '\n' | awk '{print($0" "NR)}' | sort -g -k1,1 | head -1 | cut -f2 -d' ')
-    least_load_server=${VIRL_SERVERS[$least_load_server_idx-1]}
-    VIRL_SERVER+=($least_load_server)
-    # Adjusting load as we are not going run simulation immediately
-    VIRL_SERVER_LOAD[$least_load_server_idx-1]=$((VIRL_SERVER_LOAD[$least_load_server_idx-1]+1))
-done
-
-echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
-
-cat ${VIRL_PKEY}
-
-# Copy the files to VIRL hosts
-DONE=""
-for index in "${!VIRL_SERVER[@]}"; do
-    # Do not copy files in case they have already been copied to the VIRL host
-    [[ "${DONE[@]}" =~ "${VIRL_SERVER[${index}]}" ]] && copy=0 || copy=1
-
-    if [ "${copy}" -eq "0" ]; then
-        echo "VPP packages have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
-    else
-        scp ${SSH_OPTIONS} ${VPP_PKGS[@]} \
-        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}
-
-        result=$?
-        if [ "${result}" -ne "0" ]; then
-            echo "Failed to copy VPP packages to VIRL host ${VIRL_SERVER[${index}]}"
-            echo ${result}
-            exit ${result}
-        else
-            echo "VPP packages successfully copied to the VIRL host ${VIRL_SERVER[${index}]}"
-        fi
-        DONE+=(${VIRL_SERVER[${index}]})
-    fi
-done
-
-# Start a simulation on VIRL server
-
-function stop_virl_simulation {
-    for index in "${!VIRL_SERVER[@]}"; do
-        ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}\
-            "stop-testcase ${VIRL_SID[${index}]}"
-    done
-}
-
 # Upon script exit, cleanup the simulation execution
 trap stop_virl_simulation EXIT
+echo ${VIRL_SID}
 
-for index in "${!VIRL_SERVER[@]}"; do
-    echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
-    # Get given VIRL server limits for max. number of VMs and IPs
-    max_ips=$(get_max_ip_nr ${VIRL_SERVER[${index}]})
-    max_ips_from_sims=$(($(get_max_sim_nr ${VIRL_SERVER[${index}]})*IPS_PER_SIMULATION))
-    # Set quota to lower value
-    IP_QUOTA=$([ $max_ips -le $max_ips_from_sims ] && echo "$max_ips" || echo "$max_ips_from_sims")
-    # Start the simulation
-    VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
-        "start-testcase -vv \
-            --quota ${IP_QUOTA} \
-            --copy ${VIRL_TOPOLOGY} \
-            --release ${VIRL_RELEASE} \
-            ${VPP_PKGS_FULL[@]}")
-        # TODO: remove param ${VPP_PKGS_FULL[@]} when start-testcase script is
-        # updated on all virl servers
-    retval=$?
-    if [ ${retval} -ne "0" ]; then
-        echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
-        exit ${retval}
-    fi
-    if [[ ! "${VIRL_SID[${index}]}" =~ session-[a-zA-Z0-9_]{6} ]]; then
-        echo "No VIRL session ID reported."
-        exit 127
-    fi
-    echo "VIRL simulation nr. ${index} started on ${VIRL_SERVER[${index}]}"
+ssh_do ${VIRL_USERNAME}@${VIRL_SERVER} cat /scratch/${VIRL_SID}/topology.yaml
 
-    ssh_do ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}\
-     cat /scratch/${VIRL_SID[${index}]}/topology.yaml
+# Download the topology file from virl session
+scp ${SSH_OPTIONS} \
+    ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/topology.yaml \
+    topologies/enabled/topology.yaml
 
-    # Download the topology file from VIRL session and rename it
-    scp ${SSH_OPTIONS} \
-        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:/scratch/${VIRL_SID[${index}]}/topology.yaml \
-        topologies/enabled/topology${index}.yaml
+retval=$?
+if [ ${retval} -ne "0" ]; then
+    echo "Failed to copy topology file from VIRL simulation"
+    exit ${retval}
+fi
 
-    retval=$?
-    if [ ${retval} -ne "0" ]; then
-        echo "Failed to copy topology file from VIRL simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
-        exit ${retval}
-    fi
-done
-
-echo ${VIRL_SID[@]}
 
 virtualenv --system-site-packages env
 . env/bin/activate
@@ -285,114 +231,36 @@ virtualenv --system-site-packages env
 echo pip install
 pip install -r ${SCRIPT_DIR}/requirements.txt
 
-for index in "${!VIRL_SERVER[@]}"; do
-    pykwalify -s ${SCRIPT_DIR}/resources/topology_schemas/3_node_topology.sch.yaml \
-              -s ${SCRIPT_DIR}/resources/topology_schemas/topology.sch.yaml \
-              -d ${SCRIPT_DIR}/topologies/enabled/topology${index}.yaml \
-              -vvv
-    if [ "$?" -ne "0" ]; then
-        echo "Topology${index} schema validation failed."
-        echo "However, the tests will start."
-    fi
-done
-
-function run_test_set() {
-    set +x
-    OLDIFS=$IFS
-    IFS=","
-    nr=$(echo $1)
-    rm -f ${LOG_PATH}/test_run${nr}.log
-    exec &> >(while read line; do echo "$(date +'%H:%M:%S') $line" \
-     >> ${LOG_PATH}/test_run${nr}.log; done;)
-    suite_str=""
-    for suite in ${TEST_GROUPS[${nr}]}; do
-        suite_str="${suite_str} --suite ${SUITE_PATH}.${suite}"
-    done
-    IFS=$OLDIFS
-
-    echo "PYTHONPATH=`pwd` pybot -L TRACE -W 136\
-        -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
-        ${suite_str} \
-        --include vm_envAND3_node_single_link_topo \
-        --include vm_envAND3_node_double_link_topo \
-        --exclude PERFTEST \
-        --exclude ${SKIP_PATCH} \
-        --noncritical EXPECTED_FAILING \
-        --output ${LOG_PATH}/log_test_set_run${nr} \
-        tests/"
-
-    PYTHONPATH=`pwd` pybot -L TRACE -W 136\
-        -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
-        ${suite_str} \
-        --include vm_envAND3_node_single_link_topo \
-        --include vm_envAND3_node_double_link_topo \
-        --exclude PERFTEST \
-        --exclude ${SKIP_PATCH} \
-        --noncritical EXPECTED_FAILING \
-        --output ${LOG_PATH}/log_test_set_run${nr} \
-        tests/
-
-    local local_run_rc=$?
-    set -x
-    echo ${local_run_rc} > ${LOG_PATH}/rc_test_run${nr}
-}
-
-set +x
-# Send to background an instance of the run_test_set() function for each number,
-# record the pid.
-for index in "${!VIRL_SERVER[@]}"; do
-    run_test_set ${index} &
-    pid=$!
-    echo "Sent to background: Test_set${index} (pid=$pid)"
-    pids[$pid]=$index
-done
-
-echo
-echo -n "Waiting..."
-
-# Watch the stable of background processes.
-# If a pid goes away, remove it from the array.
-while [ -n "${pids[*]}" ]; do
-    for i in $(seq 0 9); do
-        sleep 1
-        echo -n "."
-    done
-    for pid in "${!pids[@]}"; do
-        if ! ps "$pid" >/dev/null; then
-            echo -e "\n"
-            echo "Test_set${pids[$pid]} with PID $pid finished."
-            unset pids[$pid]
-        fi
-    done
-    if [ -z "${!pids[*]}" ]; then
-        break
-    fi
-    echo -n -e "\nStill waiting for test set(s): ${pids[*]} ..."
-done
-
-echo
-echo "All test set runs finished."
-echo
-
-set -x
+# There are used three iterations of tests there to check
+# the stability and reliability of the results
 
 RC=0
-for index in "${!VIRL_SERVER[@]}"; do
-    echo "Test_set${index} log:"
-    cat ${LOG_PATH}/test_run${index}.log
-    RC_PARTIAL_RUN=$(cat ${LOG_PATH}/rc_test_run${index})
-    if [ -z "$RC_PARTIAL_RUN" ]; then
-        echo "Failed to retrieve return code from test run ${index}"
-        exit 1
-    fi
-    RC=$((RC+RC_PARTIAL_RUN))
-    rm -f ${LOG_PATH}/rc_test_run${index}
-    rm -f ${LOG_PATH}/test_run${index}.log
+MORE_FAILS=0
+
+partial_logs=""
+for test_set in 1
+do
     echo
+    echo ${test_set}. test loop
+    PYTHONPATH=`pwd` pybot -L TRACE -W 136\
+        -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
+        --suite "tests.vpp.func" \
+        --include vm_envAND3_node_single_link_topo \
+        --include vm_envAND3_node_double_link_topo \
+        --exclude PERFTEST \
+        --noncritical EXPECTED_FAILING \
+        --output ${LOG_PATH}/output_test_set${test_set} \
+        tests/
+    PARTIAL_RC=$(echo $?)
+    partial_logs="${partial_logs} ${LOG_PATH}/output_test_set${test_set}.xml"
+    if [ ${PARTIAL_RC} -eq 250 ]; then
+        MORE_FAILS=1
+    fi
+    RC=$((RC+PARTIAL_RC))
 done
 
 # Log the final result
-if [ "${RC}" -eq "0" ]; then
+if [ ${RC} -eq 0 ]; then
     set +x
     echo
     echo "========================================================================================================================================"
@@ -401,8 +269,8 @@ if [ "${RC}" -eq "0" ]; then
     echo "========================================================================================================================================"
     echo
     set -x
-else
-    if [ "${RC}" -eq "1" ]; then
+elif [ ${MORE_FAILS} -eq 0 ]; then
+    if [ ${RC} -eq 1 ]; then
         HLP_STR="test has"
     else
         HLP_STR="tests have"
@@ -415,14 +283,18 @@ else
     echo "========================================================================================================================================"
     echo
     set -x
+else
+    set +x
+    echo
+    echo "========================================================================================================================================"
+    echo "Final result of all test loops:                                                                                                 | FAIL |"
+    echo "More then 250 critical tests have failed in one test loop."
+    echo "========================================================================================================================================"
+    echo
+    set -x
 fi
 
 echo Post-processing test data...
-
-partial_logs=""
-for index in "${!VIRL_SERVER[@]}"; do
-    partial_logs="${partial_logs} ${LOG_PATH}/log_test_set_run${index}.xml"
-done
 
 # Rebot output post-processing
 rebot --noncritical EXPECTED_FAILING \
