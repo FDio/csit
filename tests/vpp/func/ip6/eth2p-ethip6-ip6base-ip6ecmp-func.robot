@@ -20,7 +20,7 @@
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Library | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *Ipv6 Multipath routing test cases*

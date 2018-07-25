@@ -20,7 +20,7 @@
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Library | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *IPv4 ARP test cases*
