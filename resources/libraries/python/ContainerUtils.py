@@ -537,12 +537,12 @@ class LXC(ContainerEngine):
         if int(ret) != 0:
             raise RuntimeError('Failed to copy cgroup to LXC')
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            'lxc-cgroup --name {c.name} cpuset.cpus {cpus}'.
-            format(c=self.container, cpus=cpuset_cpus))
-        if int(ret) != 0:
-            raise RuntimeError('Failed to set cpuset.cpus to container '
-                               '{c.name}.'.format(c=self.container))
+        #ret, _, _ = self.container.ssh.exec_command_sudo(
+        #    'lxc-cgroup --name {c.name} cpuset.cpus {cpus}'.
+        #    format(c=self.container, cpus=cpuset_cpus))
+        #if int(ret) != 0:
+        #    raise RuntimeError('Failed to set cpuset.cpus to container '
+        #                       '{c.name}.'.format(c=self.container))
 
     def execute(self, command):
         """Start a process inside a running container.
