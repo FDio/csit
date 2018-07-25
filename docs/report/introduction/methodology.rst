@@ -123,7 +123,7 @@ Xeon Haswell testbeds (3n-hsw) and with Intel Hyper-Threading Enabled
 for all Xeon Skylake testbeds.
 
 More information about physical testbeds is provided in
-:ref:`physical_testbeds`.
+:ref:`tested_physical_topologies`.
 
 Multi-core Tests
 ~~~~~~~~~~~~~~~~

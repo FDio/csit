@@ -1,3 +1,5 @@
+.. _mlrsearch_algorithm:
+
 MLRsearch Algorithm
 ===================
 
