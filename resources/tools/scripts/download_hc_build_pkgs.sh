@@ -25,22 +25,16 @@ VPP_GROUP="io.fd.vpp"
 # TODO(CSIT-994): reenable NSH
 # NSH_GROUP="io.fd.nsh_sfc"
 # NSH_ARTIFACTS="vpp-nsh-plugin"
+VPP_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
 
-if [ "${OS}" == "ubuntu1404" ]; then
-    OS="ubuntu.trusty.main"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
-    VPP_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
-elif [ "${OS}" == "ubuntu1604" ]; then
+if [ "${OS}" == "ubuntu1604" ]; then
     OS="ubuntu.xenial.main"
     PACKAGE="deb deb.md5"
     CLASS="deb"
-    VPP_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
 elif [ "${OS}" == "centos7" ]; then
     OS="centos7"
     PACKAGE="rpm rpm.md5"
     CLASS=""
-    VPP_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
 fi
 
 REPO="fd.io.${STREAM}.${OS}"
