@@ -34,7 +34,7 @@
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add DPDK Socketmem | 4096,4096
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
-| | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
+| | | Run keyword | ${dut}.Add DPDK Uio Driver
 | | | Run keyword | ${dut}.Add Heapsize | 4G
 | | | Run keyword | ${dut}.Add Plugin | disable | default
 | | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
