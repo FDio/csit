@@ -22,6 +22,30 @@
       "revId": "e0e5b6ce0df20f0799efce2e03189a516b6d2698",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a1a4909_adf2bf5a",
+        "filename": "docs/report/vpp_performance_tests/documentation/mlr_search.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T10:37:26Z",
+      "side": 1,
+      "message": "You\u0027re right, rls1807 report should finish at line 279, plus external references. For comparison we can point people to rls1804 report. Removing Comparison section.",
+      "parentUuid": "badc8e48_92d9ce52",
+      "range": {
+        "startLine": 280,
+        "startChar": 19,
+        "endLine": 280,
+        "endChar": 29
+      },
+      "revId": "e0e5b6ce0df20f0799efce2e03189a516b6d2698",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
