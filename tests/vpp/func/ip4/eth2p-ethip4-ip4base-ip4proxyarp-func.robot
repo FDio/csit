@@ -19,7 +19,7 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.ProxyArp
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *RFC1027 Proxy ARP test cases*
