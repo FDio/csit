@@ -17,7 +17,7 @@
 | Resource | resources/libraries/robot/features/dhcp_client.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Library | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *DHCPv4 Client related test cases*
