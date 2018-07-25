@@ -103,7 +103,7 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
-    uio_driver: vfio-pci
+    uio_driver: igb_uio
     honeycomb:
       user: admin
       passwd: admin
