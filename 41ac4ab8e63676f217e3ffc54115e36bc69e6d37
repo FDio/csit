@@ -84,6 +84,29 @@
     },
     {
       "key": {
+        "uuid": "85eb66c5_a8d4331d",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-25T13:44:57Z",
+      "side": 1,
+      "message": "For suites with large encapsulation overhead, CSIT code detects also 1518B and IMIX as not compatible with no-multi-seg.",
+      "range": {
+        "startLine": 212,
+        "startChar": 48,
+        "endLine": 212,
+        "endChar": 53
+      },
+      "revId": "41ac4ab8e63676f217e3ffc54115e36bc69e6d37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6a845d9_8e6460f3",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 4
@@ -124,6 +147,52 @@
         "startChar": 27,
         "endLine": 213,
         "endChar": 36
+      },
+      "revId": "41ac4ab8e63676f217e3ffc54115e36bc69e6d37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e1ddebc_95d9918e",
+        "filename": "docs/report/vpp_performance_tests/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-25T13:44:57Z",
+      "side": 1,
+      "message": "Will there be also a figure for \"Horizontal\" topology? Perhaps instead the Chained one, as that is basically the same as in VM Service Switching?",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 9
+      },
+      "revId": "41ac4ab8e63676f217e3ffc54115e36bc69e6d37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ad187fa_990bfc53",
+        "filename": "docs/report/vpp_performance_tests/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-25T13:44:57Z",
+      "side": 1,
+      "message": "Perhaps mention (in its section) that NIC-to_NIC switches once.",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 25
       },
       "revId": "41ac4ab8e63676f217e3ffc54115e36bc69e6d37",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
