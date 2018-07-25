@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fc4daaa2_290ad661",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52e3d799_0c7e0d6d",
+      "range": {
+        "startLine": 77,
+        "startChar": 44,
+        "endLine": 77,
+        "endChar": 48
+      },
+      "revId": "41ac4ab8e63676f217e3ffc54115e36bc69e6d37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64a4137a_95916149",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 4
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "95baa307_3ea5c109",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64a4137a_95916149",
+      "revId": "41ac4ab8e63676f217e3ffc54115e36bc69e6d37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6a845d9_8e6460f3",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 4
@@ -53,6 +95,30 @@
       "writtenOn": "2018-07-25T12:43:52Z",
       "side": 1,
       "message": "topology",
+      "range": {
+        "startLine": 213,
+        "startChar": 27,
+        "endLine": 213,
+        "endChar": 36
+      },
+      "revId": "41ac4ab8e63676f217e3ffc54115e36bc69e6d37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82f1a46e_f10dc07b",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6a845d9_8e6460f3",
       "range": {
         "startLine": 213,
         "startChar": 27,
