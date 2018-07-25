@@ -78,8 +78,6 @@
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 bridge domain in 2-node circular topology
 | | Then Find NDR and PDR intervals using optimized search

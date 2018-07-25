@@ -34,7 +34,7 @@
 | | | Run Keyword | ${group}.Construct containers
 | | | ... | name=${dut}_${group} | node=${nodes['${dut}']} | mnt=${mnt}
 | | | ... | image=${container_image} | cpu_count=${container_cpus}
-| | | ... | cpu_skip=${skip_cpus} | smt_used=${False} | cpuset_mems=${cpu_node}
+| | | ... | cpu_skip=${skip_cpus} | cpuset_mems=${cpu_node}
 | | | ... | cpu_shared=${False} | env=${env} | count=${container_count}
 | | | ... | install_dkms=${container_install_dkms}
 | | Append To List | ${container_groups} | ${group}
@@ -56,7 +56,7 @@
 | | | Run Keyword | ${group}.Construct container
 | | | ... | name=${dut}_${group} | node=${nodes['${dut}']}
 | | | ... | image=${container_image} | cpu_count=${1} | cpu_skip=${0}
-| | | ... | smt_used=${False} | cpuset_mems=${cpu_node} | cpu_shared=${True}
+| | | ... | cpuset_mems=${cpu_node} | cpu_shared=${True}
 | | | ... | publish=${publish} | command=${command}
 | | Append To List | ${container_groups} | ${group}
 
@@ -76,8 +76,7 @@
 | | | Run Keyword | ${group}.Construct container
 | | | ... | name=${dut}_${group} | node=${nodes['${dut}']} | image=${image}
 | | | ... | cpu_count=${1} | cpu_skip=${0} | cpuset_mems=${cpu_node}
-| | | ... | smt_used=${False} | cpu_shared=${True} | publish=${publish}
-| | | ... | env=${env}
+| | | ... | cpu_shared=${True} | publish=${publish} | env=${env}
 | | Append To List | ${container_groups} | ${group}
 
 | Acquire all '${group}' containers

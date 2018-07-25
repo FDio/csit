@@ -80,14 +80,21 @@ class ContainerManager(object):
 
         # Set cpuset.cpus cgroup
         skip_cnt = kwargs['cpu_skip']
+        smt_used = CpuUtils.is_smt_enabled(kwargs['node']['cpuinfo'])
         if not kwargs['cpu_shared']:
             skip_cnt += kwargs['i'] * kwargs['cpu_count']
         self.engine.container.cpuset_cpus = \
             CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
                                                 cpu_node=kwargs['cpuset_mems'],
                                                 skip_cnt=skip_cnt,
-                                                cpu_cnt=kwargs['cpu_count'],
-                                                smt_used=kwargs['smt_used'])
+                                                cpu_cnt=1,
+                                                smt_used=False) \
+            + \
+            CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
+                                                cpu_node=kwargs['cpuset_mems'],
+                                                skip_cnt=skip_cnt+1,
+                                                cpu_cnt=kwargs['cpu_count']-1,
+                                                smt_used=smt_used)
 
         # Store container instance
         self.containers[kwargs['name']] = self.engine.container
@@ -340,6 +347,7 @@ class ContainerEngine(object):
                          'priority=1',
                          config_file=SUPERVISOR_CONF))
         self.execute('supervisorctl reload')
+        self.execute('supervisorctl restart vpp')
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
