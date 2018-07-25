@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa8efd4d_e5aa21fe",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-25T05:18:50Z",
+      "side": 1,
+      "message": "Not true, coverage is full. We are runing selected for trending. But for report i think we will be using 64B only.",
+      "range": {
+        "startLine": 51,
+        "startChar": 64,
+        "endLine": 52,
+        "endChar": 31
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f4f6ea0_b503ee26",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-25T05:18:50Z",
+      "side": 1,
+      "message": "Shall we add a note that Niantic is limited at ~23.5Mpps?",
+      "range": {
+        "startLine": 60,
+        "startChar": 50,
+        "endLine": 60,
+        "endChar": 64
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee84b77a_4c07bf1b",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-25T05:18:50Z",
+      "side": 1,
+      "message": "+2*24.5G for other packet sizes",
+      "range": {
+        "startLine": 62,
+        "startChar": 50,
+        "endLine": 62,
+        "endChar": 63
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96c064b1_a4fd8422",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-25T05:18:50Z",
+      "side": 1,
+      "message": "+xxv710",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 10
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41a7d970_09b7400d",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-25T05:18:50Z",
+      "side": 1,
+      "message": "Maybe a note about single memif testing?",
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
