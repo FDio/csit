@@ -17,7 +17,7 @@
 | Library | resources.libraries.python.NodePath
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-XL710 | ETH | L2XCFWD | BASE
+| ... | NIC_Intel-XL710 | ETH | L2XCFWD | BASE | 9000B | 1C
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-XL710
@@ -48,8 +48,6 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_24.5G} | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps} | ${18750000}
 # Traffic profile:
@@ -57,76 +55,46 @@
 
 *** Keywords ***
 | Local Template
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC config with ${phy_cores} phy
-| | ... | core(s).
-| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
-| | ... | trial throughput test.
+| | [Arguments] | ${bandwidth}
 | | ...
-| | ... | *Arguments:*
-| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
-| | ... | Type: integer, string
-| | ... | - phy_cores - Number of physical cores. Type: integer
-| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
-| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
-| | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
+| | Given Add worker threads and rxqueues to all DUTs | ${1}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | ... | ${bandwidth} | ${9000}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect in 3-node circular topology
 | | Then Traffic should pass with maximum rate
-| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | ... | ${max_rate}pps | ${9000} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1c-eth-l2xcbase-mrr
-| | [Tags] | 64B | 1C
-| | framesize=${64} | phy_cores=${1}
+| 46Gbps
+| | bandwidth=${23000000}
 
-| tc02-64B-2c-eth-l2xcbase-mrr
-| | [Tags] | 64B | 2C
-| | framesize=${64} | phy_cores=${2}
+| 46Gbps
+| | bandwidth=${23500000}
 
-| tc03-64B-4c-eth-l2xcbase-mrr
-| | [Tags] | 64B | 4C
-| | framesize=${64} | phy_cores=${4}
+| 46Gbps
+| | bandwidth=${24000000}
 
-| tc04-1518B-1c-eth-l2xcbase-mrr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
+| 46Gbps
+| | bandwidth=${24500000}
 
-| tc05-1518B-2c-eth-l2xcbase-mrr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
+| 46Gbps
+| | bandwidth=${25000000}
 
-| tc06-1518B-4c-eth-l2xcbase-mrr
-| | [Tags] | 1518B | 4C
-| | framesize=${1518} | phy_cores=${4}
+| 46Gbps
+| | bandwidth=${25500000}
 
-| tc07-9000B-1c-eth-l2xcbase-mrr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
+| 46Gbps
+| | bandwidth=${26000000}
 
-| tc08-9000B-2c-eth-l2xcbase-mrr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
+| 46Gbps
+| | bandwidth=${26500000}
 
-| tc09-9000B-4c-eth-l2xcbase-mrr
-| | [Tags] | 9000B | 4C
-| | framesize=${9000} | phy_cores=${4}
+| 46Gbps
+| | bandwidth=${27000000}
 
-| tc10-IMIX-1c-eth-l2xcbase-mrr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc11-IMIX-2c-eth-l2xcbase-mrr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc12-IMIX-4c-eth-l2xcbase-mrr
-| | [Tags] | IMIX | 4C
-| | framesize=IMIX_v4_1 | phy_cores=${4}
+| 46Gbps
+| | bandwidth=${27500000}
