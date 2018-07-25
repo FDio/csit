@@ -28,4 +28,4 @@
 | | ... | perf_trial_duration - Duration of one trial in MRR test.
 | | ...
 | | Ensure Global Variable | perf_trial_multiplicity | 1
-| | Ensure Global Variable | perf_trial_duration | 10
+| | Ensure Global Variable | perf_trial_duration | 100
