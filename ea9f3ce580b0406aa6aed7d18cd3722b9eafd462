@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "416463d2_6cdd525f",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa8efd4d_e5aa21fe",
+      "range": {
+        "startLine": 51,
+        "startChar": 64,
+        "endLine": 52,
+        "endChar": 31
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f4f6ea0_b503ee26",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-25T05:18:50Z",
       "side": 1,
       "message": "Shall we add a note that Niantic is limited at ~23.5Mpps?",
+      "range": {
+        "startLine": 60,
+        "startChar": 50,
+        "endLine": 60,
+        "endChar": 64
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d776cb2_1e3dcae3",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:09:29Z",
+      "side": 1,
+      "message": "This paragraph refers to TRex maximum load offered, and TRex is suing x710 that can do 2*14.88 Mpps on 10GE link.",
+      "parentUuid": "1f4f6ea0_b503ee26",
       "range": {
         "startLine": 60,
         "startChar": 50,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b204bead_fb1f2138",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee84b77a_4c07bf1b",
+      "range": {
+        "startLine": 62,
+        "startChar": 50,
+        "endLine": 62,
+        "endChar": 63
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96c064b1_a4fd8422",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "88c6929a_c4e18798",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96c064b1_a4fd8422",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 10
+      },
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41a7d970_09b7400d",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 2
@@ -105,6 +201,24 @@
       "writtenOn": "2018-07-25T05:18:50Z",
       "side": 1,
       "message": "Maybe a note about single memif testing?",
+      "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b84fbd40_0ae94598",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-07-25T12:09:29Z",
+      "side": 1,
+      "message": "Added.",
+      "parentUuid": "41a7d970_09b7400d",
       "revId": "ea9f3ce580b0406aa6aed7d18cd3722b9eafd462",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
