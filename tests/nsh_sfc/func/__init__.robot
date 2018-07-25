@@ -15,6 +15,24 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.SFC.SetupSFCTest
-| Suite Setup | Run Keywords | Setup NSH SFC test | ${nodes}
+| Suite Setup | Run Keywords | Setup NSH SFC Global Variables
+| ...         | AND          | Setup NSH SFC test | ${nodes}
+| ...         | AND          | Install Vpp On All Duts | ${nodes}
+| ...         | ${VPP_PKG_DIR} | ${VPP_RPM_PKGS} | ${VPP_DEB_PKGS}
+| ...         | AND          | Verify Vpp On All Duts | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
+
+| Setup NSH SFC Global Variables
+| | [Documentation]
+| | ... | Setup suite Variables. Variables are used across functional testing.
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - vpp_pkg_dir - Path to directory where VPP packages are stored.
+| | ...
+| | Set Global Variable | ${VPP_PKG_DIR} | /scratch/vpp/
+| | @{VPP_RPM_PKGS}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
+| | Set Global Variable | ${VPP_RPM_PKGS}
+| | @{VPP_DEB_PKGS}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
+| | ... | vpp-plugins
+| | Set Global Variable | ${VPP_DEB_PKGS}

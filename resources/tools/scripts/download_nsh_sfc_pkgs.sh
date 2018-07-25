@@ -46,13 +46,13 @@ REPO="fd.io.${STREAM}.${OS}"
 
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in $PACKAGE; do
-        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&t=${CLASS}" -O -J || exit
     done
 done
 
 for ART in ${NSH_ARTIFACTS}; do
     for PAC in $PACKAGE; do
-        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&t=${CLASS}" -O -J || exit
     done
 done
 
