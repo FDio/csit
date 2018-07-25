@@ -23,7 +23,7 @@ nodes:
         ip4_address: "172.16.10.2"
         driver: i40e
         link: link1
-        model: Intel-XL710
+        model: Intel-X710
       port2:
         # s4-t21-tg1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:ab:71"
@@ -31,7 +31,7 @@ nodes:
         ip4_address: "172.16.20.2"
         driver: i40e
         link: link2
-        model: Intel-XL710
+        model: Intel-X710
       port3:
         # s4-t21-tg1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:ab:72"
@@ -71,7 +71,7 @@ nodes:
         ip4_address: "172.16.70.2"
         driver: i40e
         link: link7
-        model: Intel-XL710
+        model: Intel-X710
       port8:
         # s4-t21-tg1-c10/p2 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:b1:99"
@@ -79,7 +79,7 @@ nodes:
         ip4_address: "172.16.70.1"
         driver: i40e
         link: link7
-        model: Intel-XL710
+        model: Intel-X710
       port9:
         # s4-t21-tg1-c10/p3 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:b1:9a"
@@ -117,7 +117,7 @@ nodes:
         ip4_address: "172.16.10.1"
         driver: i40e
         link: link1
-        model: Intel-XL710
+        model: Intel-X710
       port2:
         # s3-t21-sut1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:ad:89"
@@ -125,7 +125,7 @@ nodes:
         ip4_address: "172.16.20.1"
         driver: i40e
         link: link2
-        model: Intel-XL710
+        model: Intel-X710
       port3:
         # s3-t21-sut1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:a8:ad:8a"
