@@ -16,13 +16,7 @@ set -xo pipefail
 
 # TOPOLOGY
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES_3N_HSW="topologies/available/lf_3n_hsw_testbed1.yaml \
-                   topologies/available/lf_3n_hsw_testbed2.yaml \
-                   topologies/available/lf_3n_hsw_testbed3.yaml"
-TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed21.yaml \
-                   topologies/available/lf_2n_skx_testbed24.yaml"
-TOPOLOGIES_3N_SKX="topologies/available/lf_3n_skx_testbed31.yaml \
-                   topologies/available/lf_3n_skx_testbed32.yaml"
+TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed22.yaml"
 
 # SYSTEM
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
