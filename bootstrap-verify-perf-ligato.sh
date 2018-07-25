@@ -147,6 +147,10 @@ virtualenv --system-site-packages env
 echo pip install
 pip install -r requirements.txt
 
+if [ -z "${TOPOLOGIES}" ]; then
+    echo "No applicable topology found!"
+    exit 1
+fi
 # We iterate over available topologies and wait until we reserve topology
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
