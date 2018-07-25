@@ -170,7 +170,7 @@ class InterfaceUtil(object):
                 InterfaceUtil.vpp_set_interfaces_mtu_on_node(node, mtu)
 
     @staticmethod
-    def vpp_node_interfaces_ready_wait(node, timeout=10):
+    def vpp_node_interfaces_ready_wait(node, timeout=15):
         """Wait until all interfaces with admin-up are in link-up state.
 
         :param node: Node to wait on.
@@ -205,7 +205,7 @@ class InterfaceUtil(object):
                 sleep(1)
 
     @staticmethod
-    def vpp_nodes_interfaces_ready_wait(nodes, timeout=10):
+    def vpp_nodes_interfaces_ready_wait(nodes, timeout=15):
         """Wait until all interfaces with admin-up are in link-up state for
         listed nodes.
 
@@ -219,7 +219,7 @@ class InterfaceUtil(object):
             InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)
 
     @staticmethod
-    def all_vpp_interfaces_ready_wait(nodes, timeout=10):
+    def all_vpp_interfaces_ready_wait(nodes, timeout=15):
         """Wait until all interfaces with admin-up are in link-up state for all
         nodes in the topology.
 
