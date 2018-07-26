@@ -1,5 +1,5 @@
-VPP Performance NDR/PDR
-=======================
+VPP Performance MRR 3n-hsw
+==========================
 
 .. note::
 
@@ -9,4 +9,4 @@ VPP Performance NDR/PDR
 
 .. toctree::
 
-    vpp_performance_results
+    vpp_mrr_results_3n_hsw
