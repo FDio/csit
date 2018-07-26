@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,6 +25,7 @@
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
+| # TODO: Create teardown based on Tear down performance discovery test.
 | Test Teardown | Tear down performance test with Ligato Kubernetes
 | ...
 | Test Template | Local Template
@@ -115,7 +116,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr
-| | [Tags] | 64B | 1C | THIS
+| | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr
@@ -161,4 +162,3 @@
 | tc12-IMIX-4c-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
-
