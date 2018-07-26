@@ -1,5 +1,5 @@
-VPP K8s Container Memif
-=======================
+VPP K8s Container Memif 3n-skx
+==============================
 
 .. note::
 
@@ -9,4 +9,4 @@ VPP K8s Container Memif
 
 .. toctree::
 
-    cot_performance_results
+    cot_performance_results_3n_skx
