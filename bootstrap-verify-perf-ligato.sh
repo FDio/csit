@@ -273,7 +273,7 @@ case "$TEST_TAG" in
         done
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('perftest')   # run all ligato tests
 esac
 
 # Catenate TAG selections
