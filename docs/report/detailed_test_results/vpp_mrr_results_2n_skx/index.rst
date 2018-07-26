@@ -1,5 +1,5 @@
-VPP Performance MRR
-===================
+VPP Performance MRR 2n-skx
+==========================
 
 .. note::
 
@@ -9,4 +9,4 @@ VPP Performance MRR
 
 .. toctree::
 
-    vpp_mrr_results
+    vpp_mrr_results_2n_skx
