@@ -27,12 +27,19 @@
 
     # Detailed test results
     DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
-    DIR[DTR,PERF,DPDK]: "{DIR[DTR]}/dpdk_performance_results"
-    DIR[DTR,PERF,VPP]: "{DIR[DTR]}/vpp_performance_results"
-    DIR[DTR,MRR,VPP]: "{DIR[DTR]}/vpp_mrr_results"
-    DIR[DTR,PERF,COT]: "{DIR[DTR]}/cot_performance_results"
-    DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
-    DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
+    DIR[DTR,PERF,DPDK,3N,HSW]: "{DIR[DTR]}/dpdk_performance_results_3n_hsw"
+    DIR[DTR,PERF,DPDK,3N,SKX]: "{DIR[DTR]}/dpdk_performance_results_3n_skx"
+    DIR[DTR,PERF,DPDK,2N,SKX]: "{DIR[DTR]}/dpdk_performance_results_2n_skx"
+    DIR[DTR,PERF,VPP,3N,HSW]: "{DIR[DTR]}/vpp_performance_results_3n_hsw"
+    DIR[DTR,PERF,VPP,3N,SKX]: "{DIR[DTR]}/vpp_performance_results_3n_skx"
+    DIR[DTR,PERF,VPP,2N,SKX]: "{DIR[DTR]}/vpp_performance_results_2n_skx"
+    DIR[DTR,MRR,VPP,3N,HSW]: "{DIR[DTR]}/vpp_mrr_results_3n_hsw"
+    DIR[DTR,MRR,VPP,3N,SKX]: "{DIR[DTR]}/vpp_mrr_results_3n_skx"
+    DIR[DTR,MRR,VPP,2N,SKX]: "{DIR[DTR]}/vpp_mrr_results_2n_skx"
+    DIR[DTR,PERF,COT,3N,HSW]: "{DIR[DTR]}/cot_performance_results_3n_hsw"
+    DIR[DTR,PERF,COT,3N,SKX]: "{DIR[DTR]}/cot_performance_results_3n_skx"
+    DIR[DTR,PERF,COT,2N,SKX]: "{DIR[DTR]}/cot_performance_results_2n_skx"
+    DIR[DTR,FUNC,VPP,UBUNTU]: "{DIR[DTR]}/vpp_functional_results_ubuntu"
     DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
     DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
@@ -240,27 +247,57 @@
       - 12  # sel
       - 13  # sel
       - 14  # sel
-    vpp-perf-results:
+    vpp-perf-results-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
       - 25  # full
       - 49  # full
-    vpp-func-results:
+    vpp-perf-results-3n-skx:
+      csit-vpp-perf-1804-all:
+      - 19  # full
+      - 20  # full
+      - 25  # full
+      - 49  # full
+    vpp-perf-results-2n-skx:
+      csit-vpp-perf-1804-all:
+      - 19  # full
+      - 20  # full
+      - 25  # full
+      - 49  # full
+    vpp-func-results-ubuntu:
       csit-vpp-functional-1804-ubuntu1604-virl:
       - 229
     vpp-func-results-centos:
       csit-vpp-functional-1804-centos7-virl:
       - 238
-    vpp-mrr-results:
+    vpp-mrr-results-3n-hsw:
       csit-vpp-perf-check-1804:
       - 5   # mrr - full
-    ligato-perf-results:
+    vpp-mrr-results-3n-skx:
+      csit-vpp-perf-check-1804:
+      - 5   # mrr - full
+    vpp-mrr-results-2n-skx:
+      csit-vpp-perf-check-1804:
+      - 5   # mrr - full
+    ligato-perf-results-3n-hsw:
       csit-ligato-perf-1804-all:
       - 4  # full
-    dpdk-perf-results:
-      csit-dpdk-perf-1804-all:
-      - 13
+    ligato-perf-results-3n-skx:
+      csit-ligato-perf-1804-all:
+      - 4  # full
+    ligato-perf-results-2n-skx:
+      csit-ligato-perf-1804-all:
+      - 4  # full
+    dpdk-perf-results-3n-hsw:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+    dpdk-perf-results-3n-skx:
+      csit-dpdk-perf-verify-1807-3n-skx:
+      - 3
+    dpdk-perf-results-2n-skx:
+      csit-dpdk-perf-verify-1807-2n-skx:
+      - 9
     hc-func-results:
       csit-hc2vpp-verify-func-1804-ubuntu1604:
       - 3
@@ -316,41 +353,25 @@
       - 31  # sel
       - 35  # sel
     plot-dpdk-throughput-latency-3n-hsw:
-      csit-dpdk-perf-1804-all:
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 1
+      - 2
     plot-dpdk-throughput-latency-3n-skx:
-      csit-dpdk-perf-1804-all:
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
+      csit-dpdk-perf-verify-1807-3n-skx:
+      - 1
+      - 2
+      - 3
     plot-dpdk-throughput-latency-2n-skx:
-      csit-dpdk-perf-1804-all:
+      csit-dpdk-perf-verify-1807-2n-skx:
+      - 1
+      - 2
+      - 3
       - 4
       - 5
       - 6
       - 7
       - 8
       - 9
-      - 10
-      - 11
-      - 12
-      - 13
     plot-ligato-throughput-latency-3n-hsw:
       csit-ligato-perf-1804-all:
       - 5   # sel
@@ -717,17 +738,23 @@
     - 12  # sel
     - 13  # sel
     - 14  # sel
-    csit-dpdk-perf-1804-all:
+    csit-dpdk-perf-verify-1807-3n-hsw:
+    - 1
+    - 2
+    csit-dpdk-perf-verify-1807-3n-skx:
+    - 1
+    - 2
+    - 3
+    csit-dpdk-perf-verify-1807-2n-skx:
+    - 1
+    - 2
+    - 3
     - 4
     - 5
     - 6
     - 7
     - 8
     - 9
-    - 10
-    - 11
-    - 12
-    - 13
     csit-vpp-functional-1804-ubuntu1604-virl:
     - 229
     csit-vpp-functional-1804-centos7-virl:
@@ -743,8 +770,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -1107,10 +1134,10 @@
 
 -
   type: "table"
-  title: "Detailed Test Results - VPP Performance Results"
+  title: "Detailed Test Results - VPP Performance Results 3n-hsw"
   algorithm: "table_merged_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
+  output-file: "{DIR[DTR,PERF,VPP,3N,HSW]}/vpp_performance_results_3n_hsw"
   columns:
   -
     title: "Name"
@@ -1122,8 +1149,7 @@
     title: "Status"
     data: "data msg"
   rows: "generated"
-  data:
-    "vpp-perf-results"
+  data: "vpp-perf-results-3n-hsw"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
@@ -1131,6 +1157,55 @@
   - "doc"
   - "msg"
 
+-
+  type: "table"
+  title: "Detailed Test Results - VPP Performance Results 3n-skx"
+  algorithm: "table_merged_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,VPP,3N,SKX]}/vpp_performance_results_3n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "vpp-perf-results-3n-skx"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
+
+-
+  type: "table"
+  title: "Detailed Test Results - VPP Performance Results 2n-skx"
+  algorithm: "table_merged_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,VPP,2N,SKX]}/vpp_performance_results_2n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "vpp-perf-results-2n-skx"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
 -
   type: "table"
   title: "Test configuration - VPP Performance Test Configs"
@@ -1146,7 +1221,7 @@
     data: "data vat-history"
   rows: "generated"
   data:
-    "vpp-perf-results"
+    "vpp-perf-results-3n-hsw"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
@@ -1168,7 +1243,7 @@
     data: "data show-run"
   rows: "generated"
   data:
-    "vpp-perf-results"
+    "vpp-perf-results-3n-hsw"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
@@ -1177,10 +1252,10 @@
 
 -
   type: "table"
-  title: "Detailed Test Results - VPP MRR Results"
+  title: "Detailed Test Results - VPP MRR Results 3n-hsw"
   algorithm: "table_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTR,MRR,VPP]}/vpp_mrr_results"
+  output-file: "{DIR[DTR,MRR,VPP,3N,HSW]}/vpp_mrr_results_3n_hsw"
   columns:
   -
     title: "Name"
@@ -1192,8 +1267,57 @@
     title: "Status"
     data: "data msg"
   rows: "generated"
-  data:
-    "vpp-mrr-results"
+  data: "vpp-mrr-results-3n-hsw"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
+
+-
+  type: "table"
+  title: "Detailed Test Results - VPP MRR Results 3n-skx"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP,3N,SKX]}/vpp_mrr_results_3n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "vpp-mrr-results-3n-skx"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
+
+-
+  type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-skx"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP,2N,SKX]}/vpp_mrr_results_2n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "vpp-mrr-results-2n-skx"
   filter: "'MRR'"
   parameters:
   - "name"
@@ -1216,7 +1340,7 @@
     data: "data vat-history"
   rows: "generated"
   data:
-    "vpp-mrr-results"
+    "vpp-mrr-results-3n-hsw"
   filter: "'MRR'"
   parameters:
   - "parent"
@@ -1225,10 +1349,10 @@
 
 -
   type: "table"
-  title: "Detailed Test Results - VPP Functional Results"
+  title: "Detailed Test Results - VPP Functional Results - Ubuntu"
   algorithm: "table_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTR,FUNC,VPP]}/vpp_functional_results"
+  output-file: "{DIR[DTR,FUNC,VPP,UBUNTU]}/vpp_functional_results_ubuntu"
   columns:
   -
     title: "Name"
@@ -1240,8 +1364,7 @@
     title: "Status"
     data: "data status"
   rows: "generated"
-  data:
-    "vpp-func-results"
+  data: "vpp-func-results-ubuntu"
   filter: "all"
   parameters:
   - "name"
@@ -1277,7 +1400,7 @@
 
 -
   type: "table"
-  title: "Test configuration - VPP Functional Test Configs"
+  title: "Test configuration - VPP Functional Test Configs - Ubuntu"
   algorithm: "table_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTC,FUNC,VPP]}/vpp_functional_configuration"
@@ -1289,8 +1412,7 @@
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
     data: "data vat-history"
   rows: "generated"
-  data:
-    "vpp-func-results"
+  data: "vpp-func-results-ubuntu"
   filter: "all"
   parameters:
   - "parent"
@@ -1321,10 +1443,10 @@
 
 -
   type: "table"
-  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results"
+  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw"
   algorithm: "table_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,COT]}/cot_performance_results"
+  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
   columns:
   -
     title: "Name"
@@ -1336,8 +1458,7 @@
     title: "Status"
     data: "data msg"
   rows: "generated"
-  data:
-    "ligato-perf-results"
+  data: "ligato-perf-results-3n-hsw"
   filter: "all"
   parameters:
   - "name"
@@ -1347,10 +1468,10 @@
 
 -
   type: "table"
-  title: "Detailed Test Results - DPDK Performance Results"
+  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-skx"
   algorithm: "table_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
+  output-file: "{DIR[DTR,PERF,COT,3N,SKX]}/cot_performance_results_3n_skx"
   columns:
   -
     title: "Name"
@@ -1362,13 +1483,100 @@
     title: "Status"
     data: "data msg"
   rows: "generated"
-  data:
-    "dpdk-perf-results"
+  data: "ligato-perf-results-3n-skx"
   filter: "all"
   parameters:
   - "name"
   - "parent"
   - "doc"
+  - "msg"
+
+-
+  type: "table"
+  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 2n-skx"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,COT,2N,SKX]}/cot_performance_results_2n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "ligato-perf-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "msg"
+
+-
+  type: "table"
+  title: "Detailed Test Results - DPDK Performance Results 3n-hsw"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,HSW]}/dpdk_performance_results_3n_hsw"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "dpdk-perf-results-3n-hsw"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+-
+  type: "table"
+  title: "Detailed Test Results - DPDK Performance Results 3n-skx"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,SKX]}/dpdk_performance_results_3n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "dpdk-perf-results-3n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+-
+  type: "table"
+  title: "Detailed Test Results - DPDK Performance Results 2n-skx"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}/dpdk_performance_results_2n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "dpdk-perf-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
   - "msg"
 
 -
@@ -1429,79 +1637,141 @@
 
 -
   type: "file"
-  title: "VPP Performance Results"
-  algorithm: "file_merged_test_results"
+  title: "VPP Performance Results 3n-hsw"
+  algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTR,PERF,VPP]}/vpp_performance_results"
+  output-file: "{DIR[DTR,PERF,VPP,3N,HSW]}/vpp_performance_results_3n_hsw"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,PERF,VPP]}"
-  data:
-    "vpp-perf-results"
+  dir-tables: "{DIR[DTR,PERF,VPP,3N,HSW]}"
+  data: "vpp-perf-results-3n-hsw"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  data-start-level: 3
+
+-
+  type: "file"
+  title: "VPP Performance Results 3n-skx"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,VPP,3N,SKX]}/vpp_performance_results_3n_skx"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,VPP,3N,SKX]}"
+  data: "vpp-perf-results-3n-skx"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+-
+  type: "file"
+  title: "VPP Performance Results 2n-skx"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,VPP,2N,SKX]}/vpp_performance_results_2n_skx"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,VPP,2N,SKX]}"
+  data: "vpp-perf-results-2n-skx"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
   title: "VPP Performance Configuration"
-  algorithm: "file_merged_test_results"
+  algorithm: "file_test_results"
   output-file-ext: ".rst"
   output-file: "{DIR[DTC,PERF,VPP]}/vpp_performance_configuration"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP]}"
   data:
-    "vpp-perf-results"
+    "vpp-perf-results-3n-hsw"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  data-start-level: 3
 
 -
   type: "file"
   title: "VPP Performance Operational Data"
-  algorithm: "file_merged_test_results"
+  algorithm: "file_test_results"
   output-file-ext: ".rst"
   output-file: "{DIR[DTO,PERF,VPP]}/vpp_performance_operational_data"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP]}"
   data:
-    "vpp-perf-results"
+    "vpp-perf-results-3n-hsw"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "name"
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  data-start-level: 3
 
 -
   type: "file"
-  title: "VPP MRR Results"
+  title: "VPP MRR Results 3n-hsw"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTR,MRR,VPP]}/vpp_mrr_results"
+  output-file: "{DIR[DTR,MRR,VPP,3N,HSW]}/vpp_mrr_results_3n_hsw"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,MRR,VPP]}"
-  data:
-    "vpp-mrr-results"
+  dir-tables: "{DIR[DTR,MRR,VPP,3N,HSW]}"
+  data: "vpp-mrr-results-3n-hsw"
   filter: "'MRR'"
   parameters:
   - "name"
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 2  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  data-start-level: 3
+
+-
+  type: "file"
+  title: "VPP MRR Results 3n-skx"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP,3N,SKX]}/vpp_mrr_results_3n_skx"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP,3N,SKX]}"
+  data: "vpp-mrr-results-3n-skx"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+-
+  type: "file"
+  title: "VPP MRR Results 2n-skx"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP,2N,SKX]}/vpp_mrr_results_2n_skx"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP,2N,SKX]}"
+  data: "vpp-mrr-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
@@ -1512,33 +1782,31 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,MRR,VPP]}"
   data:
-    "vpp-mrr-results"
+    "vpp-mrr-results-3n-hsw"
   filter: "'MRR'"
   parameters:
   - "name"
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 2  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  data-start-level: 3
 
 -
   type: "file"
-  title: "VPP Functional Results"
+  title: "VPP Functional Results - Ubuntu"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTR,FUNC,VPP]}/vpp_functional_results"
+  output-file: "{DIR[DTR,FUNC,VPP,UBUNTU]}/vpp_functional_results_ubuntu"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,FUNC,VPP]}"
-  data:
-    "vpp-func-results"
+  dir-tables: "{DIR[DTR,FUNC,VPP,UBUNTU]}"
+  data: "vpp-func-results-ubuntu"
   filter: "all"
   parameters:
   - "name"
   - "doc"
   - "level"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
@@ -1555,26 +1823,26 @@
   - "name"
   - "doc"
   - "level"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
-  title: "VPP Functional Configuration"
+  title: "VPP Functional Configuration - Ubuntu"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
   output-file: "{DIR[DTC,FUNC,VPP]}/vpp_functional_configuration"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,FUNC,VPP]}"
   data:
-    "vpp-func-results"
+    "vpp-func-results-ubuntu"
   filter: "all"
   parameters:
   - "name"
   - "doc"
   - "level"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
@@ -1591,46 +1859,110 @@
   - "name"
   - "doc"
   - "level"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
-  title: "Container Orchestrated Performance Results"
+  title: "Container Orchestrated Performance Results 3n-hsw"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTR,PERF,COT]}/cot_performance_results"
+  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,PERF,COT]}"
-  data:
-    "ligato-perf-results"
+  dir-tables: "{DIR[DTR,PERF,COT,3N,HSW]}"
+  data: "ligato-perf-results-3n-hsw"
   filter: "all"
   parameters:
   - "name"
   - "doc"
   - "level"
-  data-start-level: 2  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
-  title: "DPDK Performance Results"
+  title: "Container Orchestrated Performance Results 3n-skx"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTR,PERF,DPDK]}/dpdk_performance_results"
+  output-file: "{DIR[DTR,PERF,COT,3N,SKX]}/cot_performance_results_3n_skx"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,PERF,DPDK]}"
-  data:
-    "dpdk-perf-results"
+  dir-tables: "{DIR[DTR,PERF,COT,3N,SKX]}"
+  data: "ligato-perf-results-3n-skx"
   filter: "all"
   parameters:
   - "name"
   - "doc"
   - "level"
-  chapters:
-  - "suites"
-  data-start-level: 2  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
+
+-
+  type: "file"
+  title: "Container Orchestrated Performance Results 2n-skx"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,COT,2N,SKX]}/cot_performance_results_2n_skx"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,COT,2N,SKX]}"
+  data: "ligato-perf-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 2
+
+-
+  type: "file"
+  title: "DPDK Performance Results 3n-hsw"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,HSW]}/dpdk_performance_results_3n_hsw"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,DPDK,3N,HSW]}"
+  data: "dpdk-perf-results-3n-hsw"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+-
+  type: "file"
+  title: "DPDK Performance Results 3n-skx"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,SKX]}/dpdk_performance_results_3n_skx"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,DPDK,3N,SKX]}"
+  data: "dpdk-perf-results-3n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+-
+  type: "file"
+  title: "DPDK Performance Results 2n-skx"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}/dpdk_performance_results_2n_skx"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,DPDK,2N,SKX]}"
+  data: "dpdk-perf-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
@@ -1647,10 +1979,8 @@
   - "name"
   - "doc"
   - "level"
-  chapters:
-  - "suites"
-  data-start-level: 3  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
 
 -
   type: "file"
@@ -1667,10 +1997,8 @@
   - "name"
   - "doc"
   - "level"
-  chapters:
-  - "suites"
-  data-start-level: 2  # 0, 1, 2, ...
-  chapters-start-level: 2  # 0, 1, 2, ...
+  - "parent"
+  data-start-level: 3
 
 ################################################################################
 ###                                P L O T S                                 ###
@@ -8970,7 +9298,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -8994,7 +9322,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -9018,7 +9346,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -9042,7 +9370,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -9067,7 +9395,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -9091,7 +9419,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -9115,7 +9443,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -9139,7 +9467,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -9164,7 +9492,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -9188,7 +9516,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -9212,7 +9540,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -9236,7 +9564,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -9261,7 +9589,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9285,7 +9613,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9309,7 +9637,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9333,7 +9661,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9358,7 +9686,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9382,7 +9710,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9406,7 +9734,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9430,7 +9758,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9455,7 +9783,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9479,7 +9807,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9503,7 +9831,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9527,7 +9855,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9552,7 +9880,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9576,7 +9904,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9600,7 +9928,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -9624,7 +9952,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -9651,7 +9979,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9675,7 +10003,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9699,7 +10027,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9723,7 +10051,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9748,7 +10076,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9772,7 +10100,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9796,7 +10124,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9820,7 +10148,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9845,7 +10173,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9869,7 +10197,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9893,7 +10221,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9917,7 +10245,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9942,7 +10270,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9966,7 +10294,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -9990,7 +10318,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10014,7 +10342,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10039,7 +10367,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10063,7 +10391,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10087,7 +10415,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10111,7 +10439,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10136,7 +10464,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10160,7 +10488,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10184,7 +10512,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10208,7 +10536,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10233,7 +10561,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10257,7 +10585,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10281,7 +10609,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -10305,7 +10633,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -13722,7 +14050,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -13746,7 +14074,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -13771,7 +14099,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -13795,7 +14123,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -13820,7 +14148,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD'"
   parameters:
@@ -13844,7 +14172,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD'"
   parameters:
@@ -13869,7 +14197,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -13893,7 +14221,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -13918,7 +14246,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -13942,7 +14270,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -13967,7 +14295,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -13991,7 +14319,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -14016,7 +14344,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD'"
   parameters:
@@ -14040,7 +14368,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD'"
   parameters:
@@ -14067,7 +14395,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14091,7 +14419,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14116,7 +14444,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14140,7 +14468,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14165,7 +14493,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14189,7 +14517,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14214,7 +14542,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14238,7 +14566,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14263,7 +14591,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14287,7 +14615,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14312,7 +14640,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14336,7 +14664,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14361,7 +14689,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -14385,7 +14713,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'BASE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
