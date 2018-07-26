@@ -51,11 +51,11 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
 | | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
-| | All VPP Interfaces Ready Wait | ${nodes}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
 | | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | All VPP Interfaces Ready Wait | ${nodes}
 
 | Initialize IPSec in 3-node circular topology
 | | [Documentation]
