@@ -14,19 +14,26 @@
 
 set -xo pipefail
 
+# TOPOLOGY
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_3n_hsw_testbed1.yaml \
-            topologies/available/lf_3n_hsw_testbed2.yaml \
-            topologies/available/lf_3n_hsw_testbed3.yaml"
+TOPOLOGIES_3N_HSW="topologies/available/lf_3n_hsw_testbed1.yaml \
+                   topologies/available/lf_3n_hsw_testbed2.yaml \
+                   topologies/available/lf_3n_hsw_testbed3.yaml"
+TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed21.yaml \
+                   topologies/available/lf_2n_skx_testbed24.yaml"
+TOPOLOGIES_3N_SKX="topologies/available/lf_3n_skx_testbed31.yaml \
+                   topologies/available/lf_3n_skx_testbed32.yaml"
 
+# SYSTEM
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 export DEBIAN_FRONTEND=noninteractive
 
-# Reservation dir
+# RESERVATION
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
+# ARCHIVE
 JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 JOB_ARCHIVE_DIR="archive"
@@ -34,117 +41,141 @@ LOG_ARCHIVE_DIR="$WORKSPACE/archives"
 mkdir -p ${JOB_ARCHIVE_DIR}
 mkdir -p ${LOG_ARCHIVE_DIR}
 
-# If we run this script from CSIT jobs we want to use stable vpp version
-if [[ ${JOB_NAME} == csit-* ]] ;
-then
-    mkdir -p vpp_download
-    cd vpp_download
+case ${JOB_NAME} in
+    *2n-skx*)
+        TOPOLOGIES=$TOPOLOGIES_2N_SKX
+        TOPOLOGIES_TAGS="2_node_*_link_topo"
+        ;;
+    *3n-skx*)
+        TOPOLOGIES=$TOPOLOGIES_3N_SKX
+        TOPOLOGIES_TAGS="3_node_*_link_topo"
+        ;;
+    *)
+        TOPOLOGIES=$TOPOLOGIES_3N_HSW
+        TOPOLOGIES_TAGS="3_node_*_link_topo"
+        ;;
+esac
+case ${JOB_NAME} in
+    *hc2vpp*)
+        DUT="hc2vpp"
+        ;;
+    *vpp*)
+        DUT="vpp"
+        ;;
+    *ligato*)
+        DUT="kubernetes"
 
-    if [[ ${TEST_TAG} == *DAILY ]] || \
-       [[ ${TEST_TAG} == *WEEKLY ]];
-    then
-        echo Downloading latest VPP packages from NEXUS...
-        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
-            --skip-install
-    else
-        echo Downloading VPP packages of specific version from NEXUS...
-        DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-        #Temporary if arch will not be removed from VPP_STABLE_VER_UBUNTU
-        #VPP_STABLE_VER=${VPP_STABLE_VER%_amd64}
-        bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
-            --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
-    fi
-    # Jenkins VPP deb paths (convert to full path)
-    VPP_DEBS="$( readlink -f vpp*.deb | tr '\n' ' ' )"
-    cd ${SCRIPT_DIR}
+        case ${JOB_NAME} in
+            csit-*)
+                # Use downloaded packages with specific version
+                mkdir -p vpp_download
+                cd vpp_download
 
-# If we run this script from vpp project we want to use local build
-elif [[ ${JOB_NAME} == vpp-* ]] ;
-then
-    # Use local packages provided as argument list
-    # Jenkins VPP deb paths (convert to full path)
-    VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
-else
-    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
-    exit 1
-fi
+                if [[ ${TEST_TAG} == *DAILY ]] || \
+                   [[ ${TEST_TAG} == *WEEKLY ]];
+                then
+                    echo Downloading latest VPP packages from NEXUS...
+                    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+                        --skip-install
+                else
+                    echo Downloading VPP packages of specific version from NEXUS...
+                    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
+                    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+                    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+                        --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
+                fi
+                # Jenkins VPP deb paths (convert to full path)
+                DUT_PKGS="$( readlink -f ${DUT}*.deb | tr '\n' ' ' )"
+                ;;
+            vpp-*)
+                # Use local packages provided as argument list
+                # Jenkins VPP deb paths (convert to full path)
+                DUT_PKGS="$( readlink -f $@ | tr '\n' ' ' )"
+                ;;
+            *)
+                echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
+                exit 1
+                ;;
+        esac
+        # Extract VPP API to specific folder
+        dpkg -x vpp_download/vpp_*.deb /tmp/vpp
 
-# Extract VPP API to specific folder
-dpkg -x vpp_download/vpp_*.deb /tmp/vpp
+        LIGATO_REPO_URL='https://github.com/ligato/'
+        VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
+        DOCKER_DEB="docker-ce_18.03.0~ce-0~ubuntu_amd64.deb"
 
-LIGATO_REPO_URL='https://github.com/ligato/'
-VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
-DOCKER_DEB="docker-ce_18.03.0~ce-0~ubuntu_amd64.deb"
+        # Clone & checkout stable vnf-agent
+        cd .. && git clone -b ${VPP_AGENT_STABLE_VER} --single-branch \
+            ${LIGATO_REPO_URL}/vpp-agent vpp-agent
+        # If the git clone fails, complain clearly and exit
+        if [ $? != 0 ]; then
+            echo "Failed to run: git clone ${LIGATO_REPO_URL}/vpp-agent"
+            exit 1
+        fi
+        cd vpp-agent
 
-# Clone & checkout stable vnf-agent
-cd .. && git clone -b ${VPP_AGENT_STABLE_VER} --single-branch \
-    ${LIGATO_REPO_URL}/vpp-agent vpp-agent
-# If the git clone fails, complain clearly and exit
-if [ $? != 0 ]; then
-    echo "Failed to run: git clone ${LIGATO_REPO_URL}/vpp-agent"
-    exit 1
-fi
-cd vpp-agent
+        # Install Docker
+        wget -q https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/${DOCKER_DEB}
+        sudo dpkg -i ${DOCKER_DEB}
+        # If installation fails, complain clearly and exit
+        if [ $? != 0 ]; then
+            echo "Failed to install Docker"
+            exit 1
+        fi
 
-# Install Docker
-wget -q https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/${DOCKER_DEB}
-sudo dpkg -i ${DOCKER_DEB}
-# If installation fails, complain clearly and exit
-if [ $? != 0 ]; then
-    echo "Failed to install Docker"
-    exit 1
-fi
+        # Pull ligato/dev_vpp_agent docker image and re-tag as local
+        sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}
+        sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
+            dev_vpp_agent:latest
 
-# Pull ligato/dev_vpp_agent docker image and re-tag as local
-sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}
-sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
-    dev_vpp_agent:latest
+        # Start dev_vpp_agent container as daemon
+        sudo docker run --rm -itd --name agentcnt dev_vpp_agent bash
 
-# Start dev_vpp_agent container as daemon
-sudo docker run --rm -itd --name agentcnt dev_vpp_agent bash
+        # Copy latest vpp api into running container
+        sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
+        for f in ${SCRIPT_DIR}/vpp_download/*; do
+            sudo docker cp $f agentcnt:/opt/vpp-agent/dev/vpp/build-root/
+        done
 
-# Copy latest vpp api into running container
-sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
-for f in ${SCRIPT_DIR}/vpp_download/*; do
-    sudo docker cp $f agentcnt:/opt/vpp-agent/dev/vpp/build-root/
-done
+        # Recompile vpp-agent
+        sudo docker exec -i agentcnt \
+            script -qec '. ~/.bashrc; cd /go/src/github.com/ligato/vpp-agent && make generate && make install'
+        if [ $? != 0 ]; then
+            echo "Failed to build vpp-agent in Docker image."
+            exit 1
+        fi
+        # Save container state
+        sudo docker commit `sudo docker ps -q` dev_vpp_agent:latest
 
-# Recompile vpp-agent
-sudo docker exec -i agentcnt \
-    script -qec '. ~/.bashrc; cd /go/src/github.com/ligato/vpp-agent && make generate && make install'
-if [ $? != 0 ]; then
-    echo "Failed to build vpp-agent in Docker image."
-    exit 1
-fi
-# Save container state
-sudo docker commit `sudo docker ps -q` dev_vpp_agent:latest
+        # Build prod_vpp_agent docker image
+        cd docker/prod/ &&\
+            sudo docker build --tag prod_vpp_agent --no-cache .
+        # Export Docker image
+        sudo docker save prod_vpp_agent | gzip > prod_vpp_agent.tar.gz
+        # Kill running agentcnt container
+        sudo docker rm -f agentcnt
+        # If image build fails, complain clearly and exit
+        if [ $? != 0 ]; then
+            echo "Failed to build vpp-agent Docker image."
+            exit 1
+        fi
+        DOCKER_IMAGE="$( readlink -f prod_vpp_agent.tar.gz | tr '\n' ' ' )"
 
-# Build prod_vpp_agent docker image
-cd docker/prod/ &&\
-    sudo docker build --tag prod_vpp_agent --no-cache .
-# Export Docker image
-sudo docker save prod_vpp_agent | gzip > prod_vpp_agent.tar.gz
-# Kill running agentcnt container
-sudo docker rm -f agentcnt
-# If image build fails, complain clearly and exit
-if [ $? != 0 ]; then
-    echo "Failed to build vpp-agent Docker image."
-    exit 1
-fi
-DOCKER_IMAGE="$( readlink -f prod_vpp_agent.tar.gz | tr '\n' ' ' )"
+        cd ${SCRIPT_DIR}
 
-cd ${SCRIPT_DIR}
+        ;;
+    *dpdk*)
+        DUT="dpdk"
+        ;;
+    *)
+        echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
+        exit 1
+        ;;
+esac
 
-WORKING_TOPOLOGY=""
-
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
-
+# ENVIRONMENT PREPARATION
 virtualenv --system-site-packages env
 . env/bin/activate
-
-echo pip install
 pip install -r requirements.txt
 
 if [ -z "${TOPOLOGIES}" ]; then
@@ -192,54 +223,11 @@ else
     exit 1
 fi
 
-# Based on job we will identify DUT
-if [[ ${JOB_NAME} == *hc2vpp* ]] ;
-then
-    DUT="hc2vpp"
-elif [[ ${JOB_NAME} == *vpp* ]] ;
-then
-    DUT="vpp"
-elif [[ ${JOB_NAME} == *ligato* ]] ;
-then
-    DUT="kubernetes"
-elif [[ ${JOB_NAME} == *dpdk* ]] ;
-then
-    DUT="dpdk"
-else
-    echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
-    exit 1
-fi
-
+# CSIT EXECUTION
 PYBOT_ARGS="--consolewidth 100 --loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
-    PERFTEST_DAILY )
-        TAGS=('ndrdiscANDnic_intel-x520-da2AND1c'
-              'ndrdiscANDnic_intel-x520-da2AND2c'
-              'ndrdiscAND1cANDipsec'
-              'ndrdiscAND2cANDipsec')
-        ;;
-    PERFTEST_SEMI_WEEKLY )
-        TAGS=('ndrdiscANDnic_intel-x710AND1c'
-              'ndrdiscANDnic_intel-x710AND2c'
-              'ndrdiscANDnic_intel-xl710AND1c'
-              'ndrdiscANDnic_intel-xl710AND2c')
-        ;;
-    PERFTEST_MRR_DAILY )
-       TAGS=('mrrAND64bAND1c'
-             'mrrAND64bAND2c'
-             'mrrAND64bAND4c'
-             'mrrAND78bAND1c'
-             'mrrAND78bAND2c'
-             'mrrAND78bAND4c'
-             'mrrANDimixAND1cANDvhost'
-             'mrrANDimixAND2cANDvhost'
-             'mrrANDimixAND4cANDvhost'
-             'mrrANDimixAND1cANDmemif'
-             'mrrANDimixAND2cANDmemif'
-             'mrrANDimixAND4cANDmemif')
-        ;;
     VERIFY-PERF-PATCH )
         if [[ -z "$TEST_TAG_STRING" ]]; then
             # If nothing is specified, we will run pre-selected tests by
@@ -282,7 +270,7 @@ for TAG in "${TAGS[@]}"; do
     if [[ ${TAG} == "!"* ]]; then
         EXPANDED_TAGS+=(" --exclude ${TAG#$"!"} ")
     else
-        EXPANDED_TAGS+=(" --include ${TAG} ")
+        EXPANDED_TAGS+=(" --include ${TOPOLOGIES_TAGS}AND${TAG} ")
     fi
 done
 
