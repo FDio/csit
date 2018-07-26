@@ -14,12 +14,12 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | L2BDBASE | SCALE | MEMIF
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | L2BDBASE | SCALE | MEMIF
 | ... | K8S | 1VSWITCH | 2VNF | VPP_AGENT | SFC_CONTROLLER | HORIZONTAL
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | Intel-X710
+| ... | L2 | Intel-X520-DA2
 | ...
 | Test Setup | Set up performance test with Ligato Kubernetes
 | ...
@@ -36,15 +36,12 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 bridge domain.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with two L2
 | ... | bridge domains and MAC learning enabled. DUT1 and DUT2 tested with
-| ... | 2p10GE NIC X710 by Intel.
+| ... | 2p10GE NIC X520 Niantic by Intel.
 | ... | VNF Containers are connected to VSWITCH container via Memif interface.
 | ... | All containers are running same VPP version. Containers are deployed
 | ... | with Kubernetes. Configuration is applied by vnf-agent.
-| ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
-| ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
-| ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
-| ... | of packets transmitted. NDR and PDR are discovered for different
-| ... | Ethernet L2 frame sizes using MLRsearch library.
+| ... | *[Ver] TG verification:* In MaxReceivedRate test TG sends traffic
+| ... | at line rate and reports total received/sent packets over trial period.
 | ... | TG traffic profile contains two L3 flow-groups
 | ... | (flow-group per direction, 253 flows per flow-group) with all packets
 | ... | containing Ethernet header, IPv4 header with IP protocol=61 and static
@@ -53,7 +50,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# X710 bandwidth limit
+# X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 # SFC profile
 | ${sfc_profile} | configmaps/eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz
@@ -68,7 +65,8 @@
 | Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT runs Container orchestrated config.
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
+| | ... | trial throughput test.
 | | ...
 | | ... | *Arguments:*
 | | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
@@ -78,8 +76,6 @@
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${10000}
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
 | | ... | ${s_limit} | ${framesize}
 | | ...
@@ -117,54 +113,54 @@
 | | ... | $$VSWITCH_IF2$$=${dut2_if2_name}
 | | Wait for Kubernetes PODs on all DUTs | ${nodes} | csit
 | | Set Kubernetes PODs affinity on all DUTs | ${nodes}
-| | Find NDR and PDR intervals using optimized search
-| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | Then Traffic should pass with maximum rate
+| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc01-64B-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc02-64B-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc03-64B-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc04-1518B-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc05-1518B-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc06-1518B-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc07-9000B-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc08-9000B-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc09-9000B-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc10-IMIX-1c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc11-IMIX-2c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
+| tc12-IMIX-4c-eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz-k8s-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
