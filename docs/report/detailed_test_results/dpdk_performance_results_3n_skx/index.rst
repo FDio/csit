@@ -1,5 +1,5 @@
-DPDK Performance
-================
+DPDK Performance 3n-skx
+=======================
 
 .. note::
 
@@ -9,4 +9,4 @@ DPDK Performance
 
 .. toctree::
 
-    dpdk_performance_results
+    dpdk_performance_results_3n_skx
