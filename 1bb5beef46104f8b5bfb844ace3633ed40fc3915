@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b19d763_9173caf7",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-26T10:31:57Z",
+      "side": 1,
+      "message": "Convert to [Arguments] and document (including Example).",
+      "range": {
+        "startLine": 234,
+        "startChar": 23,
+        "endLine": 234,
+        "endChar": 29
+      },
+      "revId": "1bb5beef46104f8b5bfb844ace3633ed40fc3915",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6457ec22_6525f11f",
+        "filename": "tests/kubernetes/perf/container_memif/10ge2p1x520-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-26T10:31:57Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "1bb5beef46104f8b5bfb844ace3633ed40fc3915",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1da19df2_275fff0d",
+        "filename": "tests/kubernetes/perf/container_memif/10ge2p1x520-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-26T10:31:57Z",
+      "side": 1,
+      "message": "Remove THIS.",
+      "range": {
+        "startLine": 118,
+        "startChar": 21,
+        "endLine": 118,
+        "endChar": 28
+      },
+      "revId": "1bb5beef46104f8b5bfb844ace3633ed40fc3915",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
