@@ -219,7 +219,7 @@ class InterfaceUtil(object):
             InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)
 
     @staticmethod
-    def all_vpp_interfaces_ready_wait(nodes, timeout=30):
+    def all_vpp_interfaces_ready_wait(nodes, timeout=60):
         """Wait until all interfaces with admin-up are in link-up state for all
         nodes in the topology.
 
