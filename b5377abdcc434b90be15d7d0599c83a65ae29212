@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02862e82_a611cf48",
+        "filename": "tests/kubernetes/perf/container_memif/10ge2p1x520-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-26T11:08:15Z",
+      "side": 1,
+      "message": "This explains why I have left min_rate as Test Variable.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 8
+      },
+      "revId": "b5377abdcc434b90be15d7d0599c83a65ae29212",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
