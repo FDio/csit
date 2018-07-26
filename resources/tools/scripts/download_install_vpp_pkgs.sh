@@ -29,7 +29,7 @@ function artifacts {
             REPO_NAME=$(echo ${REPO_NAME%io/fd/vpp/})
         else
             OS_VERSION_CODENAME=$(grep '^VERSION_CODENAME=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
-            REPO_NAME="fd.io.master.ubuntu.${OS_VERSION_CODENAME}.main"
+            REPO_NAME="fd.io.stable.1807.ubuntu.${OS_VERSION_CODENAME}.main"
         fi
         REPO_URL="${NEXUSPROXY}/content/repositories/${REPO_NAME}"
 
