@@ -68,9 +68,15 @@ CSIT 18.07
         :caption: Detailed Results
 
         detailed_test_results/vpp_performance_results/index
-        detailed_test_results/vpp_mrr_results/index
-        detailed_test_results/cot_performance_results/index
-        detailed_test_results/dpdk_performance_results/index
+        detailed_test_results/vpp_mrr_results_3n_hsw/index
+        detailed_test_results/vpp_mrr_results_3n_skx/index
+        detailed_test_results/vpp_mrr_results_2n_skx/index
+        detailed_test_results/cot_performance_results_3n_hsw/index
+        detailed_test_results/cot_performance_results_3n_skx/index
+        detailed_test_results/cot_performance_results_2n_skx/index
+        detailed_test_results/dpdk_performance_results_3n_hsw/index
+        detailed_test_results/dpdk_performance_results_3n_skx/index
+        detailed_test_results/dpdk_performance_results_2n_skx/index
         detailed_test_results/vpp_functional_results/index
         detailed_test_results/vpp_functional_results_centos/index
         detailed_test_results/honeycomb_functional_results/index
