@@ -72,7 +72,6 @@ CSIT 18.07
         detailed_test_results/cot_performance_results/index
         detailed_test_results/dpdk_performance_results/index
         detailed_test_results/vpp_functional_results/index
-        detailed_test_results/vpp_functional_results_centos/index
         detailed_test_results/honeycomb_functional_results/index
         detailed_test_results/nshsfc_functional_results/index
 

@@ -7,7 +7,7 @@ Changes in CSIT |release|
 #. VPP functional test framework changes:
 
    - functional tests are running on Centos image; corresponding CSIT Jenkins
-   jobs are created.
+     jobs are created.
 
 #. Optimizations in CSIT functional framework:
 
