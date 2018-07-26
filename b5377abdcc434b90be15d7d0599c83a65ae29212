@@ -22,6 +22,29 @@
       "revId": "b5377abdcc434b90be15d7d0599c83a65ae29212",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25ce6dc2_fae3724d",
+        "filename": "tests/kubernetes/perf/container_memif/10ge2p1x520-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-26T11:59:31Z",
+      "side": 1,
+      "message": "I (almost) forgot to take care of this by using autogeneration.",
+      "range": {
+        "startLine": 119,
+        "startChar": 21,
+        "endLine": 119,
+        "endChar": 28
+      },
+      "revId": "b5377abdcc434b90be15d7d0599c83a65ae29212",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
