@@ -1,4 +1,4 @@
-CentOS
+Ubuntu
 ------
 
 .. note::
@@ -9,4 +9,4 @@ CentOS
 
 .. toctree::
 
-    vpp_functional_results_centos
+    vpp_functional_results_ubuntu
