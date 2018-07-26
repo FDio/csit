@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ff18666_ef081de0",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-26T11:55:42Z",
+      "side": 1,
+      "message": "I think this selects also kubernetes suites.",
+      "range": {
+        "startLine": 202,
+        "startChar": 45,
+        "endLine": 202,
+        "endChar": 50
+      },
+      "revId": "23ca7e6ece7dbf71b8a1a670e8201c719fe381e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
