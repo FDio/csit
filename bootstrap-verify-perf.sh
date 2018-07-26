@@ -196,9 +196,15 @@ case "$TEST_TAG" in
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=('mrrAND64B'
+                            'mrrAND78B'
+                            'mrrANDimixANDvhost'
+                            'mrrANDimixANDmemif'
+                            '!nic_intel-xxv710'
+                            '!acl1'
+                            '!acl10'
+                            '!100_flows'
+                            '!100k_flows')
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
