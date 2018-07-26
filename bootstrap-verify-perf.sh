@@ -159,7 +159,7 @@ fi
 PYBOT_ARGS="--consolewidth 100 \
             --loglevel TRACE \
             --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-            --suite tests.${DUT}.perf"
+            --suite tests.${DUT}.perf.vm_vhost"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
@@ -196,9 +196,7 @@ case "$TEST_TAG" in
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=('ndrpdr')
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
