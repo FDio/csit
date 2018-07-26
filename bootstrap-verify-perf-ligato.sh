@@ -273,7 +273,7 @@ case "$TEST_TAG" in
         done
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('ndrpdrAND64B')
 esac
 
 # Catenate TAG selections
