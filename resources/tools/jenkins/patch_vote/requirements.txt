@@ -1,0 +1,2 @@
+# TODO: Convert to use code from cloned CSIT git, not from pip.
+jumpavg==0.1.3
