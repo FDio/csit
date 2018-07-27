@@ -45,7 +45,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'FD.io CSIT rls1807 Report'
+project = u'FD.io CSIT-18.07'
 copyright = u'2018, FD.io'
 author = u'FD.io CSIT'
 
@@ -61,6 +61,7 @@ author = u'FD.io CSIT'
 rst_epilog = """
 .. |release-1| replace:: {prev_release}
 .. |srelease| replace:: {srelease}
+.. |csit-release| replace:: CSIT-{csitrelease}
 .. |vpp-release| replace:: VPP-{vpprelease} release
 .. |vpp-release-1| replace:: VPP-{vpp_prev_release} release
 .. |dpdk-release| replace:: DPDK {dpdkrelease}
@@ -97,6 +98,7 @@ rst_epilog = """
 """.format(release='rls1807',
            prev_release='rls1804',
            srelease='1807',
+           csitrelease='18.07',
            vpprelease='18.07',
            vpp_prev_release='18.04',
            dpdkrelease='18.05',

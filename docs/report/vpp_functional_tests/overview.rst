@@ -93,7 +93,7 @@ is shown in the figure below including the applicable packet flow thru the VM
 Functional Tests Coverage
 -------------------------
 
-Following VPP functional test areas are covered in the CSIT |release| with
+Following VPP functional test areas are covered in the |csit-release| with
 results listed in this report:
 
 - **DHCP - Client and Proxy** - Dynamic Host Control Protocol Client and Proxy
@@ -127,7 +127,7 @@ results listed in this report:
 Functional Tests Naming
 -----------------------
 
-CSIT |release| follows a common structured naming convention for all performance
+|csit-release| follows a common structured naming convention for all performance
 and system functional tests, introduced in CSIT rls1701.
 
 The naming should be intuitive for majority of the tests. Complete description

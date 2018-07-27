@@ -1,7 +1,7 @@
 Release Notes
 =============
 
-Changes in CSIT |release|
+Changes in |csit-release|
 -------------------------
 
 #. VPP functional test framework changes:
@@ -19,7 +19,7 @@ Changes in CSIT |release|
 Known Issues
 ------------
 
-List of known issues in CSIT |release| for VPP functional tests in VIRL:
+List of known issues in |csit-release| for VPP functional tests in VIRL:
 
 +---+-------------------------------------------------+----------+------------------------------------------------------+
 | # | .. centered:: Issue                             | Jira ID  | .. centered:: Description                            |
