@@ -1,7 +1,7 @@
 Release Notes
 =============
 
-Changes in CSIT |release|
+Changes in CSIT-|release|
 -------------------------
 
 #. **VPP performance tests**
@@ -137,7 +137,7 @@ provides continuous performance trending for VPP master branch:
 Known Issues
 ------------
 
-List of known issues in CSIT |release| for VPP performance tests:
+List of known issues in CSIT-|release| for VPP performance tests:
 
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | # | Issue                                           | Jira ID    | Description                                                     |

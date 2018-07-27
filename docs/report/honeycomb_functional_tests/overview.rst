@@ -46,7 +46,7 @@ for clarity).
 Functional Tests Coverage
 -------------------------
 
-The following Honeycomb functional test areas are included in the CSIT |release|
+The following Honeycomb functional test areas are included in the CSIT-|release|
 with results listed in this report:
 
 - **Basic interface management** - CRUD for interface state,
@@ -161,7 +161,7 @@ with results listed in this report:
   - Netconf/Restconf northbound over IPv6
   - Test case count: 12
 
-Total 219 Honeycomb functional tests in the CSIT |release|.
+Total 219 Honeycomb functional tests in the CSIT-|release|.
 
 Operational data in Honeycomb should mirror configuration data at all times.
 Because of this, test cases follow this general pattern:
@@ -179,7 +179,7 @@ the DUT node.
 Functional Tests Naming
 -----------------------
 
-CSIT |release| introduced a common structured naming convention for all
+CSIT-|release| introduced a common structured naming convention for all
 performance and functional tests. This change was driven by substantially
 growing number and type of CSIT test cases. Firstly, the original practice did
 not always follow any strict naming convention. Secondly test names did not

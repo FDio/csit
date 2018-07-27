@@ -87,7 +87,7 @@ Performance tests are split into two main categories:
   previously discovered throughput rate. These tests are currently done against
   0.9 of reference NDR, with reference rates updated periodically.
 
-CSIT |release| includes following performance test suites, listed per NIC type:
+CSIT-|release| includes following performance test suites, listed per NIC type:
 
 - 2port10GE X520-DA2 Intel
 
@@ -115,7 +115,7 @@ continuously.
 Performance Tests Naming
 ------------------------
 
-CSIT |release| follows a common structured naming convention for all performance
+CSIT-|release| follows a common structured naming convention for all performance
 and system functional tests, introduced in CSIT rls1701.
 
 The naming should be intuitive for majority of the tests. Complete description
@@ -124,7 +124,7 @@ of CSIT test naming convention is provided on :ref:`csit_test_naming`.
 Methodology: Multi-Core and Multi-Threading
 -------------------------------------------
 
-**Intel Hyper-Threading** - CSIT |release| performance tests are executed with
+**Intel Hyper-Threading** - CSIT-|release| performance tests are executed with
 SUT servers' Intel XEON processors configured in Intel Hyper-Threading Disabled
 mode (BIOS setting). This is the simplest configuration used to establish
 baseline single-thread single-core application packet processing and forwarding
@@ -132,7 +132,7 @@ performance. Subsequent releases of CSIT will add performance tests with Intel
 Hyper-Threading Enabled (requires BIOS settings change and hard reboot of
 server).
 
-**Multi-core Tests** - CSIT |release| multi-core tests are executed in the
+**Multi-core Tests** - CSIT-|release| multi-core tests are executed in the
 following VPP thread and core configurations:
 
 #. 1t1c - 1 pmd worker thread on 1 CPU physical core.

@@ -504,7 +504,7 @@ Listed CSIT container networking test topologies are defined with DUT
 containerized VPP switch forwarding packets between NF containers. Each
 NF container runs their own instance of VPP in L2XC configuration.
 
-Following container networking topologies are tested in CSIT |release|:
+Following container networking topologies are tested in CSIT-|release|:
 
 - LXC topologies:
 

@@ -93,7 +93,7 @@ is shown in the figure below including the applicable packet flow thru the VM
 NSH_SFC Functional Tests Coverage
 ---------------------------------
 
-Following NSH_SFC functional test areas are covered in the CSIT |release| with
+Following NSH_SFC functional test areas are covered in the CSIT-|release| with
 results listed in this report:
 
 - **NSH SFC Classifier** - TG sends some TCP packets to test NSH SFC
@@ -114,5 +114,5 @@ results listed in this report:
   VXLAN-GPE-NSH encapsulated packtes to the TG from other NIC.
   - Test case count: 6
 
-Total 25 NSH SFC functional tests in the CSIT |release|.
+Total 25 NSH SFC functional tests in the CSIT-|release|.
 
