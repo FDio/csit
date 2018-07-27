@@ -1,5 +1,5 @@
-VPP K8s Container Memif
-=======================
+Ubuntu
+------
 
 .. note::
 
@@ -7,6 +7,6 @@ VPP K8s Container Memif
     functional jobs`_, ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
-.. note::
+.. toctree::
 
-    You can find the `K8s configuration files`_ in the GitHub.
+    vpp_functional_configuration_ubuntu
