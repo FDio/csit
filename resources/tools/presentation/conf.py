@@ -93,6 +93,7 @@ rst_epilog = """
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1604/
 .. _FD.io DPDK compile job: https://jenkins.fd.io/view/deb-dpdk/job/deb_dpdk-merge-{sdpdkrelease}-ubuntu1604/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
+.. _K8s configuration files: https://github.com/FDio/csit/tree/{release}/resources/templates/kubernetes
 """.format(release='rls1807',
            prev_release='rls1804',
            srelease='1807',
