@@ -47,9 +47,13 @@
 
     # Detailed test configurations
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
-    DIR[DTC,PERF,VPP]: "{DIR[DTC]}/vpp_performance_configuration"
-    DIR[DTC,MRR,VPP]: "{DIR[DTC]}/vpp_mrr_configuration"
-    DIR[DTC,FUNC,VPP]: "{DIR[DTC]}/vpp_functional_configuration"
+    DIR[DTC,PERF,VPP,3N,HSW]: "{DIR[DTC]}/vpp_performance_configuration_3n_hsw"
+    DIR[DTC,PERF,VPP,3N,SKX]: "{DIR[DTC]}/vpp_performance_configuration_3n_skx"
+    DIR[DTC,PERF,VPP,2N,SKX]: "{DIR[DTC]}/vpp_performance_configuration_2n_skx"
+    DIR[DTC,MRR,VPP,3N,HSW]: "{DIR[DTC]}/vpp_mrr_configuration_3n_hsw"
+    DIR[DTC,MRR,VPP,3N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_3n_skx"
+    DIR[DTC,MRR,VPP,2N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_skx"
+    DIR[DTC,FUNC,VPP,UBUNTU]: "{DIR[DTC]}/vpp_functional_configuration_ubuntu"
     DIR[DTC,FUNC,VPP,CENTOS]: "{DIR[DTC]}/vpp_functional_configuration_centos"
 
     # Detailed tests operational data
@@ -266,11 +270,11 @@
       - 25  # full
       - 49  # full
     vpp-func-results-ubuntu:
-      csit-vpp-functional-1804-ubuntu1604-virl:
-      - 229
+      csit-vpp-functional-1807-ubuntu1604-virl:
+      - "lastSuccessfulBuild"
     vpp-func-results-centos:
-      csit-vpp-functional-1804-centos7-virl:
-      - 238
+      csit-vpp-functional-1807-centos7-virl:
+      - "lastSuccessfulBuild"
     vpp-mrr-results-3n-hsw:
       csit-vpp-perf-check-1804:
       - 5   # mrr - full
@@ -291,16 +295,16 @@
       - 4  # full
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
+      - 6
     dpdk-perf-results-3n-skx:
       csit-dpdk-perf-verify-1807-3n-skx:
-      - 3
+      - 6
     dpdk-perf-results-2n-skx:
       csit-dpdk-perf-verify-1807-2n-skx:
-      - 9
+      - 10
     hc-func-results:
-      csit-hc2vpp-verify-func-1804-ubuntu1604:
-      - 3
+      csit-hc2vpp-verify-func-1807-ubuntu1604:
+      - "lastSuccessfulBuild"
     nsh-func-results:
       csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
       - 7
@@ -354,13 +358,17 @@
       - 35  # sel
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 1
       - 2
+      - 3
+      - 4
+      - 5
+      - 6
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-1807-3n-skx:
       - 1
       - 2
       - 3
+      - 6
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-1807-2n-skx:
       - 1
@@ -372,6 +380,7 @@
       - 7
       - 8
       - 9
+      - 10
     plot-ligato-throughput-latency-3n-hsw:
       csit-ligato-perf-1804-all:
       - 5   # sel
@@ -739,12 +748,16 @@
     - 13  # sel
     - 14  # sel
     csit-dpdk-perf-verify-1807-3n-hsw:
-    - 1
     - 2
+    - 3
+    - 4
+    - 5
+    - 6
     csit-dpdk-perf-verify-1807-3n-skx:
     - 1
     - 2
     - 3
+    - 6
     csit-dpdk-perf-verify-1807-2n-skx:
     - 1
     - 2
@@ -755,14 +768,15 @@
     - 7
     - 8
     - 9
-    csit-vpp-functional-1804-ubuntu1604-virl:
-    - 229
-    csit-vpp-functional-1804-centos7-virl:
-    - 238
+    - 10
+    csit-vpp-functional-1807-ubuntu1604-virl:
+    - "lastSuccessfulBuild"
+    csit-vpp-functional-1807-centos7-virl:
+    - "lastSuccessfulBuild"
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
     - 7
-    csit-hc2vpp-verify-func-1804-ubuntu1604:
-    - 3
+    csit-hc2vpp-verify-func-1807-ubuntu1604:
+    - "lastSuccessfulBuild"
 
 -
   type: "output"
@@ -1206,12 +1220,13 @@
   - "parent"
   - "doc"
   - "msg"
+
 -
   type: "table"
-  title: "Test configuration - VPP Performance Test Configs"
+  title: "Test configuration - VPP Performance Test Configs 3n-hsw"
   algorithm: "table_merged_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTC,PERF,VPP]}/vpp_test_configuration"
+  output-file: "{DIR[DTC,PERF,VPP,3N,HSW]}/vpp_test_configuration_3n_hsw"
   columns:
   -
     title: "Name"
@@ -1220,8 +1235,49 @@
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
     data: "data vat-history"
   rows: "generated"
-  data:
-    "vpp-perf-results-3n-hsw"
+  data: "vpp-perf-results-3n-hsw"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
+-
+  type: "table"
+  title: "Test configuration - VPP Performance Test Configs 3n-skx"
+  algorithm: "table_merged_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,PERF,VPP,3N,SKX]}/vpp_test_configuration_3n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data: "vpp-perf-results-3n-skx"
+  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
+-
+  type: "table"
+  title: "Test configuration - VPP Performance Test Configs 2n-skx"
+  algorithm: "table_merged_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,PERF,VPP,2N,SKX]}/vpp_test_configuration_2n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data: "vpp-perf-results-2n-skx"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
@@ -1327,10 +1383,10 @@
 
 -
   type: "table"
-  title: "Test configuration - VPP MRR Test Configs"
+  title: "Test configuration - VPP MRR Test Configs 3n-hsw"
   algorithm: "table_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTC,MRR,VPP]}/vpp_mrr_test_configuration"
+  output-file: "{DIR[DTC,MRR,VPP,3N,HSW]}/vpp_mrr_test_configuration_3n_hsw"
   columns:
   -
     title: "Name"
@@ -1339,8 +1395,49 @@
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
     data: "data vat-history"
   rows: "generated"
-  data:
-    "vpp-mrr-results-3n-hsw"
+  data: "vpp-mrr-results-3n-hsw"
+  filter: "'MRR'"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
+-
+  type: "table"
+  title: "Test configuration - VPP MRR Test Configs 3n-skx"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,MRR,VPP,3N,SKX]}/vpp_mrr_test_configuration_3n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data: "vpp-mrr-results-3n-skx"
+  filter: "'MRR'"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
+-
+  type: "table"
+  title: "Test configuration - VPP MRR Test Configs 2n-skx"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,MRR,VPP,2N,SKX]}/vpp_mrr_test_configuration_2n_skx"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data: "vpp-mrr-results-2n-skx"
   filter: "'MRR'"
   parameters:
   - "parent"
@@ -1403,7 +1500,7 @@
   title: "Test configuration - VPP Functional Test Configs - Ubuntu"
   algorithm: "table_details"
   output-file-ext: ".csv"
-  output-file: "{DIR[DTC,FUNC,VPP]}/vpp_functional_configuration"
+  output-file: "{DIR[DTC,FUNC,VPP,UBUNTU]}/vpp_functional_configuration_ubuntu"
   columns:
   -
     title: "Name"
@@ -1433,8 +1530,7 @@
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
     data: "data vat-history"
   rows: "generated"
-  data:
-    "vpp-func-results-centos"
+  data: "vpp-func-results-centos"
   filter: "all"
   parameters:
   - "parent"
