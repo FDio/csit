@@ -87,7 +87,7 @@ VM Service Switching
 VM service switching topology test cases require VPP DUT to communicate
 with Virtual Machines (VMs) over vhost-user virtual interfaces.
 
-Two types of VM service topologies are tested in CSIT |release|:
+Two types of VM service topologies are tested in |csit-release|:
 
 #. "Parallel" topology with packets flowing within SUT from NIC(s) via
    VPP DUT to VM, back to VPP DUT, then out thru NIC(s).
@@ -161,7 +161,7 @@ Container Service Switching
 Container service switching topology test cases require VPP DUT to
 communicate with Containers (Ctrs) over memif virtual interfaces.
 
-Three types of VM service topologies are tested in CSIT |release|:
+Three types of VM service topologies are tested in |csit-release|:
 
 #. "Parallel" topology with packets flowing within SUT from NIC(s) via
    VPP DUT to Container, back to VPP DUT, then out thru NIC(s).
@@ -259,7 +259,7 @@ topologies and configurations:
   regardless of packet loss. Maximum load for specified Ethernet frame
   size is set to the bi-directional link rate.
 
-CSIT |release| includes following performance test areas covered across
+|csit-release| includes following performance test areas covered across
 a range of NIC drivers and NIC models:
 
 +-----------------------+----------------------------------------------+
@@ -349,7 +349,7 @@ NIC models has been limited to few baseline tests.
 Performance Tests Naming
 ------------------------
 
-FD.io CSIT |release| follows a common structured naming convention for
+FD.io |csit-release| follows a common structured naming convention for
 all performance and system functional tests, introduced in CSIT rls1701.
 
 The naming should be intuitive for majority of the tests. Complete
