@@ -1,12 +1,7 @@
-VPP Functional Ubuntu
-=====================
-
-.. note::
-
-    Data sources for reported test results: i) `FD.io test executor vpp
-    functional jobs`_, ii) archived FD.io jobs test result `output files
-    <../../_static/archive/>`_.
+VPP Functional
+==============
 
 .. toctree::
 
-    vpp_functional_configuration
+    ../vpp_functional_configuration_ubuntu/index
+    ../vpp_functional_configuration_centos/index
