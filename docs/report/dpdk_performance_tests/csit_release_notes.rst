@@ -1,7 +1,7 @@
 Release Notes
 =============
 
-Changes in CSIT |release|
+Changes in |csit-release|
 -------------------------
 
 No code changes apart from bug fixes.
@@ -9,7 +9,7 @@ No code changes apart from bug fixes.
 Known Issues
 ------------
 
-Here is the list of known issues in CSIT |release| for Testpmd performance tests:
+Here is the list of known issues in |csit-release| for Testpmd performance tests:
 
 +---+---------------------------------------------------+------------+-----------------------------------------------------------------+
 | # | Issue                                             | Jira ID    | Description                                                     |

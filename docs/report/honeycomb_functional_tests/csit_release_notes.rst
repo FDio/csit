@@ -1,7 +1,7 @@
 Release Notes
 =============
 
-Changes in CSIT |release|
+Changes in |csit-release|
 -------------------------
 
 No changes.
@@ -9,7 +9,7 @@ No changes.
 Known Issues
 ------------
 
-Here is the list of known issues in CSIT |release| for Honeycomb functional
+Here is the list of known issues in |csit-release| for Honeycomb functional
 tests in VIRL:
 
 +---+--------------------------------------------+---------------+-------------------------------------------------------------------------+
