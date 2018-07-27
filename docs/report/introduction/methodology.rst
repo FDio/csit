@@ -117,7 +117,7 @@ Enabled mode (two logical cores per each physical core). HT setting is
 applied in BIOS and requires server SUT reload for it to take effect,
 making it impractical for continuous changes of HT mode of operation.
 
-CSIT |release| performance tests are executed with server SUTs' Intel
+|csit-release| performance tests are executed with server SUTs' Intel
 XEON processors configured with Intel Hyper-Threading Disabled for all
 Xeon Haswell testbeds (3n-hsw) and with Intel Hyper-Threading Enabled
 for all Xeon Skylake testbeds.
@@ -128,7 +128,7 @@ More information about physical testbeds is provided in
 Multi-core Tests
 ~~~~~~~~~~~~~~~~
 
-CSIT |release| multi-core tests are executed in the following VPP worker
+|csit-release| multi-core tests are executed in the following VPP worker
 thread and physical core configurations:
 
 #. Intel Xeon Haswell testbeds (3n-hsw) with Intel HT disabled
@@ -239,7 +239,7 @@ following environment settings:
 LXC/DRC Container Memif
 -----------------------
 
-CSIT |release| includes tests taking advantage of VPP memif virtual
+|csit-release| includes tests taking advantage of VPP memif virtual
 interface (shared memory interface) to interconnect VPP running in
 Containers. VPP vswitch instance runs in bare-metal user-mode handling
 NIC interfaces and connecting over memif (Slave side) to VPPs running in
@@ -261,7 +261,7 @@ in :ref:`container_orchestration_in_csit`.
 K8s Container Memif
 -------------------
 
-CSIT |release| includes tests of VPP topologies running in K8s
+|csit-release| includes tests of VPP topologies running in K8s
 orchestrated Pods/Containers and connected over memif virtual
 interfaces. In order to provide simple topology coding flexibility and
 extensibility container orchestration is done with `Kubernetes
@@ -290,7 +290,7 @@ combination with HW cryptodev devices - Intel QAT 8950 50G - present in
 LF FD.io physical testbeds. DPDK cryptodev can be used for all IPSec
 data plane functions supported by VPP.
 
-Currently CSIT |release| implements following IPSec test cases:
+Currently |csit-release| implements following IPSec test cases:
 
 - AES-GCM, CBC-SHA1 ciphers, in combination with IPv4 routed-forwarding
   with Intel xl710 NIC.
