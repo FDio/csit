@@ -159,7 +159,8 @@ fi
 PYBOT_ARGS="--consolewidth 100 \
             --loglevel TRACE \
             --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-            --suite tests.${DUT}.perf"
+            --suite tests.${DUT}.perf.ip4 \
+            --suite tests.${DUT}.perf.ip4_tunnels"
 
 case "$TEST_TAG" in
     # select specific performance tests based on jenkins job type variable
@@ -224,7 +225,14 @@ case "$TEST_TAG" in
         done
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=('perftest'
+              '!nic_intel-x520-da2'
+              '!nic_intel-xl710'
+              '!nic_cisco-vic-1227'
+              '!nic_cisco-vic-1385'
+              '!vhost'
+              '!memif'
+              '!ipsechw')
 esac
 
 # Catenate TAG selections
