@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7571077_6ad770c5",
+        "filename": "resources/tools/presentation/conf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-27T14:52:25Z",
+      "side": 1,
+      "message": "Is ti 18.07 or 1807? It is possible that we will have 1807.1 for reporting on VPP 1807.1, which will be more consistent with semantic versioning.",
+      "range": {
+        "startLine": 101,
+        "startChar": 24,
+        "endLine": 101,
+        "endChar": 29
+      },
+      "revId": "c7b2541ae5ff737691547daef2e4b25f9d232eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
