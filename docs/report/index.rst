@@ -83,7 +83,6 @@ CSIT 18.07
         test_configuration/vpp_mrr_configuration/index
         test_configuration/cot_performance_configuration/index
         test_configuration/vpp_functional_configuration/index
-        test_configuration/vpp_functional_configuration_centos/index
 
     .. toctree::
         :maxdepth: 2
