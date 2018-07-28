@@ -1,10 +1,10 @@
-.. include:: test_environment_intro.rst
+.. include:: ../introduction/test_environment_intro.rst
 
-.. include:: test_environment_sut_conf_1.rst
+.. include:: ../introduction/test_environment_sut_conf_1.rst
 
-.. include:: test_environment_sut_conf_2.rst
+.. include:: ../introduction/test_environment_sut_conf_2.rst
 
-.. include:: test_environment_sut_conf_3.rst
+.. include:: ../introduction/test_environment_sut_conf_3.rst
 
 
 DUT Configuration - VPP
@@ -26,11 +26,9 @@ DUT Configuration - VPP
 
 **VPP Startup Configuration**
 
-VPP startup configuration changes per test case with different settings for CPU
-cores, rx-queues and no-multi-seg parameter. Startup config is aligned with
-applied test case tag:
-
-Tagged by **1T1C**
+VPP startup configuration changes per test case with different settings for
+`$$CORELIST_WORKERS`, `$$NUM_RX_QUEUES`, `$$UIO_DRIVER`, `$$NUM-MBUFS` and
+`$$NO_MULTI_SEG` parameter. Default template:
 
 ::
 
@@ -38,9 +36,13 @@ Tagged by **1T1C**
     {
       heap-size 4G
     }
+    statseg
+    {
+      size 4G
+    }
     unix
     {
-      cli-listen localhost:5002
+      cli-listen /run/vpp/cli.sock
       log /tmp/vpe.log
       nodaemon
     }
@@ -63,124 +65,23 @@ Tagged by **1T1C**
     }
     cpu
     {
-      corelist-workers 2
+      corelist-workers $$CORELIST_WORKERS
       main-core 1
     }
     dpdk
     {
-      dev 0000:0a:00.0
-      dev 0000:0a:00.1
-      no-multi-seg
-      uio-driver uio_pci_generic
+      num-mbufs $$NUM-MBUFS
+      uio-driver $$UIO_DRIVER
+      $$NO_MULTI_SEG
       log-level debug
       dev default
       {
-        num-rx-queues 1
+        num-rx-queues $$NUM_RX_QUEUES
       }
       socket-mem 1024,1024
       no-tx-checksum-offload
+      dev $$DEV_1
+      dev $$DEV_2
     }
 
-Tagged by **2T2C**
-
-::
-
-    ip
-    {
-      heap-size 4G
-    }
-    unix
-    {
-      cli-listen localhost:5002
-      log /tmp/vpe.log
-      nodaemon
-    }
-    ip6
-    {
-      heap-size 4G
-      hash-buckets 2000000
-    }
-    heapsize 4G
-    plugins
-    {
-      plugin default
-      {
-        disable
-      }
-      plugin dpdk_plugin.so
-      {
-        enable
-      }
-    }
-    cpu
-    {
-      corelist-workers 2,3
-      main-core 1
-    }
-    dpdk
-    {
-      dev 0000:0a:00.0
-      dev 0000:0a:00.1
-      no-multi-seg
-      uio-driver uio_pci_generic
-      log-level debug
-      dev default
-      {
-        num-rx-queues 1
-      }
-      socket-mem 1024,1024
-      no-tx-checksum-offload
-    }
-
-Tagged by **4T4C**
-
-::
-
-    ip
-    {
-      heap-size 4G
-    }
-    unix
-    {
-      cli-listen localhost:5002
-      log /tmp/vpe.log
-      nodaemon
-    }
-    ip6
-    {
-      heap-size 4G
-      hash-buckets 2000000
-    }
-    heapsize 4G
-    plugins
-    {
-      plugin default
-      {
-        disable
-      }
-      plugin dpdk_plugin.so
-      {
-        enable
-      }
-    }
-    cpu
-    {
-      corelist-workers 2,3,4,5
-      main-core 1
-    }
-    dpdk
-    {
-      dev 0000:0a:00.0
-      dev 0000:0a:00.1
-      no-multi-seg
-      uio-driver uio_pci_generic
-      log-level debug
-      dev default
-      {
-        num-rx-queues 1
-      }
-      socket-mem 1024,1024
-      no-tx-checksum-offload
-    }
-
-.. include:: test_environment_tg.rst
+.. include:: ../introduction/test_environment_tg.rst

@@ -31,7 +31,7 @@ and their indices.
     `FD.io test executor dpdk performance job 3n-hsw`_,
     `FD.io test executor dpdk performance job 3n-skx`_ and
     `FD.io test executor dpdk performance job 2n-skx`_ with Robot Framework
-    result files csit-vpp-perf-|srelease|-\*.zip
+    result files csit-dpdk-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
     Plotted data set size per test case is equal to the number of job executions
     presented in this report version: **10**.
