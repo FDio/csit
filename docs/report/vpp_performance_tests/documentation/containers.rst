@@ -358,33 +358,26 @@ Usage example:
   | | [Arguments] | ${technology} | ${image} | ${cpu_count}=${1} | ${count}=${1}
   | | ...
   | | ${group}= | Set Variable | VNF
-  | | ${guest_dir}= | Set Variable | /mnt/host
-  | | ${host_dir}= | Set Variable | /tmp
   | | ${skip_cpus}= | Evaluate | ${vpp_cpus}+${system_cpus}
   | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
-  | | ... | engine=${technology} | WITH NAME | ${group}
+  | | ... | engine=${container_engine} | WITH NAME | ${group}
   | | ${duts}= | Get Matches | ${nodes} | DUT*
   | | :FOR | ${dut} | IN | @{duts}
-  | | | {env}= | Create List | LC_ALL="en_US.UTF-8"
-  | | | ... | DEBIAN_FRONTEND=noninteractive | ETCDV3_ENDPOINTS=172.17.0.1:2379
+  | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
+  | | | ${mnt}= | Create List | /tmp:/mnt/host | /dev:/dev
   | | | ${cpu_node}= | Get interfaces numa node | ${nodes['${dut}']}
   | | | ... | ${dut1_if1} | ${dut1_if2}
   | | | Run Keyword | ${group}.Construct containers
-  | | | ... | name=${dut}_${group}
-  | | | ... | node=${nodes['${dut}']}
-  | | | ... | host_dir=${host_dir}
-  | | | ... | guest_dir=${guest_dir}
-  | | | ... | image=${image}
-  | | | ... | cpu_count=${cpu_count}
-  | | | ... | cpu_skip=${skip_cpus}
-  | | | ... | smt_used=${False}
-  | | | ... | cpuset_mems=${cpu_node}
-  | | | ... | cpu_shared=${False}
-  | | | ... | env=${env}
+  | | | ... | name=${dut}_${group} | node=${nodes['${dut}']} | mnt=${mnt}
+  | | | ... | image=${container_image} | cpu_count=${container_cpus}
+  | | | ... | cpu_skip=${skip_cpus} | cpuset_mems=${cpu_node}
+  | | | ... | cpu_shared=${False} | env=${env} | count=${container_count}
+  | | | ... | install_dkms=${container_install_dkms}
+  | | Append To List | ${container_groups} | ${group}
 
 Mandatory parameters to create standalone container are: ``node``, ``name``,
-``image`` [image-var]_, ``cpu_count``, ``cpu_skip``, ``smt_used``,
-``cpuset_mems``, ``cpu_shared``.
+``image`` [image-var]_, ``cpu_count``, ``cpu_skip``, ``cpuset_mems``,
+``cpu_shared``.
 
 There is no parameters check functionality. Passing required arguments is in
 coder responsibility. All the above parameters are required to calculate the
@@ -514,6 +507,7 @@ Following container networking topologies are tested in |csit-release|:
 - Docker topologies:
 
   - eth-l2xcbase-eth-2memif-1docker.
+  - eth-l2xcbase-eth-1memif-1docker
 
 - Kubernetes/Ligato topologies:
 

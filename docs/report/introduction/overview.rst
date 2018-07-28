@@ -58,14 +58,14 @@ the source data files are also provided.
    virtual FD.io testbeds; *Overview* - tested virtual topologies, test
    coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
    |release|, added tests, environment or methodology changes, known CSIT issues;
-   *Test Environment* - environment description ;
+   *Test Environment* - environment description;
    *Documentation* - source code documentation for Honeycomb functional tests.
 
 #. **NSH_SFC Functional Tests** - NSH_SFC functional tests executed in
    virtual FD.io testbeds; *Overview* - tested virtual topologies, test
    coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
    |release|, added tests, environment or methodology changes, known CSIT issues;
-   *Test Environment* - environment description ;
+   *Test Environment* - environment description;
    *Documentation* - source code documentation for NSH_SFC functional tests.
 
 #. **Detailed Test Results** - auto-generated results from CSIT jobs
