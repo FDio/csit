@@ -28,7 +28,8 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-| | | ${mnt}= | Create List | /tmp:/mnt/host | /dev:/dev
+| | | ${mnt}= | Create List | /tmp:/mnt/host | /dev/vfio:/dev/vfio
+| | | ... | /dev/bus:/dev/bus
 | | | ${cpu_node}= | Get interfaces numa node | ${nodes['${dut}']}
 | | | ... | ${dut1_if1} | ${dut1_if2}
 | | | Run Keyword | ${group}.Construct containers
