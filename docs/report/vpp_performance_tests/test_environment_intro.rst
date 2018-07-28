@@ -12,5 +12,7 @@ Server Specification and Configuration
 --------------------------------------
 
 Complete specification and configuration of compute servers used in CSIT
-physical testbeds is maintained on wiki page `CSIT LF Testbeds
-<https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+physical testbeds is maintained on wiki page `CSIT testbed - Server HW
+Configuration (Haswell) <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_ and
+`CSIT testbed - Server HW Configuration (Skylake/ARM)
+<https://wiki.fd.io/view/CSIT/fdio_csit_lab_ext_lld_draft>`_.
