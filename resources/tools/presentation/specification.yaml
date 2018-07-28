@@ -383,15 +383,16 @@
       - 12
       - 13
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
     dpdk-compare-testbeds:
       csit-dpdk-perf-verify-1807-3n-skx:
       - 1
@@ -405,18 +406,19 @@
       - 11
       - 12
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 10
+      - 12
     dpdk-perf-results-3n-skx:
       csit-dpdk-perf-verify-1807-3n-skx:
       - 12
@@ -425,15 +427,16 @@
       - 10
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-1807-3n-skx:
       - 1
@@ -789,15 +792,16 @@
     - 12
     - 13
     csit-dpdk-perf-verify-1807-3n-hsw:
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
+    - 11
+    - 12  # full
+    - 14
+    - 15
+    - 16
+    - 17
+    - 20
+    - 21
+    - 22
+    - 23
     csit-dpdk-perf-verify-1807-3n-skx:
     - 1
     - 2
@@ -1827,15 +1831,16 @@
     title: "rls1807"
     data:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
   data: "dpdk-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1867,15 +1872,16 @@
     title: "rls1807"
     data:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
   data: "dpdk-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1907,15 +1913,16 @@
     title: "rls1807"
     data:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
   data: "dpdk-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1947,15 +1954,16 @@
     title: "rls1807"
     data:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
   data: "dpdk-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1973,15 +1981,16 @@
     title: "3-Node Hsw"
     data:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
   compare:
     title: "3-Node Skx"
     data:
@@ -2013,15 +2022,16 @@
     title: "3-Node Hsw"
     data:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      - 11
+      - 12  # full
+      - 14
+      - 15
+      - 16
+      - 17
+      - 20
+      - 21
+      - 22
+      - 23
   compare:
     title: "3-Node Skx"
     data:
