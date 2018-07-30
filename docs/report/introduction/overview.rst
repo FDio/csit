@@ -84,4 +84,4 @@ the source data files are also provided.
 #. **CSIT Framework Documentation** - description of the overall CSIT
    framework design hierarchy, CSIT test naming convention, followed by
    description of Presentation and Analytics Layer (PAL) introduced in
-   |csit-release|.
+   CSIT-17.07.

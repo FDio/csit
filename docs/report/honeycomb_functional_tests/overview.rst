@@ -179,7 +179,7 @@ the DUT node.
 Functional Tests Naming
 -----------------------
 
-|csit-release| introduced a common structured naming convention for all
+CSIT-17.01 introduced a common structured naming convention for all
 performance and functional tests. This change was driven by substantially
 growing number and type of CSIT test cases. Firstly, the original practice did
 not always follow any strict naming convention. Secondly test names did not
