@@ -350,7 +350,7 @@ Performance Tests Naming
 ------------------------
 
 FD.io |csit-release| follows a common structured naming convention for
-all performance and system functional tests, introduced in CSIT rls1701.
+all performance and system functional tests, introduced in CSIT-17.01.
 
 The naming should be intuitive for majority of the tests. Complete
 description of FD.io CSIT test naming convention is provided on
