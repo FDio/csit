@@ -109,7 +109,6 @@ class L3fwdTest(object):
         # detect which is the port 0
         if min(if_pci0, if_pci1) != if_pci0:
             if_key0, if_key1 = if_key1, if_key0
-            L3fwdTest.patch_l3fwd(dut_node, 'patch_l3fwd_flip_routes')
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface( \
                                  nodes_info, dut_node, if_key0)
