@@ -329,12 +329,15 @@ class ContainerEngine(object):
         if self.container.install_dkms:
             self.execute(
                 'apt-get install -y dkms && '
-                'dpkg -i --force-all {guest_dir}/install_dir/*.deb'.
+                'dpkg -i --force-all '
+                '{guest_dir}/openvpp-testing/download_dir/*.deb'.
                 format(guest_dir=self.container.mnt[0].split(':')[1]))
         else:
             self.execute(
-                'for i in $(ls -I \"*dkms*\" {guest_dir}/install_dir/); do '
-                'dpkg -i --force-all {guest_dir}/install_dir/$i; done'.
+                'for i in $(ls -I \"*dkms*\" '
+                '{guest_dir}/openvpp-testing/download_dir/); do '
+                'dpkg -i --force-all '
+                '{guest_dir}/openvpp-testing/download_dir/$i; done'.
                 format(guest_dir=self.container.mnt[0].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')
