@@ -62,6 +62,7 @@ rst_epilog = """
 .. |release-1| replace:: {prev_release}
 .. |srelease| replace:: {srelease}
 .. |csit-release| replace:: CSIT-{csitrelease}
+.. |csit-release-1| replace:: CSIT-{csit_prev_release}
 .. |vpp-release| replace:: VPP-{vpprelease} release
 .. |vpp-release-1| replace:: VPP-{vpp_prev_release} release
 .. |dpdk-release| replace:: DPDK {dpdkrelease}
@@ -91,10 +92,10 @@ rst_epilog = """
 .. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-1807-3n-skx
 .. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-1807-2n-skx
 .. _FD.io test executor ligato performance jobs: https://jenkins.fd.io/job/csit-ligato-perf-{srelease}-all
-.. _FD.io test executor vpp functional jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-ubuntu1604-virl/lastSuccessfulBuild
-.. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-{srelease}-ubuntu1604/lastSuccessfulBuild
-.. _FD.io test executor honeycomb performance jobs: https://jenkins.fd.io/view/hc2vpp/job/hc2vpp-csit-perf-master-ubuntu1604/lastSuccessfulBuild
-.. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-{srelease}-ubuntu1604-virl/lastSuccessfulBuild
+.. _FD.io test executor vpp functional jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-ubuntu1604-virl
+.. _FD.io test executor vpp functional jobs using CentOs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-centos7-virl
+.. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-{srelease}-ubuntu1604
+.. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-{srelease}-ubuntu1604-virl
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1604/
 .. _FD.io DPDK compile job: https://jenkins.fd.io/view/deb-dpdk/job/deb_dpdk-merge-{sdpdkrelease}-ubuntu1604/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
@@ -103,6 +104,7 @@ rst_epilog = """
            prev_release='rls1804',
            srelease='1807',
            csitrelease='18.07',
+           csit_prev_release='18.04',
            vpprelease='18.07',
            vpp_prev_release='18.04',
            dpdkrelease='18.05',
