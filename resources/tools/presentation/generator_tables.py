@@ -391,7 +391,7 @@ def table_performance_comparison(table, input_data):
              "{0} Stdev [Mpps]".format(table["reference"]["title"]),
              "{0} {1} [Mpps]".format(table["compare"]["title"], hdr_param),
              "{0} Stdev [Mpps]".format(table["compare"]["title"]),
-             "Change [%]"])
+             "Delta [%]"])
         header_str = ",".join(header) + "\n"
     except (AttributeError, KeyError) as err:
         logging.error("The model is invalid, missing parameter: {0}".
