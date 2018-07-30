@@ -115,7 +115,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
 
     def __init__(self, measurer, final_relative_width=0.005,
                  final_trial_duration=30.0, initial_trial_duration=1.0,
-                 number_of_intermediate_phases=2, timeout=600.0):
+                 number_of_intermediate_phases=2, timeout=600.0, doublings=1):
         """Store the measurer object and additional arguments.
 
         :param measurer: Rate provider to use by this search object.
@@ -128,12 +128,16 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             to perform before the final phase [1].
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
+        :param doublings: How many doublings to do in external search step.
+            Default 1 is suitable for fairly stable tests,
+            less stable tests might get better overal duration with 2 or more.
         :type measurer: AbstractMeasurer
         :type final_relative_width: float
         :type final_trial_duration: float
         :type initial_trial_duration: int
         :type number_of_intermediate_phases: int
         :type timeout: float
+        :type doublings: int
         """
         super(MultipleLossRatioSearch, self).__init__(measurer)
         self.final_trial_duration = float(final_trial_duration)
@@ -141,6 +145,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         self.number_of_intermediate_phases = int(number_of_intermediate_phases)
         self.initial_trial_duration = float(initial_trial_duration)
         self.timeout = float(timeout)
+        self.doublings = doublings
 
 
     @staticmethod
@@ -172,6 +177,24 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
                 relative_width))
 
     @staticmethod
+    def expand_down(relative_width, doublings, current_bound):
+        """Return rate of expanded logarithmic width below.
+
+        :param relative_width: The base relative width to double.
+        :param doublings: How many doublings to do for expansion.
+        :param current_bound: The current target transmit rate to move [pps].
+        :type relative_width: float
+        :type doublings: int
+        :type current_bound: float
+        :returns: Transmit rate smaller by logarithmically double width [pps].
+        :rtype: float
+        """
+        for _ in range(doublings):
+            relative_width = MultipleLossRatioSearch.double_relative_width(
+                relative_width)
+        return current_bound * (1.0 - relative_width)
+
+    @staticmethod
     def double_step_up(relative_width, current_bound):
         """Return rate of double logarithmic width above.
 
@@ -185,6 +208,24 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         return current_bound / (
             1.0 - MultipleLossRatioSearch.double_relative_width(
                 relative_width))
+
+    @staticmethod
+    def expand_up(relative_width, doublings, current_bound):
+        """Return rate of expanded logarithmic width above.
+
+        :param relative_width: The base relative width to double.
+        :param doublings: How many doublings to do for expansion.
+        :param current_bound: The current target transmit rate to move [pps].
+        :type relative_width: float
+        :type doublings: int
+        :type current_bound: float
+        :returns: Transmit rate smaller by logarithmically double width [pps].
+        :rtype: float
+        """
+        for _ in range(doublings)
+            relative_width = MultipleLossRatioSearch.double_relative_width(
+                relative_width)
+        return current_bound / (1.0 - relative_width)
 
     @staticmethod
     def half_relative_width(relative_width):
@@ -399,7 +440,8 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
                 if ndr_lo.target_tr > state.minimum_transmit_rate:
                     new_tr = max(
                         state.minimum_transmit_rate,
-                        self.double_step_down(ndr_rel_width, ndr_lo.target_tr))
+                        self.expand_down(
+                            ndr_rel_width, self.doublings, ndr_lo.target_tr))
                     logging.info("ndr lo external %s", new_tr)
                     state = self._measure_and_update_state(state, new_tr)
                     continue
@@ -412,7 +454,8 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
                 if pdr_lo.target_tr > state.minimum_transmit_rate:
                     new_tr = max(
                         state.minimum_transmit_rate,
-                        self.double_step_down(pdr_rel_width, pdr_lo.target_tr))
+                        self.expand_down(
+                            pdr_rel_width, self.doublings, pdr_lo.target_tr))
                     logging.info("pdr lo external %s", new_tr)
                     state = self._measure_and_update_state(state, new_tr)
                     continue
@@ -425,7 +468,8 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
                 if ndr_hi.target_tr < state.maximum_transmit_rate:
                     new_tr = min(
                         state.maximum_transmit_rate,
-                        self.double_step_up(ndr_rel_width, ndr_hi.target_tr))
+                        self.expand_up(
+                            ndr_rel_width, self.doublings, ndr_hi.target_tr))
                     logging.info("ndr hi external %s", new_tr)
                     state = self._measure_and_update_state(state, new_tr)
                     continue
@@ -438,7 +482,8 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
                 if pdr_hi.target_tr < state.maximum_transmit_rate:
                     new_tr = min(
                         state.maximum_transmit_rate,
-                        self.double_step_up(pdr_rel_width, pdr_hi.target_tr))
+                        self.expand_up(
+                            pdr_rel_width, self.doublings, pdr_hi.target_tr))
                     logging.info("pdr hi external %s", new_tr)
                     state = self._measure_and_update_state(state, new_tr)
                     continue
