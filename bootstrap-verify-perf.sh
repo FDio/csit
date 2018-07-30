@@ -12,17 +12,39 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -xo pipefail
+set -xeu -o pipefail
+
+# FUNCTIONS
+function warn () {
+    # Error messages should go to standard error.
+    echo "$@" >&2
+}
+function die () {
+    status="$1"
+    shift
+    warn "$@"
+    exit "$status"
+}
+
+# Trap function
+function cancel_all() {
+    python ${SCRIPT_DIR}/resources/tools/scripts/topo_cancel.py -t $1
+    python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -c -t $1
+}
+
+function help() {
+    die 1 "$1 usage: "															# TODO: Help function
+}
 
 # TOPOLOGY
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES_3N_HSW="topologies/available/lf_3n_hsw_testbed1.yaml \
-                   topologies/available/lf_3n_hsw_testbed2.yaml \
-                   topologies/available/lf_3n_hsw_testbed3.yaml"
-TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed21.yaml \
-                   topologies/available/lf_2n_skx_testbed24.yaml"
-TOPOLOGIES_3N_SKX="topologies/available/lf_3n_skx_testbed31.yaml \
-                   topologies/available/lf_3n_skx_testbed32.yaml"
+TOPOLOGIES_3N_HSW=(topologies/available/lf_3n_hsw_testbed1.yaml
+                   topologies/available/lf_3n_hsw_testbed2.yaml
+                   topologies/available/lf_3n_hsw_testbed3.yaml)
+TOPOLOGIES_2N_SKX=(topologies/available/lf_2n_skx_testbed21.yaml
+                   topologies/available/lf_2n_skx_testbed24.yaml)
+TOPOLOGIES_3N_SKX=(topologies/available/lf_3n_skx_testbed31.yaml
+                   topologies/available/lf_3n_skx_testbed32.yaml)
 
 # SYSTEM
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -41,7 +63,15 @@ LOG_ARCHIVE_DIR="$WORKSPACE/archives"
 mkdir -p ${JOB_ARCHIVE_DIR}
 mkdir -p ${LOG_ARCHIVE_DIR}
 
-# JOB SETTING
+# Explicit read-only and exportable
+declare -xr $TOPOLOGIES_3N_HSW
+declare -xr $TOPOLOGIES_2N_SKX
+declare -xr $TOPOLOGIES_3N_SKX
+declare -xr $SCRIPT_DIR
+declare -xr $RESERVATION_DIR
+declare -xr $INSTALLATION_DIR
+
+# JOB SETTING																	#TODO: parametrize script + Add NIC processing
 case ${JOB_NAME} in
     *2n-skx*)
         TOPOLOGIES=$TOPOLOGIES_2N_SKX
@@ -52,11 +82,17 @@ case ${JOB_NAME} in
         TOPOLOGIES_TAGS="3_node_*_link_topo"
         ;;
     *)
+        # Fallback to 3-node Haswell by default
         TOPOLOGIES=$TOPOLOGIES_3N_HSW
         TOPOLOGIES_TAGS="3_node_*_link_topo"
         ;;
 esac
-case ${JOB_NAME} in
+
+if [ -z "${TOPOLOGIES}" ]; then
+    die 1 "No applicable topology found!"
+fi
+
+case ${JOB_NAME} in																#TODO: Parametrize script
     *hc2vpp*)
         DUT="hc2vpp"
         ;;
@@ -88,8 +124,7 @@ case ${JOB_NAME} in
                 DUT_PKGS="$( readlink -f $@ | tr '\n' ' ' )"
                 ;;
             *)
-                echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
-                exit 1
+                die 1 "Unable to identify job type from: ${JOB_NAME}!"
                 ;;
         esac
         ;;
@@ -98,22 +133,37 @@ case ${JOB_NAME} in
         ;;
     *dpdk*)
         DUT="dpdk"
+
+        # If we run this script from CSIT jobs we want to use stable version
+        DPDK_REPO='https://fast.dpdk.org/rel/'
+        if [[ ${TEST_TAG} == *DAILY ]] || \
+           [[ ${TEST_TAG} == *WEEKLY ]];
+        then
+            echo "Downloading latest DPDK packages from repo..."
+            DPDK_STABLE_VER=$(wget --no-check-certificate --quiet -O - ${DPDK_REPO} | \
+                grep -v '2015' | grep -Eo 'dpdk-[^\"]+xz' | tail -1)
+        else
+            echo "Downloading DPDK packages of specific version from repo..."
+            DPDK_STABLE_VER='dpdk-18.05.tar.xz'
+        fi
+        wget --no-check-certificate ${DPDK_REPO}${DPDK_STABLE_VER}
         ;;
     *)
-        echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
-        exit 1
+        die 1 "Unable to identify DUT type from: ${JOB_NAME}!"
         ;;
 esac
 
 # ENVIRONMENT PREPARATION
-virtualenv --system-site-packages env
-. env/bin/activate
-pip install -r requirements.txt
+virtualenv --system-site-packages env || {
+    die 1 "Failed to create virtual env!"
+}
+. env/bin/activate || {
+    die 1 "Failed to activate virtual env!"
+}
+pip install -r requirements.txt || {
+    die 1 "Failed to install requirements to virtual env!"
+}
 
-if [ -z "${TOPOLOGIES}" ]; then
-    echo "No applicable topology found!"
-    exit 1
-fi
 # We iterate over available topologies and wait until we reserve topology
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
@@ -122,6 +172,8 @@ while :; do
         if [ $? -eq 0 ]; then
             WORKING_TOPOLOGY=${TOPOLOGY}
             echo "Reserved: ${WORKING_TOPOLOGY}"
+            # On script exit we clean testbed.
+            trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
             break
         fi
     done
@@ -137,68 +189,51 @@ while :; do
     sleep ${SLEEP_TIME}
 done
 
-function cancel_all {
-    python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
-    python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -c -t $1
-}
-
-# On script exit we cancel the reservation and installation and delete all vpp
-# packages
-trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
-
-python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py \
-    -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR} -p ${DUT_PKGS}
-if [ $? -eq 0 ]; then
-    echo "DUT installed on hosts from: ${WORKING_TOPOLOGY}"
-else
-    echo "Failed to copy DUT packages files to hosts from: ${WORKING_TOPOLOGY}"
-    exit 1
+python ${SCRIPT_DIR}/resources/tools/scripts/topo_transfer_items.py \
+    -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR}
+if [ $? -ne 0 ]; then
+    die 1 "Failed to copy DUT packages files to hosts from: ${WORKING_TOPOLOGY}!"
 fi
 
 # CSIT EXECUTION
-PYBOT_ARGS="--consolewidth 100 \
-            --loglevel TRACE \
-            --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-            --suite tests.${DUT}.perf"
+PYBOT_ARGS="--consolewidth 100 --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
 
 case "$TEST_TAG" in
-    # select specific performance tests based on jenkins job type variable
+    # Select specific performance tests based on jenkins job type variable
     PERFTEST_DAILY )
-        TAGS=('ndrdiscANDnic_intel-x520-da2AND1c'
-              'ndrdiscANDnic_intel-x520-da2AND2c'
-              'ndrpdrANDnic_intel-x520-da2AND1c'
-              'ndrpdrANDnic_intel-x520-da2AND2c'
-              'ndrdiscAND1cANDipsec'
-              'ndrdiscAND2cANDipsec')
+        TAGS=(ndrpdrANDnic_intel-x520-da2AND1c
+              ndrpdrANDnic_intel-x520-da2AND2c
+              ndrpdrAND1cANDipsec
+              ndrpdrAND2cANDipsec)
         ;;
     PERFTEST_SEMI_WEEKLY )
-        TAGS=('ndrdiscANDnic_intel-x710AND1c'
-              'ndrdiscANDnic_intel-x710AND2c'
-              'ndrdiscANDnic_intel-xl710AND1c'
-              'ndrdiscANDnic_intel-xl710AND2c')
+        TAGS=(ndrpdrANDnic_intel-x710AND1c
+              ndrpdrANDnic_intel-x710AND2c
+              ndrpdrANDnic_intel-xl710AND1c
+              ndrpdrANDnic_intel-xl710AND2c)
         ;;
     PERFTEST_MRR_DAILY )
-       TAGS=('mrrAND64bAND1c'
-             'mrrAND64bAND2c'
-             'mrrAND64bAND4c'
-             'mrrAND78bAND1c'
-             'mrrAND78bAND2c'
-             'mrrAND78bAND4c'
-             'mrrANDimixAND1cANDvhost'
-             'mrrANDimixAND2cANDvhost'
-             'mrrANDimixAND4cANDvhost'
-             'mrrANDimixAND1cANDmemif'
-             'mrrANDimixAND2cANDmemif'
-             'mrrANDimixAND4cANDmemif')
+       TAGS=(mrrAND64bAND1c
+             mrrAND64bAND2c
+             mrrAND64bAND4c
+             mrrAND78bAND1c
+             mrrAND78bAND2c
+             mrrAND78bAND4c
+             mrrANDimixAND1cANDvhost
+             mrrANDimixAND2cANDvhost
+             mrrANDimixAND4cANDvhost
+             mrrANDimixAND1cANDmemif
+             mrrANDimixAND2cANDmemif
+             mrrANDimixAND4cANDmemif)
         ;;
     VERIFY-PERF-PATCH )
         if [[ -z "$TEST_TAG_STRING" ]]; then
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=(mrrANDnic_intel-x710AND1cAND64bANDip4base
+                            mrrANDnic_intel-x710AND1cAND78bANDip6base
+                            mrrANDnic_intel-x710AND1cAND64bANDl2bdbase)
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
@@ -224,7 +259,7 @@ case "$TEST_TAG" in
         done
         ;;
     * )
-        TAGS=('perftest')
+        TAGS=(perftest)
 esac
 
 # Catenate TAG selections
@@ -242,12 +277,12 @@ pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
 RETURN_STATUS=$(echo $?)
 
 # Archive JOB artifacts in jenkins
-for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) ${JOB_ARCHIVE_DIR}/
+for item in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${item} | tr '\n' ' ' ) ${JOB_ARCHIVE_DIR}/
 done
 # Archive JOB artifacts to logs.fd.io
-for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVE_DIR}/
+for item in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${item} | tr '\n' ' ' ) ${LOG_ARCHIVE_DIR}/
 done
 
 exit ${RETURN_STATUS}
