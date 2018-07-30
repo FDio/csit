@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "582b25b9_932ec63e",
+        "filename": "docs/report/dpdk_performance_tests/overview.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-30T15:05:57Z",
+      "side": 1,
+      "message": "Do not mention when it was introduced. It was long enough ago to no longer matter, and it is not worth the work needed to keep the version formatting consistent.",
+      "range": {
+        "startLine": 119,
+        "startChar": 27,
+        "endLine": 119,
+        "endChar": 53
+      },
+      "revId": "ce1088d88744f2c040801c9852565d522b3feb68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0baf378_be5f9663",
+        "filename": "docs/report/honeycomb_functional_tests/overview.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-30T15:05:57Z",
+      "side": 1,
+      "message": "Do we really need the historic introduction (anything from line 182 to here)?",
+      "range": {
+        "startLine": 192,
+        "startChar": 62,
+        "endLine": 192,
+        "endChar": 63
+      },
+      "revId": "ce1088d88744f2c040801c9852565d522b3feb68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c53a75cf_2908faee",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-30T15:05:57Z",
+      "side": 1,
+      "message": "|csit-release+1|\n\n(If that works.)\nCould be useful if we do not do it immediatelly. :)",
+      "range": {
+        "startLine": 193,
+        "startChar": 49,
+        "endLine": 193,
+        "endChar": 59
+      },
+      "revId": "ce1088d88744f2c040801c9852565d522b3feb68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1a091aa_8984a05e",
+        "filename": "docs/report/introduction/overview.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-30T15:05:57Z",
+      "side": 1,
+      "message": "Do we need this?",
+      "range": {
+        "startLine": 86,
+        "startChar": 56,
+        "endLine": 87,
+        "endChar": 14
+      },
+      "revId": "ce1088d88744f2c040801c9852565d522b3feb68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "557dc096_9e487215",
+        "filename": "docs/report/vpp_functional_tests/overview.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-30T15:05:57Z",
+      "side": 1,
+      "message": "We do not need this.",
+      "range": {
+        "startLine": 131,
+        "startChar": 27,
+        "endLine": 131,
+        "endChar": 53
+      },
+      "revId": "ce1088d88744f2c040801c9852565d522b3feb68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a853a36a_9ef5b3ec",
+        "filename": "docs/report/vpp_performance_tests/overview.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-30T15:05:57Z",
+      "side": 1,
+      "message": "Not needed.",
+      "range": {
+        "startLine": 353,
+        "startChar": 43,
+        "endLine": 353,
+        "endChar": 69
+      },
+      "revId": "ce1088d88744f2c040801c9852565d522b3feb68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
