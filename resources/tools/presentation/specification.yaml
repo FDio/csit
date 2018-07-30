@@ -295,10 +295,10 @@
       - 4  # full
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-1807-3n-hsw:
-      - 6
+      - 10
     dpdk-perf-results-3n-skx:
       csit-dpdk-perf-verify-1807-3n-skx:
-      - 6
+      - 12
     dpdk-perf-results-2n-skx:
       csit-dpdk-perf-verify-1807-2n-skx:
       - 10
@@ -363,12 +363,21 @@
       - 4
       - 5
       - 6
-    plot-dpdk-throughput-latency-3n-skx:
+      - 7
+      - 8
+      - 9
+      - 10
       csit-dpdk-perf-verify-1807-3n-skx:
       - 1
       - 2
       - 3
       - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-1807-2n-skx:
       - 1
@@ -753,11 +762,21 @@
     - 4
     - 5
     - 6
+    - 7
+    - 8
+    - 9
+    - 10
     csit-dpdk-perf-verify-1807-3n-skx:
     - 1
     - 2
     - 3
     - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
     csit-dpdk-perf-verify-1807-2n-skx:
     - 1
     - 2
