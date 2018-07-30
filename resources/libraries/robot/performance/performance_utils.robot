@@ -469,25 +469,27 @@
 | | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
 | | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
 | | ... | - timeout - Fail if search duration is longer [s]. Type: float
+| | ... | - doublings - How many doublings to do when expanding [1]. Type: int
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Find NDR and PDR intervals using optimized search \| \${64} \| \
 | | ... | 3-node-IPv4 \| \${100000} \| \${14880952} \| \${0.005} \| \${0.005} \
-| | ... | \| \${30.0} \| \${1.0} \| \${2} \| ${600.0} \|
+| | ... | \| \${30.0} \| \${1.0} \| \${2} \| ${600.0} \| ${2} \|
 | | ...
 | | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
 | | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${0.005}
 | | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
+| | ... | ${doublings}=${2}
 | | ...
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
 | | ... | ${topology_type} | ${minimum_transmit_rate*2}
 | | ... | ${maximum_transmit_rate*2} | ${packet_loss_ratio}
 | | ... | ${final_relative_width} | ${final_trial_duration}
 | | ... | ${initial_trial_duration} | ${number_of_intermediate_phases}
-| | ... | timeout=${timeout}
+| | ... | timeout=${timeout} | doublings=${doublings}
 | | Display result of NDRPDR search | ${result} | ${frame_size}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}

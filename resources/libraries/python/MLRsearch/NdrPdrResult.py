@@ -27,8 +27,8 @@ class NdrPdrResult(object):
 
         :param ndr_interval: Object containing data for NDR part of the result.
         :param pdr_interval: Object containing data for PDR part of the result.
-        :type ndr_interval: ReceiveRateInterval
-        :type pdr_interval: ReceiveRateInterval
+        :type ndr_interval: ReceiveRateInterval.ReceiveRateInterval
+        :type pdr_interval: ReceiveRateInterval.ReceiveRateInterval
         """
         # TODO: Type checking is not very pythonic,
         # perhaps users can fix wrong usage without it?
