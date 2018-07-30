@@ -3,7 +3,7 @@
 
 .. note::
 
-    Data sources for reported test results: i) `FD.io test executor vpp
+    Data sources for reported test configurations: i) `FD.io test executor vpp
     performance job 2n-skx`_, ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
