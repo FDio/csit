@@ -84,10 +84,14 @@ rst_epilog = """
 .. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
 .. _CSIT NSH_SFC Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.nsh_sfc.func.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
-.. _FD.io test executor vpp performance jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-{srelease}-all
+.. _FD.io test executor dpdk performance job 3n-hsw: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-hsw
+.. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-skx
+.. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-2n-skx
+.. _FD.io test executor vpp performance job 3n-hsw: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-1807-3n-hsw
+.. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-1807-3n-skx
+.. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-1807-2n-skx
 .. _FD.io test executor ligato performance jobs: https://jenkins.fd.io/job/csit-ligato-perf-{srelease}-all
 .. _FD.io test executor vpp functional jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-ubuntu1604-virl/lastSuccessfulBuild
-.. _FD.io test executor dpdk performance jobs: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-{srelease}-all
 .. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-{srelease}-ubuntu1604/lastSuccessfulBuild
 .. _FD.io test executor honeycomb performance jobs: https://jenkins.fd.io/view/hc2vpp/job/hc2vpp-csit-perf-master-ubuntu1604/lastSuccessfulBuild
 .. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-{srelease}-ubuntu1604-virl/lastSuccessfulBuild
