@@ -20,7 +20,7 @@ have the same value, only a horizontal line is plotted.
 .. note::
 
     Data sources for reported test results: i) `FD.io test executor vpp
-    performance jobs`_, ii) archived FD.io jobs test result `output files
+    performance job 3n-hsw`_, ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
     CSIT source code for the test cases used for plots can be found in
