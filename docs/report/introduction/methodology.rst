@@ -190,7 +190,7 @@ List of vpp startup.conf settings applied to all tests:
    Typically needed for use faster vector PMDs (together with
    no-multi-seg).
 #. socket-mem <value>,<value> - memory per numa. (Not required anymore
-   due to VPP code changes, should be removed in CSIT rls1810.)
+   due to VPP code changes, should be removed in CSIT-18.10.)
 
 Per Test Settings
 ~~~~~~~~~~~~~~~~~
