@@ -95,31 +95,11 @@
 
 -
   type: "configuration"
+
   data-sets:
-    plot-vpp-http-server-performance:
-      csit-vpp-perf-1804-all:
-      - 39  # wrk
-      - 40  # wrk
-      - 41  # wrk
-      - 42  # wrk
-      - 43  # wrk
-      - 44  # wrk
-      - 45  # wrk
-      - 46  # wrk
-      - 47  # wrk
-      - 48  # wrk
+
+    # VPP Performance
     vpp-performance-changes:
-      csit-vpp-perf-1710-all:
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
       csit-vpp-perf-1801-all:
       - 124  # sel
       - 127  # sel
@@ -133,6 +113,35 @@
       - 163  # sel
       - 167  # sel
       - 172  # sel acl only
+      csit-vpp-perf-1804-all:
+      - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
+      - 31  # sel
+      - 35  # sel
+      # TODO: Add Data sources
+      # 1807
+    vpp-compare-testbeds:
+      # TODO: Add Data sources
+      csit-vpp-perf-1801-all:
+      - 124  # sel
+      - 127  # sel
+      - 128  # sel
+      - 141  # sel
+      - 142  # sel
+      - 143  # sel
+      - 145  # sel
+      - 146  # sel
+      - 162  # sel
+      - 163  # sel
+      - 167  # sel
+      - 172  # sel acl only
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 21  # sel
       - 22  # sel
@@ -167,7 +176,43 @@
       - 20  # mrr - sel
       - 21  # mrr - sel
       - 22  # mrr - sel
+      # TODO: Add Data sources
+      # 1807
+    vpp-perf-results-3n-hsw:
+      # TODO: Add Data sources
+      csit-vpp-perf-1804-all:
+      - 19  # full
+      - 20  # full
+      - 25  # full
+      - 49  # full
+    vpp-perf-results-3n-skx:
+      # TODO: Add Data sources
+      csit-vpp-perf-1804-all:
+      - 19  # full
+      - 20  # full
+      - 25  # full
+      - 49  # full
+    vpp-perf-results-2n-skx:
+      # TODO: Add Data sources
+      csit-vpp-perf-1804-all:
+      - 19  # full
+      - 20  # full
+      - 25  # full
+      - 49  # full
+    vpp-mrr-results-3n-hsw:
+      # TODO: Add Data sources
+      csit-vpp-perf-check-1804:
+      - 5   # mrr - full
+    vpp-mrr-results-3n-skx:
+      # TODO: Add Data sources
+      csit-vpp-perf-check-1804:
+      - 5   # mrr - full
+    vpp-mrr-results-2n-skx:
+      # TODO: Add Data sources
+      csit-vpp-perf-check-1804:
+      - 5   # mrr - full
     plot-throughput-speedup-analysis-3n-hsw:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -184,6 +229,7 @@
       - 31  # sel
       - 35  # sel
     plot-throughput-speedup-analysis-3n-skx:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -200,6 +246,7 @@
       - 31  # sel
       - 35  # sel
     plot-throughput-speedup-analysis-2n-skx:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -215,100 +262,8 @@
       - 30  # sel
       - 31  # sel
       - 35  # sel
-    plot-ligato-throughput-speedup-analysis-3n-hsw:
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
-    plot-ligato-throughput-speedup-analysis-3n-skx:
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
-    plot-ligato-throughput-speedup-analysis-2n-skx:
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
-    vpp-perf-results-3n-hsw:
-      csit-vpp-perf-1804-all:
-      - 19  # full
-      - 20  # full
-      - 25  # full
-      - 49  # full
-    vpp-perf-results-3n-skx:
-      csit-vpp-perf-1804-all:
-      - 19  # full
-      - 20  # full
-      - 25  # full
-      - 49  # full
-    vpp-perf-results-2n-skx:
-      csit-vpp-perf-1804-all:
-      - 19  # full
-      - 20  # full
-      - 25  # full
-      - 49  # full
-    vpp-func-results-ubuntu:
-      csit-vpp-functional-1807-ubuntu1604-virl:
-      - "lastSuccessfulBuild"
-    vpp-func-results-centos:
-      csit-vpp-functional-1807-centos7-virl:
-      - "lastSuccessfulBuild"
-    vpp-mrr-results-3n-hsw:
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
-    vpp-mrr-results-3n-skx:
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
-    vpp-mrr-results-2n-skx:
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
-    ligato-perf-results-3n-hsw:
-      csit-ligato-perf-1804-all:
-      - 4  # full
-    ligato-perf-results-3n-skx:
-      csit-ligato-perf-1804-all:
-      - 4  # full
-    ligato-perf-results-2n-skx:
-      csit-ligato-perf-1804-all:
-      - 4  # full
-    dpdk-perf-results-3n-hsw:
-      csit-dpdk-perf-verify-1807-3n-hsw:
-      - 10
-    dpdk-perf-results-3n-skx:
-      csit-dpdk-perf-verify-1807-3n-skx:
-      - 12
-    dpdk-perf-results-2n-skx:
-      csit-dpdk-perf-verify-1807-2n-skx:
-      - 10
-    hc-func-results:
-      csit-hc2vpp-verify-func-1807-ubuntu1604:
-      - "lastSuccessfulBuild"
-    nsh-func-results:
-      csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
-      - 7
     plot-vpp-throughput-latency-3n-hsw:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -325,6 +280,7 @@
       - 31  # sel
       - 35  # sel
     plot-vpp-throughput-latency-3n-skx:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -341,6 +297,7 @@
       - 31  # sel
       - 35  # sel
     plot-vpp-throughput-latency-2n-skx:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -356,6 +313,116 @@
       - 30  # sel
       - 31  # sel
       - 35  # sel
+    plot-vpp-http-server-performance:
+      # TODO: Add Data sources
+      csit-vpp-perf-1804-all:
+      - 39  # wrk
+      - 40  # wrk
+      - 41  # wrk
+      - 42  # wrk
+      - 43  # wrk
+      - 44  # wrk
+      - 45  # wrk
+      - 46  # wrk
+      - 47  # wrk
+      - 48  # wrk
+
+    # VPP Functional
+    vpp-func-results-ubuntu:
+      csit-vpp-functional-1807-ubuntu1604-virl:
+      # TODO: Add Data sources
+      - "lastSuccessfulBuild"
+    vpp-func-results-centos:
+      csit-vpp-functional-1807-centos7-virl:
+      # TODO: Add Data sources
+      - "lastSuccessfulBuild"
+
+    # VPP Ligato
+    ligato-perf-results-3n-hsw:
+      # TODO: Add Data sources
+      csit-ligato-perf-1804-all:
+      - 4  # full
+    plot-ligato-throughput-speedup-analysis-3n-hsw:
+      # TODO: Add Data sources
+      csit-ligato-perf-1804-all:
+      - 5   # sel
+      - 6   # sel
+      - 7   # sel
+      - 8   # sel
+      - 9   # sel
+      - 10  # sel
+      - 11  # sel
+      - 12  # sel
+      - 13  # sel
+      - 14  # sel
+    plot-ligato-throughput-latency-3n-hsw:
+      # TODO: Add Data sources
+      csit-ligato-perf-1804-all:
+      - 5   # sel
+      - 6   # sel
+      - 7   # sel
+      - 8   # sel
+      - 9   # sel
+      - 10  # sel
+      - 11  # sel
+      - 12  # sel
+      - 13  # sel
+      - 14  # sel
+
+    # DPDK Performance
+    dpdk-performance-changes:
+      csit-dpdk-perf-1804-all:
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+    dpdk-compare-testbeds:
+      csit-dpdk-perf-verify-1807-3n-skx:
+      - 1
+      - 2
+      - 3
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+    dpdk-perf-results-3n-hsw:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 10
+    dpdk-perf-results-3n-skx:
+      csit-dpdk-perf-verify-1807-3n-skx:
+      - 12
+    dpdk-perf-results-2n-skx:
+      csit-dpdk-perf-verify-1807-2n-skx:
+      - 10
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-verify-1807-3n-hsw:
       - 2
@@ -367,6 +434,7 @@
       - 8
       - 9
       - 10
+    plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-1807-3n-skx:
       - 1
       - 2
@@ -390,42 +458,18 @@
       - 8
       - 9
       - 10
-    plot-ligato-throughput-latency-3n-hsw:
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
-    plot-ligato-throughput-latency-3n-skx:
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
-    plot-ligato-throughput-latency-2n-skx:
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
+
+    # HoneyComb Functional
+    hc-func-results:
+      csit-hc2vpp-verify-func-1807-ubuntu1604:
+      # TODO: Add Data sources
+      - "lastSuccessfulBuild"
+
+    #NSH SFC Functional
+    nsh-func-results:
+      # TODO: Add Data sources
+      csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
+      - 7
 
   plot-layouts:
 
@@ -639,29 +683,16 @@
   dst-path: "{DIR[WORKING,SRC]}"
 
 -
-  type: "input"  # Ignored in debug mode
+  type: "input"
   general:
     file-name: "robot-plugin.zip"
     file-format: ".zip"
     download-path: "{job}/{build}/robot/report/*zip*/{filename}"
     extract: "robot-plugin/output.xml"
+
   builds:
-    csit-vpp-perf-1710-all:
-    - 11
-    - 12
-    - 13
-    - 14
-    - 15
-    - 16
-    - 17
-    - 18
-    - 19
-    - 20
+
     csit-vpp-perf-1801-all:
-#    - 122  # full
-#    - 126  # full
-#    - 129  # full
-#    - 140  # full
     - 124  # sel
     - 127  # sel
     - 128  # sel
@@ -699,6 +730,13 @@
     - 46  # wrk
     - 47  # wrk
     - 48  # wrk
+    # TODO: Add Data sources
+#    csit-vpp-perf-verify-1807-3n-hsw:
+#    -
+#    csit-vpp-perf-verify-1807-3n-skx:
+#    -
+#    csit-vpp-perf-verify-1807-2n-skx:
+#    -
     csit-vpp-perf-check-1801:
     - 3   # mrr
     - 4   # mrr
@@ -722,28 +760,8 @@
     - 20  # mrr - sel
     - 21  # mrr - sel
     - 22  # mrr - sel
-#    csit-ligato-perf-1710-all:
-#    - 5
-#    - 7
-#    - 8
-#    - 9
-#    - 10
-#    - 11
-#    - 12
-#    - 13
-#    - 16
-#    - 17
-#    csit-ligato-perf-1801-all:
-#    - 16  # sel
-#    - 17  # sel
-#    - 18  # sel
-#    - 19  # sel
-#    - 20  # sel
-#    - 21  # sel
-#    - 22  # sel
-#    - 23  # sel
-#    - 24  # sel
-#    - 25  # full
+    # TODO: Add Data sources
+    # mrr 1807
     csit-ligato-perf-1804-all:
     - 4   # full
     - 5   # sel
@@ -756,6 +774,20 @@
     - 12  # sel
     - 13  # sel
     - 14  # sel
+    # TODO: Add Data sources
+#    csit-ligato-perf-1807-all:
+#    -
+    csit-dpdk-perf-1804-all:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
     csit-dpdk-perf-verify-1807-3n-hsw:
     - 2
     - 3
@@ -789,12 +821,16 @@
     - 9
     - 10
     csit-vpp-functional-1807-ubuntu1604-virl:
+    # TODO: Add Data sources
     - "lastSuccessfulBuild"
     csit-vpp-functional-1807-centos7-virl:
+    # TODO: Add Data sources
     - "lastSuccessfulBuild"
+    # TODO: Add Data sources
     csit-nsh_sfc-verify-func-1804-ubuntu1604-virl:
     - 7
     csit-hc2vpp-verify-func-1807-ubuntu1604:
+    # TODO: Add Data sources
     - "lastSuccessfulBuild"
 
 -
@@ -810,6 +846,8 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
+################################################################################
+# VPP
 -
   type: "table"
   title: "VPP Performance Changes 1t1c pdr"
@@ -817,38 +855,39 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-1t1c-pdr"
   history:
     -
-      title: "rls1710"
+      title: "rls1801"
       data:
-        csit-vpp-perf-1710-all:
-        - 11
-        - 12
-        - 13
-        - 14
-        - 15
-        - 16
-        - 17
-        - 18
-        - 19
-        - 20
+        csit-vpp-perf-1801-all:
+        - 124  # sel
+        - 127  # sel
+        - 128  # sel
+        - 141  # sel
+        - 142  # sel
+        - 143  # sel
+        - 145  # sel
+        - 146  # sel
+        - 162  # sel
+        - 163  # sel
+        - 167  # sel
+        - 172  # sel acl only
   reference:
-    title: "rls1801"
-    data:
-      csit-vpp-perf-1801-all:
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
-  compare:
     title: "rls1804"
     data:
+      csit-vpp-perf-1804-all:
+      - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
+      - 31  # sel
+      - 35  # sel
+  compare:
+    title: "rls1807"
+    data:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 21  # sel
       - 22  # sel
@@ -875,38 +914,39 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2t2c-pdr"
   history:
     -
-      title: "rls1710"
+      title: "rls1801"
       data:
-        csit-vpp-perf-1710-all:
-        - 11
-        - 12
-        - 13
-        - 14
-        - 15
-        - 16
-        - 17
-        - 18
-        - 19
-        - 20
+        csit-vpp-perf-1801-all:
+        - 124  # sel
+        - 127  # sel
+        - 128  # sel
+        - 141  # sel
+        - 142  # sel
+        - 143  # sel
+        - 145  # sel
+        - 146  # sel
+        - 162  # sel
+        - 163  # sel
+        - 167  # sel
+        - 172  # sel acl only
   reference:
-    title: "rls1801"
-    data:
-      csit-vpp-perf-1801-all:
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
-  compare:
     title: "rls1804"
     data:
+      csit-vpp-perf-1804-all:
+      - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
+      - 31  # sel
+      - 35  # sel
+  compare:
+    title: "rls1807"
+    data:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 21  # sel
       - 22  # sel
@@ -933,38 +973,39 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-1t1c-ndr"
   history:
     -
-      title: "rls1710"
+      title: "rls1801"
       data:
-        csit-vpp-perf-1710-all:
-        - 11
-        - 12
-        - 13
-        - 14
-        - 15
-        - 16
-        - 17
-        - 18
-        - 19
-        - 20
+        csit-vpp-perf-1801-all:
+        - 124  # sel
+        - 127  # sel
+        - 128  # sel
+        - 141  # sel
+        - 142  # sel
+        - 143  # sel
+        - 145  # sel
+        - 146  # sel
+        - 162  # sel
+        - 163  # sel
+        - 167  # sel
+        - 172  # sel acl only
   reference:
-    title: "rls1801"
-    data:
-      csit-vpp-perf-1801-all:
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
-  compare:
     title: "rls1804"
     data:
+      csit-vpp-perf-1804-all:
+      - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
+      - 31  # sel
+      - 35  # sel
+  compare:
+    title: "rls1807"
+    data:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 21  # sel
       - 22  # sel
@@ -991,38 +1032,39 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2t2c-ndr"
   history:
     -
-      title: "rls1710"
+      title: "rls1801"
       data:
-        csit-vpp-perf-1710-all:
-        - 11
-        - 12
-        - 13
-        - 14
-        - 15
-        - 16
-        - 17
-        - 18
-        - 19
-        - 20
+        csit-vpp-perf-1801-all:
+        - 124  # sel
+        - 127  # sel
+        - 128  # sel
+        - 141  # sel
+        - 142  # sel
+        - 143  # sel
+        - 145  # sel
+        - 146  # sel
+        - 162  # sel
+        - 163  # sel
+        - 167  # sel
+        - 172  # sel acl only
   reference:
-    title: "rls1801"
-    data:
-      csit-vpp-perf-1801-all:
-      - 124  # sel
-      - 127  # sel
-      - 128  # sel
-      - 141  # sel
-      - 142  # sel
-      - 143  # sel
-      - 145  # sel
-      - 146  # sel
-      - 162  # sel
-      - 163  # sel
-      - 167  # sel
-      - 172  # sel acl only
-  compare:
     title: "rls1804"
     data:
+      csit-vpp-perf-1804-all:
+      - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
+      - 31  # sel
+      - 35  # sel
+  compare:
+    title: "rls1807"
+    data:
+      # TODO: Add Data sources
       csit-vpp-perf-1804-all:
       - 21  # sel
       - 22  # sel
@@ -1044,26 +1086,132 @@
 
 -
   type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-ndr"
+  reference:
+    title: "3-Node Hsw"
+    data:
+      # TODO: Add Data sources
+      csit-vpp-perf-1801-all:
+      - 124  # sel
+      - 127  # sel
+      - 128  # sel
+      - 141  # sel
+      - 142  # sel
+      - 143  # sel
+      - 145  # sel
+      - 146  # sel
+      - 162  # sel
+      - 163  # sel
+      - 167  # sel
+      - 172  # sel acl only
+  compare:
+    title: "3-Node Skx"
+    data:
+      # TODO: Add Data sources
+      csit-vpp-perf-1804-all:
+      - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
+      - 31  # sel
+      - 35  # sel
+  data: "vpp-compare-testbeds"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+-
+  type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-pdr"
+  reference:
+    title: "3-Node Hsw"
+    data:
+      # TODO: Add Data sources
+      csit-vpp-perf-1801-all:
+      - 124  # sel
+      - 127  # sel
+      - 128  # sel
+      - 141  # sel
+      - 142  # sel
+      - 143  # sel
+      - 145  # sel
+      - 146  # sel
+      - 162  # sel
+      - 163  # sel
+      - 167  # sel
+      - 172  # sel acl only
+  compare:
+    title: "3-Node Skx"
+    data:
+      # TODO: Add Data sources
+      csit-vpp-perf-1804-all:
+      - 21  # sel
+      - 22  # sel
+      - 23  # sel
+      - 24  # sel
+      - 27  # sel
+      - 28  # sel
+      - 29  # sel
+      - 30  # sel
+      - 31  # sel
+      - 35  # sel
+  data: "vpp-compare-testbeds"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+-
+  type: "table"
   title: "VPP Performance Changes - 1t1c MRR"
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-1t1c-mrr"
+  history:
+    -
+      title: "rls1801"
+      data:
+        csit-vpp-perf-check-1801:
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 11
+        - 12
+        - 13
   reference:
-    title: "Release 1801"
+    title: "rls1804"
     data:
-      csit-vpp-perf-check-1801:
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 11
-      - 12
-      - 13
+      csit-vpp-perf-check-1804:
+      - 6   # mrr - sel
+      - 13  # mrr - sel
+      - 14  # mrr - sel
+      - 15  # mrr - sel
+      - 16  # mrr - sel
+      - 17  # mrr - sel
+      - 19  # mrr - sel
+      - 20  # mrr - sel
+      - 21  # mrr - sel
+      - 22  # mrr - sel
   compare:
-    title: "Release 1804"
+    title: "rls1807"
     data:
+      # TODO: Add Data sources
       csit-vpp-perf-check-1804:
       - 6   # mrr - sel
       - 13  # mrr - sel
@@ -1088,23 +1236,39 @@
   title: "VPP Performance Changes - 2t2c MRR"
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2t2c-mrr"
+  history:
+    -
+      title: "rls1801"
+      data:
+        csit-vpp-perf-check-1801:
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 11
+        - 12
+        - 13
   reference:
-    title: "Release 1801"
+    title: "rls1804"
     data:
-      csit-vpp-perf-check-1801:
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 11
-      - 12
-      - 13
+      csit-vpp-perf-check-1804:
+      - 6   # mrr - sel
+      - 13  # mrr - sel
+      - 14  # mrr - sel
+      - 15  # mrr - sel
+      - 16  # mrr - sel
+      - 17  # mrr - sel
+      - 19  # mrr - sel
+      - 20  # mrr - sel
+      - 21  # mrr - sel
+      - 22  # mrr - sel
   compare:
-    title: "Release 1804"
+    title: "rls1807"
     data:
+      # TODO: Add Data sources
       csit-vpp-perf-check-1804:
       - 6   # mrr - sel
       - 13  # mrr - sel
@@ -1129,23 +1293,40 @@
   title: "VPP Performance Changes - 4t4c MRR"
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-4t4c-mrr"
+  history:
+    -
+      title: "rls1801"
+      data:
+        csit-vpp-perf-check-1801:
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 11
+        - 12
+        - 13
   reference:
-    title: "Release 1801"
+  reference:
+    title: "rls1804"
     data:
-      csit-vpp-perf-check-1801:
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 11
-      - 12
-      - 13
+      csit-vpp-perf-check-1804:
+      - 6   # mrr - sel
+      - 13  # mrr - sel
+      - 14  # mrr - sel
+      - 15  # mrr - sel
+      - 16  # mrr - sel
+      - 17  # mrr - sel
+      - 19  # mrr - sel
+      - 20  # mrr - sel
+      - 21  # mrr - sel
+      - 22  # mrr - sel
   compare:
-    title: "Release 1804"
+    title: "rls1807"
     data:
+      # TODO: Add Data sources
       csit-vpp-perf-check-1804:
       - 6   # mrr - sel
       - 13  # mrr - sel
@@ -1622,6 +1803,248 @@
   - "doc"
   - "msg"
 
+################################################################################
+# DPDK
+-
+  type: "table"
+  title: "DPDK Performance Changes 1t1c pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-1t1c-pdr"
+  reference:
+    title: "rls1804"
+    data:
+      csit-dpdk-perf-1804-all:
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+  compare:
+    title: "rls1807"
+    data:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+  data: "dpdk-performance-changes"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+-
+  type: "table"
+  title: "DPDK Performance Changes 2t2c pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2t2c-pdr"
+  reference:
+    title: "rls1804"
+    data:
+      csit-dpdk-perf-1804-all:
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+  compare:
+    title: "rls1807"
+    data:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+  data: "dpdk-performance-changes"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+-
+  type: "table"
+  title: "DPDK Performance Changes 1t1c ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-1t1c-ndr"
+  reference:
+    title: "rls1804"
+    data:
+      csit-dpdk-perf-1804-all:
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+  compare:
+    title: "rls1807"
+    data:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+  data: "dpdk-performance-changes"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+-
+  type: "table"
+  title: "DPDK Performance Changes 2t2c ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2t2c-ndr"
+  reference:
+    title: "rls1804"
+    data:
+      csit-dpdk-perf-1804-all:
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+  compare:
+    title: "rls1807"
+    data:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+  data: "dpdk-performance-changes"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+-
+  type: "table"
+  title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-ndr"
+  reference:
+    title: "3-Node Hsw"
+    data:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+  compare:
+    title: "3-Node Skx"
+    data:
+      csit-dpdk-perf-verify-1807-3n-skx:
+      - 1
+      - 2
+      - 3
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+  data: "dpdk-compare-testbeds"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+-
+  type: "table"
+  title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-pdr"
+  reference:
+    title: "3-Node Hsw"
+    data:
+      csit-dpdk-perf-verify-1807-3n-hsw:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+  compare:
+    title: "3-Node Skx"
+    data:
+      csit-dpdk-perf-verify-1807-3n-skx:
+      - 1
+      - 2
+      - 3
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+  data: "dpdk-compare-testbeds"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
 -
   type: "table"
   title: "Detailed Test Results - DPDK Performance Results 3n-hsw"
@@ -1685,6 +2108,9 @@
   - "parent"
   - "msg"
 
+
+################################################################################
+# HoneyComb
 -
   type: "table"
   title: "Detailed Test Results - Honeycomb Functional Results"
@@ -1711,6 +2137,8 @@
   - "doc"
   - "status"
 
+################################################################################
+# NSH SFC
 -
   type: "table"
   title: "Detailed Test Results - NSH SFC Functional Results"
@@ -4540,426 +4968,6 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Orchestrated Memif 3n-skx-x710
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-            'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Orchestrated Memif 3n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Orchestrated Memif 2n-skx-x710
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Orchestrated Memif 2n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -11914,202 +11922,6 @@
     title: ""  # No title
     layout: "plot-latency"
 
-# Packet Latency - VPP Container Memif 3n-skx-x710
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
-# Packet Latency - VPP Container Memif 3n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
-# Packet Latency - VPP Container Memif 2n-skx-x710
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
-# Packet Latency - VPP Container Memif 2n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-ligato-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
 ################################################################################
 
 # Packet Latency - VPP IPv4 3n-hsw-x520
@@ -15337,186 +15149,6 @@
   output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
   data: "plot-ligato-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 3n-skx-x710
--
-  type: "plot"
-  title: "Speedup: k8s-memif-3n-skx-x710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-base_and_scale-ndr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: k8s-memif-3n-skx-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-            'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 3n-skx-xxv710
--
-  type: "plot"
-  title: "Speedup: k8s-memif-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: k8s-memif-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 2n-skx-x710
--
-  type: "plot"
-  title: "Speedup: k8s-memif-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: k8s-memif-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 2n-skx-xxv710
--
-  type: "plot"
-  title: "Speedup: k8s-memif-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRDISC' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: k8s-memif-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  data: "plot-ligato-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
