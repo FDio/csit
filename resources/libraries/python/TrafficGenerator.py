@@ -613,7 +613,7 @@ class OptimizedSearch(object):
             maximum_transmit_rate, packet_loss_ratio=0.005,
             final_relative_width=0.005, final_trial_duration=30.0,
             initial_trial_duration=1.0, number_of_intermediate_phases=2,
-            timeout=720.0):
+            timeout=720.0, doublings=1):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
@@ -633,6 +633,9 @@ class OptimizedSearch(object):
             to perform before the final phase [1].
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
+        :param doublings: How many doublings to do in external search step.
+            Default 1 is suitable for fairly stable tests,
+            less stable tests might get better overal duration with 2 or more.
         :type frame_size: str or int
         :type traffic_type: str
         :type minimum_transmit_rate: float
@@ -643,6 +646,7 @@ class OptimizedSearch(object):
         :type initial_trial_duration: float
         :type number_of_intermediate_phases: int
         :type timeout: float
+        :type doublings: int
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
