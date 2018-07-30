@@ -14,35 +14,58 @@
 
 set -xo pipefail
 
-# TOPOLOGY
-# Space separated list of available testbeds, described by topology files
-TOPOLOGIES_3N_HSW="topologies/available/lf_3n_hsw_testbed1.yaml \
-                   topologies/available/lf_3n_hsw_testbed2.yaml \
-                   topologies/available/lf_3n_hsw_testbed3.yaml"
-TOPOLOGIES_2N_SKX="topologies/available/lf_2n_skx_testbed21.yaml \
-                   topologies/available/lf_2n_skx_testbed24.yaml"
-TOPOLOGIES_3N_SKX="topologies/available/lf_3n_skx_testbed31.yaml \
-                   topologies/available/lf_3n_skx_testbed32.yaml"
+# FUNCTIONS
+function warn () {
+    # Prints the message to standard error.
+    echo "$@" >&2
+}
 
-# SYSTEM
+function die () {
+    # Prints the message to standard error end exit with error code specified
+    # by first argument.
+    status="$1"
+    shift
+    warn "$@"
+    exit "$status"
+}
+
+function help () {
+    # Displays help message.
+    die 1 "Usage: `basename $0` csit-[dpdk|vpp|ligato]-[2n-skx|3n-skx|3n-hsw]"
+}
+
+function cancel_all () {
+    # Trap function to get into consistent state.
+    python ${SCRIPT_DIR}/resources/tools/scripts/topo_cleanup.py -t $1
+    python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -c -t $1
+}
+
+# VARIABLES
+# Space separated list of available testbeds, described by topology files
+TOPOLOGIES_3N_HSW=(topologies/available/lf_3n_hsw_testbed1.yaml
+                   topologies/available/lf_3n_hsw_testbed2.yaml
+                   topologies/available/lf_3n_hsw_testbed3.yaml)
+TOPOLOGIES_2N_SKX=(topologies/available/lf_2n_skx_testbed21.yaml
+                   topologies/available/lf_2n_skx_testbed24.yaml)
+TOPOLOGIES_3N_SKX=(topologies/available/lf_3n_skx_testbed31.yaml
+                   topologies/available/lf_3n_skx_testbed32.yaml)
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
-export DEBIAN_FRONTEND=noninteractive
 
-# RESERVATION
 RESERVATION_DIR="/tmp/reservation_dir"
-INSTALLATION_DIR="/tmp/install_dir"
+DOWNLOAD_DIR="${SCRIPT_DIR}/download_dir"
+ARCHIVE_DIR="${SCRIPT_DIR}/archive"
 
-# ARCHIVE
-JOB_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
-LOG_ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
-JOB_ARCHIVE_DIR="archive"
-LOG_ARCHIVE_DIR="$WORKSPACE/archives"
-mkdir -p ${JOB_ARCHIVE_DIR}
-mkdir -p ${LOG_ARCHIVE_DIR}
+mkdir -p ${DOWNLOAD_DIR}
+mkdir -p ${ARCHIVE_DIR}
 
-# JOB SETTING
-case ${JOB_NAME} in
+# Get test code.
+TEST_CODE=${JOB_NAME-}
+[[ -z ${TEST_CODE} ]] && TEST_CODE=${1} && shift
+
+# TOPOLOGY SELECTION
+case "$TEST_CODE" in
     *2n-skx*)
         TOPOLOGIES=$TOPOLOGIES_2N_SKX
         TOPOLOGIES_TAGS="2_node_*_link_topo"
@@ -52,22 +75,30 @@ case ${JOB_NAME} in
         TOPOLOGIES_TAGS="3_node_*_link_topo"
         ;;
     *)
+        # Fallback to 3-node Haswell by default (backward compatibility)
         TOPOLOGIES=$TOPOLOGIES_3N_HSW
         TOPOLOGIES_TAGS="3_node_*_link_topo"
         ;;
 esac
-case ${JOB_NAME} in
+
+if [ -z "${TOPOLOGIES}" ]; then
+    die 1 "No applicable topology found!"
+fi
+
+cd ${DOWNLOAD_DIR}
+case "$TEST_CODE" in
     *hc2vpp*)
         DUT="hc2vpp"
         ;;
     *vpp*)
         DUT="vpp"
 
-        case ${JOB_NAME} in
+        case "$TEST_CODE" in
             csit-vpp-*)
                 # Use downloaded packages with specific version
-                if [[ ${TEST_TAG} == *DAILY ]] || \
-                   [[ ${TEST_TAG} == *WEEKLY ]];
+                if [[ "$TEST_CODE" == *daily* ]] || \
+                   [[ "$TEST_CODE" == *weekly* ]] || \
+                   [[ "$TEST_CODE" == *timed* ]];
                 then
                     echo Downloading latest VPP packages from NEXUS...
                     bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
@@ -79,42 +110,146 @@ case ${JOB_NAME} in
                     bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
                         --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
                 fi
-                # Jenkins VPP deb paths (convert to full path)
-                DUT_PKGS="$( readlink -f ${DUT}*.deb | tr '\n' ' ' )"
                 ;;
             vpp-csit-*)
-                # Use local packages provided as argument list
-                # Jenkins VPP deb paths (convert to full path)
-                DUT_PKGS="$( readlink -f $@ | tr '\n' ' ' )"
+                # Use local builded packages.
+                mv ../${DUT}*.deb ${DOWNLOAD_DIR}/
                 ;;
             *)
-                echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
-                exit 1
+                die 1 "Unable to identify job type from: ${TEST_CODE}!"
                 ;;
         esac
         ;;
     *ligato*)
         DUT="kubernetes"
+
+        case "$TEST_CODE" in
+            csit-*)
+                # Use downloaded packages with specific version
+                if [[ "$TEST_CODE" == *daily* ]] || \
+                   [[ "$TEST_CODE" == *weekly* ]] || \
+                   [[ "$TEST_CODE" == *timed* ]];
+                then
+                    echo Downloading latest VPP packages from NEXUS...
+                    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+                        --skip-install
+                else
+                    echo Downloading VPP packages of specific version from NEXUS...
+                    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
+                    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+                    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
+                        --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
+                fi
+                ;;
+            vpp-csit-*)
+                # Use local builded packages.
+                mv ../${DUT}*.deb ${DOWNLOAD_DIR}/
+                ;;
+            *)
+                die 1 "Unable to identify job type from: ${TEST_CODE}!"
+                ;;
+        esac
+        # Extract VPP API to specific folder
+        dpkg -x ${DOWNLOAD_DIR}/vpp_*.deb /tmp/vpp
+
+        LIGATO_REPO_URL="https://github.com/ligato/"
+        VPP_AGENT_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_AGENT_STABLE_VER)
+        DOCKER_DEB="docker-ce_18.03.0~ce-0~ubuntu_amd64.deb"
+
+        # Clone & checkout stable vnf-agent
+        cd ../..
+        git clone -b ${VPP_AGENT_STABLE_VER} --single-branch \
+            ${LIGATO_REPO_URL}/vpp-agent vpp-agent || {
+            die 1 "Failed to run: git clone ${LIGATO_REPO_URL}/vpp-agent!"
+        }
+        cd vpp-agent
+
+        # Install Docker
+        wget -q https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/${DOCKER_DEB}
+        sudo dpkg -i ${DOCKER_DEB} || {
+            die 1 "Failed to install Docker!"
+        }
+
+        # Pull ligato/dev_vpp_agent docker image and re-tag as local
+        sudo docker pull ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}
+        sudo docker tag ligato/dev-vpp-agent:${VPP_AGENT_STABLE_VER}\
+            dev_vpp_agent:latest
+
+        # Start dev_vpp_agent container as daemon
+        sudo docker run --rm -itd --name agentcnt dev_vpp_agent bash
+
+        # Copy latest vpp api into running container
+        sudo docker cp /tmp/vpp/usr/share/vpp/api agentcnt:/usr/share/vpp
+        for f in ${DOWNLOAD_DIR}/*; do
+            sudo docker cp $f agentcnt:/opt/vpp-agent/dev/vpp/build-root/
+        done
+
+        # Recompile vpp-agent
+        sudo docker exec -i agentcnt \
+            script -qec '. ~/.bashrc; cd /go/src/github.com/ligato/vpp-agent && make generate && make install' || {
+            die 1 "Failed to build vpp-agent in Docker image!"
+        }
+        # Save container state
+        sudo docker commit `sudo docker ps -q` dev_vpp_agent:latest
+
+        # Build prod_vpp_agent docker image
+        cd docker/prod/ &&\
+            sudo docker build --tag prod_vpp_agent --no-cache .
+        # Export Docker image
+        sudo docker save prod_vpp_agent | gzip > prod_vpp_agent.tar.gz
+        DOCKER_IMAGE="$( readlink -f prod_vpp_agent.tar.gz | tr '\n' ' ' )"
+        rm -r ${DOWNLOAD_DIR}/vpp*
+        mv ${DOCKER_IMAGE} ${DOWNLOAD_DIR}/
         ;;
     *dpdk*)
         DUT="dpdk"
+
+        DPDK_REPO='https://fast.dpdk.org/rel/'
+        # Use downloaded packages with specific version
+        if [[ "$TEST_CODE" == *daily* ]] || \
+           [[ "$TEST_CODE" == *weekly* ]] || \
+           [[ "$TEST_CODE" == *timed* ]];
+        then
+            echo "Downloading latest DPDK packages from repo..."
+            DPDK_STABLE_VER=$(wget --no-check-certificate --quiet -O - ${DPDK_REPO} | \
+                grep -v '2015' | grep -Eo 'dpdk-[^\"]+xz' | tail -1)
+        else
+            echo "Downloading DPDK packages of specific version from repo..."
+            DPDK_STABLE_VER='dpdk-18.05.tar.xz'
+        fi
+        [[ ! -f ${DPDK_STABLE_VER} ]] && {
+            wget --no-check-certificate ${DPDK_REPO}${DPDK_STABLE_VER} || {
+                die 1 "Failed to get DPDK package from ${DPDK_REPO}!"
+            }
+        }
         ;;
     *)
-        echo "Unable to identify dut type based on JOB_NAME variable: ${JOB_NAME}"
-        exit 1
+        die 1 "Unable to identify DUT type from: ${TEST_CODE}!"
         ;;
 esac
+cd ${SCRIPT_DIR}
+
+[ "$(ls -A ${DOWNLOAD_DIR})" ] || {
+    warn "No artifacts downloaded!"
+}
 
 # ENVIRONMENT PREPARATION
-virtualenv --system-site-packages env
-. env/bin/activate
-pip install -r requirements.txt
+rm -r env
 
-if [ -z "${TOPOLOGIES}" ]; then
-    echo "No applicable topology found!"
-    exit 1
-fi
-# We iterate over available topologies and wait until we reserve topology
+pip install virtualenv || {
+    die 1 "Failed to install virtual env!"
+}
+virtualenv --system-site-packages env || {
+    die 1 "Failed to create virtual env!"
+}
+. env/bin/activate || {
+    die 1 "Failed to activate virtual env!"
+}
+pip install -r requirements.txt || {
+    die 1 "Failed to install requirements to virtual env!"
+}
+
+# We iterate over available topologies and wait until we reserve topology.
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
     do
@@ -122,109 +257,97 @@ while :; do
         if [ $? -eq 0 ]; then
             WORKING_TOPOLOGY=${TOPOLOGY}
             echo "Reserved: ${WORKING_TOPOLOGY}"
+            # On script exit we clean testbed.
+            trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
             break
         fi
     done
 
-    if [ ! -z "${WORKING_TOPOLOGY}" ]; then
-        # Exit the infinite while loop if we made a reservation
+    if [ -n "${WORKING_TOPOLOGY}" ]; then
+        # Exit the infinite while loop if we made a reservation.
         break
     fi
 
-    # Wait ~3minutes before next try
+    # Wait ~3minutes before next try.
     SLEEP_TIME=$[ ( $RANDOM % 20 ) + 180 ]s
     echo "Sleeping ${SLEEP_TIME}"
     sleep ${SLEEP_TIME}
 done
 
-function cancel_all {
-    python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
-    python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -c -t $1
+# Clean testbed before excution.
+python ${SCRIPT_DIR}/resources/tools/scripts/topo_cleanup.py -t ${WORKING_TOPOLOGY} || {
+    die 1 "Failed to cleanup topologies!"
 }
 
-# On script exit we cancel the reservation and installation and delete all vpp
-# packages
-trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
-
-python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py \
-    -t ${WORKING_TOPOLOGY} -d ${INSTALLATION_DIR} -p ${DUT_PKGS}
-if [ $? -eq 0 ]; then
-    echo "DUT installed on hosts from: ${WORKING_TOPOLOGY}"
-else
-    echo "Failed to copy DUT packages files to hosts from: ${WORKING_TOPOLOGY}"
-    exit 1
-fi
-
 # CSIT EXECUTION
-PYBOT_ARGS="--consolewidth 100 \
-            --loglevel TRACE \
-            --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-            --suite tests.${DUT}.perf"
+PYBOT_ARGS="--loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
 
-case "$TEST_TAG" in
-    # select specific performance tests based on jenkins job type variable
-    PERFTEST_DAILY )
-        TAGS=('ndrdiscANDnic_intel-x520-da2AND1c'
-              'ndrdiscANDnic_intel-x520-da2AND2c'
-              'ndrpdrANDnic_intel-x520-da2AND1c'
-              'ndrpdrANDnic_intel-x520-da2AND2c'
-              'ndrdiscAND1cANDipsec'
-              'ndrdiscAND2cANDipsec')
+# NIC SELECTION
+# All topologies NICs
+TOPOLOGIES_NICS=($(grep -hoPR "model: \K.*" topologies/available/* | sort -u))
+# Selected topology NICs
+TOPOLOGY_NICS=($(grep -hoPR "model: \K.*" ${WORKING_TOPOLOGY} | sort -u))
+# All topologies NICs - Selected topology NICs
+EXCLUDE_NICS=($(comm -13 <(printf '%s\n' "${TOPOLOGY_NICS[@]}") <(printf '%s\n' "${TOPOLOGIES_NICS[@]}")))
+
+case "$TEST_CODE" in
+    # Select specific performance tests based on jenkins job type variable.
+    *ndrpdr-weekly* )
+        TAGS=(ndrpdrANDnic_intel-x520-da2AND1c
+              ndrpdrANDnic_intel-x520-da2AND2c
+              ndrpdrAND1cANDipsec
+              ndrpdrAND2cANDipsec)
         ;;
-    PERFTEST_SEMI_WEEKLY )
-        TAGS=('ndrdiscANDnic_intel-x710AND1c'
-              'ndrdiscANDnic_intel-x710AND2c'
-              'ndrdiscANDnic_intel-xl710AND1c'
-              'ndrdiscANDnic_intel-xl710AND2c')
+    *ndrpdr-timed* )
         ;;
-    PERFTEST_MRR_DAILY )
-       TAGS=('mrrAND64bAND1c'
-             'mrrAND64bAND2c'
-             'mrrAND64bAND4c'
-             'mrrAND78bAND1c'
-             'mrrAND78bAND2c'
-             'mrrAND78bAND4c'
-             'mrrANDimixAND1cANDvhost'
-             'mrrANDimixAND2cANDvhost'
-             'mrrANDimixAND4cANDvhost'
-             'mrrANDimixAND1cANDmemif'
-             'mrrANDimixAND2cANDmemif'
-             'mrrANDimixAND4cANDmemif')
+    *mrr-daily* )
+       TAGS=(mrrAND64bAND1c
+             mrrAND64bAND2c
+             mrrAND64bAND4c
+             mrrAND78bAND1c
+             mrrAND78bAND2c
+             mrrAND78bAND4c
+             mrrANDimixAND1cANDvhost
+             mrrANDimixAND2cANDvhost
+             mrrANDimixAND4cANDvhost
+             mrrANDimixAND1cANDmemif
+             mrrANDimixAND2cANDmemif
+             mrrANDimixAND4cANDmemif)
         ;;
-    VERIFY-PERF-PATCH )
+    * )
         if [[ -z "$TEST_TAG_STRING" ]]; then
             # If nothing is specified, we will run pre-selected tests by
             # following tags. Items of array will be concatenated by OR in Robot
             # Framework.
-            TEST_TAG_ARRAY=('mrrANDnic_intel-x710AND1cAND64bANDip4base'
-                            'mrrANDnic_intel-x710AND1cAND78bANDip6base'
-                            'mrrANDnic_intel-x710AND1cAND64bANDl2bdbase')
+            TEST_TAG_ARRAY=(mrrANDnic_intel-x710AND1cAND64bANDip4base
+                            mrrANDnic_intel-x710AND1cAND78bANDip6base
+                            mrrANDnic_intel-x710AND1cAND64bANDl2bdbase)
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
+            # We will add excluded NICs.
+            TEST_TAG_ARRAY+=("${EXCLUDE_NICS[@]/#/!NIC_}")
         fi
 
         TAGS=()
 
+        # We will prefix with perftest to prevent running other tests
+        # (e.g. Functional).
+        prefix="perftestAND"
+        if [[ ${TEST_CODE} == vpp-* ]] ; then
+            # Automatic prefixing for VPP jobs to limit the NIC used and
+            # traffic evaluation to MRR.
+            prefix="${prefix}mrrANDnic_intel-x710AND"
+        fi
         for TAG in "${TEST_TAG_ARRAY[@]}"; do
             if [[ ${TAG} == "!"* ]]; then
                 # Exclude tags are not prefixed.
                 TAGS+=("${TAG}")
             else
-                # We will prefix with perftest to prevent running other tests
-                # (e.g. Functional).
-                prefix="perftestAND"
-                if [[ ${JOB_NAME} == vpp-* ]] ; then
-                    # Automatic prefixing for VPP jobs to limit the NIC used and
-                    # traffic evaluation to MRR.
-                    prefix="${prefix}mrrANDnic_intel-x710AND"
-                fi
                 TAGS+=("$prefix${TAG}")
             fi
         done
         ;;
-    * )
-        TAGS=('perftest')
 esac
 
 # Catenate TAG selections
@@ -238,16 +361,11 @@ for TAG in "${TAGS[@]}"; do
 done
 
 # Execute the test
-pybot ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
+pybot --outputdir ${ARCHIVE_DIR} ${PYBOT_ARGS}${EXPANDED_TAGS[@]} tests/
 RETURN_STATUS=$(echo $?)
 
-# Archive JOB artifacts in jenkins
-for i in ${JOB_ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) ${JOB_ARCHIVE_DIR}/
-done
-# Archive JOB artifacts to logs.fd.io
-for i in ${LOG_ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) ${LOG_ARCHIVE_DIR}/
-done
+# We will create additional archive if workspace variable is set. This way if
+# script is running in jenkins all will be automatically archived to logs.fd.io.
+[[ -n ${WORKSPACE-} ]] && cp -r ${ARCHIVE_DIR}/ $WORKSPACE/archives/
 
 exit ${RETURN_STATUS}

@@ -21,7 +21,7 @@ PWDDIR=$(pwd)
 
 cd ${ROOTDIR}
 mkdir ${DPDK_DIR}
-tar -xvf dpdk*.tar.xz --strip=1 --directory dpdk || \
+tar -xvf download_dir/dpdk*.tar.xz --strip=1 --directory dpdk || \
     { echo "Failed to extract DPDK"; exit 1; }
 
 # Compile the DPDK
