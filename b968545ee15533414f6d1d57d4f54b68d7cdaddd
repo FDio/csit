@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8ced2f9_47d4c4e1",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-31T10:54:38Z",
+      "side": 1,
+      "message": "I see several points for API to define. At Jenkins level, we are using JOB_NAME, GERRIT_EVENT_TYPE and GERRIT_EVENT_COMMENT_TEXT. At start of this bootstrap we are using JOB_NAME and TEST_TAG. Inside this file we are using TOPOLOGIES, DUT and TAGS. When launching pybot we are using --suites, --include and --exclude.\n\nWhen thinking about a better system, I end up with the following. For pybot, --suites should encompass everything we have (including functional tests), all selection to be done by tags. That means no DUT inside this file, just more tags.\nI think it would be better for users if we move Jenkins related stuff to a separate wrapper script, which would convert JOB_NAME and GERRIT_EVENT_COMMENT_TEXT into corresponding tag list. Bootstrap will then only examine the tag list, fail if multiple topology types are implied, download any artifacts needed, and start pybot (under reservation).",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
