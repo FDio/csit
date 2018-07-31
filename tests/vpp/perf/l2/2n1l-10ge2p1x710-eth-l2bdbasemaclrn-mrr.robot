@@ -81,46 +81,62 @@
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 64B | 2C
-| | framesize=${64} | phy_cores=${2}
+| tc02-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc03-64B-4c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 64B | 4C
-| | framesize=${64} | phy_cores=${4}
+| tc03-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc04-1518B-1c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
+| tc04-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
+| tc05-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc06-1518B-4c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 1518B | 4C
-| | framesize=${1518} | phy_cores=${4}
+| tc06-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc07-9000B-1c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
+| tc07-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
+| tc08-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc09-9000B-4c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 9000B | 4C
-| | framesize=${9000} | phy_cores=${4}
+| tc09-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc10-IMIX-1c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
+| tc10-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
+| tc11-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc12-IMIX-4c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | IMIX | 4C
-| | framesize=IMIX_v4_1 | phy_cores=${4}
+| tc12-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc13-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc14-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc15-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc16-64B-1c-eth-l2bdbasemaclrn-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
