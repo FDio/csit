@@ -94,6 +94,30 @@
       "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8eff8168_554e67e6",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-31T16:57:24Z",
+      "side": 1,
+      "message": "\u003e unique string that can be parsed (processed)\n\nI already have some improvements for the said processing. Mainly brackets, so that I can write sub-expressions like \"mrr AND (ip4 OR ip6) AND !(vhost OR memif)\" and such.",
+      "parentUuid": "041c6c80_047f0828",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
