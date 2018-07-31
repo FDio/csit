@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8d7ed54_fac673f3",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-31T12:44:24Z",
+      "side": 1,
+      "message": "Can be done by reading list of files in directory.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 65
+      },
+      "revId": "2b4fb460c3a84e79310713800e2086e117f50161",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d769152e_6c9f341d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-31T12:44:24Z",
+      "side": 1,
+      "message": "Maybe not needed if we decide to download all into CSIT dir and then let it be transferred to DUT.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 40
+      },
+      "revId": "2b4fb460c3a84e79310713800e2086e117f50161",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ef64df2_30d03055",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-31T12:44:24Z",
+      "side": 1,
+      "message": "Need to remove Jenkins dependency",
+      "range": {
+        "startLine": 80,
+        "startChar": 5,
+        "endLine": 80,
+        "endChar": 16
+      },
+      "revId": "2b4fb460c3a84e79310713800e2086e117f50161",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
