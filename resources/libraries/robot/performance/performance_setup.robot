@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.ssh
 | Library | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
@@ -586,8 +587,24 @@
 | | [Documentation] | Common test teardown for max-received-rate performance
 | | ... | tests.
 | | ...
+| | Return From Keyword If | ${has_failed}
+| | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Run Keyword If Test Passed | Return From Keyword
+| | ...
+| | Set Suite Variable | \${has_failed} | ${True}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${node} = | Set Variable | ${nodes['${dut}']}
+| | | Exec Cmd | ${node} | rm -rf /tmp/cores
+| | | Exec Cmd | ${node} | mkdir -p /tmp/cores
+| | | ${pid} = | Get Vpp Pid | ${node}
+| | | Exec Cmd | ${node} | gcore ${pid}
+| | | Exec Cmd | ${node} | cd /tmp/cores && xz -0 *
+| | | Exec Cmd | ${node} | ls -l /tmp/cores
+| | | # FIXME: Download the compressed core file.
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
