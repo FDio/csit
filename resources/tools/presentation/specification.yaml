@@ -5007,7 +5007,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5033,7 +5033,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5059,7 +5059,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5085,7 +5085,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5112,7 +5112,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5139,7 +5139,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5166,7 +5166,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5193,7 +5193,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5220,7 +5220,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5246,7 +5246,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5272,7 +5272,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5298,7 +5298,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5325,7 +5325,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5352,7 +5352,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5379,7 +5379,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5406,7 +5406,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5433,7 +5433,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5459,7 +5459,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5485,7 +5485,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5511,7 +5511,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5538,7 +5538,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5564,7 +5564,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5590,7 +5590,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5616,7 +5616,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5643,7 +5643,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5670,7 +5670,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5697,7 +5697,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5724,7 +5724,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5751,7 +5751,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5777,7 +5777,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5803,7 +5803,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5829,7 +5829,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5856,7 +5856,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5883,7 +5883,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5910,7 +5910,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5937,7 +5937,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5964,7 +5964,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -5990,7 +5990,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6016,7 +6016,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6042,7 +6042,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6069,7 +6069,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6096,7 +6096,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6123,7 +6123,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6150,7 +6150,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6177,7 +6177,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6203,7 +6203,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6229,7 +6229,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6255,7 +6255,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6282,7 +6282,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6309,7 +6309,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6336,7 +6336,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -6363,7 +6363,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7025,7 +7025,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7052,7 +7052,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7079,7 +7079,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7106,7 +7106,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7134,7 +7134,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7162,7 +7162,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7190,7 +7190,7 @@
            '2T2C' and
            not 'SRv6' and
            'IP6FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7218,7 +7218,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7246,7 +7246,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7273,7 +7273,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7300,7 +7300,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7327,7 +7327,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7355,7 +7355,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7383,7 +7383,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7411,7 +7411,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7439,7 +7439,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7467,7 +7467,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7494,7 +7494,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7521,7 +7521,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7548,7 +7548,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7576,7 +7576,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7603,7 +7603,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7630,7 +7630,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7657,7 +7657,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7685,7 +7685,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7713,7 +7713,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7741,7 +7741,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7769,7 +7769,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7797,7 +7797,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7824,7 +7824,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7851,7 +7851,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7878,7 +7878,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7906,7 +7906,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7934,7 +7934,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7962,7 +7962,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -7990,7 +7990,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8018,7 +8018,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8044,7 +8044,7 @@
            'PDRDISC' and not 'NDRDISC' and
            '2T1C' and
            'IP6FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8071,7 +8071,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8098,7 +8098,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8126,7 +8126,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8154,7 +8154,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8182,7 +8182,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8210,7 +8210,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8238,7 +8238,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8265,7 +8265,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8292,7 +8292,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8319,7 +8319,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8347,7 +8347,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8375,7 +8375,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8403,7 +8403,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8431,7 +8431,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8557,13 +8557,13 @@
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and 
-           '64B' and 
-           'IP4FWD' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'IPSECHW' and 
-           ('IPSECTRAN' or 'IPSECTUN') and 
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           'IP4FWD' and
+           'NDRDISC' and
+           '1T1C' and
+           'IPSECHW' and
+           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8583,13 +8583,13 @@
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and 
-           '64B' and 
-           'IP4FWD' and 
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           'IP4FWD' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'IPSECHW' and 
-           ('IPSECTRAN' or 'IPSECTUN') and 
+           '1T1C' and
+           'IPSECHW' and
+           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8609,13 +8609,13 @@
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and 
-           '64B' and 
-           'IP4FWD' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'IPSECHW' and 
-           ('IPSECTRAN' or 'IPSECTUN') and 
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           'IP4FWD' and
+           'NDRDISC' and
+           '2T2C' and
+           'IPSECHW' and
+           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8635,13 +8635,13 @@
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and 
-           '64B' and 
-           'IP4FWD' and 
+  filter: "'NIC_Intel-XL710' and
+           '64B' and
+           'IP4FWD' and
            'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'IPSECHW' and 
-           ('IPSECTRAN' or 'IPSECTUN') and 
+           '2T2C' and
+           'IPSECHW' and
+           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -8743,7 +8743,7 @@
            '78B' and
            'FEATURE' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and
+           '2T2C' and
            'IP6FWD' and
            'SRv6'"
   parameters:
@@ -8768,10 +8768,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -8792,10 +8792,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -8816,10 +8816,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'VHOST' and 
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -8840,10 +8840,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'VHOST' and 
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -8865,13 +8865,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -8892,13 +8892,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -8919,13 +8919,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -8946,13 +8946,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -8974,10 +8974,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -8998,10 +8998,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -9022,10 +9022,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'VHOST' and 
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -9046,10 +9046,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'VHOST' and 
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -9071,13 +9071,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -9098,13 +9098,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -9125,13 +9125,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -9152,13 +9152,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -9180,10 +9180,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -9204,10 +9204,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -9228,10 +9228,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'VHOST' and 
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -9252,10 +9252,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'VHOST' and 
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -9277,13 +9277,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -9304,13 +9304,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -9331,13 +9331,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -9358,13 +9358,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -10603,7 +10603,7 @@
            '64B' and
            'BASE' and
            'NDRPDR' and
-           '4T1C' and
+           '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -11947,7 +11947,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -11971,7 +11971,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -11996,7 +11996,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12021,7 +12021,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12046,7 +12046,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12070,7 +12070,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12095,7 +12095,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12120,7 +12120,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12145,7 +12145,7 @@
            'NDRDISC' and
            '1T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12169,7 +12169,7 @@
            'NDRDISC' and
            '2T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12194,7 +12194,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12218,7 +12218,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12243,7 +12243,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12268,7 +12268,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12293,7 +12293,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12317,7 +12317,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12342,7 +12342,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12367,7 +12367,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12392,7 +12392,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12416,7 +12416,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12441,7 +12441,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12466,7 +12466,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12491,7 +12491,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12515,7 +12515,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12540,7 +12540,7 @@
            'NDRDISC' and
            '2T1C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12565,7 +12565,7 @@
            'NDRDISC' and
            '4T2C' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12890,7 +12890,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12915,7 +12915,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12941,7 +12941,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12967,7 +12967,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -12993,7 +12993,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13018,7 +13018,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13044,7 +13044,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13070,7 +13070,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13096,7 +13096,7 @@
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13121,7 +13121,7 @@
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13147,7 +13147,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13172,7 +13172,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13198,7 +13198,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13224,7 +13224,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13250,7 +13250,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13275,7 +13275,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13301,7 +13301,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13327,7 +13327,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13353,7 +13353,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13378,7 +13378,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13404,7 +13404,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13430,7 +13430,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13456,7 +13456,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13481,7 +13481,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13507,7 +13507,7 @@
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13533,7 +13533,7 @@
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -13655,11 +13655,11 @@
   output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '78B' and 
-           'FEATURE' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'IP6FWD' and 
+           '78B' and
+           'FEATURE' and
+           'NDRDISC' and
+           '1T1C' and
+           'IP6FWD' and
            'SRv6'"
   parameters:
   - "latency"
@@ -13678,11 +13678,11 @@
   output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '78B' and 
-           'FEATURE' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'IP6FWD' and 
+           '78B' and
+           'FEATURE' and
+           'NDRDISC' and
+           '2T2C' and
+           'IP6FWD' and
            'SRv6'"
   parameters:
   - "latency"
@@ -13704,10 +13704,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -13726,10 +13726,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -13749,13 +13749,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
@@ -13774,13 +13774,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
@@ -13800,10 +13800,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -13822,10 +13822,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -13845,13 +13845,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
@@ -13870,13 +13870,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
@@ -13896,10 +13896,10 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -13918,10 +13918,10 @@
   output-file: "{DIR[STATIC,VPP]}/ip4-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "latency"
@@ -13941,13 +13941,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '1T1C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '1T1C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
@@ -13966,13 +13966,13 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
-           'NDRDISC' and 
-           '2T2C' and 
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           '64B' and
+           'NDRDISC' and
+           '2T2C' and
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
@@ -15187,7 +15187,7 @@
            ('BASE' or 'SCALE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15209,7 +15209,7 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15232,7 +15232,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15255,7 +15255,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15278,7 +15278,7 @@
            ('BASE' or 'SCALE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15300,7 +15300,7 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15323,7 +15323,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15346,7 +15346,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15369,7 +15369,7 @@
            ('BASE' or 'SCALE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15391,7 +15391,7 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15414,7 +15414,7 @@
            ('BASE' or 'SCALE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15436,7 +15436,7 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15459,7 +15459,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15482,7 +15482,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15505,7 +15505,7 @@
            ('BASE' or 'SCALE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15527,7 +15527,7 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15550,7 +15550,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15573,7 +15573,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15596,7 +15596,7 @@
            ('BASE' or 'SCALE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15618,7 +15618,7 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15641,7 +15641,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15664,7 +15664,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15687,7 +15687,7 @@
            ('BASE' or 'SCALE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15709,7 +15709,7 @@
            ('BASE' or 'SCALE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15732,7 +15732,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15755,7 +15755,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15781,7 +15781,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15804,7 +15804,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15828,7 +15828,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15851,7 +15851,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15875,7 +15875,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15898,7 +15898,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15922,7 +15922,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15945,7 +15945,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15969,7 +15969,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -15992,7 +15992,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -16016,7 +16016,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -16039,7 +16039,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -16063,7 +16063,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -16086,7 +16086,7 @@
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            'PDRDISC' and not 'NDRDISC' and
            'IP4FWD' and
-           not 'IPSEC' and 
+           not 'IPSEC' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -17455,9 +17455,9 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'NDRDISC' and
-           'VHOST' and 
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -17475,9 +17475,9 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           'VHOST' and 
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -17496,12 +17496,12 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'NDRDISC' and
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -17519,12 +17519,12 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -17543,9 +17543,9 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'NDRDISC' and
-           'VHOST' and 
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -17563,9 +17563,9 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           'VHOST' and 
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -17584,12 +17584,12 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'NDRDISC' and
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -17607,12 +17607,12 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -17631,9 +17631,9 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'NDRDISC' and
-           'VHOST' and 
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -17651,9 +17651,9 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           'VHOST' and 
+           'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
   - "throughput"
@@ -17672,12 +17672,12 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'NDRDISC' and
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
@@ -17695,12 +17695,12 @@
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
-           '64B' and 
+           '64B' and
            'PDRDISC' and not 'NDRDISC' and
-           'VHOST' and 
-           not 'VXLAN' and 
-           not 'IP4FWD' and 
-           not 'DOT1Q' and 
+           'VHOST' and
+           not 'VXLAN' and
+           not 'IP4FWD' and
+           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
