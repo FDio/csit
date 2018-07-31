@@ -44,7 +44,7 @@
 | | ... | maximal MTU.*
 | | ...
 # TODO: Rework KW to set all interfaces in path UP and set MTU (including
-# software interfaces. Run KW at the end phase of VPP setup to split
+# software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functial" configuration. This will allow modularity of this
 # library
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -805,10 +805,10 @@
 | | ... | Setup L2 patch topology by cross connecting two interfaces on
 | | ... | each DUT. Interfaces are brought up.
 | | ...
+| | Set interfaces in path up
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Configure L2patch | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
-| | Set interfaces in path up
 
 | Initialize L2 xconnect in 2-node circular topology
 | | [Documentation]
