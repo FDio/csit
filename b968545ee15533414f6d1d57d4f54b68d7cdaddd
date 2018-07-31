@@ -22,6 +22,30 @@
       "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66d170eb_8d16ae46",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-31T12:34:48Z",
+      "side": 1,
+      "message": "Lets see yes, still this is work in progress. I see it in several steps.\nPhase1: remove installation of VPP and add routine for cleanup/transfer, merge DPDK here. (kubernetes later but that will be similar)\n\nPhase2: start to think about your proposal how to adress Jenkins/localhost problem. Example: topologies can be easily solved by reading content (hierarchical) base on criteria from directory /topo/enabled/perf/\u003c#node\u003e/\u003carch\u003e. So if user will chose 3n-skx it will load topologies from Dir (disabling topologies is than only about move then into disabled dir). (few lines lighter). NIC tags can be discovered from topology files (this i will add later). Then it is only about converting Jenkins VARs into some imput scheme like $1\u003d\"csit-3n-skx-perftest vhost\". So we can get out needed.\n\nThere are two options: 1) leave jenkins part in jenkins but put output as parameter to this (or env var); 2) Move logic there but gerrit trigger will be parameter.\nOf course using GERRIT_* or JENKINS_* is tabu here. But i think no reason to wrap by another script sitting in CSIT. Wrap can be part of jenkins scripts. So anyone running this bootstrap can usi it by parameters and there will be no reference back to jenkins.\n\nFunctional: VIRL i do not care, not worth of it now. New VPP_device yes, but so far we do not know how it will look like.",
+      "parentUuid": "f8ced2f9_47d4c4e1",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
