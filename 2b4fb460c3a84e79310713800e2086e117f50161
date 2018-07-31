@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd39ce7c_51df750d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-31T16:40:13Z",
+      "side": 1,
+      "message": "In early stage i would definitely start using both, later we can fine tune. It should be enough to have on beginning but for robustness lets wait for the result. During testing i will try to kill jobs and see how it will converge. Logically i not sure leaving TB in mess is best practice. Robot should take care in case it will finish but in case not there is protection.",
+      "parentUuid": "04b452f2_c5bcf949",
+      "range": {
+        "startLine": 11,
+        "startChar": 45,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "2b4fb460c3a84e79310713800e2086e117f50161",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8d7ed54_fac673f3",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 5
