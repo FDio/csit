@@ -22,6 +22,30 @@
       "revId": "15d5ba48060c8745aa8cd032585fcaf7a10bb299",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aaef4582_1ffcf114",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-31T07:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19510903_f9f5052c",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "15d5ba48060c8745aa8cd032585fcaf7a10bb299",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
