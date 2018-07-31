@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "04b452f2_c5bcf949",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-31T14:59:05Z",
+      "side": 1,
+      "message": "I prefer cleanup only before (as current patch does).\n\nNo need to comment anything off when I want to examine the state after a failed run.",
+      "range": {
+        "startLine": 11,
+        "startChar": 45,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "2b4fb460c3a84e79310713800e2086e117f50161",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8d7ed54_fac673f3",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 5
@@ -64,6 +87,29 @@
         "startChar": 5,
         "endLine": 80,
         "endChar": 16
+      },
+      "revId": "2b4fb460c3a84e79310713800e2086e117f50161",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09bec0fc_47508c24",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-31T14:59:05Z",
+      "side": 1,
+      "message": "Assuming any downloaded binaries are for the correct platform, this should work well (perhaps even for virtualenvs?).\n\nBack in the day I was fond of \"rsync -vyviPa --delete-after\", here perhaps with less -v.",
+      "range": {
+        "startLine": 202,
+        "startChar": 38,
+        "endLine": 202,
+        "endChar": 42
       },
       "revId": "2b4fb460c3a84e79310713800e2086e117f50161",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
