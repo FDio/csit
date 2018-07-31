@@ -118,6 +118,30 @@
       "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de390d1a_78a066a5",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-31T18:08:01Z",
+      "side": 1,
+      "message": "\u003e But i would rather maybe introduce more tags then complicate the syntax. Very complex triggers means that somthing is wrong and we need more specific tags.\n\nWell, that depends of what is easier for us to maintain and for users to remeber.\n\nIn my (somewhat arbitrary) example I have grouped ip4 and ip6 together, which is almost never done as they use different input nodes. But something like \"l2bdbasic OR l2xcbasic OR l2patchbasic\" would be more common.\n\nI think using only few independent tags and letting users compose their own expression would be simpler than maintaining tags such as L2_NO_VHOST_NO_MEMIF. Or do you have a friendlier example of \"more specific tags\"?\n\nOf course, coding and debugging brackets-aware processing would take considerable time, but it might be worth it for maintenance and user-friendliness.",
+      "parentUuid": "8eff8168_554e67e6",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
