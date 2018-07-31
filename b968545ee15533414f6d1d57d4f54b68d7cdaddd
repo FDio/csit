@@ -46,6 +46,30 @@
       "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fad543a_0a8afa57",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-07-31T14:47:54Z",
+      "side": 1,
+      "message": "\u003e no reason to wrap by another script sitting in CSIT\n\nWe already do have wrapper scripts like that (e.g. include-raw-csit-vpp-perf-verify.sh), but they are sitting in ci-management repository, where they are harder to maintain.\n\n\u003e some imput scheme like $1\u003d\"csit-3n-skx-perftest vhost\"\n\nOf course, if bootstrap understands this kind of input, the wrapper becomes just:\n  ./bootstrap.sh \"${GERRIT_EVENT_COMMENT_TEXT}\"\nwhich is simple enough to be left in ci-management.",
+      "parentUuid": "66d170eb_8d16ae46",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
