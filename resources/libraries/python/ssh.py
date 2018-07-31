@@ -404,3 +404,9 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False):
     assert_equal(ret_code, 0, 'Command execution failed: "{}"\n{}'.
                  format(cmd, stderr))
     return stdout, stderr
+
+def scp(node, local_path, remote_path, get=False, timeout=30):
+    """FIXME"""
+    ssh = SSH()
+    ssh.connect(node)
+    ssh.scp(local_path, remote_path, get, timeout)

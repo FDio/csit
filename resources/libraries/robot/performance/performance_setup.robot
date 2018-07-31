@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.ssh
 | Library | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
@@ -586,8 +587,26 @@
 | | [Documentation] | Common test teardown for max-received-rate performance
 | | ... | tests.
 | | ...
+| | Return From Keyword If | ${has_failed}
+| | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Run Keyword If Test Passed | Return From Keyword
+| | ...
+| | Set Suite Variable | \${has_failed} | ${True}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${node} = | Set Variable | ${nodes['${dut}']}
+| | | Exec Cmd | ${node} | sudo dpkg -l
+| | | Exec Cmd | ${node} | rm -rf /tmp/cores*
+| | | Exec Cmd | ${node} | mkdir -p /tmp/cores
+| | | ${pid} = | Get Vpp Pid | ${node}
+| | | Exec Cmd | ${node} | cd /tmp/cores && gcore ${pid} | sudo=${True}
+| | | Exec Cmd | ${node} | cd /tmp/cores && time gzip -k --fast * | timeout=${3600}
+| | | Exec Cmd | ${node} | ls -l /tmp/cores
+| | | # FIXME: Create subdirs so multi-SUT topologies do not rist conflict.
+| | | Scp | ${node} | archives/ | /tmp/cores/*.gz | get=${True}
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
