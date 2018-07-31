@@ -70,6 +70,30 @@
       "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "041c6c80_047f0828",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-07-31T16:40:13Z",
+      "side": 1,
+      "message": "Yes, i meant something like\n./bootstrap.sh \"${GERRIT_EVENT_COMMENT_TEXT}\"\nbut we need to convert daily jobs to this format, but that is easy.\n\nThis basically develop an trajectory where input to this script is unique string that can be parsed (processed) so bootstrap will know what to download, where to run, what to run. With TAGs processing we have now and testbed selection it is easy to target non-perf tests as well, non-vpp test, ...",
+      "parentUuid": "7fad543a_0a8afa57",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
