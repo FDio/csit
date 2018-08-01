@@ -3,7 +3,7 @@ IPSec IPv4 Routing
 
 This section includes summary graphs of VPP Phy-to-Phy packet latency
 with IPSec encryption used in combination with IPv4 routed-forwarding,
-with latency measured at 50% of discovered NDR throughput rate. VPP
+with latency measured at 100% of discovered NDR throughput rate. VPP
 IPSec encryption is accelerated using DPDK cryptodev library driving
 Intel Quick Assist (QAT) crypto PCIe hardware cards. Latency is reported
 for VPP running in multiple configurations of VPP worker thread(s),

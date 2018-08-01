@@ -10,8 +10,8 @@ Logical Topologies
 ------------------
 
 CSIT DPDK performance tests are executed on physical testbeds described
-in :ref:`tested_physical_topologies`. Based on the packet path thru
-server SUTs, three distinct logical topology types are used for DPDK DUT
+in :ref:`tested_physical_topologies`. Based on the packet path through
+server SUTs, one distinct logical topology type is used for DPDK DUT
 data plane testing:
 
 #. NIC-to-NIC switching topologies.

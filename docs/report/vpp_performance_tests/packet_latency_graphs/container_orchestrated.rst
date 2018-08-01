@@ -2,7 +2,7 @@ K8s Container Memif
 ===================
 
 This section includes summary graphs of VPP Phy-to-Phy packet latency
-with CContainer Orchestrated Topologies measured at 50% of discovered NDR
+with CContainer Orchestrated Topologies measured at 100% of discovered NDR
 throughput rate. Latency is reported for VPP running in multiple configurations
 of VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
