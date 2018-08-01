@@ -17,10 +17,10 @@ top edge of the box. If multiple samples match only two values, and all
 samples fall between them, then no whiskers are plotted. If all samples
 have the same value, only a horizontal line is plotted.
 
-*Title of each graph* is a regex (regular expression) matching all
-throughput test cases plotted on this graph, *X-axis labels* are indices
-of individual test suites executed by
-FD.io test executor dpdk performance jobs that created result output
+*Title of each graph* describes the packet path, testbed topology, processor
+architecture, packet size, number of cores and threads used by workers and
+DUT configuration, *X-axis labels* are indices by individual test suites
+executed by FD.io test executor dpdk performance jobs that created result output
 files used as data sources for the graph, *Y-axis labels* are measured Packets
 Per Second [pps] values, and the *Graph legend* lists the plotted test suites
 and their indices.
