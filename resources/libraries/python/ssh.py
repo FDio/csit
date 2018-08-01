@@ -24,8 +24,6 @@ from scp import SCPClient
 from robot.api import logger
 from robot.utils.asserts import assert_equal
 
-__all__ = ["exec_cmd", "exec_cmd_no_error"]
-
 # TODO: load priv key
 
 
@@ -404,3 +402,9 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False):
     assert_equal(ret_code, 0, 'Command execution failed: "{}"\n{}'.
                  format(cmd, stderr))
     return stdout, stderr
+
+def scp_node(node, local_path, remote_path, get=False, timeout=30):
+    """FIXME"""
+    ssh = SSH()
+    ssh.connect(node)
+    ssh.scp(local_path, remote_path, get, timeout)
