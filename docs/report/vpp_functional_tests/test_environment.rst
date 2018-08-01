@@ -243,29 +243,29 @@ Example of DUT nodes configuration:::
     |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
     ||/ Name           Version       Architecture Description
     +++-==============-=============-============-=================================================
-    ii  vpp            18.04-release amd64        Vector Packet Processing--executables
-    ii  vpp-dbg        18.04-release amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev        18.04-release amd64        Vector Packet Processing--development support
-    ii  vpp-dpdk-dkms  18.02-vpp1    amd64        DPDK Development Package for VPP - Kernel Modules
-    ii  vpp-lib        18.04-release amd64        Vector Packet Processing--runtime libraries
-    ii  vpp-plugins    18.04-release amd64        Vector Packet Processing--runtime plugins
+    ii  vpp                                 18.07-release                              amd64        Vector Packet Processing--executables
+    ii  vpp-dbg                             18.07-release                              amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev                             18.07-release                              amd64        Vector Packet Processing--development support
+    ii  vpp-dpdk-dkms                       18.05-vpp2                                 amd64        DPDK Development Package for VPP - Kernel Modules
+    ii  vpp-lib                             18.07-release                              amd64        Vector Packet Processing--runtime libraries
+    ii  vpp-plugins                         18.07-release                              amd64        Vector Packet Processing--runtime plugins
 
 **VPP Installed Packages - Centos**
 ::
 
     $ rpm -qai vpp*
     Name        : vpp
-    Version     : 18.04
+    Version     : 18.07
     Release     : release
     Architecture: x86_64
-    Install Date: Fri 04 May 2018 02:47:36 AM EDT
+    Install Date: Tue 31 Jul 2018 02:59:45 AM EDT
     Group       : Unspecified
-    Size        : 2311324
+    Size        : 2396993
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.04-release.src.rpm
-    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
-    Build Host  : c29a51c12e88
+    Source RPM  : vpp-18.07-release.src.rpm
+    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
+    Build Host  : c3de88e7d43c
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing
     Description :
@@ -274,17 +274,17 @@ Example of DUT nodes configuration:::
     vpp_api_test - vector packet engine API test tool
     vpp_json_test - vector packet engine JSON test tool
     Name        : vpp-lib
-    Version     : 18.04
+    Version     : 18.07
     Release     : release
     Architecture: x86_64
-    Install Date: Fri 04 May 2018 02:47:36 AM EDT
+    Install Date: Tue 31 Jul 2018 02:59:45 AM EDT
     Group       : System Environment/Libraries
-    Size        : 24949034
+    Size        : 27134058
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.04-release.src.rpm
-    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
-    Build Host  : c29a51c12e88
+    Source RPM  : vpp-18.07-release.src.rpm
+    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
+    Build Host  : c3de88e7d43c
     Relocations : (not relocatable)
     Summary     : VPP libraries
     Description :
@@ -295,33 +295,33 @@ Example of DUT nodes configuration:::
     vlib-api - binary API library
     vnet -  network stack library
     Name        : vpp-selinux-policy
-    Version     : 18.04
+    Version     : 18.07
     Release     : release
     Architecture: x86_64
-    Install Date: Fri 04 May 2018 02:47:35 AM EDT
+    Install Date: Tue 31 Jul 2018 02:59:44 AM EDT
     Group       : System Environment/Base
-    Size        : 86170
+    Size        : 86709
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.04-release.src.rpm
-    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
-    Build Host  : c29a51c12e88
+    Source RPM  : vpp-18.07-release.src.rpm
+    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
+    Build Host  : c3de88e7d43c
     Relocations : (not relocatable)
     Summary     : VPP Security-Enhanced Linux (SELinux) policy
     Description :
     This package contains a tailored VPP SELinux policy
     Name        : vpp-devel
-    Version     : 18.04
+    Version     : 18.07
     Release     : release
     Architecture: x86_64
-    Install Date: Fri 04 May 2018 02:47:38 AM EDT
+    Install Date: Tue 31 Jul 2018 02:59:47 AM EDT
     Group       : Development/Libraries
-    Size        : 10632218
+    Size        : 11452203
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.04-release.src.rpm
-    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
-    Build Host  : c29a51c12e88
+    Source RPM  : vpp-18.07-release.src.rpm
+    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
+    Build Host  : c3de88e7d43c
     Relocations : (not relocatable)
     Summary     : VPP header files, static libraries
     Description :
@@ -334,17 +334,17 @@ Example of DUT nodes configuration:::
     vpp-api
     vppinfra
     Name        : vpp-plugins
-    Version     : 18.04
+    Version     : 18.07
     Release     : release
     Architecture: x86_64
-    Install Date: Fri 04 May 2018 02:47:37 AM EDT
+    Install Date: Tue 31 Jul 2018 02:59:47 AM EDT
     Group       : System Environment/Libraries
-    Size        : 44145968
+    Size        : 52282610
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.04-release.src.rpm
-    Build Date  : Wed 25 Apr 2018 01:00:24 PM EDT
-    Build Host  : c29a51c12e88
+    Source RPM  : vpp-18.07-release.src.rpm
+    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
+    Build Host  : c3de88e7d43c
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing--runtime plugins
     Description :
@@ -389,13 +389,18 @@ to SW Crypto device.
       gid vpp
     }
 
+    socksvr {
+      default
+    }
+
     cpu {
         ## In the VPP there is one main thread and optionally the user can create worker(s)
         ## The main thread and worker thread(s) can be pinned to CPU core(s) manually or automatically
 
         ## Manual pinning of thread(s) to CPU core(s)
 
-        ## Set logical CPU core where main thread runs
+        ## Set logical CPU core where main thread runs, if main core is not set
+        ## VPP will use core 1 if available
         # main-core 1
 
         ## Set logical CPU core(s) where worker threads are running
