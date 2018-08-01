@@ -166,6 +166,30 @@
       "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14078def_f1e7372d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-01T09:53:30Z",
+      "side": 1,
+      "message": "\u003e This is where we need additional work rather create full boolean algebra and coding it.\n\nHmm, I think I agree. Improve tags first, only then look at usual incantations to see if the current processing is flexible enough.",
+      "parentUuid": "d6c03f4a_db9879de",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
