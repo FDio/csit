@@ -107,8 +107,8 @@ def file_test_results(file_spec, input_data):
         file_handler.write(rst_header)
         for suite_longname, suite in suites.iteritems():
             # TODO: Remove when NDRPDRDISC tests are not used:
-            if "ndrchk" in suite_longname or "pdrchk" in suite_longname:
-                continue
+            # if "ndrchk" in suite_longname or "pdrchk" in suite_longname:
+            #     continue
             if len(suite_longname.split(".")) <= file_spec["data-start-level"]:
                 continue
             file_handler.write("\n{0}\n{1}\n".format(
