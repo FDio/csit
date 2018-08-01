@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0444e0b_59ee9871",
+        "filename": "docs/report/dmm_functional_tests/documentation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-08-01T14:02:25Z",
+      "side": 1,
+      "message": "Other projects have link here, which drives them to another doc.\nDo I need to commit another doc, Where do I need to commit.\nThanks.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 60
+      },
+      "revId": "efd80939d7a2dc8e6a0376379e0433113414e2b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
