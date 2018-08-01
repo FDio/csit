@@ -4,17 +4,18 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. VPP functional test framework changes:
+#. Code updates in CSIT functional framework:
 
-   - functional tests are running on Centos image; corresponding CSIT Jenkins
-     jobs are created.
+   - few test case bug fixes.
 
-#. Optimizations in CSIT functional framework:
+#. VPP_Path:
 
-   - *VPP install test* - VPP installation has been moved to a separate test in
-     test suite setup phase to better identify any issues with VPP installation.
+   - Implementation of new VPP-make_test VPP integration tests for functional
+     acceptance of VPP feature path(s) driven by use case(s).
 
-   - *VPP verify test* - test to check VPP health after installation.
+   - All VIRL P0 tests (`CSIT_VIRL migration progress
+     <https://docs.google.com/spreadsheets/d/1PciV8XN9v1qHbIRUpFJoqyES29_vik7lcFDl73G1usc/edit?usp=sharing>`_)
+     migrated to VPP_Path using VPP make test.
 
 Known Issues
 ------------
