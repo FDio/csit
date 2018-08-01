@@ -121,17 +121,17 @@
 | | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
-| | | Run keyword | ${dut}.Add DPDK Socketmem | 1024,1024
+#| | | Run keyword | ${dut}.Add DPDK Socketmem | 16,16
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
-| | | Run keyword | ${dut}.Add Heapsize | 4G
-| | | Run keyword | ${dut}.Add Statseg size | 4G
+#| | | Run keyword | ${dut}.Add Heapsize | 64M
+#| | | Run keyword | ${dut}.Add Statseg size | 64M
 | | | Run keyword | ${dut}.Add Plugin | disable | default
 | | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
-| | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
-| | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
-| | | Run keyword | ${dut}.Add IP Heap Size | 4G
+#| | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000
+#| | | Run keyword | ${dut}.Add IP6 Heap Size | 64M
+#| | | Run keyword | ${dut}.Add IP Heap Size | 64M
 
 | Add worker threads and rxqueues to all DUTs
 | | [Documentation] | Setup worker threads and rxqueues in vpp startup
