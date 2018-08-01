@@ -128,6 +128,7 @@
       # 1807
     vpp-compare-testbeds:
       # TODO: Add Data sources
+      # HSW
       csit-vpp-perf-1801-all:
       - 124  # sel
       - 127  # sel
@@ -142,6 +143,7 @@
       - 167  # sel
       - 172  # sel acl only
       # TODO: Add Data sources
+      # SKX
       csit-vpp-perf-1804-all:
       - 21  # sel
       - 22  # sel
@@ -153,6 +155,14 @@
       - 30  # sel
       - 31  # sel
       - 35  # sel
+    vpp-compare-testbeds-mrr:
+      # TODO: Add Data sources
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
+      # TODO: Add Data sources
+      csit-vpp-perf-verify-1807-3n-skx:
+      - 21  # MRR sel
+
     vpp-performance-changes-mrr:
       csit-vpp-perf-check-1801:
       - 3
@@ -177,9 +187,11 @@
       - 21  # mrr - sel
       - 22  # mrr - sel
       # TODO: Add Data sources
-      # 1807
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
     vpp-perf-results-3n-hsw:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -187,6 +199,7 @@
       - 49  # full
     vpp-perf-results-3n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -194,25 +207,27 @@
       - 49  # full
     vpp-perf-results-2n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-2n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
       - 25  # full
       - 49  # full
     vpp-mrr-results-3n-hsw:
-      # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
+      # TODO: Replace with full
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
     vpp-mrr-results-3n-skx:
-      # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
+      # TODO: Replace with full
+      csit-vpp-perf-verify-1807-3n-skx:
+      - 21  # MRR sel
     vpp-mrr-results-2n-skx:
-      # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
+      # TODO: Replace with full
+      csit-vpp-perf-verify-1807-2n-skx:
+      - 22  # MRR sel
     plot-throughput-speedup-analysis-3n-hsw:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -230,6 +245,7 @@
       - 35  # sel
     plot-throughput-speedup-analysis-3n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -247,23 +263,13 @@
       - 35  # sel
     plot-throughput-speedup-analysis-2n-skx:
       # TODO: Add Data sources
-      csit-vpp-perf-1804-all:
-      - 19  # full
-      - 20  # full
-      - 25  # full
-      - 49  # full
-      - 21  # sel
-      - 22  # sel
-      - 23  # sel
-      - 24  # sel
-      - 27  # sel
-      - 28  # sel
-      - 29  # sel
-      - 30  # sel
-      - 31  # sel
-      - 35  # sel
+      csit-vpp-perf-verify-1807-2n-skx:
+      - 18  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
     plot-vpp-throughput-latency-3n-hsw:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -281,6 +287,7 @@
       - 35  # sel
     plot-vpp-throughput-latency-3n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -297,22 +304,10 @@
       - 31  # sel
       - 35  # sel
     plot-vpp-throughput-latency-2n-skx:
-      # TODO: Add Data sources
-      csit-vpp-perf-1804-all:
-      - 19  # full
-      - 20  # full
-      - 25  # full
-      - 49  # full
-      - 21  # sel
-      - 22  # sel
-      - 23  # sel
-      - 24  # sel
-      - 27  # sel
-      - 28  # sel
-      - 29  # sel
-      - 30  # sel
-      - 31  # sel
-      - 35  # sel
+      csit-vpp-perf-verify-1807-2n-skx:
+      - 18  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
     plot-vpp-http-server-performance:
       # TODO: Add Data sources
       csit-vpp-perf-1804-all:
@@ -339,35 +334,17 @@
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
-      # TODO: Add Data sources
-      csit-ligato-perf-1804-all:
-      - 4  # full
+      # TODO: Replace with full
+      csit-ligato-perf-1807-all:
+      - 4   # sel
     plot-ligato-throughput-speedup-analysis-3n-hsw:
       # TODO: Add Data sources
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
+      csit-ligato-perf-1807-all:
+      - 4   # sel
     plot-ligato-throughput-latency-3n-hsw:
       # TODO: Add Data sources
-      csit-ligato-perf-1804-all:
-      - 5   # sel
-      - 6   # sel
-      - 7   # sel
-      - 8   # sel
-      - 9   # sel
-      - 10  # sel
-      - 11  # sel
-      - 12  # sel
-      - 13  # sel
-      - 14  # sel
+      csit-ligato-perf-1807-all:
+      - 4   # sel
 
     # DPDK Performance
     dpdk-performance-changes:
@@ -734,12 +711,18 @@
     - 47  # wrk
     - 48  # wrk
     # TODO: Add Data sources
-#    csit-vpp-perf-verify-1807-3n-hsw:
-#    -
-#    csit-vpp-perf-verify-1807-3n-skx:
-#    -
-#    csit-vpp-perf-verify-1807-2n-skx:
-#    -
+    csit-vpp-perf-verify-1807-3n-hsw:
+    - 9   # MRR sel
+    # TODO: Add Data sources
+    csit-vpp-perf-verify-1807-3n-skx:
+    - 21  # MRR sel
+    # TODO: Add Data sources
+    csit-vpp-perf-verify-1807-2n-skx:
+    - 17  # MRR sel
+    - 18  # NDRPDR sel
+    - 19  # NDRPDR sel
+    - 20  # NDRPDR sel
+    - 22  # MRR sel
     csit-vpp-perf-check-1801:
     - 3   # mrr
     - 4   # mrr
@@ -763,8 +746,6 @@
     - 20  # mrr - sel
     - 21  # mrr - sel
     - 22  # mrr - sel
-    # TODO: Add Data sources
-    # mrr 1807
     csit-ligato-perf-1804-all:
     - 4   # full
     - 5   # sel
@@ -778,8 +759,8 @@
     - 13  # sel
     - 14  # sel
     # TODO: Add Data sources
-#    csit-ligato-perf-1807-all:
-#    -
+    csit-ligato-perf-1807-all:
+    - 4   # sel
     csit-dpdk-perf-1804-all:
     - 4
     - 5
@@ -843,8 +824,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -1216,17 +1197,8 @@
     title: "rls1807"
     data:
       # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 6   # mrr - sel
-      - 13  # mrr - sel
-      - 14  # mrr - sel
-      - 15  # mrr - sel
-      - 16  # mrr - sel
-      - 17  # mrr - sel
-      - 19  # mrr - sel
-      - 20  # mrr - sel
-      - 21  # mrr - sel
-      - 22  # mrr - sel
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1273,17 +1245,8 @@
     title: "rls1807"
     data:
       # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 6   # mrr - sel
-      - 13  # mrr - sel
-      - 14  # mrr - sel
-      - 15  # mrr - sel
-      - 16  # mrr - sel
-      - 17  # mrr - sel
-      - 19  # mrr - sel
-      - 20  # mrr - sel
-      - 21  # mrr - sel
-      - 22  # mrr - sel
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1330,17 +1293,8 @@
     title: "rls1807"
     data:
       # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 6   # mrr - sel
-      - 13  # mrr - sel
-      - 14  # mrr - sel
-      - 15  # mrr - sel
-      - 16  # mrr - sel
-      - 17  # mrr - sel
-      - 19  # mrr - sel
-      - 20  # mrr - sel
-      - 21  # mrr - sel
-      - 22  # mrr - sel
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T4C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1348,6 +1302,31 @@
   - "name"
   - "parent"
   - "result"
+
+-
+  type: "table"
+  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx mrr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-mrr"
+  reference:
+    title: "3-Node Hsw"
+    data:
+      # TODO: Add Data sources
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
+  compare:
+    title: "3-Node Skx"
+    data:
+      # TODO: Add Data sources
+      csit-vpp-perf-verify-1807-3n-skx:
+      - 21  # MRR sel
+  data: "vpp-compare-testbeds-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-X710' and MRR" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
 
 -
   type: "table"
@@ -2670,7 +2649,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2696,7 +2675,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2722,7 +2701,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2748,7 +2727,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2775,7 +2754,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2802,7 +2781,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2829,7 +2808,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2856,7 +2835,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2883,7 +2862,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2909,7 +2888,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2935,7 +2914,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2961,7 +2940,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -2988,7 +2967,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3015,7 +2994,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3042,7 +3021,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3069,7 +3048,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3096,7 +3075,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3122,7 +3101,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3148,7 +3127,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3174,7 +3153,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3201,7 +3180,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3227,7 +3206,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3253,7 +3232,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3279,7 +3258,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3306,7 +3285,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3333,7 +3312,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3360,7 +3339,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3387,7 +3366,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3414,7 +3393,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3440,7 +3419,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3466,7 +3445,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3492,7 +3471,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3519,7 +3498,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3546,7 +3525,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3573,7 +3552,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3600,7 +3579,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3627,7 +3606,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3653,7 +3632,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3679,7 +3658,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3705,7 +3684,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3732,7 +3711,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3759,7 +3738,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3786,7 +3765,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3813,7 +3792,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3840,7 +3819,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3866,7 +3845,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3892,7 +3871,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3918,7 +3897,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3945,7 +3924,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3972,7 +3951,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -3999,7 +3978,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4026,7 +4005,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4055,7 +4034,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4081,7 +4060,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4107,7 +4086,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4133,7 +4112,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4160,7 +4139,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4186,7 +4165,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4212,7 +4191,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4238,7 +4217,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4265,7 +4244,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4291,7 +4270,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4317,7 +4296,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4343,7 +4322,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4370,7 +4349,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4396,7 +4375,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4422,7 +4401,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4448,7 +4427,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4475,7 +4454,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4501,7 +4480,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4527,7 +4506,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4553,7 +4532,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4580,7 +4559,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4606,7 +4585,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4632,7 +4611,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4658,7 +4637,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4685,7 +4664,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4711,7 +4690,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4737,7 +4716,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4763,7 +4742,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4792,7 +4771,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4818,7 +4797,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4844,7 +4823,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4870,7 +4849,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4897,7 +4876,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4923,7 +4902,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4949,7 +4928,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -4975,7 +4954,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -5004,7 +4983,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5030,7 +5009,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5056,7 +5035,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5082,7 +5061,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5109,7 +5088,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5136,7 +5115,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5163,7 +5142,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5190,7 +5169,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5217,7 +5196,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5243,7 +5222,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5269,7 +5248,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5295,7 +5274,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5322,7 +5301,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5349,7 +5328,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5376,7 +5355,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5403,7 +5382,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5430,7 +5409,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5456,7 +5435,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5482,7 +5461,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5508,7 +5487,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5535,7 +5514,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5561,7 +5540,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5587,7 +5566,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5613,7 +5592,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5640,7 +5619,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5667,7 +5646,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5694,7 +5673,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5721,7 +5700,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5748,7 +5727,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5774,7 +5753,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5800,7 +5779,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5826,7 +5805,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5853,7 +5832,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5880,7 +5859,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5907,7 +5886,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5934,7 +5913,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5961,7 +5940,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -5987,7 +5966,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6013,7 +5992,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6039,7 +6018,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6066,7 +6045,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6093,7 +6072,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6120,7 +6099,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6147,7 +6126,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6174,7 +6153,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6200,7 +6179,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6226,7 +6205,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6252,7 +6231,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6279,7 +6258,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6306,7 +6285,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6333,7 +6312,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6360,7 +6339,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -6389,7 +6368,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6415,7 +6394,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6441,7 +6420,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6467,7 +6446,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6494,7 +6473,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6520,7 +6499,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6546,7 +6525,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6572,7 +6551,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6599,7 +6578,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6625,7 +6604,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6651,7 +6630,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6677,7 +6656,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6704,7 +6683,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6730,7 +6709,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6756,7 +6735,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6782,7 +6761,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6809,7 +6788,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6835,7 +6814,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6861,7 +6840,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6887,7 +6866,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6914,7 +6893,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6940,7 +6919,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6966,7 +6945,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -6992,7 +6971,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -7021,7 +7000,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7048,7 +7027,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7075,7 +7054,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7102,7 +7081,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7130,7 +7109,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7158,7 +7137,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7186,7 +7165,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            not 'SRv6' and
            'IP6FWD' and
@@ -7214,7 +7193,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7242,7 +7221,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7269,7 +7248,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7296,7 +7275,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7323,7 +7302,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7351,7 +7330,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7379,7 +7358,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7407,7 +7386,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7435,7 +7414,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7463,7 +7442,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7490,7 +7469,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7517,7 +7496,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7544,7 +7523,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7572,7 +7551,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7599,7 +7578,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7626,7 +7605,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7653,7 +7632,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7681,7 +7660,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7709,7 +7688,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7737,7 +7716,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7765,7 +7744,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7793,7 +7772,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7820,7 +7799,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7847,7 +7826,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7874,7 +7853,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7902,7 +7881,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7930,7 +7909,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7958,7 +7937,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -7986,7 +7965,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8014,7 +7993,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8041,7 +8020,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'IPSEC' and
@@ -8067,7 +8046,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8094,7 +8073,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8122,7 +8101,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8150,7 +8129,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8178,7 +8157,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8206,7 +8185,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8234,7 +8213,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8261,7 +8240,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8288,7 +8267,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8315,7 +8294,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8343,7 +8322,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8371,7 +8350,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8399,7 +8378,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8427,7 +8406,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -8457,7 +8436,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
@@ -8482,7 +8461,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
@@ -8507,7 +8486,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
@@ -8532,7 +8511,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
@@ -8560,7 +8539,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
@@ -8586,7 +8565,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
@@ -8612,7 +8591,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
@@ -8638,7 +8617,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
@@ -8667,7 +8646,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            'SRv6'"
@@ -8692,7 +8671,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            'SRv6'"
@@ -8717,7 +8696,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            'SRv6'"
@@ -8742,7 +8721,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            'SRv6'"
@@ -8769,7 +8748,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -8793,7 +8772,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -8817,7 +8796,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -8841,7 +8820,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -8866,7 +8845,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -8893,7 +8872,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -8920,7 +8899,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -8947,7 +8926,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -8975,7 +8954,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -8999,7 +8978,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -9023,7 +9002,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -9047,7 +9026,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -9072,7 +9051,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9099,7 +9078,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9126,7 +9105,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9153,7 +9132,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9181,7 +9160,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -9205,7 +9184,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -9229,7 +9208,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -9253,7 +9232,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -9278,7 +9257,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9305,7 +9284,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9332,7 +9311,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9359,7 +9338,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -9389,7 +9368,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VTS'"
   parameters:
@@ -9412,7 +9391,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VTS'"
   parameters:
@@ -9435,7 +9414,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VTS'"
   parameters:
@@ -9458,7 +9437,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VTS'"
   parameters:
@@ -10854,7 +10833,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -10878,7 +10857,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -10903,7 +10882,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -10928,7 +10907,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -10953,7 +10932,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -10977,7 +10956,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11002,7 +10981,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11027,7 +11006,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11052,7 +11031,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11076,7 +11055,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11101,7 +11080,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11125,7 +11104,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11150,7 +11129,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11175,7 +11154,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11200,7 +11179,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11224,7 +11203,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11249,7 +11228,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11274,7 +11253,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11299,7 +11278,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11323,7 +11302,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11348,7 +11327,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11373,7 +11352,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11398,7 +11377,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11422,7 +11401,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11447,7 +11426,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11472,7 +11451,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11499,7 +11478,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11523,7 +11502,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11548,7 +11527,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11572,7 +11551,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11597,7 +11576,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11621,7 +11600,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11646,7 +11625,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11670,7 +11649,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11695,7 +11674,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11719,7 +11698,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11744,7 +11723,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11768,7 +11747,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11793,7 +11772,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11817,7 +11796,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11844,7 +11823,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11868,7 +11847,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11893,7 +11872,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11917,7 +11896,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -11944,7 +11923,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -11968,7 +11947,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -11993,7 +11972,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12018,7 +11997,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12043,7 +12022,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12067,7 +12046,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12092,7 +12071,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12117,7 +12096,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12142,7 +12121,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12166,7 +12145,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12191,7 +12170,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12215,7 +12194,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12240,7 +12219,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12265,7 +12244,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12290,7 +12269,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12314,7 +12293,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12339,7 +12318,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12364,7 +12343,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12389,7 +12368,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12413,7 +12392,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12438,7 +12417,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12463,7 +12442,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12488,7 +12467,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12512,7 +12491,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12537,7 +12516,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12562,7 +12541,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -12589,7 +12568,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12613,7 +12592,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12638,7 +12617,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12662,7 +12641,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12687,7 +12666,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12711,7 +12690,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12736,7 +12715,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12760,7 +12739,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12785,7 +12764,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12809,7 +12788,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12835,7 +12814,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12859,7 +12838,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST' and
@@ -12886,7 +12865,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -12911,7 +12890,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -12937,7 +12916,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -12963,7 +12942,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -12989,7 +12968,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13014,7 +12993,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13040,7 +13019,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13066,7 +13045,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13092,7 +13071,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13117,7 +13096,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13143,7 +13122,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13168,7 +13147,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13194,7 +13173,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13220,7 +13199,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13246,7 +13225,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13271,7 +13250,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13297,7 +13276,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13323,7 +13302,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13349,7 +13328,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13374,7 +13353,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13400,7 +13379,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13426,7 +13405,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13452,7 +13431,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13477,7 +13456,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13503,7 +13482,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13529,7 +13508,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
@@ -13557,7 +13536,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
@@ -13580,7 +13559,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
@@ -13606,7 +13585,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
@@ -13630,7 +13609,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
@@ -13657,7 +13636,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'IP6FWD' and
            'SRv6'"
@@ -13680,7 +13659,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'IP6FWD' and
            'SRv6'"
@@ -13705,7 +13684,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -13727,7 +13706,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -13750,7 +13729,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -13775,7 +13754,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -13801,7 +13780,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -13823,7 +13802,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -13846,7 +13825,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -13871,7 +13850,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -13897,7 +13876,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -13919,7 +13898,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
@@ -13942,7 +13921,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VHOST' and
            not 'VXLAN' and
@@ -13967,7 +13946,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VHOST' and
            not 'VXLAN' and
@@ -13995,7 +13974,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '1T1C' and
            'VTS'"
   parameters:
@@ -14016,7 +13995,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            '2T2C' and
            'VTS'"
   parameters:
@@ -14731,7 +14710,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14753,7 +14732,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14776,7 +14755,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14798,7 +14777,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14821,7 +14800,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14843,7 +14822,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14866,7 +14845,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14888,7 +14867,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
             'MEMIF'"
@@ -14911,7 +14890,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14933,7 +14912,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14956,7 +14935,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -14978,7 +14957,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15001,7 +14980,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15023,7 +15002,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15048,7 +15027,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15070,7 +15049,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15093,7 +15072,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15115,7 +15094,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15138,7 +15117,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15160,7 +15139,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            'MEMIF'"
@@ -15185,7 +15164,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15207,7 +15186,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15230,7 +15209,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15253,7 +15232,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15276,7 +15255,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15298,7 +15277,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15321,7 +15300,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15344,7 +15323,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15367,7 +15346,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15389,7 +15368,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15412,7 +15391,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15434,7 +15413,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15457,7 +15436,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15480,7 +15459,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15503,7 +15482,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15525,7 +15504,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15548,7 +15527,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15571,7 +15550,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15594,7 +15573,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15616,7 +15595,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15639,7 +15618,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15662,7 +15641,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15685,7 +15664,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15707,7 +15686,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15730,7 +15709,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15753,7 +15732,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15779,7 +15758,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15802,7 +15781,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15826,7 +15805,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15849,7 +15828,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15873,7 +15852,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15896,7 +15875,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15920,7 +15899,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15943,7 +15922,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15967,7 +15946,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -15990,7 +15969,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -16014,7 +15993,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -16037,7 +16016,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -16061,7 +16040,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -16084,7 +16063,7 @@
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -16109,7 +16088,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16132,7 +16111,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16156,7 +16135,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16180,7 +16159,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16204,7 +16183,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16227,7 +16206,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16251,7 +16230,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16275,7 +16254,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16299,7 +16278,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16322,7 +16301,7 @@
   filter: "'NIC_Intel-XL710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16346,7 +16325,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16369,7 +16348,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16393,7 +16372,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16417,7 +16396,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16441,7 +16420,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16464,7 +16443,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16488,7 +16467,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16512,7 +16491,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16536,7 +16515,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16559,7 +16538,7 @@
   filter: "'NIC_Intel-X710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'IPSEC' and
            not 'VHOST'"
@@ -16582,7 +16561,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16606,7 +16585,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16630,7 +16609,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16653,7 +16632,7 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16677,7 +16656,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16701,7 +16680,7 @@
            '78B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
@@ -16727,7 +16706,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'NDRDISC' and
+           'NDRPDR' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
   parameters:
@@ -16748,7 +16727,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'ENCAP' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
            not 'VHOST'"
   parameters:
@@ -16772,7 +16751,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
@@ -16794,7 +16773,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'IP4FWD' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IPSECHW' and
            ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
@@ -16819,7 +16798,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            'SRv6'"
   parameters:
@@ -16840,7 +16819,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '78B' and
            'FEATURE' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'IP6FWD' and
            'SRv6'"
   parameters:
@@ -16864,7 +16843,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -16886,7 +16865,7 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -16909,7 +16888,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -16932,7 +16911,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -16955,7 +16934,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -16977,7 +16956,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17000,7 +16979,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17023,7 +17002,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17046,7 +17025,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17068,7 +17047,7 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17091,7 +17070,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17113,7 +17092,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17136,7 +17115,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17159,7 +17138,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17182,7 +17161,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17204,7 +17183,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17227,7 +17206,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17250,7 +17229,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17273,7 +17252,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17295,7 +17274,7 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17318,7 +17297,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17341,7 +17320,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17364,7 +17343,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17386,7 +17365,7 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17409,7 +17388,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17432,7 +17411,7 @@
            '64B' and
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
            not 'MEMIF'"
@@ -17456,7 +17435,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -17476,7 +17455,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -17497,7 +17476,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not 'VXLAN' and
            not 'IP4FWD' and
@@ -17520,7 +17499,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not 'VXLAN' and
            not 'IP4FWD' and
@@ -17544,7 +17523,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -17564,7 +17543,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -17585,7 +17564,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not 'VXLAN' and
            not 'IP4FWD' and
@@ -17608,7 +17587,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not 'VXLAN' and
            not 'IP4FWD' and
@@ -17632,7 +17611,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -17652,7 +17631,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
   parameters:
@@ -17673,7 +17652,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not 'VXLAN' and
            not 'IP4FWD' and
@@ -17696,7 +17675,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           'PDRDISC' and not 'NDRDISC' and
+           'NDRPDR' and
            'VHOST' and
            not 'VXLAN' and
            not 'IP4FWD' and
