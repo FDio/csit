@@ -22,7 +22,8 @@
 | ...
 | Suite Teardown | Tear down 2-node performance topology
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Run Keyword If | ${has_failed} | Fail
+| ... | ELSE | Set up performance test
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
@@ -49,6 +50,7 @@
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
 | ${traffic_profile} | trex-sl-2n-ethip4-ip4src254
+| ${has_failed}= | ${False}
 
 *** Keywords ***
 | Local Template
@@ -80,46 +82,127 @@
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2patch-mrr
-| | [Tags] | 64B | 2C
-| | framesize=${64} | phy_cores=${2}
+| tc02-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc03-64B-4c-eth-l2patch-mrr
-| | [Tags] | 64B | 4C
-| | framesize=${64} | phy_cores=${4}
+| tc03-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc04-1518B-1c-eth-l2patch-mrr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
+| tc04-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2patch-mrr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
+| tc05-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc06-1518B-4c-eth-l2patch-mrr
-| | [Tags] | 1518B | 4C
-| | framesize=${1518} | phy_cores=${4}
+| tc06-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc07-9000B-1c-eth-l2patch-mrr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
+| tc07-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2patch-mrr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
+| tc08-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc09-9000B-4c-eth-l2patch-mrr
-| | [Tags] | 9000B | 4C
-| | framesize=${9000} | phy_cores=${4}
+| tc09-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc10-IMIX-1c-eth-l2patch-mrr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
+| tc10-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2patch-mrr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
+| tc11-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
 
-| tc12-IMIX-4c-eth-l2patch-mrr
-| | [Tags] | IMIX | 4C
-| | framesize=IMIX_v4_1 | phy_cores=${4}
+| tc12-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc13-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc14-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc15-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc16-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc17-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc18-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc19-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc20-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc21-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc22-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc23-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc24-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc25-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc26-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc27-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc28-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc29-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc30-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc31-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
+| tc32-64B-1c-eth-l2patch-mrr
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1}
+
