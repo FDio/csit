@@ -128,6 +128,7 @@
       # 1807
     vpp-compare-testbeds:
       # TODO: Add Data sources
+      # HSW
       csit-vpp-perf-1801-all:
       - 124  # sel
       - 127  # sel
@@ -142,6 +143,7 @@
       - 167  # sel
       - 172  # sel acl only
       # TODO: Add Data sources
+      # SKX
       csit-vpp-perf-1804-all:
       - 21  # sel
       - 22  # sel
@@ -177,9 +179,11 @@
       - 21  # mrr - sel
       - 22  # mrr - sel
       # TODO: Add Data sources
-      # 1807
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
     vpp-perf-results-3n-hsw:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -187,6 +191,7 @@
       - 49  # full
     vpp-perf-results-3n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -194,25 +199,27 @@
       - 49  # full
     vpp-perf-results-2n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-2n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
       - 25  # full
       - 49  # full
     vpp-mrr-results-3n-hsw:
-      # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
+      # TODO: Replace with full
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
     vpp-mrr-results-3n-skx:
-      # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
+      # TODO: Replace with full
+      csit-vpp-perf-verify-1807-3n-skx:
+      - 21  # MRR sel
     vpp-mrr-results-2n-skx:
-      # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 5   # mrr - full
+      # TODO: Replace with full
+      csit-vpp-perf-verify-1807-2n-skx:
+      - 22  # MRR sel
     plot-throughput-speedup-analysis-3n-hsw:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -230,6 +237,7 @@
       - 35  # sel
     plot-throughput-speedup-analysis-3n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -247,23 +255,13 @@
       - 35  # sel
     plot-throughput-speedup-analysis-2n-skx:
       # TODO: Add Data sources
-      csit-vpp-perf-1804-all:
-      - 19  # full
-      - 20  # full
-      - 25  # full
-      - 49  # full
-      - 21  # sel
-      - 22  # sel
-      - 23  # sel
-      - 24  # sel
-      - 27  # sel
-      - 28  # sel
-      - 29  # sel
-      - 30  # sel
-      - 31  # sel
-      - 35  # sel
+      csit-vpp-perf-verify-1807-2n-skx:
+      - 18  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
     plot-vpp-throughput-latency-3n-hsw:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-hsw:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -281,6 +279,7 @@
       - 35  # sel
     plot-vpp-throughput-latency-3n-skx:
       # TODO: Add Data sources
+      # csit-vpp-perf-verify-1807-3n-skx:
       csit-vpp-perf-1804-all:
       - 19  # full
       - 20  # full
@@ -297,22 +296,10 @@
       - 31  # sel
       - 35  # sel
     plot-vpp-throughput-latency-2n-skx:
-      # TODO: Add Data sources
-      csit-vpp-perf-1804-all:
-      - 19  # full
-      - 20  # full
-      - 25  # full
-      - 49  # full
-      - 21  # sel
-      - 22  # sel
-      - 23  # sel
-      - 24  # sel
-      - 27  # sel
-      - 28  # sel
-      - 29  # sel
-      - 30  # sel
-      - 31  # sel
-      - 35  # sel
+      csit-vpp-perf-verify-1807-2n-skx:
+      - 18  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
     plot-vpp-http-server-performance:
       # TODO: Add Data sources
       csit-vpp-perf-1804-all:
@@ -734,12 +721,18 @@
     - 47  # wrk
     - 48  # wrk
     # TODO: Add Data sources
-#    csit-vpp-perf-verify-1807-3n-hsw:
-#    -
-#    csit-vpp-perf-verify-1807-3n-skx:
-#    -
-#    csit-vpp-perf-verify-1807-2n-skx:
-#    -
+    csit-vpp-perf-verify-1807-3n-hsw:
+    - 9   # MRR sel
+    # TODO: Add Data sources
+    csit-vpp-perf-verify-1807-3n-skx:
+    - 21  # MRR sel
+    # TODO: Add Data sources
+    csit-vpp-perf-verify-1807-2n-skx:
+    - 17  # MRR sel
+    - 18  # NDRPDR sel
+    - 19  # NDRPDR sel
+    - 20  # NDRPDR sel
+    - 22  # MRR sel
     csit-vpp-perf-check-1801:
     - 3   # mrr
     - 4   # mrr
@@ -843,8 +836,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -1216,17 +1209,8 @@
     title: "rls1807"
     data:
       # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 6   # mrr - sel
-      - 13  # mrr - sel
-      - 14  # mrr - sel
-      - 15  # mrr - sel
-      - 16  # mrr - sel
-      - 17  # mrr - sel
-      - 19  # mrr - sel
-      - 20  # mrr - sel
-      - 21  # mrr - sel
-      - 22  # mrr - sel
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1273,17 +1257,8 @@
     title: "rls1807"
     data:
       # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 6   # mrr - sel
-      - 13  # mrr - sel
-      - 14  # mrr - sel
-      - 15  # mrr - sel
-      - 16  # mrr - sel
-      - 17  # mrr - sel
-      - 19  # mrr - sel
-      - 20  # mrr - sel
-      - 21  # mrr - sel
-      - 22  # mrr - sel
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1330,17 +1305,8 @@
     title: "rls1807"
     data:
       # TODO: Add Data sources
-      csit-vpp-perf-check-1804:
-      - 6   # mrr - sel
-      - 13  # mrr - sel
-      - 14  # mrr - sel
-      - 15  # mrr - sel
-      - 16  # mrr - sel
-      - 17  # mrr - sel
-      - 19  # mrr - sel
-      - 20  # mrr - sel
-      - 21  # mrr - sel
-      - 22  # mrr - sel
+      csit-vpp-perf-verify-1807-3n-hsw:
+      - 9   # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T4C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"

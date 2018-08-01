@@ -22,7 +22,7 @@ file systems.
 :abbr:`LXC (Linux Containers)` combine kernel's cgroups and support for isolated
 namespaces to provide an isolated environment for applications. Docker
 does use LXC as one of its execution drivers, enabling image management
-and providing deployment services. More information in [lxc]_, [lxc-namespace]_
+and providing deployment services. More information in [lxc]_, [lxcnamespace]_
 and [stgraber]_.
 
 Linux containers can be of two kinds: privileged containers and
@@ -41,7 +41,7 @@ user gets root in a container. With unprivileged containers, non-root
 users can create containers and will appear in the container as the
 root, but will appear as userid <non-zero> on the host. Unprivileged
 containers are also better suited to supporting multi-tenancy operating
-environments. More information in [lxc-security]_ and [stgraber]_.
+environments. More information in [lxcsecurity]_ and [stgraber]_.
 
 Privileged Containers
 ~~~~~~~~~~~~~~~~~~~~~
@@ -68,7 +68,7 @@ list of applicable security control mechanisms:
 - Seccomp - secure computing mode, enables filtering of system calls,
   [seccomp]_.
 
-More information in [lxc-security]_ and [lxc-sec-features]_.
+More information in [lxcsecurity]_ and [lxcsecfeatures]_.
 
 **Linux Containers in CSIT**
 
@@ -90,7 +90,7 @@ orchestration system:
 2. Build - building a container image from scratch or another
    container image via :command:`docker build <dockerfile/composefile>` or
    customizing LXC templates in
-   `https://github.com/lxc/lxc/tree/master/templates`_
+   `GitHub <https://github.com/lxc/lxc/tree/master/templates>`_.
 
 3. (Re-)Create - creating a running instance of a container application
    from anew, or re-creating one that failed. A.k.a. (re-)deploy via
@@ -118,7 +118,7 @@ LXC
 ~~~
 
 LXC is the well-known and heavily tested low-level Linux container
-runtime [lxc-source]_, that provides a userspace interface for the Linux kernel
+runtime [lxcsource]_, that provides a userspace interface for the Linux kernel
 containment features. With a powerful API and simple tools, LXC enables
 Linux users to easily create and manage system or application
 containers. LXC uses following kernel features to contain processes:
@@ -166,7 +166,7 @@ containerized applications used in CSIT performance tests.
 Kubernetes
 ~~~~~~~~~~
 
-Kubernetes [k8s-doc]_, or K8s, is a production-grade container orchestration
+Kubernetes [k8sdoc]_, or K8s, is a production-grade container orchestration
 platform for automating the deployment, scaling and operating
 application containers. Kubernetes groups containers that make up an
 application into logical units, pods, for easy management and discovery.
@@ -181,7 +181,7 @@ Ligato
 
 Ligato [ligato]_ is an open-source project developing a set of cloud-native
 tools for orchestrating container networking. Ligato integrates with FD.io VPP
-using goVPP [govpp]_ and vpp-agent [vpp-agent]_.
+using goVPP [govpp]_ and vpp-agent [vppagent]_.
 
 **Known Issues**
 
@@ -376,7 +376,7 @@ Usage example:
   | | Append To List | ${container_groups} | ${group}
 
 Mandatory parameters to create standalone container are: ``node``, ``name``,
-``image`` [image-var]_, ``cpu_count``, ``cpu_skip``, ``cpuset_mems``,
+``image`` [imagevar]_, ``cpu_count``, ``cpu_skip``, ``cpuset_mems``,
 ``cpu_shared``.
 
 There is no parameters check functionality. Passing required arguments is in
@@ -526,20 +526,20 @@ References
 ~~~~~~~~~~
 
 .. [lxc] `Linux Containers <https://linuxcontainers.org/>`_
-.. [lxc-namespace] `Resource management: Linux kernel Namespaces and cgroups <https://www.cs.ucsb.edu/~rich/class/cs293b-cloud/papers/lxc-namespace.pdf>`_.
+.. [lxcnamespace] `Resource management: Linux kernel Namespaces and cgroups <https://www.cs.ucsb.edu/~rich/class/cs293b-cloud/papers/lxc-namespace.pdf>`_.
 .. [stgraber] `LXC 1.0: Blog post series <https://stgraber.org/2013/12/20/lxc-1-0-blog-post-series/>`_.
-.. [lxc-security] `Linux Containers Security <https://linuxcontainers.org/lxc/security/>`_.
-.. [capabilities] `Linux manual - capabilities - overview of Linux capabilities http://man7.org/linux/man-pages/man7/capabilities.7.html`_.
+.. [lxcsecurity] `Linux Containers Security <https://linuxcontainers.org/lxc/security/>`_.
+.. [capabilities] `Linux manual - capabilities - overview of Linux capabilities <http://man7.org/linux/man-pages/man7/capabilities.7.html>`_.
 .. [cgroup1] `Linux kernel documentation: cgroups <https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt>`_.
 .. [cgroup2] `Linux kernel documentation: Control Group v2 <https://www.kernel.org/doc/Documentation/cgroup-v2.txt>`_.
 .. [selinux] `SELinux Project Wiki <http://selinuxproject.org/page/Main_Page>`_.
-.. [lxc-sec-features] `LXC 1.0: Security features <https://stgraber.org/2014/01/01/lxc-1-0-security-features/>`_.
-.. [lxc-source] `Linux Containers source <https://github.com/lxc/lxc>`_.
+.. [lxcsecfeatures] `LXC 1.0: Security features <https://stgraber.org/2014/01/01/lxc-1-0-security-features/>`_.
+.. [lxcsource] `Linux Containers source <https://github.com/lxc/lxc>`_.
 .. [apparmor] `Ubuntu AppArmor <https://wiki.ubuntu.com/AppArmor>`_.
 .. [seccomp] `SECure COMPuting with filters <https://www.kernel.org/doc/Documentation/prctl/seccomp_filter.txt>`_.
 .. [docker] `Docker <https://www.docker.com/what-docker>`_.
-.. [k8s-doc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.
+.. [k8sdoc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.
 .. [ligato] `Ligato <https://github.com/ligato>`_.
 .. [govpp] `FD.io goVPP project <https://wiki.fd.io/view/GoVPP>`_.
-.. [vpp-agent] `Ligato vpp-agent <https://github.com/ligato/vpp-agent>`_.
-.. [image-var] Image parameter is required in initial commit version. There is plan to implement container build class to build Docker/LXC image.
+.. [vppagent] `Ligato vpp-agent <https://github.com/ligato/vpp-agent>`_.
+.. [imagevar] Image parameter is required in initial commit version. There is plan to implement container build class to build Docker/LXC image.
