@@ -2,7 +2,7 @@ Testpmd
 =======
 
 This section includes summary graphs of Testpmd Phy-to-Phy packet
-latency with L2 Ethernet Interface Loop measured at 50% of discovered
+latency with L2 Ethernet Interface Loop measured at 100% of discovered
 NDR throughput rate. Latency is reported for Testpmd running in multiple
 configurations of Testpmd pmd thread(s), a.k.a. Testpmd data plane
 thread(s), and their physical CPU core(s) placement.

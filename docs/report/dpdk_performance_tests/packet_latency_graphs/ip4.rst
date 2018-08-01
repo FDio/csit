@@ -2,7 +2,7 @@ L3fwd
 =====
 
 This section includes summary graphs of L3FWD Phy-to-Phy performance with packet
-routed forwarding measured at 50% of discovered NDR throughput rate. Latency is
+routed forwarding measured at 100% of discovered NDR throughput rate. Latency is
 reported for L3FWD running in multiple configurations of L3FWD pmd thread(s),
 a.k.a. L3FWD data plane thread(s), and their physical CPU core(s) placement.
 

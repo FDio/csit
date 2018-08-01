@@ -2,7 +2,7 @@ IPv6 Routing
 ============
 
 This section includes summary graphs of VPP Phy-to-Phy packet latency
-with IPv6 Routed-Forwarding measured at 50% of discovered NDR throughput
+with IPv6 Routed-Forwarding measured at 100% of discovered NDR throughput
 rate. Latency is reported for VPP running in multiple configurations of
 VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
