@@ -142,6 +142,30 @@
       "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6c03f4a_db9879de",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-01T08:29:30Z",
+      "side": 1,
+      "message": "\u003e Well, that depends of what is easier for us to maintain and for\n \u003e users to remeber.\n\nCurrently each group of tags joined by AND is one selection. Groups are threted as separate and means another query, negatives is applied on all of them.\n\n \u003e In my (somewhat arbitrary) example I have grouped ip4 and ip6\n \u003e together, which is almost never done as they use different input\n \u003e nodes. But something like \"l2bdbasic OR l2xcbasic OR l2patchbasic\"\n \u003e would be more common.\n\nThis can be done now by current syntax. The problem comes only when doing something like i want to have 2of4 nic only. So i need to copy my selection 2 times per each nic. Still you can use * or ? in tags. I am not sure more advanced syntax will help.\n\n \u003e I think using only few independent tags and letting users compose\n \u003e their own expression would be simpler than maintaining tags such as\n \u003e L2_NO_VHOST_NO_MEMIF. Or do you have a friendlier example of \"more\n \u003e specific tags\"?\n\nI still see some gaps in TAGs specially when describing complex configuration. E.g: vxlan only with vxlan id 10 or main problem we have is word \"base\" as its not clear if it is base feature or base as term of quantity as opposed to scale (this was why it is there) or base as base config. So i am talking maybe more proper naming tags rather then invent complex L2_NO_VHOST_NO_MEMIF. I thing \"base\" problem can save lot of complexity. E.g. is it base when we have single mac address configured but have multiple vhost/containers?\nThis is where we need additional work rather create full boolean algebra and coding it.\n\n \u003e Of course, coding and debugging brackets-aware processing would\n \u003e take considerable time, but it might be worth it for maintenance\n \u003e and user-friendliness.\n\nExactly. Lets keep it simple and rather as per above fix the tagging theorem.",
+      "parentUuid": "de390d1a_78a066a5",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "b968545ee15533414f6d1d57d4f54b68d7cdaddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
