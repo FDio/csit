@@ -75,11 +75,7 @@ def plot_performance_box(plot, input_data):
                 if y_vals.get(test["parent"], None) is None:
                     y_vals[test["parent"]] = list()
                 try:
-                    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-                    if test["type"] in ("NDR", "PDR"):
-                        y_vals[test["parent"]].\
-                            append(test["throughput"]["value"])
-                    elif test["type"] in ("NDRPDR", ):
+                    if test["type"] in ("NDRPDR", ):
                         if "-pdr" in plot_title.lower():
                             y_vals[test["parent"]].\
                                 append(test["throughput"]["PDR"]["LOWER"])
@@ -170,21 +166,7 @@ def plot_latency_box(plot, input_data):
                         list()   # direction2, max
                     ]
                 try:
-                    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-                    if test["type"] in ("NDR", "PDR"):
-                        y_tmp_vals[test["parent"]][0].append(
-                            test["latency"]["direction1"]["50"]["min"])
-                        y_tmp_vals[test["parent"]][1].append(
-                            test["latency"]["direction1"]["50"]["avg"])
-                        y_tmp_vals[test["parent"]][2].append(
-                            test["latency"]["direction1"]["50"]["max"])
-                        y_tmp_vals[test["parent"]][3].append(
-                            test["latency"]["direction2"]["50"]["min"])
-                        y_tmp_vals[test["parent"]][4].append(
-                            test["latency"]["direction2"]["50"]["avg"])
-                        y_tmp_vals[test["parent"]][5].append(
-                            test["latency"]["direction2"]["50"]["max"])
-                    elif test["type"] in ("NDRPDR", ):
+                    if test["type"] in ("NDRPDR", ):
                         if "-pdr" in plot_title.lower():
                             ttype = "PDR"
                         elif "-ndr" in plot_title.lower():
@@ -298,18 +280,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
                                                   "2": list(),
                                                   "4": list()}
                 try:
-                    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-                    if test["type"] in ("NDR", "PDR"):
-                        if "1T1C" in test["tags"]:
-                            throughput[test["parent"]]["1"].\
-                                append(test["throughput"]["value"])
-                        elif "2T2C" in test["tags"]:
-                            throughput[test["parent"]]["2"]. \
-                                append(test["throughput"]["value"])
-                        elif "4T4C" in test["tags"]:
-                            throughput[test["parent"]]["4"]. \
-                                append(test["throughput"]["value"])
-                    elif test["type"] in ("NDRPDR", ):
+                    if test["type"] in ("NDRPDR", ):
                         if "-pdr" in plot_title.lower():
                             ttype = "PDR"
                         elif "-ndr" in plot_title.lower():
