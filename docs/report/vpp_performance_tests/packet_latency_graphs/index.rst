@@ -5,14 +5,14 @@ Plotted results are generated from a single execution of CSIT NDR discovery
 test. Box plots are used to show the Minimum, Median and Maximum packet
 latency per test.
 
-*Title of each graph* is a regex (regular expression) matching all
-throughput test cases plotted on this graph, *X-axis labels* are indices
-of individual test suites executed by
-FD.io test executor vpp performance jobs that created result output file
-used as data source for the graph, *Y-axis labels* are measured packet Latency
-[uSec] values, and the *Graph legend* lists the plotted test suites and their
-indices. Latency is reported for concurrent symmetric bi-directional flows,
-separately for each direction: i) West-to-East:
+*Title of each graph* describes the packet path, testbed topology, processor
+architecture, packet size, number of cores and threads used by workers and
+DUT configuration, *X-axis labels* are indices of individual test suites
+executed by FD.io test executor vpp performance jobs that created result output
+file used as data source for the graph, *Y-axis labels* are measured packet
+Latency [uSec] values, and the *Graph legend* lists the plotted test suites and
+their indices. Latency is reported for concurrent symmetric bi-directional
+flows, separately for each direction: i) West-to-East:
 TGint1-to-SUT1-to-SUT2-to-TGint2, and ii) East-to-West:
 TGint2-to-SUT2-to-SUT1-to-TGint1.
 
