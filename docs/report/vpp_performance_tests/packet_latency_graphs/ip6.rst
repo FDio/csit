@@ -528,56 +528,6 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
 
-78b-2t1c-features
------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip6-2n-skx-x710-78b-2t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-skx-x710-78b-2t1c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-x710-78b-2t1c-features-ndr-lat}
-            \label{fig:ip6-2n-skx-x710-78b-2t1c-features-ndr-lat}
-    \end{figure}
-
-78b-4t2c-features
------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip6-2n-skx-x710-78b-4t2c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-skx-x710-78b-4t2c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-x710-78b-4t2c-features-ndr-lat}
-            \label{fig:ip6-2n-skx-x710-78b-4t2c-features-ndr-lat}
-    \end{figure}
-
 2n-skx-xxv710
 ~~~~~~~~~~~~~
 
@@ -629,54 +579,4 @@ CSIT source code for the test cases used for plots can be found in
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat}
             \label{fig:ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat}
-    \end{figure}
-
-78b-2t1c-features
------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip6-2n-skx-xxv710-78b-2t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-skx-xxv710-78b-2t1c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-xxv710-78b-2t1c-features-ndr-lat}
-            \label{fig:ip6-2n-skx-xxv710-78b-2t1c-features-ndr-lat}
-    \end{figure}
-
-78b-4t2c-features
------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip6-2n-skx-xxv710-78b-4t2c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-skx-xxv710-78b-4t2c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-xxv710-78b-4t2c-features-ndr-lat}
-            \label{fig:ip6-2n-skx-xxv710-78b-4t2c-features-ndr-lat}
     \end{figure}
