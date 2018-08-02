@@ -287,13 +287,13 @@ def plot_throughput_speedup_analysis(plot, input_data):
                             ttype = "NDR"
                         else:
                             continue
-                        if "1T1C" in test["tags"]:
+                        if "1T1C" in test["tags"] or "2T1C" in test["tags"]:
                             throughput[test["parent"]]["1"].\
                                 append(test["throughput"][ttype]["LOWER"])
-                        elif "2T2C" in test["tags"]:
+                        elif "2T2C" in test["tags"] or "4T2C" in test["tags"]:
                             throughput[test["parent"]]["2"]. \
                                 append(test["throughput"][ttype]["LOWER"])
-                        elif "4T4C" in test["tags"]:
+                        elif "4T4C" in test["tags"] or "8T4C" in test["tags"]:
                             throughput[test["parent"]]["4"]. \
                                 append(test["throughput"][ttype]["LOWER"])
                 except (KeyError, TypeError):
