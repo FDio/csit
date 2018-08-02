@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.ssh
 | Library | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
@@ -586,8 +587,36 @@
 | | [Documentation] | Common test teardown for max-received-rate performance
 | | ... | tests.
 | | ...
+| | Return From Keyword If | ${has_failed}
+| | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Run Keyword If Test Passed | Return From Keyword
+| | ...
+| | Set Suite Variable | \${has_failed} | ${True}
+| | ...
+| | ${filename} = | Set Variable | cores.tar.lzo.lrz.xz
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${node} = | Set Variable | ${nodes['${dut}']}
+| | | Exec Cmd | ${node} | sudo dpkg -l
+| | | Exec Cmd | ${node} | rm -rf /tmp/cores*
+| | | Exec Cmd | ${node} | mkdir -p /tmp/cores
+| | | ${pid} = | Get Vpp Pid | ${node}
+| | | Exec Cmd | ${node} | df -h
+| | | Exec Cmd | ${node} | sudo vppctl sh mem
+| | | Exec Cmd | ${node} | cd /tmp/cores && sudo gcore ${pid}
+| | | ${command} = | Catenate | SEPARATOR=${SPACE}\|${SPACE}
+| | | ... | cd /tmp && tar c cores
+| | | ... | lzop -1
+| | | ... | lrzip -n -T -p 1 -w 5
+| | | ... | xz -9e > ${filename}
+| | | Exec Cmd | ${node} | ${command} | timeout=${3600}
+| | | Exec Cmd | ${node} | ls -l /tmp/cores/
+| | | Exec Cmd | ${node} | ls -l /tmp/cores.*
+| | | Exec Cmd | ${node} | df -h
+| | | Scp Node | ${node} | archive/${dut}_${filename} | /tmp/${filename}
+| | | ... | get=${True}
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
