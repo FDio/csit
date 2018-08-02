@@ -33,3 +33,4 @@ threaded VPP configurations relative to 1-core configurations.
     container_memif
     container_orchestrated
     ipsec
+    vts
