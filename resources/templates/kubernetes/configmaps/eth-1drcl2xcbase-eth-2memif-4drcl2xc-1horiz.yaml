@@ -14,6 +14,8 @@ data:
   sfc.conf: |
     sfc_controller_config_version: 1
     description: $$TEST_NAME$$
+    system_parameters:
+      mtu: 9000
     host_entities:
       - name: vswitch
     sfc_entities:
