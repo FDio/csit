@@ -824,8 +824,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -4209,111 +4209,6 @@
   output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Memif 3n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Throughput: memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: memif-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: memif-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
@@ -10382,55 +10277,6 @@
     title: ""  # No title
     layout: "plot-latency"
 
-# Packet Latency - VPP Container Memif 3n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Latency: memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  traces:
-    boxmean: False
-  layout:
-    title: ""  # No title
-    layout: "plot-latency"
-
 ################################################################################
 
 # Packet Latency - VPP Container Memif 3n-hsw-x520
@@ -13148,141 +12994,6 @@
     title: ""  # No title
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP Container Memif 3n-skx-xxv710
--
-  type: "plot"
-  title: "Speedup: memif-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: memif-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 2n-skx-x710
--
-  type: "plot"
-  title: "Speedup: memif-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: memif-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 2n-skx-xxv710
--
-  type: "plot"
-  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
 ################################################################################
 
 # Speedup - VPP Container k8s memif 3n-hsw-x520
@@ -13876,52 +13587,6 @@
     title: ""  # No title
     layout: "plot-throughput-speedup-analysis"
 
--
-  type: "plot"
-  title: "Speedup: ip4-2n-skx-x710-64b-features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-features-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4-2n-skx-x710-64b-features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-features-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
 # Speedup - VPP IPv4 2n-skx-xxv710
 -
   type: "plot"
@@ -13955,52 +13620,6 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4-2n-skx-xxv710-64b-features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-features-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4-2n-skx-xxv710-64b-features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-features-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -14188,147 +13807,6 @@
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-x710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-skx"
   filter: "'NIC_Intel-X710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP IPv4 Tunnels 3n-skx-xxv710
--
-  type: "plot"
-  title: "Speedup: ip4tun-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4tun-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP IPv4 Tunnels 2n-skx-x710
--
-  type: "plot"
-  title: "Speedup: ip4tun-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4tun-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP IPv4 Tunnels 2n-skx-xxv710
--
-  type: "plot"
-  title: "Speedup: ip4tun-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4tun-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
@@ -14819,54 +14297,6 @@
     title: ""  # No title
     layout: "plot-throughput-speedup-analysis"
 
--
-  type: "plot"
-  title: "Speedup: ip6-2n-skx-x710-78b-features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-features-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '78B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip6-2n-skx-x710-78b-features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-features-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '78B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
 # Speedup - VPP IPv6 2n-skx-xxv710
 -
   type: "plot"
@@ -14901,54 +14331,6 @@
   filter: "'NIC_Intel-XXV710' and
            '78B' and
            ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip6-2n-skx-xxv710-78b-features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-features-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '78B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip6-2n-skx-xxv710-78b-features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-features-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '78B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -15555,52 +14937,6 @@
     title: ""  # No title
     layout: "plot-throughput-speedup-analysis"
 
--
-  type: "plot"
-  title: "Speedup: l2sw-2n-skx-x710-64b-features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-features-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           not 'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: l2sw-2n-skx-x710-64b-features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-features-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           not 'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
 # Speedup - VPP L2 2n-skx-xxv710
 -
   type: "plot"
@@ -15634,52 +14970,6 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           not 'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: l2sw-2n-skx-xxv710-64b-features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-features-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
-           not 'VHOST' and
-           not 'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: l2sw-2n-skx-xxv710-64b-features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-features-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'FEATURE' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
            not 'VHOST' and
@@ -15950,6 +15240,45 @@
            not 'IP4FWD' and
            not 'DOT1Q' and
            not '2VM'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP vhost l2sw 3n-hsw-x520
+-
+  type: "plot"
+  title: "VPP Speedup: vts-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+  data: "plot-throughput-speedup-analysis-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           'VTS'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: ""  # No title
+    layout: "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "VPP Speedup: vts-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
+  data: "plot-throughput-speedup-analysis-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           'VTS'"
   parameters:
   - "throughput"
   - "parent"
