@@ -46,7 +46,7 @@
 | ... | CPUs. There are no memory constraints. DUT1 and DUT2 tested with
 | ... | 2p40GE NIC XL710 by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
-| ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
+| ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
 | ... | of packets transmitted. NDR and PDR are discovered for different
 | ... | Ethernet L2 frame sizes using MLRsearch library.
@@ -58,11 +58,11 @@
 
 *** Variables ***
 # XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_24.5G} | ${24500000000}
+| ${s_24.5G}= | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps} | ${18750000}
+| ${s_18.75Mpps}= | ${18750000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 # LXC container
 | ${container_count}= | ${1}
 | ${container_engine}= | LXC
@@ -97,7 +97,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize L2 Bridge Domain for '1' memif pairs in 3-node circular topology
+| | And Initialize L2 Bridge Domain with memif pairs
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
