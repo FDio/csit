@@ -94,10 +94,16 @@ CSIT 18.07
     :maxdepth: 2
     :caption: CSIT Framework Documentation
 
-    csit_framework_documentation/csit_design
-    csit_framework_documentation/csit_test_naming
-    csit_framework_documentation/pal_lld
-    csit_framework_documentation/csit_tag_description
+    .. only:: html
+
+        csit_framework_documentation/csit_design
+        csit_framework_documentation/csit_test_naming
+        csit_framework_documentation/pal_lld
+        csit_framework_documentation/csit_tag_description
+
+    .. only:: latex
+
+        csit_framework_documentation/index
 
 .. toctree::
     :maxdepth: 2
