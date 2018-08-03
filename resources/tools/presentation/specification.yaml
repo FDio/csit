@@ -152,6 +152,8 @@
       - 37  # NDRPDR sel
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
+      - 43  # NDRPDR sel
+      - 44  # NDRPDR sel
 
     vpp-compare-testbeds-mrr:
       # TODO: Add Data sources
@@ -254,6 +256,8 @@
       - 37  # NDRPDR sel
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
+      - 43  # NDRPDR sel
+      - 44  # NDRPDR sel
 
     plot-throughput-speedup-analysis-2n-skx:
       # TODO: Add Data sources
@@ -296,6 +300,8 @@
       - 37  # NDRPDR sel
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
+      - 43  # NDRPDR sel
+      - 44  # NDRPDR sel
 
     plot-vpp-throughput-latency-2n-skx:
       csit-vpp-perf-verify-1807-2n-skx:
@@ -738,6 +744,8 @@
     - 37  # NDRPDR sel
     - 38  # NDRPDR sel
     - 39  # NDRPDR sel
+    - 43  # NDRPDR sel
+    - 44  # NDRPDR sel
     # TODO: Add Data sources
     csit-vpp-perf-verify-1807-2n-skx:
     - 27  # MRR full
@@ -747,6 +755,10 @@
     - 38  # MRR sel
     - 41  # MRR sel
     - 43  # MRR sel
+    - 44  # MRR sel
+    - 45  # MRR sel
+    - 46  # MRR sel
+    - 47  # MRR sel
     - 32  # NDRPDR full
     - 26  # NDRPDR sel
     - 28  # NDRPDR sel
@@ -1142,6 +1154,8 @@
       - 37  # NDRPDR sel
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
+      - 43  # NDRPDR sel
+      - 44  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1183,6 +1197,8 @@
       - 37  # NDRPDR sel
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
+      - 43  # NDRPDR sel
+      - 44  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2727,7 +2743,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2753,7 +2769,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2779,7 +2795,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2805,7 +2821,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2832,7 +2848,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2859,7 +2875,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2886,7 +2902,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2913,7 +2929,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2940,7 +2956,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2966,7 +2982,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -2992,7 +3008,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3018,7 +3034,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3045,7 +3061,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3072,7 +3088,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3099,7 +3115,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3126,7 +3142,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3153,7 +3169,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3179,7 +3195,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3205,7 +3221,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3231,7 +3247,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3258,7 +3274,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3284,7 +3300,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3310,7 +3326,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3336,7 +3352,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3363,7 +3379,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3390,7 +3406,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3417,7 +3433,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3444,7 +3460,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3471,7 +3487,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3497,7 +3513,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3523,7 +3539,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3549,7 +3565,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3576,7 +3592,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3603,7 +3619,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3630,7 +3646,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3657,7 +3673,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3684,7 +3700,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3710,7 +3726,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3736,7 +3752,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3762,7 +3778,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3789,7 +3805,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3815,7 +3831,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3841,7 +3857,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3867,7 +3883,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -3896,7 +3912,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -3922,7 +3938,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -3948,7 +3964,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -3974,7 +3990,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4001,7 +4017,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4027,7 +4043,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4053,7 +4069,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4079,7 +4095,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4106,7 +4122,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4132,7 +4148,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4158,7 +4174,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4184,7 +4200,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4211,7 +4227,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4237,7 +4253,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
             'MEMIF'"
   parameters:
@@ -4263,7 +4279,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4289,7 +4305,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4318,7 +4334,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4344,7 +4360,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4370,7 +4386,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4396,7 +4412,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4423,7 +4439,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4449,7 +4465,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4475,7 +4491,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -4501,7 +4517,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7541,7 +7557,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7565,7 +7581,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7589,7 +7605,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7613,7 +7629,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7747,7 +7763,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7771,7 +7787,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7795,7 +7811,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7819,7 +7835,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7953,7 +7969,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -7977,7 +7993,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -8001,7 +8017,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -8025,7 +8041,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -8937,7 +8953,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -8961,7 +8977,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -8985,7 +9001,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9009,7 +9025,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9034,7 +9050,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9058,7 +9074,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9082,7 +9098,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9106,7 +9122,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9131,7 +9147,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9155,7 +9171,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9179,7 +9195,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9203,7 +9219,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9228,7 +9244,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9252,7 +9268,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9276,7 +9292,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9300,7 +9316,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9325,7 +9341,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9349,7 +9365,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9373,7 +9389,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9397,7 +9413,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9422,7 +9438,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9446,7 +9462,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9470,7 +9486,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9494,7 +9510,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9519,7 +9535,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9543,7 +9559,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9567,7 +9583,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9591,7 +9607,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -9625,7 +9641,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9649,7 +9665,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9674,7 +9690,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9699,7 +9715,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9724,7 +9740,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9748,7 +9764,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9773,7 +9789,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9798,7 +9814,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9823,7 +9839,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9847,7 +9863,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9872,7 +9888,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9896,7 +9912,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9921,7 +9937,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9946,7 +9962,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9971,7 +9987,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -9995,7 +10011,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -10020,7 +10036,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -10045,7 +10061,7 @@
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -10070,7 +10086,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -10094,7 +10110,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -10119,7 +10135,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -10143,7 +10159,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -10170,7 +10186,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10194,7 +10210,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10219,7 +10235,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10243,7 +10259,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10268,7 +10284,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10292,7 +10308,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10317,7 +10333,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10341,7 +10357,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10368,7 +10384,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10392,7 +10408,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10417,7 +10433,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -10441,7 +10457,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -11878,7 +11894,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -11900,7 +11916,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -11974,7 +11990,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -11996,7 +12012,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12070,7 +12086,7 @@
            'NDRPDR' and
            '1T1C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12092,7 +12108,7 @@
            'NDRPDR' and
            '2T2C' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12558,7 +12574,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12582,7 +12598,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12607,7 +12623,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12631,7 +12647,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12656,7 +12672,7 @@
            'BASE' and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12680,7 +12696,7 @@
            'BASE' and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12705,7 +12721,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12729,7 +12745,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12754,7 +12770,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12778,7 +12794,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12803,7 +12819,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12827,7 +12843,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12852,7 +12868,7 @@
            'BASE' and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12876,7 +12892,7 @@
            'BASE' and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "latency"
   - "parent"
@@ -12902,7 +12918,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -12924,7 +12940,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -12947,7 +12963,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -12969,7 +12985,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -12992,7 +13008,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -13014,7 +13030,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -13037,7 +13053,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -13059,7 +13075,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
             'MEMIF'"
   parameters:
@@ -13084,7 +13100,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -13106,7 +13122,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -13129,7 +13145,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -13151,7 +13167,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -14526,7 +14542,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14548,7 +14564,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14571,7 +14587,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14594,7 +14610,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14617,7 +14633,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14639,7 +14655,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14662,7 +14678,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14685,7 +14701,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14708,7 +14724,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14730,7 +14746,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14753,7 +14769,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14775,7 +14791,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14798,7 +14814,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14821,7 +14837,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14844,7 +14860,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14866,7 +14882,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14889,7 +14905,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14912,7 +14928,7 @@
            'FEATURE' and
            ('ACL10' or 'ACL50') and '10k_FLOWS' and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14935,7 +14951,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14957,7 +14973,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -14980,7 +14996,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -15002,7 +15018,7 @@
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
@@ -15027,7 +15043,7 @@
            '64B' and
            'NDRPDR' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -15047,7 +15063,7 @@
            '64B' and
            'NDRPDR' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -15115,7 +15131,7 @@
            '64B' and
            'NDRPDR' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -15135,7 +15151,7 @@
            '64B' and
            'NDRPDR' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -15203,7 +15219,7 @@
            '64B' and
            'NDRPDR' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
@@ -15223,7 +15239,7 @@
            '64B' and
            'NDRPDR' and
            'VHOST' and
-           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD')"
+           not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH')"
   parameters:
   - "throughput"
   - "parent"
