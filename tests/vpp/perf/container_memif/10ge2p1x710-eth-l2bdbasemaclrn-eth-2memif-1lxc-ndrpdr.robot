@@ -95,7 +95,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize L2 Bridge Domain for '1' memif pairs in 3-node circular topology
+| | And Initialize L2 Bridge Domain with memif pairs
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
