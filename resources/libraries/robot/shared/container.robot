@@ -108,9 +108,12 @@
 | | [Documentation] | Configure VPP on all container(s) in specific container
 | | ... | group on all DUT nodes.
 | | ...
+| | ${exists} | ${msg}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2_if2}
+| | ${dut2_if2}= | Set Variable If | "${exists}" == "FAIL" | ${EMPTY}
 | | Run Keyword | ${group}.Configure VPP In All Containers
 | | ... | chain_topology=${container_chain_topology}
-| | ... | dut1_if=${dut1_if2} | dut2_if=${dut2_if1}
+| | ... | dut1_if=${dut1_if2} | dut2_if=${dut2_if2}
 
 | Stop all '${group}' containers
 | | [Documentation] | Stop all container(s) in specific container group on all
