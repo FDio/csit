@@ -24,11 +24,12 @@ including CSIT framework is depicted in the figure below.
 
     .. raw:: latex
 
-       \begin{figure}[H]
-       \centering
-           \includesvg[width=0.90\textwidth]{../_tmp/src/csit_framework_documentation/csit_design_picture}
-           \label{fig:csit_design_picture}
-       \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/csit_framework_documentation/}}
+                \includegraphics[width=0.90\textwidth]{csit_design_picture}
+                \label{fig:csit_design_picture}
+        \end{figure}
 
 .. only:: html
 
