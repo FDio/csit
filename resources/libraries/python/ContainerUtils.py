@@ -326,15 +326,20 @@ class ContainerEngine(object):
         """Install VPP inside a container."""
         self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
         self.execute('apt-get update')
+        self.execute('ls -al {guest_dir}'.
+                     format(guest_dir=self.container.mnt[0].split(':')[1]))
         if self.container.install_dkms:
             self.execute(
                 'apt-get install -y dkms && '
-                'dpkg -i --force-all {guest_dir}/install_dir/*.deb'.
+                'dpkg -i --force-all '
+                '{guest_dir}/csit-testing/download_dir/*.deb'.
                 format(guest_dir=self.container.mnt[0].split(':')[1]))
         else:
             self.execute(
-                'for i in $(ls -I \"*dkms*\" {guest_dir}/install_dir/); do '
-                'dpkg -i --force-all {guest_dir}/install_dir/$i; done'.
+                'for i in $(ls -I \"*dkms*\" '
+                '{guest_dir}/csit-testing/download_dir/); do '
+                'dpkg -i --force-all '
+                '{guest_dir}/csit-testing/download_dir/$i; done'.
                 format(guest_dir=self.container.mnt[0].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')
@@ -686,7 +691,10 @@ class Docker(ContainerEngine):
             else:
                 return
 
-        cmd = 'docker pull {c.image}'.format(c=self.container)
+        image = self.container.image if self.container.image else\
+            "ubuntu:xenial-20180412"
+
+        cmd = 'docker pull {image}'.format(image=image)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
         if int(ret) != 0:
