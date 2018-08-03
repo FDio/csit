@@ -1357,7 +1357,7 @@
       - 42  # MRR sel
   data: "vpp-compare-testbeds-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710' and MRR" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  filter: "'NIC_Intel-X710' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
   parameters:
   - "name"
   - "parent"
