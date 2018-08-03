@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -148,11 +148,17 @@ def generate_html_report(release, spec, versions, report_version):
     logging.info("  Generating the html report, give me a few minutes, please "
                  "...")
 
+    working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
+
+    cmd = 'cd {working_dir} && mv -f index.html.template index.rst'.\
+        format(working_dir=working_dir)
+    execute_command(cmd)
+
     cmd = HTML_BUILDER.format(
         release=release,
         report_version=report_version,
         date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
-        working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
+        working_dir=working_dir,
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
     execute_command(cmd)
 
@@ -183,16 +189,23 @@ def generate_pdf_report(release, spec, versions, report_version):
     logging.info("  Generating the pdf report, give me a few minutes, please "
                  "...")
 
-    convert_plots = "xvfb-run -a wkhtmltopdf {html} {pdf}.pdf"
+    working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
+
+    cmd = 'cd {working_dir} && mv -f index.pdf.template index.rst'.\
+        format(working_dir=working_dir)
+    execute_command(cmd)
+
+    _convert_all_svg_to_pdf(spec.environment["paths"]["DIR[WORKING,SRC]"])
 
     # Convert PyPLOT graphs in HTML format to PDF.
+    convert_plots = "xvfb-run -a wkhtmltopdf {html} {pdf}"
     plots = get_files(spec.environment["paths"]["DIR[STATIC,VPP]"], "html")
     plots.extend(get_files(spec.environment["paths"]["DIR[STATIC,DPDK]"],
                            "html"))
     for plot in plots:
-        file_name = "{0}".format(plot.rsplit(".", 1)[0])
-        cmd = convert_plots.format(html=plot, pdf=file_name)
-        execute_command(cmd)
+        file_name = "{0}.pdf".format(plot.rsplit(".", 1)[0])
+        logging.info("Converting '{0}' to '{1}'".format(plot, file_name))
+        execute_command(convert_plots.format(html=plot, pdf=file_name))
 
     # Generate the LaTeX documentation
     build_dir = spec.environment["paths"]["DIR[BUILD,LATEX]"]
@@ -200,7 +213,7 @@ def generate_pdf_report(release, spec, versions, report_version):
         release=release,
         report_version=report_version,
         date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
-        working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
+        working_dir=working_dir,
         build_dir=build_dir)
     execute_command(cmd)
 
@@ -242,3 +255,19 @@ def archive_report(spec):
                  base_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
 
     logging.info("  Done.")
+
+
+def _convert_all_svg_to_pdf(path):
+    """Convert all svg files on path "path" to pdf.
+
+    :param path: Path to the root directory with svg files to convert.
+    :type path: str
+    """
+
+    cmd = "inkscape -D -z --file={svg} --export-pdf={pdf} --export-latex"
+
+    svg_files = get_files(path, "svg", full_path=True)
+    for svg_file in svg_files:
+        pdf_file = "{0}.pdf".format(svg_file.rsplit('.', 1)[0])
+        logging.info("Converting '{0}' to '{1}'".format(svg_file, pdf_file))
+        execute_command(cmd.format(svg=svg_file, pdf=pdf_file))
