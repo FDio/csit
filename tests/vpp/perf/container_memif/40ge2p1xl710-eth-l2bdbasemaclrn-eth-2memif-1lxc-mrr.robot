@@ -91,7 +91,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize L2 Bridge Domain for '1' memif pairs in 3-node circular topology
+| | And Initialize L2 Bridge Domain with memif pairs
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
