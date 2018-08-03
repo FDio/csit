@@ -42,9 +42,10 @@ Physical testbed topology is depicted in a figure below.
     .. raw:: latex
 
         \begin{figure}[H]
-        \centering
-            \includesvg[width=0.90\textwidth]{../_tmp/src/introduction/testbed-3n-hsw}
-            \label{fig:testbed-3n-hsw}
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-3n-hsw}
+                \label{fig:testbed-3n-hsw}
         \end{figure}
 
 .. only:: html
@@ -94,9 +95,10 @@ processors. Physical testbed topology is depicted in a figure below.
     .. raw:: latex
 
         \begin{figure}[H]
-        \centering
-            \includesvg[width=0.90\textwidth]{../_tmp/src/introduction/testbed-3n-skx}
-            \label{fig:testbed-3n-skx}
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-3n-skx}
+                \label{fig:testbed-3n-skx}
         \end{figure}
 
 .. only:: html
@@ -146,9 +148,10 @@ processors. Physical testbed topology is depicted in a figure below.
     .. raw:: latex
 
         \begin{figure}[H]
-        \centering
-            \includesvg[width=0.90\textwidth]{../_tmp/src/introduction/testbed-2n-skx}
-            \label{fig:testbed-2n-skx}
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-2n-skx}
+                \label{fig:testbed-2n-skx}
         \end{figure}
 
 .. only:: html
