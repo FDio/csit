@@ -90,14 +90,22 @@ CSIT 18.07
 
         test_operational_data/vpp_performance_operational_data/index
 
-.. toctree::
-    :maxdepth: 2
-    :caption: CSIT Framework Documentation
+.. only:: html
 
-    csit_framework_documentation/csit_design
-    csit_framework_documentation/csit_test_naming
-    csit_framework_documentation/pal_lld
-    csit_framework_documentation/csit_tag_description
+    .. toctree::
+        :maxdepth: 2
+        :caption: CSIT Framework Documentation
+
+        csit_framework_documentation/csit_design
+        csit_framework_documentation/csit_test_naming
+        csit_framework_documentation/pal_lld
+        csit_framework_documentation/csit_tag_description
+
+.. only:: latex
+
+    .. toctree::
+        
+        csit_framework_documentation/index
 
 .. toctree::
     :maxdepth: 2
