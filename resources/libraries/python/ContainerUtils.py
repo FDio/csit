@@ -689,7 +689,10 @@ class Docker(ContainerEngine):
             else:
                 return
 
-        cmd = 'docker pull {c.image}'.format(c=self.container)
+        image = self.container.image if self.container.image else\
+            "ubuntu:xenial-20180412"
+
+        cmd = 'docker pull {image}'.format(image=image)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
         if int(ret) != 0:
