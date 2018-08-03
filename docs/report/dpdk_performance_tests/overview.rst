@@ -28,9 +28,10 @@ testbeds are shown in figures below.
     .. raw:: latex
 
         \begin{figure}[H]
-        \centering
-            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-2n-nic2nic}
-            \label{fig:logical-2n-nic2nic}
+            \centering
+                \graphicspath{{../_tmp/src/vpp_performance_tests/}}
+                \includegraphics[width=0.90\textwidth]{logical-2n-nic2nic}
+                \label{fig:logical-2n-nic2nic}
         \end{figure}
 
 .. only:: html
@@ -45,9 +46,10 @@ testbeds are shown in figures below.
     .. raw:: latex
 
         \begin{figure}[H]
-        \centering
-            \includesvg[width=0.90\textwidth]{../_tmp/src/vpp_performance_tests/logical-3n-nic2nic}
-            \label{fig:logical-3n-nic2nic}
+            \centering
+                \graphicspath{{../_tmp/src/vpp_performance_tests/}}
+                \includegraphics[width=0.90\textwidth]{logical-3n-nic2nic}
+                \label{fig:logical-3n-nic2nic}
         \end{figure}
 
 .. only:: html
