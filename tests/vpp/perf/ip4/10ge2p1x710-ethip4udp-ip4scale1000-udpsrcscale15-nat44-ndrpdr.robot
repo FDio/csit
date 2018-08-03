@@ -78,6 +78,7 @@
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate} | ${10000}
 | | ...
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
