@@ -233,7 +233,10 @@ def table_performance_comparison(table, input_data):
                 tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
                     replace("-ndrpdr", "").replace("-pdrdisc", "").\
                     replace("-ndrdisc", "").replace("-pdr", "").\
-                    replace("-ndr", "")
+                    replace("-ndr", "").\
+                    replace("1t1c", "1c").replace("2t1c", "1c").\
+                    replace("2t2c", "2c").replace("4t2c", "2c").\
+                    replace("4t4c", "4c").replace("8t4c", "4c")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
                                             "-".join(tst_data["name"].
@@ -246,6 +249,9 @@ def table_performance_comparison(table, input_data):
                     if table["include-tests"] == "MRR":
                         tbl_dict[tst_name_mod]["ref-data"]. \
                             append(tst_data["result"]["receive-rate"].avg)
+                        logging.info("Name: {0}".format(tst_name_mod))
+                        logging.info("Name: {0}".format(name))
+                        logging.info("MRR:  {0}".format(tst_data["result"]["receive-rate"].avg))
                     elif table["include-tests"] == "PDR":
                         if tst_data["type"] == "PDR":
                             tbl_dict[tst_name_mod]["ref-data"]. \
@@ -271,12 +277,17 @@ def table_performance_comparison(table, input_data):
                 tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
                     replace("-ndrpdr", "").replace("-pdrdisc", ""). \
                     replace("-ndrdisc", "").replace("-pdr", ""). \
-                    replace("-ndr", "")
+                    replace("-ndr", "").\
+                    replace("1t1c", "1c").replace("2t1c", "1c").\
+                    replace("2t2c", "2c").replace("4t2c", "2c").\
+                    replace("4t4c", "4c").replace("8t4c", "4c")
                 try:
                     # TODO: Re-work when NDRPDRDISC tests are not used
                     if table["include-tests"] == "MRR":
                         tbl_dict[tst_name_mod]["cmp-data"]. \
                             append(tst_data["result"]["receive-rate"].avg)
+                        logging.info("Name: {0}".format(tst_name_mod))
+                        logging.info("MRR:  {0}".format(tst_data["result"]["receive-rate"].avg))
                     elif table["include-tests"] == "PDR":
                         if tst_data["type"] == "PDR":
                             tbl_dict[tst_name_mod]["cmp-data"]. \
@@ -293,9 +304,11 @@ def table_performance_comparison(table, input_data):
                                 tst_data["throughput"]["NDR"]["LOWER"])
                     else:
                         continue
-                except KeyError:
-                    pass
-                except TypeError:
+                except KeyError as err:
+                    logging.info("{0}".format(err))
+                except TypeError as err:
+                    logging.info("{0}".format(err))
+                    logging.info("pop: {0}".format(tst_name_mod))
                     tbl_dict.pop(tst_name_mod, None)
     if history:
         for item in history:
@@ -305,7 +318,10 @@ def table_performance_comparison(table, input_data):
                         tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
                             replace("-ndrpdr", "").replace("-pdrdisc", ""). \
                             replace("-ndrdisc", "").replace("-pdr", ""). \
-                            replace("-ndr", "")
+                            replace("-ndr", "").\
+                            replace("1t1c", "1c").replace("2t1c", "1c").\
+                            replace("2t2c", "2c").replace("4t2c", "2c").\
+                            replace("4t4c", "4c").replace("8t4c", "4c")
                         if tbl_dict.get(tst_name_mod, None) is None:
                             continue
                         if tbl_dict[tst_name_mod].get("history", None) is None:
