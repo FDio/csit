@@ -246,6 +246,9 @@ def table_performance_comparison(table, input_data):
                     if table["include-tests"] == "MRR":
                         tbl_dict[tst_name_mod]["ref-data"]. \
                             append(tst_data["result"]["receive-rate"].avg)
+                        logging.info("Name: {0}".format(tst_name_mod))
+                        logging.info("Name: {0}".format(name))
+                        logging.info("MRR:  {0}".format(tst_data["result"]["receive-rate"].avg))
                     elif table["include-tests"] == "PDR":
                         if tst_data["type"] == "PDR":
                             tbl_dict[tst_name_mod]["ref-data"]. \
@@ -277,6 +280,8 @@ def table_performance_comparison(table, input_data):
                     if table["include-tests"] == "MRR":
                         tbl_dict[tst_name_mod]["cmp-data"]. \
                             append(tst_data["result"]["receive-rate"].avg)
+                        logging.info("Name: {0}".format(tst_name_mod))
+                        logging.info("MRR:  {0}".format(tst_data["result"]["receive-rate"].avg))
                     elif table["include-tests"] == "PDR":
                         if tst_data["type"] == "PDR":
                             tbl_dict[tst_name_mod]["cmp-data"]. \
@@ -293,9 +298,11 @@ def table_performance_comparison(table, input_data):
                                 tst_data["throughput"]["NDR"]["LOWER"])
                     else:
                         continue
-                except KeyError:
-                    pass
-                except TypeError:
+                except KeyError as err:
+                    logging.info("{0}".format(err))
+                except TypeError as err:
+                    logging.info("{0}".format(err))
+                    logging.info("pop: {0}".format(tst_name_mod))
                     tbl_dict.pop(tst_name_mod, None)
     if history:
         for item in history:
