@@ -18,9 +18,7 @@ set -ex
 STREAM=$1
 OS=$2
 
-# Download the latest VPP and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
-VER="RELEASE"
 VPP_GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 NSH_ARTIFACTS="vpp-nsh-plugin"
@@ -37,6 +35,16 @@ elif [ "${OS}" == "centos7" ]; then
 fi
 
 REPO="fd.io.${STREAM}.${OS}"
+
+# Use vpp packages based on vpp-version file from hc2vpp project
+VER=`../vpp-version`
+if [ "${VER}" != 'RELEASE' ]; then
+    if [ "${OS}" == "centos7" ]; then
+        VER="${VER}.x86_64"
+    else
+        VER="${VER}_amd64"
+    fi
+fi
 
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in ${PACKAGE}; do
