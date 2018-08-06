@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "571df026_f0bd22d5",
+        "filename": "docs/report/detailed_test_results/dmm_functional_results/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-06T14:16:25Z",
+      "side": 1,
+      "message": "Give me the jenkins job and the build number which results will be presented here. I\u0027ll create the specification for automated generation.",
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6223306_28b0d625",
+        "filename": "docs/report/dmm_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-06T14:16:25Z",
+      "side": 1,
+      "message": "There is at least one TC added in 1807 (tests/dmm/func/SingleCliSer-func.robot)",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 10
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2941c064_f2801f87",
+        "filename": "docs/report/dmm_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-06T14:16:25Z",
+      "side": 1,
+      "message": "If you want to solve this issue create a Jira ticket and list it here.",
+      "range": {
+        "startLine": 19,
+        "startChar": 56,
+        "endLine": 19,
+        "endChar": 60
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d497dc1_abf04ea5",
+        "filename": "docs/report/dmm_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-06T14:16:25Z",
+      "side": 1,
+      "message": "Provide short description.",
+      "range": {
+        "startLine": 19,
+        "startChar": 67,
+        "endLine": 19,
+        "endChar": 71
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eede5c15_467cd3df",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-06T14:16:25Z",
+      "side": 1,
+      "message": "Include only those topologies which you really use. Make sure the information provided here is complete and correct.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 25
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
