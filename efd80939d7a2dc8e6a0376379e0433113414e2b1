@@ -22,6 +22,30 @@
       "revId": "efd80939d7a2dc8e6a0376379e0433113414e2b1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90363ab2_97ab8de6",
+        "filename": "docs/report/dmm_functional_tests/documentation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-06T14:10:15Z",
+      "side": 1,
+      "message": "I will prepare a section in src code doc for DMM. Then it will be automatically generated.",
+      "parentUuid": "b0444e0b_59ee9871",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 60
+      },
+      "revId": "efd80939d7a2dc8e6a0376379e0433113414e2b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
