@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3866783_4d8bb1aa",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-06T12:33:09Z",
+      "side": 1,
+      "message": "| | ${dut2_if2} \u003d | Get Variable Value | \\${dut2_if2} | ${EMPTY}\n\nhttp://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Get%20Variable%20Value",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 69
+      },
+      "revId": "ecdb5fdbe06550d94123005d3ba78cde26d29b4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
