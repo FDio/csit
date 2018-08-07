@@ -51,12 +51,6 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
-# Socket names
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
-| ${sock1}= | /tmp/sock-1-${bd_id1}
-| ${sock2}= | /tmp/sock-1-${bd_id2}
 # XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
 | ${s_24.5G}= | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
@@ -90,16 +84,10 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
-| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
-| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | When Initialize L2 bridge domains with Vhost-User | vm_count=${1}
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
