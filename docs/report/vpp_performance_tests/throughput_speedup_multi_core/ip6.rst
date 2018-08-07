@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 IPv6 Routing
 ============
 
@@ -44,6 +49,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: ip6-3n-hsw-x520-78b-base_and_scale-pdr`
 
 .. raw:: html
@@ -62,52 +71,9 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip6-3n-hsw-x520-78b-base_and_scale-pdr-tsa}
     \end{figure}
 
-78b-features
-------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-hsw-x520-78b-1t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-features-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
 .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-features-ndr-tsa}
-            \label{fig:ip6-3n-hsw-x520-78b-features-ndr-tsa}
-    \end{figure}
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-hsw-x520-78b-1t1c-features-pdr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-features-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-features-pdr-tsa}
-            \label{fig:ip6-3n-hsw-x520-78b-features-pdr-tsa}
-    \end{figure}
+    \clearpage
 
 3n-hsw-x710
 ~~~~~~~~~~~
@@ -141,6 +107,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: ip6-3n-hsw-x710-78b-base_and_scale-pdr`
 
 .. raw:: html
@@ -159,52 +129,9 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip6-3n-hsw-x710-78b-base_and_scale-pdr-tsa}
     \end{figure}
 
-78b-features
-------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-hsw-x710-78b-1t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x710-78b-features-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
 .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x710-78b-features-ndr-tsa}
-            \label{fig:ip6-3n-hsw-x710-78b-features-ndr-tsa}
-    \end{figure}
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-hsw-x710-78b-1t1c-features-pdr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x710-78b-features-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x710-78b-features-pdr-tsa}
-            \label{fig:ip6-3n-hsw-x710-78b-features-pdr-tsa}
-    \end{figure}
+    \clearpage
 
 3n-hsw-xl710
 ~~~~~~~~~~~~
@@ -238,6 +165,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: ip6-3n-hsw-xl710-78b-base_and_scale-pdr`
 
 .. raw:: html
@@ -255,6 +186,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-xl710-78b-base_and_scale-pdr-tsa}
             \label{fig:ip6-3n-hsw-xl710-78b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 78b-features
 ------------
@@ -285,6 +220,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: ip6-3n-hsw-xl710-78b-1t1c-features-pdr`
 
 .. raw:: html
@@ -303,6 +242,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip6-3n-hsw-xl710-78b-features-pdr-tsa}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 3n-skx-x710
 ~~~~~~~~~~~
 
@@ -313,12 +256,12 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
-:index:`Speedup: ip6-3n-skx-xl710-78b-base_and_scale-ndr`
+:index:`Speedup: ip6-3n-skx-x710-78b-base_and_scale-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xl710-78b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_scale-ndr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -327,20 +270,24 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xl710-78b-base_and_scale-ndr-tsa}
-            \label{fig:ip6-3n-skx-xl710-78b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-base_and_scale-ndr-tsa}
+            \label{fig:ip6-3n-skx-x710-78b-base_and_scale-ndr-tsa}
     \end{figure}
 
 .. raw:: html
 
     <center><b>
 
-:index:`Speedup: ip6-3n-skx-xl710-78b-base_and_scale-pdr`
+.. raw:: latex
+
+    \clearpage
+
+:index:`Speedup: ip6-3n-skx-x710-78b-base_and_scale-pdr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xl710-78b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_scale-pdr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -349,153 +296,13 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xl710-78b-base_and_scale-pdr-tsa}
-            \label{fig:ip6-3n-skx-xl710-78b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-base_and_scale-pdr-tsa}
+            \label{fig:ip6-3n-skx-x710-78b-base_and_scale-pdr-tsa}
     \end{figure}
-
-78b-features
-------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-skx-xl710-78b-1t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xl710-78b-features-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
 
 .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xl710-78b-features-ndr-tsa}
-            \label{fig:ip6-3n-skx-xl710-78b-features-ndr-tsa}
-    \end{figure}
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-skx-xl710-78b-1t1c-features-pdr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xl710-78b-features-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xl710-78b-features-pdr-tsa}
-            \label{fig:ip6-3n-skx-xl710-78b-features-pdr-tsa}
-    \end{figure}
-
-3n-skx-xxv710
-~~~~~~~~~~~~~
-
-78b-base_and_scale
-------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-skx-xxv710-78b-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-base_and_scale-ndr-tsa}
-            \label{fig:ip6-3n-skx-xxv710-78b-base_and_scale-ndr-tsa}
-    \end{figure}
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-skx-xxv710-78b-base_and_scale-pdr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-base_and_scale-pdr-tsa}
-            \label{fig:ip6-3n-skx-xxv710-78b-base_and_scale-pdr-tsa}
-    \end{figure}
-
-78b-features
-------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-skx-xxv710-78b-1t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-features-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-features-ndr-tsa}
-            \label{fig:ip6-3n-skx-xxv710-78b-features-ndr-tsa}
-    \end{figure}
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip6-3n-skx-xxv710-78b-1t1c-features-pdr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-features-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-features-pdr-tsa}
-            \label{fig:ip6-3n-skx-xxv710-78b-features-pdr-tsa}
-    \end{figure}
+    \clearpage
 
 2n-skx-x710
 ~~~~~~~~~~~
@@ -529,6 +336,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: ip6-2n-skx-x710-78b-base_and_scale-pdr`
 
 .. raw:: html
@@ -546,6 +357,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-x710-78b-base_and_scale-pdr-tsa}
             \label{fig:ip6-2n-skx-x710-78b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 2n-skx-xxv710
 ~~~~~~~~~~~~~
@@ -578,6 +393,10 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center><b>
+
+.. raw:: latex
+
+    \clearpage
 
 :index:`Speedup: ip6-2n-skx-xxv710-78b-base_and_scale-pdr`
 
