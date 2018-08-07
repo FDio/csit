@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 SRv6 Routing
 ============
 
@@ -43,6 +48,10 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center><b>
+
+.. raw:: latex
+
+    \clearpage
 
 :index:`Speedup: srv6-3n-hsw-x520-78b-1t1c-features-pdr`
 

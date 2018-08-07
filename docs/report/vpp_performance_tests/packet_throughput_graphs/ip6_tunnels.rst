@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 IPv6 Tunnels
 ============
 
@@ -42,6 +47,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Throughput: ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-pdr`
 
 .. raw:: html
@@ -59,6 +68,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-pdr}
             \label{fig:ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-pdr}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 78b-2t2c-base_and_scale
 -----------------------
@@ -88,6 +101,10 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center><b>
+
+.. raw:: latex
+
+    \clearpage
 
 :index:`Throughput: ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-pdr`
 
