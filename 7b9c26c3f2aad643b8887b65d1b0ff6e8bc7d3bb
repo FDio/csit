@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c286f5d4_bed58b3d",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T12:37:12Z",
+      "side": 0,
+      "message": "Does anyone remember why do we support this?\n\nI vaguely remember that ssh-ing to root account is very insecure, preferring \"sudo without password\" approach instead.",
+      "range": {
+        "startLine": 204,
+        "startChar": 38,
+        "endLine": 204,
+        "endChar": 44
+      },
+      "revId": "7b9c26c3f2aad643b8887b65d1b0ff6e8bc7d3bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
