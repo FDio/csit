@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12ff9094_e76b44f4",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T13:49:51Z",
+      "side": 1,
+      "message": "DMM",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "d224460985653ee0a47b5b94013b940cbfe15d97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1af13683_b115e3c1",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T13:49:51Z",
+      "side": 1,
+      "message": "DMM?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 3
+      },
+      "revId": "d224460985653ee0a47b5b94013b940cbfe15d97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a79b3bbc_850ef835",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T13:49:51Z",
+      "side": 1,
+      "message": "I see \"Running with topology double-ring-nested.xenial\" in console output [0] of a DMM test.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/dmm-csit-verify-func-master-ubuntu1604-virl/5/console.log.gz",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 8
+      },
+      "revId": "d224460985653ee0a47b5b94013b940cbfe15d97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47b716da_42ac81fc",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T13:49:51Z",
+      "side": 1,
+      "message": "Perhaps, but the DMM test is not using that. It is executing its own benchmark utility. See lines 113 and 115 here [1].\n\n[1] https://gerrit.fd.io/r/gitweb?p\u003dcsit.git;a\u003dblob;f\u003dtests/dmm/dmm_scripts/run_dmm.sh;h\u003df6fa3587e34a6721a0ad49362a5dadf87892a759;hb\u003drefs/heads/master",
+      "range": {
+        "startLine": 41,
+        "startChar": 60,
+        "endLine": 42,
+        "endChar": 11
+      },
+      "revId": "d224460985653ee0a47b5b94013b940cbfe15d97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
