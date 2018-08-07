@@ -56,7 +56,7 @@ A brief bottom-up description is provided here:
 
      - L1 KWs (KeyWords) are implemented as RF libraries and Python
        libraries;
-
+pal_func_diagram.pdf_tex
    - Performance TG L1 KWs:
 
      - All L1 KWs are implemented as Python libraries:

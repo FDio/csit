@@ -264,7 +264,7 @@ def _convert_all_svg_to_pdf(path):
     :type path: str
     """
 
-    cmd = "inkscape -D -z --file={svg} --export-pdf={pdf} --export-latex"
+    cmd = "inkscape -D -z --file={svg} --export-pdf={pdf}"
 
     svg_files = get_files(path, "svg", full_path=True)
     for svg_file in svg_files:

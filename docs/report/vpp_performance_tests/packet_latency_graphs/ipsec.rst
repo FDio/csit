@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 IPSec IPv4 Routing
 ==================
 
@@ -40,6 +45,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
             \label{fig:ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-2t2c-base_and_scale
 -----------------------
