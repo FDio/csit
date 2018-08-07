@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 L3fwd
 =====
 
@@ -37,6 +42,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-base
 -------------
 
@@ -61,6 +70,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat}
             \label{fig:l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-hsw-x710
 ~~~~~~~~~~~
@@ -90,6 +103,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-base
 -------------
 
@@ -114,6 +131,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat}
             \label{fig:l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-hsw-xl710
 ~~~~~~~~~~~~
@@ -143,6 +164,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-base
 -------------
 
@@ -167,6 +192,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat}
             \label{fig:l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-skx-x710
 ~~~~~~~~~~~
@@ -196,6 +225,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-4t2c-base
 -------------
 
@@ -220,6 +253,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat}
             \label{fig:l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-skx-xxv710
 ~~~~~~~~~~~~~
@@ -249,6 +286,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-4t2c-base
 -------------
 
@@ -273,6 +314,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat}
             \label{fig:l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 2n-skx-x710
 ~~~~~~~~~~~
@@ -302,6 +347,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-4t2c-base
 -------------
 
@@ -326,6 +375,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat}
             \label{fig:l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 2n-skx-xxv710
 ~~~~~~~~~~~~~
@@ -354,6 +407,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat}
             \label{fig:l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-4t2c-base
 -------------

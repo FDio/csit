@@ -133,64 +133,6 @@ CSIT source code for the test cases used for plots can be found in
 
     \clearpage
 
-3n-hsw-xl710
-~~~~~~~~~~~~
-
-64b-base_and_scale
-------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Speedup: ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
-            \label{fig:ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
-    \end{figure}
-
-.. raw:: html
-
-    <center><b>
-
-.. raw:: latex
-
-    \clearpage
-
-:index:`Speedup: ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
-            \label{fig:ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
 3n-skx-x710
 ~~~~~~~~~~~
 
