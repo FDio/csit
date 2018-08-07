@@ -1,52 +1,59 @@
 Overview
 ========
 
-Tested Virtual Topologies
--------------------------
+Virtual Topologies
+------------------
 
-CSIT NSH_SFC functional tests are executed on virtualized topologies created using
+CSIT VPP functional tests are executed on virtualized topologies created using
 :abbr:`VIRL (Virtual Internet Routing Lab)` simulation platform contributed by
 Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io project.
-Majority of the tests are executed in the three node logical test topology -
-Traffic Generator (TG) node and two Systems Under Test (SUT) nodes connected in
-a loop. Some tests use two node logical test topology - TG node and SUT1 node.
-Both logical test topologies are shown in the figures below.::
+Based on the packet path thru server SUTs, two distinct logical topology types
+are used for VPP DUT data plane testing:
 
-    +------------------------+           +------------------------+
-    |                        |           |                        |
-    |  +------------------+  |           |  +------------------+  |
-    |  |                  <----------------->                  |  |
-    |  |                  |  |           |  |                  |  |
-    |  |       DUT1       <----------------->       DUT2       |  |
-    |  +--^--^------------+  |           |  +------------^--^--+  |
-    |     |  |               |           |               |  |     |
-    |     |  |         SUT1  |           |  SUT2         |  |     |
-    +------------------------+           +------------------------+
-          |  |                                           |  |
-          |  |                                           |  |
-          |  |               +-----------+               |  |
-          |  +--------------->           <---------------+  |
-          |                  |    TG     |                  |
-          +------------------>           <------------------+
-                             +-----------+
+#. NIC-to-NIC switching topologies.
+#. VM service switching topologies.
 
-                       +------------------------+
-                       |                        |
-                       |  +------------------+  |
-          +--------------->                  <--------------+
-          |            |  |                  |  |           |
-          |  |------------>       DUT1       <-----------+  |
-          |  |         |  +------------------+  |        |  |
-          |  |         |                        |        |  |
-          |  |         |                  SUT1  |        |  |
-          |  |         +------------------------+        |  |
-          |  |                                           |  |
-          |  |                                           |  |
-          |  |               +-----------+               |  |
-          |  +--------------->           <---------------+  |
-          |                  |    TG     |                  |
-          +------------------>           <------------------+
-                             +-----------+
+NIC-to-NIC Switching
+~~~~~~~~~~~~~~~~~~~~
+
+The simplest logical topology for software data plane application like
+VPP is NIC-to-NIC switching. Tested topologies for 2-Node and 3-Node
+testbeds are shown in figures below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_performance_tests/}}
+                \includegraphics[width=0.90\textwidth]{logical-2n-nic2nic}
+                \label{fig:logical-2n-nic2nic}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: ../vpp_performance_tests/logical-2n-nic2nic.svg
+        :alt: logical-2n-nic2nic
+        :align: center
+
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_performance_tests/}}
+                \includegraphics[width=0.90\textwidth]{logical-3n-nic2nic}
+                \label{fig:logical-3n-nic2nic}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: ../vpp_performance_tests/logical-3n-nic2nic.svg
+        :alt: logical-3n-nic2nic
+        :align: center
 
 SUT1 and SUT2 are two VMs (Ubuntu or Centos, depending on the test suite), TG
 is a Traffic Generator (TG, another Ubuntu VM). SUTs run VPP SW application in
@@ -62,33 +69,48 @@ test execution, all nodes are reachable thru the Management network connected
 to every node via dedicated virtual NICs and virtual links (not shown above
 for clarity).
 
-For the test cases that require DUT (VPP) to communicate with VM over the
-vhost-user interfaces, a nested VM is created on SUT1 and/or SUT2 for the
-duration of these particular test cases only. DUT (VPP) test topology with VM
-is shown in the figure below including the applicable packet flow thru the VM
-(marked in the figure with ``***``).::
+VM Service Switching
+~~~~~~~~~~~~~~~~~~~~
 
-    +------------------------+           +------------------------+
-    |      +----------+      |           |      +----------+      |
-    |      |    VM    |      |           |      |    VM    |      |
-    |      |  ******  |      |           |      |  ******  |      |
-    |      +--^----^--+      |           |      +--^----^--+      |
-    |        *|    |*        |           |        *|    |*        |
-    |  +------v----v------+  |           |  +------v----v------+  |
-    |  |      *    *      |**|***********|**|      *    *      |  |
-    |  |  *****    *******<----------------->*******    *****  |  |
-    |  |  *    DUT1       |  |           |  |       DUT2    *  |  |
-    |  +--^---------------+  |           |  +---------------^--+  |
-    |    *|                  |           |                  |*    |
-    |    *|            SUT1  |           |  SUT2            |*    |
-    +------------------------+           +------------------^-----+
-         *|                                                 |*
-         *|                                                 |*
-         *|                  +-----------+                  |*
-         *|                  |           |                  |*
-         *+------------------>    TG     <------------------+*
-         ******************* |           |********************
-                             +-----------+
+VM service switching topology test cases require VPP DUT to communicate
+with Virtual Machines (VMs) over vhost-user virtual interfaces. A nested VM is
+created on SUT1 and/or SUT2 for the duration of these particular test cases
+only. DUT (VPP) test topology with VM is shown in the figure below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_performance_tests/}}
+                \includegraphics[width=0.90\textwidth]{logical-2n-vm-vhost}
+                \label{fig:logical-2n-vm-vhost}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: ../vpp_performance_tests/logical-2n-vm-vhost.svg
+        :alt: logical-2n-vm-vhost
+        :align: center
+
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_performance_tests/}}
+                \includegraphics[width=0.90\textwidth]{logical-3n-vm-vhost}
+                \label{fig:logical-3n-vm-vhost}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: ../vpp_performance_tests/logical-3n-vm-vhost.svg
+        :alt: logical-3n-vm-vhost
+        :align: center
 
 NSH_SFC Functional Tests Coverage
 ---------------------------------
@@ -97,22 +119,30 @@ Following NSH_SFC functional test areas are covered in the |csit-release| with
 results listed in this report:
 
 - **NSH SFC Classifier** - TG sends some TCP packets to test NSH SFC
-  Classifier functional. DUT1 will receive these packets from one NIC and loopback
-  the VXLAN-GPE-NSH encapsulated packets to the TG from other NIC.
+  Classifier functional. DUT1 will receive these packets from one NIC and
+  loopback the VXLAN-GPE-NSH encapsulated packets to the TG from other NIC.
+
   - Test case count: 7
+
 - **NSH SFC Proxy Inbound** - TG sends some VXLAN-GPE-NSH encapsulated packets
-  to test NSH SFC Proxy Inbound functional. DUT1 will receive these packets from one
-  NIC and loopback the VXLAN encapsulated packets to the TG from other NIC.
+  to test NSH SFC Proxy Inbound functional. DUT1 will receive these packets from
+  one NIC and loopback the VXLAN encapsulated packets to the TG from other NIC.
+
   - Test case count: 6
+
 - **NSH SFC Proxy Outbound** - TG sends some VXLAN encapsulated packets to test
-  NSH SFC Proxy Outbound functional. DUT1 will receive these packets from one NIC
-  and loopback the VXLAN-GPE-NSH encapsulated packets to the TG from other NIC.
+  NSH SFC Proxy Outbound functional. DUT1 will receive these packets from one
+  NIC and loopback the VXLAN-GPE-NSH encapsulated packets to the TG from other
+  NIC.
+
   - Test case count: 6
-- **NSH SFC Service Function Forward** - TG sends some VXLAN-GPE-NSH encapsulated
-  packets to test NSH SFC Service Function Forward functional. DUT1 will receive these
-  packets from one NIC and swap the VXLAN-GPE-NSH header, after that DUT1 loopback the
-  VXLAN-GPE-NSH encapsulated packtes to the TG from other NIC.
+
+- **NSH SFC Service Function Forward** - TG sends some VXLAN-GPE-NSH
+  encapsulated packets to test NSH SFC Service Function Forward functional. DUT1
+  will receive these packets from one NIC and swap the VXLAN-GPE-NSH header,
+  after that DUT1 loopback the VXLAN-GPE-NSH encapsulated packtes to the TG from
+  other NIC.
+
   - Test case count: 6
 
 Total 25 NSH SFC functional tests in the |csit-release|.
-
