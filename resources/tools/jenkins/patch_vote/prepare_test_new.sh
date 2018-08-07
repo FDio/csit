@@ -11,5 +11,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# TODO: Convert to use the code from cloned CSIT git, not from pip.
-jumpavg==0.1.3
+# Bash script fragment, to be sourced from main.sh
+
+set -exu -o pipefail
+
+cd $vpp_dir
+rm -rf build_parent
+mv build-root build_parent
+rm -f csit/*.deb
+cp build_new/*.deb csit/
+# Create symlinks so that if job fails on robot test, results can be archived.
+ln -s csit csit_new
