@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "bec3de6b_f313a926",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-07T14:59:25Z",
+      "side": 1,
+      "message": "any difference? apart that environemnt could be different. not sure need to test reliability in jenkins.",
+      "parentUuid": "99b4d93e_33fdf97d",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f72d40f6_85819e21",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
@@ -59,6 +83,30 @@
       "writtenOn": "2018-08-07T14:23:55Z",
       "side": 1,
       "message": "Do we want to also use -e and -u (except when activating virtualenv)?",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ffbc313_2e05ef50",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-07T14:59:25Z",
+      "side": 1,
+      "message": "Well yes, virtualenv is failing so i remove as set/unset during script is not very clean imo.",
+      "parentUuid": "f72d40f6_85819e21",
       "range": {
         "startLine": 15,
         "startChar": 4,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "3e39cd62_0c5bcca8",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-07T14:59:25Z",
+      "side": 1,
+      "message": "ok i will fix",
+      "parentUuid": "046e3158_ec479e84",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 1
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bb2cd43_74e286d3",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "a55d0081_43ff5b52",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-07T14:59:25Z",
+      "side": 1,
+      "message": "Hmm, intention was to have all pybot thing as close as possible for quick view.",
+      "parentUuid": "4bb2cd43_74e286d3",
+      "range": {
+        "startLine": 252,
+        "startChar": 57,
+        "endLine": 252,
+        "endChar": 64
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8a169f7_fb181516",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
@@ -128,6 +224,30 @@
       "writtenOn": "2018-08-07T14:23:55Z",
       "side": 1,
       "message": "Which script, reservation or bootstrap? We are cleaning at line 278, which is towards start of the bootstrap.",
+      "range": {
+        "startLine": 260,
+        "startChar": 14,
+        "endLine": 260,
+        "endChar": 29
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0120301_34c3cdd6",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-07T14:59:25Z",
+      "side": 1,
+      "message": "bootstrap. We want to leave TB clean and also to start clean.",
+      "parentUuid": "c8a169f7_fb181516",
       "range": {
         "startLine": 260,
         "startChar": 14,
