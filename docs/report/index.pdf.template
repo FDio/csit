@@ -10,4 +10,5 @@ CSIT 18.07
     vpp_functional_tests/index
     honeycomb_functional_tests/index
     nsh_sfc_functional_tests/index
+    dmm_functional_tests/index
     csit_framework_documentation/index
