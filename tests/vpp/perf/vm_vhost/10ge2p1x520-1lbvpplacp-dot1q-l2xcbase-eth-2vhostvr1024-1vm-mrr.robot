@@ -57,7 +57,6 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
 | ${overhead}= | ${4}
@@ -103,12 +102,12 @@
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite} | ${bond_mode}
 | | ... | ${lb_mode}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo}
+| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | And Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo}
+| | ... | DUT2 | ${sock1} | ${sock2} | DUT2_VM1 | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | And Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Traffic should pass with maximum rate
