@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 SRv6 Routing
 ============
 
@@ -14,7 +19,7 @@ CSIT source code for the test cases used for plots can be found in
 ~~~~~~~~~~~
 
 78b-1t1c-features
------------------------
+-----------------
 
 .. raw:: html
 
@@ -38,8 +43,12 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 78b-2t2c-features
------------------------
+-----------------
 
 .. raw:: html
 

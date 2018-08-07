@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 VTS
 ===
 
@@ -15,19 +20,19 @@ CSIT source code for the test cases used for plots can be found in
 3n-hsw-x520
 ~~~~~~~~~~~
 
-64b-base_and_scale
-------------------
+114b-base_and_scale
+-------------------
 
 .. raw:: html
 
     <center><b>
 
-:index:`Speedup: vts-3n-hsw-x520-64b-base_and_scale-ndr`
+:index:`Speedup: vts-3n-hsw-x520-114b-base_and_scale-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-base_and_scale-ndr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -36,20 +41,24 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
-            \label{fig:vts-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-base_and_scale-ndr-tsa}
+            \label{fig:vts-3n-hsw-x520-114b-base_and_scale-ndr-tsa}
     \end{figure}
 
 .. raw:: html
 
     <center><b>
 
-:index:`Speedup: vts-3n-hsw-x520-64b-base_and_scale-pdr`
+.. raw:: latex
+
+    \clearpage
+
+:index:`Speedup: vts-3n-hsw-x520-114b-base_and_scale-pdr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-base_and_scale-pdr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -58,6 +67,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
-            \label{fig:vts-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-base_and_scale-pdr-tsa}
+            \label{fig:vts-3n-hsw-x520-114b-base_and_scale-pdr-tsa}
     \end{figure}

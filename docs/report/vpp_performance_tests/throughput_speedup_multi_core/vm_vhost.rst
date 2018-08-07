@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 KVM VMs vhost-user
 ==================
 
@@ -44,6 +49,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr`
 
 .. raw:: html
@@ -61,6 +70,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
             \label{fig:vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-base_and_scale-ip4
 ----------------------
@@ -91,6 +104,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: vhost-ip4-3n-hsw-x520-64b-base_and_scale-pdr`
 
 .. raw:: html
@@ -108,6 +125,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
             \label{fig:vhost-ip4-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-hsw-x710
 ~~~~~~~~~~~
@@ -141,6 +162,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr`
 
 .. raw:: html
@@ -158,6 +183,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
             \label{fig:vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-base_and_scale-ip4
 ----------------------
@@ -188,6 +217,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: vhost-ip4-3n-hsw-x710-64b-base_and_scale-pdr`
 
 .. raw:: html
@@ -205,6 +238,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
             \label{fig:vhost-ip4-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-hsw-xl710
 ~~~~~~~~~~~~
@@ -238,6 +275,10 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
+.. raw:: latex
+
+    \clearpage
+
 :index:`Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr`
 
 .. raw:: html
@@ -256,8 +297,12 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-base_and_scale-ip4
----------------------------
+----------------------
 
 .. raw:: html
 
@@ -284,6 +329,10 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center><b>
+
+.. raw:: latex
+
+    \clearpage
 
 :index:`Speedup: vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr`
 

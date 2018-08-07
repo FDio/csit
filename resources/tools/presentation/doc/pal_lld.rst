@@ -42,9 +42,10 @@ sub-layers, bottom up:
     .. raw:: latex
 
         \begin{figure}[H]
-        \centering
-            \includesvg[width=0.90\textwidth]{../_tmp/src/csit_framework_documentation/pal_layers}
-            \label{fig:pal_layers}
+            \centering
+                \graphicspath{{../_tmp/src/csit_framework_documentation/}}
+                \includegraphics[width=0.90\textwidth]{pal_layers}
+                \label{fig:pal_layers}
         \end{figure}
 
 .. only:: html
@@ -1693,9 +1694,10 @@ PAL functional diagram
     .. raw:: latex
 
         \begin{figure}[H]
-        \centering
-            \includesvg[width=0.90\textwidth]{../_tmp/src/csit_framework_documentation/pal_func_diagram}
-            \label{fig:pal_func_diagram}
+            \centering
+                \graphicspath{{../_tmp/src/csit_framework_documentation/}}
+                \includegraphics[width=0.90\textwidth]{pal_func_diagram}
+                \label{fig:pal_func_diagram}
         \end{figure}
 
 .. only:: html
