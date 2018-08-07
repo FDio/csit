@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 HTTP/TCP Performance
 ====================
 
@@ -26,6 +31,10 @@ have the same value, only a horizontal line is plotted.
     CSIT source code for the test cases used for plots can be found in
     `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls1807>`_.
 
+.. raw:: latex
+
+    \clearpage
+
 Connections per second
 ----------------------
 
@@ -41,6 +50,10 @@ Connections per second
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{http-server-performance-cps}
             \label{fig:http-server-performance-cps}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 Requests per second
 -------------------

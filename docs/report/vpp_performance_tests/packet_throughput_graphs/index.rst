@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 Packet Throughput
 =================
 
