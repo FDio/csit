@@ -264,7 +264,7 @@ class SSH(object):
         chan.set_combine_stderr(True)
 
         buf = ''
-        while not buf.endswith((":~$ ", "~]$ ", "~]# ")):
+        while not buf.endswith((":~# ", ":~$ ", "~]$ ", "~]# ")):
             try:
                 chunk = chan.recv(self.__MAX_RECV_BUF)
                 if not chunk:
