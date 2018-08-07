@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d4bcd1b_efe510ee",
+        "filename": "bootstrap-verify-perf-DPDK.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T14:23:55Z",
+      "side": 1,
+      "message": "Is this still needed?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 8
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99b4d93e_33fdf97d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T14:23:55Z",
+      "side": 1,
+      "message": "#!/bin/env bash",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f72d40f6_85819e21",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T14:23:55Z",
+      "side": 1,
+      "message": "Do we want to also use -e and -u (except when activating virtualenv)?",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "046e3158_ec479e84",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T14:23:55Z",
+      "side": 1,
+      "message": "I find \"source\" more readable than just a dot.",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 1
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bb2cd43_74e286d3",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T14:23:55Z",
+      "side": 1,
+      "message": "We only need to do this just before line 363.\n\nThe tag processing in between should be very quick, but we could add some slow step there later.",
+      "range": {
+        "startLine": 252,
+        "startChar": 57,
+        "endLine": 252,
+        "endChar": 64
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8a169f7_fb181516",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T14:23:55Z",
+      "side": 1,
+      "message": "Which script, reservation or bootstrap? We are cleaning at line 278, which is towards start of the bootstrap.",
+      "range": {
+        "startLine": 260,
+        "startChar": 14,
+        "endLine": 260,
+        "endChar": 29
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
