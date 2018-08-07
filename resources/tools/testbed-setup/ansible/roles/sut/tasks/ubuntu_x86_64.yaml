@@ -88,3 +88,11 @@
     update_cache: True
   become: yes
   tags: install-java
+
+- name: Install Pixman (Qemu-dep)
+  apt:
+    name: 'libpixman-1-dev'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-pixman
