@@ -51,13 +51,6 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
-# Socket names
-| ${sock1}= | /tmp/sock-1
-| ${sock2}= | /tmp/sock-2
-# FIB tables
-| ${fib_table_1}= | 100
-| ${fib_table_2}= | 101
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
@@ -90,15 +83,10 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding with vhost in 3-node circular topology
-| | ... | ${sock1} | ${sock2}
-| | ${vm1}= | And Configure guest VM with dpdk-testpmd-mac connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${dut1_vif1_mac}
-| | ... | ${dut1_vif2_mac} | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Configure guest VM with dpdk-testpmd-mac connected via vhost-user
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
-| | ... | ${dut2_vif2_mac} | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | ... | vm_count=${1}
+| | And Configure guest VMs with dpdk-testpmd-mac connected via vhost-user
+| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
