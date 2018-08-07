@@ -56,12 +56,6 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 256
-# Socket names
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
-| ${sock1}= | /tmp/sock-1-${bd_id1}
-| ${sock2}= | /tmp/sock-1-${bd_id2}
 # X710 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
@@ -94,16 +88,10 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
-| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
-| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | When Initialize L2 bridge domains with Vhost-User | vm_count=${1}
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${256}
+| | ... | use_tuned_cfs=${False}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 

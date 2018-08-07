@@ -51,6 +51,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
 | | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | All VPP Interfaces Ready Wait | ${nodes}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
@@ -181,167 +182,137 @@
 | | Vpp Route Add | ${dut2} | 20.0.0.0 | 32 | 3.3.3.1 | ${dut2_if2}
 | | ... | count=${count}
 
-| Initialize IPv4 forwarding with vhost in 3-node circular topology
+| Initialize IPv4 forwarding with vhost in 2-node circular topology
 | | [Documentation]
-| | ... | Create vhost-user interfaces in VPP. Set UP state of all VPP
-| | ... | interfaces in path on nodes in 3-node circular topology. Create 2
-| | ... | FIB tables on each DUT with multipath routing. Assign pair of
-| | ... | Physical and Virtual interfaces on both nodes to each FIB table.
-| | ... | Setup IPv4 addresses with /30 prefix on DUT-TG links and /30 prefix
-| | ... | on DUT1-DUT2 link. Set routing on all DUT nodes in all FIB tables
-| | ... | with prefix /24 and next hop of neighbour IPv4 address. Setup
-| | ... | ARP on all VPP interfaces.
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on
+| | ... | VPP node. Set UP state of all VPP interfaces in path. Create
+| | ... | ${vm_count}+1 FIB tables on DUT with multipath routing. Assign each
+| | ... | Virtual interface to FIB table with Physical interface or Virtual
+| | ... | interface on both nodes. Setup IPv4 addresses with /30 prefix on
+| | ... | DUT-TG links. Set routing on DUT nodes in all FIB tables with prefix
+| | ... | /24 and next hop of neighbour IPv4 address. Setup ARP on all VPP
+| | ... | interfaces.
 | | ...
 | | ... | *Arguments:*
-| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
-| | ...
-| | ... | _NOTE:_ This KW uses following test case variables:
-| | ... | - ${dut1} - DUT1 node.
-| | ... | - ${dut2} - DUT2 node.
-| | ... | - ${dut1_if1} - DUT1 interface towards TG.
-| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
-| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
-| | ... | - ${dut2_if2} - DUT2 interface towards TG.
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| IPv4 forwarding with vhost initialized in a 3-node circular \
-| | ... | topology \| /tmp/sock1 \| /tmp/sock2 \|
-| | ...
-| | [Arguments] | ${sock1} | ${sock2}
-| | ...
-| | Set interfaces in path up
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2} | dut1_vhost_if1 | dut1_vhost_if2
-| | ${dut1_vif1}= | Set Variable | ${dut1_vhost_if1}
-| | ${dut1_vif2}= | Set Variable | ${dut1_vhost_if2}
-| | Set Interface State | ${dut1} | ${dut1_vif1} | up
-| | Set Interface State | ${dut1} | ${dut1_vif2} | up
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2} | dut2_vhost_if1 | dut2_vhost_if2
-| | ${dut2_vif1}= | Set Variable | ${dut2_vhost_if1}
-| | ${dut2_vif2}= | Set Variable | ${dut2_vhost_if2}
-| | Set Interface State | ${dut2} | ${dut2_vif1} | up
-| | Set Interface State | ${dut2} | ${dut2_vif2} | up
-| | Add Fib Table | ${dut1} | ${fib_table_1}
-| | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_1}
-| | ... | gateway=4.4.4.2 | interface=${dut1_vif1} | multipath=${TRUE}
-| | Add Fib Table | ${dut1} | ${fib_table_1}
-| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_1}
-| | ... | gateway=1.1.1.2 | interface=${dut1_if1} | multipath=${TRUE}
-| | Add Fib Table | ${dut1} | ${fib_table_2}
-| | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_2}
-| | ... | gateway=2.2.2.2 | interface=${dut1_if2} | multipath=${TRUE}
-| | Add Fib Table | ${dut1} | ${fib_table_2}
-| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_2}
-| | ... | gateway=5.5.5.2 | interface=${dut1_vif2} | multipath=${TRUE}
-| | Add Fib Table | ${dut2} | ${fib_table_1}
-| | And Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | vrf=${fib_table_1}
-| | ... | gateway=2.2.2.1 | interface=${dut2_if1} | multipath=${TRUE}
-| | Add Fib Table | ${dut2} | ${fib_table_1}
-| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=${fib_table_1}
-| | ... | gateway=4.4.4.1 | interface=${dut2_vif1} | multipath=${TRUE}
-| | Add Fib Table | ${dut2} | ${fib_table_2}
-| | And Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | vrf=${fib_table_2}
-| | ... | gateway=5.5.5.2 | interface=${dut2_vif2} | multipath=${TRUE}
-| | Add Fib Table | ${dut2} | ${fib_table_2}
-| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=${fib_table_2}
-| | ... | gateway=3.3.3.2 | interface=${dut2_if2} | multipath=${TRUE}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_vif1} | ${fib_table_1}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
-| | Assign Interface To Fib Table | ${dut1} | ${dut1_vif2} | ${fib_table_2}
-| | Assign Interface To Fib Table | ${dut2} | ${dut2_if1} | ${fib_table_1}
-| | Assign Interface To Fib Table | ${dut2} | ${dut2_vif1} | ${fib_table_1}
-| | Assign Interface To Fib Table | ${dut2} | ${dut2_if2} | ${fib_table_2}
-| | Assign Interface To Fib Table | ${dut2} | ${dut2_vif2} | ${fib_table_2}
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_vif1} | 4.4.4.1 | 30
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_vif2} | 5.5.5.1 | 30
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2 | 30
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2} | 3.3.3.1 | 30
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_vif1} | 4.4.4.1 | 30
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_vif2} | 5.5.5.1 | 30
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | ${dut1_vif1_idx}= | Get Interface SW Index | ${dut1} | ${dut1_vif1}
-| | ${dut1_vif2_idx}= | Get Interface SW Index | ${dut1} | ${dut1_vif2}
-| | ${dut2_vif1_idx}= | Get Interface SW Index | ${dut2} | ${dut2_vif1}
-| | ${dut2_vif2_idx}= | Get Interface SW Index | ${dut2} | ${dut2_vif2}
-| | ${dut1_vif1_mac}= | Get Vhost User Mac By Sw Index | ${dut1}
-| | ... | ${dut1_vif1_idx}
-| | ${dut1_vif2_mac}= | Get Vhost User Mac By Sw Index | ${dut1}
-| | ... | ${dut1_vif2_idx}
-| | ${dut2_vif1_mac}= | Get Vhost User Mac By Sw Index | ${dut2}
-| | ... | ${dut2_vif1_idx}
-| | ${dut2_vif2_mac}= | Get Vhost User Mac By Sw Index | ${dut2}
-| | ... | ${dut2_vif2_idx}
-| | Set Test Variable | ${dut1_vif1_mac}
-| | Set Test Variable | ${dut1_vif2_mac}
-| | Set Test Variable | ${dut2_vif1_mac}
-| | Set Test Variable | ${dut2_vif2_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_vif1} | 4.4.4.2 | 52:54:00:00:04:01
-| | Add arp on dut | ${dut1} | ${dut1_vif2} | 5.5.5.2 | 52:54:00:00:04:02
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | 3.3.3.2 | ${tg1_if2_mac}
-| | Add arp on dut | ${dut2} | ${dut2_vif1} | 4.4.4.2 | 52:54:00:00:04:01
-| | Add arp on dut | ${dut2} | ${dut2_vif2} | 5.5.5.2 | 52:54:00:00:04:02
-| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 4.4.4.2 | ${dut1_vif1}
-| | ... | vrf=${fib_table_1}
-| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
-| | ... | vrf=${fib_table_1}
-| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 2.2.2.2 | ${dut1_if2}
-| | ... | vrf=${fib_table_2}
-| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 5.5.5.2 | ${dut1_vif2}
-| | ... | vrf=${fib_table_2}
-| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 4.4.4.2 | ${dut2_vif1}
-| | ... | vrf=${fib_table_1}
-| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 2.2.2.1 | ${dut2_if1}
-| | ... | vrf=${fib_table_1}
-| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 3.3.3.2 | ${dut2_if2}
-| | ... | vrf=${fib_table_2}
-| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 5.5.5.2 | ${dut2_vif2}
-| | ... | vrf=${fib_table_2}
-
-| Initialize IPv4 forwarding with vhost for '${nr}' VMs in 3-node circular topology
-| | [Documentation]
-| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on all
-| | ... | VPP nodes. Set UP state of all VPP interfaces in path. Create ${nr}+1
-| | ... | FIB tables on each DUT with multipath routing. Assign each Virtual
-| | ... | interface to FIB table with Physical interface or Virtual interface on
-| | ... | both nodes. Setup IPv4 addresses with /30 prefix on DUT-TG links and
-| | ... | /30 prefix on DUT1-DUT2 link. Set routing on all DUT nodes in all FIB
-| | ... | tables with prefix /24 and next hop of neighbour IPv4 address. Setup
-| | ... | ARP on all VPP interfaces.
-| | ...
-| | ... | *Arguments:*
-| | ... | _None_
+| | ... | - vm_count - Number of guest VMs. Type: integer
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
 | | ... | - /tmp/sock-${VM_ID}-1
 | | ... | - /tmp/sock-${VM_ID}-2
 | | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| IPv4 forwarding with Vhost-User for '2' VMs initialized in \
-| | ... | a 3-node circular topology \|
+| | ... | \| IPv4 forwarding with Vhost-User initialized in a 2-node circular\
+| | ... | topology \| 1 \|
+| | ...
+| | [Arguments] | ${vm_count}=${1}
 | | ...
 | | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
-| | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nr}
+| | ${fib_table_2}= | Evaluate | ${fib_table_1}+${vm_count}
+| | Add Fib Table | ${dut1} | ${fib_table_1}
+| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_1}
+| | ... | gateway=1.1.1.2 | interface=${dut1_if1} | multipath=${TRUE}
+| | Add Fib Table | ${dut1} | ${fib_table_2}
+| | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_2}
+| | ... | gateway=2.2.2.2 | interface=${dut1_if2} | multipath=${TRUE}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 2.2.2.2 | ${dut1_if2}
+| | ... | vrf=${fib_table_2}
+| | ${ip_base_start}= | Set Variable | ${4}
+| | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
+| | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
+| | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| | | ${fib_table_1}= | Evaluate | ${100}+${number}
+| | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
+| | | ${ip_base_vif1}= | Evaluate | ${ip_base_start}+(${number}-1)*2
+| | | ${ip_base_vif2}= | Evaluate | ${ip_base_vif1}+1
+| | | ${ip_net_vif1}= | Set Variable
+| | | ... | ${ip_base_vif1}.${ip_base_vif1}.${ip_base_vif1}
+| | | ${ip_net_vif2}= | Set Variable
+| | | ... | ${ip_base_vif2}.${ip_base_vif2}.${ip_base_vif2}
+| | | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
+| | | ... | dut1-vhost-${number}-if2
+| | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
+| | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
+| | | Add Fib Table | ${dut1} | ${fib_table_1}
+| | | And Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | vrf=${fib_table_1}
+| | | ... | gateway=${ip_net_vif1}.1 | interface=${dut1-vhost-${number}-if1}
+| | | ... | multipath=${TRUE}
+| | | Add Fib Table | ${dut1} | ${fib_table_2}
+| | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_2}
+| | | ... | gateway=${ip_net_vif2}.2 | interface=${dut1-vhost-${number}-if2}
+| | | ... | multipath=${TRUE}
+| | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | ... | ${fib_table_1}
+| | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | ... | ${fib_table_2}
+| | | Configure IP addresses on interfaces
+| | | ... | ${dut1} | ${dut1-vhost-${number}-if1} | ${ip_net_vif1}.1 | 30
+| | | ... | ${dut1} | ${dut1-vhost-${number}-if2} | ${ip_net_vif2}.1 | 30
+| | | ${dut1_vif1_idx}= | Get Interface SW Index | ${dut1}
+| | | ... | ${dut1-vhost-${number}-if1}
+| | | ${dut1_vif2_idx}= | Get Interface SW Index | ${dut1}
+| | | ... | ${dut1-vhost-${number}-if2}
+| | | ${dut1_vif1_mac}= | Get Vhost User Mac By Sw Index | ${dut1}
+| | | ... | ${dut1_vif1_idx}
+| | | ${dut1_vif2_mac}= | Get Vhost User Mac By Sw Index | ${dut1}
+| | | ... | ${dut1_vif2_idx}
+| | | Set Test Variable | ${dut1-vhost-${number}-if1_mac}
+| | | ... | ${dut1_vif1_mac}
+| | | Set Test Variable | ${dut1-vhost-${number}-if2_mac}
+| | | ... | ${dut1_vif2_mac}
+| | | ${qemu_id}= | Set Variable If | ${number} < 10 | 0${number}
+| | | ... | ${number}
+| | | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
+| | | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
+| | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | ${ip_net_vif1}.2
+| | | ... | ${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
+| | | ... | ${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+
+| Initialize IPv4 forwarding with vhost in 3-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on all
+| | ... | VPP nodes. Set UP state of all VPP interfaces in path. Create
+| | ... | ${vm_count}+1 FIB tables on each DUT with multipath routing. Assign
+| | ... | each Virtual interface to FIB table with Physical interface or Virtual
+| | ... | interface on both nodes. Setup IPv4 addresses with /30 prefix on
+| | ... | DUT-TG links and /30 prefix on DUT1-DUT2 link. Set routing on all DUT
+| | ... | nodes in all FIB tables with prefix /24 and next hop of neighbour IPv4
+| | ... | address. Setup ARP on all VPP interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - vm_count - Number of guest VMs. Type: integer
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for VM are defined in following format:
+| | ... | - /tmp/sock-${VM_ID}-1
+| | ... | - /tmp/sock-${VM_ID}-2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv4 forwarding with Vhost-User initialized in a 3-node circular\
+| | ... | topology \| 1 \|
+| | ...
+| | [Arguments] | ${vm_count}=${1}
+| | ...
+| | Set interfaces in path up
+| | ${fib_table_1}= | Set Variable | ${101}
+| | ${fib_table_2}= | Evaluate | ${fib_table_1}+${vm_count}
 | | Add Fib Table | ${dut1} | ${fib_table_1}
 | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=${fib_table_1}
 | | ... | gateway=1.1.1.2 | interface=${dut1_if1} | multipath=${TRUE}
@@ -379,7 +350,7 @@
 | | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 3.3.3.2 | ${dut2_if2}
 | | ... | vrf=${fib_table_2}
 | | ${ip_base_start}= | Set Variable | ${4}
-| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
@@ -849,47 +820,15 @@
 | | ... | 172.16.0.2 | 172.16.0.1
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
 
-| Initialize L2 xconnect with Vhost-User in 3-node circular topology
+| Initialize L2 xconnect with Vhost-User on node
 | | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Cross
-| | ... | connect each Vhost interface with one physical interface.
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on
+| | ... | defined VPP node. Add each Vhost-User interface into L2 cross-connect
+| | ... | with with physical inteface or Vhost-User interface of another VM.
 | | ...
 | | ... | *Arguments:*
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
-| | ...
-| | ... | _NOTE:_ This KW uses following test case variables:
-| | ... | - ${dut1} - DUT1 node.
-| | ... | - ${dut2} - DUT2 node.
-| | ... | - ${dut1_if1} - DUT1 interface towards TG.
-| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
-| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
-| | ... | - ${dut2_if2} - DUT2 interface towards TG.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| L2 xconnect with Vhost-User initialized in a 3-node \
-| | ... | circular topology \| /tmp/sock1 \| /tmp/sock2 \|
-| | ...
-| | [Arguments] | ${sock1} | ${sock2}
-| | ...
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2} | dut1_vhost_if1 | dut1_vhost_if2
-| | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1_vhost_if1}
-| | Configure L2XC | ${dut1} | ${dut1_if2} | ${dut1_vhost_if2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2} | dut2_vhost_if1 | dut2_vhost_if2
-| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_vhost_if1}
-| | Configure L2XC | ${dut2} | ${dut2_if2} | ${dut2_vhost_if2}
-
-| Initialize L2 xconnect with Vhost-User for '${nr}' in 3-node circular topology
-| | [Documentation]
-| | ... | Create pairs of Vhost-User interfaces on all defined VPP nodes. Cross
-| | ... | connect each Vhost interface with one physical interface or virtual
-| | ... | interface to create a chain accross DUT node.
-| | ...
-| | ... | *Arguments:*
-| | ... | _None_
+| | ... | - dut - DUT node. Type: string
+| | ... | - vm_count - VM count. Type: integer
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -898,31 +837,44 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| L2 xconnect with Vhost-User for '2' initialized in a 3-node \
-| | ... | circular topology \|
+| | ... | \| Initialize L2 xconnect with Vhost-User on node \| DUT1 \| 1 \|
 | | ...
-| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | [Arguments] | ${dut} | ${vm_count}=${1}
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | | | ${prev_index}= | Evaluate | ${number}-1
-| | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
-| | | ... | dut1-vhost-${number}-if2
-| | | ${dut1_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut1_if1}
-| | | ... | ${dut1-vhost-${prev_index}-if2}
-| | | Configure L2XC | ${dut1} | ${dut1_xconnect_if1}
-| | | ... | ${dut1-vhost-${number}-if1}
-| | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | | ... | ${sock1} | ${sock2} | dut2-vhost-${number}-if1
-| | | ... | dut2-vhost-${number}-if2
-| | | ${dut2_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut2_if1}
-| | | ... | ${dut2-vhost-${prev_index}-if2}
-| | | Configure L2XC | ${dut2} | ${dut2_xconnect_if1}
-| | | ... | ${dut2-vhost-${number}-if1}
-| | | Run Keyword If | ${number}==${nr} | Configure L2XC
-| | | ... | ${dut1} | ${dut1-vhost-${number}-if2} | ${dut1_if2}
-| | | Run Keyword If | ${number}==${nr} | Configure L2XC
-| | | ... | ${dut2} | ${dut2-vhost-${number}-if2} | ${dut2_if2}
+| | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
+| | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
+| | | ... | ${dut}-vhost-${number}-if2
+| | | ${dut_xconnect_if1}= | Set Variable If | ${number}==1 | ${${dut}_if1}
+| | | ... | ${${dut}-vhost-${prev_index}-if2}
+| | | Configure L2XC | ${nodes['${dut}']} | ${dut_xconnect_if1}
+| | | ... | ${${dut}-vhost-${number}-if1}
+| | | Run Keyword If | ${number}==${vm_count} | Configure L2XC
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${number}-if2} | ${${dut}_if2}
+| | All VPP Interfaces Ready Wait | ${nodes}
+
+| Initialize L2 xconnect with Vhost-User
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on
+| | ... | all VPP nodes. Add each Vhost-User interface into L2 cross-connect
+| | ... | with with physical inteface or Vhost-User interface of another VM.
+| | ...
+| | ... | *Arguments:*
+| | ... | - vm_count - VM count. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 xconnect with Vhost-User \| 1 \|
+| | ...
+| | [Arguments] | ${vm_count}=${1}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Initialize L2 xconnect with Vhost-User on node | ${dut}
+| | | ... | vm_count=${vm_count}
 
 | Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | [Documentation]
@@ -1386,55 +1338,16 @@
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | Configure MACIP ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
-| Initialize L2 bridge domains with Vhost-User in 3-node circular topology
+| Initialize L2 bridge domains with Vhost-User on node
 | | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
-| | ... | Vhost-User interface into L2 bridge domains with learning enabled
-| | ... | with physical inteface.
-| | ...
-| | ... | *Arguments:*
-| | ... | - bd_id1 - Bridge domain ID. Type: integer
-| | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - sock1 - Sock path for the first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for the second Vhost-User interface. Type: string
-| | ...
-| | ... | _NOTE:_ This KW uses following test case variables:
-| | ... | - ${dut1} - DUT1 node.
-| | ... | - ${dut2} - DUT2 node.
-| | ... | - ${dut1_if1} - DUT1 interface towards TG.
-| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
-| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
-| | ... | - ${dut2_if2} - DUT2 interface towards TG.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| L2 bridge domains with Vhost-User initialized in a 3-node \
-| | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
-| | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
-| | ...
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2} | dut1_vhost_if1 | dut1_vhost_if2
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${dut1_vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_vhost_if2} | ${bd_id2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2} | dut2_vhost_if1 | dut2_vhost_if2
-| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${dut2_vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_vhost_if2} | ${bd_id2}
-
-| Initialize L2 bridge domains with Vhost-User for '${nr}' VMs in 3-node circular topology
-| | [Documentation]
-| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on all
-| | ... | defined VPP nodes. Add each Vhost-User interface into L2 bridge
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on
+| | ... | defined VPP node. Add each Vhost-User interface into L2 bridge
 | | ... | domains with learning enabled with physical inteface or Vhost-User
 | | ... | interface of another VM.
 | | ...
 | | ... | *Arguments:*
-| | ... | _None_
+| | ... | - dut - DUT node. Type: string
+| | ... | - vm_count - VM count. Type: integer
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -1443,32 +1356,49 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| L2 bridge domains with Vhost-User for '2' VMs initialized in \
-| | ... | a 3-node circular topology \|
+| | ... | \| Initialize L2 bridge domains with Vhost-User on node \| DUT1 \
+| | ... | \| 1 \|
 | | ...
-| | ${bd_id2}= | Evaluate | ${nr}+1
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${1}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${1}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
-| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | [Arguments] | ${dut} | ${vm_count}=${1}
+| | ...
+| | ${bd_id2}= | Evaluate | ${vm_count}+1
+| | Add interface to bridge domain | ${nodes['${dut}']}
+| | ... | ${${dut}_if1} | ${1}
+| | Add interface to bridge domain | ${nodes['${dut}']}
+| | ... | ${${dut}_if2} | ${bd_id2}
+| | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
-| | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
-| | | ... | dut1-vhost-${number}-if2
+| | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
+| | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
+| | | ... | ${dut}-vhost-${number}-if2
 | | | ${bd_id2}= | Evaluate | ${number}+1
-| | | Add interface to bridge domain | ${dut1}
-| | | ... | ${dut1-vhost-${number}-if1} | ${number}
-| | | Add interface to bridge domain | ${dut1}
-| | | ... | ${dut1-vhost-${number}-if2} | ${bd_id2}
-| | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | | ... | ${sock1} | ${sock2} | dut2-vhost-${number}-if1
-| | | ... | dut2-vhost-${number}-if2
-| | | Add interface to bridge domain | ${dut2}
-| | | ... | ${dut2-vhost-${number}-if1} | ${number}
-| | | Add interface to bridge domain | ${dut2}
-| | | ... | ${dut2-vhost-${number}-if2} | ${bd_id2}
+| | | Add interface to bridge domain | ${nodes['${dut}']}
+| | | ... | ${${dut}-vhost-${number}-if1} | ${number}
+| | | Add interface to bridge domain | ${nodes['${dut}']}
+| | | ... | ${${dut}-vhost-${number}-if2} | ${bd_id2}
+| | All VPP Interfaces Ready Wait | ${nodes}
+
+| Initialize L2 bridge domains with Vhost-User
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on all
+| | ... | defined VPP nodes. Add each Vhost-User interface into L2 bridge
+| | ... | domains with learning enabled with physical inteface or Vhost-User
+| | ... | interface of another VM.
+| | ...
+| | ... | *Arguments:*
+| | ... | - vm_count - VM count. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domains with Vhost-User \| 1 \|
+| | ...
+| | [Arguments] | ${vm_count}=${1}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Initialize L2 bridge domains with Vhost-User on node | ${dut}
+| | | ... | vm_count=${vm_count}
 
 | Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -1608,32 +1538,6 @@
 | | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${dut2_bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${dut1_bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${dut1_bd_id2}
-
-| Initialize L2 bridge domains with Vhost-User in 2-node circular topology
-| | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
-| | ... | Vhost-User interface into L2 bridge domains with learning enabled
-| | ... | with physical inteface.
-| | ...
-| | ... | *Arguments:*
-| | ... | - bd_id1 - Bridge domain ID. Type: integer
-| | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| L2 bridge domains with Vhost-User initialized in a 2-node \
-| | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
-| | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
-| | ...
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 
 | Initialize L2 bridge domains with VLAN dot1q sub-interfaces in a 3-node circular topology
 | | [Documentation]
@@ -1877,445 +1781,348 @@
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | [Documentation]
-| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
-| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
-| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
-| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is io.
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting\
+| | ... | DPDK testpmd.
 | | ...
 | | ... | *Arguments:*
-| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
+| | ... | - dut - DUT node to start guest VM on. Type: dictionary
 | | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface.
+| | ... | Type: string
 | | ... | - vm_name - QemuUtil instance name. Type: string
-| | ... | - skip - Number of cpus which will be skipped. Type: integer
-| | ... | - count - Number of cpus which will be allocated for qemu.
-| | ... | Type: integer
-| | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
-| | ... | Type: integer
-| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT
+| | ... | node. Type: integer
+| | ... | - jumbo - Set True if jumbo frames are used in the test.
 | | ... | Type: bool
-| | ... | - use_tuned_cfs - FIXME.
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: bool
+| | ...
+| | ... | *Note:*
+| | ... | KW uses test variables \${rxq_count_int}, \${thr_count_int} and
+| | ... | \${cpu_count_int} set by "Add worker threads and rxqueues to all DUTs"
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure guest VM with dpdk-testpmd connected via vhost-user \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${6} \
-| | ... | \| ${5} \|
 | | ... | \| Configure guest VM with dpdk-testpmd connected via vhost-user \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock-2-1 \| /tmp/sock-2-2 \| DUT1_VM2 \
 | | ... | \| qemu_id=${2} \|
 | | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5} | ${qemu_id}=${1} | ${jumbo_frames}=${False}
+| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${qemu_id}=${1}
+| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${use_tuned_cfs}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
 | | ${serial_port}= | Evaluate | ${qemu_id} + ${4555}
 | | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
 | | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
 | | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
-| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${skip_cnt}= | Evaluate | ${skip} + (${qemu_id} - 1) * ${count}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
+| | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']}
+| | ... | ${${dut}_if1} | ${${dut}_if2}
+# Compute CPU placement for VM based on expected DUT placement.
+| | ${os_cpus}= | Set Variable | ${1}
+| | ${dut_main_cpus}= | Set Variable | ${1}
+| | ${dut_wk_cpus}= | Set Variable | ${cpu_count_int}
+| | ${vm_cpus}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus}
+| | ${skip_dut}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus} + ${os_cpus}
+| | ${skip_cpu}= | Evaluate | ${skip_dut} + (${qemu_id} - ${1}) * ${vm_cpus}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${nodes['${dut}']}
+| | ... | ${dut_numa} | skip_cnt=${skip_cpu} | cpu_cnt=${vm_cpus}
+| | ... | smt_used=${smt_used}
+| | ${vm_thrs}= | Get Length | ${qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Queue Count | ${rxq_count_int}
+| | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | ... | jumbo_frames=${jumbo_frames}
+| | ... | jumbo_frames=${jumbo}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ... | jumbo_frames=${jumbo_frames}
-| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${TRUE}
+| | ... | jumbo_frames=${jumbo}
+| | ${apply_patch}= | Set Variable | ${False}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
-| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | apply_patch=${apply_patch}
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${nodes['${dut}']}
+| | ... | apply_patch=${False}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${vm_thrs} | ${vm_thrs} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
-| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
-| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
-| | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9000 | ${EMPTY}
+| | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
+| | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
+| | ... | cpu_cnt=${testpmd_cpus}
+| | Dpdk Testpmd Start | ${vm} | eal_corelist=${testpmd_cpus}
+| | ... | eal_mem_channels=4 | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
+| | ... | pmd_rxd=${perf_qemu_qsz} | pmd_txd=${perf_qemu_qsz}
+| | ... | pmd_rxq=${rxq_count_int} | pmd_txq=${rxq_count_int}
 | | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
-| Configure '${nr}' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| Configure guest VMs with dpdk-testpmd connected via vhost-user on node
 | | [Documentation]
-| | ... | Start QEMU guests with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd for defined number of VMs on all defined VPP nodes.
+| | ... | Start ${vm_count} QEMU guests with two vhost-user interfaces and\
+| | ... | interconnecting DPDK testpmd for defined number of VMs on all defined\
+| | ... | VPP nodes.
 | | ...
 | | ... | *Arguments:*
-| | ... | _None_
-| | ...
-| | ... | _NOTE:_ This KW expects following test case variables to be set:
-| | ... | - ${system_cpus} - Number of CPUs allocated for OS itself.
-| | ... | - ${vpp_cpus} - Number of CPUs allocated for VPP.
-| | ... | - ${vm_cpus} - Number of CPUs to be allocated per QEMU instance.
-| | ... | - ${jumbo_frames} - Jumbo frames are used (True) or are not used
-| | ... | (False) in the test.
+| | ... | - dut - DUT node to start guest VM on. Type: dictionary
+| | ... | - vm_count - Number of guest VMs. Type: int
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure '2' guest VMs with dpdk-testpmd connected via vhost-user\
-| | ... | in 3-node circular topology \|
+| | ... | \| Configure guest VMs with dpdk-testpmd connected via \
+| | ... | vhost-user on node \| DUT1 \| 1 \| False \| 256 \|
 | | ...
-| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | [Arguments] | ${dut} | ${vm_count}=${1} | ${jumbo}=${False} |
+| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
-| | | ${skip_cpus}= | Evaluate | ${vpp_cpus}+${system_cpus}
-| | | ${vm1}= | Configure guest VM with dpdk-testpmd connected via vhost-user
-| | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM${number}
-| | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
-| | | ... | jumbo_frames=${jumbo_frames}
-| | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
-| | | ${vm2}= | Configure guest VM with dpdk-testpmd connected via vhost-user
-| | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
-| | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
-| | | ... | jumbo_frames=${jumbo_frames}
-| | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
+| | | ${vm}=
+| | | ... | Configure guest VM with dpdk-testpmd connected via vhost-user
+| | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
+| | | ... | qemu_id=${number} | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
+| | | ... | use_tuned_cfs=${use_tuned_cfs}
+| | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
 
-| Configure guest VM with dpdk-testpmd using SMT connected via vhost-user
+| Configure guest VMs with dpdk-testpmd connected via vhost-user
 | | [Documentation]
-| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
-| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
-| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
-| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is io.
+| | ... | Start ${vm_count} QEMU guests with two vhost-user interfaces and\
+| | ... | interconnecting DPDK testpmd defined number of VMs on all defined VPP\
+| | ... | nodes.
 | | ...
 | | ... | *Arguments:*
-| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
-| | ... | - vm_name - QemuUtil instance name. Type: string
-| | ... | - skip - number of cpus which will be skipped. Type: int
-| | ... | - count - number of cpus which will be allocated for qemu. Type: int
-| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | - vm_count - Number of guest VMs. Type: int
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
 | | ... | Type: bool
-| | ... | - use_tuned_cfs - FIXME.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure guest VM with dpdk-testpmd using SMT connected via \
-| | ... | vhost-user \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
-| | ... | \| ${6} \| ${5} \|
+| | ... | \| Configure guest VMs with dpdk-testpmd connected via vhost-user\
+| | ... | \| 1 \| False \| 256 \|
 | | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5} | ${jumbo_frames}=${False}
+| | [Arguments] | ${vm_count}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${use_tuned_cfs}=${False}
 | | ...
-| | Import Library | resources.libraries.python.QemuUtils
-| | ... | WITH NAME | ${vm_name}
-| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${TRUE}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | ... | jumbo_frames=${jumbo_frames}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ... | jumbo_frames=${jumbo_frames}
-| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${TRUE}
-| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
-| | ... | ${perf_qemu_path}-patch/bin/
-| | ... | ${perf_qemu_path}-base/bin/
-| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
-| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
-| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
-| | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
-| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
-| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
-| | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
-| | ... | pmd_max_pkt_len=${max_pkt_len}
-| | Return From Keyword | ${vm}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Configure guest VMs with dpdk-testpmd connected via vhost-user on node
+| | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
+| | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
-| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
-| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
-| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
-| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is mac rewrite.
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting\
+| | ... | DPDK testpmd.
 | | ...
 | | ... | *Arguments:*
-| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - dut - DUT node to start guest VM on. Type: dictionary
+| | ... | - sock1 - Socket path for first Vhost-User interface.
+| | ... | Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface.
+| | ... | Type: string
 | | ... | - vm_name - QemuUtil instance name. Type: string
 | | ... | - eth0_mac - MAC address of first Vhost interface. Type: string
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
-| | ... | - skip - number of cpus which will be skipped. Type: integer
-| | ... | - count - number of cpus which will be allocated for qemu.
-| | ... | Type: integer
-| | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
-| | ... | Type: integer
-| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT
+| | ... | node. Type: integer
+| | ... | - jumbo - Set True if jumbo frames are used in the test.
 | | ... | Type: bool
-| | ... | - use_tuned_cfs - FIXME.
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: bool
+| | ...
+| | ... | *Note:*
+| | ... | KW uses test variables \${rxq_count_int}, \${thr_count_int} and
+| | ... | \${cpu_count_int} set by "Add worker threads and rxqueues to all DUTs"
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure guest VM with dpdk-testpmd-mac connected via vhost-user \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
-| | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \| ${6} \| ${5} \|
-| | ... | \| Configure guest VM with dpdk-testpmd-mac connected via vhost-user \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock-2-1 \| /tmp/sock-2-2 \| DUT1_VM2 \
-| | ... | \| 00:00:00:00:02:01 \| 00:00:00:00:02:02 \| ${6} \| ${5} \
-| | ... | \| qemu_id=${2} \|
+| | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \|
 | | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
-| | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
-| | ... | ${qemu_id}=${1} | ${jumbo_frames}=${False}
+| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name}
+| | ... | ${eth0_mac} | ${eth1_mac} | ${qemu_id}=${1} | ${jumbo}=${False}
+| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
 | | ${serial_port}= | Evaluate | ${qemu_id} + ${4555}
 | | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
 | | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
 | | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
-| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${skip_cnt}= | Evaluate | ${skip} + (${qemu_id} - 1) * ${count}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
+| | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']}
+| | ... | ${${dut}_if1} | ${${dut}_if2}
+# Compute CPU placement for VM based on expected DUT placement.
+| | ${os_cpus}= | Set Variable | ${1}
+| | ${dut_main_cpus}= | Set Variable | ${1}
+| | ${dut_wk_cpus}= | Set Variable | ${cpu_count_int}
+| | ${vm_cpus}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus}
+| | ${skip_dut}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus} + ${os_cpus}
+| | ${skip_cpu}= | Evaluate | ${skip_dut} + (${qemu_id} - ${1}) * ${vm_cpus}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${nodes['${dut}']}
+| | ... | ${dut_numa} | skip_cnt=${skip_cpu} | cpu_cnt=${vm_cpus}
+| | ... | smt_used=${smt_used}
+| | ${vm_thrs}= | Get Length | ${qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Queue Count | ${rxq_count_int}
+| | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | ... | jumbo_frames=${jumbo_frames}
+| | ... | jumbo_frames=${jumbo}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ... | jumbo_frames=${jumbo_frames}
-| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${TRUE}
+| | ... | jumbo_frames=${jumbo}
+| | ${apply_patch}= | Set Variable | ${False}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
-| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | apply_patch=${apply_patch}
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${nodes['${dut}']}
+| | ... | apply_patch=${False}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${vm_thrs} | ${vm_thrs} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
-| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
+| | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9000 | ${EMPTY}
+| | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
+| | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
+| | ... | cpu_cnt=${testpmd_cpus}
+| | Dpdk Testpmd Start | ${vm} | eal_corelist=${testpmd_cpus}
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${TRUE}
-| | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
+| | ... | pmd_rxd=${perf_qemu_qsz} | pmd_txd=${perf_qemu_qsz}
+| | ... | pmd_rxq=${rxq_count_int} | pmd_txq=${rxq_count_int}
 | | ... | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
-| Configure '${nr}' guest VMs with dpdk-testpmd-mac connected via vhost-user in 3-node circular topology
+| Configure guest VMs with dpdk-testpmd-mac connected via vhost-user on node
 | | [Documentation]
-| | ... | Start QEMU guests with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd with fwd mode set to mac rewrite for defined number of
-| | ... | VMs on all defined VPP nodes.
+| | ... | Start ${vm_count} QEMU guests with two vhost-user interfaces and\
+| | ... | interconnecting DPDK testpmd with fwd mode set to mac rewrite for\
+| | ... | defined number of VMs on all defined VPP nodes.
 | | ...
 | | ... | *Arguments:*
-| | ... | _None_
+| | ... | - dut - DUT node to start guest VM on. Type: dictionary
+| | ... | - vm_count} - Number of guest VMs. Type: int
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: bool
 | | ...
 | | ... | _NOTE:_ This KW expects following test case variables to be set:
-| | ... | - ${system_cpus} - Number of CPUs allocated for OS itself.
-| | ... | - ${vpp_cpus} - Number of CPUs allocated for VPP.
-| | ... | - ${vm_cpus} - Number of CPUs to be allocated per QEMU instance.
-| | ... | - ${jumbo_frames} - Jumbo frames are used (True) or are not used
-| | ... | (False) in the test.
+| | ... | - cpu_count_int - Number of Physical CPUs allocated for DUT.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure '2' guest VMs with dpdk-testpmd-mac connected via vhost-user\
-| | ... | in 3-node circular topology \|
+| | ... | \| Configure guest VMs with dpdk-testpmd-mac connected via \
+| | ... | vhost-user on node \| DUT1 \| 1 \| False \| 256 \|
 | | ...
-| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | [Arguments] | ${dut} | ${vm_count}=${1} | ${jumbo}=${False} |
+| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
-| | | ${skip_cpus}= | Evaluate | ${vpp_cpus}+${system_cpus}
-| | | ${vm1}=
+| | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
-| | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM${number}
-| | | ... | ${dut1-vhost-${number}-if1_mac}
-| | | ... | ${dut1-vhost-${number}-if2_mac} | skip=${skip_cpus}
-| | | ... | count=${vm_cpus} | qemu_id=${number}
-| | | ... | jumbo_frames=${jumbo_frames}
-| | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
-| | | ${vm2}=
-| | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
-| | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
-| | | ... | ${dut2-vhost-${number}-if1_mac}
-| | | ... | ${dut2-vhost-${number}-if2_mac} | skip=${skip_cpus}
-| | | ... | count=${vm_cpus} | qemu_id=${number}
-| | | ... | jumbo_frames=${jumbo_frames}
-| | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
+| | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
+| | | ... | ${${dut}-vhost-${number}-if1_mac}
+| | | ... | ${${dut}-vhost-${number}-if2_mac} | qemu_id=${number}
+| | | ... | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
+| | | ... | use_tuned_cfs=${use_tuned_cfs}
+| | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
 
-| Configure guest VM with dpdk-testpmd-mac using SMT connected via vhost-user
+| Configure guest VMs with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
-| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
-| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
-| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
-| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is mac rewrite.
+| | ... | Start ${vm_count} QEMU guests with two vhost-user interfaces and\
+| | ... | interconnecting DPDK testpmd with fwd mode set to mac rewrite for\
+| | ... | defined number of VMs on all defined VPP nodes.
 | | ...
 | | ... | *Arguments:*
-| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
-| | ... | - vm_name - QemuUtil instance name. Type: string
-| | ... | - eth0_mac - MAC address of first Vhost interface. Type: string
-| | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
-| | ... | - skip - number of cpus which will be skipped. Type: int
-| | ... | - count - number of cpus which will be allocated for qemu. Type: int
-| | ... | - jumbo_frames - Set True if jumbo frames are used in the test.
+| | ... | - vm_count - Number of guest VMs. Type: int
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
 | | ... | Type: bool
-| | ... | - use_tuned_cfs - FIXME.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure guest VM with dpdk-testpmd-mac using SMT connected via \
-| | ... | vhost-user \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM\
-| | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \| ${6} \| ${5} \|
+| | ... | \| Configure guest VMs with dpdk-testpmd-mac connected via vhost-user\
+| | ... | \| 1 \| False \| 256 \|
 | | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
-| | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
-| | ... | ${jumbo_frames}=${False}
+| | [Arguments] | ${vm_count}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${use_tuned_cfs}=${False}
 | | ...
-| | Import Library | resources.libraries.python.QemuUtils
-| | ... | WITH NAME | ${vm_name}
-| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${TRUE}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | ... | jumbo_frames=${jumbo_frames}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ... | jumbo_frames=${jumbo_frames}
-| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${TRUE}
-| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
-| | ... | ${perf_qemu_path}-patch/bin/
-| | ... | ${perf_qemu_path}-base/bin/
-| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
-| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
-| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
-| | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
-| | ${max_pkt_len}= | Set Variable If | ${jumbo_frames} | 9000 | ${EMPTY}
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
-| | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
-| | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${TRUE}
-| | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
-| | ... | pmd_max_pkt_len=${max_pkt_len}
-| | Return From Keyword | ${vm}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Configure guest VMs with dpdk-testpmd-mac connected via vhost-user on node
+| | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
+| | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
 
 | Configure guest VM with linux bridge connected via vhost-user
 | | [Documentation]
-| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | linux bridge. Qemu Guest uses 2048M.
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting\
+| | ... | linux bridge.
 | | ...
 | | ... | *Arguments:*
-| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - dut - DUT node to start guest VM on. Type: dictionary
+| | ... | - sock1 - Socket path for first Vhost-User interface.
+| | ... | Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface.
+| | ... | Type: string
 | | ... | - vm_name - QemuUtil instance name. Type: string
-| | ... | - skip - number of cpus which will be skipped. Type: int
-| | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ... | - skip_cnt - number of cpus which will be skipped. Type: int
+| | ...
+| | ... | _NOTE:_ This KW expects following test case variables to be set:
+| | ... | - cpu_count_int - Number of Physical CPUs allocated for DUT.
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure guest VM with linux bridge connected via vhost-user \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${6} \
-| | ... | \| ${5} \|
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${6} \|
 | | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
+| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${skip_cnt}=${6}
 | | ... | ${count}=${5}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils
 | | ... | WITH NAME | ${vm_name}
-| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut}
+| | ${dut_numa}= | Get interfaces numa node | ${dut}
 | | ... | ${dut1_if1} | ${dut1_if2}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
+| | ${vm_phy_cpus}= | Evaluate | ${cpu_count_int} + ${1}
+| | ${skip_cnt}= | Evaluate | ${skip} + (${qemu_id} - ${1}) * ${vm_phy_cpus}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${dut} | ${dut_numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vm_phy_cpus} | smt_used=${smt_used}
+| | ${vm_thr_cpus}= | Get Length | ${qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${TRUE}
+| | ${apply_patch}= | Set Variable | ${False}
 | | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
-| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
+| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut}
 | | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
-| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
-| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
-| | ${br}= | Set Variable | br0
-| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
-| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
-| | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
-| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
-| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
-| | Set Interface State | ${vm} | ${br} | up | if_type=name
-| | Return From Keyword | ${vm}
-
-| Configure guest VM with linux bridge using SMT connected via vhost-user
-| | [Documentation]
-| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | linux bridge. Qemu Guest uses 2048M.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
-| | ... | - vm_name - QemuUtil instance name. Type: string
-| | ... | - skip - number of cpus which will be skipped. Type: int
-| | ... | - count - number of cpus which will be allocated for qemu. Type: int
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Guest VM with Linux Bridge using SMT connected via vhost-user is \
-| | ... | setup \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
-| | ... | \| ${6}\| ${5} \|
-| | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5}
-| | ...
-| | Import Library | resources.libraries.python.QemuUtils
-| | ... | WITH NAME | ${vm_name}
-| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${TRUE}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
-| | ... | ${TRUE}
-| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
-| | ... | ${perf_qemu_path}-patch/bin/
-| | ... | ${perf_qemu_path}-base/bin/
-| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${vm_thr_cpus} | ${vm_thr_cpus}
+| | ... | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
