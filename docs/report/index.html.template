@@ -63,6 +63,15 @@ CSIT 18.07
 
 .. toctree::
     :maxdepth: 2
+    :caption: DMM Functional
+
+    dmm_functional_tests/overview
+    dmm_functional_tests/csit_release_notes
+    dmm_functional_tests/test_environment
+    dmm_functional_tests/documentation
+
+.. toctree::
+    :maxdepth: 2
     :caption: Detailed Results
 
     detailed_test_results/vpp_performance_results/index
