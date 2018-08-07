@@ -50,8 +50,7 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
-| | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.5.0
-| | Set Global Variable | ${use_tuned_cfs} | ${False}
+| | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.11.2
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}

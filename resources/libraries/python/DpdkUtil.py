@@ -29,8 +29,8 @@ class DpdkUtil(object):
         :rtype: str
         """
         # Set the hexadecimal bitmask of the cores to run on.
-        eal_coremask = '-c {} '.format(args['eal_coremask'])\
-            if args.get('eal_coremask', '') else ''
+        eal_corelist = '-l {} '.format(args['eal_corelist'])\
+            if args.get('eal_corelist', '') else ''
         # Set master core.
         eal_master_core = '--master-lcore 0 '
         # Set the number of memory channels to use.
@@ -42,7 +42,7 @@ class DpdkUtil(object):
         # Load an external driver. Multiple -d options are allowed.
         eal_driver = '-d /usr/lib/librte_pmd_virtio.so '
         eal_options = '-v '\
-            + eal_coremask\
+            + eal_corelist\
             + eal_master_core\
             + eal_mem_channels\
             + eal_socket_mem\
