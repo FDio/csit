@@ -53,21 +53,27 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
 # XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
 | ${s_24.5G}= | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps}= | ${18750000}
-# CPU settings
-| ${system_cpus}= | ${1}
-| ${vpp_cpus}= | ${5}
-| ${vm_cpus}= | ${5}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | Local Template
-| | [Documentation] | FIXME.
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config.
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
+| | ... | trial throughput test.
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+| | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
@@ -82,9 +88,10 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 xconnect with Vhost-User for '2' in 3-node circular topology
-| | Set Test Variable | \${jumbo_frames} | ${jumbo}
-| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User | vm_count=${2}
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | vm_count=${2} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 

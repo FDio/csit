@@ -55,24 +55,27 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
-# Socket names
-| ${sock1}= | /tmp/sock-1-1
-| ${sock2}= | /tmp/sock-1-2
-# FIB tables
-| ${fib_table_1}= | 100
-| ${fib_table_2}= | 101
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Keywords ***
 | Local Template
-| | [Documentation] | FIXME.
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config.
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
+| | ... | trial throughput test.
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+| | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${use_tuned_cfs} | ${True}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
@@ -84,15 +87,10 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding with vhost in 3-node circular topology
-| | ... | ${sock1} | ${sock2}
-| | ${vm1}= | And Configure guest VM with dpdk-testpmd-mac connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${dut1_vif1_mac}
-| | ... | ${dut1_vif2_mac} | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Configure guest VM with dpdk-testpmd-mac connected via vhost-user
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
-| | ... | ${dut2_vif2_mac} | jumbo_frames=${jumbo}
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | ... | vm_count=${1}
+| | And Configure guest VMs with dpdk-testpmd-mac connected via vhost-user
+| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${True}
 | | Setup Scheduler Policy for Vpp On All DUTs
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
