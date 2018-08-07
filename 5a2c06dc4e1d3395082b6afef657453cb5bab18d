@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291a08ce_3fca5859",
+        "filename": "docs/report/vpp_performance_tests/packet_throughput_graphs/vts.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-07T14:07:01Z",
+      "side": 1,
+      "message": "I think that when we are autogenerating the test cases, we could perhaps also autogenerate sections like this.\n\nBut I guess it would take half a yeat to code and debug, and another half a year for the time investment to return, so it is not a high priority.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "5a2c06dc4e1d3395082b6afef657453cb5bab18d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
