@@ -29,3 +29,6 @@ tests in VIRL:
 +---+--------------------------------------------+---------------+-------------------------------------------------------------------------+
 | 5 | LISP PITR feature configuration            | HC2VPP-263    | Locator set reference in operational data is incorrect.                 |
 +---+--------------------------------------------+---------------+-------------------------------------------------------------------------+
+| 6 | Unnumbered interface configuration         | CSIT-1210     | VPP does not send IP addresses for unnumbered interfaces anymore.       |
+|   |                                            |               | HC CSIT tests were relying on that.                                     |
++---+--------------------------------------------+---------------+-------------------------------------------------------------------------+
