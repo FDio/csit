@@ -51,13 +51,12 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
+# X520-DA2 bandwidth limit
+| ${s_limit}= | ${10000000000}
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
 | ${vm_cpus}= | ${5}
-# X520-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
@@ -88,8 +87,9 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
-| | Set Test Variable | \${jumbo_frames} | ${jumbo}
-| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | count=${2} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 

@@ -51,19 +51,12 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
-# Socket names
-| ${sock1}= | /tmp/sock-1
-| ${sock2}= | /tmp/sock-2
-# FIB tables
-| ${fib_table_1}= | 100
-| ${fib_table_2}= | 101
+# X710 bandwidth limit
+| ${s_limit}= | ${10000000000}
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
 | ${vm_cpus}= | ${5}
-# X710 bandwidth limit
-| ${s_limit}= | ${10000000000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
@@ -94,14 +87,15 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding with vhost for '2' VMs in 3-node circular topology
-| | Set Test Variable | \${jumbo_frames} | ${jumbo}
-| | And Configure '2' guest VMs with dpdk-testpmd-mac connected via vhost-user in 3-node circular topology
+| | And Configure guest VMs with dpdk-testpmd-mac connected via vhost-user
+| | ... | count=${2} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
 | tc01-64B-1c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
