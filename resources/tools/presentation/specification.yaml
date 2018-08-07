@@ -9922,7 +9922,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   traces:
     boxmean: False
@@ -9946,7 +9946,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   traces:
     boxmean: False
@@ -9971,7 +9971,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   traces:
     boxmean: False
@@ -9995,7 +9995,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   traces:
     boxmean: False
@@ -10020,7 +10020,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   traces:
     boxmean: False
@@ -10044,7 +10044,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   traces:
     boxmean: False
@@ -12299,53 +12299,6 @@
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP IPv4 Tunnels 3n-hsw-xl710
--
-  type: "plot"
-  title: "Speedup: ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'ENCAP' and
-           ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and
-           'NDRPDR' and
-           'IP4FWD' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  layout:
-    title: ""  # No title
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
            '64B' and
            'ENCAP' and
            ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and

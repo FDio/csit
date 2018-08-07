@@ -34,6 +34,8 @@ CSIT source code for the test cases used for plots can be found in
     <p><br><br></p>
     </center>
 
+.. raw:: latex
+
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
