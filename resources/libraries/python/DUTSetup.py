@@ -643,3 +643,169 @@ class DUTSetup(object):
 
         DUTSetup.vpp_show_version_verbose(node)
         DUTSetup.vpp_show_interfaces(node)
+
+    @staticmethod
+    def get_huge_page_size(node):
+        """Get default size of huge pages in system.
+
+        :param node: Node in the topology.
+        :type node: dict
+        :returns: Default size of free huge pages in system.
+        :rtype: int
+        :raises RuntimeError: If reading failed for three times.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        for _ in range(3):
+            ret_code, stdout, _ = ssh.exec_command_sudo(
+                "grep Hugepagesize /proc/meminfo | awk '{ print $2 }'")
+            if ret_code == 0:
+                try:
+                    huge_size = int(stdout)
+                except ValueError:
+                    logger.trace('Reading huge page size information failed')
+                else:
+                    break
+        else:
+            raise RuntimeError('Getting huge page size information failed.')
+        return huge_size
+
+    @staticmethod
+    def get_huge_page_free(node, huge_size):
+        """Get number of free huge pages in system.
+
+        :param node: Node in the topology.
+        :param huge_size: Size of hugepages.
+        :type node: dict
+        :type huge_size: int
+        :returns: Number of free huge pages in system.
+        :rtype: int
+        :raises RuntimeError: If reading failed for three times.
+        """
+        # TODO: add numa aware option
+        ssh = SSH()
+        ssh.connect(node)
+
+        for _ in range(3):
+            ret_code, stdout, _ = ssh.exec_command_sudo(
+                'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/free_hugepages'.
+                format(huge_size))
+            if ret_code == 0:
+                try:
+                    huge_free = int(stdout)
+                except ValueError:
+                    logger.trace('Reading free huge pages information failed')
+                else:
+                    break
+        else:
+            raise RuntimeError('Getting free huge pages information failed.')
+        return huge_free
+
+    @staticmethod
+    def get_huge_page_total(node, huge_size):
+        """Get total number of huge pages in system.
+
+        :param node: Node in the topology.
+        :param huge_size: Size of hugepages.
+        :type node: dict
+        :type huge_size: int
+
+        :returns: Total number of huge pages in system.
+        :rtype: int
+        :raises RuntimeError: If reading failed for three times.
+        """
+        # TODO: add numa aware option
+        ssh = SSH()
+        ssh.connect(node)
+
+        for _ in range(3):
+            ret_code, stdout, _ = ssh.exec_command_sudo(
+                'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/nr_hugepages'.
+                format(huge_size))
+            if ret_code == 0:
+                try:
+                    huge_total = int(stdout)
+                except ValueError:
+                    logger.trace('Reading total huge pages information failed')
+                else:
+                    break
+        else:
+            raise RuntimeError('Getting total huge pages information failed.')
+        return huge_total
+
+    @staticmethod
+    def check_huge_page(node, huge_mnt, mem_size, allocate=False):
+        """Check if there is enough HugePages in system. If allocate is set to
+        true, try to allocate more HugePages.
+
+        :param node: Node in the topology.
+        :param huge_mnt: HugePage mount point.
+        :param mem_size: Requested memory in MB.
+        :param allocate: Whether to allocate more memory if not enough.
+        :type node: dict
+        :type huge_mnt: str
+        :type mem_size: str
+        :type allocate: bool
+
+        :raises RuntimeError: Mounting hugetlbfs failed or not enough HugePages
+        or increasing map count failed.
+        """
+        # TODO: split function into smaller parts.
+        ssh = SSH()
+        ssh.connect(node)
+
+        # Get huge pages information
+        huge_size = DUTSetup.get_huge_page_size(node)
+        huge_free = DUTSetup.get_huge_page_free(node, huge_size)
+        huge_total = DUTSetup.get_huge_page_total(node, huge_size)
+
+        # Check if memory reqested is available on host
+        if (mem_size * 1024) > (huge_free * huge_size):
+            # If we want to allocate hugepage dynamically
+            if allocate:
+                mem_needed = (mem_size * 1024) - (huge_free * huge_size)
+                huge_to_allocate = ((mem_needed / huge_size) * 2) + huge_total
+                max_map_count = huge_to_allocate*4
+                # Increase maximum number of memory map areas a process may have
+                ret_code, _, _ = ssh.exec_command_sudo(
+                    'echo "{0}" | sudo tee /proc/sys/vm/max_map_count'.
+                    format(max_map_count))
+                if int(ret_code) != 0:
+                    raise RuntimeError('Increase map count failed on {host}'.
+                                       format(host=node['host']))
+                # Increase hugepage count
+                ret_code, _, _ = ssh.exec_command_sudo(
+                    'echo "{0}" | sudo tee /proc/sys/vm/nr_hugepages'.
+                    format(huge_to_allocate))
+                if int(ret_code) != 0:
+                    raise RuntimeError('Mount huge pages failed on {host}'.
+                                       format(host=node['host']))
+            # If we do not want to allocate dynamicaly end with error
+            else:
+                raise RuntimeError('Not enough free huge pages: {0}, {1} MB'.
+                                   format(huge_free, huge_free * huge_size))
+        # Check if huge pages mount point exist
+        has_huge_mnt = False
+        ret_code, stdout, _ = ssh.exec_command('cat /proc/mounts')
+        if int(ret_code) == 0:
+            for line in stdout.splitlines():
+                # Try to find something like:
+                # none /mnt/huge hugetlbfs rw,relatime,pagesize=2048k 0 0
+                mount = line.split()
+                if mount[2] == 'hugetlbfs' and mount[1] == huge_mnt:
+                    has_huge_mnt = True
+                    break
+        # If huge page mount point not exist create one
+        if not has_huge_mnt:
+            ret_code, _, _ = ssh.exec_command_sudo(
+                'mkdir -p {mnt}'.format(mnt=huge_mnt))
+            if int(ret_code) != 0:
+                raise RuntimeError('Create mount dir failed on {host}'.
+                                   format(host=node['host']))
+            ret_code, _, _ = ssh.exec_command_sudo(
+                'mount -t hugetlbfs -o pagesize=2048k none {mnt}'.
+                format(mnt=huge_mnt))
+            if int(ret_code) != 0:
+                raise RuntimeError('Mount huge pages failed on {host}'.
+                                   format(host=node['host']))
