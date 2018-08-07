@@ -57,7 +57,6 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
 # XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
 | ${s_24.5G}= | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
@@ -71,7 +70,17 @@
 
 *** Keywords ***
 | Local Template
-| | [Documentation] | FIXME.
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2XC switching config.
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | Type: integer, string
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+| | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
 | | Set Test Variable | ${framesize}
@@ -86,9 +95,10 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 xconnect with Vhost-User for '2' in 3-node circular topology
-| | Set Test Variable | \${jumbo_frames} | ${jumbo}
-| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User | count=${2}
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | count=${2} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
