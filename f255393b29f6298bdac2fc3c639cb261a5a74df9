@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6ae9de32_00fb923a",
+        "filename": "bootstrap-verify-perf-DPDK.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-07T15:00:37Z",
+      "side": 1,
+      "message": "No, but this will go away anyway. Once JJB patch will be merged.",
+      "parentUuid": "6d4bcd1b_efe510ee",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 8
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99b4d93e_33fdf97d",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
