@@ -182,6 +182,7 @@
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${cpu_count_int}
 | | Set Test Variable | ${rxq_count_int}
 
 | Create Kubernetes VSWITCH startup config on all DUTs
@@ -230,6 +231,7 @@
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${cpu_count_int}
 | | Set Test Variable | ${rxq_count_int}
 
 | Create Kubernetes VNF'${i}' startup config on all DUTs
