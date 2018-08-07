@@ -57,7 +57,6 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
 # XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
 | ${s_24.5G}= | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
@@ -87,8 +86,9 @@
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding with vhost for '2' VMs in 3-node circular topology
-| | Set Test Variable | \${jumbo_frames} | ${jumbo}
-| | And Configure '2' guest VMs with dpdk-testpmd-mac connected via vhost-user in 3-node circular topology
+| | And Configure guest VMs with dpdk-testpmd-mac connected via vhost-user
+| | ... | vm_count=${2} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
