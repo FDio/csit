@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 IPSec IPv4 Routing
 ==================
 
@@ -45,6 +50,10 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center><b>
+
+.. raw:: latex
+
+    \clearpage
 
 :index:`Speedup: ipsec-3n-hsw-xl710-64b-base_and_scale-pdr`
 

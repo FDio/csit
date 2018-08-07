@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 IPv4 Routing
 ============
 
@@ -38,6 +43,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-base_and_scale
 -----------------------
 
@@ -62,6 +71,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat}
             \label{fig:ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-1t1c-features
 -----------------
@@ -88,6 +101,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-features
 -----------------
 
@@ -112,6 +129,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat}
             \label{fig:ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-hsw-x710
 ~~~~~~~~~~~
@@ -141,6 +162,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-base_and_scale
 -----------------------
 
@@ -165,6 +190,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat}
             \label{fig:ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-1t1c-features
 -----------------
@@ -191,6 +220,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-features
 -----------------
 
@@ -215,6 +248,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat}
             \label{fig:ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-hsw-xl710
 ~~~~~~~~~~~~
@@ -244,6 +281,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t2c-base_and_scale
 -----------------------
 
@@ -268,6 +309,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
             \label{fig:ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 3n-skx-x710
 ~~~~~~~~~~~
@@ -297,6 +342,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-4t2c-base_and_scale
 -----------------------
 
@@ -321,6 +370,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
             \label{fig:ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-2t1c-features
 -----------------
@@ -347,6 +400,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-skx-x710-64b-2t1c-features-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-4t2c-features
 -----------------
 
@@ -372,108 +429,9 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-skx-x710-64b-4t2c-features-ndr-lat}
     \end{figure}
 
-3n-skx-xxv710
-~~~~~~~~~~~~~
-
-64b-2t1c-base_and_scale
------------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
 .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
-            \label{fig:ip4-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
-    \end{figure}
-
-64b-4t2c-base_and_scale
------------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat}
-            \label{fig:ip4-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat}
-    \end{figure}
-
-64b-2t1c-features
------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip4-3n-skx-xxv710-64b-2t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-xxv710-64b-2t1c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-xxv710-64b-2t1c-features-ndr-lat}
-            \label{fig:ip4-3n-skx-xxv710-64b-2t1c-features-ndr-lat}
-    \end{figure}
-
-64b-4t2c-features
------------------
-
-.. raw:: html
-
-    <center><b>
-
-:index:`Latency: ip4-3n-skx-xxv710-64b-4t2c-features-ndr`
-
-.. raw:: html
-
-    </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-xxv710-64b-4t2c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-xxv710-64b-4t2c-features-ndr-lat}
-            \label{fig:ip4-3n-skx-xxv710-64b-4t2c-features-ndr-lat}
-    \end{figure}
+    \clearpage
 
 2n-skx-x710
 ~~~~~~~~~~~
@@ -503,6 +461,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-4t2c-base_and_scale
 -----------------------
 
@@ -527,6 +489,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
             \label{fig:ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 2n-skx-xxv710
 ~~~~~~~~~~~~~
@@ -555,6 +521,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
             \label{fig:ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-4t2c-base_and_scale
 -----------------------
