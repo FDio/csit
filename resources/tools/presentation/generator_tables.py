@@ -241,6 +241,11 @@ def table_performance_comparison(table, input_data):
                     name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
                                             "-".join(tst_data["name"].
                                                      split("-")[:-1]))
+                    if "comparison across testbeds" in table["title"].lower():
+                        name = name.\
+                            replace("1t1c", "1c").replace("2t1c", "1c").\
+                            replace("2t2c", "2c").replace("4t2c", "2c").\
+                            replace("4t4c", "4c").replace("8t4c", "4c")
                     tbl_dict[tst_name_mod] = {"name": name,
                                               "ref-data": list(),
                                               "cmp-data": list()}

@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 VTS
 ===
 
@@ -14,19 +19,19 @@ CSIT source code for the test cases used for plots can be found in
 3n-hsw-x520
 ~~~~~~~~~~~
 
-64b-1t1c
---------
+114b-1t1c
+---------
 
 .. raw:: html
 
     <center><b>
 
-:index:`Throughput: vts-3n-hsw-x520-64b-1t1c-ndr`
+:index:`Throughput: vts-3n-hsw-x520-114b-1t1c-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-1t1c-ndr.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-1t1c-ndr.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -35,20 +40,24 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-1t1c-ndr}
-            \label{fig:vts-3n-hsw-x520-64b-1t1c-ndr}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-1t1c-ndr}
+            \label{fig:vts-3n-hsw-x520-114b-1t1c-ndr}
     \end{figure}
 
 .. raw:: html
 
     <center><b>
 
-:index:`Throughput: vts-3n-hsw-x520-64b-1t1c-pdr`
+.. raw:: latex
+
+    \clearpage
+
+:index:`Throughput: vts-3n-hsw-x520-114b-1t1c-pdr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-1t1c-pdr.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-1t1c-pdr.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -57,23 +66,27 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-1t1c-pdr}
-            \label{fig:vts-3n-hsw-x520-64b-1t1c-pdr}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-1t1c-pdr}
+            \label{fig:vts-3n-hsw-x520-114b-1t1c-pdr}
     \end{figure}
 
-64b-2t2c
---------
+.. raw:: latex
+
+    \clearpage
+
+114b-2t2c
+---------
 
 .. raw:: html
 
     <center><b>
 
-:index:`Throughput: vts-3n-hsw-x520-64b-2t2c-ndr`
+:index:`Throughput: vts-3n-hsw-x520-114b-2t2c-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-2t2c-ndr.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-2t2c-ndr.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -82,20 +95,24 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-2t2c-ndr}
-            \label{fig:vts-3n-hsw-x520-64b-2t2c-ndr}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-2t2c-ndr}
+            \label{fig:vts-3n-hsw-x520-114b-2t2c-ndr}
     \end{figure}
 
 .. raw:: html
 
     <center><b>
 
-:index:`Throughput: vts-3n-hsw-x520-64b-2t2c-pdr`
+.. raw:: latex
+
+    \clearpage
+
+:index:`Throughput: vts-3n-hsw-x520-114b-2t2c-pdr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-2t2c-pdr.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-2t2c-pdr.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -104,6 +121,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-2t2c-pdr}
-            \label{fig:vts-3n-hsw-x520-64b-2t2c-pdr}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-2t2c-pdr}
+            \label{fig:vts-3n-hsw-x520-114b-2t2c-pdr}
     \end{figure}
