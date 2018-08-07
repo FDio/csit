@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "dc4c3e33_6c16ddf3",
+        "filename": "docs/report/dmm_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-08-07T11:54:27Z",
+      "side": 1,
+      "message": "DMM base vs epoll test case",
+      "parentUuid": "a6223306_28b0d625",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 10
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2941c064_f2801f87",
         "filename": "docs/report/dmm_functional_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -106,6 +130,54 @@
     },
     {
       "key": {
+        "uuid": "5ab0218f_1b3b1ef7",
+        "filename": "docs/report/dmm_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-08-07T11:54:27Z",
+      "side": 1,
+      "message": "https://jira.fd.io/browse/DMM-17",
+      "parentUuid": "2941c064_f2801f87",
+      "range": {
+        "startLine": 19,
+        "startChar": 56,
+        "endLine": 19,
+        "endChar": 60
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fbd11e6_1519cecf",
+        "filename": "docs/report/dmm_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-08-07T11:54:27Z",
+      "side": 1,
+      "message": "because of dpdk version and relative kernel version issue, centos job is commented temporarily",
+      "parentUuid": "3d497dc1_abf04ea5",
+      "range": {
+        "startLine": 19,
+        "startChar": 67,
+        "endLine": 19,
+        "endChar": 71
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eede5c15_467cd3df",
         "filename": "docs/report/dmm_functional_tests/overview.rst",
         "patchSetId": 2
@@ -117,6 +189,30 @@
       "writtenOn": "2018-08-06T14:16:25Z",
       "side": 1,
       "message": "Include only those topologies which you really use. Make sure the information provided here is complete and correct.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 25
+      },
+      "revId": "733c3e05d46f4d8a66d85b1c2e9fdc35bc2368ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "756c8c88_eb90a097",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-08-07T11:54:27Z",
+      "side": 1,
+      "message": "only DUT1 and DUT2 are used as client and server model",
+      "parentUuid": "eede5c15_467cd3df",
       "range": {
         "startLine": 4,
         "startChar": 0,
