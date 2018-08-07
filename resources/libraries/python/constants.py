@@ -33,10 +33,10 @@ class Constants(object):
     VPP_UNIT = 'vpp'
 
     # QEMU version to install
-    QEMU_INSTALL_VERSION = 'qemu-2.5.0'
+    QEMU_INSTALL_VERSION = 'qemu-2.11.2'
 
     # QEMU install directory
-    QEMU_INSTALL_DIR = '/opt/qemu-2.5.0'
+    QEMU_INSTALL_DIR = '/opt/qemu-2.11.2'
 
     # TRex install version
     TREX_INSTALL_VERSION = '2.35'
