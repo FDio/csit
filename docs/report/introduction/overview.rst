@@ -67,6 +67,13 @@ the source data files are also provided.
    *Test Environment* - environment description;
    *Documentation* - source code documentation for NSH_SFC functional tests.
 
+#. **DMM Functional** - DMM functional tests executed in
+   virtual FD.io testbeds; *Overview* - tested virtual topologies, test
+   coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
+   |release|, added tests, environment or methodology changes, known CSIT issues;
+   *Test Environment* - environment description;
+   *Documentation* - source code documentation for DMM functional tests.
+
 #. **Detailed Results** - auto-generated results from CSIT jobs
    executions using CSIT Robot Framework output files as source data; *VPP
    Performance Results*, *DPDK Performance Results*, *VPP Functional
