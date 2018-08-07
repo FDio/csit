@@ -14,19 +14,19 @@ CSIT source code for the test cases used for plots can be found in
 3n-hsw-x520
 ~~~~~~~~~~~
 
-64b-1t1c
+114b-1t1c
 --------
 
 .. raw:: html
 
     <center><b>
 
-:index:`Latency: vts-3n-hsw-x520-64b-1t1c-ndr`
+:index:`Latency: vts-3n-hsw-x520-114b-1t1c-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-1t1c-ndr-lat.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-1t1c-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -35,23 +35,23 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-1t1c-ndr-lat}
-            \label{fig:vts-3n-hsw-x520-64b-1t1c-ndr-lat}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-1t1c-ndr-lat}
+            \label{fig:vts-3n-hsw-x520-114b-1t1c-ndr-lat}
     \end{figure}
 
-64b-2t2c
+114b-2t2c
 --------
 
 .. raw:: html
 
     <center><b>
 
-:index:`Latency: vts-3n-hsw-x520-64b-2t2c-ndr`
+:index:`Latency: vts-3n-hsw-x520-114b-2t2c-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-64b-2t2c-ndr-lat.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-2t2c-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -60,6 +60,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-64b-2t2c-ndr-lat}
-            \label{fig:vts-3n-hsw-x520-64b-2t2c-ndr-lat}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{vts-3n-hsw-x520-114b-2t2c-ndr-lat}
+            \label{fig:vts-3n-hsw-x520-114b-2t2c-ndr-lat}
     \end{figure}
