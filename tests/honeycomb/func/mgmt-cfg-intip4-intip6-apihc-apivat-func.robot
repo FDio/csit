@@ -225,7 +225,7 @@
 | | ... | on a physical interface, borrowing the IP address of another physical\
 | | ... | interface.
 | | ...
-# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+# CSIT-1210: Adapt HC unnumbered interface tests to VPP 18.07 api changes
 | | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given Honeycomb sets interface IPv4 address | ${node}
@@ -248,7 +248,7 @@
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from an interface.
 | | ...
-# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+# CSIT-1210: Adapt HC unnumbered interface tests to VPP 18.07 api changes
 | | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given IPv4 address from Honeycomb should be

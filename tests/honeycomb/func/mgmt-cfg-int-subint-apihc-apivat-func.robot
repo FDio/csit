@@ -473,7 +473,7 @@
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on a sub-interface, borrowing the IP address of a physical interface.
 | | ...
-# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+# CSIT-1210: Adapt HC unnumbered interface tests to VPP 18.07 api changes
 | | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given sub-interface ipv4 address from Honeycomb should be empty
@@ -503,7 +503,7 @@
 | | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
 | | ... | ${super_if2}
 | | ...
-# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+# CSIT-1210: Adapt HC unnumbered interface tests to VPP 18.07 api changes
 | | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given IPv4 address from Honeycomb should be
@@ -533,7 +533,7 @@
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on an interface, borrowing the IP address of a sub-interface.
 | | ...
-# HC2VPP-330: Honeycomb fails to configure interface as unnumbered
+# CSIT-1210: Adapt HC unnumbered interface tests to VPP 18.07 api changes
 | | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given IPv4 address from Honeycomb should be empty | ${node} | ${super_if2}
