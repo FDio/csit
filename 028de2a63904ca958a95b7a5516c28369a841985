@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bd395c7_6bf01637",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-08T10:05:53Z",
+      "side": 1,
+      "message": "Perhaps semicolon here? I did not register the \"or\" on first reading.",
+      "range": {
+        "startLine": 601,
+        "startChar": 55,
+        "endLine": 601,
+        "endChar": 56
+      },
+      "revId": "028de2a63904ca958a95b7a5516c28369a841985",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
