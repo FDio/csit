@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47b0e857_f3b48f30",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-08T15:55:35Z",
+      "side": 1,
+      "message": "\\${dut_node}\n\nWithout the backslash, log.html would show the value (instead the variable name).",
+      "range": {
+        "startLine": 1884,
+        "startChar": 12,
+        "endLine": 1884,
+        "endChar": 23
+      },
+      "revId": "bd7bcaea4a90881dbb3c950268bd906d031b6e36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5bd8a86_eac06e68",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 1948,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-08T15:55:35Z",
+      "side": 1,
+      "message": "Here you can use ${count} (without backslash).",
+      "range": {
+        "startLine": 1948,
+        "startChar": 16,
+        "endLine": 1948,
+        "endChar": 17
+      },
+      "revId": "bd7bcaea4a90881dbb3c950268bd906d031b6e36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
