@@ -22,6 +22,29 @@
       "revId": "de9f40bdd7e68e405655774e00501f30385b51a4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f4d3534_def3c2b4",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-08T09:01:57Z",
+      "side": 1,
+      "message": "What about:\n1 worker thread, or 2 worker threads if HyperThreading is enabled, pinned to...\nto get it more clear?\n\nSimilarly for other two cases.",
+      "range": {
+        "startLine": 601,
+        "startChar": 4,
+        "endLine": 601,
+        "endChar": 35
+      },
+      "revId": "de9f40bdd7e68e405655774e00501f30385b51a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
