@@ -70,6 +70,30 @@
       "revId": "7b9c26c3f2aad643b8887b65d1b0ff6e8bc7d3bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28bb3e00_058f9567",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-08T11:10:55Z",
+      "side": 0,
+      "message": "\u003e to use root or non-root should decide by tester\n\nIn principle, I agree.\nBut I am still curious. What is your use case when root user is the better choice?",
+      "parentUuid": "af4894e3_30636926",
+      "range": {
+        "startLine": 204,
+        "startChar": 38,
+        "endLine": 204,
+        "endChar": 44
+      },
+      "revId": "7b9c26c3f2aad643b8887b65d1b0ff6e8bc7d3bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
