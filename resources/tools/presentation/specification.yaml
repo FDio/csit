@@ -1336,9 +1336,6 @@
     title: "Name"
     data: "data name"
   -
-    title: "Documentation"
-    data: "data doc"
-  -
     title: "Status"
     data: "data msg"
   rows: "generated"
@@ -1361,9 +1358,6 @@
     title: "Name"
     data: "data name"
   -
-    title: "Documentation"
-    data: "data doc"
-  -
     title: "Status"
     data: "data msg"
   rows: "generated"
@@ -1385,9 +1379,6 @@
   -
     title: "Name"
     data: "data name"
-  -
-    title: "Documentation"
-    data: "data doc"
   -
     title: "Status"
     data: "data msg"
@@ -1537,9 +1528,6 @@
     title: "Name"
     data: "data name"
   -
-    title: "Documentation"
-    data: "data doc"
-  -
     title: "Status"
     data: "data msg"
   rows: "generated"
@@ -1562,9 +1550,6 @@
     title: "Name"
     data: "data name"
   -
-    title: "Documentation"
-    data: "data doc"
-  -
     title: "Status"
     data: "data msg"
   rows: "generated"
@@ -1586,9 +1571,6 @@
   -
     title: "Name"
     data: "data name"
-  -
-    title: "Documentation"
-    data: "data doc"
   -
     title: "Status"
     data: "data msg"
@@ -1767,9 +1749,6 @@
   -
     title: "Name"
     data: "data name"
-  -
-    title: "Documentation"
-    data: "data doc"
   -
     title: "Status"
     data: "data msg"
