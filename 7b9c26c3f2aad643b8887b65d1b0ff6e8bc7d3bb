@@ -94,6 +94,30 @@
       "revId": "7b9c26c3f2aad643b8887b65d1b0ff6e8bc7d3bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f986423_0463aee5",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-08T12:56:36Z",
+      "side": 0,
+      "message": "The value  \"~]# \" has been introduced by patch https://gerrit.fd.io/r/#/c/9474/ - add new topology parameter: arch. You should ask Gabriel Ganne.",
+      "parentUuid": "28bb3e00_058f9567",
+      "range": {
+        "startLine": 204,
+        "startChar": 38,
+        "endLine": 204,
+        "endChar": 44
+      },
+      "revId": "7b9c26c3f2aad643b8887b65d1b0ff6e8bc7d3bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
