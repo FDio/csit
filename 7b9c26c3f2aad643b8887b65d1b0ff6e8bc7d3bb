@@ -46,6 +46,30 @@
       "revId": "7b9c26c3f2aad643b8887b65d1b0ff6e8bc7d3bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af4894e3_30636926",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2018-08-08T09:40:41Z",
+      "side": 0,
+      "message": "I understand that to use which account to run csit was decide by username \u0026 password in topology.yaml, and I think that to use root or non-root should decide by tester, It should not prohibit \"root\" from csit is a test tool view.",
+      "parentUuid": "b9a83851_187af9a4",
+      "range": {
+        "startLine": 204,
+        "startChar": 38,
+        "endLine": 204,
+        "endChar": 44
+      },
+      "revId": "7b9c26c3f2aad643b8887b65d1b0ff6e8bc7d3bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
