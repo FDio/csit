@@ -9,6 +9,16 @@ documentation.
 Topology TAGs
 -------------
 
+.. topic:: 2_NODE_DOUBLE_LINK_TOPO
+
+    2 nodes connected in a circular topology with two links interconnecting
+    the devices.
+
+.. topic:: 2_NODE_SINGLE_LINK_TOPO
+
+    2 nodes connected in a circular topology with at least one link
+    interconnecting devices.
+
 .. topic:: 3_NODE_DOUBLE_LINK_TOPO
 
     3 nodes connected in a circular topology with two links interconnecting
@@ -60,6 +70,10 @@ NIC model tags
 .. topic:: NIC_Intel-X710
 
     Intel X710 NIC.
+
+.. topic:: NIC_Intel-XXV710
+
+    Intel XXV710 NIC.
 
 .. topic:: NIC_Cisco-VIC-1227
 
@@ -137,41 +151,16 @@ Tags marking functional vs. performance of tests
 Performance testing tags
 ------------------------
 
-.. topic:: PDRDISC
-
-    Partial Drop Rate evaluation of single run result, with non-zero packet
-    loss tolerance (LT) expressed in percentage of packets transmitted.
-
-.. topic:: NDRDISC
-
-    Non Drop Rate evaluation of results. Loss acceptance of dropped packets is
-    set to zero lost packets.
-
 .. topic:: NDRPDR
 
     Single test finding both No Drop Rate and Partial Drop Rate simultaneously.
     The search is done by optimized algorithm which performs
     multiple trial runs at different durations and transmit rates.
 
-.. topic:: NDRCHK
-
-    Performance tests where TG verifies DUTs' throughput at ref-NDR (reference
-    Non Drop Rate) with zero packet loss tolerance.
-
-.. topic:: PDRCHK
-
-    Performance tests where TG verifies DUTs' throughput at ref-PDR (reference
-    Partial Drop Rate) with 0.5% loss tolerance.
-
 .. topic:: MRR
 
     Performance tests where TG sends the traffic at maximum rate (line rate)
     and reports total sent/received packets over performance trial duration.
-
-.. topic:: NDRPDRDISC
-
-    Find performance of DUT based on :rfc:`2544` with linear / binary / combined
-    search. (Previous LONG tests.)
 
 Ethernet frame size tags for performance tests
 ----------------------------------------------
@@ -183,6 +172,10 @@ Ethernet frame size tags for performance tests
 .. topic:: 78B
 
     78B frames used for test.
+
+.. topic:: 114B
+
+    114B frames used for test.
 
 .. topic:: IMIX
 
@@ -235,6 +228,11 @@ Test type tags
     L2BD baseline test cases, no encapsulation, no feature(s) configured in
     tests.
 
+.. topic:: L2PATCH
+
+    L2PATCH baseline test cases, no encapsulation, no feature(s) configured in
+    tests.
+
 .. topic:: SCALE
 
     Scale test cases.
@@ -250,6 +248,10 @@ Test type tags
 .. topic:: TLDK
 
     Functional test cases for TLDK.
+
+.. topic:: DMM
+
+    Functional test cases for DMM.
 
 .. topic:: TCP
 
@@ -594,6 +596,24 @@ Multi-threading tags
 
     All test cases with packet processing on two sockets.
 
+.. topic:: 1C
+
+    1 worker thread pinned to 1 dedicated physical core; or if HyperThreading is
+    enabled, 2 worker threads each pinned to a separate logical core within 1
+    dedicated physical core. Main thread pinned to core 1.
+
+.. topic:: 2C
+
+    2 worker threads pinned to 2 dedicated physical cores; or if HyperThreading
+    is enabled, 4 worker threads each pinned to a separate logical core within 2
+    dedicated physical cores. Main thread pinned to core 1.
+
+.. topic:: 4C
+
+    4 worker threads pinned to 4 dedicated physical cores; or if HyperThreading
+    is enabled, 8 worker threads each pinned to a separate logical core within 4
+    dedicated physical cores. Main thread pinned to core 1.
+
 .. topic:: 1T1C
 
    *Dynamic tag*.
@@ -622,13 +642,15 @@ Multi-threading tags
 
    *Dynamic tag*.
     4 worker threads each pinned to a separate logical core within 2 dedicated
-    physical core. 2 receive queue per interface. Main thread pinned to core 1.
+    physical cores. 2 receive queues per interface. Main thread pinned to core
+    1.
 
 .. topic:: 8T4C
 
    *Dynamic tag*.
     8 worker threads each pinned to a separate logical core within 4 dedicated
-    physical core. 4 receive queue per interface. Main thread pinned to core 1.
+    physical cores. 4 receive queues per interface. Main thread pinned to core
+    1.
 
 Honeycomb tags
 --------------
