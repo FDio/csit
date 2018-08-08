@@ -402,6 +402,7 @@ This section has these parts:
    processed.
 
 ::
+
     -
       type: "static"
       src-path: "{DIR[RST]}"
