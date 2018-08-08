@@ -1,3 +1,8 @@
+
+.. raw:: latex
+
+    \clearpage
+
 .. include:: ../introduction/test_environment_intro.rst
 
 .. include:: ../introduction/test_environment_sut_conf_1.rst

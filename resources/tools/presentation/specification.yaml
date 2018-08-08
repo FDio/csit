@@ -527,6 +527,7 @@
       yaxis:
         gridcolor: "rgb(238, 238, 238)"
         hoverformat: ".4s"
+        tickformat: ".3s"
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
         showgrid: True
@@ -10731,7 +10732,7 @@
   title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
