@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "aa8728e6_20774f80",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-08T06:56:02Z",
+      "side": 1,
+      "message": "\u003e Do we want to also use -e and -u (except when activating\n \u003e virtualenv)?\n\nWe do not want -e as it quits script in case of error. But sometimes the error is ok like reservation schema.\n\n-u is incompatible with virtualenv + mechanics below when variables from jenkins are unset and some condition have to happen. So i vote just for -x for verbosity and pipeline fail.",
+      "parentUuid": "f72d40f6_85819e21",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "046e3158_ec479e84",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
