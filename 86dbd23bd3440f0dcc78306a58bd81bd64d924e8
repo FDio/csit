@@ -45,6 +45,30 @@
       "revId": "86dbd23bd3440f0dcc78306a58bd81bd64d924e8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acc9ceb0_aaa6ec75",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-08T08:49:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "877ac55b_d1159cf8",
+      "range": {
+        "startLine": 65,
+        "startChar": 23,
+        "endLine": 65,
+        "endChar": 28
+      },
+      "revId": "86dbd23bd3440f0dcc78306a58bd81bd64d924e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
