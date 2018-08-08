@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "55d87c3a_1ce224ef",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-08T14:36:47Z",
+      "side": 1,
+      "message": "But if you are OK with existing picture, use it.",
+      "parentUuid": "b67df38c_f8e96343",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 66
+      },
+      "revId": "86dbd23bd3440f0dcc78306a58bd81bd64d924e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "877ac55b_d1159cf8",
         "filename": "docs/report/dmm_functional_tests/overview.rst",
         "patchSetId": 3
