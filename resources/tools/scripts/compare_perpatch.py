@@ -24,11 +24,10 @@ from jumpavg.BitCountingClassifier import BitCountingClassifier
 
 
 def hack(value_list):
-#    print "TRACE Hacking:", repr(value_list)
+    """Return middle two quartiles, hoping to reduce influence of outliers."""
     tmp = sorted(value_list)
     quarter = len(tmp) / 4
     ret = tmp[quarter:-quarter]
-#    print "TRACE Hacked:", repr(ret)
     return ret
 
 parent_lines = list()
@@ -37,7 +36,6 @@ with open("csit_parent/results.txt") as parent_file:
     parent_lines = parent_file.readlines()
 with open("csit_new/results.txt") as new_file:
     new_lines = new_file.readlines()
-# TODO: Figure out what to do if only parent fails.
 if len(parent_lines) != len(new_lines):
     print "Number of passed tests does not match!"
     sys.exit(1)
