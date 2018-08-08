@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3360be8_5864738a",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-08T06:09:48Z",
+      "side": 1,
+      "message": "Sharath, please, edit this part to describe the topology which you use for tests. You can also create a new picture (logical-3n-nic2nic above) if it is needed.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 66
+      },
+      "revId": "86dbd23bd3440f0dcc78306a58bd81bd64d924e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
