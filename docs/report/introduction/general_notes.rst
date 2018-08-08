@@ -16,7 +16,7 @@ is listed separately, as follows:
 #. **VPP - Performance** - VPP benchmarking tests are executed in physical
    FD.io testbeds, focusing on VPP network data plane performance at this stage,
    both for Phy-to-Phy (NIC-to-NIC) and Phy-to-VM-to-Phy (NIC-to-VM-to-NIC)
-   forwarding topologies. Tested across a range of NICs, 10GE and 40GE
+   forwarding topologies. Tested across a range of NICs, 10GE, 25GE and 40GE
    interfaces, range of multi-thread and multi-core configurations. VPP
    application runs in host user-mode. TRex is used as a traffic generator.
 
@@ -42,7 +42,7 @@ is listed separately, as follows:
    the NICs and physical interfaces. Tests are used as a baseline to
    profile performance of the DPDK sub-system. DPDK tests are executed in
    physical FD.io testbeds, focusing on Testpmd/L3FWD data plane performance for
-   Phy-to-Phy (NIC-to-NIC). Tests cover a range of NICs, 10GE and 40GE
+   Phy-to-Phy (NIC-to-NIC). Tested across a range of NICs, 10GE, 25GE and 40GE
    interfaces, range of multi-thread and multi-core configurations.
    Testpmd/L3FWD application runs in host user-mode. TRex is used as a traffic
    generator.
@@ -73,7 +73,4 @@ Framework)` and Python2.7. |csit-release| source code for the executed test
 suites is available in CSIT branch |release| in the directory
 :file:`./tests/<name_of_the_test_suite>`. A local copy of CSIT source code
 can be obtained by cloning CSIT git repository - :command:`git clone
-https://gerrit.fd.io/r/csit`. The CSIT testing virtual environment can be run
-on a local computer workstation (laptop, server) using Vagrant by following
-the instructions in `CSIT tutorials
-<https://wiki.fd.io/view/CSIT#Tutorials>`_.
+https://gerrit.fd.io/r/csit`.

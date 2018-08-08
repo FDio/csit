@@ -216,14 +216,9 @@ List of known issues in |csit-release| for VPP performance tests:
 |   | on x520.                                        |            | with HW combination of X710-X520 in LF testbeds. Not observed   |
 |   |                                                 |            | outside of LF testbeds.                                         |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | Lower than expected NDR throughput of DPDK      | CSIT-571   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
-|   | testpmd and VPP L2 path NDR throughput with     |            | PDR throughput on XL710 and X710 NICs.                          |
-|   | xl710 and x710 NICs, compared to x520 NICs.     |            |                                                                 |
+| 2 | High failure rate of api call                   | VPP-1361   | Failure rate: 30-40% of tests failing due to interfaces not     |
+|   | sw_interface_set_flags [admin-up|link-up]       |            | in link-up state after API call sw_interface_set_flags.         |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | Tagged Ethernet dot1q and dot1ad L2 path        | CSIT-1066  | Tagged Ethernet dot1q and dot1ad L2 path throughput regression: |
-|   | throughput regression.                          |            | NDR -2%..-5%, PDR -2%..-6%, MRR. Affects l2xc and l2bd          |
-|   |                                                 |            | performance tests.                                              |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | IPSec (software, no QAT HW) throughput          | CSIT-1064  | IPSec throughput regression: NDR -3%..-8%, PDR -2%..-8%, MRR    |
-|   | regression.                                     |            | -3%..-7%. Affects IPSec SW tests, QAT HW tests not affected.    |
+| 3 | Scale IPSecHW Interface mode throughput         | CSIT-1234  | IPSec throughput regression: NDR -28%..-31%, PDR -28%..-31%,    |
+|   | regression.                                     |            | MRR -40%. Affects IPSec HW Scale 1000tnl tests with Int mode.   |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
