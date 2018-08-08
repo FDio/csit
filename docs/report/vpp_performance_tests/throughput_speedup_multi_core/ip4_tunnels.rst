@@ -143,12 +143,12 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
-:index:`Speedup: ip4tun-3n-skx-xl710-64b-base_and_scale-ndr`
+:index:`Speedup: ip4tun-3n-skx-x710-64b-base_and_scale-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -157,8 +157,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
-            \label{fig:ip4tun-3n-skx-xl710-64b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-x710-64b-base_and_scale-ndr-tsa}
+            \label{fig:ip4tun-3n-skx-x710-64b-base_and_scale-ndr-tsa}
     \end{figure}
 
 .. raw:: html
@@ -169,12 +169,12 @@ CSIT source code for the test cases used for plots can be found in
 
     \clearpage
 
-:index:`Speedup: ip4tun-3n-skx-xl710-64b-base_and_scale-pdr`
+:index:`Speedup: ip4tun-3n-skx-x710-64b-base_and_scale-pdr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -183,6 +183,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
-            \label{fig:ip4tun-3n-skx-xl710-64b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-skx-x710-64b-base_and_scale-pdr-tsa}
+            \label{fig:ip4tun-3n-skx-x710-64b-base_and_scale-pdr-tsa}
     \end{figure}
