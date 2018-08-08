@@ -9,25 +9,24 @@ using :abbr:`VIRL (Virtual Internet Routing Lab)` simulation platform
 contributed by Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io
 project. All tests are executed in two node logical test topology - Traffic
 Generator (TG) node and Systems Under Test (SUT1) node connected in a loop.
-Logical test topology is shown in the figure below.::
+Logical test topology is shown in the figure below.
 
-                     +------------------------+
-                     |                        |
-                     |  +------------------+  |
-        +--------------->                  <--------------+
-        |            |  |                  |  |           |
-        |  |------------>       DUT1       <-----------+  |
-        |  |         |  +------------------+  |        |  |
-        |  |         |                        |        |  |
-        |  |         |                  SUT1  |        |  |
-        |  |         +------------------------+        |  |
-        |  |                                           |  |
-        |  |                                           |  |
-        |  |               +-----------+               |  |
-        |  +--------------->           <---------------+  |
-        |                  |    TG     |                  |
-        +------------------>           <------------------+
-                           +-----------+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_performance_tests/}}
+                \includegraphics[width=0.90\textwidth]{logical-2n-nic2nic}
+                \label{fig:logical-2n-nic2nic}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: logical-2n-nic2nic.svg
+        :alt: logical-2n-nic2nic
+        :align: center
 
 SUT1 is a VM (Ubuntu or Centos, depending on the test suite), TG is a Traffic
 Generator (TG, another Ubuntu VM). SUTs run Honeycomb and VPP SW applications
