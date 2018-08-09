@@ -287,6 +287,30 @@
     },
     {
       "key": {
+        "uuid": "6ac7cf44_4739e401",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-09T11:48:33Z",
+      "side": 1,
+      "message": "As \"-e\" is not consistent i do prefer to avoid it. It has too many \"it is not working under this or that condition\" per your [0] which makes it difficult and not readable code. I prefer to make clear \"|| exit\" like we do follow in here.",
+      "parentUuid": "0ee5d9c6_268abc0e",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "046e3158_ec479e84",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
