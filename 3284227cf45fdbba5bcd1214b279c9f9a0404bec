@@ -22,6 +22,30 @@
       "revId": "3284227cf45fdbba5bcd1214b279c9f9a0404bec",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1732d6ed_b40263a2",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-09T10:56:04Z",
+      "side": 1,
+      "message": "I just wanted to align it with the rest of. Not sure which approach is better. It is captured from Google Bash Style doc. No idea i think we should update our guidelines not only for python but far bash. So which one to preffer?",
+      "parentUuid": "690c41dd_c6ebbe5b",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 27
+      },
+      "revId": "3284227cf45fdbba5bcd1214b279c9f9a0404bec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
