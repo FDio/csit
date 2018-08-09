@@ -263,6 +263,30 @@
     },
     {
       "key": {
+        "uuid": "0ee5d9c6_268abc0e",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T11:12:50Z",
+      "side": 1,
+      "message": "\u003e\u003e (1 comment)\n\nI prefer writing replies to line (or file) level Gerrit comments, that allows you to have several independent threads (and you have a link to them). Change level Gerrit comments append to a single thread (which is noisy already due to all the messages about new uploads and verification jobs).\n\n\u003e Same I can say can be done with opposite approach. If you expect\n\u003e some piece of code to use undef variables or exit in any case make\n\u003e that explicit and set safer -e or -u.\n\nYes, the two approaches are complementary. Carefully written code can have two forms (one with global -e, one with global +e) and still execute identically, just overrides will be in different places. If that was the case, we can simply chose the form which is easier to read, or which is shorter.\n\nBut our code is not written that carefully, so +e or -e forms differ in behavior, precisely in how they react to failure the developer was not expecting.\nIn this case, we have to discuss which is \"safer\".\n\n\u003e Specifically boostraps are\n\u003e not those we want to quit imediately from various reasons (see\n\u003e below).\n\nQuitting early can be unsafe, but that does not mean continuing after error is safer (more below).\n\n\u003e So question is more like what coding style we want to use further\n\u003e on. Explicit or implicit. With Explicit it will fail but coder\n\u003e needs to make sure that it will not fail when we do not need it\n\u003e (that is like 70% of boostrap code needs to be excluded -\n\u003e kubernetes/reservation/archiving/downloading/virtualenv maybe\n\u003e others). Implicit would be reverse logic. So fail the code when\n\u003e needed. This or that requires same effort i think.\n\nI am not familiar with that 70%. I know about reservation, but we trap EXIT to make sure we also unreserve. Virtualenv activation needs +u. Do you have scenarios to illustrate \"downloading\", \"archiving\" and \"kubernetes\"?\n\n\u003e Regarding ${variable:-default} i think this is not the case. Look\n\u003e at line 369 you want to copy aritifacts to Archive just only if\n\u003e variable is set (no defaults) so another exception from unset\n\u003e otherwise boostrap will not work on localhost.\n\nRight, but line 369 shows the correct way: ${WORKSPACE-} also does not trigger -e, and if WORKSPACE is set to empty string, we still want to skip the copy.\n\nBy the way, expressions for \"if\" and similar are immune to -e, and there are many other rules making -e less obvious and reliable [0].\n\nBut I still prefer it (together with -u and -x) for debug purposes. It is easier to spot a failure if script abruptly exits (or starts EXIT trap), rather than if the failure is followed by two pages of optimistic commands dealing with unexpected situation.\n\n[0] https://mywiki.wooledge.org/BashFAQ/105",
+      "parentUuid": "ae4b741f_dc9cc25b",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "046e3158_ec479e84",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
