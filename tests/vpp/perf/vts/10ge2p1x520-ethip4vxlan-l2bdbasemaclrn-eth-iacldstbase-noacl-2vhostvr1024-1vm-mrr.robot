@@ -68,8 +68,10 @@
 | ${sock2}= | /tmp/sock-1-${dut1_bd_id2}
 # Traffic profile:
 | ${traffic_profile} | trex-sl-ethip4-vxlansrc253
-
 | ${acl_type}= | ${EMPTY}
+# Defaults for teardown:
+| ${dut1}= | ${None}
+| ${dut1_vm_refs}= | ${None}
 
 *** Keywords ***
 | Local Template
