@@ -1,0 +1,1016 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f0c8c30_7ba48999",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 53,
+        "startChar": 22,
+        "endLine": 53,
+        "endChar": 29
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27e917b2_396acc37",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 53,
+        "startChar": 15,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a9f13b7_b8995c28",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 53,
+        "startChar": 56,
+        "endLine": 53,
+        "endChar": 59
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab9768f5_5f12fbf4",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 111,
+        "startChar": 20,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d526932_b0a1795d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 115,
+        "startChar": 38,
+        "endLine": 115,
+        "endChar": 41
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0894d94_f513535b",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 116,
+        "startChar": 37,
+        "endLine": 116,
+        "endChar": 40
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "895c1dd0_0854369d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 117,
+        "startChar": 20,
+        "endLine": 117,
+        "endChar": 24
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b48855f_5ed00cff",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 123,
+        "startChar": 16,
+        "endLine": 123,
+        "endChar": 18
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31b0e152_d7bc1b09",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 141,
+        "startChar": 20,
+        "endLine": 141,
+        "endChar": 24
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "360c958c_899d9907",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 145,
+        "startChar": 38,
+        "endLine": 145,
+        "endChar": 41
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37bdabd8_8da41070",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 146,
+        "startChar": 37,
+        "endLine": 146,
+        "endChar": 40
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4e5c392_14a27568",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 18
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf77ce46_ce164184",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 12
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c84ab77c_cc94763c",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 165,
+        "startChar": 31,
+        "endLine": 165,
+        "endChar": 34
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c058e40_9f6d119e",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 10
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf1ae21c_01ce03bf",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 10
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc02e90c_95c66442",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 177,
+        "startChar": 8,
+        "endLine": 177,
+        "endChar": 12
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71a93f4e_428087ed",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 183,
+        "startChar": 13,
+        "endLine": 183,
+        "endChar": 24
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "863cccf1_59a21368",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 23
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab4c0867_d5bb0d73",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 188,
+        "startChar": 13,
+        "endLine": 188,
+        "endChar": 23
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f8464e8_eb18f241",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 191,
+        "startChar": 13,
+        "endLine": 191,
+        "endChar": 22
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87f7c1ff_02731c0e",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on zero matches?",
+      "range": {
+        "startLine": 192,
+        "startChar": 17,
+        "endLine": 192,
+        "endChar": 34
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4a6b975_1defc066",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 193,
+        "startChar": 17,
+        "endLine": 193,
+        "endChar": 26
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b7b2f26_86188a22",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 202,
+        "startChar": 13,
+        "endLine": 202,
+        "endChar": 26
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8ca5c38_df5f8474",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 202,
+        "startChar": 33,
+        "endLine": 202,
+        "endChar": 42
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "095e817d_aa7938af",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 205,
+        "startChar": 8,
+        "endLine": 205,
+        "endChar": 10
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a923930a_2052bc4c",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 206,
+        "startChar": 17,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ada9cb3_5a9b01bc",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 208,
+        "startChar": 42,
+        "endLine": 208,
+        "endChar": 46
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99e730f8_11a1f9c9",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 208,
+        "startChar": 13,
+        "endLine": 208,
+        "endChar": 24
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9ff73ff_525aa6bf",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 209,
+        "startChar": 61,
+        "endLine": 209,
+        "endChar": 63
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc5ef7bd_052b7345",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 209,
+        "startChar": 25,
+        "endLine": 209,
+        "endChar": 33
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc9ee16b_a633b46e",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 210,
+        "endChar": 13
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c00baac_f0cad2b3",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 211,
+        "startChar": 8,
+        "endLine": 211,
+        "endChar": 10
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3526c4e_08710b7d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 223,
+        "startChar": 30,
+        "endLine": 223,
+        "endChar": 34
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82e9f62c_fe053d91",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 224,
+        "startChar": 60,
+        "endLine": 224,
+        "endChar": 64
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4cf4b002_2428b1b5",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 224,
+        "startChar": 33,
+        "endLine": 224,
+        "endChar": 37
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7280ca8_3ea7f3d2",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 20
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad382dda_aac29527",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?\n\nsudo mkdir -p tmp \u0026\u0026 sudo touch tmp/tmp \u0026\u0026 rm -rf tmp || echo FAIL",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 6
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2381a62_6e1f36e7",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 296,
+        "startChar": 69,
+        "endLine": 296,
+        "endChar": 73
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e5c4a6f_9fd45f3b",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 296,
+        "startChar": 19,
+        "endLine": 296,
+        "endChar": 23
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "785d7e42_0af681e6",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 298,
+        "startChar": 17,
+        "endLine": 298,
+        "endChar": 21
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee0e5082_10ab7154",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 298,
+        "startChar": 64,
+        "endLine": 298,
+        "endChar": 68
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54a5a2cb_92c8827d",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 300,
+        "startChar": 16,
+        "endLine": 300,
+        "endChar": 20
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8761c4d_f7a378c1",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "die on error?",
+      "range": {
+        "startLine": 379,
+        "startChar": 4,
+        "endLine": 379,
+        "endChar": 9
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
