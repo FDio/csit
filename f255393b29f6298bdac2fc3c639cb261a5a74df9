@@ -431,6 +431,30 @@
     },
     {
       "key": {
+        "uuid": "ba2c5764_50735ca1",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:09:52Z",
+      "side": 1,
+      "message": "\u003e\u003e Should I start pointing out that many lines are not checking the exit code?\n\n\u003e Patch Set 31: Published edit on patch set 30.\n\nDoes that mean you are accepting my challenge? :)\nSee comments on patch 33.",
+      "parentUuid": "c7f06c45_2eb61fa9",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "046e3158_ec479e84",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
