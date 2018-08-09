@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "690c41dd_c6ebbe5b",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T10:39:28Z",
+      "side": 1,
+      "message": "I can understand that line 65 saves space, but here the \"if\" construct would take only few characters more while being more readable.",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 27
+      },
+      "revId": "3284227cf45fdbba5bcd1214b279c9f9a0404bec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
