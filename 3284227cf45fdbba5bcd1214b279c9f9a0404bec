@@ -46,6 +46,30 @@
       "revId": "3284227cf45fdbba5bcd1214b279c9f9a0404bec",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6ed6b29_f404244c",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T11:21:54Z",
+      "side": 1,
+      "message": "\u003e It is captured from Google Bash Style doc.\n\nYou mean this part [1]? See the example code there. They are putting \"[[\" just after \"if\", not calling it directly and combining with \"\u0026\u0026\" as you do.\n\nCurrently I prefer \"if\" with \"[[\" (because the code resembles Python more this way), which seems consistent with the google style.\n\n[1] https://google.github.io/styleguide/shell.xml?showone\u003dTest,_[_and_[[#Test,_[_and_[[",
+      "parentUuid": "1732d6ed_b40263a2",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 27
+      },
+      "revId": "3284227cf45fdbba5bcd1214b279c9f9a0404bec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
