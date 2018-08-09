@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "c2e769f2_b12fc35a",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-09T14:31:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4c5bf8a_4fa043ef",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 27
+      },
+      "revId": "3284227cf45fdbba5bcd1214b279c9f9a0404bec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4355891e_0a2c77a5",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 28
@@ -132,6 +156,30 @@
       "writtenOn": "2018-08-09T13:41:52Z",
       "side": 1,
       "message": "built",
+      "range": {
+        "startLine": 115,
+        "startChar": 28,
+        "endLine": 115,
+        "endChar": 35
+      },
+      "revId": "3284227cf45fdbba5bcd1214b279c9f9a0404bec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb729b8c_f138a0fc",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-09T14:31:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4355891e_0a2c77a5",
       "range": {
         "startLine": 115,
         "startChar": 28,
