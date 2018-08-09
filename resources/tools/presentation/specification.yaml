@@ -131,6 +131,7 @@
       - 19  # NDRPDR sel
       - 18  # NDRPDR sel
       - 20  # NDRPDR sel
+
     vpp-compare-testbeds:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
@@ -155,6 +156,8 @@
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 9   # MRR sel
+      - 21  # MRR sel
+      - 31  # MRR sel
       csit-vpp-perf-verify-1807-3n-skx:
       - 28  # MRR sel
       - 32  # MRR sel
@@ -193,11 +196,14 @@
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 9   # MRR sel
+      - 21  # MRR sel
+      - 31  # MRR sel
 
     vpp-perf-results-3n-hsw:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1807-3n-skx:
@@ -292,24 +298,27 @@
       - 42  # NDRPDR sel
 
     plot-vpp-http-server-performance:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 24  # WRK
       - 25  # WRK
       - 23  # WRK
       - 26  # WRK
       - 27  # WRK
+      - 28  # WRK
       - 29  # WRK
+      - 30  # WRK
+      - 32  # WRK
+      - 35  # WRK
 
     # VPP Functional
     vpp-func-results-ubuntu:
       csit-vpp-functional-1807-ubuntu1604-virl:
-      # TODO: Add Data sources
+      # TODO: Use the build number
       - "lastSuccessfulBuild"
 
     vpp-func-results-centos:
       csit-vpp-functional-1807-centos7-virl:
-      # TODO: Add Data sources
+      # TODO: Use the build number
       - "lastSuccessfulBuild"
 
     # VPP Ligato
@@ -431,7 +440,7 @@
     # HoneyComb Functional
     hc-func-results:
       csit-hc2vpp-verify-func-1807-ubuntu1604:
-      # TODO: Add Data sources
+      # TODO: Use the build number
       - "lastSuccessfulBuild"
 
     # NSH SFC Functional
@@ -689,7 +698,10 @@
     csit-vpp-perf-verify-1807-3n-hsw:
     - 8   # MRR full
     - 9   # MRR sel
+    - 21  # MRR sel
+    - 31  # MRR sel
     - 11  # NDRPDR full 1
+    - 22  # NDRPDR full 2
     - 15  # NDRPDR sel
     - 16  # NDRPDR sel
     - 19  # NDRPDR sel
@@ -700,7 +712,11 @@
     - 23  # WRK
     - 26  # WRK
     - 27  # WRK
+    - 28  # WRK
     - 29  # WRK
+    - 30  # WRK
+    - 32  # WRK
+    - 35  # WRK
     csit-vpp-perf-verify-1807-3n-skx:
     - 31  # MRR full
     - 28  # MRR sel
@@ -832,15 +848,15 @@
     - 9
     - 10
     csit-vpp-functional-1807-ubuntu1604-virl:
-    # TODO: Add Data sources
+    # TODO: Use the build number
     - "lastSuccessfulBuild"
     csit-vpp-functional-1807-centos7-virl:
-    # TODO: Add Data sources
+    # TODO: Use the build number
     - "lastSuccessfulBuild"
     csit-nsh_sfc-verify-func-1807-ubuntu1604-virl:
     - 2
     csit-hc2vpp-verify-func-1807-ubuntu1604:
-    # TODO: Add Data sources
+    # TODO: Use the build number
     - "lastSuccessfulBuild"
 
 -
@@ -1188,6 +1204,8 @@
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 9   # MRR sel
+      - 21  # MRR sel
+      - 31  # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1236,6 +1254,8 @@
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 9   # MRR sel
+      - 21  # MRR sel
+      - 31  # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1284,6 +1304,8 @@
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 9   # MRR sel
+      - 21  # MRR sel
+      - 31  # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T4C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1303,6 +1325,8 @@
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 9   # MRR sel
+      - 21  # MRR sel
+      - 31  # MRR sel
   compare:
     title: "3-Node Skx"
     data:
