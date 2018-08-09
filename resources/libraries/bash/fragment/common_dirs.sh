@@ -14,7 +14,7 @@
 set -exuo pipefail
 
 # Written variables:
-# - BASH_LIBRARY_DIR - Path to existing directory this file is located in.
+# - BASH_FRAGMENT_DIR - Path to existing directory this file is located in.
 # - CSIT_DIR - Path to existing directory with root of local CSIT git repository.
 # - RESOURCES_DIR - Path to existing CSIT subdirectory "resources".
 # - TOOLS_DIR - Path to existing resources subdirectory "tools".
@@ -22,8 +22,8 @@ set -exuo pipefail
 # - ARCHIVE_DIR - Path to created CSIT subdirectory "archive".
 # - DOWNLOAD_DIR - Path to created CSIT subdirectory "download_dir".
 
-BASH_LIBRARY_DIR=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
-CSIT_DIR=$(readlink -e "${BASH_LIBRARY_DIR}/../../../..")
+BASH_FRAGMENT_DIR=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
+CSIT_DIR=$(readlink -e "${BASH_FRAGMENT_DIR}/../../../..")
 RESOURCES_DIR=$(readlink -e "${CSIT_DIR}/resources")
 TOOLS_DIR=$(readlink -e "${RESOURCES_DIR}/tools")
 PYTHON_SCRIPTS_DIR=$(readlink -e "${TOOLS_DIR}/scripts")

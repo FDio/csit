@@ -15,10 +15,13 @@ set -exuo pipefail
 
 # Variables read:
 # - VPP_DIR - Path to directory with VPP git repo (or at least built parts).
-# - BASH_LIBRARY_DIR - Path to directory holding parser script.
+# - BASH_FRAGMENT_DIR - Path to directory holding parser script.
 # - PYTHON_SCRIPTS_DIR - Path to directory holding comparison utility.
 # Directories recreated:
 # - csit_parent - Sibling to csit directory, for holding results of parent build.
+# Exit code:
+# - 0 - If the comparison utility sees no regression (nor data error).
+# - 1 - If the comparison utility sees a regression (or data error).
 
 cd "${VPP_DIR}"
 rm -rf csit_parent
@@ -26,7 +29,7 @@ mkdir -p csit_parent
 for filename in "output.xml" "log.html" "report.html"; do
     mv "csit/${filename}" "csit_parent/${filename}"
 done
-source "${BASH_LIBRARY_DIR}/parse_bmrr_results.sh" csit_parent
+source "${BASH_FRAGMENT_DIR}/parse_bmrr_results.sh" csit_parent
 
 # Reusing CSIT main virtualenv.
 pip install -r "${PYTHON_SCRIPTS_DIR}/perpatch_requirements.txt"

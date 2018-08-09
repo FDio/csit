@@ -31,11 +31,14 @@ function die () {
     status="$1"
     shift
     warn "$@"
-    exit "$status"
+    exit "${status}"
 }
 
 function cancel_all () {
     # Trap function to get into consistent state.
+    set -xo pipefail
+    set +eu  # We do not want to exit early in a "teardown".
     python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t $1
     python "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t $1
+    set -eu
 }

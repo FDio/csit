@@ -17,13 +17,12 @@ set -exuo pipefail
 # - TOPOLOGIES - Array of paths to topology yaml to attempt reservation on.
 # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
 # Variables set:
-# - WORKING_TOPOLOGY - Path to topology yaml of testbed reservation succeeded on.
+# - WORKING_TOPOLOGY - Path to topology yaml of the testbed reservation passed on.
 # Traps registered:
 # - EXIT - Calls cancel_all defined in common_functions.sh
 
 while true; do
-    for topology in ${TOPOLOGIES};
-    do
+    for topology in ${TOPOLOGIES}; do
         set +e
         python "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -t ${topology}
         result="$?"
@@ -37,7 +36,7 @@ while true; do
         fi
     done
 
-    if [ -n "${WORKING_TOPOLOGY}" ]; then
+    if [[ -n "${WORKING_TOPOLOGY}" ]]; then
         # Exit the infinite while loop if we made a reservation.
         break
     fi

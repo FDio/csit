@@ -56,6 +56,6 @@ case "${1}_${2}" in
         die 1 "Unknown specification: ${1}_${2}"
 esac
 
-if [ -z "${TOPOLOGIES}" ]; then
+if [[ -z "${TOPOLOGIES}" ]]; then
     die 1 "No applicable topology found!"
 fi

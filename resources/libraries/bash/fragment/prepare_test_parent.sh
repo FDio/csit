@@ -15,17 +15,19 @@ set -exuo pipefail
 
 # Variables read:
 # - VPP_DIR - Path to existing directory, parent of accessed directories.
-# - BASH_LIBRARY_DIR - Path to directory holding parser script.
+# - BASH_FRAGMENT_DIR - Path to directory holding parser script.
 # - CSIT_DIR - Path to directory with root of local CSIT git repository.
 # - ARCHIVE_DIR and DOWNLOAD_DIR - Paths to directories to update.
 # Directories read:
 # - build_parent - Build artifacts (to test next) are copied from here.
 # Directories updated:
 # - csit_new - Deleted, then recreated and latest robot results copied here.
-# - $CSIT_DIR - Subjected to git reset and git clean.
-# - $ARCHIVE_DIR - Created if not existing (might be deleted by git clean).
-# - $DOWNLOAD_DIR - Created after git clean, parent build atrifacts copied here.
-# - csit_parent - Currently a symlink to csit/ to archive robot results on failure.
+# - ${CSIT_DIR} - Subjected to git reset and git clean.
+# - ${ARCHIVE_DIR} - Created if not existing (might be deleted by git clean).
+# - ${DOWNLOAD_DIR} - Created after git clean, parent build atrifacts copied here.
+# - csit_parent - Currently a symlink to csit/ to archive robot results.
+# Functions called:
+# - die - Print to stderr and exit, defined in common_functions.sh
 
 cd "${VPP_DIR}"
 rm -rf csit_new
@@ -33,12 +35,14 @@ mkdir -p csit_new
 for filename in output.xml log.html report.html; do
     mv "csit/${filename}" "csit_new/${filename}"
 done
-source "${BASH_LIBRARY_DIR}/parse_bmrr_results.sh" csit_new
+source "${BASH_FRAGMENT_DIR}/parse_bmrr_results.sh" csit_new
 
 # TODO: Also handle archive/ and make job archive everything useful.
-( cd "${CSIT_DIR}" && git reset --hard HEAD && git clean -dffx )
+( cd "${CSIT_DIR}" && git reset --hard HEAD && git clean -dffx ) || {
+    die 1 "Something went wrong with CSIT reset."
+}
 mkdir -p "${ARCHIVE_DIR}" "${DOWNLOAD_DIR}"
 
-cp build_parent/*.deb "${DOWNLOAD_DIR}/"
+cp build_parent/*.deb "${DOWNLOAD_DIR}"/
 # Create symlinks so that if job fails on robot test, results can be archived.
 ln -s csit csit_parent

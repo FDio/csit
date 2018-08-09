@@ -18,16 +18,18 @@ set -exuo pipefail
 # Directories read:
 # - build-root - Existing directory with built VPP artifacts (including DPDK).
 # Directories updated:
-# - $VPP_DIR - Assument to be a local git repository, parent commit is checked out.
+# - ${VPP_DIR} - Assumed to be a local git repository, parent commit checked out.
 # - build_new - Old contents removed, content of build-root copied here.
 
 cd "${VPP_DIR}"
 rm -rf build_new
+# Copying can be slow.
+# TODO: Move only .deb, in that case nothing critical misses from build-root.
 cp -r build-root build_new
 # The previous build could have left some incompatible leftovers,
 # e.g. DPDK artifacts of different version.
-# "make -C dpdk clean" does not actually remove the .deb file.
-# There might be a copy of dpdk artifact in build-root
+# "make -C dpdk clean" does not actually remove such .deb file.
+# Also, there usually is a copy of dpdk artifact in build-root.
 git clean -dffx dpdk/ build-root/
 # Finally, check out the parent commit.
 git checkout HEAD~

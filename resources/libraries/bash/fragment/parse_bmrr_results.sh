@@ -13,6 +13,9 @@
 
 set -exuo pipefail
 
+# Currently "parsing" is just two greps.
+# TODO: Re-use PAL parsing code to make output more general and deduplicated.
+#
 # Arguments:
 # - $1 - Path to (existing) directory holding robot output.xml result.
 # Variables (re)set:

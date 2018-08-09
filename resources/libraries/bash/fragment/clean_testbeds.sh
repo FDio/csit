@@ -15,10 +15,6 @@ set -exuo pipefail
 
 # Variables read:
 # - PYTHON_SCRIPTS_DIR - path to directory containing the cleanup script.
-# - WORKING_TOPOLOGY - path to reserved topology yaml file.
-# Functions called:
-# - die - Print to stderr and exit, defined in common_functions.sh
+# - WORKING_TOPOLOGY - path the topology yaml file which got reserved.
 
-python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t ${WORKING_TOPOLOGY} || {
-    die 1 "Failed to cleanup topologies!"
-}
+python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t ${WORKING_TOPOLOGY}

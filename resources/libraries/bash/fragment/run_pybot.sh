@@ -24,22 +24,24 @@ set -exuo pipefail
 # - ARCHIVE_DIR - Path to store robot result files in.
 # - PYBOT_ARGS, EXPANDED_TAGS - See compose_pybot_arguments.sh
 # Variables set:
-# - PYBOT_RETURN_STATUS - Exit status of most recent pybot invocation.
+# - PYBOT_EXIT_STATUS - Exit status of most recent pybot invocation.
 
 tries="${1:-1}"
 
 while true; do
-    if [ "${tries}" -le 0 ]; then
+    if [[ "${tries}" -le 0 ]]; then
         break
     else
-        tries=$(($tries - 1))
+        tries=$((${tries} - 1))
     fi
     set +e  # Although, allegedly sub-shell invocation does not trigger -e.
     # TODO: Make robot tests not to require "$(pwd)" == "${CSIT_DIR}".
-    ( set -xu; cd "${CSIT_DIR}"; pybot --outputdir ${ARCHIVE_DIR} ${PYBOT_ARGS}${EXPANDED_TAGS[@]} ${CSIT_DIR}/tests/ )
-    PYBOT_RETURN_STATUS=$(echo $?)
+    pushd "${CSIT_DIR}"
+    pybot --outputdir ${ARCHIVE_DIR} ${PYBOT_ARGS}${EXPANDED_TAGS[@]} ${CSIT_DIR}/tests/
+    PYBOT_EXIT_STATUS=$(echo "$?")
+    popd
     set -e
-    if [[ "${PYBOT_RETURN_STATUS}" == "0" ]]; then
+    if [[ "${PYBOT_EXIT_STATUS}" == "0" ]]; then
         break
     fi
 done

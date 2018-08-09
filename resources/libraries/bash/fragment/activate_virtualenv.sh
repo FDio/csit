@@ -19,26 +19,18 @@ set -exuo pipefail
 # Variables set:
 # - ENV_DIR - Path to the created virtualenv subdirectory.
 # Variables exported:
-# - PYTHONPATH - CSIT_DIR, as CSIT python scripts need this.
+# - PYTHONPATH - CSIT_DIR, as CSIT Python scripts usually need this.
 
 # Using WORKSPACE, as per-patch resets contents of csit/.
 ENV_DIR="${WORKSPACE}/env"
 rm -rf "${ENV_DIR}"
 
-pip install --upgrade virtualenv || {
-    die 1 "Failed to install virtual env!"
-}
-virtualenv --system-site-packages "${ENV_DIR}" || {
-    die 1 "Failed to create virtual env!"
-}
+pip install --upgrade virtualenv
+virtualenv --system-site-packages "${ENV_DIR}"
 set +u
-source "${ENV_DIR}/bin/activate" || {
-    die 1 "Failed to activate virtual env!"
-}
+source "${ENV_DIR}/bin/activate"
 set -u
-pip install -r "${CSIT_DIR}/requirements.txt" || {
-    die 1 "Failed to install requirements to virtual env!"
-}
+pip install -r "${CSIT_DIR}/requirements.txt"
 
-# Most CSIT Python scripts assume PYTONPATH is set and exported.
+# Most CSIT Python scripts assume PYTHONPATH is set and exported.
 export PYTHONPATH="${CSIT_DIR}"

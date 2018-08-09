@@ -13,13 +13,13 @@
 
 set -exuo pipefail
 
+# Source this fragment if you want to abort on any failed test case.
+#
 # Variables read:
-# - WORKSPACE - Jenkins workspace, copy only happens if the value is not empty.
-# - ARCHIVE_DIR - Path to directory with content to be copied.
-# Directories updated:
-# - ${WORKSPACE}/archives/ - Content is copied here,
-#   copy will fail if this directory does not exist.
+# - PYBOT_EXIT_STATUS - Set by a pybot running fragment.
+# Functions called:
+# - die - Print to stderr and exit, defined in common_functions.sh
 
-# We will create additional archive if workspace variable is set. This way if
-# script is running in jenkins all will be automatically archived to logs.fd.io.
-[[ -n "${WORKSPACE-}" ]] && cp -r "${ARCHIVE_DIR}/" "${WORKSPACE}/archives/"
+if [[ "${PYBOT_EXIT_STATUS}" != "0" ]]; then
+    die "${PYBOT_EXIT_STATUS}" "Test failures are present!"
+fi

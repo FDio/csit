@@ -13,7 +13,16 @@
 
 set -exuo pipefail
 
-# TODO: Is this even needed, the source line is longer than direct exit.
-# FIXME: Add documentaton comments.
+# Variables read:
+# - WORKSPACE - Jenkins workspace, copy only happens if the value is not empty.
+# - ARCHIVE_DIR - Path to directory with content to be copied.
+# Directories updated:
+# - ${WORKSPACE}/archives/ - Created if does not exist,
+#   content of ${ARCHIVE_DIR}/ is copied here.
 
-exit "${PYBOT_RETURN_STATUS}"
+# We will create additional archive if workspace variable is set. This way if
+# script is running in jenkins all will be automatically archived to logs.fd.io.
+if [[ -n "${WORKSPACE-}" ]]; then
+    mkdir -p ${WORKSPACE}/archives/
+    cp -r "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives/"
+fi

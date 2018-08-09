@@ -24,7 +24,6 @@ set -exuo pipefail
 
 PYBOT_ARGS="--loglevel TRACE --variable TOPOLOGY_PATH:${WORKING_TOPOLOGY} --suite tests.${DUT}.perf"
 
-# Catenate TAG selections
 EXPANDED_TAGS=()
 for TAG in "${TAGS[@]}"; do
     if [[ ${TAG} == "!"* ]]; then

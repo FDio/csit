@@ -13,20 +13,25 @@
 
 set -exuo pipefail
 
+# This is mostly useful only for Sandbox testing, to avoid recompilation.
+#
+# Hardcoded values:
+# - URL to download builds from.
 # Variables read:
-# - VPP_DIR - Path to existing directory, parent of accessed directories.
-# - DOWNLOAD_DIR - Path to directory where Robot takes builds to test from.
-# Directories read:
-# - build-root - Existing directory with built VPP artifacts (including DPDK).
-# Directories updated:
-# - build_parent - Old directory removed, build-root moved to become this.
-# - $DOWNLOAD_DIR - Old content removed, files from build_new copied here.
+# - VPP_DIR - Path to WORKSPACE, parent of created directories.
+# - DOWNLOAD_DIR - Path to directory where pybot takes the build to test from.
+# Directories created:
+# - archive - Probably ends up empty, not to be confused with ${ARCHIVE_DIR}.
+# - build_new - Holding built artifacts of the patch under test (PUT).
+# - built_parent - Holding built artifacts of parent of PUT.
 # - csit_new - Currently a symlink to csit/ to archive robot results on failure.
 
-cd ${VPP_DIR}
-rm -rf build_parent
-mv build-root build_parent
-rm -rf "${DOWNLOAD_DIR}"/*
-cp build_new/*.deb "${DOWNLOAD_DIR}"
+cd "${VPP_DIR}"
+rm -rf build-root build_parent build_new archive
+wget -N --progress=dot:giga "https://jenkins.fd.io/sandbox/job/vpp-csit-verify-hw-perf-master-up/2/artifact/*zip*/archive.zip"
+unzip archive.zip
+mv archive/build_parent ./
+mv archive/build_new ./
+cp -r build_new/*.deb "${DOWNLOAD_DIR}"
 # Create symlinks so that if job fails on robot test, results can be archived.
 ln -s csit csit_new
