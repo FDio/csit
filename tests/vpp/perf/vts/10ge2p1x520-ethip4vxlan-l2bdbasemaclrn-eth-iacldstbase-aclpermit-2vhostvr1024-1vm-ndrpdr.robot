@@ -74,8 +74,10 @@
 # Traffic profile:
 | ${traffic_profile} | trex-sl-ethip4-vxlansrc253
 | ${min_rate}= | ${10000}
-
 | ${acl_type}= | permit
+# Defaults for teardown:
+| ${dut1}= | ${None}
+| ${dut1_vm_refs}= | ${None}
 
 *** Keywords ***
 | Local Template
