@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "82da03b4_95bb76ee",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:15:41Z",
+      "side": 1,
+      "message": "Print loud warning if this fails?",
+      "range": {
+        "startLine": 39,
+        "startChar": 49,
+        "endLine": 39,
+        "endChar": 64
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44ff6374_014ad096",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T16:15:41Z",
+      "side": 1,
+      "message": "Print loud warning if this fails?",
+      "range": {
+        "startLine": 40,
+        "startChar": 49,
+        "endLine": 40,
+        "endChar": 68
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f0c8c30_7ba48999",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 33
