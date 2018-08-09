@@ -383,6 +383,30 @@
     },
     {
       "key": {
+        "uuid": "6811ff8f_31973bb8",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-09T13:01:58Z",
+      "side": 1,
+      "message": "✗ touch tmp \u0026\u0026 mkdir -p tmp || echo FAIL\nmkdir: cannot create directory ‘tmp’: File exists\nFAIL\n\nwhy do you touch file when you then want to create dir? Disk full i think cannot be detected by this as directory is just i-node, you can reach limit of i-nodes but then anything will fail.\n\nDo you want to test also if directory was deleted by user after it was created by script? Or if accidentally two instances of same script is not running? Of if someone did not delete CSIT dir during execution of this script?",
+      "parentUuid": "5c6b2f9d_897661fe",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "046e3158_ec479e84",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
