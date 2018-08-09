@@ -407,6 +407,30 @@
     },
     {
       "key": {
+        "uuid": "c7f06c45_2eb61fa9",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-09T13:21:47Z",
+      "side": 1,
+      "message": "That was just an example of an unexpected failure. I do not expect anything like that to happen (otherwise it would be an expected failure).\n\nBut unexpected failures happen on occasion, we just do not know on which line. For debug purposes, we would appreciate if every exit code is checked. That can be done pretty lazily with set -e (except those complicated cases when -e does not trigger and we should use \"||\" or similar).\n\nThere are 3 related but not identical questions:\n1. Do we want to abort fast, or continue on error? (I say abort in most cases, but continue in trap functions and other \"teardowns\".)\n2. Do we want to keep the code short or \"correct\"? (I say short if mostly correct, but rather long than mostly incorrect.)\n3. Do we want to use set -e? (Depends on previous answers, I say mostly yes.)\n\nI am still open to not using -e (or switching between -e and +e on different code blocks), if really 70% of code works better with +e (which I am not convinced of yet).",
+      "parentUuid": "6811ff8f_31973bb8",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "f255393b29f6298bdac2fc3c639cb261a5a74df9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "046e3158_ec479e84",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 23
