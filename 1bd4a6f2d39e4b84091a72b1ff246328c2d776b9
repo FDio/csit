@@ -2089,6 +2089,30 @@
       "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a6acce6_b227231c",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-10T11:44:21Z",
+      "side": 1,
+      "message": "No. I think you are missing the purpose, the history of CSIT jobs. Red dot here is result of Pybot not the maven script responsible for upload. Second, we do not want to throw perf results just because stability of LF infra is what it is. Missing logs cannot be the reason of failing verification (a.k.a JJB -1), otherwise small changes in LF infra will make production pipeline to stop although there is no reason.",
+      "parentUuid": "10e65354_f4def2ab",
+      "range": {
+        "startLine": 379,
+        "startChar": 4,
+        "endLine": 379,
+        "endChar": 9
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
