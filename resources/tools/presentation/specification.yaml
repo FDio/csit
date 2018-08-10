@@ -159,6 +159,8 @@
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
+      - 33  # MRR sel
+      - 36  # MRR sel
       csit-vpp-perf-verify-1807-3n-skx:
       - 28  # MRR sel
       - 32  # MRR sel
@@ -199,6 +201,8 @@
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
+      - 33  # MRR sel
+      - 36  # MRR sel
 
     vpp-perf-results-3n-hsw:
       # TODO: Add Data sources
@@ -314,13 +318,11 @@
     # VPP Functional
     vpp-func-results-ubuntu:
       csit-vpp-functional-1807-ubuntu1604-virl:
-      # TODO: Use the build number
-      - "lastSuccessfulBuild"
+      - 278
 
     vpp-func-results-centos:
       csit-vpp-functional-1807-centos7-virl:
-      # TODO: Use the build number
-      - "lastSuccessfulBuild"
+      - 278
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
@@ -441,8 +443,7 @@
     # HoneyComb Functional
     hc-func-results:
       csit-hc2vpp-verify-func-1807-ubuntu1604:
-      # TODO: Use the build number
-      - "lastSuccessfulBuild"
+      - 6
 
     # NSH SFC Functional
     nsh-func-results:
@@ -707,6 +708,8 @@
     - 9   # MRR sel
     - 21  # MRR sel
     - 31  # MRR sel
+    - 33  # MRR sel
+    - 36  # MRR sel
     - 11  # NDRPDR full 1
     - 22  # NDRPDR full 2
     - 15  # NDRPDR sel
@@ -855,19 +858,16 @@
     - 9
     - 10
     csit-vpp-functional-1807-ubuntu1604-virl:
-    # TODO: Use the build number
-    - "lastSuccessfulBuild"
+    - 278
     csit-vpp-functional-1807-centos7-virl:
-    # TODO: Use the build number
-    - "lastSuccessfulBuild"
+    - 278
     csit-nsh_sfc-verify-func-1807-ubuntu1604-virl:
     - 2
     # TODO: Replace with 1807 job:
     csit-dmm-functional-master-ubuntu1604-virl:
     - 95
     csit-hc2vpp-verify-func-1807-ubuntu1604:
-    # TODO: Use the build number
-    - "lastSuccessfulBuild"
+    - 6
 
 -
   type: "output"
@@ -1216,6 +1216,8 @@
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
+      - 33  # MRR sel
+      - 36  # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1266,6 +1268,8 @@
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
+      - 33  # MRR sel
+      - 36  # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1316,6 +1320,8 @@
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
+      - 33  # MRR sel
+      - 36  # MRR sel
   data: "vpp-performance-changes-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'4T4C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1337,6 +1343,8 @@
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
+      - 33  # MRR sel
+      - 36  # MRR sel
   compare:
     title: "3-Node Skx"
     data:
@@ -1378,7 +1386,6 @@
   parameters:
   - "name"
   - "parent"
-  - "doc"
   - "msg"
 
 -
@@ -1400,7 +1407,6 @@
   parameters:
   - "name"
   - "parent"
-  - "doc"
   - "msg"
 
 -
@@ -1422,7 +1428,6 @@
   parameters:
   - "name"
   - "parent"
-  - "doc"
   - "msg"
 
 -
@@ -1570,7 +1575,6 @@
   parameters:
   - "name"
   - "parent"
-  - "doc"
   - "msg"
 
 -
@@ -1592,7 +1596,6 @@
   parameters:
   - "name"
   - "parent"
-  - "doc"
   - "msg"
 
 -
@@ -1614,7 +1617,6 @@
   parameters:
   - "name"
   - "parent"
-  - "doc"
   - "msg"
 
 -
@@ -1792,7 +1794,6 @@
   parameters:
   - "name"
   - "parent"
-  - "doc"
   - "msg"
 
 ################################################################################
