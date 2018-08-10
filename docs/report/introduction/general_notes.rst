@@ -62,6 +62,10 @@ is listed separately, as follows:
    virtual FD.io testbeds focusing on NSH_SFC of VPP. Tests cover a range of
    CRUD operations executed against VPP.
 
+#. **DMM Functional** - DMM functional tests are executed in virtual FD.io
+   testbeds demonstrates single server[DUT1] and single client[DUT2] scenario
+   using DMM framework and kernel tcp/ip stack.
+
 In addition to above, |csit-release| report does also include VPP unit test
 results. VPP unit tests are developed within the FD.io VPP project and as they
 complement CSIT system functional tests, they are provided mainly as a reference
