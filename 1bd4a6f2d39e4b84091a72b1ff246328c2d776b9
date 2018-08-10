@@ -259,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "e7b0a394_a9ed88cf",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T10:57:29Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "09cca143_6e49dea1",
+      "range": {
+        "startLine": 115,
+        "startChar": 38,
+        "endLine": 115,
+        "endChar": 41
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0894d94_f513535b",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 33
@@ -576,6 +600,30 @@
       "side": 1,
       "message": "tested on line 243",
       "parentUuid": "d4e5c392_14a27568",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 18
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b293974c_189819ef",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T10:57:29Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "c10893e5_9bbf5a0e",
       "range": {
         "startLine": 155,
         "startChar": 16,
@@ -1478,6 +1526,30 @@
     },
     {
       "key": {
+        "uuid": "84a225e6_b7689145",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T10:57:29Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "8b05e84c_7cfa150e",
+      "range": {
+        "startLine": 223,
+        "startChar": 30,
+        "endLine": 223,
+        "endChar": 34
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82e9f62c_fe053d91",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 33
@@ -1654,6 +1726,30 @@
       "side": 1,
       "message": "Pointless. Read rm man",
       "parentUuid": "ad382dda_aac29527",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 6
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2fac0d2_4a553aa8",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T10:57:29Z",
+      "side": 1,
+      "message": "What do you mean pointless, I have given a onle-liner to show this can fail.\n\nI guess lines 248-259 are likely to fail as well, but I am not sure how much noise they will print before that.",
+      "parentUuid": "c8321c48_90480d03",
       "range": {
         "startLine": 246,
         "startChar": 0,
@@ -1901,6 +1997,30 @@
     },
     {
       "key": {
+        "uuid": "fc520813_754240bb",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T10:57:29Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "18cf8566_6ada5a93",
+      "range": {
+        "startLine": 300,
+        "startChar": 16,
+        "endLine": 300,
+        "endChar": 20
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8761c4d_f7a378c1",
         "filename": "bootstrap-verify-perf.sh",
         "patchSetId": 33
@@ -1936,6 +2056,30 @@
       "side": 1,
       "message": "no we do not want to fail",
       "parentUuid": "e8761c4d_f7a378c1",
+      "range": {
+        "startLine": 379,
+        "startChar": 4,
+        "endLine": 379,
+        "endChar": 9
+      },
+      "revId": "1bd4a6f2d39e4b84091a72b1ff246328c2d776b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10e65354_f4def2ab",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 33
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T10:57:29Z",
+      "side": 1,
+      "message": "Why? Even if all tests pass, we still want to make sure all relevant logs are archived, so that we can compare when some test starts failing. Red dot in Jenkins is more probable to get out attention needed to fix the archiving.",
+      "parentUuid": "225e7778_524f496a",
       "range": {
         "startLine": 379,
         "startChar": 4,
