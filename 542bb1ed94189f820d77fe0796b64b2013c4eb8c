@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "48cca012_3b325914",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 43
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T11:00:19Z",
+      "side": 1,
+      "message": "After rebase (patch 45), other jobs work on Sandbox [4] (except the final archiving step of course).\n\n[4] https://jenkins.fd.io/sandbox/job/csit-vpp-perf-verify-master-2n-skx/18/",
+      "parentUuid": "c417bc27_ba4ad29e",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "542bb1ed94189f820d77fe0796b64b2013c4eb8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d5b1e2d_2e6435ae",
         "filename": "/COMMIT_MSG",
         "patchSetId": 43
