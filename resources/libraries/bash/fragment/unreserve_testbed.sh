@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +13,18 @@
 
 set -exuo pipefail
 
-# TODO: Delete this file, perhaps replacing it with a symlink.
-here=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
-source "${here}/resources/libraries/bash/entry/bootstrap.sh"
+function unreserve_testbed () {
+
+    set -exuo pipefail
+
+    # Variables read:
+    # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
+    # Trap unregistered:
+    # - EXIT
+    # Functions called:
+    # - cancel_all - Call unregistration script, defined in common_functions.sh
+    # - die - Print to stderr and exit, defined in common_functions.sh
+
+    trap - EXIT || echo "Trap deactivation failed, continuing anyway."
+    cancel_all "${WORKING_TOPOLOGY}" || die 2 "UNRESERVE FAILED. REPAIR MANUALLY."
+}
