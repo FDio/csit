@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccd4ca35_fd0532d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 43
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T08:29:06Z",
+      "side": 1,
+      "message": "This probably means https://gerrit.fd.io/r/13814 has to be merged first so other perf jobs work correctly.",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "542bb1ed94189f820d77fe0796b64b2013c4eb8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d5b1e2d_2e6435ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 43
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T08:29:06Z",
+      "side": 1,
+      "message": "Will be uploaded in separate Change probably.",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 29
+      },
+      "revId": "542bb1ed94189f820d77fe0796b64b2013c4eb8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
