@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "945f788d_d02d5ada",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-10T21:14:46Z",
+      "side": 1,
+      "message": "QemuUtils.py is far from perfect. Due to lack of time fixing at least readability, PEP8 styling, pylints, some TODOs, and removing redundant loggers.",
+      "revId": "8d348e43d1381c105302134aaa47b3160189cc1c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
