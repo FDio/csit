@@ -127,6 +127,8 @@
       - 35  # sel
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -136,6 +138,8 @@
     vpp-compare-testbeds:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -156,6 +160,7 @@
     vpp-compare-testbeds-mrr:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 8   # MRR full
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
@@ -198,6 +203,7 @@
       - 22  # mrr - sel
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 8   # MRR full
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
@@ -235,6 +241,8 @@
     plot-throughput-speedup-analysis-3n-hsw:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -270,6 +278,8 @@
     plot-vpp-throughput-latency-3n-hsw:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -333,11 +343,13 @@
     plot-ligato-throughput-speedup-analysis-3n-hsw:
       # TODO: Add Data sources
       csit-ligato-perf-1807-all:
+      - 3   # full ?
       - 4   # sel
 
     plot-ligato-throughput-latency-3n-hsw:
       # TODO: Add Data sources
       csit-ligato-perf-1807-all:
+      - 3   # full ?
       - 4   # sel
 
     # DPDK Performance
@@ -925,6 +937,8 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -979,6 +993,8 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1033,6 +1049,8 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1087,6 +1105,8 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1110,6 +1130,8 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1147,6 +1169,8 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 11  # NDRPDR full 1
+      - 22  # NDRPDR full 2
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1213,6 +1237,7 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 8   # MRR full
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
@@ -1265,6 +1290,7 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 8   # MRR full
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
@@ -1317,6 +1343,7 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 8   # MRR full
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
@@ -1340,6 +1367,7 @@
     data:
       # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
+      - 8   # MRR full
       - 9   # MRR sel
       - 21  # MRR sel
       - 31  # MRR sel
