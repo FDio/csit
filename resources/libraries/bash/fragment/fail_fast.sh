@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +13,18 @@
 
 set -exuo pipefail
 
-# TODO: Delete this file, perhaps replacing it with a symlink.
-here=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
-source "${here}/resources/libraries/bash/entry/bootstrap.sh"
+function fail_fast () {
+
+    set -exuo pipefail
+
+    # Source this fragment if you want to abort on any failed test case.
+    #
+    # Variables read:
+    # - PYBOT_EXIT_STATUS - Set by a pybot running fragment.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common_functions.sh
+
+    if [[ "${PYBOT_EXIT_STATUS}" != "0" ]]; then
+        die "${PYBOT_EXIT_STATUS}" "Test failures are present!"
+    fi
+}
