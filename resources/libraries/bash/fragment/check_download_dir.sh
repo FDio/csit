@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +13,20 @@
 
 set -exuo pipefail
 
-# TODO: Delete this file, perhaps replacing it with a symlink.
-here=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
-source "${here}/resources/libraries/bash/entry/bootstrap.sh"
+function check_download_dir () {
+
+    set -exuo pipefail
+
+    # Fail if there are no files visible in ${DOWNLOAD_DIR}.
+    #
+    # Variables read:
+    # - DOWNLOAD_DIR - Path to directory where pybot takes the build to test from.
+    # Directories read:
+    # - ${DOWNLOAD_DIR} - Has to be non-empty to proceed.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common_functions.sh
+
+    if [[ ! "$(ls -A ${DOWNLOAD_DIR})" ]]; then
+        die 1 "No artifacts downloaded!"
+    fi
+}
