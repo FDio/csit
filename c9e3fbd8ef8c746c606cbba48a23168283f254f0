@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd60e507_ec9ac4e1",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-10T11:21:07Z",
+      "side": 1,
+      "message": "Any plans for turning this into an explicit (and documented) Argument? And perhaps unifying this with line 184? And making the unified keyword work also for 2-node topologies?",
+      "range": {
+        "startLine": 315,
+        "startChar": 45,
+        "endLine": 315,
+        "endChar": 50
+      },
+      "revId": "c9e3fbd8ef8c746c606cbba48a23168283f254f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
