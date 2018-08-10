@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +13,15 @@
 
 set -exuo pipefail
 
-# TODO: Delete this file, perhaps replacing it with a symlink.
-here=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
-source "${here}/resources/libraries/bash/entry/bootstrap.sh"
+function set_vpp_dir () {
+
+    set -exuo pipefail
+
+    # Variables read:
+    # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # Variables set:
+    # - VPP_DIR - Path to existing root of local VPP git repository.
+
+    # In perpatch, CSIT is cloned inside VPP clone.
+    VPP_DIR=$(readlink -e "${CSIT_DIR}/..") || die 1 "Readlink failed."
+}
