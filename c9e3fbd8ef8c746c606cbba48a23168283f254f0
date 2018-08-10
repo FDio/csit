@@ -22,6 +22,30 @@
       "revId": "c9e3fbd8ef8c746c606cbba48a23168283f254f0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dce0d712_e3bd9ce8",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-10T11:52:51Z",
+      "side": 1,
+      "message": "It is planned to remove ${nr} although i am not sure if i will be merging with 2-node as it is more complex. i need to fix other Qemu 2.11 related issues first.",
+      "parentUuid": "dd60e507_ec9ac4e1",
+      "range": {
+        "startLine": 315,
+        "startChar": 45,
+        "endLine": 315,
+        "endChar": 50
+      },
+      "revId": "c9e3fbd8ef8c746c606cbba48a23168283f254f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
