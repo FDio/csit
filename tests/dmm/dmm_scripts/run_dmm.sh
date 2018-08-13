@@ -49,8 +49,11 @@ cd ${LIB_PATH}
 chmod 777 *
 ls -l
 
+export LD_LIBRARY_PATH=${LIB_PATH}
+export LIBRARY_PATH=${LIB_PATH}
+
 cd ${APP_DIR}
-cp -r ${LIB_PATH}/libnStackAPI.so .
+cp -r ${LIB_PATH}/* .
 cp -r ../configure/* .
 chmod 777 *
 
