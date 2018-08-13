@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aff436e1_905533fd",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-13T11:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5db377f6_bb704ccb",
+      "range": {
+        "startLine": 892,
+        "startChar": 12,
+        "endLine": 892,
+        "endChar": 21
+      },
+      "revId": "8531a86bd581e1bc60868364a34ab52ebd1c8c8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3413d892_6ab3d402",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-13T08:28:53Z",
       "side": 1,
       "message": "\\$",
+      "range": {
+        "startLine": 1812,
+        "startChar": 12,
+        "endLine": 1812,
+        "endChar": 13
+      },
+      "revId": "8531a86bd581e1bc60868364a34ab52ebd1c8c8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30ed7f9b_f2300fca",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1812,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-13T11:40:15Z",
+      "side": 1,
+      "message": "Done, but looks like it does not always work:\n\nExample from log.html:\nperformance_configuration . And Configure guest VMs with dpdk-testpmd connected via vhost-user vm_count\u003d${1}, jumbo\u003d${jumbo}, perf_qemu_qsz\u003d${256}, use_tuned_cfs\u003d${False}\nDocumentation: \t\n\nStart ${vm_count} QEMU guests with two vhost-user interfaces and\n\nBut then inside:\n performance_configuration . Configure guest VMs with dpdk-testpmd connected via vhost-user on node ${dut}, vm_count\u003d${vm_count}, jumbo\u003d${jumbo}, perf_qemu_qsz\u003d${perf_qemu_qsz}, use_tuned_cfs\u003d${False}\nDocumentation: \t\n\nStart 1 QEMU guests with two vhost-user interfaces and\n\n\nAs well as it must be updated in rest of CSIT :/",
+      "parentUuid": "3413d892_6ab3d402",
       "range": {
         "startLine": 1812,
         "startChar": 12,
