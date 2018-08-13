@@ -50,7 +50,7 @@ chmod 777 *
 ls -l
 
 cd ${APP_DIR}
-cp -r ${LIB_PATH}/libnStackAPI.so .
+cp -r ${LIB_PATH}/* .
 cp -r ../configure/* .
 chmod 777 *
 
