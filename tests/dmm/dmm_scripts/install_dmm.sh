@@ -125,4 +125,4 @@ else
     sudo mount -t hugetlbfs -o pagesize=2M none /mnt/nstackhuge/
 fi
 
-sudo mkdir -p /var/run/ip_module/
+sudo mkdir -p /var/log/nStack/ip_module/
