@@ -47,7 +47,9 @@ THEME_OVERRIDES = """/* override table width restrictions */
 
 COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
           "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
-          "Violet", "Blue", "Yellow"]
+          "Violet", "Blue", "Yellow", "Aquamarine", "Chartreuse",
+          "FireBrick", "LawnGreen", "LightSeaGreen", "MediumBlue",
+          "SlateBlue", "Orchid", "BlueViolet", "GoldenRod"]
 
 
 def generate_cpta(spec, data):
