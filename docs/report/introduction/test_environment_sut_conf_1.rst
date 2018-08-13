@@ -1,5 +1,5 @@
-SUT Configuration - Host OS Linux
----------------------------------
+SUT Host - Linux
+----------------
 
 System provisioning is done by combination of PXE boot unattented
 install and
@@ -7,7 +7,7 @@ install and
 
 Below a subset of the running configuration:
 
-#. Haswell - Ubuntu 16.04.1 LTS
+1. Xeon Haswell - Ubuntu 16.04.1 LTS
 
 ::
 
@@ -18,7 +18,7 @@ Below a subset of the running configuration:
     Release:	16.04
     Codename:	xenial
 
-#. Skylake - Ubuntu 18.04 LTS
+2. Xeon Skylake - Ubuntu 18.04 LTS
 
 ::
 
@@ -29,7 +29,7 @@ Below a subset of the running configuration:
     Release:        18.04
     Codename:       bionic
 
-**Kernel boot parameters used in CSIT performance testbeds**
+**Linux kernel boot parameters used**
 
 - **isolcpus=<cpu number>-<cpu number>** used for all cpu cores apart from
   first core of each socket used for running VPP worker threads and Qemu/LXC
@@ -69,14 +69,14 @@ Below a subset of the running configuration:
 
 **Applied command line boot parameters:**
 
-#. Haswell - Ubuntu 16.04.1 LTS
+1. Xeon Haswell - Ubuntu 16.04.1 LTS
 
 ::
 
     $ cat /proc/cmdline
     BOOT_IMAGE=/vmlinuz-4.4.0-72-generic root=UUID=35ea11e4-e44f-4f67-8cbe-12f09c49ed90 ro isolcpus=1-17,19-35 nohz_full=1-17,19-35 rcu_nocbs=1-17,19-35 intel_pstate=disable console=tty0 console=ttyS0,115200n8
 
-#. Skylake - Ubuntu 18.04 LTS
+2. Xeon Skylake - Ubuntu 18.04 LTS
 
 ::
 

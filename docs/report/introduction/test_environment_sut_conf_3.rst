@@ -1,8 +1,7 @@
 
 **Host IRQ affinity**
 
-Changing the default pinning of every IRQ to core 0. (Same does apply on both
-guest VM and host OS)
+IRQs are pinned to core 0. The same configuration is applied in host Linux and guest VM.
 
 ::
 
@@ -10,8 +9,7 @@ guest VM and host OS)
 
 **Host RCU affinity**
 
-Changing the default pinning of RCU to core 0. (Same does apply on both guest VM
-and host OS)
+RCUs are pinned to core 0. The same configuration is applied in host Linux and guest VM.
 
 ::
 
@@ -19,8 +17,7 @@ and host OS)
 
 **Host Writeback affinity**
 
-Changing the default pinning of writebacks to core 0. (Same does apply on both
-guest VM and host OS)
+Writebacks are pinned to core 0. The same configuration is applied in host Linux and guest VM.
 
 ::
 
