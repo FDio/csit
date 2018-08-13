@@ -1,9 +1,10 @@
 
-**Host CFS optimizations (QEMU+VPP)**
+Linux CFS tunings
+~~~~~~~~~~~~~~~~~
 
-Applying CFS scheduler tuning on all Qemu vcpu worker threads (those are
-handling testpmd - pmd threads) and VPP PMD worker threads. List of VPP PMD
-threads can be obtained e.g. from:
+Linux CFS scheduler tunings are applied to all QEMU vCPU worker threads
+(the ones handling testpmd PMD threads) and VPP data plane worker
+threads. List of VPP data plane threads can be obtained by running:
 
 ::
 
@@ -21,7 +22,7 @@ Or:
 
     $ cat /proc/`pidof vpp`/task/*/stat | awk '{print $1" "$2" "$39}'
 
-Applying Round-robin scheduling with highest priority
+CFS round-robin scheduling with highest priority is applied using:
 
 ::
 
@@ -33,5 +34,5 @@ Applying Round-robin scheduling with highest priority
     $     done
     $ done
 
-More information about Linux CFS can be found in: `Sched manual pages
+More information about Linux CFS can be found in `Sched manual pages
 <http://man7.org/linux/man-pages/man7/sched.7.html>`_.

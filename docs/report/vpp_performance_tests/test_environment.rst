@@ -5,6 +5,10 @@
 
 .. include:: ../introduction/test_environment_intro.rst
 
+.. include:: ../introduction/test_environment_sut_calib_hsw.rst
+
+.. include:: ../introduction/test_environment_sut_calib_skx.rst
+
 .. include:: ../introduction/test_environment_sut_conf_1.rst
 
 .. include:: ../introduction/test_environment_sut_conf_2.rst
@@ -12,28 +16,33 @@
 .. include:: ../introduction/test_environment_sut_conf_3.rst
 
 
-DUT Configuration - VPP
------------------------
+DUT Settings- VPP
+-----------------
 
-**VPP Version**
+VPP Version
+~~~~~~~~~~~
 
 |vpp-release|
 
-**VPP Compile Parameters**
+VPP Compile Parameters
+~~~~~~~~~~~~~~~~~~~~~~
 
 `FD.io VPP compile job`_
 
-**VPP Install Parameters**
+VPP Install Parameters
+~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
     $ dpkg -i --force-all vpp*
 
-**VPP Startup Configuration**
+VPP Startup Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-VPP startup configuration changes per test case with different settings for
-`$$CORELIST_WORKERS`, `$$NUM_RX_QUEUES`, `$$UIO_DRIVER`, `$$NUM-MBUFS` and
-`$$NO_MULTI_SEG` parameter. Default template:
+VPP startup configuration vary per test case, with different settings
+for `$$CORELIST_WORKERS`, `$$NUM_RX_QUEUES`, `$$UIO_DRIVER`, `$$NUM-
+MBUFS` and `$$NO_MULTI_SEG` parameter. Default template is provided
+below:
 
 ::
 
@@ -88,5 +97,8 @@ VPP startup configuration changes per test case with different settings for
       dev $$DEV_1
       dev $$DEV_2
     }
+
+Description of VPP startup settings used in CSIT is provided in
+:ref:`performance_test_methodology`.
 
 .. include:: ../introduction/test_environment_tg.rst

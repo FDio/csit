@@ -3,16 +3,64 @@
 Test Environment
 ================
 
-CSIT performance tests are executed on physical testbeds hosted by
-:abbr:`LF (Linux Foundation)` for FD.io project. Each testbed consists of
-either one (2-node) or two (3-node) servers acting as Systems Under Test (SUT)
-and one server acting as Traffic Generator (TG).
+Physical Testbeds
+-----------------
 
-Server Specification and Configuration
---------------------------------------
+FD.io CSIT performance tests are executed in physical testbeds hosted by
+:abbr:`LF (Linux Foundation)` for FD.io project.
 
-Complete specification and configuration of compute servers used in CSIT
-physical testbeds is maintained on wiki page `CSIT testbed - Server HW
-Configuration (Haswell) <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_ and
-`CSIT testbed - Server HW Configuration (Skylake/ARM)
-<https://wiki.fd.io/view/CSIT/fdio_csit_lab_ext_lld_draft>`_.
+Two physical testbed topology types are used:
+
+- **3-Node Topology**: Consisting of two servers acting as SUTs
+  (Systems Under Test) and one server as TG (Traffic Generator), all
+  connected in ring topology.
+- **2-Node Topology**: Consisting of one server acting as SUTs and one
+  server as TG both connected in ring topology.
+
+Tested SUT servers are based on a range of processors including Intel
+Xeon Haswell-SP, Intel Xeon Skylake-SP, Arm, Intel Atom. More detailed
+description is provided in
+:ref:`tested_physical_topologies`.
+
+Tested logical topologies are described in
+:ref:`tested_logical_topologies`.
+
+Server Specifications
+---------------------
+
+Complete technical specifications of compute servers used in CSIT
+physical testbeds are maintained on FD.io wiki pages: `CSIT/Testbeds:
+Xeon Hsw, VIRL
+<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Hsw,_VIRL.#FD.io_CSIT_testbeds_-_Xeon_Haswell.2C_VIRL>`_
+and `CSIT Testbeds: Xeon Skx, Arm, Atom
+<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.#Server_Specification>`_.
+
+Pre-Test Server Calibration
+---------------------------
+
+Number of SUT server sub-system runtime parameters have been identified
+as impacting data plane performance tests. Calibrating those parameters
+is part of FD.io CSIT pre-test activities, and includes measuring and
+reporting following:
+
+#. System level core jitter – measure duration of core interrupts by
+   Linux in clock cycles and how often interrupts happen. Using
+   `CPU core jitter tool <https://git.fd.io/pma_tools/tree/jitter>`_.
+
+#. Memory latency – measure memory latency with `Intel MLC tool
+   <https://software.intel.com/en-us/articles/intelr-memory-latency-checker>`_.
+
+#. Memory bandwidth – measure bandwidth with `Intel MLC tool
+   <https://software.intel.com/en-us/articles/intelr-memory-latency-checker>`_.
+
+#. Cache latency at all levels (L1, L2, and Last Level Cache) – measure
+   cache latency with `Intel MLC tool
+   <https://software.intel.com/en-us/articles/intelr-memory-latency-checker>`_.
+
+Measured values of listed parameters are especially important for
+repeatable zero packet loss throughput measurements across multiple
+system instances. Generally they come useful as a background data for
+comparing data plane performance results across disparate servers.
+
+Following sections include measured calibration data for Intel Xeon
+Haswell and Intel Xeon Skylake testbeds.
