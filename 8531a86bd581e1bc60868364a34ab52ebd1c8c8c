@@ -93,6 +93,30 @@
       "revId": "8531a86bd581e1bc60868364a34ab52ebd1c8c8c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0778e6fc_462a6946",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1812,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-13T11:49:45Z",
+      "side": 1,
+      "message": "If it does not work and we want consistency, we can still switch back to \"dut\" without any dollars here.",
+      "parentUuid": "30ed7f9b_f2300fca",
+      "range": {
+        "startLine": 1812,
+        "startChar": 12,
+        "endLine": 1812,
+        "endChar": 13
+      },
+      "revId": "8531a86bd581e1bc60868364a34ab52ebd1c8c8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
