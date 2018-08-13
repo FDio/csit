@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5db377f6_bb704ccb",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-13T08:28:53Z",
+      "side": 1,
+      "message": "\\${vm_count} perhaps? When reading suite files it is not immediately clear this is counting VMs (as opposed to nodes or CPUs per VM).",
+      "range": {
+        "startLine": 892,
+        "startChar": 12,
+        "endLine": 892,
+        "endChar": 21
+      },
+      "revId": "8531a86bd581e1bc60868364a34ab52ebd1c8c8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3413d892_6ab3d402",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1812,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-13T08:28:53Z",
+      "side": 1,
+      "message": "\\$",
+      "range": {
+        "startLine": 1812,
+        "startChar": 12,
+        "endLine": 1812,
+        "endChar": 13
+      },
+      "revId": "8531a86bd581e1bc60868364a34ab52ebd1c8c8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
