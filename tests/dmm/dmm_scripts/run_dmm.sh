@@ -49,8 +49,11 @@ cd ${LIB_PATH}
 chmod 777 *
 ls -l
 
+export LD_LIBRARY_PATH=${LIB_PATH}
+env | grep LD_LIBRARY_PATH
+
 cd ${APP_DIR}
-cp -r ${LIB_PATH}/libnStackAPI.so .
+cp -r ${LIB_PATH}/* .
 cp -r ../configure/* .
 chmod 777 *
 
@@ -110,10 +113,13 @@ ls -l
 
 #only for kernal stack
 if [ ${proc_name} -eq 0 ]; then
-sudo LD_PRELOAD=${LIB_PATH}/libnStackAPI.so ./vs_epoll -p 20000 -d ${dut2_ip} -a 10000 -s ${dut1_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
+sudo LD_LIBRARY_PATH=${LIB_PATH} ./vs_epoll -p 20000 -d ${dut2_ip} -a 10000 -s ${dut1_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
 else
-sudo LD_PRELOAD=${LIB_PATH}/libnStackAPI.so ./vc_common -p 20000 -d ${dut1_ip} -a 10000 -s ${dut2_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
+sudo LD_LIBRARY_PATH=${LIB_PATH} ./vc_common -p 20000 -d ${dut1_ip} -a 10000 -s ${dut2_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
 fi
+
+env | grep LD_LIBRARY_PATH
+sudo env | grep LD_LIBRARY_PATH
 
 cd ${PWDDIR}
 
