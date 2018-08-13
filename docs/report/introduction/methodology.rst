@@ -1,3 +1,6 @@
+
+.. _performance_test_methodology:
+
 Performance Test Methodology
 ============================
 

@@ -1,19 +1,23 @@
-TG Configuration - TRex
------------------------
+TG Settings - TRex
+------------------
 
-**TG Version**
+TG Version
+~~~~~~~~~~
 
 |trex-release|
 
-**DPDK version**
+DPDK version
+~~~~~~~~~~~~
 
 DPDK v17.11
 
-**TG Build Script used**
+TG Build Script used
+~~~~~~~~~~~~~~~~~~~~
 
 `TRex intallation`_
 
-**TG Startup Configuration**
+TG Startup Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -27,12 +31,14 @@ DPDK v17.11
         - dest_mac        :   [0x3c,0xfd,0xfe,0x9c,0xee,0xf4]
           src_mac         :   [0x3c,0xfd,0xfe,0x9c,0xee,0xf5]
 
-**TG Startup Command**
+TG Startup Command
+~~~~~~~~~~~~~~~~~~
 
 ::
 
     $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log 2>&1 &'> /dev/null
 
-**TG common API - pointer to driver**
+TG API Driver
+~~~~~~~~~~~~~
 
 `TRex driver`_

@@ -1,26 +1,26 @@
 
-**Host IRQ affinity**
+Host IRQ Affinity
+~~~~~~~~~~~~~~~~~
 
-Changing the default pinning of every IRQ to core 0. (Same does apply on both
-guest VM and host OS)
+IRQs are pinned to core 0. The same configuration is applied in host Linux and guest VM.
 
 ::
 
     $ for l in `ls /proc/irq`; do echo 1 | sudo tee /proc/irq/$l/smp_affinity; done
 
-**Host RCU affinity**
+Host RCU Affinity
+~~~~~~~~~~~~~~~~~
 
-Changing the default pinning of RCU to core 0. (Same does apply on both guest VM
-and host OS)
+RCUs are pinned to core 0. The same configuration is applied in host Linux and guest VM.
 
 ::
 
     $ for i in `pgrep rcu[^c]` ; do sudo taskset -pc 0 $i ; done
 
-**Host Writeback affinity**
+Host Writeback Affinity
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Changing the default pinning of writebacks to core 0. (Same does apply on both
-guest VM and host OS)
+Writebacks are pinned to core 0. The same configuration is applied in host Linux and guest VM.
 
 ::
 
