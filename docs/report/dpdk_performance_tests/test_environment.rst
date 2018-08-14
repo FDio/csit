@@ -10,34 +10,38 @@
 .. include:: ../introduction/test_environment_sut_conf_3.rst
 
 
-DUT Configuration - DPDK
-------------------------
+DUT Settings - DPDK
+-------------------
 
-**DPDK Version**
+DPDK Version
+~~~~~~~~~~~~
 
 |dpdk-release|
 
-**DPDK Compile Parameters**
+DPDK Compile Parameters
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
     make install T=x86_64-native-linuxapp-gcc -j
 
-**Testpmd Startup Configuration**
+Testpmd Startup Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Testpmd startup configuration changes per test case with different settings for
-`$$CORES`, `$$RXQ` and max-pkt-len parameter if test is sending jumbo frames.
-Startup command template:
+Testpmd startup configuration changes per test case with different
+settings for `$$CORES`, `$$RXQ` and max-pkt-len parameter if test is
+sending jumbo frames. Startup command template:
 
 .. code-block:: bash
 
     testpmd -c $$CORE_MASK -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=$$CORES --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=$$RXQ --txq=$$TXQ --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
 
-**L3FWD Startup Configuration**
+L3FWD Startup Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-L3FWD startup configuration changes per test case with different settings for
-`$$CORES` and enable-jumbo parameter if test is sending jumbo frames.
-Startup command template:
+L3FWD startup configuration changes per test case with different
+settings for `$$CORES` and enable-jumbo parameter if test is sending
+jumbo frames. Startup command template:
 
 .. code-block:: bash
 
