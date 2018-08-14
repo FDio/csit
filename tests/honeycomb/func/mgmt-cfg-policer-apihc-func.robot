@@ -80,8 +80,6 @@
 | TC05: Configure Policer on Interface
 | | [Documentation] | Honeycomb can configure Policer on a given interface.
 | | ...
-# HC2VPP-373: Fix classify session creation
-| | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Run Keywords
 | | ... | Honeycomb disables Policer on interface | ${node} | ${interface} | AND
 | | ... | Honeycomb removes ACL session | ${node}
@@ -114,8 +112,6 @@
 | | ...
 | | [Teardown] | Show Packet Trace on All DUTs | ${nodes}
 | | ...
-# HC2VPP-373: Fix classify session creation
-| | [Tags] | EXPECTED_FAILING
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Honeycomb configures Policer | ${dut_node} | ${policer_data_3}
