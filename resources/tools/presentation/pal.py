@@ -116,10 +116,10 @@ def main():
 
     except (KeyError, ValueError, PresentationError) as err:
         logging.info("Finished with an error.")
-        logging.critical(str(err))
+        logging.critical(repr(err))
     except Exception as err:
         logging.info("Finished with an unexpected error.")
-        logging.critical(str(err))
+        logging.critical(repr(err))
     finally:
         if spec is not None:
             clean_environment(spec.environment)
