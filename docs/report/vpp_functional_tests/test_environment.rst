@@ -1,70 +1,72 @@
 Test Environment
 ================
 
-CSIT functional tests are currently executed in FD.IO VIRL testbed. The physical
-VIRL testbed infrastructure consists of three VIRL hosts:
-
-- All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @2.30GHz,
-  18c, 512GB RAM)
+CSIT VPP functional tests are executed in FD.io VIRL testbeds. The
+physical VIRL testbed infrastructure consists of three VIRL servers:
 
 - tb4-virl1:
 
-  - Status: Production
-  - OS: Ubuntu 16.04.2
-  - STD server version 0.10.32.16
-  - UWM server version 0.10.32.16
+  - Status: Production.
+  - OS: Ubuntu 16.04.2.
+  - VIRL STD server version 0.10.32.16.
+  - VIRL UWM server version 0.10.32.16.
 
 - tb4-virl2:
 
-  - Status: Production
-  - OS: Ubuntu 16.04.2
-  - STD server version 0.10.32.16
-  - UWM server version 0.10.32.16
+  - Status: Production.
+  - OS: Ubuntu 16.04.2.
+  - VIRL STD server version 0.10.32.16.
+  - VIRL UWM server version 0.10.32.16.
 
 - tb4-virl3:
 
-  - Status: Testing
-  - OS: Ubuntu 16.04.2
-  - STD server version 0.10.32.19
-  - UWM server version 0.10.32.19
+  - Status: Production.
+  - OS: Ubuntu 16.04.2.
+  - VIRL STD server version 0.10.32.19.
+  - VIRL UWM server version 0.10.32.19.
 
-Whenever a patch is submitted to gerrit for review, parallel VIRL simulations
-are started to reduce the time of execution of all functional tests. The number
-of parallel VIRL simulations is equal to number of test groups defined by
-TEST_GROUPS variable in :file:`csit/bootstrap.sh` file. The VIRL host to run
-VIRL simulation is selected based on least load algorithm per VIRL simulation.
+- All VIRL hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699
+  v3 @2.30GHz, 18c, 512GB RAM).
 
-Every VIRL simulation uses the same three-node - Traffic Generator (TG node) and
-two Systems Under Test (SUT1 and SUT2) - "double-ring" topology. The appropriate
-pre-built VPP packages built by Jenkins for the patch under review are then
-installed on the two SUTs, along with their :file:`/etc/vpp/startup.conf` file,
-in all VIRL simulations.
 
-SUT Configuration - VIRL Guest VM
----------------------------------
+Whenever a patch is submitted to gerrit for review, parallel VIRL
+simulations are started to reduce the time of execution of all
+functional tests. The number of parallel VIRL simulations is equal to a
+number of test groups defined by TEST_GROUPS variable in
+:file:`csit/bootstrap.sh` file. VIRL host to run VIRL simulation is
+selected based on least load algorithm per VIRL simulation.
 
-Configurations of the SUT VMs is defined in `VIRL topologies directory`_
+Every VIRL simulation uses the same three-node logical ring topology -
+Traffic Generator (TG node) and two Systems Under Test (SUT1 and SUT2).
+The appropriate pre-built VPP packages built by Jenkins for the patch
+under review are then installed on the two SUTs, along with their
+:file:`/etc/vpp/startup.conf` file, in all VIRL simulations.
 
-- List of SUT VM interfaces:::
+SUT Settings - VIRL Guest VM
+----------------------------
+
+SUT VMs' settings are defined in `VIRL topologies directory`_
+
+- List of SUT VM interfaces:
 
     <interface id="0" name="GigabitEthernet0/4/0"/>
     <interface id="1" name="GigabitEthernet0/5/0"/>
     <interface id="2" name="GigabitEthernet0/6/0"/>
     <interface id="3" name="GigabitEthernet0/7/0"/>
 
-- Number of 2MB hugepages: 1024
+- Number of 2MB hugepages: 1024.
 
-- Maximum number of memory map areas: 20000
+- Maximum number of memory map areas: 20000.
 
-- Kernel Shared Memory Max: 2147483648 (vm.nr_hugepages * 2 * 1024 * 1024)
+- Kernel Shared Memory Max: 2147483648 (vm.nr_hugepages * 2 * 1024 * 1024).
 
-SUT Configuration - VIRL Guest OS Linux
----------------------------------------
+SUT Settings - VIRL Guest OS Linux
+----------------------------------
 
 In CSIT terminology, the VM operating system for both SUTs that |vpp-release| has
 been tested with, is the following:
 
-#. **Ubuntu VIRL image**
+#. Ubuntu VIRL image
 
    This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
    package versions are those that would have been installed by a
@@ -77,7 +79,7 @@ been tested with, is the following:
    A replica of this VM image can be built by running the :command:`build.sh`
    script in CSIT repository.
 
-#. **CentOS VIRL image**
+#. CentOS VIRL image
 
    This image implies Centos 7.4-1711, current as of yyyy-mm-dd (that is,
    package versions are those that would have been installed by a
@@ -90,7 +92,7 @@ been tested with, is the following:
    A replica of this VM image can be built by running the :command:`build.sh`
    script in CSIT repository.
 
-#. **Nested VM image**
+#. Nested VM image
 
    In addition to the "main" VM image, tests which require VPP to communicate to
    a VM over a vhost-user interface, utilize a "nested" VM image.
@@ -104,18 +106,19 @@ been tested with, is the following:
    "nested" image are included in CSIT GIT repository, and the image can be
    rebuilt using the "build.sh" script at `VIRL nested`_.
 
-DUT Configuration - VPP
------------------------
+DUT Settings - VPP
+------------------
 
 Every System Under Test runs VPP SW application in Linux user-mode as a Device
 Under Test (DUT) node.
 
-**DUT port configuration**
+DUT Port Configuration
+~~~~~~~~~~~~~~~~~~~~~~
 
 Port configuration of DUTs is defined in topology file that is generated per
 VIRL simulation based on the definition stored in `VIRL topologies directory`_.
 
-Example of DUT nodes configuration:::
+Example of DUT nodes configuration:
 
     DUT1:
         type: DUT
@@ -230,11 +233,14 @@ Example of DUT nodes configuration:::
             pci_address: "0000:00:07.0"
             link: link6
 
-**VPP Version**
+VPP Version
+~~~~~~~~~~~
 
 |vpp-release|
 
-**VPP Installed Packages - Ubuntu**
+VPP Installed Packages - Ubuntu
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ::
 
     $ dpkg -l vpp\*
@@ -250,7 +256,10 @@ Example of DUT nodes configuration:::
     ii  vpp-lib                             18.07-release                              amd64        Vector Packet Processing--runtime libraries
     ii  vpp-plugins                         18.07-release                              amd64        Vector Packet Processing--runtime plugins
 
-**VPP Installed Packages - Centos**
+
+VPP Installed Packages - Centos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ::
 
     $ rpm -qai vpp*
@@ -350,12 +359,13 @@ Example of DUT nodes configuration:::
     Description :
     This package contains VPP plugins
 
-**VPP Startup Configuration**
+VPP Startup Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 VPP startup configuration is common for all test cases except test cases related
 to SW Crypto device.
 
-**Default**
+**Common Configuration**
 
 ::
 
@@ -511,7 +521,7 @@ to SW Crypto device.
         ## Alternate syntax to choose plugin path
         # plugin_path /home/bms/vpp/build-root/install-vpp-native/vpp/lib64/vpp_plugins
 
-**SW Crypto Device**
+**SW Crypto Device Configuration**
 
 ::
 
@@ -534,15 +544,16 @@ to SW Crypto device.
       vdev cryptodev_aesni_mb_pmd,socket_id=0
     }
 
-TG Configuration
-----------------
+TG Settings - Scapy
+-------------------
 
 Traffic Generator node is VM running the same OS Linux as SUTs. Ports of this
 VM are used as source (Tx) and destination (Rx) ports for the traffic.
 
 Traffic scripts of test cases are executed on this VM.
 
-**TG VM configuration**
+TG VM Configuration
+~~~~~~~~~~~~~~~~~~~
 
 Configuration of the TG VMs is defined in `VIRL topologies directory`_.
 
@@ -557,7 +568,8 @@ Configuration of the TG VMs is defined in `VIRL topologies directory`_.
     <interface id="4" name="eth5"/>
     <interface id="5" name="eth6"/>
 
-**TG node port configuration**
+TG Port Configuration
+~~~~~~~~~~~~~~~~~~~~~
 
 Port configuration of TG is defined in topology file that is generated per VIRL
 simulation based on the definition stored in `VIRL topologies directory`_.
@@ -620,8 +632,9 @@ Example of TG node configuration:::
             link: link5
             driver: virtio-pci
 
-**Traffic generator**
+Traffic Generator
+~~~~~~~~~~~~~~~~~
 
-Functional tests utilize Scapy as a traffic generator. There was used Scapy
-v2.3.1 for |vpp-release| tests.
+Functional tests utilize Scapy as a traffic generator. Scapy v2.3.1 is
+used for |vpp-release| tests.
 
