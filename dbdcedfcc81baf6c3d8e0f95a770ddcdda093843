@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c14403df_42aaef4d",
+        "filename": "docs/report/vpp_functional_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-14T15:08:54Z",
+      "side": 1,
+      "message": "Full stops are good for sentences, but perhaps not for short list items. Sentences contain verbs (at least implicitly).",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "dbdcedfcc81baf6c3d8e0f95a770ddcdda093843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cffe5c3d_5567c76d",
+        "filename": "docs/report/vpp_functional_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-14T15:08:54Z",
+      "side": 1,
+      "message": "And for versions strings, full stops are confusing.",
+      "range": {
+        "startLine": 11,
+        "startChar": 38,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "dbdcedfcc81baf6c3d8e0f95a770ddcdda093843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "087db10d_4b2949a4",
+        "filename": "docs/report/vpp_functional_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-14T15:08:54Z",
+      "side": 1,
+      "message": "Colon here, to complete the \"key: value\" look?",
+      "range": {
+        "startLine": 11,
+        "startChar": 27,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "dbdcedfcc81baf6c3d8e0f95a770ddcdda093843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "231f9401_c0730af5",
+        "filename": "docs/report/vpp_functional_tests/test_environment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-14T15:08:54Z",
+      "side": 1,
+      "message": "This line is in a grey area, but I think it is \"sentency\" enough.",
+      "range": {
+        "startLine": 57,
+        "startChar": 31,
+        "endLine": 57,
+        "endChar": 32
+      },
+      "revId": "dbdcedfcc81baf6c3d8e0f95a770ddcdda093843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
