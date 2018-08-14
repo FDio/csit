@@ -265,11 +265,11 @@ topologies and configurations:
   regardless of packet loss. Maximum load for specified Ethernet frame
   size is set to the bi-directional link rate.
 
-|csit-release| includes following performance test areas covered across
-a range of NIC drivers and NIC models:
+|csit-release| includes following VPP data plane features performance
+tested across a range of NIC drivers and NIC models:
 
 +-----------------------+----------------------------------------------+
-| Test Area             |  Description                                 |
+| Features              |  Description                                 |
 +=======================+==============================================+
 | ACL                   | L2 Bridge-Domain switching and               |
 |                       | IPv4and IPv6 routing with iACL and oACL IP   |
@@ -342,6 +342,10 @@ a range of NIC drivers and NIC models:
 +-----------------------+----------------------------------------------+
 | VPP TCP/IP stack      | Tests of VPP TCP/IP stack used with VPP      |
 |                       | built-in HTTP server.                        |
++-----------------------+----------------------------------------------+
+| VTS                   | Virtual Topology System use case tests       |
+|                       | combining VXLAN overlay tunneling with L2BD, |
+|                       | ACL and KVM VM vhost-user features.          |
 +-----------------------+----------------------------------------------+
 | VXLAN                 | VXLAN overlay tunnelling integration with    |
 |                       | L2XC and L2BD.                               |
