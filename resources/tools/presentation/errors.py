@@ -63,7 +63,9 @@ class PresentationError(Exception):
             sys.exit(1)
 
     def __repr__(self):
-        return repr(self._msg)
+        return (
+            "PresentationError(msg={msg!r},details={dets!r},level={level!r})".
+            format(msg=self._msg, dets=self._details, level=self._level))
 
     def __str__(self):
         return str(self._msg)
