@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf4c0c08_167ba901",
+        "filename": "docs/report/introduction/test_environment_intro.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-14T13:00:20Z",
+      "side": 1,
+      "message": "In your data, bandwith is listed before latency.",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "0fc7d0b8fb105cd3a707f525aec99c73b1736bf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba33034d_9319f2ea",
+        "filename": "docs/report/introduction/test_environment_intro.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-14T13:00:20Z",
+      "side": 1,
+      "message": "You are referring to the same target three times, so it would be better to specify the target just once, and use three shorter references to it.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 75
+      },
+      "revId": "0fc7d0b8fb105cd3a707f525aec99c73b1736bf7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
