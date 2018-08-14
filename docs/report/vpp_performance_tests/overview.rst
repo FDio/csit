@@ -265,11 +265,11 @@ topologies and configurations:
   regardless of packet loss. Maximum load for specified Ethernet frame
   size is set to the bi-directional link rate.
 
-|csit-release| includes following VPP data plane features performance
-tested across a range of NIC drivers and NIC models:
+|csit-release| includes following VPP data plane functionality
+performance tested across a range of NIC drivers and NIC models:
 
 +-----------------------+----------------------------------------------+
-| Features              |  Description                                 |
+| Functionality         |  Description                                 |
 +=======================+==============================================+
 | ACL                   | L2 Bridge-Domain switching and               |
 |                       | IPv4and IPv6 routing with iACL and oACL IP   |
