@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "671244d2_3f1de941",
+        "filename": "docs/report/vpp_performance_tests/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-14T15:36:57Z",
+      "side": 1,
+      "message": "The word \"feature\" tends to be used in a narrow technical sense by VPP developers, for example \"show features\", see [0].\nCan we use less specific synonym, for example \"use case\" or \"scenario\"?\n\n[0] https://gerrit.fd.io/r/gitweb?p\u003dvpp.git;a\u003dblob;f\u003ddocs/gettingstarted/developers/featurearcs.md;h\u003df1e3ec47d0538ed9061fb744802ea2b11506f3f6;hb\u003drefs/heads/master#l4",
+      "range": {
+        "startLine": 268,
+        "startChar": 49,
+        "endLine": 268,
+        "endChar": 57
+      },
+      "revId": "87a7fa1efc44b2562c800bed982fe8888654225d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
