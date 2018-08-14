@@ -4,8 +4,6 @@ Overview
 For description of physical testbeds used for DPDK performance tests
 please refer to :ref:`tested_physical_topologies`.
 
-.. _tested_logical_topologies:
-
 Logical Topologies
 ------------------
 
