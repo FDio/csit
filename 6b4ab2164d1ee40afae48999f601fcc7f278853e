@@ -117,6 +117,30 @@
       "revId": "6b4ab2164d1ee40afae48999f601fcc7f278853e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ce53ee6_5fefa51e",
+        "filename": "docs/report/introduction/test_environment_sut_calib_skx.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-14T13:41:54Z",
+      "side": 1,
+      "message": "It was indeed wrong outputs, thx for spotting. Next patch is with correct data.",
+      "parentUuid": "0d487c31_4ae2acb1",
+      "range": {
+        "startLine": 84,
+        "startChar": 20,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "6b4ab2164d1ee40afae48999f601fcc7f278853e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
