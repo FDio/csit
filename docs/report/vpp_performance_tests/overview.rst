@@ -269,7 +269,7 @@ topologies and configurations:
 tested across a range of NIC drivers and NIC models:
 
 +-----------------------+----------------------------------------------+
-| Features              |  Description                                 |
+| Feature               |  Description                                 |
 +=======================+==============================================+
 | ACL                   | L2 Bridge-Domain switching and               |
 |                       | IPv4and IPv6 routing with iACL and oACL IP   |
