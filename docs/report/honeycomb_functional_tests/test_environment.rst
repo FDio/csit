@@ -1,5 +1,7 @@
 Test Environment
 ================
 
-CSIT functional tests are currently executed in FD.IO VIRL testbed.
-See `VPP Functional Tests Environment <../vpp_functional_tests/test_environment.html>`_ for more details.
+FD.io CSIT HoneyComb functional tests are executed in the same FD.io
+virtual environment as used CSIT VPP functional tests. See description
+in `VPP Functional Tests Environment
+<../vpp_functional_tests/test_environment.html>`_.
