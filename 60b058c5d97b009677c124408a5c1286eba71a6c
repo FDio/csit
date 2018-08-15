@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86d812e3_efbce35f",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T08:11:40Z",
+      "side": 1,
+      "message": "I think DMM Centos job is disabled.",
+      "range": {
+        "startLine": 32,
+        "startChar": 42,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "60b058c5d97b009677c124408a5c1286eba71a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
