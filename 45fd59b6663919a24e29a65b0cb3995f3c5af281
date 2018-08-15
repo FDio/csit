@@ -22,6 +22,30 @@
       "revId": "45fd59b6663919a24e29a65b0cb3995f3c5af281",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71bb58f1_6d6ed385",
+        "filename": "docs/report/introduction/general_notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-15T12:27:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83c88c25_fb1ddb13",
+      "range": {
+        "startLine": 19,
+        "startChar": 61,
+        "endLine": 19,
+        "endChar": 65
+      },
+      "revId": "45fd59b6663919a24e29a65b0cb3995f3c5af281",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
