@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9015587_94b09237",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T12:48:00Z",
+      "side": 1,
+      "message": "Well, the actual code overlap is zero (not counting the common TrafficGenerator backend). Just the idea of \"offer maximum load and note receive rate\" is re-used. Even the load offered (as input parameter) is different: unidirectional for MRR, bidirectional for MLRsearch (output is bidirectional in both cases).",
+      "range": {
+        "startLine": 12,
+        "startChar": 49,
+        "endLine": 12,
+        "endChar": 65
+      },
+      "revId": "d36ab58bf27ad3957e7368b002034586395fdcb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c8e6108_64aea2fa",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T12:48:00Z",
+      "side": 1,
+      "message": "Ok, but MRR coverage has also been extended for DPDK.",
+      "range": {
+        "startLine": 18,
+        "startChar": 54,
+        "endLine": 18,
+        "endChar": 55
+      },
+      "revId": "d36ab58bf27ad3957e7368b002034586395fdcb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
