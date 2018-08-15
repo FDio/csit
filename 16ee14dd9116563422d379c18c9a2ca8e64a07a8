@@ -22,6 +22,30 @@
       "revId": "16ee14dd9116563422d379c18c9a2ca8e64a07a8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39fcd80f_f46fbd9f",
+        "filename": "resources/tools/presentation/generator_files.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T14:30:54Z",
+      "side": 1,
+      "message": "I was wrong. \"Too much lines\" is a consequence of increasing MRR coverage (when converting to MLRsearch). This line is not affecting analysis.",
+      "parentUuid": "7abbb337_34994723",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 31
+      },
+      "revId": "16ee14dd9116563422d379c18c9a2ca8e64a07a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
