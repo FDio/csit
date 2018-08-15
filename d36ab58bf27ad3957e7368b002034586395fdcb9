@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b993b62c_7106b165",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-15T12:55:32Z",
+      "side": 1,
+      "message": "ok, removing it completely from here then :)\nsee next patch",
+      "parentUuid": "d9015587_94b09237",
+      "range": {
+        "startLine": 12,
+        "startChar": 49,
+        "endLine": 12,
+        "endChar": 65
+      },
+      "revId": "d36ab58bf27ad3957e7368b002034586395fdcb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c8e6108_64aea2fa",
         "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-15T12:48:00Z",
       "side": 1,
       "message": "Ok, but MRR coverage has also been extended for DPDK.",
+      "range": {
+        "startLine": 18,
+        "startChar": 54,
+        "endLine": 18,
+        "endChar": 55
+      },
+      "revId": "d36ab58bf27ad3957e7368b002034586395fdcb9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dae70d25_f2f70c6e",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-15T12:55:32Z",
+      "side": 1,
+      "message": "ok, will add it there too then :)\nsee next patch",
+      "parentUuid": "2c8e6108_64aea2fa",
       "range": {
         "startLine": 18,
         "startChar": 54,
