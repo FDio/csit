@@ -4,9 +4,9 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. Added DMM functional tests
+#. **DMM Functional Tests**
 
-   - DMM base vs epoll test case
+  - Added DMM base vs. epoll test case.
 
 Known Issues
 ------------
@@ -17,6 +17,6 @@ VIRL:
 +---+-------------------------------------------------+----------+------------------------------------------------------+
 | # | Issue                                           | Jira ID  | Description                                          |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 1 | DMM CentOs job is disabled                      | DMM-17   | DPDK version and relative kernel version issue,      |
+| 1 | DMM CentOs job disabled                         | DMM-17   | DPDK version and relative kernel version issue,      |
 |   |                                                 |          | CentOS job is temporarily disabled.                  |
 +---+-------------------------------------------------+----------+------------------------------------------------------+

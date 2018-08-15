@@ -4,17 +4,9 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. Added NSH SFC functional tests
-
-   - None.
+No changes.
 
 Known Issues
 ------------
 
-Here is the list of known issues in |csit-release| for NSH_SFC functional tests in VIRL:
-
-+---+-------------------------------------------------+----------+------------------------------------------------------+
-| # | Issue                                           | Jira ID  | Description                                          |
-+---+-------------------------------------------------+----------+------------------------------------------------------+
-| 1 | None                                            | None     | None                                                 |
-+---+-------------------------------------------------+----------+------------------------------------------------------+
+No known issues.
