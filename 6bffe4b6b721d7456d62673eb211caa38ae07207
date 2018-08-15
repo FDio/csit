@@ -140,6 +140,30 @@
       "revId": "6bffe4b6b721d7456d62673eb211caa38ae07207",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a0cf3fd_04e4f6dc",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T12:48:00Z",
+      "side": 1,
+      "message": "I do not see it in patch 2.",
+      "parentUuid": "19145c74_e7dc9405",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "6bffe4b6b721d7456d62673eb211caa38ae07207",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
