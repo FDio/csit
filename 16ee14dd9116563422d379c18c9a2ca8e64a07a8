@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7abbb337_34994723",
+        "filename": "resources/tools/presentation/generator_files.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T10:09:38Z",
+      "side": 1,
+      "message": "I believe this is why trending analysis job is attempting to create too much lines now.",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 31
+      },
+      "revId": "16ee14dd9116563422d379c18c9a2ca8e64a07a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
