@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "94fdfc9b_6577f93d",
+        "filename": "docs/report/introduction/general_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T11:15:55Z",
+      "side": 1,
+      "message": "Overview is already listing sections and subsections.\nI am not sure whether this list of areas is adding value or whether it is redundant.",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 54
+      },
+      "revId": "c5d2c599a6c6f68e215ae776f406a2b3a0a97c74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a20958f_1501bd75",
         "filename": "docs/report/introduction/general_notes.rst",
         "patchSetId": 2
