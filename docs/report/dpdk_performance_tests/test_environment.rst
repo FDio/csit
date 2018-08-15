@@ -5,6 +5,10 @@
 
 .. include:: ../introduction/test_environment_intro.rst
 
+.. include:: ../introduction/test_environment_sut_calib_hsw.rst
+
+.. include:: ../introduction/test_environment_sut_calib_skx.rst
+
 .. include:: ../introduction/test_environment_sut_conf_1.rst
 
 .. include:: ../introduction/test_environment_sut_conf_3.rst

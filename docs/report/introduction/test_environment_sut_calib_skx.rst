@@ -194,20 +194,20 @@ L1/L2/LLC latency
 
 ::
 
-$ sudo /home/testuser/mlc --c2c_latency
-Intel(R) Memory Latency Checker - v3.5
-Command line parameters: --c2c_latency
+    $ sudo /home/testuser/mlc --c2c_latency
+    Intel(R) Memory Latency Checker - v3.5
+    Command line parameters: --c2c_latency
 
-Measuring cache-to-cache transfer latency (in ns)...
-Local Socket L2->L2 HIT  latency    53.7
-Local Socket L2->L2 HITM latency    53.7
-Remote Socket L2->L2 HITM latency (data address homed in writer socket)
-                     Reader Numa Node
-Writer Numa Node        0       1
-            0           -   113.9
-            1       113.9       -
-Remote Socket L2->L2 HITM latency (data address homed in reader socket)
-                     Reader Numa Node
-Writer Numa Node        0       1
-            0           -   177.9
-            1       177.6       -
+    Measuring cache-to-cache transfer latency (in ns)...
+    Local Socket L2->L2 HIT  latency    53.7
+    Local Socket L2->L2 HITM latency    53.7
+    Remote Socket L2->L2 HITM latency (data address homed in writer socket)
+                         Reader Numa Node
+    Writer Numa Node        0       1
+                0           -   113.9
+                1       113.9       -
+    Remote Socket L2->L2 HITM latency (data address homed in reader socket)
+                         Reader Numa Node
+    Writer Numa Node        0       1
+                0           -   177.9
+                1       177.6       -
