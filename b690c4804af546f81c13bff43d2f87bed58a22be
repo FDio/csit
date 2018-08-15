@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa9b1ba8_da54c1be",
+        "filename": "docs/report/introduction/general_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T08:18:08Z",
+      "side": 1,
+      "message": "Line length should not be more than 80 characters.",
+      "range": {
+        "startLine": 23,
+        "startChar": 70,
+        "endLine": 23,
+        "endChar": 71
+      },
+      "revId": "b690c4804af546f81c13bff43d2f87bed58a22be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
