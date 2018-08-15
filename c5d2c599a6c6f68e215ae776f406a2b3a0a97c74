@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9add3b66_6c686422",
+        "filename": "docs/report/introduction/general_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T11:39:53Z",
+      "side": 1,
+      "message": "\u003e do it in next version\n\nOk.\n\n\u003e overview of all test types included in the report\n\nWhen I hear \"test type\" I imagine \"mrr\", \"ndrpdr\" and \"wrk\". This list rather seems to be for System/Device/Application Under Test, except it distinguishes functional tests from performance ones.",
+      "parentUuid": "f4a66580_e8ecd7a7",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 54
+      },
+      "revId": "c5d2c599a6c6f68e215ae776f406a2b3a0a97c74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a20958f_1501bd75",
         "filename": "docs/report/introduction/general_notes.rst",
         "patchSetId": 2
