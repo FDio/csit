@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "532acb19_c5a9b54b",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T15:19:49Z",
+      "side": 1,
+      "message": "ASCII (chars 0-127) is a subset of UTF-8, so we probably want to say the encoding is UTF-8, but it is strongly recommended to use ASCII characters only.",
+      "parentUuid": "13089213_18cf211f",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 78
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b2c11e1_753a5918",
         "filename": "docs/test_code_guidelines.rst",
         "patchSetId": 2
