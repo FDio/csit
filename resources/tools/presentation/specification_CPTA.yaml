@@ -67,19 +67,19 @@
   data-sets:
     plot-performance-trending-all:
       csit-vpp-perf-mrr-daily-master:
-        start: 15
-        end: "lastCompletedBuild"
+        start: 244  # 15
+        end: 244  # "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
-        start: 3
-        end: "lastCompletedBuild"
+        start: 34  # 3
+        end: 34 # "lastCompletedBuild"
     plot-performance-trending-vpp:
       csit-vpp-perf-mrr-daily-master:
-        start: 15
-        end: "lastCompletedBuild"
+        start: 244  # 15
+        end: 244  # "lastCompletedBuild"
     plot-performance-trending-dpdk:
       csit-dpdk-perf-mrr-weekly-master:
-        start: 3
-        end: "lastCompletedBuild"
+        start: 34  # 3
+        end: 34  # "lastCompletedBuild"
 
   plot-layouts:
 
@@ -163,11 +163,11 @@
     extract: "output.xml"
   builds:
     csit-vpp-perf-mrr-daily-master:
-      start: 15
-      end: "lastCompletedBuild"  # take all from the 'start'
+      start: 244  # 15
+      end: 244  # "lastCompletedBuild"  # take all from the 'start'
     csit-dpdk-perf-mrr-weekly-master:
-      start: 3
-      end: "lastCompletedBuild"
+      start: 34  # 3
+      end: 34  # "lastCompletedBuild"
 
 -
   type: "output"
