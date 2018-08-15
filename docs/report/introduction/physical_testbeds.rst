@@ -184,7 +184,7 @@ doubling the number of logical cores exposed to Linux, with 56 logical
 cores and 28 physical cores per processor socket.
 
 Complete 2n-skx testbed specification is available on
-`CSIT LF lab extension <https://wiki.fd.io/view/CSIT/fdio_csit_lab_ext_lld_draft>`_
-wiki page.
+`CSIT/Testbeds: Xeon Skx, Arm, Atom
+<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.>`_ wiki page.
 
 Total of four 2n-skx testbeds are in operation in FD.io labs.
