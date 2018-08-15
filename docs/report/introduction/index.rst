@@ -3,7 +3,7 @@ Introduction
 
 .. toctree::
 
-    overview
-    general_notes
+    introduction
+    test_scenarios_overview
     physical_testbeds
     methodology
