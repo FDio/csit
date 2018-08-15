@@ -332,6 +332,7 @@ def _generate_all_charts(spec, input_data):
                 message = "Out of colors: {}".format(message)
                 logs.append(("ERROR", message))
                 logging.error(message)
+                index += 1
                 continue
             traces.extend(trace)
             res.append(rslt)
