@@ -98,7 +98,6 @@ def file_test_results(file_spec, input_data):
 
     logging.info("    Creating the 'suites' data set for the {0} '{1}'.".
                  format(file_spec.get("type", ""), file_spec.get("title", "")))
-    file_spec["filter"] = "all"
     suites = input_data.filter_data(file_spec, data_set="suites")
     suites = input_data.merge_data(suites)
     suites.sort_index(inplace=True)
