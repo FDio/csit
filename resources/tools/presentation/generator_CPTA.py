@@ -318,13 +318,21 @@ def _generate_all_charts(spec, input_data):
                 logs.append(("WARNING", "No data for the test '{0}'".
                              format(test_name)))
                 continue
+            message = "index: {index}, test: {test}".format(
+                index=index, test=test_name)
             test_name = test_name.split('.')[-1]
-            trace, rslt = _generate_trending_traces(
-                test_data,
-                job_name=job_name,
-                build_info=build_info,
-                name='-'.join(test_name.split('-')[2:-1]),
-                color=COLORS[index])
+            try:
+                trace, rslt = _generate_trending_traces(
+                    test_data,
+                    job_name=job_name,
+                    build_info=build_info,
+                    name='-'.join(test_name.split('-')[2:-1]),
+                    color=COLORS[index])
+            except IndexError:
+                message = "Out of colors: {}".format(message)
+                logs.append(("ERROR", message))
+                logging.error(message)
+                continue
             traces.extend(trace)
             res.append(rslt)
             index += 1
