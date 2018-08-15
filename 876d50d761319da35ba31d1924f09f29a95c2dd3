@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b7c5ef5_83da093b",
+        "filename": "docs/report/dpdk_performance_tests/packet_latency_graphs/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T15:56:13Z",
+      "side": 1,
+      "message": "Perhaps convert these to official .rst list items?",
+      "range": {
+        "startLine": 22,
+        "startChar": 47,
+        "endLine": 22,
+        "endChar": 49
+      },
+      "revId": "876d50d761319da35ba31d1924f09f29a95c2dd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "420dde37_5a21bd75",
+        "filename": "docs/report/dpdk_performance_tests/packet_throughput_graphs/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T15:56:13Z",
+      "side": 1,
+      "message": "If (for DPDK) we know the size is 10, then the size does not really depend on executions.",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 39
+      },
+      "revId": "876d50d761319da35ba31d1924f09f29a95c2dd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8cc3004c_68a273c6",
+        "filename": "docs/report/vpp_performance_tests/packet_throughput_graphs/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T15:56:13Z",
+      "side": 1,
+      "message": "We can say the number of executions (still speaking per test case) is 10, number of successful ones varies due to the bug, so data set size can be smaller than 10.",
+      "range": {
+        "startLine": 46,
+        "startChar": 47,
+        "endLine": 46,
+        "endChar": 48
+      },
+      "revId": "876d50d761319da35ba31d1924f09f29a95c2dd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "531a8803_f4ed1120",
+        "filename": "docs/report/vpp_performance_tests/packet_throughput_graphs/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T15:56:13Z",
+      "side": 1,
+      "message": "There probably are (lucky) test cases with size equal to 10.",
+      "range": {
+        "startLine": 47,
+        "startChar": 18,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "876d50d761319da35ba31d1924f09f29a95c2dd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
