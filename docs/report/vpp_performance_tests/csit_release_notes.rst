@@ -18,7 +18,7 @@ Changes in |csit-release|
    - *L2patch tests* - Tests measure performance of L2patch, cross linking
      RX and TX of two physical interfaces.
 
-   - *2-node tests* - Baseline set of 2-node tests covering base ip4, ip4,
+   - *2-node tests* - Baseline set of 2-node tests covering base ip4, ip6,
      l2patch, l2bd, l2xc.
 
    - *Generated tests* - Simplified and unified test structure,
@@ -31,9 +31,10 @@ Changes in |csit-release|
      DPDK I/O mbufs. Tests are automatically tagged during execution indicating
      configuration.
 
-  - *Intel Skylake* - Topologies consisting of 2-node and 3-node using
-    SuperMirco servers each equipped with two Intel Xeon Skylake Platinum
-    processors.
+   - *Intel Skylake* - Topologies consisting of 2-node and 3-node using
+     SuperMirco servers each equipped with two Intel Xeon Skylake Platinum
+     processors. Full Ansible playbooks refactor for quick server
+     (re)installation and reference pointers of configuration.
 
 #. **Presentation and Analytics Layer**
 
@@ -44,11 +45,6 @@ Changes in |csit-release|
      Performance Dashboard and trendline graphs.
 
 #. **Test Framework Optimizations**
-
-   - *Performance tests efficiency* - Qemu build/install optimizations,
-     warmup phase handling, vpp restart handling. Resulted in improved
-     stability and reduced total execution time by 30% for single pkt
-     size e.g. 64B/78B.
 
    - *General code housekeeping* - ongoing RF keywords optimizations,
      removal of redundant RF keywords.
