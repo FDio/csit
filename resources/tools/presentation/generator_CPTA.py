@@ -49,7 +49,6 @@ COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
           "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
           "Violet", "Blue", "Yellow"]
 
-
 def generate_cpta(spec, data):
     """Generate all formats and versions of the Continuous Performance Trending
     and Analysis.
@@ -318,13 +317,23 @@ def _generate_all_charts(spec, input_data):
                 logs.append(("WARNING", "No data for the test '{0}'".
                              format(test_name)))
                 continue
+            message = "index: {index}, test: {test}".format(
+                index=index, test=test_name)
+            logs.append(("INFO", message))
+            logging.info(message)
             test_name = test_name.split('.')[-1]
-            trace, rslt = _generate_trending_traces(
-                test_data,
-                job_name=job_name,
-                build_info=build_info,
-                name='-'.join(test_name.split('-')[2:-1]),
-                color=COLORS[index])
+            try:
+                trace, rslt = _generate_trending_traces(
+                    test_data,
+                    job_name=job_name,
+                    build_info=build_info,
+                    name='-'.join(test_name.split('-')[2:-1]),
+                    color=COLORS[index])
+            except IndexError:
+                message = "Out of colors: {}".format(message)
+                logs.append(("ERROR", message))
+                logging.error(message)
+                continue
             traces.extend(trace)
             res.append(rslt)
             index += 1
