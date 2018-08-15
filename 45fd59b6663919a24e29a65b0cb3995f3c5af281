@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83c88c25_fb1ddb13",
+        "filename": "docs/report/introduction/general_notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T11:56:40Z",
+      "side": 1,
+      "message": "bare-metal\n\nto make it consistent with the next two sections (perhaps adding \"handling NICs\").",
+      "range": {
+        "startLine": 19,
+        "startChar": 61,
+        "endLine": 19,
+        "endChar": 65
+      },
+      "revId": "45fd59b6663919a24e29a65b0cb3995f3c5af281",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
