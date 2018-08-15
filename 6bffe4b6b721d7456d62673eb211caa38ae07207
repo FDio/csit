@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a9c9cb5_cda7fd95",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T12:20:21Z",
+      "side": 1,
+      "message": "MLRsearch measures and uses MRR value (1s trial), but it does not use full MRR test, nor is affected by MRR trial configuration (as this sentence implies).",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "6bffe4b6b721d7456d62673eb211caa38ae07207",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c603e766_c4eab6f8",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T12:20:21Z",
+      "side": 1,
+      "message": "And new NDRPDR tests have been added, both new suites (in general, perhaps not for DPDK) and new framesize/cores testcases in old suites.\n\nSimilarly for MRR tests.",
+      "range": {
+        "startLine": 17,
+        "startChar": 49,
+        "endLine": 17,
+        "endChar": 50
+      },
+      "revId": "6bffe4b6b721d7456d62673eb211caa38ae07207",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a7892db_890e2c1a",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T12:20:21Z",
+      "side": 1,
+      "message": "No longer specific for VPP, we have also DPDK tests there.",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "6bffe4b6b721d7456d62673eb211caa38ae07207",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
