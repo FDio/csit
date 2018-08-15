@@ -22,6 +22,30 @@
       "revId": "60b058c5d97b009677c124408a5c1286eba71a6c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9261361e_49e3976b",
+        "filename": "docs/report/dmm_functional_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-15T09:12:44Z",
+      "side": 1,
+      "message": "Checked and you\u0027re right, removed Centos reference.",
+      "parentUuid": "86d812e3_efbce35f",
+      "range": {
+        "startLine": 32,
+        "startChar": 42,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "60b058c5d97b009677c124408a5c1286eba71a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
