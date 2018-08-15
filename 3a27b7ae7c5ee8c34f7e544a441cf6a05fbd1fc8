@@ -164,6 +164,30 @@
     },
     {
       "key": {
+        "uuid": "4b7d1278_7a5aa91b",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-15T16:15:26Z",
+      "side": 1,
+      "message": "\u003e keep company as templ.field\n\nI am not sure what do you mean.",
+      "parentUuid": "3b2c11e1_753a5918",
+      "range": {
+        "startLine": 31,
+        "startChar": 36,
+        "endLine": 31,
+        "endChar": 58
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4970bbd3_b9c3701e",
         "filename": "docs/test_code_guidelines.rst",
         "patchSetId": 2
