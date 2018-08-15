@@ -1,0 +1,406 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7f50c24_c26cc382",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "replace by:\nThis document describes",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 13
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ffaa53d_c807f340",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "I would move this to section right below.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7aef862_d618f2d0",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "required and recommended.",
+      "range": {
+        "startLine": 22,
+        "startChar": 53,
+        "endLine": 22,
+        "endChar": 77
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9aa9f1f_9d479dd4",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "are",
+      "range": {
+        "startLine": 23,
+        "startChar": 40,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13089213_18cf211f",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "this is indeed little bit weird sentence. We should stick to one file format. UTF-8 (to avoid further confusion) although it is hard to detect in gerrit UI.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 78
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b2c11e1_753a5918",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "void link, we should add. And keep company as templ.field",
+      "range": {
+        "startLine": 31,
+        "startChar": 36,
+        "endLine": 31,
+        "endChar": 58
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4970bbd3_b9c3701e",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "We encouraging only perf test to be written in DD, other test can be in BD (e.g. functional or tests where DD is not benefit).",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c39837c_97c9118d",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 49
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4683b95_037fa9be",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "True, but it is also generated with sphinx, by automated job into docs.fd.io",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 64
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "416cc010_3f609023",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "missing test case naming conventions.",
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c97fe9fe_cd6723c4",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "this need to be rewritten and also cleared. Still not sure why \\| are needed and how does it apply.",
+      "range": {
+        "startLine": 123,
+        "startChar": 4,
+        "endLine": 123,
+        "endChar": 68
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98124132_b9ac94e5",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "Good q. i think most of rules can be applied for both, but there are rules specific to RF-Python interconnection which can be outtaken and explicitely marked.",
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "752934e3_a27be347",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "Not really, the above rule is for very complex KW where syntax of RF is convoluted and breaking KW is inefficient. There are some of these in PERF and it would be easier to do it in lower python. E.g. complex Evaluation/map/loops/ssh calls etc.",
+      "range": {
+        "startLine": 165,
+        "startChar": 2,
+        "endLine": 167,
+        "endChar": 76
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf79eab8_a15083cb",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "Looks like duplicit from RF part - remove",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 176,
+        "endChar": 77
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97ba6278_f61275a3",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "I think this apply also to RF section",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 39
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e0a3887_0bee7c1c",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "https://wiki.fd.io/view/CSIT/csit-test-naming",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 79
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ed5c366_b4533cd5",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "We should move to \"enforce\". For sure it is enforced by reviewers (mainly, but...humans). We need to eliminated human factor here.",
+      "range": {
+        "startLine": 198,
+        "startChar": 12,
+        "endLine": 198,
+        "endChar": 20
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc9cf14b_1060aee0",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-15T07:36:14Z",
+      "side": 1,
+      "message": "That depends. it is vitable but good msg can reveal a lot. It is mainly case by case. So if msg is just \"41\" it bad. I massage is \"Failure processing data set 41 during processing of MRR table\" it is better, but still not as good as repr. however resp is rarely used now. We can put \"It is recommended to use ...\"",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 54
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
