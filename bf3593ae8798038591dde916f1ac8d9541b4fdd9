@@ -22,6 +22,30 @@
       "revId": "bf3593ae8798038591dde916f1ac8d9541b4fdd9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95e469eb_1aa1f2d1",
+        "filename": "docs/report/vpp_performance_tests/throughput_speedup_multi_core/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-15T16:36:57Z",
+      "side": 1,
+      "message": "Thx for spotting it, I clearly missed it. Done in next patch set.",
+      "parentUuid": "dc1a3796_69f92510",
+      "range": {
+        "startLine": 26,
+        "startChar": 31,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "bf3593ae8798038591dde916f1ac8d9541b4fdd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
