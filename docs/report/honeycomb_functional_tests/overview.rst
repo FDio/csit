@@ -31,7 +31,7 @@ figure below.
 
 SUT (System Under Test) is a VM running Ubuntu Linux (or Centos,
 depending on the test suite), TG (Traffic Generator) is another VM
-running Ubuntu Linux. SUT VMs run HoneyComb management agent and VPP  in
+running Ubuntu Linux. SUT VMs run HoneyComb management agent and VPP in
 Linux user-mode as a combined DUT (Device Under Test). TG runs Scapy
 application as a packet Traffic Generator. Virtual connectivity between
 SUT and TG is provided using virtual NICs using VMs' virtio drivers.
@@ -45,9 +45,8 @@ virtual VM environment:
 +-----------------------+----------------------------------------------+
 | Functionality         |  Description                                 |
 +=======================+==============================================+
-| ACL                   | CRD for low-level classifiers: table and     |
-|                       | session management, interface assignment.    |
-|                       |                                              |
+| ACL                   | - CRD for low-level classifiers: table and   |
+|                       |   session management, interface assignment.  |
 |                       | - Configure up to 2 classify tables.         |
 |                       | - Configure up to 2 classify sessions on one |
 |                       |   table.                                     |
@@ -57,8 +56,7 @@ virtual VM environment:
 |                       |   assignments.                               |
 |                       | - Test case count: 9.                        |
 +-----------------------+----------------------------------------------+
-| ACL-PLUGIN            | CRD for high-level classifier.               |
-|                       |                                              |
+| ACL-PLUGIN            | - CRD for high-level classifier.             |
 |                       | - MAC + IP address classification.           |
 |                       | - IPv4, IPv6 address classification.         |
 |                       | - TCP, UDP, ICMP, ICMPv6 protocol and        |
@@ -67,36 +65,31 @@ virtual VM environment:
 |                       | - ICMP, ICMPv6 code and type classification. |
 |                       | - Test case count: 15.                       |
 +-----------------------+----------------------------------------------+
-| Basic interface       | CRUD for interface state.                    |
-| management            |                                              |
-|                       | - ipv4/ipv6 address, ipv4 neighbor, MTU      |
+| Basic interface       | - CRUD for interface state.                  |
+| management            | - ipv4/ipv6 address, ipv4 neighbor, MTU      |
 |                       |   value.                                     |
 |                       | - Test case count: 14.                       |
 +-----------------------+----------------------------------------------+
-| Border Gateway        | CRUD and functional tests for BGP.           |
-| Protocol              |                                              |
-|                       | - Configure peers and routes                 |
+| Border Gateway        | - CRUD and functional tests for BGP.         |
+| Protocol              | - Configure peers and routes                 |
 |                       | - Check interactions with another BGP peer.  |
 |                       | - Test case count: 13.                       |
 +-----------------------+----------------------------------------------+
-| DHCP Relay            | CRD for DHCP relay feature.                  |
-|                       |                                              |
+| DHCP Relay            | - CRD for DHCP relay feature.                |
 |                       | - Configure DHCP Relays.                     |
 |                       | - IPv4 and IPv6 variants.                    |
 |                       | - Test case count: 4.                        |
 +-----------------------+----------------------------------------------+
-| Honeycomb             | Configuration persistence.                   |
-| Infractructure        |                                              |
-|                       | - Netconf notifications for interface        |
+| Honeycomb             | - Configuration persistence.                 |
+| Infractructure        | - Netconf notifications for interface        |
 |                       |   events.                                    |
 |                       | - Netconf negative tests aimed at specific   |
 |                       |   issues.                                    |
 |                       | - Netconf/Restconf northbound over IPv6.     |
 |                       | - Test case count: 12.                       |
 +-----------------------+----------------------------------------------+
-| L2BD                  | CRUD for L2 Bridge-Domain, interface         |
-|                       | assignment.                                  |
-|                       |                                              |
+| L2BD                  | - CRUD for L2 Bridge-Domain, interface       |
+|                       |   assignment.                                |
 |                       | - Create up to two bridge domains with all   |
 |                       |   implemented functions turned on:           |
 |                       |   flooding, unknown-unicast flooding,        |
@@ -107,17 +100,15 @@ virtual VM environment:
 |                       |   bridge domains.                            |
 |                       | - Test case count: 5.                        |
 +-----------------------+----------------------------------------------+
-| L2FIB                 | CRD for L2-FIB entries.                      |
-|                       |                                              |
+| L2FIB                 | - CRD for L2-FIB entries.                    |
 |                       | - Create 4 FIB entries:                      |
 |                       |   one of each for filter/forward,            |
 |                       |   static/dynamic combinations.               |
 |                       | - Remove FIB entries.                        |
 |                       | - Test case count: 7.                        |
 +-----------------------+----------------------------------------------+
-| LISP                  | CRD for Lisp: mapping, locator set,          |
-|                       | adjacency, mapresolver.                      |
-|                       |                                              |
+| LISP                  | - CRD for Lisp: mapping, locator set,        |
+|                       |   adjacency, mapresolver.                    |
 |                       | - Toggle Lisp feature status.                |
 |                       | - Configure and delete Lisp mapping as local |
 |                       |   and remote.                                |
@@ -127,83 +118,72 @@ virtual VM environment:
 |                       |   proxy ITR.                                 |
 |                       | - Test case count: 18.                       |
 +-----------------------+----------------------------------------------+
-| LISP GPE              | CRUD for LISP GPE mappings.                  |
-|                       |                                              |
+| LISP GPE              | - CRUD for LISP GPE mappings.                |
 |                       | - Toggle Lisp GPE feature status.            |
 |                       | - Configure Lisp GPE mappings.               |
 |                       | - Traffic test verifying encapsulation.      |
 |                       | - Test case count: 12.                       |
 +-----------------------+----------------------------------------------+
-| NAT                   | CRD for NAT entries, interface assignment.   |
-|                       |                                              |
+| NAT                   | - CRD for NAT entries, interface assignment. |
 |                       | - Configure and delete up to two NAT         |
 |                       |   entries.                                   |
 |                       | - Assign NAT entries to a physical           |
 |                       |   interface.                                 |
 |                       | - Test case count: 6.                        |
 +-----------------------+----------------------------------------------+
-| NSH_SFC               | CRD for NSH maps and entries, using NSH_SFC  |
-|                       | plugin.                                      |
-|                       |                                              |
+| NSH_SFC               | - CRD for NSH maps and entries, using        |
+|                       |   NSH_SFC plugin.                            |
 |                       | - Configure up to 2 NSH entries.             |
 |                       | - Configure up to 2 NSH maps.                |
 |                       | - Modify and delete NSH maps and entries.    |
 |                       | - Test case count: 8.                        |
 +-----------------------+----------------------------------------------+
-| PBB                   | CRD for provider backbone bridge             |
-|                       | sub-interface.                               |
-|                       |                                              |
+| PBB                   | - CRD for provider backbone bridge           |
+|                       |   sub-interface.                             |
 |                       | - Configure, modify and remove a PBB         |
 |                       |   sub-interface over a physical interface.   |
 |                       | - Test case count: 8.                        |
 +-----------------------+----------------------------------------------+
-| Policer               | CRD for traffic policing feature.            |
-|                       |                                              |
+| Policer               | - CRD for traffic policing feature.          |
 |                       | - Configure Policing rules.                  |
 |                       | - Assign to interface.                       |
 |                       | - Test case count: 6.                        |
 +-----------------------+----------------------------------------------+
-| Port mirroring        | CRD for SPAN port mirroring, interface       |
-|                       | assignment.                                  |
-|                       |                                              |
+| Port mirroring        | - CRD for SPAN port mirroring, interface     |
+|                       |   assignment.                                |
 |                       | - Configure SPAN port mirroring on a         |
 |                       |   physical interface, mirroring.             |
 |                       | - up to 2 interfaces.                        |
 |                       | - Remove SPAN configuration from interfaces. |
 |                       | - Test case count: 14.                       |
 +-----------------------+----------------------------------------------+
-| ProxyARP              | CRD for proxyARP feature.                    |
-|                       |                                              |
+| ProxyARP              | - CRD for proxyARP feature.                  |
 |                       | - Configure proxyARP.                        |
 |                       | - Assign to interface.                       |
 |                       | - Test case count: 3.                        |
 +-----------------------+----------------------------------------------+
-| ProxyND6              | CRD for Neighbor Discovery Proxy.            |
-|                       |                                              |
+| ProxyND6              | - CRD for Neighbor Discovery Proxy.          |
 |                       | - Configure ProxyND6 feature on interface.   |
 |                       | - Test case count: 4.                        |
 +-----------------------+----------------------------------------------+
-| Routing               | CRD for routing.                             |
-|                       |                                              |
+| Routing               | - CRD for routing.                           |
 |                       | - Configure single-hop route.                |
 |                       | - Configure multi-hop routes.                |
 |                       | - Configure blackhole route.                 |
 |                       | - IPv4 and IPv6 variants.                    |
 |                       | - Test case count: 6.                        |
 +-----------------------+----------------------------------------------+
-| SLAAC                 | CRD for Stateless Address AutoConfiguration. |
-|                       |                                              |
+| SLAAC                 | - CRD for Stateless Address                  |
+|                       |   AutoConfiguration.                         |
 |                       | - Configure SLAAC feature on interfaces.     |
 |                       | - Test case count: 7.                        |
 +-----------------------+----------------------------------------------+
-| Vhost-user            | CRUD for Vhost-user interfaces.              |
-|                       |                                              |
+| Vhost-user            | - CRUD for Vhost-user interfaces.            |
 |                       | - Create, modify and delete Vhost-user       |
 |                       |   interface, as client and server.           |
 |                       | - Test case count: 8.                        |
 +-----------------------+----------------------------------------------+
-| VLAN                  | CRUD for VLAN sub-interface management.      |
-|                       |                                              |
+| VLAN                  | - CRUD for VLAN sub-interface management.    |
 |                       | - Create VLAN sub-interface over a physical  |
 |                       |   interface.                                 |
 |                       | - Toggle interface state separately for      |
@@ -214,22 +194,19 @@ virtual VM environment:
 |                       |   sub-interface.                             |
 |                       | - Test case count: 24.                       |
 +-----------------------+----------------------------------------------+
-| VxLAN                 | CRD for VxLAN tunnels.                       |
-|                       |                                              |
+| VxLAN                 | - CRD for VxLAN tunnels.                     |
 |                       | - Create VxLAN interface.                    |
 |                       | - Disable VxLAN interface.                   |
 |                       | - Re-create a disabled VxLAN interface.      |
 |                       | - Test case count: 6.                        |
 +-----------------------+----------------------------------------------+
-| VxLAN-GPE             | CRD for VxLAN GPE tunnels.                   |
-|                       |                                              |
+| VxLAN-GPE             | - CRD for VxLAN GPE tunnels.                 |
 |                       | - Create VxLAN GPE interface.                |
 |                       | - Disable VxLAN interface.                   |
 |                       | - Re-create a disabled VxLAN interface.      |
 |                       | - Test case count: 7.                        |
 +-----------------------+----------------------------------------------+
-| TAP                   | CRUD for Tap interface management.           |
-|                       |                                              |
+| TAP                   | - CRUD for Tap interface management.         |
 |                       | - Create, modify and delete TAP interface.   |
 |                       | - Test case count: 3.                        |
 +-----------------------+----------------------------------------------+

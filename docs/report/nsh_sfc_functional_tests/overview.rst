@@ -50,7 +50,6 @@ virtual VM environment:
 |                       | these packets from one NIC and loopback the  |
 |                       | VXLAN-GPE-NSH encapsulated packets to the TG |
 |                       | from other NIC.                              |
-|                       |                                              |
 |                       | Test case count: 7.                          |
 +-----------------------+----------------------------------------------+
 | NSH SFC Proxy Inbound | TG sends some VXLAN-GPE-NSH encapsulated     |
@@ -59,7 +58,6 @@ virtual VM environment:
 |                       | from one NIC and loopback the VXLAN          |
 |                       | encapsulated packets to the TG from other    |
 |                       | NIC.                                         |
-|                       |                                              |
 |                       | Test case count: 6.                          |
 +-----------------------+----------------------------------------------+
 | NSH SFC Proxy         | TG sends some VXLAN encapsulated packets to  |
@@ -67,7 +65,6 @@ virtual VM environment:
 |                       | will receive these packets from one NIC and  |
 |                       | loopback the VXLAN-GPE-NSH encapsulated      |
 |                       | packets to the TG from other NIC.            |
-|                       |                                              |
 |                       | Test case count: 6.                          |
 +-----------------------+----------------------------------------------+
 | NSH SFC Service       | TG sends some VXLAN-GPE-NSH                  |
@@ -77,7 +74,6 @@ virtual VM environment:
 |                       | the VXLAN-GPE-NSH header, after that DUT1    |
 |                       | loopback the VXLAN-GPE-NSH encapsulated      |
 |                       | packets to the TG from other NIC.            |
-|                       |                                              |
 |                       | Test case count: 6.                          |
 +-----------------------+----------------------------------------------+
 
