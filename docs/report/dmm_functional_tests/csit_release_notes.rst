@@ -6,7 +6,7 @@ Changes in |csit-release|
 
 #. **DMM Functional Tests**
 
-  - Added DMM base vs. epoll test case.
+   - Added DMM base vs. epoll test case.
 
 Known Issues
 ------------

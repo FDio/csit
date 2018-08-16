@@ -49,6 +49,5 @@ environment:
 |                       | testcase demonstrates single server[DUT1]    |
 |                       | and single client[DUT2] scenario using DMM   |
 |                       | framework and kernel tcp/ip stack.           |
-|                       |                                              |
 |                       | Test case count: 1.                          |
 +-----------------------+----------------------------------------------+
