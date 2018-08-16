@@ -20,7 +20,7 @@ set -exuo pipefail
 # Arguments:
 # - $1 - Number of pybot invocations to attempt to avoid failures. Default: 1.
 # Variables read:
-# - CSIT_DIR - Path to directory with root of local CSIT git repository.
+# - CSIT_DIR - Path to existing directory with root of local CSIT git repository.
 # - ARCHIVE_DIR - Path to store robot result files in.
 # - PYBOT_ARGS, EXPANDED_TAGS - See compose_pybot_arguments.sh
 # Variables set:
