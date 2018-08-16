@@ -17,7 +17,7 @@ set -exuo pipefail
 # - TOPOLOGIES - Array of paths to topology yaml to attempt reservation on.
 # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
 # Variables set:
-# - WORKING_TOPOLOGY - Path to topology yaml of the testbed reservation passed on.
+# - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
 # Functions called:
 # - die - Print to stderr and exit, defined in common_functions.sh
 # Traps registered:
