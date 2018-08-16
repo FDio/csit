@@ -15,7 +15,7 @@ set -exuo pipefail
 
 # Variables read:
 # - PYTHON_SCRIPTS_DIR - Path to directory holding Python scripts.
-# Functions defined:
+# Functions defined (see comments there for descriptions):
 # - warn
 # - die
 # - cancel_all
