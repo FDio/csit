@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7405544_ac0ee259",
+        "filename": "tests/dmm/dmm_scripts/run_dmm.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-16T12:03:40Z",
+      "side": 1,
+      "message": "I think you do not need to export this when specifying it expicitly in lines 115 and 117.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 6
+      },
+      "revId": "723c4f6ad099410d3541f96d8f5f642a1e2b2105",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
