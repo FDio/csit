@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +13,14 @@
 
 set -exuo pipefail
 
-# TODO: Delete this file, perhaps replacing it with a symlink.
-here=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
-source "${here}/resources/libraries/bash/entry/bootstrap.sh"
+# Functions called:
+# - die - Print to stderr and exit, defined in common_functions.sh
+
+# TODO: Should we document ${0}?
+# TODO: Use BASH_SOURCE instead?
+
+# FIXME: Is this even called, ever?
+function help () {
+    # Displays help message for bootstrap.
+    die 1 "Usage: `basename $0` csit-[dpdk|vpp|ligato]-[2n-skx|3n-skx|3n-hsw]"
+}
