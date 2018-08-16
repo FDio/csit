@@ -17,7 +17,7 @@ set -exuo pipefail
 # - ${1} - Nodeness, currently either "2n" or "3n".
 # - ${2} - Hardware flavor, currently either "hsw" or "skx".
 # Variables read:
-# - CSIT_DIR - Path to directory with root of local CSIT git repository.
+# - CSIT_DIR - Path to existing directory with root of local CSIT git repository.
 # Variables set:
 # - TOPOLOGY_DIR - Path to directory holding topology yaml files.
 # - TOPOLOGIES - Array of paths to suitable topology yaml files.
