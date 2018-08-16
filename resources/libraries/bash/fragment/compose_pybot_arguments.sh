@@ -14,7 +14,7 @@
 set -exuo pipefail
 
 # Variables read:
-# - WORKING_TOPOLOGY - Path to topology yaml file, set by testbed registration.
+# - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
 # - DUT - CSIT test/ subdirectory, set while processing tags.
 # - TAGS - Array variable holding selected tag boolean expressions.
 # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.

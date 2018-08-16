@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +13,12 @@
 
 set -exuo pipefail
 
-# TODO: Delete this file, perhaps replacing it with a symlink.
-here=$(dirname $(readlink -e "${BASH_SOURCE[0]}"))
-source "${here}/resources/libraries/bash/entry/bootstrap.sh"
+# Variables read:
+# - PYTHON_SCRIPTS_DIR - Path to directory containing the cleanup script.
+# - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
+# Functions called:
+# - die - Print to stderr and exit, defined in common_functions.sh
+
+python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t ${WORKING_TOPOLOGY} || {
+    die 1 "Cleanup script failed."
+}
