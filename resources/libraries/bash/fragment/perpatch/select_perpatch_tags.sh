@@ -15,7 +15,6 @@ set -exuo pipefail
 
 # Variables set:
 # - DUT - CSIT test/ subdirectory containing suites to execute.
-# - TEST_TAG_ARRAY - Hardcoded list of tag expressions for perpatch.
 # - TAGS - Array of processed tag boolean expressions.
 # Hardcoded values:
 # - List of tag expressions selecting few suites.
@@ -24,7 +23,7 @@ set -exuo pipefail
 DUT="vpp"
 
 # Hardcoded for perpatch. TODO: Make this configurable.
-TEST_TAG_ARRAY=("l2xcbaseAND1cAND64b"
+test_tag_array=("l2xcbaseAND1cAND64b"
                 "l2bdbaseAND1cAND64b"
                 "ip4baseAND1cAND64b"
                 "ip6baseAND1cAND78b")
@@ -35,7 +34,7 @@ prefix="perftestAND"
 # Automatic prefixing for VPP jobs to limit the NIC used and
 # traffic evaluation to MRR.
 prefix="${prefix}mrrANDnic_intel-x710AND"
-for TAG in "${TEST_TAG_ARRAY[@]}"; do
+for TAG in "${test_tag_array[@]}"; do
     if [[ ${TAG} == "!"* ]]; then
         # Exclude tags are not prefixed.
         TAGS+=("${TAG}")
