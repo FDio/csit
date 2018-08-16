@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe0bf8bf_8e6100ba",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 35
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-16T12:57:46Z",
+      "side": 1,
+      "message": "What is this case good for, and why does it not define any TAGS?",
+      "range": {
+        "startLine": 343,
+        "startChar": 4,
+        "endLine": 343,
+        "endChar": 18
+      },
+      "revId": "325bf96ce5fc13780fab0731855a2e2092208a2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
