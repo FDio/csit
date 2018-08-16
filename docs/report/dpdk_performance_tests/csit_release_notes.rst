@@ -4,6 +4,10 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
+#. **DPDK release version change**
+
+   - |csit-release| tested DPDK-18.05, as used by |vpp-release|.
+
 #. **DPDK performance tests**
 
    - **MRR Throughput**: MRR (Maximum Receive Rate) test code has now
