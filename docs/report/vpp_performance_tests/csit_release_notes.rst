@@ -216,21 +216,27 @@ Known Issues
 
 List of known issues in |csit-release| for VPP performance tests:
 
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| # | Issue                                           | Jira ID    | Description                                                     |
-+===+=================================================+============+=================================================================+
-| 1 | Sporadic (1 in 200) NDR discovery test failures | CSIT-570   | DPDK reporting rx-errors, indicating L1 issue. Suspected issue  |
-|   | on x520.                                        |            | with HW combination of X710-X520 in LF testbeds. Not observed   |
-|   |                                                 |            | outside of LF testbeds.                                         |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | High failure rate of api call                   | VPP-1361   | Failure rate: 30-40% of tests failing due to interfaces not     |
-|   | sw_interface_set_flags [admin-up|link-up]       |            | in link-up state after API call sw_interface_set_flags.         |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | Scale IPSecHW Interface mode throughput         | CSIT-1234  | IPSec throughput regression - 1core deltas: NDR -32%, PDR -33%, |
-|   | regression.                                     |            | MRR -38%. Affects IPSec HW Scale 1000tnl tests with Int mode.   |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | Lower than expected 64B NDR and PDR             | CSIT-1242  | NDR and PDR regressions: ip4base -29%.                          |
-|   | throughput in VPP ip4base tests                 |            |                                                                 |
-|   | with xl710 NIC in 3n-hsw testbeds.              |            |                                                                 |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| # | JiraID                                  | Description                                                                                                                     |
++===+=========================================+=================================================================================================================================+
+| 1 | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
+|   | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 2 | `VPP-1361                               | High failure rate of api call sw_interface_set_flags [admin-up|link-up].                                                        |
+|   | <https://jira.fd.io/browse/VPP-1361>`_  | Failure rate: 30-40% of tests failing due to interfaces not in link-up state after API call sw_interface_set_flags.             |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 3 | `CSIT-1234                              | VPP IPSecHW scale interface mode 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.        |
+|   | <https://jira.fd.io/browse/CSIT-1234>`_ | ip4ipsecscale1000tnl-ip4base-int 1core CSIT-18.07/18.04 relative change: NDR -32%, PDR -33%, MRR -38%.                          |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 4 | `CSIT-1242                              | VPP xl710 ip4base test 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.                  |
+|   | <https://jira.fd.io/browse/CSIT-1242>`_ | xl710 ip4base 1core CSIT-18.07/18.04 relative change: NDR -19%, high stdev.                                                     |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 5 | `CSIT-1243                              | VPP nat44 base test 2core, low NDR and PDR 64B throughput in 3n-skx testbeds, compared to 3n-hsw testbeds.                      |
+|   | <https://jira.fd.io/browse/CSIT-1243>`_ | ip4base-nat44 2core 3n-skx/3n-hsw relative change: NDR -19%, PDR -22%.                                                          |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 6 | `CSIT-1244                              | VPP lispip4 base test 2core, low NDR and PDR 64B throughput in 3n-skx testbeds, compared to 3n-hsw testbeds.                    |
+|   | <https://jira.fd.io/browse/CSIT-1244>`_ | ip4lispip4-ip4base 2core 3n-skx/3n-hsw relative change: NDR -11%, PDR -18%.                                                     |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 7 | `CSIT-1245                              | VPP srv6proxy-stat and srv6proxy-masq, much higher NDR and PDR 78B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04. |
+|   | <https://jira.fd.io/browse/CSIT-1245>`_ | Due to wrong test suite configuration in dynamic-proxy mode. Artefact of suite code refactoring.                                |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
