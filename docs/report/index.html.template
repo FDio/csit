@@ -5,8 +5,8 @@ CSIT 18.07
     :maxdepth: 2
     :caption: Introduction
 
-    introduction/overview
-    introduction/general_notes
+    introduction/introduction
+    introduction/test_scenarios_overview
     introduction/physical_testbeds
     introduction/methodology
 
