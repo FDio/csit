@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd462a69_35b7f863",
+        "filename": "resources/tools/presentation/run_report.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-16T10:41:50Z",
+      "side": 1,
+      "message": "We should consider do something less error prone. [0] perhaps?\n\n[0] https://softwareengineering.stackexchange.com/a/141986",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "0b752a7820087d5fec452d00c3bc42b8f1298501",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
