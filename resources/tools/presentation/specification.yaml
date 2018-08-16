@@ -137,6 +137,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
 
     vpp-compare-testbeds:
       # TODO: Add Data sources
@@ -151,6 +152,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
       csit-vpp-perf-verify-1807-3n-skx:
       - 33  # NDRPDR sel
       - 35  # NDRPDR sel
@@ -263,6 +265,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
 
     plot-throughput-speedup-analysis-3n-skx:
       csit-vpp-perf-verify-1807-3n-skx:
@@ -303,6 +306,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
 
     plot-vpp-throughput-latency-3n-skx:
       csit-vpp-perf-verify-1807-3n-skx:
@@ -753,6 +757,7 @@
     - 38  # NDRPDR sel
     - 40  # NDRPDR sel
     - 44  # NDRPDR sel
+    - 47  # NDRPDR sel
     - 24  # WRK
     - 25  # WRK
     - 23  # WRK
@@ -971,6 +976,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1030,6 +1036,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1089,6 +1096,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1148,6 +1156,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1176,6 +1185,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
@@ -1218,6 +1228,7 @@
       - 38  # NDRPDR sel
       - 40  # NDRPDR sel
       - 44  # NDRPDR sel
+      - 47  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
