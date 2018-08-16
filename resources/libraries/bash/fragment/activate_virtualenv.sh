@@ -16,7 +16,7 @@ set -exuo pipefail
 # Arguments:
 # - ${1} - Non-empty path to directory for creating virtualenv subdirectory in.
 # Variables read:
-# - CSIT_DIR - Path to directory with root of local CSIT git repository.
+# - CSIT_DIR - Path to existing directory with root of local CSIT git repository.
 # Variables set:
 # - ENV_DIR - Path to the created virtualenv subdirectory.
 # Variables exported:

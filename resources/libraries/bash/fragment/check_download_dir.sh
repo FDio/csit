@@ -13,12 +13,15 @@
 
 set -exuo pipefail
 
+# Fail if there are no files visible in ${DOWNLOAD_DIR}.
+#
 # Variables read:
-# - PYTHON_SCRIPTS_DIR - path to directory containing the cleanup script.
-# - WORKING_TOPOLOGY - path the topology yaml file which got reserved.
+# - DOWNLOAD_DIR - Path to directory where pybot takes the build to test from.
+# Directories read:
+# - ${DOWNLOAD_DIR} - Has to be non-empty to proceed.
 # Functions called:
 # - die - Print to stderr and exit, defined in common_functions.sh
 
-python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t ${WORKING_TOPOLOGY} || {
-    die 1 "Cleanup script failed."
-}
+if [[ ! "$(ls -A ${DOWNLOAD_DIR})" ]]; then
+    die 1 "No artifacts downloaded!"
+fi

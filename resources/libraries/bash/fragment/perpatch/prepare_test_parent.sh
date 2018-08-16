@@ -16,7 +16,7 @@ set -exuo pipefail
 # Variables read:
 # - VPP_DIR - Path to existing directory, parent of accessed directories.
 # - BASH_FRAGMENT_DIR - Path to directory holding parser script.
-# - CSIT_DIR - Path to directory with root of local CSIT git repository.
+# - CSIT_DIR - Path to existing directory with root of local CSIT git repository.
 # - ARCHIVE_DIR and DOWNLOAD_DIR - Paths to directories to update.
 # Directories read:
 # - build_parent - Build artifacts (to test next) are copied from here.
