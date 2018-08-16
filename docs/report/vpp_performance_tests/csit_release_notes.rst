@@ -226,6 +226,11 @@ List of known issues in |csit-release| for VPP performance tests:
 | 2 | High failure rate of api call                   | VPP-1361   | Failure rate: 30-40% of tests failing due to interfaces not     |
 |   | sw_interface_set_flags [admin-up|link-up]       |            | in link-up state after API call sw_interface_set_flags.         |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | Scale IPSecHW Interface mode throughput         | CSIT-1234  | IPSec throughput regression: NDR -28%..-31%, PDR -28%..-31%,    |
-|   | regression.                                     |            | MRR -40%. Affects IPSec HW Scale 1000tnl tests with Int mode.   |
+| 3 | Scale IPSecHW Interface mode throughput         | CSIT-1234  | IPSec throughput regression - 1core deltas: NDR -32%, PDR -33%, |
+|   | regression.                                     |            | MRR -38%. Affects IPSec HW Scale 1000tnl tests with Int mode.   |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
+| 4 | Lower than expected 64B NDR and PDR             | CSIT-1242  | NDR and PDR regressions: ip4base -29%.                          |
+|   | throughput in VPP ip4base tests                 |            |                                                                 |
+|   | with xl710 NIC in 3n-hsw testbeds.              |            |                                                                 |
++---+-------------------------------------------------+------------+-----------------------------------------------------------------+
+
