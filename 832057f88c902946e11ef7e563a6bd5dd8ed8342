@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0b7c7b0_4aeb8b18",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/current_vs_previous_release.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-17T17:07:31Z",
+      "side": 1,
+      "message": "DPDK",
+      "range": {
+        "startLine": 11,
+        "startChar": 46,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
