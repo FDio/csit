@@ -34,8 +34,7 @@ files are also provided.
    - **Overview**: tested logical topologies, test coverage and naming
      specifics.
    - **Release Notes**: changes in |csit-release|, added tests,
-     performance changes, environment or methodology changes, known
-     issues.
+     environment or methodology changes, known issues.
    - **Packet Throughput**: NDR, PDR throughput graphs based on results
      from repeated same test job executions to verify repeatibility of
      measurements.
@@ -45,6 +44,10 @@ files are also provided.
      graphs based on results from test job executions.
    - **HTTP/TCP Performance**: HTTP/TCP VPP test server performance
      graphs.
+   - **Comparisons**: Performance comparisons between VPP releases and
+     between different testbed types.
+   - **Throughput Trending**: references to continuous VPP performance
+     trending.
    - **Test Environment**: performance test environment configuration.
    - **Documentation**: documentation of K8s Pod/Container orchestration
      in CSIT and pointers to CSIT source code documentation for VPP
@@ -60,6 +63,10 @@ files are also provided.
      measurements.
    - **Packet Latency**: Latency graphs based on results from test job
      executions.
+   - **Comparisons**: Performance comparisons between DPDK releases and
+     between different testbed types.
+   - **Throughput Trending**: references to regular DPDK performance
+     trending.
    - **Test Environment**: performance test environment configuration.
    - **Documentation**: pointers to CSIT source code documentation for
      DPDK performance tests.
