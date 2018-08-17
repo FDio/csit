@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "18f9fc47_26f7484e",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f4c489e_355fd25f",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75f24fc7_cb7c2aa0",
         "filename": "docs/report/dpdk_performance_tests/comparisons/dpdk-current_vs_dpdk-previous.rst",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "variables are used in other sections in report:\nhttps://docs.fd.io/csit/master/report/vpp_performance_tests/csit_release_notes.html#changes-in-csit-release\nhttps://docs.fd.io/csit/master/report/dpdk_performance_tests/csit_release_notes.html#changes-in-csit-release\n\nso sticking to it right now.\n\nwill use |dpdk-release| instead of DPDK-18.05.",
       "parentUuid": "75f24fc7_cb7c2aa0",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fabaa6d_56a66384",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/dpdk-current_vs_dpdk-previous.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9c0ad19_cb5bd3bc",
       "range": {
         "startLine": 1,
         "startChar": 15,
@@ -167,6 +215,54 @@
     },
     {
       "key": {
+        "uuid": "6d49337d_0221baeb",
+        "filename": "docs/report/dpdk_performance_tests/index.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61a95779_5ae560bf",
+      "range": {
+        "startLine": 10,
+        "startChar": 20,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a90050ab_a286a12a",
+        "filename": "docs/report/dpdk_performance_tests/index.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61a95779_5ae560bf",
+      "range": {
+        "startLine": 10,
+        "startChar": 20,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3478851_fd88adef",
         "filename": "docs/report/introduction/introduction.rst",
         "patchSetId": 3
@@ -202,6 +298,30 @@
       "side": 1,
       "message": "ok.",
       "parentUuid": "f3478851_fd88adef",
+      "range": {
+        "startLine": 67,
+        "startChar": 36,
+        "endLine": 67,
+        "endChar": 37
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "323a7f9b_9f10e31a",
+        "filename": "docs/report/introduction/introduction.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f6f9a0_978072cd",
       "range": {
         "startLine": 67,
         "startChar": 36,
@@ -285,6 +405,54 @@
     },
     {
       "key": {
+        "uuid": "1e381d55_e40ae4fa",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f52638e_5a45525a",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 31
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70d973bc_78d1da67",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56028615_b462242d",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 31
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "611ccaff_5f51fc7c",
         "filename": "docs/report/vpp_performance_tests/comparisons/vpp-current_vs_vpp-previous.rst",
         "patchSetId": 3
@@ -319,6 +487,30 @@
       "writtenOn": "2018-08-17T16:25:05Z",
       "side": 1,
       "message": "And again, see my answer to previous comment.",
+      "parentUuid": "611ccaff_5f51fc7c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 33
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1aab25c_fc95fe95",
+        "filename": "docs/report/vpp_performance_tests/comparisons/vpp-current_vs_vpp-previous.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:28:33Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "611ccaff_5f51fc7c",
       "range": {
         "startLine": 1,
