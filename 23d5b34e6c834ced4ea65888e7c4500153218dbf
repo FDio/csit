@@ -453,6 +453,30 @@
     },
     {
       "key": {
+        "uuid": "18188ea4_559217d6",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T16:30:13Z",
+      "side": 1,
+      "message": "My idea was to bave both filenames and titles \"timeless\" (so not mentioning releases, neither version strings nor placeholders; \"current\" and \"previous\" is fine), and use |release| and such to make values explicit in the rendered form.",
+      "parentUuid": "bbdf25ff_4e4ef59e",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 31
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "611ccaff_5f51fc7c",
         "filename": "docs/report/vpp_performance_tests/comparisons/vpp-current_vs_vpp-previous.rst",
         "patchSetId": 3
