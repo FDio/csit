@@ -20,6 +20,8 @@ CSIT 18.07
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency_graphs/index
     vpp_performance_tests/http_server_performance/index
+    vpp_performance_tests/comparisons/index
+    vpp_performance_tests/throughput_trending
     vpp_performance_tests/test_environment
     vpp_performance_tests/documentation/index
 
@@ -31,6 +33,8 @@ CSIT 18.07
     dpdk_performance_tests/csit_release_notes
     dpdk_performance_tests/packet_throughput_graphs/index
     dpdk_performance_tests/packet_latency_graphs/index
+    dpdk_performance_tests/comparisons/index
+    dpdk_performance_tests/throughput_trending
     dpdk_performance_tests/test_environment
     dpdk_performance_tests/documentation
 
