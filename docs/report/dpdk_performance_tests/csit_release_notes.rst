@@ -4,11 +4,11 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. **DPDK release version change**
+#. DPDK RELEASE VERSION CHANGE
 
-   - |csit-release| tested DPDK-18.05, as used by |vpp-release|.
+   - |csit-release| tested |dpdk-release|, as used by |vpp-release|.
 
-#. **DPDK performance tests**
+#. DPDK PERFORMANCE TESTS
 
    - **MRR Throughput**: MRR (Maximum Receive Rate) test code has now
      configurable trial duration and number of consecutive executions.
@@ -32,9 +32,9 @@ Changes in |csit-release|
      cores combinations. All existing test cases were converted to new
      format.
 
-#. **Presentation and Analytics Layer**
+#. PRESENTATION AND ANALYTICS LAYER
 
-   - **Performance trending**: Added continuous performance trending with
+   - **Performance trending**: Added regular performance trending,
      anomaly detection and analysis for DPDK.
 
 Known Issues
