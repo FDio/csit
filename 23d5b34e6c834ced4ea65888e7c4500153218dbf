@@ -525,6 +525,54 @@
     },
     {
       "key": {
+        "uuid": "77e98c43_f09f1b4b",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:42:14Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "7db2879e_80dc24ff",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 31
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52491b50_0a00b05e",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:42:14Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "7db2879e_80dc24ff",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 31
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5abec2c_95150462",
         "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
         "patchSetId": 3
@@ -536,6 +584,54 @@
       "writtenOn": "2018-08-17T16:36:59Z",
       "side": 1,
       "message": "This will render as \"VPP VPP-18.07\" (which is one \"VPP \" too many).",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f8d3a07_e7a66420",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:42:14Z",
+      "side": 1,
+      "message": "yes, spotted that.",
+      "parentUuid": "a5abec2c_95150462",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "23d5b34e6c834ced4ea65888e7c4500153218dbf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6b7fc96_cea325b8",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:42:14Z",
+      "side": 1,
+      "message": "fixing.",
+      "parentUuid": "a5abec2c_95150462",
       "range": {
         "startLine": 4,
         "startChar": 9,
