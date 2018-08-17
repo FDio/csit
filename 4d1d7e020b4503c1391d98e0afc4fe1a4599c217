@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4877fc4e_40e025d3",
+        "filename": "docs/report/index.html.template",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T15:22:01Z",
+      "side": 1,
+      "message": "change to dpdk",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 7
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
