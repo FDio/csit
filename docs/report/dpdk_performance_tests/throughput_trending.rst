@@ -12,6 +12,6 @@ CSIT provides regular performance trending for DPDK release branches:
    - throughput test metrics, trend calculations and anomaly
    classification (progression, regression).
 
-#. `DPDK Apps Trendline Graphs <https://docs.fd.io/csit/master/trending/trending/dpdk.html>`_
+#. `DPDK Trendline Graphs <https://docs.fd.io/csit/master/trending/trending/dpdk.html>`_
    - weekly DPDK Testpmd and L3fwd MRR throughput measurements against
    the trendline with anomaly highlights and associated CSIT test jobs.

@@ -4,11 +4,11 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. **CSIT Framework**
+#. CSIT FRAMEWORK
 
    - Few test case bug fixes.
 
-#. **Test Case Porting to VPP_make_test**
+#. TEST CASE PORTING TO VPP_MAKE_TEST
 
    - Implementation of VIRL functional integration tests in
      VPP_make_test.

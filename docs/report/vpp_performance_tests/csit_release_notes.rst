@@ -4,7 +4,7 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. **VPP Performance Tests**
+#. VPP PERFORMANCE TESTS
 
    - **MRR Throughput**: MRR (Maximum Receive Rate) test code has now
      configurable trial duration and number of consecutive executions.
@@ -44,12 +44,12 @@ Changes in |csit-release|
      Ansible playbooks refactor for quick server (re)installation and
      reference pointers of configuration.
 
-#. **Presentation and Analytics Layer**
+#. PRESENTATION AND ANALYTICS LAYER
 
-   - **Performance trending**: Further improved continuous performance
-     trending with anomaly detection and analysis.
+   - **Performance trending**: Further improvements of continuous
+     performance trending, anomaly detection and analysis.
 
-#. **Test Framework Optimizations**
+#. TEST FRAMEWORK OPTIMIZATIONS
 
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords.

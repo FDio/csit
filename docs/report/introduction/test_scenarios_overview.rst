@@ -1,11 +1,11 @@
 Test Scenarios Overview
 =======================
 
-FD.io CSIT report includes multiple test scenarios of a number of VPP
+FD.io |csit-release| report includes multiple test scenarios of VPP
 centric applications, topologies and use cases. In addition it also
-covers baseline tests of DPDK sample applications. Tests are executed
-executed in physical (performance tests) and virtual environments
-(functional tests).
+covers baseline tests of DPDK sample applications. Tests are executed in
+physical (performance tests) and virtual environments (functional
+tests).
 
 Following list provides a brief overview of test scenarios covered in
 this report:
