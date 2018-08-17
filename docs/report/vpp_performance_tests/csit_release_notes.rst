@@ -226,10 +226,10 @@ List of known issues in |csit-release| for VPP performance tests:
 |   | <https://jira.fd.io/browse/VPP-1361>`_  | Failure rate: 30-40% of tests failing due to interfaces not in link-up state after API call sw_interface_set_flags.             |
 +---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 | 3 | `CSIT-1234                              | VPP IPSecHW scale interface mode 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.        |
-|   | <https://jira.fd.io/browse/CSIT-1234>`_ | ip4ipsecscale1000tnl-ip4base-int 1core CSIT-18.07/18.04 relative change: NDR -32%, PDR -33%, MRR -38%.                          |
+|   | <https://jira.fd.io/browse/CSIT-1234>`_ | ip4ipsecscale1000tnl-ip4base-int 1core CSIT-18.07/18.04 relative change: NDR -31%, PDR -32%, MRR -38%.                          |
 +---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 | 4 | `CSIT-1242                              | VPP xl710 ip4base test 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.                  |
-|   | <https://jira.fd.io/browse/CSIT-1242>`_ | xl710 ip4base 1core CSIT-18.07/18.04 relative change: NDR -19%, high stdev.                                                     |
+|   | <https://jira.fd.io/browse/CSIT-1242>`_ | xl710 ip4base 1core CSIT-18.07/18.04 relative change: NDR -29%, high stdev.                                                     |
 +---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 | 5 | `CSIT-1243                              | VPP nat44 base test 2core, low NDR and PDR 64B throughput in 3n-skx testbeds, compared to 3n-hsw testbeds.                      |
 |   | <https://jira.fd.io/browse/CSIT-1243>`_ | ip4base-nat44 2core 3n-skx/3n-hsw relative change: NDR -19%, PDR -22%.                                                          |
