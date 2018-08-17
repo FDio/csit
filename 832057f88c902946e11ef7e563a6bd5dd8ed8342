@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3c3d3b7c_976bfc07",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/3n-skx_vs_3n-hsw_testbeds.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T17:15:06Z",
+      "side": 1,
+      "message": "\"comparison\" is related to \"relative\", but \"performace\" is related to \"in measured {quantities}\". Not to mention \"Testpmd and L3fwd\" is probably related to \"tests\" (line 5). Such \"cross-references\" are making this sentence hard to parse for me.",
+      "range": {
+        "startLine": 4,
+        "startChar": 42,
+        "endLine": 4,
+        "endChar": 64
+      },
+      "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f6f50b4_8ff9ac8d",
         "filename": "docs/report/dpdk_performance_tests/comparisons/3n-skx_vs_3n-hsw_testbeds.rst",
         "patchSetId": 5
@@ -88,6 +111,29 @@
         "startChar": 9,
         "endLine": 15,
         "endChar": 11
+      },
+      "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "efe2e002_a4075c12",
+        "filename": "docs/report/vpp_performance_tests/comparisons/current_vs_previous_release.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T17:15:06Z",
+      "side": 1,
+      "message": "This is perfectly clear. Make the \"current release\" part of this sentence also as clear.",
+      "range": {
+        "startLine": 5,
+        "startChar": 66,
+        "endLine": 6,
+        "endChar": 41
       },
       "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
