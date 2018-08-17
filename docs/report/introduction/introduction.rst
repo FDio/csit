@@ -2,19 +2,19 @@ Introduction
 ============
 
 FD.io |csit-release| report contains system performance and functional
-testing data for |vpp-release|.
+testing data of |vpp-release|.
 
 `PDF version of this report`_ is also available for download.
 
 |csit-release| report is structured as follows:
 
-#. INTRODUCTION: General introduction to CSIT project.
+#. INTRODUCTION: General introduction to FD.io |csit-release|.
 
    - **Introduction**: This section.
    - **Test Scenarios Overview**: A brief overview of test scenarios
      covered in this report.
    - **Physical Testbeds**: Description of physical testbeds.
-   - **Performance Test Methodology**: Benchmarking methodologies.
+   - **Performance Test Methodology**: Benchmarking test methodologies.
 
 #. VPP PERFORMANCE: VPP performance tests executed in physical
    FD.io testbeds.
