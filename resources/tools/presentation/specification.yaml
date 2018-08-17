@@ -129,6 +129,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -144,6 +146,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -229,6 +233,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1807-3n-skx:
@@ -257,6 +263,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -298,6 +306,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -749,6 +759,8 @@
     - 48  # MRR sel
     - 11  # NDRPDR full 1
     - 22  # NDRPDR full 2
+    - 45  # NDRPDR full 3
+    - 46  # NDRPDR full 4
     - 15  # NDRPDR sel
     - 16  # NDRPDR sel
     - 19  # NDRPDR sel
@@ -968,6 +980,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1028,6 +1042,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1088,6 +1104,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1148,6 +1166,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1177,6 +1197,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
@@ -1220,6 +1242,8 @@
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
+      - 45  # NDRPDR full 3
+      - 46  # NDRPDR full 4
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
       - 19  # NDRPDR sel
