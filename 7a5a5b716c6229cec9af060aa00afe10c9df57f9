@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bb675233_fd8493f3",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/dpdk-current_vs_dpdk-previous.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:36:14Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "cbec019e_f4470c0c",
+      "revId": "7a5a5b716c6229cec9af060aa00afe10c9df57f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7aca20f_dede2686",
         "filename": "docs/report/vpp_performance_tests/comparisons/vpp-current_vs_vpp-previous.rst",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-17T16:34:02Z",
       "side": 1,
       "message": "current_vs_previous.rst",
+      "revId": "7a5a5b716c6229cec9af060aa00afe10c9df57f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7643d5f5_86d0ea1a",
+        "filename": "docs/report/vpp_performance_tests/comparisons/vpp-current_vs_vpp-previous.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T16:36:14Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "f7aca20f_dede2686",
       "revId": "7a5a5b716c6229cec9af060aa00afe10c9df57f9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
