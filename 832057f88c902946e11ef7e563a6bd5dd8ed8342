@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c80cb1a3_fa642684",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/3n-skx_vs_3n-hsw_testbeds.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T18:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e9dfdbe_e790a022",
+      "range": {
+        "startLine": 4,
+        "startChar": 42,
+        "endLine": 4,
+        "endChar": 64
+      },
+      "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f6f50b4_8ff9ac8d",
         "filename": "docs/report/dpdk_performance_tests/comparisons/3n-skx_vs_3n-hsw_testbeds.rst",
         "patchSetId": 5
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "right. we should have separate comparisons going forward, similar to current_vs_previous_release. As current table is hard to parse due to number of test cases ..",
       "parentUuid": "4f6f50b4_8ff9ac8d",
+      "range": {
+        "startLine": 15,
+        "startChar": 9,
+        "endLine": 15,
+        "endChar": 11
+      },
+      "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f954fab5_0cdce2fe",
+        "filename": "docs/report/dpdk_performance_tests/comparisons/3n-skx_vs_3n-hsw_testbeds.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T18:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53b731f9_2d9befa5",
       "range": {
         "startLine": 15,
         "startChar": 9,
@@ -238,6 +286,30 @@
     },
     {
       "key": {
+        "uuid": "df09f7e6_d8af0ed7",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw_testbeds.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T18:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a1c16c4_2eda3d95",
+      "range": {
+        "startLine": 15,
+        "startChar": 9,
+        "endLine": 15,
+        "endChar": 11
+      },
+      "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efe2e002_a4075c12",
         "filename": "docs/report/vpp_performance_tests/comparisons/current_vs_previous_release.rst",
         "patchSetId": 5
@@ -273,6 +345,30 @@
       "side": 1,
       "message": "Relative comparison of VPP packet throughput (NDR, PDR and MRR) between |vpp-release| and |vpp-release-1| (measured for |csit-release| and |csit-release-1| respectively) is calculated from results of tests running on 3-Node Intel Xeon Haswell testbeds (3n-hsw) in 1-core, 2-core and 4-core (MRR only) configurations.",
       "parentUuid": "efe2e002_a4075c12",
+      "range": {
+        "startLine": 5,
+        "startChar": 66,
+        "endLine": 6,
+        "endChar": 41
+      },
+      "revId": "832057f88c902946e11ef7e563a6bd5dd8ed8342",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8a4ca41_a8884446",
+        "filename": "docs/report/vpp_performance_tests/comparisons/current_vs_previous_release.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T18:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11accf4a_92860b69",
       "range": {
         "startLine": 5,
         "startChar": 66,
