@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "4270710d_e598ab62",
+        "filename": "docs/report/dpdk_performance_tests/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T15:39:53Z",
+      "side": 1,
+      "message": "docs/report/introduction/introduction.rst should mention the new sections.",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baf99a2c_ac595693",
         "filename": "docs/report/index.html.template",
         "patchSetId": 2
@@ -165,6 +188,30 @@
     },
     {
       "key": {
+        "uuid": "9a99fc9b_100982cc",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T15:39:53Z",
+      "side": 1,
+      "message": "Current, but it should be written somewhere explicitly.",
+      "parentUuid": "52a70307_cf017357",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26875ca8_244c021b",
         "filename": "docs/report/vpp_performance_tests/comparisons/index.rst",
         "patchSetId": 2
@@ -188,6 +235,29 @@
     },
     {
       "key": {
+        "uuid": "29b1ce76_921ec483",
+        "filename": "docs/report/vpp_performance_tests/comparisons/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T15:39:53Z",
+      "side": 1,
+      "message": "Perhaps mention here that some comparisons are across releases, others across testbeds.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eae2c8f0_b21d77c5",
         "filename": "docs/report/vpp_performance_tests/comparisons/vpp1807_vs_vpp1804.rst",
         "patchSetId": 2
@@ -199,6 +269,30 @@
       "writtenOn": "2018-08-17T15:31:33Z",
       "side": 1,
       "message": "This would mean that from now on we will be storing each 2 release comparisons?\n\nIs this header static or will it slide with releases?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 23
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d235fe8_8dbf76e6",
+        "filename": "docs/report/vpp_performance_tests/comparisons/vpp1807_vs_vpp1804.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T15:39:53Z",
+      "side": 1,
+      "message": "\"Current vs. previous release\" would be a friendlier section name.",
+      "parentUuid": "eae2c8f0_b21d77c5",
       "range": {
         "startLine": 1,
         "startChar": 0,
