@@ -38,7 +38,7 @@ export PYTHONPATH=`pwd`
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
-    --version "0.6" \
+    --version "0.7" \
     --logging INFO \
     --force
 
