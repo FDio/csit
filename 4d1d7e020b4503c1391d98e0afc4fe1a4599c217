@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3f67fae6_42fe98f7",
+        "filename": "docs/report/dpdk_performance_tests/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T15:56:14Z",
+      "side": 1,
+      "message": "yes, already taking care of that",
+      "parentUuid": "4270710d_e598ab62",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baf99a2c_ac595693",
         "filename": "docs/report/index.html.template",
         "patchSetId": 2
@@ -342,6 +366,30 @@
       "writtenOn": "2018-08-17T15:39:53Z",
       "side": 1,
       "message": "Perhaps mention here that some comparisons are across releases, others across testbeds.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af4dc64b_c44e90dd",
+        "filename": "docs/report/vpp_performance_tests/comparisons/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T15:56:14Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "29b1ce76_921ec483",
       "range": {
         "startLine": 8,
         "startChar": 0,
