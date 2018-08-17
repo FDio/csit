@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "324b0ef5_982b75bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T15:29:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6502ab63_ee3847e8",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baf99a2c_ac595693",
         "filename": "docs/report/index.html.template",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-17T15:25:57Z",
       "side": 1,
       "message": "We have trending also for DPDK tests.",
+      "range": {
+        "startLine": 24,
+        "startChar": 26,
+        "endLine": 24,
+        "endChar": 45
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46af865a_d3972b41",
+        "filename": "docs/report/index.html.template",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T15:29:01Z",
+      "side": 1,
+      "message": "but we don\u0027t run it regularly, so it\u0027s not in the report. we should run it regularly, i think we agreed weekly, so then we can add it to report.",
+      "parentUuid": "baf99a2c_ac595693",
       "range": {
         "startLine": 24,
         "startChar": 26,
