@@ -20,22 +20,21 @@ files are also provided.
 
 |csit-release| report contains following main sections and sub-sections:
 
-#. **Introduction**: general introduction to CSIT project.
+#. **Introduction**: General introduction to CSIT project.
 
-   - **Introduction**: this section.
-   - **Test Scenarios Overview**: a brief overview of test scenarios
+   - **Introduction**: This section.
+   - **Test Scenarios Overview**: A brief overview of test scenarios
      covered in this report.
-   - **Physical Testbeds**: description of physical testbeds.
-   - **Performance Test Methodology**: benchmarking methodologies.
+   - **Physical Testbeds**: Description of physical testbeds.
+   - **Performance Test Methodology**: Benchmarking methodologies.
 
 #. **VPP Performance**: VPP performance tests executed in physical
    FD.io testbeds.
 
-   - **Overview**: tested logical topologies, test coverage and naming
+   - **Overview**: Tested logical topologies, test coverage and naming
      specifics.
-   - **Release Notes**: changes in |csit-release|, added tests,
-     performance changes, environment or methodology changes, known
-     issues.
+   - **Release Notes**: Changes in |csit-release|, added tests,
+     environment or methodology changes, known issues.
    - **Packet Throughput**: NDR, PDR throughput graphs based on results
      from repeated same test job executions to verify repeatibility of
      measurements.
@@ -45,67 +44,75 @@ files are also provided.
      graphs based on results from test job executions.
    - **HTTP/TCP Performance**: HTTP/TCP VPP test server performance
      graphs.
-   - **Test Environment**: performance test environment configuration.
-   - **Documentation**: documentation of K8s Pod/Container orchestration
+   - **Comparisons**: Performance comparisons between VPP releases and
+     between different testbed types.
+   - **Throughput Trending**: References to continuous VPP performance
+     trending.
+   - **Test Environment**: Performance test environment configuration.
+   - **Documentation**: Documentation of K8s Pod/Container orchestration
      in CSIT and pointers to CSIT source code documentation for VPP
      performance tests.
 
 #. **DPDK Performance**: DPDK performance tests executed in physical
    FD.io testbeds.
 
-   - **Overview**: tested logical topologies, test coverage.
-   - **Release Notes**: changes in |csit-release|, known issues.
+   - **Overview**: Tested logical topologies, test coverage.
+   - **Release Notes**: Changes in |csit-release|, known issues.
    - **Packet Throughput**: NDR, PDR throughput graphs based on results
      from repeated same test job executions to verify repeatibility of
      measurements.
    - **Packet Latency**: Latency graphs based on results from test job
      executions.
-   - **Test Environment**: performance test environment configuration.
-   - **Documentation**: pointers to CSIT source code documentation for
+   - **Comparisons**: Performance comparisons between DPDK releases and
+     between different testbed types.
+   - **Throughput Trending**: References to regular DPDK performance
+     trending.
+   - **Test Environment**: Performance test environment configuration.
+   - **Documentation**: Pointers to CSIT source code documentation for
      DPDK performance tests.
 
 #. **VPP Functional**: VPP functional tests executed in virtual FD.io
    testbeds.
 
-   - **Overview**: tested virtual topologies, test coverage and naming
+   - **Overview**: Tested virtual topologies, test coverage and naming
      specifics;
-   - **Release Notes** - changes in |csit-release|, added tests,
+   - **Release Notes**: Changes in |csit-release|, added tests,
      environment or methodology changes, known issues.
-   - **Test Environment**: functional test environment configuration.
-   - **Documentation**: pointers to CSIT source code documentation for
+   - **Test Environment**: Functional test environment configuration.
+   - **Documentation**: Pointers to CSIT source code documentation for
      VPP functional tests.
 
 #. **Honeycomb Functional**: Honeycomb functional tests executed in
    virtual FD.io testbeds.
 
-   - **Overview**: tested virtual topologies, test coverage and naming
+   - **Overview**: Tested virtual topologies, test coverage and naming
      specifics;
-   - **Release Notes** - changes in |csit-release|, known issues.
-   - **Test Environment**: functional test environment configuration.
-   - **Documentation**: pointers to CSIT source code documentation for
+   - **Release Notes**: Changes in |csit-release|, known issues.
+   - **Test Environment**: Functional test environment configuration.
+   - **Documentation**: Pointers to CSIT source code documentation for
      Honeycomb functional tests.
 
 #. **NSH_SFC Functional**: NSH_SFC functional tests executed in
    virtual FD.io testbeds.
 
-   - **Overview**: tested virtual topologies, test coverage and naming
+   - **Overview**: Tested virtual topologies, test coverage and naming
      specifics;
-   - **Release Notes** - changes in |csit-release|, known issues.
-   - **Test Environment**: functional test environment configuration.
-   - **Documentation**: pointers to CSIT source code documentation for
+   - **Release Notes**: Changes in |csit-release|, known issues.
+   - **Test Environment**: Functional test environment configuration.
+   - **Documentation**: Pointers to CSIT source code documentation for
      NSH_SFC functional tests.
 
 #. **DMM Functional**: DMM functional tests executed in
    virtual FD.io testbeds.
 
-   - **Overview**: tested virtual topologies, test coverage and naming
+   - **Overview**: Tested virtual topologies, test coverage and naming
      specifics;
-   - **Release Notes** - changes in |csit-release|, known issues.
-   - **Test Environment**: functional test environment configuration.
-   - **Documentation**: pointers to CSIT source code documentation for
+   - **Release Notes**: Changes in |csit-release|, known issues.
+   - **Test Environment**: Functional test environment configuration.
+   - **Documentation**: Pointers to CSIT source code documentation for
      DMM functional tests.
 
-#. **Detailed Results**: detailed result tables auto-generated from CSIT
+#. **Detailed Results**: Detailed result tables auto-generated from CSIT
    test job executions using RF (Robot Framework) output files as
    sources.
 
@@ -115,19 +122,19 @@ files are also provided.
      NDR/PDR throughput.
    - **DPDK Performance**: DPDK Testpmd and L3fwd NDR/PDR throughput
      and latency.
-   - **VPP Functional**: detailed VPP functional results.
-   - **Honeycomb Functional**: detailed HoneyComb functional results.
-   - **NSH_SFC Functional**: detailed nsh-plugin functional results.
-   - **DMM Functional**: detailed DMM functional results.
+   - **VPP Functional**: Detailed VPP functional results.
+   - **Honeycomb Functional**: Detailed HoneyComb functional results.
+   - **NSH_SFC Functional**: Detailed nsh-plugin functional results.
+   - **DMM Functional**: Detailed DMM functional results.
 
 #. **Test Configuration**: VPP DUT configuration data based on VPP API
    Test (VAT) Commands History auto-generated from CSIT test job
    executions using RF output files as sources.
 
-   - **VPP Performance NDR/PDR**: configuration data.
-   - **VPP Performance MRR**: configuration data.
-   - **VPP K8s Container Memif**: configuration data.
-   - **VPP Functional**: configuration data.
+   - **VPP Performance NDR/PDR**: Configuration data.
+   - **VPP Performance MRR**: Configuration data.
+   - **VPP K8s Container Memif**: Configuration data.
+   - **VPP Functional**: Configuration data.
 
 #. **Test Operational Data**: VPP DUT operational data auto-generated
    from CSIT test job executions using RFoutput files as sources.
@@ -135,12 +142,12 @@ files are also provided.
    - **VPP Performance NDR/PDR**: VPP `show run` outputs under test
      load.
 
-#. **CSIT Framework Documentation**: description of the overall FD.io
+#. **CSIT Framework Documentation**: Description of the overall FD.io
    CSIT framework.
 
-   - **Design**: framework modular design hierarchy.
-   - **Test naming**: test naming convention.
-   - **Presentation and Analytics Layer**: description of PAL CSIT
+   - **Design**: Framework modular design hierarchy.
+   - **Test naming**: Test naming convention.
+   - **Presentation and Analytics Layer**: Description of PAL CSIT
      analytics module.
    - **CSIT RF Tags Descriptions**: CSIT RF Tags used for test suite and
      test case grouping and selection.
