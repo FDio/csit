@@ -45,6 +45,30 @@
       "revId": "06e86378efceda23e4d387365057b8194be2f780",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "980b4047_26cdde75",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-08-17T08:16:21Z",
+      "side": 1,
+      "message": "Indeed they do, you\u0027re right!\nWill add dots after 18.",
+      "parentUuid": "bf57d07a_212b6ff2",
+      "range": {
+        "startLine": 232,
+        "startChar": 51,
+        "endLine": 232,
+        "endChar": 60
+      },
+      "revId": "06e86378efceda23e4d387365057b8194be2f780",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
