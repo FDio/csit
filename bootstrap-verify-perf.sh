@@ -335,26 +335,26 @@ EXCLUDE_NICS=($(comm -13 <(printf '%s\n' "${TOPOLOGY_NICS[@]}") <(printf '%s\n' 
 case "$TEST_CODE" in
     # Select specific performance tests based on jenkins job type variable.
     *ndrpdr-weekly* )
-        TAGS=(ndrpdrANDnic_intel-x520-da2AND1c
-              ndrpdrANDnic_intel-x520-da2AND2c
-              ndrpdrAND1cANDipsec
-              ndrpdrAND2cANDipsec)
+        TEST_TAG_ARRAY=(ndrpdrANDnic_intel-x520-da2AND1c
+                        ndrpdrANDnic_intel-x520-da2AND2c
+                        ndrpdrAND1cANDipsec
+                        ndrpdrAND2cANDipsec)
         ;;
     *ndrpdr-timed* )
         ;;
     *mrr-daily* )
-       TAGS=(mrrAND64bAND1c
-             mrrAND64bAND2c
-             mrrAND64bAND4c
-             mrrAND78bAND1c
-             mrrAND78bAND2c
-             mrrAND78bAND4c
-             mrrANDimixAND1cANDvhost
-             mrrANDimixAND2cANDvhost
-             mrrANDimixAND4cANDvhost
-             mrrANDimixAND1cANDmemif
-             mrrANDimixAND2cANDmemif
-             mrrANDimixAND4cANDmemif)
+        TEST_TAG_ARRAY=(mrrAND64bAND1c
+                        mrrAND64bAND2c
+                        mrrAND64bAND4c
+                        mrrAND78bAND1c
+                        mrrAND78bAND2c
+                        mrrAND78bAND4c
+                        mrrANDimixAND1cANDvhost
+                        mrrANDimixAND2cANDvhost
+                        mrrANDimixAND4cANDvhost
+                        mrrANDimixAND1cANDmemif
+                        mrrANDimixAND2cANDmemif
+                        mrrANDimixAND4cANDmemif)
         ;;
     * )
         if [[ -z "$TEST_TAG_STRING" ]]; then
@@ -367,30 +367,30 @@ case "$TEST_CODE" in
         else
             # If trigger contains tags, split them into array.
             TEST_TAG_ARRAY=(${TEST_TAG_STRING//:/ })
-            # We will add excluded NICs.
-            TEST_TAG_ARRAY+=("${EXCLUDE_NICS[@]/#/!NIC_}")
         fi
-
-        TAGS=()
-
-        # We will prefix with perftest to prevent running other tests
-        # (e.g. Functional).
-        prefix="perftestAND"
-        if [[ ${TEST_CODE} == vpp-* ]]; then
-            # Automatic prefixing for VPP jobs to limit the NIC used and
-            # traffic evaluation to MRR.
-            prefix="${prefix}mrrANDnic_intel-x710AND"
-        fi
-        for TAG in "${TEST_TAG_ARRAY[@]}"; do
-            if [[ ${TAG} == "!"* ]]; then
-                # Exclude tags are not prefixed.
-                TAGS+=("${TAG}")
-            else
-                TAGS+=("$prefix${TAG}")
-            fi
-        done
         ;;
 esac
+
+# We will add excluded NICs.
+TEST_TAG_ARRAY+=("${EXCLUDE_NICS[@]/#/!NIC_}")
+
+TAGS=()
+
+# We will prefix with perftest to prevent running other tests (e.g. Functional).
+prefix="perftestAND"
+if [[ ${TEST_CODE} == vpp-* ]]; then
+    # Automatic prefixing for VPP jobs to limit the NIC used and
+    # traffic evaluation to MRR.
+    prefix="${prefix}mrrANDnic_intel-x710AND"
+fi
+for TAG in "${TEST_TAG_ARRAY[@]}"; do
+    if [[ ${TAG} == "!"* ]]; then
+        # Exclude tags are not prefixed.
+        TAGS+=("${TAG}")
+    else
+        TAGS+=("$prefix${TAG}")
+    fi
+done
 
 # Catenate TAG selections
 EXPANDED_TAGS=()
