@@ -116,6 +116,98 @@
       "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f66a9a8b_fcb7df26",
+        "filename": "docs/report/index.html.template",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-17T15:31:33Z",
+      "side": 1,
+      "message": "there is DPDK trending as well",
+      "range": {
+        "startLine": 36,
+        "startChar": 38,
+        "endLine": 36,
+        "endChar": 43
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52a70307_cf017357",
+        "filename": "docs/report/vpp_performance_tests/comparisons/3n-skx_vs_3n-hsw.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-17T15:31:33Z",
+      "side": 1,
+      "message": "Which release to which is this comparison, actual vs -1",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26875ca8_244c021b",
+        "filename": "docs/report/vpp_performance_tests/comparisons/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-17T15:31:33Z",
+      "side": 1,
+      "message": "remove 2 \u003d\u003d",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eae2c8f0_b21d77c5",
+        "filename": "docs/report/vpp_performance_tests/comparisons/vpp1807_vs_vpp1804.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-17T15:31:33Z",
+      "side": 1,
+      "message": "This would mean that from now on we will be storing each 2 release comparisons?\n\nIs this header static or will it slide with releases?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 23
+      },
+      "revId": "4d1d7e020b4503c1391d98e0afc4fe1a4599c217",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }

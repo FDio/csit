@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49493f4f_f0c94c93",
+        "filename": "docs/report/dpdk_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-17T15:31:33Z",
+      "side": 0,
+      "message": "it is there",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "ca0944a9746c9f6cbad696469861516b22b92a02",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
