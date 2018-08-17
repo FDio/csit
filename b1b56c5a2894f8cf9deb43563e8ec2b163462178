@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "635cee30_3a1fa9b7",
+        "filename": "docs/report/vpp_performance_tests/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-17T14:38:09Z",
+      "side": 1,
+      "message": "I was rather expecting a general \"comparison\" sub-section (coming after all the graphs) with several sub-sub-sections (skx vs hsw, 2n vs 3n, current release vs previous releases). Release notes would then just comment on few unexpected numbers, referring to the comparison tables (or graphs, if the comments compare different test cases).",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "b1b56c5a2894f8cf9deb43563e8ec2b163462178",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
