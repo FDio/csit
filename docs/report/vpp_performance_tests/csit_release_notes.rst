@@ -217,7 +217,7 @@ Known Issues
 List of known issues in |csit-release| for VPP performance tests:
 
 +---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| # | JiraID                                  | Description                                                                                                                     |
+| # | .. centered:: JiraID                    | .. centered:: Issue Description                                                                                                 |
 +===+=========================================+=================================================================================================================================+
 | 1 | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
 |   | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
