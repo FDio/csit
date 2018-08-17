@@ -130,7 +130,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${srv6_overhead_3sids}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'dynamic_proxy' behaviour in 3-node circular topology
+| | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'static_proxy' behaviour in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
