@@ -15,15 +15,14 @@ different Packet Loss Ratio (PLR) values.
 Following MLRsearch values are measured across a range of L2 frame sizes
 and reported:
 
-- **Non Drop Rate (NDR)**: packet and bandwidth throughput at PLR=0%.
+- NON DROP RATE (NDR): packet and bandwidth throughput at PLR=0%.
 
   - **Aggregate packet rate**: NDR_LOWER <bi-directional packet rate>
     pps.
   - **Aggregate bandwidth rate**: NDR_LOWER <bi-directional bandwidth
     rate> Gbps.
 
-- **Partial Drop Rate (PDR)**: packet and bandwidth throughput at
-  PLR=0.5%.
+- PARTIAL DROP RATE (PDR): packet and bandwidth throughput at PLR=0.5%.
 
   - **Aggregate packet rate**: PDR_LOWER <bi-directional packet rate>
     pps.

@@ -7,10 +7,9 @@ Virtual Topologies
 CSIT VPP functional tests are executed in VM-based virtual topologies
 created on demand using :abbr:`VIRL (Virtual Internet Routing Lab)`
 simulation platform contributed by Cisco. VIRL runs on physical
-baremetal servers hosted by LF FD.io project.
-
-Based on the packet path thru SUT VMs, two distinct logical topology
-types are used for VPP DUT data plane testing:
+baremetal servers hosted by LF FD.io project. Based on the packet path
+thru SUT VMs, two distinct logical topology types are used for VPP DUT
+data plane testing:
 
 #. vNIC-to-vNIC switching topologies.
 #. Nested-VM service switching topologies.

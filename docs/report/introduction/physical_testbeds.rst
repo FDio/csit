@@ -6,9 +6,8 @@ Physical Testbeds
 All :abbr:`FD.io (Fast Data Input/Ouput)` :abbr:`CSIT (Continuous System
 Integration and Testing)` performance testing listed in this report are
 executed on physical testbeds built with bare-metal servers hosted by
-:abbr:`LF (Linux Foundation)` FD.io project.
-
-Two testbed topologies are used:
+:abbr:`LF (Linux Foundation)` FD.io project. Two testbed topologies are
+used:
 
 - **3-Node Topology**: Consisting of two servers acting as SUTs
   (Systems Under Test) and one server as TG (Traffic Generator), all

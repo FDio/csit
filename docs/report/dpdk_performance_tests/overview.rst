@@ -1,8 +1,11 @@
 Overview
 ========
 
-For description of physical testbeds used for DPDK performance tests
-please refer to :ref:`tested_physical_topologies`.
+DPDK performance test results are reported for all three physical
+testbed types present in FD.io labs: 3-Node Xeon Haswell (3n-hsw),
+3-Node Xeon Skylake (3n-skx), 2-Node Xeon Skylake (2n-skx) and installed
+NIC models. For description of physical testbeds used for DPDK
+performance tests please refer to :ref:`tested_physical_topologies`.
 
 Logical Topologies
 ------------------

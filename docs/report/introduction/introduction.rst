@@ -2,9 +2,8 @@ Introduction
 ============
 
 FD.io |csit-release| report contains system performance and functional
-testing data of |vpp-release|.
-
-`PDF version of this report`_ is also available for download.
+testing data of |vpp-release|. `PDF version of this report`_ is
+available for download.
 
 |csit-release| report is structured as follows:
 
