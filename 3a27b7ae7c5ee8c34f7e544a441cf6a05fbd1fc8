@@ -188,6 +188,30 @@
     },
     {
       "key": {
+        "uuid": "0232cd4e_e9191950",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-18T08:00:49Z",
+      "side": 1,
+      "message": "I meant that license is always same but header there is Cisco or Redhat or Intel or ARM. So lets put some template with license text and company field will be optional or depends on contributors",
+      "parentUuid": "4b7d1278_7a5aa91b",
+      "range": {
+        "startLine": 31,
+        "startChar": 36,
+        "endLine": 31,
+        "endChar": 58
+      },
+      "revId": "3a27b7ae7c5ee8c34f7e544a441cf6a05fbd1fc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4970bbd3_b9c3701e",
         "filename": "docs/test_code_guidelines.rst",
         "patchSetId": 2
