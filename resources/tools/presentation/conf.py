@@ -70,7 +70,7 @@ rst_epilog = """
 .. |virl-image-ubuntu| replace:: {csit_ubuntu_ver}
 .. |virl-image-centos| replace:: {csit_centos_ver}
 
-.. _pdf version of this report: https://docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.pdf
+.. _pdf version of this report: https://docs.fd.io/csit/{release}/report/_static/archive/csit_{release}_{report_version}.pdf
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h={release}
 .. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h={release}
 .. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h={release}
@@ -103,6 +103,7 @@ rst_epilog = """
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _K8s configuration files: https://github.com/FDio/csit/tree/{release}/resources/templates/kubernetes
 """.format(release='rls1807',
+           report_version='v1.0',
            prev_release='rls1804',
            srelease='1807',
            csitrelease='18.07',
