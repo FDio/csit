@@ -7,9 +7,8 @@ Physical Testbeds
 -----------------
 
 FD.io CSIT performance tests are executed in physical testbeds hosted by
-:abbr:`LF (Linux Foundation)` for FD.io project.
-
-Two physical testbed topology types are used:
+:abbr:`LF (Linux Foundation)` for FD.io project. Two physical testbed
+topology types are used:
 
 - **3-Node Topology**: Consisting of two servers acting as SUTs
   (Systems Under Test) and one server as TG (Traffic Generator), all
@@ -20,10 +19,8 @@ Two physical testbed topology types are used:
 Tested SUT servers are based on a range of processors including Intel
 Xeon Haswell-SP, Intel Xeon Skylake-SP, Arm, Intel Atom. More detailed
 description is provided in
-:ref:`tested_physical_topologies`.
-
-Tested logical topologies are described in
-:ref:`tested_logical_topologies`.
+:ref:`tested_physical_topologies`. Tested logical topologies are
+described in :ref:`tested_logical_topologies`.
 
 Server Specifications
 ---------------------

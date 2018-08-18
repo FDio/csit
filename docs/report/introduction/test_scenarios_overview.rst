@@ -7,8 +7,7 @@ covers baseline tests of DPDK sample applications. Tests are executed in
 physical (performance tests) and virtual environments (functional
 tests).
 
-Following list provides a brief overview of test scenarios covered in
-this report:
+Brief overview of test scenarios covered in this report:
 
 #. **VPP Performance**: VPP performance tests are executed in physical
    FD.io testbeds, focusing on VPP network data plane performance in
@@ -70,13 +69,11 @@ this report:
    client (DUT2) scenario using DMM framework and Linux kernel TCP/IP
    stack.
 
-All CSIT test results listed in this report are sourced and auto-
+All CSIT test data included in this report is auto-
 generated from :abbr:`RF (Robot Framework)` :file:`output.xml` files
-resulting from :abbr:`LF (Linux Foundation)` FD.io Jenkins jobs executed
-against |vpp-release| release artifacts. References are provided to the
-original FD.io Jenkins job results. Additional references are provided
-to the :abbr:`RF (Robot Framework)` result files that got archived in
-FD.io Nexus online storage system.
+produced by :abbr:`LF (Linux Foundation)` FD.io Jenkins jobs executed
+against |vpp-release| artifacts. References are provided to the
+original FD.io Jenkins job results and all archived source files.
 
 FD.io CSIT system is developed using two main coding platforms: :abbr:`RF (Robot
 Framework)` and Python2.7. |csit-release| source code for the executed test

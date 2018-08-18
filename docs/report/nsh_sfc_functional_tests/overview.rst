@@ -4,13 +4,11 @@ Overview
 Virtual Topologies
 ------------------
 
-CSIT NSH_SFC functional tests are executed in VM-based virtual topologies
-created on demand using :abbr:`VIRL (Virtual Internet Routing Lab)`
-simulation platform contributed by Cisco. VIRL runs on physical
-baremetal servers hosted by LF FD.io project.
-
-All tests are executed in three-node virtual test topology shown in the
-figure below.
+CSIT NSH_SFC functional tests are executed in VM-based virtual
+topologies created on demand using :abbr:`VIRL (Virtual Internet Routing
+Lab)` simulation platform contributed by Cisco. VIRL runs on physical
+baremetal servers hosted by LF FD.io project. All tests are executed in
+three-node virtual test topology shown in the figure below.
 
 .. only:: latex
 
