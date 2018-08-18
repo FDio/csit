@@ -18,24 +18,24 @@ values.
     `FD.io test executor dpdk performance job 3n-hsw`_
     with RF result
     files csit-dpdk-perf-|srelease|-\*.zip
-    `archived here <../_static/archive/>`_.
+    `archived here <../../_static/archive/>`_.
 
 NDR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 1t1c NDR comparison <../_static/dpdk/performance-changes-1t1c-ndr.txt>`_
-  - `ASCII 2t2c NDR comparison <../_static/dpdk/performance-changes-2t2c-ndr.txt>`_
-  - `CSV 1t1c NDR comparison <../_static/dpdk/performance-changes-1t1c-ndr.csv>`_
-  - `CSV 2t2c NDR comparison <../_static/dpdk/performance-changes-2t2c-ndr.csv>`_
+  - `ASCII 1t1c NDR comparison <../../_static/dpdk/performance-changes-1t1c-ndr.txt>`_
+  - `ASCII 2t2c NDR comparison <../../_static/dpdk/performance-changes-2t2c-ndr.txt>`_
+  - `CSV 1t1c NDR comparison <../../_static/dpdk/performance-changes-1t1c-ndr.csv>`_
+  - `CSV 2t2c NDR comparison <../../_static/dpdk/performance-changes-2t2c-ndr.csv>`_
 
 PDR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 1t1c PDR comparison <../_static/dpdk/performance-changes-1t1c-pdr.txt>`_
-  - `ASCII 2t2c PDR comparison <../_static/dpdk/performance-changes-2t2c-pdr.txt>`_
-  - `CSV 1t1c PDR comparison <../_static/dpdk/performance-changes-1t1c-pdr.csv>`_
-  - `CSV 2t2c PDR comparison <../_static/dpdk/performance-changes-2t2c-pdr.csv>`_
+  - `ASCII 1t1c PDR comparison <../../_static/dpdk/performance-changes-1t1c-pdr.txt>`_
+  - `ASCII 2t2c PDR comparison <../../_static/dpdk/performance-changes-2t2c-pdr.txt>`_
+  - `CSV 1t1c PDR comparison <../../_static/dpdk/performance-changes-1t1c-pdr.csv>`_
+  - `CSV 2t2c PDR comparison <../../_static/dpdk/performance-changes-2t2c-pdr.csv>`_
