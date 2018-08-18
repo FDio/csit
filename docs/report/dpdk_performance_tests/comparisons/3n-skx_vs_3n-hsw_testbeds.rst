@@ -13,28 +13,28 @@ types, in 1-core, 2-core and 4-core configurations.
     `FD.io test executor dpdk performance job 3n-skx`_
     with RF result
     files csit-dpdk-perf-|srelease|-\*.zip
-    `archived here <../_static/archive/>`_.
+    `archived here <../../_static/archive/>`_.
 
 NDR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII NDR comparison <../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.txt>`_
-  - `CSV NDR comparison <../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.csv>`_
+  - `ASCII NDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.txt>`_
+  - `CSV NDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-ndr.csv>`_
 
 PDR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII PDR comparison <../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-pdr.txt>`_
-  - `CSV PDR comparison <../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-pdr.csv>`_
+  - `ASCII PDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-pdr.txt>`_
+  - `CSV PDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-pdr.csv>`_
 
 MRR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII MRR comparison <../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.txt>`_
-  - `CSV MRR comparison <../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.csv>`_
+  - `ASCII MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.txt>`_
+  - `CSV MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.csv>`_

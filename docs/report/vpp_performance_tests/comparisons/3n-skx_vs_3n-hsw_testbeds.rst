@@ -13,28 +13,28 @@ skx) and 3-Node Haswell (3n-hsw) physical testbed types, in 1-core,
     `FD.io test executor vpp performance job 3n-skx`_
     with RF result
     files csit-vpp-perf-|srelease|-\*.zip
-    `archived here <../_static/archive/>`_.
+    `archived here <../../_static/archive/>`_.
 
 NDR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII NDR comparison <../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-ndr.txt>`_
-  - `CSV NDR comparison <../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-ndr.csv>`_
+  - `ASCII NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-ndr.txt>`_
+  - `CSV NDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-ndr.csv>`_
 
 PDR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII PDR comparison <../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-pdr.txt>`_
-  - `CSV PDR comparison <../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-pdr.csv>`_
+  - `ASCII PDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-pdr.txt>`_
+  - `CSV PDR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-pdr.csv>`_
 
 MRR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII MRR comparison <../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-mrr.txt>`_
-  - `CSV MRR comparison <../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-mrr.csv>`_
+  - `ASCII MRR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-mrr.txt>`_
+  - `CSV MRR comparison <../../_static/vpp/performance-compare-testbeds-3n-hsw-3n-skx-mrr.csv>`_
