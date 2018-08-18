@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7328d6a6_82518b33",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-18T08:00:49Z",
+      "side": 1,
+      "message": "Maybe link?",
+      "range": {
+        "startLine": 89,
+        "startChar": 41,
+        "endLine": 89,
+        "endChar": 54
+      },
+      "revId": "0489041758a8341fdb2307d3a089c2ae29f5cdd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ed249b4_0b7a46d1",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-18T08:00:49Z",
+      "side": 1,
+      "message": "The only reason why it is not done yet is that it is hard to use colors in RST. Maciek insists on colors :D",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 62
+      },
+      "revId": "0489041758a8341fdb2307d3a089c2ae29f5cdd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
