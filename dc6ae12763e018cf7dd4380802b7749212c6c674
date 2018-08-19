@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75c4ea0c_d1cff41a",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "I prefer to not use -e as it breaks consistency. We want to have unified style of error checking. You need lot of exceptions which make it hard to read.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 74
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93d8410d_3d7f2a57",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "What is the rule of saying it is fragment or function? Where is the boundaries. What about consistency of code?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f572b154_845e34bd",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "Describe closer, i do not see any freedom here. Functions can use same global var and can have local vars. They can have arguments and default values. So why to use fragments?",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 65
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4875326_3e18b552",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "You have also error handling functions",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bcbbbc0_ecfae9f5",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "? I think it does not belong here",
+      "range": {
+        "startLine": 154,
+        "startChar": 39,
+        "endLine": 154,
+        "endChar": 72
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5be0fee2_801f0d1b",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "What about getopts?",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 81
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05adaedd_b913e0ad",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "I do not see this in your fragments code how do you detect what was actually specified.",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 61
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c83cd7a2_102cb6b1",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "Why? What about re-usability. Why do i need 2 bash codes for simple task (one fragment, one sourcing)??",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 50
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f258985_05ce2448",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "This lower the re-usability of fragments as could be (and i think are) parts where exit code depends on logical implementation.",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 32
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f33a527_0ca95138",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-19T07:54:55Z",
+      "side": 1,
+      "message": "As there is no PEP it is hard to enforce in special cases. Also with -x it is very hard to read when it renders as bash does remain the spaces. So i would say leave it for implementation",
+      "range": {
+        "startLine": 341,
+        "startChar": 0,
+        "endLine": 345,
+        "endChar": 59
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
