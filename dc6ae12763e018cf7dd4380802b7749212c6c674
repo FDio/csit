@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3942e052_0e918bc1",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-20T16:05:40Z",
+      "side": 1,
+      "message": "The proposed style IS unified, but I will make the description more explicit.",
+      "parentUuid": "75c4ea0c_d1cff41a",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 74
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93d8410d_3d7f2a57",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 1
@@ -82,6 +106,30 @@
       "writtenOn": "2018-08-19T07:54:55Z",
       "side": 1,
       "message": "You have also error handling functions",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14619a2c_2695c6a9",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-20T16:05:40Z",
+      "side": 1,
+      "message": "Text from \"Functions\" section on is to be rewritten in later patch sets.",
+      "parentUuid": "a4875326_3e18b552",
       "range": {
         "startLine": 116,
         "startChar": 0,
