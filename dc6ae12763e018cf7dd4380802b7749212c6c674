@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5e24b677_7dc6f363",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-20T18:42:00Z",
+      "side": 1,
+      "message": "Cannot be as long as not all command are checked with || die\nSee your code",
+      "parentUuid": "3942e052_0e918bc1",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 74
+      },
+      "revId": "dc6ae12763e018cf7dd4380802b7749212c6c674",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93d8410d_3d7f2a57",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 1
