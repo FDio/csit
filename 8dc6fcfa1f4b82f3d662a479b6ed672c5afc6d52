@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b6c57a8_0b4b6074",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-20T13:19:29Z",
+      "side": 1,
+      "message": "longname_orig",
+      "range": {
+        "startLine": 648,
+        "startChar": 23,
+        "endLine": 648,
+        "endChar": 44
+      },
+      "revId": "8dc6fcfa1f4b82f3d662a479b6ed672c5afc6d52",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
