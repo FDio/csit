@@ -289,12 +289,15 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_TC_NUMBER = re.compile(r'tc[0-9]{2}-')
 
-    def __init__(self, metadata):
+    def __init__(self, metadata, mapping):
         """Initialisation.
 
         :param metadata: Key-value pairs to be included in "metadata" part of
-        JSON structure.
+            JSON structure.
+        :param mapping: Mapping of the old names of test cases to the new
+            (actual) one.
         :type metadata: dict
+        :type mapping: dict
         """
 
         # Type of message to parse out from the test messages
@@ -305,6 +308,9 @@ class ExecutionChecker(ResultVisitor):
 
         # Timestamp
         self._timestamp = None
+
+        # Mapping of TCs long names
+        self._mapping = mapping
 
         # Number of VAT History messages found:
         # 0 - no message
@@ -628,10 +634,16 @@ class ExecutionChecker(ResultVisitor):
 
         tags = [str(tag) for tag in test.tags]
         test_result = dict()
-        test_result["name"] = test.name.lower()
+
+        longname = self._mapping.get(test.longname.lower(), None)
+        if longname:
+            name = longname.split('.')[-1]
+        else:
+            longname = test.longname.lower()
+            name = test.name.lower()
+
         # Remove TC number from the TC name (not needed):
-        test_result["name"] = re.sub(self.REGEX_TC_NUMBER, "",
-                                     test.name.lower())
+        test_result["name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
         test_result["parent"] = test.parent.name.lower()
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
@@ -642,7 +654,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["type"] = "FUNC"
         test_result["status"] = test.status
         # Remove TC number from the TC long name (backward compatibility):
-        self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", test.longname.lower())
+        self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", longname)
 
         if "PERFTEST" in tags:
             # Replace info about cores (e.g. -1c-) with the info about threads
@@ -1021,8 +1033,7 @@ class InputData(object):
 
         return self.data[job][build]["tests"]
 
-    @staticmethod
-    def _parse_tests(job, build, log):
+    def _parse_tests(self, job, build, log):
         """Process data from robot output.xml file and return JSON structured
         data.
 
@@ -1048,7 +1059,7 @@ class InputData(object):
                 log.append(("ERROR", "Error occurred while parsing output.xml: "
                                      "{0}".format(err)))
                 return None
-        checker = ExecutionChecker(metadata)
+        checker = ExecutionChecker(metadata, self._cfg.mapping)
         result.visit(checker)
 
         return checker.data
