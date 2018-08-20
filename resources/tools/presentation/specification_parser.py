@@ -94,20 +94,14 @@ class Specification(object):
         return self._specification["static"]
 
     @property
-    def is_debug(self):
-        """Getter - debug mode
+    def mapping(self):
+        """Getter - Mapping.
 
-        :returns: True if debug mode is on, otherwise False.
-        :rtype: bool
+        :returns: Mapping of the old names of test cases to the new (actual)
+            one.
+        :rtype: dict
         """
-
-        try:
-            if self.environment["configuration"]["CFG[DEBUG]"] == 1:
-                return True
-            else:
-                return False
-        except KeyError:
-            return False
+        return self._specification["configuration"]["mapping"]
 
     @property
     def input(self):
@@ -413,6 +407,30 @@ class Specification(object):
                             build_nr = self._get_build_number(job, build_nr)
                         builds = [x for x in range(builds["start"], build_nr+1)]
                         self.configuration["data-sets"][set_name][job] = builds
+
+        # Mapping table:
+        mapping = None
+        mapping_file_name = self._specification["configuration"].\
+            get("mapping-file", None)
+        if mapping_file_name:
+            logging.debug("Mapping file: '{0}'".format(mapping_file_name))
+            try:
+                with open(mapping_file_name, 'r') as mfile:
+                    mapping = load(mfile)
+                logging.debug("Loaded mapping table:\n{0}".format(mapping))
+            except (YAMLError, IOError) as err:
+                raise PresentationError(
+                    msg="An error occurred while parsing the mapping file "
+                        "'{0}'.".format(mapping_file_name),
+                    details=repr(err))
+
+        # Make sure everything is lowercase
+        if mapping:
+            self._specification["configuration"]["mapping"] = \
+                {key.lower(): val.lower() for key, val in mapping.iteritems()}
+        else:
+            self._specification["configuration"]["mapping"] = None
+
         logging.info("Done.")
 
     def _parse_input(self):
