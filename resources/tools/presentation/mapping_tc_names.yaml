@@ -1,0 +1,14 @@
+# Mapping of the old names of test cases to the new (actual) one.
+#
+# Data structure:
+#
+# old-name: new-name
+#
+# All TC names (old and new) are the long names. Everything must be lower case!
+
+# tests.vpp.perf.ip4
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc01-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-snat-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc01-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
