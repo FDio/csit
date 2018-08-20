@@ -1,0 +1,33 @@
+# List of ignored test cases.
+#
+# Structure:
+#
+# - TC_1
+# - TC_2
+# ...
+# - TC_n
+#
+# All TC names are the long names. The list of ignored test cases is converted
+# to lowercase when loaded.
+
+# Wrong NIC name in the long name, wrong tag used (NIC_Intel-X710 instead of
+# NIC_Intel-XL710), from build 239 changed to NIC_Intel-XL710 but data is
+# inconsistent.
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc04-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc08-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc12-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc01-64B-1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc02-64B-2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc03-64B-4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc04-1518B-1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc05-1518B-2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc06-1518B-4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc07-9000B-1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc08-9000B-2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc09-9000B-4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc10-IMIX-1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc11-IMIX-2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+- tests.vpp.perf.vm vhost.40ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.tc12-IMIX-4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
