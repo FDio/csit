@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f2de950_87254d4f",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-20T11:53:50Z",
+      "side": 1,
+      "message": "number of free huge ...",
+      "range": {
+        "startLine": 676,
+        "startChar": 15,
+        "endLine": 676,
+        "endChar": 35
+      },
+      "revId": "9ca55f95ef383515af6cb2493ddb869e2a2f4625",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a62827fe_d0096cdb",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-20T11:53:50Z",
+      "side": 1,
+      "message": "Why not\nmem_needed \u003d (mem_size * 1024) - (huge_free * huge_size) ?\n\nBased on line 763 we are sure the result is positive number.",
+      "range": {
+        "startLine": 766,
+        "startChar": 16,
+        "endLine": 766,
+        "endChar": 77
+      },
+      "revId": "9ca55f95ef383515af6cb2493ddb869e2a2f4625",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "81e6d420_67fa8a33",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-20T11:53:50Z",
+      "side": 1,
+      "message": "Please, add check of the ret_code.",
+      "range": {
+        "startLine": 770,
+        "startChar": 16,
+        "endLine": 770,
+        "endChar": 24
+      },
+      "revId": "9ca55f95ef383515af6cb2493ddb869e2a2f4625",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4aa8281a_9cf1d2b6",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-20T11:53:50Z",
+      "side": 1,
+      "message": "We should check stdout only if int(ret_code) \u003d\u003d 0.",
+      "range": {
+        "startLine": 786,
+        "startChar": 8,
+        "endLine": 793,
+        "endChar": 21
+      },
+      "revId": "9ca55f95ef383515af6cb2493ddb869e2a2f4625",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f395672d_cd71ab82",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 26
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-20T11:53:50Z",
+      "side": 1,
+      "message": "integer\n\n- valid for all occurances",
+      "range": {
+        "startLine": 197,
+        "startChar": 54,
+        "endLine": 197,
+        "endChar": 57
+      },
+      "revId": "9ca55f95ef383515af6cb2493ddb869e2a2f4625",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
