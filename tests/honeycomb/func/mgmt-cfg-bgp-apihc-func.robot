@@ -258,8 +258,6 @@
 | | ... | [ver] Verify that the route is present in BGP
 | | ... | local RIB and VPP's routing table on each DUT.
 | | ...
-# HONEYCOMB-403: Missing writers for IPv6 BGP route
-| | [Tags] | EXPECTED_FAILING
 | | Given Peer operational data from Honeycomb should be
 | | ... | ${dut1_node} | ${dut2_to_dut1_ip}
 | | And Peer operational data from Honeycomb should be
