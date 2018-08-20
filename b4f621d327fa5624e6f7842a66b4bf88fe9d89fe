@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cef59b4b_a2c4e967",
+        "filename": "resources/tools/presentation/generator_files.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-08-20T08:26:46Z",
+      "side": 0,
+      "message": "The filtering is based on tags. Suites do not have tags. The filtering here is used only to simplify the data structure and reduce the amount of data for further processing. So, the filter is set to \"all\" for suites.",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 31
+      },
+      "revId": "b4f621d327fa5624e6f7842a66b4bf88fe9d89fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
