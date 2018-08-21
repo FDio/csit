@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f367307d_861eb4fa",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x710-2lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-21T14:25:26Z",
+      "side": 1,
+      "message": "DOUBLE",
+      "range": {
+        "startLine": 18,
+        "startChar": 22,
+        "endLine": 18,
+        "endChar": 28
+      },
+      "revId": "30245b88c62a949f837037fd9aac972671ef7245",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ca1f1dd_ab27791d",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x710-2lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-21T14:25:26Z",
+      "side": 1,
+      "message": "Could we rework the keywords to recognize values such as \"2xIntel-X710\" (even without mentioning \"double link\" in the previous line)?",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "30245b88c62a949f837037fd9aac972671ef7245",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
