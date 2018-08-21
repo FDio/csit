@@ -45,7 +45,7 @@
 | | ...
 # TODO: Rework KW to set all interfaces in path UP and set MTU (including
 # software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functial" configuration. This will allow modularity of this
+# from other "functional" configuration. This will allow modularity of this
 # library
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
@@ -56,6 +56,47 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
 | | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | All VPP Interfaces Ready Wait | ${nodes}
+
+| Set interfaces in path with double link between DUTs up
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
+| | ... | maximal MTU.*
+| | ...
+# TODO: Rework KW to set all interfaces in path UP and set MTU (including
+# software interfaces. Run KW at the start phase of VPP setup to split
+# from other "functional" configuration. This will allow modularity of this
+# library
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | ${first_dut}= | Get From List | ${duts} | 0
+| | ${last_dut}= | Get From List | ${duts} | -1
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | '${dut}' == '${first_dut}'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
+| | | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | | Run Keyword If | '${dut}' == '${last_dut}'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
+| | All VPP Interfaces Ready Wait | ${nodes}
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | '${dut}' == '${first_dut}'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | Run Keyword If | '${dut}' == '${last_dut}'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
 | | All VPP Interfaces Ready Wait | ${nodes}
 
 | Initialize IPSec in 3-node circular topology
@@ -1689,29 +1730,43 @@
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ... | - bond_mode - Link bonding mode. Type: string
 | | ... | - lb_mode - Load balance mode. Type: string
+| | ... | - double_dut_link - Use two links between DUTs if True. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 bridge domains with Vhost-User and VLAN with VPP\
 | | ... | link bonding in a 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \
 | | ... | \| /tmp/sock2 \| 10 \| pop-1 \| xor \| l34 \|
+| | ... | \| Initialize L2 bridge domains with Vhost-User and VLAN with VPP\
+| | ... | link bonding in a 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \
+| | ... | \| /tmp/sock2 \| 10 \| pop-1 \| xor \| l34 \
+| | ... | \| double_dut_link=${TRUE} \|
 | | ...
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
-| | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
+| | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode} | ${double_dut_link}=${FALSE}
 | | ...
-| | Set interfaces in path up
+| | Run Keyword Unless | ${double_dut_link} | Set interfaces in path up
+| | Run Keyword If | ${double_dut_link} | Set interfaces in path with double link between DUTs up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
-| | ... | ${dut1_eth_bond_if1}
+| | Run Keyword Unless | ${double_dut_link} | VPP Enslave Physical Interface
+| | ... | ${dut1} | ${dut1_if2} | ${dut1_eth_bond_if1}
+| | Run Keyword If | ${double_dut_link} | VPP Enslave Physical Interface
+| | ... | ${dut1} | ${dut1_if2_1} | ${dut1_eth_bond_if1}
+| | Run Keyword If | ${double_dut_link} | VPP Enslave Physical Interface
+| | ... | ${dut1} | ${dut1_if2_2} | ${dut1_eth_bond_if1}
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
-| | ... | ${dut2_eth_bond_if1}
+| | Run Keyword Unless | ${double_dut_link} | VPP Enslave Physical Interface
+| | ... | ${dut2} | ${dut2_if1} | ${dut2_eth_bond_if1}
+| | Run Keyword If | ${double_dut_link} | VPP Enslave Physical Interface
+| | ... | ${dut2} | ${dut2_if1_1} | ${dut2_eth_bond_if1}
+| | Run Keyword If | ${double_dut_link} | VPP Enslave Physical Interface
+| | ... | ${dut2} | ${dut2_if1_2} | ${dut2_eth_bond_if1}
 | | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
@@ -1744,6 +1799,51 @@
 | | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
 | | | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
 
+| Add PCI devices to all DUTs with double link between DUTs
+| | [Documentation]
+| | ... | Add PCI devices to VPP configuration file.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | ${first_dut}= | Get From List | ${duts} | 0
+| | ${last_dut}= | Get From List | ${duts} | -1
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_pci}= | Run Keyword If | '${dut}' == '${first_dut}'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if1_1_pci}= | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | @{pci_devs}= | Run Keyword If | '${dut}' == '${first_dut}'
+| | | ... | Create List | ${if1_pci}
+| | | ... | ELSE | Create List | ${if1_1_pci}
+| | | ${if1_2_pci}= | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | Append To List | ${pci_devs} | ${if1_2_pci}
+| | | ${if2_pci}= | Run Keyword If | '${dut}' == '${last_dut}'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | | Run Keyword If | '${dut}' == '${last_dut}'
+| | | ... | Append To List | ${pci_devs} | ${if2_pci}
+| | | ${if2_1_pci}= | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Append To List | ${pci_devs} | ${if2_1_pci}
+| | | ${if2_2_pci}= | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Append To List | ${pci_devs} | ${if2_2_pci}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{pci_devs}
+| | | Run Keyword If | '${dut}' == '${first_dut}'
+| | | ... | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
+| | | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | Set Test Variable | ${${dut}_if1_1_pci} | ${if1_1_pci}
+| | | Run Keyword Unless | '${dut}' == '${first_dut}'
+| | | ... | Set Test Variable | ${${dut}_if1_2_pci} | ${if1_2_pci}
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
+| | | Run Keyword Unless | '${dut}' == '${last_dut}'
+| | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
+
 | Add single PCI device to all DUTs
 | | [Documentation]
 | | ... | Add single (first) PCI device on DUT1 and single (last) PCI device on
@@ -1767,6 +1867,20 @@
 | | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
 | | ... | vlan-strip-offload | off
 
+| Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
+| | ... | configuration file.
+| | ...
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_2_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
+| | ... | vlan-strip-offload | off
+
 | Add DPDK bonded ethernet interfaces to DUTs in 3-node single link topology
 | | [Documentation]
 | | ... | Add DPDK bonded Ethernet interfaces with mode XOR and transmit policy
@@ -1774,6 +1888,16 @@
 | | ...
 | | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut1_if2_pci}
 | | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut2_if1_pci}
+
+| Add DPDK bonded ethernet interfaces to DUTs in 3-node double link topology
+| | [Documentation]
+| | ... | Add DPDK bonded Ethernet interfaces with mode XOR and transmit policy
+| | ... | l34 to VPP configuration file.
+| | ...
+| | @{dut1_pcis}= | Create List | ${dut1_if2_1_pci} | ${dut1_if2_2_pci}
+| | @{dut2_pcis}= | Create List | ${dut2_if1_1_pci} | ${dut2_if1_2_pci}
+| | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | @{dut1_pcis}
+| | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | @{dut2_pcis}
 
 | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
 | | Add Bond Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name}
