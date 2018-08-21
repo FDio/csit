@@ -78,16 +78,16 @@ fi
 # TOPOLOGY SELECTION
 case "$TEST_CODE" in
     *2n-skx*)
-        TOPOLOGIES=$TOPOLOGIES_2N_SKX
+        TOPOLOGIES=${TOPOLOGIES_2N_SKX[@]}
         TOPOLOGIES_TAGS="2_node_*_link_topo"
         ;;
     *3n-skx*)
-        TOPOLOGIES=$TOPOLOGIES_3N_SKX
+        TOPOLOGIES=${TOPOLOGIES_3N_SKX[@]}
         TOPOLOGIES_TAGS="3_node_*_link_topo"
         ;;
     *)
         # Fallback to 3-node Haswell by default (backward compatibility)
-        TOPOLOGIES=$TOPOLOGIES_3N_HSW
+        TOPOLOGIES=${TOPOLOGIES_3N_HSW[@]}
         TOPOLOGIES_TAGS="3_node_*_link_topo"
         ;;
 esac
