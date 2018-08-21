@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe0de8d6_1450a2e1",
+        "filename": "bootstrap-DMM.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-21T11:49:03Z",
+      "side": 1,
+      "message": "pushd\n\nThan in line 191 just \"popd\" without needing to know the directory name.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 2
+      },
+      "revId": "d0004f0be065608ad2a175a12f1ec16274d10ca3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
