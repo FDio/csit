@@ -54,10 +54,13 @@ cp -r ${LIB_PATH}/* .
 cp -r ../configure/* .
 chmod 777 *
 
+ifconfing
+sudo lshw -c network -businfo
+
 if [ "$OS_ID" == "ubuntu" ]; then
-	ifaddress1=$(ifconfig eth1 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress1=$(ifconfig enp0s8 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress1
-	ifaddress2=$(ifconfig eth2 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress2=$(ifconfig enp0s8 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress2
 elif [ "$OS_ID" == "centos" ]; then
 	ifaddress1=$(ifconfig enp0s8 | grep 'inet' | cut -d: -f2 | awk '{print $2}')
