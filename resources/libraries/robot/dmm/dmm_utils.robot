@@ -51,13 +51,10 @@
 | | ...
 | | ... | \| Pick out the port used to execute test \|
 | | ...
-| | ${tg_port} | ${tg_node}= | First Interface
-| | ${dut1_port} | ${dut1_node}= | Next Interface
+| | ${dut1_port} | ${dut1_node}= | First Interface
 | | ${dut2_port} | ${dut2_node}= | Last Interface
-| | Set Suite Variable | ${tg_node}
 | | Set Suite Variable | ${dut1_node}
 | | Set Suite Variable | ${dut2_node}
-| | Set Suite Variable | ${tg_port}
 | | Set Suite Variable | ${dut1_port}
 | | Set Suite Variable | ${dut2_port}
 
