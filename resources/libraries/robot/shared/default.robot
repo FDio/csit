@@ -156,8 +156,18 @@
 | | ${num_mbufs_int} | Convert to Integer | 16384
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Create List | ${${dut}_if1}
+| | | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Append To List | ${if_list} | ${${dut}_if2}
+| | | ... | ELSE
+| | | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${1} | cpu_cnt=${1}
