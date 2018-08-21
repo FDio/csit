@@ -224,7 +224,7 @@
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${tg1_if2_mac}
 | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
 | | ... | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 2.2.2.2 | ${dut1_if2}
