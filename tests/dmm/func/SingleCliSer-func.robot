@@ -27,7 +27,7 @@
 | ... | between nodes. From this topology only DUT1 and DUT2 nodes are used.
 | ... | here we test the 1. test the vs_epool and vc_epoll
 
-*** Test Cases ***
+*** comment ***
 | TC01: DMM base vs epoll test case
 | | Given Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | And Pick out the port used to execute test
@@ -35,3 +35,15 @@
 | | Echo DMM logs | ${dut2_node}
 | | ${no_packet_loss} = | Get the test result | ${dut2_node}
 | | Then Should Not Be Equal As Integers | ${no_packet_loss} | 0
+
+*** Test Cases ***
+| TC02: DMM LWIP integration test case
+| | Given Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | And Pick out the port used to execute test
+| | Echo lpci and ifconfig | ${dut1_node} | ${dut2_node}
+| | When Exec the base lwip test | ${dut1_node} | ${dut2_node}
+| | Echo running log | ${dut1_node} | ${dut2_node}
+| | Echo dpdk log | ${dut1_node} | ${dut2_node}
+| | Echo lpci and ifconfig | ${dut1_node} | ${dut2_node}
+| | ${no_packet_loss_lwip} = | Get lwip test result | ${dut2_node}
+| | Then Should Not Be Equal As Integers | ${no_packet_loss_lwip} | 0
