@@ -150,14 +150,34 @@
 | | ... | \| Add worker threads and rxqueues to all DUTs \| ${1} \| ${1} \|
 | | ...
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None}
+#| | ... | ${double_dut_link}=${FALSE}
 | | ...
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
 | | ${num_mbufs_int} | Convert to Integer | 16384
 | | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | ${first_dut}= | Get From List | ${duts} | 0
+#| | ${last_dut}= | Get From List | ${duts} | -1
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Create List | ${${dut}_if1}
+| | | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Append To List | ${if_list} | ${${dut}_if2}
+| | | ... | ELSE
+| | | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
+#| | | @{if_list}=
+#| | | ... | Run Keyword If | ${double_dut_link} and '${dut}' != '${first_dut}'
+#| | | ... | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
+#| | | ... | ELSE | Create List | ${${dut}_if1}
+#| | | Run Keyword If | ${double_dut_link} and '${dut}' != '${last_dut}'
+#| | | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
+#| | | ... | ELSE | Append To List | ${if_list} | ${${dut}_if2}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${1} | cpu_cnt=${1}
