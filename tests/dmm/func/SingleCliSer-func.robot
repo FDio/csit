@@ -32,6 +32,17 @@
 | | Given Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | And Pick out the port used to execute test
 | | When Exec the base vs epoll test | ${dut1_node} | ${dut2_node}
+| | ... | ${dut1_to_dut2_if_name} | ${dut2_to_dut1_if_name}
 | | Echo DMM logs | ${dut2_node}
 | | ${no_packet_loss} = | Get the test result | ${dut2_node}
 | | Then Should Not Be Equal As Integers | ${no_packet_loss} | 0
+
+| TC02: DMM LWIP integration test case
+| | Given Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | And Pick out the port used to execute test
+| | When Exec the base lwip test | ${dut1_node} | ${dut2_node}
+| | ... | ${dut1_to_dut2_if_name} | ${dut2_to_dut1_if_name}
+| | Echo running log | ${dut1_node} | ${dut2_node}
+| | Echo dpdk log | ${dut1_node} | ${dut2_node}
+| | ${no_packet_loss_lwip} = | Get lwip test result | ${dut2_node}
+| | Then Should Not Be Equal As Integers | ${no_packet_loss_lwip} | 0
