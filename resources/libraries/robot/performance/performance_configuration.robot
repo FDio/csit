@@ -45,17 +45,45 @@
 | | ...
 # TODO: Rework KW to set all interfaces in path UP and set MTU (including
 # software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functial" configuration. This will allow modularity of this
+# from other "functional" configuration. This will allow modularity of this
 # library
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | | ... | ELSE
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | | ... | ELSE
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
 | | All VPP Interfaces Ready Wait | ${nodes}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ... | ELSE
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ... | ELSE
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
 | | All VPP Interfaces Ready Wait | ${nodes}
 
 | Initialize IPSec in 3-node circular topology
@@ -1704,13 +1732,31 @@
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut1_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_eth_bond_if1}
+| | ... | ELSE
+| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_1}
+| | ... | ${dut1_eth_bond_if1}
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | VPP Enslave Physical Interface | ${dut1} | ${dut1_if2_2}
 | | ... | ${dut1_eth_bond_if1}
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface | ${dut2} | ${bond_mode}
 | | ... | ${lb_mode}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2_if1}
+| | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_eth_bond_if1}
+| | ... | ELSE
+| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_1}
+| | ... | ${dut2_eth_bond_if1}
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
 | | ... | ${dut2_eth_bond_if1}
 | | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
@@ -1738,11 +1784,43 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
-| | | Run keyword | ${dut}.Add DPDK Dev | ${if1_pci} | ${if2_pci}
-| | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
-| | | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if1_1_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | ${if1_2_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | ${if2_pci}= | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${if2_1_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | ${if2_2_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | | @{pci_devs}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Create List | ${if1_pci}
+| | | ... | ELSE
+| | | ... | Create List | ${if1_1_pci} | ${if1_2_pci}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Append To List | ${pci_devs} | ${if2_pci}
+| | | ... | ELSE
+| | | ... | Append To List | ${pci_devs} | ${if2_1_pci} | ${if2_2_pci}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{pci_devs}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_1_pci} | ${if1_1_pci}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_2_pci} | ${if1_2_pci}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
 
 | Add single PCI device to all DUTs
 | | [Documentation]
@@ -1767,6 +1845,20 @@
 | | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
 | | ... | vlan-strip-offload | off
 
+| Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
+| | ... | configuration file.
+| | ...
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_2_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
+| | ... | vlan-strip-offload | off
+
 | Add DPDK bonded ethernet interfaces to DUTs in 3-node single link topology
 | | [Documentation]
 | | ... | Add DPDK bonded Ethernet interfaces with mode XOR and transmit policy
@@ -1774,6 +1866,16 @@
 | | ...
 | | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut1_if2_pci}
 | | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut2_if1_pci}
+
+| Add DPDK bonded ethernet interfaces to DUTs in 3-node double link topology
+| | [Documentation]
+| | ... | Add DPDK bonded Ethernet interfaces with mode XOR and transmit policy
+| | ... | l34 to VPP configuration file.
+| | ...
+| | @{dut1_pcis}= | Create List | ${dut1_if2_1_pci} | ${dut1_if2_2_pci}
+| | @{dut2_pcis}= | Create List | ${dut2_if1_1_pci} | ${dut2_if1_2_pci}
+| | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | @{dut1_pcis}
+| | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | @{dut2_pcis}
 
 | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
 | | Add Bond Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name}
@@ -1819,8 +1921,17 @@
 | | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
 | | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
 | | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
-| | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | ${${dut}_if2}
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Create List | ${${dut}_if1}
+| | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Append To List | ${if_list} | ${${dut}_if2}
+| | ... | ELSE | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
+| | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
 # Compute CPU placement for VM based on expected DUT placement.
 | | ${os_cpus}= | Set Variable | ${1}
 | | ${dut_main_cpus}= | Set Variable | ${1}

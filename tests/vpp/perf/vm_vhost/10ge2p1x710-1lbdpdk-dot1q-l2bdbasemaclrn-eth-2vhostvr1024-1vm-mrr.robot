@@ -115,7 +115,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | TEST
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr

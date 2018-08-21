@@ -15,13 +15,13 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Library | resources.libraries.python.QemuUtils
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
+| Force Tags | 3_NODE_DOUBLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP| LBOND_MODE_LACP | LBOND_LB_L34
 | ...
 | Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model | L2
-| ... | Intel-X710
+| ... | Set up 3-node performance topology with DUT's NIC model with double link between DUTs
+| ... | L2 | Intel-X710
 | ... | AND | Set up performance test suite with LACP mode link bonding
 | ...
 | Suite Teardown | Tear down 3-node performance topology
@@ -97,7 +97,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
+| | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
