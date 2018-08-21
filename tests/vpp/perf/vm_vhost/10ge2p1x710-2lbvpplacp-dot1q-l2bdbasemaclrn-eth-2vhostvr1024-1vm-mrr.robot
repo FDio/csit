@@ -15,14 +15,14 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Library | resources.libraries.python.QemuUtils
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
+| Force Tags | 3_NODE_DOUBLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
-| ... | LBOND_1L
+| ... | LBOND_2L
 | ...
 | Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model | L2
-| ... | Intel-X710
+| ... | Set up 3-node performance topology with DUT's NIC model with double link between DUTs
+| ... | L2 | Intel-X710
 | ... | AND | Set up performance test suite with LACP mode link bonding
 | ...
 | Suite Teardown | Tear down 3-node performance topology
@@ -37,8 +37,9 @@
 | ...
 | Documentation | *Raw results L2BD test cases with vhost and vpp link bonding*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
-| ... | with single links between nodes.
+| ... | *[Top] Network Topologies:* TG-DUT1=DUT2-TG 3-node circular topology
+| ... | with single links between TG and DUT nodes and double link between DUT
+| ... | nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. 802.1q
 | ... | tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with VPP
@@ -98,7 +99,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
+| | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
@@ -118,50 +119,50 @@
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc01-64B-1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc02-64B-2c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc03-64B-4c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc04-1518B-1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc05-1518B-2c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc06-1518B-4c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc07-9000B-1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc08-9000B-2c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc09-9000B-4c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc10-IMIX-1c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc11-IMIX-2c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+| tc12-IMIX-4c-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}

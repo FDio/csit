@@ -437,6 +437,14 @@ Interface tags
 
     All test cases which uses link bonding with load-balance mode l34.
 
+.. topic:: LBOND_1L
+
+    All test cases which uses one link for link bonding.
+
+.. topic:: LBOND_2L
+
+    All test cases which uses two links for link bonding.
+
 Feature tags
 ------------
 
