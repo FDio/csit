@@ -179,9 +179,18 @@ echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 # Temporarily download  DPDK packages
 DMM_TAR_FILE="dmm_depends.tar.gz"
 
-cd dmm/scripts/
+RETURN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd dmm/
+git review -d 14500
+cd scripts/
 ./build.sh
-cd -
+cd ../stacks/lwip_stack/build/
+cmake ..
+make -j 8
+cd ..
+chmod 777 release_tar.sh
+bash ./release_tar.sh
+cd ${RETURN}
 
 mv /tmp/dpdk/dpdk-18.02.tar.xz .
 
