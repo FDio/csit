@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.topology
 | Documentation | *Utilities for the path computing, pcap reading*
 | ...
 | ... | Utilities for the path computing, pcap file reading and also the port
@@ -51,13 +52,15 @@
 | | ...
 | | ... | \| Pick out the port used to execute test \|
 | | ...
-| | ${tg_port} | ${tg_node}= | First Interface
-| | ${dut1_port} | ${dut1_node}= | Next Interface
-| | ${dut2_port} | ${dut2_node}= | Last Interface
-| | Set Suite Variable | ${tg_node}
+| | ${dut1_to_dut2} | ${dut1_node}= | Next Interface
+| | ${dut2_to_dut1} | ${dut2_node}= | Next Interface
+| | ${dut1_to_dut2_if_name}= | Get Interface Name | ${dut1_node}
+| | ... | ${dut1_to_dut2}
+| | ${dut2_to_dut1_if_name}= | Get Interface Name | ${dut2_node}
+| | ... | ${dut2_to_dut1}
 | | Set Suite Variable | ${dut1_node}
 | | Set Suite Variable | ${dut2_node}
-| | Set Suite Variable | ${tg_port}
-| | Set Suite Variable | ${dut1_port}
-| | Set Suite Variable | ${dut2_port}
-
+| | Set Suite Variable | ${dut1_to_dut2}
+| | Set Suite Variable | ${dut2_to_dut1}
+| | Set Suite Variable | ${dut1_to_dut2_if_name}
+| | Set Suite Variable | ${dut2_to_dut1_if_name}

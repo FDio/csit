@@ -12,6 +12,9 @@ dut2_ip=$2
 proc_name=$3
 #proc_name => 0 = server, 1= client
 
+ifname=$4
+echo ifname: $ifname
+
 # Try to kill the vs_epoll
 sudo killall vs_epoll
 
@@ -54,15 +57,18 @@ cp -r ${LIB_PATH}/* .
 cp -r ../configure/* .
 chmod 777 *
 
+ifconfig
+sudo lshw -c network -businfo
+
 if [ "$OS_ID" == "ubuntu" ]; then
-	ifaddress1=$(ifconfig eth1 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress1=$(ifconfig $ifname | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress1
-	ifaddress2=$(ifconfig eth2 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress2=$(ifconfig $ifname | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress2
 elif [ "$OS_ID" == "centos" ]; then
-	ifaddress1=$(ifconfig enp0s8 | grep 'inet' | cut -d: -f2 | awk '{print $2}')
+	ifaddress1=$(ifconfig $ifname | grep 'inet' | cut -d: -f2 | awk '{print $2}')
 	echo $ifaddress1
-	ifaddress2=$(ifconfig enp0s9 | grep 'inet' | cut -d: -f2 | awk '{print $2}')
+	ifaddress2=$(ifconfig $ifname | grep 'inet' | cut -d: -f2 | awk '{print $2}')
 	echo $ifaddress2
 fi
 
@@ -110,9 +116,9 @@ ls -l
 
 #only for kernal stack
 if [ ${proc_name} -eq 0 ]; then
-sudo LD_LIBRARY_PATH=${LIB_PATH} ./vs_epoll -p 20000 -d ${dut2_ip} -a 10000 -s ${dut1_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
+sudo NSTACK_LOG_ON=DBG LD_LIBRARY_PATH=${LIB_PATH} ./vs_epoll -p 20000 -d ${dut2_ip} -a 10000 -s ${dut1_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
 else
-sudo LD_LIBRARY_PATH=${LIB_PATH} ./vc_common -p 20000 -d ${dut1_ip} -a 10000 -s ${dut2_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
+sudo NSTACK_LOG_ON=DBG LD_LIBRARY_PATH=${LIB_PATH} ./vc_common -p 20000 -d ${dut1_ip} -a 10000 -s ${dut2_ip} -l 200 -t 50000 -i 0 -f 1 -r 20000 -n 1 -w 10 -u 10000 -e 10 -x 1
 fi
 
 cd ${PWDDIR}
