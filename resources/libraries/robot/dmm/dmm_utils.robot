@@ -51,13 +51,19 @@
 | | ...
 | | ... | \| Pick out the port used to execute test \|
 | | ...
-| | ${tg_port} | ${tg_node}= | First Interface
-| | ${dut1_port} | ${dut1_node}= | Next Interface
-| | ${dut2_port} | ${dut2_node}= | Last Interface
-| | Set Suite Variable | ${tg_node}
+| | ${dut1_if} | ${dut1_node}= | First Interface
+| | ${dut2_if} | ${dut2_node}= | Last Interface
+| | ${dut1_if_mac}= | Get Interface Mac | ${dut1_node} | ${dut1_if}
+| | ${dut2_if_mac}= | Get Interface Mac | ${dut2_node} | ${dut2_if}
+| | ${dut1_to_dut2_if_name}= | Get Interface Name by MAC
+| | ... | ${dut1_node} | ${dut1_if_mac}
+| | ${dut2_to_dut1_if_name}= | Get Interface Name by MAC
+| | ... | ${dut2_node} | ${dut2_if_mac}
 | | Set Suite Variable | ${dut1_node}
 | | Set Suite Variable | ${dut2_node}
-| | Set Suite Variable | ${tg_port}
-| | Set Suite Variable | ${dut1_port}
-| | Set Suite Variable | ${dut2_port}
-
+| | Set Suite Variable | ${dut1_if}
+| | Set Suite Variable | ${dut2_if}
+| | Set Suite Variable | ${dut1_if_mac}
+| | Set Suite Variable | ${dut2_if_mac}
+| | Set Suite Variable | ${dut1_to_dut2_if_name}
+| | Set Suite Variable | ${dut2_to_dut1_if_name}
