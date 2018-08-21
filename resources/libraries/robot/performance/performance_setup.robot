@@ -636,9 +636,9 @@
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
 
-| Tear down mrr test with vhost and VM with dpdk-testpmd
-| | [Documentation] | Common test teardown for mrr tests which use
-| | ... | vhost(s) and VM(s) with dpdk-testpmd.
+| Tear down performance mrr test with vhost and VM with dpdk-testpmd
+| | [Documentation] | Common test teardown for performance mrr tests which \
+| | ... | use vhost(s) and VM(s) with dpdk-testpmd.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut1_node - Node where to clean qemu. Type: dictionary
@@ -648,9 +648,9 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance test with vhost and VM with dpdk-testpmd \
-| | ... | \| ${node['DUT1']} \| ${dut_vm_refs} \
-| | ... | \| ${node['DUT2']} \| ${dut_vm_refs} \|
+| | ... | \| Tear down performance mrr test with vhost and VM with \
+| | ... | dpdk-testpmd \| ${node['DUT1']} \| ${dut_vm_refs} \| ${node['DUT2']} \
+| | ... | \| ${dut_vm_refs} \|
 | | ...
 | | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
@@ -658,7 +658,6 @@
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show VPP vhost on all DUTs | ${nodes}
-| | Show statistics on all DUTs | ${nodes}
 | | Run keyword unless | ${dut1_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}
@@ -702,71 +701,12 @@
 | | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
-| | Tear down mrr test with vhost and VM with dpdk-testpmd
+| | Tear down performance mrr test with vhost and VM with dpdk-testpmd
 | | ... | ${dut1_node} | ${dut1_vm_refs}
 | | ... | ${dut2_node} | ${dut2_vm_refs}
 | | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
-
-| Tear down performance pdrchk test with vhost and VM with dpdk-testpmd
-| | [Documentation] | Common test teardown for performance pdrchk tests which \
-| | ... | use vhost(s) and VM(s) with dpdk-testpmd.
-| | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
-| | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - topology_type - Topology type. Type: string
-| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
-| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down performance pdrchk test with vhost and VM with \
-| | ... | dpdk-testpmd \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${node['DUT1']} \
-| | ... | \| ${dut_vm_refs} \| ${node['DUT2']} \| ${dut_vm_refs} \|
-| | ...
-| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
-| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-| | Show VPP vhost on all DUTs | ${nodes}
-| | Show statistics on all DUTs | ${nodes}
-| | Run keyword unless | ${dut1_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
-| | Run keyword unless | ${dut2_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
-
-| Tear down performance mrr test with vhost and VM with dpdk-testpmd
-| | [Documentation] | Common test teardown for performance mrr tests which \
-| | ... | use vhost(s) and VM(s) with dpdk-testpmd.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
-| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down performance mrr test with vhost and VM with \
-| | ... | dpdk-testpmd \| ${node['DUT1']} \| ${dut_vm_refs} \| ${node['DUT2']} \
-| | ... | \| ${dut_vm_refs} \|
-| | ...
-| | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
-| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-| | Show VPP vhost on all DUTs | ${nodes}
-| | Run keyword unless | ${dut1_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
-| | Run keyword unless | ${dut2_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
 
 | Tear down DPDK 2-node performance topology
 | | [Documentation]
