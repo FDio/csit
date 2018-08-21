@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.topology
 | Documentation | *Utilities for the path computing, pcap reading*
 | ...
 | ... | Utilities for the path computing, pcap file reading and also the port
@@ -34,8 +35,10 @@
 | | ... | \| Path for 2-node testing is set \| ${nodes['DUT1']} \
 | | ... | \| ${nodes['DUT2'] \|
 | | ...
-| | [Arguments] | ${dut1_node} | ${dut2_node}
-| | Append Nodes | ${dut1_node} | ${dut2_node}
+| | [Arguments] | ${dut1_node} | ${dut2_node} | ${iface_model}
+| | ${iface_model_list}= | Create list | ${iface_model}
+| | Append Node | ${dut1_node} | filter_list=${iface_model_list}
+| | Append Node | ${dut2_node} | filter_list=${iface_model_list}
 | | Compute Path
 
 | Pick out the port used to execute test
@@ -51,13 +54,15 @@
 | | ...
 | | ... | \| Pick out the port used to execute test \|
 | | ...
-| | ${tg_port} | ${tg_node}= | First Interface
-| | ${dut1_port} | ${dut1_node}= | Next Interface
-| | ${dut2_port} | ${dut2_node}= | Last Interface
-| | Set Suite Variable | ${tg_node}
+| | ${dut1_to_dut2} | ${dut1_node}= | Next Interface
+| | ${dut2_to_dut1} | ${dut2_node}= | Next Interface
+| | ${dut1_to_dut2_if_name}= | Get Interface Name | ${dut1_node}
+| | ... | ${dut1_to_dut2}
+| | ${dut2_to_dut1_if_name}= | Get Interface Name | ${dut2_node}
+| | ... | ${dut2_to_dut1}
 | | Set Suite Variable | ${dut1_node}
 | | Set Suite Variable | ${dut2_node}
-| | Set Suite Variable | ${tg_port}
-| | Set Suite Variable | ${dut1_port}
-| | Set Suite Variable | ${dut2_port}
-
+| | Set Suite Variable | ${dut1_to_dut2}
+| | Set Suite Variable | ${dut2_to_dut1}
+| | Set Suite Variable | ${dut1_to_dut2_if_name}
+| | Set Suite Variable | ${dut2_to_dut1_if_name}

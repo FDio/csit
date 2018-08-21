@@ -78,8 +78,8 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("func")
-SUITE_PATH="tests.dmm"
+TEST_GROUPS=("kernel_stack,lwip_stack")
+SUITE_PATH="tests.dmm.func"
 SKIP_PATCH="SKIP_PATCH"
 
 # Create tmp dir
@@ -179,9 +179,16 @@ echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 # Temporarily download  DPDK packages
 DMM_TAR_FILE="dmm_depends.tar.gz"
 
+RETURN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd dmm/scripts/
 ./build.sh
-cd -
+cd ../stacks/lwip_stack/build/
+cmake ..
+make -j 8
+cd ..
+chmod 777 release_tar.sh
+bash ./release_tar.sh
+cd ${RETURN}
 
 mv /tmp/dpdk/dpdk-18.02.tar.xz .
 
