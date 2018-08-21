@@ -12,6 +12,11 @@ dut2_ip=$2
 proc_name=$3
 #proc_name => 0 = server, 1= client
 
+ifconfig -a
+lspci -nn
+lsmod | grep uio
+/tmp/dpdk/dpdk-18.02/usertools/dpdk-devbind.py --status
+
 # Try to kill the vs_epoll
 sudo killall vs_epoll
 
@@ -55,9 +60,9 @@ cp -r ../configure/* .
 chmod 777 *
 
 if [ "$OS_ID" == "ubuntu" ]; then
-	ifaddress1=$(ifconfig eth1 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress1=$(ifconfig enp0s8 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress1
-	ifaddress2=$(ifconfig eth2 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress2=$(ifconfig enp0s9 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress2
 elif [ "$OS_ID" == "centos" ]; then
 	ifaddress1=$(ifconfig enp0s8 | grep 'inet' | cut -d: -f2 | awk '{print $2}')
@@ -120,3 +125,4 @@ cd ${PWDDIR}
 ps -elf | grep vs_epoll
 
 sleep 10
+exit 0
