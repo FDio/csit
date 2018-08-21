@@ -51,13 +51,15 @@
 | | ...
 | | ... | \| Pick out the port used to execute test \|
 | | ...
-| | ${tg_port} | ${tg_node}= | First Interface
-| | ${dut1_port} | ${dut1_node}= | Next Interface
-| | ${dut2_port} | ${dut2_node}= | Last Interface
-| | Set Suite Variable | ${tg_node}
+| | ${dut1_to_dut2_if} | ${dut1_node}= | Next Interface
+| | ${dut2_to_dut1_if} | ${dut2_node}= | Next Interface
+| | ${dut1_to_dut2_if_name}= | DMM Get Interface Name
+| | ... | ${dut1_node} | ${dut1_to_dut2_if}
+| | ${dut2_to_dut1_if_name}= | DMM Get Interface Name
+| | ... | ${dut2_node} | ${dut2_to_dut1_if}
 | | Set Suite Variable | ${dut1_node}
 | | Set Suite Variable | ${dut2_node}
-| | Set Suite Variable | ${tg_port}
-| | Set Suite Variable | ${dut1_port}
-| | Set Suite Variable | ${dut2_port}
-
+| | Set Suite Variable | ${dut1_to_dut2_if}
+| | Set Suite Variable | ${dut2_to_dut1_if}
+| | Set Suite Variable | ${dut1_to_dut2_if_name}
+| | Set Suite Variable | ${dut2_to_dut1_if_name}
