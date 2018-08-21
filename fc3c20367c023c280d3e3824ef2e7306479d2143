@@ -69,6 +69,30 @@
       "revId": "fc3c20367c023c280d3e3824ef2e7306479d2143",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae463a28_5a96f2a8",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-21T13:28:42Z",
+      "side": 1,
+      "message": "\u003e if we decide to merge mrr and ndrpdr KW?\n\nThen we can name it \"Tear down performance test with vhost and VM with dpdk-testpmd\".\nBut I do not think it is very likely. Mrr teardown is collecting stats at ${max_rate}, ndrpdr at ${min_rate}. And I guess the differences can increase over time (for example latency handling). And we can add more test types (e.g. soak test).\n\n\u003e or i can also leave this file untouched.\n\n+1 for keeping old KW names.",
+      "parentUuid": "c02887db_70685aba",
+      "range": {
+        "startLine": 639,
+        "startChar": 12,
+        "endLine": 639,
+        "endChar": 27
+      },
+      "revId": "fc3c20367c023c280d3e3824ef2e7306479d2143",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
