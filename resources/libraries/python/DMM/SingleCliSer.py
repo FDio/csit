@@ -106,9 +106,156 @@ class SingleCliSer(object):
 
         (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
         if ret_code != 0:
-            raise RuntimeError('Failed to get log_install_dmm at node {0}'
+            logger.console('Failed to get log_install_dmm at node {0}'
                                .format(dut_node['host']))
         else:
             logger.console('....log_install_dmm on node {1}.... {0}'
                            .format(stdout, dut_node['host']))
 
+    @staticmethod
+    def exec_the_base_lwip_test(dut1_node, dut2_node,
+                                dut1_if_name, dut2_if_name):
+        """Test DMM with LWIP.
+
+        :param dut1_node: Will execute the vs_epoll on this node.
+        :param dut2_node: Will execute the vc_epoll on this node.
+        :type dut1_node: dict
+        :type dut2_node: dict
+        :returns: positive value if packets are sent and received
+        :raises RuntimeError:If failed to execute vs_epoll test on  dut1_node.
+        """
+        dut1_ip = Topology.get_node_hostname(dut1_node)
+        dut2_ip = Topology.get_node_hostname(dut2_node)
+
+        ssh = SSH()
+        ssh.connect(dut1_node)
+
+        cmd = 'cd {0}/{1} && ./run_dmm_with_lwip.sh {2} {3} {4} {5} {6}' \
+            .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 0,
+                    dut1_if_name, dut2_if_name)
+
+        cmd += '2>&1 | tee log_run_dmm_with_lwip.txt &'
+
+        (ret_code, _, _) = ssh.exec_command(cmd, timeout=6000)
+        if ret_code != 0:
+            raise RuntimeError('Failed to execute vs_epoll test at node {0}'
+                               .format(dut1_node['host']))
+
+        time.sleep(10)
+
+        ssh = SSH()
+        ssh.connect(dut2_node)
+
+        cmd = 'cd {0}/{1} && ./run_dmm_with_lwip.sh {2} {3} {4} {5} {6}' \
+            .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 1,
+                    dut1_if_name, dut2_if_name)
+
+        cmd += '2>&1 | tee log_run_dmm_with_lwip.txt'
+
+        (ret_code, stdout_cli, _) = ssh.exec_command(cmd, timeout=6000)
+        if ret_code != 0:
+            raise RuntimeError('Failed to execute vs_epoll test at node {0}'
+                               .format(dut1_node['host']))
+
+        return stdout_cli.find("send 50")
+
+    @staticmethod
+    def get_lwip_test_result(dut_node):
+        """
+        After executing exec_the_base_lwip_test, use this
+        to get the test result
+
+        :param dut_node: will get the test result in this dut node
+        :type dut_node: dict
+        :returns: str.
+        :rtype: str.
+        :raises RuntimeError: If failed to get the test result.
+        """
+        ssh = SSH()
+        ssh.connect(dut_node)
+        cmd = 'cat {0}/{1}/log_run_dmm_with_lwip.txt | grep "send 50" | wc -l' \
+        .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS)
+
+        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
+        if ret_code != 0:
+            raise RuntimeError('Failed to get test result at node {0}'
+                               .format(dut_node['host']))
+
+        return stdout
+
+    @staticmethod
+    def echo_running_log (dut1_node, dut2_node):
+        """
+        :param dut1_node:
+        :param dut2_node:
+        :return:
+        """
+        ssh = SSH()
+        ssh.connect(dut1_node)
+        cmd = 'cat /var/log/nStack/running.log'
+
+        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
+        if ret_code != 0:
+            logger.console('Failed to get runningLog at node {0}'
+                           .format(dut1_node['host']))
+        else:
+            logger.console('....Server runningLog on node {1}.... {0}'
+                           .format(stdout, dut1_node['host']))
+
+        ssh = SSH()
+        ssh.connect(dut2_node)
+        cmd = 'cat /var/log/nStack/running.log'
+
+        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
+        if ret_code != 0:
+            logger.console('Failed to get runningLog at node {0}'
+                           .format(dut2_node['host']))
+        else:
+            logger.console('....Client runningLog on node {1}.... {0}'
+                           .format(stdout, dut2_node['host']))
+
+    @staticmethod
+    def echo_dpdk_log (dut1_node, dut2_node):
+        """
+        :param dut1_node:
+        :param dut2_node:
+        :return:
+        """
+        ssh = SSH()
+        ssh.connect(dut1_node)
+        cmd = 'cat /var/log/nstack-dpdk/nstack_dpdk.log'
+        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
+        if ret_code != 0:
+            logger.console('Failed to get nstack_dpdkLog at node {0}'
+                           .format(dut1_node['host']))
+        else:
+            logger.console('....Server nstack_dpdkLog on node {1}.... {0}'
+                           .format(stdout, dut1_node['host']))
+
+        ssh = SSH()
+        ssh.connect(dut2_node)
+        cmd = 'cat /var/log/nstack-dpdk/nstack_dpdk.log'
+
+        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
+        if ret_code != 0:
+            logger.console('Failed to get nstack_dpdkLog at node {0}'
+                           .format(dut2_node['host']))
+        else:
+            logger.console('....Client nstack_dpdkLog on node {1}.... {0}'
+                           .format(stdout, dut2_node['host']))
+
+    @staticmethod
+    def dmm_get_interface_name(dut_node, dut_interface):
+        mac = Topology.get_interface_mac(dut_node, dut_interface)
+        ssh = SSH()
+        ssh.connect(dut_node)
+        cmd = 'ifconfig -a | grep {0}'.format(mac)
+        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
+        if ret_code != 0:
+            raise RuntimeError('Failed to get interface name of node {0}'
+                               .format(dut_node['host']))
+        else:
+            logger.console('...got the interface name on node {1}.... {0}'
+                           .format(stdout, dut_node['host']))
+        interface_name = stdout.split(' ', 1)[0]
+        return interface_name
