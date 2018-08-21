@@ -142,8 +142,8 @@
 | | ... | - dut1_if1 - DUT1 interface towards TG.
 | | ... | - dut1_if2 - DUT1 interface towards DUT2.
 | | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1 - DUT2 interface towards TG.
-| | ... | - dut2_if2 - DUT2 interface towards DUT1.
+| | ... | - dut2_if1 - DUT2 interface towards DUT1.
+| | ... | - dut2_if2 - DUT2 interface towards TG.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -172,6 +172,74 @@
 | | Set Suite Variable | ${dut1_if2}
 | | Set Suite Variable | ${dut2}
 | | Set Suite Variable | ${dut2_if1}
+| | Set Suite Variable | ${dut2_if2}
+
+| Set variables in 3-node circular topology with DUT interface model with double link between DUTs
+| | [Documentation]
+| | ... | Compute path for testing on three given nodes in circular topology
+| | ... | with double link between DUTs based on interface model provided as an
+| | ... | argument and set corresponding suite variables.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - tg - TG node
+| | ... | - tg_if1 - TG interface towards DUT1.
+| | ... | - tg_if2 - TG interface towards DUT2.
+| | ... | - dut1 - DUT1 node
+| | ... | - dut1_if1 - DUT1 interface towards TG.
+| | ... | - dut1_if2_1 - DUT1 interface 1 towards DUT2.
+| | ... | - dut1_if2_2 - DUT1 interface 2 towards DUT2.
+| | ... | - dut2 - DUT2 node
+| | ... | - dut2_if1_1 - DUT2 interface 1 towards DUT1.
+| | ... | - dut2_if1_2 - DUT2 interface 2 towards DUT1.
+| | ... | - dut2_if2 - DUT2 interface towards TG.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set variables in 3-node circular topology with DUT interface model\
+| | ... | with double link between DUTs \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${iface_model}
+| | ...
+| | ${iface_model_list}= | Create list | ${iface_model}
+| | # Compute path TG - DUT1 with single link in between
+| | Append Node | ${nodes['TG']}
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | # Compute path TG - DUT2 with single link in between
+| | Clear Path
+| | Append Node | ${nodes['TG']}
+| | Append Node | ${nodes['DUT2']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if2} | ${tg}= | Next Interface
+| | ${dut2_if2} | ${dut2}= | Next Interface
+| | # Compute path DUT1 - DUT2 with double link in between
+| | Clear Path
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['DUT2']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Compute Path | always_same_link=${FALSE}
+| | ${dut1_if2_1} | ${dut1}= | First Interface
+| | ${dut1_if2_2} | ${dut1}= | Last Interface
+| | ${dut2_if1_1} | ${dut2}= | First Ingress Interface
+| | ${dut2_if1_2} | ${dut2}= | Last Egress Interface
+| | # Set suite variables
+| | Set Suite Variable | ${tg}
+| | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${dut1}
+| | Set Suite Variable | ${dut1_if1}
+| | Set Suite Variable | ${dut1_if2_1}
+| | Set Suite Variable | ${dut1_if2_2}
+| | Set Suite Variable | ${dut2}
+| | Set Suite Variable | ${dut2_if1_1}
+| | Set Suite Variable | ${dut2_if1_2}
 | | Set Suite Variable | ${dut2_if2}
 
 | Tear down guest VM with dpdk-testpmd
@@ -228,8 +296,8 @@
 
 | Set up 2-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator.
 | | ...
@@ -250,8 +318,8 @@
 
 | Set up 2-node-switched performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator.
 | | ...
@@ -277,8 +345,8 @@
 
 | Set up 3-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator.
 | | ...
@@ -298,9 +366,32 @@
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
 
+| Set up 3-node performance topology with DUT's NIC model with double link between DUTs
+| | [Documentation]
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up 3-node performance topology with DUT's NIC model with \
+| | ... | double link between DUTs \| L2 \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | ...
+| | Set variables in 3-node circular topology with DUT interface model with double link between DUTs
+| | ... | ${nic_model}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
+
 | Set up DPDK 2-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Updates interfaces on all nodes and setup global
+| | ... | Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator. Initializes DPDK test
 | | ... | environment.
@@ -324,7 +415,7 @@
 
 | Set up DPDK 3-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Updates interfaces on all nodes and setup global
+| | ... | Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator. Initializes DPDK test
 | | ... | environment.
@@ -438,8 +529,8 @@
 
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Installs the traffic generator.
 | | ...
