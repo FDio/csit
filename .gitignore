@@ -9,3 +9,4 @@ report.html
 *~
 *.log
 .idea
+dmm/**
