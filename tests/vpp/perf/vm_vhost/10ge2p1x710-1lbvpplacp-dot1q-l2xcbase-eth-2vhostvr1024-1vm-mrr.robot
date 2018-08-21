@@ -21,7 +21,7 @@
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up 3-node performance topology with DUT's NIC model | L2
-| ... | Intel-X520-DA2
+| ... | Intel-X710
 | ... | AND | Set up performance test suite with LACP mode link bonding
 | ...
 | Suite Teardown | Tear down 3-node performance topology
