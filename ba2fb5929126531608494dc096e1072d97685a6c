@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "105b2984_32ce4e7a",
+        "filename": "resources/tools/presentation/mapping_tc_names.yaml",
+        "patchSetId": 22
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-21T13:45:25Z",
+      "side": 1,
+      "message": "Remove trailing spaces (here and in line 175).",
+      "range": {
+        "startLine": 121,
+        "startChar": 126,
+        "endLine": 121,
+        "endChar": 127
+      },
+      "revId": "ba2fb5929126531608494dc096e1072d97685a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
