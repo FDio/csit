@@ -17,11 +17,14 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
-| ... | VHOST_1024 | LBOND | LBOND_DPDK | LBOND_MODE_XOR | LBOND_LB_L34
-| ... | LBOND_1L
+| ... | VHOST_1024 | LBOND | LBOND_VPP| LBOND_MODE_LACP | LBOND_LB_L34
+| ... | LBOND_2L
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
+| Suite Setup | Run Keywords
+| ... | Set up 3-node performance topology with DUT's NIC model with double link between DUTs
 | ... | L2 | Intel-X710
+| ... | AND | Set up performance test suite with LACP mode link bonding
+| ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -31,14 +34,15 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *Raw results L2XC test cases with vhost and dpdk link bonding*
+| Documentation | *Raw results L2XC test cases with vhost and vpp link bonding*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
-| ... | with single links between nodes.
+| ... | *[Top] Network Topologies:* TG-DUT1=DUT2-TG 3-node circular topology
+| ... | with single links between TG and DUT nodes and double link between DUT
+| ... | nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect. 802.1q
 | ... | tagging is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with DPDK
-| ... | link bonding (mode XOR, transmit policy l34) on link between DUT1 and
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with VPP
+| ... | link bonding (mode LACP, transmit policy l34) on link between DUT1 and
 | ... | DUT2 and L2 cross- connect. Qemu Guest is connected to VPP via
 | ... | vhost-user interfaces. Guest is running DPDK testpmd interconnecting
 | ... | vhost-user interfaces using 5 cores pinned to cpus 5-9 and 2048M memory.
@@ -55,13 +59,12 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| ${dut1_eth_bond_if1}= | eth_bond1
-| ${dut1_eth_bond_if1_name}= | BondEthernet0
-| ${dut2_eth_bond_if1}= | eth_bond1
-| ${dut2_eth_bond_if1_name}= | BondEthernet0
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
 | ${overhead}= | ${4}
+# Link bonding config
+| ${bond_mode}= | lacp
+| ${lb_mode}= | l34
 # Socket names
 | ${sock1}= | /tmp/sock-1
 | ${sock2}= | /tmp/sock-2
@@ -93,13 +96,13 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | And Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
-| | And Add DPDK bonded Ethernet interfaces to DUTs in 3-node single link topology
+| | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 xconnect with Vhost-User and VLAN with DPDK link bonding in 3-node circular topology
-| | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
+| | When Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
+| | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite} | ${bond_mode}
+| | ... | ${lb_mode}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
@@ -108,54 +111,55 @@
 | | ... | DUT2 | ${sock1} | ${sock2} | DUT2_VM1 | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | And Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
-| | [Tags] | 64B | 1C
+| tc01-64B-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| | [Tags] | 64B | 1C | TEST
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc02-64B-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc03-64B-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc04-1518B-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc05-1518B-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc06-1518B-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc07-9000B-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc08-9000B-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc09-9000B-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc10-IMIX-1c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc11-IMIX-2c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-1lbdpdk-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
+| tc12-IMIX-4c-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}

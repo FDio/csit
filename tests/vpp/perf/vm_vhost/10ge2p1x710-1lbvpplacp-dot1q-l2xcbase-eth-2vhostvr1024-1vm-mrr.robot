@@ -18,6 +18,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP| LBOND_MODE_LACP | LBOND_LB_L34
+| ... | LBOND_1L
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up 3-node performance topology with DUT's NIC model | L2
@@ -115,7 +116,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | TEST
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr
