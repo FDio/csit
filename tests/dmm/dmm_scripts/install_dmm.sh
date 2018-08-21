@@ -96,7 +96,7 @@ fi
 SYS_HUGEPAGE=$(cat /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages)
 hugepageFree=$(cat /sys/kernel/mm/hugepages/hugepages-2048kB/free_hugepages)
 
-if [ ${SYS_HUGEPAGE} -lt 1024 ] || [ $hugepageFree -eq 0 ]; then
+if [ ${SYS_HUGEPAGE} -lt 1536 ] || [ $hugepageFree -eq 0 ]; then
     MOUNT=$(mount | grep /mnt/nstackhuge)
     count=$(mount | grep /mnt/nstackhuge | wc -l)
 
@@ -114,7 +114,7 @@ if [ ${SYS_HUGEPAGE} -lt 1024 ] || [ $hugepageFree -eq 0 ]; then
     while [ "${sock_count}" -ne 0 ]
     do
         sock_count=$[$sock_count - 1]
-        echo 1024 | sudo tee /sys/devices/system/node/node"$sock_count"/hugepages/hugepages-2048kB/nr_hugepages
+        echo 1536 | sudo tee /sys/devices/system/node/node"$sock_count"/hugepages/hugepages-2048kB/nr_hugepages
     done
 
     sudo mkdir -p /mnt/nstackhuge
@@ -125,4 +125,5 @@ else
     sudo mount -t hugetlbfs -o pagesize=2M none /mnt/nstackhuge/
 fi
 
-sudo mkdir -p /var/run/ip_module/
+#sudo mkdir -p /var/run/ip_module/
+sudo mkdir -p /var/log/nStack/ip_module/
