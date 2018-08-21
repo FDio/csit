@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99f69f69_ef0fd112",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-21T12:01:28Z",
+      "side": 1,
+      "message": "ndrpdr\n\n(see below)",
+      "range": {
+        "startLine": 604,
+        "startChar": 12,
+        "endLine": 604,
+        "endChar": 23
+      },
+      "revId": "fc3c20367c023c280d3e3824ef2e7306479d2143",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0af108d_da8a3b02",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-21T12:01:28Z",
+      "side": 1,
+      "message": "We do not have \"functional mrr\" tests, so I prefer the shorter name.",
+      "range": {
+        "startLine": 639,
+        "startChar": 12,
+        "endLine": 639,
+        "endChar": 27
+      },
+      "revId": "fc3c20367c023c280d3e3824ef2e7306479d2143",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
