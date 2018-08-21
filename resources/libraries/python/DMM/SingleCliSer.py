@@ -26,7 +26,7 @@ class SingleCliSer(object):
     """Test the DMM vs_epoll ping function."""
 
     @staticmethod
-    def exec_the_base_vs_epoll_test(dut1_node, dut2_node):
+    def exec_the_base_vs_epoll_test(dut1_node, dut2_node, dut1_port, dut2_port):
         """Execute the vs_epoll on the dut1_node.
 
         :param dut1_node: Will execute the vs_epoll on this node.
@@ -38,12 +38,17 @@ class SingleCliSer(object):
         """
         dut1_ip = Topology.get_node_hostname(dut1_node)
         dut2_ip = Topology.get_node_hostname(dut2_node)
+        dut1_if_name = Topology.get_interface_sw_index_by_name(dut1_node,
+                                                               dut1_port)
+        dut2_if_name = Topology.get_interface_sw_index_by_name(dut2_node,
+                                                               dut2_port)
 
         ssh = SSH()
         ssh.connect(dut1_node)
 
-        cmd = 'cd {0}/{1} && ./run_dmm.sh {2} {3} {4} ' \
-        .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 0)
+        cmd = 'cd {0}/{1} && ./run_dmm.sh {2} {3} {4} {5} ' \
+        .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 0,
+                dut1_if_name)
 
         cmd += '2>&1 | tee log_run_dmm.txt &'
 
@@ -57,8 +62,9 @@ class SingleCliSer(object):
         ssh = SSH()
         ssh.connect(dut2_node)
 
-        cmd = 'cd {0}/{1} && ./run_dmm.sh {2} {3} {4} ' \
-        .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 1)
+        cmd = 'cd {0}/{1} && ./run_dmm.sh {2} {3} {4} {5} ' \
+        .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 1,
+                dut2_if_name)
 
         cmd += '2>&1 | tee log_run_dmm.txt'
 
@@ -111,3 +117,80 @@ class SingleCliSer(object):
         else:
             logger.console('....log_install_dmm on node {1}.... {0}'
                            .format(stdout, dut_node['host']))
+
+    @staticmethod
+    def exec_the_base_lwip_test(dut1_node, dut2_node,
+                                dut1_port, dut2_port):
+        """Test DMM with LWIP.
+
+        :param dut1_node: Will execute the vs_epoll on this node.
+        :param dut2_node: Will execute the vc_epoll on this node.
+        :param dut1_to_dut2_name: dut1_to_dut2 interface name
+        :param dut2_to_dut1_name: dut2_to_dut1 interface name
+        :type dut1_node: dict
+        :type dut2_node: dict
+        :returns: positive value if packets are sent and received
+        :raises RuntimeError:If failed to execute vs_epoll test on  dut1_node.
+        """
+        dut1_ip = Topology.get_node_hostname(dut1_node)
+        dut2_ip = Topology.get_node_hostname(dut2_node)
+        dut1_if_name = Topology.get_interface_sw_index_by_name(dut1_node,
+                                                               dut1_port)
+        dut2_if_name = Topology.get_interface_sw_index_by_name(dut2_node,
+                                                               dut2_port)
+
+        ssh = SSH()
+        ssh.connect(dut1_node)
+
+        cmd = 'cd {0}/{1} && sudo ./run_dmm_with_lwip.sh {2} {3} {4} {5}' \
+            .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 0,
+                    dut1_if_name)
+
+        cmd += '2>&1 | tee log_run_dmm_with_lwip.txt &'
+
+        (ret_code, _, _) = ssh.exec_command(cmd, timeout=6000)
+        if ret_code != 0:
+            raise RuntimeError('Failed to execute vs_epoll test at node {0}'
+                               .format(dut1_node['host']))
+
+        time.sleep(10)
+
+        ssh = SSH()
+        ssh.connect(dut2_node)
+
+        cmd = 'cd {0}/{1} && sudo ./run_dmm_with_lwip.sh {2} {3} {4} {5}' \
+            .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, dut1_ip, dut2_ip, 1,
+                    dut2_if_name)
+
+        cmd += '2>&1 | tee log_run_dmm_with_lwip.txt'
+
+        (ret_code, stdout_cli, _) = ssh.exec_command(cmd, timeout=6000)
+        if ret_code != 0:
+            raise RuntimeError('Failed to execute vs_epoll test at node {0}'
+                               .format(dut1_node['host']))
+
+        return stdout_cli.find("send 50")
+
+    @staticmethod
+    def get_lwip_test_result(dut_node):
+        """
+        After executing exec_the_base_lwip_test, use this
+        to get the test result
+
+        :param dut_node: will get the test result in this dut node
+        :type dut_node: dict
+        :returns: str.
+        :rtype: str.
+        :raises RuntimeError: If failed to get the test result.
+        """
+        ssh = SSH()
+        ssh.connect(dut_node)
+        cmd = 'cat {0}/{1}/log_run_dmm_with_lwip.txt | grep "send 50" | wc -l' \
+        .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS)
+
+        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
+        if ret_code != 0:
+            raise RuntimeError('Failed to get test result at node {0}'
+                               .format(dut_node['host']))
+
+        return stdout
