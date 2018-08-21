@@ -60,4 +60,13 @@
 | | Set Suite Variable | ${tg_port}
 | | Set Suite Variable | ${dut1_port}
 | | Set Suite Variable | ${dut2_port}
-
+| | ${dut1_to_dut2_mac}= | Get interface mac | ${dut1_node} | ${dut1_to_dut2}
+| | ${dut2_to_dut1_mac}= | Get interface mac | ${dut2_node} | ${dut2_to_dut1}
+| | Set Suite Variable | ${dut1_to_dut2_mac}
+| | Set Suite Variable | ${dut2_to_dut1_mac}
+| | ${dut1_to_dut2_name}= | Get Interface Name by MAC
+| | ... | ${dut1_node} | ${dut1_to_dut2_mac}
+| | ${dut2_to_dut1_name}= | Get Interface Name by MAC
+| | ... | ${dut2_node} | ${dut2_to_dut1_mac}
+| | Set Suite Variable | ${dut1_to_dut2_name}
+| | Set Suite Variable | ${dut2_to_dut1_name}
