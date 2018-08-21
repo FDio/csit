@@ -12,6 +12,28 @@ dut2_ip=$2
 proc_name=$3
 #proc_name => 0 = server, 1= client
 
+set ifname ""
+set ifaddress ""
+set ifmac ""
+
+for i in $(ls -1 /sys/class/net); do
+  ifaddress_i=$(ifconfig $i | grep 'inet' | head -n 1 | cut -d: -f2 | awk '{print $1}')
+  if [ $ifaddress_i ] && [ ${ifaddress_i%%.*} != "10" ] && [ ${ifaddress_i%%.*} != "127" ] ; then
+	ifname=$i
+        ifaddress=$ifaddress_i
+	ifmac=$(ifconfig $i | grep 'HWaddr' | awk -F " " '{print $5}')
+ 	break
+  fi
+done
+
+if [ -z $ifname ] || [ -z $ifaddress ] || [ -z $ifmac ]; then
+echo "No suitable interface found"
+    exit
+fi
+
+## use $ifname $ifaddress $ifmac
+echo "ifname : " $ifname " address: "  $ifaddress " Mac :" $ifmac
+
 # Try to kill the vs_epoll
 sudo killall vs_epoll
 
@@ -54,15 +76,18 @@ cp -r ${LIB_PATH}/* .
 cp -r ../configure/* .
 chmod 777 *
 
+ifconfig
+sudo lshw -c network -businfo
+
 if [ "$OS_ID" == "ubuntu" ]; then
-	ifaddress1=$(ifconfig eth1 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress1=$(ifconfig $INTERFACE | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress1
-	ifaddress2=$(ifconfig eth2 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+	ifaddress2=$(ifconfig $INTERFACE | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 	echo $ifaddress2
 elif [ "$OS_ID" == "centos" ]; then
-	ifaddress1=$(ifconfig enp0s8 | grep 'inet' | cut -d: -f2 | awk '{print $2}')
+	ifaddress1=$(ifconfig $INTERFACE | grep 'inet' | cut -d: -f2 | awk '{print $2}')
 	echo $ifaddress1
-	ifaddress2=$(ifconfig enp0s9 | grep 'inet' | cut -d: -f2 | awk '{print $2}')
+	ifaddress2=$(ifconfig $INTERFACE | grep 'inet' | cut -d: -f2 | awk '{print $2}')
 	echo $ifaddress2
 fi
 
