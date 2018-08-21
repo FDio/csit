@@ -30,6 +30,7 @@
 *** Test Cases ***
 | TC01: DMM base vs epoll test case
 | | Given Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | ... | Intel-X710
 | | And Pick out the port used to execute test
 | | When Exec the base vs epoll test | ${dut1_node} | ${dut2_node}
 | | Echo DMM logs | ${dut2_node}
