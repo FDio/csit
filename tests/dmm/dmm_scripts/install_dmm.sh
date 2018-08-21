@@ -21,6 +21,8 @@ chmod +x *.deb
 sudo dpkg -i libnuma1_2.0.11-1ubuntu1.1_amd64.deb
 sudo dpkg -i libnuma-dev_2.0.11-1ubuntu1.1_amd64.deb
 
+sudo apt-get install ethtool
+
 #DPDK will be having dependancy on linux headers
 if [ "$OS_ID" == "ubuntu" ]; then
     sudo apt-get -y install git build-essential linux-headers-`uname -r`
@@ -38,11 +40,9 @@ fi
 #===========build DPDK================
 mkdir -p $DPDK_DOWNLOAD_PATH
 
-DPDK_FOLDER=$DPDK_DOWNLOAD_PATH/dpdk-18.02-$TIMESTAMP
 cd $DPDK_DOWNLOAD_PATH
-mkdir $DPDK_FOLDER
-tar xvf /tmp/DMM-testing/dpdk-18.02.tar.xz -C $DPDK_FOLDER
-cd $DPDK_FOLDER/dpdk-18.02
+tar xvf /tmp/DMM-testing/dpdk-18.02.tar.xz
+cd $DPDK_DOWNLOAD_PATH/dpdk-18.02
 
 sed -i 's!CONFIG_RTE_EXEC_ENV=.*!CONFIG_RTE_EXEC_ENV=y!1' config/common_base
 sed -i 's!CONFIG_RTE_BUILD_SHARED_LIB=.*!CONFIG_RTE_BUILD_SHARED_LIB=y!1' config/common_base
@@ -96,7 +96,7 @@ fi
 SYS_HUGEPAGE=$(cat /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages)
 hugepageFree=$(cat /sys/kernel/mm/hugepages/hugepages-2048kB/free_hugepages)
 
-if [ ${SYS_HUGEPAGE} -lt 1024 ] || [ $hugepageFree -eq 0 ]; then
+if [ ${SYS_HUGEPAGE} -lt 1536 ] || [ $hugepageFree -eq 0 ]; then
     MOUNT=$(mount | grep /mnt/nstackhuge)
     count=$(mount | grep /mnt/nstackhuge | wc -l)
 
@@ -114,7 +114,7 @@ if [ ${SYS_HUGEPAGE} -lt 1024 ] || [ $hugepageFree -eq 0 ]; then
     while [ "${sock_count}" -ne 0 ]
     do
         sock_count=$[$sock_count - 1]
-        echo 1024 | sudo tee /sys/devices/system/node/node"$sock_count"/hugepages/hugepages-2048kB/nr_hugepages
+        echo 1536 | sudo tee /sys/devices/system/node/node"$sock_count"/hugepages/hugepages-2048kB/nr_hugepages
     done
 
     sudo mkdir -p /mnt/nstackhuge
@@ -126,3 +126,4 @@ else
 fi
 
 sudo mkdir -p /var/run/ip_module/
+sudo mkdir -p /var/log/nStack/ip_module/
