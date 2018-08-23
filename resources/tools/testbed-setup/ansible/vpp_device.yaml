@@ -1,0 +1,10 @@
+---
+# file: vpp_device.yaml
+
+- hosts: vpp_device
+  remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - common
+    - vpp_device
