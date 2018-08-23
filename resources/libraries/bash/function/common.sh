@@ -21,6 +21,72 @@ set -exuo pipefail
 #   the code might become more readable (but longer).
 
 
+function activate_docker_topology () {
+    # Create virtual vpp-device topology. Output of the function is topology
+    # file describing created environment saved to a file.
+    #
+    # Variables read:
+    # - BASH_FUNCTION_DIR - Path to existing directory this file is located in.
+    # - TOPOLOGIES - Available topologies.
+    # - NODENESS - Node multiplicity of desired testbed.
+    # - FLAVOR - Node flavor string, usually describing the processor.
+    # Variables set:
+    # - WORKING_TOPOLOGY - Path to topology file.
+
+    set -exuo pipefail
+
+    input="${BASH_FUNCTION_DIR}/device.sh"
+    params=("activate")
+    params+=("${NODENESS}")
+    params+=("${FLAVOR}")
+    params+=("$(< ${CSIT_DIR}/VPP_DEVICE_IMAGE)")
+
+    case_text="${NODENESS}_${FLAVOR}"
+    case "${case_text}" in
+        "1n_skx")
+            # We execute reservation over csit-shim-dcr which runs sourced
+            # script with parameters. Env variables are read from ssh output
+            # back to localhost for further processing.
+            ssh="ssh root@$(hostname -i) -p 6022 bash -s"
+            env_vars=$(${ssh} < ${input} ${params[@]}) || {
+                die "Topology reservation via shim-dcr failed!"
+            }
+            set -a
+            source <(echo "$env_vars" | grep -v /usr/bin/docker) || {
+                die "Source failed!"
+            }
+            set +a
+            ;;
+        "1n_vbox")
+            # We execute reservation over localhost. Sourced script automatially
+            # sets environment variables for further processing.
+            source ${input} ${params[@]} || {
+                die "Topology reservation locally failed!"
+            }
+            ;;
+        *)
+            die "Unknown specification: ${case_text}!"
+    esac
+
+    trap 'deactivate_docker_topology' EXIT || {
+         die "Trap attempt failed, please cleanup manually. Aborting!"
+    }
+
+    # Replace all variables in template with those in environment.
+    source <(echo 'cat <<EOF >topo.yml'; cat ${TOPOLOGIES[0]}; echo EOF;) || {
+        die "Topology file create failed!"
+    }
+
+    WORKING_TOPOLOGY="/tmp/topology.yaml"
+    mv topo.yml "${WORKING_TOPOLOGY}" || {
+        die "Topology move failed!"
+    }
+    cat ${WORKING_TOPOLOGY} | grep -v password || {
+        die "Topology read failed!"
+    }
+}
+
+
 function activate_virtualenv () {
 
     set -exuo pipefail
@@ -140,13 +206,28 @@ function compose_pybot_arguments () {
     # - DUT - CSIT test/ subdirectory, set while processing tags.
     # - TAGS - Array variable holding selected tag boolean expressions.
     # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.
+    # - TEST_CODE - The test selection string from environment or argument.
     # Variables set:
     # - PYBOT_ARGS - String holding part of all arguments for pybot.
     # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
 
     # No explicit check needed with "set -u".
-    PYBOT_ARGS=("--loglevel" "TRACE" "--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
-    PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+    PYBOT_ARGS=("--loglevel" "TRACE")
+    PYBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
+
+    case "${TEST_CODE}" in
+        *"device"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
+            ;;
+        *"func"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.func")
+            ;;
+        *"perf"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+            ;;
+        *)
+            die "Unknown specification: ${TEST_CODE}"
+    esac
 
     EXPANDED_TAGS=()
     for tag in "${TAGS[@]}"; do
@@ -180,6 +261,39 @@ function copy_archives () {
         mkdir -p "${WORKSPACE}/archives/" || die "Archives dir create failed."
         cp -r "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives" || die "Copy failed."
     fi
+}
+
+
+function deactivate_docker_topology () {
+    # Deactivate virtual vpp-device topology by removing containers.
+    #
+    # Variables read:
+    # - BASH_FUNCTION_DIR - Path to existing directory this file is located in.
+    # - NODENESS - Node multiplicity of desired testbed.
+    # - FLAVOR - Node flavor string, usually describing the processor.
+
+    set -exuo pipefail
+
+    input="${BASH_FUNCTION_DIR}/device.sh"
+    params=("deactivate")
+    params+=($(env | grep CSIT_))
+
+    case_text="${NODENESS}_${FLAVOR}"
+    case "${case_text}" in
+        "1n_skx")
+            ssh="ssh root@$(hostname -i) -p 6022 bash -s"
+            ${ssh} < ${input} ${params[@]} || {
+                die "Topology cleanup via shim-dcr failed!"
+            }
+            ;;
+        "1n_vbox")
+            cleanup_environment || {
+                die "Topology cleanup locally failed!"
+            }
+            ;;
+        *)
+            die "Unknown specification: ${case_text}!"
+    esac
 }
 
 
@@ -237,6 +351,14 @@ function get_test_code () {
     fi
 
     case "${TEST_CODE}" in
+        *"1n-vbox"*)
+            NODENESS="1n"
+            FLAVOR="vbox"
+            ;;
+        *"1n-skx"*)
+            NODENESS="1n"
+            FLAVOR="skx"
+            ;;
         *"2n-skx"*)
             NODENESS="2n"
             FLAVOR="skx"
@@ -261,6 +383,7 @@ function get_test_tag_string () {
     # Variables read:
     # - GERRIT_EVENT_TYPE - Event type set by gerrit, can be unset.
     # - GERRIT_EVENT_COMMENT_TEXT - Comment text, read for "comment-added" type.
+    # - TEST_CODE - The test selection string from environment or argument.
     # Variables set:
     # - TEST_TAG_STRING - The string following "perftest" in gerrit comment,
     #   or empty.
@@ -269,12 +392,27 @@ function get_test_tag_string () {
 
     trigger=""
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
-        # On parsing error, ${trigger} stays empty.
-        trigger="$(echo "${GERRIT_EVENT_COMMENT_TEXT}" \
-            | grep -oE '(perftest$|perftest[[:space:]].+$)')" || true
+        case "${TEST_CODE}" in
+            *"device"*)
+                # On parsing error, ${trigger} stays empty.
+                trigger="$(echo "${GERRIT_EVENT_COMMENT_TEXT}" \
+                    | grep -oE '(devicetest$|devicetest[[:space:]].+$)')" \
+                    || true
+                # Set test tags as string.
+                TEST_TAG_STRING="${trigger#$"devicetest"}"
+                ;;
+            *"perf"*)
+                # On parsing error, ${trigger} stays empty.
+                trigger="$(echo "${GERRIT_EVENT_COMMENT_TEXT}" \
+                    | grep -oE '(perftest$|perftest[[:space:]].+$)')" \
+                    || true
+                # Set test tags as string.
+                TEST_TAG_STRING="${trigger#$"perftest"}"
+                ;;
+            *)
+                die "Unknown specification: ${TEST_CODE}"
+        esac
     fi
-    # Set test tags as string.
-    TEST_TAG_STRING="${trigger#$"perftest"}"
 }
 
 
@@ -546,6 +684,52 @@ function select_tags () {
 }
 
 
+function select_vpp_device_tags () {
+
+    set -exuo pipefail
+
+    # Variables read:
+    # - TEST_CODE - String affecting test selection, usually jenkins job name.
+    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
+    #   Can be unset.
+    # Variables set:
+    # - TAGS - Array of processed tag boolean expressions.
+
+    case "${TEST_CODE}" in
+        # Select specific performance tests based on jenkins job type variable.
+        * )
+            if [[ -z "${TEST_TAG_STRING-}" ]]; then
+                # If nothing is specified, we will run pre-selected tests by
+                # following tags. Items of array will be concatenated by OR
+                # in Robot Framework.
+                test_tag_array=()
+            else
+                # If trigger contains tags, split them into array.
+                test_tag_array=(${TEST_TAG_STRING//:/ })
+            fi
+            ;;
+    esac
+
+    TAGS=()
+
+    # We will prefix with perftest to prevent running other tests
+    # (e.g. Functional).
+    prefix="devicetestAND"
+    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
+        # Automatic prefixing for VPP jobs to limit testing.
+        prefix="${prefix}"
+    fi
+    for tag in "${test_tag_array[@]}"; do
+        if [[ ${tag} == "!"* ]]; then
+            # Exclude tags are not prefixed.
+            TAGS+=("${tag}")
+        else
+            TAGS+=("${prefix}${tag}")
+        fi
+    done
+}
+
+
 function select_topology () {
 
     set -exuo pipefail
@@ -554,7 +738,7 @@ function select_topology () {
     # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
     # - FLAVOR - Node flavor string, currently either "hsw" or "skx".
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
-    # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
+    # - TOPOLOGIES_DIR - Path to existing directory with available topologies.
     # Variables set:
     # - TOPOLOGIES - Array of paths to suitable topology yaml files.
     # - TOPOLOGIES_TAGS - Tag expression selecting tests for the topology.
@@ -563,13 +747,17 @@ function select_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "3n_hsw")
+        "1n_vbox")
             TOPOLOGIES=(
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
+                        "${TOPOLOGIES_DIR}/vpp_device.template"
                        )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "1n_skx")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/vpp_device.template"
+                       )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_skx")
             TOPOLOGIES=(
@@ -586,6 +774,14 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/lf_3n_skx_testbed32.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "3n_hsw")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
+                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
+                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
+                       )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
