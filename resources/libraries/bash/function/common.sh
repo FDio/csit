@@ -237,6 +237,10 @@ function get_test_code () {
     fi
 
     case "${TEST_CODE}" in
+        *"1n-skx"*)
+            NODENESS="1n"
+            FLAVOR="skx"
+            ;;
         *"2n-skx"*)
             NODENESS="2n"
             FLAVOR="skx"
@@ -275,6 +279,22 @@ function get_test_tag_string () {
     fi
     # Set test tags as string.
     TEST_TAG_STRING="${trigger#$"perftest"}"
+}
+
+
+function installed () {
+
+    set -exuo pipefail
+
+    # Check if the given utility is installed. Fail if not installed.
+    #
+    # Arguments:
+    # - ${1} - Utility to check.
+    # Returns:
+    # - 0 - If command is installed.
+    # - 1 - If command is not installed.
+
+    command -v "${1}"
 }
 
 
@@ -469,7 +489,7 @@ function select_topology () {
     # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
     # - FLAVOR - Node flavor string, currently either "hsw" or "skx".
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
-    # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
+    # - TOPOLOGIES_DIR - Path to existing directory with available topologies.
     # Variables set:
     # - TOPOLOGIES - Array of paths to suitable topology yaml files.
     # - TOPOLOGIES_TAGS - Tag expression selecting tests for the topology.
@@ -485,6 +505,12 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "1n_skx")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/lf_1n_skx_template.yaml"
+                       )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_skx")
             TOPOLOGIES=(
@@ -503,8 +529,6 @@ function select_topology () {
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         *)
-            # No falling back to 3n_hsw default, that should have been done
-            # by the function which has set NODENESS and FLAVOR.
             die "Unknown specification: ${case_text}"
     esac
 
