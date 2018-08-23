@@ -1,0 +1,12 @@
+[Unit]
+Description=CSIT Initialize SR-IOV VFs
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/csit-initialize-vfs.sh start
+ExecStop=/usr/local/bin/csit-initialize-vfs.sh stop
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -278,6 +278,19 @@ function get_test_tag_string () {
 }
 
 
+function installed () {
+
+    set -exuo pipefail
+
+    # Check if the given utility is installed. Fail if not installed.
+    #
+    # Arguments:
+    # - ${1} - Utility to check.
+
+    command -v "${1}" >/dev/null 2>&1
+}
+
+
 function reserve_testbed () {
 
     set -exuo pipefail
