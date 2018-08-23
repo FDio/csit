@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a8be0ee_b4b6c919",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-23T06:16:56Z",
+      "side": 1,
+      "message": "Take an example of Python.\nPython will crash anytime it detects error (same as -e), but it is not a good approach to let just stack trace to spit output and leave no message to user what happened.\n\nSimilarly Bash with -e just print some output from some command but does not clearly says to user WHY or IF that is expected or not.\n\nThere is Failure plugin installed in Jenkins that can automatically analyze the error messages so it would be better to have most of command sanitized so they print meaningful output.\n\nYesterday i browse packagecloud.io and https://packagecloud.io/fdio/master/install hit me like very good example of how nice bash should look like. Views?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8668eb6_d9bc8ed6",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-23T06:16:56Z",
+      "side": 1,
+      "message": "What\u0027s meant by this?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 67
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79145911_957e157f",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-23T06:16:56Z",
+      "side": 1,
+      "message": "Good practice, local is imo RECOMMENDED otherwise you can easily overwrite variable in context e.g. in functions (i had issues in past with that). Declare is good for example to declare ReadOnly variables or empty arrays.",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 76
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76814fed_bfa98282",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-23T06:16:56Z",
+      "side": 1,
+      "message": "I am not sure. Bash is Bash and RF is RF (RF is shiny example of well written programming language - unless you want to prohibit contributors for doing nested loops :) ). I would avoid such \"subjective\" manipulations in documents.",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 71
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
