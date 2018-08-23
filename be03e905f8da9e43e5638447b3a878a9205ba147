@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5d0f3cad_f4b661e3",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T12:03:14Z",
+      "side": 1,
+      "message": "\u003e and leave no message to user\n\nI agree helpful messages are helpful. Added an item in next patch.\n\n\u003e like very good example\n\nNice error messages for expected errors.\nBut only two (out of six) invocations of \"apt-get\" are followed by checking the error code, so safety is not good enough.",
+      "parentUuid": "3a8be0ee_b4b6c919",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8668eb6_d9bc8ed6",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 14
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-23T06:16:56Z",
       "side": 1,
       "message": "What\u0027s meant by this?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 67
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a027a0be_e35ace4f",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T12:03:14Z",
+      "side": 1,
+      "message": "Within bash and functions, \"global\" and \"local\" have precise meaning (basically \"typeset -g\" and \"typeset +g\").\nIn this document, \"global\" also implies upper case and documentation, \"local\" implies lower case and no need for documentation.\nSo I am wondering whether such overloading is understandable enough, or whether we should pick different adjectives for the two variable types this document is describing.",
+      "parentUuid": "e8668eb6_d9bc8ed6",
       "range": {
         "startLine": 177,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8bc40198_a3246a78",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T12:03:14Z",
+      "side": 1,
+      "message": "If everything lowercase is considered local and always initialized, typesetting it implicitly is not needed, in my opinion.\nI do not have a good example of where readonly is useful.\nTypesetting arrays and integers can be useful, but I am not sure we should require it.",
+      "parentUuid": "79145911_957e157f",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 76
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76814fed_bfa98282",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 14
@@ -82,6 +154,30 @@
       "writtenOn": "2018-08-23T06:16:56Z",
       "side": 1,
       "message": "I am not sure. Bash is Bash and RF is RF (RF is shiny example of well written programming language - unless you want to prohibit contributors for doing nested loops :) ). I would avoid such \"subjective\" manipulations in documents.",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 71
+      },
+      "revId": "be03e905f8da9e43e5638447b3a878a9205ba147",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4626903_9a48cfe7",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T12:03:14Z",
+      "side": 1,
+      "message": "\u003e RF is shiny example of well written programming language\n\nI hope you are not serious. But I guess bash can be even worse.\n\n\u003e I would avoid such \"subjective\" manipulations in documents.\n\nFamiliarity with common expressions is good, so if one form looks similar to what other language would do, it should be preferred. But I will re-formulate in next patch.",
+      "parentUuid": "76814fed_bfa98282",
       "range": {
         "startLine": 216,
         "startChar": 0,
