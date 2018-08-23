@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8854e749_b49e5dd0",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T15:37:38Z",
+      "side": 1,
+      "message": "See also https://tools.ietf.org/html/rfc8174",
+      "range": {
+        "startLine": 20,
+        "startChar": 34,
+        "endLine": 20,
+        "endChar": 38
+      },
+      "revId": "40099c2cf2fbc01fcd83586356e41a3c262d58df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b980136_3e3495cc",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T15:37:38Z",
+      "side": 1,
+      "message": "Can we call this a 1-server testbed, to distinguish from n-node topologies below?\n\nAlternatively we can keep \"node\" refering to a bare metal server, but choose some other noun for the item of test topologies.\nI am just not sure which. \"Device\"? \"Forwarder\"? \"Execution context\"?",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "40099c2cf2fbc01fcd83586356e41a3c262d58df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71952a4d_c61b7e75",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T15:37:38Z",
+      "side": 1,
+      "message": "In RFCs, the words (when actually used, not when just referred to) are written without the double quotes.",
+      "range": {
+        "startLine": 129,
+        "startChar": 43,
+        "endLine": 129,
+        "endChar": 53
+      },
+      "revId": "40099c2cf2fbc01fcd83586356e41a3c262d58df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7096e867_720b0bc2",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T15:37:38Z",
+      "side": 1,
+      "message": "stored",
+      "range": {
+        "startLine": 136,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 9
+      },
+      "revId": "40099c2cf2fbc01fcd83586356e41a3c262d58df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aad10151_edb8a067",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T15:37:38Z",
+      "side": 1,
+      "message": "When we have Dockerfiles in CSIT repo we can also put dockerhub identifier there. If the test finds it needs a contained based on Dockerfile without such identifier (or when dockerhub is unreachable), the test can build the image locally. This way we could have both speed for known images and flexibility for new images.\n\nThe dockerhub identifier can be based on hash of the Dockerfile content, so that we do not need to maintain the identifier manually.",
+      "range": {
+        "startLine": 141,
+        "startChar": 23,
+        "endLine": 141,
+        "endChar": 38
+      },
+      "revId": "40099c2cf2fbc01fcd83586356e41a3c262d58df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ec458a3_d671fae1",
+        "filename": "resources/tools/disk-image-builder/csit-sut-dcr/ubuntu_1804_amd64/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T15:37:38Z",
+      "side": 1,
+      "message": "fd.io",
+      "range": {
+        "startLine": 17,
+        "startChar": 14,
+        "endLine": 17,
+        "endChar": 23
+      },
+      "revId": "40099c2cf2fbc01fcd83586356e41a3c262d58df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
