@@ -101,8 +101,7 @@
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
 | | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
-| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
-| | ... | /30 prefix on DUT1 link.
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT1-TG links.
 | | ...
 | | Set interfaces in path up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
@@ -1215,6 +1214,39 @@
 | | ... | ${dut2} | ${dut2_if2} | 20.20.20.1 | 24
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+
+| Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in 2-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT1-TG links.
+| | ... | Apply required ACL rules to DUT1 interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ip_nr - Number of IPs to be used. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv4 routing for '10' addresses with IPv4 ACLs on DUT1 \
+| | ... | in 2-node circular topology \|
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut1_if1} - DUT1 interface 1 towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface 2 towards TG.
+| | ...
+| | Set interfaces in path up
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | :FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
+| | | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.${number}
+| | | ... | ${tg_if1_mac}
+| | | Add arp on dut | ${dut1} | ${dut1_if2} | 20.20.20.${number}
+| | | ... | ${tg_if2_mac}
+| | Configure IP addresses on interfaces
+| | ... | ${dut1} | ${dut1_if1} | 10.10.10.1 | 24
+| | ... | ${dut1} | ${dut1_if2} | 20.20.20.1 | 24
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Configure MACIP ACLs
