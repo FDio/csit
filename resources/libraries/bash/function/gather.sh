@@ -49,15 +49,15 @@ function gather_build () {
             ;;
         *"vpp"*)
             DUT="vpp"
-            gather_vpp || die "The function should have died on error."
+            gather_vpp || die
             ;;
         *"ligato"*)
             DUT="kubernetes"
-            gather_ligato || die "The function should have died on error."
+            gather_ligato || die
             ;;
         *"dpdk"*)
             DUT="dpdk"
-            gather_dpdk || die "The function should have died on error."
+            gather_dpdk || die
             ;;
         *)
             die "Unable to identify DUT type from: ${TEST_CODE}"
@@ -98,7 +98,6 @@ function gather_dpdk () {
         }
     else
         echo "Downloading DPDK packages of specific version from repo..."
-        # TODO: Can we autodetect this based on what CSIT-stable VPP uses?
         dpdk_stable_ver="dpdk-18.08.tar.xz"
     fi
     # TODO: Use "wget -N" instead checking for file presence?
@@ -143,14 +142,10 @@ function gather_ligato () {
     # Functions called:
     # - die - Print to stderr and exit, defined in common_functions.sh
     # - gather_vpp - See eponymous fragment file assumend to be sourced already.
-    # TODO: What is the best order of description items?
 
-    # TODO: Many of the following comments act as abstraction.
-    #   But the abstracted blocks are mostly one-liners (plus "|| die"),
-    #   so maybe it is not worth introducing fragments/functions for the blocks.
     # TODO: This fragment is too long anyway, split it up.
 
-    gather_vpp || die "The function should have died on error."
+    gather_vpp || die
 
     # Extract VPP API to specific folder
     # FIXME: Make sure /tmp/vpp/ exists. Should we clean it?
