@@ -1,0 +1,46 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [dcr, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    host: 10.0.2.15
+    arch: x86_64
+    port: 32788
+    username: root
+    password: Csit1234
+    interfaces:
+      port1:
+        mac_address: 08:00:27:f4:93:d9
+        pci_address: 0000:00:08.0
+        link: link1
+        driver: i40evf
+      port2:
+        mac_address: 08:00:27:48:cf:03
+        pci_address: 0000:00:09.0
+        link: link2
+        driver: i40evf
+  DUT1:
+    type: DUT
+    host: 10.0.2.15
+    arch: x86_64
+    port: 32789
+    username: root
+    password: Csit1234
+    interfaces:
+      port1:
+        mac_address: 08:00:27:d9:9b:73
+        pci_address: 0000:00:0a.0
+        link: link1
+        driver: i40evf
+      port2:
+        mac_address: 08:00:27:0a:c3:36
+        pci_address: 0000:00:10.0
+        link: link2
+        driver: i40evf
+

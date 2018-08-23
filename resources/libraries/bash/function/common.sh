@@ -140,13 +140,28 @@ function compose_pybot_arguments () {
     # - DUT - CSIT test/ subdirectory, set while processing tags.
     # - TAGS - Array variable holding selected tag boolean expressions.
     # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.
+    # - TEST_CODE - The test selection string from environment or argument.
     # Variables set:
     # - PYBOT_ARGS - String holding part of all arguments for pybot.
     # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
 
     # No explicit check needed with "set -u".
-    PYBOT_ARGS=("--loglevel" "TRACE" "--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
-    PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+    PYBOT_ARGS=("--loglevel" "TRACE")
+    PYBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
+
+    case "${TEST_CODE}" in
+        *"device"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
+            ;;
+        *"func"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.func")
+            ;;
+        *"perf"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+            ;;
+        *)
+            die "Unknown specification: ${TEST_CODE}"
+    esac
 
     EXPANDED_TAGS=()
     for tag in "${TAGS[@]}"; do
@@ -217,6 +232,46 @@ function die_on_pybot_error () {
 }
 
 
+function get_mac_addr () {
+    # Get MAC address from linux network device name.
+    #
+    # Arguments:
+    # - ${1} - Linux network device name.
+    # Variables set:
+    # - MAC_ADDR - MAC address of network device.
+
+    set -exuo pipefail
+
+    if [ -d /sys/class/net/${1}/device ]; then
+        MAC_ADDR="$(</sys/class/net/${1}/address)" || {
+            die "Failed to get MAC address of linux network interfaces."
+        }
+    fi
+}
+
+
+function get_pci_addr () {
+    # Get PCI address in <domain>:<bus:<device>.<func> format from linux network
+    # device name.
+    #
+    # Arguments:
+    # - ${1} - Linux network device name.
+    # Variables set:
+    # - PCI_ADDR - PCI address of network device.
+
+    set -exuo pipefail
+
+    if [ -d /sys/class/net/${1}/device ]; then
+        PCI_ADDR=$(basename $(readlink /sys/class/net/${1}/device)) || {
+            die "Failed to get PCI address of linux network interfaces."
+        }
+    fi
+    if [ ! -d /sys/bus/pci/devices/${PCI_ADDR} ]; then
+        die "PCI device ${1} doesn't exist"
+    fi
+}
+
+
 function get_test_code () {
 
     set -exuo pipefail
@@ -237,6 +292,14 @@ function get_test_code () {
     fi
 
     case "${TEST_CODE}" in
+        *"1n-vbox"*)
+            NODENESS="1n"
+            FLAVOR="vbox"
+            ;;
+        *"1n-skx"*)
+            NODENESS="1n"
+            FLAVOR="skx"
+            ;;
         *"2n-skx"*)
             NODENESS="2n"
             FLAVOR="skx"
@@ -275,6 +338,22 @@ function get_test_tag_string () {
     fi
     # Set test tags as string.
     TEST_TAG_STRING="${trigger#$"perftest"}"
+}
+
+
+function installed () {
+
+    set -exuo pipefail
+
+    # Check if the given utility is installed. Fail if not installed.
+    #
+    # Arguments:
+    # - ${1} - Utility to check.
+    # Returns:
+    # - 0 - If command is installed.
+    # - 1 - If command is not installed.
+
+    command -v "${1}"
 }
 
 
@@ -464,6 +543,52 @@ function select_tags () {
 }
 
 
+function select_vpp_device_tags () {
+
+    set -exuo pipefail
+
+    # Variables read:
+    # - TEST_CODE - String affecting test selection, usually jenkins job name.
+    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
+    #   Can be unset.
+    # Variables set:
+    # - TAGS - Array of processed tag boolean expressions.
+
+    case "${TEST_CODE}" in
+        # Select specific performance tests based on jenkins job type variable.
+        * )
+            if [[ -z "${TEST_TAG_STRING-}" ]]; then
+                # If nothing is specified, we will run pre-selected tests by
+                # following tags. Items of array will be concatenated by OR
+                # in Robot Framework.
+                test_tag_array=("mytest")
+            else
+                # If trigger contains tags, split them into array.
+                test_tag_array=(${TEST_TAG_STRING//:/ })
+            fi
+            ;;
+    esac
+
+    TAGS=()
+
+    # We will prefix with perftest to prevent running other tests
+    # (e.g. Functional).
+    prefix="devicetestAND"
+    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
+        # Automatic prefixing for VPP jobs to limit testing.
+        prefix="${prefix}"
+    fi
+    for tag in "${test_tag_array[@]}"; do
+        if [[ ${tag} == "!"* ]]; then
+            # Exclude tags are not prefixed.
+            TAGS+=("${tag}")
+        else
+            TAGS+=("${prefix}${tag}")
+        fi
+    done
+}
+
+
 function select_topology () {
 
     set -exuo pipefail
@@ -472,7 +597,7 @@ function select_topology () {
     # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
     # - FLAVOR - Node flavor string, currently either "hsw" or "skx".
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
-    # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
+    # - TOPOLOGIES_DIR - Path to existing directory with available topologies.
     # Variables set:
     # - TOPOLOGIES - Array of paths to suitable topology yaml files.
     # - TOPOLOGIES_TAGS - Tag expression selecting tests for the topology.
@@ -481,13 +606,17 @@ function select_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "3n_hsw")
+        "1n_vbox")
             TOPOLOGIES=(
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
+                        "${TOPOLOGIES_DIR}/vpp_device.template"
                        )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "1n_skx")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/vpp_device.template"
+                       )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_skx")
             TOPOLOGIES=(
@@ -504,6 +633,14 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/lf_3n_skx_testbed32.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "3n_hsw")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
+                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
+                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
+                       )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
