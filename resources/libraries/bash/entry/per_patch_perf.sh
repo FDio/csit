@@ -46,10 +46,10 @@ prepare_build_parent || die
 build_vpp_ubuntu_amd64 "PARENT" || die
 prepare_test || die
 ## Replace previous 4 lines with this to speed up testing.
-#download_builds "https://jenkins.fd.io/sandbox/job/vpp-csit-verify-perf-master-2n-skx/2/artifact/*zip*/archive.zip" || die
+#download_builds "REPLACE_WITH_URL" || die
 initialize_csit_dirs || die
-get_test_tag_string || die
 get_test_code "${1-}" || die
+get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 activate_virtualenv "${VPP_DIR}" || die
