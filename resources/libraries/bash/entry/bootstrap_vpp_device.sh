@@ -23,8 +23,6 @@ set -exuo pipefail
 # Consequences (and specific assumptions) are multiple,
 # examine tree of functions for current description.
 
-# FIXME: Define API contract (as opposed to just help) for bootstrap.
-
 # "set -eu" handles failures from the following two lines.
 BASH_ENTRY_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
 BASH_FUNCTION_DIR="$(readlink -e "${BASH_ENTRY_DIR}/../function")"
@@ -40,10 +38,9 @@ select_topology || die
 gather_build || die
 check_download_dir || die
 activate_virtualenv "${CSIT_DIR}" || die
-reserve_testbed || die
-select_tags || die
+activate_docker_topology || die
+select_vpp_device_tags || die
 compose_pybot_arguments || die
 run_pybot || die
-untrap_and_unreserve_testbed || die
 copy_archives || die
 die_on_pybot_error || die
