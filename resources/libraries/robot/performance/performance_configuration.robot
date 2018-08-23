@@ -125,50 +125,55 @@
 | | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | ${tg_if1_ip4} | ${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | ${tg_if2_ip4} | ${dut2_if2}
 
-| Initialize IPv4 forwarding in 2-node circular topology
+| Initialize IPv4 forwarding in circular topology
 | | [Documentation]
-| | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
-| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
-| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
-| | ... | /30 prefix on DUT1 link.
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
+| | ... | circular topology. Get the interface MAC addresses and setup ARP on
+| | ... | all VPP interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG
+| | ... | links. In case of 3-node topology setup IPv4 adresses with /30 prefix
+| | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /24
+| | ... | and next hop of neighbour DUT interface IPv4 address.
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
 | | ...
 | | Set interfaces in path up
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 20.20.20.2 | ${tg1_if2_mac}
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
-| | ... | 10.10.10.1 | 24
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
-| | ... | 20.20.20.1 | 24
-
-| Initialize IPv4 forwarding in 3-node circular topology
-| | [Documentation]
-| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
-| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
-| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
-| | ... | /30 prefix on DUT1-DUT2 link. Set routing on both DUT nodes with
-| | ... | prefix /24 and next hop of neighbour DUT interface IPv4 address.
 | | ...
-| | Set interfaces in path up
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ...
 | | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${dut1_if2}
+| | Add arp on dut | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | ...
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
 | | ... | 10.10.10.1 | 24
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
 | | ... | 1.1.1.1 | 30
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1}
 | | ... | 1.1.1.2 | 30
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
+| | Configure IP addresses on interfaces | ${dut} | ${dut_if2}
 | | ... | 20.20.20.1 | 24
-| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
-| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
 
 | Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | [Documentation]
@@ -471,11 +476,11 @@
 | | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
 | | | ... | ${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
 
-| Initialize IPv4 policer 2r3c-${t} in 3-node circular topology
+| Initialize IPv4 policer 2r3c-${t} in circular topology
 | | [Documentation]
 | | ... | Setup of 2r3c color-aware or color-blind policer with dst ip match
-| | ... | on all DUT nodes in 3-node circular topology. Policer is applied on
-| | ... | links TG - DUT1 and DUT2 - TG.
+| | ... | on all DUT nodes in 2-node / 3-node circular topology. Policer is
+| | ... | applied on links TG - DUTx.
 | | ...
 | | ${dscp}= | DSCP AF22
 | | Policer Set Name | policer1
@@ -496,8 +501,18 @@
 | | Policer Classify Set Interface | ${dut1_if1}
 | | Policer Classify Set Match IP | 20.20.20.2 | ${False}
 | | Policer Set Configuration
-| | Policer Set Node | ${dut2}
-| | Policer Classify Set Interface | ${dut2_if2}
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${dut1_if2}
+| | Run Keyword Unless | '${dut2_status}' == 'PASS'
+| | ... | Policer Set Name | policer2
+| | Policer Set Node | ${dut}
+| | Policer Classify Set Interface | ${dut_if2}
 | | Policer Classify Set Match IP | 10.10.10.2 | ${False}
 | | Policer Set Configuration
 
@@ -1217,13 +1232,14 @@
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
-| Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in 3-node circular topology
+| Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in circular topology
 | | [Documentation]
-| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
-| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
-| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
-| | ... | /30 prefix on DUT1-DUT2 link. Set routing on both DUT nodes with
-| | ... | prefix /24 and next hops of neighbour DUT interface IPv4 address.
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
+| | ... | circular topology. Get the interface MAC addresses and setup ARP on
+| | ... | all VPP interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG
+| | ... | links. In case of 3-node topology setup IPv4 adresses with /30 prefix
+| | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /24
+| | ... | and next hop of neighbour DUT interface IPv4 address.
 | | ... | Apply required ACL rules to DUT1 interfaces.
 | | ...
 | | ... | *Arguments:*
@@ -1235,32 +1251,59 @@
 | | ... | in 3-node circular topology \|
 | | ...
 | | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${tg} - TG node.
 | | ... | - ${dut1} - DUT1 node.
 | | ... | - ${dut2} - DUT2 node.
-| | ... | - ${dut1_if1} - DUT1 interface towards TG.
-| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
-| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
-| | ... | - ${dut2_if2} - DUT2 interface towards TG.
+| | ... | - ${tg_if1} - TG interface 1 towards DUT1.
+| | ... | - ${tg_if2} - TG interface 2 towards DUT2 (3-node topo) or DUT1
+| | ... | (2-node topo).
+| | ... | - ${dut1_if1} - DUT1 interface 1 towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface 2 towards DUT2 (3-node topo) or TG
+| | ... | (2-node topo).
+| | ... | - ${dut2_if1} - DUT2 interface 1 towards DUT1.
+| | ... | - ${dut2_if2} - DUT2 interface 2 towards TG.
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${dut1_if2}
 | | ...
 | | Set interfaces in path up
+| | ...
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ...
 | | :FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
 | | | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.${number}
 | | | ... | ${tg1_if1_mac}
-| | | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.${number}
+| | | Add arp on dut | ${dut} | ${dut_if2} | 20.20.20.${number}
 | | | ... | ${tg1_if2_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | ...
 | | Configure IP addresses on interfaces
 | | ... | ${dut1} | ${dut1_if1} | 10.10.10.1 | 24
+| | ... | ${dut} | ${dut_if2} | 20.20.20.1 | 24
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces
 | | ... | ${dut1} | ${dut1_if2} | 1.1.1.1 | 30
 | | ... | ${dut2} | ${dut2_if1} | 1.1.1.2 | 30
-| | ... | ${dut2} | ${dut2_if2} | 20.20.20.1 | 24
-| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
-| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | ...
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Configure MACIP ACLs
@@ -2470,35 +2513,54 @@
 | | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip4_address}
 | | ... | ${dut1_if2_mac}
 
-| Initialize NAT44 in 3-node circular topology
-| | [Documentation] | Initialization of 3-node topology with NAT44 between DUTs:
+| Initialize NAT44 in circular topology
+| | [Documentation] | Initialization of 2-node / 3-node topology with NAT44
+| | ... | between DUTs:
 | | ... | - set interfaces up
 | | ... | - set IP addresses
 | | ... | - set ARP
 | | ... | - create routes
 | | ... | - set NAT44 - only on DUT1
 | | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
 | | Set interfaces in path up
 | | ...
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 10.0.0.1 | 20
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 11.0.0.1 | 20
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 11.0.0.2 | 20
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2} | 12.0.0.1 | 20
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 11.0.0.1 | 20
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 11.0.0.2 | 20
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${dut1_if2}
+| | Configure IP addresses on interfaces | ${dut} | ${dut_if2} | 12.0.0.1 | 20
 | | ...
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | ...
 | | Add arp on dut | ${dut1} | ${dut1_if1} | 10.0.0.2 | ${tg_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 11.0.0.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 11.0.0.1 | ${dut1_if2_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | 12.0.0.2 | ${tg_if2_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut1} | ${dut1_if2} | 11.0.0.2 | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 11.0.0.1 | ${dut1_if2_mac}
+| | Add arp on dut | ${dut} | ${dut_if2} | 12.0.0.2 | ${tg_if2_mac}
 | | ...
-| | Vpp Route Add | ${dut1} | 12.0.0.2 | 32 | 11.0.0.2 | ${dut1_if2}
 | | Vpp Route Add | ${dut1} | 20.0.0.0 | 18 | 10.0.0.2 | ${dut1_if1}
-| | Vpp Route Add | ${dut2} | 12.0.0.0 | 24 | 12.0.0.2 | ${dut2_if2}
-| | Vpp Route Add | ${dut2} | 200.0.0.0 | 30 | 11.0.0.1 | ${dut2_if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | 12.0.0.2 | 32 | 11.0.0.2 | ${dut1_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | 12.0.0.0 | 24 | 12.0.0.2 | ${dut2_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | 200.0.0.0 | 30 | 11.0.0.1 | ${dut2_if1}
 | | ...
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if2}
