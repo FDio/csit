@@ -79,8 +79,8 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
+| | When Initialize IPv4 forwarding in circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
