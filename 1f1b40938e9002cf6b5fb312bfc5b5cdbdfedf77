@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "661fc34d_ffa72bec",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 1866,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-23T11:36:39Z",
+      "side": 1,
+      "message": "Do we have some rules which letter are Capital and which not ?",
+      "range": {
+        "startLine": 1866,
+        "startChar": 11,
+        "endLine": 1866,
+        "endChar": 24
+      },
+      "revId": "1f1b40938e9002cf6b5fb312bfc5b5cdbdfedf77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b015809_666e9bb3",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x710-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-23T11:36:39Z",
+      "side": 1,
+      "message": "Space missing",
+      "range": {
+        "startLine": 20,
+        "startChar": 38,
+        "endLine": 20,
+        "endChar": 40
+      },
+      "revId": "1f1b40938e9002cf6b5fb312bfc5b5cdbdfedf77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fbee1289_a03fe7a6",
+        "filename": "tests/vpp/perf/vm_vhost/10ge2p1x710-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-23T11:36:39Z",
+      "side": 1,
+      "message": "Double",
+      "range": {
+        "startLine": 18,
+        "startChar": 15,
+        "endLine": 18,
+        "endChar": 38
+      },
+      "revId": "1f1b40938e9002cf6b5fb312bfc5b5cdbdfedf77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
