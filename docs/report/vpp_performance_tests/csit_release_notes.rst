@@ -83,3 +83,9 @@ List of known issues in |csit-release| for VPP performance tests:
 | 7 | `CSIT-1245                              | VPP srv6proxy-stat and srv6proxy-masq, much higher NDR and PDR 78B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04. |
 |   | <https://jira.fd.io/browse/CSIT-1245>`_ | Due to wrong test suite configuration in dynamic-proxy mode. Artefact of suite code refactoring.                                |
 +---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 8 | `CSIT-1246                              | Ligato K8S orchestrated tests are failing due to incompatibility of the latest released Ligato vpp-agent with VPP-18.07.        |
+|   | <https://jira.fd.io/browse/CSIT-1246>`_ | Past vpp-agent releases are not compatible either.                                                                              |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 9 | `CSIT-1253                              | VPP lbdpdk link bonding tests failing due to interfaces not coming up.                                                          |
+|   | <https://jira.fd.io/browse/CSIT-1253>`_ | VPP lbdpdk link bonding tests relying on DPDK functionality for bonding fail.                                                   |
++---+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
