@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f6a22dd_ea7d1c1c",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-23T14:23:01Z",
+      "side": 1,
+      "message": "This makes your implementation of \"Set interfaces in path up\" to skip initializing the secondary interfaces [0]. I think that is NOT what you wanted to achieve.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/28/archives/log.html.gz#s1-s1-s1-s1-s3-t1-k2-k10-k1-k2-k1-k3",
+      "range": {
+        "startLine": 237,
+        "startChar": 4,
+        "endLine": 237,
+        "endChar": 36
+      },
+      "revId": "76f68bbcf823d36466c9bb416ce37c17e775bbce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
