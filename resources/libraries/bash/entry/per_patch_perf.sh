@@ -47,8 +47,9 @@ build_vpp_ubuntu_amd64 "PARENT" || die
 prepare_test_new || die
 ## Replace previous 4 lines with this to speed up testing.
 #download_builds "REPLACE_WITH_URL" || die
-get_test_tag_string || die
+initialize_csit_dirs || die
 get_test_code "${1-}" || die
+get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 activate_virtualenv "${VPP_DIR}" || die
