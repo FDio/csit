@@ -479,25 +479,25 @@ function select_topology () {
     case "${NODENESS}_${FLAVOR}" in
         3n_hsw)
             TOPOLOGIES=(
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         2n_skx)
             TOPOLOGIES=(
-                        "${TOPOLOGIES_DIR}/lf_2n_skx_testbed21.yaml"
-                        #"${TOPOLOGIES_DIR}/lf_2n_skx_testbed22.yaml"
-                        #"${TOPOLOGIES_DIR}/lf_2n_skx_testbed23.yaml"
-                        "${TOPOLOGIES_DIR}/lf_2n_skx_testbed24.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_2n_skx_testbed21.yaml"
+                        ##"${TOPOLOGIES_DIR}/lf_2n_skx_testbed22.yaml"
+                        "${TOPOLOGIES_DIR}/lf_2n_skx_testbed23.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_2n_skx_testbed24.yaml"
                        )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         3n_skx)
             TOPOLOGIES=(
-                        "${TOPOLOGIES_DIR}/lf_3n_skx_testbed31.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_skx_testbed32.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_skx_testbed31.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_skx_testbed32.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
