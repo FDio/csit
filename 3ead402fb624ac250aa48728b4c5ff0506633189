@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59c868aa_c2f4ee71",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T12:44:18Z",
+      "side": 1,
+      "message": "Currently only 1c to see the duration",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 339,
+        "endChar": 42
+      },
+      "revId": "3ead402fb624ac250aa48728b4c5ff0506633189",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
