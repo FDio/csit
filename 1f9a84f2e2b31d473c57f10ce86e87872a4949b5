@@ -1,0 +1,302 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11fde6f2_81881532",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "So it is not working?",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 46
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8afa0bd4_56559a28",
+        "filename": "resources/libraries/bash/fragment/check_download_dir.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Do we really need this in separate file?",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f021f0b_0e9a7e0b",
+        "filename": "resources/libraries/bash/fragment/cleanup_testbed.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "What is the reason of doing it twice?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 22
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f24716ce_547c02d3",
+        "filename": "resources/libraries/bash/fragment/common_dirs.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "What is the reason of doing it twice?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 22
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d435be43_6724255b",
+        "filename": "resources/libraries/bash/fragment/common_dirs.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Can we name it with something more uniform? What if we rename dir? Apart that it is function.",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce490ef9_c68c0501",
+        "filename": "resources/libraries/bash/fragment/common_functions.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "What is the reason to have it there again?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 20
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe338f4b_8fe6e2d0",
+        "filename": "resources/libraries/bash/fragment/common_functions.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Typo",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6a6e6c1_3179529b",
+        "filename": "resources/libraries/bash/fragment/compose_pybot_arguments.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Do we need it in 2lines?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86c43778_be70b283",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "copy",
+      "range": {
+        "startLine": 16,
+        "startChar": 9,
+        "endLine": 16,
+        "endChar": 20
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "764694bc_bf1831e7",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Copy failed",
+      "range": {
+        "startLine": 35,
+        "startChar": 68,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cdbfde98_f1c21b76",
+        "filename": "resources/libraries/bash/fragment/fail_fast.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "What is the point of this file?",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7128a10d_afdf6035",
+        "filename": "resources/libraries/bash/fragment/perpatch/select_perpatch_tags.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Why this cannot be merged with other tags selection \"fragment\"",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "658381bd_d59967ca",
+        "filename": "resources/libraries/bash/fragment/perpatch/set_vpp_dir.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Why is this separated file?",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75be8157_e00b73de",
+        "filename": "resources/libraries/bash/fragment/select_topology.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-24T17:12:53Z",
+      "side": 1,
+      "message": "Fallback to 3n-skx",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 10
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
