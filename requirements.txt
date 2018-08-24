@@ -1,3 +1,37 @@
+# DISCLAIMER: BEFORE EDITING THIS FILE!
+#
+# This file has two closely related consequences.
+# The common part is that this file defines
+# the content of virtual Python environment
+# used when Robot tests are running.
+# The difference is in which machine the environment is created on.
+# For the Jenkins executor machines,
+# editing this file has no surprising consequences.
+#
+# But the environment is also being created
+# on virtual machines created by VIRL, which do have specific restrictions.
+# Complete package and setting snapshot (for both VIRL and Physical Testbed),
+# with network being limited in case of VIRL to local only.
+# This implies pip currently being set to site-packages only
+# for both VIRL and Physical Testbed.
+# So if the "virl image" applied on the machine
+# does not reflect the edits, some installations might fail.
+# Even if the failure may not directly impact execution,
+# this leads into inconsistency between installed environment
+# and the code base which may lead into fatal error or uncaught exceptions.
+#
+# The "virl image" is built from files such as
+# resources/tools/disk-image-builder/ubuntu/lists/ubuntu-16.04.1_2017-10-21_2.0/pip-requirements.txt
+# but the build is not automated,
+# the new "virl image" has to be built and applied manually
+# before your edit can pass.
+# This also means, incompatible virl images
+# would make existing tests fail until your edit is merged.
+#
+# TODO: Automate the virtualenv download and distribution
+#   on all types of testbeds prior the test execution.
+# TODO: Figure out a way to verify edits to this file automatically.
+
 robotframework==2.9.2
 paramiko==1.16.0
 scp==0.10.2
