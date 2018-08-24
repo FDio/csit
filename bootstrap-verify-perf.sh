@@ -335,14 +335,10 @@ EXCLUDE_NICS=($(comm -13 <(printf '%s\n' "${TOPOLOGY_NICS[@]}") <(printf '%s\n' 
 case "$TEST_CODE" in
     # Select specific performance tests based on jenkins job type variable.
     *ndrpdr-weekly* )
-        TEST_TAG_ARRAY=(ndrpdrANDnic_intel-x520-da2AND1c
-                        ndrpdrANDnic_intel-x520-da2AND2c
-                        ndrpdrAND1cANDipsec
-                        ndrpdrAND2cANDipsec)
+        TEST_TAG_ARRAY=(ndrpdrAND64bAND1c
+                        ndrpdrAND78bAND1c)
         ;;
-    *ndrpdr-timed* )
-        ;;
-    *mrr-daily* )
+    *mrr-daily* | *mrr-weekly* )
         TEST_TAG_ARRAY=(mrrAND64bAND1c
                         mrrAND64bAND2c
                         mrrAND64bAND4c
