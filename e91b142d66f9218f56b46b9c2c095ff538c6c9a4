@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "323d5cdf_252e096b",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:19:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00305f9c_5a92dff5",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 30
+      },
+      "revId": "e91b142d66f9218f56b46b9c2c095ff538c6c9a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "386c98ee_e591c03c",
         "filename": "requirements.txt",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-03T05:50:33Z",
       "side": 1,
       "message": "remove,",
+      "range": {
+        "startLine": 8,
+        "startChar": 37,
+        "endLine": 8,
+        "endChar": 72
+      },
+      "revId": "e91b142d66f9218f56b46b9c2c095ff538c6c9a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a8ef753_0d8bcd98",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:19:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "386c98ee_e591c03c",
       "range": {
         "startLine": 8,
         "startChar": 37,
@@ -94,6 +142,54 @@
     },
     {
       "key": {
+        "uuid": "a24f457b_5d3b19a7",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:19:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "827598ba_120cb4ed",
+      "range": {
+        "startLine": 13,
+        "startChar": 30,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "e91b142d66f9218f56b46b9c2c095ff538c6c9a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aec7cf93_b91f2329",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:19:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "893812cf_7a7b5cc7",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "e91b142d66f9218f56b46b9c2c095ff538c6c9a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3041799_54b1753e",
         "filename": "requirements.txt",
         "patchSetId": 5
@@ -105,6 +201,30 @@
       "writtenOn": "2018-07-03T05:50:33Z",
       "side": 1,
       "message": "Not true i think.\n\nThe failure means that package was not installed thus is missing in time of execution (unfortunately python does not have pre-checks). Maybe rephrase to:\n\nEven if the failure may not directly impact execution, this leads into inconsistency between installed environmetn and the code base which may lead into fatal error or uncaught exceptions.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 43
+      },
+      "revId": "e91b142d66f9218f56b46b9c2c095ff538c6c9a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "324e3b2c_160e4b5c",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:19:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3041799_54b1753e",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "75b0656e_af36fe2b",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:19:55Z",
+      "side": 1,
+      "message": "Done (without the \"in case of change\" part, to not restrict the implementation).",
+      "parentUuid": "e96c4a40_daed0256",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "e91b142d66f9218f56b46b9c2c095ff538c6c9a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71110f32_7f0bfc38",
         "filename": "requirements.txt",
         "patchSetId": 5
@@ -151,6 +295,30 @@
       "writtenOn": "2018-07-03T05:50:33Z",
       "side": 1,
       "message": "I think it can be covered by above. The point is to have all TB (VIRL, PHY, VPP_PATH) threat same to minimize the effort?",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 29,
+        "endChar": 68
+      },
+      "revId": "e91b142d66f9218f56b46b9c2c095ff538c6c9a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "641bcbf8_ebaf0e4d",
+        "filename": "requirements.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:19:55Z",
+      "side": 1,
+      "message": "Done (by removing, as the previous TODO now says \"on all Testbed\").",
+      "parentUuid": "71110f32_7f0bfc38",
       "range": {
         "startLine": 29,
         "startChar": 8,
