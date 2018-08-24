@@ -22,6 +22,30 @@
       "revId": "01106272fdc1cbf97d80a55fe757248cfea7829c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18bb9f7c_1f715d32",
+        "filename": "requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T16:37:44Z",
+      "side": 1,
+      "message": "Locally I had an edit fixing some of old and new warnings, but it no longer rebases without manual help. But seems low priority right now.",
+      "parentUuid": "02d24f17_b7325739",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "01106272fdc1cbf97d80a55fe757248cfea7829c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
