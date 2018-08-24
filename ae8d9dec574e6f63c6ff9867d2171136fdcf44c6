@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfc3c24b_230095ab",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-24T10:41:24Z",
+      "side": 1,
+      "message": "Assuming CSIT repo has at least one tag:\n\ngit describe `git log -n 1 --pretty\u003dformat:%H {path_to_Dockerfile}`",
+      "range": {
+        "startLine": 153,
+        "startChar": 18,
+        "endLine": 153,
+        "endChar": 42
+      },
+      "revId": "ae8d9dec574e6f63c6ff9867d2171136fdcf44c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
