@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "944489b1_67763793",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T11:02:33Z",
+      "side": 1,
+      "message": "Interesting, I did not know we had assymetric setups. Offered load is still symmetric (as far as I can see), so we could compare receive rates in the two directions.",
+      "range": {
+        "startLine": 1226,
+        "startChar": 69,
+        "endLine": 1226,
+        "endChar": 73
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aca64106_2b3a8886",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 2545,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T11:02:33Z",
+      "side": 1,
+      "message": "Assymetric configurations seem to be more frequent than it looks.",
+      "range": {
+        "startLine": 2545,
+        "startChar": 10,
+        "endLine": 2545,
+        "endChar": 17
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4edd40e2_be026524",
         "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
         "patchSetId": 12
@@ -18,6 +64,29 @@
         "startChar": 19,
         "endLine": 1,
         "endChar": 20
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e1b427d_c2486497",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T11:02:33Z",
+      "side": 1,
+      "message": "Spaces around the dash please.",
+      "range": {
+        "startLine": 27,
+        "startChar": 39,
+        "endLine": 27,
+        "endChar": 40
       },
       "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
