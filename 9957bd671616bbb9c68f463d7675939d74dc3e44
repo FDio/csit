@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7de490b_2d22989f",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T10:42:10Z",
+      "side": 1,
+      "message": "Maybe food for thought: This can be optimized to detect if variable dut2 is set (so you do not need to detect number) and you will be able to save parameter in title?",
+      "range": {
+        "startLine": 498,
+        "startChar": 0,
+        "endLine": 504,
+        "endChar": 64
+      },
+      "revId": "9957bd671616bbb9c68f463d7675939d74dc3e44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
