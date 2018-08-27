@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40bc7ab2_ec7bf635",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T17:13:14Z",
+      "side": 1,
+      "message": "Oh, no duplication this time. Nice.",
+      "range": {
+        "startLine": 36,
+        "startChar": 10,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "e81a241e703dabcb75dc02e789f6a4b8138017fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
