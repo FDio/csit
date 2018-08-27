@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd870c0c_86efc508",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T16:51:08Z",
+      "side": 1,
+      "message": "I would add:\n| | ${dut2_exists}\u003d | Set Variable If | \u0027${dut2_status}\u0027 \u003d\u003d \u0027PASS\u0027\n| | ... | ${True} | ${False}\n\nThat way most conditionals would look like this:\n| | ... | Run Keyword If | ${dut2_exists} | Handle Dut2\n\nIdeally, we can change suite setups (all of them) to set ${dut2_exists} as a suite variable.\nOr, in a fashion similar to [2], set ${dut2_exists} in suite Variables table, and make suite setup (and test seup and test template) read that (instead of writing the number into keyword name or argument).\n\nOf course, such \"API\" changes are better to be done in a separate Change.\n\n[2] https://jira.fd.io/browse/CSIT-1202",
+      "range": {
+        "startLine": 138,
+        "startChar": 40,
+        "endLine": 138,
+        "endChar": 41
+      },
+      "revId": "bd31ca612897699e6b5f50245d65ca769896e5bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e72b0819_af583a55",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T16:51:08Z",
+      "side": 1,
+      "message": "If the condition is not satisfied, ${dut1_if2_mac} variable is still created, just with value of ${None}.\n\nNothing wrong with that, it is just harder to follow for readers (when compared to having 2n and 3n keywords doing all the work and one Run Keyword If to choose which one to execute).",
+      "range": {
+        "startLine": 144,
+        "startChar": 23,
+        "endLine": 144,
+        "endChar": 37
+      },
+      "revId": "bd31ca612897699e6b5f50245d65ca769896e5bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0674329c_8a9084e6",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T16:51:08Z",
+      "side": 1,
+      "message": "Set Variable If would definitely be more readable here...",
+      "range": {
+        "startLine": 154,
+        "startChar": 14,
+        "endLine": 154,
+        "endChar": 28
+      },
+      "revId": "bd31ca612897699e6b5f50245d65ca769896e5bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac72664c_efb6c244",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T16:51:08Z",
+      "side": 1,
+      "message": "... and here. (Also in other keywords.)",
+      "range": {
+        "startLine": 157,
+        "startChar": 18,
+        "endLine": 157,
+        "endChar": 32
+      },
+      "revId": "bd31ca612897699e6b5f50245d65ca769896e5bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
