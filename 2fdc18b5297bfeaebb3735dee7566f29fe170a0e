@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03c007e5_3bbb29ab",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T08:37:16Z",
+      "side": 1,
+      "message": "Why is PTL listed twice (once here, once in lines 57-61)?",
+      "range": {
+        "startLine": 36,
+        "startChar": 10,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "2fdc18b5297bfeaebb3735dee7566f29fe170a0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
