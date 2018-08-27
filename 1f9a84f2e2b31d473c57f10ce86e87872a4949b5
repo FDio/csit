@@ -225,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "542701a8_67540941",
+        "filename": "resources/libraries/bash/fragment/common_dirs.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T16:19:07Z",
+      "side": 1,
+      "message": "Currently (patch #88) this variable is called BASH_FUNCTION_DIR.",
+      "parentUuid": "382cf0f0_78a644f1",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa6a19b8_cc62ba32",
         "filename": "resources/libraries/bash/fragment/common_functions.sh",
         "patchSetId": 78
