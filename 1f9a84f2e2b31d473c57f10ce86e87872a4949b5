@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80d73c4d_227c4413",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "I am unable to test on Sandbox (it cannot push to logs.fd.io). I think it would work, but the TODO is there to make sure.",
+      "parentUuid": "11fde6f2_81881532",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 46
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8afa0bd4_56559a28",
         "filename": "resources/libraries/bash/fragment/check_download_dir.sh",
         "patchSetId": 78
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "5e2cf537_3db03ebc",
+        "filename": "resources/libraries/bash/fragment/check_download_dir.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "In entry script, (almost) everything is a function call, so I think even oneliners like this are more readable as function calls.",
+      "parentUuid": "8afa0bd4_56559a28",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f021f0b_0e9a7e0b",
         "filename": "resources/libraries/bash/fragment/cleanup_testbed.sh",
         "patchSetId": 78
@@ -53,6 +95,30 @@
       "writtenOn": "2018-08-24T17:12:53Z",
       "side": 1,
       "message": "What is the reason of doing it twice?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 22
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0fe3cd53_ba485b15",
+        "filename": "resources/libraries/bash/fragment/cleanup_testbed.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "The first set is called when sourcing, the second when calling the function. But I guess in simple files (with no dependency sourcing) the first set is not essential.",
+      "parentUuid": "5f021f0b_0e9a7e0b",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "28dab56a_16c826e1",
+        "filename": "resources/libraries/bash/fragment/common_dirs.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "The point of this function is to detect and store paths in variables. We can rename both (relative) paths and variable names independently (although keeping them synced is better for readability).\n\nI am not sure what do you mean by \"more uniform\" and \"it is function\".",
+      "parentUuid": "d435be43_6724255b",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce490ef9_c68c0501",
         "filename": "resources/libraries/bash/fragment/common_functions.sh",
         "patchSetId": 78
@@ -122,6 +212,30 @@
       "writtenOn": "2018-08-24T17:12:53Z",
       "side": 1,
       "message": "What is the reason to have it there again?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 20
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91d0cc87_e5cefd68",
+        "filename": "resources/libraries/bash/fragment/common_functions.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "It is a trap function, we have no idea where it will be called from.\n\nIf we have a block with \"set +x\" (to avoid spam from commands with long lists of arguments, for example), we still want to switch to \"set -x\" so people see the teardown has been execuded (or aborted mid-execution, as can happend when Jenkins job is manually aborted).",
+      "parentUuid": "ce490ef9_c68c0501",
       "range": {
         "startLine": 42,
         "startChar": 0,
@@ -157,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "7a3b80f1_467582ee",
+        "filename": "resources/libraries/bash/fragment/common_functions.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "Will be fixed in next patch.",
+      "parentUuid": "fe338f4b_8fe6e2d0",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6a6e6c1_3179529b",
         "filename": "resources/libraries/bash/fragment/compose_pybot_arguments.sh",
         "patchSetId": 78
@@ -168,6 +306,30 @@
       "writtenOn": "2018-08-24T17:12:53Z",
       "side": 1,
       "message": "Do we need it in 2lines?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a28d60dd_3f367ab5",
+        "filename": "resources/libraries/bash/fragment/compose_pybot_arguments.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "If we want each line to fit in 80 characters, yes (unless WORKING_TOPOLOGY is renamed to something shorter).",
+      "parentUuid": "e6a6e6c1_3179529b",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -203,6 +365,30 @@
     },
     {
       "key": {
+        "uuid": "1013cfa4_0f6a5b5d",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "Ok, renamed in next patch.",
+      "parentUuid": "86c43778_be70b283",
+      "range": {
+        "startLine": 16,
+        "startChar": 9,
+        "endLine": 16,
+        "endChar": 20
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "764694bc_bf1831e7",
         "filename": "resources/libraries/bash/fragment/cp_archives.sh",
         "patchSetId": 78
@@ -214,6 +400,30 @@
       "writtenOn": "2018-08-24T17:12:53Z",
       "side": 1,
       "message": "Copy failed",
+      "range": {
+        "startLine": 35,
+        "startChar": 68,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a46bd63_4c133a0a",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "Yeah, I decided mainly on line length considerations, but renamed in next patch.",
+      "parentUuid": "764694bc_bf1831e7",
       "range": {
         "startLine": 35,
         "startChar": 68,
@@ -243,6 +453,24 @@
     },
     {
       "key": {
+        "uuid": "d876e42a_d7499f01",
+        "filename": "resources/libraries/bash/fragment/fail_fast.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "To make per-patch script exit early, without bash condition breaking the rythm of function calls in entry script.",
+      "parentUuid": "cdbfde98_f1c21b76",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7128a10d_afdf6035",
         "filename": "resources/libraries/bash/fragment/perpatch/select_perpatch_tags.sh",
         "patchSetId": 78
@@ -254,6 +482,24 @@
       "writtenOn": "2018-08-24T17:12:53Z",
       "side": 1,
       "message": "Why this cannot be merged with other tags selection \"fragment\"",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ff47440_07a12e75",
+        "filename": "resources/libraries/bash/fragment/perpatch/select_perpatch_tags.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "My plan was to do that when adding support for tags from gerrit comments. But looking at it now, the difference is not that big. I can try in later patch.",
+      "parentUuid": "7128a10d_afdf6035",
       "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -277,6 +523,24 @@
     },
     {
       "key": {
+        "uuid": "f8596950_9af01b6f",
+        "filename": "resources/libraries/bash/fragment/perpatch/set_vpp_dir.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "Per patch is pretty much the only job which has VPP dir, and one level above CSIT dir. In other jobs (for example a csit-vpp job for testing older VPP builds no longer available in Nexus) it could be the other way around.\n\nFunction renamed in next patch.",
+      "parentUuid": "658381bd_d59967ca",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75be8157_e00b73de",
         "filename": "resources/libraries/bash/fragment/select_topology.sh",
         "patchSetId": 78
@@ -288,6 +552,30 @@
       "writtenOn": "2018-08-24T17:12:53Z",
       "side": 1,
       "message": "Fallback to 3n-skx",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 10
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "202e42ea_f87c2d86",
+        "filename": "resources/libraries/bash/fragment/select_topology.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:43:05Z",
+      "side": 1,
+      "message": "No. The fallback should have been performed by get_test_code already. If that did not happen, something is wrong and we should abort.",
+      "parentUuid": "75be8157_e00b73de",
       "range": {
         "startLine": 59,
         "startChar": 0,
