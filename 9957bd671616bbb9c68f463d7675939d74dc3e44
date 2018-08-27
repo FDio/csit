@@ -22,6 +22,30 @@
       "revId": "9957bd671616bbb9c68f463d7675939d74dc3e44",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca40d5f3_8ed0ab0f",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T11:24:03Z",
+      "side": 1,
+      "message": "Good idea. Opened [1] with few more details.\n\n[1] https://jira.fd.io/browse/CSIT-1258",
+      "parentUuid": "b7de490b_2d22989f",
+      "range": {
+        "startLine": 498,
+        "startChar": 0,
+        "endLine": 504,
+        "endChar": 64
+      },
+      "revId": "9957bd671616bbb9c68f463d7675939d74dc3e44",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
