@@ -295,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "3faebc93_d5a1f792",
+        "filename": "resources/libraries/bash/fragment/common_functions.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:48:54Z",
+      "side": 1,
+      "message": "Done in #79.",
+      "parentUuid": "7a3b80f1_467582ee",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6a6e6c1_3179529b",
         "filename": "resources/libraries/bash/fragment/compose_pybot_arguments.sh",
         "patchSetId": 78
@@ -389,6 +413,30 @@
     },
     {
       "key": {
+        "uuid": "eb70bbbd_700fddeb",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:48:54Z",
+      "side": 1,
+      "message": "Done in #79.",
+      "parentUuid": "1013cfa4_0f6a5b5d",
+      "range": {
+        "startLine": 16,
+        "startChar": 9,
+        "endLine": 16,
+        "endChar": 20
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "764694bc_bf1831e7",
         "filename": "resources/libraries/bash/fragment/cp_archives.sh",
         "patchSetId": 78
@@ -424,6 +472,30 @@
       "side": 1,
       "message": "Yeah, I decided mainly on line length considerations, but renamed in next patch.",
       "parentUuid": "764694bc_bf1831e7",
+      "range": {
+        "startLine": 35,
+        "startChar": 68,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1093395_1fb603d9",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:48:54Z",
+      "side": 1,
+      "message": "Done in #79.",
+      "parentUuid": "5a46bd63_4c133a0a",
       "range": {
         "startLine": 35,
         "startChar": 68,
@@ -535,6 +607,24 @@
       "side": 1,
       "message": "Per patch is pretty much the only job which has VPP dir, and one level above CSIT dir. In other jobs (for example a csit-vpp job for testing older VPP builds no longer available in Nexus) it could be the other way around.\n\nFunction renamed in next patch.",
       "parentUuid": "658381bd_d59967ca",
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26154437_93d32585",
+        "filename": "resources/libraries/bash/fragment/perpatch/set_vpp_dir.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T12:48:54Z",
+      "side": 1,
+      "message": "Renamed in #79.",
+      "parentUuid": "f8596950_9af01b6f",
       "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
