@@ -272,6 +272,30 @@
     },
     {
       "key": {
+        "uuid": "70fc6f89_cf7d2f1e",
+        "filename": "resources/libraries/bash/fragment/common_functions.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T16:27:02Z",
+      "side": 1,
+      "message": "That depends on line 44 TODO.\nMeaning I prefer just \"unreserve_testbed\".",
+      "parentUuid": "fa6a19b8_cc62ba32",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce490ef9_c68c0501",
         "filename": "resources/libraries/bash/fragment/common_functions.sh",
         "patchSetId": 78
@@ -591,6 +615,30 @@
       "side": 1,
       "message": "I think 80 for bash is hard to achieve, maybe ditch?",
       "parentUuid": "5a46bd63_4c133a0a",
+      "range": {
+        "startLine": 35,
+        "startChar": 68,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfedc8b7_5db8c292",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-27T16:27:02Z",
+      "side": 1,
+      "message": "I think it is about as hard to achieve as in Python.\nYou need to learn few tricks that work, and it is suddenly easy.\n\nLearning few bash tricks is a fixed investment. Having the code more readable is continuous profit.",
+      "parentUuid": "7ead72fe_dfddc1ed",
       "range": {
         "startLine": 35,
         "startChar": 68,
