@@ -45,6 +45,46 @@
       "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f65ecc3_64b1ae75",
+        "filename": "tests/vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T10:48:15Z",
+      "side": 1,
+      "message": "no \\",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bc0de8a_cf9a2917",
+        "filename": "tests/vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T10:48:15Z",
+      "side": 1,
+      "message": "\\ + rest of line except line 47.",
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
