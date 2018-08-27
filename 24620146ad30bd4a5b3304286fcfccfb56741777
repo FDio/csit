@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4edd40e2_be026524",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T10:42:10Z",
+      "side": 1,
+      "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97c1ae00_2bf890e4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-1u1p.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T10:42:10Z",
+      "side": 1,
+      "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
