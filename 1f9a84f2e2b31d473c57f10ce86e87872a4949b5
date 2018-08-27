@@ -201,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "382cf0f0_78a644f1",
+        "filename": "resources/libraries/bash/fragment/common_dirs.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T14:22:36Z",
+      "side": 1,
+      "message": "talking about BASH_FRAGMENT_DIR, so maybe SCRIPT_DIR or simply SOURCE_DIR? Cause \"fragment\" is more like if we rename it to bash/library/ ? Or anything else",
+      "parentUuid": "28dab56a_16c826e1",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce490ef9_c68c0501",
         "filename": "resources/libraries/bash/fragment/common_functions.sh",
         "patchSetId": 78
@@ -508,6 +532,30 @@
     },
     {
       "key": {
+        "uuid": "7ead72fe_dfddc1ed",
+        "filename": "resources/libraries/bash/fragment/cp_archives.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T14:22:36Z",
+      "side": 1,
+      "message": "I think 80 for bash is hard to achieve, maybe ditch?",
+      "parentUuid": "5a46bd63_4c133a0a",
+      "range": {
+        "startLine": 35,
+        "startChar": 68,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdbfde98_f1c21b76",
         "filename": "resources/libraries/bash/fragment/fail_fast.sh",
         "patchSetId": 78
@@ -666,6 +714,30 @@
       "side": 1,
       "message": "No. The fallback should have been performed by get_test_code already. If that did not happen, something is wrong and we should abort.",
       "parentUuid": "75be8157_e00b73de",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 10
+      },
+      "revId": "1f9a84f2e2b31d473c57f10ce86e87872a4949b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab57d965_06a25188",
+        "filename": "resources/libraries/bash/fragment/select_topology.sh",
+        "patchSetId": 78
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-27T14:22:36Z",
+      "side": 1,
+      "message": "Ack. The only reason is that some jobs are not yet converted so they will fail. But fine to have it above",
+      "parentUuid": "202e42ea_f87c2d86",
       "range": {
         "startLine": 59,
         "startChar": 0,
