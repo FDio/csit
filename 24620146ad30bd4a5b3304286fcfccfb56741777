@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "97285d0d_0130ec9f",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 2545,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-27T14:30:10Z",
+      "side": 1,
+      "message": "Yes, in case of 3-node topology the assymetric configuration is used in\n- ACL\n- NAT44\n- SRv6\n\nperformance tests.",
+      "parentUuid": "aca64106_2b3a8886",
+      "range": {
+        "startLine": 2545,
+        "startChar": 10,
+        "endLine": 2545,
+        "endChar": 17
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4edd40e2_be026524",
         "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
         "patchSetId": 12
@@ -59,6 +83,30 @@
       "writtenOn": "2018-08-27T10:42:10Z",
       "side": 1,
       "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f3f525d_bf478211",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-27T14:30:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4edd40e2_be026524",
       "range": {
         "startLine": 1,
         "startChar": 19,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "85954ef1_bdd16ea4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-10u1000p-conc.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-27T14:30:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e1b427d_c2486497",
+      "range": {
+        "startLine": 27,
+        "startChar": 39,
+        "endLine": 27,
+        "endChar": 40
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97c1ae00_2bf890e4",
         "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-1u1p.py",
         "patchSetId": 12
@@ -105,6 +177,30 @@
       "writtenOn": "2018-08-27T10:42:10Z",
       "side": 1,
       "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "528c5f73_08e4c4a1",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4udp-1u1p.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-27T14:30:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c1ae00_2bf890e4",
       "range": {
         "startLine": 1,
         "startChar": 19,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "2df7ca3c_ec7baa01",
+        "filename": "tests/vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-27T14:30:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f65ecc3_64b1ae75",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bc0de8a_cf9a2917",
         "filename": "tests/vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.robot",
         "patchSetId": 12
@@ -151,6 +271,24 @@
       "writtenOn": "2018-08-27T10:48:15Z",
       "side": 1,
       "message": "\\ + rest of line except line 47.",
+      "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8c98f5c_5fd961b2",
+        "filename": "tests/vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-27T14:30:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bc0de8a_cf9a2917",
       "revId": "24620146ad30bd4a5b3304286fcfccfb56741777",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
