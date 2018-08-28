@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aed066ed_3f485d7d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 93
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T17:15:32Z",
+      "side": 1,
+      "message": "The next patch is probably over-reaction, but looks safer now. :)",
+      "range": {
+        "startLine": 314,
+        "startChar": 22,
+        "endLine": 314,
+        "endChar": 32
+      },
+      "revId": "bc2bc34fadfab6b7b41c2db50429dc261cfe037f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
