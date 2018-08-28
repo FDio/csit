@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "851e9900_1fe53a90",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T19:31:16Z",
+      "side": 1,
+      "message": "File naming: per-patch what? Func, vpp-device, perf? Need clever naming to follow scheme here, or we will be lost. As per patch is also func",
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dacc5270_34d3d517",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 95
