@@ -495,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "e0c621b5_368e84f3",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:58:24Z",
+      "side": 1,
+      "message": "Actually, I would like more opinions on recommended error messages. Should they be specific? Or is die without arguments an acceptable default, unless the contributor has an idea what exactly might be happening?",
+      "parentUuid": "e404d631_ff125c94",
+      "range": {
+        "startLine": 205,
+        "startChar": 42,
+        "endLine": 205,
+        "endChar": 45
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2633e3fa_41129189",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 89
