@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c00fe9c6_18befe9e",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "Similar to below comment",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 66
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5bd52c4c_654b18ee",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "I would leave the error handling to functions. Assume that sourcing is working and handled above. Thus what can happen? You will not be able to catch this error due to functions prematurely quits due to to -e or exits. Remove entirely",
+      "range": {
+        "startLine": 35,
+        "startChar": 11,
+        "endLine": 35,
+        "endChar": 44
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7139847_e910548c",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "remove. This is trapped. Q: What will happen if you unreserve and trap unreserve again? That is race condition.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 50
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a685e5d_50c17000",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "The only safe would be in-source it to every script. So either source it or remove ToDo.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8f5e177_ad79d8a5",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "Something like \"Run-time Error occurred.\" So put it there is remove todo.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "831b8577_312a6881",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "perf_cancel_all",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 19
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2633e3fa_41129189",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "Too generic name. Rename to something related to pybot. What if i want to reuse \"fail_fast\". Or mayby use DIE function?",
+      "range": {
+        "startLine": 225,
+        "startChar": 9,
+        "endLine": 225,
+        "endChar": 18
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "864b1fed_9cb3b075",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "TEST_TAG_ARRAY/test_tag_array was this code even tested? How does this work?",
+      "range": {
+        "startLine": 424,
+        "startChar": 12,
+        "endLine": 424,
+        "endChar": 26
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4b050d3_a66089d7",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T06:46:35Z",
+      "side": 1,
+      "message": "Please DO similarly to gather build. As ligato can also by per patch (same is honeycomb and nsh_sfc and others)",
+      "range": {
+        "startLine": 320,
+        "startChar": 4,
+        "endLine": 320,
+        "endChar": 79
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
