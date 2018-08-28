@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "74f2fbd8_787ac7df",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Ok, will do.",
+      "parentUuid": "c3230177_dfb8319b",
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c00fe9c6_18befe9e",
         "filename": "resources/libraries/bash/entry/bootstrap.sh",
         "patchSetId": 89
@@ -65,6 +83,53 @@
     },
     {
       "key": {
+        "uuid": "a45b26c4_23208cd1",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "\u003e leave the error handling to functions\n\nThat assumes the function is even started correctly (no typo or incomplete rename). But I guess bash error message is clear enough, and \"set -e\" will abort this entry script anyway.\n\n\u003e functions prematurely quits due to to -e or exits\n\nIf the function calls its die, this die is not executed. But if the function returns on \"set -e\" finding an unguarded error, this die is executed. But once again, we can hope the default bash message is no worse than this generic die message.\n\nOn the other hand, there are cases when there is no default bash message (e.g. subshell command at the end of the function), when even this generic message is better than just an abrupt end of execution.\n\nNote that I want to agree, in earlier patches I relied on \"set -e\" exclusively. But you have convinced me it is not safe enough.",
+      "parentUuid": "5bd52c4c_654b18ee",
+      "range": {
+        "startLine": 35,
+        "startChar": 11,
+        "endLine": 35,
+        "endChar": 44
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d462e7d_f588ba1b",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "No longer need to be explicit arguments, will rework.",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 41
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7139847_e910548c",
         "filename": "resources/libraries/bash/entry/bootstrap.sh",
         "patchSetId": 89
@@ -76,6 +141,30 @@
       "writtenOn": "2018-08-28T06:46:35Z",
       "side": 1,
       "message": "remove. This is trapped. Q: What will happen if you unreserve and trap unreserve again? That is race condition.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 50
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "debf26fb_232a91bd",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Unreserve currently removes the trap first (tolerating error), then calls cancel_all. So no race condition.\n\nI agree that leaving unreservation for trap is simpler, but in future we might have heavier (than just copy_archive) post-processing that does not need testbed access.",
+      "parentUuid": "e7139847_e910548c",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -105,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "089afbad_6c4a117e",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "This is building 2 different VPP builds, perf-testing them both (juggling artifacts and logs around), parsing the results and classifying anomalies.\n\nSee patch #71 lines 33-36 for a FIXME, I deleted it because I found it hopeless to define a reasonable bootstrap API to allow for all of that.",
+      "parentUuid": "b00e8f21_627439b0",
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a685e5d_50c17000",
         "filename": "resources/libraries/bash/entry/per_patch.sh",
         "patchSetId": 89
@@ -116,6 +223,30 @@
       "writtenOn": "2018-08-28T06:46:35Z",
       "side": 1,
       "message": "The only safe would be in-source it to every script. So either source it or remove ToDo.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db192fa7_0296871f",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Line 36 is sourcing it, hence the catch-22 situation. We only call die if almost surely the die ends up not being defined properly.\n\nI guess replacing die with block of echo and exit would be the proper fix for that line.",
+      "parentUuid": "2a685e5d_50c17000",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -151,6 +282,53 @@
     },
     {
       "key": {
+        "uuid": "08d3e1d5_659c1eaf",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Ok, will do.\nI noticed \"1\" is almost always used as the exit code, so made that default.",
+      "parentUuid": "b8f5e177_ad79d8a5",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9864ea2a_ac6922d7",
+        "filename": "resources/libraries/bash/function/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Hmm, perhaps I can implement this anyway. Not sure, and possibly not in this Change.",
+      "range": {
+        "startLine": 57,
+        "startChar": 7,
+        "endLine": 57,
+        "endChar": 11
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "831b8577_312a6881",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 89
@@ -162,6 +340,30 @@
       "writtenOn": "2018-08-28T06:46:35Z",
       "side": 1,
       "message": "perf_cancel_all",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 19
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33e155e4_07136026",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Going to use unreserve_testbed directly.",
+      "parentUuid": "831b8577_312a6881",
       "range": {
         "startLine": 61,
         "startChar": 9,
@@ -197,6 +399,30 @@
     },
     {
       "key": {
+        "uuid": "e404d631_ff125c94",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Hmm, I can try that in a second next patch.",
+      "parentUuid": "0ec3dcca_eb147bb6",
+      "range": {
+        "startLine": 205,
+        "startChar": 42,
+        "endLine": 205,
+        "endChar": 45
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2633e3fa_41129189",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 89
@@ -208,6 +434,30 @@
       "writtenOn": "2018-08-28T06:46:35Z",
       "side": 1,
       "message": "Too generic name. Rename to something related to pybot. What if i want to reuse \"fail_fast\". Or mayby use DIE function?",
+      "range": {
+        "startLine": 225,
+        "startChar": 9,
+        "endLine": 225,
+        "endChar": 18
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e2f1105_3eac9d6a",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Renamed to die_on_pybot_error.",
+      "parentUuid": "2633e3fa_41129189",
       "range": {
         "startLine": 225,
         "startChar": 9,
@@ -243,6 +493,53 @@
     },
     {
       "key": {
+        "uuid": "34e737a9_bbdef8a1",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Oh, copy\u0026paste from recent bootstrap enhancement with not enough editing. Will fix.",
+      "parentUuid": "864b1fed_9cb3b075",
+      "range": {
+        "startLine": 424,
+        "startChar": 12,
+        "endLine": 424,
+        "endChar": 26
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c20790a_8b4111e0",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "Also this should be lowercase.",
+      "range": {
+        "startLine": 466,
+        "startChar": 8,
+        "endLine": 466,
+        "endChar": 11
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c9157be_bebf0f9a",
         "filename": "resources/libraries/bash/function/per_patch.sh",
         "patchSetId": 89
@@ -266,6 +563,30 @@
     },
     {
       "key": {
+        "uuid": "e94dd1f1_1597d93a",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "I will expand the comment to explain why simpler solutions do not work.",
+      "parentUuid": "0c9157be_bebf0f9a",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4b050d3_a66089d7",
         "filename": "resources/libraries/bash/function/per_patch.sh",
         "patchSetId": 89
@@ -277,6 +598,30 @@
       "writtenOn": "2018-08-28T06:46:35Z",
       "side": 1,
       "message": "Please DO similarly to gather build. As ligato can also by per patch (same is honeycomb and nsh_sfc and others)",
+      "range": {
+        "startLine": 320,
+        "startChar": 4,
+        "endLine": 320,
+        "endChar": 79
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b61d11c_051e7b46",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:42:14Z",
+      "side": 1,
+      "message": "\u003e honeycomb and nsh_sfc and others\n\nThey would need analogues of build_vpp_ubuntu_amd64 that do not exist yet.\n\n\u003e ligato can also by per patch\n\nThe per VPP patch is handled by job of name starting with vpp-csit-. I do not think we will ever have ligato-csit- jobs.\nPerhaps vpp-ligato-csit- or vpp-csit-ligato some day, but currently I think it is safer to make it explicit that VPP is the only supported DUT. Perhaps I should rename functions and the entry script to include \"vpp\", but I do not think the increased maintenance is worth it.",
+      "parentUuid": "e4b050d3_a66089d7",
       "range": {
         "startLine": 320,
         "startChar": 4,
