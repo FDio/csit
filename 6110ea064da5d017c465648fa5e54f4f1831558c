@@ -243,6 +243,29 @@
     },
     {
       "key": {
+        "uuid": "0c9157be_bebf0f9a",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T09:56:53Z",
+      "side": 1,
+      "message": "I would leave this as it was in original bootstrap. This is speedup optimizations that we need imo. We are consuming vpp approach here and leaving it to their responsibility to deliver building mechanics. It takes 2-3 minutes to build DPDK based on jenkins load. To remove discuss with broader vpp/csit community or Maciek.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4b050d3_a66089d7",
         "filename": "resources/libraries/bash/function/per_patch.sh",
         "patchSetId": 89
