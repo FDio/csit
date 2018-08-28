@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad8a6175_96b0621b",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T18:20:52Z",
+      "side": 1,
+      "message": "I will leave this open and we need to find some solution sooner better (I am now talking purely from past project experience). The test here is simply run it on some dpdk bump patch, if it does work then leave it with this comment.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 74
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
