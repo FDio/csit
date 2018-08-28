@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "875f094e_4a47746e",
+        "filename": "resources/libraries/bash/entry/bootstrap-verify-perf.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T19:25:35Z",
+      "side": 1,
+      "message": "typo, i will let others to comment on this one. Much cleaner is to just rely on default so it will have clean readable look and still be safe",
+      "range": {
+        "startLine": 36,
+        "startChar": 39,
+        "endLine": 36,
+        "endChar": 46
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dacc5270_34d3d517",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T19:25:35Z",
+      "side": 1,
+      "message": "How about \"git rev-parse --git-dir\" ?",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 67
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad8a6175_96b0621b",
         "filename": "resources/libraries/bash/function/per_patch.sh",
         "patchSetId": 95
