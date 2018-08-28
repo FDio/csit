@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "c3230177_dfb8319b",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T09:31:21Z",
+      "side": 1,
+      "message": "filename: bootstrap-verify-perf.sh (to avoid name collisions)",
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c00fe9c6_18befe9e",
         "filename": "resources/libraries/bash/entry/bootstrap.sh",
         "patchSetId": 89
@@ -71,6 +88,23 @@
     },
     {
       "key": {
+        "uuid": "b00e8f21_627439b0",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T09:31:21Z",
+      "side": 1,
+      "message": "Is this perf? Why to have another bootstrap. This is forking code. We can merge and do per patch code just base on test-code.",
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a685e5d_50c17000",
         "filename": "resources/libraries/bash/entry/per_patch.sh",
         "patchSetId": 89
@@ -133,6 +167,29 @@
         "startChar": 9,
         "endLine": 61,
         "endChar": 19
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ec3dcca_eb147bb6",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-28T09:31:21Z",
+      "side": 1,
+      "message": "Often i do see die() on same line based on if it fits 80 chars. Maybe we can put everywhere on separate line?",
+      "range": {
+        "startLine": 205,
+        "startChar": 42,
+        "endLine": 205,
+        "endChar": 45
       },
       "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
