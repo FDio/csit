@@ -22,6 +22,52 @@
       "revId": "e81a241e703dabcb75dc02e789f6a4b8138017fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5a26bcd_835fa42a",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-28T13:00:26Z",
+      "side": 1,
+      "message": "Miroslav has asked for removal of his commiter status - see his e-mail with subject \"Stepping down from the CSIT commiter role\" sent to csit-dev on January 25th, 2017.",
+      "range": {
+        "startLine": 62,
+        "startChar": 3,
+        "endLine": 66,
+        "endChar": 18
+      },
+      "revId": "e81a241e703dabcb75dc02e789f6a4b8138017fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0796d44_29c11972",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-28T13:00:26Z",
+      "side": 1,
+      "message": "Stefan has asked for removal of his commiter status - see his e-mail with subject \"Commiter status removal request\" sent to csit-dev on October 10th, 2017.",
+      "range": {
+        "startLine": 77,
+        "startChar": 3,
+        "endLine": 81,
+        "endChar": 18
+      },
+      "revId": "e81a241e703dabcb75dc02e789f6a4b8138017fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
