@@ -259,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "21c1d2d9_3d715c7b",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:54:39Z",
+      "side": 1,
+      "message": "Done in #91.",
+      "parentUuid": "db192fa7_0296871f",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8f5e177_ad79d8a5",
         "filename": "resources/libraries/bash/entry/per_patch.sh",
         "patchSetId": 89
@@ -294,6 +318,30 @@
       "side": 1,
       "message": "Ok, will do.\nI noticed \"1\" is almost always used as the exit code, so made that default.",
       "parentUuid": "b8f5e177_ad79d8a5",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5227f430_0a6fd60b",
+        "filename": "resources/libraries/bash/entry/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:54:39Z",
+      "side": 1,
+      "message": "Done, TODO message to be updated in #92.",
+      "parentUuid": "08d3e1d5_659c1eaf",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -364,6 +412,30 @@
       "side": 1,
       "message": "Going to use unreserve_testbed directly.",
       "parentUuid": "831b8577_312a6881",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 19
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4b78f58_3835ee90",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:54:39Z",
+      "side": 1,
+      "message": "Done in #90.",
+      "parentUuid": "33e155e4_07136026",
       "range": {
         "startLine": 61,
         "startChar": 9,
@@ -517,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "62668299_d07b99da",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:54:39Z",
+      "side": 1,
+      "message": "Done in #90.",
+      "parentUuid": "34e737a9_bbdef8a1",
+      "range": {
+        "startLine": 424,
+        "startChar": 12,
+        "endLine": 424,
+        "endChar": 26
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c20790a_8b4111e0",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 89
@@ -528,6 +624,30 @@
       "writtenOn": "2018-08-28T14:42:14Z",
       "side": 1,
       "message": "Also this should be lowercase.",
+      "range": {
+        "startLine": 466,
+        "startChar": 8,
+        "endLine": 466,
+        "endChar": 11
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e618ada_fdfc0120",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-28T14:54:39Z",
+      "side": 1,
+      "message": "Done in #90.",
+      "parentUuid": "7c20790a_8b4111e0",
       "range": {
         "startLine": 466,
         "startChar": 8,
