@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9d8dd563_e06b09b9",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-30T08:52:53Z",
+      "side": 1,
+      "message": "Will fix in next iter",
+      "parentUuid": "07cef695_b9bc0d72",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 268,
+        "endChar": 25
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6d24389_d16707b2",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8f792f53_0ad2f13b",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-30T08:52:53Z",
+      "side": 1,
+      "message": "Will fix in next iter",
+      "parentUuid": "a6d24389_d16707b2",
+      "range": {
+        "startLine": 292,
+        "startChar": 8,
+        "endLine": 293,
+        "endChar": 25
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86f2366b_90e06534",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -59,6 +107,30 @@
       "writtenOn": "2018-08-30T08:31:46Z",
       "side": 1,
       "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 332,
+        "startChar": 30,
+        "endLine": 332,
+        "endChar": 51
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09db0c01_740d8008",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-30T08:52:53Z",
+      "side": 1,
+      "message": "exec_cmd_no_error for sure no (i need error handling to be in these functions), but exec_cmd can be used here (i will try to replace in next iter). (same for all above comments)",
+      "parentUuid": "86f2366b_90e06534",
       "range": {
         "startLine": 332,
         "startChar": 30,
