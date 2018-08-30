@@ -212,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "406217f4_d9980d0a",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T11:43:51Z",
+      "side": 1,
+      "message": "Less readable, but I guess the immunity to this file moving into a different level is worth it. Will do.",
+      "parentUuid": "dacc5270_34d3d517",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 67
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b016382_20ef01ff",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 95
