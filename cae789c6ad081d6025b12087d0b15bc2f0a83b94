@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "19c40a83_1e8118bf",
+        "filename": "resources/libraries/bash/function/bootstrap.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T11:30:16Z",
+      "side": 1,
+      "message": "I agree \"bootstrap.sh\" is not a good filename. But I disagree with functions here being only useful for perf tests. The functions mostly download and prepare the code to test, functional tests should use the same functions.\n\nWill rename to \"gather.sh\".",
+      "parentUuid": "b738c161_b5bf8ad2",
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c0b337e_a3435eca",
         "filename": "resources/libraries/bash/function/bootstrap.sh",
         "patchSetId": 95
