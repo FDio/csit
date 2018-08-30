@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07cef695_b9bc0d72",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "Unused?",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 268,
+        "endChar": 25
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6d24389_d16707b2",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "Unused?",
+      "range": {
+        "startLine": 292,
+        "startChar": 8,
+        "endLine": 293,
+        "endChar": 25
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86f2366b_90e06534",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 332,
+        "startChar": 30,
+        "endLine": 332,
+        "endChar": 51
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f33b7ff7_3fa68495",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "ssh.py already defines \"exec_cmd_no_error\" keyword.",
+      "range": {
+        "startLine": 357,
+        "startChar": 34,
+        "endLine": 357,
+        "endChar": 50
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d3906da_6e84618f",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 388,
+        "startChar": 25,
+        "endLine": 388,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "321a9c43_b6e0cc99",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 412,
+        "startChar": 25,
+        "endLine": 412,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aecab43_ed6c5ee6",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "Ok, here reusing SSH instance makes sure all 3 commands are attempted, which maybe is what we want.",
+      "range": {
+        "startLine": 451,
+        "startChar": 11,
+        "endLine": 451,
+        "endChar": 14
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "03076122_cb74c291",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 476,
+        "startChar": 25,
+        "endLine": 476,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a36792c0_2d1c839d",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "Ok, here reusing SSH instance makes sure all 3 commands are attempted, which maybe is what we want.",
+      "range": {
+        "startLine": 522,
+        "startChar": 11,
+        "endLine": 522,
+        "endChar": 14
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eccb4522_12c82bb1",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "ssh.py already defines \"exec_cmd_no_error\" keyword.",
+      "range": {
+        "startLine": 603,
+        "startChar": 25,
+        "endLine": 603,
+        "endChar": 41
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05217300_2f769f4f",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T08:31:46Z",
+      "side": 1,
+      "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 658,
+        "startChar": 25,
+        "endLine": 658,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
