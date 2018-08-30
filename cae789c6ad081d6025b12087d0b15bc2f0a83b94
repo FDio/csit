@@ -374,6 +374,30 @@
       "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "584664b2_7e182035",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T12:18:31Z",
+      "side": 1,
+      "message": "Yeah, package caching would help, but we need to be careful to detect edits such as https://gerrit.fd.io/r/14540",
+      "parentUuid": "ad8a6175_96b0621b",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 74
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
