@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9caef3a7_9246b8ca",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T12:34:51Z",
+      "side": 1,
+      "message": "Done, but (in #96) with underscores instead of dashes.",
+      "parentUuid": "74f2fbd8_787ac7df",
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c00fe9c6_18befe9e",
         "filename": "resources/libraries/bash/entry/bootstrap.sh",
         "patchSetId": 89
@@ -48,6 +66,30 @@
       "writtenOn": "2018-08-28T06:46:35Z",
       "side": 1,
       "message": "Similar to below comment",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 66
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46a4c59e_82f660df",
+        "filename": "resources/libraries/bash/entry/bootstrap.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T12:34:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c00fe9c6_18befe9e",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -711,6 +753,30 @@
     },
     {
       "key": {
+        "uuid": "38af266a_e70678bb",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T12:34:51Z",
+      "side": 1,
+      "message": "Done, see line 20 of #96.",
+      "parentUuid": "c078b2d8_473e428f",
+      "range": {
+        "startLine": 205,
+        "startChar": 42,
+        "endLine": 205,
+        "endChar": 45
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2633e3fa_41129189",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 89
@@ -972,6 +1038,30 @@
     },
     {
       "key": {
+        "uuid": "db3992e8_6e8ca6a9",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T12:34:51Z",
+      "side": 1,
+      "message": "Done in #96.",
+      "parentUuid": "f5eaa00e_b89166cf",
+      "range": {
+        "startLine": 466,
+        "startChar": 8,
+        "endLine": 466,
+        "endChar": 11
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c9157be_bebf0f9a",
         "filename": "resources/libraries/bash/function/per_patch.sh",
         "patchSetId": 89
@@ -1007,6 +1097,30 @@
       "side": 1,
       "message": "I will expand the comment to explain why simpler solutions do not work.",
       "parentUuid": "0c9157be_bebf0f9a",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "6110ea064da5d017c465648fa5e54f4f1831558c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5beb2cb7_538221e3",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 89
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T12:34:51Z",
+      "side": 1,
+      "message": "Done in #95.",
+      "parentUuid": "e94dd1f1_1597d93a",
       "range": {
         "startLine": 45,
         "startChar": 4,
