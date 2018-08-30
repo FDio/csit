@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "5fc48f37_13415f0d",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-30T10:33:45Z",
+      "side": 1,
+      "message": "\u003e need error handling to be in these functions\n\nexec_cmd_no_error raises AssertionError (message includes the cpommand), these functions raise RuntimeError with different message. The easiest solution is to add an optional argument to exec_cmd_no_error with the message to use.",
+      "parentUuid": "09db0c01_740d8008",
+      "range": {
+        "startLine": 332,
+        "startChar": 30,
+        "endLine": 332,
+        "endChar": 51
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f33b7ff7_3fa68495",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
