@@ -198,6 +198,30 @@
     },
     {
       "key": {
+        "uuid": "f54521a1_62299cbd",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-30T10:32:47Z",
+      "side": 1,
+      "message": "Agree, clean before and clean after. Call it best practice",
+      "parentUuid": "670ac344_9bd422e7",
+      "range": {
+        "startLine": 549,
+        "startChar": 8,
+        "endLine": 549,
+        "endChar": 76
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad8a6175_96b0621b",
         "filename": "resources/libraries/bash/function/per_patch.sh",
         "patchSetId": 95
