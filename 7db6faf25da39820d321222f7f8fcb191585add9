@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a209cc70_80953428",
+        "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
+        "patchSetId": 99
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-30T19:25:54Z",
+      "side": 1,
+      "message": "Maybe it is too late now but seeing \"die_on.. or\" die is quite funny side of this coding style :D\nReading this file is like western. ;)",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 25
+      },
+      "revId": "7db6faf25da39820d321222f7f8fcb191585add9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
