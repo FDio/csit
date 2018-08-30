@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b3d88766_969d5c3a",
+        "filename": "resources/libraries/bash/entry/bootstrap-verify-perf.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-30T10:26:24Z",
+      "side": 1,
+      "message": "I agree with Peter - rely on the default.",
+      "parentUuid": "875f094e_4a47746e",
+      "range": {
+        "startLine": 36,
+        "startChar": 39,
+        "endLine": 36,
+        "endChar": 46
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "851e9900_1fe53a90",
         "filename": "resources/libraries/bash/entry/per_patch.sh",
         "patchSetId": 95
@@ -36,6 +60,23 @@
       "writtenOn": "2018-08-28T19:31:16Z",
       "side": 1,
       "message": "File naming: per-patch what? Func, vpp-device, perf? Need clever naming to follow scheme here, or we will be lost. As per patch is also func",
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b738c161_b5bf8ad2",
+        "filename": "resources/libraries/bash/function/bootstrap.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-30T10:26:24Z",
+      "side": 1,
+      "message": "bootstrap.sh si used for driving functional tests at the moment. Based on the content of this file here it is intended for driving performance tests only so we should use name bootstrap_perf.sh to avoid any discrepancies while functional tests will be driven by original bootstrap.sh in the csit root directory.\n\nWhen bootstrap for functional tests will be re-worked for this new desing, I would prefer following:\n- basic resources/libraries/bash/entry/bootstrap.sh where based on jenkins job type we will call needed bootstrap under \nresources/libraries/bash/function directory\n\n- resources/libraries/bash/function/bootstrap-verify-perf.sh\n- resources/libraries/bash/function/bootstrap-verify-func.sh\n...",
       "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -104,6 +145,52 @@
         "startChar": 0,
         "endLine": 116,
         "endChar": 67
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b016382_20ef01ff",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-30T10:26:24Z",
+      "side": 1,
+      "message": "remove - typo",
+      "range": {
+        "startLine": 544,
+        "startChar": 46,
+        "endLine": 544,
+        "endChar": 50
+      },
+      "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "670ac344_9bd422e7",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 95
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-08-30T10:26:24Z",
+      "side": 1,
+      "message": "No, every standard test job needs to cleanup testbed at the end of testing.\nBut we can use some \"debug_switch\" variable to decide to skip cleaning and unreservation when it is needed to get post-test data for debugging.",
+      "range": {
+        "startLine": 549,
+        "startChar": 8,
+        "endLine": 549,
+        "endChar": 76
       },
       "revId": "cae789c6ad081d6025b12087d0b15bc2f0a83b94",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
