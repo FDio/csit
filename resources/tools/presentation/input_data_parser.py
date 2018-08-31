@@ -765,10 +765,6 @@ class ExecutionChecker(ResultVisitor):
                     items_float = [float(item.strip()) for item
                                    in items_str.split(",")]
                     metadata = AvgStdevMetadataFactory.from_data(items_float)
-                    # Next two lines have been introduced in CSIT-1179,
-                    # to be removed in CSIT-1180.
-                    metadata.size = 1
-                    metadata.stdev = 0.0
                     test_result["result"]["receive-rate"] = metadata
                 else:
                     groups = re.search(self.REGEX_MRR, test.message)
