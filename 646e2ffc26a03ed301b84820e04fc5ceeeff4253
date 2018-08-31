@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c38351e_83544f6b",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_device.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-31T14:13:55Z",
+      "side": 1,
+      "message": "Work in progress no need to review Vratko",
+      "revId": "646e2ffc26a03ed301b84820e04fc5ceeeff4253",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
