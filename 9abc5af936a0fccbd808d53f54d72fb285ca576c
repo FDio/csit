@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e1529500_bebb9f0b",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-31T10:39:17Z",
+      "side": 1,
+      "message": "In next iters.",
+      "parentUuid": "c8dedc64_64d23986",
+      "range": {
+        "startLine": 285,
+        "startChar": 47,
+        "endLine": 285,
+        "endChar": 51
+      },
+      "revId": "9abc5af936a0fccbd808d53f54d72fb285ca576c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd9ecb86_a04f2ce9",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-31T10:18:36Z",
       "side": 1,
       "message": "Why do you need to supress the output? It is always short, and can be useful for debugging.\n\nIf you want silent functions, this is not a good library for them, as \"set -x\" is always applied.",
+      "range": {
+        "startLine": 290,
+        "startChar": 22,
+        "endLine": 290,
+        "endChar": 37
+      },
+      "revId": "9abc5af936a0fccbd808d53f54d72fb285ca576c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff7e22e2_9daa9336",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-08-31T10:39:17Z",
+      "side": 1,
+      "message": "Well that\u0027s the thing, running command successfully can print lot of text and together with -x it is quite complex to read. (specially docker or kubernetes is quite heavy)\n\nthen doing simple: if ! installed docker; is quite hard to process. -x is not over-killing input that much so it is fine there.\n\nThis function does not need to have command output for debug as by default as it just needs to detect true/false.",
+      "parentUuid": "bd9ecb86_a04f2ce9",
       "range": {
         "startLine": 290,
         "startChar": 22,
