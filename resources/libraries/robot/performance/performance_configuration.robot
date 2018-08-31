@@ -2685,6 +2685,146 @@
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
+| Initialize IPv4 routing with memif pairs on DUT node
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces on DUT node. Put each Memif interface
+| | ... | to separate IPv4 VRF with one physical or virtual interface
+| | ... | to create a chain accross DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut} - DUT node. Type: dictionary
+| | ... | - ${count} - Number of memif pairs (containers). Type: integer
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for Memif are defined in following format:
+| | ... | - /tmp/memif-${dut}_VNF${number}-${sid}
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv4 routing with memif pairs on DUT node \
+| | ... | \| ${dut} \| ${1} \|
+| | ...
+| | [Arguments] | ${dut} | ${count}
+| | ...
+| | @{duts}= | Get Matches | ${nodes} | DUT*
+| | ${dut_index}= | Get Index From List | ${duts} | ${dut}
+| | ${duts_length}= | Get Length | ${duts}
+| | ${last_dut_index}= | Evaluate | ${duts_length} - 1
+| | ...
+| | ${tg_if1_net}= | Set Variable | 10.10.10.0
+| | ${tg_if2_net}= | Set Variable | 20.20.20.0
+| | ...
+| | ${fib_table_1}= | Set Variable | ${10}
+| | Run Keyword If | ${fib_table_1} > 0
+| | ... | Add Fib Table | ${nodes['${dut}']} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_if1}
+| | ... | ${fib_table_1}
+| | ${ip_base_if1}= | Evaluate | ${dut_index} + 1
+| | ${ip_net_if1}= | Set Variable
+| | ... | ${ip_base_if1}.${ip_base_if1}.${ip_base_if1}
+| | Configure IP addresses on interfaces | ${nodes['${dut}']} | ${${dut}_if1}
+| | ... | ${ip_net_if1}.2 | 30
+| | ${prev_node}= | Run Keyword If | ${dut_index} == 0
+| | ... | Set Variable | TG
+| | ... | ELSE | Get From List | ${dut_index-${1}}
+| | ${prev_if}= | Run Keyword If | ${dut_index} == 0
+| | ... | Set Variable | if1
+| | ... | ELSE | Set Variable | if2
+| | ${prev_if_mac}= | Get Interface MAC | ${nodes['${prev_node}']}
+| | ... | ${${prev_node}_${prev_if}}
+| | Add ARP on DUT | ${nodes['${dut}']} | ${${dut}_if1} | ${ip_net_if1}.1
+| | ... | ${prev_if_mac}
+| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if1_net} | 24 | vrf=${fib_table_1}
+| | ... | gateway=${ip_net_if1}.2 | interface=${${dut}_if1}
+| | ...
+| | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${count}
+| | Add Fib Table | ${nodes['${dut}']} | ${fib_table_2}
+| | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_if2}
+| | ... | ${fib_table_2}
+| | ${ip_base_if2}= | Evaluate | ${ip_base_if1} + 1
+| | ${ip_net_if2}= | Set Variable
+| | ... | ${ip_base_if2}.${ip_base_if2}.${ip_base_if2}
+| | Configure IP addresses on interfaces | ${nodes['${dut}']} | ${${dut}_if2}
+| | ... | ${ip_net_if2}.1 | 30
+| | ${next_node}= | Run Keyword If | ${dut_index} == ${last_dut_index}
+| | ... | Set Variable | TG
+| | ... | ELSE | Get From List | ${dut_index+${1}}
+| | ${next_if}= | Run Keyword If | ${dut_index} == ${last_dut_index}
+| | ... | Set Variable | if2
+| | ... | ELSE | Set Variable | if1
+| | ${next_if_mac}= | Get Interface MAC | ${nodes['${next_node}']}
+| | ... | ${${next_node}_${next_if}}
+| | Add ARP on DUT | ${nodes['${dut}']} | ${${dut}_if2} | ${ip_net_if2}.2
+| | ... | ${next_if_mac}
+| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if2_net} | 24 | vrf=${fib_table_2}
+| | ... | gateway=${ip_net_if2}.1 | interface=${${dut}_if2}
+| | ...
+| | ${ip_base_start}= | Set Variable | ${31}
+| | :FOR | ${number} | IN RANGE | 1 | ${count+${1}}
+| | | ${sock1}= | Set Variable | memif-${dut}_VNF
+| | | ${sock2}= | Set Variable | memif-${dut}_VNF
+| | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
+| | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
+| | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ${memif1}= | Set Variable | ${${dut}-memif-${number}-if1}
+| | | ${memif2}= | Set Variable | ${${dut}-memif-${number}-if2}
+| | | ${fib_table_1}= | Evaluate | ${fib_table_1} + 1
+| | | ${fib_table_2}= | Evaluate | ${fib_table_1} + 1
+| | | Run Keyword Unless | ${number} == ${count+${1}}
+| | | ... | Add Fib Table | ${nodes['${dut}']} | ${fib_table_2}
+| | | Assign Interface To Fib Table | ${nodes['${dut}']}
+| | | ... | ${memif1} | ${fib_table_1}
+| | | Assign Interface To Fib Table | ${nodes['${dut}']}
+| | | ... | ${memif2} | ${fib_table_2}
+| | | ${ip_base_memif1}= | Evaluate | ${ip_base_start} + (${number} - 1) * 2
+| | | ${ip_base_memif2}= | Evaluate | ${ip_base_memif1} + 1
+| | | ${ip_net_memif1}= | Set Variable
+| | | ... | ${ip_base_memif1}.${ip_base_memif1}.${ip_base_memif1}
+| | | ${ip_net_memif2}= | Set Variable
+| | | ... | ${ip_base_memif2}.${ip_base_memif2}.${ip_base_memif2}
+| | | Configure IP addresses on interfaces
+| | | ... | ${nodes['${dut}']} | ${memif1} | ${ip_net_memif1}.1 | 30
+| | | ... | ${nodes['${dut}']} | ${memif2} | ${ip_net_memif2}.1 | 30
+| | | Vpp Route Add | ${nodes['${dut}']} | ${tg_if2_net} | 24
+| | | ... | vrf=${fib_table_1} | gateway=${ip_net_memif1}.1
+| | | ... | interface=${memif1} | multipath=${TRUE}
+| | | Vpp Route Add | ${nodes['${dut}']} | ${tg_if1_net} | 24
+| | | ... | vrf=${fib_table_2} | gateway=${ip_net_memif2}.1
+| | | ... | interface=${memif2} | multipath=${TRUE}
+| | | ${memif_if1_key}= | Get interface by sw index | ${nodes['${dut}']}
+| | | ... | ${memif1}
+| | | ${memif_if1_mac}= | Get interface mac | ${nodes['${dut}']}
+| | | ... | ${memif_if1_key}
+| | | ${memif_if2_key}= | Get interface by sw index | ${nodes['${dut}']}
+| | | ... | ${memif2}
+| | | ${memif_if2_mac}= | Get interface mac | ${nodes['${dut}']}
+| | | ... | ${memif_if2_key}
+| | | Add arp on dut | ${nodes['${dut}']} | ${memif1} | ${ip_net_memif2}.1
+| | | ... | ${memif_if2_mac}
+| | | Add arp on dut | ${nodes['${dut}']} | ${memif2} | ${ip_net_memif1}.1
+| | | ... | ${memif_if1_mac}
+
+| Initialize IPv4 routing with memif pairs
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
+| | ... | Memif interface to separate IPv4 VRF with one physical or
+| | ... | virtual interface to create a chain accross DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${count} - Number of memif pairs (containers). Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv4 routing with memif pairs \| ${1} \|
+| | ...
+| | [Arguments] | ${count}=${1}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Initialize IPv4 routing with memif pairs on DUT node | ${dut} | ${count}
+| | Set interfaces in path up
+| | Show Memif on all DUTs | ${nodes}
+
 | Initialize L2 xconnect for single memif
 | | [Documentation]
 | | ... | Create single Memif interface on all defined VPP nodes. Cross
