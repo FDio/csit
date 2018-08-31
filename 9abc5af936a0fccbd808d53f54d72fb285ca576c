@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8dedc64_64d23986",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-31T10:18:36Z",
+      "side": 1,
+      "message": "Document exit codes.",
+      "range": {
+        "startLine": 285,
+        "startChar": 47,
+        "endLine": 285,
+        "endChar": 51
+      },
+      "revId": "9abc5af936a0fccbd808d53f54d72fb285ca576c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd9ecb86_a04f2ce9",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-08-31T10:18:36Z",
+      "side": 1,
+      "message": "Why do you need to supress the output? It is always short, and can be useful for debugging.\n\nIf you want silent functions, this is not a good library for them, as \"set -x\" is always applied.",
+      "range": {
+        "startLine": 290,
+        "startChar": 22,
+        "endLine": 290,
+        "endChar": 37
+      },
+      "revId": "9abc5af936a0fccbd808d53f54d72fb285ca576c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
