@@ -111,3 +111,4 @@ class SingleCliSer(object):
         else:
             logger.console('....log_install_dmm on node {1}.... {0}'
                            .format(stdout, dut_node['host']))
+

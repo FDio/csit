@@ -933,11 +933,11 @@ class InterfaceUtil(object):
             the node.
         """
         hw_addr = '' if mac is None else 'hw-addr {mac}'.format(mac=mac)
-        lb = '' if load_balance is None \
-            else 'lb {lb}'.format(lb=load_balance)
+        ldb = '' if load_balance is None \
+            else 'lb {ldb}'.format(ldb=load_balance)
 
         output = VatExecutor.cmd_from_template(
-            node, 'create_bond_interface.vat', mode=mode, lb=lb, mac=hw_addr)
+            node, 'create_bond_interface.vat', mode=mode, lb=ldb, mac=hw_addr)
 
         if output[0].get('retval') == 0:
             sw_if_idx = output[0].get('sw_if_index')
@@ -945,8 +945,8 @@ class InterfaceUtil(object):
             if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
             return if_key
         else:
-            raise RuntimeError('Create bond interface failed on node "{n}"'
-                               .format(n=node['host']))
+            raise RuntimeError('Create bond interface failed on "{host}"'
+                               .format(host=node['host']))
 
     @staticmethod
     def add_bond_eth_interface(node, ifc_name=None, sw_if_idx=None):
