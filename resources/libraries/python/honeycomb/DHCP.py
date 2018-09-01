@@ -73,7 +73,8 @@ class DHCPRelayKeywords(object):
         :rtype: bytearray
         """
 
-        path = "/relay/vpp-fib-table-management:{0}/{1}".format(ip_version, entry_id)
+        path = "/relay/vpp-fib-table-management:{0}/{1}".format(ip_version,
+                                                                entry_id)
 
         return DHCPRelayKeywords._set_dhcp_relay_properties(node, path, data)
 

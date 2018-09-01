@@ -107,9 +107,9 @@ class TrafficGenerator(AbstractMeasurer):
     FIXME: Describe API."""
 
     # TODO: Decrease friction between various search and rate provider APIs.
-    # FIXME: Remove "trex" from lines which could work with other TGs.
+    # TODO: Remove "trex" from lines which could work with other TGs.
 
-    # use one instance of TrafficGenerator for all tests in test suite
+    # Use one instance of TrafficGenerator for all tests in test suite
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
 
     def __init__(self):

@@ -49,10 +49,10 @@ class Testcase(object):
         :rtype: str
         """
         try:
-            fs = int(framesize)
+            fsize = int(framesize)
             subst_dict = {
-                "frame_num": "${%d}" % fs,
-                "frame_str": "%dB" % fs
+                "frame_num": "${%d}" % fsize,
+                "frame_str": "%dB" % fsize
             }
         except ValueError:  # Assuming an IMIX string.
             subst_dict = {
