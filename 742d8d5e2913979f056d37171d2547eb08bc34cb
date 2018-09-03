@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1b5e97a_65b874ad",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T12:49:27Z",
+      "side": 1,
+      "message": "This works if ret_code is int, but exec_cmd can also set it to None, in which case we also want to fail.",
+      "range": {
+        "startLine": 418,
+        "startChar": 7,
+        "endLine": 418,
+        "endChar": 15
+      },
+      "revId": "742d8d5e2913979f056d37171d2547eb08bc34cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
