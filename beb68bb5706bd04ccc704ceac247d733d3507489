@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c35a2abe_bdff6248",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T12:02:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaaccb18_1b283b94",
+      "range": {
+        "startLine": 577,
+        "startChar": 25,
+        "endLine": 577,
+        "endChar": 26
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4500b31a_31ebf0f4",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 37
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-03T11:49:33Z",
       "side": 1,
       "message": "exec_cmd_no_error?",
+      "range": {
+        "startLine": 621,
+        "startChar": 25,
+        "endLine": 621,
+        "endChar": 33
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17b5a5cf_7d6d8abd",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T12:02:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4500b31a_31ebf0f4",
       "range": {
         "startLine": 621,
         "startChar": 25,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "01059d3f_25b0c8ba",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 1334,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T12:02:53Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "dd070aa8_4c593ae3",
+      "range": {
+        "startLine": 1334,
+        "startChar": 8,
+        "endLine": 1334,
+        "endChar": 25
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ac4a2e5_0150a25b",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 37
@@ -82,6 +154,30 @@
       "writtenOn": "2018-09-03T11:49:33Z",
       "side": 1,
       "message": "Decide whether this raises AssertionError or RuntimeError (or something else), then update all the call sites to except (or just document) that exception.",
+      "range": {
+        "startLine": 412,
+        "startChar": 26,
+        "endLine": 412,
+        "endChar": 27
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7aa0f49_874ae165",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T12:02:53Z",
+      "side": 1,
+      "message": "Not sure i follow, you mean raise Runtime exception here instead of AssertionError or just document AssertionError? Anyway it need to be i guess separate and i would need to find all occurrences. Not one liner.",
+      "parentUuid": "0ac4a2e5_0150a25b",
       "range": {
         "startLine": 412,
         "startChar": 26,
