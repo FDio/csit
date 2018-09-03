@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "a17d1e2d_ba0163b0",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 1334,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T12:13:42Z",
+      "side": 1,
+      "message": "Oh, now I see it.\n\nPlease sort imports alphabetically, so readers do not have to scan all imports when looking for a specific one.",
+      "parentUuid": "01059d3f_25b0c8ba",
+      "range": {
+        "startLine": 1334,
+        "startChar": 8,
+        "endLine": 1334,
+        "endChar": 25
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ac4a2e5_0150a25b",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 37
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "Not sure i follow, you mean raise Runtime exception here instead of AssertionError or just document AssertionError? Anyway it need to be i guess separate and i would need to find all occurrences. Not one liner.",
       "parentUuid": "0ac4a2e5_0150a25b",
+      "range": {
+        "startLine": 412,
+        "startChar": 26,
+        "endLine": 412,
+        "endChar": 27
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afb95f3a_03db12c5",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T12:13:42Z",
+      "side": 1,
+      "message": "Perhaps raising RuntimeError (line 417) and adding \":raises\" line here will be simplest, as most of DUTSetup.py functions already document raising that one.",
+      "parentUuid": "c7aa0f49_874ae165",
       "range": {
         "startLine": 412,
         "startChar": 26,
