@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5f991577_349c3081",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d8dd563_e06b09b9",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 268,
+        "endChar": 25
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6d24389_d16707b2",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Will fix in next iter",
       "parentUuid": "a6d24389_d16707b2",
+      "range": {
+        "startLine": 292,
+        "startChar": 8,
+        "endLine": 293,
+        "endChar": 25
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b459b398_52f64ce2",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f792f53_0ad2f13b",
       "range": {
         "startLine": 292,
         "startChar": 8,
@@ -167,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "38b98871_eba7469e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fc48f37_13415f0d",
+      "range": {
+        "startLine": 332,
+        "startChar": 30,
+        "endLine": 332,
+        "endChar": 51
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f33b7ff7_3fa68495",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -178,6 +250,30 @@
       "writtenOn": "2018-08-30T08:31:46Z",
       "side": 1,
       "message": "ssh.py already defines \"exec_cmd_no_error\" keyword.",
+      "range": {
+        "startLine": 357,
+        "startChar": 34,
+        "endLine": 357,
+        "endChar": 50
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c382d01_88ecb739",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f33b7ff7_3fa68495",
       "range": {
         "startLine": 357,
         "startChar": 34,
@@ -213,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "b643fff0_b48f44b6",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d3906da_6e84618f",
+      "range": {
+        "startLine": 388,
+        "startChar": 25,
+        "endLine": 388,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "321a9c43_b6e0cc99",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -224,6 +344,30 @@
       "writtenOn": "2018-08-30T08:31:46Z",
       "side": 1,
       "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 412,
+        "startChar": 25,
+        "endLine": 412,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51e771_59daaf6f",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "321a9c43_b6e0cc99",
       "range": {
         "startLine": 412,
         "startChar": 25,
@@ -259,6 +403,30 @@
     },
     {
       "key": {
+        "uuid": "8c05e4da_267bafd0",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aecab43_ed6c5ee6",
+      "range": {
+        "startLine": 451,
+        "startChar": 11,
+        "endLine": 451,
+        "endChar": 14
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03076122_cb74c291",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -270,6 +438,30 @@
       "writtenOn": "2018-08-30T08:31:46Z",
       "side": 1,
       "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 476,
+        "startChar": 25,
+        "endLine": 476,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f3841f8_6e61f9ca",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03076122_cb74c291",
       "range": {
         "startLine": 476,
         "startChar": 25,
@@ -305,6 +497,30 @@
     },
     {
       "key": {
+        "uuid": "8587d08f_7e941dd4",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a36792c0_2d1c839d",
+      "range": {
+        "startLine": 522,
+        "startChar": 11,
+        "endLine": 522,
+        "endChar": 14
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eccb4522_12c82bb1",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -328,6 +544,30 @@
     },
     {
       "key": {
+        "uuid": "c687fb08_94e5e1e1",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eccb4522_12c82bb1",
+      "range": {
+        "startLine": 603,
+        "startChar": 25,
+        "endLine": 603,
+        "endChar": 41
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05217300_2f769f4f",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 36
@@ -339,6 +579,30 @@
       "writtenOn": "2018-08-30T08:31:46Z",
       "side": 1,
       "message": "ssh.py already defines \"exec_cmd_no_error\" keyword with sudo option.",
+      "range": {
+        "startLine": 658,
+        "startChar": 25,
+        "endLine": 658,
+        "endChar": 46
+      },
+      "revId": "77d41c9f46714daba9ce1266c6be03c098a54fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea280063_32239e05",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T11:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05217300_2f769f4f",
       "range": {
         "startLine": 658,
         "startChar": 25,
