@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "992e0469_0d9b75fc",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 1334,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-03T12:27:59Z",
+      "side": 1,
+      "message": "We can do in some of _pylint_decrease_commit_ ?",
+      "parentUuid": "a17d1e2d_ba0163b0",
+      "range": {
+        "startLine": 1334,
+        "startChar": 8,
+        "endLine": 1334,
+        "endChar": 25
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ac4a2e5_0150a25b",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 37
