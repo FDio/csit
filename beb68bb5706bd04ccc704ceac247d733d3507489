@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "358e6da4_9ecfc074",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 1334,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T12:29:57Z",
+      "side": 1,
+      "message": "Ah yes, pylint reports that. I am ok with fixing later.",
+      "parentUuid": "992e0469_0d9b75fc",
+      "range": {
+        "startLine": 1334,
+        "startChar": 8,
+        "endLine": 1334,
+        "endChar": 25
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ac4a2e5_0150a25b",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 37
