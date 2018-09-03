@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4dad43b_9769fef8",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "Put an empty line before and after \"..\"",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 2
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "673a969b_38b529fa",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "Remove before merge",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 52
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43164a3a_554d394a",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "Rewrite in less personal style.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 58
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8707b88c_a63dbc68",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "Consider using good/bad examples.",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 35
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15546146_933099db",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "appending ???",
+      "range": {
+        "startLine": 112,
+        "startChar": 7,
+        "endLine": 112,
+        "endChar": 20
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b58231d_3bde9d55",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "No white character in front of )",
+      "range": {
+        "startLine": 114,
+        "startChar": 49,
+        "endLine": 114,
+        "endChar": 51
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "790e5702_911e51dc",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "No white character after (",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 6
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18dca525_d76e8f4f",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "Files",
+      "range": {
+        "startLine": 180,
+        "startChar": 39,
+        "endLine": 180,
+        "endChar": 44
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "937b2d1a_75c5fd87",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "Use adjectives which are common in this context.",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 28
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1786fc52_9aed9000",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 218,
+        "startChar": 18,
+        "endLine": 218,
+        "endChar": 34
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "408c079e_2e52b14a",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-09-03T07:24:54Z",
+      "side": 1,
+      "message": "It is better to have a strict naming convention.",
+      "range": {
+        "startLine": 243,
+        "startChar": 4,
+        "endLine": 243,
+        "endChar": 48
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
