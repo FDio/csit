@@ -475,11 +475,10 @@ class DropRateSearch(object):
         :rtype: tuple
         :raises Exception: If search failed.
         """
-        if self._search_result == SearchResults.FAILURE:
-            raise Exception('Search FAILED')
-        elif self._search_result in [SearchResults.SUCCESS,
-                                     SearchResults.SUSPICIOUS]:
+        if self._search_result in [
+                SearchResults.SUCCESS, SearchResults.SUSPICIOUS]:
             return self._search_result_rate, self.get_latency()
+        raise Exception('Search FAILED')
 
     def binary_search(self, b_min, b_max, traffic_type, skip_max_rate=False,
                       skip_warmup=False):

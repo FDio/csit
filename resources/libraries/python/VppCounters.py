@@ -208,8 +208,7 @@ class VppCounters(object):
             vat.vat_terminal_exec_cmd('want_stats enable')
             for _ in range(0, 12):
                 stats_table = vat.vat_terminal_exec_cmd('dump_stats_table')
-                if_counters = stats_table['interface_counters']
-                if len(if_counters) > 0:
+                if stats_table['interface_counters']:
                     self._stats_table = stats_table
                     return stats_table
                 time.sleep(1)
@@ -259,15 +258,15 @@ class VppCounters(object):
             return 0
 
         if_counters = self._stats_table.get('interface_counters')
-        if if_counters is None or len(if_counters) == 0:
+        if not if_counters:
             logger.trace('No interface counters.')
             return 0
         for counter in if_counters:
             if counter['vnet_counter_type'] == version:
                 data = counter['data']
                 return data[if_index]
-        logger.trace('{i} {v} counter not found.'.format(i=interface,
-                                                         v=version))
+        logger.trace('{i} {v} counter not found.'.format(
+            i=interface, v=version))
         return 0
 
     @staticmethod

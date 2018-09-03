@@ -370,7 +370,7 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise TypeError('Node parameter is None')
     if cmd is None:
         raise TypeError('Command parameter is None')
-    if len(cmd) == 0:
+    if not cmd:
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
