@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aaaccb18_1b283b94",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T11:49:33Z",
+      "side": 1,
+      "message": "Else raise?",
+      "range": {
+        "startLine": 577,
+        "startChar": 25,
+        "endLine": 577,
+        "endChar": 26
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4500b31a_31ebf0f4",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T11:49:33Z",
+      "side": 1,
+      "message": "exec_cmd_no_error?",
+      "range": {
+        "startLine": 621,
+        "startChar": 25,
+        "endLine": 621,
+        "endChar": 33
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd070aa8_4c593ae3",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 1334,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T11:49:33Z",
+      "side": 1,
+      "message": "Is this imported?",
+      "range": {
+        "startLine": 1334,
+        "startChar": 8,
+        "endLine": 1334,
+        "endChar": 25
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ac4a2e5_0150a25b",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-03T11:49:33Z",
+      "side": 1,
+      "message": "Decide whether this raises AssertionError or RuntimeError (or something else), then update all the call sites to except (or just document) that exception.",
+      "range": {
+        "startLine": 412,
+        "startChar": 26,
+        "endLine": 412,
+        "endChar": 27
+      },
+      "revId": "beb68bb5706bd04ccc704ceac247d733d3507489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
