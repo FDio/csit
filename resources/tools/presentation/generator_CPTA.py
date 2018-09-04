@@ -43,6 +43,54 @@ THEME_OVERRIDES = """/* override table width restrictions */
 .wy-nav-content {
     max-width: 1200px !important;
 }
+.rst-content blockquote {
+    margin-left: 0px;
+    line-height: 18px;
+    margin-bottom: 0px;
+}
+.wy-menu-vertical a {
+    display: inline-block;
+    line-height: 18px;
+    padding: 0 2em;
+    display: block;
+    position: relative;
+    font-size: 90%;
+    color: #d9d9d9
+}
+.wy-menu-vertical li.current a {
+    color: gray;
+    border-right: solid 1px #c9c9c9;
+    padding: 0 3em;
+}
+.wy-menu-vertical li.toctree-l2.current > a {
+    background: #c9c9c9;
+    padding: 0 3em;
+}
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+    display: block;
+    background: #c9c9c9;
+    padding: 0 4em;
+}
+.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
+    display: block;
+    background: #bdbdbd;
+    padding: 0 5em;
+}
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current > a {
+    color: #404040;
+    padding: 0 2em;
+    font-weight: bold;
+    position: relative;
+    background: #fcfcfc;
+    border: none;
+        border-top-width: medium;
+        border-bottom-width: medium;
+        border-top-style: none;
+        border-bottom-style: none;
+        border-top-color: currentcolor;
+        border-bottom-color: currentcolor;
+    padding-left: 2em -4px;
+}
 """
 
 COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
