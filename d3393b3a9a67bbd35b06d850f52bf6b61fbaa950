@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1469e491_68fd162c",
+        "filename": "resources/libraries/bash/entry/with_oper_for_vpp.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-04T11:13:19Z",
+      "side": 1,
+      "message": "\u003e What is the motivation behind doing this in this way?\n\nAdded comments hinting at Jenkins using the wrapeer, but manual testing not using the wrapper.",
+      "parentUuid": "aaf37b5f_719c76be",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "d3393b3a9a67bbd35b06d850f52bf6b61fbaa950",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1011c6f4_124566e3",
         "filename": "resources/libraries/bash/function/oper.sh",
         "patchSetId": 4
@@ -36,6 +60,24 @@
       "writtenOn": "2018-09-04T09:00:42Z",
       "side": 1,
       "message": "Little bit weird naming. Maybe:\nbranch_selection.sh \nNo oper as this could be optimized to use also non-oper branches in future?",
+      "revId": "d3393b3a9a67bbd35b06d850f52bf6b61fbaa950",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2298680_9e7e4cab",
+        "filename": "resources/libraries/bash/function/oper.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-04T11:13:19Z",
+      "side": 1,
+      "message": "Renamed to \"branch.sh\" in #5.",
+      "parentUuid": "1011c6f4_124566e3",
       "revId": "d3393b3a9a67bbd35b06d850f52bf6b61fbaa950",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
