@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b03add87_72c9d786",
+        "filename": "resources/libraries/bash/entry/with_oper_for_vpp.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-04T11:44:10Z",
+      "side": 1,
+      "message": "Also, there is an idea of csit-verify jobs not using this wrapper, but csit-vpp timed jobs using it (with the same non-checkouting bootstrap entry script).\n\nI can make the entry script comments more explicit if needed.",
+      "parentUuid": "1469e491_68fd162c",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "d3393b3a9a67bbd35b06d850f52bf6b61fbaa950",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1011c6f4_124566e3",
         "filename": "resources/libraries/bash/function/oper.sh",
         "patchSetId": 4
