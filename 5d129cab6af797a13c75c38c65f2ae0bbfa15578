@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23607a9a_3aeac789",
+        "filename": "tests/vpp/perf/l2/10ge2p1x710-avf-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-04T08:32:58Z",
+      "side": 1,
+      "message": "Do not forget to document this in tag_documentation.rst",
+      "range": {
+        "startLine": 18,
+        "startChar": 51,
+        "endLine": 18,
+        "endChar": 58
+      },
+      "revId": "5d129cab6af797a13c75c38c65f2ae0bbfa15578",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
