@@ -1,8 +1,5 @@
-VPP Performance Dashboard
-=========================
-
 Description
------------
+===========
 
 Performance dashboard tables provide the latest VPP throughput trend,
 trend compliance and detected anomalies, all on a per VPP test case
@@ -21,34 +18,7 @@ trend and anomaly evaluation is based on an algorithm which divides test runs
 into groups according to minimum description length principle.
 The trend value is the population average of the results within a group.
 
-Legend to the tables:
-
-    - **Test Case**: name of FD.io CSIT test case, naming convention
-      `here <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
-    - **Trend [Mpps]**: last value of performance trend.
-    - **Short-Term Change [%]**: Relative change of last trend value
-      vs. last week trend value.
-    - **Long-Term Change [%]**: Relative change of last trend value vs.
-      maximum of trend values over the last quarter except last week.
-    - **Regressions [#]**: Number of regressions detected.
-    - **Progressions [#]**: Number of progressions detected.
-
 Tested VPP worker-thread-core combinations (1t1c, 2t2c, 4t4c) are listed
 in separate tables in section 1.x. Followed by trending methodology in
-section 2. and trendline graphs in sections 3.x. Performance test  data
-used for trendline graphs is provided in sections 4.x.
-
-VPP worker on 1t1c
-------------------
-
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c.rst
-
-VPP worker on 2t2c
-------------------
-
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c.rst
-
-VPP worker on 4t4c
-------------------
-
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c.rst
+section 2. and trending graphs in sections 3.x. Performance test  data
+used for trending graphs is provided in sections 4.x.
