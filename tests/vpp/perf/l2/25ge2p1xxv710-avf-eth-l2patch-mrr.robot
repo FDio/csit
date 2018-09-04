@@ -89,9 +89,9 @@
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc03-9000B-1c-avf-eth-l2patch-mrr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
+#| tc03-9000B-1c-avf-eth-l2patch-mrr
+#| | [Tags] | 9000B | 1C
+#| | framesize=${9000} | phy_cores=${1}
 
 | tc04-IMIX-1c-avf-eth-l2patch-mrr
 | | [Tags] | IMIX | 1C
@@ -105,9 +105,9 @@
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc07-9000B-2c-avf-eth-l2patch-mrr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
+#| tc07-9000B-2c-avf-eth-l2patch-mrr
+#| | [Tags] | 9000B | 2C
+#| | framesize=${9000} | phy_cores=${2}
 
 | tc08-IMIX-2c-avf-eth-l2patch-mrr
 | | [Tags] | IMIX | 2C
@@ -121,9 +121,9 @@
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc11-9000B-4c-avf-eth-l2patch-mrr
-| | [Tags] | 9000B | 4C
-| | framesize=${9000} | phy_cores=${4}
+#| tc11-9000B-4c-avf-eth-l2patch-mrr
+#| | [Tags] | 9000B | 4C
+#| | framesize=${9000} | phy_cores=${4}
 
 | tc12-IMIX-4c-avf-eth-l2patch-mrr
 | | [Tags] | IMIX | 4C

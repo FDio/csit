@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-XXV710 | ETH | L2PATCH | BASE | DRV_AVF
+| ... | NIC_Intel-XXV710 | ETH | L2XCFWD | BASE | L2XCBASE | DRV_AVF
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up SRIOV 3-node performance topology with DUT's NIC model
@@ -31,13 +31,14 @@
 | ...
 | Test Template | Local template
 | ...
-| Documentation | *RFC2544: Pkt throughput L2patch test cases*
+| Documentation | *RFC2544: Pkt throughput L2XC test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 patch.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 patch\
-| ... | DUT1 and DUT2 tested with 2p25GE NIC XXV710 by Intel with VF enabled.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross-connect.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
+| ... | connect. DUT1 and DUT2 tested with 2p25GE NIC XXV710 by Intel with VF
+| ... | enabled.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -62,7 +63,7 @@
 *** Keywords ***
 | Local template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 patch config with ${phy_cores} phy
+| | ... | [Cfg] DUT runs L2XC config with ${phy_cores} phy
 | | ... | core(s).
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.
 | | ...
@@ -83,55 +84,55 @@
 | | ... | ${s_25G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
-| | And Initialize L2 patch
+| | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-64B-1c-avf-eth-l2patch-ndrpdr
+| tc01-64B-1c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1c-avf-eth-l2patch-ndrpdr
+| tc02-1518B-1c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-#| tc03-9000B-1c-avf-eth-l2patch-ndrpdr
+#| tc03-9000B-1c-avf-eth-l2xcbase-ndrpdr
 #| | [Tags] | 9000B | 1C
 #| | framesize=${9000} | phy_cores=${1}
 
-| tc04-IMIX-1c-avf-eth-l2patch-ndrpdr
+| tc04-IMIX-1c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc05-64B-2c-avf-eth-l2patch-ndrpdr
+| tc05-64B-2c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2c-avf-eth-l2patch-ndrpdr
+| tc06-1518B-2c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-#| tc07-9000B-2c-avf-eth-l2patch-ndrpdr
+#| tc07-9000B-2c-avf-eth-l2xcbase-ndrpdr
 #| | [Tags] | 9000B | 2C
 #| | framesize=${9000} | phy_cores=${2}
 
-| tc08-IMIX-2c-avf-eth-l2patch-ndrpdr
+| tc08-IMIX-2c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc09-64B-4c-avf-eth-l2patch-ndrpdr
+| tc09-64B-4c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4c-avf-eth-l2patch-ndrpdr
+| tc10-1518B-4c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-#| tc11-9000B-4c-avf-eth-l2patch-ndrpdr
+#| tc11-9000B-4c-avf-eth-l2xcbase-ndrpdr
 #| | [Tags] | 9000B | 4C
 #| | framesize=${9000} | phy_cores=${4}
 
-| tc12-IMIX-4c-avf-eth-l2patch-ndrpdr
+| tc12-IMIX-4c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
