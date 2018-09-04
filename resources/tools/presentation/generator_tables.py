@@ -17,6 +17,7 @@
 
 import logging
 import csv
+import re
 
 from string import replace
 from collections import OrderedDict
@@ -411,6 +412,8 @@ def table_performance_trending_dashboard(table, input_data):
     :type input_data: InputData
     """
 
+    regex_nic = re.compile(r'\d*ge\dp\d\D*\d*')
+
     logging.info("  Generating the table {0} ...".
                  format(table.get("title", "")))
 
@@ -437,10 +440,13 @@ def table_performance_trending_dashboard(table, input_data):
                 if tst_name.lower() in table["ignore-list"]:
                     continue
                 if tbl_dict.get(tst_name, None) is None:
-                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
-                                            tst_data["name"])
-                    tbl_dict[tst_name] = {"name": name,
-                                          "data": OrderedDict()}
+                    groups = re.search(regex_nic, tst_data["parent"])
+                    if not groups:
+                        continue
+                    nic = groups.group(1)
+                    tbl_dict[tst_name] = {
+                        "name": "{0}-{1}".format(nic, tst_data["name"]),
+                        "data": OrderedDict()}
                 try:
                     tbl_dict[tst_name]["data"][str(build)] = \
                         tst_data["result"]["receive-rate"]
@@ -576,6 +582,8 @@ def _generate_url(base, test_name):
         anchor += "x710-"
     elif "xl710" in test_name:
         anchor += "xl710-"
+    elif "xxv710" in test_name:
+        anchor += "xxv710-"
 
     if "64b" in test_name:
         anchor += "64b-"
@@ -585,8 +593,10 @@ def _generate_url(base, test_name):
         anchor += "imix-"
     elif "9000b" in test_name:
         anchor += "9000b-"
-    elif "1518" in test_name:
+    elif "1518b" in test_name:
         anchor += "1518b-"
+    elif "114b" in test_name:
+        anchor += "114b-"
 
     if "1t1c" in test_name:
         anchor += "1t1c"
@@ -594,6 +604,12 @@ def _generate_url(base, test_name):
         anchor += "2t2c"
     elif "4t4c" in test_name:
         anchor += "4t4c"
+    elif "2t1c" in test_name:
+        anchor += "2t1c"
+    elif "4t2c" in test_name:
+        anchor += "4t2c"
+    elif "8t4c" in test_name:
+        anchor += "8t4c"
 
     return url + file_name + anchor + feature
 
