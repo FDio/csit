@@ -22,6 +22,30 @@
       "revId": "7331ff4c10ea8a26d6a0dda8982066b8a6e89ba2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11d892a5_09225c74",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-04T14:14:50Z",
+      "side": 1,
+      "message": "Technically I think yes. Although it is always roulette if nothing will change in future for those IFs. I can try to rewrite.",
+      "parentUuid": "6d81dcec_b17acb5f",
+      "range": {
+        "startLine": 963,
+        "startChar": 46,
+        "endLine": 963,
+        "endChar": 54
+      },
+      "revId": "7331ff4c10ea8a26d6a0dda8982066b8a6e89ba2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
