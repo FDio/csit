@@ -479,9 +479,7 @@ class ContainerEngine(object):
 class LXC(ContainerEngine):
     """LXC implementation."""
 
-    def __init__(self):
-        """Initialize LXC object."""
-        super(LXC, self).__init__()
+    # Implicit constructor is inherited.
 
     def acquire(self, force=True):
         """Acquire a privileged system object where configuration is stored.
@@ -672,9 +670,7 @@ class LXC(ContainerEngine):
 class Docker(ContainerEngine):
     """Docker implementation."""
 
-    def __init__(self):
-        """Initialize Docker object."""
-        super(Docker, self).__init__()
+    # Implicit constructor is inherited.
 
     def acquire(self, force=True):
         """Pull an image or a repository from a registry.

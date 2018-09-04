@@ -362,8 +362,7 @@ class Classify(object):
             )
         if session_index is not None:
             return data[0][session_index]
-        else:
-            return data[0]
+        return data[0]
 
     @staticmethod
     def vpp_log_plugin_acl_settings(node):

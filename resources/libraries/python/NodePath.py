@@ -151,8 +151,7 @@ class NodePath(object):
         """
         if not self._path_iter:
             return None, None
-        else:
-            return self._path_iter.pop()
+        return self._path_iter.pop()
 
     def first_interface(self):
         """Return first interface on the path.
