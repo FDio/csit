@@ -15,6 +15,9 @@
 
 set -exuo pipefail
 
+# This entry script does not change CSIT branch,
+# use "with_oper_for_vpp.sh" wrapper for that.
+#
 # Assumptions:
 # + There is a directory holding VPP repo with patch under test checked out.
 # + It contains csit subdirectory with CSIT code to use (this script is there).
@@ -25,7 +28,6 @@ set -exuo pipefail
 # + The following directories (relative to VPP repo) are (re)created:
 # ++ csit_new, csit_parent, build_new, build_parent,
 # ++ archive, csit/archive, csit_download_dir.
-# This entry script currently does not need any environment variable set.
 
 # TODO: Implement some kind of VPP build caching.
 
