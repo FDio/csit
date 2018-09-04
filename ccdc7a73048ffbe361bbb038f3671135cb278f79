@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebc8f683_765ad07f",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-04T07:51:45Z",
+      "side": 1,
+      "message": "This extra space is compliant?",
+      "range": {
+        "startLine": 479,
+        "startChar": 13,
+        "endLine": 479,
+        "endChar": 16
+      },
+      "revId": "ccdc7a73048ffbe361bbb038f3671135cb278f79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "817076c4_e58cb909",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-04T07:51:45Z",
+      "side": 1,
+      "message": "redundant?",
+      "range": {
+        "startLine": 422,
+        "startChar": 1,
+        "endLine": 422,
+        "endChar": 17
+      },
+      "revId": "ccdc7a73048ffbe361bbb038f3671135cb278f79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96eef0c6_d17619c5",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-04T07:51:45Z",
+      "side": 1,
+      "message": "or",
+      "range": {
+        "startLine": 722,
+        "startChar": 21,
+        "endLine": 722,
+        "endChar": 23
+      },
+      "revId": "ccdc7a73048ffbe361bbb038f3671135cb278f79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
