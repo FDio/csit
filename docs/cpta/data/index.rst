@@ -1,15 +1,39 @@
 Performance Data
 ================
 
-Performance test data used to generate the trendline graphs is available
-in a CSV and pretty ASCII formats:
+Performance test data used to generate the trending graphs is available
+in the ASCII and CSV formats:
 
 **VPP**
 
-    - `csv format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-trending.csv>`_,
-    - `pretty ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-trending.txt>`_.
+    - 3n-hsw
+
+        - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-trending.csv>`_
+
+    - 3n-skx
+
+        - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-3n-skx-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-3n-skx-trending.csv>`_
+
+    - 2n-skx
+
+        - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-skx-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-skx-trending.csv>`_
 
 **DPDK**
 
-    - `csv format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-trending.csv>`_,
-    - `pretty ASCII format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-trending.txt>`_.
+    - 3n-hsw
+
+        - `ASCII format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-trending.csv>`_
+
+    - 3n-skx
+
+        - `ASCII format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-3n-skx-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-3n-skx-trending.csv>`_
+
+    - 2n-skx
+
+        - `ASCII format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-2n-skx-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-dpdk-perf-mrr-weekly-master-2n-skx-trending.csv>`_
