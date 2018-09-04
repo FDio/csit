@@ -576,6 +576,8 @@ def _generate_url(base, test_name):
         anchor += "x710-"
     elif "xl710" in test_name:
         anchor += "xl710-"
+    elif "xxv710" in test_name:
+        anchor += "xxv710-"
 
     if "64b" in test_name:
         anchor += "64b-"
@@ -585,8 +587,10 @@ def _generate_url(base, test_name):
         anchor += "imix-"
     elif "9000b" in test_name:
         anchor += "9000b-"
-    elif "1518" in test_name:
+    elif "1518b" in test_name:
         anchor += "1518b-"
+    elif "114b" in test_name:
+        anchor += "114b-"
 
     if "1t1c" in test_name:
         anchor += "1t1c"
@@ -594,6 +598,12 @@ def _generate_url(base, test_name):
         anchor += "2t2c"
     elif "4t4c" in test_name:
         anchor += "4t4c"
+    elif "2t1c" in test_name:
+        anchor += "2t1c"
+    elif "4t2c" in test_name:
+        anchor += "4t2c"
+    elif "8t4c" in test_name:
+        anchor += "8t4c"
 
     return url + file_name + anchor + feature
 
