@@ -1,8 +1,5 @@
-VPP Performance Dashboard
-=========================
-
 Description
------------
+===========
 
 Performance dashboard tables provide the latest VPP throughput trend,
 trend compliance and detected anomalies, all on a per VPP test case
@@ -35,20 +32,5 @@ Legend to the tables:
 
 Tested VPP worker-thread-core combinations (1t1c, 2t2c, 4t4c) are listed
 in separate tables in section 1.x. Followed by trending methodology in
-section 2. and trendline graphs in sections 3.x. Performance test  data
-used for trendline graphs is provided in sections 4.x.
-
-VPP worker on 1t1c
-------------------
-
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c.rst
-
-VPP worker on 2t2c
-------------------
-
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c.rst
-
-VPP worker on 4t4c
-------------------
-
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c.rst
+section 2. and trending graphs in sections 3.x. Performance test  data
+used for trending graphs is provided in sections 4.x.
