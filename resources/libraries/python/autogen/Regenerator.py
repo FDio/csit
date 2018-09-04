@@ -69,13 +69,17 @@ class Regenerator(object):
                 dash_split = dash_split[1].split("-", 1)
             return dash_split[0], dash_split[1].split(".", 1)[0]
 
-        def add_testcase(testcase, iface, file_out, num, **kwargs):
+        def add_testcase(testcase, iface, suite_id, file_out, num, **kwargs):
             # TODO: Is there a better way to disable some combinations?
-            if kwargs["framesize"] != 9000 or "vic1227" not in iface:
+            if kwargs["framesize"] == 9000 and "vic1227" in iface:
+                pass
+            else if kwargs["framesize"] == 9000 and "avf" in suite_id:
+                pass
+            else
                 file_out.write(testcase.generate(num=num, **kwargs))
             return num + 1
 
-        def add_testcases(testcase, iface, file_out, tc_kwargs_list):
+        def add_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
             num = 1
             for tc_kwargs in tc_kwargs_list:
                 num = add_testcase(testcase, iface, file_out, num, **tc_kwargs)
@@ -105,6 +109,6 @@ class Regenerator(object):
             testcase = self.testcase_class(suite_id)
             with open(filename, "w") as file_out:
                 file_out.write(text_prolog)
-                add_testcases(testcase, iface, file_out, kwargs_list)
+                add_testcases(testcase, iface, suite_id, file_out, kwargs_list)
         print "Regenerator ends."
         print  # To make autogen check output more readable.
