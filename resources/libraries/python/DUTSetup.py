@@ -42,7 +42,7 @@ class DUTSetup(object):
                                   'ActiveEnterTimestamp {name}` | '
                                   'awk \'{{print $2 $3}}\')"'.
                                   format(name=service))
-        if int(ret_code) != 0:
+        if int(ret_code):
             raise RuntimeError('DUT {host} failed to get logs from unit {name}'.
                                format(host=node['host'], name=service))
 
@@ -75,7 +75,7 @@ class DUTSetup(object):
         ret_code, _, _ = \
             ssh.exec_command_sudo('service {name} restart'.
                                   format(name=service), timeout=120)
-        if int(ret_code) != 0:
+        if int(ret_code):
             raise RuntimeError('DUT {host} failed to start service {name}'.
                                format(host=node['host'], name=service))
 
@@ -178,7 +178,7 @@ class DUTSetup(object):
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.
                              format(Constants.REMOTE_FW_DIR,
                                     Constants.RESOURCES_LIB_SH), timeout=120)
-        if int(ret_code) != 0:
+        if int(ret_code):
             raise RuntimeError('DUT test setup script failed at node {name}'.
                                format(name=node['host']))
 
@@ -200,14 +200,14 @@ class DUTSetup(object):
             logger.trace('Try {}: Get VPP PID'.format(i))
             ret_code, stdout, stderr = ssh.exec_command('pidof vpp')
 
-            if int(ret_code) != 0:
+            if int(ret_code):
                 raise RuntimeError('Not possible to get PID of VPP process '
                                    'on node: {0}\n {1}'.
                                    format(node['host'], stdout + stderr))
 
             if len(stdout.splitlines()) == 1:
                 return int(stdout)
-            elif len(stdout.splitlines()) == 0:
+            elif not stdout.splitlines():
                 logger.debug("No VPP PID found on node {0}".
                              format(node['host']))
                 continue
@@ -274,7 +274,7 @@ class DUTSetup(object):
         # Try to read number of VFs from PCI address of QAT device
         for _ in range(3):
             ret_code, stdout, _ = ssh.exec_command(cmd)
-            if int(ret_code) == 0:
+            if not int(ret_code):
                 try:
                     sriov_numvfs = int(stdout)
                 except ValueError:
@@ -328,7 +328,7 @@ class DUTSetup(object):
                 format(numvfs, cryptodev.replace(':', r'\:'), timeout=180)
             ret_code, _, _ = ssh.exec_command_sudo("sh -c '{0}'".format(cmd))
 
-            if int(ret_code) != 0:
+            if int(ret_code):
                 raise RuntimeError('Failed to initialize {0} VFs on QAT device '
                                    ' on host {1}'.format(numvfs, node['host']))
 
@@ -351,7 +351,7 @@ class DUTSetup(object):
             "sh -c 'echo {0} | tee /sys/bus/pci/devices/{1}/driver/unbind'"
             .format(pci_addr, pci_addr.replace(':', r'\:')), timeout=180)
 
-        if int(ret_code) != 0:
+        if int(ret_code):
             raise RuntimeError('Failed to unbind PCI device {0} from driver on '
                                'host {1}'.format(pci_addr, node['host']))
 
@@ -376,7 +376,7 @@ class DUTSetup(object):
             "sh -c 'echo {0} | tee /sys/bus/pci/drivers/{1}/bind'".format(
                 pci_addr, driver), timeout=180)
 
-        if int(ret_code) != 0:
+        if int(ret_code):
             raise RuntimeError('Failed to bind PCI device {0} to {1} driver on '
                                'host {2}'.format(pci_addr, driver,
                                                  node['host']))
@@ -410,14 +410,15 @@ class DUTSetup(object):
 
         for i in range(3):
             logger.trace('Try number {0}: Get PCI device driver'.format(i))
+
             cmd = 'lspci -vmmks {0}'.format(pci_addr)
             ret_code, stdout, _ = ssh.exec_command(cmd)
-            if int(ret_code) != 0:
+            if int(ret_code):
                 raise RuntimeError("'{0}' failed on '{1}'"
                                    .format(cmd, node['host']))
 
             for line in stdout.splitlines():
-                if len(line) == 0:
+                if not line:
                     continue
                 name = None
                 value = None
@@ -459,7 +460,7 @@ class DUTSetup(object):
         cmd = 'grep -w {0} /proc/modules'.format(module)
         ret_code, _, _ = ssh.exec_command(cmd)
 
-        if int(ret_code) != 0:
+        if int(ret_code):
             if force_load:
                 # Module is not loaded and we want to load it
                 DUTSetup.kernel_module_load(node, module)
@@ -513,7 +514,7 @@ class DUTSetup(object):
 
         ret_code, _, _ = ssh.exec_command_sudo("modprobe {0}".format(module))
 
-        if int(ret_code) != 0:
+        if int(ret_code):
             raise RuntimeError('Failed to load {0} kernel module on host {1}'.
                                format(module, node['host']))
 
@@ -567,13 +568,13 @@ class DUTSetup(object):
 
                 cmd = "[[ -f /etc/redhat-release ]]"
                 return_code, _, _ = ssh.exec_command(cmd)
-                if int(return_code) == 0:
+                if not int(return_code):
                     # workaroud - uninstall existing vpp installation until
                     # start-testcase script is updated on all virl servers
                     rpm_pkgs_remove = "vpp*"
                     cmd_u = 'yum -y remove "{0}"'.format(rpm_pkgs_remove)
                     r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
-                    if int(r_rcode) != 0:
+                    if int(r_rcode):
                         raise RuntimeError('Failed to remove previous VPP'
                                            'installation on host {0}:\n{1}'
                                            .format(node['host'], r_err))
@@ -582,7 +583,7 @@ class DUTSetup(object):
                                              for pkg in vpp_rpm_pkgs) + "*.rpm"
                     cmd_i = "rpm -ivh {0}".format(rpm_pkgs)
                     ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
-                    if int(ret_code) != 0:
+                    if int(ret_code):
                         raise RuntimeError('Failed to install VPP on host {0}:'
                                            '\n{1}'.format(node['host'], err))
                     else:
@@ -595,7 +596,7 @@ class DUTSetup(object):
                     deb_pkgs_remove = "vpp*"
                     cmd_u = 'apt-get purge -y "{0}"'.format(deb_pkgs_remove)
                     r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
-                    if int(r_rcode) != 0:
+                    if int(r_rcode):
                         raise RuntimeError('Failed to remove previous VPP'
                                            'installation on host {0}:\n{1}'
                                            .format(node['host'], r_err))
@@ -603,7 +604,7 @@ class DUTSetup(object):
                                              for pkg in vpp_deb_pkgs) + "*.deb"
                     cmd_i = "dpkg -i --force-all {0}".format(deb_pkgs)
                     ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
-                    if int(ret_code) != 0:
+                    if int(ret_code):
                         raise RuntimeError('Failed to install VPP on host {0}:'
                                            '\n{1}'.format(node['host'], err))
                     else:

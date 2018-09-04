@@ -783,11 +783,10 @@ class InterfaceUtil(object):
                 "tap_dump.vat")
         if name is None:
             return response[0]
-        else:
-            for item in response[0]:
-                if name == item['dev_name']:
-                    return item
-            return {}
+        for item in response[0]:
+            if name == item['dev_name']:
+                return item
+        return {}
 
     @staticmethod
     def create_subinterface(node, interface, sub_id, outer_vlan_id=None,
