@@ -1,8 +1,8 @@
 L2 Container memif
 ==================
 
-x520-64b-base
--------------
+3n-hsw-x520-64b-base
+--------------------
 
 1t1c
 ````
@@ -12,7 +12,7 @@ x520-64b-base
     <a name="x520-64b-1t1c"></a>
     <center><b>
 
-:index:`x520-l2sw-memif-64b-base-1t1c-mrr`
+:index:`3n-hsw-x520-l2sw-memif-64b-base-1t1c-mrr`
 
 .. raw:: html
 
@@ -20,7 +20,7 @@ x520-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-1t1c-x520.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-1t1c-x520-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -32,7 +32,7 @@ x520-64b-base
     <a name="x520-64b-2t2c"></a>
     <center><b>
 
-:index:`x520-l2sw-memif-64b-base-2t2c-mrr`
+:index:`3n-hsw-x520-l2sw-memif-64b-base-2t2c-mrr`
 
 .. raw:: html
 
@@ -40,7 +40,7 @@ x520-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-2t2c-x520.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-2t2c-x520-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -52,7 +52,7 @@ x520-64b-base
     <a name="x520-64b-4t4c"></a>
     <center><b>
 
-:index:`x520-l2sw-memif-64b-base-4t4c-mrr`
+:index:`3n-hsw-x520-l2sw-memif-64b-base-4t4c-mrr`
 
 .. raw:: html
 
@@ -60,12 +60,12 @@ x520-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-4t4c-x520.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-4t4c-x520-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
-x710-64b-base
--------------
+3n-hsw-x710-64b-base
+--------------------
 
 1t1c
 ````
@@ -75,7 +75,7 @@ x710-64b-base
     <a name="x710-64b-1t1c"></a>
     <center><b>
 
-:index:`x710-l2sw-memif-64b-base-1t1c-mrr`
+:index:`3n-hsw-x710-l2sw-memif-64b-base-1t1c-mrr`
 
 .. raw:: html
 
@@ -83,7 +83,7 @@ x710-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-1t1c-x710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-1t1c-x710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -95,7 +95,7 @@ x710-64b-base
     <a name="x710-64b-2t2c"></a>
     <center><b>
 
-:index:`x710-l2sw-memif-64b-base-2t2c-mrr`
+:index:`3n-hsw-x710-l2sw-memif-64b-base-2t2c-mrr`
 
 .. raw:: html
 
@@ -103,7 +103,7 @@ x710-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-2t2c-x710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-2t2c-x710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -115,7 +115,7 @@ x710-64b-base
     <a name="x710-64b-4t4c"></a>
     <center><b>
 
-:index:`x710-l2sw-memif-64b-base-4t4c-mrr`
+:index:`3n-hsw-x710-l2sw-memif-64b-base-4t4c-mrr`
 
 .. raw:: html
 
@@ -123,12 +123,12 @@ x710-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-4t4c-x710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-4t4c-x710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
-xl710-64b-base
---------------
+3n-hsw-xl710-64b-base
+---------------------
 
 1t1c
 ````
@@ -138,7 +138,7 @@ xl710-64b-base
     <a name="xl710-64b-1t1c"></a>
     <center><b>
 
-:index:`xl710-l2sw-memif-64b-base-1t1c-mrr`
+:index:`3n-hsw-xl710-l2sw-memif-64b-base-1t1c-mrr`
 
 .. raw:: html
 
@@ -146,7 +146,7 @@ xl710-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-1t1c-xl710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-1t1c-xl710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -158,7 +158,7 @@ xl710-64b-base
     <a name="xl710-64b-2t2c"></a>
     <center><b>
 
-:index:`xl710-l2sw-memif-64b-base-2t2c-mrr`
+:index:`3n-hsw-xl710-l2sw-memif-64b-base-2t2c-mrr`
 
 .. raw:: html
 
@@ -166,7 +166,7 @@ xl710-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-2t2c-xl710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-2t2c-xl710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -178,7 +178,7 @@ xl710-64b-base
     <a name="xl710-64b-4t4c"></a>
     <center><b>
 
-:index:`xl710-l2sw-memif-64b-base-4t4c-mrr`
+:index:`3n-hsw-xl710-l2sw-memif-64b-base-4t4c-mrr`
 
 .. raw:: html
 
@@ -186,12 +186,12 @@ xl710-64b-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-4t4c-xl710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-l2-4t4c-xl710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
-x520-imix-base
---------------
+3n-hsw-x520-imix-base
+---------------------
 
 1t1c
 ````
@@ -201,7 +201,7 @@ x520-imix-base
     <a name="x520-imix-1t1c"></a>
     <center><b>
 
-:index:`x520-l2sw-memif-imix-base-1t1c-mrr`
+:index:`3n-hsw-x520-l2sw-memif-imix-base-1t1c-mrr`
 
 .. raw:: html
 
@@ -209,7 +209,7 @@ x520-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-1t1c-x520.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-1t1c-x520-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -221,7 +221,7 @@ x520-imix-base
     <a name="x520-imix-2t2c"></a>
     <center><b>
 
-:index:`x520-l2sw-memif-imix-base-2t2c-mrr`
+:index:`3n-hsw-x520-l2sw-memif-imix-base-2t2c-mrr`
 
 .. raw:: html
 
@@ -229,7 +229,7 @@ x520-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-2t2c-x520.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-2t2c-x520-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -241,7 +241,7 @@ x520-imix-base
     <a name="x520-imix-4t4c"></a>
     <center><b>
 
-:index:`x520-l2sw-memif-imix-base-4t4c-mrr`
+:index:`3n-hsw-x520-l2sw-memif-imix-base-4t4c-mrr`
 
 .. raw:: html
 
@@ -249,12 +249,12 @@ x520-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-4t4c-x520.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-4t4c-x520-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
-x710-imix-base
---------------
+3n-hsw-x710-imix-base
+---------------------
 
 1t1c
 ````
@@ -264,7 +264,7 @@ x710-imix-base
     <a name="x710-imix-1t1c"></a>
     <center><b>
 
-:index:`x710-l2sw-memif-imix-base-1t1c-mrr`
+:index:`3n-hsw-x710-l2sw-memif-imix-base-1t1c-mrr`
 
 .. raw:: html
 
@@ -272,7 +272,7 @@ x710-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-1t1c-x710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-1t1c-x710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -284,7 +284,7 @@ x710-imix-base
     <a name="x710-imix-2t2c"></a>
     <center><b>
 
-:index:`x710-l2sw-memif-imix-base-2t2c-mrr`
+:index:`3n-hsw-x710-l2sw-memif-imix-base-2t2c-mrr`
 
 .. raw:: html
 
@@ -292,7 +292,7 @@ x710-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-2t2c-x710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-2t2c-x710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -304,7 +304,7 @@ x710-imix-base
     <a name="x710-imix-4t4c"></a>
     <center><b>
 
-:index:`x710-l2sw-memif-imix-base-4t4c-mrr`
+:index:`3n-hsw-x710-l2sw-memif-imix-base-4t4c-mrr`
 
 .. raw:: html
 
@@ -312,12 +312,12 @@ x710-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-4t4c-x710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-4t4c-x710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
-xl710-imix-base
----------------
+3n-hsw-xl710-imix-base
+----------------------
 
 1t1c
 ````
@@ -327,7 +327,7 @@ xl710-imix-base
     <a name="xl710-imix-1t1c"></a>
     <center><b>
 
-:index:`xl710-l2sw-memif-imix-base-1t1c-mrr`
+:index:`3n-hsw-xl710-l2sw-memif-imix-base-1t1c-mrr`
 
 .. raw:: html
 
@@ -335,7 +335,7 @@ xl710-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-1t1c-xl710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-1t1c-xl710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -347,7 +347,7 @@ xl710-imix-base
     <a name="xl710-imix-2t2c"></a>
     <center><b>
 
-:index:`xl710-l2sw-memif-imix-base-2t2c-mrr`
+:index:`3n-hsw-xl710-l2sw-memif-imix-base-2t2c-mrr`
 
 .. raw:: html
 
@@ -355,7 +355,7 @@ xl710-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-2t2c-xl710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-2t2c-xl710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -367,7 +367,7 @@ xl710-imix-base
     <a name="xl710-imix-4t4c"></a>
     <center><b>
 
-:index:`xl710-l2sw-memif-imix-base-4t4c-mrr`
+:index:`3n-hsw-xl710-l2sw-memif-imix-base-4t4c-mrr`
 
 .. raw:: html
 
@@ -375,6 +375,6 @@ xl710-imix-base
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-4t4c-xl710.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-container-memif-imix-l2-4t4c-xl710-3n-hsw.html"></iframe>
     <p><br><br></p>
     </center>

@@ -38,17 +38,20 @@ in separate tables in section 1.x. Followed by trending methodology in
 section 2. and trendline graphs in sections 3.x. Performance test  data
 used for trendline graphs is provided in sections 4.x.
 
-VPP worker on 1t1c
-------------------
+3n-hsw
+------
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c.rst
+VPP worker on 1t1c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c-3n-hsw.rst
 
 VPP worker on 2t2c
-------------------
+``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c-3n-hsw.rst
 
 VPP worker on 4t4c
-------------------
+``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-3n-hsw.rst
