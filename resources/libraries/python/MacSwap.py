@@ -59,5 +59,3 @@ class MacSwap(object):
         else:
             raise ValueError('Node {} has not DUT NodeType: "{}"'.
                              format(node['host'], node['type']))
-
-

@@ -71,12 +71,12 @@ class VatHistory(object):
         :type node: dict
         """
         if node['type'] == NodeType.DUT:
-            sequence = "\nno VAT command executed"\
-                if len(DICT__DUTS_VAT_HISTORY[node['host']]) == 0\
-                else "".join("\n{}".format(cmd)
-                             for cmd in DICT__DUTS_VAT_HISTORY[node['host']])
-            logger.trace("{0} VAT command history:{1}\n".
-                         format(node['host'], sequence))
+            sequence = "\nno VAT command executed"
+            if DICT__DUTS_VAT_HISTORY[node['host']]:
+                sequence = "".join(["\n{}".format(
+                    cmd) for cmd in DICT__DUTS_VAT_HISTORY[node['host']]])
+            logger.trace(
+                "{0} VAT command history:{1}\n".format(node['host'], sequence))
 
     @staticmethod
     def show_vat_history_on_all_duts(nodes):

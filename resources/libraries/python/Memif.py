@@ -145,7 +145,7 @@ class Memif(object):
             memif_data = memif_data.replace(garbage, '')
 
         for line in memif_data.splitlines():
-            if line.startswith('Sending') or len(line) == 0:
+            if not line or line.startswith('Sending'):
                 continue
             elif line.startswith('memif'):
                 if memif_name:
@@ -177,7 +177,7 @@ class Memif(object):
         :param sw_if_idx: DUT node.
         :type node: dict
         :type sw_if_idx: int
-        :returns: Memif interface name.
+        :returns: Memif interface name, or None if not found.
         :rtype: str
         """
         with VatTerminal(node, json_param=False) as vat:
@@ -196,7 +196,7 @@ class Memif(object):
         :param sw_if_idx: DUT node.
         :type node: dict
         :type sw_if_idx: int
-        :returns: Memif interface MAC address.
+        :returns: Memif interface MAC address, or None if not found.
         :rtype: str
         """
         with VatTerminal(node, json_param=False) as vat:
@@ -205,6 +205,7 @@ class Memif(object):
             for item in memif_data:
                 if memif_data[item]['sw_if_index'] == str(sw_if_idx):
                     return memif_data[item].get('mac', None)
+        return None
 
     @staticmethod
     def vpp_get_memif_interface_socket(node, sw_if_idx):
@@ -214,7 +215,7 @@ class Memif(object):
         :param sw_if_idx: DUT node.
         :type node: dict
         :type sw_if_idx: int
-        :returns: Memif interface socket path.
+        :returns: Memif interface socket path, or None if not found.
         :rtype: str
         """
         with VatTerminal(node, json_param=False) as vat:
@@ -223,6 +224,7 @@ class Memif(object):
             for item in memif_data:
                 if memif_data[item]['sw_if_index'] == str(sw_if_idx):
                     return memif_data[item].get('socket', None)
+        return None
 
     @staticmethod
     def vpp_get_memif_interface_id(node, sw_if_idx):
@@ -232,7 +234,7 @@ class Memif(object):
         :param sw_if_idx: DUT node.
         :type node: dict
         :type sw_if_idx: int
-        :returns: Memif interface ID.
+        :returns: Memif interface ID, or None if not found.
         :rtype: int
         """
         with VatTerminal(node, json_param=False) as vat:
@@ -241,6 +243,7 @@ class Memif(object):
             for item in memif_data:
                 if memif_data[item]['sw_if_index'] == str(sw_if_idx):
                     return int(memif_data[item].get('id', None))
+        return None
 
     @staticmethod
     def vpp_get_memif_interface_role(node, sw_if_idx):
@@ -250,7 +253,7 @@ class Memif(object):
         :param sw_if_idx: DUT node.
         :type node: dict
         :type sw_if_idx: int
-        :returns: Memif interface role.
+        :returns: Memif interface role, or None if not found.
         :rtype: int
         """
         with VatTerminal(node, json_param=False) as vat:
@@ -259,3 +262,4 @@ class Memif(object):
             for item in memif_data:
                 if memif_data[item]['sw_if_index'] == str(sw_if_idx):
                     return memif_data[item].get('role', None)
+        return None

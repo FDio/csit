@@ -197,9 +197,9 @@ class NATUtil(object):
             items = line.split(" ")
             while "" in items:
                 items.remove("")
-            if len(items) == 0:
+            if not items:
                 continue
-            elif len(items) == 4:
+            if len(items) == 4:
                 # no ports were returned
                 data.append({
                     "local_address": items[0],
@@ -246,9 +246,9 @@ class NATUtil(object):
             for trash in ("", "vat#"):
                 while trash in items:
                     items.remove(trash)
-            if len(items) == 0:
+            if not items:
                 continue
-            elif len(items) == 3:
+            if len(items) == 3:
                 data.append({
                     # items[0] is the table header - "sw_if_index"
                     "sw_if_index": items[1],
