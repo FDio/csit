@@ -25,7 +25,7 @@ from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
-
+from resources.libraries.python.CpuUtils import CpuUtils
 
 class InterfaceUtil(object):
     """General utilities for managing interfaces"""
@@ -581,7 +581,10 @@ class InterfaceUtil(object):
                     try:
                         numa_node = int(out)
                         if numa_node < 0:
-                            raise ValueError
+                            if CpuUtils.cpu_node_count(node) == 1:
+                                numa_node = 0
+                            else:
+                                raise ValueError
                     except ValueError:
                         logger.trace('Reading numa location failed for: {0}'\
                             .format(if_pci))
