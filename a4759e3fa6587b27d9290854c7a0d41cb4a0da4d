@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca1cb440_3eb3ff0a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-05T09:24:35Z",
+      "side": 1,
+      "message": "Can this be read from CpuUtils.cpu_node_count() ?",
+      "range": {
+        "startLine": 563,
+        "startChar": 0,
+        "endLine": 578,
+        "endChar": 23
+      },
+      "revId": "a4759e3fa6587b27d9290854c7a0d41cb4a0da4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a739d7a2_e6961e01",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-05T09:24:35Z",
+      "side": 1,
+      "message": "CpuUtils.cpu_node_count() should return this, is it non working?",
+      "range": {
+        "startLine": 602,
+        "startChar": 28,
+        "endLine": 602,
+        "endChar": 76
+      },
+      "revId": "a4759e3fa6587b27d9290854c7a0d41cb4a0da4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
