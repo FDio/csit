@@ -5,6 +5,7 @@ CSIT 18.07
     :maxdepth: 2
     :caption: Introduction
 
+    introduction/report_history
     introduction/introduction
     introduction/test_scenarios_overview
     introduction/physical_testbeds

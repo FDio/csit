@@ -103,7 +103,7 @@ rst_epilog = """
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _K8s configuration files: https://github.com/FDio/csit/tree/{release}/resources/templates/kubernetes
 """.format(release='rls1807',
-           report_version='v1.0',
+           report_version='v1.1',
            prev_release='rls1804',
            srelease='1807',
            csitrelease='18.07',
