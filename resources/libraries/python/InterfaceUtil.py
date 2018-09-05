@@ -560,6 +560,24 @@ class InterfaceUtil(object):
         InterfaceUtil.tg_set_interfaces_udev_rules(node)
 
     @staticmethod
+    def get_numa_node_count(node):
+        """Get numa node count from the DUT or TG node.
+
+        :param node: Node from topology.
+        :type node: dict
+        :returns: numa node count.
+        :raises RuntimeError: Get NUMA node count failed.
+        """
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = "lscpu |grep 'NUMA node(s)' |awk -F':' '{print $2}'"
+        (ret_code, out, _) = ssh.exec_command(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError('Get NUMA node count failed')
+
+        return int(out)
+
+    @staticmethod
     def iface_update_numa_node(node):
         """For all interfaces from topology file update numa node based on
            information from the node.
@@ -581,7 +599,10 @@ class InterfaceUtil(object):
                     try:
                         numa_node = int(out)
                         if numa_node < 0:
-                            raise ValueError
+                            if InterfaceUtil.get_numa_node_count(node) == 1:
+                                numa_node = 0
+                            else:
+                                raise ValueError
                     except ValueError:
                         logger.trace('Reading numa location failed for: {0}'\
                             .format(if_pci))
