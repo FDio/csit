@@ -595,10 +595,10 @@
 | | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | 2001:3::2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
 
-| Initialize IPv6 forwarding with scaling in 3-node circular topology
+| Initialize IPv6 forwarding with scaling in circular topology
 | | [Documentation]
 | | ... | Custom setup of IPv6 topology with scalability of ip routes on all
-| | ... | DUT nodes in 3-node circular topology
+| | ... | DUT nodes in 2-node / 3-node circular topology
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${count} - IP route count. Type: integer
@@ -608,35 +608,53 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv6 forwarding with scaling in 3-node circular \
+| | ... | \| Initialize IPv6 forwarding with scaling in circular \
 | | ... | topology \| 100000 \|
 | | ...
 | | [Arguments] | ${count}
 | | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
 | | Set interfaces in path up
-| | ${subn_prefix}= | Set Variable | 64
-| | ${host_prefix}= | Set Variable | 128
-| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2001:3::1 | ${subn_prefix}
-| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | 2001:4::1 | ${subn_prefix}
-| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | 2001:4::2 | ${subn_prefix}
-| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | 2001:5::1 | ${subn_prefix}
+| | ...
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${prefix}= | Set Variable | 64
+| | ${host_prefix}= | Set Variable | 128
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2001:3::1 | ${prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | 2001:4::1 | ${prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | 2001:4::2 | ${prefix}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${dut1_if2}
+| | VPP Set If IPv6 Addr | ${dut} | ${dut_if2} | 2001:5::1 | ${prefix}
 | | Suppress ICMPv6 router advertisement message | ${nodes}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:3::2 | ${tg1_if1_mac}
-| | Add Ip Neighbor | ${dut1} | ${dut1_if2} | 2001:4::2 | ${dut2_if1_mac}
-| | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:4::1 | ${dut1_if2_mac}
-| | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:5::2 | ${tg1_if2_mac}
-| | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix} | 2001:4::2
-| | ... | interface=${dut1_if2} | count=${count}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add Ip Neighbor | ${dut1} | ${dut1_if2} | 2001:4::2 | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:4::1 | ${dut1_if2_mac}
+| | Add Ip Neighbor | ${dut} | ${dut_if2} | 2001:5::2 | ${tg1_if2_mac}
 | | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | 2001:3::2
 | | ... | interface=${dut1_if1} | count=${count}
-| | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix} | 2001:4::1
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix} | 2001:4::2
+| | ... | interface=${dut1_if2} | count=${count}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix} | 2001:4::1
 | | ... | interface=${dut2_if1} | count=${count}
-| | Vpp Route Add | ${dut2} | 2001:2::0 | ${host_prefix} | 2001:5::2
-| | ... | interface=${dut2_if2} | count=${count}
+| | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | 2001:5::2
+| | ... | interface=${dut_if2} | count=${count}
 
 | Initialize IPv6 iAcl whitelist in 3-node circular topology
 | | [Documentation]
