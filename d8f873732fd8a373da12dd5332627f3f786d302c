@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63f3ee60_95d0c893",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-05T12:43:33Z",
+      "side": 1,
+      "message": "idx,",
+      "range": {
+        "startLine": 944,
+        "startChar": 66,
+        "endLine": 944,
+        "endChar": 69
+      },
+      "revId": "d8f873732fd8a373da12dd5332627f3f786d302c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
