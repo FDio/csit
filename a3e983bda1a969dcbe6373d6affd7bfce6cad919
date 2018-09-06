@@ -46,6 +46,30 @@
       "revId": "a3e983bda1a969dcbe6373d6affd7bfce6cad919",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5915ea6e_a6ea110e",
+        "filename": "resources/libraries/bash/function/branch.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-06T10:34:03Z",
+      "side": 1,
+      "message": "I guess it will die on line 66 already... You should implement defaulting to master oper branch there.",
+      "parentUuid": "ad8e3813_21159768",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 46
+      },
+      "revId": "a3e983bda1a969dcbe6373d6affd7bfce6cad919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
