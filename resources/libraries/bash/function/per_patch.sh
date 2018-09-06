@@ -100,11 +100,11 @@ function compare_test_results () {
     rm -rf "csit_parent" || die "Remove operation failed."
     mkdir -p "csit_parent" || die "Directory creation failed."
     for filename in "output.xml" "log.html" "report.html"; do
-        mv "${ARCHIVE_DIR}/${filename}" "csit_parent/${filename}" || {
+        mv "${ARCHIVE_DIR}/${filename}" "csit_parent/archive/${filename}" || {
             die "Attempt to move '${filename}' failed."
         }
     done
-    parse_bmrr_results "csit_parent" || {
+    parse_bmrr_results "csit_parent/archive" || {
         die "The function should have died on error."
     }
 
@@ -148,7 +148,10 @@ function download_builds () {
         die "Copy operation failed."
     }
     # Create symlinks so that if job fails on robot, results can be archived.
-    ln -s "${ARCHIVE_DIR}" "csit_new" || die "Symbolic link creation failed."
+    mkdir -p "csit_new" || die "Directory creation failed."
+    ln -s "${ARCHIVE_DIR}" "csit_new/archive" || {
+        die "Symbolic link creation failed."
+    }
 }
 
 
@@ -237,7 +240,10 @@ function prepare_test_new () {
     mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
     cp "build_new"/*".deb" "${DOWNLOAD_DIR}" || die "Copy operation failed."
     # Create symlinks so that if job fails on robot, results can be archived.
-    ln -s "${ARCHIVE_DIR}" "csit_new" || die "Symbolic link creation failed."
+    mkdir -p "csit_new" || die "Directory creation failed."
+    ln -s "${ARCHIVE_DIR}" "csit_new/archive" || {
+        die "Symbolic link creation failed."
+    }
 }
 
 
@@ -263,9 +269,9 @@ function prepare_test_parent () {
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "csit_new" "csit_parent" || die "Remove operation failed."
-    mkdir -p "csit_new" || die "Create directory operation failed."
+    mkdir -p "csit_new/archive" || die "Create directory operation failed."
     for filename in "output.xml" "log.html" "report.html"; do
-        mv "${ARCHIVE_DIR}/${filename}" "csit_new/${filename}" || {
+        mv "${ARCHIVE_DIR}/${filename}" "csit_new/archive/${filename}" || {
             die "Move operation of '${filename}' failed."
         }
     done
@@ -281,7 +287,10 @@ function prepare_test_parent () {
 
     cp "build_parent"/*".deb" "${DOWNLOAD_DIR}"/ || die "Copy failed."
     # Create symlinks so that if job fails on robot, results can be archived.
-    ln -s "${ARCHIVE_DIR}" "csit_parent" || die "Symlink creation failed."
+    mkdir -p "csit_parent" || die "Directory creation failed."
+    ln -s "${ARCHIVE_DIR}" "csit_parent/archive" || {
+        die "Symlink creation failed."
+    }
 }
 
 
