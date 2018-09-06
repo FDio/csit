@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0f866a9_ae0329e5",
+        "filename": "INFO.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-06T06:31:17Z",
+      "side": 1,
+      "message": "Currently we are using this board: \nhttps://jira.fd.io/secure/RapidBoard.jspa?rapidView\u003d8\u0026selectedIssue\u003dCSIT-1205",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "60cd774f8d188771f1454af77841774f764b25fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
