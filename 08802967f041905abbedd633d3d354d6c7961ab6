@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45b26131_27749e3e",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-06T11:18:05Z",
+      "side": 1,
+      "message": "testcases.",
+      "range": {
+        "startLine": 115,
+        "startChar": 69,
+        "endLine": 115,
+        "endChar": 78
+      },
+      "revId": "08802967f041905abbedd633d3d354d6c7961ab6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
