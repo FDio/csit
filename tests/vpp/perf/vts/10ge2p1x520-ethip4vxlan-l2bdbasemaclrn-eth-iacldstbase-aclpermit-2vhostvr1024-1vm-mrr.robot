@@ -108,7 +108,7 @@
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
 | | ${vm1} = | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1
 | | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | Set Test Variable | &{dut1_vm_refs} | DUT1_VM1=${vm1}
 | | Then Traffic should pass with maximum rate
@@ -116,7 +116,7 @@
 
 *** Test Cases ***
 | tc01-114B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr
-| | [Tags] | 114B | 1C
+| | [Tags] | 114B | 1C | THIS
 | | framesize=${114} | phy_cores=${1}
 
 | tc02-114B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr
