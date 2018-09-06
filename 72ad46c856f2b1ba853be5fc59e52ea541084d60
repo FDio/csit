@@ -22,6 +22,30 @@
       "revId": "72ad46c856f2b1ba853be5fc59e52ea541084d60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94b3460e_ab673726",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-06T09:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88de5d11_bff966e2",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 87,
+        "endChar": 16
+      },
+      "revId": "72ad46c856f2b1ba853be5fc59e52ea541084d60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
