@@ -22,6 +22,30 @@
       "revId": "60cd774f8d188771f1454af77841774f764b25fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c684cd0_071bfc2f",
+        "filename": "INFO.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-06T08:27:35Z",
+      "side": 1,
+      "message": "Shorter URL works as well:\nhttps://jira.fd.io/secure/RapidBoard.jspa",
+      "parentUuid": "f0f866a9_ae0329e5",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "60cd774f8d188771f1454af77841774f764b25fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
