@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5af4e6b_e860f36a",
+        "filename": "resources/libraries/bash/function/branch.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-06T10:48:13Z",
+      "side": 1,
+      "message": "I guess this can only happen if the previous greps find a branch name consisting on whitespace only, but it does not hurt to be extra defensive.",
+      "range": {
+        "startLine": 70,
+        "startChar": 10,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "124009e85acd84757b66bc49a3106adc138d224b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
