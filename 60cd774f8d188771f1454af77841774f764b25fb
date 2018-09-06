@@ -46,6 +46,30 @@
       "revId": "60cd774f8d188771f1454af77841774f764b25fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eba217e2_fbc3708a",
+        "filename": "INFO.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-06T09:07:42Z",
+      "side": 1,
+      "message": "I think that only work when you are assigned in CSIT project? So e.g. VPP guys will be redirected to VPP board? I will ask Matus to remove old kanban.",
+      "parentUuid": "2c684cd0_071bfc2f",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "60cd774f8d188771f1454af77841774f764b25fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
