@@ -75,16 +75,18 @@ class Regenerator(object):
                 dash_split = dash_split[1].split("-", 1)
             return dash_split[0], dash_split[1].split(".", 1)[0]
 
-        def add_testcase(testcase, iface, file_out, num, **kwargs):
+        def add_testcase(testcase, iface, suite_id, file_out, num, **kwargs):
             """Add testcase to file.
 
             :param testcase: Testcase class.
             :param iface: Interface.
+            :param suite_id: Suite ID.
             :param file_out: File to write testcases to.
             :param num: Testcase number.
             :param kwargs: Key-value pairs used to construct testcase.
             :type testcase: Testcase
             :type iface: str
+            :type suite_id: str
             :type file_out: file
             :type num: int
             :type kwargs: dict
@@ -92,22 +94,17 @@ class Regenerator(object):
             :rtype: int
             """
             # TODO: Is there a better way to disable some combinations?
-            if kwargs["framesize"] != 9000 or "vic1227" not in iface:
+            if kwargs["framesize"] == 9000 and "vic1227" in iface:
+                # Not supported in HW.
+                pass
+            else if kwargs["framesize"] == 9000 and "avf" in suite_id:
+                # Not supported by AVF driver.
+                # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
+                pass
+            else:
                 file_out.write(testcase.generate(num=num, **kwargs))
             return num + 1
 
-        def add_testcases(testcase, iface, file_out, tc_kwargs_list):
-            """Add testcases to file.
-
-            :param testcase: Testcase class.
-            :param iface: Interface.
-            :param file_out: File to write testcases to.
-            :param tc_kwargs_list: Key-value pairs used to construct testcase.
-            :type testcase: Testcase
-            :type iface: str
-            :type file_out: file
-            :type tc_kwargs_list: dict
-            """
             num = 1
             for tc_kwargs in tc_kwargs_list:
                 num = add_testcase(testcase, iface, file_out, num, **tc_kwargs)
@@ -137,6 +134,6 @@ class Regenerator(object):
             testcase = self.testcase_class(suite_id)
             with open(filename, "w") as file_out:
                 file_out.write(text_prolog)
-                add_testcases(testcase, iface, file_out, kwargs_list)
+                add_testcases(testcase, iface, suite_id, file_out, kwargs_list)
         print "Regenerator ends."
         print  # To make autogen check output more readable.
