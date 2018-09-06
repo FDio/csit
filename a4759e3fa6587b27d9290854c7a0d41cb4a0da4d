@@ -45,6 +45,30 @@
       "revId": "a4759e3fa6587b27d9290854c7a0d41cb4a0da4d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "468c9f35_4d0ca60b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2018-09-06T04:54:21Z",
+      "side": 1,
+      "message": "Hi Peter,\n\nNot notice there has this function,  I tried it, it works,\nI will revise the patch to use CpuUtils.cpu_node_count().",
+      "parentUuid": "a739d7a2_e6961e01",
+      "range": {
+        "startLine": 602,
+        "startChar": 28,
+        "endLine": 602,
+        "endChar": 76
+      },
+      "revId": "a4759e3fa6587b27d9290854c7a0d41cb4a0da4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
