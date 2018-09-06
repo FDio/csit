@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,15 +17,15 @@ Stream profile:
  - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
  - Packet: ETH / IP /
  - Direction 0 --> 1:
-   - Source MAC address range:      ca:fe:00:00:00:00 - ca:fe:00:00:13:87
-   - Destination MAC address range: fa:ce:00:00:00:00 - fa:ce:00:00:13:87
-   - Source IP address range:       10.0.0.0 - 10.0.19.135
-   - Destination IP address range:  20.0.0.0 - 20.0.19.135
+   - Source MAC address range:      ca:fe:00:00:00:00 - ca:fe:00:07:a1:1f
+   - Destination MAC address range: fa:ce:00:00:00:00 - fa:ce:00:07:a1:1f
+   - Source IP address range:       10.0.0.0 - 10.7.161.31
+   - Destination IP address range:  20.0.0.0 - 20.7.161.31
  - Direction 1 --> 0:
-   - Source MAC address range:      fa:ce:00:00:00:00 - fa:ce:00:00:13:87
-   - Destination MAC address range: ca:fe:00:00:00:00 - ca:fe:00:00:13:87
-   - Source IP address range:       20.0.0.0 - 20.0.19.135
-   - Destination IP address range:  10.0.0.0 - 10.0.19.135
+   - Source MAC address range:      fa:ce:00:00:00:00 - fa:ce:00:07:a1:1f
+   - Destination MAC address range: ca:fe:00:00:00:00 - ca:fe:00:07:a1:1f
+   - Source IP address range:       20.0.0.0 - 20.7.161.31
+   - Destination IP address range:  10.0.0.0 - 10.7.161.31
 """
 
 from trex_stl_lib.api import *
@@ -40,7 +40,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         super(TrafficStreamsBaseClass, self).__init__()
 
-        self.clients = 5000
+        self.clients = 500000
 
         # MACs used in packet headers.
         self.p1_src_start_mac = 'ca:fe:00:00:00:00' # mask: 00:00:FF:FF:FF:FF
@@ -51,16 +51,16 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # IPs used in packet headers.
         self.p1_src_start_ip = '10.0.0.0'
-        self.p1_src_end_ip = '10.0.19.135'
+        self.p1_src_end_ip = '10.7.161.31'
 
         self.p1_dst_start_ip = '20.0.0.0'
-        self.p1_dst_end_ip = '20.0.19.135'
+        self.p1_dst_end_ip = '20.7.161.31'
 
         self.p2_src_start_ip = '20.0.0.0'
-        self.p2_src_end_ip = '20.0.19.135'
+        self.p2_src_end_ip = '20.7.161.31'
 
         self.p2_dst_start_ip = '10.0.0.0'
-        self.p2_dst_end_ip = '10.0.19.135'
+        self.p2_dst_end_ip = '10.7.161.31'
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.

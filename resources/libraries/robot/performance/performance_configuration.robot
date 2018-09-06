@@ -1123,26 +1123,7 @@
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
-| Initialize L2 bridge domain in 2-node circular topology
-| | [Documentation]
-| | ... | Setup L2 DB topology by adding two interfaces on DUT into BD
-| | ... | that is created automatically with index 1. Learning is enabled.
-| | ... | Interfaces are brought up.
-| | ...
-| | ... | *Arguments:*
-| | ... | - bd_id - Bridge domain ID. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Initialize L2 bridge domain in 2-node circular topology \| 1 \|
-| | ...
-| | [Arguments] | ${bd_id}=${1}
-| | ...
-| | Set interfaces in path up
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id}
-
-| Initialize L2 bridge domain in 3-node circular topology
+| Initialize L2 bridge domain in circular topology
 | | [Documentation]
 | | ... | Setup L2 DB topology by adding two interfaces on each DUT into BD
 | | ... | that is created automatically with index 1. Learning is enabled.
@@ -1153,15 +1134,21 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize L2 bridge domain in 3-node circular topology \| 1 \|
+| | ... | \| Initialize L2 bridge domain in circular topology \| 1 \|
 | | ...
 | | [Arguments] | ${bd_id}=${1}
 | | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
 | | Set interfaces in path up
+| | ...
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id}
 
 | Configure IPv4 ACLs
 | | [Documentation]
