@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41a71de0_45dbde57",
+        "filename": "tests/vpp/perf/l2/40ge2p1vic1385-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-06T14:06:28Z",
+      "side": 1,
+      "message": "We should review all the suites for this kind of NIC mismatch, can be done in another Change.",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 11
+      },
+      "revId": "7b4094f0b767b2b739483e4a0ede00ecb8214c7a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
