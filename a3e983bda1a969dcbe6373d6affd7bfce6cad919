@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78791348_cc49491c",
+        "filename": "resources/libraries/bash/function/branch.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-06T08:29:35Z",
+      "side": 1,
+      "message": "I will fail in case when new stable/xxx vpp branch is pulled out but corresponding csit rlsxxx and oper-rlsxxx branches are not available yet (csit rlsxx branch is pulled out with vpp stable/xxx rc2, not with vpp stable/xxx rc1).\nWith previous implementation it would check-out oper branch from csit master branch.",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 46
+      },
+      "revId": "a3e983bda1a969dcbe6373d6affd7bfce6cad919",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
