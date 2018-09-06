@@ -17,7 +17,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X520-DA2 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT_REFLECT
+| ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT_REFLECT | THIS
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up 3-node performance topology with DUT's NIC model
@@ -115,7 +115,7 @@
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
 | | ${vm1} = | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1
 | | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | Set Test Variable | &{dut1_vm_refs} | DUT1_VM1=${vm1}
 | | Then Find NDR and PDR intervals using optimized search
