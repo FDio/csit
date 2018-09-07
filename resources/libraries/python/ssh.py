@@ -314,8 +314,10 @@ class SSH(object):
                                 '{0}\nBuffer content:\n{1}'.format(cmd, buf))
         tmp = buf.replace(cmd.replace('\n', ''), '')
         for item in prompt:
-            tmp.replace(item, '')
-        return tmp
+            tmp2 = tmp.replace(item, '')
+            if tmp2 != tmp:
+                break
+        return tmp2
 
     @staticmethod
     def interactive_terminal_close(chan):
