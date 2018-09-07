@@ -748,6 +748,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show IP FIB On All DUTs
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
