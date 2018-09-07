@@ -542,6 +542,9 @@ def _generate_url(base, testbed, test_name):
     if "lbdpdk" in test_name or "lbvpp" in test_name:
         file_name = "link_bonding"
 
+    elif "114b" in test_name and "vhost" in test_name:
+        file_name = "vts"
+
     elif "testpmd" in test_name or "l3fwd" in test_name:
         file_name = "dpdk"
 
@@ -555,7 +558,9 @@ def _generate_url(base, testbed, test_name):
     elif "vhost" in test_name:
         if "l2xcbase" in test_name or "l2bdbasemaclrn" in test_name:
             file_name = "vm_vhost_l2"
-            if "l2xcbase" in test_name:
+            if "114b" in test_name:
+                feature = ""
+            elif "l2xcbase" in test_name:
                 feature = "-base-l2xc"
             elif "l2bdbasemaclrn" in test_name:
                 feature = "-base-l2bd"
