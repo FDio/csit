@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "072556f5_7bd74f29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-07T13:55:17Z",
+      "side": 1,
+      "message": "Do we know why?",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 9,
+        "endChar": 46
+      },
+      "revId": "4a03148b66949acdcea9a36aa9b6d7aa4ae7cf35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82280fa6_bac92314",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-07T13:55:17Z",
+      "side": 1,
+      "message": "Creating infinite loop if the removal never succeeds?\nI would prefer finite number of tries, followed by giving up and failing.",
+      "range": {
+        "startLine": 10,
+        "startChar": 18,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "4a03148b66949acdcea9a36aa9b6d7aa4ae7cf35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
