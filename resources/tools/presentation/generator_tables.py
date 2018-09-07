@@ -555,9 +555,15 @@ def _generate_url(base, testbed, test_name):
     elif "vhost" in test_name:
         if "l2xcbase" in test_name or "l2bdbasemaclrn" in test_name:
             file_name = "vm_vhost_l2"
+            if "l2xcbase" in test_name:
+                feature = "-base-l2xc"
+            elif "l2bdbasemaclrn" in test_name:
+                feature = "-base-l2bd"
+            else:
+                feature = "-base"
         elif "ip4base" in test_name:
             file_name = "vm_vhost_ip4"
-        feature = "-base"
+            feature = "-base"
 
     elif "ipsec" in test_name:
         file_name = "ipsec"
@@ -571,7 +577,11 @@ def _generate_url(base, testbed, test_name):
         file_name = "ip4"
         if "xl710" in test_name:
             feature = "-base-scale-features"
-        elif "acl" in test_name or "snat" in test_name or "cop" in test_name:
+        elif "iacl" in test_name:
+            feature = "-features-iacl"
+        elif "oacl" in test_name:
+            feature = "-features-oacl"
+        elif "snat" in test_name or "cop" in test_name:
             feature = "-features"
         else:
             feature = "-base-scale"
@@ -584,8 +594,12 @@ def _generate_url(base, testbed, test_name):
             or "l2bdbasemaclrn" in test_name or "l2bdscale" in test_name \
             or "l2dbbasemaclrn" in test_name or "l2dbscale" in test_name:
         file_name = "l2"
-        if "acl" in test_name:
-            feature = "-features"
+        if "macip" in test_name:
+            feature = "-features-macip"
+        elif "iacl" in test_name:
+            feature = "-features-iacl"
+        elif "oacl" in test_name:
+            feature = "-features-oacl"
         else:
             feature = "-base-scale"
 
