@@ -18,6 +18,7 @@ from robot.api.deco import keyword
 
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.IPv4Setup import get_node
+from resources.libraries.python.VatExecutor import VatTerminal
 from resources.libraries.python.ssh import exec_cmd
 
 
@@ -227,3 +228,13 @@ class IPv4Util(object):
         if ret_code != 0:
             raise RuntimeError("Arp set not successful, reason:{}".
                                format(stderr))
+
+    @staticmethod
+    def vpp_show_ip_table(node):
+        """Get IP FIB table data from a VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        with VatTerminal(node, json_param=False) as vat:
+            vat.vat_terminal_exec_cmd_from_template("show_ip_fib.vat")
