@@ -244,6 +244,28 @@ class SSH(object):
             command = 'sudo -S {c}'.format(c=command)
         return self.exec_command(command, timeout)
 
+    def _check_vat_out(self, buf, prompt, json_out):
+        if len(buf) == 0:
+            return  False
+        for item in prompt:
+            find_prompt = buf.rfind(item)
+            if find_prompt != -1:
+                break
+        if find_prompt == -1:
+            return False
+        if json_out:
+            obj_start = buf.count('{')
+            obj_end = buf.count('}')
+            array_start = buf.count('[')
+            array_end = buf.count(']')
+            if obj_start != obj_end:
+                return False
+            if array_start != array_end:
+                return False
+            if obj_end == 0 and array_end == 0:
+                return False
+        return True
+
     def interactive_terminal_open(self, time_out=45):
         """Open interactive terminal on a new channel on the connected Node.
 
@@ -278,7 +300,7 @@ class SSH(object):
                 raise Exception('Socket timeout: {0}'.format(buf))
         return chan
 
-    def interactive_terminal_exec_command(self, chan, cmd, prompt):
+    def interactive_terminal_exec_command(self, chan, cmd, prompt, json_out=False):
         """Execute command on interactive terminal.
 
         interactive_terminal_open() method has to be called first!
@@ -298,7 +320,7 @@ class SSH(object):
         """
         chan.sendall('{c}\n'.format(c=cmd))
         buf = ''
-        while not buf.endswith(prompt):
+        while not self._check_vat_out(buf, prompt, json_out):
             try:
                 chunk = chan.recv(self.__MAX_RECV_BUF)
                 if not chunk:
