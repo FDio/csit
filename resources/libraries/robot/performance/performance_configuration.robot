@@ -1765,6 +1765,48 @@
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
 | | Configure L2BD forwarding | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
 
+| Initialize L2 bridge domain with VLAN and VXLANoIPv4 in 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 bridge domain topology with VLAN and VXLANoIPv4 by connecting
+| | ... | pairs of VLAN sub-interface and VXLAN interface to separate L2 bridge
+| | ... | domain on each DUT. All interfaces are brought up. IPv4 addresses
+| | ... | with prefix /32 are configured on interfaces between DUTs. VXLAN
+| | ... | sub-interfaces has same IPv4 address as interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - vxlan_count - VXLAN count. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain with VLAN and VXLANoIPv4 in 3-node \
+| | ... | \| circular topology \| ${1} \|
+| | ...
+| | [Arguments] | ${vxlan_count}=${1}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | ${bd_id_start}= | Set Variable | ${1}
+| | ${vni_start} = | Set Variable | ${20}
+| | ...
+| | ${ip_step} = | Set Variable | ${2}
+| | ${dut1_ip_start}= | Set Variable | 172.16.0.1
+| | ${dut2_ip_start}= | Set Variable | 172.16.0.2
+| | ...
+| | ${ip_limit} = | Set Variable | 255.255.255.255
+| | ...
+| | Vpp create multiple VXLAN IPv4 tunnels | node=${dut1}
+| | ... | node_vxlan_if=${dut1_if2} | node_vlan_if=${dut1_if1}
+| | ... | op_node=${dut2} | op_node_if=${dut2_if1} | n_tunnels=${vxlan_count}
+| | ... | vni_start=${vni_start} | src_ip_start=${dut1_ip_start}
+| | ... | dst_ip_start=${dut2_ip_start} | ip_step=${ip_step}
+| | ... | ip_limit=${ip_limit} | bd_id_start=${bd_id_start}
+| | Vpp create multiple VXLAN IPv4 tunnels | node=${dut2}
+| | ... | node_vxlan_if=${dut2_if1} | node_vlan_if=${dut2_if2}
+| | ... | op_node=${dut1} | op_node_if=${dut1_if2} | n_tunnels=${vxlan_count}
+| | ... | vni_start=${vni_start} | src_ip_start=${dut2_ip_start}
+| | ... | dst_ip_start=${dut1_ip_start} | ip_step=${ip_step}
+| | ... | ip_limit=${ip_limit} | bd_id_start=${bd_id_start}
+
 | Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each

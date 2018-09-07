@@ -11,22 +11,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Interface util library"""
+"""Interface util library."""
 
 from time import time, sleep
 
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
+from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.parsers.JsonParser import JsonParser
+from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
 from resources.libraries.python.VPPUtil import VPPUtil
-from resources.libraries.python.parsers.JsonParser import JsonParser
-from resources.libraries.python.CpuUtils import CpuUtils
+
 
 class InterfaceUtil(object):
     """General utilities for managing interfaces"""
@@ -587,15 +588,15 @@ class InterfaceUtil(object):
                             else:
                                 raise ValueError
                     except ValueError:
-                        logger.trace('Reading numa location failed for: {0}'\
-                            .format(if_pci))
+                        logger.trace('Reading numa location failed for: {0}'
+                                     .format(if_pci))
                     else:
                         Topology.set_interface_numa_node(node, if_key,
                                                          numa_node)
                         break
             else:
-                raise RuntimeError('Update numa node failed for: {0}'\
-                    .format(if_pci))
+                raise RuntimeError('Update numa node failed for: {0}'
+                                   .format(if_pci))
 
     @staticmethod
     def update_all_numa_nodes(nodes, skip_tg=False):
@@ -663,13 +664,13 @@ class InterfaceUtil(object):
                                                sw_if_index=sw_if_index,
                                                vlan=vlan)
         if output[0]["retval"] == 0:
-            sw_subif_idx = output[0]["sw_if_index"]
+            sw_vlan_idx = output[0]["sw_if_index"]
             logger.trace('VLAN subinterface with sw_if_index {} and VLAN ID {} '
-                         'created on node {}'.format(sw_subif_idx,
+                         'created on node {}'.format(sw_vlan_idx,
                                                      vlan, node['host']))
             if_key = Topology.add_new_port(node, "vlan_subif")
-            Topology.update_interface_sw_if_index(node, if_key, sw_subif_idx)
-            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_subif_idx)
+            Topology.update_interface_sw_if_index(node, if_key, sw_vlan_idx)
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_vlan_idx)
             Topology.update_interface_name(node, if_key, ifc_name)
         else:
             raise RuntimeError('Unable to create VLAN subinterface on node {}'
@@ -678,7 +679,7 @@ class InterfaceUtil(object):
         with VatTerminal(node, False) as vat:
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
-        return '{}.{}'.format(interface, vlan), sw_subif_idx
+        return '{}.{}'.format(interface, vlan), sw_vlan_idx
 
     @staticmethod
     def create_vxlan_interface(node, vni, source_ip, destination_ip):
@@ -840,12 +841,12 @@ class InterfaceUtil(object):
                                                type_subif=type_subif)
 
         if output[0]["retval"] == 0:
-            sw_subif_idx = output[0]["sw_if_index"]
+            sw_vlan_idx = output[0]["sw_if_index"]
             logger.trace('Created subinterface with index {}'
-                         .format(sw_subif_idx))
+                         .format(sw_vlan_idx))
             if_key = Topology.add_new_port(node, "subinterface")
-            Topology.update_interface_sw_if_index(node, if_key, sw_subif_idx)
-            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_subif_idx)
+            Topology.update_interface_sw_if_index(node, if_key, sw_vlan_idx)
+            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_vlan_idx)
             Topology.update_interface_name(node, if_key, ifc_name)
         else:
             raise RuntimeError('Unable to create sub-interface on node {}'
@@ -855,7 +856,7 @@ class InterfaceUtil(object):
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
         name = '{}.{}'.format(interface, sub_id)
-        return name, sw_subif_idx
+        return name, sw_vlan_idx
 
     @staticmethod
     def create_gre_tunnel_interface(node, source_ip, destination_ip):
@@ -1317,13 +1318,13 @@ class InterfaceUtil(object):
         driver testing on DUT.
 
         :param node: DUT node.
-        :param iface_key: Interface key from topology file.
+        :param ifc_key: Interface key from topology file.
         :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
         :param topology_type: Topology type.
         :type node: dict
-        :iface_key: str
+        :type ifc_key: str
         :type numvfs: int
-        :typ topology_type: str
+        :type topology_type: str
         :returns: Virtual Function topology interface keys.
         :rtype: list
         """
@@ -1335,8 +1336,8 @@ class InterfaceUtil(object):
         pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")
         uio_driver = Topology.get_uio_driver(node)
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
-        current_driver = DUTSetup.get_pci_dev_driver(node,\
-            pf_pci_addr.replace(':', r'\:'))
+        current_driver = DUTSetup.get_pci_dev_driver(
+            node, pf_pci_addr.replace(':', r'\:'))
 
         VPPUtil.stop_vpp_service(node)
         if current_driver != kernel_driver:
@@ -1382,3 +1383,235 @@ class InterfaceUtil(object):
             vf_ifc_keys.append(vf_ifc_key)
 
         return vf_ifc_keys
+
+    @staticmethod
+    def vpp_create_multiple_vxlan_ipv4_tunnels(
+            node, node_vxlan_if, node_vlan_if, op_node, op_node_if,
+            n_tunnels, vni_start, src_ip_start, dst_ip_start, ip_step, ip_limit,
+            bd_id_start):
+        """Create multiple VXLAN tunnel interfaces and VLAN sub-interfaces on
+        VPP node.
+
+        Put each pair of VXLAN tunnel interface and VLAN sub-interface to
+        separate bridge-domain.
+
+        :param node: VPP node to create VXLAN tunnel interfaces.
+        :param node_vxlan_if: VPP node interface key to create VXLAN tunnel
+            interfaces.
+        :param node_vlan_if: VPP node interface key to create VLAN
+            sub-interface.
+        :param op_node: Opposite VPP node for VXLAN tunnel interfaces.
+        :param op_node_if: Opposite VPP node interface key for VXLAN tunnel
+            interfaces.
+        :param n_tunnels: Number of tunnel interfaces to create.
+        :param vni_start: VNI start ID.
+        :param src_ip_start: VXLAN tunnel source IP address start.
+        :param dst_ip_start: VXLAN tunnel destination IP address start.
+        :param ip_step: IP address incremental step.
+        :param ip_limit: IP address limit.
+        :param bd_id_start: Bridge-domain ID start.
+        :type node: dict
+        :type node_vxlan_if: str
+        :type node_vlan_if: str
+        :type op_node: dict
+        :type op_node_if: str
+        :type n_tunnels: int
+        :type vni_start: int
+        :type src_ip_start: str
+        :type dst_ip_start: str
+        :type ip_step: int
+        :type ip_limit: str
+        :type bd_id_start: int
+        """
+        # configure IPs, create VXLAN interfaces and VLAN sub-interfaces
+        vxlan_count = InterfaceUtil.vpp_create_vxlan_and_vlan_interfaces(
+            node, node_vxlan_if, node_vlan_if, n_tunnels, vni_start,
+            src_ip_start, dst_ip_start, ip_step, ip_limit)
+
+        # update topology with VXLAN interfaces and VLAN sub-interfaces data
+        # and put interfaces up
+        InterfaceUtil.vpp_put_vxlan_and_vlan_interfaces_up(
+            node, vxlan_count, node_vlan_if)
+
+        # configure bridge domains, ARPs and routes
+        InterfaceUtil.vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
+            node, node_vxlan_if, vxlan_count, op_node, op_node_if, dst_ip_start,
+            ip_step, bd_id_start)
+
+    @staticmethod
+    def vpp_create_vxlan_and_vlan_interfaces(
+            node, node_vxlan_if, node_vlan_if, vxlan_count, vni_start,
+            src_ip_start, dst_ip_start, ip_step, ip_limit):
+        """
+        Configure IPs, create VXLAN interfaces and VLAN sub-interfaces on VPP
+        node.
+
+        :param node: VPP node.
+        :param node_vxlan_if: VPP node interface key to create VXLAN tunnel
+            interfaces.
+        :param node_vlan_if: VPP node interface key to create VLAN
+            sub-interface.
+        :param vxlan_count: Number of tunnel interfaces to create.
+        :param vni_start: VNI start ID.
+        :param src_ip_start: VXLAN tunnel source IP address start.
+        :param dst_ip_start: VXLAN tunnel destination IP address start.
+        :param ip_step: IP address incremental step.
+        :param ip_limit: IP address limit.
+        :type node: dict
+        :type node_vxlan_if: str
+        :type node_vlan_if: str
+        :type vxlan_count: int
+        :type vni_start: int
+        :type src_ip_start: str
+        :type dst_ip_start: str
+        :type ip_step: int
+        :type ip_limit: str
+        :returns: Number of created VXLAN interfaces.
+        :rtype: int
+        """
+        commands = list()
+
+        src_ip_start_int = IPUtil.ip_to_int(src_ip_start)
+        dst_ip_start_int = IPUtil.ip_to_int(dst_ip_start)
+        ip_limit_int = IPUtil.ip_to_int(ip_limit)
+
+        tmp_fn = '/tmp/create_vxlan_interfaces.config'
+        for i in range(0, vxlan_count):
+            src_ip_int = src_ip_start_int + i * ip_step
+            dst_ip_int = dst_ip_start_int + i * ip_step
+            if src_ip_int > ip_limit_int or dst_ip_int > ip_limit_int:
+                logger.warn("Can't do more iterations - IPv4 address limit "
+                            "has been reached.")
+                vxlan_count = i
+                break
+            src_ip = IPUtil.int_to_ip(src_ip_int)
+            dst_ip = IPUtil.int_to_ip(dst_ip_int)
+            commands.append(
+                'sw_interface_add_del_address sw_if_index {sw_idx} {ip}/32\n'
+                .format(sw_idx=Topology.get_interface_sw_index(
+                    node, node_vxlan_if), ip=src_ip))
+            commands.append(
+                'vxlan_add_del_tunnel src {src_ip} dst {dst_ip} vni {vni}\n'
+                .format(src_ip=src_ip, dst_ip=dst_ip, vni=vni_start+i))
+            commands.append(
+                'create_vlan_subif sw_if_index {sw_idx} vlan {vlan}\n'
+                .format(sw_idx=Topology.get_interface_sw_index(
+                    node, node_vlan_if), vlan=i+1))
+
+        VatExecutor().write_and_execute_script(node, tmp_fn, commands)
+
+        return vxlan_count
+
+    @staticmethod
+    def vpp_put_vxlan_and_vlan_interfaces_up(node, vxlan_count, node_vlan_if):
+        """
+        Update topology with VXLAN interfaces and VLAN sub-interfaces data
+        and put interfaces up.
+
+        :param node: VPP node.
+        :param vxlan_count: Number of tunnel interfaces.
+        :param node_vlan_if: VPP node interface key where VLAN sub-interfaces
+            have been created.
+        :type node: dict
+        :type vxlan_count: int
+        :type node_vlan_if: str
+        """
+        with VatTerminal(node) as vat_ter:
+            if_data = vat_ter.vat_terminal_exec_cmd_from_template(
+                'interface_dump.vat')[0]
+
+        tmp_fn = '/tmp/put_subinterfaces_up.config'
+        commands = list()
+        for i in range(0, vxlan_count):
+            vxlan_subif_key = Topology.add_new_port(node, 'vxlan_tunnel')
+            vxlan_subif_name = 'vxlan_tunnel{nr}'.format(nr=i)
+            vxlan_found = False
+            vxlan_subif_idx = None
+            vlan_subif_key = Topology.add_new_port(node, 'vlan_subif')
+            vlan_subif_name = '{if_name}.{vlan}'.format(
+                if_name=Topology.get_interface_name(
+                    node, node_vlan_if), vlan=i+1)
+            vlan_found = False
+            vlan_idx = None
+            for data in if_data:
+                if_name = data['interface_name']
+                if not vxlan_found and if_name == vxlan_subif_name:
+                    vxlan_subif_idx = data['sw_if_index']
+                    vxlan_found = True
+                elif not vlan_found and if_name == vlan_subif_name:
+                    vlan_idx = data['sw_if_index']
+                    vlan_found = True
+                if vxlan_found and vlan_found:
+                    break
+            Topology.update_interface_sw_if_index(
+                node, vxlan_subif_key, vxlan_subif_idx)
+            Topology.update_interface_name(
+                node, vxlan_subif_key, vxlan_subif_name)
+            commands.append(
+                'sw_interface_set_flags sw_if_index {sw_idx} admin-up link-up\n'
+                .format(sw_idx=vxlan_subif_idx))
+            Topology.update_interface_sw_if_index(
+                node, vlan_subif_key, vlan_idx)
+            Topology.update_interface_name(
+                node, vlan_subif_key, vlan_subif_name)
+            commands.append(
+                'sw_interface_set_flags sw_if_index {sw_idx} admin-up link-up\n'
+                .format(sw_idx=vlan_idx))
+
+        VatExecutor().write_and_execute_script(node, tmp_fn, commands)
+
+    @staticmethod
+    def vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
+            node, node_vxlan_if, vxlan_count, op_node, op_node_if, dst_ip_start,
+            ip_step, bd_id_start):
+        """
+        Configure ARPs and routes for VXLAN interfaces and put each pair of
+        VXLAN tunnel interface and VLAN sub-interface to separate bridge-domain.
+
+        :param node: VPP node.
+        :param node_vxlan_if: VPP node interface key where VXLAN tunnel
+            interfaces have been created.
+        :param vxlan_count: Number of tunnel interfaces.
+        :param op_node: Opposite VPP node for VXLAN tunnel interfaces.
+        :param op_node_if: Opposite VPP node interface key for VXLAN tunnel
+            interfaces.
+        :param dst_ip_start: VXLAN tunnel destination IP address start.
+        :param ip_step: IP address incremental step.
+        :param bd_id_start: Bridge-domain ID start.
+        :type node: dict
+        :type node_vxlan_if: str
+        :type vxlan_count: int
+        :type op_node: dict
+        :type op_node_if:
+        :type dst_ip_start: str
+        :type ip_step: int
+        :type bd_id_start: int
+        """
+        sw_idx_vxlan = Topology.get_interface_sw_index(node, node_vxlan_if)
+
+        dst_ip_start_int = IPUtil.ip_to_int(dst_ip_start)
+
+        tmp_fn = '/tmp/configure_routes_and_bridge_domains.config'
+        commands = list()
+        for i in range(0, vxlan_count):
+            dst_ip = IPUtil.int_to_ip(dst_ip_start_int + i * ip_step)
+            commands.append(
+                'ip_neighbor_add_del sw_if_index {sw_idx} dst {ip} mac {mac}\n'
+                .format(sw_idx=sw_idx_vxlan, ip=dst_ip,
+                        mac=Topology.get_interface_mac(op_node, op_node_if)))
+            commands.append(
+                'ip_add_del_route {ip}/32 via {ip} sw_if_index {sw_idx}'
+                ' resolve-attempts 10 count 1\n'.format(
+                    ip=dst_ip, sw_idx=sw_idx_vxlan))
+            bd_id = bd_id_start + i
+            subif_id = i + 1
+            commands.append(
+                'sw_interface_set_l2_bridge sw_if_index {sw_idx} bd_id {bd_id} '
+                'shg 0 enable\n'.format(sw_idx=Topology.get_interface_sw_index(
+                    node, 'vxlan_tunnel{nr}'.format(nr=subif_id)), bd_id=bd_id))
+            commands.append(
+                'sw_interface_set_l2_bridge sw_if_index {sw_idx} bd_id {bd_id} '
+                'shg 0 enable\n'.format(sw_idx=Topology.get_interface_sw_index(
+                    node, 'vlan_subif{nr}'.format(nr=subif_id)), bd_id=bd_id))
+
+        VatExecutor().write_and_execute_script(node, tmp_fn, commands)
