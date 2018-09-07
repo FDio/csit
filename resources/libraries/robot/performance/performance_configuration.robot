@@ -1749,21 +1749,60 @@
 | | ... | between DUTs. VXLAN sub-interfaces has same IPv4 address as
 | | ... | interfaces.
 | | ...
+| | ... | *Arguments:*
+| | ... | - vxlan_count - VXLAN count. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular \
+| | ... | \| topology \| 1 \|
+| | ...
+| | [Arguments] | ${vxlan_count}=${1}
+| | ...
 | | Set interfaces in path up
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
-| | ... | 24
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
-| | ... | 24
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
-| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
-| | ... | 172.16.0.1 | 172.16.0.2
-| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
-| | ... | 172.16.0.2 | 172.16.0.1
-| | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
-| | Configure L2BD forwarding | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
+| | ...
+| | ${bd_id_start}= | Set Variable | 1
+#| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id}
+#| | Add interface to bridge domain | ${dut2} | ${dut1_if2} | ${bd_id}
+| | ...
+#| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+#| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ...
+| | ${vni_start} = | Set Variable | ${20}
+| | ...
+| | ${ip_step} = | Set Variable | ${2}
+| | ${ip_mask} = | Set Variable | 32
+| | ${dut1_ip_start}= | Set Variable | 172.16.0.1
+| | ${dut2_ip_start}= | Set Variable | 172.16.0.2
+| | ...
+| | ${ip_limit} = | Set Variable | 255.255.255.255
+#| | ${ipv4_limit_reached}= | Set Variable | ${FALSE}
+| | ...
+| | ${mac_step} = | Set Variable | ${1}
+| | ${tg_if1_mac_start} = | Set Variable | ca:fe:00:00:00:00
+| | ${tg_if2_mac_start} = | Set Variable | fa:ce:00:00:00:00
+| | ...
+| | ${mac_limit} = | Mac To Int | ff:ff:ff:ff:ff:ff
+#| | ${mac_limit_reached}= | Set Variable | ${FALSE}
+| | ...
+| | Vpp create multiple VXLAN IPv4 tunnels | node=${dut1}
+| | ... | node_vxlan_if=${dut1_if2} | node_nonvxlan_if=${dut1_if1}
+| | ... | op_node=${dut2} | op_node_if=${dut2_if1} | n_tunnels=${vxlan_count}
+| | ... | vni_start=${vni_start} | src_ip_start=${dut1_ip_start}
+| | ... | dst_ip_start=${dut2_ip_start} | ip_step=${ip_step}
+| | ... | ip_mask=${ip_mask} | ip_limit=${ip_limit}
+| | ... | tg_if_to_vxlan_mac_start=${tg_if2_mac_start}
+| | ... | tg_if_to_nonvxlan_mac_start=${tg_if1_mac_start} | mac_step=${mac_step}
+| | ... | mac_limit=${mac_limit} | bd_id_start=${bd_id_start}
+| | Vpp create multiple VXLAN IPv4 tunnels | node=${dut2}
+| | ... | node_vxlan_if=${dut2_if1} | node_nonvxlan_if=${dut2_if2}
+| | ... | op_node=${dut1} | op_node_if=${dut1_if2} | n_tunnels=${vxlan_count}
+| | ... | vni_start=${vni_start} | src_ip_start=${dut2_ip_start}
+| | ... | dst_ip_start=${dut1_ip_start} | ip_step=${ip_step}
+| | ... | ip_mask=${ip_mask} | ip_limit=${ip_limit}
+| | ... | tg_if_to_vxlan_mac_start=${tg_if1_mac_start}
+| | ... | tg_if_to_nonvxlan_mac_start=${tg_if2_mac_start} | mac_step=${mac_step}
+| | ... | mac_limit=${mac_limit} | bd_id_start=${bd_id_start}
 
 | Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
