@@ -542,6 +542,9 @@ def _generate_url(base, testbed, test_name):
     if "lbdpdk" in test_name or "lbvpp" in test_name:
         file_name = "link_bonding"
 
+    elif "vts" in test_name:
+        file_name = "vts"
+
     elif "testpmd" in test_name or "l3fwd" in test_name:
         file_name = "dpdk"
 

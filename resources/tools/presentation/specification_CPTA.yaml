@@ -1559,6 +1559,32 @@
       - "result"
       layout: "plot-cpta"
 
+# VTS - x520, 114B
+
+    - title: "VPP 1T1C VTS 114B MRR Trending 3n-hsw"
+      output-file-name: "vts-114b-1t1c-x520-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Intel-X520-DA2' and '114B' and 'MRR' and '1T1C' and 'VHOST' and 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 2T2C VTS 114B MRR Trending 3n-hsw"
+      output-file-name: "vts-114b-2t2c-x520-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Intel-X520-DA2' and '114B' and 'MRR' and '2T2C' and 'VHOST' and 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 4T4C VTS 114B 64B MRR Trending 3n-hsw"
+      output-file-name: "vts-114b-4t4c-x520-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Intel-X520-DA2' and '114B' and 'MRR' and '4T4C' and 'VHOST' and 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
 # IPSec
 
     - title: "VPP 1T1C IPSec 64B MRR Trending 3n-hsw"

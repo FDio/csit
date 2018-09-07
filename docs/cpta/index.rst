@@ -35,6 +35,7 @@ analysis and anomaly detection methodology.
     trending/ipsec
     trending/srv6
     trending/link_bonding
+    trending/vts
     trending/dpdk
 
 .. toctree::
