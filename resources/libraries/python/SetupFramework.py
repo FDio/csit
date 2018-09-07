@@ -171,7 +171,8 @@ def delete_local_tarball(tarball):
     :type tarball: str
     :returns: nothing
     """
-    call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
+    call(split('sh -c "while [ -e {0} ]; do rm -f {0} > /dev/null 2>&1; done"'
+               .format(tarball)))
 
 
 def delete_framework_dir(node):
