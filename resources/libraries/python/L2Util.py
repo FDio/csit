@@ -43,9 +43,9 @@ class L2Util(object):
         to string format (01:02:03:04:05:06).
 
         :param mac_int: MAC address in integer representation.
-        :type mac_int: str
+        :type mac_int: int
         :returns: String representation of MAC address.
-        :rtype: int
+        :rtype: str
         """
         return ':'.join(wrap("{:012x}".format(mac_int), width=2))
 

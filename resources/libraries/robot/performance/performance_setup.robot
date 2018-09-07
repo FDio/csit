@@ -729,6 +729,7 @@
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
+| | Show IP FIB On All DUTs
 
 | Tear down performance ndrchk test
 | | [Documentation] | Common test teardown for ndrchk performance tests.
@@ -748,6 +749,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show IP FIB On All DUTs
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
