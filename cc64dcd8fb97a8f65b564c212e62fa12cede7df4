@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2810764d_55b581fa",
+        "filename": "tests/vpp/perf/l2/10ge2p1x710-avf-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-07T11:02:44Z",
+      "side": 1,
+      "message": "use backslash in all appropriate lines of documentation\n- check in all test files, please",
+      "range": {
+        "startLine": 41,
+        "startChar": 74,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "cc64dcd8fb97a8f65b564c212e62fa12cede7df4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
