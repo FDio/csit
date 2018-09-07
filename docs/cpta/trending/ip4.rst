@@ -5,6 +5,8 @@ IPv4 Routing
 
     ip4-3n-hsw-x520-64b-base-scale
     ip4-3n-hsw-x520-64b-features
+    ip4-3n-hsw-x520-64b-features-iacl
+    ip4-3n-hsw-x520-64b-features-oacl
     ip4-3n-hsw-x710-64b-base-scale
     ip4-3n-hsw-x710-64b-features
     ip4-3n-hsw-xl710-64b-base-scale-features

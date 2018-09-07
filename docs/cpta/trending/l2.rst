@@ -4,7 +4,9 @@ L2 Ethernet Switching
 .. toctree::
 
     l2-3n-hsw-x520-64b-base-scale
-    l2-3n-hsw-x520-64b-features
+    l2-3n-hsw-x520-64b-features-iacl
+    l2-3n-hsw-x520-64b-features-oacl
+    l2-3n-hsw-x520-64b-features-macip
     l2-3n-hsw-x710-64b-base-scale
     l2-3n-hsw-x710-64b-features
     l2-3n-hsw-xl710-64b-base-scale
