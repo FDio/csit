@@ -86,6 +86,18 @@ NIC model tags
 Scaling TAGs
 ------------
 
+.. topic:: FIB_20
+
+    2x10 entries in single fib table
+
+.. topic:: FIB_200
+
+    2x100 entries in single fib table
+
+.. topic:: FIB_2K
+
+    2x1,000 entries in single fib table
+
 .. topic:: FIB_20K
 
     2x10,000 entries in single fib table
@@ -97,6 +109,18 @@ Scaling TAGs
 .. topic:: FIB_2M
 
     2x1,000,000 entries in single fib table
+
+.. topic:: VXLAN_10
+
+    Test with 10 VXLAN tunnels.
+
+.. topic:: VXLAN_100
+
+    Test with 100 VXLAN tunnels.
+
+.. topic:: VXLAN_1k
+
+    Test with 1000 VXLAN tunnels.
 
 .. topic:: TNL_1000
 
