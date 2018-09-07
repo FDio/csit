@@ -23,6 +23,13 @@
 
 *** Keywords ***
 
+| Show IP FIB On All DUTs
+| | [Documentation] | Show IP FIB on all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | VPP Show IP Table | ${nodes['${dut}']}
+
 | Configure IPv4 addresses on all DUTs
 | | [Documentation] | Setup IPv4 address on all DUTs in topology
 | | [Arguments] | ${nodes} | ${nodes_addr}
