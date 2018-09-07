@@ -98,6 +98,51 @@ Scaling TAGs
 
     2x1,000,000 entries in single fib table
 
+.. topic:: L2BD_1
+
+    Test with 1 L2 bridge domain.
+.. topic:: L2BD_10
+
+    Test with 10 L2 bridge domains.
+
+.. topic:: L2BD_100
+
+    Test with 100 L2 bridge domains.
+
+.. topic:: L2BD_1k
+
+    Test with 1000 L2 bridge domains.
+
+.. topic:: VLAN_1
+
+    Test with 1 VLAN sub-interface.
+.. topic:: VLAN_10
+
+    Test with 10 VLAN sub-interfaces.
+
+.. topic:: VLAN_100
+
+    Test with 100 VLAN sub-interfaces.
+
+.. topic:: VLAN_1k
+
+    Test with 1000 VLAN sub-interfaces.
+
+.. topic:: VXLAN_1
+
+    Test with 1 VXLAN tunnel.
+.. topic:: VXLAN_10
+
+    Test with 10 VXLAN tunnels.
+
+.. topic:: VXLAN_100
+
+    Test with 100 VXLAN tunnels.
+
+.. topic:: VXLAN_1k
+
+    Test with 1000 VXLAN tunnels.
+
 .. topic:: TNL_1000
 
     IPSec in tunnel mode - 1000 tunnels.

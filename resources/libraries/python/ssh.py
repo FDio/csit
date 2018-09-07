@@ -22,7 +22,6 @@ from paramiko import RSAKey
 from paramiko.ssh_exception import SSHException
 from scp import SCPClient
 from robot.api import logger
-from robot.utils.asserts import assert_equal
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
