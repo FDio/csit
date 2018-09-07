@@ -14,6 +14,7 @@
 """VAT executor library."""
 
 import json
+from os import remove
 
 from paramiko.ssh_exception import SSHException
 from robot.api import logger
@@ -132,6 +133,29 @@ class VatExecutor(object):
         self._stdout = stdout
         self._stderr = stderr
         self._script_name = vat_name
+
+    def write_and_execute_script(self, node, tmp_fn, commands, timeout=300,
+                                 json_out=False, copy_on_execute=True):
+        """Write VAT commands to the script, copy it to node and execute it.
+
+        :param node: VPP node.
+        :param tmp_fn: Path to temporary file script.
+        :param commands: VAT command list.
+        :param timeout: Seconds to allow the script to run.
+        :param json_out: Require JSON output.
+        :param copy_on_execute: If true, copy the file from local host to remote
+            before executing.
+        :type node: dict
+        :type tmp_fn: str
+        :type commands: list
+
+        """
+        with open(tmp_fn, 'w') as tmp_f:
+            tmp_f.writelines(commands)
+
+        self.execute_script(tmp_fn, node, timeout=300, json_out=False,
+                            copy_on_execute=True)
+        remove(tmp_fn)
 
     def execute_script_json_out(self, vat_name, node, timeout=120):
         """Pass all arguments to 'execute_script' method, then cleanup returned
