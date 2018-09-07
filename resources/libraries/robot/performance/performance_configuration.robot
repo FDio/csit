@@ -1538,21 +1538,87 @@
 | | ... | between DUTs. VXLAN sub-interfaces has same IPv4 address as
 | | ... | interfaces.
 | | ...
+| | ... | *Arguments:*
+| | ... | - vxlan_count - VXLAN count. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular \
+| | ... | \| topology \| 1 \|
+| | ...
+| | [Arguments] | ${vxlan_count}=${1}
+| | ...
 | | Set interfaces in path up
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
-| | ... | 24
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
-| | ... | 24
+| | ...
+| | ${bd_id}= | Set Variable | 1
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id}
+| | Add interface to bridge domain | ${dut2} | ${dut1_if2} | ${bd_id}
+| | ...
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
-| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
-| | ... | 172.16.0.1 | 172.16.0.2
-| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
-| | ... | 172.16.0.2 | 172.16.0.1
-| | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
-| | Configure L2BD forwarding | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
+| | ...
+| | ${vni_start} = | Set Variable | ${20}
+| | ...
+| | ${ip_step} = | Set Variable | ${2}
+| | ${ip_start_int}= | IP To Int | 172.16.0.1
+| | ...
+| | ${ip_limit_int} = | IP To Int | 255.255.255.255
+| | ${ipv4_limit_reached}= | Set Variable | ${FALSE}
+| | ...
+| | ${mac_step} = | Set Variable | ${1}
+| | ${tg_if1_mac_start_int} = | Mac To Int | ca:fe:00:00:00:00
+| | ${tg_if2_mac_start_int} = | Mac To Int | fa:ce:00:00:00:00
+| | ...
+| | ${mac_limit_int} = | Mac To Int | ff:ff:ff:ff:ff:ff
+| | ${mac_limit_reached}= | Set Variable | ${FALSE}
+| | ...
+| | :FOR | ${nr} | IN RANGE | 0 | ${vxlan_count}
+| | | ${dut1_ip_int}= | Evaluate | ${ip_start_int} + ${nr} * ${ip_step}
+| | | ${ipv4_limit_reached}= | Set Variable If
+| | | ... | ${dut1_ip_int} > ${ip_limit_int} | ${TRUE}
+| | | ... | ${ipv4_limit_reached}
+| | | ${dut2_ip_int}= | Evaluate | ${dut1_ip_int} + ${1}
+| | | ${ipv4_limit_reached}= | Set Variable If
+| | | ... | ${dut2_ip_int} > ${ip_limit_int} | ${TRUE}
+| | | ... | ${ipv4_limit_reached}
+| | | ${tg_if1_mac_int} = | Evaluate
+| | | ... | ${tg_if1_mac_start_int} + ${nr} * ${mac_step}
+| | | ${mac_limit_reached}= | Set Variable If
+| | | ... | ${tg_if1_mac_int} > ${mac_limit_int} | ${TRUE}
+| | | ... | ${mac_limit_reached}
+| | | ${tg_if2_mac_int} = | Evaluate
+| | | ... | ${tg_if2_mac_start_int} + ${nr} * ${mac_step}
+| | | ${mac_limit_reached}= | Set Variable If
+| | | ... | ${tg_if2_mac_int} > ${mac_limit_int} | ${TRUE}
+| | | ... | ${mac_limit_reached}
+| | | Run Keyword If | ${ipv4_limit_reached} | Log
+| | | ... | Can't do more iterations - IPv4 address limit has been reached.
+| | | ... | WARN
+| | | Run Keyword If | '${mac_limit_reached}' == '${TRUE}' | Log
+| | | ... | Can't do more iterations - MAC address limit has been reached.
+| | | ... | WARN
+| | | Exit For Loop If | ${ipv4_limit_reached} or ${mac_limit_reached}
+| | | ${dut1_ip}= | Int To IP | ${dut1_ip_int}
+| | | ${dut2_ip}= | Int To IP | ${dut2_ip_int}
+| | | ${ip_mask} = | Set Variable | 30
+| | | Configure IP addresses on interfaces
+| | | ... | ${dut1} | ${dut1_if2} | ${dut1_ip} | ${ip_mask}
+| | | ... | ${dut2} | ${dut2_if1} | ${dut2_ip} | ${ip_mask}
+| | | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_ip} | ${dut2_if1_mac}
+| | | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_ip} | ${dut1_if2_mac}
+| | | ${vni}= | Evaluate | ${vni_start} + ${nr}
+| | | ${dut1_vxlan}= | Create VXLAN interface | ${dut1} | ${vni}
+| | | ... | ${dut1_ip} | ${dut2_ip}
+| | | ${dut2_vxlan}= | Create VXLAN interface | ${dut2} | ${vni}
+| | | ... | ${dut2_ip} | ${dut1_ip}
+| | | Add interface to bridge domain | ${dut1} | ${dut1_vxlan} | ${bd_id}
+| | | Add interface to bridge domain | ${dut2} | ${dut2_vxlan} | ${bd_id}
+| | | ${tg_if1_mac} = | Int To Mac | ${tg_if1_mac_int}
+| | | ${tg_if2_mac} = | Int To Mac | ${tg_if2_mac_int}
+| | | Vpp Add L2fib Entry | ${dut1} | ${tg_if1_mac} | ${dut1_if1} | ${bd_id}
+| | | Vpp Add L2fib Entry | ${dut2} | ${tg_if2_mac} | ${dut2_if2} | ${bd_id}
+| | | Vpp Add L2fib Entry | ${dut1} | ${tg_if2_mac} | ${dut1_vxlan} | ${bd_id}
+| | | Vpp Add L2fib Entry | ${dut2} | ${tg_if1_mac} | ${dut2_vxlan} | ${bd_id}
 
 | Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
