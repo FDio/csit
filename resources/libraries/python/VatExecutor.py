@@ -261,7 +261,8 @@ class VatTerminal(object):
         logger.debug("Executing command in VAT terminal: {0}".format(cmd))
         try:
             out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
-                                                              self.__VAT_PROMPT)
+                                                              self.__VAT_PROMPT,
+                                                              self.json)
             self.vat_stdout = out
         except Exception:
             self._exec_failure = True
