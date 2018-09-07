@@ -42,7 +42,7 @@ def pack_framework_dir():
     """
 
     try:
-        directory = environ["TMPDIR"]
+        directory = environ["HOME"]
     except KeyError:
         directory = None
 
