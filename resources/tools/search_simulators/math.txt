@@ -1,0 +1,109 @@
+Scratch pad to derive the correct formulas.
+
+First problem: 2D quadratic fit with weights.
+We have data points x_a, y_a, v_a, to be taken with weight w_a.
+we want to minimize L:
+L = Sum_a[1/2*((A +Bx +Cy +Dxx +Exy +Fyy)(x_a, y_a) -v_a)^2 *w_a]
+Function G(x,y) = (A +Bx +Cy +Dxx +Exy +Fyy)(x,y):
+L = Sum_a[1/2*(G(x_a, y_a) -v_a)^2 *w_a]
+Derivatives:
+0 = dL/dA = Sum_a[(G -v_a) *w_a]
+0 = dL/dB = Sum_a[x*(G -v_a) *w_a]
+0 = dL/dC = Sum_a[y*(G -v_a) *w_a]
+0 = dL/dD = Sum_a[x*x*(G -v_a) *w_a]
+0 = dL/dE = Sum_a[x*y*(G -v_a) *w_a]
+0 = dL/dF = Sum_a[y*y*(G -v_a) *w_a]
+With sums of argument powers: S{x}{y} = Sum_a[x_a^{}*y_a^{}*w_a]
+A*S +B*Sx +C*Sy +D*Sxx +E*Sxy +F*Syy = Sv
+A*Sx +B*Sxx +C*Sxy +D*Sxxx +E*Sxxy +F*Sxyy = Sxv
+A*Sy +B*Sxy +C*Syy +D*Sxxy +E*Sxyy +F*Syyy = Syv
+A*Sxx +B*Sxxx +C*Sxxy +D*Sxxxx +E*Sxxxy +F*Sxxyy = Sxxv
+A*Sxy +B*Sxxy +C*Sxyy +D*Sxxxy +E*Sxxyy +F*Sxyyy = Sxyv
+A*Syy +B*Sxyy +C*Syyy +D*Sxxyy +E*Sxyyy +F*Syyyy = Syyv
+System of linear equations, easy to solve. Left side is even symmetric.
+Then finding the minimum of G:
+0 = dG/dx = B +2Dx +Ey
+0 = dG/dy = C +Ex +2Fy
+One again, easy.
+The hardest part would be finding the transformation matrix for generation.
+
+Weights. We have 6 parameters, so we need at least 6 points, non-co-quadric.
+Say 12 to be safe. Only keep the 12 best so faraway points do not influence.
+As usual, do not do tard cutoff. Say, the 12th point should have 1/100 weight
+of the first point, and take all points into account.
+If constant re-weighting takes time, we can fix generating few point
+before recomputing the quadric.
+
+Outliers. There will be low frequency, high weight points, as usually
+the tail will not be Gaussian. Handle that by requiring the generator
+to stretch more in direction of big outlier, compensate by smaller average weight.
+
+With non-trivial function, 2D quadratic fit is giving quite a bad approximation.
+So more direct idea: compute moments of weighted distribution.
+2D average as in AvgStdeMetadata avg.
+xx and yy moments via m2, but let me check xy:
+We want Sum_a[w_a *(x_a -x_avg) *(y_a -y_avg)] =: Vxy
+x_avg(n) = x_avg(n-1) +(x_n -x_avg(n-1)) *(w_n /S(n))
+dx_n :=(x_n -x_avg(n-1))
+x_n -x_avg(n) = x_n -x_avg(n-1) -dx_n*w_n/S_n
+x_a -x_avg(n) = x_a -x_avg(n-1) -dx_n*w_n/S_n
+Vxy_n =w_n*(x_n -x_avg(n-1) -dx_n*w_n/S_n)*(y_n -y_avg(n-1) -dy_n*w_n/S_n) +
++ Sum_a(n-1)[w_a*(x_a -x_avg(n-1) -dx_n*w_n/S_n)*(y_a -y_avg(n-1) -dy_n*w_n/S_n) =
+= w_n*dx_n*dy_n *(1 -w_n/S_n)^2 +Vxy(n-1) -0 -0 +S(n-1)*dx_n*dy_n *(w_n/S_n)^2 =
+= Vxy(n-1) +dx_n*dy_n*[w_n *(S(n-1)/S(n))^2 + S(n-1) *(w_n/S_n)^2] =
+= Vxy(n-1) +dx_n*dy_n*(w_n*S(n-1)/S_n^2)*[S(n-1) +w_n] =
+= Vxy(n-1) +dx_n*dy_n*w_n*S(n-1)/S(n)
+Alright, nothing surprising happened.
+As usual, I would like to track Axy=Vxy/S
+Axy(n) = Vxy(n)/S_n = Vxy(n-1)/S_n +dx_n*dy_n*w_n*S(n-1)/S_n^2 =
+= Axy(n-1)*S(n-1)/S_n +dx_n*dy_n*w_n*S(n-1)/S_n^2 =
+= [Axy(n-1) +dx_n*dy_n*w_n/S_n]*S(n-1)/S(n)
+
+Ok, suppose we have ._avg and A.. computed so far. How to create a generator?
+First, choice of envelope to achieve. Gaussian is the simplest, but it has
+too short tail. 1/(1+r^2) is not normalized in 2D, but either
+1/(1+r^2)^2 or 1/(1+r^4) would work. The second one is easier, because
+dx*dy = 2Pi*r*dr*dphi and 2Pirdr/(1+r^4) = Pi*dT/(1+T^2) for T=r^2.
+Int_0^Inf gives Pi*(Pi/2) if that matters. For random z uniform from (0,1),
+T=Tan[z*Pi/2], so r=Sqrt[Tan[z*Pi/2]], cos/sin phi uniform as in Gauss.
+It took me embarassingly long to try to manipulate Mathematica engine
+into not using expressions involving Complex, before I realized
+that this distribution does not have finite second moment.
+Nevermind, I will be using ad-hoc scaling constants anyway
+to allow for the generator to converge from far from optimum.
+
+In presence of hard limits, there are few open question.
+If there are no hard limits, there are other questions.
+No limits first. With no limits, default ditribution cannot be uniform,
+so it is not sure how "non-localized" generator works.
+In practice, it works by generating in hard-limited region and then transforming.
+For hard limits, there are two possibilities.
+Either ad-hoc limits, or unit squere plus linear transformation.
+In the second case, it is not clear whether the moments should be computed
+in transformed region, in unit square, or even in some no-limit presentation
+of the unit square.
+For the first prototype, I will compute moments in the transformed linear region.
+
+So, generator for that region. Translation to _avg is obvious.
+Sub-problem: Find transformation from 1/(1+r^4) generated points
+into (0,0) centered linear transformation targetting Axx, Axy, Ayy.
+So, generated X,Y; transformation x=a*X +b*Y, y=c*Y. Ayy = c*c*AYY
+(AYY is infinite but we pretend it is 1) ergo c=Sqrt[Ayy].
+Axy = a*c*AXY + b*c*AYY = b*c => b = Axy/c.
+Axx = a*a*AXX + 0 + b*b*AYY = a*a +b*b => a = Sqrt[Axx -b*b].
+Together: Compute a, b, c; then x=x_avg + a*X +b*Y; y=y_avg +c*Y.
+Relative bonus for the generated point (to compensate lower generation probability)
+is (1+(X*X+Y*Y)^2).
+
+Now, what to do with limits. Several options.
+Safe but slow option is generate uniform on out.
+As we are in 2D and function will be expensive in general,
+better idea is to keep retrying the localized generation until it fits.
+
+Finally, the initial condition problem. When we have zero points,
+A.. is zero (or undefined) which is bad for generation.
+First idea is to insert weight 1 Axx=1=Ayy, Axy=0 at start,
+and keep lowering the weight by some formula to switch from dumb uniform search
+into maximum finding walk.
+First ideas for weight of that bias for generating n-th point are
+1/n or 2^-n. I can try both to see which is better.
