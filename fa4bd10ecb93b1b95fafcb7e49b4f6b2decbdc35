@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05db3134_3fbc7166",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc500kdst500k.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-10T11:56:24Z",
+      "side": 1,
+      "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "fa4bd10ecb93b1b95fafcb7e49b4f6b2decbdc35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "507a152f_9352e06a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc50kdst50k.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-10T11:56:24Z",
+      "side": 1,
+      "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "fa4bd10ecb93b1b95fafcb7e49b4f6b2decbdc35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37f9b7b9_15220fc3",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-macsrc5kdst5k.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-10T11:56:24Z",
+      "side": 1,
+      "message": "8",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "fa4bd10ecb93b1b95fafcb7e49b4f6b2decbdc35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c06aed0_0719d4c5",
+        "filename": "tests/vpp/perf/l2/10ge2p1x520-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-10T11:56:24Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "fa4bd10ecb93b1b95fafcb7e49b4f6b2decbdc35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e1c62e8_c9581da5",
+        "filename": "tests/vpp/perf/l2/10ge2p1x520-eth-l2bdbasemaclrn-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-10T11:56:24Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "fa4bd10ecb93b1b95fafcb7e49b4f6b2decbdc35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1de07403_cf5bb0f4",
+        "filename": "tests/vpp/perf/l2/10ge2p1x520-eth-l2bdbasemaclrn-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-10T11:56:24Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "fa4bd10ecb93b1b95fafcb7e49b4f6b2decbdc35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
