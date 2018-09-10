@@ -22,6 +22,30 @@
       "revId": "97b411775db579ecad6ec3643e75fd556eb49176",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6a2fe0a_10895237",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1338
+      },
+      "writtenOn": "2018-09-10T05:39:11Z",
+      "side": 1,
+      "message": "But the package with random name will be deleted later in delete_local_tarball().",
+      "parentUuid": "ab8ebc44_623cc2c0",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 26
+      },
+      "revId": "97b411775db579ecad6ec3643e75fd556eb49176",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
