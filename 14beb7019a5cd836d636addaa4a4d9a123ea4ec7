@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "287a4930_a4bbf59a",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "No.\n\n\"..\" without emplty line is a comment. \"..\" with an empty line is an empty comment used to start a literal block. This part of file contains comments, not literal blocks.",
+      "parentUuid": "a4dad43b_9769fef8",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 2
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "673a969b_38b529fa",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 17
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "e1207e9f_b831036c",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "Hard and not really crucial, text replaced by a TODO for now.",
+      "parentUuid": "43164a3a_554d394a",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 58
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8707b88c_a63dbc68",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 17
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "c960a01a_15c1df16",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "Added as a TODO.",
+      "parentUuid": "8707b88c_a63dbc68",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 35
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15546146_933099db",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 17
@@ -105,6 +177,30 @@
       "writtenOn": "2018-09-03T07:24:54Z",
       "side": 1,
       "message": "appending ???",
+      "range": {
+        "startLine": 112,
+        "startChar": 7,
+        "endLine": 112,
+        "endChar": 20
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a690f27_d0e2968b",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "Yes, appending, fixed in #18.",
+      "parentUuid": "15546146_933099db",
       "range": {
         "startLine": 112,
         "startChar": 7,
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "9bd22815_5dd03b6e",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "I am not sure how do standalone hyperlinks interact with adjacent brackets. Let me try angle branchets in #18.",
+      "parentUuid": "5b58231d_3bde9d55",
+      "range": {
+        "startLine": 114,
+        "startChar": 49,
+        "endLine": 114,
+        "endChar": 51
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18dca525_d76e8f4f",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 17
@@ -174,6 +294,30 @@
       "writtenOn": "2018-09-03T07:24:54Z",
       "side": 1,
       "message": "Files",
+      "range": {
+        "startLine": 180,
+        "startChar": 39,
+        "endLine": 180,
+        "endChar": 44
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8f69fc2_2586c804",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18dca525_d76e8f4f",
       "range": {
         "startLine": 180,
         "startChar": 39,
@@ -209,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "cee67465_40b6481c",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "I do not understand.",
+      "parentUuid": "937b2d1a_75c5fd87",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 28
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1786fc52_9aed9000",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 17
@@ -232,6 +400,30 @@
     },
     {
       "key": {
+        "uuid": "9e93bc3a_39a5612b",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "(Hopefully) clarified in #18.",
+      "parentUuid": "1786fc52_9aed9000",
+      "range": {
+        "startLine": 218,
+        "startChar": 18,
+        "endLine": 218,
+        "endChar": 34
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "408c079e_2e52b14a",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 17
@@ -243,6 +435,30 @@
       "writtenOn": "2018-09-03T07:24:54Z",
       "side": 1,
       "message": "It is better to have a strict naming convention.",
+      "range": {
+        "startLine": 243,
+        "startChar": 4,
+        "endLine": 243,
+        "endChar": 48
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7363a9d4_c3372dff",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-10T11:32:49Z",
+      "side": 1,
+      "message": "Removed the question mark and expanded in #18.",
+      "parentUuid": "408c079e_2e52b14a",
       "range": {
         "startLine": 243,
         "startChar": 4,
