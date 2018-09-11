@@ -236,9 +236,11 @@
 | | Add arp on dut | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
+| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1
+| | ... | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2 | 30
+| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2
+| | ... | 30
 | | Configure IP addresses on interfaces | ${dut} | ${dut_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | 1.1.1.1 | ${dut1_if1}
 | | ... | count=${count}
@@ -511,6 +513,92 @@
 | | | ... | ${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
 | | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
 | | | ... | ${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
+
+| Initialize IPv4 forwarding with VLAN dot1q sub-interfaces in circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
+| | ... | circular topology. In case of 3-node topology create VLAN
+| | ... | sub-interfaces between DUTs. In case of 2-node topology create VLAN
+| | ... | sub-interface on dut1-if2 interface. Get the interface MAC addresses
+| | ... | and setup ARPs. Setup IPv4 addresses with /30 prefix on DUT-TG links
+| | ... | and set routing with prefix /30. In case of 3-node set IPv4 adresses
+| | ... | with /30 prefix on VLAN and set routing on both DUT nodes with prefix
+| | ... | /30. Set next hop of neighbour DUT interface IPv4 address. All
+| | ... | interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_if1_net - TG interface 1 IP subnet used by traffic generator.
+| | ... | Type: integer
+| | ... | - tg_if2_net - TG interface 2 IP subnet used by traffic generator.
+| | ... | Type: integer
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv4 forwarding with VLAN dot1q sub-interfaces\
+| | ... | in circular topology \| 10.10.10.0 \| 20.20.20.0 \| 10 \| pop-1 \|
+| | ...
+| | [Arguments] | ${tg_if1_net} | ${tg_if2_net} | ${subid} | ${tag_rewrite}
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | sub_id=${subid}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
+| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | ELSE | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | tag_rewrite_method=${tag_rewrite}
+| | ...
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut1} | ${subif_index_1} | 2.2.2.2
+| | ... | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut2} | ${subif_index_2} | 2.2.2.1
+| | ... | ${dut1_if2_mac}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${subif_index_1}
+| | Add arp on dut | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut1} | ${subif_index_1}
+| | ... | 2.2.2.1 | 30
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut2} | ${subif_index_2}
+| | ... | 2.2.2.2 | 30
+| | Configure IP addresses on interfaces | ${dut} | ${dut_if2} | 3.3.3.2 | 30
+| | Vpp Route Add | ${dut1} | ${tg_if1_net} | 30 | 1.1.1.1 | ${dut1_if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | 30 | 2.2.2.2
+| | ... | ${subif_index_1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${tg_if1_net} | 30 | 2.2.2.1
+| | ... | ${subif_index_2}
+| | Vpp Route Add | ${dut} | ${tg_if2_net} | 30 | 3.3.3.1 | ${dut_if2}
 
 | Initialize IPv4 policer 2r3c-${t} in circular topology
 | | [Documentation]
@@ -993,7 +1081,7 @@
 | | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
 | | ...
 | | Set interfaces in path up
-| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
@@ -1034,7 +1122,7 @@
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
 | | Configure L2 tag rewrite method on interfaces
@@ -1108,7 +1196,7 @@
 | | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
 | | ... | ${dut2_eth_bond_if1}
 | | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
-| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
 | | Configure L2 tag rewrite method on interfaces
@@ -1695,7 +1783,7 @@
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | ...
 | | Set interfaces in path up
-| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
@@ -1730,7 +1818,7 @@
 | | ... | ${tag_rewrite}
 | | ...
 | | Set interfaces in path up
-| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
@@ -1780,7 +1868,7 @@
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
 | | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
 | | Configure L2 tag rewrite method on interfaces
@@ -1861,7 +1949,7 @@
 | | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
 | | ... | ${dut2_eth_bond_if1}
 | | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
-| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
 | | Configure L2 tag rewrite method on interfaces
