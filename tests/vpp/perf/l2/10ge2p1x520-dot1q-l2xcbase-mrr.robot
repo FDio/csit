@@ -78,7 +78,7 @@
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
 | | And Set interfaces in path up
-| | When Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | When Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
@@ -91,7 +91,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-dot1q-l2xcbase-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | TEST
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-dot1q-l2xcbase-mrr
