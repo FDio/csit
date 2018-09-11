@@ -236,9 +236,11 @@
 | | Add arp on dut | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
+| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1
+| | ... | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2 | 30
+| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2
+| | ... | 30
 | | Configure IP addresses on interfaces | ${dut} | ${dut_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | 1.1.1.1 | ${dut1_if1}
 | | ... | count=${count}
@@ -511,6 +513,84 @@
 | | | ... | ${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
 | | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
 | | | ... | ${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
+
+| Initialize IPv4 forwarding with VLAN dot1q sub-interfaces in circular topology
+| | [Documentation]
+| | ... | Setup L2 bridge domain topology with learning enabled with VLAN
+| | ... | between DUTs by connecting physical and vlan interfaces on each DUT.
+| | ... | All interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_if1_net - Bridge domain ID. Type: integer
+| | ... | - tg_if2_net - Bridge domain ID. Type: integer
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domains with VLAN dot1q sub-interfaces
+| | ... | in a 3-node circular topology \| 1 \| 2 \| 10 \| pop-1 \|
+| | ...
+| | [Arguments] | ${tg_if1_net} | ${tg_if2_net} | ${subid} | ${tag_rewrite}
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | subid=${subid}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
+| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | ELSE | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | tag_rewrite_method=${tag_rewrite}
+| | ...
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut1} | ${subif_index_1} | 2.2.2.2
+| | ... | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add arp on dut | ${dut2} | ${subif_index_2} | 2.2.2.1
+| | ... | ${dut1_if2_mac}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${subif_index_1}
+| | Add arp on dut | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut1} | ${subif_index_1}
+| | ... | 2.2.2.1 | 30
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure IP addresses on interfaces | ${dut2} | ${subif_index_2}
+| | ... | 2.2.2.2 | 30
+| | Configure IP addresses on interfaces | ${dut} | ${dut_if2} | 3.3.3.2 | 30
+| | Vpp Route Add | ${dut1} | ${tg_if1_net} | 24 | 1.1.1.1 | ${dut1_if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | 24 | 2.2.2.2
+| | ... | ${subif_index_1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${tg_if1_net} | 24 | 2.2.2.1
+| | ... | ${subif_index_2}
+| | Vpp Route Add | ${dut} | ${tg_if2_net} | 24 | 3.3.3.1 | ${dut_if2}
 
 | Initialize IPv4 policer 2r3c-${t} in circular topology
 | | [Documentation]
