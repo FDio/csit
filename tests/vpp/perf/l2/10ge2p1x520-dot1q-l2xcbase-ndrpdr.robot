@@ -83,7 +83,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | When Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
