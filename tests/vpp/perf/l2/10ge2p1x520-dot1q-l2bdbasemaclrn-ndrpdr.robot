@@ -29,7 +29,8 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput L2BD test cases with 802.1q test cases*
+| Documentation | *RFC2544: Pkt throughput L2BD test cases with 802.1q test\
+| ... | cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
@@ -56,12 +57,12 @@
 | ${tag_rewrite}= | pop-1
 | ${overhead}= | ${4}
 # X520-DA2 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit}= | ${10000000000}
 # Bridge domain IDs
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | Local Template
