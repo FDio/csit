@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X520-DA2 | BASE | DOT1Q | L2BDMACLRN
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| ... | L3 | Intel-X520-DA2
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
@@ -28,7 +28,7 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *Raw results L2BD test cases with 802.1q test cases*
+| Documentation | *Raw results IPv4 routing with 802.1q test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
@@ -54,8 +54,8 @@
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 # Bridge domain IDs
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
+| ${tg_if1_net}= | 10.10.10.0
+| ${tg_if2_net}= | 20.20.20.0
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
@@ -80,8 +80,8 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with VLAN dot1q sub-interfaces in a 3-node circular topology
-| | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
+| | When Initialize IPv4 forwarding with VLAN dot1q sub-interfaces in circular topology
+| | ... | ${tg_if1_net} | ${tg_if2_net} | ${subid} | ${tag_rewrite}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
