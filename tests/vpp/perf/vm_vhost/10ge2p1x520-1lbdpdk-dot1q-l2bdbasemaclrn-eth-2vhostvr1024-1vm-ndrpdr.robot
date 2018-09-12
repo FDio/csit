@@ -144,7 +144,7 @@
 | | framesize=${1518} | phy_cores=${4}
 
 | tc07-9000B-1c-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 9000B | 1C
+| | [Tags] | 9000B | 1C | THIS
 | | framesize=${9000} | phy_cores=${1}
 
 | tc08-9000B-2c-1lbdpdk-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
