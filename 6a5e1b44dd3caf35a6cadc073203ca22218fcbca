@@ -22,6 +22,30 @@
       "revId": "6a5e1b44dd3caf35a6cadc073203ca22218fcbca",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "20e16f2f_3bb6000c",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-12T12:47:55Z",
+      "side": 1,
+      "message": "Basically yes. The problem of L41 KW (but not only this KW) is that it assume both interfaces to be assigned to DUT (VPP).\nHowever it does not solve the problem when topology interfaces are there (from topology file), but they are in VM or CNT.\nCSIT is failing in \"inception\" part, where e.g. there are nested/parallel structures of VPPs. Like here there are 2 VPPs and each has single interface, together they need to read topology file and decide which will take which IF. \nLong term \"proper?\" solution is maybe to add notes into topology files? smth like portN: -vpp_segment_id: 1 but this is bigger cake to do.\nI will rename this KW to \"single\". The rest is overkill for quick fix",
+      "parentUuid": "f4128dcd_a29d918b",
+      "range": {
+        "startLine": 89,
+        "startChar": 6,
+        "endLine": 89,
+        "endChar": 22
+      },
+      "revId": "6a5e1b44dd3caf35a6cadc073203ca22218fcbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
