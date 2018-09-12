@@ -303,15 +303,15 @@ function reserve_testbed () {
             if [[ "${result}" == "0" ]]; then
                 WORKING_TOPOLOGY="${topo}"
                 echo "Reserved: ${WORKING_TOPOLOGY}"
-                python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t "${topo}" || {
-                    die "Testbed cleanup failed."
-                }
                 trap "untrap_and_unreserve_testbed" EXIT || {
                     message="TRAP ATTEMPT AND UNRESERVE FAILED, FIX MANUALLY."
                     untrap_and_unreserve_testbed "${message}" || {
                         die "Teardown should have died, not failed."
                     }
                     die "Trap attempt failed, unreserve succeeded. Aborting."
+                }
+                python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t "${topo}" || {
+                    die "Testbed cleanup failed."
                 }
                 break
             fi
