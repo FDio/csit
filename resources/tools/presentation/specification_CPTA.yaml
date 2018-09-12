@@ -68,12 +68,28 @@
 
   ignore-list: "ignored_tcs.yaml"
 
+  alerting:
+
+    alerts:
+      send-failed-tests:
+        title: "Trending: Failed Tests"
+        type: "failed-tests"
+        way: "email"
+
+    configurations:
+      email:
+        server: "localhost"
+        address-to:
+        - "tifrank@cisco.com"
+        # - "csit-report@lists.fd.io"
+        address-from: "testuser@testserver.com"
+
   data-sets:
 
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 100
+        start: 285  # 100
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
         start: 3
@@ -81,7 +97,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 100
+        start: 285  # 100
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-hsw:
@@ -212,7 +228,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 100
+      start: 285  # 100
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master:
       start: 3
