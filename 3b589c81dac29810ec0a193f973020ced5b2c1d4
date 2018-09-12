@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aededdc0_d60b08aa",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-12T13:39:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bacd98f_26dce351",
+      "range": {
+        "startLine": 49,
+        "startChar": 11,
+        "endLine": 49,
+        "endChar": 24
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a911d1d5_edbf817d",
         "filename": "resources/libraries/python/DMM/SingleCliSer.py",
         "patchSetId": 59
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-12T11:03:06Z",
       "side": 1,
       "message": "I have not noticed this before, but why are the sleeps necessary? They make the jenkins jobs take longer time to finish.\n\nIf there really is an interference from previous run_dmm.sh, perhaps shorter time (for example 0.3 second) is enough?",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76c66d6a_a96d31cb",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-12T13:39:42Z",
+      "side": 1,
+      "message": "we need to start server on dut1 before client on dut2, so gave sleep after running server command",
+      "parentUuid": "a911d1d5_edbf817d",
       "range": {
         "startLine": 53,
         "startChar": 19,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0d232da0_83bb99c3",
+        "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
+        "patchSetId": 59
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-12T13:39:42Z",
+      "side": 1,
+      "message": "this part of setting hugepages has been influenced from tests/dpdk/dpdk_scripts/install_dpdk.sh : 57\nthought if two sockets are there thier names would be node0 and node1... but here node1 not there...",
+      "parentUuid": "5f9d5a05_f0399492",
+      "range": {
+        "startLine": 120,
+        "startChar": 25,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aef5635_e21b516a",
         "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
         "patchSetId": 59
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "db414506_36fd594a",
+        "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
+        "patchSetId": 59
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-12T13:39:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aef5635_e21b516a",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "584c4e8c_8b85877d",
         "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
         "patchSetId": 59
@@ -105,6 +201,30 @@
       "writtenOn": "2018-09-12T11:03:06Z",
       "side": 1,
       "message": "./script/nstack_fun.sh: line 367: lsof: command not found",
+      "range": {
+        "startLine": 173,
+        "startChar": 5,
+        "endLine": 173,
+        "endChar": 21
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "056f69cd_d303c8b0",
+        "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
+        "patchSetId": 59
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-12T13:39:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "584c4e8c_8b85877d",
       "range": {
         "startLine": 173,
         "startChar": 5,
