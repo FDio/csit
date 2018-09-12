@@ -17,6 +17,8 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
+echo "This is the body of the email" | mail -s "This is the subject line" tifrank@cisco.com
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
