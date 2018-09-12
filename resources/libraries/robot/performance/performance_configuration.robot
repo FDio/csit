@@ -2054,7 +2054,7 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
-| | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9000 | ${EMPTY}
+| | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
 | | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
 | | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
 | | ... | cpu_cnt=${testpmd_cpus}
@@ -2201,7 +2201,7 @@
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
-| | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9000 | ${EMPTY}
+| | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
 | | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
 | | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
 | | ... | cpu_cnt=${testpmd_cpus}

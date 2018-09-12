@@ -121,17 +121,17 @@ class DpdkUtil(object):
         return pmd_options
 
     @staticmethod
-    def dpdk_testpmd_start(node, **args):
+    def dpdk_testpmd_start(node, **kwargs):
         """Start DPDK testpmd app on VM node.
 
         :param node: VM Node to start testpmd on.
-        :param args: List of testpmd parameters.
+        :param args: LKey-value testpmd parameters.
         :type node: dict
         :type args: dict
         :returns: nothing
         """
-        eal_options = DpdkUtil.get_eal_options(**args)
-        pmd_options = DpdkUtil.get_pmd_options(**args)
+        eal_options = DpdkUtil.get_eal_options(**kwargs)
+        pmd_options = DpdkUtil.get_pmd_options(**kwargs)
 
         ssh = SSH()
         ssh.connect(node)

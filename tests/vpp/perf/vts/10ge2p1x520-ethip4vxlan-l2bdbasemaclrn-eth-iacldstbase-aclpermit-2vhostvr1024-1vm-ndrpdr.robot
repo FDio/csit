@@ -147,15 +147,15 @@
 | | framesize=${1518} | phy_cores=${4}
 
 | tc07-9000B-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 9000B | 1C
+| | [Tags] | 9000B | 1C | THIS
 | | framesize=${9000} | phy_cores=${1}
 
 | tc08-9000B-2c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 9000B | 2C
+| | [Tags] | 9000B | 2C | THIS
 | | framesize=${9000} | phy_cores=${2}
 
 | tc09-9000B-4c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 9000B | 4C
+| | [Tags] | 9000B | 4C | THIS
 | | framesize=${9000} | phy_cores=${4}
 
 | tc10-IMIX-1c-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
