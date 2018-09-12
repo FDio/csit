@@ -246,6 +246,7 @@ function gather_vpp () {
     set -exuo pipefail
 
     # Variables read:
+    # - BASH_FUNCTION_DIR - Bash directory with functions.
     # - TEST_CODE - The test selection string from environment or argument.
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
@@ -267,32 +268,23 @@ function gather_vpp () {
     case "${TEST_CODE}" in
         # Not csit-vpp as this code is re-used by ligato gathering.
         "csit-"*)
-            install_script="${CSIT_DIR}/resources/tools/scripts/"
-            install_script+="download_install_vpp_pkgs.sh"
             # Use downloaded packages with specific version
             if [[ "${TEST_CODE}" == *"daily"* ]] || \
                [[ "${TEST_CODE}" == *"weekly"* ]] || \
                [[ "${TEST_CODE}" == *"timed"* ]];
             then
-                echo "Downloading latest VPP packages from NEXUS..."
-                # TODO: Can we source?
-                bash "${install_script}" --skip-install || {
-                    die "Failed to get VPP packages!"
-                }
+                warn "Downloading latest VPP packages from Packagecloud."
             else
-                echo "Downloading VPP packages of specific version from NEXUS."
-                dpdk_stable_ver="$(cat "${CSIT_DIR}/DPDK_STABLE_VER")" || {
-                    die "Cat failed."
+                warn "Downloading stable VPP packages from Packagecloud."
+                DKMS_VERSION="$(<"${CSIT_DIR}/DPDK_STABLE_VER")" || {
+                    die "Read DPDK stable version failed."
                 }
-                vpp_stable_ver="$(cat "${CSIT_DIR}/VPP_STABLE_VER_UBUNTU")" || {
-                    die "Cat failed."
-                }
-                install_args=("--skip-install" "--vpp" "${vpp_stable_ver}")
-                install_args+=("--dkms" "${dpdk_stable_ver}")
-                bash "${install_script}" "${install_args[@]}" || {
-                    die "Failed to get VPP packages!"
+                VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU")" || {
+                    die "Read VPP stable version failed."
                 }
             fi
+            source "${BASH_FUNCTION_DIR}/artifacts.sh" || die "Source failed."
+            download_artifacts || die
             ;;
         "vpp-csit-"*)
             # Use local built packages.
