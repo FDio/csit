@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3832e20_2b63efe8",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_device.sh",
+        "patchSetId": 21
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T08:36:50Z",
+      "side": 1,
+      "message": "One of exceptions to \"set -e\" abort is error when evaluating the assignment in export command, only error when exporting (probably empty) variable is reported.\n\nIt is recommended to assign in a separate line, and export the variable in the next line.",
+      "range": {
+        "startLine": 336,
+        "startChar": 25,
+        "endLine": 336,
+        "endChar": 27
+      },
+      "revId": "dd998cefbf679b2d0507ac8c81dd2a2312c92516",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
