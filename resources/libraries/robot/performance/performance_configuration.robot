@@ -86,6 +86,38 @@
 | | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
 | | All VPP Interfaces Ready Wait | ${nodes}
 
+| Set single interfaces in path up
+| | [Documentation]
+| | ... | *Set UP state on single VPP interfaces in path on all DUT nodes and set
+| | ... | maximal MTU.*
+| | ...
+# TODO: Rework KW to set all interfaces in path UP and set MTU (including
+# software interfaces. Run KW at the start phase of VPP setup to split
+# from other "functional" configuration. This will allow modularity of this
+# library
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | | ... | ELSE
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | All VPP Interfaces Ready Wait | ${nodes}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ... | ELSE
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | All VPP Interfaces Ready Wait | ${nodes}
+
 | Initialize AVF interfaces
 | | [Documentation]
 | | ... | Initialize AVF interfaces on each DUT. Interfaces are brought up.
@@ -1931,9 +1963,7 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_pci}= | Run Keyword If | '${dut}' == 'DUT1' | Get Interface PCI Addr
-| | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ELSE | Get Interface PCI Addr
-| | | ... | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${if1_pci}= |  Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
 | | | Run keyword | ${dut}.Add DPDK Dev | ${if1_pci}
 | | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
 
@@ -2897,7 +2927,7 @@
 | | | ... | ${rxq_count_int}
 | | | Configure L2XC | ${nodes['${dut}']} | ${${dut}_if1}
 | | | ... | ${${dut}-memif-${number}-if1}
-| | Set interfaces in path up
+| | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain for single memif
@@ -2931,7 +2961,7 @@
 | | | ... | ${number}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
 | | | ... | ${${dut}-memif-${number}-if1} | ${number}
-| | Set interfaces in path up
+| | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
 | Configure ACLs on a single interface
