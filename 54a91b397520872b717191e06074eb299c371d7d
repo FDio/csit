@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3272f332_d98aaffa",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:56:39Z",
+      "side": 1,
+      "message": "Use \"dut1\" or \"\\${dut1}\", because \"${dut1}\" can be replaced with the variable value in some places (e.g. log.html).",
+      "range": {
+        "startLine": 538,
+        "startChar": 12,
+        "endLine": 538,
+        "endChar": 19
+      },
+      "revId": "54a91b397520872b717191e06074eb299c371d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31bf23fb_70c8df21",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:56:39Z",
+      "side": 1,
+      "message": "What was the reason the value was not true already,\nand what has caused false to no longer be a good value anymore?",
+      "range": {
+        "startLine": 55,
+        "startChar": 41,
+        "endLine": 55,
+        "endChar": 48
+      },
+      "revId": "54a91b397520872b717191e06074eb299c371d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
