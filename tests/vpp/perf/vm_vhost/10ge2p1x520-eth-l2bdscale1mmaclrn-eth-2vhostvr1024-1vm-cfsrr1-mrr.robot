@@ -124,7 +124,7 @@
 | | framesize=${1518} | phy_cores=${4}
 
 | tc07-9000B-1c-eth-l2bdscale1mmaclrn-eth-2vhostvr1024-1vm-cfsrr1-mrr
-| | [Tags] | 9000B | 1C
+| | [Tags] | 9000B | 1C | THIS
 | | framesize=${9000} | phy_cores=${1}
 
 | tc08-9000B-2c-eth-l2bdscale1mmaclrn-eth-2vhostvr1024-1vm-cfsrr1-mrr
