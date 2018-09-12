@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bacd98f_26dce351",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:03:06Z",
+      "side": 1,
+      "message": "ssh.py contains keyword exec_cmd_no_error which should be easier to use.",
+      "range": {
+        "startLine": 49,
+        "startChar": 11,
+        "endLine": 49,
+        "endChar": 24
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a911d1d5_edbf817d",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:03:06Z",
+      "side": 1,
+      "message": "I have not noticed this before, but why are the sleeps necessary? They make the jenkins jobs take longer time to finish.\n\nIf there really is an interference from previous run_dmm.sh, perhaps shorter time (for example 0.3 second) is enough?",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f9d5a05_f0399492",
+        "filename": "tests/dmm/dmm_scripts/install_dmm.sh",
+        "patchSetId": 59
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:03:06Z",
+      "side": 1,
+      "message": "I see the following in log:\n  tee: /sys/devices/system/node/node1/hugepages/hugepages-2048kB/nr_hugepages: No such file or directory\n\nIs that expected? The next call (for node0) succeeds.",
+      "range": {
+        "startLine": 120,
+        "startChar": 25,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aef5635_e21b516a",
+        "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
+        "patchSetId": 59
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:03:06Z",
+      "side": 1,
+      "message": "In log I see:\n  sudo: killall: command not found\n\nUse a construct with just \"kill\" command, or ask for \"killall\" to be installed on all CSIT environments.\n\nThe following block (with \"sudo pkill\") succeeds though, so perhaps this (line 30) is not needed?",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "584c4e8c_8b85877d",
+        "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
+        "patchSetId": 59
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:03:06Z",
+      "side": 1,
+      "message": "./script/nstack_fun.sh: line 367: lsof: command not found",
+      "range": {
+        "startLine": 173,
+        "startChar": 5,
+        "endLine": 173,
+        "endChar": 21
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd9e65dd_88df19a0",
+        "filename": "tests/dmm/func/SingleCliSer-func.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T11:03:06Z",
+      "side": 1,
+      "message": "I see many warnings like this:\n  W0912 03:24:14.240216 9391 dpdk.c:395] 9391,dpdk_clear_hugedir\u003cNSHAL\u003ethe file name nStackMainmap_66 is not match mapns, errno \u003d 2\n\nNot sure whether they are relevant for the test result.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
