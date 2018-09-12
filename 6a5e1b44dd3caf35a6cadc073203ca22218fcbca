@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4128dcd_a29d918b",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T12:26:31Z",
+      "side": 1,
+      "message": "Does that mean the better name for this keyword would be:\n  Set single interfaces on path up\nand for the keyword at line 41:\n  Set interface pairs on path up\nbut the line 41 keyword is used so frequently it is safer to avoid renaming it?",
+      "range": {
+        "startLine": 89,
+        "startChar": 6,
+        "endLine": 89,
+        "endChar": 22
+      },
+      "revId": "6a5e1b44dd3caf35a6cadc073203ca22218fcbca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
