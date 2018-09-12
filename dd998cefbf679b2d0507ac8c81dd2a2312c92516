@@ -22,6 +22,30 @@
       "revId": "dd998cefbf679b2d0507ac8c81dd2a2312c92516",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b66e9965_7cab8641",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_device.sh",
+        "patchSetId": 21
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-12T09:21:14Z",
+      "side": 1,
+      "message": "Fixed in next iteration",
+      "parentUuid": "a3832e20_2b63efe8",
+      "range": {
+        "startLine": 336,
+        "startChar": 25,
+        "endLine": 336,
+        "endChar": 27
+      },
+      "revId": "dd998cefbf679b2d0507ac8c81dd2a2312c92516",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
