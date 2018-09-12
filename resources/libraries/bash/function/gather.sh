@@ -267,32 +267,22 @@ function gather_vpp () {
     case "${TEST_CODE}" in
         # Not csit-vpp as this code is re-used by ligato gathering.
         "csit-"*)
-            install_script="${CSIT_DIR}/resources/tools/scripts/"
-            install_script+="download_install_vpp_pkgs.sh"
             # Use downloaded packages with specific version
             if [[ "${TEST_CODE}" == *"daily"* ]] || \
                [[ "${TEST_CODE}" == *"weekly"* ]] || \
                [[ "${TEST_CODE}" == *"timed"* ]];
             then
-                echo "Downloading latest VPP packages from NEXUS..."
-                # TODO: Can we source?
-                bash "${install_script}" --skip-install || {
-                    die "Failed to get VPP packages!"
-                }
+                echo "Downloading latest VPP packages from Packagecloud."
             else
-                echo "Downloading VPP packages of specific version from NEXUS."
-                dpdk_stable_ver="$(cat "${CSIT_DIR}/DPDK_STABLE_VER")" || {
-                    die "Cat failed."
+                echo "Downloading stable VPP packages from Packagecloud."
+                DKMS_VERSION="$(<"${CSIT_DIR}/DPDK_STABLE_VER")" || {
+                    die "Read DPDK stable version failed."
                 }
-                vpp_stable_ver="$(cat "${CSIT_DIR}/VPP_STABLE_VER_UBUNTU")" || {
-                    die "Cat failed."
-                }
-                install_args=("--skip-install" "--vpp" "${vpp_stable_ver}")
-                install_args+=("--dkms" "${dpdk_stable_ver}")
-                bash "${install_script}" "${install_args[@]}" || {
-                    die "Failed to get VPP packages!"
+                VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU")" || {
+                    die "Read VPP stable version failed."
                 }
             fi
+            download_artifacts || die
             ;;
         "vpp-csit-"*)
             # Use local built packages.
