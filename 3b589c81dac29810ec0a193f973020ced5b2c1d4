@@ -257,6 +257,30 @@
       "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "963fed09_cd70d288",
+        "filename": "tests/dmm/func/SingleCliSer-func.robot",
+        "patchSetId": 59
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-12T15:06:46Z",
+      "side": 1,
+      "message": "these warnings can be ignored, we are getting the same in our dmm setup as well..",
+      "parentUuid": "fd9e65dd_88df19a0",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "3b589c81dac29810ec0a193f973020ced5b2c1d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
