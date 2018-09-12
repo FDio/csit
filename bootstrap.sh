@@ -44,10 +44,10 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
     SKIP_PATCH="skip_patchORskip_vpp_patch"
 else
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_${DISTRO})
-    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
-        --skip-install --vpp ${VPP_STABLE_VER} --dkms ${DPDK_STABLE_VER}
+    DKMS_VERSION=$(< ${SCRIPT_DIR}/DPDK_STABLE_VER)
+    VPP_VERSION=$(< ${SCRIPT_DIR}/VPP_STABLE_VER_${DISTRO})
+    source "${SCRIPT_DIR}/resources/libraries/bash/function/artifacts.sh"
+    download_artifacts
 fi
 
 VIRL_DIR_LOC="/tmp/"

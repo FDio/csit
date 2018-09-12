@@ -32,6 +32,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
+source "${BASH_FUNCTION_DIR}/artifacts.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
 common_dirs || die
 get_test_tag_string || die
