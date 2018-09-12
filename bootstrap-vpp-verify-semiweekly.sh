@@ -65,8 +65,8 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     # Download the latest VPP build install packages
-    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh \
-        --skip-install
+    source "${SCRIPT_DIR}/resources/libraries/bash/function/artifacts.sh"
+    download_artifacts
 fi
 
 VIRL_DIR_LOC="/tmp/"
