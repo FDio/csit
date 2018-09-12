@@ -113,6 +113,15 @@ class Specification(object):
         return self._specification["configuration"]["ignore"]
 
     @property
+    def alerting(self):
+        """Getter - Alerting.
+
+        :returns: Specification of alerts.
+        :rtype: dict
+        """
+        return self._specification["configuration"]["alerting"]
+
+    @property
     def input(self):
         """Getter - specification - inputs.
         - jobs and builds.
