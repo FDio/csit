@@ -68,12 +68,32 @@
 
   ignore-list: "ignored_tcs.yaml"
 
+  alerting:
+
+    alerts:
+      send-failed-tests:
+        title: "Trending: Failed Tests"
+        type: "failed-tests"
+        way: "email"
+        include:
+        - "failed-tests-3n-hsw"
+        - "failed-tests-3n-skx"
+        - "failed-tests-2n-skx"
+
+    configurations:
+      email:
+        server: "localhost"
+        address-to:
+        - "tifrank@cisco.com"
+        # - "csit-report@lists.fd.io"
+        address-from: "testuser@testserver.com"
+
   data-sets:
 
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 100
+        start: 285  # 100
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
         start: 3
@@ -81,7 +101,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 100
+        start: 285  # 100
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-hsw:
@@ -92,7 +112,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 1
+        start: 30  # 1
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 1
@@ -100,7 +120,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 1
+        start: 30  # 1
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-skx:
@@ -111,7 +131,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 1
+        start: 30  # 1
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 1
@@ -119,7 +139,7 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 1
+        start: 30  # 1
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-2n-skx:
@@ -212,7 +232,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 100
+      start: 285  # 100
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master:
       start: 3
@@ -220,7 +240,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 1
+      start: 30  # 1
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
       start: 1
@@ -228,7 +248,7 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 1
+      start: 30  # 1
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master-2n-skx:
       start: 1
