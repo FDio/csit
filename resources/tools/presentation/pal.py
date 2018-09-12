@@ -28,6 +28,7 @@ from generator_files import generate_files
 from static_content import prepare_static_content
 from generator_report import generate_report
 from generator_CPTA import generate_cpta
+from generator_alerts import Alerting, AlertingError
 
 
 def parse_args():
@@ -111,9 +112,14 @@ def main():
             logging.info("Successfully finished.")
         elif spec.output["output"] == "CPTA":
             sys.stdout.write(generate_cpta(spec, data))
+            alert = Alerting(spec.alerting)
+            alert.generate_alerts()
             logging.info("Successfully finished.")
         ret_code = 0
 
+    except AlertingError as err:
+        logging.info("Finished with an alerting error.")
+        logging.critical(str(err))
     except (KeyError, ValueError, PresentationError) as err:
         logging.info("Finished with an error.")
         logging.critical(repr(err))
