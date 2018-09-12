@@ -68,6 +68,22 @@
 
   ignore-list: "ignored_tcs.yaml"
 
+  alerting:
+
+    alerts:
+      send-failed-tests:
+        title: "Trending: Failed Tests"
+        type: "failed-tests"
+        way: "email"
+
+    configurations:
+      email:
+        server: "localhost"
+        address-to:
+        - "tifrank@cisco.com"
+        # - "csit-report@lists.fd.io"
+        address-from: ""
+
   data-sets:
 
     # 3n-hsw
