@@ -431,7 +431,7 @@ function select_tags () {
                 # in Robot Framework.
                 test_tag_array=("mrrANDnic_intel-x710AND1cAND64bANDip4base"
                                 "mrrANDnic_intel-x710AND1cAND78bANDip6base"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbase"
+                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbaseANDbase"
                                 "mrrANDnic_intel-x710AND1cAND64bANDl2xcbase")
             else
                 # If trigger contains tags, split them into array.
