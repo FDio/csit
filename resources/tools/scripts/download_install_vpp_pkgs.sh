@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,135 +13,124 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -e -o pipefail
+set -exuo pipefail
 
-OS_ID=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
-OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
+# TODO: Convert to new bash coding style
 
-NEXUSPROXY="https://nexus.fd.io"
+function artifacts () {
+    # Get and/or install VPP artifacts
+    #
+    # Arguments:
+    # - ${1} - Whether to install packages or not.
+    # Variables set:
+    # - XX - Desc
 
-function artifacts {
-    if [ "$OS_ID" == "ubuntu" ]; then
-        VPP_REPO_URL_PATH="./VPP_REPO_URL_UBUNTU"
-        if [ -e "$VPP_REPO_URL_PATH" ]; then
-            VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
-            REPO_NAME=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
-            REPO_NAME=$(echo ${REPO_NAME%io/fd/vpp/})
-        else
-            OS_VERSION_CODENAME=$(grep '^VERSION_CODENAME=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
-            REPO_NAME="fd.io.master.ubuntu.${OS_VERSION_CODENAME}.main"
-        fi
-        REPO_URL="${NEXUSPROXY}/content/repositories/${REPO_NAME}"
+    set -exuo pipefail
 
-        echo "deb ${REPO_URL} ./" | sudo tee /etc/apt/sources.list.d/99fd.io.list
-        sudo apt-get -y update \
-            -o Dir::Etc::sourcelist="sources.list.d/99fd.io.list" \
-            -o Acquire::AllowInsecureRepositories=true \
-            -o Dir::Etc::sourceparts="-" \
-            -o APT::Get::AllowUnauthenticated=true \
-            -o APT::Get::List-Cleanup="0"
+    os_id=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
 
-        # If version is set we will add suffix
-        VPP=(vpp vpp-dbg vpp-dev vpp-lib vpp-plugins)
-        DKMS=(vpp-dpdk-dkms)
+    repo_url_path="./VPP_REPO_URL"
+    if [ -e "${repo_url_path}" ]; then
+        repo_url="$(<${repo_url_path})"
+    else
+        repo_url="https://packagecloud.io/install/repositories/fdio/master"
+    fi
+
+    if [ "${os_id}" == "ubuntu" ]; then
+        curl -s "${repo_url}"/script.deb.sh | sudo bash || {
+            die "Packagecloud repo fetch failed."
+        }
+        # If version is set we will add suffix.
+        vpp=(vpp vpp-dbg vpp-dev vpp-lib vpp-plugins)
+        dkms=(vpp-dpdk-dkms)
         if [ -z "${VPP_VERSION}" ]; then
-            ARTIFACTS+=(${VPP[@]/%/${VPP_VERSION}})
-            ARTIFACTS+=(${DKMS[@]/%/${DKMS_VERSION}})
+            ARTIFACTS+=(${vpp[@]/%/${VPP_VERSION}})
+            ARTIFACTS+=(${dkms[@]/%/${DKMS_VERSION}})
         else
-            ARTIFACTS+=(${VPP[@]/%/=${VPP_VERSION}})
-            ARTIFACTS+=(${DKMS[@]/%/=${DKMS_VERSION}})
+            ARTIFACTS+=(${vpp[@]/%/=${VPP_VERSION}})
+            ARTIFACTS+=(${dkms[@]/%/=${DKMS_VERSION}})
         fi
 
-        if [ "$INSTALL" = true ]; then
-            echo Installing VPP
-            sudo apt-get -y install ${ARTIFACTS[@]} \
-                -o Acquire::AllowInsecureRepositories=true \
-                -o APT::Get::AllowUnauthenticated=true
+        if [ "${INSTALL}" = true ]; then
+            sudo apt-get -y install "${ARTIFACTS[@]}" || {
+               die "Install VPP artifact failed."
+            }
         else
-            echo Downloading VPP
-            apt-get -y download ${ARTIFACTS[@]} \
-                -o Acquire::AllowInsecureRepositories=true \
-                -o APT::Get::AllowUnauthenticated=true
+            apt-get -y download "${ARTIFACTS[@]}" || {
+               die "Download VPP artifact failed."
+            }
         fi
 
-    elif [ "$OS_ID" == "centos" ]; then
-        VPP_REPO_URL_PATH="./VPP_REPO_URL_CENTOS"
-        if [ -e "$VPP_REPO_URL_PATH" ]; then
-            VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
-            REPO_NAME=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
-            REPO_NAME=$(echo ${REPO_NAME%/io/fd/vpp/})
-        else
-            REPO_NAME="fd.io.master.centos7"
-        fi
-        REPO_URL="${NEXUSPROXY}/content/repositories/${REPO_NAME}"
-
-        sudo cat << EOF > fdio-master.repo
-[fdio-master]
-name=fd.io master branch latest merge
-baseurl=${REPO_URL}
-enabled=1
-gpgcheck=0
-EOF
-        sudo mv fdio-master.repo /etc/yum.repos.d/fdio-master.repo
-
-        # If version is set we will add suffix
-        VPP=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins)
+    elif [ "${os_id}" == "centos" ]; then
+        curl -s "${repo_url}"/script.rpm.sh | sudo bash || {
+            die "Packagecloud repo fetch failed."
+        }
+        # If version is set we will add suffix.
+        vpp=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins)
         if [ -z "${VPP_VERSION}" ]; then
-            ARTIFACTS+=(${VPP[@]/%/${VPP_VERSION}})
+            ARTIFACTS+=(${vpp[@]/%/${VPP_VERSION}})
         else
-            ARTIFACTS+=(${VPP[@]/%/-${VPP_VERSION}})
+            ARTIFACTS+=(${vpp[@]/%/-${VPP_VERSION}})
         fi
 
-        if [ "$INSTALL" = true ]; then
-            echo Installing VPP
-            sudo yum -y install ${ARTIFACTS[@]}
+        if [ "${INSTALL}" = true ]; then
+            sudo yum -y install "${ARTIFACTS[@]}" || {
+               die "Install VPP artifact failed."
+            }
         else
-            echo Downloading VPP
-            sudo yum -y install --downloadonly --downloaddir=. ${ARTIFACTS[@]}
+            sudo yum -y install --downloadonly --downloaddir=. "${ARTIFACTS[@]}" || {
+               die "Download VPP artifact failed."
+            }
         fi
-    elif [ "$OS_ID" == "opensuse" ]; then
-        VPP_REPO_URL_PATH="./VPP_REPO_URL_OPENSUSE"
-        if [ -e "$VPP_REPO_URL_PATH" ]; then
-            VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
-            REPO_NAME=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
-            REPO_NAME=$(echo ${REPO_NAME%/io/fd/vpp/})
-        else
-            REPO_NAME='fd.io.master.opensuse'
-        fi
-        REPO_URL="${NEXUSPROXY}/content/repositories/${REPO_NAME}"
-
-        sudo cat << EOF > fdio-master.repo
-[fdio-master]
-name=fd.io master branch latest merge
-baseurl=${REPO_URL}
-enabled=1
-gpgcheck=0
-EOF
-        sudo mv fdio-master.repo /etc/yum/repos.d/fdio-master.repo
-
-        # If version is set we will add suffix
-        VPP=(vpp vpp-devel vpp-lib vpp-plugins libvpp0)
+    elif [ "${os_id}" == "opensuse" ]; then
+        curl -s "${repo_url}"/script.rpm.sh | sudo bash || {
+            die "Packagecloud repo fetch failed."
+        }
+        # If version is set we will add suffix.
+        vpp=(vpp vpp-devel vpp-lib vpp-plugins libvpp0)
         if [ -z "${VPP_VERSION}" ]; then
-            ARTIFACTS+=(${VPP[@]/%/${VPP_VERSION}})
+            ARTIFACTS+=(${vpp[@]/%/${VPP_VERSION}})
         else
-            ARTIFACTS+=(${VPP[@]/%/-${VPP_VERSION}})
+            ARTIFACTS+=(${vpp[@]/%/-${VPP_VERSION}})
         fi
 
-        if [ "$INSTALL" = true ]; then
-            echo Installing VPP
-            sudo yum -y install ${ARTIFACTS[@]}
+        if [ "${INSTALL}" = true ]; then
+            sudo yum -y install "${ARTIFACTS[@]}" || {
+               die "Install VPP artifact failed."
+            }
         else
-            echo Downloading VPP
-            sudo yum -y install --downloadonly --downloaddir=. ${ARTIFACTS[@]}
+            sudo yum -y install --downloadonly --downloaddir=. "${ARTIFACTS[@]}" || {
+               die "Download VPP artifact failed."
+            }
         fi
     else
-        echo "$OS_ID is not yet supported."
-        exit 1
+        die "${os_id} is not yet supported."
     fi
 }
 
-function display_help () {
-    echo "Usage: $0 [--skip-install] [--vpp <version>] [--dkms <version>]"
+function die () {
+    # Print the message to standard error end exit with error code specified
+    # by the second argument.
+    #
+    # Hardcoded values:
+    # - The default error message.
+    # Arguments:
+    # - ${1} - The whole error message, be sure to quote. Optional
+    # - ${2} - the code to exit with, default: 1.
+
+    set -x
+    set +eu
+    warn "${1:-Unspecified run-time error occurred!}"
+    exit "${2:-1}"
+}
+
+function warn () {
+    # Print the message to standard error.
+    #
+    # Arguments:
+    # - ${@} - The text of the message.
+
+    echo "$@" >&2
 }
 
 # Whether to install artifacts or not
@@ -153,21 +142,17 @@ DKMS_VERSION=""
 
 while :
 do
-    case "$1" in
-        -h | --help)
-            display_help
-            exit 0
-            ;;
+    case "${1-}" in
         -s | --skip-install)
             INSTALL=false
             shift 1
             ;;
         -v | --vpp)
-            VPP_VERSION="$2"
+            VPP_VERSION="${2}"
             shift 2
             ;;
         -d | --dkms)
-            DKMS_VERSION="$2"
+            DKMS_VERSION="${2}"
             shift 2
             ;;
         *)
@@ -176,4 +161,4 @@ do
      esac
 done
 
-artifacts "${INSTALL}" "${VPP_VERSION}" "${DKMS_VERSION}"
+artifacts
