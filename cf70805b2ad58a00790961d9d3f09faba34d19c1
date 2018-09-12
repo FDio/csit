@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a94df1a_f0330255",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 61
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T15:12:33Z",
+      "side": 1,
+      "message": "Not needed when the function has no return statement (so always return None implicitly).\n\nBut :type is needed for arguments.",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 16
+      },
+      "revId": "cf70805b2ad58a00790961d9d3f09faba34d19c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8f06eac_f954ab67",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 61
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-12T15:12:33Z",
+      "side": 1,
+      "message": "It is :returns: and there should also be :rtype:.",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 16
+      },
+      "revId": "cf70805b2ad58a00790961d9d3f09faba34d19c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
