@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3df28233_f6b305f5",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 2995,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-13T10:16:34Z",
+      "side": 1,
+      "message": "Delete.",
+      "range": {
+        "startLine": 2995,
+        "startChar": 17,
+        "endLine": 2995,
+        "endChar": 18
+      },
+      "revId": "6eded33eb43dd8e69af325f12713fd350a9c0762",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
