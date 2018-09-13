@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dc84b5e7_4896b91f",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-13T12:36:21Z",
+      "side": 1,
+      "message": "\u003e It is more question of safe programming.\n\nYes, it is a question of how defensive (or lenient) the code has to be to meet our quality standards.\n\n\u003e Remove line and let it be managed by dev?\n\nBasically, either of lines 201, 205 or 209 is enough if all committers enforce it carefully. The most defensive method is to require all three (possibly adding a naming convention to be extra sure).\n\nPersonally I prefer 205, as it leads to shortest code, and violations are easy enough to spot for me.\n\nI will think about how to write all of this into a short TODO.\n\nRewritten in #20.",
+      "parentUuid": "7c3eb27e_3642d708",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 65
+      },
+      "revId": "7c4b6f988e9adeae7e6fac8088ccc85f2b13dd6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c8de9d8_faed2e2c",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 18
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "94120b7c_f193cee3",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-13T12:36:21Z",
+      "side": 1,
+      "message": "Ok, will do.\n\nDone in #20.",
+      "parentUuid": "0c8de9d8_faed2e2c",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 60
+      },
+      "revId": "7c4b6f988e9adeae7e6fac8088ccc85f2b13dd6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a49d33d_4f23d674",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 18
@@ -59,6 +107,30 @@
       "writtenOn": "2018-09-13T11:11:18Z",
       "side": 1,
       "message": "What is motivation behind \"FIXME\". I still do not understand to have it in production code. TODO is fine, but FIMXE means \"hey, there is something broken and will fail\". IMO FIXME can only be used in DRAFTs of private development?",
+      "range": {
+        "startLine": 412,
+        "startChar": 19,
+        "endLine": 412,
+        "endChar": 26
+      },
+      "revId": "7c4b6f988e9adeae7e6fac8088ccc85f2b13dd6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f589eb97_f376c3a7",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-13T12:36:21Z",
+      "side": 1,
+      "message": "I think I take TODOs as possible improvements, and FIXMEs as a technical debt.\n\nFIXME could be an untested corner case, or a known failure if stars allign; but it could also \"only\" be an uninformative docstring (e.g. saying ${node} type is a \"dict\").\n\nBasically, FIXME is a sign that contributor believes this code SHOULD be better, but committers MAY merge it (as is) anyway. It is an information for the committer that the contributor is willing to work on it (as opposed to limited willingness to work on TODOs).\n\nOf course, if a committer merges a contribution with new FIXMEs, he effectively says they are mere TODOs in his eyes. And seeing FIXMEs in production code could confuse new contributors. But I do not think it is worth creating a pre-merge hook to edit FIXME into TODO upon merge.\n\nSHOULD I start writing a document for TOOD/FIXME guidelines? :)\n\nAdded TODO in #20.",
+      "parentUuid": "6a49d33d_4f23d674",
       "range": {
         "startLine": 412,
         "startChar": 19,
