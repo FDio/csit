@@ -59,8 +59,9 @@
 | | Set Test Variable | ${subif_name_2}
 | | Set Test Variable | ${subif_index_2}
 
-| Initialize VLAN dot1q sub-interfaces in 3-node circular topology
-| | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
+| Initialize VLAN dot1q sub-interfaces in circular topology
+| | [Arguments] | ${DUT1} | ${INT1} | ${DUT2}=${None} | ${INT2}=${None}
+| | ... | ${SUB_ID}=10
 | | [Documentation] | *Create two dot1q subinterfaces on DUTs.*
 | | ...
 | | ... | *Arguments:*
@@ -78,26 +79,31 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize VLAN dot1q sub-interfaces in 3-node circular topology \
+| | ... | \| Initialize VLAN dot1q sub-interfaces in circular topology \
 | | ... | \| ${nodes['DUT1']} \| ${dut1_if2} \| ${nodes['DUT2']} \
 | | ... | \| ${dut1_if2} \| 10 \|
 | | ...
 | | ${INT1_NAME}= | Get interface name | ${DUT1} | ${INT1}
-| | ${INT2_NAME}= | Get interface name | ${DUT2} | ${INT2}
+| | ${INT2_NAME}= | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Get interface name | ${DUT2} | ${INT2}
 | | ${subif_name_1} | ${subif_index_1}= | Create Vlan Subinterface
-| |                 | ...               | ${DUT1} | ${INT1_NAME} | ${SUB_ID}
-| | ${subif_name_2} | ${subif_index_2}= | Create Vlan Subinterface
-| |                 | ...               | ${DUT2} | ${INT2_NAME} | ${SUB_ID}
+| | ... | ${DUT1} | ${INT1_NAME} | ${SUB_ID}
+| | ${subif_name_2} | ${subif_index_2}=
+| | ... | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Create Vlan Subinterface | ${DUT2} | ${INT2_NAME} | ${SUB_ID}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
-| | Set Interface State | ${DUT2} | ${subif_index_2} | up
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Interface State | ${DUT2} | ${subif_index_2} | up
 | | Set Test Variable | ${subif_name_1}
 | | Set Test Variable | ${subif_index_1}
-| | Set Test Variable | ${subif_name_2}
-| | Set Test Variable | ${subif_index_2}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Test Variable | ${subif_name_2}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Test Variable | ${subif_index_2}
 
 | Configure L2 tag rewrite method on interfaces
-| | [Arguments] | ${DUT1} | ${SUB_INT1} | ${DUT2} | ${SUB_INT2}
-| | ...         | ${TAG_REWRITE_METHOD}
+| | [Arguments] | ${DUT1} | ${SUB_INT1} | ${DUT2}=${None} | ${SUB_INT2}=${None}
+| | ... | ${TAG_REWRITE_METHOD}=${None}
 | | [Documentation] | *Setup tag rewrite on sub-interfaces on DUTs.*
 | | ...
 | | ... | *Arguments:*
@@ -108,7 +114,8 @@
 | | ... | - TAG_REWRITE_METHOD - Method of tag rewrite.
 | | ...
 | | L2 Vlan tag rewrite | ${DUT1} | ${SUB_INT1} | ${TAG_REWRITE_METHOD}
-| | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
 
 | Connect interfaces and VLAN sub-interfaces using L2XC
 | | [Arguments] | ${DUT1} | ${INT1} | ${SUB_INT1}
