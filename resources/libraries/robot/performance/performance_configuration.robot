@@ -776,6 +776,97 @@
 | | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | 2001:5::2
 | | ... | interface=${dut_if2} | count=${count}
 
+| Initialize IPv6 forwarding with VLAN dot1q sub-interfaces in circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
+| | ... | circular topology. In case of 3-node topology create VLAN
+| | ... | sub-interfaces between DUTs. In case of 2-node topology create VLAN
+| | ... | sub-interface on dut1-if2 interface. Get the interface MAC addresses
+| | ... | and setup ARPs. Setup IPv6 addresses with /30 prefix on DUT-TG links
+| | ... | and set routing with prefix /64. In case of 3-node set IPv6 adresses
+| | ... | with /64 prefix on VLAN and set routing on both DUT nodes with prefix
+| | ... | /64. Set next hop of neighbour DUT interface IPv4 address. All
+| | ... | interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_if1_net - TG interface 1 IPv6 subnet used by traffic generator.
+| | ... | Type: integer
+| | ... | - tg_if2_net - TG interface 2 IPv6 subnet used by traffic generator.
+| | ... | Type: integer
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - dut1 - DUT1 node.
+| | ... | - dut2 - DUT2 node.
+| | ... | - dut1_if2 - DUT1 interface towards DUT2.
+| | ... | - dut2_if1 - DUT2 interface towards DUT1.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv6 forwarding with VLAN dot1q sub-interfaces\
+| | ... | in circular topology \| 2001:1::0 \| 2001:2::0 \| 10 \| pop-1 \|
+| | ...
+| | [Arguments] | ${tg_if1_net} | ${tg_if2_net} | ${subid} | ${tag_rewrite}
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
+| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | ELSE | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
+| | ...
+| | ${prefix}= | Set Variable | 64
+| | ${host_prefix}= | Set Variable | 64
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2002:1::1 | ${tg1_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add Ip Neighbor | ${dut1} | ${subif_index_1} | 2002:2::2
+| | ... | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add Ip Neighbor | ${dut2} | ${subif_index_2} | 2002:2::1
+| | ... | ${dut1_if2_mac}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${subif_index_1}
+| | Add Ip Neighbor | ${dut} | ${dut_if2} | 2002:3::1 | ${tg1_if2_mac}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2002:1::2 | ${prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Set If IPv6 Addr | ${dut1} | ${subif_index_1} | 2002:2::1
+| | ... | ${prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Set If IPv6 Addr | ${dut2} | ${subif_index_2} | 2002:2::2
+| | ... | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut} | ${dut_if2} | 2002:3::2 | ${prefix}
+| | Suppress ICMPv6 router advertisement message | ${nodes}
+| | Vpp Route Add | ${dut1} | ${tg_if1_net} | ${host_prefix} | 2002:1::1
+| | ... | interface=${dut1_if1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | ${host_prefix} | 2002:2::2
+| | ... | interface=${subif_index_1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${tg_if1_net} | ${host_prefix} | 2002:2::1
+| | ... | interface=${subif_index_2}
+| | Vpp Route Add | ${dut} | ${tg_if2_net} | ${host_prefix} | 2002:3::1
+| | ... | interface=${dut_if2}
+
 | Initialize IPv6 iAcl whitelist in 3-node circular topology
 | | [Documentation]
 | | ... | Creates classify L3 table on DUTs. IPv6 iAcl security whitelist

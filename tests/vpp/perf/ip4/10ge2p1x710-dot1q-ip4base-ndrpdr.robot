@@ -68,7 +68,7 @@
 | | [Documentation]
 | | ... | [Cfg] Each DUT runs IPv4 routing with VLAN and uses ${phy_cores}\
 | | ... | physical core(s) for worker threads.
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.
 | | ...
 | | ... | *Arguments:*
 | | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
