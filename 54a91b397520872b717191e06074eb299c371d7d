@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "df14ed15_c43a2304",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-13T08:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3272f332_d98aaffa",
+      "range": {
+        "startLine": 538,
+        "startChar": 12,
+        "endLine": 538,
+        "endChar": 19
+      },
+      "revId": "54a91b397520872b717191e06074eb299c371d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31bf23fb_70c8df21",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-12T11:56:39Z",
       "side": 1,
       "message": "What was the reason the value was not true already,\nand what has caused false to no longer be a good value anymore?",
+      "range": {
+        "startLine": 55,
+        "startChar": 41,
+        "endLine": 55,
+        "endChar": 48
+      },
+      "revId": "54a91b397520872b717191e06074eb299c371d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2183381f_bf3fe5be",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-13T08:50:44Z",
+      "side": 1,
+      "message": "The reason is to avoid possible impact to performance measurement.\nThis change from False to True was used only during development phase (what draft is intended for) to be able to check packet trace on DUT even in case of PASS test result.",
+      "parentUuid": "31bf23fb_70c8df21",
       "range": {
         "startLine": 55,
         "startChar": 41,
