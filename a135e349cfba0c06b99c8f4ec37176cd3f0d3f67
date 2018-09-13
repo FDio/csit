@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1aa5a80d_ebb2fbc2",
+        "filename": "resources/libraries/bash/entry/bootstrap_verify_perf.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-13T10:27:22Z",
+      "side": 1,
+      "message": "Makes sense.",
+      "parentUuid": "42a01c75_2facbce2",
+      "range": {
+        "startLine": 35,
+        "startChar": 29,
+        "endLine": 35,
+        "endChar": 41
+      },
+      "revId": "a135e349cfba0c06b99c8f4ec37176cd3f0d3f67",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4e3e798_1e2da316",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-13T10:07:59Z",
       "side": 1,
       "message": "Is this just a complicated way to write empty string?\nAlso applies to other \"then\" branches.",
+      "range": {
+        "startLine": 68,
+        "startChar": 31,
+        "endLine": 68,
+        "endChar": 46
+      },
+      "revId": "a135e349cfba0c06b99c8f4ec37176cd3f0d3f67",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1994f06b_a8e4e748",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-13T10:27:22Z",
+      "side": 1,
+      "message": "Old code. Should be fixed in next patch. I will check output.",
+      "parentUuid": "e4e3e798_1e2da316",
       "range": {
         "startLine": 68,
         "startChar": 31,
