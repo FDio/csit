@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "462ffa7c_6ab4a7db",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-13T10:29:00Z",
+      "side": 1,
+      "message": "Can be this done quickly?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 75
+      },
+      "revId": "db96033aa8393b475d0a2de906fc8692d55423de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e3234cd_47ea06df",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-13T10:29:00Z",
+      "side": 1,
+      "message": "Maybe link to bash doc?",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 6
+      },
+      "revId": "db96033aa8393b475d0a2de906fc8692d55423de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
