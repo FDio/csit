@@ -497,6 +497,30 @@
     },
     {
       "key": {
+        "uuid": "af24c173_86d1ff3c",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 17
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-13T12:36:21Z",
+      "side": 1,
+      "message": "This TODO is not about the common terminology, but about the new terminology. We know that the new notions are somewhat different, the question is how different should the corresponding words be. Using different words would be more precise but less intuitive (and we have to choose/invent the new words), using the same words is usually more intuitive, but sometimes misleading.\n\nThe TODO has been edited slightly in #20.",
+      "parentUuid": "e46e54d4_544b293a",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 28
+      },
+      "revId": "14beb7019a5cd836d636addaa4a4d9a123ea4ec7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1786fc52_9aed9000",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 17
