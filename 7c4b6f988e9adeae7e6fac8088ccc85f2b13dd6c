@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c3eb27e_3642d708",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-13T11:11:18Z",
+      "side": 1,
+      "message": "It is more question of safe programming. Local means it will not be visible outside context. So imagine 2 function doing 2 different things but having same name of local var. Like \"$name\". Accessing variable $name without previous assignment can be dangerous (also ${name-} or ${name:-string} does not work then).\n\nRemove line and let it be managed by dev?",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 65
+      },
+      "revId": "7c4b6f988e9adeae7e6fac8088ccc85f2b13dd6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c8de9d8_faed2e2c",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-13T11:11:18Z",
+      "side": 1,
+      "message": "I think remove, just common sense can be applied.",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 60
+      },
+      "revId": "7c4b6f988e9adeae7e6fac8088ccc85f2b13dd6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a49d33d_4f23d674",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-13T11:11:18Z",
+      "side": 1,
+      "message": "What is motivation behind \"FIXME\". I still do not understand to have it in production code. TODO is fine, but FIMXE means \"hey, there is something broken and will fail\". IMO FIXME can only be used in DRAFTs of private development?",
+      "range": {
+        "startLine": 412,
+        "startChar": 19,
+        "endLine": 412,
+        "endChar": 26
+      },
+      "revId": "7c4b6f988e9adeae7e6fac8088ccc85f2b13dd6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
