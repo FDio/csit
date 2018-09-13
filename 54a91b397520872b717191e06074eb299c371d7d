@@ -93,6 +93,30 @@
       "revId": "54a91b397520872b717191e06074eb299c371d7d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1966028d_082956d6",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-13T10:16:34Z",
+      "side": 1,
+      "message": "Ah, makes sense.",
+      "parentUuid": "2183381f_bf3fe5be",
+      "range": {
+        "startLine": 55,
+        "startChar": 41,
+        "endLine": 55,
+        "endChar": 48
+      },
+      "revId": "54a91b397520872b717191e06074eb299c371d7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
