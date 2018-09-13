@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92091966_8bfd749c",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-13T12:02:53Z",
+      "side": 1,
+      "message": "Please, put back assignment mark.\n\nYou are breaking rule on line 108 of this document ;)\n\nIf you want to keep line up to 80 chars, you can use:\n\n| | ${max_rate} | ${jumbo}\u003d | Run Keyword\n| | ... | Get Max Rate And Jumbo And Handle Multi Seg\n| | ... | ${s_24.5G} | ${framesize} | pps_limit\u003d${s_18.75Mpps}",
+      "range": {
+        "startLine": 92,
+        "startChar": 33,
+        "endLine": 92,
+        "endChar": 35
+      },
+      "revId": "b3ed13d23056602c632e07a2556433eb2dcc34ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79d614b9_c1b7bc54",
+        "filename": "docs/test_code_guidelines.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-13T12:02:53Z",
+      "side": 1,
+      "message": "robot\u0027s\n\nSorry for my typo in the comment.",
+      "range": {
+        "startLine": 165,
+        "startChar": 39,
+        "endLine": 165,
+        "endChar": 46
+      },
+      "revId": "b3ed13d23056602c632e07a2556433eb2dcc34ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
