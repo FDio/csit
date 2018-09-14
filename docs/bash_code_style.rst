@@ -184,8 +184,7 @@ Bash options
 
     + "Near start" means "before any nontrivial code".
 
-    + Basically only copyright and long high-level comments are
-      RECOMMENDED to appear before.
+    + Basically only copyright is RECOMMENDED to appear before.
 
   + Also code MUST put the line near start of function bodies
     and subshell invocations.
