@@ -1,12 +1,13 @@
 /env
 /download_dir
 /archive_dir
+/dmm
+/.tox
 outputs
 output.xml
 log.html
 report.html
+*.log
 *.pyc
 *~
-*.log
 .idea
-dmm/**
