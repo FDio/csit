@@ -11,16 +11,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-/env
-/download_dir
-/archive_dir
-/dmm
-/.tox
-outputs
-output.xml
-log.html
-report.html
-*.log
-*.pyc
-*~
-.idea
+# Bump regularly.
+tox==3.7.0
+
+# Tox dependencies. Consult "pip freeze" after installing
+# bumped tox into an empty virtualenv.
+filelock==3.0.10
+pluggy==0.8.1
+py==1.7.0
+six==1.12.0
+toml==0.10.0
+virtualenv==16.4.0
