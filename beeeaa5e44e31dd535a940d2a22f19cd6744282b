@@ -22,6 +22,30 @@
       "revId": "beeeaa5e44e31dd535a940d2a22f19cd6744282b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76f84e05_df0bd958",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-14T11:03:04Z",
+      "side": 1,
+      "message": "Have anyone of you tried \"cli-no-pager\" if this helps? As vat# seems to be appearing on \"cli pages\" for longer outputs. Does it apply for VAT as well?\n\n[0] https://wiki.fd.io/view/VPP/Command-line_Arguments",
+      "parentUuid": "0aa0ab53_6e70cf53",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "beeeaa5e44e31dd535a940d2a22f19cd6744282b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
