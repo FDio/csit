@@ -22,7 +22,7 @@ from .DefaultTestcase import DefaultTestcase
 class Regenerator(object):
     """Class containing file generating methods."""
 
-    def __init__(self, testcase_class=DefaultTestcase):
+    def __init__(self, testcase_class=DefaultTestcase, quiet=True):
         """Initialize Testcase class to use.
 
         TODO: See the type doc for testcase_class?
@@ -31,9 +31,12 @@ class Regenerator(object):
 
         :param testcase_class: Subclass of DefaultTestcase for generation.
             Default: DefaultTestcase
+        :param quiet: Reduce prints when True (default).
         :type testcase_class: subclass of DefaultTestcase accepting suite_id
+        :type quiet: boolean
         """
         self.testcase_class = testcase_class
+        self.quiet = quiet
 
     def regenerate_glob(self, pattern, protocol="ip4", tc_kwargs_list=None):
         """Regenerate files matching glob pattern based on arguments.
@@ -112,7 +115,8 @@ class Regenerator(object):
             for tc_kwargs in tc_kwargs_list:
                 num = add_testcase(testcase, iface, file_out, num, **tc_kwargs)
 
-        print "Regenerator starts at {cwd}".format(cwd=getcwd())
+        if not self.quiet:
+            print "Regenerator starts at {cwd}".format(cwd=getcwd())
         min_framesize = protocol_to_min_framesize[protocol]
         kwargs_list = tc_kwargs_list if tc_kwargs_list else [
             {"framesize": min_framesize, "phy_cores": 1},
@@ -129,7 +133,8 @@ class Regenerator(object):
             {"framesize": "IMIX_v4_1", "phy_cores": 4}
         ]
         for filename in glob(pattern):
-            print "Regenerating filename:", filename
+            if not self.quiet:
+                print "Regenerating filename:", filename
             with open(filename, "r") as file_in:
                 text = file_in.read()
                 text_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
@@ -138,5 +143,6 @@ class Regenerator(object):
             with open(filename, "w") as file_out:
                 file_out.write(text_prolog)
                 add_testcases(testcase, iface, file_out, kwargs_list)
-        print "Regenerator ends."
+        if not self.quiet:
+            print "Regenerator ends."
         print  # To make autogen check output more readable.
