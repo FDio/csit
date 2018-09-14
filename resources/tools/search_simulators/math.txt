@@ -156,3 +156,13 @@ and converge from high information region,
 but this is tricky to get working if bad fitting function
 tends throw the average deep into zero loss region (by Measurer point of view).
 Will investigate more and try some tricks.
+
+I think it is worth start using read data first
+(before overtuning for unrealistic Measurer).
+But even before that, choosing more realistic fitting function is good.
+I would like to keep (load - mrr) asymptotic for high loads,
+and I like b*c0*Exp[c1/b] asymptotic for low loads.
+Unfortunatelly, the most natural generalization has 3 parameters:
+lr=b*{(1-t)*Exp[m1/b]+t*Exp[m2/b]} with 0<t<0.5 to avoid symmetric points
+(thus two different maximums).
+Sigh. Going to start rewriting into nD integration now.
