@@ -1932,12 +1932,13 @@
 | | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2}
 | | ... | ${bd_id2}
 
-| Initialize L2 bridge domains with Vhost-User and VLAN in a 3-node circular topology
+| Initialize L2 bridge domains with Vhost-User and VLAN in circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
 | | ... | Vhost-User interface into L2 bridge domains with learning enabled
-| | ... | with physical inteface.
-| | ... | Setup VLAN between DUTs. All interfaces are brought up.
+| | ... | with physical inteface. In case of 3-node topology create VLAN
+| | ... | sub-interfaces between DUTs. In case of 2-node topology create VLAN
+| | ... | sub-interface on dut1-if2 interface. All interfaces are brought up.
 | | ...
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
@@ -1949,31 +1950,46 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| L2 bridge domains with Vhost-User and VLAN initialized in a 3-node\
-| | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \| 10 \
-| | ... | \| pop-1 \|
+| | ... | \| L2 bridge domains with Vhost-User and VLAN initialized in circular\
+| | ... | topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \| 10 \| pop-1 \|
 | | ...
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite}
 | | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
 | | Set interfaces in path up
-| | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
+| | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
+| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | ELSE | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
+| | ...
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
 | | ... | ${sock1} | ${sock2}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure vhost interfaces for L2BD forwarding | ${dut2}
 | | ... | ${sock1} | ${sock2}
-| | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
+| | ... | ${bd_id1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
 | Initialize L2 bridge domains with Vhost-User and VLAN with DPDK link bonding in a 3-node circular topology
 | | [Documentation]

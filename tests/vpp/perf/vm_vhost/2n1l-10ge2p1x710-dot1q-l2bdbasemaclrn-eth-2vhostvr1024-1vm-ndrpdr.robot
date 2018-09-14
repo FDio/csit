@@ -15,34 +15,33 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Library | resources.libraries.python.QemuUtils
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
+| Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X710
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
 | Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
-| ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
 | Test Template | Local Template
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD with vhost abd IEEE 802.1Q test
 | ... | cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
-| ... | with single links between nodes.
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\
+| ... | single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. IEEE\
-| ... | 802.1Q tagging is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-\
-| ... | domain and MAC learning enabled. Qemu Guest is connected to VPP via\
-| ... | vhost-user interfaces. Guest is running DPDK testpmd interconnecting\
-| ... | vhost-user interfaces, forwarding mode is set to io, rxd/txd=1024.\
-| ... | DUT1 and DUT2 are tested with 2p10GE NIC X710 by Intel.
+| ... | 802.1Q tagging is applied on link between DUT1-if2 and TG-if2.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain and\
+| ... | MAC learning enabled. Qemu Guest is connected to VPP via vhost-user\
+| ... | interfaces. Guest is running DPDK testpmd interconnecting vhost-user\
+| ... | interfaces, forwarding mode is set to io, rxd/txd=1024. DUT1 is tested\
+| ... | with 2p10GE NIC X710 by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -67,7 +66,7 @@
 # X710 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-2n-dot1qip4asym-ip4src254
 
 *** Keywords ***
 | Local Template
@@ -87,9 +86,7 @@
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate} | ${10000}
 | | ${dut1_vm_refs}= | Create Dictionary
-| | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
-| | Set Test Variable | ${dut2_vm_refs}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
@@ -103,10 +100,6 @@
 | | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | DUT2 | ${sock1} | ${sock2} | DUT2_VM1 | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
