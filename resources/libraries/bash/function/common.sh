@@ -90,8 +90,13 @@ function activate_virtualenv () {
 
     set -exuo pipefail
 
+    # Update virtualenv pip package, delete and create virtualenv directory,
+    # activate the virtualenv, install requirements, set PYTHONPATH.
+
     # Arguments:
-    # - ${1} - Non-empty path to existing directory for creating virtualenv in.
+    # - ${1} - Path to existing directory for creating virtualenv in.
+    #          If missing or empty, ${CSIT_DIR} is used.
+    # - ${2} - Path to requirements file, ${CSIT_DIR}/requirements.txt if empty.
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # Variables set:
@@ -102,13 +107,13 @@ function activate_virtualenv () {
     # - die - Print to stderr and exit.
 
     # TODO: Do we really need to have ENV_DIR available as a global variable?
+    # TODO: Do we want the callers to be able to set the env dir name?
+    # TODO: Do we want the callers to override PYTHONPATH loaction?
 
-    if [[ "${1-}" == "" ]]; then
-        die "Root location of virtualenv to create is not specified."
-    fi
-    ENV_DIR="${1}/env"
+    root_path="${1-$CSIT_DIR}"
+    ENV_DIR="${root_path}/env"
+    req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${ENV_DIR}" || die "Failed to clean previous virtualenv."
-
     pip install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
@@ -118,12 +123,11 @@ function activate_virtualenv () {
     set +u
     source "${ENV_DIR}/bin/activate" || die "Virtualenv activation failed."
     set -u
-    pip install -r "${CSIT_DIR}/requirements.txt" || {
-        die "CSIT requirements installation failed."
+    pip install --upgrade -r "${req_path}" || {
+        die "Requirements installation failed."
     }
-
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
-    export PYTHONPATH="${CSIT_DIR}" || die "Export failed."
+    export PYTHONPATH="${root_path}" || die "Export failed."
 }
 
 
