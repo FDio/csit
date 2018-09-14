@@ -5,7 +5,8 @@ outputs
 output.xml
 log.html
 report.html
+*.log
 *.pyc
 *~
-*.log
 .idea
+.tox/**
