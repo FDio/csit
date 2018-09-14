@@ -13,14 +13,15 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/l2/tagging.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | BASE | DOT1Q | L2BDMACLRN
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-XXV710 | L2XCFWD | BASE | DOT1Q
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | Intel-X710
+| Suite Setup | Set up 2-node performance topology with DUT's NIC model
+| ... | L2 | Intel-XXV710
 | ...
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
 | ...
@@ -29,15 +30,14 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput L2BD with IEEE 802.1Q test cases*
+| Documentation | *RFC2544: Pkt throughput L2XC with IEEE 802.1Q test cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
-| ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. IEEE\
-| ... | 802.1Q tagging is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge\
-| ... | domain and MAC learning enabled. DUT1 and DUT2 are tested with 2p10GE\
-| ... | NIC X710 by Intel.
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\
+| ... | single links between nodes.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect. IEEE\
+| ... | 802.1Q tagging is applied on link between DUT1-if2 and TG-if2.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross- connect.\
+| ... | DUT1 is tested with 2p25GE NIC XXV710 by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -54,20 +54,19 @@
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
 | ${overhead}= | ${4}
-# X710-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
-# Bridge domain IDs
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
+# XXV710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
+| ${s_24.5G}= | ${24500000000}
+# XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
+| ${s_18.75Mpps}= | ${18750000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-2n-dot1qip4asym-ip4src254
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] Each DUT runs L2BD config with VLAN and uses ${phy_cores}\
+| | ... | [Cfg] Each DUT runs L2XC config with VLAN and uses ${phy_cores}\
 | | ... | physical core(s) for worker threads.
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
 | | ... | *Arguments:*
 | | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
@@ -83,58 +82,63 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_limit} | ${framesize} | overhead=${overhead}
+| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | ... | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with VLAN dot1q sub-interfaces in circular topology
-| | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
+| | When Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | And Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-64B-1c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc01-64B-1c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc02-64B-2c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc03-64B-4c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc04-1518B-1c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc05-1518B-2c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc06-1518B-4c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc07-9000B-1c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc08-9000B-2c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc09-9000B-4c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc10-IMIX-1c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc11-IMIX-2c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-dot1q-l2bdbasemaclrn-ndrpdr
+| tc12-IMIX-4c-dot1q-l2xcbase-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
