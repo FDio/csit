@@ -1,0 +1,193 @@
+Scratch pad to derive the correct formulas.
+
+First problem: 2D quadratic fit with weights.
+We have data points x_a, y_a, v_a, to be taken with weight w_a.
+we want to minimize L:
+L = Sum_a[1/2*((A +Bx +Cy +Dxx +Exy +Fyy)(x_a, y_a) -v_a)^2 *w_a]
+Function G(x,y) = (A +Bx +Cy +Dxx +Exy +Fyy)(x,y):
+L = Sum_a[1/2*(G(x_a, y_a) -v_a)^2 *w_a]
+Derivatives:
+0 = dL/dA = Sum_a[(G -v_a) *w_a]
+0 = dL/dB = Sum_a[x*(G -v_a) *w_a]
+0 = dL/dC = Sum_a[y*(G -v_a) *w_a]
+0 = dL/dD = Sum_a[x*x*(G -v_a) *w_a]
+0 = dL/dE = Sum_a[x*y*(G -v_a) *w_a]
+0 = dL/dF = Sum_a[y*y*(G -v_a) *w_a]
+With sums of argument powers: S{x}{y} = Sum_a[x_a^{}*y_a^{}*w_a]
+A*S +B*Sx +C*Sy +D*Sxx +E*Sxy +F*Syy = Sv
+A*Sx +B*Sxx +C*Sxy +D*Sxxx +E*Sxxy +F*Sxyy = Sxv
+A*Sy +B*Sxy +C*Syy +D*Sxxy +E*Sxyy +F*Syyy = Syv
+A*Sxx +B*Sxxx +C*Sxxy +D*Sxxxx +E*Sxxxy +F*Sxxyy = Sxxv
+A*Sxy +B*Sxxy +C*Sxyy +D*Sxxxy +E*Sxxyy +F*Sxyyy = Sxyv
+A*Syy +B*Sxyy +C*Syyy +D*Sxxyy +E*Sxyyy +F*Syyyy = Syyv
+System of linear equations, easy to solve. Left side is even symmetric.
+Then finding the minimum of G:
+0 = dG/dx = B +2Dx +Ey
+0 = dG/dy = C +Ex +2Fy
+One again, easy.
+The hardest part would be finding the transformation matrix for generation.
+
+Weights. We have 6 parameters, so we need at least 6 points, non-co-quadric.
+Say 12 to be safe. Only keep the 12 best so faraway points do not influence.
+As usual, do not do tard cutoff. Say, the 12th point should have 1/100 weight
+of the first point, and take all points into account.
+If constant re-weighting takes time, we can fix generating few point
+before recomputing the quadric.
+
+Outliers. There will be low frequency, high weight points, as usually
+the tail will not be Gaussian. Handle that by requiring the generator
+to stretch more in direction of big outlier, compensate by smaller average weight.
+
+With non-trivial function, 2D quadratic fit is giving quite a bad approximation.
+So more direct idea: compute moments of weighted distribution.
+2D average as in AvgStdeMetadata avg.
+xx and yy moments via m2, but let me check xy:
+We want Sum_a[w_a *(x_a -x_avg) *(y_a -y_avg)] =: Vxy
+x_avg(n) = x_avg(n-1) +(x_n -x_avg(n-1)) *(w_n /S(n))
+dx_n :=(x_n -x_avg(n-1))
+x_n -x_avg(n) = x_n -x_avg(n-1) -dx_n*w_n/S_n
+x_a -x_avg(n) = x_a -x_avg(n-1) -dx_n*w_n/S_n
+Vxy_n =w_n*(x_n -x_avg(n-1) -dx_n*w_n/S_n)*(y_n -y_avg(n-1) -dy_n*w_n/S_n) +
++ Sum_a(n-1)[w_a*(x_a -x_avg(n-1) -dx_n*w_n/S_n)*(y_a -y_avg(n-1) -dy_n*w_n/S_n) =
+= w_n*dx_n*dy_n *(1 -w_n/S_n)^2 +Vxy(n-1) -0 -0 +S(n-1)*dx_n*dy_n *(w_n/S_n)^2 =
+= Vxy(n-1) +dx_n*dy_n*[w_n *(S(n-1)/S(n))^2 + S(n-1) *(w_n/S_n)^2] =
+= Vxy(n-1) +dx_n*dy_n*(w_n*S(n-1)/S_n^2)*[S(n-1) +w_n] =
+= Vxy(n-1) +dx_n*dy_n*w_n*S(n-1)/S(n)
+Alright, nothing surprising happened.
+As usual, I would like to track Axy=Vxy/S
+Axy(n) = Vxy(n)/S_n = Vxy(n-1)/S_n +dx_n*dy_n*w_n*S(n-1)/S_n^2 =
+= Axy(n-1)*S(n-1)/S_n +dx_n*dy_n*w_n*S(n-1)/S_n^2 =
+= [Axy(n-1) +dx_n*dy_n*w_n/S_n]*S(n-1)/S(n)
+
+Ok, suppose we have ._avg and A.. computed so far. How to create a generator?
+First, choice of envelope to achieve. Gaussian is the simplest, but it has
+too short tail. 1/(1+r^2) is not normalized in 2D, but either
+1/(1+r^2)^2 or 1/(1+r^4) would work. The second one is easier, because
+dx*dy = 2Pi*r*dr*dphi and 2Pirdr/(1+r^4) = Pi*dT/(1+T^2) for T=r^2.
+Int_0^Inf gives Pi*(Pi/2) if that matters. For random z uniform from (0,1),
+T=Tan[z*Pi/2], so r=Sqrt[Tan[z*Pi/2]], cos/sin phi uniform as in Gauss.
+It took me embarassingly long to try to manipulate Mathematica engine
+into not using expressions involving Complex, before I realized
+that this distribution does not have finite second moment.
+Nevermind, I will be using ad-hoc scaling constants anyway
+to allow for the generator to converge from far from optimum.
+
+In presence of hard limits, there are few open question.
+If there are no hard limits, there are other questions.
+No limits first. With no limits, default ditribution cannot be uniform,
+so it is not sure how "non-localized" generator works.
+In practice, it works by generating in hard-limited region and then transforming.
+For hard limits, there are two possibilities.
+Either ad-hoc limits, or unit squere plus linear transformation.
+In the second case, it is not clear whether the moments should be computed
+in transformed region, in unit square, or even in some no-limit presentation
+of the unit square.
+For the first prototype, I will compute moments in the transformed linear region.
+
+So, generator for that region. Translation to _avg is obvious.
+Sub-problem: Find transformation from 1/(1+r^4) generated points
+into (0,0) centered linear transformation targetting Axx, Axy, Ayy.
+So, generated X,Y; transformation x=a*X +b*Y, y=c*Y. Ayy = c*c*AYY
+(AYY is infinite but we pretend it is 1) ergo c=Sqrt[Ayy].
+Axy = a*c*AXY + b*c*AYY = b*c => b = Axy/c.
+Axx = a*a*AXX + 0 + b*b*AYY = a*a +b*b => a = Sqrt[Axx -b*b].
+Together: Compute a, b, c; then x=x_avg + a*X +b*Y; y=y_avg +c*Y.
+Relative bonus for the generated point (to compensate lower generation probability)
+is (1+(X*X+Y*Y)^2).
+
+Now, what to do with limits. Several options.
+Safe but slow option is generate uniform on out.
+As we are in 2D and function will be expensive in general,
+better idea is to keep retrying the localized generation until it fits.
+
+Finally, the initial condition problem. When we have zero points,
+A.. is zero (or undefined) which is bad for generation.
+First idea is to insert weight 1 Axx=1=Ayy, Axy=0 at start,
+and keep lowering the weight by some formula to switch from dumb uniform search
+into maximum finding walk.
+First ideas for weight of that bias for generating n-th point are
+1/n or 2^-n. I can try both to see which is better.
+
+Update on critical region approximation function.
+First, there will be no result selection, no result supression.
+All results are relevant, but we rely on the fact that the search will mostly
+measure inside the critical region, so data from there have more influence
+just because there is more of it (than data drom far away).
+Than means we do not like fit functions giving zero probabilities.
+
+A simple fitting function comes from single packet buffer model.
+Imagine DUT can only store single packet. If another arrives before
+buffer is processed, one packet hast to be dropped.
+If packet process time distribution is exponential, it does not matter
+whether which packet gets discarded, so we assume it is exponential.
+When pps rate is "b", a packet arrives each 1/b seconds.
+Probability of the packet being lost is Exp[-m/b] where "m"
+is some scaling constant in pps. Loss rate is then lr=b*Exp[-m/b] and
+forwarding rate is then fr=b*(1-Exp[-m/b]).
+Approximating for big b we get fr=m-m^2/2b...
+From the asymptotic we see "m" is MRR.
+That is nice, but setting b=m gives us lr(m)=b*Exp[-1]
+which is not a good approximation. In practice lr(m) is around Sqrt[m].
+In order to keep the asymptotic, simple idea is to just add a term, say
+lr=b*Exp[-m/b-k^2*m^2/2b^2], giving fr=m-m^2(1-k^2)/2b^2...
+Written this way it makes clear values [0,1] are reasonable for k,
+so we can generate k uniformly. Values of m are less clear,
+but rate_max*math.tan(PI_HALF*random.random()) is as good idea as any.
+
+After putting thing together, it turns out the logit functions there
+are way too sharp. Current ad-hoc way of sliding from uniform-bias generator
+tends to change abruptly from "no signal" to "everything in one point".
+A sketch of possibly better algorithm:
+Track top 12 (6 minimum * 2 for stability) points
+(by weight without rarity bonus),
+compute non-weighted (or rank-weighted) moments (also avg)
+for them and use that as a bias.
+Strength of the bias should be given by how much
+the top weight is close to overall weight sum.
+
+Alright, integration finally works fine enough now.
+But there are problems with fitting function.
+(I purposedly use different function in Measurer to enable this.)
+Trials bith big number of packets lost give large information content.
+Trials with zero packet loss give comparatively less information,
+which means the average moves only slightly under large list of zero loss trials.
+One optimization is to purposedly aim at higher loss (than target)
+and converge from high information region,
+but this is tricky to get working if bad fitting function
+tends throw the average deep into zero loss region (by Measurer point of view).
+Will investigate more and try some tricks.
+
+I think it is worth start using read data first
+(before overtuning for unrealistic Measurer).
+But even before that, choosing more realistic fitting function is good.
+I would like to keep (load - mrr) asymptotic for high loads,
+and I like b*c0*Exp[c1/b] asymptotic for low loads.
+Unfortunatelly, the most natural generalization has 3 parameters:
+lr=b*{(1-t)*Exp[m1/b]+t*Exp[m2/b]} with 0<t<0.5 to avoid symmetric points
+(thus two different maximums).
+Sigh. Going to start rewriting into nD integration now.
+
+First, generator envelope. 1/(1+r^4) is only normalizable up to 3D.
+Note that for 2D we did generate T with 1/(1+T^2) envelope,
+then used T=r^2 to get the "r" Jacobian and r^-4 tail.
+If we did T=r^3, we would get "r^2" Jacobian (good for 3D) and r^-6 tail
+(which might be too short for 3D).
+Imagine now we have "t" with envelope t^(-3/2) asymptotically for large t
+and constant for small t.
+t=r is fine for 1D, t=r^2 gives Jacobian for 2D and r^-3 tail.
+t=r^3 is 3D with r^-9/2, once again quite short.
+Another try: t^-1*ln(t)^-2. This gives good tails, but is hard to generate.
+Practically, it might be a good idea to use Normal distribution
+and start caring about short tails only when results are not stable enough.
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html
+
+Next, the linear transformation to achieve moments.
+Once again, the simplest step is to use Numpy,
+the only consequence is that it needs symmetric matrix (instead of just triangle).
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.multivariate_normal.html#numpy.random.multivariate_normal
+
+Oh, I forgot about the rarity factor which numpy does not give us.
+Rarity is Exp[+1/2*dx*A^-1*dx]. dx=x-xa as usual, and we need to
+solve A*dy=dx (then dy=A^-1*dx) and compute dx*dy. Numpy again:
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.solve.html#numpy.linalg.solve
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.vdot.html#numpy.vdot
