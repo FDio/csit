@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,16 +13,25 @@
 
 """Module defining utilities for test directory regeneration."""
 
+from __future__ import print_function
+
 from glob import glob
 from os import getcwd
+import sys
 
 from .DefaultTestcase import DefaultTestcase
+
+
+# Copied from https://stackoverflow.com/a/14981125
+def eprint(*args, **kwargs):
+    """Print to stderr."""
+    print(*args, file=sys.stderr, **kwargs)
 
 
 class Regenerator(object):
     """Class containing file generating methods."""
 
-    def __init__(self, testcase_class=DefaultTestcase):
+    def __init__(self, testcase_class=DefaultTestcase, quiet=True):
         """Initialize Testcase class to use.
 
         TODO: See the type doc for testcase_class?
@@ -31,9 +40,12 @@ class Regenerator(object):
 
         :param testcase_class: Subclass of DefaultTestcase for generation.
             Default: DefaultTestcase
+        :param quiet: Reduce log prints (to stderr) when True (default).
         :type testcase_class: subclass of DefaultTestcase accepting suite_id
+        :type quiet: boolean
         """
         self.testcase_class = testcase_class
+        self.quiet = quiet
 
     def regenerate_glob(self, pattern, protocol="ip4", tc_kwargs_list=None):
         """Regenerate files matching glob pattern based on arguments.
@@ -42,6 +54,8 @@ class Regenerator(object):
         the glob pattern. Use testcase template (from init) to regenerate
         test cases, autonumbering them, taking arguments from list.
         If the list is None, use default list, which depends on ip6 usage.
+
+        Log-like prints are emited to sys.stderr.
 
         :param pattern: Glob pattern to select files. Example: *-ndrpdr.robot
         :param is_ip6: Flag determining minimal frame size. Default: False
@@ -140,7 +154,8 @@ class Regenerator(object):
                 num = add_testcase(testcase, iface, suite_id, file_out, num,
                                    **tc_kwargs)
 
-        print "Regenerator starts at {cwd}".format(cwd=getcwd())
+        if not self.quiet:
+            eprint("Regenerator starts at {cwd}".format(cwd=getcwd()))
         min_framesize = protocol_to_min_framesize[protocol]
         kwargs_list = tc_kwargs_list if tc_kwargs_list else [
             {"framesize": min_framesize, "phy_cores": 1},
@@ -157,7 +172,8 @@ class Regenerator(object):
             {"framesize": "IMIX_v4_1", "phy_cores": 4}
         ]
         for filename in glob(pattern):
-            print "Regenerating filename:", filename
+            if not self.quiet:
+                eprint("Regenerating filename:", filename)
             with open(filename, "r") as file_in:
                 text = file_in.read()
                 text_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
@@ -166,5 +182,6 @@ class Regenerator(object):
             with open(filename, "w") as file_out:
                 file_out.write(text_prolog)
                 add_testcases(testcase, iface, suite_id, file_out, kwargs_list)
-        print "Regenerator ends."
-        print  # To make autogen check output more readable.
+        if not self.quiet:
+            eprint("Regenerator ends.")
+        eprint()  # To make autogen check output more readable.
