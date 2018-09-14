@@ -37,7 +37,7 @@ get_test_tag_string || die
 select_topology || die
 gather_build || die
 check_download_dir || die
-activate_virtualenv "${CSIT_DIR}" || die
+activate_virtualenv || die
 activate_docker_topology || die
 select_vpp_device_tags || die
 compose_pybot_arguments || die
