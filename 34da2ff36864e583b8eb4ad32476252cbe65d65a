@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "089db36f_b8beede5",
+        "filename": "tests/vpp/perf/ip6/2n1l-10ge2p1x710-dot1q-ip6base-mrr.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-17T15:09:53Z",
+      "side": 1,
+      "message": "Where is the boundary of what can be marked as BASE?\n\nThe highlighted part would add this test to those executed by per-patch job (see select_tags function in resources/libraries/bash/function/common.sh).\n\nI know that ip4 suites are also marked this way already, so excluding DOT1Q tag is probably the fix for common.sh.",
+      "range": {
+        "startLine": 18,
+        "startChar": 40,
+        "endLine": 18,
+        "endChar": 62
+      },
+      "revId": "34da2ff36864e583b8eb4ad32476252cbe65d65a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
