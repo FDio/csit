@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "03746a81_6df3ee2d",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 1862,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-17T11:54:04Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1862,
+        "startChar": 73,
+        "endLine": 1862,
+        "endChar": 79
+      },
+      "revId": "c6ee292be31d9c3e7e6c1e35a1cc816a992b2fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9010f0fa_e600a993",
         "filename": "tests/vpp/perf/vm_vhost/2n1l-25ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot",
         "patchSetId": 5
