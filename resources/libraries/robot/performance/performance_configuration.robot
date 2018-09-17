@@ -2844,6 +2844,80 @@
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
+| Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
+| | ... | Memif interface to separate L2 bridge domain with one physical or
+| | ... | virtual interface to create a chain accross DUT node. In case of
+| | ... | 3-node topology create VLAN sub-interfaces between DUTs. In case of
+| | ... | 2-node topology create VLAN sub-interface on dut1-if2 interface. All
+| | ... | interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id1 - Bridge domain ID. Type: integer
+| | ... | - bd_id2 - Bridge domain ID. Type: integer
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 Bridge Domain with memif pairs and VLAN in circular\
+| | ... | topology \| 1 \| 2 \| 10 \| pop-1 \|
+| | ...
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ELSE | Initialize VLAN dot1q sub-interfaces in circular topology
+| | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2 tag rewrite method on interfaces | ${dut1}
+| | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
+| | ... | ELSE | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
+| | ...
+| | ${number}= | Set Variable | ${1}
+| | ${sock1}= | Set Variable | memif-DUT1_VNF
+| | ${sock2}= | Set Variable | memif-DUT1_VNF
+| | ${memif_if1_name}= | Set Variable | DUT1-memif-${number}-if1
+| | ${memif_if2_name}= | Set Variable | DUT1-memif-${number}-if2
+| | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock2}
+| | ... | ${number} | ${memif_if1_name} | ${memif_if2_name} | ${rxq_count_int}
+| | ... | ${rxq_count_int}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${${memif_if1_name}} | ${bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${${memif_if2_name}} | ${bd_id2}
+| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
+| | ${sock1}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | memif-DUT2_VNF
+| | ${sock2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | memif-DUT2_VNF
+| | ${memif_if1_name}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | DUT2-memif-${number}-if1
+| | ${memif_if2_name}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | DUT2-memif-${number}-if2
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set up memif interfaces on DUT node | ${dut2} | ${sock1} | ${sock2}
+| | ... | ${number} | ${memif_if1_name} | ${memif_if2_name} | ${rxq_count_int}
+| | ... | ${rxq_count_int}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
+| | ... | ${bd_id1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${${memif_if1_name}}
+| | ... | ${bd_id1}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${${memif_if2_name}}
+| | ... | ${bd_id2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+
 | Initialize IPv4 routing with memif pairs on DUT node
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on DUT node. Put each Memif interface
