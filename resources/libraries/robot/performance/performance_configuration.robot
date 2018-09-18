@@ -346,7 +346,7 @@
 | | | ... | ${ip_base_vif2}.${ip_base_vif2}.${ip_base_vif2}
 | | | Configure vhost interfaces for L2BD forwarding | ${dut1}
 | | | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
-| | | ... | dut1-vhost-${number}-if2
+| | | ... | dut1-vhost-${number}-if2 | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
 | | | Add Fib Table | ${dut1} | ${fib_table_1}
@@ -466,12 +466,12 @@
 | | | ... | ${ip_base_vif2}.${ip_base_vif2}.${ip_base_vif2}
 | | | Configure vhost interfaces for L2BD forwarding | ${dut1}
 | | | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
-| | | ... | dut1-vhost-${number}-if2
+| | | ... | dut1-vhost-${number}-if2 | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
 | | | Configure vhost interfaces for L2BD forwarding | ${dut2}
 | | | ... | ${sock1} | ${sock2} | dut2-vhost-${number}-if1
-| | | ... | dut2-vhost-${number}-if2
+| | | ... | dut2-vhost-${number}-if2 | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | | Set Interface State | ${dut2} | ${dut2-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut2} | ${dut2-vhost-${number}-if2} | up
 | | | Add Fib Table | ${dut1} | ${fib_table_1}
@@ -1155,7 +1155,7 @@
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
-| | | ... | ${dut}-vhost-${number}-if2
+| | | ... | ${dut}-vhost-${number}-if2 | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | | ${dut_xconnect_if1}= | Set Variable If | ${number}==1 | ${${dut}_if1}
 | | | ... | ${${dut}-vhost-${prev_index}-if2}
 | | | Configure L2XC | ${nodes['${dut}']} | ${dut_xconnect_if1}
@@ -1210,11 +1210,11 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
@@ -1252,11 +1252,11 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 | | All VPP Interfaces Ready Wait | ${nodes}
@@ -1326,11 +1326,11 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
@@ -1712,7 +1712,7 @@
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
-| | | ... | ${dut}-vhost-${number}-if2
+| | | ... | ${dut}-vhost-${number}-if2 | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | | ${bd_id2}= | Evaluate | ${number}+1
 | | | Add interface to bridge domain | ${nodes['${dut}']}
 | | | ... | ${${dut}-vhost-${number}-if1} | ${number}
@@ -1798,13 +1798,13 @@
 | | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
 | | ... | 172.16.0.2 | 172.16.0.1
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${dut1s_vxlan} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
@@ -1963,13 +1963,13 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
@@ -2014,13 +2014,13 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
@@ -2095,13 +2095,13 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | feature_mask='disable_mrg_rxbuf disable_indirect_desc'
 | | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
