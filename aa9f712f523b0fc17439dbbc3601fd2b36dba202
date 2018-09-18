@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d67f8781_ad8469db",
+        "filename": "resources/tools/checkers/autogen_check.sh",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-18T07:19:04Z",
+      "side": 1,
+      "message": "Can we please include warn() function from our bootstrap library. This way the error is printed on STDERR not STDOUT - useful for post processing.",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "aa9f712f523b0fc17439dbbc3601fd2b36dba202",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8ca8ec1_f0861851",
+        "filename": "tox.sh",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-18T07:19:04Z",
+      "side": 1,
+      "message": "I would not hesitate to move this file to library/bash/entry as literally this is bootstrap for some kind of jenkins job. This way we can leverage the library, save the code, and eventually run from some other bootstraps.",
+      "revId": "aa9f712f523b0fc17439dbbc3601fd2b36dba202",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
