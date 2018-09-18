@@ -145,7 +145,9 @@ function compose_pybot_arguments () {
     # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
 
     # No explicit check needed with "set -u".
-    PYBOT_ARGS=("--loglevel" "TRACE" "--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
+    PYBOT_ARGS=("--loglevel" "TRACE"
+                "--consolewidth" "136"
+                "--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
     PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
 
     EXPANDED_TAGS=()
