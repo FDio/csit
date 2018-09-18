@@ -18,6 +18,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from os.path import isdir
 
+from utils import execute_command
 from errors import PresentationError
 
 
@@ -262,6 +263,13 @@ class Alerting(object):
             except IOError:
                 logging.error("Not possible to write the file '{0}.html'.".
                               format(file_name))
+
+            zip_file = config.get("zip-output", None)
+            if zip_file:
+                execute_command("tar czvf {dir}/{zip} {dir}/{input}.*".format(
+                    dir=config["output-dir"],
+                    zip=zip_file,
+                    input=config["output-file"]))
         else:
             raise AlertingError("Alert of type '{0}' is not implemented.".
                                 format(alert["type"]))

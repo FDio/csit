@@ -132,6 +132,8 @@
         # The name of the output files. ASCII text and HTML formats are
         # generated.
         output-file: "jenkins-alert-failed-tests"
+        # If defined, all output files are zipped into this file.
+        zip-output: "failed-tests.tar.gz"
 
   data-sets:
 
