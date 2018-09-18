@@ -22,7 +22,7 @@ class VhostUser(object):
     """Vhost-user interfaces"""
 
     @staticmethod
-    def vpp_create_vhost_user_interface(node, socket):
+    def vpp_create_vhost_user_interface(node, socket, feature_mask=''):
         """Create Vhost-user interface on VPP node.
 
         :param node: Node to create Vhost-user interface on.
@@ -34,7 +34,8 @@ class VhostUser(object):
         :raises RuntimeError: If Vhost-user interface creation failed.
         """
         out = VatExecutor.cmd_from_template(node, 'create_vhost_user_if.vat',
-                                            sock=socket)
+                                            sock=socket,
+                                            feature_mask=feature_mask)
         if out[0].get('retval') == 0:
             sw_if_idx = int(out[0].get('sw_if_index'))
             if_key = Topology.add_new_port(node, 'vhost')

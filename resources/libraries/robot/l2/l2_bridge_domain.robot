@@ -271,9 +271,11 @@
 | | ... | \| ${nodes['DUT2']} \| /tmp/sock1 \| /tmp/sock2 \| dut2_vhost_if1 \
 | | ... | \| dut2_vhost_if2 \|
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vhost_if1}=vhost_if1
-| | ... | ${vhost_if2}=vhost_if2
+| | ... | ${vhost_if2}=vhost_if2 | ${feature_mask}=${EMPTY}
 | | ${vhost_1}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock1}
+| | ... | ${feature_mask}
 | | ${vhost_2}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
+| | ... | ${feature_mask}
 | | Set Interface State | ${dut_node} | ${vhost_1} | up
 | | Set Interface State | ${dut_node} | ${vhost_2} | up
 | | Set Test Variable | ${${vhost_if1}} | ${vhost_1}
