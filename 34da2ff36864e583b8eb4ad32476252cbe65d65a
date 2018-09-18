@@ -22,6 +22,30 @@
       "revId": "34da2ff36864e583b8eb4ad32476252cbe65d65a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1ffa8b_f3018a2d",
+        "filename": "tests/vpp/perf/ip6/2n1l-10ge2p1x710-dot1q-ip6base-mrr.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-18T06:50:53Z",
+      "side": 1,
+      "message": "BASE test type tag definition in docs/tag_documentation.rst:\nBaseline test cases, no encapsulation, no feature(s) configured in tests.",
+      "parentUuid": "089db36f_b8beede5",
+      "range": {
+        "startLine": 18,
+        "startChar": 40,
+        "endLine": 18,
+        "endChar": 62
+      },
+      "revId": "34da2ff36864e583b8eb4ad32476252cbe65d65a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
