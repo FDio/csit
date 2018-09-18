@@ -258,9 +258,8 @@ class QemuUtils(object):
         # Create Virtio network device.
         device = (' -device virtio-net-pci,netdev=vhost{vhost_id},mac={mac},'
                   'mq=on,csum=off,gso=off,guest_tso4=off,guest_tso6=off,'
-                  'guest_ecn=off,mrg_rxbuf={mbuf}{queue_size}'.
+                  'guest_ecn=off,mrg_rxbuf=on{queue_size}'.
                   format(vhost_id=self._vhost_id, mac=mac,
-                         mbuf='on' if jumbo_frames else 'off',
                          queue_size=queue_size))
         self._qemu_opt['options'] += device
         # Add interface MAC and socket to the node dict
