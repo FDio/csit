@@ -120,8 +120,8 @@ def execute_command(cmd):
 
     :param cmd: Command to execute.
     :type cmd: str
-    :returns: Return code of the executed command.
-    :rtype: int
+    :returns: Return code of the executed command, stdout and stderr.
+    :rtype: tuple(int, str, str)
     """
 
     env = environ.copy()
