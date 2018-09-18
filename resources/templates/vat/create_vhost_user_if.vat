@@ -1,1 +1,1 @@
-create_vhost_user_if socket {sock}
+create_vhost_user_if socket {sock} {feature_mask}
