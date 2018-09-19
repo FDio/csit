@@ -15,11 +15,9 @@
 
 from robot.api import logger
 
-from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.constants import Constants
-from resources.libraries.python.VatExecutor import VatExecutor
-from resources.libraries.python.VPPUtil import VPPUtil
+from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class DUTSetup(object):
@@ -27,28 +25,30 @@ class DUTSetup(object):
 
     @staticmethod
     def get_service_logs(node, service):
-        """Get specific service unit logs by journalctl from node.
+        """Get specific service unit logs from node.
 
         :param node: Node in the topology.
         :param service: Service unit name.
         :type node: dict
         :type service: str
         """
-        ssh = SSH()
-        ssh.connect(node)
-        ret_code, _, _ = \
-            ssh.exec_command_sudo('journalctl --no-pager --unit={name} '
-                                  '--since="$(echo `systemctl show -p '
-                                  'ActiveEnterTimestamp {name}` | '
-                                  'awk \'{{print $2 $3}}\')"'.
-                                  format(name=service))
-        if int(ret_code):
-            raise RuntimeError('DUT {host} failed to get logs from unit {name}'.
-                               format(host=node['host'], name=service))
+        if DUTSetup.running_in_container(node):
+            command = 'sh -c $(< /var/log/supervisord.log)'
+        else:
+            command = ('journalctl --no-pager --unit={name} '
+                       '--since="$(echo `systemctl show -p '
+                       'ActiveEnterTimestamp {name}` | '
+                       'awk \'{{print $2 $3}}\')"'.
+                       format(name=service))
+        message = 'Node {host} failed to get logs from unit {name}'.\
+            format(host=node['host'], name=service)
+
+        exec_cmd_no_error(node, command, timeout=30, sudo=False,
+                          message=message)
 
     @staticmethod
     def get_service_logs_on_all_duts(nodes, service):
-        """Get specific service unit logs by journalctl from all DUTs.
+        """Get specific service unit logs from all DUTs.
 
         :param nodes: Nodes in the topology.
         :param service: Service unit name.
@@ -68,99 +68,63 @@ class DUTSetup(object):
         :type node: dict
         :type service: str
         """
-        ssh = SSH()
-        ssh.connect(node)
-        # We are doing restart. With this we do not care if service
-        # was running or not.
-        ret_code, _, _ = \
-            ssh.exec_command_sudo('service {name} restart'.
-                                  format(name=service), timeout=120)
-        if int(ret_code):
-            raise RuntimeError('DUT {host} failed to start service {name}'.
-                               format(host=node['host'], name=service))
+        if DUTSetup.running_in_container(node):
+            command = 'supervisorctl restart {name}'.format(name=service)
+        else:
+            command = 'service {name} restart'.format(name=service)
+        message = 'Node {host} failed to start service {name}'.\
+            format(host=node['host'], name=service)
+
+        exec_cmd_no_error(node, command, timeout=30, sudo=False,
+                          message=message)
 
         DUTSetup.get_service_logs(node, service)
 
     @staticmethod
-    def start_vpp_service_on_all_duts(nodes):
-        """Start up the VPP service on all nodes.
+    def start_service_on_all_duts(nodes, service):
+        """Start up the named service on all DUTs.
 
-        :param nodes: Nodes in the topology.
-        :type nodes: dict
+        :param node: Nodes in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                DUTSetup.start_service(node, Constants.VPP_UNIT)
+                DUTSetup.start_service(node, service)
 
-    @staticmethod
-    def vpp_show_version_verbose(node):
-        """Run "show version verbose" CLI command.
+    def stop_service(node, service):
+        """Stop the named service on node.
 
-        :param node: Node to run command on.
+        :param node: Node in the topology.
+        :param service: Service unit name.
         :type node: dict
+        :type service: str
         """
-        vat = VatExecutor()
-        vat.execute_script("show_version_verbose.vat", node, json_out=False)
+        if DUTSetup.running_in_container(node):
+            command = 'supervisorctl stop {name}'.format(name=service)
+        else:
+            command = 'service {name} stop'.format(name=service)
+        message = 'Node {host} failed to stop service {name}'.\
+            format(host=node['host'], name=service)
 
-        try:
-            vat.script_should_have_passed()
-        except AssertionError:
-            raise RuntimeError('Failed to get VPP version on host: {name}'.
-                               format(name=node['host']))
+        exec_cmd_no_error(node, command, timeout=30, sudo=False,
+                          message=message)
+
+        DUTSetup.get_service_logs(node, service)
 
     @staticmethod
-    def show_vpp_version_on_all_duts(nodes):
-        """Show VPP version verbose on all DUTs.
+    def stop_service_on_all_duts(nodes, service):
+        """Stop the named service on all DUTs.
 
-        :param nodes: VPP nodes
-        :type nodes: dict
+        :param node: Nodes in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                DUTSetup.vpp_show_version_verbose(node)
-
-    @staticmethod
-    def vpp_show_interfaces(node):
-        """Run "show interface" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("show_interface.vat", node, json_out=False)
-
-        try:
-            vat.script_should_have_passed()
-        except AssertionError:
-            raise RuntimeError('Failed to get VPP interfaces on host: {name}'.
-                               format(name=node['host']))
-
-    @staticmethod
-    def vpp_api_trace_save(node):
-        """Run "api trace save" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("api_trace_save.vat", node, json_out=False)
-
-    @staticmethod
-    def vpp_api_trace_dump(node):
-        """Run "api trace custom-dump" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("api_trace_dump.vat", node, json_out=False)
-
-    @staticmethod
-    def setup_all_duts(nodes):
-        """Prepare all DUTs in given topology for test execution."""
-        for node in nodes.values():
-            if node['type'] == NodeType.DUT:
-                DUTSetup.setup_dut(node)
+                DUTSetup.stop_service(node, service)
 
     @staticmethod
     def setup_dut(node):
@@ -171,16 +135,20 @@ class DUTSetup(object):
 
         :raises Exception: If the DUT setup fails.
         """
-        ssh = SSH()
-        ssh.connect(node)
+        command = 'sudo -Sn bash {0}/{1}/dut_setup.sh'.\
+            format(Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH)
+        message = 'DUT test setup script failed at node {name}'.\
+            format(name=node['host'])
 
-        ret_code, _, _ = \
-            ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.
-                             format(Constants.REMOTE_FW_DIR,
-                                    Constants.RESOURCES_LIB_SH), timeout=120)
-        if int(ret_code):
-            raise RuntimeError('DUT test setup script failed at node {name}'.
-                               format(name=node['host']))
+        exec_cmd_no_error(node, command, timeout=120, sudo=False,
+                          message=message)
+
+    @staticmethod
+    def setup_all_duts(nodes):
+        """Prepare all DUTs in given topology for test execution."""
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.setup_dut(node)
 
     @staticmethod
     def get_vpp_pid(node):
@@ -192,7 +160,6 @@ class DUTSetup(object):
         :rtype: int
         :raises RuntimeError: If it is not possible to get the PID.
         """
-
         ssh = SSH()
         ssh.connect(node)
 
@@ -230,23 +197,11 @@ class DUTSetup(object):
         :returns: PIDs
         :rtype: dict
         """
-
         pids = dict()
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 pids[node['host']] = DUTSetup.get_vpp_pid(node)
         return pids
-
-    @staticmethod
-    def vpp_show_crypto_device_mapping(node):
-        """Run "show crypto device mapping" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("show_crypto_device_mapping.vat", node,
-                           json_out=False)
 
     @staticmethod
     def crypto_device_verify(node, force_init=False, numvfs=32):
@@ -292,7 +247,7 @@ class DUTSetup(object):
         DUTSetup.verify_kernel_module(node, 'qat_dh895xcc', force_load=True)
 
         # Stop VPP to prevent deadlock.
-        VPPUtil.stop_vpp_service(node)
+        DUTSetup.stop_service(node, Constants.VPP_UNIT)
 
         current_driver = DUTSetup.get_pci_dev_driver(
             node, pci_addr.replace(':', r'\:'))
@@ -628,30 +583,6 @@ class DUTSetup(object):
         exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
 
     @staticmethod
-    def vpp_enable_traces_on_all_duts(nodes):
-        """Enable vpp packet traces on all DUTs in the given topology.
-
-        :param nodes: Nodes in the topology.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node['type'] == NodeType.DUT:
-                DUTSetup.vpp_enable_traces_on_dut(node)
-
-    @staticmethod
-    def vpp_enable_traces_on_dut(node):
-        """Enable vpp packet traces on the DUT node.
-
-        :param node: DUT node to set up.
-        :type node: dict
-        """
-
-        vat = VatExecutor()
-        vat.execute_script("enable_dpdk_traces.vat", node, json_out=False)
-        vat.execute_script("enable_vhost_user_traces.vat", node, json_out=False)
-        vat.execute_script("enable_memif_traces.vat", node, json_out=False)
-
-    @staticmethod
     def install_vpp_on_all_duts(nodes, vpp_pkg_dir, vpp_rpm_pkgs, vpp_deb_pkgs):
         """Install VPP on all DUT nodes.
 
@@ -665,9 +596,6 @@ class DUTSetup(object):
         :type vpp_deb_pkgs: list
         :raises RuntimeError: If failed to remove or install VPP.
         """
-
-        logger.debug("Installing VPP")
-
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 logger.debug("Installing VPP on node {0}".format(node['host']))
@@ -724,36 +652,23 @@ class DUTSetup(object):
                 ssh.disconnect(node)
 
     @staticmethod
-    def verify_vpp_on_dut(node):
-        """Verify that VPP is installed on DUT node.
+    def running_in_container(node):
+        """This method tests if topology node is running inside container.
 
-        :param node: DUT node.
+        :param node: Topology node.
         :type node: dict
-        :raises RuntimeError: If failed to restart VPP, get VPP version
-            or get VPP interfaces.
+        :returns: True if running in docker container, false if not or failed
+        to detect.
+        :rtype: bool
         """
-
-        logger.debug("Verify VPP on node {0}".format(node['host']))
-
-        DUTSetup.vpp_show_version_verbose(node)
-        DUTSetup.vpp_show_interfaces(node)
-
-    @staticmethod
-    def verify_vpp_on_all_duts(nodes):
-        """Verify that VPP is installed on all DUT nodes.
-
-        :param nodes: Nodes in the topology.
-        :type nodes: dict
-        """
-
-        logger.debug("Verify VPP on all DUTs")
-
-        DUTSetup.start_vpp_service_on_all_duts(nodes)
-
-        for node in nodes.values():
-            if node['type'] == NodeType.DUT:
-                DUTSetup.verify_vpp_on_dut(node)
-
+        command = "fgrep docker /proc/1/cgroup"
+        message = 'Failed to get cgroup settings.'
+        try:
+            exec_cmd_no_error(node, command, timeout=30, sudo=False,
+                              message=message)
+        except RuntimeError:
+            return False
+        return True
 
     @staticmethod
     def get_huge_page_size(node):
