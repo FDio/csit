@@ -698,7 +698,7 @@ class ExecutionChecker(ResultVisitor):
                     self._data["tests"][self._test_ID] = test_result
                     logging.error("The test '{0}' has no or more than one "
                                   "multi-threading tags.".format(self._test_ID))
-                    logging.error("Tags: {0}".format(test_result["tags"]))
+                    logging.debug("Tags: {0}".format(test_result["tags"]))
                     return
 
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
