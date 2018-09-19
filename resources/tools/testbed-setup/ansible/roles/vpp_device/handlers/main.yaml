@@ -1,0 +1,7 @@
+---
+# file: roles/vpp_device/handlers/main.yaml
+
+- name: Enable csit-initialize-vfs.service
+  command: systemctl enable csit-initialize-vfs.service
+  tags: enable-vf-service
+
