@@ -268,10 +268,10 @@ class Alerting(object):
             if zip_file:
                 logging.info("Writing the file '{0}/{1}' ...".
                              format(config["output-dir"], zip_file))
-                execute_command("tar czvf {dir}/{zip} {dir}/{input}.*".format(
-                    dir=config["output-dir"],
-                    zip=zip_file,
-                    input=config["output-file"]))
+                execute_command("tar czvf {dir}/{zip} --directory={dir} "
+                                "{input}.*".format(dir=config["output-dir"],
+                                                   zip=zip_file,
+                                                   input=config["output-file"]))
         else:
             raise AlertingError("Alert of type '{0}' is not implemented.".
                                 format(alert["type"]))
