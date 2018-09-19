@@ -33,7 +33,7 @@ cmd 'ps aux | grep vpp'
 
 cmd 'cat /etc/vpp/startup.conf'
 
-cmd 'sudo -S service vpp restart'
+cmd 'if fgrep docker /proc/1/cgroup; then supervisorctl restart vpp; else sudo -S service vpp restart; fi'
 
 echo "[Command_desc] SLEEP for three seconds, so that VPP is up for sure"
 cmd 'sleep 3'
