@@ -11,6 +11,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-pandas
-scipy
-numpy
+import logging
+import sys
+
+from SoakMeasurer import SoakMeasurer as measurer
+from LoggingMeasurer import LoggingMeasurer as infologging
+from TimeTrackingMeasurer import TimeTrackingMeasurer as tracking
+from SoakSearch import SoakSearch as search
+
+logging.basicConfig(level=getattr(logging, "DEBUG"))
+
+p = tracking(infologging(measurer(5000000, 100000)))
+
+print "soak search, soak measurer, printing"
+
+s = search(p, 10, 1, -1.0)
+
+average, stdev = s.search(10000, 10000000)
+
+print "result average={avg}, stdev={stdev}".format(avg=average, stdev=stdev)
