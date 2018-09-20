@@ -17,9 +17,9 @@
 metadata:
   version: 0.1
   schema: # list of schema files against which to validate
-    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/2_node_topology.sch.yaml
     - resources/topology_schemas/topology.sch.yaml
-  tags: [hw, 3-node]
+  tags: [hw, 2-node]
 
 nodes:
   TG:
@@ -34,12 +34,12 @@ nodes:
         mac_address: "08:00:27:35:59:04"
         pci_address: "0000:00:08.0"
         link: link1
-        model: Intel-X710
+        model: Intel-X553
       port5:
         mac_address: "08:00:27:46:2b:4c"
         pci_address: "0000:00:09.0"
         link: link2
-        model: Intel-X710
+        model: Intel-X553
   DUT1:
     type: DUT
     host: 10.0.0.1
@@ -52,27 +52,9 @@ nodes:
         mac_address: "08:00:27:ae:29:2b"
         pci_address: "0000:00:08.0"
         link: link1
-        model: Intel-X710
+        model: Intel-X553
       port3:
         mac_address: "08:00:27:f3:be:f0"
         pci_address: "0000:00:09.0"
-        link: link3
-        model: Intel-X710
-  DUT2:
-    type: DUT
-    host: 10.0.0.2
-    arch: x86_64
-    port: 22
-    username: lab
-    password: lab
-    interfaces:
-      port1:
-        mac_address: "08:00:27:f2:90:d8"
-        pci_address: "0000:00:08.0"
         link: link2
-        model: Intel-X710
-      port3:
-        mac_address: "08:00:27:14:64:e0"
-        pci_address: "0000:00:09.0"
-        link: link3
-        model: Intel-X710
+        model: Intel-X553
