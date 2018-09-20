@@ -213,7 +213,7 @@
 | | ... | ${dut1_node} | ${dut2_to_dut1_ip} | ${dut2_peer}
 | | And Honeycomb adds BGP peer
 | | ... | ${dut2_node} | ${dut1_to_dut2_ip} | ${dut1_peer}
-| | Sleep | 5s | Wait for BGP connection. Retry timer is 5 seconds.
+| | Sleep | 10s | Wait for BGP connection. Retry timer is 10 seconds.
 | | Then Peer operational data from Honeycomb should be
 | | ... | ${dut1_node} | ${dut2_to_dut1_ip}
 | | And Peer operational data from Honeycomb should be
@@ -239,7 +239,7 @@
 | | And Honeycomb configures BGP route
 | | ... | ${dut2_node} | ${address_application} | ${dut1_route}
 | | ... | ${dut1_route_address} | ${dut1_route_id} | ipv4
-| | And Sleep | 5s | Wait for route advertisement. Retry timer is 5 seconds.
+| | And Sleep | 10s | Wait for route advertisement. Retry timer is 10 seconds.
 | | Then Routing data from Honeycomb should contain
 | | ... | ${dut1_node} | learned-protocol-0 | ipv4 | ${route_operational}
 | | And Routing data from Honeycomb should contain
