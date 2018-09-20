@@ -487,7 +487,7 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
                         "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
                        )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "2n_skx")
             TOPOLOGIES=(
