@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2abc8e5_462c7312",
+        "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
+        "patchSetId": 74
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-20T17:32:48Z",
+      "side": 1,
+      "message": "Why double spaces (here and after \"cat\").",
+      "range": {
+        "startLine": 14,
+        "startChar": 87,
+        "endLine": 14,
+        "endChar": 89
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abd7db6b_8382984f",
+        "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
+        "patchSetId": 74
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-20T17:32:48Z",
+      "side": 1,
+      "message": "In-place editing is unfriendly to people running from their local git repository (and wondery who is editing their files).\nEither edit a copy outside git repository (e.g. somewhere in /tmp) or copy the file and put the new filename in .gitignore.\n\nApplies to other \"sed -i\" commands in this Change too.\n\nIf the original file is not used directly, rename it to contain \"template\" in filename, and write the substrings to be replaced in a way that makes it obvious they are placeholders (e.g. in uppercase).",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 6
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
