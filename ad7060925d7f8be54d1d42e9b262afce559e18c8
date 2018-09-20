@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16e6f413_05ada8cb",
+        "filename": "tests/honeycomb/func/mgmt-cfg-bgp-apihc-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-20T17:05:16Z",
+      "side": 1,
+      "message": "Is there a way to poll for readiness?",
+      "range": {
+        "startLine": 216,
+        "startChar": 4,
+        "endLine": 216,
+        "endChar": 9
+      },
+      "revId": "ad7060925d7f8be54d1d42e9b262afce559e18c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
