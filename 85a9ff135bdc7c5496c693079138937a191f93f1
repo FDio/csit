@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "45cc423e_892a7cbb",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 75
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T13:02:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d3a51d4_447c7268",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "85a9ff135bdc7c5496c693079138937a191f93f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54cd2846_41edf5c9",
         "filename": "resources/libraries/python/DMM/SingleCliSer.py",
         "patchSetId": 75
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-21T11:51:09Z",
       "side": 1,
       "message": "Most of our docstrings have full stop at the end of a sentence.",
+      "range": {
+        "startLine": 32,
+        "startChar": 51,
+        "endLine": 32,
+        "endChar": 53
+      },
+      "revId": "85a9ff135bdc7c5496c693079138937a191f93f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "526aad49_506ef17a",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 75
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T13:02:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54cd2846_41edf5c9",
       "range": {
         "startLine": 32,
         "startChar": 51,
