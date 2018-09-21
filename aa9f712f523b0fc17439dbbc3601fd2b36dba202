@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "23c9e705_5c4e863e",
+        "filename": "resources/tools/checkers/autogen_check.sh",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-21T12:14:16Z",
+      "side": 1,
+      "message": "I am not sure which text goes to stdout and which goes to stderr. Do we gave a document with guidelines for that?\n\nI would guess line 43 is the main information, it could go to stdout. Line 41 has less important details, it could go to stderr. And I am not sure about line 39.",
+      "parentUuid": "d67f8781_ad8469db",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "aa9f712f523b0fc17439dbbc3601fd2b36dba202",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8ca8ec1_f0861851",
         "filename": "tox.sh",
         "patchSetId": 26
