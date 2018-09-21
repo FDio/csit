@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "26b76c4f_7551e331",
+        "filename": "resources/tools/checkers/autogen_check.sh",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-21T12:22:56Z",
+      "side": 1,
+      "message": "\u003e I am not sure which text goes to stdout and which goes to stderr.\n \u003e Do we gave a document with guidelines for that?\n \u003e \n\nMaybe document not needed. It will consistent with other bootstraps.\n\n \u003e I would guess line 43 is the main information, it could go to\n \u003e stdout. Line 41 has less important details, it could go to stderr.\n \u003e And I am not sure about line 39.\n\n41 - That is no warn(). It is just output of command\n42 - Redundant remove, cat will do \\n\n39 - Adept for warn() we are notifying user\n43 - Adept for warn() we are notifying user\n48 - Same as above",
+      "parentUuid": "23c9e705_5c4e863e",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "aa9f712f523b0fc17439dbbc3601fd2b36dba202",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8ca8ec1_f0861851",
         "filename": "tox.sh",
         "patchSetId": 26
