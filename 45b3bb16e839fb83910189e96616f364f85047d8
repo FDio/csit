@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "141f3b97_451d8ba4",
+        "filename": "resources/libraries/python/DMM/SetupDMMTest.py",
+        "patchSetId": 74
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f04bdf1_72243463",
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1720949_9ec40c47",
         "filename": "resources/libraries/python/DMM/SingleCliSer.py",
         "patchSetId": 74
@@ -30,6 +48,30 @@
       "writtenOn": "2018-09-21T04:46:10Z",
       "side": 1,
       "message": "stderr not used?",
+      "range": {
+        "startLine": 63,
+        "startChar": 17,
+        "endLine": 63,
+        "endChar": 23
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6795d4ad_d575a409",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 74
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1720949_9ec40c47",
       "range": {
         "startLine": 63,
         "startChar": 17,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "4e4d64e7_d2c52db6",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 74
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6124bda_ffc481a7",
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "beeebc4a_d3896a72",
         "filename": "resources/libraries/python/DMM/SingleCliSer.py",
         "patchSetId": 74
@@ -70,6 +130,30 @@
       "writtenOn": "2018-09-21T04:46:10Z",
       "side": 1,
       "message": "Missing params docstrings.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 65
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04563509_a9dbec13",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 74
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beeebc4a_d3896a72",
       "range": {
         "startLine": 82,
         "startChar": 0,
@@ -122,6 +206,30 @@
     },
     {
       "key": {
+        "uuid": "84367eae_cd5fd524",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 74
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1e34c7b_dc3432af",
+      "range": {
+        "startLine": 105,
+        "startChar": 25,
+        "endLine": 105,
+        "endChar": 29
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16a2d0e3_203976df",
         "filename": "resources/libraries/python/DMM/SingleCliSer.py",
         "patchSetId": 74
@@ -133,6 +241,30 @@
       "writtenOn": "2018-09-21T04:46:10Z",
       "side": 1,
       "message": "missing docstrings.",
+      "range": {
+        "startLine": 119,
+        "startChar": 24,
+        "endLine": 119,
+        "endChar": 25
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54f1b341_4eefddee",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 74
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16a2d0e3_203976df",
       "range": {
         "startLine": 119,
         "startChar": 24,
@@ -168,6 +300,30 @@
     },
     {
       "key": {
+        "uuid": "35b9ce4b_3a62de97",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 74
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06d37bb8_5b845c58",
+      "range": {
+        "startLine": 166,
+        "startChar": 20,
+        "endLine": 166,
+        "endChar": 28
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2abc8e5_462c7312",
         "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
         "patchSetId": 74
@@ -179,6 +335,30 @@
       "writtenOn": "2018-09-20T17:32:48Z",
       "side": 1,
       "message": "Why double spaces (here and after \"cat\").",
+      "range": {
+        "startLine": 14,
+        "startChar": 87,
+        "endLine": 14,
+        "endChar": 89
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7702ec77_dc75e1e4",
+        "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
+        "patchSetId": 74
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2abc8e5_462c7312",
       "range": {
         "startLine": 14,
         "startChar": 87,
@@ -214,6 +394,30 @@
     },
     {
       "key": {
+        "uuid": "1942a188_a6a2e8eb",
+        "filename": "tests/dmm/dmm_scripts/install_prereq.sh",
+        "patchSetId": 74
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "will put new file name in .gitignore",
+      "parentUuid": "abd7db6b_8382984f",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 6
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a09e2f81_c022760c",
         "filename": "tests/dmm/dmm_scripts/run_dmm.sh",
         "patchSetId": 74
@@ -225,6 +429,30 @@
       "writtenOn": "2018-09-21T04:46:10Z",
       "side": 1,
       "message": "please use ip command.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a94d62a6_593e3ff4",
+        "filename": "tests/dmm/dmm_scripts/run_dmm.sh",
+        "patchSetId": 74
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a09e2f81_c022760c",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -260,6 +488,30 @@
     },
     {
       "key": {
+        "uuid": "486d63d5_1c750550",
+        "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
+        "patchSetId": 74
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3191b52e_42bbcfe0",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 8
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "665220f7_7b34f701",
         "filename": "tests/dmm/func/SingleCliSer-func.robot",
         "patchSetId": 74
@@ -271,6 +523,30 @@
       "writtenOn": "2018-09-21T04:46:10Z",
       "side": 1,
       "message": "I guess it is wrong to name 3-node setup (TG-DUT1-DUT2) with 2-Node prefix. Once you will get to 2-node setup you will have what and then what about single node loop tests? I suggest you to either rename (quick) or simply use N-node variation so it does not matter how many nodes there is.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 31
+      },
+      "revId": "45b3bb16e839fb83910189e96616f364f85047d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4477d01_9cf72d91",
+        "filename": "tests/dmm/func/SingleCliSer-func.robot",
+        "patchSetId": 74
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-09-21T10:30:55Z",
+      "side": 1,
+      "message": "renamed to \u0027DMM Basic Test Setup\u0027",
+      "parentUuid": "665220f7_7b34f701",
       "range": {
         "startLine": 36,
         "startChar": 0,
