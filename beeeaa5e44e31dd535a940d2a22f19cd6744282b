@@ -46,6 +46,29 @@
       "revId": "beeeaa5e44e31dd535a940d2a22f19cd6744282b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68f070d0_09955743",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-21T11:36:17Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 303,
+        "startChar": 4,
+        "endLine": 303,
+        "endChar": 83
+      },
+      "revId": "beeeaa5e44e31dd535a940d2a22f19cd6744282b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
