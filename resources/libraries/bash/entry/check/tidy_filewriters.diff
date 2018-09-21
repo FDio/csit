@@ -1,0 +1,9 @@
+@@ -95,7 +95,7 @@ class PipeSeparatedTxtWriter(_DataFileWriter):
+     def _write_row(self, row):
+         row = self._separator.join(row)
+         if row:
+-            row = '| ' + row + ' |'
++            row = ('| ' + row).replace("|  |", "| |")
+         self._output.write(row + '\n')
+ 
+ 
