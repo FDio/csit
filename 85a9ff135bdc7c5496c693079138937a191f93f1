@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d3a51d4_447c7268",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 75
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-21T11:51:09Z",
+      "side": 1,
+      "message": "This looks like a sentence, so it should start with capital letter.",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "85a9ff135bdc7c5496c693079138937a191f93f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54cd2846_41edf5c9",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 75
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-21T11:51:09Z",
+      "side": 1,
+      "message": "Most of our docstrings have full stop at the end of a sentence.",
+      "range": {
+        "startLine": 32,
+        "startChar": 51,
+        "endLine": 32,
+        "endChar": 53
+      },
+      "revId": "85a9ff135bdc7c5496c693079138937a191f93f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "037baa0f_67bcb090",
+        "filename": "tests/dmm/dmm_scripts/run_dmm.sh",
+        "patchSetId": 75
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-21T11:51:09Z",
+      "side": 1,
+      "message": "Apply \"copy and gitignore\" here as well.",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "85a9ff135bdc7c5496c693079138937a191f93f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
