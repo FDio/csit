@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "5dd07d68_6d2f4aa0",
+        "filename": "resources/tools/checkers/autogen_check.sh",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-21T12:35:11Z",
+      "side": 1,
+      "message": "\u003e Maybe document not needed.\n\n\"we are notifying user\" does not explain the difference between stdout and stderr to me.\n\nQuick test with \"ls\" command shows that \"normal operation\" (file list) output goes to stdout, \"exception messages\" (complain on zero files found) go to stderr. I consider FAIL to be normal operation, die to be exception.\n\nOn the other hand, most bash builtin commands have empty stderr on success, but empty stdout on error, in that case PASS should go to stdout and FAIL (and cat and die and other surprises) to stderr.",
+      "parentUuid": "26b76c4f_7551e331",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "aa9f712f523b0fc17439dbbc3601fd2b36dba202",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8ca8ec1_f0861851",
         "filename": "tox.sh",
         "patchSetId": 26
