@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44597eb4_04c6b3ad",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-21T11:34:54Z",
+      "side": 1,
+      "message": "replace by:\nif tmp2 !\u003d tmp:\n    return tmp2\n\nalso can we name tmp2 as buf_cleaned (or anything more descriptive?",
+      "range": {
+        "startLine": 319,
+        "startChar": 16,
+        "endLine": 319,
+        "endChar": 21
+      },
+      "revId": "c8c7db22f67ec7a13a2a1080b0854dd854cc3550",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
