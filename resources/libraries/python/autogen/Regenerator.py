@@ -97,7 +97,7 @@ class Regenerator(object):
             if kwargs["framesize"] == 9000 and "vic1227" in iface:
                 # Not supported in HW.
                 pass
-            else if kwargs["framesize"] == 9000 and "avf" in suite_id:
+            elif kwargs["framesize"] == 9000 and "avf" in suite_id:
                 # Not supported by AVF driver.
                 # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
                 pass

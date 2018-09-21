@@ -90,33 +90,33 @@
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-1518B-1c-avf-eth-l2xcbase-ndrpdr
-| | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
-
-| tc04-IMIX-1c-avf-eth-l2xcbase-ndrpdr
-| | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
-
-| tc05-64B-2c-avf-eth-l2xcbase-ndrpdr
+| tc02-64B-2c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc06-1518B-2c-avf-eth-l2xcbase-ndrpdr
-| | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
-
-| tc08-IMIX-2c-avf-eth-l2xcbase-ndrpdr
-| | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc09-64B-4c-avf-eth-l2xcbase-ndrpdr
+| tc03-64B-4c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc10-1518B-4c-avf-eth-l2xcbase-ndrpdr
+| tc04-1518B-1c-avf-eth-l2xcbase-ndrpdr
+| | [Tags] | 1518B | 1C
+| | framesize=${1518} | phy_cores=${1}
+
+| tc05-1518B-2c-avf-eth-l2xcbase-ndrpdr
+| | [Tags] | 1518B | 2C
+| | framesize=${1518} | phy_cores=${2}
+
+| tc06-1518B-4c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
+
+| tc10-IMIX-1c-avf-eth-l2xcbase-ndrpdr
+| | [Tags] | IMIX | 1C
+| | framesize=IMIX_v4_1 | phy_cores=${1}
+
+| tc11-IMIX-2c-avf-eth-l2xcbase-ndrpdr
+| | [Tags] | IMIX | 2C
+| | framesize=IMIX_v4_1 | phy_cores=${2}
 
 | tc12-IMIX-4c-avf-eth-l2xcbase-ndrpdr
 | | [Tags] | IMIX | 4C
