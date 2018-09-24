@@ -103,9 +103,9 @@ def main():
         data = InputData(spec)
         data.download_and_parse_data(repeat=2)
 
-        generate_tables(spec, data)
+        # generate_tables(spec, data)
         generate_plots(spec, data)
-        generate_files(spec, data)
+        # generate_files(spec, data)
 
         if spec.output["output"] == "report":
             generate_report(args.release, spec, args.version)
