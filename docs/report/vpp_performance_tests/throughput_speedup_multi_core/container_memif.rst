@@ -3,6 +3,14 @@
 
     \clearpage
 
+.. raw:: html
+
+    <script type="text/javascript">
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
+    </script>
+
 LXC/DRC Container Memif
 =======================
 
@@ -32,7 +40,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe onload="resizeIframe(this) width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
