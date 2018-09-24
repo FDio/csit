@@ -309,36 +309,54 @@ def plot_throughput_speedup_analysis(plot, input_data):
             if test_val:
                 throughput[test_name][key] = sum(test_val) / len(test_val)
 
-    names = ['1 core', '2 cores', '4 cores']
     x_vals = list()
     y_vals_1 = list()
     y_vals_2 = list()
     y_vals_4 = list()
+    y_vals_rel_1 = list()
+    y_vals_rel_2 = list()
+    y_vals_rel_4 = list()
 
     for test_name, test_vals in throughput.items():
         if test_vals["1"]:
-            x_vals.append("-".join(test_name.split('-')[1:-1]))
-            y_vals_1.append(1)
+            name = "-".join(test_name.split('-')[1:-1])
+            if len(name) > 30:
+                name_lst = name.split('-')
+                name = "-".join(name_lst[:len(name_lst)/2]) + '- <br> ' + \
+                       "-".join(name_lst[len(name_lst)/2:])
+            x_vals.append(name)
+            y_vals_rel_1.append(1.00)
+            y_vals_1.append("{0:.2f}Mpps".format(test_vals["1"] / 1000000))
             if test_vals["2"]:
-                y_vals_2.append(
+                y_vals_rel_2.append(
                     round(float(test_vals["2"]) / float(test_vals["1"]), 2))
+                y_vals_2.append("{0:.2f}Mpps".format(test_vals["2"] / 1000000))
             else:
+                y_vals_rel_2.append(None)
                 y_vals_2.append(None)
             if test_vals["4"]:
-                y_vals_4.append(
+                y_vals_rel_4.append(
                     round(float(test_vals["4"]) / float(test_vals["1"]), 2))
+                y_vals_4.append("{0:.2f}Mpps".format(test_vals["4"] / 1000000))
             else:
+                y_vals_rel_4.append(None)
                 y_vals_4.append(None)
 
-    y_vals = [y_vals_1, y_vals_2, y_vals_4]
+    y_vals_zipped = zip(['1 core', '2 cores', '4 cores'],
+                        [y_vals_rel_1, y_vals_rel_2, y_vals_rel_4],
+                        [y_vals_1, y_vals_2, y_vals_4])
 
-    y_vals_zipped = zip(names, y_vals)
     traces = list()
     for val in y_vals_zipped:
-        traces.append(plgo.Bar(x=x_vals,
-                               y=val[1],
-                               name=val[0]))
-
+        traces.append(plgo.Bar(y=x_vals,
+                               x=val[1],
+                               name=val[0],
+                               orientation='h',
+                               textposition='inside',
+                               text=val[1],
+                               hovertext=val[2],
+                               hoverinfo="text"))
+    plot["layout"]["height"] = len(x_vals) * 80 + int(170 / len(x_vals))
     try:
         # Create plot
         logging.info("    Writing file '{0}{1}'.".
