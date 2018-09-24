@@ -125,7 +125,6 @@
       - 30  # sel
       - 31  # sel
       - 35  # sel
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -142,7 +141,6 @@
       - 47  # NDRPDR sel
 
     vpp-compare-testbeds:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -170,7 +168,6 @@
       - 56  # NDRPDR sel
 
     vpp-compare-testbeds-mrr:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -216,7 +213,6 @@
       - 20  # mrr - sel
       - 21  # mrr - sel
       - 22  # mrr - sel
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -229,7 +225,6 @@
       - 48  # MRR sel
 
     vpp-perf-results-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -250,7 +245,6 @@
       - 8   # MRR full
 
     vpp-mrr-results-3n-skx:
-      # TODO: Replace with better results
       csit-vpp-perf-verify-1807-3n-skx:
       - 31  # MRR full
 
@@ -259,7 +253,6 @@
       - 27  # MRR full
 
     plot-throughput-speedup-analysis-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -302,7 +295,6 @@
       - 42  # NDRPDR sel
 
     plot-vpp-throughput-latency-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -368,18 +360,15 @@
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
-      # TODO: Replace with better results
       csit-ligato-perf-1807-all:
       - 3   # full ?
 
     plot-ligato-throughput-speedup-analysis-3n-hsw:
-      # TODO: Add Data sources
       csit-ligato-perf-1807-all:
       - 3   # full ?
       - 4   # sel
 
     plot-ligato-throughput-latency-3n-hsw:
-      # TODO: Add Data sources
       csit-ligato-perf-1807-all:
       - 3   # full ?
       - 4   # sel
@@ -496,7 +485,6 @@
 
     # DMM Functional
     dmm-func-results:
-      # TODO: Replace with 1807 job:
       csit-dmm-functional-master-ubuntu1604-virl:
       - 95
 
@@ -663,6 +651,7 @@
 
     plot-throughput-speedup-analysis:
       xaxis:
+        title: "Throughput speedup factor"
         autorange: True
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
@@ -673,12 +662,12 @@
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
         tickmode: "linear"
-        tickangle: 270
+        hoverformat: ".3s"
         zeroline: False
       yaxis:
-        title: "Throughput speedup factor"
+        autorange: "reversed"
         gridcolor: "rgb(238, 238, 238)"
-        hoverformat: ".4s"
+        hoverformat: ".3s"
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
         showgrid: True
@@ -691,21 +680,19 @@
         xanchor: "center"
         yanchor: "top"
         x: 0.5
-        y: 1
+        y: 1.06
         bgcolor: "rgba(255, 255, 255, 0)"
         bordercolor: "rgba(255, 255, 255, 0)"
       barmode: "group"
-      bargap: 0.15
-      bargroupgap: 0.1
       autosize: False
       margin:
-          't': 50
-          'b': 300
-          'l': 50
-          'r': 20
+          't': 20
+          'b': 50
+          'l': 270
+          'r': 40
       showlegend: True
       width: 700
-      height: 1000
+      height: 700
 
 -
   type: "static"
@@ -746,7 +733,6 @@
     - 30  # sel
     - 31  # sel
     - 35  # sel
-    # TODO: Add Data sources
     csit-vpp-perf-verify-1807-3n-hsw:
     - 8   # MRR full
     - 9   # MRR sel
@@ -862,7 +848,6 @@
     - 12  # sel
     - 13  # sel
     - 14  # sel
-    # TODO: Add Data sources
     csit-ligato-perf-1807-all:
     - 3   # full ?
     - 4   # sel
@@ -916,7 +901,6 @@
     - 278
     csit-nsh_sfc-verify-func-1807-ubuntu1604-virl:
     - 2
-    # TODO: Replace with 1807 job:
     csit-dmm-functional-master-ubuntu1604-virl:
     - 95
     csit-hc2vpp-verify-func-1807-ubuntu1604:
@@ -976,7 +960,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1038,7 +1021,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1100,7 +1082,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1162,7 +1143,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1193,7 +1173,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1238,7 +1217,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1312,7 +1290,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1368,7 +1345,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1424,7 +1400,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1451,7 +1426,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
