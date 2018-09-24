@@ -334,10 +334,17 @@ def plot_throughput_speedup_analysis(plot, input_data):
 
     y_vals_zipped = zip(names, y_vals)
     traces = list()
-    for val in y_vals_zipped:
-        traces.append(plgo.Bar(x=x_vals,
+
+    # for val in y_vals_zipped:
+    #     traces.append(plgo.Bar(x=x_vals,
+    #                            y=val[1],
+    #                            name=val[0]))
+
+    for i, val in enumerate(y_vals_zipped):
+        name = "{0}. {1}".format(i + 1, x_vals[i])
+        traces.append(plgo.Bar(x=[str(i + 1) + '.'] * len(x_vals),
                                y=val[1],
-                               name=val[0]))
+                               name=name))
 
     try:
         # Create plot
