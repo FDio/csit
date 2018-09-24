@@ -663,6 +663,7 @@
 
     plot-throughput-speedup-analysis:
       xaxis:
+        title: "Throughput speedup factor"
         autorange: True
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
@@ -673,12 +674,12 @@
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
         tickmode: "linear"
-        tickangle: 270
+        hoverformat: ".3s"
         zeroline: False
       yaxis:
-        title: "Throughput speedup factor"
+        autorange: "reversed"
         gridcolor: "rgb(238, 238, 238)"
-        hoverformat: ".4s"
+        hoverformat: ".3s"
         linecolor: "rgb(238, 238, 238)"
         linewidth: 1
         showgrid: True
@@ -691,7 +692,7 @@
         xanchor: "center"
         yanchor: "top"
         x: 0.5
-        y: 1
+        y: 1.07
         bgcolor: "rgba(255, 255, 255, 0)"
         bordercolor: "rgba(255, 255, 255, 0)"
       barmode: "group"
@@ -699,13 +700,13 @@
       bargroupgap: 0.1
       autosize: False
       margin:
-          't': 50
-          'b': 300
-          'l': 50
-          'r': 20
+          't': 20
+          'b': 50
+          'l': 270
+          'r': 40
       showlegend: True
       width: 700
-      height: 1000
+      height: 700
 
 -
   type: "static"
@@ -928,8 +929,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
