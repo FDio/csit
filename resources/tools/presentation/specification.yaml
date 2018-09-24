@@ -663,6 +663,7 @@
 
     plot-throughput-speedup-analysis:
       xaxis:
+        title: "Throughput speedup factor"
         autorange: True
         fixedrange: False
         gridcolor: "rgb(238, 238, 238)"
@@ -673,10 +674,9 @@
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
         tickmode: "linear"
-        tickangle: 270
+        # tickangle: 270
         zeroline: False
       yaxis:
-        title: "Throughput speedup factor"
         gridcolor: "rgb(238, 238, 238)"
         hoverformat: ".4s"
         linecolor: "rgb(238, 238, 238)"
@@ -700,12 +700,12 @@
       autosize: False
       margin:
           't': 50
-          'b': 300
-          'l': 50
-          'r': 20
+          'b': 50
+          'l': 300
+          'r': 0
       showlegend: True
       width: 700
-      height: 1000
+      height: 700
 
 -
   type: "static"
@@ -928,8 +928,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
