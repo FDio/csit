@@ -673,7 +673,7 @@
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
         tickmode: "linear"
-        tickangle: 270
+        # tickangle: 270
         zeroline: False
       yaxis:
         title: "Throughput speedup factor"
