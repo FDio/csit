@@ -106,6 +106,9 @@ class VatExecutor(object):
         if copy_on_execute:
             ssh.scp(vat_name, vat_name)
             remote_file_path = vat_name
+            with open(vat_name, 'r') as vat_file:
+                for line in vat_file:
+                    VatHistory.add_to_vat_history(node, line.replace('\n',''))
         else:
             remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
                                                     Constants.RESOURCES_TPL_VAT,
