@@ -35,7 +35,8 @@
 | | ...
 | | Set Global Variable | ${VPP_PKG_DIR} | /scratch/vpp/
 | | @{VPP_RPM_PKGS}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
+| | ... | vpp-api-python
 | | Set Global Variable | ${VPP_RPM_PKGS}
 | | @{VPP_DEB_PKGS}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
-| | ... | vpp-plugins
+| | ... | vpp-plugins | vpp-api-python
 | | Set Global Variable | ${VPP_DEB_PKGS}
