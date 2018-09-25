@@ -7,7 +7,7 @@ spec:
   hostNetwork: true
   containers:
     - name: "vswitch"
-      image: prod_vpp_agent
+      image: dev_vpp_agent
       imagePullPolicy: IfNotPresent
       securityContext:
         privileged: true
