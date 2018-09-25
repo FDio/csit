@@ -391,8 +391,6 @@ function select_tags () {
     # Variables set:
     # - TAGS - Array of processed tag boolean expressions.
 
-    # TODO: Empty exclude_nics (with failing grep) is expected,
-    #       but others possible errors coule be checked explicitly.
     # NIC SELECTION
     # All topologies NICs
     available=$(grep -hoPR "model: \K.*" "${TOPOLOGIES_DIR}"/* | sort -u)
@@ -438,6 +436,23 @@ function select_tags () {
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
             ;;
+    esac
+
+    # Blacklisting certain tags per topology.
+    case "${TEST_CODE}" in
+        *"3n-hsw"*)
+            test_tag_array+=("!drv_avf")
+            ;;
+        *"2n-skx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"3n-skx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *)
+            # No falling back to 3n_hsw default, that should have been done
+            # by the function which has set NODENESS and FLAVOR.
+            die "Unknown specification: ${TEST_CODE}"
     esac
 
     # We will add excluded NICs.
