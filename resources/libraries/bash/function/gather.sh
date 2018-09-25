@@ -152,50 +152,46 @@ function gather_ligato () {
 
     gather_vpp || die "The function should have died on error."
 
-    # Extract VPP API to specific folder
-    # FIXME: Make sure /tmp/vpp/ exists. Should we clean it?
+    mkdir -p /tmp/vpp && rm -f /tmp/vpp/* || {
+        die "Failed to create temporary directory!"
+    }
     dpkg -x "${DOWNLOAD_DIR}/vpp_"*".deb" "/tmp/vpp" || {
         die "Failed to extract VPP packages for kubernetes!"
     }
 
     ligato_repo_url="https://github.com/ligato/"
-    vpp_agent_stable_ver="$(cat "${CSIT_DIR}/VPP_AGENT_STABLE_VER")" || {
-        die "Cat failed."
+    vpp_agent_stable_ver="$(< "${CSIT_DIR}/VPP_AGENT_STABLE_VER")" || {
+        die "Failed to read vpp-agent stable version!"
     }
-    docker_deb="docker-ce_18.03.0~ce-0~ubuntu_amd64.deb"
 
-    # Clone & checkout stable vpp-agent
-    cd "${CSIT_DIR}" || die "Change directory failed."
+    # Clone & checkout stable vpp-agent.
+    cd "${CSIT_DIR}" || die "Change directory failed!"
     git clone -b "${vpp_agent_stable_ver}" --single-branch \
         "${ligato_repo_url}/vpp-agent" "vpp-agent" || {
         die "Failed to run: git clone ${ligato_repo_url}/vpp-agent!"
     }
-    cd "vpp-agent" || die "Change directory failed."
+    cd "vpp-agent" || die "Change directory failed!"
 
-    # Install Docker
-    url_prefix="https://download.docker.com/linux/ubuntu/dists/xenial/pool"
-    # URL is not in quotes, calling command from variable keeps them.
-    wget_command=("wget" "-nv" "${url_prefix}/stable/amd64/${docker_deb}")
-    "${wget_command[@]}" || die "Failed to download Docker package!"
+    # Install Docker.
+    curl -fsSL https://get.docker.com | sudo bash || {
+        die "Failed to install Docker package!"
+    }
 
-    sudo dpkg -i "${docker_deb}" || die "Failed to install Docker!"
-
-    # Pull ligato/dev_vpp_agent docker image and re-tag as local
+    # Pull ligato/dev_vpp_agent docker image and re-tag as local.
     sudo docker pull "ligato/dev-vpp-agent:${vpp_agent_stable_ver}" || {
         die "Failed to pull Docker image!"
     }
-
-    first_arg="ligato/dev-vpp-agent:${vpp_agent_stable_ver}"
-    sudo docker tag "${first_arg}" "dev_vpp_agent:latest" || {
+    params=(ligato/dev-vpp-agent:${vpp_agent_stable_ver} dev_vpp_agent:latest)
+    sudo docker tag "${params[@]}" || {
         die "Failed to tag Docker image!"
     }
 
-    # Start dev_vpp_agent container as daemon
+    # Start dev_vpp_agent container as daemon.
     sudo docker run --rm -itd --name "agentcnt" "dev_vpp_agent" bash || {
         die "Failed to run Docker image!"
     }
 
-    # Copy latest vpp api into running container
+    # Copy latest vpp api into running container.
     sudo docker exec agentcnt rm -rf "agentcnt:/usr/share/vpp/api" || {
         die "Failed to remove previous API!"
     }
@@ -203,7 +199,7 @@ function gather_ligato () {
         die "Failed to copy files Docker image!"
     }
 
-    # Recompile vpp-agent
+    # Recompile vpp-agent.
     script_arg=". ~/.bashrc; cd /go/src/github.com/ligato/vpp-agent"
     script_arg+=" && make generate && make install"
     sudo docker exec -i agentcnt script -qec "${script_arg}" || {
@@ -216,28 +212,28 @@ function gather_ligato () {
     }
     for f in "${DOWNLOAD_DIR}"/*; do
         sudo docker cp "$f" "agentcnt:/opt/vpp-agent/dev/vpp/build-root"/ || {
-            die "Failed to copy files Docker image!"
+            die "Failed to copy files to Docker image!"
         }
     done
-    # Save container state
+    # Save container state.
     sudo docker commit "$(sudo docker ps -q)" "dev_vpp_agent:latest" || {
         die "Failed to commit state of Docker image!"
     }
 
-    # Build prod_vpp_agent docker image
+    # Build prod_vpp_agent docker image.
     cd "docker/prod" || die "Change directory failed."
     sudo docker build --tag "prod_vpp_agent" --no-cache "." || {
         die "Failed to build Docker image!"
     }
-    # Export Docker image
-    sudo docker save "prod_vpp_agent" | gzip > "prod_vpp_agent.tar.gz" || {
+    # Export Docker image.
+    sudo docker save "dprod_vpp_agent" | gzip > "prod_vpp_agent.tar.gz" || {
         die "Failed to save Docker image!"
     }
     docker_image="$(readlink -e "prod_vpp_agent.tar.gz")" || {
-        die "Readlink failed."
+        die "Failed to get Docker image path!"
     }
-    rm -r "${DOWNLOAD_DIR}/vpp"* || die "Rm failed."
-    mv "${docker_image}" "${DOWNLOAD_DIR}"/ || die "Mv failed."
+    rm -r "${DOWNLOAD_DIR}/vpp"* || die "Failed to remove VPP packages!"
+    mv "${docker_image}" "${DOWNLOAD_DIR}"/ || die "Failed to move image!"
 }
 
 
