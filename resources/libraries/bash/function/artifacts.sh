@@ -64,22 +64,25 @@ function download_ubuntu_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    vpp=(vpp vpp-dbg vpp-dev vpp-lib vpp-plugins)
+    vpp=(vpp vpp-dbg vpp-dev vpp-lib vpp-plugins vpp-api-python)
     if [ -z "${VPP_VERSION-}" ]; then
         artifacts+=(${vpp[@]})
     else
         artifacts+=(${vpp[@]/%/=${VPP_VERSION-}})
     fi
 
-    if [ "${INSTALL:-false}" = true ]; then
-        sudo apt-get -y install "${artifacts[@]}" || {
-            die "Install VPP artifacts failed."
-        }
-    else
-        apt-get -y download "${artifacts[@]}" || {
-            die "Download VPP artifacts failed."
-        }
-    fi
+#    if [ "${INSTALL:-false}" = true ]; then
+#        sudo apt-get -y install "${artifacts[@]}" || {
+#            die "Install VPP artifacts failed."
+#        }
+#    else
+#        apt-get -y download "${artifacts[@]}" || {
+#            die "Download VPP artifacts failed."
+#        }
+#    fi
+    for pkg in "${vpp[@]}"; do
+        wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/${pkg}_${VPP_VERSION-}_amd64.deb/download.deb
+    done
 }
 
 function download_centos_artifacts () {
@@ -97,7 +100,7 @@ function download_centos_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    vpp=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins)
+    vpp=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins vpp-api-python)
     if [ -z "${VPP_VERSION-}" ]; then
         artifacts+=(${vpp[@]})
     else
