@@ -461,6 +461,8 @@ function select_tags () {
             TAGS+=("${prefix}${tag}")
         fi
     done
+
+    TAGS=(mrrANDnic_intel-x520-da2AND1cAND64bAND1vnf)
 }
 
 
