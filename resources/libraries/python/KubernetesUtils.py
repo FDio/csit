@@ -17,7 +17,7 @@ from time import sleep
 
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
@@ -32,6 +32,46 @@ class KubernetesUtils(object):
     def __init__(self):
         """Initialize KubernetesUtils class."""
         pass
+
+    @staticmethod
+    def load_docker_image_on_node(node, image_path):
+        """Load Docker container image from file on node.
+
+        :param node: DUT node.
+        :param image_path: Container image path.
+        :type node: dict
+        :type image_path: str
+        :raises RuntimeError: If loading image failed on node.
+        """
+        command = 'docker load -i {image_path}'.\
+            format(image_path=image_path)
+        message = 'Failed to load Docker image on {node}.'.\
+            format(node=node['host'])
+        exec_cmd_no_error(node, command, timeout=240, sudo=True,
+                          message=message)
+
+        command = "docker rmi $(sudo docker images -f 'dangling=true' -q)".\
+            format(image_path=image_path)
+        message = 'Failed to clean Docker images on {node}.'.\
+            format(node=node['host'])
+        try:
+            exec_cmd_no_error(node, command, timeout=240, sudo=True,
+                              message=message)
+        except RuntimeError:
+            pass
+
+    @staticmethod
+    def load_docker_image_on_all_duts(nodes, image_path):
+        """Load Docker container image from file on all DUTs.
+
+        :param nodes: Topology nodes.
+        :param image_path: Container image path.
+        :type nodes: dict
+        :type image_path: str
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                KubernetesUtils.load_docker_image_on_node(node, image_path)
 
     @staticmethod
     def setup_kubernetes_on_node(node):
@@ -216,12 +256,12 @@ class KubernetesUtils(object):
 
         cmd = 'kubectl delete {nspace} {rtype} {name}'\
             .format(nspace=nspace, rtype=rtype, name=name)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd, timeout=120)
         if int(ret_code) != 0:
             raise RuntimeError('Failed to delete Kubernetes resources '
                                'on {node}.'.format(node=node['host']))
 
-        cmd = 'kubectl get {nspace} pods -a --no-headers'\
+        cmd = 'kubectl get {nspace} pods --no-headers'\
             .format(nspace=nspace)
         for _ in range(MAX_RETRY):
             (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
@@ -355,7 +395,7 @@ class KubernetesUtils(object):
         nspace = '-n {nspace}'.format(nspace=nspace) if nspace \
             else '--all-namespaces'
 
-        cmd = 'kubectl get {nspace} pods -a --no-headers' \
+        cmd = 'kubectl get {nspace} pods --no-headers' \
             .format(nspace=nspace)
         for _ in range(MAX_RETRY):
             (ret_code, stdout, _) = ssh.exec_command_sudo(cmd)
