@@ -23,6 +23,9 @@ class Constants(object):
     # shell scripts location
     RESOURCES_LIB_SH = 'resources/libraries/bash'
 
+    # Python API provider location
+    RESOURCES_PAPI_PROVIDER = 'resources/tools/papi/vpp_papi_provider.py'
+
     # vat templates location
     RESOURCES_TPL_VAT = 'resources/templates/vat'
 
