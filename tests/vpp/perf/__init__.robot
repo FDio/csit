@@ -60,5 +60,5 @@
 | | @{vpp_rpm_pkgs}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
 | | Set Global Variable | ${vpp_rpm_pkgs}
 | | @{vpp_deb_pkgs}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
-| | ... | vpp-plugins
+| | ... | vpp-plugins | vpp-api-python
 | | Set Global Variable | ${vpp_deb_pkgs}

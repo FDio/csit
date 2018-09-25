@@ -64,7 +64,7 @@ function download_ubuntu_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    vpp=(vpp vpp-dbg vpp-dev vpp-lib vpp-plugins)
+    vpp=(vpp vpp-dbg vpp-dev vpp-lib vpp-plugins vpp-api-python)
     if [ -z "${VPP_VERSION-}" ]; then
         artifacts+=(${vpp[@]})
     else
@@ -97,7 +97,7 @@ function download_centos_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    vpp=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins)
+    vpp=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins vpp-api-python)
     if [ -z "${VPP_VERSION-}" ]; then
         artifacts+=(${vpp[@]})
     else
