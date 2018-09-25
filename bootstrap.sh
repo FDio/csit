@@ -250,6 +250,7 @@ for index in "${!VIRL_SERVER[@]}"; do
             --quota ${IP_QUOTA} \
             --copy ${VIRL_TOPOLOGY} \
             --release ${VIRL_RELEASE} \
+            --wait-count 96 \
             ${VPP_PKGS_FULL[@]}")
         # TODO: remove param ${VPP_PKGS_FULL[@]} when start-testcase script is
         # updated on all virl servers
