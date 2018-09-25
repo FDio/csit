@@ -15,11 +15,14 @@
 
 import time
 
+from robot.api import logger
+
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.PapiExecutor import PapiExecutor, PapiError
 
 
 class VPPUtil(object):
@@ -135,24 +138,69 @@ class VPPUtil(object):
                 VPPUtil.verify_vpp_on_dut(node)
 
     @staticmethod
+    def vpp_show_version(node, verbose=False):
+        """Run "show_version" API command.
+
+        :param node: Node to run command on.
+        :param verbose: Show version, compile date and compile location if True
+            otherwise show only version.
+        :type node: dict
+        :type verbose: bool
+        """
+
+        api_data = list()
+        api_client = dict(client_name='vpp_version')
+        client_apis = list()
+        api = dict(api_name='show_version')
+        api_args = dict()
+        api['api_args'] = api_args
+        client_apis.append(api)
+        api_client['apis'] = client_apis
+        api_data.append(api_client)
+        logger.trace('api_data: {}'.format(str(api_data)))
+
+        api_reply = None
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+            except AssertionError:
+                raise RuntimeError('Failed to get VPP version on host: {host}'.
+                                   format(host=node['host']))
+            api_reply = papi_executor.get_papi_reply()
+
+        if api_reply is not None:
+            version_reply = api_reply.get('apis')[0]
+            version_data = version_reply.get('show_version_reply')
+            ver = version_data.get('version').decode().rstrip('\0x00')
+            if verbose:
+                date = version_data.get('build_date').decode().rstrip('\0x00')
+                loc = version_data.get('build_directory').decode().rstrip('\0x00')
+                version = '\n' \
+                    'Version:            {ver}\n' \
+                    'Compile date:       {date}\n' \
+                    'Compile location:   {loc}\n '\
+                    .format(ver=ver, date=date, loc=loc)
+            else:
+                version = ver
+            logger.info('VPP version:{ver}'.format(ver=version))
+        else:
+            raise PapiError('No reply received for show_version API command on '
+                            'host {host}'.format(host=node['host']))
+
+    @staticmethod
     def vpp_show_version_verbose(node):
-        """Run "show version verbose" CLI command.
+        """Run "show_version" API command and return verbose string of version
+        data.
 
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_version_verbose.vat", node, json_out=False)
-
-        try:
-            vat.script_should_have_passed()
-        except AssertionError:
-            raise RuntimeError('Failed to get VPP version on host: {name}'.
-                               format(name=node['host']))
+        VPPUtil.vpp_show_version(node, verbose=True)
 
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
-        """Show VPP version verbose on all DUTs.
+        """Show VPP version  on all DUTs.
 
         :param nodes: VPP nodes.
         :type nodes: dict
