@@ -18,7 +18,7 @@ function k8s_utils.destroy {
     kubectl delete node $HOSTNAME
 
     # Revert any changes made to this host by 'kubeadm init' or 'kubeadm join'
-    sudo kubeadm reset && sudo rm -rf $HOME/.kube || \
+    sudo kubeadm reset --force && sudo rm -rf $HOME/.kube || \
         { echo "Failed to reset kubeadm"; exit 1; }
 }
 
