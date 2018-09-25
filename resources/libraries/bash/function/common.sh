@@ -391,8 +391,6 @@ function select_tags () {
     # Variables set:
     # - TAGS - Array of processed tag boolean expressions.
 
-    # TODO: Empty exclude_nics (with failing grep) is expected,
-    #       but others possible errors coule be checked explicitly.
     # NIC SELECTION
     # All topologies NICs
     available=$(grep -hoPR "model: \K.*" "${TOPOLOGIES_DIR}"/* | sort -u)
@@ -437,6 +435,19 @@ function select_tags () {
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
+            ;;
+    esac
+
+    # Blacklisting certain tags per topology.
+    case "${TEST_CODE}" in
+        *"3n-hsw"*)
+            test_tag_array+=("!drv_afv")
+            ;;
+        *"2n-skx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"3n-skx"*)
+            test_tag_array+=("!ipsechw")
             ;;
     esac
 
