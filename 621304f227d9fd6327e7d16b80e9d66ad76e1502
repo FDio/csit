@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1eae3a6_6116b91d",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "Params missing in doc string.",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 62
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2af01269_029adfb2",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "Use proper description, please.",
+      "range": {
+        "startLine": 114,
+        "startChar": 18,
+        "endLine": 114,
+        "endChar": 22
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "528b5523_c323d5a2",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 115,
+        "startChar": 19,
+        "endLine": 115,
+        "endChar": 20
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d32a0682_6015b774",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "name.",
+      "range": {
+        "startLine": 154,
+        "startChar": 26,
+        "endLine": 154,
+        "endChar": 30
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da91939d_b8537fcb",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "Interface",
+      "range": {
+        "startLine": 157,
+        "startChar": 30,
+        "endLine": 157,
+        "endChar": 39
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6fbad8dc_59765bd7",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "Interface",
+      "range": {
+        "startLine": 160,
+        "startChar": 18,
+        "endLine": 160,
+        "endChar": 27
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7894222_53aab2be",
+        "filename": "tests/dmm/dmm_scripts/run_dmm.sh",
+        "patchSetId": 79
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "IPs should be passed via script arguments.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "875f17eb_f553461b",
+        "filename": "tests/dmm/dmm_scripts/run_dmm_with_lwip.sh",
+        "patchSetId": 79
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-09-26T14:27:23Z",
+      "side": 1,
+      "message": "IPs should be passed via script arguments.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "621304f227d9fd6327e7d16b80e9d66ad76e1502",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
