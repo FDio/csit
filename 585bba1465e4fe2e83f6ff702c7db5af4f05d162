@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb9b02ad_4938f6c3",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-26T13:49:29Z",
+      "side": 1,
+      "message": "Mention this step in the docstring.",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 29
+      },
+      "revId": "585bba1465e4fe2e83f6ff702c7db5af4f05d162",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4c261f1_ebec1cd8",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-26T13:49:29Z",
+      "side": 1,
+      "message": "Use \"exec_cmd\" (in line 58) if you are not interested in errors.",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "585bba1465e4fe2e83f6ff702c7db5af4f05d162",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc486920_7e62ab4b",
+        "filename": "tests/kubernetes/perf/__init__.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-26T13:49:29Z",
+      "side": 1,
+      "message": "Do we have a task open to unify temporary download directory names? Ideally into a variable (for users to override if they want), with a shorter default value.",
+      "range": {
+        "startLine": 53,
+        "startChar": 10,
+        "endLine": 53,
+        "endChar": 43
+      },
+      "revId": "585bba1465e4fe2e83f6ff702c7db5af4f05d162",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
