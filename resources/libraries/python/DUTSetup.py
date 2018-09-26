@@ -335,7 +335,8 @@ class DUTSetup(object):
         message = 'Failed to create {num} VFs on {pci} device on {host}'.\
             format(num=numvfs, pci=pf_pci_addr, host=node['host'])
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
     @staticmethod
     def pci_driver_unbind(node, pci_addr):
@@ -353,7 +354,8 @@ class DUTSetup(object):
         message = 'Failed to unbind PCI device {pci} on {host}'.\
             format(pci=pci_addr, host=node['host'])
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
@@ -374,19 +376,22 @@ class DUTSetup(object):
             "'echo {driver} | tee /sys/bus/pci/devices/{pci}/driver_override'".\
             format(driver=driver, pci=pci_addr.replace(':', r'\:'))
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
         command = "sh -c "\
             "'echo {pci} | tee /sys/bus/pci/drivers/{driver}/bind'".\
             format(pci=pci_addr, driver=driver)
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
         command = "sh -c "\
             "'echo  | tee /sys/bus/pci/devices/{pci}/driver_override'".\
             format(pci=pci_addr.replace(':', r'\:'))
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
     @staticmethod
     def pci_vf_driver_unbind(node, pf_pci_addr, vf_id):
@@ -411,7 +416,8 @@ class DUTSetup(object):
         message = 'Failed to unbind VF {vf_pci_addr} to on {host}'.\
             format(vf_pci_addr=vf_pci_addr, host=node['host'])
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
     @staticmethod
     def pci_vf_driver_bind(node, pf_pci_addr, vf_id, driver):
@@ -438,19 +444,22 @@ class DUTSetup(object):
             "'echo {driver} | tee {vf_path}/driver_override'".\
             format(driver=driver, vf_path=vf_path)
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
         command = "sh -c "\
             "'echo {vf_pci_addr} | tee /sys/bus/pci/drivers/{driver}/bind'".\
             format(vf_pci_addr=vf_pci_addr, driver=driver)
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
         command = "sh -c "\
             "'echo  | tee {vf_path}/driver_override'".\
             format(vf_path=vf_path)
 
-        exec_cmd_no_error(node, command, timeout=60, sudo=True, message=message)
+        exec_cmd_no_error(node, command, timeout=120, sudo=True,
+                          message=message)
 
     @staticmethod
     def get_pci_dev_driver(node, pci_addr):
