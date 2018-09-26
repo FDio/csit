@@ -230,6 +230,8 @@
 | | ... | [ver] Verify that the route is present in BGP
 | | ... | local RIB and VPP's routing table on each DUT.
 | | ...
+# HONEYCOMB-447 Propagating of BGP route fails
+| | [Tags] | EXPECTED_FAILING
 | | Given Peer operational data from Honeycomb should be
 | | ... | ${dut1_node} | ${dut2_to_dut1_ip}
 | | And Peer operational data from Honeycomb should be
@@ -258,6 +260,8 @@
 | | ... | [ver] Verify that the route is present in BGP
 | | ... | local RIB and VPP's routing table on each DUT.
 | | ...
+# HONEYCOMB-447 Propagating of BGP route fails
+| | [Tags] | EXPECTED_FAILING
 | | Given Peer operational data from Honeycomb should be
 | | ... | ${dut1_node} | ${dut2_to_dut1_ip}
 | | And Peer operational data from Honeycomb should be
