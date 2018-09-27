@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "665a7a15_bcf7837d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-09-27T15:25:36Z",
+      "side": 1,
+      "message": "Ah, I did not realize this.\nBetter solution is to use \"${NODENESS}_${FLAVOR}\",\nso the same logic as in lines 497-531. Or just FLAVOR.",
+      "range": {
+        "startLine": 442,
+        "startChar": 10,
+        "endLine": 442,
+        "endChar": 22
+      },
+      "revId": "ebd0c7defaffdd6cd3ff2b5f580c86601917a0c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
