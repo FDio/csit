@@ -450,9 +450,9 @@ function select_tags () {
             test_tag_array+=("!ipsechw")
             ;;
         *)
-            # No falling back to 3n_hsw default, that should have been done
-            # by the function which has set NODENESS and FLAVOR.
-            die "Unknown specification: ${TEST_CODE}"
+            # Default to 3n-hsw due to compatibility.
+            test_tag_array+=("!drv_avf")
+            ;;
     esac
 
     # We will add excluded NICs.
