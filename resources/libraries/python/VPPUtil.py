@@ -202,3 +202,46 @@ class VPPUtil(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 VPPUtil.vpp_enable_traces_on_dut(node)
+
+    @staticmethod
+    def vpp_enable_barrier_traces_on_dut(node):
+        """Enable vpp barrier traces on the DUT node.
+
+        :param node: DUT node to set up.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("test_threads_barrier_elog.vat", node,
+                           json_out=False)
+
+    @staticmethod
+    def vpp_enable_barrier_traces_on_all_duts(nodes):
+        """Enable vpp barrier traces on all DUTs in the given topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VPPUtil.vpp_enable_barrier_traces_on_dut(node)
+
+    @staticmethod
+    def show_barrier_traces_on_dut(node):
+        """Show barrier traces on the DUT node.
+
+        :param node: DUT node to show traces on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_events.vat", node, json_out=False)
+
+    @staticmethod
+    def show_barrier_traces_on_all_duts(nodes):
+        """Show barrier traces on all DUTs in the given topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VPPUtil.show_barrier_traces_on_dut(node)
