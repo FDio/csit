@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d3b1245_7de3ce77",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-28T12:52:39Z",
+      "side": 1,
+      "message": "it cannot end with AND.",
+      "range": {
+        "startLine": 416,
+        "startChar": 61,
+        "endLine": 416,
+        "endChar": 67
+      },
+      "revId": "39ccd90d37332db873217bc3b576d4c5ca6fb0a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51bdce59_58683772",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-28T12:52:39Z",
+      "side": 1,
+      "message": "i think we can remove because IPsecHW is only for XL710, IPsecSW we want all?",
+      "range": {
+        "startLine": 416,
+        "startChar": 43,
+        "endLine": 416,
+        "endChar": 58
+      },
+      "revId": "39ccd90d37332db873217bc3b576d4c5ca6fb0a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2754b59a_3e724949",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-28T12:52:39Z",
+      "side": 1,
+      "message": "only 64b",
+      "range": {
+        "startLine": 473,
+        "startChar": 30,
+        "endLine": 473,
+        "endChar": 34
+      },
+      "revId": "39ccd90d37332db873217bc3b576d4c5ca6fb0a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "609ba946_da879244",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-09-28T12:52:39Z",
+      "side": 1,
+      "message": "vts only 64b and IMIX",
+      "range": {
+        "startLine": 475,
+        "startChar": 30,
+        "endLine": 475,
+        "endChar": 33
+      },
+      "revId": "39ccd90d37332db873217bc3b576d4c5ca6fb0a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
