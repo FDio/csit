@@ -52,7 +52,7 @@ class SchedUtils(object):
             raise RuntimeError('Failed to retrieve PID for VPP worker threads.')
 
     @staticmethod
-    def set_proc_scheduling_rr(node, pid, priority=1):
+    def set_proc_scheduling_rr(node, pid, priority=5):
         """Set real-time scheduling of a process to SCHED_RR with priority for
         specified PID.
 
