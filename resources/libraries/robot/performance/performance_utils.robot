@@ -823,6 +823,8 @@
 | | | Append To List | ${results} | ${rr}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
 | | ... | ${nodes}
+| | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
+| | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
 | | Return From Keyword | ${results}
