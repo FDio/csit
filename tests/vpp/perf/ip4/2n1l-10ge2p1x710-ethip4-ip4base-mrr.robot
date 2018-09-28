@@ -72,6 +72,7 @@
 | | Add DPDK dev default RXD to all DUTs | ${4096}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in circular topology
+| | Setup Scheduler Policy for Vpp On All DUTs
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
