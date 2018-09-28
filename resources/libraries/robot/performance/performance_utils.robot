@@ -814,6 +814,8 @@
 | | Run Keyword If | ${dut_stats}==${True} | Clear all counters on all DUTs
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
+| | Run Keyword If | ${dut_stats}==${True}
+| | ... | VPP enable barrier traces on all DUTs | ${nodes}
 | | ${results} = | Create List
 | | :FOR | ${i} | IN RANGE | ${subsamples}
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${framesize}
@@ -821,6 +823,8 @@
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
+| | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
+| | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
