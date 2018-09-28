@@ -24,67 +24,6 @@
 
 # Keywords used in setups and teardowns
 
-| Set variables in 2-node circular topology
-| | [Documentation]
-| | ... | Compute path for testing on two given nodes in circular
-| | ... | topology and set corresponding suite variables.
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - tg - TG node
-| | ... | - tg_if1 - 1st TG interface towards DUT.
-| | ... | - tg_if2 - 2nd TG interface towards DUT.
-| | ... | - dut1 - DUT1 node
-| | ... | - dut1_if1 - 1st DUT interface towards TG.
-| | ... | - dut1_if2 - 2nd DUT interface towards TG.
-| | ...
-| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Compute Path | always_same_link=${FALSE}
-| | ${tg_if1} | ${tg}= | First Interface
-| | ${dut1_if1} | ${dut1}= | First Ingress Interface
-| | ${dut1_if2} | ${dut1}= | Last Egress Interface
-| | ${tg_if2} | ${tg}= | Last Interface
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${dut1}
-| | Set Suite Variable | ${dut1_if1}
-| | Set Suite Variable | ${dut1_if2}
-
-| Set variables in 3-node circular topology
-| | [Documentation]
-| | ... | Compute path for testing on three given nodes in circular
-| | ... | topology and set corresponding suite variables.
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - tg - TG node
-| | ... | - tg_if1 - TG interface towards DUT1.
-| | ... | - tg_if2 - TG interface towards DUT2.
-| | ... | - dut1 - DUT1 node
-| | ... | - dut1_if1 - DUT1 interface towards TG.
-| | ... | - dut1_if2 - DUT1 interface towards DUT2.
-| | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1 - DUT2 interface towards DUT1.
-| | ... | - dut2_if2 - DUT2 interface towards TG.
-| | ...
-| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | ... | ${nodes['TG']}
-| | Compute Path
-| | ${tg_if1} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${dut2_if1} | ${dut2}= | Next Interface
-| | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${tg_if2} | ${tg}= | Next Interface
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${dut1}
-| | Set Suite Variable | ${dut1_if1}
-| | Set Suite Variable | ${dut1_if2}
-| | Set Suite Variable | ${dut2}
-| | Set Suite Variable | ${dut2_if1}
-| | Set Suite Variable | ${dut2_if2}
-
 | Set variables in 2-node circular topology with DUT interface model
 | | [Documentation]
 | | ... | Compute path for testing on two given nodes in circular topology
@@ -731,18 +670,6 @@
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
-
-| Tear down performance ndrchk test
-| | [Documentation] | Common test teardown for ndrchk performance tests.
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-
-| Tear down performance pdrchk test
-| | [Documentation] | Common test teardown for pdrchk performance tests.
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
 
 | Tear down performance mrr test
 | | [Documentation] | Common test teardown for max-received-rate performance
