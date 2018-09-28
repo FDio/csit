@@ -69,7 +69,7 @@ function download_ubuntu_artifacts () {
     else
         artifacts+=(${vpp[@]/%/=${VPP_VERSION-}})
     fi
-    dkms=(vpp-dpdk-dkms)
+    dkms=(vpp-ext-deps)
     if [ -z "${DKMS_VERSION-}" ]; then
         artifacts+=(${dkms[@]})
     else

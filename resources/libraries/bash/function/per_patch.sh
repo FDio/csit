@@ -45,28 +45,29 @@ function build_vpp_ubuntu_amd64 () {
     # The per_patch script calls this function twice, first for the new commit,
     # then for its parent commit. On Jenkins, no dpdk is installed at first,
     # locally it might have been installed. New dpdk is installed second call.
-    # If make detects installed vpp-dpdk-dev with matching version,
-    # it skips building vpp-dpdk-dkms entirely, but we need that file.
+    # If make detects installed vpp-ext-deps with matching version,
+    # it skips building vpp-ext-deps entirely, but we need that file.
     # On the other hand, if parent uses different dpdk version,
-    # The new vpp-dpdk-dkms is built, but the old one is not removed
+    # The new vpp-ext-deps is built, but the old one is not removed
     # from the build directory if present. (Further functions move both,
     # and during test dpkg decides on its own which version gets installed.)
     # As per_patch is too dumb (yet) to detect any of that,
     # the only safe solution is to clean build directory and force rebuild.
     # TODO: Make this function smarter and skip DPDK rebuilds if possible.
-    cmd=("dpkg-query" "--showformat='$${Version}'" "--show" "vpp-dpdk-dev")
+    cmd=("dpkg-query" "--showformat='$${Version}'" "--show" "vpp-ext-deps")
     installed_deb_ver="$(sudo "${cmd[@]}" || true)"
     if [[ -n "${installed_deb_ver}" ]]; then
-        sudo dpkg --purge "vpp-dpdk-dev" || {
-            die "Dpdk package uninstalation failed."
+        sudo dpkg --purge "vpp-ext-deps" || {
+            die "DPDK package uninstalation failed."
         }
     fi
-    make UNATTENDED=yes dpdk-install-dev || {
-        die "Make dpdk-install-dev failed."
+    make UNATTENDED=yes install-ext-deps || {
+        die "Make install-ext-deps failed."
     }
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
-    # CSIT also needs the DPDK artifacts, which is not in build-root.
-    mv -v "dpdk/vpp-dpdk-dkms"*".deb" "build-root"/ || {
+    # CSIT also needs the external dependency artifacts, which is not in
+    # build-root.
+    mv -v "build/external/vpp-ext-deps"*".deb" "build-root"/ || {
         die "*.deb move failed."
     }
 
