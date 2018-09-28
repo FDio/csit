@@ -61,14 +61,14 @@ function build_vpp_ubuntu_amd64 () {
             die "Dpdk package uninstalation failed."
         }
     fi
-    make UNATTENDED=yes dpdk-install-dev || {
-        die "Make dpdk-install-dev failed."
-    }
+    #make UNATTENDED=yes install-ext-libs || {
+    #    die "Make install-ext-libs failed."
+    #}
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
     # CSIT also needs the DPDK artifacts, which is not in build-root.
-    mv -v "dpdk/vpp-dpdk-dkms"*".deb" "build-root"/ || {
-        die "*.deb move failed."
-    }
+    #mv -v "dpdk/vpp-dpdk-dkms"*".deb" "build-root"/ || {
+    #    die "*.deb move failed."
+    #}
 
     echo "*******************************************************************"
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
