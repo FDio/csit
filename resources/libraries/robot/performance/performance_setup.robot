@@ -724,6 +724,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show barrier traces On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Set Test Variable | ${pkt_trace} | ${True}
 | | Run Keyword If Test Failed
@@ -735,12 +736,14 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show barrier traces On All DUTs | ${nodes}
 
 | Tear down performance pdrchk test
 | | [Documentation] | Common test teardown for pdrchk performance tests.
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show barrier traces On All DUTs | ${nodes}
 
 | Tear down performance mrr test
 | | [Documentation] | Common test teardown for max-received-rate performance
@@ -748,6 +751,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show barrier traces On All DUTs | ${nodes}
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
@@ -759,6 +763,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show barrier traces On All DUTs | ${nodes}
 | | Show statistics on all DUTs | ${nodes}
 
 | Tear down performance test with vhost and VM with dpdk-testpmd

@@ -85,6 +85,8 @@
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
 | | All VPP Interfaces Ready Wait | ${nodes}
+| | VPP enable barrier traces on all DUTs | ${nodes}
+
 
 | Set single interfaces in path up
 | | [Documentation]
