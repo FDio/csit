@@ -538,7 +538,9 @@
 | | Acquire all 'VNF' containers
 | | Create all 'VNF' containers
 | | Configure VPP in all 'VNF' containers
+| | Stop VPP service on all DUTs | ${nodes}
 | | Install VPP in all 'VNF' containers
+| | Start VPP service on all DUTs | ${nodes}
 
 | Set up performance test suite with MEMIF
 | | [Documentation]
