@@ -82,6 +82,15 @@ class VPPUtil(object):
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
 
     @staticmethod
+    def stop_vpp_service_on_all_duts(nodes):
+        """Stop VPP service on all nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        DUTSetup.stop_service_on_all_duts(nodes, Constants.VPP_UNIT)
+
+    @staticmethod
     def verify_vpp_on_dut(node):
         """Verify that VPP is installed on DUT node.
 
