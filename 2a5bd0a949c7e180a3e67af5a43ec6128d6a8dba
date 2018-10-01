@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2bf71819_0c8dad3d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-01T11:51:36Z",
+      "side": 1,
+      "message": "I think it can be split into separate functions so there won\u0027t be and Pylint warning about function too long",
+      "range": {
+        "startLine": 1389,
+        "startChar": 8,
+        "endLine": 1389,
+        "endChar": 46
+      },
+      "revId": "2a5bd0a949c7e180a3e67af5a43ec6128d6a8dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdc6d416_23268e5b",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 42
