@@ -77,7 +77,7 @@
 | | ... | ${s_25G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
-| | And Initialize L2 xconnect in circular topology
+| | And Initialize L2 Xconnect In 3-node Circular Topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
