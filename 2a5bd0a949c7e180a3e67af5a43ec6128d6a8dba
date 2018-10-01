@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cdc6d416_23268e5b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-01T11:47:14Z",
+      "side": 1,
+      "message": "VLAN",
+      "range": {
+        "startLine": 1396,
+        "startChar": 52,
+        "endLine": 1396,
+        "endChar": 56
+      },
+      "revId": "2a5bd0a949c7e180a3e67af5a43ec6128d6a8dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2104116d_81f25d09",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-01T11:47:14Z",
+      "side": 1,
+      "message": "This block is repeated on multiple places, we should create a function for it.\n\nThat function we can improve later, for example to avoid creating file on Robot machine.",
+      "range": {
+        "startLine": 1477,
+        "startChar": 8,
+        "endLine": 1482,
+        "endChar": 22
+      },
+      "revId": "2a5bd0a949c7e180a3e67af5a43ec6128d6a8dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0eaf96d_58d72daa",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr.robot",
+        "patchSetId": 42
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-01T11:47:14Z",
+      "side": 1,
+      "message": "Remove these before removing your -2.",
+      "range": {
+        "startLine": 85,
+        "startChar": 21,
+        "endLine": 85,
+        "endChar": 28
+      },
+      "revId": "2a5bd0a949c7e180a3e67af5a43ec6128d6a8dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
