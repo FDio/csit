@@ -815,7 +815,7 @@
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True}
-| | ... | VPP enable barrier traces on all DUTs | ${nodes}
+| | ... | VPP enable elog traces on all DUTs | ${nodes}
 | | ${results} = | Create List
 | | :FOR | ${i} | IN RANGE | ${subsamples}
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${framesize}
