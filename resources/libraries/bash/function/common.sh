@@ -47,7 +47,7 @@ function activate_virtualenv () {
     pip install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
-    virtualenv --system-site-packages "${ENV_DIR}" || {
+    virtualenv "${ENV_DIR}" || {
         die "Virtualenv creation failed."
     }
     set +u
