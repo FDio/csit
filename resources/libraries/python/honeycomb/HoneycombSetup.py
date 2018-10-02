@@ -464,7 +464,8 @@ class HoneycombSetup(object):
 
         ssh = SSH()
         ssh.connect(node)
-
+        # temporary change odl version to test the behaviour with new version
+        odl_name = "fluorine"
         cmd = "sudo rm -rf {dst}/*karaf_{odl_name} && " \
               "cp -r {src}/*karaf_{odl_name}* {dst}".format(
                   src=src_path, odl_name=odl_name, dst=dst_path)
