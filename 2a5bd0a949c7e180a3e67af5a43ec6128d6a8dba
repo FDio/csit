@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3d040835_ab7b1d7f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-02T11:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bf71819_0c8dad3d",
+      "range": {
+        "startLine": 1389,
+        "startChar": 8,
+        "endLine": 1389,
+        "endChar": 46
+      },
+      "revId": "2a5bd0a949c7e180a3e67af5a43ec6128d6a8dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdc6d416_23268e5b",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 42
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8e770935_bbf2b3a0",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-02T11:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdc6d416_23268e5b",
+      "range": {
+        "startLine": 1396,
+        "startChar": 52,
+        "endLine": 1396,
+        "endChar": 56
+      },
+      "revId": "2a5bd0a949c7e180a3e67af5a43ec6128d6a8dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2104116d_81f25d09",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 42
@@ -59,6 +107,30 @@
       "writtenOn": "2018-10-01T11:47:14Z",
       "side": 1,
       "message": "This block is repeated on multiple places, we should create a function for it.\n\nThat function we can improve later, for example to avoid creating file on Robot machine.",
+      "range": {
+        "startLine": 1477,
+        "startChar": 8,
+        "endLine": 1482,
+        "endChar": 22
+      },
+      "revId": "2a5bd0a949c7e180a3e67af5a43ec6128d6a8dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "123fbff4_3ad4d29b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-02T11:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2104116d_81f25d09",
       "range": {
         "startLine": 1477,
         "startChar": 8,
