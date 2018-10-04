@@ -238,8 +238,8 @@ function get_test_code () {
 
     case "${TEST_CODE}" in
         *"2n-skx"*)
-            NODENESS="2n"
-            FLAVOR="skx"
+            NODENESS="3n"
+            FLAVOR="hsw"
             ;;
         *"3n-skx"*)
             NODENESS="3n"
@@ -538,7 +538,7 @@ function select_tags () {
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         # Automatic prefixing for VPP jobs to limit the NIC used and
         # traffic evaluation to MRR.
-        prefix="${prefix}mrrANDnic_intel-x710AND"
+        prefix="${prefix}mrrANDnic_intel-x520-da2AND"
     fi
     for tag in "${test_tag_array[@]}"; do
         if [[ ${tag} == "!"* ]]; then
