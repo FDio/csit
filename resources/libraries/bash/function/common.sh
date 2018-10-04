@@ -238,7 +238,7 @@ function get_test_code () {
 
     case "${TEST_CODE}" in
         *"2n-skx"*)
-            NODENESS="2n"
+            NODENESS="3n"
             FLAVOR="skx"
             ;;
         *"3n-skx"*)
