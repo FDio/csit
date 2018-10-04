@@ -1,0 +1,128 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [vagrant, 3-node]
+
+nodes:
+  DUT1:
+    type: DUT
+    host: "192.168.255.101"
+    arch: x86_64
+    port: 22
+    username: csit
+    password: csit
+    interfaces:
+      port1:
+        name: "GigabitEthernet0/9/0"
+        mac_address: "08:00:27:6d:5a:90"
+        pci_address: "0000:00:09.0"
+        link: link1
+        driver: e1000
+      port2:
+        name: "GigabitEthernet0/a/0"
+        mac_address: "08:00:27:a2:51:94"
+        pci_address: "0000:00:0a.0"
+        link: link4
+        driver: e1000
+      port3:
+        name: "GigabitEthernet0/10/0"
+        mac_address: "08:00:27:1a:43:2a"
+        pci_address: "0000:00:10.0"
+        link: link3
+        driver: e1000
+      port4:
+        name: "GigabitEthernet0/11/0"
+        mac_address: "08:00:27:90:81:56"
+        pci_address: "0000:00:11.0"
+        link: link6
+        driver: e1000
+    honeycomb:
+        user: admin
+        passwd: admin
+        netconf_port: 2831
+        port: 8183
+  DUT2:
+    type: DUT
+    host: "192.168.255.102"
+    arch: x86_64
+    port: 22
+    username: csit
+    password: csit
+    interfaces:
+      port1:
+        name: "GigabitEthernet0/9/0"
+        mac_address: "08:00:27:ed:a4:d7"
+        pci_address: "0000:00:09.0"
+        link: link1
+        driver: e1000
+      port2:
+        name: "GigabitEthernet0/a/0"
+        mac_address: "08:00:27:f0:94:d7"
+        pci_address: "0000:00:0a.0"
+        link: link4
+        driver: e1000
+      port3:
+        name: "GigabitEthernet0/10/0"
+        mac_address: "08:00:27:a0:f5:7f"
+        pci_address: "0000:00:10.0"
+        link: link3
+        driver: e1000
+      port4:
+        name: "GigabitEthernet0/11/0"
+        mac_address: "08:00:27:96:11:05"
+        pci_address: "0000:00:11.0"
+        link: link6
+        driver: e1000
+    honeycomb:
+        user: admin
+        passwd: admin
+        netconf_port: 2831
+        port: 8183
+  TG:
+    type: TG
+    host: "192.168.255.100"
+    arch: x86_64
+    port: 22
+    username: csit
+    password: csit
+    interfaces:
+      port1:
+        name: "GigabitEthernet0/9/0"
+        mac_address: "08:00:27:5b:0a:61"
+        pci_address: "0000:00:09.0"
+        link: link0
+        driver: e1000
+      port2:
+        name: "GigabitEthernet0/a/0"
+        mac_address: "08:00:27:a0:34:f7"
+        pci_address: "0000:00:0a.0"
+        link: link0
+        driver: e1000
+      port3:
+        name: "GigabitEthernet0/10/0"
+        mac_address: "08:00:27:20:b0:38"
+        pci_address: "0000:00:10.0"
+        link: link1
+        driver: e1000
+      port4:
+        name: "GigabitEthernet0/11/0"
+        mac_address: "08:00:27:62:73:6e"
+        pci_address: "0000:00:11.0"
+        link: link4
+        driver: e1000
+      port5:
+        name: "GigabitEthernet0/12/0"
+        mac_address: "08:00:27:36:1b:d5"
+        pci_address: "0000:00:12.0"
+        link: link2
+        driver: e1000
+      port6:
+        name: "GigabitEthernet0/13/0"
+        mac_address: "08:00:27:8a:ac:af"
+        pci_address: "0000:00:13.0"
+        link: link5
+        driver: e1000
+
