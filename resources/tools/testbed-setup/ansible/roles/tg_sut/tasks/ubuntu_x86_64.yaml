@@ -157,6 +157,7 @@
   apt:
     name: "kubeadm={{ kubernetes_apt_package_name }}"
     state: "present"
+    force: yes
     update_cache: True
     install_recommends: False
     cache_valid_time: "{{ apt_cache_time }}"
@@ -166,6 +167,7 @@
   apt:
     name: "kubectl={{ kubernetes_apt_package_name }}"
     state: "present"
+    force: yes
     update_cache: True
     install_recommends: False
     cache_valid_time: "{{ apt_cache_time }}"
@@ -175,8 +177,16 @@
   apt:
     name: "kubelet={{ kubernetes_apt_package_name }}"
     state: "present"
+    force: yes
     update_cache: True
     install_recommends: False
     cache_valid_time: "{{ apt_cache_time }}"
   tags: install-kubernetes
 
+- name: Apply kubelet parameter
+  lineinfile:
+    path: '/etc/default/kubelet'
+    state: 'present'
+    regexp: '^KUBELET_EXTRA_ARGS=*'
+    line: 'KUBELET_EXTRA_ARGS=--feature-gates HugePages=false'
+  tags: install-kubernetes

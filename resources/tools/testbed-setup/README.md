@@ -104,7 +104,7 @@ When installation is finished:
   - Clone CSIT actual repo: `git clone https://gerrit.fd.io/r/csit`
   - Go to ansible directory: `cd csit/resources/tools/testbed-setup/ansible`
   - Edit production file and uncomment servers that are supposed to be installed: `ansible-playbook --ask-become-pass --inventory production site.yaml --list-hosts`
-  - Run ansible on selected hosts: `ansible-playbook --ask-become-pass --inventory production site.yaml`
+  - Run ansible on selected hosts: `ansible-playbook --vault-id vault_pass --extra-vars '@vault.yml' --inventory production site.yaml`
 
 For non-VIRL hosts, stop here.
 
