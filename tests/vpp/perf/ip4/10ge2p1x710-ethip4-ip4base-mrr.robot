@@ -70,6 +70,7 @@
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
+| | Add DPDK dev default RXD to all DUTs | ${4096}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in circular topology
 | | Then Traffic should pass with maximum rate
