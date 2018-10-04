@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da0af0fd_e9cc0549",
+        "filename": "tests/vpp/perf/l2/10ge2p1x710-avf-eth-l2xcbase-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-04T08:36:14Z",
+      "side": 1,
+      "message": "Looking at performance_configuration.robot, creating the Base keyword should be easy.\nWho has the next task affecting l2xcbase suites?",
+      "range": {
+        "startLine": 78,
+        "startChar": 34,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "9db603df1076b5ee56ef6326fd0e396b166ed5b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
