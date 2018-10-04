@@ -39,9 +39,7 @@ peer_internal = {
         },
         "afi-safis": {
             "afi-safi": [{
-                "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST",
-                "receive": True,
-                "send-max": 0
+                "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST"
                 }]
             }
         }]
@@ -67,9 +65,7 @@ peer_internal_update = {
         },
         "afi-safis": {
             "afi-safi": [{
-                "afi-safi-name": "openconfig-bgp-types:IPV6-UNICAST",
-                "receive": False,
-                "send-max": 1
+                "afi-safi-name": "openconfig-bgp-types:IPV6-UNICAST"
                 }]
             }
         }]
@@ -90,15 +86,11 @@ peer_application = {
         "afi-safis": {
             "afi-safi": [
                 {
-                    "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST",
-                    "receive": True,
-                    "send-max": 0
+                    "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST"
                 },
                 {
                     "afi-safi-name":
-                        "openconfig-bgp-types:IPV4-LABELLED-UNICAST",
-                    "receive": True,
-                    "send-max": 0
+                        "openconfig-bgp-types:IPV4-LABELLED-UNICAST"
                 }]
             }
         }]
@@ -109,6 +101,7 @@ route_address_ipv4 = "192.168.0.5/32"
 route_id_ipv4 = 0
 route_data_ipv4 = {
     "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4,
         "path-id": route_id_ipv4,
         "prefix": route_address_ipv4,
         "attributes": {
@@ -129,6 +122,7 @@ route_data_ipv4 = {
 # IPv4 route for testing Update operation
 route_data_ipv4_update = {
     "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4,
         "path-id": route_id_ipv4,
         "prefix": route_address_ipv4,
         "attributes": {
@@ -151,6 +145,7 @@ route_address_ipv4_2 = "192.168.0.6/32"
 route_id_ipv4_2 = 1
 route_data_ipv4_2 = {
     "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4_2,
         "path-id": route_id_ipv4_2,
         "prefix": route_address_ipv4_2,
         "attributes": {
@@ -173,6 +168,7 @@ route_address_ipv6 = "3ffe:62::1/64"
 route_id_ipv6 = 0
 route_data_ipv6 = {
     "bgp-inet:ipv6-route": [{
+        "route-key": route_address_ipv6,
         "path-id": route_id_ipv6,
         "prefix": route_address_ipv6,
         "attributes": {
@@ -219,13 +215,11 @@ dut1_peer = {
         "afi-safis": {
             "afi-safi": [
                 {
-                    "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST",
-                    "receive": True,
-                    "send-max": 0},
+                    "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST"
+                },
                 {
-                    "afi-safi-name": "openconfig-bgp-types:IPV6-UNICAST",
-                    "receive": True,
-                    "send-max": 0},
+                    "afi-safi-name": "openconfig-bgp-types:IPV6-UNICAST"
+                },
                 {
                     "afi-safi-name": "LINKSTATE"
                 }
@@ -255,13 +249,11 @@ dut2_peer = {
         "afi-safis": {
             "afi-safi": [
                 {
-                    "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST",
-                    "receive": True,
-                    "send-max": 0},
+                    "afi-safi-name": "openconfig-bgp-types:IPV4-UNICAST"
+                },
                 {
-                    "afi-safi-name": "openconfig-bgp-types:IPV6-UNICAST",
-                    "receive": True,
-                    "send-max": 0},
+                    "afi-safi-name": "openconfig-bgp-types:IPV6-UNICAST"
+                },
                 {
                     "afi-safi-name": "LINKSTATE"
                 }
@@ -272,9 +264,10 @@ dut2_peer = {
 
 # IPv4 route for traffic test
 dut1_route_address = "192.168.0.5/32"
-dut1_route_id = 1
+dut1_route_id = 0
 dut1_route = {
     "bgp-inet:ipv4-route": [{
+        "route-key": dut1_route_address,
         "path-id": dut1_route_id,
         "prefix": dut1_route_address,
         "attributes": {
@@ -313,9 +306,10 @@ route_operational = {
 
 # IPv6 route for traffic test
 dut1_route_ip6_prefix = "3ffe:62::/64"
-dut1_route_ip6_id = 1
+dut1_route_ip6_id = 0
 dut1_route_ip6 = {
     "bgp-inet:ipv6-route": [{
+        "route-key": dut1_route_ip6_prefix,
         "path-id": dut1_route_ip6_id,
         "prefix": dut1_route_ip6_prefix,
         "attributes": {
