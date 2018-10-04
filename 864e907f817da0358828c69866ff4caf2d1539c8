@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fdc56107_cb986042",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 47
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-04T07:01:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "280da494_0d9fc9d5",
+      "range": {
+        "startLine": 112,
+        "startChar": 17,
+        "endLine": 112,
+        "endChar": 18
+      },
+      "revId": "864e907f817da0358828c69866ff4caf2d1539c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a6d46ec_7b136c91",
         "filename": "docs/tag_documentation.rst",
         "patchSetId": 47
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-03T11:56:45Z",
       "side": 1,
       "message": "Upper",
+      "range": {
+        "startLine": 127,
+        "startChar": 11,
+        "endLine": 127,
+        "endChar": 18
+      },
+      "revId": "864e907f817da0358828c69866ff4caf2d1539c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e18975e_399f1670",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 47
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-04T07:01:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a6d46ec_7b136c91",
       "range": {
         "startLine": 127,
         "startChar": 11,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "33b6410f_166562a9",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 47
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-04T07:01:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d747d85_29df2675",
+      "range": {
+        "startLine": 142,
+        "startChar": 11,
+        "endLine": 142,
+        "endChar": 19
+      },
+      "revId": "864e907f817da0358828c69866ff4caf2d1539c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a3ea40b_0c4a23cd",
         "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan100ip4src254ip4dst254.py",
         "patchSetId": 47
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "fc145fc9_bb0ec0f9",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan100ip4src254ip4dst254.py",
+        "patchSetId": 47
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-04T07:01:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a3ea40b_0c4a23cd",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "864e907f817da0358828c69866ff4caf2d1539c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa11967b_830080f2",
         "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr.robot",
         "patchSetId": 47
@@ -105,6 +201,30 @@
       "writtenOn": "2018-10-03T11:56:45Z",
       "side": 1,
       "message": "double?",
+      "range": {
+        "startLine": 96,
+        "startChar": 21,
+        "endLine": 96,
+        "endChar": 23
+      },
+      "revId": "864e907f817da0358828c69866ff4caf2d1539c8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0dfe98ab_56b65f3b",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr.robot",
+        "patchSetId": 47
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-04T07:01:42Z",
+      "side": 1,
+      "message": "Based on naming convention - https://wiki.fd.io/view/CSIT/csit-test-naming:\n3. WireEncapsulation\n\n    eth | dot1q | dot1ad - Ethernet header\n        eth - untagged Ethernet on the physical wire.\n        dot1q - single VLAN tag on physical wire.\n        dot1ad - double VLAN tag on physical wire.\n        -- - OR separator, if present multiple encapsulations present on interfaces.\n...",
+      "parentUuid": "aa11967b_830080f2",
       "range": {
         "startLine": 96,
         "startChar": 21,
