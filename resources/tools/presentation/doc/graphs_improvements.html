@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Envisioning information by PAL</title>
+    <meta charset="utf-8" />
+    <link href="graphs_improvements.css" rel="stylesheet" />
+</head>
+<body>
+    <section id="envisioning-information-by-pal">
+        <h1>Envisioning information by PAL</h1>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>This document describes possible improvements in data presentation provided by PAL for the <a href="https://docs.fd.io/csit/master/report/">Report</a> and the <a href="https://docs.fd.io/csit/master/trending/">Trending</a></p>
+            <p>You can generate a standalone html version of this document using e.g. rst2html5 tool:</p>
+            <pre data-language="bash"><span></span>rst2html5 --stylesheet graphs_improvements.css graphs_improvements.rst &gt;&gt; graphs_improvements.html</pre>
+            <p><strong>Modifications of existing graphs</strong></p>
+            <ul>
+                <li><a href="#speedup-multi-core">Speedup Multi-core</a></li>
+                <li><a href="#packet-throughput">Packet Throughput</a></li>
+                <li><a href="#packet-latency">Packet Latency</a></li>
+                <li><a href="#http-tcp-performance">HTTP-TCP Performance</a></li>
+            </ul>
+            <p><strong>New graphs to be added</strong></p>
+            <ul>
+                <li><a href="#comparison-between-releases">Comparison between releases</a></li>
+                <li><a href="#comparison-between-processor-architectures">Comparison between processor architectures</a></li>
+                <li><a href="#comparison-between-2-node-and-3-node-topologies">Comparison between 2-node and 3-node topologies</a></li>
+                <li><a href="#comparison-between-different-physical-testbed-instances">Comparison between different physical testbed instances</a></li>
+                <li><a href="#comparison-between-nics">Comparison between NICs</a></li>
+                <li><a href="#other-comparisons">Other comparisons</a></li>
+            </ul>
+            <p><strong>Export of static images</strong></p>
+            <ul>
+                <li>low priority</li>
+                <li>make possible to <a href="#export-static-images">export static images</a> which are available via link on the web page.</li>
+                <li>vector formats (svg, pdf) are preferred</li>
+            </ul>
+        </section>
+        <section id="modifications-of-existing-graphs">
+            <h2>Modifications of existing graphs</h2>
+            <p>The proposed modifications include the changes in:</p>
+            <ul>
+                <li>the layout of the graphs,</li>
+                <li>the data and way how it is presented,</li>
+                <li>the test cases presented in the graphs.</li>
+            </ul>
+            <p>The first two points are described below, the last one will be added later as a separate chapter.</p>
+            <!-- TODO: Review the TCs displayed in the graphs. -->
+            <a id="speedup-multi-core"></a>
+            <section id="id1">
+                <h3>Speedup Multi-core</h3>
+                <p>The "Speedup Multicore" graph will display the measured data together with ideal values calculated as multiples of the value measured using one core. The difference between measured and ideal values will be displayed in the label next to each data point.</p>
+                <img src="pic/graph_speedup.svg" align="center" scale="50" alt="Graph &#34;Speedup Multi-core: not found." width="800px" />
+                <aside class="note">The svg is not perfect so here is the link to the <a href="TODO">xlsx</a> version of the graph.</aside>
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>one or more data series from the same area, keep the number of displayed data series as low as possible (max 5)</li>
+                    <li>x-axis: number of cores</li>
+                    <li>y-axis: throughput (measured and ideal) [Mpps], linear scale, beginning with 0</li>
+                    <li>data point labes: relative difference between measured and ideal values [%]</li>
+                    <li>hover information: Throughput, Speedup, Diff</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: lines with data points</li>
+                    <li>
+                        <dl>
+                            <dt>data series format:</dt>
+                            <dd>
+                                <ul>
+                                    <li>measured: solid line with data points</li>
+                                    <li>ideal: dashed line with data points, the same color as "measured"</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>title: "Packet throughput Rate Speedup: &lt;area, scaling, features, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: integers, starting with 0, linear, font size 14, bottom</li>
+                    <li>x-axis label: "[Nr of cores]", right</li>
+                    <li>y-axis: integers, starting with 0, linear, font size 14, left</li>
+                    <li>y-axis label: "[Mpps]", top, left</li>
+                    <li>legend: "Measured &lt;area, scaling, features, ...&gt;", "Ideal &lt;area, scaling, features, ...&gt;" for each data series, bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="packet-throughput"></a>
+            <section id="id2">
+                <h3>Packet Throughput</h3>
+                <p>The "Packet Throughput" graph will display the measured data using statistical box graph. Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_throughput.svg" align="center" scale="50" alt="Graph &#34;Packet Throughput&#34; not found." width="800px" />
+                <aside class="note">The svg is not perfect so here is the link to the <a href="TODO">xlsx</a> version of the graph.</aside>
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>one or more data points from the same area, keep the number of displayed data points as low as possible (max 10)</li>
+                    <li>x-axis: indexed testcases</li>
+                    <li>y-axis: throughput [Mpps], logarithmic scale, beginning with 0</li>
+                    <li>hover information: statistical data (min, lower fence, q1, median, q3 higher fence, max), test case name</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: statistical box</li>
+                    <li>data series format: box</li>
+                    <li>title: "Throughput: &lt;area, scaling, features, framesize, cores, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: integers, starting with 1, linear, font size 14, bottom</li>
+                    <li>x-axis label: "[Indexed Test Cases]", right</li>
+                    <li>y-axis: integers, starting with 0, logarithmic, font size 14, left</li>
+                    <li>y-axis label: "Throughput [Mpps]", top, left</li>
+                    <li>legend: "Indexed test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="packet-latency"></a>
+            <section id="id4">
+                <h3>Packet Latency</h3>
+                <p>The "Packet Latency" graph will display the measured data using statistical box graph. Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_latency.svg" align="center" scale="50" alt="Graph &#34;Packet Latency&#34; not found." width="800px" />
+                <aside class="note">The svg is not perfect so here is the link to the <a href="TODO">xlsx</a> version of the graph..</aside>
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>one or more data points from the same area, keep the number of displayed data points as low as possible (max 10)</li>
+                    <li>x-axis: data flow directions</li>
+                    <li>y-axis: latency min/avg/max [uSec], linear scale, beginning with 0</li>
+                    <li>hover information: statistical data (min, lower fence, q1, median, q3 higher fence, max), test case name</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: statistical box</li>
+                    <li>data series format: box</li>
+                    <li>title: "Latency: &lt;area, scaling, features, framesize, cores, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: text, font size 14, bottom</li>
+                    <li>x-axis label: "[Indexed Test Cases]", right</li>
+                    <li>y-axis: integers, starting with 0, linear, font size 14, left</li>
+                    <li>y-axis label: "Latency min/avg/max [uSec]", top, left</li>
+                    <li>legend: "Indexed test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="http-tcp-performance"></a>
+            <section id="id6">
+                <h3>HTTP/TCP Performance</h3>
+                <p>The "HTTP/TCP Performance" graph will display the measured data using statistical box graph separately for "Connections per second" and "Requests per second". Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_http.svg" align="center" scale="50" alt="Graph &#34;HTTP/TCP Performance&#34; not found." width="800px" />
+                <aside class="note">The svg is not perfect so here is the link to the <a href="TODO">xlsx</a> version of the graph.</aside>
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>requests/connections per second, the same tests configured for 1, 2 and 4 cores (3 data points in each graph)</li>
+                    <li>x-axis: indexed test cases</li>
+                    <li>y-axis: requests/connections per second, linear scale, beginning with 0</li>
+                    <li>hover information: statistical data (min, lower fence, q1, median, q3 higher fence, max), test case name</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: statistical box</li>
+                    <li>data series format: box</li>
+                    <li>title: "VPP HTTP Server performance", top, centered, font size 16</li>
+                    <li>x-axis: integers, font size 14, bottom</li>
+                    <li>x-axis label: "[Indexed Test Cases]", right</li>
+                    <li>y-axis: floats, starting with 0, linear, font size 14, left</li>
+                    <li>y-axis label: "Connections per second [cps]", "Requests per second [rps]", top, left</li>
+                    <li>legend: "Indexed test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+        </section>
+        <section id="new-graphs-to-be-added">
+            <h2>New graphs to be added</h2>
+            <ul>
+                <li><em>Comparison between releases</em>
+                    <ul>
+                        <li>compare MRR, NDR, PDR between releases</li>
+                        <li>use as many releases as available</li>
+                    </ul>
+                </li>
+                <li><em>Comparison between processor architectures</em>
+                    <ul>
+                        <li>compare MRR, NDR, PDR between processor architectures</li>
+                        <li>HSW vs SKX (vs ARM when available)</li>
+                    </ul>
+                </li>
+                <li><em>Comparison between 2-node and 3-node topologies</em>
+                    <ul>
+                        <li>compare MRR, NDR, PDR between topologies</li>
+                        <li>3n-skx vs 2n-skx</li>
+                    </ul>
+                </li>
+                <li><em>Comparison between different physical testbed instances</em>
+                    <ul>
+                        <li>compare the results of the same test (MRR, NDR, PDR) run on different instances of the same testbed, e.g. HSW</li>
+                        <li>HSW vs HSW, SKX vs SKX</li>
+                    </ul>
+                </li>
+                <li><em>Comparison between NICs</em>
+                    <ul>
+                        <li>compare the results of the same test (MRR, NDR, PDR) run on different NICs but on the same instance of a physical testbed.</li>
+                        <li>x520 vs x710 vs xl710 on HSW</li>
+                        <li>x710 vs xxv710 on SKX</li>
+                    </ul>
+                </li>
+                <li><em>Other comparisons</em></li>
+            </ul>
+            <aside class="note">
+                <ul>
+                    <li>Partially based on the existing tables in the Report</li>
+                    <li>Only selected TCs</li>
+                </ul>
+            </aside>
+            <a id="comparison-between-releases"></a>
+            <section id="id8">
+                <h3>Comparison between releases</h3>
+                <p>This graph will compare the results of the same test from different releases. One graph can present the data from one or more tests logically grouped. See <a href="#grouping-of-tests-in-graphs">Grouping of tests in graphs</a> for more information. Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_cmp_releases.svg" align="center" scale="50" alt="Graph &#34;Comparison between releases&#34; not found." width="800px" />
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>data: packet throughput</li>
+                    <li>x-axis: release</li>
+                    <li>y-axis: throughput [Mpps], logarithmic scale, beginning with 0</li>
+                    <li>hover information: statistical data (median, stdev), test case name, release</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: scatter with line</li>
+                    <li>data series format: line with markers</li>
+                    <li>title: "Throughput: &lt;area, scaling, features, framesize, cores, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: strings, font size 14, bottom</li>
+                    <li>x-axis label: "[Release]", right</li>
+                    <li>y-axis: integers, starting with 0, logarithmic, font size 14, left</li>
+                    <li>y-axis label: "Throughput [Mpps]", top, left</li>
+                    <li>legend: "Test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="comparison-between-processor-architectures"></a>
+            <section id="id9">
+                <h3>Comparison between processor architectures</h3>
+                <p>This graph will compare the results of the same test from the same release run on the different processor architectures (HSW, SKX, later ARM). One graph can present the data from one or more tests logically grouped. See <a href="#grouping-of-tests-in-graphs">Grouping of tests in graphs</a> for more information. Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_cmp_arch.svg" align="center" scale="50" alt="Graph &#34;Comparison between processor architectures&#34; not found." width="800px" />
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>data: packet throughput</li>
+                    <li>x-axis: processor architecture</li>
+                    <li>y-axis: throughput [Mpps], logarithmic scale, beginning with 0</li>
+                    <li>hover information: statistical data (median, stdev), test case name, processor architecture</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: scatter with line</li>
+                    <li>data series format: line with markers</li>
+                    <li>title: "Throughput: &lt;area, scaling, features, framesize, cores, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: strings, font size 14, bottom</li>
+                    <li>x-axis label: "[Processor architecture]", right</li>
+                    <li>y-axis: integers, starting with 0, logarithmic, font size 14, left</li>
+                    <li>y-axis label: "Throughput [Mpps]", top, left</li>
+                    <li>legend: "Test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="comparison-between-2-node-and-3-node-topologies"></a>
+            <section id="id10">
+                <h3>Comparison between 2-node and 3-node topologies</h3>
+                <p>This graph will compare the results of the same test from the same release run on the same processor architecture but different topologies (3n-skx, 2n-skx). One graph can present the data from one or more tests logically grouped. See <a href="#grouping-of-tests-in-graphs">Grouping of tests in graphs</a> for more information. Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_cmp_topo.svg" align="center" scale="50" alt="Graph &#34;Comparison between 2-node and 3-node topologies&#34; not found." width="800px" />
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>data: packet throughput</li>
+                    <li>x-axis: topology</li>
+                    <li>y-axis: throughput [Mpps], logarithmic scale, beginning with 0</li>
+                    <li>hover information: statistical data (median, stdev), test case name, topology</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: scatter with line</li>
+                    <li>data series format: line with markers</li>
+                    <li>title: "Throughput: &lt;area, scaling, features, framesize, cores, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: strings, font size 14, bottom</li>
+                    <li>x-axis label: "[Topology]", right</li>
+                    <li>y-axis: integers, starting with 0, logarithmic, font size 14, left</li>
+                    <li>y-axis label: "Throughput [Mpps]", top, left</li>
+                    <li>legend: "Test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="comparison-between-different-physical-testbed-instances"></a>
+            <section id="id11">
+                <h3>Comparison between different physical testbed instances</h3>
+                <p>This graph will compare the results of the same test from the same release run on the same processor architecture, the same topology but different physical testbed instances. One graph can present the data from one or more tests logically grouped. See <a href="#grouping-of-tests-in-graphs">Grouping of tests in graphs</a> for more information. Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_cmp_testbed.svg" align="center" scale="50" alt="Graph &#34;Comparison between different physical testbed instances&#34; not
+found." width="800px" />
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>data: packet throughput</li>
+                    <li>x-axis: physical testbed instances</li>
+                    <li>y-axis: throughput [Mpps], logarithmic scale, beginning with 0</li>
+                    <li>hover information: statistical data (median, stdev), test case name, physical testbed instance</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: scatter with line</li>
+                    <li>data series format: line with markers</li>
+                    <li>title: "Throughput: &lt;area, scaling, features, framesize, cores, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: strings, font size 14, bottom</li>
+                    <li>x-axis label: "[Physical testbed instance]", right</li>
+                    <li>y-axis: integers, starting with 0, logarithmic, font size 14, left</li>
+                    <li>y-axis label: "Throughput [Mpps]", top, left</li>
+                    <li>legend: "Test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="comparison-between-nics"></a>
+            <section id="id12">
+                <h3>Comparison between NICs</h3>
+                <p>This graph will compare the results of the same test from the same release run on the same processor architecture, the same topology but different NICs. One graph can present the data from one or more tests logically grouped. See <a href="#grouping-of-tests-in-graphs">Grouping of tests in graphs</a> for more information. Each data point is constructed from 10 samples. The statistical data are displayed as hover information.</p>
+                <img src="pic/graph_cmp_nics.svg" align="center" scale="50" alt="Graph &#34;Comparison between NICs&#34; not found." width="800px" />
+                <p><strong>Description:</strong></p>
+                <p><em>Data displayed:</em></p>
+                <ul>
+                    <li>data: packet throughput</li>
+                    <li>x-axis: NICs</li>
+                    <li>y-axis: throughput [Mpps], logarithmic scale, beginning with 0</li>
+                    <li>hover information: statistical data (median, stdev), test case name, NIC</li>
+                </ul>
+                <p><em>Layout:</em></p>
+                <ul>
+                    <li>plot type: scatter with line</li>
+                    <li>data series format: line with markers</li>
+                    <li>title: "Throughput: &lt;area, scaling, features, framesize, cores, ...&gt;", top, centered, font size 16</li>
+                    <li>x-axis: strings, font size 14, bottom</li>
+                    <li>x-axis label: "[NICs]", right</li>
+                    <li>y-axis: integers, starting with 0, logarithmic, font size 14, left</li>
+                    <li>y-axis label: "Throughput [Mpps]", top, left</li>
+                    <li>legend: "Test cases", bottom, centered, font size 14</li>
+                </ul>
+            </section>
+            <a id="other-comparisons"></a>
+            <section id="id13">
+                <h3>Other comparisons</h3>
+                <p>Other views on collected data per <a href="https://lists.fd.io/g/csit-dev/message/3008">Vratko Polak email on csit-dev</a>.</p>
+            </section>
+        </section>
+        <a id="grouping-of-tests-in-graphs"></a>
+        <section id="id14">
+            <h2>Grouping of tests in graphs</h2>
+            <p>A graph can present results of one or more tests. The tests are grouped according to the defined criteria. In the ideal case, all graphs use the same groups of tests.</p>
+            <!-- TODO: Define the criteria and groups. -->
+            <p><strong>Example of data grouping:</strong></p>
+            <ul>
+                <li>
+                    <dl>
+                        <dt>ip4: ip4base, ip4scale20k, ip4scale200k, ip4scale2m</dt>
+                        <dd>
+                            <ul>
+                                <li>data presented in this order from left to right</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </li>
+                <li>ip6: similar to ip4</li>
+                <li>l2bd: similar to ip4.</li>
+            </ul>
+        </section>
+        <a id="export-static-images"></a>
+        <section id="export-of-static-images">
+            <h2>Export of static images</h2>
+            <!-- My notes, ignore:
+- https://plot.ly/python/static-image-export/
+- prefered vector formats (svg, pdf)
+- requirements:
+    - plotly-orca
+        - https://github.com/plotly/orca
+        - https://github.com/plotly/orca/releases
+        - https://plot.ly/python/orca-management/
+    - psutil -->
+        </section>
+    </section>
+</body>
+</html>
