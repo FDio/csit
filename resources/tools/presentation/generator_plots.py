@@ -358,6 +358,23 @@ def plot_throughput_speedup_analysis(plot, input_data):
     logging.info("  Done.")
 
 
+def plot_line_throughput_speedup_analysis(plot, input_data):
+    """Generate the plot(s) with algorithm:
+    plot_line_throughput_speedup_analysis
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+
+
+
 def plot_http_server_performance_box(plot, input_data):
     """Generate the plot(s) with algorithm: plot_http_server_performance_box
     specified in the specification file.
