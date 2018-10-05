@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5d9ad2b_ae3cb501",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-05T09:08:08Z",
+      "side": 1,
+      "message": "- Future: comparison between same tests executed on different physical testbed instances.\n- Future: same tests on different NICs.\n- Future: other views per Vratko Polak email on csit-dev:  https://lists.fd.io/g/csit-dev/message/3008",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "e3b47426d075608642a79546c625a1264da7c318",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d97254b_b11618e6",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-05T09:08:08Z",
+      "side": 1,
+      "message": "Comparison",
+      "range": {
+        "startLine": 28,
+        "startChar": 7,
+        "endLine": 28,
+        "endChar": 18
+      },
+      "revId": "e3b47426d075608642a79546c625a1264da7c318",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6faee42_b72aad41",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-05T09:08:08Z",
+      "side": 1,
+      "message": "processor architectures: skx vs. hsw, specifically 2n-skx vs. 2n-hws testbeds.",
+      "range": {
+        "startLine": 29,
+        "startChar": 27,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "e3b47426d075608642a79546c625a1264da7c318",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8161bba6_39140e9d",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-05T09:08:08Z",
+      "side": 1,
+      "message": "2-Node and 3-Node testbeds.",
+      "range": {
+        "startLine": 30,
+        "startChar": 27,
+        "endLine": 30,
+        "endChar": 38
+      },
+      "revId": "e3b47426d075608642a79546c625a1264da7c318",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ef522bc_4cac3542",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-05T09:08:08Z",
+      "side": 1,
+      "message": "Examples:\n1. ip4: ip4base, ip4scale20k, ip4scale200k, ip4scale2m, in that order from left to right.\n2. ip6: similar to ip4.\n3. l2bd: similar to ip4.",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "e3b47426d075608642a79546c625a1264da7c318",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
