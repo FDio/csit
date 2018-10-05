@@ -46,7 +46,7 @@ Additional information about graph data:
     successfully.
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
 
     l2
     ip4
