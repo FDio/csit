@@ -358,6 +358,128 @@ def plot_throughput_speedup_analysis(plot, input_data):
     logging.info("  Done.")
 
 
+def plot_line_throughput_speedup_analysis(plot, input_data):
+    """Generate the plot(s) with algorithm:
+    plot_line_throughput_speedup_analysis
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    throughput = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if throughput.get(test["parent"], None) is None:
+                    throughput[test["parent"]] = {"1": list(),
+                                                  "2": list(),
+                                                  "4": list()}
+                try:
+                    if test["type"] in ("NDRPDR", ):
+                        if "-pdr" in plot_title.lower():
+                            ttype = "PDR"
+                        elif "-ndr" in plot_title.lower():
+                            ttype = "NDR"
+                        else:
+                            continue
+                        if "1C" in test["tags"]:
+                            throughput[test["parent"]]["1"].\
+                                append(test["throughput"][ttype]["LOWER"])
+                        elif "2C" in test["tags"]:
+                            throughput[test["parent"]]["2"]. \
+                                append(test["throughput"][ttype]["LOWER"])
+                        elif "4C" in test["tags"]:
+                            throughput[test["parent"]]["4"]. \
+                                append(test["throughput"][ttype]["LOWER"])
+                except (KeyError, TypeError):
+                    pass
+
+    if not throughput:
+        logging.warning("No data for the plot '{}'".
+                        format(plot.get("title", "")))
+        return
+
+    for test_name, test_vals in throughput.items():
+        for key, test_val in test_vals.items():
+            if test_val:
+                throughput[test_name][key] = sum(test_val) / len(test_val)
+
+    x_vals = list()
+    y_vals_1 = list()
+    y_vals_2 = list()
+    y_vals_4 = list()
+    y_vals_rel_1 = list()
+    y_vals_rel_2 = list()
+    y_vals_rel_4 = list()
+    y_vals_ideal_1 = list()
+    y_vals_ideal_2 = list()
+    y_vals_ideal_4 = list()
+    y_vals_diff_1 = list()
+    y_vals_diff_2 = list()
+    y_vals_diff_4 = list()
+
+    for test_name, test_vals in throughput.items():
+        if test_vals["1"]:
+            name = "-".join(test_name.split('-')[1:-1])
+            if len(name) > 30:
+                name_lst = name.split('-')
+                name = "-".join(name_lst[:len(name_lst)/2]) + '- <br> ' + \
+                       "-".join(name_lst[len(name_lst)/2:])
+            x_vals.append(name)
+
+            y_val_1 = test_vals["1"] / 1000000.0
+            y_val_2 = test_vals["2"] / 1000000.0 if test_vals["2"] else None
+            y_val_4 = test_vals["4"] / 1000000.0 if test_vals["4"] else None
+
+            y_vals_1.append(y_val_1)
+            y_vals_rel_1.append(1.0)
+            y_vals_ideal_1.append(y_val_1)
+            y_vals_diff_1.append(0.0)
+
+            if y_val_2:
+                y_vals_2.append(y_val_2)
+                y_vals_rel_2.append(round(y_val_2 / y_val_1, 2))
+                y_vals_ideal_2.append(y_val_1 * 2)
+                y_vals_diff_2.append(y_val_2 - y_vals_ideal_2[-1])
+            else:
+                y_vals_rel_2.append(None)
+                y_vals_2.append(None)
+                y_vals_ideal_2.append(None)
+                y_vals_diff_2.append(None)
+
+            if y_val_4:
+                y_vals_4.append(y_val_4)
+                y_vals_rel_4.append(round(y_val_4 / y_val_1, 2))
+                y_vals_ideal_4.append(y_val_1 * 4)
+                y_vals_diff_4.append(y_val_4 - y_vals_ideal_4[-1])
+            else:
+                y_vals_rel_4.append(None)
+                y_vals_4.append(None)
+                y_vals_ideal_4.append(None)
+                y_vals_diff_4.append(None)
+
+    y_vals_zipped = zip(['1 core', '2 cores', '4 cores'],
+                        [y_vals_rel_1, y_vals_rel_2, y_vals_rel_4],
+                        [y_vals_1, y_vals_2, y_vals_4],
+                        [y_vals_ideal_1, y_vals_ideal_2, y_vals_ideal_4],
+                        [y_vals_diff_1, y_vals_diff_2, y_vals_diff_4])
+
+
 def plot_http_server_performance_box(plot, input_data):
     """Generate the plot(s) with algorithm: plot_http_server_performance_box
     specified in the specification file.
