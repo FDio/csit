@@ -97,6 +97,23 @@
 -
   type: "configuration"
 
+  limits:
+    nic:
+      x520: 24460000
+      x710: 35800000
+      xxv710: 35800000
+      xl710: 35800000
+
+    link:
+      10ge: 14880952.38
+      25ge: 37202380.95
+      40ge: 59523809.52
+      100ge: 148809523.81
+
+    pci:
+      pci-g3-x8: 74404761.90
+      pci-g3-x16: 148809523.81
+
   data-sets:
 
     # VPP Performance
@@ -125,7 +142,6 @@
       - 30  # sel
       - 31  # sel
       - 35  # sel
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -142,7 +158,6 @@
       - 47  # NDRPDR sel
 
     vpp-compare-testbeds:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -170,7 +185,6 @@
       - 56  # NDRPDR sel
 
     vpp-compare-testbeds-mrr:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -216,7 +230,6 @@
       - 20  # mrr - sel
       - 21  # mrr - sel
       - 22  # mrr - sel
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -229,7 +242,6 @@
       - 48  # MRR sel
 
     vpp-perf-results-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -250,7 +262,6 @@
       - 8   # MRR full
 
     vpp-mrr-results-3n-skx:
-      # TODO: Replace with better results
       csit-vpp-perf-verify-1807-3n-skx:
       - 31  # MRR full
 
@@ -259,7 +270,6 @@
       - 27  # MRR full
 
     plot-throughput-speedup-analysis-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -302,7 +312,6 @@
       - 42  # NDRPDR sel
 
     plot-vpp-throughput-latency-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -368,18 +377,15 @@
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
-      # TODO: Replace with better results
       csit-ligato-perf-1807-all:
       - 3   # full ?
 
     plot-ligato-throughput-speedup-analysis-3n-hsw:
-      # TODO: Add Data sources
       csit-ligato-perf-1807-all:
       - 3   # full ?
       - 4   # sel
 
     plot-ligato-throughput-latency-3n-hsw:
-      # TODO: Add Data sources
       csit-ligato-perf-1807-all:
       - 3   # full ?
       - 4   # sel
@@ -496,37 +502,47 @@
 
     # DMM Functional
     dmm-func-results:
-      # TODO: Replace with 1807 job:
       csit-dmm-functional-master-ubuntu1604-virl:
       - 95
 
   plot-layouts:
 
     plot-cps:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Indices of Test Cases [Index]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
+        tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
-        title: "Indexed Test Cases"
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Connections Per Second [cps]"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         rangemode: "tozero"
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Connections Per Second [cps]"
+        tickcolor: "rgb(220, 220, 220)"
+        tickformat: ".3s"
+        tickfont:
+          size: 16
         zeroline: False
       boxmode: "group"
       boxgroupgap: 0.5
@@ -539,34 +555,47 @@
       showlegend: True
       legend:
         orientation: "h"
+        font:
+          size: 16
       width: 700
-      height: 1000
+      height: 800
 
     plot-rps:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Indices of Test Cases [Index]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
+        tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
-        title: "Indexed Test Cases"
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Requests Per Second [rps]"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         rangemode: "tozero"
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Requests Per Second [rps]"
+        tickcolor: "rgb(230, 230, 230)"
+        tickformat: ".3s"
+        tickfont:
+          size: 16
         zeroline: False
       boxmode: "group"
       boxgroupgap: 0.5
@@ -579,35 +608,48 @@
       showlegend: True
       legend:
         orientation: "h"
+        font:
+          size: 16
       width: 700
-      height: 1000
+      height: 800
 
     plot-throughput:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Indices of Test Cases [Index]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
+        tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
-        title: "Indexed Test Cases"
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Packet Throughput [Mpps]"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
         tickformat: ".3s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Packets Per Second [pps]"
+        tickcolor: "rgb(220, 220, 220)"
+        tickfont:
+          size: 16
         zeroline: False
+        range: [0,50]
       boxmode: "group"
       boxgroupgap: 0.5
       autosize: False
@@ -619,93 +661,159 @@
       showlegend: True
       legend:
         orientation: "h"
+        font:
+          size: 16
       width: 700
-      height: 1000
-
-    plot-latency:
-      xaxis:
-        autorange: True
-        fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
-        linewidth: 1
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        tickmode: "linear"
-        title: "Indexed Test Cases"
-        zeroline: False
-      yaxis:
-        gridcolor: "rgb(238, 238, 238)"
-        hoverformat: ""
-        linecolor: "rgb(238, 238, 238)"
-        linewidth: 1
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Latency min/avg/max [uSec]"
-        zeroline: False
-      boxmode: "group"
-      boxgroupgap: 0.5
-      autosize: False
-      margin:
-        t: 50
-        b: 20
-        l: 80
-        r: 20
-      showlegend: True
-      legend:
-        orientation: "h"
-      width: 700
-      height: 1000
+      height: 800
 
     plot-throughput-speedup-analysis:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Number of Cores [Qty]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
         tickmode: "linear"
-        tickangle: 270
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        title: "Throughput speedup factor"
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Packet Throughput [Mpps]"
+        titlefont:
+          size: 16
+        type: "linear"
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        zeroline: False
+        tickcolor: "rgb(220, 220, 220)"
+        tickformat: ".4s"
+        tickfont:
+          size: 16
+        zeroline: True
+        rangemode: "tozero"
+        range: [0,100]
       legend:
         orientation: "h"
-        xanchor: "center"
+        font:
+          size: 16
+        xanchor: "left"
         yanchor: "top"
-        x: 0.5
-        y: 1
+        x: 0
+        y: -0.2
         bgcolor: "rgba(255, 255, 255, 0)"
         bordercolor: "rgba(255, 255, 255, 0)"
-      barmode: "group"
-      bargap: 0.15
-      bargroupgap: 0.1
+        traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
       autosize: False
       margin:
           't': 50
-          'b': 300
-          'l': 50
-          'r': 20
+          'b': 150
+          'l': 85
+          'r': 10
       showlegend: True
       width: 700
-      height: 1000
+      height: 700
+      hoverlabel:
+        namelength: -1
+      annotations: [
+        {
+          text: "_ _          __",
+          align: "left",
+          showarrow: False,
+          xref: "paper",
+          yref: "paper",
+          xanchor: "left",
+          yanchor: "top",
+          x: 0,
+          y: -0.125,
+          font: {
+            family: "Consolas, Courier New",
+            size: 15
+          },
+        },
+        {
+          text: "    perfect     measured",
+          align: "left",
+          showarrow: False,
+          xref: "paper",
+          yref: "paper",
+          xanchor: "left",
+          yanchor: "top",
+          x: 0,
+          y: -0.14,
+          font: {
+            family: "Consolas, Courier New",
+            size: 15
+          },
+        },
+      ]
+
+    plot-latency:
+      titlefont:
+        size: 18
+      xaxis:
+        title: "Direction"
+        titlefont:
+          size: 16
+        autorange: True
+        fixedrange: False
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: False
+        tickcolor: "rgb(220, 220, 220)"
+        tickmode: "linear"
+        tickfont:
+          size: 16
+        zeroline: False
+      yaxis:
+        title: "Packet Latency [uSec]"
+        titlefont:
+          size: 16
+        type: "linear"
+        gridcolor: "rgb(230, 230, 230)"
+        hoverformat: ".4s"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickformat: ".4s"
+        tickfont:
+          size: 16
+        zeroline: True
+        rangemode: "tozero"
+      legend:
+        orientation: "h"
+        font:
+          size: 16
+        traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
+      autosize: False
+      margin:
+          't': 50
+          'b': 150
+          'l': 80
+          'r': 10
+      showlegend: True
+      width: 700
+      height: 700
+      hoverlabel:
+        namelength: -1
 
 -
   type: "static"
@@ -746,7 +854,6 @@
     - 30  # sel
     - 31  # sel
     - 35  # sel
-    # TODO: Add Data sources
     csit-vpp-perf-verify-1807-3n-hsw:
     - 8   # MRR full
     - 9   # MRR sel
@@ -862,7 +969,6 @@
     - 12  # sel
     - 13  # sel
     - 14  # sel
-    # TODO: Add Data sources
     csit-ligato-perf-1807-all:
     - 3   # full ?
     - 4   # sel
@@ -916,7 +1022,6 @@
     - 278
     csit-nsh_sfc-verify-func-1807-ubuntu1604-virl:
     - 2
-    # TODO: Replace with 1807 job:
     csit-dmm-functional-master-ubuntu1604-virl:
     - 95
     csit-hc2vpp-verify-func-1807-ubuntu1604:
@@ -976,7 +1081,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1038,7 +1142,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1100,7 +1203,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1162,7 +1264,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1193,7 +1294,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1238,7 +1338,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1312,7 +1411,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1368,7 +1466,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1424,7 +1521,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1451,7 +1547,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -2872,12 +2967,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -2898,12 +2994,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -2924,12 +3021,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -2950,12 +3048,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -2977,12 +3076,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -3004,12 +3104,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-pdr"
     layout: "plot-throughput"
 
 -
@@ -3031,12 +3132,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -3058,12 +3160,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP L2 3n-hsw-x710
@@ -3085,12 +3188,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3111,12 +3215,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3137,12 +3242,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3163,12 +3269,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3190,12 +3297,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-1t1c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -3217,12 +3325,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-1t1c-features-pdr"
     layout: "plot-throughput"
 
 -
@@ -3244,12 +3353,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-2t2c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -3271,12 +3381,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-2t2c-features-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP L2 3n-hsw-xl710
@@ -3298,12 +3409,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3324,12 +3436,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3350,12 +3463,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3376,12 +3490,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP L2 3n-skx-x710
@@ -3403,12 +3518,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3429,12 +3545,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3455,12 +3572,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3481,12 +3599,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3508,12 +3627,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-2t1c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -3535,12 +3655,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-2t1c-features-pdr"
     layout: "plot-throughput"
 
 -
@@ -3562,12 +3683,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-4t2c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -3589,12 +3711,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-4t2c-features-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP L2 3n-skx-xxv710
@@ -3616,12 +3739,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3642,12 +3766,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3668,12 +3793,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3694,12 +3820,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP L2 2n-skx-x710
@@ -3721,12 +3848,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3747,12 +3875,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3773,12 +3902,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3799,12 +3929,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP L2 2n-skx-xxv710
@@ -3826,12 +3957,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3852,12 +3984,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3878,12 +4011,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3904,12 +4038,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -3933,12 +4068,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -3959,12 +4095,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -3985,12 +4122,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4011,12 +4149,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP Container Memif 3n-hsw-x710
@@ -4038,12 +4177,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4064,12 +4204,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4090,12 +4231,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4116,12 +4258,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP Container Memif 3n-hsw-xl710
@@ -4143,12 +4286,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4169,12 +4313,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4195,12 +4340,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4221,12 +4367,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP Container Memif 3n-skx-x710
@@ -4248,12 +4395,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4274,12 +4422,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4300,12 +4449,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4326,12 +4476,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -4355,12 +4506,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4381,12 +4533,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4407,12 +4560,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4433,12 +4587,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x710
@@ -4460,12 +4615,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4486,12 +4642,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4512,12 +4669,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4538,12 +4696,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -4567,12 +4726,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4593,12 +4753,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4619,12 +4780,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4645,12 +4807,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4672,12 +4835,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-1t1c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -4699,12 +4863,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-1t1c-features-pdr"
     layout: "plot-throughput"
 
 -
@@ -4726,12 +4891,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-2t2c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -4753,12 +4919,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-2t2c-features-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 3n-hsw-x710
@@ -4780,12 +4947,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4806,12 +4974,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4832,12 +5001,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -4858,12 +5028,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -4885,12 +5056,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-1t1c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -4912,12 +5084,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-1t1c-features-pdr"
     layout: "plot-throughput"
 
 -
@@ -4939,12 +5112,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-2t2c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -4966,12 +5140,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-2t2c-features-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 3n-hsw-xl710
@@ -4993,12 +5168,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5019,12 +5195,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5045,12 +5222,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5071,12 +5249,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 3n-skx-x710
@@ -5098,12 +5277,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5124,12 +5304,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5150,12 +5331,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5176,12 +5358,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5203,12 +5386,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-2t1c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -5230,12 +5414,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-2t1c-features-pdr"
     layout: "plot-throughput"
 
 -
@@ -5257,12 +5442,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-4t2c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -5284,12 +5470,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-4t2c-features-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 2n-skx-x710
@@ -5311,12 +5498,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5337,12 +5525,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5363,12 +5552,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5389,12 +5579,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 2n-skx-xxv710
@@ -5416,12 +5607,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5442,12 +5634,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5468,12 +5661,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5494,12 +5688,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -5523,12 +5718,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5549,12 +5745,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5575,12 +5772,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5601,12 +5799,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 tunnels 3n-hsw-x710
@@ -5628,12 +5827,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5654,12 +5854,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5680,12 +5881,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5706,12 +5908,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 tunnels 3n-skx-x710
@@ -5733,12 +5936,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5759,12 +5963,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5785,12 +5990,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5811,12 +6017,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -5841,12 +6048,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5868,12 +6076,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -5895,12 +6104,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5922,12 +6132,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv6 3n-hsw-x710
@@ -5950,12 +6161,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -5977,12 +6189,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6004,12 +6217,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6031,12 +6245,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv6 3n-hsw-xl710
@@ -6059,12 +6274,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6086,12 +6302,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6113,12 +6330,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6140,12 +6358,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv6 3n-skx-x710
@@ -6168,12 +6387,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6195,12 +6415,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6222,12 +6443,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6249,12 +6471,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv6 2n-skx-x710
@@ -6277,12 +6500,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6303,12 +6527,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6330,12 +6555,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6357,12 +6583,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv6 2n-skx-xxv710
@@ -6385,12 +6612,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6412,12 +6640,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6439,12 +6668,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6466,12 +6696,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -6494,12 +6725,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6519,12 +6751,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6544,12 +6777,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6569,12 +6803,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -6598,12 +6833,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6624,12 +6860,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6650,12 +6887,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6676,12 +6914,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -6704,12 +6943,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-1t1c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -6729,12 +6969,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-1t1c-features-pdr"
     layout: "plot-throughput"
 
 -
@@ -6754,12 +6995,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-2t2c-features-ndr"
     layout: "plot-throughput"
 
 -
@@ -6779,12 +7021,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-2t2c-features-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -6806,12 +7049,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6830,12 +7074,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6854,12 +7099,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6878,12 +7124,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 3n-hsw-x520
@@ -6906,12 +7153,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6933,12 +7181,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -6960,12 +7209,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -6987,12 +7237,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost ip4 3n-hsw-x710
@@ -7012,12 +7263,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7036,12 +7288,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7060,12 +7313,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -7084,12 +7338,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 3n-hsw-x710
@@ -7112,12 +7367,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7139,12 +7395,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7166,12 +7423,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -7193,12 +7451,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost ip4 3n-hsw-xl710
@@ -7218,12 +7477,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7242,12 +7502,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7266,12 +7527,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -7290,12 +7552,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 3n-hsw-xl710
@@ -7318,12 +7581,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7345,12 +7609,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -7372,12 +7637,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 -
@@ -7399,12 +7665,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -7425,12 +7692,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-1t1c-ndr"
     layout: "plot-throughput"
 
 -
@@ -7448,12 +7716,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-2t2c-ndr"
     layout: "plot-throughput"
 
 -
@@ -7471,12 +7740,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-1t1c-pdr"
     layout: "plot-throughput"
 
 -
@@ -7494,12 +7764,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-2t2c-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -7521,12 +7792,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x520-64b-1t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7545,12 +7817,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x520-64b-2t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7569,12 +7842,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x520-64b-1t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -7593,12 +7867,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x520-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK l3fwd 3n-hsw-x710
@@ -7618,12 +7893,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x710-64b-1t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7642,12 +7918,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x710-64b-2t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7666,12 +7943,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x710-64b-1t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -7690,12 +7968,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x710-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK l3fwd 3n-hsw-xl710
@@ -7715,12 +7994,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7739,12 +8019,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7763,12 +8044,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-xl710-64b-1t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -7787,12 +8069,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-xl710-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK l3fwd 3n-skx-x710
@@ -7812,12 +8095,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7836,12 +8120,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7860,12 +8145,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-x710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -7884,12 +8170,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-x710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK l3fwd 3n-skx-xxv710
@@ -7909,12 +8196,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7933,12 +8221,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -7957,12 +8246,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -7981,12 +8271,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK l3fwd 2n-skx-x710
@@ -8006,12 +8297,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8030,12 +8322,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8054,12 +8347,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-x710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8078,12 +8372,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-x710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK l3fwd 2n-skx-xxv710
@@ -8103,12 +8398,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8127,12 +8423,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8151,12 +8448,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-xxv710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8175,12 +8473,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-xxv710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -8202,12 +8501,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x520-64b-1t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8226,12 +8526,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x520-64b-2t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8250,12 +8551,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x520-64b-1t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8274,12 +8576,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x520-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK testpmd 3n-hsw-x710
@@ -8299,12 +8602,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x710-64b-1t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8323,12 +8627,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x710-64b-2t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8347,12 +8652,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x710-64b-1t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8371,12 +8677,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x710-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK testpmd 3n-hsw-xl710
@@ -8396,12 +8703,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-xl710-64b-1t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8420,12 +8728,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-xl710-64b-2t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8444,12 +8753,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-xl710-64b-1t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8468,12 +8778,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-xl710-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK testpmd 3n-skx-x710
@@ -8493,12 +8804,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8517,12 +8829,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8541,12 +8854,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-x710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8565,12 +8879,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-x710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK testpmd 3n-skx-xxv710
@@ -8590,12 +8905,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8614,12 +8930,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8638,12 +8955,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-xxv710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8662,12 +8980,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-xxv710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK testpmd 2n-skx-x710
@@ -8687,12 +9006,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8711,12 +9031,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8735,12 +9056,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-x710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8759,12 +9081,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-x710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - DPDK testpmd 2n-skx-xxv710
@@ -8784,12 +9107,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8808,12 +9132,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-throughput"
 
 -
@@ -8832,12 +9157,13 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-xxv710-64b-2t1c-base-pdr"
     layout: "plot-throughput"
 
 -
@@ -8856,20 +9182,14 @@
   parameters:
   - "throughput"
   - "parent"
+  - "tags"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-xxv710-64b-4t2c-base-pdr"
     layout: "plot-throughput"
-
-
-
-
-
-
-
 
 ################################################################################
 
@@ -8877,7 +9197,7 @@
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -8892,16 +9212,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
+  - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -8916,16 +9235,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -8941,16 +9258,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -8966,17 +9281,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -8991,16 +9304,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9015,16 +9326,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9040,16 +9349,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-1t1c-features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9065,17 +9372,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-2t2c-features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 3n-hsw-xl710
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9090,16 +9395,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9114,17 +9417,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 3n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9139,16 +9440,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9163,16 +9462,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-skx-x710-64b-2t1c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9188,16 +9485,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-2t1c-features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-skx-x710-64b-4t2c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9213,17 +9508,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-4t2c-features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 3n-skx-xxv710
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9238,16 +9531,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9262,17 +9553,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 2n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -9287,16 +9576,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -9311,17 +9598,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 2n-skx-xxv710
 -
   type: "plot"
   title: "VPP Latency: l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -9336,16 +9621,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -9360,10 +9643,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -9372,7 +9653,7 @@
 -
   type: "plot"
   title: "VPP Latency: memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9387,16 +9668,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9411,17 +9690,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9436,16 +9713,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9460,17 +9735,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 3n-hsw-xl710
 -
   type: "plot"
   title: "VPP Latency: memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9485,16 +9758,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9509,17 +9780,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 3n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9534,16 +9803,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9558,10 +9825,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -9570,7 +9835,7 @@
 -
   type: "plot"
   title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
@@ -9585,16 +9850,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
@@ -9609,17 +9872,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
@@ -9634,16 +9895,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-ligato-throughput-latency-3n-hsw"
@@ -9658,10 +9917,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -9670,7 +9927,7 @@
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9685,16 +9942,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9709,16 +9964,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9734,16 +9987,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-1t1c-features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9759,17 +10010,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-2t2c-features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv4 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9784,16 +10033,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9808,16 +10055,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9833,16 +10078,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-1t1c-features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9858,17 +10101,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-2t2c-features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv4 3n-hsw-xl710
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9883,16 +10124,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -9907,17 +10146,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv4 3n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9932,16 +10169,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9956,16 +10191,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -9981,16 +10214,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-2t1c-features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -10006,17 +10237,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-4t2c-features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv4 2n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10031,16 +10260,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10055,17 +10282,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv4 2n-skx-xxv710
 -
   type: "plot"
   title: "VPP Latency: ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10080,16 +10305,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10104,10 +10327,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -10116,7 +10337,7 @@
 -
   type: "plot"
   title: "VPP Latency: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10131,16 +10352,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10155,17 +10374,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Ipv4 tunnels 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10180,16 +10397,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10204,17 +10419,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Ipv4 tunnels 3n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -10229,16 +10442,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -10253,10 +10464,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -10265,7 +10474,7 @@
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10281,16 +10490,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10306,17 +10513,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv6 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10332,16 +10537,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10357,17 +10560,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv6 3n-hsw-xl710
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10383,16 +10584,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10408,17 +10607,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv6 3n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -10434,16 +10631,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
@@ -10459,17 +10654,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv6 2n-skx-x710
 -
   type: "plot"
   title: "VPP Latency: ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10485,16 +10678,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10510,17 +10701,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP IPv6 2n-skx-xxv710
 -
   type: "plot"
   title: "VPP Latency: ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10536,16 +10725,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
@@ -10561,10 +10748,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -10573,7 +10758,7 @@
 -
   type: "plot"
   title: "VPP Latency: ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10587,16 +10772,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10610,10 +10793,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -10622,7 +10803,7 @@
 -
   type: "plot"
   title: "VPP Latency: ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10637,16 +10818,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10661,10 +10840,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -10673,7 +10850,7 @@
 -
   type: "plot"
   title: "VPP Latency: srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-1t1c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10687,16 +10864,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-1t1c-features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/srv6-3n-hsw-x520-78b-2t2c-features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10713,7 +10888,7 @@
   traces:
     boxmean: False
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-2t2c-features-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -10722,7 +10897,7 @@
 -
   type: "plot"
   title: "VPP Latency: vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10735,16 +10910,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10757,17 +10930,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 3n-hsw-x520
 -
   type: "plot"
   title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10783,16 +10954,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10808,17 +10977,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP vhost ip4 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10831,16 +10998,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10853,17 +11018,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 3n-hsw-x710
 -
   type: "plot"
   title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10879,16 +11042,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10904,17 +11065,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP vhost ip4 3n-hsw-xl710
 -
   type: "plot"
   title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10927,16 +11086,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10949,17 +11106,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 3n-hsw-xl710
 -
   type: "plot"
   title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -10975,16 +11130,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -11000,10 +11153,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -11012,7 +11163,7 @@
 -
   type: "plot"
   title: "VPP Latency: vts-3n-hsw-x520-114b-1t1c-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-1t1c-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -11024,16 +11175,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-1t1c-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "VPP Latency: vts-3n-hsw-x520-114b-2t2c-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-2t2c-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
@@ -11045,10 +11194,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    boxmean: False
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-2t2c-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -11057,7 +11204,7 @@
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11070,18 +11217,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x520-64b-1t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11094,19 +11237,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x520-64b-2t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK l3fwd 3n-hsw-x710
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11119,18 +11258,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x710-64b-1t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11143,19 +11278,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-x710-64b-2t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK l3fwd 3n-hsw-xl710
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11168,18 +11299,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11192,19 +11319,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK l3fwd 3n-skx-x710
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11217,18 +11340,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11241,19 +11360,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK l3fwd 3n-skx-xxv710
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11266,18 +11381,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11290,19 +11401,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK l3fwd 2n-skx-x710
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11315,18 +11422,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11339,19 +11442,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK l3fwd 2n-skx-xxv710
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11364,18 +11463,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11388,12 +11483,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -11402,7 +11493,7 @@
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x520-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11415,18 +11506,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x520-64b-1t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x520-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11439,19 +11526,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x520-64b-2t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK testpmd 3n-hsw-x710
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11464,18 +11547,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x710-64b-1t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-x710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11488,19 +11567,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-x710-64b-2t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK testpmd 3n-hsw-xl710
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11513,18 +11588,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-xl710-64b-1t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-hsw"
@@ -11537,19 +11608,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-hsw-xl710-64b-2t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK testpmd 3n-skx-x710
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11562,18 +11629,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11586,19 +11649,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK testpmd 3n-skx-xxv710
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11611,18 +11670,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-3n-skx"
@@ -11635,19 +11690,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-3n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK testpmd 2n-skx-x710
 -
   type: "plot"
   title: "DPDK Latency: testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11660,18 +11711,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11684,19 +11731,15 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - DPDK testpmd 2n-skx-xxv710
 -
   type: "plot"
   title: "DPDK Latency: testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11709,18 +11752,14 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
   title: "DPDK Latency: testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
-  algorithm: "plot_latency_box"
+  algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,DPDK]}/testpmd-2n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-dpdk-throughput-latency-2n-skx"
@@ -11733,12 +11772,8 @@
   parameters:
   - "latency"
   - "parent"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
   layout:
-    title: ""  # No title
+    title: "testpmd-2n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -11763,7 +11798,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -11785,7 +11820,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 3n-hsw-x710
@@ -11808,7 +11843,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -11830,7 +11865,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 3n-hsw-xl710
@@ -11853,7 +11888,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -11875,7 +11910,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-hsw-xl710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 3n-skx-x710
@@ -11898,7 +11933,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -11920,7 +11955,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "memif-3n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -11945,7 +11980,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -11967,7 +12002,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 3n-hsw-x710
@@ -11990,7 +12025,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12012,7 +12047,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -12037,7 +12072,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12059,7 +12094,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12082,7 +12117,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12105,7 +12140,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x520-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 3n-hsw-x710
@@ -12128,7 +12163,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12150,7 +12185,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12173,7 +12208,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12196,7 +12231,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-x710-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 3n-hsw-xl710
@@ -12219,7 +12254,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12241,7 +12276,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-hsw-xl710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 3n-skx-x710
@@ -12264,7 +12299,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12286,7 +12321,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12309,7 +12344,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12332,7 +12367,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-3n-skx-x710-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 2n-skx-x710
@@ -12355,7 +12390,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12377,7 +12412,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 2n-skx-xxv710
@@ -12400,7 +12435,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12422,7 +12457,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4-2n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -12448,7 +12483,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12471,7 +12506,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 Tunnels 3n-hsw-x710
@@ -12495,7 +12530,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12518,7 +12553,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 Tunnels 3n-skx-x710
@@ -12542,7 +12577,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12565,7 +12600,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip4tun-3n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -12591,7 +12626,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12614,7 +12649,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x520-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv6 3n-hsw-x710
@@ -12638,7 +12673,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12661,7 +12696,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-x710-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv6 3n-hsw-xl710
@@ -12685,7 +12720,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12708,7 +12743,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-hsw-xl710-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv6 3n-skx-x710
@@ -12732,7 +12767,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12755,7 +12790,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-3n-skx-x710-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv6 2n-skx-x710
@@ -12779,7 +12814,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12801,7 +12836,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-x710-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv6 2n-skx-xxv710
@@ -12825,7 +12860,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12848,7 +12883,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6-2n-skx-xxv710-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -12872,7 +12907,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12893,7 +12928,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ip6tun-3n-hsw-x520-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -12918,7 +12953,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12940,7 +12975,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "ipsec-3n-hsw-xl710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -12964,7 +12999,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -12985,7 +13020,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "srv6-3n-hsw-x520-78b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -13010,7 +13045,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13032,7 +13067,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13055,7 +13090,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13078,7 +13113,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x520-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 3n-hsw-x710
@@ -13101,7 +13136,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13123,7 +13158,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13146,7 +13181,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13169,7 +13204,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-x710-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 3n-hsw-xl710
@@ -13192,7 +13227,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13214,7 +13249,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-hsw-xl710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 3n-skx-x710
@@ -13237,7 +13272,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13259,7 +13294,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13282,7 +13317,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13305,7 +13340,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-x710-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 3n-skx-xxv710
@@ -13328,7 +13363,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13350,7 +13385,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-3n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 2n-skx-x710
@@ -13373,7 +13408,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13395,7 +13430,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 2n-skx-xxv710
@@ -13418,7 +13453,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13440,7 +13475,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "l2sw-2n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -13463,7 +13498,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13483,7 +13518,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP vhost l2sw 3n-hsw-x520
@@ -13507,7 +13542,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13530,7 +13565,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP vhost ip4 3n-hsw-x710
@@ -13551,7 +13586,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13571,7 +13606,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP vhost l2sw 3n-hsw-x710
@@ -13595,7 +13630,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13618,7 +13653,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP vhost ip4 3n-hsw-xl710
@@ -13639,7 +13674,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13659,7 +13694,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP vhost l2sw 3n-hsw-xl710
@@ -13683,7 +13718,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13706,7 +13741,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP vhost l2sw 3n-hsw-x520
@@ -13726,7 +13761,7 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
@@ -13745,5 +13780,5 @@
   - "parent"
   - "tags"
   layout:
-    title: ""  # No title
+    title: "vts-3n-hsw-x520-114b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
