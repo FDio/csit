@@ -3,6 +3,31 @@
 
     \clearpage
 
+.. raw:: html
+
+    <script type="text/javascript">
+
+        function getDocHeight(doc) {
+            doc = doc || document;
+            var body = doc.body, html = doc.documentElement;
+            var height = Math.max( body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight );
+            return height;
+        }
+
+        function setIframeHeight(id) {
+            var ifrm = document.getElementById(id);
+            var doc = ifrm.contentDocument? ifrm.contentDocument:
+                ifrm.contentWindow.document;
+            ifrm.style.visibility = 'hidden';
+            ifrm.style.height = "10px"; // reset to minimal height ...
+            // IE opt. for bing/msn needs a bit added or scrollbar appears
+            ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+            ifrm.style.visibility = 'visible';
+        }
+
+    </script>
+
 IPSec IPv4 Routing
 ==================
 
@@ -16,7 +41,7 @@ a.k.a. VPP data plane thread(s), and their physical CPU core(s)
 placement.
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1807>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1810>`_.
 
 3n-hsw-xl710
 ~~~~~~~~~~~~
@@ -28,12 +53,12 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
-:index:`Latency: ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr`
+:index:`Packet Latency: ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -42,7 +67,7 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
             \label{fig:ipsec-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
     \end{figure}
 
@@ -57,12 +82,12 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
-:index:`Latency: ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr`
+:index:`Packet Latency: ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -71,6 +96,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
             \label{fig:ipsec-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
     \end{figure}
