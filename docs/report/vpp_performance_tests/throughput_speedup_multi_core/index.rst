@@ -28,7 +28,7 @@ threaded VPP configurations relative to 1-core configurations.
     sporadically impacting physical interface up/down state.
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
 
     l2
     ip4
