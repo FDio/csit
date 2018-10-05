@@ -21,8 +21,18 @@ import plotly.offline as ploff
 import plotly.graph_objs as plgo
 
 from plotly.exceptions import PlotlyError
+from math import log10, floor
+from collections import OrderedDict
 
 from utils import mean
+
+
+COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
+          "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
+          "Violet", "Blue", "Yellow", "BurlyWood", "CadetBlue", "Crimson",
+          "DarkBlue", "DarkCyan", "DarkGreen", "Green", "GoldenRod",
+          "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
+          "MediumSeaGreen", "SeaGreen", "LightSlateGrey"]
 
 
 def generate_plots(spec, data):
@@ -38,6 +48,7 @@ def generate_plots(spec, data):
     for index, plot in enumerate(spec.plots):
         try:
             logging.info("  Plot nr {0}:".format(index + 1))
+            plot["limits"] = spec.configuration["limits"]
             eval(plot["algorithm"])(plot, data)
         except NameError as err:
             logging.error("Probably algorithm '{alg}' is not defined: {err}".
@@ -69,11 +80,13 @@ def plot_performance_box(plot, input_data):
 
     # Prepare the data for the plot
     y_vals = dict()
+    y_tags = dict()
     for job in data:
         for build in job:
             for test in build:
                 if y_vals.get(test["parent"], None) is None:
                     y_vals[test["parent"]] = list()
+                    y_tags[test["parent"]] = test.get("tags", None)
                 try:
                     if test["type"] in ("NDRPDR", ):
                         if "-pdr" in plot_title.lower():
@@ -89,34 +102,208 @@ def plot_performance_box(plot, input_data):
                 except (KeyError, TypeError):
                     y_vals[test["parent"]].append(None)
 
+    # Sort the tests
+    order = plot.get("sort", None)
+    if order and y_tags:
+        y_sorted = OrderedDict()
+        for tag in order:
+            for suite, tags in y_tags.items():
+                if tag in tags:
+                    y_sorted[suite] = y_vals.pop(suite)
+                    y_tags.pop(suite)
+        # The rest comes unsorted at the end
+        for suite in y_tags.keys():
+            y_sorted[suite] = y_vals[suite]
+    else:
+        y_sorted = y_vals
+
     # Add None to the lists with missing data
     max_len = 0
-    for val in y_vals.values():
+    for val in y_sorted.values():
         if len(val) > max_len:
             max_len = len(val)
-    for key, val in y_vals.items():
+    for key, val in y_sorted.items():
         if len(val) < max_len:
             val.extend([None for _ in range(max_len - len(val))])
 
     # Add plot traces
     traces = list()
-    df = pd.DataFrame(y_vals)
+    df = pd.DataFrame(y_sorted)
     df.head()
+    y_max = list()
     for i, col in enumerate(df.columns):
         name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', '').
                                  replace('-ndrpdr', ''))
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
-                               y=df[col],
+                               y=[y / 1000000 for y in df[col]],
                                name=name,
                                **plot["traces"]))
+        val_max = max(df[col])
+        y_max.append(int(val_max / 1000000) + 1)
 
     try:
         # Create plot
+        if plot["layout"].get("title", None):
+            plot["layout"]["title"] = "<b>Packet Throughput:</b>{0}". \
+                format(plot["layout"]["title"])
+        plot["layout"]["yaxis"]["range"] = [0, max(y_max)]
         plpl = plgo.Figure(data=traces, layout=plot["layout"])
 
         # Export Plot
         logging.info("    Writing file '{0}{1}'.".
                      format(plot["output-file"], plot["output-file-type"]))
+        ploff.plot(plpl,
+                   show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
+
+    logging.info("  Done.")
+
+
+def plot_error_bars_latency(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_latency_box
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    # Prepare the data for the plot
+    y_tmp_vals = dict()
+    y_tags = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if y_tmp_vals.get(test["parent"], None) is None:
+                    y_tmp_vals[test["parent"]] = [
+                        list(),  # direction1, min
+                        list(),  # direction1, avg
+                        list(),  # direction1, max
+                        list(),  # direction2, min
+                        list(),  # direction2, avg
+                        list()   # direction2, max
+                    ]
+                    y_tags[test["parent"]] = test["tags"]
+                try:
+                    if test["type"] in ("NDRPDR", ):
+                        if "-pdr" in plot_title.lower():
+                            ttype = "PDR"
+                        elif "-ndr" in plot_title.lower():
+                            ttype = "NDR"
+                        else:
+                            continue
+                        y_tmp_vals[test["parent"]][0].append(
+                            test["latency"][ttype]["direction1"]["min"])
+                        y_tmp_vals[test["parent"]][1].append(
+                            test["latency"][ttype]["direction1"]["avg"])
+                        y_tmp_vals[test["parent"]][2].append(
+                            test["latency"][ttype]["direction1"]["max"])
+                        y_tmp_vals[test["parent"]][3].append(
+                            test["latency"][ttype]["direction2"]["min"])
+                        y_tmp_vals[test["parent"]][4].append(
+                            test["latency"][ttype]["direction2"]["avg"])
+                        y_tmp_vals[test["parent"]][5].append(
+                            test["latency"][ttype]["direction2"]["max"])
+                    else:
+                        continue
+                except (KeyError, TypeError):
+                    pass
+
+    logging.info("y_tmp_vals: {0}\n".format(y_tmp_vals))
+
+    # Sort the tests
+    order = plot.get("sort", None)
+    if order and y_tags:
+        y_sorted = OrderedDict()
+        for tag in order:
+            for suite, tags in y_tags.items():
+                if tag in tags:
+                    y_sorted[suite] = y_tmp_vals.pop(suite)
+                    y_tags.pop(suite)
+        # The rest comes unsorted at the end
+        for suite in y_tags.keys():
+            y_sorted[suite] = y_tmp_vals[suite]
+    else:
+        y_sorted = y_tmp_vals
+
+    logging.info("y_sorted: {0}\n".format(y_sorted))
+
+    x_vals = list()
+    y_vals = list()
+    y_mins = list()
+    y_maxs = list()
+    for key, val in y_sorted.items():
+        key = "-".join(key.split("-")[:-1])
+        x_vals.append(key)  # dir 1
+        y_vals.append(mean(val[1]))
+        y_mins.append(mean(val[1]) - mean(val[0]))
+        y_maxs.append(mean(val[2]) - mean(val[1]))
+        x_vals.append(key)  # dir 2
+        y_vals.append(mean(val[4]))
+        y_mins.append(mean(val[4]) - mean(val[3]))
+        y_maxs.append(mean(val[5]) - mean(val[4]))
+
+    logging.info("x_vals: {0}\n".format(x_vals))
+    logging.info("y_vals: {0}\n".format(y_vals))
+    logging.info("y_mins: {0}\n".format(y_mins))
+    logging.info("y_maxs: {0}\n".format(y_maxs))
+
+    traces = list()
+
+    # x_axis = ["TGint1-to-SUT1-to-SUT2-to-TGint2",
+    #           "TGint2-to-SUT2-to-SUT1-to-TGint1"] * (len(x_vals) / 2)
+
+    for idx in range(len(x_vals)):
+        traces.append(plgo.Scatter(
+            x=[idx, ],
+            y=[y_vals[idx], ],
+            name=x_vals[idx],
+            legendgroup=x_vals[idx],
+            showlegend=bool(int(idx % 2)),
+            mode="markers",
+            error_y=dict(
+                type='data',
+                symmetric=False,
+                array=[y_maxs[idx], ],
+                arrayminus=[y_mins[idx], ],
+                color=COLORS[int(idx / 2)]
+            ),
+            marker = dict(
+                size=10,
+                color=COLORS[int(idx / 2)],
+            )
+        ))
+
+    try:
+        # Create plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        layout = plot["layout"]
+        if layout.get("title", None):
+            layout["title"] = "<b>Packet Latency:</b> {0}".\
+                format(layout["title"])
+        # layout["yaxis"]["range"] = [0, max(y_max)]
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
         ploff.plot(plpl,
                    show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
@@ -153,6 +340,7 @@ def plot_latency_box(plot, input_data):
 
     # Prepare the data for the plot
     y_tmp_vals = dict()
+    y_tags = dict()
     for job in data:
         for build in job:
             for test in build:
@@ -165,6 +353,7 @@ def plot_latency_box(plot, input_data):
                         list(),  # direction2, avg
                         list()   # direction2, max
                     ]
+                    y_tags[test["parent"]] = test["tags"]
                 try:
                     if test["type"] in ("NDRPDR", ):
                         if "-pdr" in plot_title.lower():
@@ -190,8 +379,25 @@ def plot_latency_box(plot, input_data):
                 except (KeyError, TypeError):
                     pass
 
-    y_vals = dict()
-    for key, values in y_tmp_vals.items():
+    logging.info("y_tmp_vals: {0}\n".format(y_tmp_vals))
+
+    # Sort the tests
+    order = plot.get("sort", None)
+    if order and y_tags:
+        y_sorted = OrderedDict()
+        for tag in order:
+            for suite, tags in y_tags.items():
+                if tag in tags:
+                    y_sorted[suite] = y_tmp_vals.pop(suite)
+                    y_tags.pop(suite)
+        # The rest comes unsorted at the end
+        for suite in y_tags.keys():
+            y_sorted[suite] = y_tmp_vals[suite]
+    else:
+        y_sorted = y_tmp_vals
+
+    y_vals = OrderedDict()
+    for key, values in y_sorted.items():
         y_vals[key] = list()
         for val in values:
             if val:
@@ -201,8 +407,8 @@ def plot_latency_box(plot, input_data):
             y_vals[key].append(average)
             y_vals[key].append(average)  # Twice for plot.ly
 
-    # Add plot traces
-    traces = list()
+    logging.info("y_vals: {0}\n".format(y_vals))
+
     try:
         df = pd.DataFrame(y_vals)
         df.head()
@@ -211,29 +417,24 @@ def plot_latency_box(plot, input_data):
                       format(str(err).replace("\n", " ")))
         return
 
-    for i, col in enumerate(df.columns):
-        name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', '').
-                                 replace('-ndrpdr', ''))
-        traces.append(plgo.Box(x=['TGint1-to-SUT1-to-SUT2-to-TGint2',
-                                  'TGint1-to-SUT1-to-SUT2-to-TGint2',
-                                  'TGint1-to-SUT1-to-SUT2-to-TGint2',
-                                  'TGint1-to-SUT1-to-SUT2-to-TGint2',
-                                  'TGint1-to-SUT1-to-SUT2-to-TGint2',
-                                  'TGint1-to-SUT1-to-SUT2-to-TGint2',
-                                  'TGint2-to-SUT2-to-SUT1-to-TGint1',
-                                  'TGint2-to-SUT2-to-SUT1-to-TGint1',
-                                  'TGint2-to-SUT2-to-SUT1-to-TGint1',
-                                  'TGint2-to-SUT2-to-SUT1-to-TGint1',
-                                  'TGint2-to-SUT2-to-SUT1-to-TGint1',
-                                  'TGint2-to-SUT2-to-SUT1-to-TGint1'],
-                               y=df[col],
-                               name=name,
-                               **plot["traces"]))
+    x_axis = ["TGint1-to-SUT1-to-SUT2-to-TGint2", ] * 6
+    x_axis.extend(["TGint2-to-SUT2-to-SUT1-to-TGint1", ] * 6)
 
+    # Add plot traces
+    traces = list()
+    for col in df.columns:
+        name = "{0}".format(col.lower().replace('-ndrpdrdisc', '').
+                            replace('-ndrpdr', ''))
+        traces.append(plgo.Box(x=x_axis,
+                               y=df[col],
+                               name=name))
     try:
         # Create plot
         logging.info("    Writing file '{0}{1}'.".
                      format(plot["output-file"], plot["output-file-type"]))
+        if plot["layout"].get("title", None):
+            plot["layout"]["title"] = "<b>Packet Latency:</b> {0}". \
+                format(plot["layout"]["title"])
         plpl = plgo.Figure(data=traces, layout=plot["layout"])
 
         # Export Plot
@@ -344,6 +545,186 @@ def plot_throughput_speedup_analysis(plot, input_data):
         logging.info("    Writing file '{0}{1}'.".
                      format(plot["output-file"], plot["output-file-type"]))
         plpl = plgo.Figure(data=traces, layout=plot["layout"])
+
+        # Export Plot
+        ploff.plot(plpl,
+                   show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
+
+    logging.info("  Done.")
+
+
+def plot_line_throughput_speedup_analysis(plot, input_data):
+    """Generate the plot(s) with algorithm:
+    plot_line_throughput_speedup_analysis
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    y_vals = dict()
+    y_tags = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if y_vals.get(test["parent"], None) is None:
+                    y_vals[test["parent"]] = {"1": list(),
+                                              "2": list(),
+                                              "4": list()}
+                    y_tags[test["parent"]] = test.get("tags", None)
+                try:
+                    if test["type"] in ("NDRPDR", ):
+                        if "-pdr" in plot_title.lower():
+                            ttype = "PDR"
+                        elif "-ndr" in plot_title.lower():
+                            ttype = "NDR"
+                        else:
+                            continue
+                        if "1C" in test["tags"]:
+                            y_vals[test["parent"]]["1"].\
+                                append(test["throughput"][ttype]["LOWER"])
+                        elif "2C" in test["tags"]:
+                            y_vals[test["parent"]]["2"]. \
+                                append(test["throughput"][ttype]["LOWER"])
+                        elif "4C" in test["tags"]:
+                            y_vals[test["parent"]]["4"]. \
+                                append(test["throughput"][ttype]["LOWER"])
+                except (KeyError, TypeError):
+                    pass
+
+    if not y_vals:
+        logging.warning("No data for the plot '{}'".
+                        format(plot.get("title", "")))
+        return
+
+    y_1c_max = dict()
+    for test_name, test_vals in y_vals.items():
+        for key, test_val in test_vals.items():
+            if test_val:
+                y_vals[test_name][key] = sum(test_val) / len(test_val)
+                if key == "1":
+                    y_1c_max[test_name] = max(test_val) / 1000000.0
+
+    vals = dict()
+    y_max = list()
+    for test_name, test_vals in y_vals.items():
+        if test_vals["1"]:
+            name = "-".join(test_name.split('-')[1:-1])
+
+            vals[name] = dict()
+            y_val_1 = test_vals["1"] / 1000000.0
+            y_val_2 = test_vals["2"] / 1000000.0 if test_vals["2"] else None
+            y_val_4 = test_vals["4"] / 1000000.0 if test_vals["4"] else None
+
+            vals[name]["val"] = [y_val_1, y_val_2, y_val_4]
+            vals[name]["rel"] = [1.0, None, None]
+            vals[name]["ideal"] = [y_1c_max[test_name],
+                                   y_1c_max[test_name] * 2,
+                                   y_1c_max[test_name] * 4]
+            vals[name]["diff"] = [0.0,  None, None]
+
+            val_max = max(max(vals[name]["val"], vals[name]["ideal"]))
+            y_max.append(10**floor(log10(val_max)) * (int(val_max/10) + 1))
+
+            if y_val_2:
+                vals[name]["rel"][1] = round(y_val_2 / y_val_1, 2)
+                vals[name]["diff"][1] = \
+                    (y_val_2 - vals[name]["ideal"][1]) * 100 / y_val_2
+            if y_val_4:
+                vals[name]["rel"][2] = round(y_val_4 / y_val_1, 2)
+                vals[name]["diff"][2] = \
+                    (y_val_4 - vals[name]["ideal"][2]) * 100 / y_val_4
+
+    # Sort the tests
+    order = plot.get("sort", None)
+    if order and y_tags:
+        y_sorted = OrderedDict()
+        for tag in order:
+            for test, tags in y_tags.items():
+                if tag in tags:
+                    name = "-".join(test.split('-')[1:-1])
+                    y_sorted[name] = vals.pop(name)
+                    y_tags.pop(test)
+        # The rest comes unsorted at the end
+        for test in vals.keys():
+            y_sorted[test] = vals[test]
+    else:
+        y_sorted = vals
+
+    traces = list()
+    x_vals = [1, 2, 4]
+
+    # Limits:
+    #nic_limit =
+
+    # Perfect and measured:
+    cidx = 0
+    for name, val in y_sorted.iteritems():
+        hovertext=list()
+        for idx in range(len(val["val"])):
+            hovertext.append("value: {0:.2f}Mpps<br>"
+                             "diff: {1:.0f}%<br>"
+                             "speedup: {2:.2f}".
+                             format(val["val"][idx],
+                                    round(val["diff"][idx]),
+                                    val["rel"][idx]))
+        traces.append(plgo.Scatter(x=x_vals,
+                                   y=val["val"],
+                                   name=name,
+                                   legendgroup=name,
+                                   mode="lines+markers",
+                                   line=dict(
+                                       color=COLORS[cidx],
+                                       width=2),
+                                   text=hovertext,
+                                   hoverinfo="text+name"
+                                   ))
+        traces.append(plgo.Scatter(x=x_vals,
+                                   y=val["ideal"],
+                                   name="{0} perfect".format(name),
+                                   legendgroup=name,
+                                   showlegend=False,
+                                   mode="lines+markers",
+                                   line=dict(
+                                       color=COLORS[cidx],
+                                       width=2,
+                                       dash="dash"),
+                                   text=["perfect: {0:.2f}Mpps".format(y)
+                                         for y in val["ideal"]],
+                                   hoverinfo="text"
+                                   ))
+        cidx += 1
+
+    try:
+        # Create plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        layout = plot["layout"]
+        if layout.get("title", None):
+            layout["title"] = "<b>Speedup Multi-core:</b> {0}".\
+                format(layout["title"])
+        layout["yaxis"]["range"] = [0, max(y_max)]
+        plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
         ploff.plot(plpl,
