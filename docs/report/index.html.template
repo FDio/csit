@@ -12,7 +12,7 @@ CSIT 18.07
     introduction/methodology
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 4
     :caption: VPP Performance
 
     vpp_performance_tests/overview

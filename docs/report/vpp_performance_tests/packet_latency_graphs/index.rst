@@ -39,7 +39,7 @@ Additional information about graph data:
     `archived here <../../_static/archive/>`_.
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
 
     l2
     ip4
