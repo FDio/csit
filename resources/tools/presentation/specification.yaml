@@ -97,6 +97,23 @@
 -
   type: "configuration"
 
+  limits:
+    nic:
+      x520: 24460000
+      x710: 35800000
+      xxv710: 35800000
+      xl710: 35800000
+
+    link:
+      10ge: 14880952.38
+      25ge: 37202380.95
+      40ge: 59523809.52
+      100ge: 148809523.81
+
+    pci:
+      pci-g3-x8: 74404761.90
+      pci-g3-x16: 148809523.81
+
   data-sets:
 
     # VPP Performance
@@ -125,7 +142,6 @@
       - 30  # sel
       - 31  # sel
       - 35  # sel
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -142,7 +158,6 @@
       - 47  # NDRPDR sel
 
     vpp-compare-testbeds:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -170,7 +185,6 @@
       - 56  # NDRPDR sel
 
     vpp-compare-testbeds-mrr:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -216,7 +230,6 @@
       - 20  # mrr - sel
       - 21  # mrr - sel
       - 22  # mrr - sel
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -229,7 +242,6 @@
       - 48  # MRR sel
 
     vpp-perf-results-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -250,7 +262,6 @@
       - 8   # MRR full
 
     vpp-mrr-results-3n-skx:
-      # TODO: Replace with better results
       csit-vpp-perf-verify-1807-3n-skx:
       - 31  # MRR full
 
@@ -259,7 +270,6 @@
       - 27  # MRR full
 
     plot-throughput-speedup-analysis-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -302,7 +312,6 @@
       - 42  # NDRPDR sel
 
     plot-vpp-throughput-latency-3n-hsw:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -368,18 +377,15 @@
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
-      # TODO: Replace with better results
       csit-ligato-perf-1807-all:
       - 3   # full ?
 
     plot-ligato-throughput-speedup-analysis-3n-hsw:
-      # TODO: Add Data sources
       csit-ligato-perf-1807-all:
       - 3   # full ?
       - 4   # sel
 
     plot-ligato-throughput-latency-3n-hsw:
-      # TODO: Add Data sources
       csit-ligato-perf-1807-all:
       - 3   # full ?
       - 4   # sel
@@ -496,37 +502,47 @@
 
     # DMM Functional
     dmm-func-results:
-      # TODO: Replace with 1807 job:
       csit-dmm-functional-master-ubuntu1604-virl:
       - 95
 
   plot-layouts:
 
     plot-cps:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Indices of Test Cases [Index]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
+        tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
-        title: "Indexed Test Cases"
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Connections Per Second [cps]"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         rangemode: "tozero"
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Connections Per Second [cps]"
+        tickcolor: "rgb(220, 220, 220)"
+        tickformat: ".3s"
+        tickfont:
+          size: 16
         zeroline: False
       boxmode: "group"
       boxgroupgap: 0.5
@@ -539,34 +555,47 @@
       showlegend: True
       legend:
         orientation: "h"
+        font:
+          size: 16
       width: 700
-      height: 1000
+      height: 800
 
     plot-rps:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Indices of Test Cases [Index]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
+        tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
-        title: "Indexed Test Cases"
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Requests Per Second [rps]"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         rangemode: "tozero"
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Requests Per Second [rps]"
+        tickcolor: "rgb(230, 230, 230)"
+        tickformat: ".3s"
+        tickfont:
+          size: 16
         zeroline: False
       boxmode: "group"
       boxgroupgap: 0.5
@@ -579,35 +608,48 @@
       showlegend: True
       legend:
         orientation: "h"
+        font:
+          size: 16
       width: 700
-      height: 1000
+      height: 800
 
     plot-throughput:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Indices of Test Cases [Index]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
+        tickcolor: "rgb(220, 220, 220)"
         tickmode: "linear"
-        title: "Indexed Test Cases"
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Packet Throughput [Mpps]"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
         tickformat: ".3s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Packets Per Second [pps]"
+        tickcolor: "rgb(220, 220, 220)"
+        tickfont:
+          size: 16
         zeroline: False
+        range: [0,50]
       boxmode: "group"
       boxgroupgap: 0.5
       autosize: False
@@ -619,93 +661,159 @@
       showlegend: True
       legend:
         orientation: "h"
+        font:
+          size: 16
       width: 700
-      height: 1000
-
-    plot-latency:
-      xaxis:
-        autorange: True
-        fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
-        linewidth: 1
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        tickmode: "linear"
-        title: "Indexed Test Cases"
-        zeroline: False
-      yaxis:
-        gridcolor: "rgb(238, 238, 238)"
-        hoverformat: ""
-        linecolor: "rgb(238, 238, 238)"
-        linewidth: 1
-        showgrid: True
-        showline: True
-        showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        title: "Latency min/avg/max [uSec]"
-        zeroline: False
-      boxmode: "group"
-      boxgroupgap: 0.5
-      autosize: False
-      margin:
-        t: 50
-        b: 20
-        l: 80
-        r: 20
-      showlegend: True
-      legend:
-        orientation: "h"
-      width: 700
-      height: 1000
+      height: 800
 
     plot-throughput-speedup-analysis:
+      titlefont:
+        size: 18
       xaxis:
+        title: "Number of Cores [Qty]"
+        titlefont:
+          size: 16
         autorange: True
         fixedrange: False
-        gridcolor: "rgb(238, 238, 238)"
-        linecolor: "rgb(238, 238, 238)"
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
         tickcolor: "rgb(238, 238, 238)"
         tickmode: "linear"
-        tickangle: 270
+        tickfont:
+          size: 16
         zeroline: False
       yaxis:
-        title: "Throughput speedup factor"
-        gridcolor: "rgb(238, 238, 238)"
+        title: "Packet Throughput [Mpps]"
+        titlefont:
+          size: 16
+        type: "linear"
+        gridcolor: "rgb(230, 230, 230)"
         hoverformat: ".4s"
-        linecolor: "rgb(238, 238, 238)"
+        linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
         showline: True
         showticklabels: True
-        tickcolor: "rgb(238, 238, 238)"
-        zeroline: False
+        tickcolor: "rgb(220, 220, 220)"
+        tickformat: ".4s"
+        tickfont:
+          size: 16
+        zeroline: True
+        rangemode: "tozero"
+        range: [0,100]
       legend:
         orientation: "h"
-        xanchor: "center"
+        font:
+          size: 16
+        xanchor: "left"
         yanchor: "top"
-        x: 0.5
-        y: 1
+        x: 0
+        y: -0.2
         bgcolor: "rgba(255, 255, 255, 0)"
         bordercolor: "rgba(255, 255, 255, 0)"
-      barmode: "group"
-      bargap: 0.15
-      bargroupgap: 0.1
+        traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
       autosize: False
       margin:
           't': 50
-          'b': 300
-          'l': 50
-          'r': 20
+          'b': 150
+          'l': 85
+          'r': 10
       showlegend: True
       width: 700
-      height: 1000
+      height: 700
+      hoverlabel:
+        namelength: -1
+      annotations: [
+        {
+          text: "_ _          __",
+          align: "left",
+          showarrow: False,
+          xref: "paper",
+          yref: "paper",
+          xanchor: "left",
+          yanchor: "top",
+          x: 0,
+          y: -0.125,
+          font: {
+            family: "Consolas, Courier New",
+            size: 15
+          },
+        },
+        {
+          text: "    perfect     measured",
+          align: "left",
+          showarrow: False,
+          xref: "paper",
+          yref: "paper",
+          xanchor: "left",
+          yanchor: "top",
+          x: 0,
+          y: -0.14,
+          font: {
+            family: "Consolas, Courier New",
+            size: 15
+          },
+        },
+      ]
+
+    plot-latency:
+      titlefont:
+        size: 18
+      xaxis:
+        title: "Direction"
+        titlefont:
+          size: 16
+        autorange: True
+        fixedrange: False
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: False
+        tickcolor: "rgb(220, 220, 220)"
+        tickmode: "linear"
+        tickfont:
+          size: 16
+        zeroline: False
+      yaxis:
+        title: "Packet Latency [uSec]"
+        titlefont:
+          size: 16
+        type: "linear"
+        gridcolor: "rgb(230, 230, 230)"
+        hoverformat: ".4s"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickformat: ".4s"
+        tickfont:
+          size: 16
+        zeroline: True
+        rangemode: "tozero"
+      legend:
+        orientation: "h"
+        font:
+          size: 16
+        traceorder: "normal"  # "grouped" does not work: bug https://github.com/plotly/plotly.js/issues/1913
+      autosize: False
+      margin:
+          't': 50
+          'b': 150
+          'l': 80
+          'r': 10
+      showlegend: True
+      width: 700
+      height: 700
+      hoverlabel:
+        namelength: -1
 
 -
   type: "static"
@@ -746,7 +854,6 @@
     - 30  # sel
     - 31  # sel
     - 35  # sel
-    # TODO: Add Data sources
     csit-vpp-perf-verify-1807-3n-hsw:
     - 8   # MRR full
     - 9   # MRR sel
@@ -862,7 +969,6 @@
     - 12  # sel
     - 13  # sel
     - 14  # sel
-    # TODO: Add Data sources
     csit-ligato-perf-1807-all:
     - 3   # full ?
     - 4   # sel
@@ -916,7 +1022,6 @@
     - 278
     csit-nsh_sfc-verify-func-1807-ubuntu1604-virl:
     - 2
-    # TODO: Replace with 1807 job:
     csit-dmm-functional-master-ubuntu1604-virl:
     - 95
     csit-hc2vpp-verify-func-1807-ubuntu1604:
@@ -976,7 +1081,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1038,7 +1142,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1100,7 +1203,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1162,7 +1264,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1193,7 +1294,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1238,7 +1338,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 11  # NDRPDR full 1
       - 22  # NDRPDR full 2
@@ -1312,7 +1411,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1368,7 +1466,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1424,7 +1521,6 @@
   compare:
     title: "rls1807"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -1451,7 +1547,6 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add Data sources
       csit-vpp-perf-verify-1807-3n-hsw:
       - 8   # MRR full
       - 9   # MRR sel
@@ -2853,7 +2948,7 @@
 
 ################################################################################
 
-# Packet Throughput - VPP L2 3n-hsw-x520
+ Packet Throughput - VPP L2 3n-hsw-x520
 -
   type: "plot"
   title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
