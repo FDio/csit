@@ -25,6 +25,14 @@ from plotly.exceptions import PlotlyError
 from utils import mean
 
 
+COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
+          "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
+          "Violet", "Blue", "Yellow", "BurlyWood", "CadetBlue", "Crimson",
+          "DarkBlue", "DarkCyan", "DarkGreen", "Green", "GoldenRod",
+          "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
+          "MediumSeaGreen", "SeaGreen", "LightSlateGrey"]
+
+
 def generate_plots(spec, data):
     """Generate all plots specified in the specification file.
 
@@ -357,6 +365,147 @@ def plot_throughput_speedup_analysis(plot, input_data):
 
     logging.info("  Done.")
 
+
+def plot_line_throughput_speedup_analysis(plot, input_data):
+    """Generate the plot(s) with algorithm:
+    plot_line_throughput_speedup_analysis
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the plot {0} ...".
+                 format(plot.get("title", "")))
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    throughput = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if throughput.get(test["parent"], None) is None:
+                    throughput[test["parent"]] = {"1": list(),
+                                                  "2": list(),
+                                                  "4": list()}
+                try:
+                    if test["type"] in ("NDRPDR", ):
+                        if "-pdr" in plot_title.lower():
+                            ttype = "PDR"
+                        elif "-ndr" in plot_title.lower():
+                            ttype = "NDR"
+                        else:
+                            continue
+                        if "1C" in test["tags"]:
+                            throughput[test["parent"]]["1"].\
+                                append(test["throughput"][ttype]["LOWER"])
+                        elif "2C" in test["tags"]:
+                            throughput[test["parent"]]["2"]. \
+                                append(test["throughput"][ttype]["LOWER"])
+                        elif "4C" in test["tags"]:
+                            throughput[test["parent"]]["4"]. \
+                                append(test["throughput"][ttype]["LOWER"])
+                except (KeyError, TypeError):
+                    pass
+
+    if not throughput:
+        logging.warning("No data for the plot '{}'".
+                        format(plot.get("title", "")))
+        return
+
+    for test_name, test_vals in throughput.items():
+        for key, test_val in test_vals.items():
+            if test_val:
+                throughput[test_name][key] = sum(test_val) / len(test_val)
+
+    vals = dict()
+    for test_name, test_vals in throughput.items():
+        if test_vals["1"]:
+            name = "-".join(test_name.split('-')[1:-1])
+            if "x520" in test_name:
+                limit = 23.5
+            else:
+                limit = 100.0
+            vals[name] = dict()
+            y_val_1 = test_vals["1"] / 1000000.0
+            y_val_2 = test_vals["2"] / 1000000.0 if test_vals["2"] else None
+            y_val_4 = test_vals["4"] / 1000000.0 if test_vals["4"] else None
+
+            vals[name]["val"] = [y_val_1, y_val_2, y_val_4]
+            vals[name]["rel"] = [1.0, None, None]
+            y_ideal_2 = y_val_1 * 2 if y_val_1 * 2 < limit else limit
+            y_ideal_4 = y_val_1 * 4 if y_val_1 * 4 < limit else limit
+            vals[name]["ideal"] = [y_val_1, y_ideal_2, y_ideal_4]
+            vals[name]["diff"] = [0.0,  None, None]
+
+            if y_val_2:
+                vals[name]["rel"][1] = round(y_val_2 / y_val_1, 2)
+                vals[name]["diff"][1] = \
+                    (y_val_2 - vals[name]["ideal"][1]) * 100 / y_val_2
+            if y_val_4:
+                vals[name]["rel"][2] = round(y_val_4 / y_val_1, 2)
+                vals[name]["diff"][2] = \
+                    (y_val_4 - vals[name]["ideal"][2]) * 100 / y_val_4
+
+    logging.info("vals:\n{0}".format(vals))
+
+    traces = list()
+    x_vals = [1, 2, 4]
+    cidx = 0
+    for name, val in vals.iteritems():
+        hovertext=list()
+        for idx in range(len(val["val"])):
+            hovertext.append("thput: {0}<br>diff: {1}<br>speedup: {2}".
+                             format(val["val"][idx],
+                                    val["diff"][idx],
+                                    val["rel"][idx]))
+        traces.append(plgo.Scatter(x=x_vals,
+                                   y=val["val"],
+                                   name=name,
+                                   line=dict(
+                                       color=COLORS[cidx],
+                                       width=2),
+                                   hovertext=hovertext
+                                   ))
+        traces.append(plgo.Scatter(x=x_vals,
+                                   y=val["ideal"],
+                                   name="{0} ideal".format(name),
+                                   line=dict(
+                                       color=COLORS[cidx],
+                                       width=2,
+                                       dash="dash")
+                                   ))
+        cidx += 1
+
+    try:
+        # Create plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        layout = plot["layout"]
+        layout["title"] = "Packet Throughput Speedup: <b>{0}</b>".\
+            format(layout["title"])
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        ploff.plot(plpl,
+                   show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
+
+    logging.info("  Done.")
 
 def plot_http_server_performance_box(plot, input_data):
     """Generate the plot(s) with algorithm: plot_http_server_performance_box
