@@ -1162,7 +1162,6 @@
 | | | ... | ${${dut}-vhost-${number}-if1}
 | | | Run Keyword If | ${number}==${vm_count} | Configure L2XC
 | | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${number}-if2} | ${${dut}_if2}
-| | All VPP Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 xconnect with Vhost-User
 | | [Documentation]
@@ -1259,7 +1258,6 @@
 | | ... | ${sock1} | ${sock2}
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
-| | All VPP Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | [Documentation]
@@ -1718,7 +1716,6 @@
 | | | ... | ${${dut}-vhost-${number}-if1} | ${number}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
 | | | ... | ${${dut}-vhost-${number}-if2} | ${bd_id2}
-| | All VPP Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 bridge domains with Vhost-User
 | | [Documentation]
@@ -2366,6 +2363,7 @@
 | | | Configure guest VMs with dpdk-testpmd connected via vhost-user on node
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
+| | All VPP Interfaces Ready Wait | ${nodes}
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
@@ -2519,6 +2517,7 @@
 | | | Configure guest VMs with dpdk-testpmd-mac connected via vhost-user on node
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
+| | All VPP Interfaces Ready Wait | ${nodes}
 
 | Configure guest VM with linux bridge connected via vhost-user
 | | [Documentation]
