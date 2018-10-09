@@ -251,17 +251,20 @@ class QemuUtils(object):
                format(qemu_id=self._qemu_id, vhost_id=self._vhost_id))\
             if mac is None else mac
 
-        queue_size = (',rx_queue_size={queue_size},tx_queue_size={queue_size}'.
+        queue_size = ('rx_queue_size={queue_size},tx_queue_size={queue_size}'.
                       format(queue_size=self._qemu_opt.get('queue_size')))\
             if self._qemu_opt.get('queue_size') else ''
+        vector_size = ('vectors={vectors}'.
+                       format(vectors=2*self._qemu_opt.get('queue_count')+2))\
+            if self._qemu_opt.get('queue_count') else ''
 
         # Create Virtio network device.
         device = (' -device virtio-net-pci,netdev=vhost{vhost_id},mac={mac},'
-                  'mq=on,csum=off,gso=off,guest_tso4=off,guest_tso6=off,'
-                  'guest_ecn=off,mrg_rxbuf={mbuf}{queue_size}'.
+                  'mq=on,{vector_size},csum=off,gso=off,guest_tso4=off,'
+                  'guest_tso6=off,guest_ecn=off,mrg_rxbuf={mbuf},{queue_size}'.
                   format(vhost_id=self._vhost_id, mac=mac,
                          mbuf='on,host_mtu=9200' if jumbo_frames else 'off',
-                         queue_size=queue_size))
+                         queue_size=queue_size, vector_size=vector_size))
         self._qemu_opt['options'] += device
         # Add interface MAC and socket to the node dict
         if_data = {'mac_address': mac, 'socket': socket}
