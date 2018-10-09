@@ -27,36 +27,15 @@
 | ... | between nodes. From this topology only DUT1 and DUT2 nodes are used.
 | ... | here we test the 1. test the vs_epool and vc_epoll
 
-*** Variables ***
-| ${ip4_net1_1}= | 172.28.128.3
-| ${ip4_net2_1}= | 172.28.128.4
-| ${ip4_prefix}= | 24
-
 *** Test Cases ***
-| TC01: DMM base vs epoll test case
+| TC01: DMM Single Client Server Test Case
 | | Given DMM Basic Test Setup
-| | When Exec the base vs epoll test | ${dut1_node} | ${dut2_node}
+| | When Run DMM Func Test Cases | ${dut1_node} | ${dut2_node}
 | | ... | ${dut1_to_dut2_if_name} | ${dut2_to_dut1_if_name}
-| | ... | ${ip4_net1_1} | ${ip4_net2_1}
-| | Echo DMM logs | ${dut2_node}
-| | ${no_packet_loss} = | Get the test result | ${dut2_node}
-| | Then Should Not Be Equal As Integers | ${no_packet_loss} | 0
-
-| TC02: DMM LWIP integration test case
-| | Given DMM Basic Test Setup
-| | When Exec the base lwip test | ${dut1_node} | ${dut2_node}
-| | ... | ${dut1_to_dut2_if_name} | ${dut2_to_dut1_if_name}
-| | ... | ${ip4_net1_1} | ${ip4_net2_1}
-| | Echo running log | ${dut1_node} | ${dut2_node}
-| | Echo dpdk log | ${dut1_node} | ${dut2_node}
-| | ${no_packet_loss_lwip} = | Get lwip test result | ${dut2_node}
-| | Then Should Not Be Equal As Integers | ${no_packet_loss_lwip} | 0
+| | ${total_count} | ${pass_count}= | Get Result | ${dut2_node}
+| | Then Should Be Equal As Integers | ${total_count} | ${pass_count}
 
 *** Keywords ***
 | DMM Basic Test Setup
 | | Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | Pick out the port used to execute test
-| | Set DMM Interface Address | ${dut1_node} |
-| | ... | ${dut1_to_dut2_if_name} | ${ip4_net1_1} | ${ip4_prefix}
-| | Set DMM Interface Address | ${dut2_node}
-| | ... | ${dut2_to_dut1_if_name} | ${ip4_net2_1} | ${ip4_prefix}
