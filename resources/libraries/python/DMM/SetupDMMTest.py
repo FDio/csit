@@ -95,7 +95,7 @@ def install_dmm_test(node):
     """
 
     arch = Topology.get_node_arch(node)
-    logger.console('Install the DMM on {0} ({1})'.format(node['host'], arch))
+    logger.console('Install DMM on {0} ({1})'.format(node['host'], arch))
 
     ssh = SSH()
     ssh.connect(node)
@@ -105,10 +105,10 @@ def install_dmm_test(node):
         .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, arch), timeout=600)
 
     if ret_code != 0:
-        logger.error('Install the DMM error: {0}'.format(stderr))
+        logger.error('Install DMM error: {0}'.format(stderr))
         raise RuntimeError('Install prereq failed')
     else:
-        logger.console('Install prereq on {0} success!'.format(node['host']))
+        logger.console('Install DMM on {0} success!'.format(node['host']))
 
 def setup_node(args):
     """Run all set-up methods for a node.
