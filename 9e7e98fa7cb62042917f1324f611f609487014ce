@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d516442f_a8b2a120",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 48
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "Add an empty line",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 33
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d65a0f5_2472953d",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 48
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "Add an empty line",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 35
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "598cbab4_2e450ee6",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 48
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "Add an empty line",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31629747_2ba64267",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "Add an empty line below",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51859cf7_8727f725",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "No empty line below",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 21
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77ffdef0_26473bcb",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan100ip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 130,
+        "startChar": 5,
+        "endLine": 130,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fa5b4d1_9db03e89",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan10ip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 131,
+        "startChar": 5,
+        "endLine": 131,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17ad3961_4cba60ce",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan1ip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 115,
+        "startChar": 5,
+        "endLine": 115,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f6ec9e8_6ad83f1a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan1kip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 130,
+        "startChar": 5,
+        "endLine": 130,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d29d584_0a2f9af5",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T07:34:21Z",
+      "side": 1,
+      "message": "Consider moving to \"Variables\" section for better readability.",
+      "range": {
+        "startLine": 79,
+        "startChar": 10,
+        "endLine": 79,
+        "endChar": 28
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
