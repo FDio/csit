@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "164a8cc7_051fb6af",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-09T10:58:46Z",
+      "side": 1,
+      "message": "All 4 comments implemented as a separate chapter.",
+      "parentUuid": "7bf5087c_763ad60f",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "507688bd0c7e3d855e173748a82c1fbe6d301140",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e008869_69ad12be",
         "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
         "patchSetId": 5
