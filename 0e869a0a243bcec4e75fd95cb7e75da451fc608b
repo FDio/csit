@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c973168_6d5687da",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 41
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:18:32Z",
+      "side": 1,
+      "message": "FIX that",
+      "range": {
+        "startLine": 696,
+        "startChar": 33,
+        "endLine": 696,
+        "endChar": 39
+      },
+      "revId": "0e869a0a243bcec4e75fd95cb7e75da451fc608b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62b3c3d0_d73a6578",
+        "filename": "resources/libraries/bash/function/docker_topology.sh",
+        "patchSetId": 41
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:18:32Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "0e869a0a243bcec4e75fd95cb7e75da451fc608b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "315c5305_e56ba6f6",
+        "filename": "topologies/available/vpp_device.template",
+        "patchSetId": 41
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:18:32Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "0e869a0a243bcec4e75fd95cb7e75da451fc608b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
