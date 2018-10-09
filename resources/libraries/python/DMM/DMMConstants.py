@@ -20,7 +20,10 @@ class DMMConstants(object):
     REMOTE_FW_DIR = '/tmp/DMM-testing'
 
     # Shell scripts location
-    DMM_SCRIPTS = 'tests/dmm/dmm_scripts'
+    DMM_SCRIPTS = 'dmm/scripts/csit/'
+
+    # Run scripts location
+    DMM_RUN_SCRIPTS = 'dmm/scripts/csit/run'
 
     # Libraries location
     DMM_DEPLIBS = 'tests/dmm/dmm_deplibs'
