@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e36ee2d7_a1519275",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:10:40Z",
+      "side": 1,
+      "message": "PAPI",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 4
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1c52b56_d109e267",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:10:40Z",
+      "side": 1,
+      "message": "API",
+      "range": {
+        "startLine": 60,
+        "startChar": 32,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2973ba2c_d33810f8",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:10:40Z",
+      "side": 1,
+      "message": "Maybe:\nIn direction from Robot framework executor library to remote python script running on DUT",
+      "range": {
+        "startLine": 67,
+        "startChar": 23,
+        "endLine": 67,
+        "endChar": 35
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15dced1c_575d3f8c",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:10:40Z",
+      "side": 1,
+      "message": "do we need api_ prefix?",
+      "range": {
+        "startLine": 77,
+        "startChar": 25,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a4854a4_b59dfec7",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:10:40Z",
+      "side": 1,
+      "message": "similar as above. It is confusing the  \"papi library\" term.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 79
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c1755c2_4d5f093e",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-09T18:10:40Z",
+      "side": 1,
+      "message": "This is like what? The real response? MUST it be decoded? like UTF-8 or ? Or is it just padding?",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 1254
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
