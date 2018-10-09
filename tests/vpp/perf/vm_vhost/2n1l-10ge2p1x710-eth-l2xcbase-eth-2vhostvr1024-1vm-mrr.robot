@@ -86,15 +86,15 @@
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
-| | [Tags] | 64B | 2C
+| | [Tags] | 64B | 2C | THIS
 | | framesize=${64} | phy_cores=${2}
 
 | tc03-64B-4c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
-| | [Tags] | 64B | 4C
+| | [Tags] | 64B | 4C | THIS
 | | framesize=${64} | phy_cores=${4}
 
 | tc04-1518B-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
