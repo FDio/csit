@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bf5087c_763ad60f",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-09T09:59:12Z",
+      "side": 1,
+      "message": "- target CSIT-18.10",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "507688bd0c7e3d855e173748a82c1fbe6d301140",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e008869_69ad12be",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-09T09:59:12Z",
+      "side": 1,
+      "message": "- target CSIT-18.10",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 22
+      },
+      "revId": "507688bd0c7e3d855e173748a82c1fbe6d301140",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a7eb405_2f6da99b",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-09T09:59:12Z",
+      "side": 1,
+      "message": "- if above done, and in time target CSIT-18.10, otherwise next rls.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 19
+      },
+      "revId": "507688bd0c7e3d855e173748a82c1fbe6d301140",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e52948eb_9a768278",
+        "filename": "resources/tools/presentation/doc/graphs_improvements.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-09T09:59:12Z",
+      "side": 1,
+      "message": "- if above done, and in time target CSIT-18.10, otherwise next rls.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 25
+      },
+      "revId": "507688bd0c7e3d855e173748a82c1fbe6d301140",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
