@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "3e3be14d_e59be169",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-10T15:21:41Z",
+      "side": 1,
+      "message": "Is it feasible to source common.sh instead?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ef7228c_906fcfaf",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-10T15:21:41Z",
+      "side": 1,
+      "message": "Else die, explaining the detection has failed (instead of proceeding with line 132 as if pxe has succeeded).",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 6
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6bbb6c_d17d542d",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-10T15:21:41Z",
+      "side": 1,
+      "message": "pingable (to better distinguish from ssh reachability)",
+      "range": {
+        "startLine": 172,
+        "startChar": 9,
+        "endLine": 172,
+        "endChar": 18
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd3bb099_ab6157a6",
         "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
         "patchSetId": 3
