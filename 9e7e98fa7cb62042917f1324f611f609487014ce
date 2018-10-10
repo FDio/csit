@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "927b7672_6842fdc2",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 48
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d516442f_a8b2a120",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 33
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d65a0f5_2472953d",
         "filename": "docs/tag_documentation.rst",
         "patchSetId": 48
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-09T07:34:21Z",
       "side": 1,
       "message": "Add an empty line",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 35
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d70b5fa9_01880cfe",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 48
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d65a0f5_2472953d",
       "range": {
         "startLine": 118,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5cc5a068_358c1abd",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 48
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "598cbab4_2e450ee6",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31629747_2ba64267",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 48
@@ -82,6 +154,30 @@
       "writtenOn": "2018-10-09T07:34:21Z",
       "side": 1,
       "message": "Add an empty line below",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aad4d1ea_ac2cc8c6",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "It\u0027s aligned with csit code guidelines - https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines:\n Imports should be grouped in the following order: \n1. standard library  imports, \n2. related third party imports, \n3. local application/library  specific imports. You should put a blank line between each group of  imports.",
+      "parentUuid": "31629747_2ba64267",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "7f733ba9_fd318dd3",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "See reply on line 16.",
+      "parentUuid": "51859cf7_8727f725",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 21
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77ffdef0_26473bcb",
         "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan100ip4src254ip4dst254.py",
         "patchSetId": 48
@@ -128,6 +248,30 @@
       "writtenOn": "2018-10-09T07:34:21Z",
       "side": 1,
       "message": "returns",
+      "range": {
+        "startLine": 130,
+        "startChar": 5,
+        "endLine": 130,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c497cd9_2bbf634c",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan100ip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77ffdef0_26473bcb",
       "range": {
         "startLine": 130,
         "startChar": 5,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "6051e9e7_cbafefec",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan10ip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fa5b4d1_9db03e89",
+      "range": {
+        "startLine": 131,
+        "startChar": 5,
+        "endLine": 131,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17ad3961_4cba60ce",
         "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan1ip4src254ip4dst254.py",
         "patchSetId": 48
@@ -174,6 +342,30 @@
       "writtenOn": "2018-10-09T07:34:21Z",
       "side": 1,
       "message": "returns",
+      "range": {
+        "startLine": 115,
+        "startChar": 5,
+        "endLine": 115,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c647cd1_a77e2c29",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan1ip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17ad3961_4cba60ce",
       "range": {
         "startLine": 115,
         "startChar": 5,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "adf4abb7_f14c2ab4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-dot1qip4-vlan1kip4src254ip4dst254.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f6ec9e8_6ad83f1a",
+      "range": {
+        "startLine": 130,
+        "startChar": 5,
+        "endLine": 130,
+        "endChar": 11
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d29d584_0a2f9af5",
         "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr.robot",
         "patchSetId": 48
@@ -220,6 +436,30 @@
       "writtenOn": "2018-10-09T07:34:21Z",
       "side": 1,
       "message": "Consider moving to \"Variables\" section for better readability.",
+      "range": {
+        "startLine": 79,
+        "startChar": 10,
+        "endLine": 79,
+        "endChar": 28
+      },
+      "revId": "9e7e98fa7cb62042917f1324f611f609487014ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bffe480d_a4d2f4f4",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr.robot",
+        "patchSetId": 48
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-10-10T06:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d29d584_0a2f9af5",
       "range": {
         "startLine": 79,
         "startChar": 10,
