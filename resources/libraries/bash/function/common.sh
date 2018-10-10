@@ -410,8 +410,8 @@ function select_tags () {
                             "mrrANDnic_cisco-vic-1227AND64b"
                             "mrrANDnic_cisco-vic-1385AND64b"
                             # memif
-                            "mrrANDmemifAND64b"
-                            "mrrANDmemifANDimix"
+                            "mrrANDmemifANDethAND64b"
+                            "mrrANDmemifANDethANDimix"
                             # crypto
                             "mrrANDipsecAND64b"
                             # ip4 base
@@ -430,6 +430,10 @@ function select_tags () {
                             "mrrANDip4fwdANDnat44ANDsrc_user_4000AND64b"
                             # ip4 features
                             "mrrANDip4fwdANDfeatureANDnic_intel-*710AND64b"
+                            # TODO: Remove when tags in
+                            # tests/vpp/perf/ip4/*-ipolicemarkbase-*.robot
+                            # are fixed
+                            "mrrANDip4fwdANDpolice_markANDnic_intel-*710AND64b"
                             # ip4 tunnels
                             "mrrANDip4fwdANDencapANDip6unrlayANDip4ovrlayANDnic_intel-x520-da2AND64b"
                             "mrrANDip4fwdANDencapANDnic_intel-*710AND64b"
@@ -463,11 +467,11 @@ function select_tags () {
                             "mrrANDl2bdmaclrnANDacl1AND10k_flowsAND64b"
                             "mrrANDl2bdmaclrnANDacl50AND10k_flowsAND64b"
                             # l2bd scale FIB 2M
-                            "mrrANDl2bdmaclrnANDfib_2mAND64b"
+                            "mrrANDl2bdmaclrnANDfib_1mAND64b"
                             # l2bd scale FIB 200k
-                            "mrrANDl2bdmaclrnANDfib_200kANDnic_intel-*710AND64b"
+                            "mrrANDl2bdmaclrnANDfib_100kANDnic_intel-*710AND64b"
                             # l2bd scale FIB 20k
-                            "mrrANDl2bdmaclrnANDfib_20kANDnic_intel-*710AND64b"
+                            "mrrANDl2bdmaclrnANDfib_10kANDnic_intel-*710AND64b"
                             # l2 patch base
                             "mrrANDl2patchAND64b"
                             # srv6
@@ -481,9 +485,10 @@ function select_tags () {
                             "mrrANDvhostANDl2bdmaclrnANDbaseAND64b"
                             "mrrANDvhostANDl2bdmaclrnANDbaseANDimix"
                             # vm vhost ip4 base
-                            "mrrANDvhostANDip4baseAND64b"
-                            "mrrANDvhostANDip4baseANDimix"
+                            "mrrANDvhostANDip4fwdANDbaseAND64b"
+                            "mrrANDvhostANDip4fwdANDbaseANDimix"
                             # Exclude
+                            "!mrrANDip6baseANDdot1qAND78b"
                             "!vhost_256ANDnic_intel-x520-da2"
                             "!vhostANDnic_intel-xl710"
                             "!cfs_opt"
