@@ -1890,7 +1890,6 @@
 | | ... | ${dut1_vxlans} | ${dut2_vxlans} | ${dut1_route_subnet} |
 | | ... | ${dut1_route_mask} | ${dut2_route_subnet} | ${dut2_route_mask}
 | | ...
-| | Set interfaces in path up
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} |
 | | ... | ${dut1_address} | ${dut1_address_subnet}
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2} |
