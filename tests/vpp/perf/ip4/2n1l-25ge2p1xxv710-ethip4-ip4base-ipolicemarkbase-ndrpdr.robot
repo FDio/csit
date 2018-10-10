@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.Policer
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-XXV710 | IP4FWD | BASE | DOT1Q
+| ... | NIC_Intel-XXV710 | IP4FWD | FEATURE | POLICE_MARK
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L3 | Intel-XXV710
