@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd3bb099_ab6157a6",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-10T14:03:26Z",
+      "side": 1,
+      "message": "Remove if not needed.",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 23
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
