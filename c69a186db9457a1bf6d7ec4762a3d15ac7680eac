@@ -22,6 +22,30 @@
       "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fe0eb9d_984e78b5",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-10T14:05:48Z",
+      "side": 1,
+      "message": "It is safe back as mostly the script is used only for ansibling not pxeing. But this is first step to automate re-staging of hosts.",
+      "parentUuid": "bd3bb099_ab6157a6",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 23
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
