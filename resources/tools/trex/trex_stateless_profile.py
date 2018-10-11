@@ -133,16 +133,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             client.add_streams(streams[0:3], ports=[port_0])
             client.add_streams(streams[3:6], ports=[port_1])
         if latency:
-            try:
-                if isinstance(framesize, int):
-                    client.add_streams(streams[2], ports=[port_0])
-                    client.add_streams(streams[3], ports=[port_1])
-                elif isinstance(framesize, str):
-                    latency = False
-            except STLError:
-                # Disable latency if NIC does not support requested stream type
-                print("##### FAILED to add latency streams #####")
-                latency = False
+            latency = False
         # Warm-up phase:
         if warmup_time > 0:
             # Clear the stats before injecting:
