@@ -137,14 +137,6 @@ class TrafficStreamsBaseClass(object):
                 pkt=base_pkt_b / self._gen_payload(payload_len),
                 vm=vm2)
 
-            # Packets for latency measurement:
-            # Direction 0 --> 1
-            pkt_lat_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len))
-            # Direction 1 --> 0
-            pkt_lat_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len))
-
             # Create the streams:
             # Direction 0 --> 1
             stream1 = STLStream(packet=pkt_a, mode=STLTXCont(pps=9000))
@@ -153,18 +145,7 @@ class TrafficStreamsBaseClass(object):
             stream2 = STLStream(packet=pkt_b, isg=10.0,
                                 mode=STLTXCont(pps=9000))
 
-            # Streams for latency measurement:
-            # Direction 0 --> 1
-            lat_stream1 = STLStream(packet=pkt_lat_a,
-                                    flow_stats=STLFlowLatencyStats(pg_id=0),
-                                    mode=STLTXCont(pps=9000))
-            # Direction 1 --> 0
-            # second traffic stream with a phase of 10ns (inter-stream gap)
-            lat_stream2 = STLStream(packet=pkt_lat_b, isg=10.0,
-                                    flow_stats=STLFlowLatencyStats(pg_id=1),
-                                    mode=STLTXCont(pps=9000))
-
-            return [stream1, stream2, lat_stream1, lat_stream2]
+            return [stream1, stream2]
 
         # Frame size is defined as a string, e.g.IMIX_v4_1:
         elif isinstance(self.framesize, str):
