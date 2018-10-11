@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "480719b8_974fc149",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-11T12:13:43Z",
+      "side": 1,
+      "message": "This comment has been here since patch set 1, later patch sets added some fixes in suites.\nIs there anything left preventing removal of line 436?",
+      "range": {
+        "startLine": 435,
+        "startChar": 34,
+        "endLine": 435,
+        "endChar": 39
+      },
+      "revId": "5f922d7053436d9b53646fafaaf2709243d1be03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa89d0f5_0c5b56f8",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-11T12:13:43Z",
+      "side": 1,
+      "message": "This includes xxv. Do we want that?",
+      "range": {
+        "startLine": 436,
+        "startChar": 68,
+        "endLine": 436,
+        "endChar": 69
+      },
+      "revId": "5f922d7053436d9b53646fafaaf2709243d1be03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
