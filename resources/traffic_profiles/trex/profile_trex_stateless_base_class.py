@@ -120,81 +120,32 @@ class TrafficStreamsBaseClass(object):
 
         base_pkt_a, base_pkt_b, vm1, vm2 = self.define_packets()
 
-        # In most cases you will not have to change the code below:
+        stream1 = []
+        stream2 = []
 
-        # Frame size is defined as an integer, e.g. 64, 1518:
-        if isinstance(self.framesize, int):
-
+        for stream in self.STREAM_TABLE[self.framesize]:
+            payload_len_a = max(0, stream['size'] - len(base_pkt_a) - 4)
+            payload_len_b = max(0, stream['size'] - len(base_pkt_b) - 4)
             # Create a base packet and pad it to size
-            payload_len = max(0, self.framesize - len(base_pkt_a) - 4)  # No FCS
-
-            # Direction 0 --> 1
             pkt_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len),
+                pkt=base_pkt_a / self._gen_payload(payload_len_a),
                 vm=vm1)
-            # Direction 1 --> 0
             pkt_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len),
+                pkt=base_pkt_b / self._gen_payload(payload_len_b),
                 vm=vm2)
 
-            # Packets for latency measurement:
-            # Direction 0 --> 1
-            pkt_lat_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len))
-            # Direction 1 --> 0
-            pkt_lat_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len))
-
             # Create the streams:
-            # Direction 0 --> 1
-            stream1 = STLStream(packet=pkt_a, mode=STLTXCont(pps=9000))
-            # Direction 1 --> 0
-            # second traffic stream with a phase of 10ns (inter-stream gap)
-            stream2 = STLStream(packet=pkt_b, isg=10.0,
-                                mode=STLTXCont(pps=9000))
+            stream1.append(STLStream(packet=pkt_a,
+                                     isg=stream['isg'],
+                                     mode=STLTXCont(pps=stream['pps'])))
+            stream2.append(STLStream(packet=pkt_b,
+                                     isg=stream['isg'],
+                                     mode=STLTXCont(pps=stream['pps'])))
+        streams = list()
+        streams.extend(stream1)
+        streams.extend(stream2)
 
-            # Streams for latency measurement:
-            # Direction 0 --> 1
-            lat_stream1 = STLStream(packet=pkt_lat_a,
-                                    flow_stats=STLFlowLatencyStats(pg_id=0),
-                                    mode=STLTXCont(pps=9000))
-            # Direction 1 --> 0
-            # second traffic stream with a phase of 10ns (inter-stream gap)
-            lat_stream2 = STLStream(packet=pkt_lat_b, isg=10.0,
-                                    flow_stats=STLFlowLatencyStats(pg_id=1),
-                                    mode=STLTXCont(pps=9000))
-
-            return [stream1, stream2, lat_stream1, lat_stream2]
-
-        # Frame size is defined as a string, e.g.IMIX_v4_1:
-        elif isinstance(self.framesize, str):
-
-            stream1 = []
-            stream2 = []
-
-            for stream in self.STREAM_TABLE[self.framesize]:
-                payload_len_a = max(0, stream['size'] - len(base_pkt_a) - 4)
-                payload_len_b = max(0, stream['size'] - len(base_pkt_b) - 4)
-                # Create a base packet and pad it to size
-                pkt_a = STLPktBuilder(
-                    pkt=base_pkt_a / self._gen_payload(payload_len_a),
-                    vm=vm1)
-                pkt_b = STLPktBuilder(
-                    pkt=base_pkt_b / self._gen_payload(payload_len_b),
-                    vm=vm2)
-
-                # Create the streams:
-                stream1.append(STLStream(packet=pkt_a,
-                                         isg=stream['isg'],
-                                         mode=STLTXCont(pps=stream['pps'])))
-                stream2.append(STLStream(packet=pkt_b,
-                                         isg=stream['isg'],
-                                         mode=STLTXCont(pps=stream['pps'])))
-            streams = list()
-            streams.extend(stream1)
-            streams.extend(stream2)
-
-            return streams
+        return streams
 
     def get_streams(self, **kwargs):
         """Get traffic streams created by "create_streams" method.
