@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f097d7f5_e72971b8",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-11T12:26:30Z",
+      "side": 1,
+      "message": "It is easier to detect versions older than oxygen instead, removing the \"if\" altogether when those stop being tested.",
+      "range": {
+        "startLine": 524,
+        "startChar": 29,
+        "endLine": 524,
+        "endChar": 38
+      },
+      "revId": "68a4959b2f4b23ecf1c894c10a365fbdbb3dbf6a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
