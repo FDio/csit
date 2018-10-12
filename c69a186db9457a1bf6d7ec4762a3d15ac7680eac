@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2b517fc3_24776602",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-12T09:10:07Z",
+      "side": 1,
+      "message": "That is the question. If we want to have standalone version or part of bootstrap architecture.\n\nMain reason behind this script is to start with automated building of host (job, etc). So it might have a sense to move it to bootstrap and reference it from there. Once done, sure we remove redundant functions.\n\nBut as of now i still did not solve the security behind that like password management and of course running such job is descrutive. Unless solved on some agreed level i am not sure.\n\nSo do we want to move this script to boostrap library?",
+      "parentUuid": "3e3be14d_e59be169",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ef7228c_906fcfaf",
         "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c4543013_70a912fb",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-12T09:10:07Z",
+      "side": 1,
+      "message": "Done, in next iter",
+      "parentUuid": "5ef7228c_906fcfaf",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 6
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6bbb6c_d17d542d",
         "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2018-10-10T15:21:41Z",
       "side": 1,
       "message": "pingable (to better distinguish from ssh reachability)",
+      "range": {
+        "startLine": 172,
+        "startChar": 9,
+        "endLine": 172,
+        "endChar": 18
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a481aaca_a98e499a",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-12T09:10:07Z",
+      "side": 1,
+      "message": "Not sure if it is dictionary word but ok. Done in next iter.",
+      "parentUuid": "9a6bbb6c_d17d542d",
       "range": {
         "startLine": 172,
         "startChar": 9,
