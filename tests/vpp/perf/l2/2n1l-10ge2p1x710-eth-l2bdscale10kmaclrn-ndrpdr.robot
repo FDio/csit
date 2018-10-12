@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | SCALE | L2BDBASE | FIB_10k
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | SCALE | L2BDSCALE | FIB_10k
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X710
