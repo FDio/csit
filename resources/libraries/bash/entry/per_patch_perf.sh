@@ -41,12 +41,13 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
 set_perpatch_vpp_dir || die
-build_vpp_ubuntu_amd64 "NEW" || die
-prepare_build_parent || die
-build_vpp_ubuntu_amd64 "PARENT" || die
-prepare_test_new || die
+#build_vpp_ubuntu_amd64 "NEW" || die
+#prepare_build_parent || die
+#build_vpp_ubuntu_amd64 "PARENT" || die
+#prepare_test || die
 ## Replace previous 4 lines with this to speed up testing.
-#download_builds "REPLACE_WITH_URL" || die
+download_builds "https://jenkins.fd.io/sandbox/job/vpp-csit-verify-perf-master-2n-skx/2/artifact/*zip*/archive.zip" || die
+initialize_csit_dirs || die
 get_test_tag_string || die
 get_test_code "${1-}" || die
 set_perpatch_dut || die
@@ -55,15 +56,22 @@ activate_virtualenv "${VPP_DIR}" || die
 reserve_testbed || die
 select_tags || die
 compose_pybot_arguments || die
-check_download_dir || die
-run_pybot "10" || die
-copy_archives || die
-die_on_pybot_error || die
-prepare_test_parent || die
-check_download_dir || die
-run_pybot "10" || die
+# TODO: Should the loop block be moved into a function?
+iterations=6
+for ((iter=0; iter<iterations; iter++)); do
+    select_build "build_parent" || die
+    check_download_dir || die
+    run_pybot || die
+    copy_archives || die
+    die_on_pybot_error || die
+    archive_parse_test_results "csit_parent/${iter}" || die
+    select_build "build_new" || die
+    check_download_dir || die
+    run_pybot || die
+    copy_archives || die
+    die_on_pybot_error || die
+    archive_parse_test_results "csit_new/${iter}" || die
+done
 untrap_and_unreserve_testbed || die
-copy_archives || die
-die_on_pybot_error || die
 compare_test_results  # The error code becomes this script's error code.
 # TODO: After merging, make sure archiving works as expected.
