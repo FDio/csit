@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c20a90ed_823878c3",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-12T17:41:29Z",
+      "side": 1,
+      "message": "\u003e to have standalone version or part of bootstrap architecture\n\nMy preference depends of which system is executing the (entry) script.\nIf the system is Jenkins executor, or similar system with CSIT repo cloned locally, the script should definitely rely on bash library functions.\nIf the system is SUT or some other machine without local CSIT repo, I think I still prefer copying the whole library over; but I might be persuaded if the standalone script looks maintainable enough (which depends on number of functions and amount of copied library code).\nI prefer this particular script to use library, just because it already contains documented functions.",
+      "parentUuid": "2b517fc3_24776602",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ef7228c_906fcfaf",
         "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
         "patchSetId": 3
