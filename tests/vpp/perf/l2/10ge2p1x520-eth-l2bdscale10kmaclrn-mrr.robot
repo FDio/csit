@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | SCALE | L2BDBASE | FIB_10K
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | SCALE | L2BDSCALE | FIB_10K
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
