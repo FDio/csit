@@ -178,7 +178,7 @@ function copy_archives () {
     # automatically archived to logs.fd.io.
     if [[ -n "${WORKSPACE-}" ]]; then
         mkdir -p "${WORKSPACE}/archives/" || die "Archives dir create failed."
-        cp -r "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives" || die "Copy failed."
+        cp -rf "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives" || die "Copy failed."
     fi
 }
 

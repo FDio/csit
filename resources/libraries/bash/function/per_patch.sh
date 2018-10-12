@@ -21,6 +21,35 @@ set -exuo pipefail
 # TODO: Add a link to bash style guide.
 
 
+function archive_parse_test_results () {
+
+    set -exuo pipefail
+
+    # Arguments:
+    # - ${1}: Directory to archive to. Required.
+    # Variables read:
+    # - ARCHIVE_DIR - Path to where robot result files are created in.
+    # - VPP_DIR - Path to existing directory, root for to relative paths.
+    # Directories updated:
+    # - ${1} - Created, and robot and parsing files are moved/created there.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+    # - parse_bmrr_results - See definition in this file.
+
+    cd "${VPP_DIR}" || die "Change directory command failed."
+    target="${readlink -f "$1"}"
+    mkdir -p "${target}" || die "Directory creation failed."
+    for filename in "output.xml" "log.html" "report.html"; do
+        mv "${ARCHIVE_DIR}/${filename}" "${target}/${filename}" || {
+            die "Attempt to move '${filename}' failed."
+        }
+    done
+    parse_bmrr_results "${target}" || {
+        die "The function should have died on error."
+    }
+}
+
+
 function build_vpp_ubuntu_amd64 () {
 
     set -exuo pipefail
@@ -70,7 +99,6 @@ function build_vpp_ubuntu_amd64 () {
     mv -v "build/external/vpp-ext-deps"*".deb" "build-root"/ || {
         die "*.deb move failed."
     }
-
     echo "*******************************************************************"
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
@@ -98,17 +126,6 @@ function compare_test_results () {
     # - 1 - If the comparison utility sees a regression (or data error).
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "csit_parent" || die "Remove operation failed."
-    mkdir -p "csit_parent" || die "Directory creation failed."
-    for filename in "output.xml" "log.html" "report.html"; do
-        mv "${ARCHIVE_DIR}/${filename}" "csit_parent/${filename}" || {
-            die "Attempt to move '${filename}' failed."
-        }
-    done
-    parse_bmrr_results "csit_parent" || {
-        die "The function should have died on error."
-    }
-
     # Reusing CSIT main virtualenv.
     pip install -r "${PYTHON_SCRIPTS_DIR}/perpatch_requirements.txt" || {
         die "Perpatch Python requirements installation failed."
@@ -128,12 +145,10 @@ function download_builds () {
     # - ${1} - URL to download VPP builds from.
     # Variables read:
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
     # Directories created:
     # - archive - Ends up empty, not to be confused with ${ARCHIVE_DIR}.
     # - build_new - Holding built artifacts of the patch under test (PUT).
     # - built_parent - Holding built artifacts of parent of PUT.
-    # - csit_new - (Re)set to a symlink to archive robot results on failure.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
@@ -145,11 +160,6 @@ function download_builds () {
     unzip "archive.zip" || die "Archive extraction failed."
     mv "archive/build_parent" ./ || die "Move operation failed."
     mv "archive/build_new" ./ || die "Move operation failed."
-    cp -r "build_new"/*".deb" "${DOWNLOAD_DIR}" || {
-        die "Copy operation failed."
-    }
-    # Create symlinks so that if job fails on robot, results can be archived.
-    ln -s "${ARCHIVE_DIR}" "csit_new" || die "Symbolic link creation failed."
 }
 
 
@@ -172,11 +182,9 @@ function parse_bmrr_results () {
     rel_dir="$(readlink -e "${1}")" || die "Readlink failed."
     in_file="${rel_dir}/output.xml"
     out_file="${rel_dir}/results.txt"
-
     # TODO: Do we need to check echo exit code explicitly?
     echo "Parsing ${in_file} putting results into ${out_file}"
     echo "TODO: Re-use parts of PAL when they support subsample test parsing."
-
     pattern='Maximum Receive Rate trial results in packets'
     pattern+=' per second: .*\]</status>'
     grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
@@ -215,74 +223,53 @@ function prepare_build_parent () {
 }
 
 
-function prepare_test_new () {
+function prepare_test () {
 
     set -exuo pipefail
 
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent of accessed directories.
-    # - DOWNLOAD_DIR - Path to directory where Robot takes builds to test from.
-    # - ARCHIVE_DIR - Path to where robot result files are created in.
     # Directories read:
     # - build-root - Existing directory with built VPP artifacts (also DPDK).
     # Directories updated:
-    # - build_parent - Old directory removed, build-root moved to become this.
+    # - build_parent - Old directory removed, build-root debs moved here.
     # - ${DOWNLOAD_DIR} - Old content removed, files from build_new copied here.
-    # - csit_new - Currently a symlink to to archive robot results on failure.
+    # - csit_new - Reset into an empty state.
+    # - csit_parent - Reset into an empty state.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
-    cd "${VPP_DIR}" || die "Change directory operationf failed."
-    rm -rf "build_parent" "csit_new" "${DOWNLOAD_DIR}"/* || die "Remove failed."
-    mkdir -p "build_parent" || die "Directory creation operation failed."
+    cd "${VPP_DIR}" || die "Change directory operation failed."
+    rm -rf "build_parent" "csit_new" "csit_parent" || die "Remove failed."
+    mkdir -p "build_parent" "csit_new" "csit_parent" || {
+        die "Directory creation operation failed."
+    }
     mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
-    cp "build_new"/*".deb" "${DOWNLOAD_DIR}" || die "Copy operation failed."
-    # Create symlinks so that if job fails on robot, results can be archived.
-    ln -s "${ARCHIVE_DIR}" "csit_new" || die "Symbolic link creation failed."
 }
 
 
-function prepare_test_parent () {
+function select_build () {
 
     set -exuo pipefail
 
+    # Arguments:
+    # - ${1} - Path to directory to copy VPP artifacts from. Required.
     # Variables read:
-    # - VPP_DIR - Path to existing directory, parent of accessed directories.
-    # - CSIT_DIR - Path to existing root of local CSIT git repository.
-    # - ARCHIVE_DIR and DOWNLOAD_DIR - Paths to directories to update.
+    # - DOWNLOAD_DIR - Path to directory where Robot takes builds to test from.
+    # - VPP_DIR - Path to existing directory, root for relative paths.
     # Directories read:
-    # - build_parent - Build artifacts (to test next) are copied from here.
+    # - ${1} - Existing directory with built new VPP artifacts (and DPDK).
     # Directories updated:
-    # - csit_new - Deleted, then recreated and latest robot results copied here.
-    # - ${CSIT_DIR} - Subjected to git reset and git clean.
-    # - ${ARCHIVE_DIR} - Created if not existing (if deleted by git clean).
-    # - ${DOWNLOAD_DIR} - Created after git clean, parent build copied here.
-    # - csit_parent - Currently a symlink to csit/ to archive robot results.
+    # - ${DOWNLOAD_DIR} - Old content removed, .deb files from ${1} copied here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
-    # - parse_bmrr_results - See definition in this file.
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "csit_new" "csit_parent" || die "Remove operation failed."
-    mkdir -p "csit_new" || die "Create directory operation failed."
-    for filename in "output.xml" "log.html" "report.html"; do
-        mv "${ARCHIVE_DIR}/${filename}" "csit_new/${filename}" || {
-            die "Move operation of '${filename}' failed."
-        }
-    done
-    parse_bmrr_results "csit_new" || {
-        die "The function should have died on error."
-    }
-
-    pushd "${CSIT_DIR}" || die "Change directory operation failed."
-    git reset --hard HEAD || die "Git reset operation failed."
-    git clean -dffx || die "Git clean operation failed."
-    popd || die "Change directory operation failed."
-    mkdir -p "${ARCHIVE_DIR}" "${DOWNLOAD_DIR}" || die "Dir creation failed."
-
-    cp "build_parent"/*".deb" "${DOWNLOAD_DIR}"/ || die "Copy failed."
-    # Create symlinks so that if job fails on robot, results can be archived.
-    ln -s "${ARCHIVE_DIR}" "csit_parent" || die "Symlink creation failed."
+    source_dir="${readlink -e "$1"}"
+    rm-rf "${DOWNLOAD_DIR}"/* || die "Cleanup of download dir failed."
+    cp "${source_dir}"/*".deb" "${DOWNLOAD_DIR}" || die "Copy operation failed."
+    # TODO: Is there a nice way to create symlinks,
+    #   so that if job fails on robot, results can be archived?
 }
 
 
