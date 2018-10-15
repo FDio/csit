@@ -570,9 +570,9 @@ function select_topology () {
     case "${case_text}" in
         "3n_hsw")
             TOPOLOGIES=(
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_hsw_testbed1.yaml"
                         "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed2.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
