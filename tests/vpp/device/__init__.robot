@@ -24,7 +24,7 @@
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Get CPU Layout from all nodes | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
-| ...       | skip_tg=${True} | numa_node=${False}
+| ...       | skip_tg_udev=${True}
 | Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
