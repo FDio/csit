@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "927cd46b_30148899",
+        "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-15T06:39:22Z",
+      "side": 1,
+      "message": "ok, next iter",
+      "parentUuid": "c20a90ed_823878c3",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "c69a186db9457a1bf6d7ec4762a3d15ac7680eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ef7228c_906fcfaf",
         "filename": "resources/tools/testbed-setup/boostrap_machine.sh",
         "patchSetId": 3
