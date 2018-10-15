@@ -103,17 +103,29 @@ class VPPUtil(object):
         VPPUtil.vpp_show_interfaces(node)
 
     @staticmethod
-    def verify_vpp_on_all_duts(nodes):
+    def verify_vpp_on_all_duts(nodes, retries=60):
         """Verify that VPP is installed on all DUT nodes.
 
         :param nodes: Nodes in the topology.
+        :param retries: Number of times (default 60) to re-try waiting.
         :type nodes: dict
+        :type retries: int
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 DUTSetup.start_service(node, Constants.VPP_UNIT)
-                VPPUtil.vpp_show_version_verbose(node)
-                VPPUtil.vpp_show_interfaces(node)
+                # Sleep 1 second, up to <retry> times,
+                # and verify if VPP is running.
+                for _ in range(retries):
+                    time.sleep(1)
+                    ret, stdout, _ = \
+                        ssh.exec_command_sudo('vppctl show pci')
+                    if ret == 0 and 'Connection refused' not in stdout:
+                        break
+                else:
+                    raise RuntimeError('VPP failed to restart on node {name}'.
+                                       format(name=self._hostname))
+                VPPUtil.verify_vpp_on_dut(node)
 
     @staticmethod
     def vpp_show_version_verbose(node):
