@@ -12,9 +12,12 @@
 # limitations under the License.
 
 """VPP util library."""
+
+import time
+
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
 
@@ -52,14 +55,27 @@ class VPPUtil(object):
             exec_cmd_no_error(node, command, timeout=30, sudo=True)
 
     @staticmethod
-    def start_vpp_service(node):
+    def start_vpp_service(node, retries=60):
         """Start VPP service on the specified node.
 
         :param node: VPP node.
+        :param retries: Number of times (default 60) to re-try waiting.
         :type node: dict
+        :type retries: int
         :raises RuntimeError: If VPP service fails to start.
         """
         DUTSetup.start_service(node, Constants.VPP_UNIT)
+        # Sleep 1 second, up to <retry> times,
+        # and verify if VPP is running.
+        for _ in range(retries):
+            time.sleep(1)
+            command = 'vppctl show pci'
+            ret, stdout, _ = exec_cmd(node, command, timeout=30, sudo=True)
+            if not ret and 'Connection refused' not in stdout:
+                break
+            else:
+                raise RuntimeError('VPP failed to start on host {name}'.
+                                   format(name=node['host']))
         DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
     @staticmethod
@@ -69,7 +85,9 @@ class VPPUtil(object):
         :param nodes: Nodes in the topology.
         :type nodes: dict
         """
-        DUTSetup.start_service_on_all_duts(nodes, Constants.VPP_UNIT)
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VPPUtil.start_vpp_service(node)
 
     @staticmethod
     def stop_vpp_service(node):
@@ -88,7 +106,9 @@ class VPPUtil(object):
         :param nodes: Nodes in the topology.
         :type nodes: dict
         """
-        DUTSetup.stop_service_on_all_duts(nodes, Constants.VPP_UNIT)
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VPPUtil.stop_vpp_service(node)
 
     @staticmethod
     def verify_vpp_on_dut(node):
@@ -111,9 +131,8 @@ class VPPUtil(object):
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                DUTSetup.start_service(node, Constants.VPP_UNIT)
-                VPPUtil.vpp_show_version_verbose(node)
-                VPPUtil.vpp_show_interfaces(node)
+                VPPUtil.start_vpp_service(node)
+                VPPUtil.verify_vpp_on_dut(node)
 
     @staticmethod
     def vpp_show_version_verbose(node):
