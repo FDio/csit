@@ -78,7 +78,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2bdbasemaclrn-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2bdbasemaclrn-mrr
