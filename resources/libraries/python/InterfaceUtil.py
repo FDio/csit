@@ -520,7 +520,7 @@ class InterfaceUtil(object):
                 InterfaceUtil.update_nic_interface_names(node)
 
     @staticmethod
-    def update_tg_interface_data_on_node(node):
+    def update_tg_interface_data_on_node(node, skip_tg_udev=False):
         """Update interface name for TG/linux node in DICT__nodes.
 
         .. note::
@@ -531,10 +531,10 @@ class InterfaceUtil(object):
             "52:54:00:e1:8a:0f": "eth2"
             "00:00:00:00:00:00": "lo"
 
-        .. note:: TODO: parse lshw -json instead
-
         :param node: Node selected from DICT__nodes.
+        :param skip_tg_udev: Skip udev rename on TG node.
         :type node: dict
+        :type skip_tg_udev: bool
         :raises RuntimeError: If getting of interface name and MAC fails.
         """
         # First setup interface driver specified in yaml file
@@ -559,7 +559,8 @@ class InterfaceUtil(object):
             interface['name'] = name
 
         # Set udev rules for interfaces
-        InterfaceUtil.tg_set_interfaces_udev_rules(node)
+        if not skip_tg_udev:
+            InterfaceUtil.tg_set_interfaces_udev_rules(node)
 
     @staticmethod
     def iface_update_numa_node(node):
@@ -617,6 +618,7 @@ class InterfaceUtil(object):
 
     @staticmethod
     def update_all_interface_data_on_all_nodes(nodes, skip_tg=False,
+                                               skip_tg_udev=False,
                                                numa_node=False):
         """Update interface names on all nodes in DICT__nodes.
 
@@ -624,17 +626,20 @@ class InterfaceUtil(object):
         of all nodes mentioned in the topology dictionary.
 
         :param nodes: Nodes in the topology.
-        :param skip_tg: Skip TG node
+        :param skip_tg: Skip TG node.
+        :param skip_tg_udev: Skip udev rename on TG node.
         :param numa_node: Retrieve numa_node location.
         :type nodes: dict
         :type skip_tg: bool
+        :type skip_tg_udev: bool
         :type numa_node: bool
         """
         for node_data in nodes.values():
             if node_data['type'] == NodeType.DUT:
                 InterfaceUtil.update_vpp_interface_data_on_node(node_data)
             elif node_data['type'] == NodeType.TG and not skip_tg:
-                InterfaceUtil.update_tg_interface_data_on_node(node_data)
+                InterfaceUtil.update_tg_interface_data_on_node(
+                    node_data, skip_tg_udev)
 
             if numa_node:
                 if node_data['type'] == NodeType.DUT:
