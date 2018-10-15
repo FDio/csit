@@ -472,6 +472,28 @@
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 
+| Set up VPP device test
+# TODO: Generalize this KW if it will not diverge from Functional derivate too
+# much
+| | [Documentation] | Common test setup for vpp-device tests.
+| | ...
+| | Configure all DUTs before test
+| | Save VPP PIDs
+| | Configure all TGs for traffic script
+| | Update All Interface Data On All Nodes | ${nodes} | skip_tg_udev=${True}
+| | Reset VAT History On All DUTs | ${nodes}
+
+| Tear down VPP device test
+# TODO: Generalize this KW if it will not diverge from Functional derivate too
+# much
+| | [Documentation] | Common test teardown for vpp-device tests.
+| | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Show VAT History On All DUTs | ${nodes}
+| | Vpp Show Errors On All DUTs | ${nodes}
+| | Verify VPP PID in Teardown
+
 | Tear down LISP functional test
 | | [Documentation] | Common test teardown for functional tests with LISP.
 | | ...
