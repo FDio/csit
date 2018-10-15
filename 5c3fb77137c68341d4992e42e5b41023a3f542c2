@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36f987e7_990aac18",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 49
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-15T06:39:31Z",
+      "side": 1,
+      "message": "i will fix",
+      "parentUuid": "8f8fc0bc_43f787e0",
+      "range": {
+        "startLine": 285,
+        "startChar": 51,
+        "endLine": 285,
+        "endChar": 52
+      },
+      "revId": "5c3fb77137c68341d4992e42e5b41023a3f542c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6fd0766c_67288957",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 49
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-12T17:45:37Z",
       "side": 1,
       "message": "Does good old 127.0.0.1 work?",
+      "range": {
+        "startLine": 286,
+        "startChar": 26,
+        "endLine": 286,
+        "endChar": 37
+      },
+      "revId": "5c3fb77137c68341d4992e42e5b41023a3f542c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8cb90a58_b74c5493",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 49
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-15T06:39:31Z",
+      "side": 1,
+      "message": "no, not even hostname -I. This is jenkins-slave specifics.",
+      "parentUuid": "6fd0766c_67288957",
       "range": {
         "startLine": 286,
         "startChar": 26,
