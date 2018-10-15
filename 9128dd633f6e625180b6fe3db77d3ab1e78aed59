@@ -22,6 +22,144 @@
       "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9338c085_dbac7f37",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-15T16:23:24Z",
+      "side": 1,
+      "message": "2018?",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc91a1a5_98d5e7e5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-15T16:23:24Z",
+      "side": 1,
+      "message": "The list of known implementations is important, but I think it is not usually included in the document itself.",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 25
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afaca427_afa522de",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-15T16:23:24Z",
+      "side": 1,
+      "message": "Two throughput goals. (Or targets or some other nouns, but \"measurement\" is too close to \"trial measurement\").\n\nAlso, that is just a limitation of the first implementation. Other implementation may support other (or variable) number of goal. There is a reason why it is not called \"Two Loss Rate search\".",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d9db4cf_7f42585a",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-15T16:23:24Z",
+      "side": 1,
+      "message": "I have noticed RFCs use two spaces before sentence (if it starts in the middle of a line).\nNot sure how strictly is it required.",
+      "range": {
+        "startLine": 66,
+        "startChar": 56,
+        "endLine": 66,
+        "endChar": 57
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4e5ec05_932296aa",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-15T16:23:24Z",
+      "side": 1,
+      "message": "search\n\nOr \"run\" or similar. I think \"pass\" is too close to \"phase\".",
+      "range": {
+        "startLine": 67,
+        "startChar": 34,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26849143_4a98d32e",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-15T16:23:24Z",
+      "side": 1,
+      "message": "\"Cisco and/or its affiliates\" is holding copyright to the implementation\u0027s code, but I guess now when I am a contributor, I can officially give the required BCP 78 rights to IETF Trust.",
+      "range": {
+        "startLine": 354,
+        "startChar": 3,
+        "endLine": 354,
+        "endChar": 16
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
