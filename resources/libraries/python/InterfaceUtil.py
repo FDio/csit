@@ -559,7 +559,7 @@ class InterfaceUtil(object):
             interface['name'] = name
 
         # Set udev rules for interfaces
-        InterfaceUtil.tg_set_interfaces_udev_rules(node)
+        #InterfaceUtil.tg_set_interfaces_udev_rules(node)
 
     @staticmethod
     def iface_update_numa_node(node):
