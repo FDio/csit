@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6838c3e4_730676b4",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_device.sh",
+        "patchSetId": 56
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T15:37:01Z",
+      "side": 1,
+      "message": "Why is this line commented-out?",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 1
+      },
+      "revId": "4d47e7fbed356b1994c2388401ae0a3397cb7029",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
