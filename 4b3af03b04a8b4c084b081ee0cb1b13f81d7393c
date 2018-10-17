@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "43744381_96eb5f1c",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T13:03:39Z",
+      "side": 0,
+      "message": "I think this would be more VPP patch rather CSIT. IOW why systemd is reporting service UP and running when clearly it is not? Service should report 0 exited only when subsidiary processes are correctly finished. We cannot workaround every process that behaves incorrectly. Make them follow POSIX standard is the way to go :).",
+      "parentUuid": "72e1d7ea_031791fe",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 42
+      },
+      "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64684cee_4eadb395",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 13
@@ -108,6 +132,30 @@
       "side": 0,
       "message": "Ok, keep the DUTSetup keywords.\nOn the other hand, why are you not using DUTSetup.stop_service_on_all_duts anymore? Stopping VPP does not have any additional steps.",
       "parentUuid": "65b285f3_4601a7d3",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d358f69_078dc95e",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T13:03:39Z",
+      "side": 0,
+      "message": "I case it would have additional steps :) which i guess we need but \"stop_vpp\" is not tested. I think we need something like pgrep vpp after it is stopped? But as per comment above, how do i know it really died when systemd is reporting all fine. grr",
+      "parentUuid": "a6e7b159_7a95ba2a",
       "range": {
         "startLine": 91,
         "startChar": 8,
