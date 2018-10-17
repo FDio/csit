@@ -45,6 +45,30 @@
       "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65b285f3_4601a7d3",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T08:18:40Z",
+      "side": 0,
+      "message": "Not sure, on one side primary usage is this function (a.k.a VPP service) but the general KW stop_service_on_all_duts can be used for any other service like HC, Kubernetes, Docker and many more. So having this functionality there is i guess fine?",
+      "parentUuid": "64684cee_4eadb395",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
