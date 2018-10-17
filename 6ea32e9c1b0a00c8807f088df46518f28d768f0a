@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0b303c_04af3033",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 54
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T10:56:56Z",
+      "side": 1,
+      "message": "2-Container\n\nSo that questions like \"How many nodes are used?\" are still unambigous.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b69f1506_f683b106",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T10:56:56Z",
+      "side": 1,
+      "message": "In order to avoid bloating common.sh, the new functions could be placed into a separate device.sh library.\n\nThe device.sh file mentioned in lines 38 and 52 is not a library file, it is an entry script.",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "538d266e_7bf4d358",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T10:56:56Z",
+      "side": 1,
+      "message": "single",
+      "range": {
+        "startLine": 761,
+        "startChar": 36,
+        "endLine": 761,
+        "endChar": 37
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3e63f8f_f771532a",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T10:56:56Z",
+      "side": 1,
+      "message": "single\n\nWe might need to introduce yet another variable (aside of NODENESS and FLAVOR) when we introduce multi-link 2-container topology.",
+      "range": {
+        "startLine": 767,
+        "startChar": 36,
+        "endLine": 767,
+        "endChar": 37
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
