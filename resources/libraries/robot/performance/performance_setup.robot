@@ -466,7 +466,7 @@
 | | ... | '${crypto_type}' == 'SW_cryptodev' | ${0}
 | | Configure crypto device on all DUTs | force_init=${True} | numvfs=${numvfs}
 | | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
-| | ... | Configure kernel module on all DUTs | igb_uio | force_load=${True}
+| | ... | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
 | Set up performance topology with containers
 | | [Documentation]
