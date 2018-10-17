@@ -82,6 +82,20 @@ function check_download_dir () {
 }
 
 
+function cleanup_topo () {
+
+    set -exuo pipefail
+
+    # Variables read:
+    # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
+    # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
+
+    python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t "${WORKING_TOPOLOGY}"
+    # Not using "|| die" as some callers might want to ignore errors,
+    # e.g. in teardowns, such as unreserve.
+}
+
+
 function common_dirs () {
 
     set -exuo pipefail
@@ -310,7 +324,7 @@ function reserve_testbed () {
                     }
                     die "Trap attempt failed, unreserve succeeded. Aborting."
                 }
-                python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t "${topo}" || {
+                cleanup_topo || {
                     die "Testbed cleanup failed."
                 }
                 break
@@ -630,9 +644,9 @@ function untrap_and_unreserve_testbed () {
     wt="${WORKING_TOPOLOGY}"  # Just to avoid too long lines.
     if [[ -z "${wt-}" ]]; then
         set -eu
-        echo "Testbed looks unreserved already. Trap removal failed before?"
+        warn "Testbed looks unreserved already. Trap removal failed before?"
     else
-        python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t "${wt}" || true
+        cleanup_topo || true
         python "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
