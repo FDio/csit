@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72e1d7ea_031791fe",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T12:44:44Z",
+      "side": 0,
+      "message": "Flexible solution would be to teach DUTSetup to run post-start hook, and make it aware of \u0027vppctl show pci\u0027 wait loop for VPP. But that is too complicated when we only have one hook so far.",
+      "parentUuid": "f5cc7186_5b4f107f",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 42
+      },
+      "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64684cee_4eadb395",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 13
@@ -60,6 +84,30 @@
       "side": 0,
       "message": "Not sure, on one side primary usage is this function (a.k.a VPP service) but the general KW stop_service_on_all_duts can be used for any other service like HC, Kubernetes, Docker and many more. So having this functionality there is i guess fine?",
       "parentUuid": "64684cee_4eadb395",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6e7b159_7a95ba2a",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T12:44:44Z",
+      "side": 0,
+      "message": "Ok, keep the DUTSetup keywords.\nOn the other hand, why are you not using DUTSetup.stop_service_on_all_duts anymore? Stopping VPP does not have any additional steps.",
+      "parentUuid": "65b285f3_4601a7d3",
       "range": {
         "startLine": 91,
         "startChar": 8,
