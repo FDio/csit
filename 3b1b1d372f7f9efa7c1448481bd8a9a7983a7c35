@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4f30f7c_0aeefe76",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T08:01:10Z",
+      "side": 1,
+      "message": "Can be one line.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "3b1b1d372f7f9efa7c1448481bd8a9a7983a7c35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
