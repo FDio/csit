@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "53cd13d4_dbc5a4f3",
+        "filename": "resources/libraries/bash/entry/bootstrap_setup_testbed.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T13:50:46Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "e030cee3_a7a3c41c",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 13
+      },
+      "revId": "3d1e3c076858d190fe52a96c453aa4f6d2a77f37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c2ee628_15f69f0e",
         "filename": "resources/libraries/bash/entry/bootstrap_setup_testbed.sh",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-17T11:16:29Z",
       "side": 1,
       "message": "Consider documenting them here. There are only 4 of them, and (contrary to perftest bootstrap) they are required and always used.",
+      "range": {
+        "startLine": 22,
+        "startChar": 40,
+        "endLine": 22,
+        "endChar": 49
+      },
+      "revId": "3d1e3c076858d190fe52a96c453aa4f6d2a77f37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40c81217_75ab6310",
+        "filename": "resources/libraries/bash/entry/bootstrap_setup_testbed.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T13:50:46Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "0c2ee628_15f69f0e",
       "range": {
         "startLine": 22,
         "startChar": 40,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "18354570_766be3a9",
+        "filename": "resources/libraries/bash/function/setup.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T13:50:46Z",
+      "side": 1,
+      "message": "OK, i mean i do not want to polute screen to much. it takes up to 10minutes so. 10*30 tries.",
+      "parentUuid": "9cd400bb_490bbe69",
+      "range": {
+        "startLine": 187,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 16
+      },
+      "revId": "3d1e3c076858d190fe52a96c453aa4f6d2a77f37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a3f1eca_182b68c6",
         "filename": "resources/tools/testbed-setup/README.md",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2018-10-17T11:16:29Z",
       "side": 1,
       "message": "Do you mean bootstrap_setup_testbed.sh?",
+      "range": {
+        "startLine": 67,
+        "startChar": 10,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "3d1e3c076858d190fe52a96c453aa4f6d2a77f37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "194a9be0_ed876a46",
+        "filename": "resources/tools/testbed-setup/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T13:50:46Z",
+      "side": 1,
+      "message": "y.",
+      "parentUuid": "7a3f1eca_182b68c6",
       "range": {
         "startLine": 67,
         "startChar": 10,
