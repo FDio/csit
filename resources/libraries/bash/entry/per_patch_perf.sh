@@ -59,12 +59,15 @@ compose_pybot_arguments || die
 # TODO: Should the loop block be moved into a function?
 iterations=8
 for ((iter=0; iter<iterations; iter++)); do
+    # TODO: Use less heavy way to avoid apt remove falilures.
+    cleanup_topo
     select_build "build_parent" || die
     check_download_dir || die
     run_pybot || die
     copy_archives || die
     archive_parse_test_results "csit_parent/${iter}" || die
     die_on_pybot_error || die
+    cleanup_topo
     select_build "build_new" || die
     check_download_dir || die
     run_pybot || die
