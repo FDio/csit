@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "676e6674_0c885a6c",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T16:44:20Z",
+      "side": 1,
+      "message": ":returns:",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "195e15fc76044ec9b5e48bcf47c5b0f02213e659",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ecc49546_a71589ec",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T16:44:20Z",
+      "side": 1,
+      "message": "For people running the tests in an enternal labs, it would be more convenient if these values remained in suite Variables table, so they can override them on pybot invocation.",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 23
+      },
+      "revId": "195e15fc76044ec9b5e48bcf47c5b0f02213e659",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15a71af0_88b792bf",
+        "filename": "resources/libraries/python/DMM/SingleCliSer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T16:44:20Z",
+      "side": 1,
+      "message": "If you want to move some code into different function (to keep this function from growing too long) I recommend to put the repeated code there. In this case, put executing \"run\", executing \"verify\", parsing results (possibly sleeping) and returning whether the test passed.\n\nThat way the counters could become local variables of the current function.",
+      "range": {
+        "startLine": 203,
+        "startChar": 25,
+        "endLine": 203,
+        "endChar": 49
+      },
+      "revId": "195e15fc76044ec9b5e48bcf47c5b0f02213e659",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "920242fa_a95f8257",
+        "filename": "tests/dmm/func/SingleCliSer-func.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T16:44:20Z",
+      "side": 1,
+      "message": "This keyword could return the values needed for line 36.",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 32
+      },
+      "revId": "195e15fc76044ec9b5e48bcf47c5b0f02213e659",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
