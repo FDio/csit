@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5cc7186_5b4f107f",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T08:13:20Z",
+      "side": 0,
+      "message": "Delete the unused keywords from DUTsetup.",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 42
+      },
+      "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64684cee_4eadb395",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T08:13:20Z",
+      "side": 0,
+      "message": "Delete the unused keywords from DUTsetup.",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "4b3af03b04a8b4c084b081ee0cb1b13f81d7393c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
