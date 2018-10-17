@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "b7e973ff_680dc4a2",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T15:37:01Z",
+      "side": 1,
+      "message": "Remote sourcing aside, this function still can be placed in different library file.\n\nYou cannot \"call a function\" over SSH. You can only execute a script (or command). Thus docker.sh is entry script, not a library file.\nWhen sourcing, the difference is between executing some action, or just \"importing\" function definitions. Here (line 64), ${input} is an entry script still.\n\nIf you want to avoid copying, I think you can put functions into library file(s), create a \"fake entry\" file which assumes the functions are already defined, and concatenate the content of those files into one long string to execute.\nThat would only work if libraries do not contain any \"source\" on their own, which sounds like a good rule to follow anyway.\n\n$(${ssh} \u003c ${input} ${params[@]}; execute f1(); execute f2())\n\nThat lines executes f1 and f2 on local machine. You need to put the compound command into a string (unless I am mistaken about precedence of \u003c and ; operators).\n\nAlso, \"export -f\" might help, although I do not see a solution which would need that.",
+      "parentUuid": "223275da_a27ce423",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "538d266e_7bf4d358",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 54
@@ -154,6 +178,30 @@
       "side": 1,
       "message": "How it will be named for double link?\nSimilarly to perf, technically this infra allows us to create N-link topologies just by parameter of how many interfaces pairs we will allocate to each docker. \n\nSo at the end, yes I will change it in this intital version but flavor and nodeness are derived from test_code which is job title, which i guess we won\u0027t need to change just for double links?\n\nLet\u0027s think about this till TWS. Currently I am more \"thinking loud\".",
       "parentUuid": "f3e63f8f_f771532a",
+      "range": {
+        "startLine": 767,
+        "startChar": 36,
+        "endLine": 767,
+        "endChar": 37
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5eadbaa_65ac36c6",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-17T15:37:01Z",
+      "side": 1,
+      "message": "We can design that later.\nCurrently, vpp_device.template simply does not have enough links for double-link (circular) topology.",
+      "parentUuid": "fc0a6aef_3ded1698",
       "range": {
         "startLine": 767,
         "startChar": 36,
