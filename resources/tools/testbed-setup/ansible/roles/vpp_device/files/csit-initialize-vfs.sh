@@ -61,6 +61,8 @@ for pci_addr in ${pci_whitelist[@]}; do
                     mac_str="mac ba:dc:0f:fe:${mac5}:${mac6}"
                     # Set 802.1Q VLAN id and MAC address
                     ip link set ${pf} vf $(( vf - 1 )) ${mac_str} ${vlan_str}
+                    ip link set ${pf} vf $(( vf - 1 )) trust on
+                    ip link set ${pf} vf $(( vf - 1 )) spoof off
                 done
                 pci_idx=$(( pci_idx + 1 ))
                 ;;
