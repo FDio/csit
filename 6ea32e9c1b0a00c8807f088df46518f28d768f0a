@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f556e1d1_638bcc85",
+        "filename": "docs/vpp-device.rst",
+        "patchSetId": 54
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T11:44:54Z",
+      "side": 1,
+      "message": "Indeed confusing. Although it is all over the code and report but i will change.\n\nWhat about 2-node simulated topology?",
+      "parentUuid": "9a0b303c_04af3033",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 10
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b69f1506_f683b106",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 54
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-17T10:56:56Z",
       "side": 1,
       "message": "In order to avoid bloating common.sh, the new functions could be placed into a separate device.sh library.\n\nThe device.sh file mentioned in lines 38 and 52 is not a library file, it is an entry script.",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "223275da_a27ce423",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T11:44:54Z",
+      "side": 1,
+      "message": "Hm, partially right but there is bigger problem. This function (+deactive derivate) is wrapper for SHIM so if you want to run this beast against SSH remote machine (docker/vm/phy), you can as per line 51-52. If you want to run locally you can too in vbox just by sourcing device.sh.\n\nHowever the real issue is executing device.sh remotely via ssh and without obscure scp copy and then source and call functions.\n\nOne possible option to explore could be:\n\n $(${ssh} \u003c ${input} ${params[@]}; execute f1(); execute f2())\n\nBut it was not working for me. So this way device.sh acts as standalone \"reservation\" function broken to smaller sub-functions call separately. As of now i am not aware of any more optimized solution to invoke functions sourced remotely.",
+      "parentUuid": "b69f1506_f683b106",
       "range": {
         "startLine": 24,
         "startChar": 18,
@@ -82,6 +130,30 @@
       "writtenOn": "2018-10-17T10:56:56Z",
       "side": 1,
       "message": "single\n\nWe might need to introduce yet another variable (aside of NODENESS and FLAVOR) when we introduce multi-link 2-container topology.",
+      "range": {
+        "startLine": 767,
+        "startChar": 36,
+        "endLine": 767,
+        "endChar": 37
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc0a6aef_3ded1698",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-17T11:44:54Z",
+      "side": 1,
+      "message": "How it will be named for double link?\nSimilarly to perf, technically this infra allows us to create N-link topologies just by parameter of how many interfaces pairs we will allocate to each docker. \n\nSo at the end, yes I will change it in this intital version but flavor and nodeness are derived from test_code which is job title, which i guess we won\u0027t need to change just for double links?\n\nLet\u0027s think about this till TWS. Currently I am more \"thinking loud\".",
+      "parentUuid": "f3e63f8f_f771532a",
       "range": {
         "startLine": 767,
         "startChar": 36,
