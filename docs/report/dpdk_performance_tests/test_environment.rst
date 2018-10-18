@@ -9,6 +9,8 @@
 
 .. include:: ../introduction/test_environment_sut_calib_skx.rst
 
+.. include:: ../introduction/test_environment_sut_calib_meltspec.rst
+
 .. include:: ../introduction/test_environment_sut_conf_1.rst
 
 .. include:: ../introduction/test_environment_sut_conf_3.rst
