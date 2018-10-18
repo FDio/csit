@@ -70,6 +70,30 @@
       "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6513c4e_bc4c8108",
+        "filename": "resources/tools/disk-image-builder/csit-sut-dcr/ubuntu_1804_amd64/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-18T08:49:42Z",
+      "side": 1,
+      "message": "What about to remove it entirely?\nIf no vendor produced it (as fd.io is not vendor really rather (sub-)project under umbrella of LF). Then we do not need it and only copyright applies?",
+      "parentUuid": "18ccad0c_ffce09fd",
+      "range": {
+        "startLine": 18,
+        "startChar": 13,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
