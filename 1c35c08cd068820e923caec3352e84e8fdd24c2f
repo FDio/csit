@@ -46,6 +46,30 @@
       "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18ccad0c_ffce09fd",
+        "filename": "resources/tools/disk-image-builder/csit-sut-dcr/ubuntu_1804_amd64/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T08:27:42Z",
+      "side": 1,
+      "message": "Copyright includes \"and/or its affiliates\" so it cannot be Cisco alone.\nDocumentation [0] is not very detailed on Vendor label.\n\nI guess Vendor should be a larger company Maintainer is part of. And while Cisco is large, CSIT does not belong entirely to it.\n\n[0] http://label-schema.org/rc1/",
+      "parentUuid": "c789198c_61a094bd",
+      "range": {
+        "startLine": 18,
+        "startChar": 13,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
