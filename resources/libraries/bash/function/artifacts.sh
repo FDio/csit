@@ -27,7 +27,7 @@ function download_artifacts () {
         die "Get OS release failed."
     }
 
-    repo_url_path="./VPP_REPO_URL"
+    repo_url_path="${CSIT_DIR}/VPP_REPO_URL"
     if [ -e "${repo_url_path}" ]; then
         REPO_URL="$(<${repo_url_path})" || {
             die "Read repo URL from ${repo_url_path} failed."
