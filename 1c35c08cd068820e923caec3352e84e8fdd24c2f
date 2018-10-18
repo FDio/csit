@@ -22,6 +22,30 @@
       "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c789198c_61a094bd",
+        "filename": "resources/tools/disk-image-builder/csit-sut-dcr/ubuntu_1804_amd64/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-18T05:53:42Z",
+      "side": 1,
+      "message": "No idea. Is fd.io vendor? look at copyright in every file. Also all other containers from Ed have vendor cisco.com. I am not a lawyer (i will let PTL to judge).",
+      "parentUuid": "78b3f146_3d4570e9",
+      "range": {
+        "startLine": 18,
+        "startChar": 13,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
