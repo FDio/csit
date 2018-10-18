@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb2dd3dd_1067bbd2",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T16:12:12Z",
+      "side": 1,
+      "message": "Compare to lines 70-76. I feel there should be a way to define a single funtion and make it work both there and here, I just do not see easy enough way to handle input variables.\n\nUpdate: After reading https://stackoverflow.com/a/22107893\nI think this would work in line 58:\nenv_vars\u003d$(${ssh} \"set -exuo pipefail\n  $(typeset -f)\n  NODENESS\u003d\u0027${NODENESS}\u0027\n  FLAVOR\u003d\u0027${FLAVOR}\u0027\n  device_image\u003d\u0027${device_image}\u0027\n  multiple_action_function\n\") || die\n\nBut perhaps it would be easier if multiple_action_function took (documented) arguments ${1} to ${3}:\nenv_vars\u003d$(${ssh} \"set -exuo pipefail\n  $(typeset -f)\n  multiple_action_function \u0027${NODENESS}\u0027 \u0027${FLAVOR}\u0027 \u0027${device_image}\u0027\n\") || die",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2e709c8_493d3cba",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T16:12:12Z",
+      "side": 1,
+      "message": "Guidelines say \"eval\" is not a solution ever, and this is basically the same. Can we try to insert some security?\nSee https://unix.stackexchange.com/a/125127\nor web-search something better.",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64cc9a93_6f1c1df9",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T16:12:12Z",
+      "side": 1,
+      "message": "I am seriously considering switching to Python here.\nWho sets this variable? Should it be in duoble-quotes?",
+      "range": {
+        "startLine": 87,
+        "startChar": 45,
+        "endLine": 87,
+        "endChar": 61
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31b59fca_2bdd6164",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T16:12:12Z",
+      "side": 1,
+      "message": "print_ or echo_\n\nMost other get_ functions put the values into variables, not into stdout.",
+      "range": {
+        "startLine": 295,
+        "startChar": 9,
+        "endLine": 295,
+        "endChar": 13
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeeaf8c6_842045a6",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T16:12:12Z",
+      "side": 1,
+      "message": "Update. I do not see CSIT_DIR being read, but I see DCR_UUIDS.",
+      "range": {
+        "startLine": 405,
+        "startChar": 20,
+        "endLine": 405,
+        "endChar": 21
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
