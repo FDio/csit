@@ -72,7 +72,7 @@
 | | ... | \| overhead=\${40} \| pps_limit=\${18750000} \|
 | | ...
 | | [Arguments] | ${bps_limit} | ${framesize}
-| | ... | ${overhead}=${0} | ${pps_limit}=${None}
+| | ... | ${overhead}=${0} | ${pps_limit}=${13392856}
 | | ...
 | | ${avg_size} = | Set Variable If | '${framesize}' == 'IMIX_v4_1'
 | | ... | ${353.83333} | ${framesize}
