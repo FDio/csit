@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "7329c1ab_2ee753e8",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T10:34:53Z",
+      "side": 1,
+      "message": "\u003e executing \"set -\"\n\nSet command has consequences, but it mostly re-establishes \"-exuo pipefail\" and does not depend on which host filesystem (or other resource) is accessed, so it is not what I had in mind when talking about \"actions\".\n\n\u003e I think it should be doable.\n\nDo you want me to add some notes to bash guidelines so we can discuss details there?",
+      "parentUuid": "5e3f25a6_5c17b828",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "538d266e_7bf4d358",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 54
