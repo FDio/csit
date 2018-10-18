@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5e3f25a6_5c17b828",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-18T09:04:06Z",
+      "side": 1,
+      "message": "\u003e You cannot \"call a function\" over SSH. You can only execute a\n \u003e script (or command). Thus docker.sh is entry script, not a library\n \u003e file.\n\nYou mean device.sh, but anyway you can call it. Technically SSH is just session and what ever you do in this single session is remains.\n\n \u003e When sourcing, the difference is between executing some action, or\n \u003e just \"importing\" function definitions. Here (line 64), ${input} is\n \u003e an entry script still.\n\nTrue, but do not forget that we are for example executing \"set -\" per each entry file which also breaks the rule.\n\n \u003e If you want to avoid copying, I think you can put functions into\n \u003e library file(s), create a \"fake entry\" file which assumes the\n \u003e functions are already defined, and concatenate the content of those\n \u003e files into one long string to execute.\n\nMaybe i will try to focus on both on input library + execute function separately. I think it should be doable.\n\n \u003e That would only work if libraries do not contain any \"source\" on\n \u003e their own, which sounds like a good rule to follow anyway.\n \nYes looks to be usable as one of the option. I will try to separate calling from library again. Hope i will find something.",
+      "parentUuid": "b7e973ff_680dc4a2",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "538d266e_7bf4d358",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 54
