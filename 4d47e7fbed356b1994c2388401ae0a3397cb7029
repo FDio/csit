@@ -22,6 +22,30 @@
       "revId": "4d47e7fbed356b1994c2388401ae0a3397cb7029",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07c48df5_6ede205d",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_device.sh",
+        "patchSetId": 56
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-18T07:02:09Z",
+      "side": 1,
+      "message": "Sandbox testing. This why i wanted earlier to leave these \"ci-stuff\" as || true with +e so they will not fail in case of an error. You argue opposite, so i will fix this before merge",
+      "parentUuid": "6838c3e4_730676b4",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 1
+      },
+      "revId": "4d47e7fbed356b1994c2388401ae0a3397cb7029",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
