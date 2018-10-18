@@ -18,6 +18,8 @@ set -exuo pipefail
 function download_artifacts () {
     # Get and/or install VPP artifacts from packagecloud.io.
     #
+    # Variables read:
+    # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # Variables set:
     # - REPO_URL - FD.io Packagecloud repository.
 
@@ -27,7 +29,7 @@ function download_artifacts () {
         die "Get OS release failed."
     }
 
-    repo_url_path="./VPP_REPO_URL"
+    repo_url_path="${CSIT_DIR}/VPP_REPO_URL"
     if [ -e "${repo_url_path}" ]; then
         REPO_URL="$(<${repo_url_path})" || {
             die "Read repo URL from ${repo_url_path} failed."

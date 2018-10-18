@@ -55,6 +55,7 @@ else
     # Download the latest VPP build install packages
     rm -f *.${PACKAGE}
     echo Downloading VPP packages...
+    CSIT_DIR=${SCRIPT_DIR}
     source "${SCRIPT_DIR}/resources/libraries/bash/function/artifacts.sh"
     download_artifacts
     # Need to revert -euo as the rest of script is not optimized for this.
