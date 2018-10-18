@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "bd3564c8_b9cebaf6",
+        "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-18T06:21:35Z",
+      "side": 1,
+      "message": "I think no, it will just loose readability. Lets keep high level functions here to see what bootstrap is doing.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 55
+      },
+      "revId": "7857157e01e9fdb65c8963081a5de70106d58b62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b3263b9_f1baf36e",
         "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
         "patchSetId": 1
