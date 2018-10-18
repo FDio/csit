@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "2bde332b_f54c9e2e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 54
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-18T12:26:32Z",
+      "side": 1,
+      "message": "I think in latest patchset i found the way of executing function sourced locally over ssh. Please review.",
+      "parentUuid": "7329c1ab_2ee753e8",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "6ea32e9c1b0a00c8807f088df46518f28d768f0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "538d266e_7bf4d358",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 54
