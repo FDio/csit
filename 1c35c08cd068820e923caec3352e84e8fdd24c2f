@@ -94,6 +94,30 @@
       "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53b5c623_ccec7ef0",
+        "filename": "resources/tools/disk-image-builder/csit-sut-dcr/ubuntu_1804_amd64/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-18T10:27:51Z",
+      "side": 1,
+      "message": "\u003e remove it entirely?\n\n+1.",
+      "parentUuid": "b6513c4e_bc4c8108",
+      "range": {
+        "startLine": 18,
+        "startChar": 13,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "1c35c08cd068820e923caec3352e84e8fdd24c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
