@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b66b846_a2901cfa",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-19T10:30:29Z",
+      "side": 1,
+      "message": "Ok i will try option 2. I am jut not sure if single qoutes works",
+      "parentUuid": "eb2dd3dd_1067bbd2",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2e709c8_493d3cba",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-18T16:12:12Z",
       "side": 1,
       "message": "Guidelines say \"eval\" is not a solution ever, and this is basically the same. Can we try to insert some security?\nSee https://unix.stackexchange.com/a/125127\nor web-search something better.",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e727aa32_f1612c9a",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-19T10:30:29Z",
+      "side": 1,
+      "message": "I guess best solution is to set sshd to accept_env\u003dCSIT_\nThis way ssh will transfer vars. This is more universal but i agree security is not covered. It is different from eval, but I think we need to ask question what to sacrify to easy the things. Do we want to drop ssh? Drop file transfer? Drop reservation from CSIt and hardcode it to shim? What ever is easier to manage. There is no easy way to run script remotely, ensure it is read from repo and in same time to return something back. And i do not go the path of databases as it will be nightmare. So tranfering data over ssh session?",
+      "parentUuid": "e2e709c8_493d3cba",
       "range": {
         "startLine": 62,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8ae63680_1076befa",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-19T10:30:29Z",
+      "side": 1,
+      "message": "Topologies[0] is set by function get topology or so. No double qoutes as that would render topofile in single line with all escaped. Purpose of this is to replace vars in file. Where to put python files? I mean it is python + yaml lib so too many dependencies for single thing. There is possibility to write function to render yaml dynamically in bash but that is lot of code.\n\nBut if you have time feel free to rewrite.\nhttps://www.google.com/amp/s/starkandwayne.com/blog/bashing-your-yaml/amp/\n\nMaybe using ‘sed’?",
+      "parentUuid": "64cc9a93_6f1c1df9",
+      "range": {
+        "startLine": 87,
+        "startChar": 45,
+        "endLine": 87,
+        "endChar": 61
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31b59fca_2bdd6164",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 58
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "a2201b9d_9269bf68",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-19T10:30:29Z",
+      "side": 1,
+      "message": "Ok next iter",
+      "parentUuid": "31b59fca_2bdd6164",
+      "range": {
+        "startLine": 295,
+        "startChar": 9,
+        "endLine": 295,
+        "endChar": 13
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aeeaf8c6_842045a6",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 58
@@ -105,6 +201,30 @@
       "writtenOn": "2018-10-18T16:12:12Z",
       "side": 1,
       "message": "Update. I do not see CSIT_DIR being read, but I see DCR_UUIDS.",
+      "range": {
+        "startLine": 405,
+        "startChar": 20,
+        "endLine": 405,
+        "endChar": 21
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e42c398c_0e77a0d0",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-19T10:30:29Z",
+      "side": 1,
+      "message": "Ok next iter",
+      "parentUuid": "aeeaf8c6_842045a6",
       "range": {
         "startLine": 405,
         "startChar": 20,
