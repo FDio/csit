@@ -24,7 +24,7 @@ set -exuo pipefail
 # + Everything needed to build VPP is already installed locally.
 # Consequences:
 # + At the end, VPP repo has parent commit checked out and built.
-# + Directories build_root, dpdk and csit are reset during the run.
+# + Directories build_root, build and csit are reset during the run.
 # + The following directories (relative to VPP repo) are (re)created:
 # ++ csit_new, csit_parent, build_new, build_parent,
 # ++ archive, csit/archive, csit_download_dir.
@@ -44,9 +44,10 @@ set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "NEW" || die
 prepare_build_parent || die
 build_vpp_ubuntu_amd64 "PARENT" || die
-prepare_test_new || die
+prepare_test || die
 ## Replace previous 4 lines with this to speed up testing.
-#download_builds "REPLACE_WITH_URL" || die
+#download_builds "https://jenkins.fd.io/sandbox/job/vpp-csit-verify-perf-master-2n-skx/2/artifact/*zip*/archive.zip" || die
+initialize_csit_dirs || die
 get_test_tag_string || die
 get_test_code "${1-}" || die
 set_perpatch_dut || die
@@ -55,15 +56,24 @@ activate_virtualenv "${VPP_DIR}" || die
 reserve_testbed || die
 select_tags || die
 compose_pybot_arguments || die
-check_download_dir || die
-run_pybot "10" || die
-copy_archives || die
-die_on_pybot_error || die
-prepare_test_parent || die
-check_download_dir || die
-run_pybot "10" || die
+iterations=8
+for ((iter=0; iter<iterations; iter++)); do
+    # TODO: Use less heavy way to avoid apt remove falilures.
+    cleanup_topo
+    select_build "build_parent" || die
+    check_download_dir || die
+    run_pybot || die
+    copy_archives || die
+    archive_parse_test_results "csit_parent/${iter}" || die
+    die_on_pybot_error || die
+    cleanup_topo
+    select_build "build_new" || die
+    check_download_dir || die
+    run_pybot || die
+    copy_archives || die
+    archive_parse_test_results "csit_new/${iter}" || die
+    die_on_pybot_error || die
+done
 untrap_and_unreserve_testbed || die
-copy_archives || die
-die_on_pybot_error || die
 compare_test_results  # The error code becomes this script's error code.
 # TODO: After merging, make sure archiving works as expected.
