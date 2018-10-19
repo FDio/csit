@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "bb9f9914_542249de",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "TARGET_TOPOLOGY might be a better, more intuitive, name",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58a4c7d9_3878775e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "Does NODENESS convey more that just the number of nodes? If not, then it would make sense to rename it to NODE_AMOUNT or something similar to avoid confusion.",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ba22fb7_b3c108d7",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "Is this getting us the ip of csit-shim? Can we be absolutely sure that it\u0027s going to be in resolv.conf? It seems that we may insert more than one line containing search and then we might have a problem.",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 66
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb2dd3dd_1067bbd2",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -88,6 +157,29 @@
         "startChar": 40,
         "endLine": 55,
         "endChar": 43
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09430ea0_eec8decd",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "A bit of googling revealed that typeset is obsolete and declare does the same thing, so we should probably use declare.",
+      "range": {
+        "startLine": 58,
+        "startChar": 33,
+        "endLine": 58,
+        "endChar": 40
       },
       "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -237,6 +329,23 @@
     },
     {
       "key": {
+        "uuid": "ccac648b_76a67418",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "Leaving this as function leaves us the ability to easily extend the check, which is always good to have.",
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31b59fca_2bdd6164",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 58
@@ -271,6 +380,30 @@
       "writtenOn": "2018-10-19T10:30:29Z",
       "side": 1,
       "message": "Ok next iter",
+      "parentUuid": "31b59fca_2bdd6164",
+      "range": {
+        "startLine": 295,
+        "startChar": 9,
+        "endLine": 295,
+        "endChar": 13
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "989b4e4c_4b14f63f",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "+ for print_",
       "parentUuid": "31b59fca_2bdd6164",
       "range": {
         "startLine": 295,
@@ -324,6 +457,29 @@
         "startChar": 20,
         "endLine": 405,
         "endChar": 21
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98408e56_d0c43726",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "uuidgen is not standard - did we document somewhere that uuid-runtime needs to be installed (on ubuntu, not sure about centos)?",
+      "range": {
+        "startLine": 493,
+        "startChar": 47,
+        "endLine": 493,
+        "endChar": 54
       },
       "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
