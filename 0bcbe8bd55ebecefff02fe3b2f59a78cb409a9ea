@@ -49,6 +49,52 @@
     },
     {
       "key": {
+        "uuid": "6215a7d1_1567f28c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-19T12:44:13Z",
+      "side": 1,
+      "message": "What happens if bash fails around here? Do we exit mutex?",
+      "range": {
+        "startLine": 52,
+        "startChar": 19,
+        "endLine": 52,
+        "endChar": 23
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a90e6e30_29eb2df1",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-19T12:44:13Z",
+      "side": 1,
+      "message": "When we die here, who will unbind the interfaces?\n\nIn general, we need to identify atomic actions and make sure the corresponding traps are as close as possible.",
+      "range": {
+        "startLine": 55,
+        "startChar": 40,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2e709c8_493d3cba",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -96,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "5db29c93_0fd357fa",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-19T12:44:13Z",
+      "side": 1,
+      "message": "I think a compromise would be to create a function, which reads (filtered preferably by variable names) line by line and runs\n  declare \"${line}\"\n\nThat should define the variables we need, while being moderately safe.",
+      "parentUuid": "e727aa32_f1612c9a",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64cc9a93_6f1c1df9",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -131,6 +201,30 @@
       "side": 1,
       "message": "Topologies[0] is set by function get topology or so. No double qoutes as that would render topofile in single line with all escaped. Purpose of this is to replace vars in file. Where to put python files? I mean it is python + yaml lib so too many dependencies for single thing. There is possibility to write function to render yaml dynamically in bash but that is lot of code.\n\nBut if you have time feel free to rewrite.\nhttps://www.google.com/amp/s/starkandwayne.com/blog/bashing-your-yaml/amp/\n\nMaybe using ‘sed’?",
       "parentUuid": "64cc9a93_6f1c1df9",
+      "range": {
+        "startLine": 87,
+        "startChar": 45,
+        "endLine": 87,
+        "endChar": 61
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e17a04d9_964b2556",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-19T12:44:13Z",
+      "side": 1,
+      "message": "Lines 33-34 are for you to document which variables are being introduced.\n\nAfter thinking about this, your code can be quite safe, if you make sure the template text does not contain EOF, $(, `, or other dangers. I recommend to create a separate function for this.",
+      "parentUuid": "8ae63680_1076befa",
       "range": {
         "startLine": 87,
         "startChar": 45,
