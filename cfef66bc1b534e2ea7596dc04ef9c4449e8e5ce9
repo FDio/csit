@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09cb5789_523abe6f",
+        "filename": "resources/tools/disk-image-builder/csit-sut-dcr/ubuntu_1804_amd64/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2018-10-19T14:04:32Z",
+      "side": 1,
+      "message": "We don\u0027t have to install the docker repo if we install docker.io instead of docker-ce",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 12
+      },
+      "revId": "cfef66bc1b534e2ea7596dc04ef9c4449e8e5ce9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
