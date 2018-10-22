@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d3d0514_6caff5e9",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "Probabilistic Loss Ratio Search for Packet Throughput",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f36a6f1_a61bfb21",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "predetermined\n\nRecent implementations are using durations which increase as an arithmetic sequence.",
+      "range": {
+        "startLine": 85,
+        "startChar": 19,
+        "endLine": 85,
+        "endChar": 27
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88eb6248_c40587a8",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "Remove references to a particular test setup, or at least separate them into an appendix.",
+      "range": {
+        "startLine": 87,
+        "startChar": 11,
+        "endLine": 87,
+        "endChar": 15
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff2abc0c_c3c0dbf1",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "We assume packets are never duplicated, or the duplicates are recognized and discarded by the traffic analyzer.",
+      "range": {
+        "startLine": 99,
+        "startChar": 34,
+        "endLine": 99,
+        "endChar": 46
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8a3cef9_51b2df61",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "Binomial distribution is better fit (acknowledging that the number of packets lost cannot be higher than the number of packets offered), but the difference tends to be relevant in loads far above the critical region, so using Poisson distribution helps the algorithm focus on critical region better.",
+      "range": {
+        "startLine": 100,
+        "startChar": 24,
+        "endLine": 100,
+        "endChar": 44
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92beefe8_cf7b561c",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "of the same offered load.",
+      "range": {
+        "startLine": 102,
+        "startChar": 69,
+        "endLine": 102,
+        "endChar": 70
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5457817d_36f56b92",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "posterior distribution",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 29
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c29aca8e_cac8b7c8",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "Recent implementations discard only the initial two measurements (similarly to the initial phase of MLRsearc) and do not suppress any measurements.",
+      "range": {
+        "startLine": 132,
+        "startChar": 51,
+        "endLine": 132,
+        "endChar": 68
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0f7c973_f2c20f7e",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T11:51:28Z",
+      "side": 1,
+      "message": "Recent implementations use fitting fuctions. The main reason is that while the approximation is only relevant in the critical region, it hast to be well-defined everywhere in order not to hamper the numerical integration. As linear functions can predit non-positive losses, they cannot be used.",
+      "range": {
+        "startLine": 134,
+        "startChar": 2,
+        "endLine": 134,
+        "endChar": 20
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
