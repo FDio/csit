@@ -498,11 +498,24 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrANDnic_intel-x710AND1cAND64bANDip4base"
-                                "mrrANDnic_intel-x710AND1cAND78bANDip6base"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbase"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2xcbase"
-                                "!dot1q")
+                test_tag_array=("ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdbase"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdbase"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdbase"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2xcbase"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2xcbase"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2xcbase"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2patch"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2patch"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2patch"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdscaleANDfib_10k"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdscaleANDfib_10k"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdscaleANDfib_10k"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdscaleANDfib_100k"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdscaleANDfib_100k"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdscaleANDfib_100k"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdscaleANDfib_1m"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdscaleANDfib_1m"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdscaleANDfib_1m")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
