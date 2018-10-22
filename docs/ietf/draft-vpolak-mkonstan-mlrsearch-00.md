@@ -56,12 +56,12 @@ Expires: April 24, 2019
 
 # MLRsearch Background
 
-Multiple Loss Rate search (MLRsearch) is a new search algorithm
-implemented in FD.io CSIT project. MLRsearch discovers multiple packet
-throughput rates in a single search, with each rate associated with a
-distinct Packet Loss Ratio (PLR) criteria.
+Multiple Loss Rate search (MLRsearch) is a packet throughput search algorithm
+suitable for deterministic (as opposed to probabilistic) systems.
+MLRsearch discovers multiple packet throughput rates in a single search,
+each rate associated with a distinct Packet Loss Ratio (PLR) criteria.
 
-Two throughput measurements used in FD.io CSIT are Non-Drop Rate (NDR,
+Two popular names for particular PLR criteria are Non-Drop Rate (NDR,
 with zero packet loss, PLR=0) and Partial Drop Rate (PDR, with packet
 loss rate not greater than the configured non-zero PLR). MLRsearch
 discovers NDR and PDR in a single pass reducing required execution time
@@ -72,9 +72,14 @@ conducted at the specified final trial duration.
 This results in the shorter overall search
 execution time when compared to a standard NDR/PDR binary search,
 while guaranteeing the same or similar results.
+(TODO: Specify "standard" in the previous sentence.)
 
 If needed, MLRsearch can be easily adopted to discover more throughput rates
 with different pre-defined PLRs.
+
+TODO: The following note applies only to CSIT implementation.
+The algorithm itself only cares about overall offered load,
+not about how it is distributed into streams.
 
 .. Note:: All throughput rates are *always* bi-directional
    aggregates of two equal (symmetric) uni-directional packet rates
@@ -82,12 +87,14 @@ with different pre-defined PLRs.
 
 # MLRsearch Overview
 
+TODO: Are the following .rst list compatible with markdown?
+
 The main properties of MLRsearch:
 
 - MLRsearch is a duration aware multi-phase multi-rate search algorithm.
 
   - Initial phase determines promising starting interval for the search.
-  - Intermediate phases progress towards defined final search criteria.
+  - Intermediate phases progress towards the defined final search criteria.
   - Final phase executes measurements according to the final search
     criteria.
 
