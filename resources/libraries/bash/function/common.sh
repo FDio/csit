@@ -145,7 +145,7 @@ function compose_pybot_arguments () {
     # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
 
     # No explicit check needed with "set -u".
-    PYBOT_ARGS=("--loglevel" "TRACE" "--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
+    PYBOT_ARGS=("--loglevel" "TRACE" "--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}" "--dryrun")
     PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
 
     EXPANDED_TAGS=()
@@ -498,10 +498,24 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrANDnic_intel-x710AND1cAND64bANDip4base"
-                                "mrrANDnic_intel-x710AND1cAND78bANDip6base"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbase"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2xcbase"
+                test_tag_array=("ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdbase"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdbase"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdbase"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2xcbase"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2xcbase"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2xcbase"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2patch"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2patch"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2patch"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdscaleANDfib_10k"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdscaleANDfib_10k"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdscaleANDfib_10k"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdscaleANDfib_100k"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdscaleANDfib_100k"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdscaleANDfib_100k"
+                                "ndrpdrANDnic_intel-x710AND1cAND64bANDl2bdscaleANDfib_1m"
+                                "ndrpdrANDnic_intel-x710AND2cAND64bANDl2bdscaleANDfib_1m"
+                                "ndrpdrANDnic_intel-x710AND4cAND64bANDl2bdscaleANDfib_1m"
                                 "!dot1q")
             else
                 # If trigger contains tags, split them into array.
