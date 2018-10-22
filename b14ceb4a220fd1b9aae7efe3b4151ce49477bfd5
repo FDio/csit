@@ -25,6 +25,76 @@
     },
     {
       "key": {
+        "uuid": "3829cb9e_47de5828",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "Ok?",
+      "parentUuid": "0d3d0514_6caff5e9",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a85b93a_554ec2f3",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "draft-vpolak-probabilistic-throughput-search-00.md?",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 50
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54057d7d_8725795b",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "trial",
+      "range": {
+        "startLine": 84,
+        "startChar": 38,
+        "endLine": 84,
+        "endChar": 44
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f36a6f1_a61bfb21",
         "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
         "patchSetId": 1
@@ -36,6 +106,30 @@
       "writtenOn": "2018-10-22T11:51:28Z",
       "side": 1,
       "message": "predetermined\n\nRecent implementations are using durations which increase as an arithmetic sequence.",
+      "range": {
+        "startLine": 85,
+        "startChar": 19,
+        "endLine": 85,
+        "endChar": 27
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "03e70ef0_d87d537d",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "1f36a6f1_a61bfb21",
       "range": {
         "startLine": 85,
         "startChar": 19,
@@ -71,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "a4b1ed43_d0e41f77",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "Ok. Per comment to mlrsearch draft, we should add a separate section talking about known implementations.",
+      "parentUuid": "88eb6248_c40587a8",
+      "range": {
+        "startLine": 87,
+        "startChar": 11,
+        "endLine": 87,
+        "endChar": 15
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff2abc0c_c3c0dbf1",
         "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
         "patchSetId": 1
@@ -82,6 +200,30 @@
       "writtenOn": "2018-10-22T11:51:28Z",
       "side": 1,
       "message": "We assume packets are never duplicated, or the duplicates are recognized and discarded by the traffic analyzer.",
+      "range": {
+        "startLine": 99,
+        "startChar": 34,
+        "endLine": 99,
+        "endChar": 46
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa755c42_6a09aa81",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "We should add a note to this regard, as currently an assumption is made that packet traffic generator implements duplicate packet detection, and reports this as an error.",
+      "parentUuid": "ff2abc0c_c3c0dbf1",
       "range": {
         "startLine": 99,
         "startChar": 34,
@@ -117,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "54b7c2d3_7df0a03e",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "This text to be added, in case someone wants to give it a go.",
+      "parentUuid": "f8a3cef9_51b2df61",
+      "range": {
+        "startLine": 100,
+        "startChar": 24,
+        "endLine": 100,
+        "endChar": 44
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92beefe8_cf7b561c",
         "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
         "patchSetId": 1
@@ -128,6 +294,30 @@
       "writtenOn": "2018-10-22T11:51:28Z",
       "side": 1,
       "message": "of the same offered load.",
+      "range": {
+        "startLine": 102,
+        "startChar": 69,
+        "endLine": 102,
+        "endChar": 70
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2db09130_6a22eca7",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "added text at the marker.",
+      "parentUuid": "92beefe8_cf7b561c",
       "range": {
         "startLine": 102,
         "startChar": 69,
@@ -163,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "2f2986df_63430252",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "5457817d_36f56b92",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 29
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c29aca8e_cac8b7c8",
         "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
         "patchSetId": 1
@@ -174,6 +388,30 @@
       "writtenOn": "2018-10-22T11:51:28Z",
       "side": 1,
       "message": "Recent implementations discard only the initial two measurements (similarly to the initial phase of MLRsearc) and do not suppress any measurements.",
+      "range": {
+        "startLine": 132,
+        "startChar": 51,
+        "endLine": 132,
+        "endChar": 68
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48596d5f_3d6c0563",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "Replacement of text.",
+      "parentUuid": "c29aca8e_cac8b7c8",
       "range": {
         "startLine": 132,
         "startChar": 51,
@@ -202,6 +440,53 @@
         "startChar": 2,
         "endLine": 134,
         "endChar": 20
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a89b4bf_dfff8447",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "Change title: \"Fitting Function\"",
+      "parentUuid": "f0f7c973_f2c20f7e",
+      "range": {
+        "startLine": 134,
+        "startChar": 2,
+        "endLine": 134,
+        "endChar": 20
+      },
+      "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b207aac_18560505",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T16:02:45Z",
+      "side": 1,
+      "message": "Capital letters for each word in title.",
+      "range": {
+        "startLine": 134,
+        "startChar": 21,
+        "endLine": 134,
+        "endChar": 33
       },
       "revId": "b14ceb4a220fd1b9aae7efe3b4151ce49477bfd5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
