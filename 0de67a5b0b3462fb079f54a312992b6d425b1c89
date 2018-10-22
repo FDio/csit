@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a60fb050_91c7987d",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T20:27:46Z",
+      "side": 1,
+      "message": "December 24, 2018",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 23
+      },
+      "revId": "0de67a5b0b3462fb079f54a312992b6d425b1c89",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
