@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7fcf628_3a1815d1",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-22T08:43:45Z",
+      "side": 1,
+      "message": "Why does \"50\" have opposite order of \"sl\" and \"sf\" than \"10\"?",
+      "range": {
+        "startLine": 158,
+        "startChar": 45,
+        "endLine": 158,
+        "endChar": 49
+      },
+      "revId": "f19c1b32812dc8a8fe2fca24afd620452a522f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
