@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "654bcf76_cb5a360a",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "I like the title :)",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 43
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97bd05a5_71425e45",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per this change.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 52
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b08fbd9c_86169cce",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per this change.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 61
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aaeb55ca_d30b8b05",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per this change.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 57
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea1bf500_9515da77",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per these changes.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 34
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6abe70b2_e65ae6d7",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per these changes.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 35
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df4db000_0f34855c",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per these changes.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 62
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a667ccf_5798f617",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per these changes.",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 63
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5aee6b_78bbf13c",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "Changed to \"Algorithm Formulas\"",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 35
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15bdf3c0_3e7604a9",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per these changes.",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 77
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db3af264_bc5d16ce",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated per these changes.",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 46
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c49a7b7d_c5795690",
+        "filename": "docs/ietf/draft-vpolak-nf-extended-test-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T21:16:31Z",
+      "side": 1,
+      "message": "ge15282 updated by moving this text to \"FD.io CSIT Implementation Specifics\" section.",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 28
+      },
+      "revId": "ee172823502e5cc01bb1c3523b2466d4fde6851b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
