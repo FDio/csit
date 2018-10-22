@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "d520da41_f93f0804",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T15:46:13Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "d74372b3_e574fd58",
+      "range": {
+        "startLine": 19,
+        "startChar": 50,
+        "endLine": 19,
+        "endChar": 57
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9338c085_dbac7f37",
         "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2018-10-15T16:23:24Z",
       "side": 1,
       "message": "2018?",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88aa6276_190d7c80",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T15:46:13Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "9338c085_dbac7f37",
       "range": {
         "startLine": 40,
         "startChar": 17,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "54f51a94_05065645",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T15:46:13Z",
+      "side": 1,
+      "message": "Ok. Let\u0027s add a section about known working implementations, so that other folks can update it if they got it working too e.g. NFVbench.",
+      "parentUuid": "dc91a1a5_98d5e7e5",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 25
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afaca427_afa522de",
         "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
         "patchSetId": 2
@@ -117,6 +189,29 @@
     },
     {
       "key": {
+        "uuid": "dcf17fba_84997255",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T15:46:13Z",
+      "side": 1,
+      "message": "Need to add terminology section upfront defining the terms used, so that they can be referred in the draft.",
+      "range": {
+        "startLine": 64,
+        "startChar": 51,
+        "endLine": 64,
+        "endChar": 64
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d9db4cf_7f42585a",
         "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
         "patchSetId": 2
@@ -128,6 +223,30 @@
       "writtenOn": "2018-10-15T16:23:24Z",
       "side": 1,
       "message": "I have noticed RFCs use two spaces before sentence (if it starts in the middle of a line).\nNot sure how strictly is it required.",
+      "range": {
+        "startLine": 66,
+        "startChar": 56,
+        "endLine": 66,
+        "endChar": 57
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "562fd183_1ba24539",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T15:46:13Z",
+      "side": 1,
+      "message": "Not the rule I\u0027m familiar with. I think it\u0027s an artefact of xml2rfc tooling. Let\u0027s see if kramdownrfc does the same.",
+      "parentUuid": "1d9db4cf_7f42585a",
       "range": {
         "startLine": 66,
         "startChar": 56,
@@ -163,6 +282,30 @@
     },
     {
       "key": {
+        "uuid": "1b1ec4b4_897d6d8c",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T15:46:13Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "b4e5ec05_932296aa",
+      "range": {
+        "startLine": 67,
+        "startChar": 34,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26849143_4a98d32e",
         "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
         "patchSetId": 2
@@ -174,6 +317,30 @@
       "writtenOn": "2018-10-15T16:23:24Z",
       "side": 1,
       "message": "\"Cisco and/or its affiliates\" is holding copyright to the implementation\u0027s code, but I guess now when I am a contributor, I can officially give the required BCP 78 rights to IETF Trust.",
+      "range": {
+        "startLine": 354,
+        "startChar": 3,
+        "endLine": 354,
+        "endChar": 16
+      },
+      "revId": "9128dd633f6e625180b6fe3db77d3ab1e78aed59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7cce03dd_acdbbf55",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-mlrsearch-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-10-22T15:46:13Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "26849143_4a98d32e",
       "range": {
         "startLine": 354,
         "startChar": 3,
