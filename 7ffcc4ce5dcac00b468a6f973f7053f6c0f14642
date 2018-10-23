@@ -19,6 +19,259 @@
     },
     {
       "key": {
+        "uuid": "91be5a22_76cd4292",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "Add the proposed design (high level) and the API towards L1/L2  keywords.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab9a890e_37010cc3",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "Add links to corresponding VPP doc if appropriate.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 8
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5536a5ea_96e984d2",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "no coma",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "378f029e_f021cb67",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "in?",
+      "range": {
+        "startLine": 12,
+        "startChar": 26,
+        "endLine": 12,
+        "endChar": 31
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "930120a4_e4d8d807",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "reply",
+      "range": {
+        "startLine": 17,
+        "startChar": 73,
+        "endLine": 17,
+        "endChar": 79
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafeac64_bc840a07",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "sends",
+      "range": {
+        "startLine": 20,
+        "startChar": 55,
+        "endLine": 20,
+        "endChar": 59
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77faabf2_fe4f414f",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 21,
+        "startChar": 59,
+        "endLine": 21,
+        "endChar": 63
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7da3a069_cbec9b55",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "receives",
+      "range": {
+        "startLine": 21,
+        "startChar": 33,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1512795c_08360278",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "messages",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 10
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c2e6e27_816a9817",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "splitting",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49cab79e_1072ff24",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "no empty lines in between",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 63
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e36ee2d7_a1519275",
         "filename": "resources/tools/papi/doc/papi_hld.rst",
         "patchSetId": 1
@@ -58,6 +311,98 @@
         "startChar": 32,
         "endLine": 60,
         "endChar": 35
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfa50d45_b87718ca",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "),\nno empty line below",
+      "range": {
+        "startLine": 60,
+        "startChar": 55,
+        "endLine": 60,
+        "endChar": 56
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11ec8745_4d016fe2",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": ").",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 62,
+        "endChar": 41
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef1a9801_b3028261",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 64,
+        "startChar": 55,
+        "endLine": 64,
+        "endChar": 58
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1488039_922a489d",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "PAPI",
+      "range": {
+        "startLine": 64,
+        "startChar": 42,
+        "endLine": 64,
+        "endChar": 46
       },
       "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -111,6 +456,30 @@
     },
     {
       "key": {
+        "uuid": "e7936d92_6f55132d",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "\u003e What is the purpose of multiple \"cients\" in one call?\n\nAdd the explanation to this doc if appropriate.",
+      "parentUuid": "8723f7bc_eebc2e95",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a09700f3_60e0c8ad",
         "filename": "resources/tools/papi/doc/papi_hld.rst",
         "patchSetId": 1
@@ -122,6 +491,30 @@
       "writtenOn": "2018-10-11T11:04:03Z",
       "side": 1,
       "message": "What is the purpose of multiple \"commands\" in one call?",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 20
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c47cbe1_192941c8",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "\u003e What is the purpose of multiple \"commands\" in one call?\n\nAdd the explanation to this doc if appropriate.",
+      "parentUuid": "a09700f3_60e0c8ad",
       "range": {
         "startLine": 75,
         "startChar": 12,
@@ -150,6 +543,52 @@
         "startChar": 25,
         "endLine": 77,
         "endChar": 33
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a84178ae_1a7652cb",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": ": {\nCheck everywhere",
+      "range": {
+        "startLine": 83,
+        "startChar": 34,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33a8e19e_8cde4b44",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-23T07:20:40Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 93,
+        "startChar": 20,
+        "endLine": 93,
+        "endChar": 21
       },
       "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
