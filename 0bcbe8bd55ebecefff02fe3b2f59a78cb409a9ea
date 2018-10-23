@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "eb0bd579_36793faa",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "Unfortunately this script integrates into already existing bootstrap arch. So renaming must be done globally for all files. Not the scope of this change.",
+      "parentUuid": "bb9f9914_542249de",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58a4c7d9_3878775e",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9b9aeb6b_62540a2d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "Unfortunately this script integrates into already existing bootstrap arch. So renaming must be done globally for all files. Not the scope of this change.",
+      "parentUuid": "58a4c7d9_3878775e",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ba22fb7_b3c108d7",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -59,6 +107,30 @@
       "writtenOn": "2018-10-19T14:04:32Z",
       "side": 1,
       "message": "Is this getting us the ip of csit-shim? Can we be absolutely sure that it\u0027s going to be in resolv.conf? It seems that we may insert more than one line containing search and then we might have a problem.",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 66
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afc43fb_24d5dd82",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "This is Ed\u0027s part of infra. I know that this piece is very fragile but there is no clear cut how to get IP from the host machine from the jenkins slave container. Imagine this piece is running in jenkins slave container and need to find hostname (ip) of parent server as it does not know where it is running. It is not localhost (because localhost cannot do publickey connect) and not static IP. I will ask Ed to find more suitable solution.",
+      "parentUuid": "5ba22fb7_b3c108d7",
       "range": {
         "startLine": 49,
         "startChar": 12,
@@ -141,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "bde7af74_dd3c9855",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "Yes this method is non \"destructive\" this mean it does not matter if fail or not. But mutex is exited once the script quits automatically on OS level",
+      "parentUuid": "6215a7d1_1567f28c",
+      "range": {
+        "startLine": 52,
+        "startChar": 19,
+        "endLine": 52,
+        "endChar": 23
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a90e6e30_29eb2df1",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -164,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "eca9a066_08b9981e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "Script itself will do cleanup. It is defined in previous bind_interfaces_to_containers \"destructive\" function. Once the remote script fill fail it will auto-clean. If it will quit rc\u003d0 then it just leave topology for further processing.",
+      "parentUuid": "a90e6e30_29eb2df1",
+      "range": {
+        "startLine": 55,
+        "startChar": 40,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09430ea0_eec8decd",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -175,6 +295,30 @@
       "writtenOn": "2018-10-19T14:04:32Z",
       "side": 1,
       "message": "A bit of googling revealed that typeset is obsolete and declare does the same thing, so we should probably use declare.",
+      "range": {
+        "startLine": 58,
+        "startChar": 33,
+        "endLine": 58,
+        "endChar": 40
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "317eff3b_2ca2e609",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "ok if it work remotely.",
+      "parentUuid": "09430ea0_eec8decd",
       "range": {
         "startLine": 58,
         "startChar": 33,
@@ -258,6 +402,29 @@
     },
     {
       "key": {
+        "uuid": "ea3894be_073930b1",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "That is done, look for function that is printing env remotely. (it greps only requested variables). Sure 100% security can\u0027t be done unless we will stop doing this remotely. This is documented in .rst that we need to switch to non-provileged container where this will not matter as this is running in container.",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64cc9a93_6f1c1df9",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -329,6 +496,30 @@
     },
     {
       "key": {
+        "uuid": "a4c498b2_fc9af59e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "Template must have quotes? There is just one exception for port number as it seems our CSIT is parsing int from yaml without int(str). But escaped vars in template is a must?",
+      "parentUuid": "e17a04d9_964b2556",
+      "range": {
+        "startLine": 87,
+        "startChar": 45,
+        "endLine": 87,
+        "endChar": 61
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccac648b_76a67418",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -340,6 +531,24 @@
       "writtenOn": "2018-10-19T14:04:32Z",
       "side": 1,
       "message": "Leaving this as function leaves us the ability to easily extend the check, which is always good to have.",
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36695bae_6d73ab2f",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "not related to this commit.",
+      "parentUuid": "ccac648b_76a67418",
       "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -475,6 +684,30 @@
       "writtenOn": "2018-10-19T14:04:32Z",
       "side": 1,
       "message": "uuidgen is not standard - did we document somewhere that uuid-runtime needs to be installed (on ubuntu, not sure about centos)?",
+      "range": {
+        "startLine": 493,
+        "startChar": 47,
+        "endLine": 493,
+        "endChar": 54
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f293a64_fd918f90",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T07:25:41Z",
+      "side": 1,
+      "message": "uuid package? I did not install it, see [1]\n\n[0] https://tools.ietf.org/html/rfc4122\n[1] http://manpages.ubuntu.com/manpages/bionic/man5/machine-id.5.html",
+      "parentUuid": "98408e56_d0c43726",
       "range": {
         "startLine": 493,
         "startChar": 47,
