@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "a7010cf7_f9a11c2d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T12:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b66b846_a2901cfa",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6215a7d1_1567f28c",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -284,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "3501cc62_9c8d3bcb",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T12:44:30Z",
+      "side": 1,
+      "message": "Tested sucessfully",
+      "parentUuid": "eca9a066_08b9981e",
+      "range": {
+        "startLine": 55,
+        "startChar": 40,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09430ea0_eec8decd",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 58
@@ -319,6 +367,30 @@
       "side": 1,
       "message": "ok if it work remotely.",
       "parentUuid": "09430ea0_eec8decd",
+      "range": {
+        "startLine": 58,
+        "startChar": 33,
+        "endLine": 58,
+        "endChar": 40
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a18acb0b_9ca17604",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T12:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "317eff3b_2ca2e609",
       "range": {
         "startLine": 58,
         "startChar": 33,
@@ -626,6 +698,30 @@
     },
     {
       "key": {
+        "uuid": "b32f2002_9657a4ca",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T12:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "989b4e4c_4b14f63f",
+      "range": {
+        "startLine": 295,
+        "startChar": 9,
+        "endLine": 295,
+        "endChar": 13
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aeeaf8c6_842045a6",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 58
@@ -661,6 +757,30 @@
       "side": 1,
       "message": "Ok next iter",
       "parentUuid": "aeeaf8c6_842045a6",
+      "range": {
+        "startLine": 405,
+        "startChar": 20,
+        "endLine": 405,
+        "endChar": 21
+      },
+      "revId": "0bcbe8bd55ebecefff02fe3b2f59a78cb409a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87f6964f_9b0bf8ef",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 58
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-23T12:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e42c398c_0e77a0d0",
       "range": {
         "startLine": 405,
         "startChar": 20,
