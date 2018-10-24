@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e672ed3_b736d95f",
+        "filename": "docs/ietf/draft-vpolak-plrsearch-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T17:12:11Z",
+      "side": 1,
+      "message": "Only now I have realized that Probabilistic Loss Ratio (search) has the same acronym (PLR) as Packet Loss Ratio (goal or measured quantity). Can we call the goal just Loss Ratio (LR)?\n\nPLRsearch would work also if the meaqsured quantity is for bits instead of packets (as long as loss count remains non-negative and integer).\n\nPeople might still misread PLRsearch as \"Packet Loss Ratio search\"; but that is fine, because deterministic searches (such as MLRsearch) are inferior.",
+      "range": {
+        "startLine": 4,
+        "startChar": 22,
+        "endLine": 4,
+        "endChar": 25
+      },
+      "revId": "d350b2d24cb116e14e991f784dc11b3462def56c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
