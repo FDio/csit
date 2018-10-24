@@ -71,12 +71,12 @@ function download_ubuntu_artifacts () {
     else
         artifacts+=(${vpp[@]/%/=${VPP_VERSION-}})
     fi
-    dkms=(vpp-ext-deps)
-    if [ -z "${DKMS_VERSION-}" ]; then
-        artifacts+=(${dkms[@]})
-    else
-        artifacts+=(${dkms[@]/%/=${DKMS_VERSION-}})
-    fi
+#    dkms=(vpp-ext-deps)
+#    if [ -z "${DKMS_VERSION-}" ]; then
+#        artifacts+=(${dkms[@]})
+#    else
+#        artifacts+=(${dkms[@]/%/=${DKMS_VERSION-}})
+#    fi
 
     if [ "${INSTALL:-false}" = true ]; then
         sudo apt-get -y install "${artifacts[@]}" || {
