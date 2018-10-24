@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aa845bc_f12f61e9",
+        "filename": "VPP_REPO_URL",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T19:00:25Z",
+      "side": 1,
+      "message": "Does this mean we are unable to test snapshot builds from stable/1810 VPP branch?\n\nI think there are no timed jobs for csit-vpp*1810 (nor vpp-csit*1810), csit*verify*1810 can use releases, and vpp-csit*verify*1810 uses local builds, so this edit is fine.",
+      "range": {
+        "startLine": 1,
+        "startChar": 50,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "cdd6a32b7338428ff9074939bd924928c7e55fb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
