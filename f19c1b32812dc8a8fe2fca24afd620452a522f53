@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "11fe3a1f_74f93dd2",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-24T11:12:48Z",
+      "side": 1,
+      "message": "Do you want to present also 4c tests (Throughput, Latency)? Now we have there only 1c and 2c.",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 27
+      },
+      "revId": "f19c1b32812dc8a8fe2fca24afd620452a522f53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7fcf628_3a1815d1",
         "filename": "resources/tools/presentation/doc/graphs_test_data_rules.md",
         "patchSetId": 1
