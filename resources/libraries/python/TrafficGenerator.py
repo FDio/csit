@@ -25,6 +25,7 @@ from .topology import Topology
 from .MLRsearch.AbstractMeasurer import AbstractMeasurer
 from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
+from .soak.SoakSearch import SoakSearch
 
 __all__ = ['TGDropRateSearchImpl', 'TrafficGenerator', 'OptimizedSearch']
 
@@ -665,4 +666,22 @@ class OptimizedSearch(object):
             doublings=doublings)
         result = algorithm.narrow_down_ndr_and_pdr(
             minimum_transmit_rate, maximum_transmit_rate, packet_loss_ratio)
+        return result
+
+    @staticmethod
+    def perform_soak_search(
+            frame_size, traffic_type, minimum_transmit_rate,
+            maximum_transmit_rate, plr_target=1e-2, tdpt=0.2,
+            initial_count=50, timeout=1800.0):
+        """FIXME."""
+        # we need instance of TrafficGenerator instantiated by Robot Framework
+        # to be able to use trex_stl-*()
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        tg_instance.set_rate_provider_defaults(frame_size, traffic_type)
+        algorithm = SoakSearch(
+            measurer=tg_instance, tdpt=tdpt, plr_target=plr_target,
+            initial_count=initial_count, timeout=timeout)
+        result = algorithm.search(
+            2 * minimum_transmit_rate, 2 * maximum_transmit_rate)
         return result
