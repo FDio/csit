@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e85083fc_96c8eb41",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T15:42:51Z",
+      "side": 1,
+      "message": "\u003e func testing is going to be frozen\n\nOk, but please add remark to \"Set up VPP device test\" documentation explaining why we are not generalizing \"Set up functional test\".",
+      "parentUuid": "646bf971_692e9a43",
+      "range": {
+        "startLine": 458,
+        "startChar": 60,
+        "endLine": 458,
+        "endChar": 61
+      },
+      "revId": "cededea7fa87b9b54cd244ee6a2979cf8560e442",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b73b700d_9c66081e",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 11
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Today, but this will be altered in future. If it will be stable i can merge quickly. Approach - we will optimize once we identified stable code.",
       "parentUuid": "b73b700d_9c66081e",
+      "range": {
+        "startLine": 467,
+        "startChar": 47,
+        "endLine": 467,
+        "endChar": 57
+      },
+      "revId": "cededea7fa87b9b54cd244ee6a2979cf8560e442",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7163e75_d3ff6c9a",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T15:42:51Z",
+      "side": 1,
+      "message": "The highlighted text should read \"functional\" instead of \"vpp-device\" here.\n\nAs for \"unify after stabilizing\": We can do it that way, but please add TODOs to the new keywords, so we do not forget the second step.",
+      "parentUuid": "f52bbbb8_6809b4b0",
       "range": {
         "startLine": 467,
         "startChar": 47,
