@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "132eff76_495d316c",
+        "filename": "DPDK_STABLE_VER",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T13:47:42Z",
+      "side": 1,
+      "message": "We also have tests for pure DPDK (without VPP). Do not they need this?",
+      "revId": "c71b1ec71279b8de194eb6bed5740fbda77583b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
