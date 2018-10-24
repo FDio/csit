@@ -55,7 +55,6 @@ function download_ubuntu_artifacts () {
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - VPP_VERSION - VPP version.
-    # - DKMS_VERSION - DKMS version.
     # - INSTALL - If install packages or download only. Default: download
 
     set -exuo pipefail
@@ -70,12 +69,6 @@ function download_ubuntu_artifacts () {
         artifacts+=(${vpp[@]})
     else
         artifacts+=(${vpp[@]/%/=${VPP_VERSION-}})
-    fi
-    dkms=(vpp-ext-deps)
-    if [ -z "${DKMS_VERSION-}" ]; then
-        artifacts+=(${dkms[@]})
-    else
-        artifacts+=(${dkms[@]/%/=${DKMS_VERSION-}})
     fi
 
     if [ "${INSTALL:-false}" = true ]; then

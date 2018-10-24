@@ -75,9 +75,9 @@ function build_vpp_ubuntu_amd64 () {
     # then for its parent commit. On Jenkins, no dpdk is installed at first,
     # locally it might have been installed. New dpdk is installed second call.
     # If make detects installed vpp-ext-deps with matching version,
-    # it skips building vpp-ext-deps entirely, but we need that file.
+    # it skips building vpp-ext-deps entirely.
     # On the other hand, if parent uses different dpdk version,
-    # The new vpp-ext-deps is built, but the old one is not removed
+    # the new vpp-ext-deps is built, but the old one is not removed
     # from the build directory if present. (Further functions move both,
     # and during test dpkg would decide randomly which version gets installed.)
     # As per_patch is too dumb (yet) to detect any of that,
@@ -94,11 +94,6 @@ function build_vpp_ubuntu_amd64 () {
         die "Make install-ext-deps failed."
     }
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
-    # CSIT also needs the external dependency artifacts, which is not in
-    # build-root.
-    mv -v "build/external/vpp-ext-deps"*".deb" "build-root"/ || {
-        die "*.deb move failed."
-    }
     echo "*******************************************************************"
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
