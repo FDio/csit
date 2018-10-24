@@ -272,9 +272,6 @@ function gather_vpp () {
                 warn "Downloading latest VPP packages from Packagecloud."
             else
                 warn "Downloading stable VPP packages from Packagecloud."
-                DKMS_VERSION="$(<"${CSIT_DIR}/DPDK_STABLE_VER")" || {
-                    die "Read DPDK stable version failed."
-                }
                 VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU")" || {
                     die "Read VPP stable version failed."
                 }

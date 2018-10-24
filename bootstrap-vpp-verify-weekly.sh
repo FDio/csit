@@ -59,7 +59,6 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     # Download the specific VPP build install packages
-    DKMS_VERSION=$(< ${SCRIPT_DIR}/DPDK_STABLE_VER)
     VPP_VERSION=$(< ${SCRIPT_DIR}/VPP_STABLE_VER_${DISTRO})
     CSIT_DIR=${SCRIPT_DIR}
     source "${SCRIPT_DIR}/resources/libraries/bash/function/artifacts.sh"
