@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7abad011_5d648add",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "\"sl\" first.",
+      "range": {
+        "startLine": 133,
+        "startChar": 37,
+        "endLine": 133,
+        "endChar": 39
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "954d6dc6_6a532c5e",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "Any reason why this acts as a base for the next chart but not for this one?",
+      "range": {
+        "startLine": 182,
+        "startChar": 4,
+        "endLine": 182,
+        "endChar": 5
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "667bf3e3_3b40b220",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "Single dash.",
+      "range": {
+        "startLine": 191,
+        "startChar": 18,
+        "endLine": 191,
+        "endChar": 20
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "931b6eb7_e4907004",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "The first two tests are also in the previous chart. Use just one of them as a base (probably this one).",
+      "range": {
+        "startLine": 226,
+        "startChar": 4,
+        "endLine": 226,
+        "endChar": 5
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "982c5d05_552d55f4",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "I see no difference between 3. and 1.",
+      "range": {
+        "startLine": 248,
+        "startChar": 4,
+        "endLine": 248,
+        "endChar": 6
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7a0c829_1cfe1920",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "Should this be the base for this chart?",
+      "range": {
+        "startLine": 327,
+        "startChar": 56,
+        "endLine": 327,
+        "endChar": 61
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ea34b9e_9e644591",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "I did not look deeply into this section.\nIs there anything not covered by \"the same division as for ndr, just names changed accordingly\"?",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 14
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a09ce58_ee65d559",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-10-24T18:15:19Z",
+      "side": 1,
+      "message": "I did not look deeply into this section.\nIs there anything not covered by \"the same division as for ndr, just names changed accordingly\"?",
+      "range": {
+        "startLine": 648,
+        "startChar": 0,
+        "endLine": 648,
+        "endChar": 18
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
