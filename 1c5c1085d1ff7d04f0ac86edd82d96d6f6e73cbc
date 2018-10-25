@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9ef9501e_6fe463a2",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7abad011_5d648add",
+      "range": {
+        "startLine": 133,
+        "startChar": 37,
+        "endLine": 133,
+        "endChar": 39
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "954d6dc6_6a532c5e",
         "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-24T18:15:19Z",
       "side": 1,
       "message": "Any reason why this acts as a base for the next chart but not for this one?",
+      "range": {
+        "startLine": 182,
+        "startChar": 4,
+        "endLine": 182,
+        "endChar": 5
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f2059c7_59949e03",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "reorderd",
+      "parentUuid": "954d6dc6_6a532c5e",
       "range": {
         "startLine": 182,
         "startChar": 4,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "3b467221_259bed02",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "Yes, it is. It is.",
+      "parentUuid": "573201a4_1d7653e5",
+      "range": {
+        "startLine": 191,
+        "startChar": 18,
+        "endLine": 191,
+        "endChar": 20
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "931b6eb7_e4907004",
         "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
         "patchSetId": 3
@@ -142,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "08285aa5_6eb041ac",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "Yes, I put it here for comparison. However, the discussion is open and if more people find it redundant, I\u0027ll remove it.",
+      "parentUuid": "d41177c3_e2dc56d3",
+      "range": {
+        "startLine": 226,
+        "startChar": 4,
+        "endLine": 226,
+        "endChar": 5
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "982c5d05_552d55f4",
         "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
         "patchSetId": 3
@@ -153,6 +249,30 @@
       "writtenOn": "2018-10-24T18:15:19Z",
       "side": 1,
       "message": "I see no difference between 3. and 1.",
+      "range": {
+        "startLine": 248,
+        "startChar": 4,
+        "endLine": 248,
+        "endChar": 6
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f6a50b4_4ab61225",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "982c5d05_552d55f4",
       "range": {
         "startLine": 248,
         "startChar": 4,
@@ -212,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "51fc3567_5fa162c2",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "reordered\nWe can rename this section in the report as \"vhost-tunnels\". Reviewers, please, let me know your opinion.",
+      "parentUuid": "3f2aea09_acf1b1e9",
+      "range": {
+        "startLine": 327,
+        "startChar": 56,
+        "endLine": 327,
+        "endChar": 61
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ea34b9e_9e644591",
         "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
         "patchSetId": 3
@@ -235,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "b02fe46a_4f962e7c",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "The grouping is the same, but only ndr is presented.",
+      "parentUuid": "2ea34b9e_9e644591",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 14
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a09ce58_ee65d559",
         "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
         "patchSetId": 3
@@ -246,6 +414,30 @@
       "writtenOn": "2018-10-24T18:15:19Z",
       "side": 1,
       "message": "I did not look deeply into this section.\nIs there anything not covered by \"the same division as for ndr, just names changed accordingly\"?",
+      "range": {
+        "startLine": 648,
+        "startChar": 0,
+        "endLine": 648,
+        "endChar": 18
+      },
+      "revId": "1c5c1085d1ff7d04f0ac86edd82d96d6f6e73cbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e10e30c_ac947f2e",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-10-25T07:21:24Z",
+      "side": 1,
+      "message": "The grouping is the same, but but the tests are not split by nr of threads/cores as they are presented in one graph.",
+      "parentUuid": "3a09ce58_ee65d559",
       "range": {
         "startLine": 648,
         "startChar": 0,
