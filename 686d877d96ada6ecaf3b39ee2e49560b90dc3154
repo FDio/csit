@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b1002e0_44ebd1d7",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-25T11:36:06Z",
+      "side": 1,
+      "message": "Remove entirely. How l2xc dumps are usefull?",
+      "range": {
+        "startLine": 673,
+        "startChar": 0,
+        "endLine": 673,
+        "endChar": 56
+      },
+      "revId": "686d877d96ada6ecaf3b39ee2e49560b90dc3154",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
