@@ -22,6 +22,30 @@
       "revId": "cdd6a32b7338428ff9074939bd924928c7e55fb1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "163fa6c5_1dded251",
+        "filename": "VPP_REPO_URL",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-10-25T09:27:28Z",
+      "side": 1,
+      "message": "This is one of my: Who the * created the release directory and put it there. This way yes, you need different code for all branches.",
+      "parentUuid": "5aa845bc_f12f61e9",
+      "range": {
+        "startLine": 1,
+        "startChar": 50,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "cdd6a32b7338428ff9074939bd924928c7e55fb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
