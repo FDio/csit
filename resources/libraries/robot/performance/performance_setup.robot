@@ -670,7 +670,6 @@
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
-| | Show IP FIB On All DUTs
 
 | Tear down performance mrr test
 | | [Documentation] | Common test teardown for max-received-rate performance
@@ -678,7 +677,6 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
-| | Show IP FIB On All DUTs
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
@@ -776,7 +774,7 @@
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | ... | ${dut1_node} | ${dut1_vm_refs}
 | | ... | ${dut2_node} | ${dut2_vm_refs}
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
@@ -796,7 +794,7 @@
 | | Tear down mrr test with vhost and VM with dpdk-testpmd
 | | ... | ${dut1_node} | ${dut1_vm_refs}
 | | ... | ${dut2_node} | ${dut2_vm_refs}
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
@@ -925,7 +923,7 @@
 | | ...
 | | Tear down performance discovery test | ${rate} | ${framesize}
 | | ... | ${traffic_profile}
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
@@ -938,7 +936,7 @@
 | | ... | \| Tear down mrr test with ACL \|
 | | ...
 | | Tear down performance mrr test
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
