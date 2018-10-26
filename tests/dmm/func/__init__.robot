@@ -15,4 +15,6 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.DMM.SetupDMMTest
+| Library | resources.libraries.python.DMM.SingleCliSer
 | Suite Setup | Setup DMM Test | ${nodes}
+| Suite Teardown | Archive DMM logs | ${nodes['DUT1']} | ${nodes['DUT2']}
