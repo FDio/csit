@@ -324,7 +324,8 @@ class SSH(object):
         """
         chan.close()
 
-    def scp(self, local_path, remote_path, get=False, timeout=30):
+    def scp(self, local_path, remote_path, get=False, timeout=30,
+            wildcard=False):
         """Copy files from local_path to remote_path or vice versa.
 
         connect() method has to be called first!
@@ -335,10 +336,12 @@ class SSH(object):
         path to remote file which should be downloaded.
         :param get: scp operation to perform. Default is put.
         :param timeout: Timeout value in seconds.
+        :param wildcard: If path has wildcard characters. Default is false.
         :type local_path: str
         :type remote_path: str
         :type get: bool
         :type timeout: int
+        :type wildcard: bool
         """
         if not get:
             logger.trace('SCP {0} to {1}:{2}'.format(
@@ -349,7 +352,11 @@ class SSH(object):
                 self._ssh.get_transport().getpeername(), remote_path,
                 local_path))
         # SCPCLient takes a paramiko transport as its only argument
-        scp = SCPClient(self._ssh.get_transport(), socket_timeout=timeout)
+        if not wildcard:
+            scp = SCPClient(self._ssh.get_transport(), socket_timeout=timeout)
+        else:
+            scp = SCPClient(self._ssh.get_transport(), sanitize=lambda x: x,
+                            socket_timeout=timeout)
         start = time()
         if not get:
             scp.put(local_path, remote_path)
