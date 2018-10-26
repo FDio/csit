@@ -20,6 +20,7 @@ import time
 import os
 import glob
 
+from resources.libraries.python.ssh import SSH
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
 from resources.libraries.python.topology import Topology
@@ -167,6 +168,12 @@ class SingleCliSer(object):
         cmd = 'cd {0}/{1} && ./{2} log 1'\
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name)
         exec_cmd(dut2_node, cmd)
+        cmd = 'mv /var/log/nStack/running.log /var/log/nStack/{0}_ser.log'\
+            .format(script_name)
+        exec_cmd(dut1_node, cmd, sudo=True)
+        cmd = 'mv /var/log/nStack/running.log /var/log/nStack/{0}_cli.log'\
+            .format(script_name)
+        exec_cmd(dut2_node, cmd, sudo=True)
 
     @staticmethod
     def cleanup_dmm_dut(dut1_node, dut2_node, script_name):
@@ -255,3 +262,37 @@ class SingleCliSer(object):
         (stdout, _) = exec_cmd_no_error(dut_node, cmd)
         interface_name = stdout.split(' ', 1)[0]
         return interface_name
+
+    @staticmethod
+    def get_logs_from_node(dut_node):
+        """
+        Get logs from node to the test executor machine.
+
+        :param dut_node: Node to artifact the logs of.
+        :type dut_node: dict
+        """
+        ssh = SSH()
+        ssh.connect(dut_node)
+        ssh.scp(".", '/var/log/nStack/*.log',
+                get=True, timeout=60, wildcard=True)
+
+        (ret, _, _) = exec_cmd(dut_node, 'ls -l /var/log/app*.log')
+        if ret == 0:
+            ssh.scp(".", '/var/log/app*.log',
+                    get=True, timeout=60, wildcard=True)
+
+        exec_cmd(dut_node, 'rm -rf /var/log/nStack/*.log', sudo=True)
+        exec_cmd(dut_node, 'rm -rf /var/log/app*.log', sudo=True)
+
+    @staticmethod
+    def archive_dmm_logs(dut1_node, dut2_node):
+        """
+        Get logs from both DUT's to the test executor machine.
+
+        :param dut1_node: DUT1 node.
+        :param dut2_node: DUT2 node.
+        :type dut1_node: dict
+        :type dut2_node: dict
+        """
+        SingleCliSer.get_logs_from_node(dut1_node)
+        SingleCliSer.get_logs_from_node(dut2_node)
