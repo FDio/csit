@@ -222,7 +222,14 @@ function compose_pybot_arguments () {
             PYBOT_ARGS+=("--suite" "tests.${DUT}.func")
             ;;
         *"perf"*)
-            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.container_memif")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.crypto")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.ip4_tunnels")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.ip6")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.ip6_tunnels")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.srv6")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.tcp")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.vts")
             ;;
         *)
             die "Unknown specification: ${TEST_CODE}"
@@ -634,11 +641,7 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrANDnic_intel-x710AND1cAND64bANDip4base"
-                                "mrrANDnic_intel-x710AND1cAND78bANDip6base"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbase"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2xcbase"
-                                "!dot1q")
+                test_tag_array=("ndrpdr")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
