@@ -28,9 +28,9 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - DUT1 - Node to add sub-interface.
-| | ... | - INT1 - Interface name on which create sub-interface.
+| | ... | - INT1 - Interface key on which create sub-interface.
 | | ... | - DUT2 - Node to add sub-interface.
-| | ... | - INT2 - Interface name on which create sub-interface.
+| | ... | - INT2 - Interface key on which create sub-interface.
 | | ... | - SUB_ID - ID of the sub-interface to be created.
 | | ... | - OUTER_VLAN_ID - Outer VLAN ID.
 | | ... | - INNER_VLAN_ID - Inner VLAN ID.
@@ -42,6 +42,8 @@
 | | ... | - subif_name_2
 | | ... | - subif_index_2
 | | ...
+| | Set Interface State | ${DUT1} | ${INT1} | up
+| | Set Interface State | ${DUT2} | ${INT2} | up
 | | ${INT1_name}= | Get interface name | ${DUT1} | ${INT1}
 | | ${subif_name_1} | ${subif_index_1}= | Create subinterface | ${DUT1}
 | | ... | ${INT1_name} | ${SUB_ID} | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
@@ -64,9 +66,9 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - DUT1 - Node to add sub-interface.
-| | ... | - INT1 - Interface name on which create VLAN sub-interface.
+| | ... | - INT1 - Interface key on which create VLAN sub-interface.
 | | ... | - DUT2 - Node to add sub-interface.
-| | ... | - INT2 - Interface name on which create VLAN sub-interface.
+| | ... | - INT2 - Interface key on which create VLAN sub-interface.
 | | ... | - SUB_ID - ID of the sub-interface to be created.
 | | ...
 | | ... | _Set testcase variables with name and index of created interfaces:_
@@ -81,6 +83,9 @@
 | | ... | \| ${nodes['DUT1']} \| ${dut1_if2} \| ${nodes['DUT2']} \
 | | ... | \| ${dut1_if2} \| 10 \|
 | | ...
+| | Set Interface State | ${DUT1} | ${INT1} | up
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Interface State | ${DUT2} | ${INT2} | up
 | | ${INT1_NAME}= | Get interface name | ${DUT1} | ${INT1}
 | | ${INT2_NAME}= | Run Keyword Unless | ${DUT2} == ${None}
 | | ... | Get interface name | ${DUT2} | ${INT2}
@@ -150,7 +155,10 @@
 | | ... | \| Create vlan sub-interface \| ${nodes['DUT1']} \| port3 \| 100 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${interface} | ${vlan_id}
+| | ...
 | | [Return] | ${vlan_name} | ${vlan_index}
+| | ...
+| | Set Interface State | ${dut_node} | ${interface} | up
 | | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
 | | ${vlan_name} | ${vlan_index}= | Create Vlan Subinterface
 | | ... | ${dut_node} | ${interface_name} | ${vlan_id}
@@ -184,7 +192,10 @@
 | | [Arguments] | ${dut_node} | ${interface} | ${subif_id}
 | | ... | ${outer_vlan_id}=${None} | ${inner_vlan_id}=${None}
 | | ... | ${type_subif}=${None}
+| | ...
 | | [Return] | ${subif_name} | ${subif_index}
+| | ...
+| | Set Interface State | ${dut_node} | ${interface} | up
 | | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
 | | ${subif_name} | ${subif_index}= | Create Subinterface
 | | ... | ${dut_node} | ${interface_name} | ${subif_id}
@@ -218,6 +229,7 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${interface} | ${tag_rewrite_method}
 | | ... | ${push_dot1q}=${True} | ${tag1_id}=${None} | ${tag2_id}=${None}
+| | ...
 | | ${result}= | Evaluate | isinstance($interface, int)
 | | ${interface_name}= | Run Keyword If | ${result}
 | | ... | Set Variable | ${interface}
