@@ -45,7 +45,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'FD.io CSIT-18.07'
+project = u'FD.io CSIT-18.10'
 copyright = u'2018, FD.io'
 author = u'FD.io CSIT'
 
@@ -102,16 +102,16 @@ rst_epilog = """
 .. _FD.io DPDK compile job: https://jenkins.fd.io/view/deb-dpdk/job/deb_dpdk-merge-{sdpdkrelease}-ubuntu1604/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _K8s configuration files: https://github.com/FDio/csit/tree/{release}/resources/templates/kubernetes
-""".format(release='rls1807',
-           report_version='v1.1',
-           prev_release='rls1804',
-           srelease='1807',
-           csitrelease='18.07',
-           csit_prev_release='18.04',
-           vpprelease='18.07',
-           vpp_prev_release='18.04',
-           dpdkrelease='18.05',
-           sdpdkrelease='1805',
+""".format(release='rls1810',
+           report_version='v0.1',
+           prev_release='rls1807',
+           srelease='1810',
+           csitrelease='18.10',
+           csit_prev_release='18.07',
+           vpprelease='18.10',
+           vpp_prev_release='18.07',
+           dpdkrelease='18.08',
+           sdpdkrelease='1808',
            trex_version='v2.35',
            csit_ubuntu_ver='csit-ubuntu-16.04.1_2018-03-07_2.1',
            csit_centos_ver='csit-centos-7.4-1711_2018-03-20_1.9')
