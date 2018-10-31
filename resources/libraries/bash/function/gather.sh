@@ -160,13 +160,13 @@ function gather_ligato () {
     }
 
     ligato_repo_url="https://github.com/ligato/"
-    vpp_agent_stable_ver="$(< "${CSIT_DIR}/VPP_AGENT_STABLE_VER")" || {
+    vpp_agent_stable_ver="v1.7" || {
         die "Failed to read vpp-agent stable version!"
     }
 
     # Clone & checkout stable vpp-agent.
     cd "${CSIT_DIR}" || die "Change directory failed!"
-    git clone -b "${vpp_agent_stable_ver}" --single-branch \
+    git clone -b "vpp/1810" --single-branch \
         "${ligato_repo_url}/vpp-agent" "vpp-agent" || {
         die "Failed to run: git clone ${ligato_repo_url}/vpp-agent!"
     }
