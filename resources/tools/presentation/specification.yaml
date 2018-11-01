@@ -39,6 +39,7 @@
     DIR[DTR,PERF,COT,3N,HSW]: "{DIR[DTR]}/cot_performance_results_3n_hsw"
     DIR[DTR,FUNC,VPP,UBUNTU]: "{DIR[DTR]}/vpp_functional_results_ubuntu"
     DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
+    DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
     DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
     DIR[DTR,FUNC,DMM]: "{DIR[DTR]}/dmm_functional_results"
@@ -54,6 +55,7 @@
     DIR[DTC,MRR,VPP,2N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_skx"
     DIR[DTC,FUNC,VPP,UBUNTU]: "{DIR[DTC]}/vpp_functional_configuration_ubuntu"
     DIR[DTC,FUNC,VPP,CENTOS]: "{DIR[DTC]}/vpp_functional_configuration_centos"
+    DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTC]}/vpp_device_configuration_ubuntu"
 
     # Detailed tests operational data
     DIR[DTO]: "{DIR[WORKING,SRC]}/test_operational_data"
@@ -1026,6 +1028,8 @@
 
 ################################################################################
 # VPP
+
+# VPP Performance Changes 1t1c pdr
 -
   type: "table"
   title: "VPP Performance Changes 1t1c pdr"
@@ -1079,6 +1083,7 @@
   - "parent"
   - "throughput"
 
+# VPP Performance Changes 2t2c pdr
 -
   type: "table"
   title: "VPP Performance Changes 2t2c pdr"
@@ -1132,6 +1137,7 @@
   - "parent"
   - "throughput"
 
+# VPP Performance Changes 1t1c ndr
 -
   type: "table"
   title: "VPP Performance Changes 1t1c ndr"
@@ -1185,6 +1191,7 @@
   - "parent"
   - "throughput"
 
+# VPP Performance Changes 2t2c ndr
 -
   type: "table"
   title: "VPP Performance Changes 2t2c ndr"
@@ -1238,6 +1245,7 @@
   - "parent"
   - "throughput"
 
+# VPP Comparison Across Testbeds 3n-hsw to 3n-skx ndr
 -
   type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx ndr"
@@ -1272,6 +1280,7 @@
   - "parent"
   - "throughput"
 
+# VPP Comparison Across Testbeds 3n-hsw to 3n-skx pdr
 -
   type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx pdr"
@@ -1306,6 +1315,7 @@
   - "parent"
   - "throughput"
 
+# VPP Performance Changes - 1t1c MRR
 -
   type: "table"
   title: "VPP Performance Changes - 1t1c MRR"
@@ -1352,6 +1362,7 @@
   - "parent"
   - "result"
 
+# VPP Performance Changes - 2t2c MRR
 -
   type: "table"
   title: "VPP Performance Changes - 2t2c MRR"
@@ -1398,6 +1409,7 @@
   - "parent"
   - "result"
 
+# VPP Performance Changes - 4t4c MRR
 -
   type: "table"
   title: "VPP Performance Changes - 4t4c MRR"
@@ -1444,6 +1456,7 @@
   - "parent"
   - "result"
 
+# VPP Comparison Across Testbeds 3n-hsw to 3n-skx mrr
 -
   type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx mrr"
@@ -1470,6 +1483,7 @@
   - "parent"
   - "result"
 
+# Detailed Test Results - VPP Performance Results 3n-hsw
 -
   type: "table"
   title: "Detailed Test Results - VPP Performance Results 3n-hsw"
@@ -1491,6 +1505,7 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP Performance Results 3n-skx
 -
   type: "table"
   title: "Detailed Test Results - VPP Performance Results 3n-skx"
@@ -1512,6 +1527,7 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP Performance Results 2n-skx
 -
   type: "table"
   title: "Detailed Test Results - VPP Performance Results 2n-skx"
@@ -1533,6 +1549,7 @@
   - "parent"
   - "msg"
 
+# Test configuration - VPP Performance Test Configs 3n-hsw
 -
   type: "table"
   title: "Test configuration - VPP Performance Test Configs 3n-hsw"
@@ -1554,6 +1571,7 @@
   - "name"
   - "vat-history"
 
+# Test configuration - VPP Performance Test Configs 3n-skx
 -
   type: "table"
   title: "Test configuration - VPP Performance Test Configs 3n-skx"
@@ -1575,6 +1593,7 @@
   - "name"
   - "vat-history"
 
+# Test configuration - VPP Performance Test Configs 2n-skx
 -
   type: "table"
   title: "Test configuration - VPP Performance Test Configs 2n-skx"
@@ -1596,6 +1615,7 @@
   - "name"
   - "vat-history"
 
+# Test Operational Data - VPP Performance Operational Data 3n-hsw
 -
   type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-hsw"
@@ -1617,6 +1637,7 @@
   - "name"
   - "show-run"
 
+# Test Operational Data - VPP Performance Operational Data 3n-skx
 -
   type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-skx"
@@ -1638,6 +1659,7 @@
   - "name"
   - "show-run"
 
+# Test Operational Data - VPP Performance Operational Data 2n-skx
 -
   type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 2n-skx"
@@ -1659,6 +1681,7 @@
   - "name"
   - "show-run"
 
+# Detailed Test Results - VPP MRR Results 3n-hsw
 -
   type: "table"
   title: "Detailed Test Results - VPP MRR Results 3n-hsw"
@@ -1680,6 +1703,7 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP MRR Results 3n-skx
 -
   type: "table"
   title: "Detailed Test Results - VPP MRR Results 3n-skx"
@@ -1701,6 +1725,7 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP MRR Results 2n-skx
 -
   type: "table"
   title: "Detailed Test Results - VPP MRR Results 2n-skx"
@@ -1722,6 +1747,7 @@
   - "parent"
   - "msg"
 
+# Test configuration - VPP MRR Test Configs 3n-hsw
 -
   type: "table"
   title: "Test configuration - VPP MRR Test Configs 3n-hsw"
@@ -1743,6 +1769,7 @@
   - "name"
   - "vat-history"
 
+# Test configuration - VPP MRR Test Configs 3n-skx
 -
   type: "table"
   title: "Test configuration - VPP MRR Test Configs 3n-skx"
@@ -1764,6 +1791,7 @@
   - "name"
   - "vat-history"
 
+# Test configuration - VPP MRR Test Configs 2n-skx
 -
   type: "table"
   title: "Test configuration - VPP MRR Test Configs 2n-skx"
@@ -1785,6 +1813,7 @@
   - "name"
   - "vat-history"
 
+# Detailed Test Results - VPP Functional Results - Ubuntu
 -
   type: "table"
   title: "Detailed Test Results - VPP Functional Results - Ubuntu"
@@ -1810,6 +1839,7 @@
   - "doc"
   - "status"
 
+# Detailed Test Results - VPP Functional Results - CentOS
 -
   type: "table"
   title: "Detailed Test Results - VPP Functional Results - CentOS"
@@ -1836,6 +1866,7 @@
   - "doc"
   - "status"
 
+# Test configuration - VPP Functional Test Configs - Ubuntu
 -
   type: "table"
   title: "Test configuration - VPP Functional Test Configs - Ubuntu"
@@ -1857,6 +1888,7 @@
   - "name"
   - "vat-history"
 
+# Test configuration - VPP Functional Test Configs - CentOS
 -
   type: "table"
   title: "Test configuration - VPP Functional Test Configs - CentOS"
@@ -1878,6 +1910,7 @@
   - "name"
   - "vat-history"
 
+# Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw
 -
   type: "table"
   title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw"
@@ -1899,8 +1932,57 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP Device Results - Ubuntu
+-
+  type: "table"
+  title: "Detailed Test Results - VPP Device Results - Ubuntu"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_results_ubuntu"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Documentation"
+    data: "data doc"
+  -
+    title: "Status"
+    data: "data status"
+  rows: "generated"
+  data: "vpp-device-results-ubuntu"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "status"
+
+# Test configuration - VPP Device Test Configs - Ubuntu
+-
+  type: "table"
+  title: "Test configuration - VPP Device Test Configs - Ubuntu"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_configuration_ubuntu"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
+    data: "data vat-history"
+  rows: "generated"
+  data: "vpp-device-results-ubuntu"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "vat-history"
+
 ################################################################################
-# DPDK
+
+# DPDK Performance Changes 1t1c pdr
 -
   type: "table"
   title: "DPDK Performance Changes 1t1c pdr"
@@ -1942,6 +2024,7 @@
   - "parent"
   - "throughput"
 
+# DPDK Performance Changes 2t2c pdr
 -
   type: "table"
   title: "DPDK Performance Changes 2t2c pdr"
@@ -1983,6 +2066,7 @@
   - "parent"
   - "throughput"
 
+# DPDK Performance Changes 1t1c ndr
 -
   type: "table"
   title: "DPDK Performance Changes 1t1c ndr"
@@ -2024,6 +2108,7 @@
   - "parent"
   - "throughput"
 
+# DPDK Performance Changes 2t2c ndr
 -
   type: "table"
   title: "DPDK Performance Changes 2t2c ndr"
@@ -2065,6 +2150,7 @@
   - "parent"
   - "throughput"
 
+# DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr
 -
   type: "table"
   title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr"
@@ -2106,6 +2192,7 @@
   - "parent"
   - "throughput"
 
+# DPDK Comparison Across Testbeds 3n-hsw to 3n-skx pdr
 -
   type: "table"
   title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx pdr"
@@ -2147,6 +2234,7 @@
   - "parent"
   - "throughput"
 
+# DPDK Comparison Across Testbeds 3n-hsw to 3n-skx mrr
 -
   type: "table"
   title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx mrr"
@@ -2186,8 +2274,9 @@
   parameters:
   - "name"
   - "parent"
-  - "throughput"
+  - "result"
 
+# Detailed Test Results - DPDK Performance Results 3n-hsw
 -
   type: "table"
   title: "Detailed Test Results - DPDK Performance Results 3n-hsw"
@@ -2209,6 +2298,7 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - DPDK Performance Results 3n-skx
 -
   type: "table"
   title: "Detailed Test Results - DPDK Performance Results 3n-skx"
@@ -2230,6 +2320,7 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - DPDK Performance Results 2n-skx
 -
   type: "table"
   title: "Detailed Test Results - DPDK Performance Results 2n-skx"
@@ -2250,7 +2341,6 @@
   - "name"
   - "parent"
   - "msg"
-
 
 ################################################################################
 # HoneyComb
@@ -2340,6 +2430,7 @@
 ###                                F I L E S                                 ###
 ################################################################################
 
+# VPP Performance Results 3n-hsw
 -
   type: "file"
   title: "VPP Performance Results 3n-hsw"
@@ -2357,6 +2448,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Results 3n-skx
 -
   type: "file"
   title: "VPP Performance Results 3n-skx"
@@ -2374,6 +2466,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Results 2n-skx
 -
   type: "file"
   title: "VPP Performance Results 2n-skx"
@@ -2391,6 +2484,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Configuration 3n-hsw
 -
   type: "file"
   title: "VPP Performance Configuration 3n-hsw"
@@ -2408,6 +2502,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Configuration 3n-skx
 -
   type: "file"
   title: "VPP Performance Configuration 3n-skx"
@@ -2425,6 +2520,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Configuration 2n-skx
 -
   type: "file"
   title: "VPP Performance Configuration 2n-skx"
@@ -2442,6 +2538,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Operational Data 3n-hsw
 -
   type: "file"
   title: "VPP Performance Operational Data 3n-hsw"
@@ -2459,6 +2556,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Operational Data 3n-skx
 -
   type: "file"
   title: "VPP Performance Operational Data 3n-skx"
@@ -2476,6 +2574,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Operational Data 2n-skx
 -
   type: "file"
   title: "VPP Performance Operational Data 2n-skx"
@@ -2493,6 +2592,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP MRR Results 3n-hsw
 -
   type: "file"
   title: "VPP MRR Results 3n-hsw"
@@ -2510,6 +2610,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP MRR Results 3n-skx
 -
   type: "file"
   title: "VPP MRR Results 3n-skx"
@@ -2527,6 +2628,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP MRR Results 2n-skx
 -
   type: "file"
   title: "VPP MRR Results 2n-skx"
@@ -2544,6 +2646,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP MRR Configuration 3n-hsw
 -
   type: "file"
   title: "VPP MRR Configuration 3n-hsw"
@@ -2561,6 +2664,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP MRR Configuration 3n-skx
 -
   type: "file"
   title: "VPP MRR Configuration 3n-skx"
@@ -2578,6 +2682,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP MRR Configuration 2n-skx
 -
   type: "file"
   title: "VPP MRR Configuration 2n-skx"
@@ -2595,6 +2700,7 @@
   - "parent"
   data-start-level: 3
 
+# VPP Functional Results - Ubuntu
 -
   type: "file"
   title: "VPP Functional Results - Ubuntu"
@@ -2610,8 +2716,9 @@
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 4
+  data-start-level: 3
 
+# VPP Functional Results - CentOS
 -
   type: "file"
   title: "VPP Functional Results - CentOS"
@@ -2628,8 +2735,9 @@
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 4
+  data-start-level: 3
 
+# VPP Functional Configuration - Ubuntu
 -
   type: "file"
   title: "VPP Functional Configuration - Ubuntu"
@@ -2645,8 +2753,9 @@
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 4
+  data-start-level: 3
 
+# VPP Functional Configuration - CentOS
 -
   type: "file"
   title: "VPP Functional Configuration - CentOS"
@@ -2663,8 +2772,45 @@
   - "doc"
   - "level"
   - "parent"
-  data-start-level: 4
+  data-start-level: 3
 
+# VPP Device Results - Ubuntu
+-
+  type: "file"
+  title: "VPP Device Results - Ubuntu"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_results_ubuntu"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}"
+  data: "vpp-device-results-ubuntu"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 2
+
+# VPP Device Configuration - Ubuntu
+-
+  type: "file"
+  title: "VPP Device Configuration - Ubuntu"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_configuration_ubuntu"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
+  data: "vpp-device-results-ubuntu"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 2
+
+# Container Orchestrated Performance Results 3n-hsw
 -
   type: "file"
   title: "Container Orchestrated Performance Results 3n-hsw"
@@ -2682,6 +2828,7 @@
   - "parent"
   data-start-level: 3
 
+# DPDK Performance Results 3n-hsw
 -
   type: "file"
   title: "DPDK Performance Results 3n-hsw"
@@ -2699,6 +2846,7 @@
   - "parent"
   data-start-level: 3
 
+# DPDK Performance Results 3n-skx
 -
   type: "file"
   title: "DPDK Performance Results 3n-skx"
@@ -2716,6 +2864,7 @@
   - "parent"
   data-start-level: 3
 
+# DPDK Performance Results 2n-skx
 -
   type: "file"
   title: "DPDK Performance Results 2n-skx"
@@ -2733,6 +2882,7 @@
   - "parent"
   data-start-level: 3
 
+# Honeycomb Functional Results
 -
   type: "file"
   title: "Honeycomb Functional Results"
@@ -2751,6 +2901,7 @@
   - "parent"
   data-start-level: 3
 
+# NSH SFC Functional Results
 -
   type: "file"
   title: "NSH SFC Functional Results"
@@ -2769,6 +2920,7 @@
   - "parent"
   data-start-level: 3
 
+# DMM Functional Results
 -
   type: "file"
   title: "DMM Functional Results"
