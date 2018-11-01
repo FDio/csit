@@ -95,6 +95,7 @@ rst_epilog = """
 .. _FD.io test executor ligato performance jobs: https://jenkins.fd.io/job/csit-ligato-perf-{srelease}-all
 .. _FD.io test executor vpp functional jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-ubuntu1604-virl
 .. _FD.io test executor vpp functional jobs using CentOs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-centos7-virl
+.. _FD.io test executor vpp device jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-device-{srelease}-ubuntu1804-1n-skx
 .. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-{srelease}-ubuntu1604
 .. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-{srelease}-ubuntu1604-virl
 .. _FD.io test executor DMM functional jobs: https://jenkins.fd.io/view/csit/job/csit-dmm-functional-{srelease}-ubuntu1604-virl
