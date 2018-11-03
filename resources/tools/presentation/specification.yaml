@@ -170,6 +170,7 @@
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
 
     vpp-compare-testbeds-mrr:
       csit-vpp-perf-verify-1810-3n-hsw:
@@ -210,12 +211,14 @@
 
     vpp-perf-results-3n-hsw:
       csit-vpp-perf-verify-1810-3n-hsw:
-      # TODO: Replace with full
-      - 8   # NDRPDR sel
+      # TODO: Add data
+      - 20  # NDRPDR full
+      - 21  # NDRPDR full
+      - 22  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
-      # TODO: Add data
+      - 23  # NDRPDR full
       - 24  # NDRPDR full
 
     vpp-perf-results-2n-skx:
@@ -258,6 +261,7 @@
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
 
     plot-throughput-speedup-analysis-2n-skx:
       csit-vpp-perf-verify-1810-2n-skx:
@@ -270,6 +274,7 @@
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
+      - 27  # NDRPDR sel
 
     plot-vpp-throughput-latency-3n-hsw:
       csit-vpp-perf-verify-1810-3n-hsw:
@@ -291,6 +296,7 @@
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
 
     plot-vpp-throughput-latency-2n-skx:
       csit-vpp-perf-verify-1810-2n-skx:
@@ -303,6 +309,7 @@
       - 22  # NDRPDR sel
       - 23  # NDRPDR sel
       - 24  # NDRPDR sel
+      - 27  # NDRPDR sel
 
     plot-vpp-http-server-performance:
       # TODO: Replace with 1810 data:
@@ -412,9 +419,9 @@
       - 12
 
     dpdk-perf-results-2n-skx:
-      # TODO: Replace with 1810 data:
-      csit-dpdk-perf-verify-1807-2n-skx:
-      - 10
+      # TODO: Replace with full data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3
 
     plot-dpdk-throughput-latency-3n-hsw:
       # TODO: Replace with 1810 data:
@@ -445,18 +452,10 @@
       - 12
 
     plot-dpdk-throughput-latency-2n-skx:
-      # TODO: Replace with 1810 data:
-      csit-dpdk-perf-verify-1807-2n-skx:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+      # TODO: Add data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
 
     # HoneyComb Functional
     hc-func-results:
@@ -845,6 +844,9 @@
     # TODO: Add data:
     csit-vpp-perf-verify-1810-3n-hsw:
     - 9   # MRR sel
+    - 20  # NDRPDR full
+    - 21  # NDRPDR full
+    - 22  # NDRPDR full
     - 8   # NDRPDR sel
     - 12  # NDRPDR sel
     - 14  # NDRPDR sel
@@ -879,6 +881,7 @@
     - 11  # MRR sel
     - 12  # MRR sel
     - 13  # MRR sel
+    - 23  # NDRPDR full
     - 24  # NDRPDR full
     - 10  # NDRPDR sel
     - 14  # NDRPDR sel
@@ -889,6 +892,7 @@
     - 20  # NDRPDR sel
     - 21  # NDRPDR sel
     - 22  # NDRPDR sel
+    - 25  # NDRPDR sel
     csit-vpp-perf-verify-1807-2n-skx:
     - 27  # MRR full
     - 31  # MRR sel
@@ -929,6 +933,7 @@
     - 22  # NDRPDR sel
     - 23  # NDRPDR sel
     - 24  # NDRPDR sel
+    - 27  # NDRPDR sel
     csit-vpp-perf-check-1804:
     - 5   # mrr - full
     - 6   # mrr - sel
@@ -989,17 +994,9 @@
     - 10
     - 11
     - 12
-    csit-dpdk-perf-verify-1807-2n-skx:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
+    csit-dpdk-perf-verify-1810-2n-skx:
+    - 3   # NDRPDR sel
+    - 4   # NDRPDR sel
     csit-vpp-functional-1810-ubuntu1604-virl:
     - 44
     csit-vpp-functional-1810-centos7-virl:
@@ -1272,6 +1269,7 @@
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and 'NDRPDR'"
@@ -1307,6 +1305,7 @@
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
       - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and 'NDRPDR'"
