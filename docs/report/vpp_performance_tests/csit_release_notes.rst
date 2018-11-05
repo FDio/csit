@@ -71,40 +71,21 @@ List of known issues in |csit-release| for VPP performance tests:
 | 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
 |    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 2  | `VPP-1361                               | High failure rate of api call sw_interface_set_flags [admin-up|link-up].                                                        |
-|    | <https://jira.fd.io/browse/VPP-1361>`_  | Failure rate: 30-40% of tests failing due to interfaces not in link-up state after API call sw_interface_set_flags.             |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 3  | `CSIT-1234                              | VPP IPSecHW scale interface mode 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.        |
+| 2  | `CSIT-1234                              | VPP IPSecHW scale interface mode 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.        |
 |    | <https://jira.fd.io/browse/CSIT-1234>`_ | ip4ipsecscale1000tnl-ip4base-int 1core CSIT-18.07/18.04 relative change: NDR -31%, PDR -32%, MRR -38%.                          |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 4  | `CSIT-1242                              | VPP xl710 ip4base test 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.                  |
+| 3  | `CSIT-1242                              | VPP xl710 ip4base test 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.                  |
 |    | <https://jira.fd.io/browse/CSIT-1242>`_ | xl710 ip4base 1core CSIT-18.07/18.04 relative change: NDR -29%, high stdev.                                                     |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 5  | `CSIT-1243                              | VPP nat44 base test 2core, low NDR and PDR 64B throughput in 3n-skx testbeds, compared to 3n-hsw testbeds.                      |
+| 4  | `CSIT-1243                              | VPP nat44 base test 2core, low NDR and PDR 64B throughput in 3n-skx testbeds, compared to 3n-hsw testbeds.                      |
 |    | <https://jira.fd.io/browse/CSIT-1243>`_ | ip4base-nat44 2core 3n-skx/3n-hsw relative change: NDR -19%, PDR -22%.                                                          |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 6  | `CSIT-1244                              | VPP lispip4 base test 2core, low NDR and PDR 64B throughput in 3n-skx testbeds, compared to 3n-hsw testbeds.                    |
-|    | <https://jira.fd.io/browse/CSIT-1244>`_ | ip4lispip4-ip4base 2core 3n-skx/3n-hsw relative change: NDR -11%, PDR -18%.                                                     |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 7  | `CSIT-1245                              | VPP srv6proxy-stat and srv6proxy-masq, much higher NDR and PDR 78B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04. |
+| 5  | `CSIT-1245                              | VPP srv6proxy-stat and srv6proxy-masq, much higher NDR and PDR 78B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04. |
 |    | <https://jira.fd.io/browse/CSIT-1245>`_ | Due to wrong test suite configuration in dynamic-proxy mode. Artefact of suite code refactoring.                                |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 8  | `CSIT-1246                              | Ligato K8S orchestrated tests are failing due to incompatibility of the latest released Ligato vpp-agent with VPP-18.07.        |
+| 6  | `CSIT-1246                              | Ligato K8S orchestrated tests are failing due to incompatibility of the latest released Ligato vpp-agent with VPP-18.07.        |
 |    | <https://jira.fd.io/browse/CSIT-1246>`_ | Past vpp-agent releases are not compatible either.                                                                              |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 9  | `CSIT-1253                              | VPP lbdpdk link bonding tests failing due to interfaces not coming up.                                                          |
+| 7  | `CSIT-1253                              | VPP lbdpdk link bonding tests failing due to interfaces not coming up.                                                          |
 |    | <https://jira.fd.io/browse/CSIT-1253>`_ | VPP lbdpdk link bonding tests relying on DPDK functionality for bonding fail.                                                   |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1266                              | Because of wrong Multi Seq configuration in the suite "csit/tests/vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4-ip4base-mrr.robot",    |
-|    | <https://jira.fd.io/browse/CSIT-1266>`_ | the data generated by this suite is incorrect. The bug was fixed by the `patch 14440 <https://gerrit.fd.io/r/#/c/14440>`_.      |
-|    |                                         | The incorrect data will be replaced by new generated correct data.                                                              |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1267                              | Because of the wrong NIC configuration in suites                                                                                |
-|    | <https://jira.fd.io/browse/CSIT-1267>`_ | tests/vpp/perf/vm_vhost/10ge2p1x710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot,                             |
-|    |                                         | tests/vpp/perf/vm_vhost/10ge2p1x710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot,                          |
-|    |                                         | tests/vpp/perf/vm_vhost/10ge2p1x710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-mrr.robot,                                   |
-|    |                                         | tests/vpp/perf/vm_vhost/10ge2p1x710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr.robot                                 |
-|    |                                         | the data generated by this suites is incorrect.                                                                                 |
-|    |                                         | The bug was fixed by the `patch 14395 <https://gerrit.fd.io/r/#/c/14395>`_.                                                     |
-|    |                                         | The incorrect data will be replaced by new generated correct data.                                                              |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
