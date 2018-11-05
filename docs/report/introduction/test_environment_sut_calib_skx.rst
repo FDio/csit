@@ -28,7 +28,7 @@ Linux uname
     Linux s5-t22-sut1 4.15.0-23-generic #25-Ubuntu SMP Wed May 23 18:02:16 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 
 
-System-level core jitter
+System-level Core Jitter
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -72,7 +72,7 @@ System-level core jitter
         160022     167516       7494     160024     160022     172460    3490840576 3203848120         20
 
 
-Memory bandwidth
+Memory Bandwidth
 ~~~~~~~~~~~~~~~~
 
 ::
@@ -129,7 +129,7 @@ Memory bandwidth
     Stream-triad like:  180057.87
 
 
-Memory latency
+Memory Latency
 ~~~~~~~~~~~~~~
 
 ::
@@ -189,7 +189,7 @@ Memory latency
      20000   81.40     2541.9
 
 
-L1/L2/LLC latency
+L1/L2/LLC Latency
 ~~~~~~~~~~~~~~~~~
 
 ::

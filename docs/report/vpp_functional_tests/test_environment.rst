@@ -256,7 +256,7 @@ VPP Installed Packages - Ubuntu
     ii  vpp-plugins                         18.07-release                              amd64        Vector Packet Processing--runtime plugins
 
 
-VPP Installed Packages - Centos
+VPP Installed Packages - CentOs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::

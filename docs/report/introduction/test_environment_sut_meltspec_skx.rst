@@ -123,4 +123,3 @@ made public in 2018. Script is available on `Spectre & Meltdown Checker Github
 
     Need more detailed information about mitigation options? Use --explain
     A false sense of security is worse than no security at all, see --disclaimer
-
