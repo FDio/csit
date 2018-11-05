@@ -4,17 +4,25 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. CSIT FRAMEWORK
+#. TEST FRAMEWORK
 
-   - Few test case bug fixes.
+   - **VPP_Device**: Added container based functional VPP device tests
+     integrated into LFN CI/CD infrastructure. VPP_Device tests run on
+     1-Node testbeds (1n-skx, 1n-arm) and rely on Linux SRIOV Virtual
+     Function (VF), dot1q VLAN tagging and external loopback cables to
+     facilitate packet passing over exernal physical links. Initial
+     focus is on few baseline tests. Existing CSIT VIRL tests can be
+     moved to VPP_Device framework by changing L1 KW(s). L2 KWs and RF
+     test definition code stay unchanged. CSIT VIRL to VPP_Device
+     migration is expected in the next CSIT release.
 
-#. TEST CASE PORTING TO VPP_MAKE_TEST
+   - **Bug fixes**.
 
-   - Implementation of VIRL functional integration tests in
-     VPP_make_test.
+#. CSIT VIRL TEST CASE COVERAGE TO VPP_MAKE_TEST
 
    - All VIRL tests identified as Priority-0 by FD.io VPP and CSIT
-     projects have been ported to VPP_make_test. Detailed breakdown in
+     projects have been covered in VPP_make_test in |csit-release-
+     previous|. Detailed breakdown in
      `CSIT_VIRL migration progress
      <https://docs.google.com/spreadsheets/d/1PciV8XN9v1qHbIRUpFJoqyES29_vik7lcFDl73G1usc/edit?usp=sharing>`_.
 
@@ -48,4 +56,6 @@ List of known issues in |csit-release| for VPP functional tests in VIRL:
 +---+----------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
 | 5 | `CSIT-565                              | Vhost-user: QEMU reconnect does not work.                                                                               |
 |   | <https://jira.fd.io/browse/CSIT-565>`_ | QEMU 2.5.0 used in CSIT does not support vhost-user reconnect. Requires upgrading CSIT VIRL environment to QEMU 2.7.0.  |
++---+----------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+|   |                                        |                                                                                                                         |
 +---+----------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
