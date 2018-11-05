@@ -54,6 +54,10 @@ Changes in |csit-release|
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords.
 
+.. raw:: latex
+
+    \clearpage
+
 .. _vpp_known_issues:
 
 Known Issues
