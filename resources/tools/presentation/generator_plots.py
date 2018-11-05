@@ -437,7 +437,11 @@ def plot_throughput_speedup_analysis(plot, input_data):
             vals[name]["diff"] = \
                 [(y_val_1 - y_1c_max[test_name]) * 100 / y_val_1, None, None]
 
-            val_max = max(max(vals[name]["val"], vals[name]["ideal"]))
+            try:
+                val_max = max(max(vals[name]["val"], vals[name]["ideal"]))
+            except ValueError as err:
+                logging.error(err)
+                continue
             if val_max:
                 y_max.append(int((val_max / 10) + 1) * 10)
 
@@ -502,8 +506,11 @@ def plot_throughput_speedup_analysis(plot, input_data):
     x_vals = [1, 2, 4]
 
     # Limits:
-    threshold = 1.1 * max(y_max)  # 10%
-
+    try:
+        threshold = 1.1 * max(y_max)  # 10%
+    except ValueError as err:
+        logging.error(err)
+        return
     nic_limit /= 1000000.0
     if nic_limit < threshold:
         traces.append(plgo.Scatter(
