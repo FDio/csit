@@ -284,6 +284,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 2n-skx-x710
 ~~~~~~~~~~~
 
@@ -340,6 +344,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
             \label{fig:memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 2n-skx-xxv710
 ~~~~~~~~~~~~~

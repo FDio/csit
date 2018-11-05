@@ -158,7 +158,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-1t1c-base_and_features
------------------
+--------------------------
 
 .. raw:: html
 
@@ -213,7 +213,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-2t2c-base_and_features
------------------
+--------------------------
 
 .. raw:: html
 
@@ -384,7 +384,7 @@ CSIT source code for the test cases used for plots can be found in
 ~~~~~~~~~~~
 
 64b-1t1c-base_and_features
------------------
+--------------------------
 
 .. raw:: html
 
@@ -439,7 +439,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-2t2c-base_and_features
------------------
+--------------------------
 
 .. raw:: html
 
@@ -602,8 +602,12 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-pdr}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t1c-base_and_features
------------------
+--------------------------
 
 .. raw:: html
 
@@ -658,7 +662,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-4t2c-base_and_features
------------------
+--------------------------
 
 .. raw:: html
 

@@ -339,6 +339,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4tun-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-2t1c-base_and_features
 --------------------------
 
