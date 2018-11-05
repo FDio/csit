@@ -16,6 +16,7 @@ made public in 2018. Script is available on `Spectre & Meltdown Checker Github
 - CVE-2018-3646 [L1 terminal fault] aka 'Foreshadow-NG (VMM)'
 
 ::
+
     $ sudo ./spectre-meltdown-checker.sh --no-color
 
     Spectre and Meltdown mitigation detection tool v0.40
