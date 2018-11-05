@@ -630,15 +630,11 @@ def plot_throughput_speedup_analysis(plot, input_data):
                                    name="{0} perfect".format(name),
                                    legendgroup=name,
                                    showlegend=False,
-                                   mode="lines+markers",
+                                   mode="lines",
                                    line=dict(
                                        color=COLORS[cidx],
                                        width=2,
                                        dash="dash"),
-                                   marker=dict(
-                                       symbol="circle",
-                                       size=10
-                                   ),
                                    text=["perfect: {0:.2f}Mpps".format(y)
                                          for y in val["ideal"]],
                                    hoverinfo="text"
