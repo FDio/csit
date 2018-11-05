@@ -7,16 +7,17 @@ install and
 
 Below a subset of the running configuration:
 
-1. Xeon Haswell - Ubuntu 16.04.1 LTS
+1. Xeon Haswell - Ubuntu 18.04.1 LTS
 
 ::
 
     $ lsb_release -a
     No LSB modules are available.
-    Distributor ID:	Ubuntu
-    Description:	Ubuntu 16.04.1 LTS
-    Release:	16.04
-    Codename:	xenial
+    Distributor ID: Ubuntu
+    Description:    Ubuntu 18.04.1 LTS
+    Release:        18.04
+    Codename:       bionic
+
 
 2. Xeon Skylake - Ubuntu 18.04 LTS
 
@@ -71,12 +72,12 @@ Linux Boot Parameters
 Applied Boot Cmdline
 ~~~~~~~~~~~~~~~~~~~~
 
-1. Xeon Haswell - Ubuntu 16.04.1 LTS
+1. Xeon Haswell - Ubuntu 18.04.1 LTS
 
 ::
 
     $ cat /proc/cmdline
-    BOOT_IMAGE=/vmlinuz-4.4.0-72-generic root=UUID=35ea11e4-e44f-4f67-8cbe-12f09c49ed90 ro isolcpus=1-17,19-35 nohz_full=1-17,19-35 rcu_nocbs=1-17,19-35 intel_pstate=disable console=tty0 console=ttyS0,115200n8
+    BOOT_IMAGE=/vmlinuz-4.15.0-36-generic root=UUID=5d2ecc97-245b-4e94-b0ae-c3548567de19 ro isolcpus=1-17,19-35 nohz_full=1-17,19-35 rcu_nocbs=1-17,19-35 numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off console=tty0 console=ttyS0,115200n8
 
 2. Xeon Skylake - Ubuntu 18.04 LTS
 
