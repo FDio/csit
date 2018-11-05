@@ -149,7 +149,11 @@ def plot_performance_box(plot, input_data):
                                y=[y / 1000000 if y else None for y in df[col]],
                                name=name,
                                **plot["traces"]))
-        val_max = max(df[col])
+        try:
+            val_max = max(df[col])
+        except ValueError as err:
+            logging.error(err)
+            continue
         if val_max:
             y_max.append(int(val_max / 1000000) + 1)
 
