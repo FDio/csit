@@ -376,6 +376,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-pdr}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-1t1c-base_and_scale-l2bd
 ----------------------------
 

@@ -102,6 +102,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ipsec-3n-hsw-xl710-64b-base-pdr-tsa}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 64b-hw-scale
 ------------
 
@@ -152,6 +156,10 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ipsec-3n-hsw-xl710-64b-scale-pdr-tsa}
             \label{fig:ipsec-3n-hsw-xl710-64b-scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
 
 64b-sw-base
 -----------
