@@ -41,6 +41,15 @@ CSIT 18.10
 
 .. toctree::
     :maxdepth: 2
+    :caption: VPP Device
+
+    vpp_device_tests/overview
+    vpp_device_tests/csit_release_notes
+    vpp_device_tests/test_environment
+    vpp_device_tests/documentation
+
+.. toctree::
+    :maxdepth: 2
     :caption: VPP Functional
 
     vpp_functional_tests/overview
