@@ -45,9 +45,10 @@ environment:
 +-----------------------+----------------------------------------------+
 | Functionality         |  Description                                 |
 +=======================+==============================================+
-| DMM basic operation   | DMM has only one test case right now. The    |
-|                       | testcase demonstrates single server[DUT1]    |
-|                       | and single client[DUT2] scenario using DMM   |
-|                       | framework and kernel tcp/ip stack.           |
-|                       | Test case count: 1.                          |
+| DMM basic operation   | The test case demonstrates single            |
+|                       | server[DUT1] and single client[DUT2]         |
+|                       | scenario using DMM framework and kernel      |
+|                       | tcp/ip stack.                                |
++-----------------------+----------------------------------------------+
+| DMM lwip integration  |                                              |
 +-----------------------+----------------------------------------------+
