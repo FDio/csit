@@ -1,4 +1,0 @@
----
-# file: group_vars/haswell/sut.yaml
-
-isolcpus: "1-17,19-35"
