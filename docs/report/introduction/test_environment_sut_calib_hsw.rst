@@ -28,7 +28,7 @@ Linux uname
     Linux t1-tg1 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 
 
-System-level core jitter
+System-level Core Jitter
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -82,7 +82,7 @@ System-level core jitter
         160024     172452      12428     160028     160024     188236     933429248 3205440636         30
 
 
-Memory bandwidth
+Memory Bandwidth
 ~~~~~~~~~~~~~~~~
 
 ::
@@ -139,7 +139,7 @@ Memory bandwidth
     Stream-triad like:  105608.10
 
 
-Memory latency
+Memory Latency
 ~~~~~~~~~~~~~~
 
 ::
@@ -199,7 +199,7 @@ Memory latency
      20000  100.77     1542.5
 
 
-L1/L2/LLC latency
+L1/L2/LLC Latency
 ~~~~~~~~~~~~~~~~~
 
 ::
