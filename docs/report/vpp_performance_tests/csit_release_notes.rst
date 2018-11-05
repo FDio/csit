@@ -89,3 +89,5 @@ List of known issues in |csit-release| for VPP performance tests:
 | 7  | `CSIT-1253                              | VPP lbdpdk link bonding tests failing due to interfaces not coming up.                                                          |
 |    | <https://jira.fd.io/browse/CSIT-1253>`_ | VPP lbdpdk link bonding tests relying on DPDK functionality for bonding fail.                                                   |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+|    |                                         |                                                                                                                                 |
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
