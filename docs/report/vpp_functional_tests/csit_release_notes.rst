@@ -49,3 +49,5 @@ List of known issues in |csit-release| for VPP functional tests in VIRL:
 | 5 | `CSIT-565                              | Vhost-user: QEMU reconnect does not work.                                                                               |
 |   | <https://jira.fd.io/browse/CSIT-565>`_ | QEMU 2.5.0 used in CSIT does not support vhost-user reconnect. Requires upgrading CSIT VIRL environment to QEMU 2.7.0.  |
 +---+----------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+|   |                                        |                                                                                                                         |
++---+----------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
