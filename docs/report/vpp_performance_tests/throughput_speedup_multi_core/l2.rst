@@ -1,8 +1,4 @@
 
-.. raw:: latex
-
-    \clearpage
-
 .. raw:: html
 
     <script type="text/javascript">

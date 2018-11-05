@@ -43,6 +43,10 @@ placement.
 CSIT source code for the test cases used for plots can be found in
 `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1810>`_.
 
+.. raw:: latex
+
+    \clearpage
+
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
