@@ -86,7 +86,7 @@ virtual VM environment:
 |                       | - Netconf negative tests aimed at specific   |
 |                       |   issues.                                    |
 |                       | - Netconf/Restconf northbound over IPv6.     |
-|                       | - Test case count: 12.                       |
+|                       | - Test case count: 14.                       |
 +-----------------------+----------------------------------------------+
 | L2BD                  | - CRUD for L2 Bridge-Domain, interface       |
 |                       |   assignment.                                |
@@ -131,7 +131,7 @@ virtual VM environment:
 |                       |   interface.                                 |
 |                       | - Test case count: 6.                        |
 +-----------------------+----------------------------------------------+
-| NSH_SFC               | - CRD for NSH maps and entries, using        |
+| NSH_SFC (excluded)    | - CRD for NSH maps and entries, using        |
 |                       |   NSH_SFC plugin.                            |
 |                       | - Configure up to 2 NSH entries.             |
 |                       | - Configure up to 2 NSH maps.                |
@@ -211,7 +211,7 @@ virtual VM environment:
 |                       | - Test case count: 3.                        |
 +-----------------------+----------------------------------------------+
 
-Total 219 Honeycomb functional tests in the |csit-release|.
+Total 213 Honeycomb functional tests in the |csit-release|.
 
 Operational data in Honeycomb should mirror configuration data at all
 times. Because of this, test cases follow this general pattern:
