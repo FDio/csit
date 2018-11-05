@@ -166,7 +166,7 @@ Input Parameters
    Default (2). (Value chosen based on limited experimentation to date.
    More experimentation needed to arrive to clearer guidelines.)
 
-Initial phase
+Initial Phase
 `````````````
 
 1. First trial measures at maximum rate and discovers MRR.
@@ -192,7 +192,7 @@ Initial phase
    c. *do*: single trial.
    d. *out*: measured loss ratio.
 
-Non-initial phases
+Non-initial Phases
 ``````````````````
 
 1. Main loop:
@@ -631,7 +631,7 @@ created (one for each direction) with TRex flow_stats parameter set to
 STLFlowLatencyStats. In that case, returned statistics will also include
 min/avg/max latency values.
 
-HTTP/TCP with WRK tool
+HTTP/TCP with WRK Tool
 ----------------------
 
 `WRK HTTP benchmarking tool <https://github.com/wg/wrk>`_ is used for
