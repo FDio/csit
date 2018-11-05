@@ -9738,7 +9738,7 @@
            '78B' and
            ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
-           '4T12' and
+           '4T2C' and
            'IP6FWD' and
            not 'SRv6' and
            not 'IPSEC' and
