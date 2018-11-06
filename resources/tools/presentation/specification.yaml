@@ -320,17 +320,15 @@
       - 27  # NDRPDR sel
 
     plot-vpp-http-server-performance:
-      # TODO: Replace with 1810 data:
-      csit-vpp-perf-verify-1807-3n-hsw:
-      - 24  # WRK
-      - 25  # WRK
-      - 23  # WRK
-      - 26  # WRK
-      - 27  # WRK
+      # TODO: Add data:
+      csit-vpp-perf-verify-1810-3n-hsw:
       - 28  # WRK
       - 29  # WRK
       - 30  # WRK
+      - 31  # WRK
       - 32  # WRK
+      - 33  # WRK
+      - 34  # WRK
       - 35  # WRK
 
     # VPP Functional
@@ -367,7 +365,6 @@
 
     # DPDK Performance
     dpdk-performance-changes:
-      # TODO: Replace with 1810 data:
       csit-dpdk-perf-1804-all:
       - 4
       - 5
@@ -390,62 +387,74 @@
       - 21
       - 22
       - 23
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
 
     dpdk-compare-testbeds:
       # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
-      # TODO: Replace with 1810 data:
-      csit-dpdk-perf-verify-1807-3n-hsw:
-      - 11
-      - 12  # full
-      - 14
-      - 15
-      - 16
-      - 17
-      - 20
-      - 21
-      - 22
-      - 23
+      - 4   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
 
     dpdk-perf-results-3n-hsw:
-      # TODO: Replace with 1810 data:
-      csit-dpdk-perf-verify-1807-3n-hsw:
-      - 12
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1
 
     dpdk-perf-results-3n-skx:
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
 
     dpdk-perf-results-2n-skx:
-      # TODO: Replace with full data:
       csit-dpdk-perf-verify-1810-2n-skx:
       - 3
 
     plot-dpdk-throughput-latency-3n-hsw:
-      # TODO: Replace with 1810 data:
-      csit-dpdk-perf-verify-1807-3n-hsw:
-      - 11
-      - 12  # full
-      - 14
-      - 15
-      - 16
-      - 17
-      - 20
-      - 21
-      - 22
-      - 23
+      # TODO: Add data:
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-skx:
       # TODO: Add data:
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
 
     plot-dpdk-throughput-latency-2n-skx:
       # TODO: Add data:
       csit-dpdk-perf-verify-1810-2n-skx:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
 
     # HoneyComb Functional
     hc-func-results:
@@ -843,6 +852,14 @@
     - 18  # NDRPDR sel
     - 23  # NDRPDR sel
     - 25  # NDRPDR sel
+    - 28  # WRK
+    - 29  # WRK
+    - 30  # WRK
+    - 31  # WRK
+    - 32  # WRK
+    - 33  # WRK
+    - 34  # WRK
+    - 35  # WRK
     csit-vpp-perf-verify-1807-3n-skx:
     - 31  # MRR full
     - 28  # MRR sel
@@ -976,8 +993,11 @@
     - 22
     - 23
     # TODO: Add data:
-#    csit-dpdk-perf-verify-1810-3n-hsw:
-#    -
+    csit-dpdk-perf-verify-1810-3n-hsw:
+    - 1   # NDRPDR sel
+    - 2   # NDRPDR sel
+    - 3   # NDRPDR sel
+    - 4   # NDRPDR sel
     csit-dpdk-perf-verify-1807-3n-skx:
     - 1
     - 2
@@ -992,10 +1012,26 @@
     # TODO: Add data:
     csit-dpdk-perf-verify-1810-3n-skx:
     - 3   # NDRPDR sel
+    - 4   # NDRPDR sel
+    - 6   # NDRPDR sel
+    - 7   # NDRPDR sel
+    - 8   # NDRPDR sel
+    - 9   # NDRPDR sel
+    - 10  # NDRPDR sel
+    - 11  # NDRPDR sel
     # TODO: Add data:
     csit-dpdk-perf-verify-1810-2n-skx:
     - 3   # NDRPDR sel
     - 4   # NDRPDR sel
+    - 5   # NDRPDR sel
+    - 7   # NDRPDR sel
+    - 8   # NDRPDR sel
+    - 9   # NDRPDR sel
+    - 10  # NDRPDR sel
+    - 11  # NDRPDR sel
+    - 12  # NDRPDR sel
+    - 13  # NDRPDR sel
+
     csit-vpp-functional-1810-ubuntu1604-virl:
     - 44
     csit-vpp-functional-1810-centos7-virl:
@@ -1998,24 +2034,24 @@
   title: "DPDK Performance Changes 1t1c pdr"
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-1t1c-pdr"
+  history:
+    -
+      title: "rls1804"
+      data:
+        csit-dpdk-perf-1804-all:
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
   reference:
-    title: "rls1804"
-    data:
-      csit-dpdk-perf-1804-all:
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-  compare:
     title: "rls1807"
     data:
-      # TODO: Replace with 1810 data
       csit-dpdk-perf-verify-1807-3n-hsw:
       - 11
       - 12  # full
@@ -2027,6 +2063,15 @@
       - 21
       - 22
       - 23
+  compare:
+    title: "rls1810"
+    data:
+      # TODO: Add data
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2041,24 +2086,24 @@
   title: "DPDK Performance Changes 2t2c pdr"
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2t2c-pdr"
+  history:
+    -
+      title: "rls1804"
+      data:
+        csit-dpdk-perf-1804-all:
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
   reference:
-    title: "rls1804"
-    data:
-      csit-dpdk-perf-1804-all:
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-  compare:
     title: "rls1807"
     data:
-      # TODO: Replace with 1810 data
       csit-dpdk-perf-verify-1807-3n-hsw:
       - 11
       - 12  # full
@@ -2070,6 +2115,15 @@
       - 21
       - 22
       - 23
+  compare:
+    title: "rls1810"
+    data:
+      # TODO: Add data
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2084,24 +2138,24 @@
   title: "DPDK Performance Changes 1t1c ndr"
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-1t1c-ndr"
+  history:
+    -
+      title: "rls1804"
+      data:
+        csit-dpdk-perf-1804-all:
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
   reference:
-    title: "rls1804"
-    data:
-      csit-dpdk-perf-1804-all:
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-  compare:
     title: "rls1807"
     data:
-      # TODO: Replace with 1810 data
       csit-dpdk-perf-verify-1807-3n-hsw:
       - 11
       - 12  # full
@@ -2113,6 +2167,15 @@
       - 21
       - 22
       - 23
+  compare:
+    title: "rls1810"
+    data:
+      # TODO: Add data
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2127,24 +2190,24 @@
   title: "DPDK Performance Changes 2t2c ndr"
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,DPDK]}/performance-changes-2t2c-ndr"
+  history:
+    -
+      title: "rls1804"
+      data:
+        csit-dpdk-perf-1804-all:
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
   reference:
-    title: "rls1804"
-    data:
-      csit-dpdk-perf-1804-all:
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-  compare:
     title: "rls1807"
     data:
-      # TODO: Replace with 1810 data
       csit-dpdk-perf-verify-1807-3n-hsw:
       - 11
       - 12  # full
@@ -2156,6 +2219,15 @@
       - 21
       - 22
       - 23
+  compare:
+    title: "rls1810"
+    data:
+      # TODO: Add data
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2173,24 +2245,25 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Replace with 1810 data
-      csit-dpdk-perf-verify-1807-3n-hsw:
-      - 11
-      - 12  # full
-      - 14
-      - 15
-      - 16
-      - 17
-      - 20
-      - 21
-      - 22
-      - 23
+      # TODO: Add data
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
       # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
   data: "dpdk-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2208,24 +2281,25 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Replace with 1810 data
-      csit-dpdk-perf-verify-1807-3n-hsw:
-      - 11
-      - 12  # full
-      - 14
-      - 15
-      - 16
-      - 17
-      - 20
-      - 21
-      - 22
-      - 23
+      # TODO: Add data
+      csit-dpdk-perf-verify-1810-3n-hsw:
+      - 1   # NDRPDR sel
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
       # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
   data: "dpdk-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -4372,10 +4446,10 @@
 # Packet Throughput - VPP Container Memif 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Throughput: memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
+  title: "VPP Throughput: memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -4401,7 +4475,7 @@
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
-    title: "memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
+    title: "memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-throughput"
 
 -
@@ -17030,7 +17104,7 @@
   title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-features-nat44-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-ndr-nat44-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-nat44-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -17090,7 +17164,7 @@
   title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-features-iacl-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-ndr-iacl-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-iacl-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -17149,7 +17223,7 @@
   title: "VPP Latency: ip4-3n-hsw-x520-64b-2t2c-features-oacl-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-ndr-oacl-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x520-64b-2t2c-features-oacl-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
@@ -17335,7 +17409,7 @@
   title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-nat44-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-ndr-nat44-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-nat44-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -17395,7 +17469,7 @@
   title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-ndr-iacl-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -17454,7 +17528,7 @@
   title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-ndr-oacl-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -17697,7 +17771,7 @@
   title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-features-nat44-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-ndr-nat44-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-nat44-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -17757,7 +17831,7 @@
   title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-features-iacl-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-ndr-iacl-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-iacl-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -18234,7 +18308,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           '4t2c' and
+           '4T2C' and
            'VXLAN' and
            'L2BDMACLRN' and
            not 'VHOST' and
