@@ -107,7 +107,7 @@ def plot_performance_box(plot, input_data):
         y_sorted = OrderedDict()
         y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
         for tag in order:
-            logging.info(tag)
+            logging.debug(tag)
             for suite, tags in y_tags_l.items():
                 if "not " in tag:
                     tag = tag.split(" ")[-1]
@@ -119,9 +119,9 @@ def plot_performance_box(plot, input_data):
                 try:
                     y_sorted[suite] = y_vals.pop(suite)
                     y_tags_l.pop(suite)
-                    logging.info(suite)
+                    logging.debug(suite)
                 except KeyError as err:
-                    logging.error("Not found: {0}".format(err))
+                    logging.error("Not found: {0}".format(repr(err)))
                 finally:
                     break
     else:
@@ -144,7 +144,7 @@ def plot_performance_box(plot, input_data):
     for i, col in enumerate(df.columns):
         name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', '').
                                  replace('-ndrpdr', ''))
-        logging.info(name)
+        logging.debug(name)
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y / 1000000 if y else None for y in df[col]],
                                name=name,
@@ -152,7 +152,7 @@ def plot_performance_box(plot, input_data):
         try:
             val_max = max(df[col])
         except ValueError as err:
-            logging.error(err)
+            logging.error(repr(err))
             continue
         if val_max:
             y_max.append(int(val_max / 1000000) + 1)
@@ -175,7 +175,7 @@ def plot_performance_box(plot, input_data):
                                             plot["output-file-type"]))
     except PlotlyError as err:
         logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+                      format(repr(err).replace("\n", " ")))
         return
 
 
@@ -204,6 +204,11 @@ def plot_latency_error_bars(plot, input_data):
     for job in data:
         for build in job:
             for test in build:
+                try:
+                    logging.debug("test['latency']: {0}\n".
+                                 format(test["latency"]))
+                except ValueError as err:
+                    logging.warning(repr(err))
                 if y_tmp_vals.get(test["parent"], None) is None:
                     y_tmp_vals[test["parent"]] = [
                         list(),  # direction1, min
@@ -221,6 +226,8 @@ def plot_latency_error_bars(plot, input_data):
                         elif "-ndr" in plot_title.lower():
                             ttype = "NDR"
                         else:
+                            logging.warning("Invalid test type: {0}".
+                                            format(test["type"]))
                             continue
                         y_tmp_vals[test["parent"]][0].append(
                             test["latency"][ttype]["direction1"]["min"])
@@ -235,17 +242,19 @@ def plot_latency_error_bars(plot, input_data):
                         y_tmp_vals[test["parent"]][5].append(
                             test["latency"][ttype]["direction2"]["max"])
                     else:
+                        logging.warning("Invalid test type: {0}".
+                                        format(test["type"]))
                         continue
-                except (KeyError, TypeError):
-                    pass
-
+                except (KeyError, TypeError) as err:
+                    logging.warning(repr(err))
+    logging.debug("y_tmp_vals: {0}\n".format(y_tmp_vals))
     # Sort the tests
     order = plot.get("sort", None)
     if order and y_tags:
         y_sorted = OrderedDict()
         y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
         for tag in order:
-            logging.info(tag)
+            logging.debug(tag)
             for suite, tags in y_tags_l.items():
                 if "not " in tag:
                     tag = tag.split(" ")[-1]
@@ -257,14 +266,15 @@ def plot_latency_error_bars(plot, input_data):
                 try:
                     y_sorted[suite] = y_tmp_vals.pop(suite)
                     y_tags_l.pop(suite)
-                    logging.info(suite)
+                    logging.debug(suite)
                 except KeyError as err:
-                    logging.error("Not found: {0}".format(err))
+                    logging.error("Not found: {0}".format(repr(err)))
                 finally:
                     break
     else:
         y_sorted = y_tmp_vals
 
+    logging.debug("y_sorted: {0}\n".format(y_sorted))
     x_vals = list()
     y_vals = list()
     y_mins = list()
@@ -280,6 +290,10 @@ def plot_latency_error_bars(plot, input_data):
         y_mins.append(mean(val[3]) if val[3] else None)
         y_maxs.append(mean(val[5]) if val[5] else None)
 
+    logging.debug("x_vals :{0}\n".format(x_vals))
+    logging.debug("y_vals :{0}\n".format(y_vals))
+    logging.debug("y_mins :{0}\n".format(y_mins))
+    logging.debug("y_maxs :{0}\n".format(y_maxs))
     traces = list()
     annotations = list()
 
@@ -306,6 +320,9 @@ def plot_latency_error_bars(plot, input_data):
             arrayminus = [y_vals[idx] - y_mins[idx], ]
         else:
             arrayminus = [None, ]
+        logging.debug("y_vals[{1}] :{0}\n".format(y_vals[idx], idx))
+        logging.debug("array :{0}\n".format(array))
+        logging.debug("arrayminus :{0}\n".format(arrayminus))
         traces.append(plgo.Scatter(
             x=[idx, ],
             y=[y_vals[idx], ],
