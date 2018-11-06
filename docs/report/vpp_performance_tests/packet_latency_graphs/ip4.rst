@@ -463,12 +463,12 @@ CSIT source code for the test cases used for plots can be found in
 
     <center><b>
 
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-ndr`
+:index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-nat44-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat.html"></iframe>
+    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-nat44-ndr-lat.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -477,8 +477,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat}
-            \label{fig:ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-1t1c-features-nat44-ndr-lat}
+            \label{fig:ip4-3n-hsw-x710-64b-1t1c-features-nat44-ndr-lat}
     \end{figure}
 
 .. raw:: latex

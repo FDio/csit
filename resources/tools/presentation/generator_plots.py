@@ -245,15 +245,23 @@ def plot_latency_error_bars(plot, input_data):
         y_sorted = OrderedDict()
         y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
         for tag in order:
+            logging.info(tag)
             for suite, tags in y_tags_l.items():
-                if tag.lower() in tags:
-                    try:
-                        y_sorted[suite] = y_tmp_vals.pop(suite)
-                        y_tags_l.pop(suite)
-                    except KeyError as err:
-                        logging.error("Not found: {0}".format(err))
-                    finally:
-                        break
+                if "not " in tag:
+                    tag = tag.split(" ")[-1]
+                    if tag.lower() in tags:
+                        continue
+                else:
+                    if tag.lower() not in tags:
+                        continue
+                try:
+                    y_sorted[suite] = y_tmp_vals.pop(suite)
+                    y_tags_l.pop(suite)
+                    logging.info(suite)
+                except KeyError as err:
+                    logging.error("Not found: {0}".format(err))
+                finally:
+                    break
     else:
         y_sorted = y_tmp_vals
 
