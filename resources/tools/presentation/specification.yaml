@@ -320,7 +320,6 @@
       - 27  # NDRPDR sel
 
     plot-vpp-http-server-performance:
-      # TODO: Add data:
       csit-vpp-perf-verify-1810-3n-hsw:
       - 28  # WRK
       - 29  # WRK
@@ -330,6 +329,8 @@
       - 33  # WRK
       - 34  # WRK
       - 35  # WRK
+      - 36  # WRK
+      - 37  # WRK
 
     # VPP Functional
     vpp-func-results-ubuntu:
@@ -337,7 +338,6 @@
       - 44
 
     vpp-func-results-centos:
-      # TODO: Replace with 1810 data:
       csit-vpp-functional-1810-centos7-virl:
       - 44
 
@@ -392,9 +392,14 @@
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
 
     dpdk-compare-testbeds:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
@@ -404,11 +409,19 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-1810-3n-hsw:
@@ -423,15 +436,19 @@
       - 3
 
     plot-dpdk-throughput-latency-3n-hsw:
-      # TODO: Add data:
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-skx:
-      # TODO: Add data:
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
@@ -441,9 +458,10 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
 
     plot-dpdk-throughput-latency-2n-skx:
-      # TODO: Add data:
       csit-dpdk-perf-verify-1810-2n-skx:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
@@ -860,6 +878,8 @@
     - 33  # WRK
     - 34  # WRK
     - 35  # WRK
+    - 36  # WRK
+    - 37  # WRK
     csit-vpp-perf-verify-1807-3n-skx:
     - 31  # MRR full
     - 28  # MRR sel
@@ -992,12 +1012,17 @@
     - 21
     - 22
     - 23
-    # TODO: Add data:
     csit-dpdk-perf-verify-1810-3n-hsw:
     - 1   # NDRPDR sel
     - 2   # NDRPDR sel
     - 3   # NDRPDR sel
     - 4   # NDRPDR sel
+    - 5   # NDRPDR sel
+    - 6   # NDRPDR sel
+    - 7   # NDRPDR sel
+    - 8   # NDRPDR sel
+    - 9   # NDRPDR sel
+    - 10  # NDRPDR sel
     csit-dpdk-perf-verify-1807-3n-skx:
     - 1
     - 2
@@ -1009,7 +1034,6 @@
     - 10
     - 11
     - 12
-    # TODO: Add data:
     csit-dpdk-perf-verify-1810-3n-skx:
     - 3   # NDRPDR sel
     - 4   # NDRPDR sel
@@ -1019,7 +1043,8 @@
     - 9   # NDRPDR sel
     - 10  # NDRPDR sel
     - 11  # NDRPDR sel
-    # TODO: Add data:
+    - 12  # NDRPDR sel
+    - 13  # NDRPDR sel
     csit-dpdk-perf-verify-1810-2n-skx:
     - 3   # NDRPDR sel
     - 4   # NDRPDR sel
@@ -2066,12 +2091,17 @@
   compare:
     title: "rls1810"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2118,12 +2148,17 @@
   compare:
     title: "rls1810"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2170,12 +2205,17 @@
   compare:
     title: "rls1810"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2222,12 +2262,17 @@
   compare:
     title: "rls1810"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
   data: "dpdk-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2245,16 +2290,20 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
@@ -2264,6 +2313,8 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
   data: "dpdk-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2281,16 +2332,20 @@
   reference:
     title: "3-Node Hsw"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
-      # TODO: Add data
       csit-dpdk-perf-verify-1810-3n-skx:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
@@ -2300,6 +2355,8 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
   data: "dpdk-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -17020,7 +17077,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17054,7 +17111,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17085,7 +17142,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17115,7 +17172,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17147,7 +17204,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17176,7 +17233,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17206,7 +17263,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17235,7 +17292,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17325,7 +17382,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17359,7 +17416,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17390,7 +17447,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17420,7 +17477,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17452,7 +17509,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17481,7 +17538,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17511,7 +17568,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17540,7 +17597,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17687,7 +17744,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17721,7 +17778,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17752,7 +17809,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17782,7 +17839,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17814,7 +17871,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17843,7 +17900,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17873,7 +17930,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -17902,7 +17959,7 @@
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18109,7 +18166,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18137,7 +18194,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18227,7 +18284,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18255,7 +18312,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18345,7 +18402,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18373,7 +18430,7 @@
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18758,7 +18815,7 @@
            'LISP' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
@@ -18783,7 +18840,7 @@
            'LISP' and
            not 'VHOST'"
   parameters:
-  - "throughput"
+  - "latency"
   - "parent"
   - "tags"
   sort:
