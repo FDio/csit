@@ -31,10 +31,11 @@ Comparison tables in ASCII and CSV formats:
   - `ASCII PDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-pdr.txt>`_
   - `CSV PDR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-pdr.csv>`_
 
-MRR Comparison
-~~~~~~~~~~~~~~
+..
+    MRR Comparison
+    ~~~~~~~~~~~~~~
 
-Comparison tables in ASCII and CSV formats:
+    Comparison tables in ASCII and CSV formats:
 
-  - `ASCII MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.txt>`_
-  - `CSV MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.csv>`_
+      - `ASCII MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.txt>`_
+      - `CSV MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.csv>`_
