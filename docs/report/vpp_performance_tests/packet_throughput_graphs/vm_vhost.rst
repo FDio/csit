@@ -1370,6 +1370,10 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 3n-skx-x710
 ~~~~~~~~~~~
 
