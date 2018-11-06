@@ -238,7 +238,7 @@ def plot_latency_error_bars(plot, input_data):
                         continue
                 except (KeyError, TypeError):
                     pass
-
+    logging.info("y_tmp_vals: {0}\n".format(y_tmp_vals))
     # Sort the tests
     order = plot.get("sort", None)
     if order and y_tags:
@@ -265,6 +265,7 @@ def plot_latency_error_bars(plot, input_data):
     else:
         y_sorted = y_tmp_vals
 
+    logging.info("y_sorted: {0}\n".format(y_sorted))
     x_vals = list()
     y_vals = list()
     y_mins = list()
@@ -280,6 +281,10 @@ def plot_latency_error_bars(plot, input_data):
         y_mins.append(mean(val[3]) if val[3] else None)
         y_maxs.append(mean(val[5]) if val[5] else None)
 
+    logging.info("x_vals :{0}\n".format(x_vals))
+    logging.info("y_vals :{0}\n".format(y_vals))
+    logging.info("y_mins :{0}\n".format(y_mins))
+    logging.info("y_maxs :{0}\n".format(y_maxs))
     traces = list()
     annotations = list()
 
@@ -306,6 +311,9 @@ def plot_latency_error_bars(plot, input_data):
             arrayminus = [y_vals[idx] - y_mins[idx], ]
         else:
             arrayminus = [None, ]
+        logging.info("y_vals[{1}] :{0}\n".format(y_vals[idx], idx))
+        logging.info("array :{0}\n".format(array))
+        logging.info("arrayminus :{0}\n".format(arrayminus))
         traces.append(plgo.Scatter(
             x=[idx, ],
             y=[y_vals[idx], ],
