@@ -33,8 +33,8 @@ and reported:
 NDR and PDR are measured for the following L2 frame sizes (untagged
 Ethernet):
 
-- IPv4 payload: 64B, IMIX_v4_1 (28x64B, 16x570B, 4x1518B), 1518B, 9000B.
-- IPv6 payload: 78B, 1518B, 9000B.
+- IPv4 payload: 64B, IMIX (28x64B, 16x570B, 4x1518B), 1518B, 9000B.
+- IPv6 payload: 78B, IMIX (28x78B, 16x570B, 4x1518B), 1518B, 9000B.
 
 All rates are reported from external Traffic Generator perspective.
 
