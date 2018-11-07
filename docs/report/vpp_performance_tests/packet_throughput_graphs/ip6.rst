@@ -774,35 +774,36 @@ CSIT source code for the test cases used for plots can be found in
 78b-4t2c-base_and_features
 --------------------------
 
-.. raw:: html
+..
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Throughput: ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr`
+    :index:`Packet Throughput: ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm27" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm27" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr}
-            \label{fig:ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr}
+                \label{fig:ip6-3n-skx-x710-78b-4t2c-base_and_features-ndr}
+        \end{figure}
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
 :index:`Packet Throughput: ip6-3n-skx-x710-78b-4t2c-base_and_features-pdr`
 

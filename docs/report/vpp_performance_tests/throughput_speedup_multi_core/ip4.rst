@@ -543,60 +543,61 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-hsw-x710-64b-features-iacl-pdr-tsa}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-64b-features-oacl
------------------
+    64b-features-oacl
+    -----------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Speedup Multi-core: ip4-3n-hsw-x710-64b-features-oacl-ndr`
+    :index:`Speedup Multi-core: ip4-3n-hsw-x710-64b-features-oacl-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa}
-            \label{fig:ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa}
+                \label{fig:ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa}
+        \end{figure}
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-:index:`Speedup Multi-core: ip4-3n-hsw-x710-64b-features-oacl-pdr`
+    :index:`Speedup Multi-core: ip4-3n-hsw-x710-64b-features-oacl-pdr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa}
-            \label{fig:ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa}
+                \label{fig:ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa}
+        \end{figure}
 
 .. raw:: latex
 
