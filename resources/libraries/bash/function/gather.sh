@@ -166,7 +166,7 @@ function gather_ligato () {
 
     # Clone & checkout stable vpp-agent.
     cd "${CSIT_DIR}" || die "Change directory failed!"
-    git clone -b "${vpp_agent_stable_ver}" --single-branch \
+    git clone -b vpp/1810 --single-branch \
         "${ligato_repo_url}/vpp-agent" "vpp-agent" || {
         die "Failed to run: git clone ${ligato_repo_url}/vpp-agent!"
     }
