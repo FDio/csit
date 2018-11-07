@@ -568,63 +568,64 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-64b-1t1c-features-oacl
-----------------------
+    64b-1t1c-features-oacl
+    ----------------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr`
+    :index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat}
-            \label{fig:ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat}
+                \label{fig:ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-64b-2t2c-features-oacl
-----------------------
+    64b-2t2c-features-oacl
+    ----------------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr`
+    :index:`Packet Latency: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat}
-            \label{fig:ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat}
+                \label{fig:ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat}
+        \end{figure}
 
 .. raw:: latex
 
@@ -922,63 +923,64 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:ip4-3n-skx-x710-64b-4t2c-features-iacl-ndr-lat}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-64b-2t1c-features-oacl
-----------------------
+    64b-2t1c-features-oacl
+    ----------------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Latency: ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr`
+    :index:`Packet Latency: ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat}
-            \label{fig:ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat}
+                \label{fig:ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-64b-4t2c-features-oacl
-----------------------
+    64b-4t2c-features-oacl
+    ----------------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Latency: ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr`
+    :index:`Packet Latency: ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat}
-            \label{fig:ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat}
+                \label{fig:ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat}
+        \end{figure}
 
 .. raw:: latex
 
