@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "65c86192_1155f91b",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-07T12:01:23Z",
+      "side": 1,
+      "message": "You are correct in a sense that \".. Algorithm\" is a correct name for the section. But I will insist that \".. Tests\" is also correct, and better name for the sections. Similary to binary search tests, both \"algorithm\" and \"tests\" words can be used here. See RFC2544 for usage examples.",
+      "parentUuid": "eedf09f5_ca13738a",
+      "range": {
+        "startLine": 43,
+        "startChar": 10,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8bbf53f_997a8b6e",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-11-07T11:30:55Z",
       "side": 1,
       "message": "These tests are named NDRPDR tests and they use MRLSearch algo to find NDR/PDR values...",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 44
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09f0e7a4_ac98209f",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-07T12:01:23Z",
+      "side": 1,
+      "message": "I suggest going forward we don\u0027t use NDR and PDR as the main names for tests, but rather as a nicknames representing throughput as certain PLRs.",
+      "parentUuid": "a8bbf53f_997a8b6e",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "41c7afc5_e49ed9d4",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-07T12:01:23Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5609bfc2_922262ec",
+      "range": {
+        "startLine": 51,
+        "startChar": 63,
+        "endLine": 51,
+        "endChar": 64
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d901ca38_2ff98996",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2018-11-07T11:30:55Z",
       "side": 1,
       "message": "NDRPDR tests ?",
+      "range": {
+        "startLine": 327,
+        "startChar": 54,
+        "endLine": 327,
+        "endChar": 69
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06bc5308_c4099fb0",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-07T12:01:23Z",
+      "side": 1,
+      "message": "Nope. See my earlier comments.",
+      "parentUuid": "d901ca38_2ff98996",
       "range": {
         "startLine": 327,
         "startChar": 54,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "cbfdd2ad_31d1eb9a",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-07T12:01:23Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "b13534c1_45f2bd1d",
+      "range": {
+        "startLine": 373,
+        "startChar": 18,
+        "endLine": 373,
+        "endChar": 23
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "677271e7_2d7540ca",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "29a196bb_ab4296d4",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-07T12:01:23Z",
+      "side": 1,
+      "message": "Pls provide reference to ansible playbooks then :)",
+      "parentUuid": "677271e7_2d7540ca",
+      "range": {
+        "startLine": 531,
+        "startChar": 1,
+        "endLine": 532,
+        "endChar": 67
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c243c43_9f4f4c9f",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
@@ -151,6 +295,30 @@
       "writtenOn": "2018-11-07T11:26:51Z",
       "side": 1,
       "message": "L1/L2 is the same. Test definitions will change as some of them are 3-nodes. We need to convert to 2nodes. Which is ready but some crafting required.",
+      "range": {
+        "startLine": 593,
+        "startChar": 24,
+        "endLine": 593,
+        "endChar": 72
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e689a2a_129a07e7",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-07T12:01:23Z",
+      "side": 1,
+      "message": "OK. Adjusting text.",
+      "parentUuid": "1c243c43_9f4f4c9f",
       "range": {
         "startLine": 593,
         "startChar": 24,
