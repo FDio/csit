@@ -49,60 +49,61 @@ CSIT source code for the test cases used for plots can be found in
 3n-hsw-x520
 ~~~~~~~~~~~
 
-64b-base_and_scale
-------------------
+..
+    64b-base_and_scale
+    ------------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_scale-ndr`
+    :index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_scale-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
-            \label{fig:ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+                \label{fig:ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+        \end{figure}
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-:index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_scale-pdr`
+    :index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_scale-pdr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
-            \label{fig:ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+                \label{fig:ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
 64b-base_and_features
 ---------------------
