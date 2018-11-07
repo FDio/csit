@@ -379,231 +379,232 @@ CSIT source code for the test cases used for plots can be found in
             \label{fig:l3fwd-3n-hsw-xl710-64b-2t2c-base-pdr}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-3n-skx-x710
-~~~~~~~~~~~
+    3n-skx-x710
+    ~~~~~~~~~~~
 
-64b-2t1c-base
--------------
+    64b-2t1c-base
+    -------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Throughput: l3fwd-3n-skx-x710-64b-2t1c-base-ndr`
+    :index:`Packet Throughput: l3fwd-3n-skx-x710-64b-2t1c-base-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-2t1c-base-ndr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-2t1c-base-ndr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-2t1c-base-ndr}
-            \label{fig:l3fwd-3n-skx-x710-64b-2t1c-base-ndr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-2t1c-base-ndr}
+                \label{fig:l3fwd-3n-skx-x710-64b-2t1c-base-ndr}
+        \end{figure}
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-:index:`Packet Throughput: l3fwd-3n-skx-x710-64b-2t1c-base-pdr`
+    :index:`Packet Throughput: l3fwd-3n-skx-x710-64b-2t1c-base-pdr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-2t1c-base-pdr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-2t1c-base-pdr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-2t1c-base-pdr}
-            \label{fig:l3fwd-3n-skx-x710-64b-2t1c-base-pdr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-2t1c-base-pdr}
+                \label{fig:l3fwd-3n-skx-x710-64b-2t1c-base-pdr}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-64b-4t2c-base
--------------
+    64b-4t2c-base
+    -------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Throughput: l3fwd-3n-skx-x710-64b-4t2c-base-ndr`
+    :index:`Packet Throughput: l3fwd-3n-skx-x710-64b-4t2c-base-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-4t2c-base-ndr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-4t2c-base-ndr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-4t2c-base-ndr}
-            \label{fig:l3fwd-3n-skx-x710-64b-4t2c-base-ndr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-4t2c-base-ndr}
+                \label{fig:l3fwd-3n-skx-x710-64b-4t2c-base-ndr}
+        \end{figure}
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-:index:`Packet Throughput: l3fwd-3n-skx-x710-64b-4t2c-base-pdr`
+    :index:`Packet Throughput: l3fwd-3n-skx-x710-64b-4t2c-base-pdr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-4t2c-base-pdr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-4t2c-base-pdr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-4t2c-base-pdr}
-            \label{fig:l3fwd-3n-skx-x710-64b-4t2c-base-pdr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-x710-64b-4t2c-base-pdr}
+                \label{fig:l3fwd-3n-skx-x710-64b-4t2c-base-pdr}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-3n-skx-xxv710
-~~~~~~~~~~~~~
+    3n-skx-xxv710
+    ~~~~~~~~~~~~~
 
-64b-2t1c-base
--------------
+    64b-2t1c-base
+    -------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr`
+    :index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr}
-            \label{fig:l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr}
+                \label{fig:l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr}
+        \end{figure}
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-:index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr`
+    :index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr}
-            \label{fig:l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr}
+                \label{fig:l3fwd-3n-skx-xxv710-64b-2t1c-base-pdr}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-64b-4t2c-base
--------------
+    64b-4t2c-base
+    -------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-:index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr`
+    :index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr}
-            \label{fig:l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr}
+                \label{fig:l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr}
+        \end{figure}
 
-.. raw:: html
+    .. raw:: html
 
-    <center><b>
+        <center><b>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-:index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr`
+    :index:`Packet Throughput: l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr`
 
-.. raw:: html
+    .. raw:: html
 
-    </b>
-    <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr.html"></iframe>
-    <p><br><br></p>
-    </center>
+        </b>
+        <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr.html"></iframe>
+        <p><br><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr}
-            \label{fig:l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/dpdk/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr}
+                \label{fig:l3fwd-3n-skx-xxv710-64b-4t2c-base-pdr}
+        \end{figure}
 
 .. raw:: latex
 
