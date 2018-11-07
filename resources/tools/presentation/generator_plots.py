@@ -440,9 +440,11 @@ def plot_throughput_speedup_analysis(plot, input_data):
     for test_name, test_vals in y_vals.items():
         for key, test_val in test_vals.items():
             if test_val:
-                y_vals[test_name][key] = sum(test_val) / len(test_val)
-                if key == "1":
-                    y_1c_max[test_name] = max(test_val) / 1000000.0
+                avg_val = sum(test_val) / len(test_val)
+                y_vals[test_name][key] =  avg_val
+                ideal = avg_val / (int(key) * 1000000.0)
+                if test_name not in y_1c_max or ideal > y_1c_max[test_name]:
+                    y_1c_max[test_name] = ideal
 
     vals = dict()
     y_max = list()
