@@ -1,2 +1,2 @@
 
-.. include:: ../../vpp-device.rst
+.. include:: ../../../../../../docs/vpp-device.rst
