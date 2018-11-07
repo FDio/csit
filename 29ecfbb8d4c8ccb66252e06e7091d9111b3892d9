@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b13534c1_45f2bd1d",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-07T11:26:31Z",
+      "side": 1,
+      "message": "No, tests are not used. PRL performs one trial with different duration. This is similar to MLR search which also uses MRR-like measurement, without running full MRR test as described here (of 10 trials). Also, when we were using binary search we were not saying the MRR test is used for the initial max_rate measurement.\n\nRemove this paragraph altogether, or mention upcoming PLRsearch elsewhere.",
+      "range": {
+        "startLine": 373,
+        "startChar": 18,
+        "endLine": 373,
+        "endChar": 23
+      },
+      "revId": "29ecfbb8d4c8ccb66252e06e7091d9111b3892d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
