@@ -13,7 +13,8 @@ available for download.
    - **Test Scenarios Overview**: A brief overview of test scenarios
      covered in this report.
    - **Physical Testbeds**: Description of physical testbeds.
-   - **Performance Test Methodology**: Benchmarking test methodologies.
+   - **Test Methodology**: Performance benchmarking and functional test
+     methodologies.
 
 #. VPP PERFORMANCE: VPP performance tests executed in physical
    FD.io testbeds.
