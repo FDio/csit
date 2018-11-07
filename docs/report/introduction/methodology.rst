@@ -1,16 +1,17 @@
 
-.. _performance_test_methodology:
+.. _test_methodology:
 
-Performance Test Methodology
-============================
+Test Methodology
+================
 
-Throughput
-----------
+Data Plane Throughput
+---------------------
 
-Packet and bandwidth throughput are measured in accordance with
-:rfc:`2544`, using FD.io CSIT Multiple Loss Ratio search (MLRsearch), an
-optimized binary search algorithm, that measures SUT/DUT throughput at
-different Packet Loss Ratio (PLR) values.
+Network data plane packet and bandwidth throughput are measured in
+accordance with :rfc:`2544`, using FD.io CSIT Multiple Loss Ratio search
+(MLRsearch), an optimized throughput search algorithm, that measures
+SUT/DUT packet throughput rates at different Packet Loss Ratio (PLR)
+values.
 
 Following MLRsearch values are measured across a range of L2 frame sizes
 and reported:
@@ -39,13 +40,15 @@ All rates are reported from external Traffic Generator perspective.
 
 .. _mlrsearch_algorithm:
 
-MLRsearch Algorithm
--------------------
+MLRsearch Tests
+---------------
 
-Multiple Loss Rate search (MLRsearch) is a new search algorithm
+Multiple Loss Rate search (MLRsearch) tests use new search algorithm
 implemented in FD.io CSIT project. MLRsearch discovers multiple packet
 throughput rates in a single search, with each rate associated with a
-distinct Packet Loss Ratio (PLR) criteria.
+distinct Packet Loss Ratio (PLR) criteria. MLRsearch is being
+standardized in IETF with `draft-vpolak-mkonstan-mlrsearch-XX
+<https://tools.ietf.org/html/draft-vpolak-mkonstan-mlrsearch-00`_.
 
 Two throughput measurements used in FD.io CSIT are Non-Drop Rate (NDR,
 with zero packet loss, PLR=0) and Partial Drop Rate (PDR, with packet
@@ -318,15 +321,22 @@ but without detailing their mutual interaction.
    than pure binary search, the implemented tests fail themselves
    when the search takes too long (given by argument *timeout*).
 
-Maximum Receive Rate MRR
-------------------------
+(B)MRR Throughput
+-----------------
 
-MRR tests measure the packet forwarding rate under the maximum
-load offered by traffic generator over a set trial duration,
+Maximum Receive Rate (MRR) tests are complementary to MLRsearch tests,
+as they provide a maximum "raw" throughput benchmark for development and
+testing community. MRR tests measure the packet forwarding rate under
+the maximum load offered by traffic generator over a set trial duration,
 regardless of packet loss. Maximum load for specified Ethernet frame
 size is set to the bi-directional link rate.
 
-Current parameters for MRR tests:
+In |csit-release| MRR test code has been updated with a configurable
+burst MRR parameters: trial duration and number of trials in a single
+burst. This enabled a new Burst MRR (BMRR) methodology for more precise
+performance trending.
+
+Current parameters for BMRR tests:
 
 - Ethernet frame sizes: 64B (78B for IPv6), IMIX, 1518B, 9000B; all
   quoted sizes include frame CRC, but exclude per frame transmission
@@ -346,17 +356,25 @@ Current parameters for MRR tests:
     XL710. Packet rate for other tested frame sizes is limited by PCIe
     Gen3 x8 bandwidth limitation of ~50Gbps.
 
-- Trial duration: 10sec.
+- Trial duration: 1 sec.
+
+- Number of trials per burst: 10.
 
 Similarly to NDR/PDR throughput tests, MRR test should be reporting bi-
 directional link rate (or NIC rate, if lower) if tested VPP
 configuration can handle the packet rate higher than bi-directional link
 rate, e.g. large packet tests and/or multi-core tests.
 
-MRR tests are used for continuous performance trending and for
-comparison between releases. Daily trending job tests subset of frame
-sizes, focusing on 64B (78B for IPv6) for all tests and IMIX for
-selected tests (vhost, memif).
+MRR tests are currently used for FD.io CSIT continuous performance
+trending and for comparison between releases. Daily trending job tests
+subset of frame sizes, focusing on 64B (78B for IPv6) for all tests and
+IMIX for selected tests (vhost, memif).
+
+Going forward MRR tests are going to be used to establish starting
+conditions for Probabilistic Loss Ratio Search (PLRsearch) used for soak
+testing, aimed at verifying continuous system performance over an
+extended period of time, hours, days, weeks, months. PLRsearch code is
+currently in experimental phase in FD.io CSIT project.
 
 Packet Latency
 --------------
@@ -510,7 +528,8 @@ following environment settings:
   [cfs,cfsrr1] settings.
 - Adjusted Linux kernel :abbr:`CFS (Completely Fair Scheduler)`
   scheduler policy for data plane threads used in CSIT is documented in
-  `CSIT Performance Environment Tuning wiki <https://wiki.fd.io/view/CSIT/csit-perf-env-tuning-ubuntu1604>`_.
+  `CSIT Performance Environment Tuning wiki
+  <https://wiki.fd.io/view/CSIT/csit-perf-env-tuning-ubuntu1604>`_.
 - The purpose is to verify performance impact (MRR and NDR/PDR
   throughput) and same test measurements repeatability, by making VPP
   and VM data plane threads less susceptible to other Linux OS system
@@ -561,6 +580,19 @@ VMs as described earlier in :ref:`tested_physical_topologies`.
 
 Further documentation is available in
 :ref:`container_orchestration_in_csit`.
+
+VPP_Device Functional
+---------------------
+
+|csit-release| added new VPP_Device test environment for functional VPP
+device tests integrated into LFN CI/CD infrastructure. VPP_Device tests
+run on 1-Node testbeds (1n-skx, 1n-arm) and rely on Linux SRIOV Virtual
+Function (VF), dot1q VLAN tagging and external loopback cables to
+facilitate packet passing over exernal physical links. Initial focus is
+on few baseline tests. Existing CSIT VIRL tests can be moved to
+VPP_Device framework by changing L1 KW(s). L2 KWs and RF test definition
+code stay unchanged. CSIT VIRL to VPP_Device migration is expected in
+the next CSIT release.
 
 IPSec on Intel QAT
 ------------------
