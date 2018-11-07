@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d13d421_e8b8ba5c",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-11-07T12:08:11Z",
+      "side": 1,
+      "message": "There is no ubuntu 16.04 anymore.",
+      "range": {
+        "startLine": 532,
+        "startChar": 3,
+        "endLine": 532,
+        "endChar": 63
+      },
+      "revId": "cc9304f95c4c75b80acffa5074accf3bec1092ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
