@@ -8,16 +8,6 @@ Changes in |csit-release|
 
    - Few test case bug fixes.
 
-#. TEST CASE PORTING TO VPP_MAKE_TEST
-
-   - Implementation of VIRL functional integration tests in
-     VPP_make_test.
-
-   - All VIRL tests identified as Priority-0 by FD.io VPP and CSIT
-     projects have been ported to VPP_make_test. Detailed breakdown in
-     `CSIT_VIRL migration progress
-     <https://docs.google.com/spreadsheets/d/1PciV8XN9v1qHbIRUpFJoqyES29_vik7lcFDl73G1usc/edit?usp=sharing>`_.
-
 Known Issues
 ------------
 

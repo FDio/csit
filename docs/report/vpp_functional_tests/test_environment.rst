@@ -62,8 +62,8 @@ SUT VMs' settings are defined in `VIRL topologies directory`_
 SUT Settings - VIRL Guest OS Linux
 ----------------------------------
 
-In CSIT terminology, the VM operating system for both SUTs that |vpp-release| has
-been tested with, is the following:
+In CSIT terminology, the VM operating system for both SUTs that |vpp-release|
+has been tested with, is the following:
 
 #. Ubuntu VIRL image
 
@@ -247,33 +247,31 @@ VPP Installed Packages - Ubuntu
     | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
     |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
     ||/ Name           Version       Architecture Description
-    +++-==============-=============-============-=================================================
-    ii  vpp                                 18.07-release                              amd64        Vector Packet Processing--executables
-    ii  vpp-dbg                             18.07-release                              amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev                             18.07-release                              amd64        Vector Packet Processing--development support
-    ii  vpp-dpdk-dkms                       18.05-vpp2                                 amd64        DPDK Development Package for VPP - Kernel Modules
-    ii  vpp-lib                             18.07-release                              amd64        Vector Packet Processing--runtime libraries
-    ii  vpp-plugins                         18.07-release                              amd64        Vector Packet Processing--runtime plugins
+    +++-==============-=============-============-=============================================
+    ii  vpp            18.10-release amd64        Vector Packet Processing--executables
+    ii  vpp-dbg        18.10-release amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev        18.10-release amd64        Vector Packet Processing--development support
+    ii  vpp-lib        18.10-release amd64        Vector Packet Processing--runtime libraries
+    ii  vpp-plugins    18.10-release amd64        Vector Packet Processing--runtime plugins
 
-
-VPP Installed Packages - CentOs
+VPP Installed Packages - Centos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
     $ rpm -qai vpp*
     Name        : vpp
-    Version     : 18.07
+    Version     : 18.10
     Release     : release
     Architecture: x86_64
-    Install Date: Tue 31 Jul 2018 02:59:45 AM EDT
+    Install Date: Wed 31 Oct 2018 07:58:58 AM EDT
     Group       : Unspecified
-    Size        : 2396993
+    Size        : 2489049
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.07-release.src.rpm
-    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
-    Build Host  : c3de88e7d43c
+    Source RPM  : vpp-18.10-release.src.rpm
+    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
+    Build Host  : dc3d24d75f0c
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing
     Description :
@@ -282,17 +280,17 @@ VPP Installed Packages - CentOs
     vpp_api_test - vector packet engine API test tool
     vpp_json_test - vector packet engine JSON test tool
     Name        : vpp-lib
-    Version     : 18.07
+    Version     : 18.10
     Release     : release
     Architecture: x86_64
-    Install Date: Tue 31 Jul 2018 02:59:45 AM EDT
+    Install Date: Wed 31 Oct 2018 07:58:58 AM EDT
     Group       : System Environment/Libraries
-    Size        : 27134058
+    Size        : 12012271
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.07-release.src.rpm
-    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
-    Build Host  : c3de88e7d43c
+    Source RPM  : vpp-18.10-release.src.rpm
+    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
+    Build Host  : dc3d24d75f0c
     Relocations : (not relocatable)
     Summary     : VPP libraries
     Description :
@@ -303,33 +301,33 @@ VPP Installed Packages - CentOs
     vlib-api - binary API library
     vnet -  network stack library
     Name        : vpp-selinux-policy
-    Version     : 18.07
+    Version     : 18.10
     Release     : release
     Architecture: x86_64
-    Install Date: Tue 31 Jul 2018 02:59:44 AM EDT
+    Install Date: Wed 31 Oct 2018 07:58:58 AM EDT
     Group       : System Environment/Base
     Size        : 86709
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.07-release.src.rpm
-    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
-    Build Host  : c3de88e7d43c
+    Source RPM  : vpp-18.10-release.src.rpm
+    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
+    Build Host  : dc3d24d75f0c
     Relocations : (not relocatable)
     Summary     : VPP Security-Enhanced Linux (SELinux) policy
     Description :
     This package contains a tailored VPP SELinux policy
     Name        : vpp-devel
-    Version     : 18.07
+    Version     : 18.10
     Release     : release
     Architecture: x86_64
-    Install Date: Tue 31 Jul 2018 02:59:47 AM EDT
+    Install Date: Wed 31 Oct 2018 07:59:01 AM EDT
     Group       : Development/Libraries
-    Size        : 11452203
+    Size        : 12393361
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.07-release.src.rpm
-    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
-    Build Host  : c3de88e7d43c
+    Source RPM  : vpp-18.10-release.src.rpm
+    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
+    Build Host  : dc3d24d75f0c
     Relocations : (not relocatable)
     Summary     : VPP header files, static libraries
     Description :
@@ -342,17 +340,17 @@ VPP Installed Packages - CentOs
     vpp-api
     vppinfra
     Name        : vpp-plugins
-    Version     : 18.07
+    Version     : 18.10
     Release     : release
     Architecture: x86_64
-    Install Date: Tue 31 Jul 2018 02:59:47 AM EDT
+    Install Date: Wed 31 Oct 2018 07:59:01 AM EDT
     Group       : System Environment/Libraries
-    Size        : 52282610
+    Size        : 58835927
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.07-release.src.rpm
-    Build Date  : Mon 30 Jul 2018 08:20:19 PM EDT
-    Build Host  : c3de88e7d43c
+    Source RPM  : vpp-18.10-release.src.rpm
+    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
+    Build Host  : dc3d24d75f0c
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing--runtime plugins
     Description :
@@ -440,7 +438,7 @@ to SW Crypto device.
     }
 
     # dpdk {
-        ## Change default settings for all intefaces
+        ## Change default settings for all interfaces
         # dev default {
             ## Number of receive queues, enables RSS
             ## Default is 1
@@ -484,7 +482,7 @@ to SW Crypto device.
         ## uio_pci_generic or auto (default)
         # uio-driver vfio-pci
 
-        ## Disable mutli-segment buffers, improves performance but
+        ## Disable multi-segment buffers, improves performance but
         ## disables Jumbo MTU support
         # no-multi-seg
 
@@ -505,7 +503,7 @@ to SW Crypto device.
 
     # plugins {
         ## Adjusting the plugin path depending on where the VPP plugins are
-        #	path /home/bms/vpp/build-root/install-vpp-native/vpp/lib64/vpp_plugins
+        #	path /home/bms/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins
 
         ## Disable all plugins by default and then selectively enable specific plugins
         # plugin default { disable }
@@ -518,7 +516,7 @@ to SW Crypto device.
     # }
 
         ## Alternate syntax to choose plugin path
-        # plugin_path /home/bms/vpp/build-root/install-vpp-native/vpp/lib64/vpp_plugins
+        # plugin_path /home/bms/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins
 
 **SW Crypto Device Configuration**
 
