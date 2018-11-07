@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
     - name: "sfc-controller"
-      image: ligato/prod_sfc_controller
+      image: ligato/prod_sfc_controller:v0.0.1-102-gc74fec6
       imagePullPolicy: Always
       command:
         - /bin/sfc-controller
