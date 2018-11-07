@@ -103,6 +103,6 @@ below:
     }
 
 Description of VPP startup settings used in CSIT is provided in
-:ref:`performance_test_methodology`.
+:ref:`test_methodology`.
 
 .. include:: ../introduction/test_environment_tg.rst
