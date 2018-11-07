@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebc96797_8cffa29a",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-11-07T08:27:49Z",
+      "side": 1,
+      "message": "This will not work?",
+      "range": {
+        "startLine": 26,
+        "startChar": 22,
+        "endLine": 28,
+        "endChar": 24
+      },
+      "revId": "daa248a9f21d725b1a46ab4dcb1ad666fcb5efc0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
