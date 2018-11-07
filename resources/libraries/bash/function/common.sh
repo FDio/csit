@@ -637,6 +637,8 @@ function select_tags () {
                             # vm vhost ip4 base
                             "mrrANDvhostANDip4fwdANDbaseAND64b"
                             "mrrANDvhostANDip4fwdANDbaseANDimix"
+                            # DPDK
+                            "mrrANDdpdkAND64b"
                             # Exclude
                             "!mrrANDip6baseANDdot1qAND78b"
                             "!vhost_256ANDnic_intel-x520-da2"
