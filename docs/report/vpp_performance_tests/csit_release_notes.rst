@@ -28,6 +28,10 @@ Changes in |csit-release|
 
    - **QAT**: Fixed reoccuring issues with QAT crypto accelerator cards.
 
+   - **VM Vhost Virtio Params Combinations**: Added performance tests
+     for VM vhost with different virtio parameters combinations:
+     indirect buffers, mergeable buffers.
+
    - **K8s/Ligato in Trending**: Added K8s/Ligato Container memif tests
      to daily trending.
 
@@ -70,6 +74,12 @@ Changes in |csit-release|
 
    - **Performance Trending**: Further improvements of continuous
      performance trending, anomaly detection and analysis.
+
+#. MISCELLANEOUS
+
+   - **3n-dnv Tests (3rd Party)**: Published performance tests for 3n-
+     dnv (3-Node Atom Denverton) from 3rd party testbeds running FD.io
+     |csit-release| automated testing code.
 
 .. raw:: latex
 
