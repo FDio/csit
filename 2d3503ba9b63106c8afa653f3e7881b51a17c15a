@@ -45,6 +45,30 @@
       "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82cd89f0_9eb392f7",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-07T15:12:11Z",
+      "side": 1,
+      "message": "IMIX_v4_1 is an internal name, and the v4 part is confusing as we use it also for ip6. In charts only \"imix\" string is present, so I think calling it just IMIX here is more readable.",
+      "parentUuid": "56a1f871_c4f8662a",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
