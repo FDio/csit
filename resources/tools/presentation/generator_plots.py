@@ -129,9 +129,11 @@ def plot_performance_box(plot, input_data):
 
     # Add None to the lists with missing data
     max_len = 0
+    nr_of_samples = list()
     for val in y_sorted.values():
         if len(val) > max_len:
             max_len = len(val)
+        nr_of_samples.append(len(val))
     for key, val in y_sorted.items():
         if len(val) < max_len:
             val.extend([None for _ in range(max_len - len(val))])
@@ -145,9 +147,11 @@ def plot_performance_box(plot, input_data):
         name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdrdisc', '').
                                  replace('-ndrpdr', ''))
         logging.debug(name)
+        hovertext = "#samples: {0}".format(nr_of_samples[i])
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y / 1000000 if y else None for y in df[col]],
                                name=name,
+                               text=hovertext,
                                **plot["traces"]))
         try:
             val_max = max(df[col])
@@ -248,6 +252,7 @@ def plot_latency_error_bars(plot, input_data):
                 except (KeyError, TypeError) as err:
                     logging.warning(repr(err))
     logging.debug("y_tmp_vals: {0}\n".format(y_tmp_vals))
+
     # Sort the tests
     order = plot.get("sort", None)
     if order and y_tags:
@@ -279,6 +284,7 @@ def plot_latency_error_bars(plot, input_data):
     y_vals = list()
     y_mins = list()
     y_maxs = list()
+    nr_of_samples = list()
     for key, val in y_sorted.items():
         key = "-".join(key.split("-")[1:-1])
         x_vals.append(key)  # dir 1
@@ -289,11 +295,13 @@ def plot_latency_error_bars(plot, input_data):
         y_vals.append(mean(val[4]) if val[4] else None)
         y_mins.append(mean(val[3]) if val[3] else None)
         y_maxs.append(mean(val[5]) if val[5] else None)
+        nr_of_samples.append(len(val[1] if val[1] else 0))
 
     logging.debug("x_vals :{0}\n".format(x_vals))
     logging.debug("y_vals :{0}\n".format(y_vals))
     logging.debug("y_mins :{0}\n".format(y_mins))
     logging.debug("y_maxs :{0}\n".format(y_maxs))
+    logging.debug("nr_of_samples :{0}\n".format(nr_of_samples))
     traces = list()
     annotations = list()
 
@@ -303,8 +311,10 @@ def plot_latency_error_bars(plot, input_data):
         else:
             direction = "East - West"
         hovertext = ("Test: {test}<br>"
-                     "Direction: {dir}<br>".format(test=x_vals[idx],
-                                                   dir=direction))
+                     "Direction: {dir}<br>"
+                     "#samples: {nr}<br>".format(test=x_vals[idx],
+                                                      dir=direction,
+                                                      nr=nr_of_samples[idx]))
         if isinstance(y_maxs[idx], float):
             hovertext += "Max: {max:.2f}uSec<br>".format(max=y_maxs[idx])
         if isinstance(y_vals[idx], float):
@@ -441,7 +451,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
         for key, test_val in test_vals.items():
             if test_val:
                 avg_val = sum(test_val) / len(test_val)
-                y_vals[test_name][key] =  avg_val
+                y_vals[test_name][key] = (avg_val, len(test_val))
                 ideal = avg_val / (int(key) * 1000000.0)
                 if test_name not in y_1c_max or ideal > y_1c_max[test_name]:
                     y_1c_max[test_name] = ideal
@@ -452,13 +462,15 @@ def plot_throughput_speedup_analysis(plot, input_data):
     lnk_limit = 0
     pci_limit = plot["limits"]["pci"]["pci-g3-x8"]
     for test_name, test_vals in y_vals.items():
-        if test_vals["1"]:
+        if test_vals["1"][1]:
             name = "-".join(test_name.split('-')[1:-1])
 
             vals[name] = dict()
-            y_val_1 = test_vals["1"] / 1000000.0
-            y_val_2 = test_vals["2"] / 1000000.0 if test_vals["2"] else None
-            y_val_4 = test_vals["4"] / 1000000.0 if test_vals["4"] else None
+            y_val_1 = test_vals["1"][0] / 1000000.0
+            y_val_2 = test_vals["2"][0] / 1000000.0 if test_vals["2"][0] \
+                else None
+            y_val_4 = test_vals["4"][0] / 1000000.0 if test_vals["4"][0] \
+                else None
 
             vals[name]["val"] = [y_val_1, y_val_2, y_val_4]
             vals[name]["rel"] = [1.0, None, None]
@@ -467,6 +479,9 @@ def plot_throughput_speedup_analysis(plot, input_data):
                                    y_1c_max[test_name] * 4]
             vals[name]["diff"] = \
                 [(y_val_1 - y_1c_max[test_name]) * 100 / y_val_1, None, None]
+            vals[name]["count"] = [test_vals["1"][1],
+                                   test_vals["2"][1],
+                                   test_vals["4"][1]]
 
             try:
                 val_max = max(max(vals[name]["val"], vals[name]["ideal"]))
@@ -642,7 +657,9 @@ def plot_throughput_speedup_analysis(plot, input_data):
         for idx in range(len(val["val"])):
             htext = ""
             if isinstance(val["val"][idx], float):
-                htext += "value: {0:.2f}Mpps<br>".format(val["val"][idx])
+                htext += "value: {0:.2f}Mpps<br>" \
+                         "#samples: {1}<br>".format(val["val"][idx],
+                                                    val["count"][idx])
             if isinstance(val["diff"][idx], float):
                 htext += "diff: {0:.0f}%<br>".format(round(val["diff"][idx]))
             if isinstance(val["rel"][idx], float):
@@ -733,9 +750,11 @@ def plot_http_server_performance_box(plot, input_data):
 
     # Add None to the lists with missing data
     max_len = 0
+    nr_of_samples = list()
     for val in y_vals.values():
         if len(val) > max_len:
             max_len = len(val)
+        nr_of_samples.append(len(val))
     for key, val in y_vals.items():
         if len(val) < max_len:
             val.extend([None for _ in range(max_len - len(val))])
@@ -747,9 +766,11 @@ def plot_http_server_performance_box(plot, input_data):
     for i, col in enumerate(df.columns):
         name = "{0}. {1}".format(i + 1, col.lower().replace('-cps', '').
                                  replace('-rps', ''))
+        hovertext = "#samples: {0}".format(nr_of_samples[i])
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=df[col],
                                name=name,
+                               text=hovertext,
                                **plot["traces"]))
     try:
         # Create plot
