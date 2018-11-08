@@ -117,6 +117,30 @@
       "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bb38197_e1476ae4",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-11-08T09:18:47Z",
+      "side": 1,
+      "message": "How is it overriding automatically in profile_trex_stateless_base_class.py?",
+      "parentUuid": "8418074c_dc3e4b65",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
