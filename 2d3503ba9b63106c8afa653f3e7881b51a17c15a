@@ -93,6 +93,30 @@
       "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8418074c_dc3e4b65",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-08T09:04:35Z",
+      "side": 1,
+      "message": "\u003e create IMIX_v6_1\n\nI like the current way of ip6 using the same data structure (just overriding 64b-\u003e78b automatically). Perhaps the best would be to rename the value in the code IMIX_v4_1 -\u003e IMIX_1 (or just IMIX as we have no plans to introduce different mix).",
+      "parentUuid": "d4dcd4ca_ebfb6f80",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
