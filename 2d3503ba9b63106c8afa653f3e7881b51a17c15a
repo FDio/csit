@@ -141,6 +141,30 @@
       "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7dc3ecd4_4d06ba9a",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-08T12:51:04Z",
+      "side": 1,
+      "message": "I believe these two lines [0] set payload lengths to zero (instead of a negative number), so the rest of the code block generates smallest ip6 packet.\nI think I have confirmed the size is 78 bytes indeed, but I do not recall how. Probably looking at VPP and Trex debug info from a real test.\n\n[0] https://github.com/FDio/csit/blob/master/resources/traffic_profiles/trex/profile_trex_stateless_base_class.py#L176-L177",
+      "parentUuid": "9bb38197_e1476ae4",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
