@@ -3093,7 +3093,7 @@
   - "result"
   - "name"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3114,7 +3114,7 @@
   - "result"
   - "name"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3153,7 +3153,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3188,7 +3188,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3223,7 +3223,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3258,7 +3258,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3291,7 +3291,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3323,7 +3323,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3355,7 +3355,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3387,7 +3387,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3423,7 +3423,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3458,7 +3458,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3493,7 +3493,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3528,7 +3528,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3561,7 +3561,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3593,7 +3593,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3625,7 +3625,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3657,7 +3657,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3693,7 +3693,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3728,7 +3728,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3763,7 +3763,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3798,7 +3798,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3834,7 +3834,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3869,7 +3869,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3904,7 +3904,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3939,7 +3939,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -3972,7 +3972,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4004,7 +4004,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4036,7 +4036,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4068,7 +4068,7 @@
   - "L2XCFWD"     # dot1q-l2xcbase
   - "L2BDMACLRN"  # dot1q-l2bdbase
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4104,7 +4104,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4139,7 +4139,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4174,7 +4174,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4209,7 +4209,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4245,7 +4245,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4280,7 +4280,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4315,7 +4315,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4350,7 +4350,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4386,7 +4386,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4421,7 +4421,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4456,7 +4456,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4491,7 +4491,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4528,7 +4528,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4562,7 +4562,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4596,7 +4596,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4630,7 +4630,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4665,7 +4665,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4699,7 +4699,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4733,7 +4733,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4767,7 +4767,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4802,7 +4802,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4836,7 +4836,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4870,7 +4870,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4904,7 +4904,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4939,7 +4939,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4973,7 +4973,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5007,7 +5007,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5041,7 +5041,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5076,7 +5076,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5110,7 +5110,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5144,7 +5144,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5178,7 +5178,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5213,7 +5213,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5247,7 +5247,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5281,7 +5281,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5315,7 +5315,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5351,7 +5351,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5384,7 +5384,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5417,7 +5417,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5450,7 +5450,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5484,7 +5484,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5517,7 +5517,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5550,7 +5550,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5583,7 +5583,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5617,7 +5617,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5650,7 +5650,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5683,7 +5683,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5716,7 +5716,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5750,7 +5750,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5783,7 +5783,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5816,7 +5816,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5849,7 +5849,7 @@
   - "2VNF"
   - "4VNF"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5884,7 +5884,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5916,7 +5916,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5948,7 +5948,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -5980,7 +5980,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6019,7 +6019,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6057,7 +6057,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6095,7 +6095,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6133,7 +6133,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6168,7 +6168,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6202,7 +6202,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6236,7 +6236,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6270,7 +6270,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6304,7 +6304,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6337,7 +6337,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6370,7 +6370,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6403,7 +6403,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6437,7 +6437,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6470,7 +6470,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6503,7 +6503,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6536,7 +6536,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6569,7 +6569,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6601,7 +6601,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6633,7 +6633,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6665,7 +6665,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6704,7 +6704,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6742,7 +6742,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6780,7 +6780,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6818,7 +6818,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6853,7 +6853,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6887,7 +6887,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6921,7 +6921,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6955,7 +6955,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -6989,7 +6989,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7022,7 +7022,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7055,7 +7055,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7088,7 +7088,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7122,7 +7122,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7155,7 +7155,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7188,7 +7188,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7221,7 +7221,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7254,7 +7254,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7286,7 +7286,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7318,7 +7318,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7350,7 +7350,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7383,7 +7383,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7415,7 +7415,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7447,7 +7447,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7479,7 +7479,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7518,7 +7518,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7556,7 +7556,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7594,7 +7594,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7632,7 +7632,7 @@
   - "IACL"
   - "OACL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7667,7 +7667,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7701,7 +7701,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7735,7 +7735,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7769,7 +7769,7 @@
   - "SRC_USER_1000"
   - "SRC_USER_2000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7803,7 +7803,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7836,7 +7836,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7869,7 +7869,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7902,7 +7902,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7936,7 +7936,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -7969,7 +7969,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8002,7 +8002,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8035,7 +8035,7 @@
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8068,7 +8068,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8100,7 +8100,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8132,7 +8132,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8164,7 +8164,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8197,7 +8197,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8229,7 +8229,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8261,7 +8261,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8293,7 +8293,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8330,7 +8330,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8364,7 +8364,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8398,7 +8398,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8432,7 +8432,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8465,7 +8465,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8497,7 +8497,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8529,7 +8529,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8561,7 +8561,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8596,7 +8596,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8630,7 +8630,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8664,7 +8664,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8698,7 +8698,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8731,7 +8731,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8763,7 +8763,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8795,7 +8795,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8827,7 +8827,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8862,7 +8862,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8896,7 +8896,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8930,7 +8930,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8964,7 +8964,7 @@
   - "VXLAN_100"
   - "VXLAN_1000"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -8997,7 +8997,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9029,7 +9029,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9061,7 +9061,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9093,7 +9093,7 @@
   - "L2XCFWD"
   - "LISP"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9129,7 +9129,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9162,7 +9162,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9195,7 +9195,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9228,7 +9228,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9265,7 +9265,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9301,7 +9301,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9337,7 +9337,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9373,7 +9373,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9407,7 +9407,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9440,7 +9440,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9473,7 +9473,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9506,7 +9506,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9543,7 +9543,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9579,7 +9579,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9615,7 +9615,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9651,7 +9651,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9685,7 +9685,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9718,7 +9718,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9751,7 +9751,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9784,7 +9784,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9818,7 +9818,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9851,7 +9851,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9884,7 +9884,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9917,7 +9917,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9954,7 +9954,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -9990,7 +9990,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10026,7 +10026,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10062,7 +10062,7 @@
   - "COPWHLIST"
   - "IACLDST"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10096,7 +10096,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10129,7 +10129,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10162,7 +10162,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10195,7 +10195,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10229,7 +10229,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10262,7 +10262,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10295,7 +10295,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10328,7 +10328,7 @@
   - "FIB_200K"
   - "FIB_2M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10360,7 +10360,7 @@
   - "IP4UNRLAY"
   - "IP6UNRLAY"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10389,7 +10389,7 @@
   - "IP4UNRLAY"
   - "IP6UNRLAY"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10418,7 +10418,7 @@
   - "IP4UNRLAY"
   - "IP6UNRLAY"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10447,7 +10447,7 @@
   - "IP4UNRLAY"
   - "IP6UNRLAY"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10478,7 +10478,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10506,7 +10506,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10534,7 +10534,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10562,7 +10562,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10591,7 +10591,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10619,7 +10619,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10647,7 +10647,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10675,7 +10675,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10703,7 +10703,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10730,7 +10730,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10757,7 +10757,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10784,7 +10784,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10813,7 +10813,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10839,7 +10839,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10865,7 +10865,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10891,7 +10891,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10926,7 +10926,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10958,7 +10958,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -10990,7 +10990,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11022,7 +11022,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11059,7 +11059,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11095,7 +11095,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11131,7 +11131,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11167,7 +11167,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11204,7 +11204,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11240,7 +11240,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11276,7 +11276,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11312,7 +11312,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11348,7 +11348,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11383,7 +11383,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11418,7 +11418,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11453,7 +11453,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11486,7 +11486,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11518,7 +11518,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11550,7 +11550,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11582,7 +11582,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11619,7 +11619,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11655,7 +11655,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11691,7 +11691,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11727,7 +11727,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11764,7 +11764,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11800,7 +11800,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11836,7 +11836,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11872,7 +11872,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11908,7 +11908,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11943,7 +11943,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -11978,7 +11978,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12013,7 +12013,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12046,7 +12046,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12078,7 +12078,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12110,7 +12110,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12142,7 +12142,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12179,7 +12179,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12215,7 +12215,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12251,7 +12251,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12287,7 +12287,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12324,7 +12324,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12360,7 +12360,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12396,7 +12396,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12432,7 +12432,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12468,7 +12468,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12503,7 +12503,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12538,7 +12538,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12573,7 +12573,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12606,7 +12606,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12638,7 +12638,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12670,7 +12670,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12702,7 +12702,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12739,7 +12739,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12775,7 +12775,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12811,7 +12811,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12847,7 +12847,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12884,7 +12884,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12920,7 +12920,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12956,7 +12956,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -12992,7 +12992,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13028,7 +13028,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13063,7 +13063,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13098,7 +13098,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13133,7 +13133,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13166,7 +13166,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13198,7 +13198,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13230,7 +13230,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13262,7 +13262,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13299,7 +13299,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13335,7 +13335,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13371,7 +13371,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13407,7 +13407,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13444,7 +13444,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13480,7 +13480,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13516,7 +13516,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13552,7 +13552,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13588,7 +13588,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13623,7 +13623,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13658,7 +13658,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13693,7 +13693,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13726,7 +13726,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13758,7 +13758,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13790,7 +13790,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13822,7 +13822,7 @@
   - "1VM"
   - "2VM"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13859,7 +13859,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13895,7 +13895,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13931,7 +13931,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -13967,7 +13967,7 @@
   - "FIB_100K"
   - "FIB_1M"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14004,7 +14004,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14040,7 +14040,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14076,7 +14076,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14112,7 +14112,7 @@
   - "not CFS_OPT"
   - "CFS_OPT"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14148,7 +14148,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14183,7 +14183,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14218,7 +14218,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14253,7 +14253,7 @@
   - "1VM"
   - "L2BDMACLRN"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14280,7 +14280,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14304,7 +14304,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14328,7 +14328,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14352,7 +14352,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14380,7 +14380,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14405,7 +14405,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14430,7 +14430,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14455,7 +14455,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14481,7 +14481,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14506,7 +14506,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14531,7 +14531,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14556,7 +14556,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14582,7 +14582,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14607,7 +14607,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14632,7 +14632,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14657,7 +14657,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14683,7 +14683,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14708,7 +14708,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14733,7 +14733,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14758,7 +14758,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14784,7 +14784,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14809,7 +14809,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14834,7 +14834,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14859,7 +14859,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14885,7 +14885,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14910,7 +14910,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14935,7 +14935,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14960,7 +14960,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -14986,7 +14986,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15011,7 +15011,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15036,7 +15036,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15061,7 +15061,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15089,7 +15089,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15114,7 +15114,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15139,7 +15139,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15164,7 +15164,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15190,7 +15190,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15215,7 +15215,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15240,7 +15240,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15265,7 +15265,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15291,7 +15291,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15316,7 +15316,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15341,7 +15341,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15366,7 +15366,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15392,7 +15392,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15417,7 +15417,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15442,7 +15442,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15467,7 +15467,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15493,7 +15493,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15518,7 +15518,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15543,7 +15543,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15568,7 +15568,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15594,7 +15594,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15619,7 +15619,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15644,7 +15644,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15669,7 +15669,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15695,7 +15695,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15720,7 +15720,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15745,7 +15745,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -15770,7 +15770,7 @@
   - "parent"
   - "tags"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "x+y+text"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
