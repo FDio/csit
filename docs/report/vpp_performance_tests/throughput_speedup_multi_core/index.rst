@@ -35,5 +35,6 @@ threaded VPP configurations relative to 1-core configurations.
     ip6_tunnels
     vm_vhost
     container_memif
+    container_orchestrated
     ipsec
     vts
