@@ -58,34 +58,15 @@ testbed topology is depicted in a figure below.
 
         \begin{figure}[H]
             \centering
-                \graphicspath{{../_tmp/src/introduction/}}
-                \includegraphics[width=0.90\textwidth]{testbed-1n-skx}
-                \label{fig:testbed-1n-skx}
+                \graphicspath{{../_tmp/src/vpp_device_tests/}}
+                \includegraphics[width=0.90\textwidth]{vf-2n-nic2nic}
+                \label{fig:vf-2n-nic2nic}
         \end{figure}
 
 .. only:: html
 
-    .. figure:: testbed-1n-skx.svg
-        :alt: testbed-1n-skx
-        :align: center
-
-Logical view is depicted in a figure below.
-
-.. only:: latex
-
-    .. raw:: latex
-
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_tmp/src/introduction/}}
-                \includegraphics[width=0.90\textwidth]{logical-1n-skx}
-                \label{fig:logical-1n-skx}
-        \end{figure}
-
-.. only:: html
-
-    .. figure:: logical-1n-skx.svg
-        :alt: logical-1n-skx
+    .. figure:: vf-2n-nic2nic.svg
+        :alt: vf-2n-nic2nic
         :align: center
 
 Server is populated with the following NIC models:
@@ -121,7 +102,8 @@ connections. It SHOULD be 82545EM device model (otherwise can be changed in
 boostrap scripts). Example of Vagrant configuration:
 
 ::
-  Vagrant.configure(2) do |c|
+
+    Vagrant.configure(2) do |c|
       c.vm.network "private_network", type: "dhcp", auto_config: false,
           virtualbox__intnet: "port1", nic_type: "82545EM"
       c.vm.network "private_network", type: "dhcp", auto_config: false,
@@ -145,7 +127,7 @@ Containers
 
 It was agreed on :abbr:`TWS (Technical Work Stream)` call to continue with
 Ubuntu 18.04 LTS as a baseline system with OPTIONAL extend to Centos 7 and
-SuSE per demand [tws]_.
+SuSE per demand [TWSLink]_.
 
 All :abbr:`DCR (Docker container)` images are REQUIRED to be hosted on Docker
 registry available from LF network, publicly available and trackable. For
@@ -187,9 +169,9 @@ All software dependencies including VPP/DPDK that are not present in
 **csit-sut-dcr** container image and/or needs to be compiled prior running on
 **csit-sut-dcr** SHOULD be compiled in this container.
 
-- *Container Image Location*: Docker image at [jenkins-slave-dcr-img]_.
+- *Container Image Location*: Docker image at snergster/vpp-ubuntu18.
 
-- *Container Definition*: Docker file specified at [jenkins-slave-dcr-file]_.
+- *Container Definition*: Docker file specified at [JenkinsSlaveDcrFile]_.
 
 - *Initializing*: Container is initialized from within *Consul by HashiCorp*
   and *Nomad by HashiCorp*.
@@ -204,9 +186,9 @@ resources and allocation to :abbr:`DUT (Device Under Test)`, :abbr:`TG
 This image also acts as the generic reservation mechanics arbiter to make sure
 that only Y number of simulations are spawned on any given HW node.
 
-- *Container Image Location*: Docker image at [csit-shim-dcr-img]_.
+- *Container Image Location*: Docker image at snergster/csit-shim.
 
-- *Container Definition*: Docker file specified at [csit-shim-dcr-file]_.
+- *Container Definition*: Docker file specified at [CsitShimDcrFile]_.
 
 - *Initializing*: Container is initialized from within *Consul by HashiCorp*
   and *Nomad by HashiCorp*. Required docker parameters, to be able to run
@@ -233,9 +215,9 @@ packages and execute binaries (previously built or downloaded on
 **jenkins-slave-dcr**) and contains libraries necessary to run CSIT framework
 including those required by DUT/TG.
 
-- *Container Image Location*: Docker image at [csit-sut-dcr-img]_.
+- *Container Image Location*: Docker image at snergster/csit-sut.
 
-- *Container Definition*: Docker file specified at [csit-sut-dcr-file]_.
+- *Container Definition*: Docker file specified at [CsitSutDcrFile]_.
 
 - *Initializing*:
   ::
@@ -267,6 +249,7 @@ including those required by DUT/TG.
 - *Connectivity*: Over SSH only, using <host>[:<port>] format. Currently using
   *root* user account as primary.
   ::
+
     ssh -p <port> root@10.30.51.<node>
 
 Container required to run as ``--privileged`` due to ability to create nested
@@ -283,8 +266,8 @@ way it is not colliding with other containers. To make vfio work, access to
 Environment initialization
 --------------------------
 
-All 1-node servers are to be managed and provisioned via the [ansible]_ set of
-playbooks with *vpp-device* role. Full playbooks can be found under
+All 1-node servers are to be managed and provisioned via the [ansiblelink]_ set
+of playbooks with *vpp-device* role. Full playbooks can be found under
 [fdiocsitansible]_ directory. This way we are able to track all configuration
 changes of physical servers in gerrit (in structured yaml format) as well as we
 are able to extend *vpp-device* to additional servers with less effort or
@@ -350,7 +333,7 @@ devices in system:
     done
 
 Where ``${pci_id}`` is ID of white-listed VF PCI ID. For more information please
-see [pci_ids_]. This act as security constraint to prevent taking other unwanted
+see [pciids]_. This act as security constraint to prevent taking other unwanted
 interfaces.
 The output list of all VF network devices is split into two lists for TG and
 SUT side of connection. First two items from each TG or SUT network devices
@@ -382,11 +365,11 @@ generated layer two frames, like IEEE 802.3x (link flow control), IEEE 802.1Qbb
 can throttle traffic between the host and the virtual switch, reducing
 performance. To resolve this issue, configure all SR-IOV enabled ports for
 VLAN tagging. This configuration allows unexpected, and potentially malicious,
-frames to be dropped. [intel_i40e_]
+frames to be dropped. [inteli40e]_
 
 To configure VLAN tagging for the ports on an SR-IOV enabled adapter,
 use the following command. The VLAN configuration SHOULD be done
-before the VF driver is loaded or the VM is booted. [intel_i40e_]
+before the VF driver is loaded or the VM is booted. [inteli40e]_
 
 ::
 
@@ -398,12 +381,11 @@ the first VF on VLAN 10.
 ::
 
     $ ip link set dev eth0 vf 0 vlan 10
-.
 
 VLAN Tag Packet Steering allows to send all packets with a specific VLAN tag to
 a particular SR-IOV virtual function (VF). Further, this feature allows to
 designate a particular VF as trusted, and allows that trusted VF to request
-selective promiscuous mode on the Physical Function (PF). [intel_i40e_]
+selective promiscuous mode on the Physical Function (PF). [inteli40e]_
 
 To set a VF as trusted or untrusted, enter the following command in the
 Hypervisor:
@@ -413,7 +395,7 @@ Hypervisor:
   $ ip link set dev eth0 vf 1 trust [on|off]
 
 Once the VF is designated as trusted, use the following commands in the VM
-to set the VF to promiscuous mode. [intel_i40e_]
+to set the VF to promiscuous mode. [inteli40e]_
 
 - For promiscuous all:
   ::
@@ -425,7 +407,9 @@ to set the VF to promiscuous mode. [intel_i40e_]
 
       $ ip link set eth2 allmulti on
 
-.. note: By default, the ethtool priv-flag vf-true-promisc-support is set to
+.. note::
+
+    By default, the ethtool priv-flag vf-true-promisc-support is set to
     *off*, meaning that promiscuous mode for the VF will be limited. To set the
     promiscuous mode for the VF to true promiscuous and allow the VF to see
     all ingress traffic, use the following command.
@@ -437,7 +421,7 @@ to set the VF to promiscuous mode. [intel_i40e_]
     However,the vf-true-promisc-support priv-flag is only exposed to the first
     PF of the device. The PF remains in limited promiscuous mode (unless it
     is in MFP mode) regardless of the vf-true-promisc-support setting.
-    [intel_i40e_]
+    [inteli40e]_
 
 Service described earlier *csit-initialize-vfs.service* is responsible for
 assigning 802.1Q vlan tagging to each vitual function via physical function
@@ -483,46 +467,55 @@ Open tasks
 Security
 ~~~~~~~~
 
-.. todo: Switch to non-privileged containers: As of now all three container
-  flavors are using privileged containers to make it working. Explore options
-  to switch containers to non-privileged with explicit rather implicit
-  privileges.
+.. note::
 
-.. todo: Switch to testuser account intead of root.
+    Switch to non-privileged containers: As of now all three container
+    flavors are using privileged containers to make it working. Explore options
+    to switch containers to non-privileged with explicit rather implicit
+    privileges.
+
+.. note::
+
+    Switch to testuser account intead of root.
 
 Maintainability
 ~~~~~~~~~~~~~~~
 
-.. todo: Docker image distribution: Create jenkins jobs with full pipiline of
-   CI/CD for CSIT Docker images.
+.. note::
+
+    Docker image distribution: Create jenkins jobs with full pipiline of
+    CI/CD for CSIT Docker images.
 
 Stability
 ~~~~~~~~~
 
-.. todo: Improve NIC selection pair-wise: As of now script is taking first two
-   interfaces from discovered list regardless of sibling pairing. Implement
-   more advance method of selection of interfaces based on VF 802.1Q siblings.
+.. note::
 
-.. todo: Implement queueing mechanism: Currently there is no mechanics that
-   would place starving jobs in queue in case of no resources available.
+    Improve NIC selection pair-wise: As of now script is taking first two
+    interfaces from discovered list regardless of sibling pairing. Implement
+    more advance method of selection of interfaces based on VF 802.1Q siblings.
 
-.. todo: Replace reservation script with Docker network plugin written in
-   GOLANG/SH/Python - platform independent.
+.. note::
+
+    Implement queueing mechanism: Currently there is no mechanics that
+    would place starving jobs in queue in case of no resources available.
+
+.. note::
+
+    Replace reservation script with Docker network plugin written in
+    GOLANG/SH/Python - platform independent.
 
 Links
 -----
 
-.. _tws: https://wiki.fd.io/view/CSIT/TWS
-.. _dockerhub: https://hub.docker.com/
-.. _fdiocsitgerrit: https://gerrit.fd.io/r/CSIT
-.. _fdioregistry: registry.fdiopoc.net
-.. _jenkins-slave-dcr-img: snergster/vpp-ubuntu18
-.. _jenkins-slave-dcr-file: https://github.com/snergfdio/multivppcache/blob/master/ubuntu18/Dockerfile
-.. _csit-shim-dcr-img: snergster/csit-shim
-.. _csit-shim-dcr-file: https://github.com/snergfdio/multivppcache/blob/master/csit-shim/Dockerfile
-.. _csit-sut-dcr-img: snergster/csit-sut
-.. _csit-sut-dcr-file: https://github.com/snergfdio/multivppcache/blob/master/csit-sut/Dockerfile
-.. _ansible: https://www.ansible.com/
-.. _fdiocsitansible: https://git.fd.io/csit/tree/resources/tools/testbed-setup/ansible
-.. _intel_i40e: https://downloadmirror.intel.com/26370/eng/readme.txt
-.. _pci_ids: http://pci-ids.ucw.cz/v2.2/pci.ids
+.. [TWSLink] `TWS <https://wiki.fd.io/view/CSIT/TWS>`_
+.. [dockerhub] `Docker hub <https://hub.docker.com/>`_
+.. [fdiocsitgerrit] `FD.io/CSIT gerrit <https://gerrit.fd.io/r/CSIT>`_
+.. [fdioregistry] `FD.io registy <registry.fdiopoc.net>`_
+.. [JenkinsSlaveDcrFile] `jenkins-slave-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/ubuntu18/Dockerfile>`_
+.. [CsitShimDcrFile] `csit-shim-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-shim/Dockerfile>`_
+.. [CsitSutDcrFile] `csit-sut-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-sut/Dockerfile>`_
+.. [ansiblelink] `ansible <https://www.ansible.com/>`_
+.. [fdiocsitansible] `Fd.io/CSIT ansible <https://git.fd.io/csit/tree/resources/tools/testbed-setup/ansible>`_
+.. [inteli40e] `Intel i40e <https://downloadmirror.intel.com/26370/eng/readme.txt>`_
+.. [pciids] `pci ids <http://pci-ids.ucw.cz/v2.2/pci.ids>`_
