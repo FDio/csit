@@ -215,10 +215,10 @@
 
     vpp-perf-results-3n-hsw:
       csit-vpp-perf-verify-1810-3n-hsw:
-      # TODO: Add data
       - 20  # NDRPDR full
       - 21  # NDRPDR full
       - 22  # NDRPDR full
+      - 27  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
@@ -347,21 +347,36 @@
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
-      # TODO: Replace with 1810 data:
-      csit-ligato-perf-1807-all:
-      - 3   # full ?
+      csit-ligato-perf-verify-1810-3n-hsw:
+      - 5   # full
 
     plot-ligato-throughput-speedup-analysis-3n-hsw:
-      # TODO: Replace with 1810 data:
-      csit-ligato-perf-1807-all:
-      - 3   # full ?
-      - 4   # sel
+      csit-ligato-perf-verify-1810-3n-hsw:
+      - 5   # full
+      - 6   # sel
+      - 8   # sel
+      - 9   # sel
+      - 11  # sel
+      - 13  # sel
+      - 14  # sel
+      - 15  # sel
+      - 16  # sel
+      - 17  # sel
+      - 18  # sel
 
     plot-ligato-throughput-latency-3n-hsw:
-      # TODO: Replace with 1810 data:
-      csit-ligato-perf-1807-all:
-      - 3   # full ?
-      - 4   # sel
+      csit-ligato-perf-verify-1810-3n-hsw:
+      - 5   # full
+      - 6   # sel
+      - 8   # sel
+      - 9   # sel
+      - 11  # sel
+      - 13  # sel
+      - 14  # sel
+      - 15  # sel
+      - 16  # sel
+      - 17  # sel
+      - 18  # sel
 
     # DPDK Performance
     dpdk-performance-changes:
@@ -864,6 +879,7 @@
     - 20  # NDRPDR full
     - 21  # NDRPDR full
     - 22  # NDRPDR full
+    - 27  # NDRPDR full
     - 8   # NDRPDR sel
     - 12  # NDRPDR sel
     - 14  # NDRPDR sel
@@ -975,21 +991,18 @@
     - 20  # mrr - sel
     - 21  # mrr - sel
     - 22  # mrr - sel
-    csit-ligato-perf-1804-all:
-    - 4   # full
-    - 5   # sel
+    csit-ligato-perf-verify-1810-3n-hsw:
+    - 5   # full
     - 6   # sel
-    - 7   # sel
     - 8   # sel
     - 9   # sel
-    - 10  # sel
     - 11  # sel
-    - 12  # sel
     - 13  # sel
     - 14  # sel
-    csit-ligato-perf-1807-all:
-    - 3   # full ?
-    - 4   # sel
+    - 15  # sel
+    - 16  # sel
+    - 17  # sel
+    - 18  # sel
     csit-dpdk-perf-1804-all:
     - 4
     - 5
@@ -2366,6 +2379,7 @@
   - "throughput"
 
 # DPDK Comparison Across Testbeds 3n-hsw to 3n-skx mrr
+# NOTE: Not used in 18.10
 -
   type: "table"
   title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx mrr"
