@@ -58,34 +58,15 @@ testbed topology is depicted in a figure below.
 
         \begin{figure}[H]
             \centering
-                \graphicspath{{../_tmp/src/introduction/}}
-                \includegraphics[width=0.90\textwidth]{testbed-1n-skx}
-                \label{fig:testbed-1n-skx}
+                \graphicspath{{../_tmp/src/vpp_device_tests/}}
+                \includegraphics[width=0.90\textwidth]{vf-2n-nic2nic}
+                \label{fig:vf-2n-nic2nic}
         \end{figure}
 
 .. only:: html
 
-    .. figure:: testbed-1n-skx.svg
-        :alt: testbed-1n-skx
-        :align: center
-
-Logical view is depicted in a figure below.
-
-.. only:: latex
-
-    .. raw:: latex
-
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_tmp/src/introduction/}}
-                \includegraphics[width=0.90\textwidth]{logical-1n-skx}
-                \label{fig:logical-1n-skx}
-        \end{figure}
-
-.. only:: html
-
-    .. figure:: logical-1n-skx.svg
-        :alt: logical-1n-skx
+    .. figure:: vf-2n-nic2nic.svg
+        :alt: vf-2n-nic2nic
         :align: center
 
 Server is populated with the following NIC models:
@@ -121,7 +102,8 @@ connections. It SHOULD be 82545EM device model (otherwise can be changed in
 boostrap scripts). Example of Vagrant configuration:
 
 ::
-  Vagrant.configure(2) do |c|
+
+    Vagrant.configure(2) do |c|
       c.vm.network "private_network", type: "dhcp", auto_config: false,
           virtualbox__intnet: "port1", nic_type: "82545EM"
       c.vm.network "private_network", type: "dhcp", auto_config: false,
@@ -267,6 +249,7 @@ including those required by DUT/TG.
 - *Connectivity*: Over SSH only, using <host>[:<port>] format. Currently using
   *root* user account as primary.
   ::
+
     ssh -p <port> root@10.30.51.<node>
 
 Container required to run as ``--privileged`` due to ability to create nested
@@ -398,7 +381,6 @@ the first VF on VLAN 10.
 ::
 
     $ ip link set dev eth0 vf 0 vlan 10
-.
 
 VLAN Tag Packet Steering allows to send all packets with a specific VLAN tag to
 a particular SR-IOV virtual function (VF). Further, this feature allows to
@@ -425,7 +407,9 @@ to set the VF to promiscuous mode. [intel_i40e_]
 
       $ ip link set eth2 allmulti on
 
-.. note: By default, the ethtool priv-flag vf-true-promisc-support is set to
+.. note::
+
+    By default, the ethtool priv-flag vf-true-promisc-support is set to
     *off*, meaning that promiscuous mode for the VF will be limited. To set the
     promiscuous mode for the VF to true promiscuous and allow the VF to see
     all ingress traffic, use the following command.
@@ -483,31 +467,43 @@ Open tasks
 Security
 ~~~~~~~~
 
-.. todo: Switch to non-privileged containers: As of now all three container
-  flavors are using privileged containers to make it working. Explore options
-  to switch containers to non-privileged with explicit rather implicit
-  privileges.
+.. note::
 
-.. todo: Switch to testuser account intead of root.
+    Switch to non-privileged containers: As of now all three container
+    flavors are using privileged containers to make it working. Explore options
+    to switch containers to non-privileged with explicit rather implicit
+    privileges.
+
+.. note::
+
+    Switch to testuser account intead of root.
 
 Maintainability
 ~~~~~~~~~~~~~~~
 
-.. todo: Docker image distribution: Create jenkins jobs with full pipiline of
-   CI/CD for CSIT Docker images.
+.. note::
+
+    Docker image distribution: Create jenkins jobs with full pipiline of
+    CI/CD for CSIT Docker images.
 
 Stability
 ~~~~~~~~~
 
-.. todo: Improve NIC selection pair-wise: As of now script is taking first two
-   interfaces from discovered list regardless of sibling pairing. Implement
-   more advance method of selection of interfaces based on VF 802.1Q siblings.
+.. note::
 
-.. todo: Implement queueing mechanism: Currently there is no mechanics that
-   would place starving jobs in queue in case of no resources available.
+    Improve NIC selection pair-wise: As of now script is taking first two
+    interfaces from discovered list regardless of sibling pairing. Implement
+    more advance method of selection of interfaces based on VF 802.1Q siblings.
 
-.. todo: Replace reservation script with Docker network plugin written in
-   GOLANG/SH/Python - platform independent.
+.. note::
+
+    Implement queueing mechanism: Currently there is no mechanics that
+    would place starving jobs in queue in case of no resources available.
+
+.. note::
+
+    Replace reservation script with Docker network plugin written in
+    GOLANG/SH/Python - platform independent.
 
 Links
 -----
