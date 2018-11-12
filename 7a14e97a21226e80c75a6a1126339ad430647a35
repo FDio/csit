@@ -22,6 +22,30 @@
       "revId": "7a14e97a21226e80c75a6a1126339ad430647a35",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7968ff6f_b7e73ad2",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-11-12T16:09:12Z",
+      "side": 1,
+      "message": "Either way it has strong dependency on what the Ligato team is doing. can change anytime :( we agreed on unified naming so at least something in compare to what it was before.\n\nMoving forward I can think of something and talk to Ligato team directly.",
+      "parentUuid": "3eef60a7_ac0d5ed5",
+      "range": {
+        "startLine": 169,
+        "startChar": 17,
+        "endLine": 169,
+        "endChar": 25
+      },
+      "revId": "7a14e97a21226e80c75a6a1126339ad430647a35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
