@@ -119,6 +119,8 @@ VIRL simulation based on the definition stored in `VIRL topologies directory`_.
 
 Example of DUT nodes configuration:
 
+::
+
     DUT1:
         type: DUT
         host: "10.30.51.157"

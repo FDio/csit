@@ -103,7 +103,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-2t2c-base_and_scale-l2xc
------------------------
+----------------------------
 
 .. raw:: html
 
@@ -213,7 +213,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-2t2c-base_and_scale-l2bd
------------------------
+----------------------------
 
 .. raw:: html
 
@@ -326,7 +326,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-2t2c-base_and_scale-l2xc
------------------------
+----------------------------
 
 .. raw:: html
 
@@ -436,7 +436,7 @@ CSIT source code for the test cases used for plots can be found in
     \clearpage
 
 64b-2t2c-base_and_scale-l2bd
------------------------
+----------------------------
 
 .. raw:: html
 
