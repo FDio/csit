@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 # abbrev: MLRsearch
-docname: draft-vpolak-mkonstan-mlrsearch-00
-date: 2018-10-22
+docname: draft-vpolak-mkonstan-bmwg-mlrsearch-00
+date: 2018-11-13
 
 ipr: trust200902
 area: ops
