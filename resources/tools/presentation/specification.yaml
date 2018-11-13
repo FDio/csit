@@ -11077,24 +11077,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11113,24 +11112,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11149,24 +11147,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11185,24 +11182,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11222,24 +11218,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11258,24 +11253,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11294,24 +11288,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11330,24 +11323,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11367,23 +11359,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11402,23 +11393,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11437,23 +11427,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11472,23 +11461,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11637,24 +11625,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11673,24 +11660,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11709,24 +11695,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11745,24 +11730,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11782,24 +11766,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11818,24 +11801,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11854,24 +11836,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11890,24 +11871,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11927,23 +11907,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11962,23 +11941,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -11997,23 +11975,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12032,23 +12009,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12197,24 +12173,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12233,24 +12208,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12269,24 +12243,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12305,24 +12278,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12342,24 +12314,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12378,24 +12349,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12414,24 +12384,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12450,24 +12419,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12487,23 +12455,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12522,23 +12489,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12557,23 +12523,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12592,23 +12557,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12757,24 +12721,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12793,24 +12756,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12829,24 +12791,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12865,24 +12826,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12902,24 +12862,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12938,24 +12897,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -12974,24 +12932,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13010,24 +12967,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13047,23 +13003,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13082,23 +13037,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13117,23 +13071,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13152,23 +13105,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13317,24 +13269,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13353,24 +13304,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13389,24 +13339,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13425,24 +13374,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13462,24 +13410,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13498,24 +13445,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13534,24 +13480,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13570,24 +13515,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13607,23 +13551,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13642,23 +13585,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13677,23 +13619,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13712,23 +13653,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13877,24 +13817,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13913,24 +13852,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13949,24 +13887,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -13985,24 +13922,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14022,24 +13958,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14058,24 +13993,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14094,24 +14028,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14130,24 +14063,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14167,23 +14099,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14202,23 +14133,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14237,23 +14167,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14272,23 +14201,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -19151,24 +19079,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19183,24 +19110,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19216,24 +19142,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base-ndr"
     layout: "plot-latency"
@@ -19248,24 +19173,23 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base-ndr"
     layout: "plot-latency"
@@ -19281,23 +19205,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -19312,23 +19235,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base-vm-ndr"
     layout: "plot-latency"
@@ -19401,24 +19323,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19433,24 +19354,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19466,24 +19386,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base-ndr"
     layout: "plot-latency"
@@ -19498,24 +19417,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base-ndr"
     layout: "plot-latency"
@@ -19531,23 +19449,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -19562,23 +19479,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base-vm-ndr"
     layout: "plot-latency"
@@ -19651,24 +19567,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19683,24 +19598,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19716,24 +19630,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
     layout: "plot-latency"
@@ -19748,24 +19661,23 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
     layout: "plot-latency"
@@ -19781,23 +19693,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '1T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -19812,23 +19723,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
     layout: "plot-latency"
@@ -19901,24 +19811,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19933,24 +19842,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -19966,24 +19874,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
@@ -19998,24 +19905,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
@@ -20031,23 +19937,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -20062,23 +19967,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base-vm-ndr"
     layout: "plot-latency"
@@ -20151,24 +20055,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -20183,24 +20086,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -20216,24 +20118,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
@@ -20248,24 +20149,23 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
@@ -20281,23 +20181,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -20312,23 +20211,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base-vm-ndr"
     layout: "plot-latency"
@@ -20401,24 +20299,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -20433,24 +20330,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
@@ -20466,24 +20362,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-latency"
@@ -20498,24 +20393,23 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-latency"
@@ -20531,23 +20425,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '2T1C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -20562,23 +20455,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            '4T2C' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
     layout: "plot-latency"
@@ -24646,23 +24538,21 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
-           'L2BDMACLRN' and
+           ('ETH' or 'DOT1Q') andd
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -24677,23 +24567,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -24709,23 +24598,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -24740,23 +24628,22 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -24772,22 +24659,21 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -24802,22 +24688,21 @@
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -24888,23 +24773,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -24919,23 +24803,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -24951,23 +24834,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -24982,23 +24864,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25014,22 +24895,21 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25044,22 +24924,21 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25130,23 +25009,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25161,23 +25039,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25193,23 +25070,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25224,23 +25100,22 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25256,22 +25131,21 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25286,22 +25160,21 @@
   filter: "'NIC_Intel-XL710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25372,23 +25245,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25403,23 +25275,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25435,23 +25306,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25466,23 +25336,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25498,22 +25367,21 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25528,22 +25396,21 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25614,23 +25481,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25645,23 +25511,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25677,23 +25542,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25708,23 +25572,22 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25740,22 +25603,21 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25770,22 +25632,21 @@
   filter: "'NIC_Intel-X710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-x710-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25856,23 +25717,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25887,23 +25747,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "VM"  # "not CFS_OPT"
-  - "CFS_OPT"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+#  sort:
+#  - "VM"  # "not CFS_OPT"
+#  - "CFS_OPT"
+#  - "FIB_10K"
+#  - "FIB_100K"
+#  - "FIB_1M"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25919,23 +25778,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -25950,23 +25808,22 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            'BASE' and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
-           not 'DOT1Q' and
            not '2VM'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "L2XCFWD"
-  - "not CFS_OPT"
-  - "CFS_OPT"
+#  sort:
+#  - "not CFS_OPT"
+#  - "L2XCFWD"
+#  - "not CFS_OPT"
+#  - "CFS_OPT"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -25982,22 +25839,21 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -26012,22 +25868,21 @@
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            'NDRPDR' and
-           'ETH' and
+           ('ETH' or 'DOT1Q') and
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'DOT1Q'"
+           not 'IP4FWD'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "1VM"
-  - "L2XCFWD"
-  - "1VM"
-  - "L2BDMACLRN"
+#  sort:
+#  - "1VM"
+#  - "L2XCFWD"
+#  - "1VM"
+#  - "L2BDMACLRN"
   layout:
     title: "vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
