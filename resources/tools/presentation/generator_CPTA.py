@@ -124,7 +124,7 @@ def generate_cpta(spec, data):
     ret_code = _generate_all_charts(spec, data)
 
     cmd = HTML_BUILDER.format(
-        date=datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
+        date=datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ'),
         working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
     execute_command(cmd)
