@@ -157,7 +157,7 @@ def generate_html_report(release, spec, versions, report_version):
     cmd = HTML_BUILDER.format(
         release=release,
         report_version=report_version,
-        date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
+        date=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ'),
         working_dir=working_dir,
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
     execute_command(cmd)
@@ -212,7 +212,7 @@ def generate_pdf_report(release, spec, versions, report_version):
     cmd = PDF_BUILDER.format(
         release=release,
         report_version=report_version,
-        date=datetime.datetime.utcnow().strftime('%m/%d/%Y %H:%M UTC'),
+        date=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ'),
         working_dir=working_dir,
         build_dir=build_dir)
     execute_command(cmd)
