@@ -28,7 +28,7 @@ fi
 passwd -d root
 passwd -l root
 rm -f /etc/resolv.conf
-pkill dhclient
+#pkill dhclient
 rm -f /var/lib/dhcp/*leases
 
 echo "********** SCHEDULING SHUTDOWN IN 1 MINUTE **********"

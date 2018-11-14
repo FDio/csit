@@ -1,0 +1,149 @@
+{
+  "_c": "Ubuntu 18.04.1 ISO URL at the time of creation of this file (11/2018)",
+  "_c": "was http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso.",
+  "_c": "",
+  "variables": {
+    "release": null,
+    "output_dir": null,
+    "temp_dir": null,
+    "atlas_token": "{{env `ATLAS_TOKEN`}}",
+    "virl_user": "{{env `VIRL_USER`}}",
+    "virl_password": "{{env `VIRL_PASSWORD`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `release`}}-virtualbox",
+      "type": "virtualbox-iso",
+      "guest_os_type": "Ubuntu_64",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
+      "iso_checksum": "e8264fa4c417216f4304079bd94f895e",
+      "iso_checksum_type": "md5",
+      "output_directory": "{{user `output_dir`}}",
+      "ssh_username": "root",
+      "ssh_password": "csit",
+      "disk_size": "4096",
+      "http_directory": "html",
+      "iso_target_path" : "build/ubuntu-18.04.1-server-amd64.iso",
+      "boot_wait": "30s",
+      "boot_command":
+        [
+          "<esc><wait>",
+          "<esc><wait>",
+          "<enter><wait>",
+          "/install/vmlinuz",
+          " auto",
+          " console-setup/ask_detect=false",
+          " console-setup/layoutcode=us",
+          " console-setup/modelcode=pc105",
+          " debconf/frontend=noninteractive",
+          " debian-installer=en_US",
+          " fb=false",
+          " initrd=/install/initrd.gz",
+          " kbd-chooser/method=us",
+          " keyboard-configuration/layout=USA",
+          " keyboard-configuration/variant=USA",
+          " locale=en_US",
+          " netcfg/get_domain=vm",
+          " netcfg/get_hostname=qemu",
+          " grub-installer/bootdev=/dev/vda",
+          " noapic",
+          " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg --- ",
+          "<enter>"
+        ]
+    },
+    {
+      "name": "{{user `release`}}-qemu",
+      "type": "qemu",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
+      "iso_checksum": "e8264fa4c417216f4304079bd94f895e",
+      "iso_checksum_type": "md5",
+      "output_directory": "{{user `output_dir`}}",
+      "ssh_username": "root",
+      "ssh_password": "csit",
+      "disk_size": "4096",
+      "http_directory": "html",
+      "iso_target_path" : "build/ubuntu-18.04.1-server-amd64.iso",
+      "headless": "true",
+      "boot_wait": "5s",
+      "boot_command":
+        [
+          "<esc><wait>",
+          "<esc><wait>",
+          "<enter><wait>",
+          "/install/vmlinuz",
+          " auto",
+          " console-setup/ask_detect=false",
+          " console-setup/layoutcode=us",
+          " console-setup/modelcode=pc105",
+          " debconf/frontend=noninteractive",
+          " debian-installer=en_US",
+          " fb=false",
+          " initrd=/install/initrd.gz",
+          " kbd-chooser/method=us",
+          " keyboard-configuration/layout=USA",
+          " keyboard-configuration/variant=USA",
+          " locale=en_US",
+          " netcfg/get_domain=vm",
+          " netcfg/get_hostname=qemu",
+          " grub-installer/bootdev=/dev/vda",
+          " noapic",
+          " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg --- ",
+          "<enter>"
+        ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "{{ user `temp_dir`}}",
+      "destination": "/root"
+    },
+    {
+      "type": "shell",
+      "script": "scripts-remote/post-install.sh"
+    },
+    {
+      "type": "shell",
+      "only": ["{{user `release`}}-qemu"],
+      "script": "scripts-remote/serial-console-ubuntu-18.04.1.sh"
+    },
+    {
+      "type": "shell",
+      "only": ["{{user `release`}}-virtualbox"],
+      "script": "scripts-remote/vagrant-user.sh"
+    },
+    {
+      "type": "shell",
+      "only": ["{{user `release`}}-virtualbox"],
+      "script": "scripts-remote/vagrant-guestadditions.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts-remote/disable_ipv6.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts-remote/cleanup.sh"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "only": ["{{user `release`}}-virtualbox"],
+      "keep_input_artifact": true
+    },
+    {
+      "type": "shell-local",
+      "only": ["{{user `release`}}-qemu"],
+      "script": "scripts-local/upload-image-to-virl.sh",
+      "keep_input_artifact": true,
+      "environment_vars":
+        [
+          "VIRL_USER={{user `virl_user`}}",
+          "VIRL_PASSWORD={{user `virl_password`}}",
+          "VIRL_IMAGE_SUBTYPE=server",
+          "VIRL_IMAGE_NAME={{user `release`}}"
+        ]
+     }
+  ]
+}

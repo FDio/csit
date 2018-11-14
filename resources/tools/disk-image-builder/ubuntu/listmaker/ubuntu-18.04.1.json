@@ -1,0 +1,70 @@
+{
+  "_c": "Ubuntu 18.04.1 ISO URL at the time of creation of this file (11/2018)",
+  "_c": "was http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso.",
+  "_c": "",
+  "variables": {
+    "release": null,
+    "outputdir": null,
+    "virl_user": "{{env `VIRL_USER`}}",
+    "virl_password": "{{env `VIRL_PASSWORD`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `release`}}",
+      "type": "qemu",
+      "iso_url": "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
+      "iso_checksum": "e8264fa4c417216f4304079bd94f895e",
+      "iso_checksum_type": "md5",
+      "ssh_username": "root",
+      "ssh_password": "csit",
+      "shutdown_command": "echo 'packer' | shutdown -P now",
+      "disk_size": "4096",
+      "http_directory": "html",
+      "iso_target_path" : "build/ubuntu-18.04.1-server-amd64.iso",
+      "output_directory": "{{user `outputdir`}}",
+      "headless": "true",
+      "boot_wait": "5s",
+      "qemuargs": [
+       ],
+      "boot_command":
+        [
+          "<esc><wait>",
+          "<esc><wait>",
+          "<enter><wait>",
+          "/install/vmlinuz",
+          " auto",
+          " console-setup/ask_detect=false",
+          " console-setup/layoutcode=us",
+          " console-setup/modelcode=pc105",
+          " debconf/frontend=noninteractive",
+          " debian-installer=en_US",
+          " fb=false",
+          " initrd=/install/initrd.gz",
+          " kbd-chooser/method=us",
+          " keyboard-configuration/layout=USA",
+          " keyboard-configuration/variant=USA",
+          " locale=en_US",
+          " netcfg/get_domain=vm",
+          " netcfg/get_hostname=qemu",
+          " grub-installer/bootdev=/dev/vda",
+          " noapic",
+          " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg --- ",
+          "<enter>"
+        ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "shell-local",
+      "script": "scripts-local/upload-image-to-virl.sh",
+      "keep_input_artifact": true,
+      "environment_vars":
+        [
+          "VIRL_USER={{user `virl_user`}}",
+          "VIRL_PASSWORD={{user `virl_password`}}",
+          "VIRL_IMAGE_SUBTYPE=server",
+          "VIRL_IMAGE_NAME={{user `release`}}"
+        ]
+     }
+  ]
+}
