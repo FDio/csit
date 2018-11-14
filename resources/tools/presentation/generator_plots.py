@@ -144,11 +144,19 @@ def plot_performance_box(plot, input_data):
     df.head()
     y_max = list()
     for i, col in enumerate(df.columns):
-        name = "{0}. {1} ({2} run{3})".\
-            format(i + 1,
-                   col.lower().replace('-ndrpdr', ''),
-                   nr_of_samples[i],
-                   's' if nr_of_samples[i] > 1 else '')
+        name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdr', ''))
+        if len(name) > 50:
+            name_lst = name.split('-')
+            name = ""
+            for segment in name_lst:
+                if (len(name) + len(segment) + 1) > 50:
+                    name += " <br> "
+                name += segment + '-'
+            name = name[:-1]
+        name = "{name} ({samples} run{plural})".\
+            format(name=name,
+                   samples=nr_of_samples[i],
+                   plural='s' if nr_of_samples[i] > 1 else '')
         logging.debug(name)
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y / 1000000 if y else None for y in df[col]],
@@ -287,13 +295,21 @@ def plot_latency_error_bars(plot, input_data):
     y_maxs = list()
     nr_of_samples = list()
     for key, val in y_sorted.items():
-        key = "-".join(key.split("-")[1:-1])
-        x_vals.append(key)  # dir 1
+        name = "-".join(key.split("-")[1:-1])
+        if len(name) > 50:
+            name_lst = name.split('-')
+            name = ""
+            for segment in name_lst:
+                if (len(name) + len(segment) + 1) > 50:
+                    name += " <br> "
+                name += segment + '-'
+            name = name[:-1]
+        x_vals.append(name)  # dir 1
         y_vals.append(mean(val[1]) if val[1] else None)
         y_mins.append(mean(val[0]) if val[0] else None)
         y_maxs.append(mean(val[2]) if val[2] else None)
         nr_of_samples.append(len(val[1]) if val[1] else 0)
-        x_vals.append(key)  # dir 2
+        x_vals.append(name)  # dir 2
         y_vals.append(mean(val[4]) if val[4] else None)
         y_mins.append(mean(val[3]) if val[3] else None)
         y_maxs.append(mean(val[5]) if val[5] else None)
@@ -309,9 +325,9 @@ def plot_latency_error_bars(plot, input_data):
 
     for idx in range(len(x_vals)):
         if not bool(int(idx % 2)):
-            direction = "West - East"
+            direction = "West-East"
         else:
-            direction = "East - West"
+            direction = "East-West"
         hovertext = ("Test: {test}<br>"
                      "Direction: {dir}<br>"
                      "No. of Runs: {nr}<br>".format(test=x_vals[idx],
@@ -320,7 +336,7 @@ def plot_latency_error_bars(plot, input_data):
         if isinstance(y_maxs[idx], float):
             hovertext += "Max: {max:.2f}uSec<br>".format(max=y_maxs[idx])
         if isinstance(y_vals[idx], float):
-            hovertext += "Avg: {avg:.2f}uSec<br>".format(avg=y_vals[idx])
+            hovertext += "Mean: {avg:.2f}uSec<br>".format(avg=y_vals[idx])
         if isinstance(y_mins[idx], float):
             hovertext += "Min: {min:.2f}uSec".format(min=y_mins[idx])
 
@@ -467,6 +483,14 @@ def plot_throughput_speedup_analysis(plot, input_data):
         try:
             if test_vals["1"][1]:
                 name = "-".join(test_name.split('-')[1:-1])
+                if len(name) > 50:
+                    name_lst = name.split('-')
+                    name = ""
+                    for segment in name_lst:
+                        if (len(name) + len(segment) + 1) > 50:
+                            name += " <br> "
+                        name += segment + '-'
+                    name = name[:-1]
 
                 vals[name] = dict()
                 y_val_1 = test_vals["1"][0] / 1000000.0
@@ -664,7 +688,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
             for idx in range(len(val["val"])):
                 htext = ""
                 if isinstance(val["val"][idx], float):
-                    htext += "Value: {0:.2f}Mpps<br>" \
+                    htext += "Mean: {0:.2f}Mpps<br>" \
                              "No. of Runs: {1}<br>".format(val["val"][idx],
                                                         val["count"][idx])
                 if isinstance(val["diff"][idx], float):
@@ -697,7 +721,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
                                            color=COLORS[cidx],
                                            width=2,
                                            dash="dash"),
-                                       text=["perfect: {0:.2f}Mpps".format(y)
+                                       text=["Perfect: {0:.2f}Mpps".format(y)
                                              for y in val["ideal"]],
                                        hoverinfo="text"
                                        ))
@@ -774,11 +798,20 @@ def plot_http_server_performance_box(plot, input_data):
     df = pd.DataFrame(y_vals)
     df.head()
     for i, col in enumerate(df.columns):
-        name = "{0}. {1} ({2} run{3})".\
-            format(i + 1,
-                   col.lower().replace('-cps', '').replace('-rps', ''),
-                   nr_of_samples[i],
-                   's' if nr_of_samples[i] > 1 else '')
+        name = "{0}. {1}".format(i + 1, col.lower().replace('-ndrpdr', ''))
+        if len(name) > 50:
+            name_lst = name.split('-')
+            name = ""
+            for segment in name_lst:
+                if (len(name) + len(segment) + 1) > 50:
+                    name += " <br> "
+                name += segment + '-'
+            name = name[:-1]
+        name = "{name} ({samples} run{plural})".\
+            format(name=name,
+                   samples=nr_of_samples[i],
+                   plural='s' if nr_of_samples[i] > 1 else '')
+
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=df[col],
                                name=name,
