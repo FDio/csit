@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -94,7 +94,7 @@ enabled=0
         OS="centos-7.4-1711"
         VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.4-1711.yaml"
     else
-        echo specify argument -- probably centos-7-1511 or centos-7.3-1611
+        echo specify argument -- probably centos-7-1511 or centos-7.3-1611 or centos-7.4-1711
         exit 1
     fi
 fi
@@ -123,6 +123,7 @@ python2-pip-8.1.2-5.el7.noarch http://mirror.math.princeton.edu/pub/epel/7/x86_6
 openssl-devel
 git
 strongswan-5.6.1-2.el7.x86_64 http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/s/
+python-cffi
 #RPM_WANTLIST_TLDK
 tcpdump
 #RPM_WANTLIST_VPP

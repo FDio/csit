@@ -1,3 +1,8 @@
+## [2.2] - 2018-11-20
+
+Ubutnu16.04.5LTS
+Added libmbedcrypto1 python-cffi
+
 ## [2.1] - 2018-03-07
 
 Added libmbedcrypto0 libmbedtls10 libmbedx509-0
