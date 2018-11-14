@@ -749,7 +749,7 @@
           },
         },
         {
-          text: "    perfect     measured     limit",
+          text: "    Perfect     Measured     Limit",
           align: "left",
           showarrow: False,
           xref: "paper",
