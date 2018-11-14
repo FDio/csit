@@ -1,3 +1,7 @@
+## [2.1] - 2018-11-13
+
+Added libmbedcrypto1 python-cffi
+
 ## [2.1] - 2018-03-07
 
 Added libmbedcrypto0 libmbedtls10 libmbedx509-0

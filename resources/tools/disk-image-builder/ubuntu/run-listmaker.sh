@@ -46,9 +46,13 @@ elif [ "$1" = "ubuntu-16.04.1" ]
 then
     OS="ubuntu-16.04.1"
     VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-ubuntu-16.04.1.yaml"
+elif [ "$1" = "ubuntu-18.04.1" ]
+then
+    OS="ubuntu-18.04.1"
+    VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-ubuntu-18.04.1.yaml"
 else
     echo "Please provide OS as parameter:"
-    echo "Options: ${0} [ubuntu-14.04.4|ubuntu-16.04.1]"
+    echo "Options: ${0} [ubuntu-14.04.4|ubuntu-16.04.1|ubuntu-18.04.1]"
     exit 1
 fi
 
@@ -62,9 +66,9 @@ echo "Storing data in ${OUTPUT_DIR}/."
 # APT packages wanted
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
-APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan socat"
+APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan socat python-cffi"
 APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev cmake tcpdump"
-APT_WANTLIST_VPP="dkms bridge-utils libmbedcrypto0 libmbedtls10 libmbedx509-0"
+APT_WANTLIST_VPP="dkms bridge-utils libmbedcrypto1 libmbedtls10 libmbedx509-0"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
 APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
@@ -130,9 +134,9 @@ do
 done
 echo "IP is $ip"
 
-sleep 10
+sleep 30
 
-if ping -w 60 -c 2 $ip > /dev/null
+if ping -w 60 -c 10 $ip > /dev/null
 then
   echo Host $ip alive
 else
@@ -206,6 +210,30 @@ deb http://security.ubuntu.com/ubuntu xenial-security universe
 deb-src http://security.ubuntu.com/ubuntu xenial-security universe
 deb http://security.ubuntu.com/ubuntu xenial-security multiverse
 deb-src http://security.ubuntu.com/ubuntu xenial-security multiverse
+_EOF
+elif [ "$OS" = "ubuntu-18.04.1" ]
+then
+do_ssh "cat - > /etc/apt/sources.list" <<_EOF
+deb http://us.archive.ubuntu.com/ubuntu/ bionic main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu/ bionic main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu/ bionic-updates main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ bionic universe
+deb-src http://us.archive.ubuntu.com/ubuntu/ bionic universe
+deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe
+deb-src http://us.archive.ubuntu.com/ubuntu/ bionic-updates universe
+deb http://us.archive.ubuntu.com/ubuntu/ bionic multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ bionic multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ bionic-updates multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu bionic-security main restricted
+deb-src http://security.ubuntu.com/ubuntu bionic-security main restricted
+deb http://security.ubuntu.com/ubuntu bionic-security universe
+deb-src http://security.ubuntu.com/ubuntu bionic-security universe
+deb http://security.ubuntu.com/ubuntu bionic-security multiverse
+deb-src http://security.ubuntu.com/ubuntu bionic-security multiverse
 _EOF
 fi
 
