@@ -10,8 +10,15 @@ in CSIT_ (Continuous System and Integration Testing) project of fd.io_
 
 In order to make this code available in PyPI_ (Python Package Index),
 the setuputils stuff has been added,
-and the code has been moved into a separate directory_,
-in order to not interfere with otherwise tightly coupled CSIT code.
+but after some discussion, the export directory_
+is only a symlink to the original place of tightly coupled CSIT code.
+
+Change log
+----------
+
+0.2.0: Optional parameter "doublings" has been added.
+
+0.1.1: First officially released version.
 
 Usage
 -----

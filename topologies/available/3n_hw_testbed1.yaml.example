@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,10 +34,12 @@ nodes:
         mac_address: "08:00:27:35:59:04"
         pci_address: "0000:00:08.0"
         link: link1
+        model: Intel-X710
       port5:
         mac_address: "08:00:27:46:2b:4c"
         pci_address: "0000:00:09.0"
         link: link2
+        model: Intel-X710
   DUT1:
     type: DUT
     host: 10.0.0.1
@@ -45,15 +47,18 @@ nodes:
     port: 22
     username: lab
     password: lab
+    uio_driver: vfio-pci
     interfaces:
       port1:
         mac_address: "08:00:27:ae:29:2b"
         pci_address: "0000:00:08.0"
         link: link1
+        model: Intel-X710
       port3:
         mac_address: "08:00:27:f3:be:f0"
         pci_address: "0000:00:09.0"
         link: link3
+        model: Intel-X710
   DUT2:
     type: DUT
     host: 10.0.0.2
@@ -61,12 +66,15 @@ nodes:
     port: 22
     username: lab
     password: lab
+    uio_driver: vfio-pci
     interfaces:
       port1:
         mac_address: "08:00:27:f2:90:d8"
         pci_address: "0000:00:08.0"
         link: link2
+        model: Intel-X710
       port3:
         mac_address: "08:00:27:14:64:e0"
         pci_address: "0000:00:09.0"
         link: link3
+        model: Intel-X710

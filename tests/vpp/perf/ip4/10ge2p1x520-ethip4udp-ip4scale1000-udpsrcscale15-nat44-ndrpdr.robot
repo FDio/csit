@@ -84,7 +84,7 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize NAT44 in 3-node circular topology
+| | When Initialize NAT44 in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 

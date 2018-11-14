@@ -1,0 +1,45 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [dcr, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    host: "${CSIT_TG_HOST}"
+    arch: "${CSIT_TG_ARCH}"
+    port: ${CSIT_TG_PORT}
+    username: root
+    password: Csit1234
+    interfaces:
+      port1:
+        mac_address: "${CSIT_TG_INTERFACES_PORT1_MAC}"
+        pci_address: "${CSIT_TG_INTERFACES_PORT1_PCI}"
+        link: link1
+        driver: "${CSIT_TG_INTERFACES_PORT1_DRV}"
+      port2:
+        mac_address: "${CSIT_TG_INTERFACES_PORT2_MAC}"
+        pci_address: "${CSIT_TG_INTERFACES_PORT2_PCI}"
+        link: link2
+        driver: "${CSIT_TG_INTERFACES_PORT2_DRV}"
+  DUT1:
+    type: DUT
+    host: "${CSIT_DUT1_HOST}"
+    arch: "${CSIT_DUT1_ARCH}"
+    port: ${CSIT_DUT1_PORT}
+    username: root
+    password: Csit1234
+    interfaces:
+      port1:
+        mac_address: "${CSIT_DUT1_INTERFACES_PORT1_MAC}"
+        pci_address: "${CSIT_DUT1_INTERFACES_PORT1_PCI}"
+        link: link1
+        driver: "${CSIT_DUT1_INTERFACES_PORT1_DRV}"
+      port2:
+        mac_address: "${CSIT_DUT1_INTERFACES_PORT2_MAC}"
+        pci_address: "${CSIT_DUT1_INTERFACES_PORT2_PCI}"
+        link: link2
+        driver: "${CSIT_DUT1_INTERFACES_PORT2_DRV}"

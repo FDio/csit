@@ -3,6 +3,31 @@
 
     \clearpage
 
+.. raw:: html
+
+    <script type="text/javascript">
+
+        function getDocHeight(doc) {
+            doc = doc || document;
+            var body = doc.body, html = doc.documentElement;
+            var height = Math.max( body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight );
+            return height;
+        }
+
+        function setIframeHeight(id) {
+            var ifrm = document.getElementById(id);
+            var doc = ifrm.contentDocument? ifrm.contentDocument:
+                ifrm.contentWindow.document;
+            ifrm.style.visibility = 'hidden';
+            ifrm.style.height = "10px"; // reset to minimal height ...
+            // IE opt. for bing/msn needs a bit added or scrollbar appears
+            ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+            ifrm.style.visibility = 'visible';
+        }
+
+    </script>
+
 K8s Container Memif
 ===================
 
@@ -15,24 +40,28 @@ running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/kubernetes/perf/container_memif?h=rls1807>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/kubernetes/perf/container_memif?h=rls1810>`_.
+
+.. raw:: latex
+
+    \clearpage
 
 3n-hsw-x520
 ~~~~~~~~~~~
 
-64b-base_and_scale
-------------------
+64b-base_and_scale-l2xc
+-----------------------
 
 .. raw:: html
 
     <center><b>
 
-:index:`Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr`
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -41,8 +70,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
-            \label{fig:k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa}
     \end{figure}
 
 .. raw:: html
@@ -53,12 +82,12 @@ CSIT source code for the test cases used for plots can be found in
 
     \clearpage
 
-:index:`Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-pdr`
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -67,8 +96,63 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
-            \label{fig:k8s-memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-base_and_scale-l2bd
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+.. raw:: latex
+
+    \clearpage
+
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -78,19 +162,19 @@ CSIT source code for the test cases used for plots can be found in
 3n-hsw-x710
 ~~~~~~~~~~~
 
-64b-base_and_scale
-------------------
+64b-base_and_scale-l2xc
+-----------------------
 
 .. raw:: html
 
     <center><b>
 
-:index:`Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-ndr`
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -99,8 +183,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
-            \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa}
     \end{figure}
 
 .. raw:: html
@@ -111,12 +195,12 @@ CSIT source code for the test cases used for plots can be found in
 
     \clearpage
 
-:index:`Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-pdr`
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr`
 
 .. raw:: html
 
     </b>
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa.html"></iframe>
     <p><br><br></p>
     </center>
 
@@ -125,6 +209,61 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
-            \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-base_and_scale-l2bd
+-----------------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+.. raw:: latex
+
+    \clearpage
+
+:index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa}
+            \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa}
     \end{figure}

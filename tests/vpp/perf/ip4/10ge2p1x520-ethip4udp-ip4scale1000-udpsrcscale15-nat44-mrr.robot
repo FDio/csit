@@ -78,7 +78,7 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize NAT44 in 3-node circular topology
+| | When Initialize NAT44 in circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 

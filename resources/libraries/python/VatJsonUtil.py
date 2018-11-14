@@ -97,6 +97,7 @@ class VatJsonUtil(object):
             if not interface_dict:
                 logger.trace('Interface {0} not found by MAC {1}'
                              .format(ifc, if_mac))
+                ifc['vpp_sw_index'] = None
                 continue
             ifc['name'] = interface_dict["interface_name"]
             ifc['vpp_sw_index'] = interface_dict["sw_if_index"]

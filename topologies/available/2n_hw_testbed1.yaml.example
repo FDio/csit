@@ -1,0 +1,61 @@
+# Copyright (c) 2018 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Example file of topology
+
+---
+metadata:
+  version: 0.1
+  schema: # list of schema files against which to validate
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    host: 10.0.0.3
+    arch: x86_64
+    port: 22
+    username: lab
+    password: lab
+    interfaces:
+      port3:
+        mac_address: "08:00:27:35:59:04"
+        pci_address: "0000:00:08.0"
+        link: link1
+        model: Intel-X553
+      port5:
+        mac_address: "08:00:27:46:2b:4c"
+        pci_address: "0000:00:09.0"
+        link: link2
+        model: Intel-X553
+  DUT1:
+    type: DUT
+    host: 10.0.0.1
+    arch: x86_64
+    port: 22
+    username: lab
+    password: lab
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        mac_address: "08:00:27:ae:29:2b"
+        pci_address: "0000:00:08.0"
+        link: link1
+        model: Intel-X553
+      port3:
+        mac_address: "08:00:27:f3:be:f0"
+        pci_address: "0000:00:09.0"
+        link: link2
+        model: Intel-X553

@@ -32,9 +32,6 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
   - `sudo service isc-dhcp-server restart`
   - `cd ~testuser/host-setup`
   - `sudo mkdir /mnt/cdrom`
-  - Ubuntu Xenial
-    - `wget 'http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-server-amd64.iso'`
-    - `sudo mount -o loop ubuntu-16.04.2-server-amd64.iso /mnt/cdrom/`
   - Ubuntu Bionic
     - `wget 'http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04-server-amd64.iso'`
     - `sudo mount -o loop ubuntu-18.04-server-amd64.iso /mnt/cdrom/`
@@ -65,31 +62,31 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
 
 ### Bootstrap the host
 
-Optional: From PXE boostrap server in case of installing Haswell
+Convenient way to re-stage host via script:
 
-  - `cd resources/tools/testbed-setup/cimc`
+  `sudo ./bootstrap_setup_testbed.sh <linux_ip> <mgmt_ip> <username> <pass>`
+
+Optional: CIMC - From PXE boostrap server
+
   - Initialize args.ip: Power-Off, reset BIOS defaults, Enable console redir, get LOM MAC addr
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -i`
   - Adjust BIOS settings
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -s '<biosVfIntelHyperThreadingTech rn="Intel-HyperThreading-Tech" vpIntelHyperThreadingTech="disabled" />' -s '<biosVfEnhancedIntelSpeedStepTech rn="Enhanced-Intel-SpeedStep-Tech" vpEnhancedIntelSpeedStepTech="disabled" />' -s '<biosVfIntelTurboBoostTech rn="Intel-Turbo-Boost-Tech" vpIntelTurboBoostTech="disabled" />'`
-  - add MAC address to DHCP (/etc/dhcp/dhcpd.conf)
-  - Reboot server with boot from PXE (restart immediately)
-  - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -pxe`
-
-Optional: If RAID is not created on Haswells. Execute while Ubuntu install is running
-
-  - create RAID array. Reboot if needed.
+  - Add MAC address to DHCP (/etc/dhcp/dhcpd.conf)
+  - If RAID is not created in CIMC. Create RAID array. Reboot.
       - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d --wipe`
       - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -r -rl 1 -rs <disk size> -rd '[1,2]'`
         Alternatively, create the RAID array manually.
-
-  - Set the next boot from HDD (without restart)
+  - Reboot server with boot from PXE (restart immediately)
+  - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -pxe`
+  - Set the next boot from HDD (without restart) Execute while Ubuntu install is running.
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -hdd`
 
-Optional: If installing Skylake machine
+Optional: IPMI - From PXE boostrap server
 
     - Get MAC address of LAN0
     - `ipmitool -U ADMIN -H $HOST_ADDRESS raw 0x30 0x21 | tail -c 18`
+    - Add MAC address to DHCP (/etc/dhcp/dhcpd.conf)
     - Reboot into PXE for next boot only
     - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN chassis bootdev pxe`
     - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN power reset`
@@ -97,14 +94,15 @@ Optional: If installing Skylake machine
     - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN sol activate`
     - `ipmitool -I lanplus -H $HOST_ADDRESS -U ADMIN sol deactivate`
 
-
 When installation is finished:
 
   - Copy ssh keys for no pass access: `ssh-copy-id 10.30.51.x`
   - Clone CSIT actual repo: `git clone https://gerrit.fd.io/r/csit`
   - Go to ansible directory: `cd csit/resources/tools/testbed-setup/ansible`
-  - Edit production file and uncomment servers that are supposed to be installed: `ansible-playbook --ask-become-pass --inventory production site.yaml --list-hosts`
-  - Run ansible on selected hosts: `ansible-playbook --ask-become-pass --inventory production site.yaml`
+  - Edit production file and uncomment servers that are supposed to be
+    installed.
+  - Run ansible on selected hosts:
+    `ansible-playbook --vault-id vault_pass --extra-vars '@vault.yml' --inventory production site.yaml`
 
 For non-VIRL hosts, stop here.
 
@@ -158,4 +156,5 @@ Back on the PXE bootstrap server:
 
     `ansible-playbook 04-disk-image.yaml`
 
-The VIRL host should now be operational. Test, and when ready, create a ~jenkins-in/status file with the appropriate status.
+The VIRL host should now be operational. Test, and when ready, create a
+~jenkins-in/status file with the appropriate status.

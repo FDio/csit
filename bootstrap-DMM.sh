@@ -180,13 +180,16 @@ echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 DMM_TAR_FILE="dmm_depends.tar.gz"
 
 cd dmm/scripts/
-./build.sh
+./build.sh all
 cd -
 
-mv /tmp/dpdk/dpdk-18.02.tar.xz .
+DPDK_DOWNLOAD_PATH=$(cat dmm/scripts/build_dpdk.sh | grep DPDK_DOWNLOAD_PATH=  | cut -d "=" -f2)
+mv $DPDK_DOWNLOAD_PATH/dpdk-18.02.tar.xz .
 
 wget http://security.ubuntu.com/ubuntu/pool/main/n/numactl/libnuma1_2.0.11-1ubuntu1.1_amd64.deb
 wget http://security.ubuntu.com/ubuntu/pool/main/n/numactl/libnuma-dev_2.0.11-1ubuntu1.1_amd64.deb
+wget http://security.ubuntu.com/ubuntu/pool/main/e/ethtool/ethtool_4.5-1_amd64.deb
+wget http://security.ubuntu.com/ubuntu/pool/main/l/lsof/lsof_4.89+dfsg-0.1_amd64.deb
 
 tar zcf ${DMM_TAR_FILE} dpdk-18.02.tar.xz  ./dmm/ libnuma*.deb
 

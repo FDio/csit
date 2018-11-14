@@ -6,12 +6,12 @@ TG Version
 
 |trex-release|
 
-DPDK version
+DPDK Version
 ~~~~~~~~~~~~
 
 DPDK v17.11
 
-TG Build Script used
+TG Build Script Used
 ~~~~~~~~~~~~~~~~~~~~
 
 `TRex intallation`_

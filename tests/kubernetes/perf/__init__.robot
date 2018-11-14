@@ -25,6 +25,8 @@
 | Library | Collections
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
+| ...         | AND          | Load Docker image on all duts | ${nodes}
+| ...                        | ${dcr_image}
 | ...         | AND          | Setup Kubernetes on all duts | ${nodes}
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update all numa nodes | ${nodes}
@@ -39,6 +41,7 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - dcr_image - vpp-agent docker image
 | | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - pkt_trace - Switch to enable packet trace for test
@@ -46,6 +49,8 @@
 | | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
+| | Set Global Variable | ${dcr_image}
+| | ... | /tmp/openvpp-testing/download_dir/prod_vpp_agent.tar.gz
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${pkt_trace} | ${False}

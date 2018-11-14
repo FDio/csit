@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.Policer
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | IP4FWD | BASE | DOT1Q
+| ... | NIC_Intel-X710 | IP4FWD | FEATURE | POLICE_MARK
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X710
@@ -84,8 +84,8 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding in 3-node circular topology
-| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
+| | When Initialize IPv4 forwarding in circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 

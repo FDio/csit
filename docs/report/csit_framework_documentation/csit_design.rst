@@ -192,7 +192,7 @@ section below. Following sections list applicability of the above
 grammar forms to different :abbr:`RF (Robot Framework)` KW categories. Usage
 examples are provided, both good and bad.
 
-Coding guidelines
+Coding Guidelines
 -----------------
 
 Coding guidelines can be found on `Design optimizations wiki page

@@ -91,9 +91,35 @@
 | | | Crypto Device Verify | ${nodes['${dut}']} | force_init=${force_init}
 | | | ... | numvfs=${numvfs}
 
+| Configure AVF interfaces on all DUTs
+| | [Documentation] | Configure virtual functions for AVF interfaces on PCI
+| | ... | interface on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs
+| | ... | (Optional). Type: integer, default value: ${1}
+| | ... | - topology_type - Topology type.
+| | ... | (Optional). Type: string, default value: L2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure AVF device on all DUTs \| ${1} \| L2 \|
+| | ...
+| | [Arguments] | ${numvfs}=${1} | ${topology_type}=L2
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ... | numvfs=${numvfs} | topology_type=${topology_type}
+| | | ${if2_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ... | numvfs=${numvfs} | topology_type=${topology_type}
+# Currently only one AVF is supported.
+| | | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
+| | | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}
+
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
-| | ... | If parameter force_load is set to True, then try to initialize.
+| | ... | If parameter force_load is set to True, then try to load.
 | | ...
 | | ... | *Arguments:*
 | | ... | - module - Module to verify. Type: string
@@ -105,10 +131,8 @@
 | | ...
 | | [Arguments] | ${module} | ${force_load}=${False}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Kernel Module Verify | ${nodes['${dut}']} | ${module}
-| | | ... | force_load=${force_load}
+| | Verify Kernel Module on All DUTs | ${nodes} | ${module}
+| | ... | force_load=${force_load}
 
 | Create base startup configuration of VPP on all DUTs
 | | [Documentation] | Create base startup configuration of VPP to all DUTs.
@@ -121,6 +145,7 @@
 | | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
+| | | Run keyword | ${dut}.Add Unix Coredump
 | | | Run keyword | ${dut}.Add DPDK Socketmem | 1024,1024
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
@@ -155,8 +180,18 @@
 | | ${num_mbufs_int} | Convert to Integer | 16384
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Create List | ${${dut}_if1}
+| | | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Append To List | ${if_list} | ${${dut}_if2}
+| | | ... | ELSE
+| | | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${1} | cpu_cnt=${1}
@@ -181,6 +216,7 @@
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${cpu_count_int}
 | | Set Test Variable | ${rxq_count_int}
 
 | Create Kubernetes VSWITCH startup config on all DUTs
@@ -229,6 +265,7 @@
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${cpu_count_int}
 | | Set Test Variable | ${rxq_count_int}
 
 | Create Kubernetes VNF'${i}' startup config on all DUTs
@@ -256,6 +293,13 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK No Multi Seg
+
+| Add DPDK no PCI to all DUTs
+| | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK no PCI
 
 | Add DPDK dev default RXD to all DUTs
 | | [Documentation] | Add DPDK num-rx-desc to VPP startup configuration to all
@@ -421,6 +465,28 @@
 
 | Tear down functional test
 | | [Documentation] | Common test teardown for functional tests.
+| | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Show VAT History On All DUTs | ${nodes}
+| | Vpp Show Errors On All DUTs | ${nodes}
+| | Verify VPP PID in Teardown
+
+| Set up VPP device test
+# TODO: Generalize this KW if it will not diverge from Functional derivate too
+# much
+| | [Documentation] | Common test setup for vpp-device tests.
+| | ...
+| | Configure all DUTs before test
+| | Save VPP PIDs
+| | Configure all TGs for traffic script
+| | Update All Interface Data On All Nodes | ${nodes} | skip_tg_udev=${True}
+| | Reset VAT History On All DUTs | ${nodes}
+
+| Tear down VPP device test
+# TODO: Generalize this KW if it will not diverge from Functional derivate too
+# much
+| | [Documentation] | Common test teardown for vpp-device tests.
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}

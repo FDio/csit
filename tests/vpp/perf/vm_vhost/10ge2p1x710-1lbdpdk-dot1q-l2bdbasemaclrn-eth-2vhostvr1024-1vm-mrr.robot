@@ -18,6 +18,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_DPDK | LBOND_MODE_XOR | LBOND_LB_L34
+| ... | LBOND_1L
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X710
@@ -58,7 +59,6 @@
 | ${dut1_eth_bond_if1_name}= | BondEthernet0
 | ${dut2_eth_bond_if1}= | eth_bond1
 | ${dut2_eth_bond_if1_name}= | BondEthernet0
-| ${perf_qemu_qsz}= | 1024
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
 | ${overhead}= | ${4}
@@ -104,12 +104,12 @@
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo}
+| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | And Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | ... | jumbo_frames=${jumbo}
+| | ... | DUT2 | ${sock1} | ${sock2} | DUT2_VM1 | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | And Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}

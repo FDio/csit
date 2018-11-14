@@ -98,6 +98,54 @@ Scaling TAGs
 
     2x1,000,000 entries in single fib table
 
+.. topic:: L2BD_1
+
+    Test with 1 L2 bridge domain.
+
+.. topic:: L2BD_10
+
+    Test with 10 L2 bridge domains.
+
+.. topic:: L2BD_100
+
+    Test with 100 L2 bridge domains.
+
+.. topic:: L2BD_1K
+
+    Test with 1000 L2 bridge domains.
+
+.. topic:: VLAN_1
+
+    Test with 1 VLAN sub-interface.
+
+.. topic:: VLAN_10
+
+    Test with 10 VLAN sub-interfaces.
+
+.. topic:: VLAN_100
+
+    Test with 100 VLAN sub-interfaces.
+
+.. topic:: VLAN_1K
+
+    Test with 1000 VLAN sub-interfaces.
+
+.. topic:: VXLAN_1
+
+    Test with 1 VXLAN tunnel.
+
+.. topic:: VXLAN_10
+
+    Test with 10 VXLAN tunnels.
+
+.. topic:: VXLAN_100
+
+    Test with 100 VXLAN tunnels.
+
+.. topic:: VXLAN_1K
+
+    Test with 1000 VXLAN tunnels.
+
 .. topic:: TNL_1000
 
     IPSec in tunnel mode - 1000 tunnels.
@@ -436,6 +484,22 @@ Interface tags
 .. topic:: LBOND_LB_L34
 
     All test cases which uses link bonding with load-balance mode l34.
+
+.. topic:: LBOND_1L
+
+    All test cases which uses one link for link bonding.
+
+.. topic:: LBOND_2L
+
+    All test cases which uses two links for link bonding.
+
+.. topic:: DRV_AVF
+
+    All test cases which uses Intel Adaptive Virtual Function (AVF) device
+    plugin for VPP. This plugins provides native device support for Intel AVF.
+    AVF is driver specification for current and future Intel Virtual Function
+    devices. In essence, today this driver can be used only with Intel
+    XL710 / X710 / XXV710 adapters.
 
 Feature tags
 ------------
