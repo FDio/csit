@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "643551f2_279d081e",
+        "filename": "resources/tools/presentation/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-14T17:15:14Z",
+      "side": 1,
+      "message": "So did we have the e-mail discussion on versioning of report?",
+      "range": {
+        "startLine": 107,
+        "startChar": 27,
+        "endLine": 107,
+        "endChar": 31
+      },
+      "revId": "d9d8ebc7dd1abc8ede0cb29dd25962828c1973c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "456de0a7_47c19fbf",
+        "filename": "resources/tools/presentation/run_report.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-14T17:15:14Z",
+      "side": 1,
+      "message": "Duplicates the value from conf.py and does not start with \"v\".",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "d9d8ebc7dd1abc8ede0cb29dd25962828c1973c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
