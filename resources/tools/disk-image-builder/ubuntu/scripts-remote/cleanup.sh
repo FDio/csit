@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,7 +28,10 @@ fi
 passwd -d root
 passwd -l root
 rm -f /etc/resolv.conf
-pkill dhclient
+# Disabling due to bug in dhclient
+# https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1779721
+# This is causing problem that dhclient is not running properly.
+#pkill dhclient
 rm -f /var/lib/dhcp/*leases
 
 echo "********** SCHEDULING SHUTDOWN IN 1 MINUTE **********"

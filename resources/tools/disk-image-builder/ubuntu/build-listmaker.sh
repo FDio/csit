@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,9 +28,13 @@ elif [ "$1" = "ubuntu-16.04.1" ]
 then
     RELEASE_NAME="csit-ubuntu-16.04.1-listmaker"
     PACKER_TEMPLATE="listmaker/ubuntu-16.04.1.json"
+elif [ "$1" = "ubuntu-18.04.1" ]
+then
+    RELEASE_NAME="csit-ubuntu-18.04.1-listmaker"
+    PACKER_TEMPLATE="listmaker/ubuntu-18.04.1.json"
 else
     echo "Please provide OS as parameter:"
-    echo "Options: ${0} [ubuntu-14.04.4|ubuntu-16.04.1]"
+    echo "Options: ${0} [ubuntu-14.04.4|ubuntu-16.04.1|ubuntu-18.04.1]"
     exit 1
 fi
 
