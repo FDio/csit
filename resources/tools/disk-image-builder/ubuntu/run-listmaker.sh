@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -62,9 +62,9 @@ echo "Storing data in ${OUTPUT_DIR}/."
 # APT packages wanted
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
-APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan socat"
+APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan socat python-cffi"
 APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev cmake tcpdump"
-APT_WANTLIST_VPP="dkms bridge-utils libmbedcrypto0 libmbedtls10 libmbedx509-0"
+APT_WANTLIST_VPP="dkms bridge-utils libmbedcrypto0 libmbedcrypto1 libmbedtls10 libmbedx509-0"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
 APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
@@ -130,9 +130,9 @@ do
 done
 echo "IP is $ip"
 
-sleep 10
+sleep 30
 
-if ping -w 60 -c 2 $ip > /dev/null
+if ping -w 60 -c 10 $ip > /dev/null
 then
   echo Host $ip alive
 else

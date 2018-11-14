@@ -1,3 +1,7 @@
+## [2.0] - 2018-11-19
+
+Add python-cffi.
+
 ## [1.9] - 2018-03-20
 
 Centos image 7.4-1711 Add mbedtls and selinux-policy.
