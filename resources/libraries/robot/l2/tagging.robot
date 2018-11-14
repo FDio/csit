@@ -23,14 +23,14 @@
 
 | Initialize VLAN sub-interfaces in 3-node circular topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
-| | ...         | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID} | ${TYPE_SUBIF}
-| | [Documentation] | *Create two subinterfaces on DUTs.*
+| | ... | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID} | ${TYPE_SUBIF}
+| | [Documentation] | Create two subinterfaces on DUTs.
 | | ...
 | | ... | *Arguments:*
 | | ... | - DUT1 - Node to add sub-interface.
-| | ... | - INT1 - Interface name on which create sub-interface.
+| | ... | - INT1 - Interface key on which create sub-interface.
 | | ... | - DUT2 - Node to add sub-interface.
-| | ... | - INT2 - Interface name on which create sub-interface.
+| | ... | - INT2 - Interface key on which create sub-interface.
 | | ... | - SUB_ID - ID of the sub-interface to be created.
 | | ... | - OUTER_VLAN_ID - Outer VLAN ID.
 | | ... | - INNER_VLAN_ID - Inner VLAN ID.
@@ -42,16 +42,16 @@
 | | ... | - subif_name_2
 | | ... | - subif_index_2
 | | ...
+| | Set Interface State | ${DUT1} | ${INT1} | up
+| | Set Interface State | ${DUT2} | ${INT2} | up
 | | ${INT1_name}= | Get interface name | ${DUT1} | ${INT1}
 | | ${subif_name_1} | ${subif_index_1}= | Create subinterface | ${DUT1}
-| | ...                                 | ${INT1_name} | ${SUB_ID}
-| | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
-| | ...                                 | ${TYPE_SUBIF}
+| | ... | ${INT1_name} | ${SUB_ID} | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
+| | ... | ${TYPE_SUBIF}
 | | ${INT2_name}= | Get interface name | ${DUT2} | ${INT2}
 | | ${subif_name_2} | ${subif_index_2}= | Create subinterface | ${DUT2}
-| | ...                                 | ${INT2_name} | ${SUB_ID}
-| | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
-| | ...                                 | ${TYPE_SUBIF}
+| | ... | ${INT2_name} | ${SUB_ID} | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
+| | ... | ${TYPE_SUBIF}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
 | | Set Interface State | ${DUT2} | ${subif_index_2} | up
 | | Set Test Variable | ${subif_name_1}
@@ -59,15 +59,16 @@
 | | Set Test Variable | ${subif_name_2}
 | | Set Test Variable | ${subif_index_2}
 
-| Initialize VLAN dot1q sub-interfaces in 3-node circular topology
-| | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
-| | [Documentation] | *Create two dot1q subinterfaces on DUTs.*
+| Initialize VLAN dot1q sub-interfaces in circular topology
+| | [Arguments] | ${DUT1} | ${INT1} | ${DUT2}=${None} | ${INT2}=${None}
+| | ... | ${SUB_ID}=10
+| | [Documentation] | Create two dot1q subinterfaces on DUTs.
 | | ...
 | | ... | *Arguments:*
 | | ... | - DUT1 - Node to add sub-interface.
-| | ... | - INT1 - Interface name on which create VLAN sub-interface.
+| | ... | - INT1 - Interface key on which create VLAN sub-interface.
 | | ... | - DUT2 - Node to add sub-interface.
-| | ... | - INT2 - Interface name on which create VLAN sub-interface.
+| | ... | - INT2 - Interface key on which create VLAN sub-interface.
 | | ... | - SUB_ID - ID of the sub-interface to be created.
 | | ...
 | | ... | _Set testcase variables with name and index of created interfaces:_
@@ -78,27 +79,35 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize VLAN dot1q sub-interfaces in 3-node circular topology \
+| | ... | \| Initialize VLAN dot1q sub-interfaces in circular topology \
 | | ... | \| ${nodes['DUT1']} \| ${dut1_if2} \| ${nodes['DUT2']} \
 | | ... | \| ${dut1_if2} \| 10 \|
 | | ...
+| | Set Interface State | ${DUT1} | ${INT1} | up
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Interface State | ${DUT2} | ${INT2} | up
 | | ${INT1_NAME}= | Get interface name | ${DUT1} | ${INT1}
-| | ${INT2_NAME}= | Get interface name | ${DUT2} | ${INT2}
+| | ${INT2_NAME}= | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Get interface name | ${DUT2} | ${INT2}
 | | ${subif_name_1} | ${subif_index_1}= | Create Vlan Subinterface
-| |                 | ...               | ${DUT1} | ${INT1_NAME} | ${SUB_ID}
-| | ${subif_name_2} | ${subif_index_2}= | Create Vlan Subinterface
-| |                 | ...               | ${DUT2} | ${INT2_NAME} | ${SUB_ID}
+| | ... | ${DUT1} | ${INT1_NAME} | ${SUB_ID}
+| | ${subif_name_2} | ${subif_index_2}=
+| | ... | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Create Vlan Subinterface | ${DUT2} | ${INT2_NAME} | ${SUB_ID}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
-| | Set Interface State | ${DUT2} | ${subif_index_2} | up
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Interface State | ${DUT2} | ${subif_index_2} | up
 | | Set Test Variable | ${subif_name_1}
 | | Set Test Variable | ${subif_index_1}
-| | Set Test Variable | ${subif_name_2}
-| | Set Test Variable | ${subif_index_2}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Test Variable | ${subif_name_2}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Set Test Variable | ${subif_index_2}
 
 | Configure L2 tag rewrite method on interfaces
-| | [Arguments] | ${DUT1} | ${SUB_INT1} | ${DUT2} | ${SUB_INT2}
-| | ...         | ${TAG_REWRITE_METHOD}
-| | [Documentation] | *Setup tag rewrite on sub-interfaces on DUTs.*
+| | [Arguments] | ${DUT1} | ${SUB_INT1} | ${DUT2}=${None} | ${SUB_INT2}=${None}
+| | ... | ${TAG_REWRITE_METHOD}=${None}
+| | [Documentation] | Setup tag rewrite on sub-interfaces on DUTs.
 | | ...
 | | ... | *Arguments:*
 | | ... | - DUT1 - Node to rewrite tags.
@@ -108,13 +117,14 @@
 | | ... | - TAG_REWRITE_METHOD - Method of tag rewrite.
 | | ...
 | | L2 Vlan tag rewrite | ${DUT1} | ${SUB_INT1} | ${TAG_REWRITE_METHOD}
-| | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
 
 | Connect interfaces and VLAN sub-interfaces using L2XC
-| | [Arguments] | ${DUT1} | ${INT1} | ${SUB_INT1}
-| | ...         | ${DUT2} | ${INT2} | ${SUB_INT2}
-| | [Documentation] | *Add interface and subinterface to bidirectional
-| | ...             | L2-xconnect on DUTs.*
+| | [Arguments] | ${DUT1} | ${INT1} | ${SUB_INT1} | ${DUT2}=${None}
+| | ... | ${INT2}=${None} | ${SUB_INT2}=${None}
+| | [Documentation] | Add interface and subinterface to bidirectional
+| | ... | L2-xconnect on DUTs.
 | | ...
 | | ... | *Arguments:*
 | | ... | - DUT1 - Node to add bidirectional cross-connect.
@@ -125,7 +135,8 @@
 | | ... | - SUB_INT2 - Sub-interface to add to the cross-connect.
 | | ...
 | | Configure L2XC | ${DUT1} | ${INT1} | ${SUB_INT1}
-| | Configure L2XC | ${DUT2} | ${INT2} | ${SUB_INT2}
+| | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Configure L2XC | ${DUT2} | ${INT2} | ${SUB_INT2}
 
 | Create vlan sub-interface
 | | [Documentation] | Create VLAN sub-interface on DUT and set admin status up.
@@ -144,7 +155,10 @@
 | | ... | \| Create vlan sub-interface \| ${nodes['DUT1']} \| port3 \| 100 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${interface} | ${vlan_id}
+| | ...
 | | [Return] | ${vlan_name} | ${vlan_index}
+| | ...
+| | Set Interface State | ${dut_node} | ${interface} | up
 | | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
 | | ${vlan_name} | ${vlan_index}= | Create Vlan Subinterface
 | | ... | ${dut_node} | ${interface_name} | ${vlan_id}
@@ -178,7 +192,10 @@
 | | [Arguments] | ${dut_node} | ${interface} | ${subif_id}
 | | ... | ${outer_vlan_id}=${None} | ${inner_vlan_id}=${None}
 | | ... | ${type_subif}=${None}
+| | ...
 | | [Return] | ${subif_name} | ${subif_index}
+| | ...
+| | Set Interface State | ${dut_node} | ${interface} | up
 | | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
 | | ${subif_name} | ${subif_index}= | Create Subinterface
 | | ... | ${dut_node} | ${interface_name} | ${subif_id}
@@ -212,8 +229,11 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${interface} | ${tag_rewrite_method}
 | | ... | ${push_dot1q}=${True} | ${tag1_id}=${None} | ${tag2_id}=${None}
+| | ...
 | | ${result}= | Evaluate | isinstance($interface, int)
-| | ${interface_name}= | Run Keyword If | ${result} | Set Variable | ${interface}
-| | ...                | ELSE | Get interface name | ${dut_node} | ${interface}
-| | L2 Vlan Tag Rewrite | ${dut_node} | ${interface_name} | ${tag_rewrite_method}
-| | ... | push_dot1q=${push_dot1q} | tag1_id=${tag1_id} | tag2_id=${tag2_id}
+| | ${interface_name}= | Run Keyword If | ${result}
+| | ... | Set Variable | ${interface}
+| | ... | ELSE | Get interface name | ${dut_node} | ${interface}
+| | L2 Vlan Tag Rewrite | ${dut_node} | ${interface_name}
+| | ... | ${tag_rewrite_method} | push_dot1q=${push_dot1q} | tag1_id=${tag1_id}
+| | ... | tag2_id=${tag2_id}

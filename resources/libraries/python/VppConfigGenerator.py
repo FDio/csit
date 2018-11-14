@@ -361,6 +361,11 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'num-mbufs']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_no_pci(self):
+        """Add DPDK no-pci."""
+        path = ['dpdk', 'no-pci']
+        self.add_config_item(self._nodeconfig, '', path)
+
     def add_dpdk_uio_driver(self, value=None):
         """Add DPDK uio-driver configuration.
 

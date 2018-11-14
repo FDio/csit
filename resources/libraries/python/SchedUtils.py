@@ -45,7 +45,7 @@ class SchedUtils(object):
                     print 'Reading VPP worker thread PID failed.'
                 else:
                     for pid in out.split("\n"):
-                        if len(pid) > 0 and pid[0] != "#":
+                        if pid and pid[0] != '#':
                             SchedUtils.set_proc_scheduling_rr(node, int(pid))
                     break
         else:

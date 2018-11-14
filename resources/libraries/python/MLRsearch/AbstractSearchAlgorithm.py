@@ -25,7 +25,7 @@ class AbstractSearchAlgorithm(object):
         """Store the rate provider.
 
         :param measurer: Object able to perform trial or composite measurements.
-        :type measurer: AbstractMeasurer
+        :type measurer: AbstractMeasurer.AbstractMeasurer
         """
         # TODO: Type check for AbstractMeasurer?
         self.measurer = measurer
@@ -45,7 +45,7 @@ class AbstractSearchAlgorithm(object):
         :type packet_loss_ratio: float
         :returns: Structure containing narrowed down intervals
             and their measurements.
-        :rtype: NdrPdrResult
+        :rtype: NdrPdrResult.NdrPdrResult
         """
         # TODO: Do we agree on arguments related to precision or trial duration?
         pass

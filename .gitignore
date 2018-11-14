@@ -1,4 +1,6 @@
 /env
+/download_dir
+/archive_dir
 outputs
 output.xml
 log.html
@@ -7,3 +9,4 @@ report.html
 *~
 *.log
 .idea
+dmm/**
