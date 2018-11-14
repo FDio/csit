@@ -13,8 +13,8 @@
 
 """Library to set up IPv6 in topology."""
 
-from robot.api import logger
 from ipaddress import IPv6Network
+from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType, Topology
@@ -25,17 +25,22 @@ from resources.libraries.python.VatExecutor import VatTerminal, VatExecutor
 class IPv6Networks(object):
     """IPv6 network iterator.
 
-    :param networks: List of the available IPv6 networks.
-    :type networks: list
+    TODO: Conform to https://docs.python.org/2/library/stdtypes.html#typeiter
     """
+
     def __init__(self, networks):
-        self._networks = list()
+        """Initialize internal list of valid networks.
+
+        :param networks: List of the available IPv6 networks.
+        :type networks: list
+        :raise RuntimeError: If no networks were added.
+        """
+        self._networks = []
         for network in networks:
             net = IPv6Network(unicode(network))
             self._networks.append(net)
-        num = len(self._networks)
-        if num == 0:
-            raise Exception('No IPv6 networks')
+        if not self._networks:
+            raise RuntimeError('No IPv6 networks')
 
     def next_network(self):
         """Get the next element of the iterator.
@@ -44,7 +49,7 @@ class IPv6Networks(object):
         :rtype: IPv6Network object
         :raises StopIteration: If there is no more elements.
         """
-        if len(self._networks):
+        if self._networks:
             return self._networks.pop()
         else:
             raise StopIteration()

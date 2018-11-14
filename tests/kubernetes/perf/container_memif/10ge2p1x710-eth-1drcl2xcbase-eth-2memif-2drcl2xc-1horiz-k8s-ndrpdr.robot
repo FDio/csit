@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -45,7 +45,7 @@
 | ... | of packets transmitted. NDR and PDR are discovered for different
 | ... | Ethernet L2 frame sizes using MLRsearch library.
 | ... | TG traffic profile contains two L3 flow-groups
-| ... | (flow-group per direction, 253 flows per flow-group) with all packets
+| ... | (flow-group per direction, 254 flows per flow-group) with all packets
 | ... | containing Ethernet header, IPv4 header with IP protocol=61 and static
 | ... | payload. MAC addresses are matching MAC addresses of the TG node
 | ... | interfaces.
@@ -167,4 +167,3 @@
 | tc12-IMIX-4c-eth-1drcl2xcbase-eth-2memif-2drcl2xc-1horiz-k8s-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
-

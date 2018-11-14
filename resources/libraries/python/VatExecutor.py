@@ -14,6 +14,7 @@
 """VAT executor library."""
 
 import json
+from os import remove
 
 from paramiko.ssh_exception import SSHException
 from robot.api import logger
@@ -106,6 +107,9 @@ class VatExecutor(object):
         if copy_on_execute:
             ssh.scp(vat_name, vat_name)
             remote_file_path = vat_name
+            with open(vat_name, 'r') as vat_file:
+                for line in vat_file:
+                    VatHistory.add_to_vat_history(node, line.replace('\n', ''))
         else:
             remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
                                                     Constants.RESOURCES_TPL_VAT,
@@ -129,6 +133,28 @@ class VatExecutor(object):
         self._stdout = stdout
         self._stderr = stderr
         self._script_name = vat_name
+
+    def write_and_execute_script(self, node, tmp_fn, commands, timeout=300,
+                                 json_out=False):
+        """Write VAT commands to the script, copy it to node and execute it.
+
+        :param node: VPP node.
+        :param tmp_fn: Path to temporary file script.
+        :param commands: VAT command list.
+        :param timeout: Seconds to allow the script to run.
+        :param json_out: Require JSON output.
+        :type node: dict
+        :type tmp_fn: str
+        :type commands: list
+        :type timeout: int
+        :type json_out: bool
+        """
+        with open(tmp_fn, 'w') as tmp_f:
+            tmp_f.writelines(commands)
+
+        self.execute_script(tmp_fn, node, timeout=timeout, json_out=json_out,
+                            copy_on_execute=True)
+        remove(tmp_fn)
 
     def execute_script_json_out(self, vat_name, node, timeout=120):
         """Pass all arguments to 'execute_script' method, then cleanup returned
@@ -201,7 +227,7 @@ class VatTerminal(object):
     """
 
     __VAT_PROMPT = ("vat# ", )
-    __LINUX_PROMPT = (":~$ ", "~]$ ", "~]# ")
+    __LINUX_PROMPT = (":~# ", ":~$ ", "~]$ ", "~]# ")
 
     def __init__(self, node, json_param=True):
         json_text = ' json' if json_param else ''

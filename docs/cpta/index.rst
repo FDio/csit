@@ -1,49 +1,51 @@
 Continuous Performance Trending
 ===============================
 
-This document contains VPP performance dashboard, trendline graphs and
+This document contains VPP performance dashboard, trending graphs and
 performance test data. It is generated using FD.io CSIT continuous
 performance trending and analysis jobs and is updated daily. See
 :ref:`trending_methodology` section for more details including trend
 analysis and anomaly detection methodology.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: VPP Performance Dashboard
+    :maxdepth: 2
+    :caption: FD.io Performance Dashboard
 
-   Dashboard <introduction/index>
-   Failed Tests <introduction/failures>
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Trending Methodology
-
-   Methodology <methodology/index>
+    Description <introduction/introduction>
+    Dashboard <introduction/dashboard>
+    Failed Tests <introduction/failures>
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Trendline Graphs
+    :maxdepth: 2
+    :caption: Trending Methodology
 
-   trending/l2
-   trending/ip4
-   trending/ip6
-   trending/ip4_tunnels
-   trending/vm_vhost_l2
-   trending/vm_vhost_ip4
-   trending/container_memif
-   trending/ipsec
-   trending/srv6
-   trending/link_bonding
-   trending/dpdk
+    Methodology <methodology/index>
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Performance Data
+    :maxdepth: 2
+    :caption: Trending Graphs
 
-   Download <data/index>
+    trending/l2
+    trending/ip4
+    trending/ip6
+    trending/ip4_tunnels
+    trending/vm_vhost_l2
+    trending/vm_vhost_ip4
+    trending/container_memif
+    trending/ipsec
+    trending/srv6
+    trending/link_bonding
+    trending/vts
+    trending/dpdk
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Indices and tables
+    :maxdepth: 2
+    :caption: Performance Data
 
-   Index <indices>
+    Download <data/index>
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Indices and tables
+
+    Index <indices>

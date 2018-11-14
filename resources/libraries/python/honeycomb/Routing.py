@@ -115,7 +115,8 @@ class RoutingKeywords(object):
             ]
         }
 
-        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(name)
+        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(
+            name)
         return RoutingKeywords._set_routing_table_properties(
             node, path, full_data)
 
@@ -131,7 +132,8 @@ class RoutingKeywords(object):
         :rtype: bytearray
         """
 
-        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(name)
+        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(
+            name)
         return RoutingKeywords._set_routing_table_properties(node, path)
 
     @staticmethod
@@ -149,7 +151,8 @@ class RoutingKeywords(object):
         :raises HoneycombError: If the operation fails.
         """
 
-        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(name)
+        path = "/control-plane-protocol/hc2vpp-ietf-routing:static/{0}".format(
+            name)
         status_code, resp = HcUtil.\
             get_honeycomb_data(node, "oper_routing_table", path)
 
@@ -226,7 +229,7 @@ class RoutingKeywords(object):
                 node, 'config_slaac', path)
         else:
             data = {
-                       'ipv6-router-advertisements': slaac_data
+                'ipv6-router-advertisements': slaac_data
             }
 
             status_code, _ = HcUtil.put_honeycomb_data(

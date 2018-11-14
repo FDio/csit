@@ -120,7 +120,7 @@ class Tap(object):
         :raises RuntimeError: Specified interface was not found.
         """
         tap_if = InterfaceUtil.tap_dump(node, tap_name)
-        if len(tap_if) == 0:
+        if not tap_if:
             raise RuntimeError(
                 'Tap interface :{} does not exist'.format(tap_name))
 

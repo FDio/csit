@@ -22,7 +22,6 @@ from paramiko import RSAKey
 from paramiko.ssh_exception import SSHException
 from scp import SCPClient
 from robot.api import logger
-from robot.utils.asserts import assert_equal
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -264,7 +263,7 @@ class SSH(object):
         chan.set_combine_stderr(True)
 
         buf = ''
-        while not buf.endswith((":~$ ", "~]$ ", "~]# ")):
+        while not buf.endswith((":~# ", ":~$ ", "~]$ ", "~]# ")):
             try:
                 chunk = chan.recv(self.__MAX_RECV_BUF)
                 if not chunk:
@@ -370,7 +369,7 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise TypeError('Node parameter is None')
     if cmd is None:
         raise TypeError('Command parameter is None')
-    if len(cmd) == 0:
+    if not cmd:
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
@@ -393,14 +392,29 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
     return ret_code, stdout, stderr
 
 
-def exec_cmd_no_error(node, cmd, timeout=600, sudo=False):
+def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
     """Convenience function to ssh/exec/return out & err.
 
     Verifies that return code is zero.
 
-    Returns (stdout, stderr).
+    :param node: DUT node.
+    :param cmd: Command to be executed.
+    :param timeout: Timeout value in seconds. Default: 600.
+    :param sudo: Sudo privilege execution flag. Default: False.
+    :param message: Error message in case of failure. Default: None.
+    :type node: dict
+    :type cmd: str
+    :type timeout: int
+    :type sudo: bool
+    :type message: str
+    :returns: Stdout, Stderr.
+    :rtype: tuple(str, str)
+    :raise RuntimeError: If bash return code is not 0.
     """
-    (ret_code, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
-    assert_equal(ret_code, 0, 'Command execution failed: "{}"\n{}'.
-                 format(cmd, stderr))
+    ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
+    msg = ('Command execution failed: "{cmd}"\n{stderr}'.
+           format(cmd=cmd, stderr=stderr) if message is None else message)
+    if ret_code != 0:
+        raise RuntimeError(msg)
+
     return stdout, stderr

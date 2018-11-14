@@ -22,13 +22,10 @@ threaded VPP configurations relative to 1-core configurations.
     result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
     Required per test case data set size is **10**, but for VPP tests
-    the actual size varies per test case and is <=10. This is due to
-    not all test executions completing successfully due to a known
-    `VPP-1361 <https://jira.fd.io/browse/VPP-1361>`_ issue
-    sporadically impacting physical interface up/down state.
+    the actual size varies per test case and is <=10.
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
 
     l2
     ip4

@@ -15,11 +15,16 @@
 
 from time import time, sleep
 import json
+import re
+# Disable due to pylint bug
+# pylint: disable=no-name-in-module,import-error
+from distutils.version import StrictVersion
 
 from robot.api import logger
 
 from resources.libraries.python.ssh import SSH, SSHTimeout
 from resources.libraries.python.constants import Constants
+from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -28,16 +33,20 @@ class QemuUtils(object):
 
     def __init__(self, qemu_id=1):
         self._qemu_id = qemu_id
-        # Path to QEMU binary. Use x86_64 by default
-        self._qemu_path = '/usr/bin/'
-        self._qemu_bin = 'qemu-system-x86_64'
-        # QEMU Machine Protocol socket
-        self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
-        # QEMU Guest Agent socket
-        self._qga_sock = '/tmp/qga{0}.sock'.format(self._qemu_id)
-        # QEMU PID file
-        self._pid_file = '/tmp/qemu{0}.pid'.format(self._qemu_id)
+        self._vhost_id = 0
+        self._ssh = None
+        self._node = None
+        # Qemu Options
         self._qemu_opt = {}
+        # Path to QEMU binary. Use x86_64 by default
+        self._qemu_opt['qemu_path'] = '/usr/bin/'
+        self._qemu_opt['qemu_bin'] = 'qemu-system-x86_64'
+        # QEMU Machine Protocol socket
+        self._qemu_opt['qmp_sock'] = '/tmp/qmp{0}.sock'.format(self._qemu_id)
+        # QEMU Guest Agent socket
+        self._qemu_opt['qga_sock'] = '/tmp/qga{0}.sock'.format(self._qemu_id)
+        # QEMU PID file
+        self._qemu_opt['pid_file'] = '/tmp/qemu{0}.pid'.format(self._qemu_id)
         # Default 1 CPU.
         self._qemu_opt['smp'] = '-smp 1,sockets=1,cores=1,threads=1'
         # Daemonize the QEMU process after initialization. Default one
@@ -57,6 +66,10 @@ class QemuUtils(object):
         self._qemu_opt['huge_allocate'] = False
         # Default image for CSIT virl setup
         self._qemu_opt['disk_image'] = '/var/lib/vm/vhost-nested.img'
+        # Virtio queue count
+        self._qemu_opt['queue_count'] = 1
+        # Virtio queue size
+        self._qemu_opt['queue_size'] = None
         # VM node info dict
         self._vm_info = {
             'type': NodeType.VM,
@@ -65,12 +78,9 @@ class QemuUtils(object):
             'password': 'cisco',
             'interfaces': {},
         }
-        # Virtio queue count
-        self._qemu_opt['queues'] = 1
-        self._vhost_id = 0
-        self._ssh = None
-        self._node = None
-        self._socks = [self._qmp_sock, self._qga_sock]
+        # Qemu Sockets
+        self._socks = [self._qemu_opt.get('qmp_sock'),
+                       self._qemu_opt.get('qga_sock')]
 
     def qemu_set_path(self, path):
         """Set binary path for QEMU.
@@ -78,22 +88,39 @@ class QemuUtils(object):
         :param path: Absolute path in filesystem.
         :type path: str
         """
-        self._qemu_path = path
+        self._qemu_opt['qemu_path'] = path
 
-    def qemu_set_smp(self, cpus, cores, threads, sockets):
+    def qemu_set_queue_count(self, count):
+        """Set number of virtio queues.
+
+        :param count: Number of virtio queues.
+        :type count: int
+        """
+        self._qemu_opt['queue_count'] = int(count)
+
+    def qemu_set_queue_size(self, size):
+        """Set RX/TX size of virtio queues.
+
+        :param size: Size of virtio queues.
+        :type size: int
+        """
+        self._qemu_opt['queue_size'] = int(size)
+
+    def qemu_set_smp(self, smp, cores, threads, sockets):
         """Set SMP option for QEMU.
 
-        :param cpus: Number of CPUs.
+        :param smp: Number of CPUs.
         :param cores: Number of CPU cores on one socket.
         :param threads: Number of threads on one CPU core.
         :param sockets: Number of discrete sockets in the system.
-        :type cpus: int
+        :type smp: int
         :type cores: int
         :type threads: int
         :type sockets: int
         """
-        self._qemu_opt['smp'] = '-smp {},cores={},threads={},sockets={}'.format(
-            cpus, cores, threads, sockets)
+        self._qemu_opt['smp'] = \
+            ('-smp {smp},cores={cores},threads={threads},sockets={sockets}'.
+             format(smp=smp, cores=cores, threads=threads, sockets=sockets))
 
     def qemu_set_ssh_fwd_port(self, fwd_port):
         """Set host port for guest SSH forwarding.
@@ -150,17 +177,15 @@ class QemuUtils(object):
         qemu_cpus = self._qemu_qmp_exec('query-cpus')['return']
 
         if len(qemu_cpus) != len(host_cpus):
-            logger.debug('Host CPU count {0}, Qemu Thread count {1}'.format(
-                len(host_cpus), len(qemu_cpus)))
             raise ValueError('Host CPU count must match Qemu Thread count')
 
         for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
-            cmd = 'taskset -pc {0} {1}'.format(host_cpu, qemu_cpu['thread_id'])
-            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+            ret_code, _, _ = self._ssh.exec_command_sudo(
+                'taskset -pc {host_cpu} {thread_id}'.
+                format(host_cpu=host_cpu, thread_id=qemu_cpu['thread_id']))
             if int(ret_code) != 0:
-                logger.debug('Set affinity failed {0}'.format(stderr))
-                raise RuntimeError('Set affinity failed on {0}'.format(
-                    self._node['host']))
+                raise RuntimeError('Set affinity failed on {host}'.
+                                   format(host=self._node['host']))
 
     def qemu_set_scheduler_policy(self):
         """Set scheduler policy to SCHED_RR with priority 1 for all Qemu CPU
@@ -171,12 +196,12 @@ class QemuUtils(object):
         qemu_cpus = self._qemu_qmp_exec('query-cpus')['return']
 
         for qemu_cpu in qemu_cpus:
-            cmd = 'chrt -r -p 1 {0}'.format(qemu_cpu['thread_id'])
-            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+            ret_code, _, _ = self._ssh.exec_command_sudo(
+                'chrt -r -p 1 {thread_id}'.
+                format(thread_id=qemu_cpu['thread_id']))
             if int(ret_code) != 0:
-                logger.debug('Set SCHED_RR failed {0}'.format(stderr))
-                raise RuntimeError('Set SCHED_RR failed on {0}'.format(
-                    self._node['host']))
+                raise RuntimeError('Set SCHED_RR failed on {host}'.
+                                   format(host=self._node['host']))
 
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
@@ -190,7 +215,7 @@ class QemuUtils(object):
         self._vm_info['host'] = node['host']
 
         arch = Topology.get_node_arch(node)
-        self._qemu_bin = 'qemu-system-{arch}'.format(arch=arch)
+        self._qemu_opt['qemu_bin'] = 'qemu-system-{arch}'.format(arch=arch)
 
     def qemu_add_vhost_user_if(self, socket, server=True, mac=None,
                                jumbo_frames=False):
@@ -208,34 +233,39 @@ class QemuUtils(object):
         """
         self._vhost_id += 1
         # Create unix socket character device.
-        chardev = ' -chardev socket,id=char{0},path={1}'.format(self._vhost_id,
-                                                                socket)
-        if server is True:
-            chardev += ',server'
+        chardev = (' -chardev socket,id=char{vhost_id},path={socket}{server}'.
+                   format(vhost_id=self._vhost_id,
+                          socket=socket,
+                          server=',server' if server is True else ''))
         self._qemu_opt['options'] += chardev
         # Create Vhost-user network backend.
-        netdev = (' -netdev vhost-user,id=vhost{0},chardev=char{0},queues={1}'
-                  .format(self._vhost_id, self._qemu_opt['queues']))
+        netdev = (' -netdev vhost-user,id=vhost{vhost_id},'
+                  'chardev=char{vhost_id},queues={queue_count}'.
+                  format(vhost_id=self._vhost_id,
+                         queue_count=self._qemu_opt.get('queue_count')))
         self._qemu_opt['options'] += netdev
         # If MAC is not specified use auto-generated MAC address based on
         # template 52:54:00:00:<qemu_id>:<vhost_id>, e.g. vhost1 MAC of QEMU
         #  with ID 1 is 52:54:00:00:01:01
-        if mac is None:
-            mac = '52:54:00:00:{0:02x}:{1:02x}'.\
-                format(self._qemu_id, self._vhost_id)
-        extend_options = 'mq=on,csum=off,gso=off,guest_tso4=off,'\
-            'guest_tso6=off,guest_ecn=off'
-        if jumbo_frames:
-            extend_options += ",mrg_rxbuf=on"
-        else:
-            extend_options += ",mrg_rxbuf=off"
+        mac = ('52:54:00:00:{qemu_id:02x}:{vhost_id:02x}'.
+               format(qemu_id=self._qemu_id, vhost_id=self._vhost_id))\
+            if mac is None else mac
+
+        queue_size = (',rx_queue_size={queue_size},tx_queue_size={queue_size}'.
+                      format(queue_size=self._qemu_opt.get('queue_size')))\
+            if self._qemu_opt.get('queue_size') else ''
+
         # Create Virtio network device.
-        device = ' -device virtio-net-pci,netdev=vhost{0},mac={1},{2}'.format(
-            self._vhost_id, mac, extend_options)
+        device = (' -device virtio-net-pci,netdev=vhost{vhost_id},mac={mac},'
+                  'mq=on,csum=off,gso=off,guest_tso4=off,guest_tso6=off,'
+                  'guest_ecn=off,mrg_rxbuf={mbuf}{queue_size}'.
+                  format(vhost_id=self._vhost_id, mac=mac,
+                         mbuf='on,host_mtu=9200' if jumbo_frames else 'off',
+                         queue_size=queue_size))
         self._qemu_opt['options'] += device
         # Add interface MAC and socket to the node dict
         if_data = {'mac_address': mac, 'socket': socket}
-        if_name = 'vhost{}'.format(self._vhost_id)
+        if_name = 'vhost{vhost_id}'.format(vhost_id=self._vhost_id)
         self._vm_info['interfaces'][if_name] = if_data
         # Add socket to the socket list
         self._socks.append(socket)
@@ -252,36 +282,30 @@ class QemuUtils(object):
             response will contain the "error" keyword instead of "return".
         """
         # To enter command mode, the qmp_capabilities command must be issued.
-        qmp_cmd = 'echo "{ \\"execute\\": \\"qmp_capabilities\\" }' \
-                  '{ \\"execute\\": \\"' + cmd + \
-                  '\\" }" | sudo -S socat - UNIX-CONNECT:' + self._qmp_sock
-
-        (ret_code, stdout, stderr) = self._ssh.exec_command(qmp_cmd)
+        ret_code, stdout, _ = self._ssh.exec_command(
+            'echo "{{ \\"execute\\": \\"qmp_capabilities\\" }}'
+            '{{ \\"execute\\": \\"{cmd}\\" }}" | '
+            'sudo -S socat - UNIX-CONNECT:{qmp_sock}'.
+            format(cmd=cmd, qmp_sock=self._qemu_opt.get('qmp_sock')))
         if int(ret_code) != 0:
-            logger.debug('QMP execute failed {0}'.format(stderr))
-            raise RuntimeError('QMP execute "{0}"'
-                               ' failed on {1}'.format(cmd, self._node['host']))
-        logger.trace(stdout)
+            raise RuntimeError('QMP execute "{cmd}" failed on {host}'.
+                               format(cmd=cmd, host=self._node['host']))
         # Skip capabilities negotiation messages.
         out_list = stdout.splitlines()
         if len(out_list) < 3:
-            raise RuntimeError('Invalid QMP output on {0}'.format(
-                self._node['host']))
+            raise RuntimeError('Invalid QMP output on {host}'.
+                               format(host=self._node['host']))
         return json.loads(out_list[2])
 
     def _qemu_qga_flush(self):
-        """Flush the QGA parser state
-        """
-        qga_cmd = '(printf "\xFF"; sleep 1) | sudo -S socat - UNIX-CONNECT:' + \
-                  self._qga_sock
-        #TODO: probably need something else
-        (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
+        """Flush the QGA parser state."""
+        ret_code, stdout, _ = self._ssh.exec_command(
+            '(printf "\xFF"; sleep 1) | '
+            'sudo -S socat - UNIX-CONNECT:{qga_sock}'.
+            format(qga_sock=self._qemu_opt.get('qga_sock')))
         if int(ret_code) != 0:
-            logger.debug('QGA execute failed {0}'.format(stderr))
-            raise RuntimeError('QGA execute "{0}" '
-                               'failed on {1}'.format(qga_cmd,
-                                                      self._node['host']))
-        logger.trace(stdout)
+            raise RuntimeError('QGA flush failed on {host}'.
+                               format(host=self._node['host']))
         if not stdout:
             return {}
         return json.loads(stdout.split('\n', 1)[0])
@@ -294,16 +318,13 @@ class QemuUtils(object):
         :param cmd: QGA command to execute.
         :type cmd: str
         """
-        qga_cmd = '(echo "{ \\"execute\\": \\"' + \
-                  cmd + \
-                  '\\" }"; sleep 1) | sudo -S socat - UNIX-CONNECT:' + \
-                  self._qga_sock
-        (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
+        ret_code, stdout, _ = self._ssh.exec_command(
+            '(echo "{{ \\"execute\\": \\"{cmd}\\" }}"; sleep 1) | '
+            'sudo -S socat - UNIX-CONNECT:{qga_sock}'.
+            format(cmd=cmd, qga_sock=self._qemu_opt.get('qga_sock')))
         if int(ret_code) != 0:
-            logger.debug('QGA execute failed {0}'.format(stderr))
-            raise RuntimeError('QGA execute "{0}"'
-                               ' failed on {1}'.format(cmd, self._node['host']))
-        logger.trace(stdout)
+            raise RuntimeError('QGA execute "{cmd}" failed on {host}'.
+                               format(cmd=cmd, host=self._node['host']))
         if not stdout:
             return {}
         return json.loads(stdout.split('\n', 1)[0])
@@ -320,13 +341,15 @@ class QemuUtils(object):
         start = time()
         while True:
             if time() - start > timeout:
-                raise RuntimeError('timeout, VM {0} not booted on {1}'.format(
-                    self._qemu_opt['disk_image'], self._node['host']))
+                raise RuntimeError('timeout, VM {disk} not booted on {host}'.
+                                   format(disk=self._qemu_opt['disk_image'],
+                                          host=self._node['host']))
             out = None
             try:
                 out = self._qemu_qga_flush()
             except ValueError:
-                logger.trace('QGA qga flush unexpected output {}'.format(out))
+                logger.trace('QGA qga flush unexpected output {out}'.
+                             format(out=out))
             # Empty output - VM not booted yet
             if not out:
                 sleep(5)
@@ -334,13 +357,16 @@ class QemuUtils(object):
                 break
         while True:
             if time() - start > timeout:
-                raise RuntimeError('timeout, VM {0} not booted on {1}'.format(
-                    self._qemu_opt['disk_image'], self._node['host']))
+                raise RuntimeError('timeout, VM with {disk} not booted '
+                                   'on {host}'.
+                                   format(disk=self._qemu_opt['disk_image'],
+                                          host=self._node['host']))
             out = None
             try:
                 out = self._qemu_qga_exec('guest-ping')
             except ValueError:
-                logger.trace('QGA guest-ping unexpected output {}'.format(out))
+                logger.trace('QGA guest-ping unexpected output {out}'.
+                             format(out=out))
             # Empty output - VM not booted yet
             if not out:
                 sleep(5)
@@ -353,10 +379,12 @@ class QemuUtils(object):
             else:
                 # If there is an unexpected output from QGA guest-info, try
                 # again until timeout.
-                logger.trace('QGA guest-ping unexpected output {}'.format(out))
+                logger.trace('QGA guest-ping unexpected output {out}'.
+                             format(out=out))
 
-        logger.trace('VM {0} booted on {1}'.format(self._qemu_opt['disk_image'],
-                                                   self._node['host']))
+        logger.trace('VM with {disk_image} booted on {host}'.
+                     format(disk_image=self._qemu_opt['disk_image'],
+                            host=self._node['host']))
 
     def _update_vm_interfaces(self):
         """Update interface names in VM node dict."""
@@ -367,8 +395,10 @@ class QemuUtils(object):
         interfaces = out.get('return')
         mac_name = {}
         if not interfaces:
-            raise RuntimeError('Get VM {0} interface list failed on {1}'.format(
-                self._qemu_opt['disk_image'], self._node['host']))
+            raise RuntimeError('Get VM {disk_image} interface list failed '
+                               'on {host}'.
+                               format(disk_image=self._qemu_opt['disk_image'],
+                                      host=self._node['host']))
         # Create MAC-name dict
         for interface in interfaces:
             if 'hardware-address' not in interface:
@@ -379,196 +409,77 @@ class QemuUtils(object):
             mac = interface.get('mac_address')
             if_name = mac_name.get(mac)
             if if_name is None:
-                logger.trace('Interface name for MAC {} not found'.format(mac))
+                logger.trace('Interface name for MAC {mac} not found'.
+                             format(mac=mac))
             else:
                 interface['name'] = if_name
-
-    def _huge_page_check(self, allocate=False):
-        """Huge page check."""
-        huge_mnt = self._qemu_opt.get('huge_mnt')
-        mem_size = self._qemu_opt.get('mem_size')
-
-        # Get huge pages information
-        huge_size = self._get_huge_page_size()
-        huge_free = self._get_huge_page_free(huge_size)
-        huge_total = self._get_huge_page_total(huge_size)
-
-        # Check if memory reqested by qemu is available on host
-        if (mem_size * 1024) > (huge_free * huge_size):
-            # If we want to allocate hugepage dynamically
-            if allocate:
-                mem_needed = abs((huge_free * huge_size) - (mem_size * 1024))
-                huge_to_allocate = ((mem_needed / huge_size) * 2) + huge_total
-                max_map_count = huge_to_allocate*4
-                # Increase maximum number of memory map areas a process may have
-                cmd = 'echo "{0}" | sudo tee /proc/sys/vm/max_map_count'.format(
-                    max_map_count)
-                (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-                # Increase hugepage count
-                cmd = 'echo "{0}" | sudo tee /proc/sys/vm/nr_hugepages'.format(
-                    huge_to_allocate)
-                (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    logger.debug('Mount huge pages failed {0}'.format(stderr))
-                    raise RuntimeError('Mount huge pages failed on {0}'.format(
-                        self._node['host']))
-            # If we do not want to allocate dynamicaly end with error
-            else:
-                raise RuntimeError(
-                    'Not enough free huge pages: {0}, '
-                    '{1} MB'.format(huge_free, huge_free * huge_size)
-                )
-        # Check if huge pages mount point exist
-        has_huge_mnt = False
-        (_, output, _) = self._ssh.exec_command('cat /proc/mounts')
-        for line in output.splitlines():
-            # Try to find something like:
-            # none /mnt/huge hugetlbfs rw,relatime,pagesize=2048k 0 0
-            mount = line.split()
-            if mount[2] == 'hugetlbfs' and mount[1] == huge_mnt:
-                has_huge_mnt = True
-                break
-        # If huge page mount point not exist create one
-        if not has_huge_mnt:
-            cmd = 'mkdir -p {0}'.format(huge_mnt)
-            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                logger.debug('Create mount dir failed: {0}'.format(stderr))
-                raise RuntimeError('Create mount dir failed on {0}'.format(
-                    self._node['host']))
-            cmd = 'mount -t hugetlbfs -o pagesize=2048k none {0}'.format(
-                huge_mnt)
-            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                logger.debug('Mount huge pages failed {0}'.format(stderr))
-                raise RuntimeError('Mount huge pages failed on {0}'.format(
-                    self._node['host']))
-
-    def _get_huge_page_size(self):
-        """Get default size of huge pages in system.
-
-        :returns: Default size of free huge pages in system.
-        :rtype: int
-        :raises RuntimeError: If reading failed for three times.
-        """
-        # TODO: remove to dedicated library
-        cmd_huge_size = "grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
-        for _ in range(3):
-            (ret, out, _) = self._ssh.exec_command_sudo(cmd_huge_size)
-            if ret == 0:
-                try:
-                    huge_size = int(out)
-                except ValueError:
-                    logger.trace('Reading huge page size information failed')
-                else:
-                    break
-        else:
-            raise RuntimeError('Getting huge page size information failed.')
-        return huge_size
-
-    def _get_huge_page_free(self, huge_size):
-        """Get total number of huge pages in system.
-
-        :param huge_size: Size of hugepages.
-        :type huge_size: int
-        :returns: Number of free huge pages in system.
-        :rtype: int
-        :raises RuntimeError: If reading failed for three times.
-        """
-        # TODO: add numa aware option
-        # TODO: remove to dedicated library
-        cmd_huge_free = 'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/'\
-            'free_hugepages'.format(huge_size)
-        for _ in range(3):
-            (ret, out, _) = self._ssh.exec_command_sudo(cmd_huge_free)
-            if ret == 0:
-                try:
-                    huge_free = int(out)
-                except ValueError:
-                    logger.trace('Reading free huge pages information failed')
-                else:
-                    break
-        else:
-            raise RuntimeError('Getting free huge pages information failed.')
-        return huge_free
-
-    def _get_huge_page_total(self, huge_size):
-        """Get total number of huge pages in system.
-
-        :param huge_size: Size of hugepages.
-        :type huge_size: int
-        :returns: Total number of huge pages in system.
-        :rtype: int
-        :raises RuntimeError: If reading failed for three times.
-        """
-        # TODO: add numa aware option
-        # TODO: remove to dedicated library
-        cmd_huge_total = 'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/'\
-            'nr_hugepages'.format(huge_size)
-        for _ in range(3):
-            (ret, out, _) = self._ssh.exec_command_sudo(cmd_huge_total)
-            if ret == 0:
-                try:
-                    huge_total = int(out)
-                except ValueError:
-                    logger.trace('Reading total huge pages information failed')
-                else:
-                    break
-        else:
-            raise RuntimeError('Getting total huge pages information failed.')
-        return huge_total
 
     def qemu_start(self):
         """Start QEMU and wait until VM boot.
 
         .. note:: First set at least node to run QEMU on.
-        .. warning:: Starts only one VM on the node.
 
         :returns: VM node info.
         :rtype: dict
         """
         # Qemu binary path
-        bin_path = '{0}{1}'.format(self._qemu_path, self._qemu_bin)
+        bin_path = ('{qemu_path}{qemu_bin}'.
+                    format(qemu_path=self._qemu_opt.get('qemu_path'),
+                           qemu_bin=self._qemu_opt.get('qemu_bin')))
+
+        # Memory and huge pages
+        mem = ('-object memory-backend-file,id=mem,size={mem_size}M,'
+               'mem-path={path},share=on -m {mem_size} -numa node,memdev=mem'.
+               format(mem_size=self._qemu_opt.get('mem_size'),
+                      path=self._qemu_opt.get('huge_mnt')))
+
+        # Drive option
+        drive = ('-drive file={disk_image},format=raw,cache=none,if=virtio'
+                 '{locking}'.
+                 format(disk_image=self._qemu_opt.get('disk_image'),
+                        locking=',file.locking=off'\
+                            if self._qemu_version_is_greater('2.10') else ''))
 
         # SSH forwarding
-        ssh_fwd = '-net user,hostfwd=tcp::{0}-:22'.format(
-            self._qemu_opt.get('ssh_fwd_port'))
-        # Memory and huge pages
-        mem = '-object memory-backend-file,id=mem,size={0}M,mem-path={1},' \
-            'share=on -m {0} -numa node,memdev=mem'.format(
-                self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
+        ssh = ('-net user,hostfwd=tcp::{ssh_fwd_port}-:22'.
+               format(ssh_fwd_port=self._qemu_opt.get('ssh_fwd_port')))
+        # Setup QMP via unix socket
+        qmp = ('-qmp unix:{qmp_sock},server,nowait'.
+               format(qmp_sock=self._qemu_opt.get('qmp_sock')))
+        # Setup QGA via chardev (unix socket) and isa-serial channel
+        qga = ('-chardev socket,path={qga_sock},server,nowait,id=qga0 '
+               '-device isa-serial,chardev=qga0'.
+               format(qga_sock=self._qemu_opt.get('qga_sock')))
+        # Setup serial console
+        serial = ('-chardev socket,host=127.0.0.1,port={serial_port},id=gnc0,'
+                  'server,nowait -device isa-serial,chardev=gnc0'.
+                  format(serial_port=self._qemu_opt.get('serial_port')))
+
+        # Graphic setup
+        graphic = '-monitor none -display none -vga none'
+
+        # PID file
+        pid = ('-pidfile {pid_file}'.
+               format(pid_file=self._qemu_opt.get('pid_file')))
 
         # By default check only if hugepages are available.
         # If 'huge_allocate' is set to true try to allocate as well.
-        self._huge_page_check(allocate=self._qemu_opt.get('huge_allocate'))
-
-        # Disk option
-        drive = '-drive file={0},format=raw,cache=none,if=virtio'.format(
-            self._qemu_opt.get('disk_image'))
-        # Setup QMP via unix socket
-        qmp = '-qmp unix:{0},server,nowait'.format(self._qmp_sock)
-        # Setup serial console
-        serial = '-chardev socket,host=127.0.0.1,port={0},id=gnc0,server,' \
-            'nowait -device isa-serial,chardev=gnc0'.format(
-                self._qemu_opt.get('serial_port'))
-        # Setup QGA via chardev (unix socket) and isa-serial channel
-        qga = '-chardev socket,path={0},server,nowait,id=qga0 ' \
-            '-device isa-serial,chardev=qga0'.format(self._qga_sock)
-        # Graphic setup
-        graphic = '-monitor none -display none -vga none'
-        # PID file
-        pid = '-pidfile {}'.format(self._pid_file)
+        DUTSetup.check_huge_page(self._node, self._qemu_opt.get('huge_mnt'),
+                                 self._qemu_opt.get('mem_size'),
+                                 allocate=self._qemu_opt.get('huge_allocate'))
 
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}'.format(
-            bin_path, self._qemu_opt.get('smp'), mem, ssh_fwd,
-            self._qemu_opt.get('options'), drive, qmp, serial, qga, graphic,
-            pid)
+        cmd = ('{bin_path} {smp} {mem} {ssh} {options} {drive} {qmp} {serial} '
+               '{qga} {graphic} {pid}'.
+               format(bin_path=bin_path, smp=self._qemu_opt.get('smp'),
+                      mem=mem, ssh=ssh, options=self._qemu_opt.get('options'),
+                      drive=drive, qmp=qmp, serial=serial, qga=qga,
+                      graphic=graphic, pid=pid))
         try:
-            (ret_code, _, _) = self._ssh.exec_command_sudo(cmd, timeout=300)
+            ret_code, _, _ = self._ssh.exec_command_sudo(cmd, timeout=300)
             if int(ret_code) != 0:
-                raise RuntimeError('QEMU start failed on {0}'.format(
-                    self._node['host']))
+                raise RuntimeError('QEMU start failed on {host}'.
+                                   format(host=self._node['host']))
             # Wait until VM boot
             self._wait_until_vm_boot()
         except (RuntimeError, SSHTimeout):
@@ -586,8 +497,9 @@ class QemuUtils(object):
         out = self._qemu_qmp_exec('quit')
         err = out.get('error')
         if err is not None:
-            raise RuntimeError('QEMU quit failed on {0}, error: {1}'.format(
-                self._node['host'], json.dumps(err)))
+            raise RuntimeError('QEMU quit failed on {host}: {error}'.
+                               format(host=self._node['host'],
+                                      error=json.dumps(err)))
 
     def qemu_system_powerdown(self):
         """Power down the system (if supported)."""
@@ -595,9 +507,8 @@ class QemuUtils(object):
         err = out.get('error')
         if err is not None:
             raise RuntimeError(
-                'QEMU system powerdown failed on {0}, '
-                'error: {1}'.format(self._node['host'], json.dumps(err))
-            )
+                'QEMU system powerdown failed on {host}: {error}'.
+                format(host=self._node['host'], error=json.dumps(err)))
 
     def qemu_system_reset(self):
         """Reset the system."""
@@ -605,19 +516,20 @@ class QemuUtils(object):
         err = out.get('error')
         if err is not None:
             raise RuntimeError(
-                'QEMU system reset failed on {0}, '
-                'error: {1}'.format(self._node['host'], json.dumps(err)))
+                'QEMU system reset failed on {host}: {error}'.
+                format(host=self._node['host'], error=json.dumps(err)))
 
     def qemu_kill(self):
         """Kill qemu process."""
         # Note: in QEMU start phase there are 3 QEMU processes because we
         # daemonize QEMU
-        self._ssh.exec_command_sudo('chmod +r {}'.format(self._pid_file))
-        self._ssh.exec_command_sudo('kill -SIGKILL $(cat {})'
-                                    .format(self._pid_file))
+        self._ssh.exec_command_sudo('chmod +r {pid}'.
+                                    format(pid=self._qemu_opt.get('pid_file')))
+        self._ssh.exec_command_sudo('kill -SIGKILL $(cat {pid})'.
+                                    format(pid=self._qemu_opt.get('pid_file')))
         # Delete PID file
-        cmd = 'rm -f {}'.format(self._pid_file)
-        self._ssh.exec_command_sudo(cmd)
+        self._ssh.exec_command_sudo('rm -f {pid}'.
+                                    format(pid=self._qemu_opt.get('pid_file')))
 
     def qemu_kill_all(self, node=None):
         """Kill all qemu processes on DUT node if specified.
@@ -632,12 +544,13 @@ class QemuUtils(object):
     def qemu_clear_socks(self):
         """Remove all sockets created by QEMU."""
         # If serial console port still open kill process
-        cmd = 'fuser -k {}/tcp'.format(self._qemu_opt.get('serial_port'))
-        self._ssh.exec_command_sudo(cmd)
+        self._ssh.exec_command_sudo('fuser -k {serial_port}/tcp'.
+                                    format(serial_port=\
+                                           self._qemu_opt.get('serial_port')))
         # Delete all created sockets
-        for sock in self._socks:
-            cmd = 'rm -f {}'.format(sock)
-            self._ssh.exec_command_sudo(cmd)
+        for socket in self._socks:
+            self._ssh.exec_command_sudo('rm -f {socket}'.
+                                        format(socket=socket))
 
     def qemu_system_status(self):
         """Return current VM status.
@@ -669,9 +582,42 @@ class QemuUtils(object):
             return ret.get('status')
         else:
             err = out.get('error')
-            raise RuntimeError(
-                'QEMU query-status failed on {0}, '
-                'error: {1}'.format(self._node['host'], json.dumps(err)))
+            raise RuntimeError('QEMU query-status failed on {host}: {error}'.
+                               format(host=self._node['host'],
+                                      error=json.dumps(err)))
+
+    def qemu_version(self):
+        """Return Qemu version.
+
+        :returns: Qemu version.
+        :rtype: str
+        """
+        # Qemu binary path
+        bin_path = ('{qemu_path}{qemu_bin}'.
+                    format(qemu_path=self._qemu_opt.get('qemu_path'),
+                           qemu_bin=self._qemu_opt.get('qemu_bin')))
+
+        try:
+            ret_code, stdout, _ = self._ssh.exec_command_sudo(
+                '{bin_path} --version'.
+                format(bin_path=bin_path))
+            if int(ret_code) != 0:
+                raise RuntimeError('Failed to get QEMU version on {host}'.
+                                   format(host=self._node['host']))
+
+            return re.match(r'QEMU emulator version ([\d.]*)', stdout).group(1)
+        except (RuntimeError, SSHTimeout):
+            self.qemu_kill_all()
+            self.qemu_clear_socks()
+            raise
+
+    def _qemu_version_is_greater(self, version):
+        """Compare Qemu versions.
+
+        :returns: True if installed Qemu version is greater.
+        :rtype: bool
+        """
+        return StrictVersion(self.qemu_version()) > StrictVersion(version)
 
     @staticmethod
     def build_qemu(node, force_install=False, apply_patch=False):
@@ -688,23 +634,25 @@ class QemuUtils(object):
         ssh = SSH()
         ssh.connect(node)
 
-        directory = ' --directory={0}'.format(Constants.QEMU_INSTALL_DIR)
-        if apply_patch:
-            directory += '-patch'
-        else:
-            directory += '-base'
-        version = ' --version={0}'.format(Constants.QEMU_INSTALL_VERSION)
+        directory = (' --directory={install_dir}{patch}'.
+                     format(install_dir=Constants.QEMU_INSTALL_DIR,
+                            patch='-patch' if apply_patch else '-base'))
+        version = (' --version={install_version}'.
+                   format(install_version=Constants.QEMU_INSTALL_VERSION))
         force = ' --force' if force_install else ''
         patch = ' --patch' if apply_patch else ''
         arch = Topology.get_node_arch(node)
-        target_list = ' --target-list={0}-softmmu'.format(arch)
+        target_list = (' --target-list={arch}-softmmu'.
+                       format(arch=arch))
 
-        (ret_code, stdout, stderr) = \
-            ssh.exec_command(
-                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}{6}'"\
-                .format(Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH,
-                        version, directory, force, patch, target_list), 1000)
+        ret_code, _, _ = ssh.exec_command(
+            "sudo -E sh -c '{fw_dir}/{lib_sh}/qemu_build.sh{version}{directory}"
+            "{force}{patch}{target_list}'".
+            format(fw_dir=Constants.REMOTE_FW_DIR,
+                   lib_sh=Constants.RESOURCES_LIB_SH,
+                   version=version, directory=directory, force=force,
+                   patch=patch, target_list=target_list), 1000)
 
         if int(ret_code) != 0:
-            logger.debug('QEMU build failed {0}'.format(stdout + stderr))
-            raise RuntimeError('QEMU build failed on {0}'.format(node['host']))
+            raise RuntimeError('QEMU build failed on {host}'.
+                               format(host=node['host']))

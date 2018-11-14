@@ -140,7 +140,8 @@ class L3fwdTest(object):
             '{fwdir}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh {arch} '
             '{fwdir}/tests/dpdk/dpdk_scripts/{patch}'.
             format(fwdir=Constants.REMOTE_FW_DIR, arch=arch, patch=patch),
-                   timeout=600)
+            timeout=600)
 
         if ret_code != 0:
             raise RuntimeError('Patch of l3fwd failed.')
+

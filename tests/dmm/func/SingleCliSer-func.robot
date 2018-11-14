@@ -27,11 +27,20 @@
 | ... | between nodes. From this topology only DUT1 and DUT2 nodes are used.
 | ... | here we test the 1. test the vs_epool and vc_epoll
 
+*** Variables ***
+| ${dut1_ip}= | 172.28.128.3
+| ${dut2_ip}= | 172.28.128.4
+| ${prefix_len}= | 24
+
 *** Test Cases ***
-| TC01: DMM base vs epoll test case
-| | Given Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | And Pick out the port used to execute test
-| | When Exec the base vs epoll test | ${dut1_node} | ${dut2_node}
-| | Echo DMM logs | ${dut2_node}
-| | ${no_packet_loss} = | Get the test result | ${dut2_node}
-| | Then Should Not Be Equal As Integers | ${no_packet_loss} | 0
+| TC01: DMM Single Client Server Test Case
+| | Given DMM Basic Test Setup
+| | ${total_count} | ${pass_count}= | When Run DMM Func Test Cases
+| | ... | ${dut1_node} | ${dut2_node} | ${dut1_to_dut2_if_name}
+| | ... | ${dut2_to_dut1_if_name} | ${dut1_ip} | ${dut2_ip} | ${prefix_len}
+| | Then Should Be Equal As Integers | ${total_count} | ${pass_count}
+
+*** Keywords ***
+| DMM Basic Test Setup
+| | Path for 2-node testing is set | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | Pick out the port used to execute test
