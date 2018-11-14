@@ -669,7 +669,7 @@
         font:
           size: 16
       width: 700
-      height: 800
+      height: 850
 
     plot-throughput-speedup-analysis:
       titlefont:
@@ -742,14 +742,14 @@
           xanchor: "left",
           yanchor: "top",
           x: 0,
-          y: -0.125,
+          y: -0.13,
           font: {
             family: "Consolas, Courier New",
             size: 15
           },
         },
         {
-          text: "    perfect     measured     limit",
+          text: "    Perfect     Measured     Limit",
           align: "left",
           showarrow: False,
           xref: "paper",
@@ -757,7 +757,7 @@
           xanchor: "left",
           yanchor: "top",
           x: 0,
-          y: -0.14,
+          y: -0.15,
           font: {
             family: "Consolas, Courier New",
             size: 15
