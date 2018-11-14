@@ -96,3 +96,11 @@
     update_cache: True
   become: yes
   tags: install-pixman
+
+- name: Install python-cffi
+  apt:
+    name: 'python-cffi'
+    state: 'present'
+    update_cache: True
+  become: yes
+  tags: install-python-cffi
