@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dad2d39_bdfaf19c",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-14T15:01:01Z",
+      "side": 1,
+      "message": "Hiding arguments and return falue as class instance fields makes the invocation (line 150) actually less readable in my opinion. Also, if arguments and return value were explicit, they would be described in docstring.",
+      "range": {
+        "startLine": 57,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cab374e8_359520a0",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-14T15:01:01Z",
+      "side": 1,
+      "message": "Just a consequence of execute_papi not returning its results explicitly. As VatExecutor is hiding them as class instance fields as well, this makes the transition easier, but I would still prefer PapiExecutor to be less stateful.",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 210,
+        "endChar": 23
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0fed3b4e_49bb6193",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-14T15:01:01Z",
+      "side": 1,
+      "message": "You have still not answered my questions about data complexity:\nhttps://gerrit.fd.io/r/#/c/15191/1/resources/tools/papi/doc/papi_hld.rst@74\nhttps://gerrit.fd.io/r/#/c/15191/1/resources/tools/papi/doc/papi_hld.rst@75",
+      "range": {
+        "startLine": 152,
+        "startChar": 21,
+        "endLine": 152,
+        "endChar": 32
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59b79534_7060c2b4",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-14T15:01:01Z",
+      "side": 1,
+      "message": "Why do lines 174-180 use .get()?\nWhy does not this line use just the following?\n\napi_reply[0][\u0027apis\u0027][0]",
+      "range": {
+        "startLine": 174,
+        "startChar": 22,
+        "endLine": 174,
+        "endChar": 49
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f22adcb_edd76b1f",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-14T15:01:01Z",
+      "side": 1,
+      "message": "Single space please.",
+      "range": {
+        "startLine": 206,
+        "startChar": 27,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
