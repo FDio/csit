@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d25d2c09_ce1f2905",
+        "filename": "resources/tools/presentation/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:44:33Z",
+      "side": 1,
+      "message": "As I mentioned before, capital W is used on wikipedia [0].\n\n[0] https://en.wikipedia.org/wiki/ISO_week_date",
+      "range": {
+        "startLine": 48,
+        "startChar": 29,
+        "endLine": 48,
+        "endChar": 30
+      },
+      "revId": "b8287ec997b2d426818fc095f2e4b49ec95d9f49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
