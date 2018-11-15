@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48601673_cd0dea4d",
+        "filename": "resources/tools/testbed-setup/pxe/dhcpd.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:05:56Z",
+      "side": 1,
+      "message": "Commit message should mention why is t4 commented out.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "556bf5c3cbbaf3b243a9235f70105db94a0f0740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
