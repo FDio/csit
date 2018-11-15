@@ -41,9 +41,13 @@ fi
 REPO="fd.io.${STREAM}.${OS}"
 
 # download latest honeycomb and nsh packages
+HC_CLASSIFIER="-deb"
+HC_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.stable.1810.ubuntu.xenial.main/io/fd/hc2vpp/"
+VPP_RELEASE_VER="1.18.10-RELEASE_all"
 for ART in ${HC_ARTIFACTS}; do
     for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${HC_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+#        curl "${URL}?r=${REPO}&g=${HC_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+        wget -q "${HC_REPO_URL}/${ART}/${VPP_RELEASE_VER}/${ART}-${VPP_RELEASE_VER}${HC_CLASSIFIER}.${PAC}" || exit
     done
 done
 
@@ -70,9 +74,13 @@ else
 fi
 
 # download VPP packages
+VPP_CLASSIFIER="-deb"
+VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.stable.1810.ubuntu.xenial.main/io/fd/vpp/"
+VPP_RELEASE_VER="18.10-release_amd64"
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+#        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+        wget -q "${VPP_REPO_URL}/${ART}/${VPP_RELEASE_VER}/${ART}-${VPP_RELEASE_VER}${VPP_CLASSIFIER}.${PAC}" || exit
     done
 done
 
