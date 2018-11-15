@@ -91,7 +91,7 @@ HTML_BUILDER = 'sphinx-build -v -c . -a ' \
                '-b html -E ' \
                '-t html ' \
                '-D release={release} ' \
-               '-D version="Report v{report_version} - {date}" ' \
+               '-D version="Test Report {date}" ' \
                '{working_dir} ' \
                '{build_dir}/'
 
@@ -100,7 +100,7 @@ PDF_BUILDER = 'sphinx-build -v -c . -a ' \
               '-b latex -E ' \
               '-t latex ' \
               '-D release={release} ' \
-              '-D version="Report v{report_version} - {date}" ' \
+              '-D version="Test Report {date}" ' \
               '{working_dir} ' \
               '{build_dir}'
 
@@ -157,7 +157,7 @@ def generate_html_report(release, spec, versions, report_version):
     cmd = HTML_BUILDER.format(
         release=release,
         report_version=report_version,
-        date=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ'),
+        date=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
         working_dir=working_dir,
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
     execute_command(cmd)
@@ -212,7 +212,7 @@ def generate_pdf_report(release, spec, versions, report_version):
     cmd = PDF_BUILDER.format(
         release=release,
         report_version=report_version,
-        date=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%MZ'),
+        date=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
         working_dir=working_dir,
         build_dir=build_dir)
     execute_command(cmd)
