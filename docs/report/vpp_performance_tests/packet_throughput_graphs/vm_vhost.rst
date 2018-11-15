@@ -28,6 +28,8 @@
 
     </script>
 
+.. _KVM_VMs_vhost:
+
 KVM VMs vhost-user
 ==================
 
