@@ -26,26 +26,33 @@ IPV4_NETWORKS = ['192.168.{}.0/24'.format(i) for i in range(1, 100)]
 
 
 class IPv4NetworkGenerator(object):
-    """IPv4 network generator."""
+    """IPv4 network generator.
+
+    TODO: Conform to https://docs.python.org/2/library/stdtypes.html#typeiter
+    """
+
     def __init__(self, networks):
-        """
+        """Populate internal list of valid networks.
+
         :param networks: List of strings containing IPv4 subnet
-        with prefix length.
+            with prefix length.
         :type networks: list
+        :raise RuntimeError: If no IPv4 networks are added.
         """
-        self._networks = list()
+        self._networks = []
         for network in networks:
             net = IPv4Network(unicode(network))
             self._networks.append(net)
-        if len(self._networks) == 0:
-            raise Exception('No IPv4 networks')
+        if not self._networks:
+            raise RuntimeError("No IPv4 networks")
 
     def next_network(self):
-        """
+        """Pop and return network from internal list.
+
         :returns: Next network in form (IPv4Network, subnet).
         :raises StopIteration: If there are no more elements.
         """
-        if len(self._networks):
+        if self._networks:
             return self._networks.pop()
         else:
             raise StopIteration()

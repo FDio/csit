@@ -20,6 +20,7 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPv6Util
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | VM_ENV | HW_ENV | VPP_VM_ENV
+| ... | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *IPv4 with VLAN subinterfaces*

@@ -1,4 +1,4 @@
-CSIT 18.07
+CSIT 18.10
 ==========
 
 .. toctree::
@@ -38,6 +38,15 @@ CSIT 18.07
     dpdk_performance_tests/throughput_trending
     dpdk_performance_tests/test_environment
     dpdk_performance_tests/documentation
+
+.. toctree::
+    :maxdepth: 2
+    :caption: VPP Device
+
+    vpp_device_tests/overview
+    vpp_device_tests/csit_release_notes
+    vpp_device_tests/test_environment
+    vpp_device_tests/documentation
 
 .. toctree::
     :maxdepth: 2
@@ -84,6 +93,7 @@ CSIT 18.07
     detailed_test_results/cot_performance_results/index
     detailed_test_results/dpdk_performance_results/index
     detailed_test_results/vpp_functional_results/index
+    detailed_test_results/vpp_device_results_ubuntu/index
     detailed_test_results/honeycomb_functional_results/index
     detailed_test_results/nshsfc_functional_results/index
     detailed_test_results/dmm_functional_results/index
@@ -96,6 +106,7 @@ CSIT 18.07
     test_configuration/vpp_mrr_configuration/index
     test_configuration/cot_performance_configuration/index
     test_configuration/vpp_functional_configuration/index
+    test_configuration/vpp_device_configuration_ubuntu/index
 
 .. toctree::
     :maxdepth: 2

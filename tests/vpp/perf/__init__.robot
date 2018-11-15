@@ -19,6 +19,9 @@
 | Library | resources.libraries.python.CpuUtils
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
+| ...         | AND          | Install Vpp On All Duts | ${nodes}
+| ...         | ${packages_dir} | ${vpp_rpm_pkgs} | ${vpp_deb_pkgs}
+| ...         | AND          | Verify Vpp On All Duts | ${nodes}
 | ...         | AND          | Verify UIO Driver on all DUTs | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Show Vpp Version On All Duts | ${nodes}
@@ -47,10 +50,15 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
-| | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.5.0
-| | Set Global Variable | ${use_tuned_cfs} | ${False}
+| | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.11.2
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
 | | Set Global Variable | @{plugins_to_enable}
+| | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
+| | @{vpp_rpm_pkgs}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
+| | Set Global Variable | ${vpp_rpm_pkgs}
+| | @{vpp_deb_pkgs}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
+| | ... | vpp-plugins
+| | Set Global Variable | ${vpp_deb_pkgs}

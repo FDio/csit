@@ -85,7 +85,7 @@ class FibKeywords(object):
                 {
                     "table-id": vrf,
                     "address-family": "vpp-fib-table-management:{0}"
-                    .format(ip_version),
+                                      .format(ip_version),
                     "name": "{0}-VRF:{1}".format(ip_version, vrf)
                 }
             ]

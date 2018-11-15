@@ -17,15 +17,18 @@
 
 import logging
 import csv
+import re
 
 from string import replace
 from collections import OrderedDict
 from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 
-from errors import PresentationError
 from utils import mean, stdev, relative_change, classify_anomalies, \
     convert_csv_to_pretty_txt
+
+
+REGEX_NIC = re.compile(r'\d*ge\dp\d\D*\d*')
 
 
 def generate_tables(spec, data):
@@ -437,10 +440,13 @@ def table_performance_trending_dashboard(table, input_data):
                 if tst_name.lower() in table["ignore-list"]:
                     continue
                 if tbl_dict.get(tst_name, None) is None:
-                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
-                                            tst_data["name"])
-                    tbl_dict[tst_name] = {"name": name,
-                                          "data": OrderedDict()}
+                    groups = re.search(REGEX_NIC, tst_data["parent"])
+                    if not groups:
+                        continue
+                    nic = groups.group(0)
+                    tbl_dict[tst_name] = {
+                        "name": "{0}-{1}".format(nic, tst_data["name"]),
+                        "data": OrderedDict()}
                 try:
                     tbl_dict[tst_name]["data"][str(build)] = \
                         tst_data["result"]["receive-rate"]
@@ -514,12 +520,14 @@ def table_performance_trending_dashboard(table, input_data):
     convert_csv_to_pretty_txt(file_name, txt_file_name)
 
 
-def _generate_url(base, test_name):
+def _generate_url(base, testbed, test_name):
     """Generate URL to a trending plot from the name of the test case.
 
     :param base: The base part of URL common to all test cases.
+    :param testbed: The testbed used for testing.
     :param test_name: The name of the test case.
     :type base: str
+    :type testbed: str
     :type test_name: str
     :returns: The URL to the plot with the trending data for the given test
         case.
@@ -528,65 +536,105 @@ def _generate_url(base, test_name):
 
     url = base
     file_name = ""
-    anchor = "#"
+    anchor = ".html#"
     feature = ""
 
     if "lbdpdk" in test_name or "lbvpp" in test_name:
-        file_name = "link_bonding.html"
+        file_name = "link_bonding"
+
+    elif "114b" in test_name and "vhost" in test_name:
+        file_name = "vts"
 
     elif "testpmd" in test_name or "l3fwd" in test_name:
-        file_name = "dpdk.html"
+        file_name = "dpdk"
 
     elif "memif" in test_name:
-        file_name = "container_memif.html"
+        file_name = "container_memif"
+        feature = "-base"
 
     elif "srv6" in test_name:
-        file_name = "srv6.html"
+        file_name = "srv6"
 
     elif "vhost" in test_name:
         if "l2xcbase" in test_name or "l2bdbasemaclrn" in test_name:
-            file_name = "vm_vhost_l2.html"
+            file_name = "vm_vhost_l2"
+            if "114b" in test_name:
+                feature = ""
+            elif "l2xcbase" in test_name:
+                feature = "-base-l2xc"
+            elif "l2bdbasemaclrn" in test_name:
+                feature = "-base-l2bd"
+            else:
+                feature = "-base"
         elif "ip4base" in test_name:
-            file_name = "vm_vhost_ip4.html"
+            file_name = "vm_vhost_ip4"
+            feature = "-base"
 
     elif "ipsec" in test_name:
-        file_name = "ipsec.html"
+        file_name = "ipsec"
+        feature = "-base-scale"
 
     elif "ethip4lispip" in test_name or "ethip4vxlan" in test_name:
-        file_name = "ip4_tunnels.html"
+        file_name = "ip4_tunnels"
+        feature = "-base"
 
     elif "ip4base" in test_name or "ip4scale" in test_name:
-        file_name = "ip4.html"
-        if "iacl" in test_name or "snat" in test_name or "cop" in test_name:
+        file_name = "ip4"
+        if "xl710" in test_name:
+            feature = "-base-scale-features"
+        elif "iacl" in test_name:
+            feature = "-features-iacl"
+        elif "oacl" in test_name:
+            feature = "-features-oacl"
+        elif "snat" in test_name or "cop" in test_name:
             feature = "-features"
+        else:
+            feature = "-base-scale"
 
     elif "ip6base" in test_name or "ip6scale" in test_name:
-        file_name = "ip6.html"
+        file_name = "ip6"
+        feature = "-base-scale"
 
     elif "l2xcbase" in test_name or "l2xcscale" in test_name \
             or "l2bdbasemaclrn" in test_name or "l2bdscale" in test_name \
             or "l2dbbasemaclrn" in test_name or "l2dbscale" in test_name:
-        file_name = "l2.html"
-        if "iacl" in test_name:
-            feature = "-features"
+        file_name = "l2"
+        if "macip" in test_name:
+            feature = "-features-macip"
+        elif "iacl" in test_name:
+            feature = "-features-iacl"
+        elif "oacl" in test_name:
+            feature = "-features-oacl"
+        else:
+            feature = "-base-scale"
 
     if "x520" in test_name:
-        anchor += "x520-"
+        nic = "x520-"
     elif "x710" in test_name:
-        anchor += "x710-"
+        nic = "x710-"
     elif "xl710" in test_name:
-        anchor += "xl710-"
+        nic = "xl710-"
+    elif "xxv710" in test_name:
+        nic = "xxv710-"
+    else:
+        nic = ""
+    anchor += nic
 
     if "64b" in test_name:
-        anchor += "64b-"
+        framesize = "64b"
     elif "78b" in test_name:
-        anchor += "78b-"
+        framesize = "78b"
     elif "imix" in test_name:
-        anchor += "imix-"
+        framesize = "imix"
     elif "9000b" in test_name:
-        anchor += "9000b-"
-    elif "1518" in test_name:
-        anchor += "1518b-"
+        framesize = "9000b"
+    elif "1518b" in test_name:
+        framesize = "1518b"
+    elif "114b" in test_name:
+        framesize = "114b"
+    else:
+        framesize = ""
+    anchor += framesize + '-'
 
     if "1t1c" in test_name:
         anchor += "1t1c"
@@ -594,8 +642,15 @@ def _generate_url(base, test_name):
         anchor += "2t2c"
     elif "4t4c" in test_name:
         anchor += "4t4c"
+    elif "2t1c" in test_name:
+        anchor += "2t1c"
+    elif "4t2c" in test_name:
+        anchor += "4t2c"
+    elif "8t4c" in test_name:
+        anchor += "8t4c"
 
-    return url + file_name + anchor + feature
+    return url + file_name + '-' + testbed + '-' + nic + framesize + feature + \
+           anchor + feature
 
 
 def table_performance_trending_dashboard_html(table, input_data):
@@ -605,9 +660,15 @@ def table_performance_trending_dashboard_html(table, input_data):
 
     :param table: Table to generate.
     :param input_data: Data to process.
-    :type table: pandas.Series
+    :type table: dict
     :type input_data: InputData
     """
+
+    testbed = table.get("testbed", None)
+    if testbed is None:
+        logging.error("The testbed is not defined for the table '{0}'.".
+                      format(table.get("title", "")))
+        return
 
     logging.info("  Generating the table {0} ...".
                  format(table.get("title", "")))
@@ -654,7 +715,7 @@ def table_performance_trending_dashboard_html(table, input_data):
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
             # Name:
             if c_idx == 0:
-                url = _generate_url("../trending/", item)
+                url = _generate_url("../trending/", testbed, item)
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
             else:
@@ -705,10 +766,13 @@ def table_failed_tests(table, input_data):
                 if tst_name.lower() in table["ignore-list"]:
                     continue
                 if tbl_dict.get(tst_name, None) is None:
-                    name = "{0}-{1}".format(tst_data["parent"].split("-")[0],
-                                            tst_data["name"])
-                    tbl_dict[tst_name] = {"name": name,
-                                          "data": OrderedDict()}
+                    groups = re.search(REGEX_NIC, tst_data["parent"])
+                    if not groups:
+                        continue
+                    nic = groups.group(0)
+                    tbl_dict[tst_name] = {
+                        "name": "{0}-{1}".format(nic, tst_data["name"]),
+                        "data": OrderedDict()}
                 try:
                     tbl_dict[tst_name]["data"][build] = (
                         tst_data["status"],
@@ -763,6 +827,12 @@ def table_failed_tests_html(table, input_data):
     :type input_data: InputData
     """
 
+    testbed = table.get("testbed", None)
+    if testbed is None:
+        logging.error("The testbed is not defined for the table '{0}'.".
+                      format(table.get("title", "")))
+        return
+
     logging.info("  Generating the table {0} ...".
                  format(table.get("title", "")))
 
@@ -800,7 +870,7 @@ def table_failed_tests_html(table, input_data):
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
             # Name:
             if c_idx == 0:
-                url = _generate_url("../trending/", item)
+                url = _generate_url("../trending/", testbed, item)
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
             else:

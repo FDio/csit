@@ -185,6 +185,19 @@ class Topology(object):
         node['interfaces'][iface_key]['mac_address'] = str(mac_address)
 
     @staticmethod
+    def update_interface_pci_address(node, iface_key, pci_address):
+        """Update pci_address on the interface from the node.
+
+        :param node: Node to update PCI on.
+        :param iface_key: Topology key of the interface.
+        :param pci_address: PCI address.
+        :type node: dict
+        :type iface_key: str
+        :type pci_address: str
+        """
+        node['interfaces'][iface_key]['pci_address'] = str(pci_address)
+
+    @staticmethod
     def update_interface_vhost_socket(node, iface_key, vhost_socket):
         """Update vhost socket name on the interface from the node.
 
@@ -394,13 +407,13 @@ class Topology(object):
         :type node: dict
         :type iface_key: str/int
         :returns: Return sw_if_index or None if not found.
+        :rtype: int or None
         """
         try:
             if isinstance(iface_key, basestring):
                 return node['interfaces'][iface_key].get('vpp_sw_index')
             # TODO: use only iface_key, do not use integer
-            else:
-                return int(iface_key)
+            return int(iface_key)
         except (KeyError, ValueError):
             return None
 
@@ -416,11 +429,10 @@ class Topology(object):
         :raises TypeError: If provided interface name is not a string.
         """
         try:
-            if isinstance(iface_name, basestring):
-                iface_key = Topology.get_interface_by_name(node, iface_name)
-                return node['interfaces'][iface_key].get('vpp_sw_index')
-            else:
+            if not isinstance(iface_name, basestring):
                 raise TypeError("Interface name must be a string.")
+            iface_key = Topology.get_interface_by_name(node, iface_name)
+            return node['interfaces'][iface_key].get('vpp_sw_index')
         except (KeyError, ValueError):
             return None
 
@@ -565,6 +577,8 @@ class Topology(object):
         :param iface_keys: Interface keys for lookup.
         :type node: dict
         :type iface_keys: strings
+        :returns: Numa node of most given interfaces or 0.
+        :rtype: int
         """
         numa_list = []
         for if_key in iface_keys:
@@ -575,12 +589,11 @@ class Topology(object):
 
         numa_cnt_mc = Counter(numa_list).most_common()
 
-        if len(numa_cnt_mc) > 0 and numa_cnt_mc[0][0] != -1:
+        if numa_cnt_mc and numa_cnt_mc[0][0] != -1:
             return numa_cnt_mc[0][0]
-        elif len(numa_cnt_mc) > 1 and numa_cnt_mc[0][0] == -1:
+        if len(numa_cnt_mc) > 1 and numa_cnt_mc[0][0] == -1:
             return numa_cnt_mc[1][0]
-        else:
-            return 0
+        return 0
 
     @staticmethod
     def get_interface_mac(node, iface_key):
@@ -650,6 +663,7 @@ class Topology(object):
                     continue
                 if if_val['link'] == link_name:
                     return node_data, if_key
+        return None
 
     @staticmethod
     def get_interface_pci_addr(node, iface_key):
@@ -716,8 +730,8 @@ class Topology(object):
         :param filter_list: Link filter criteria.
         :type node: dict
         :type filter_list: list of strings
-        :returns: List of strings representing link names occupied by the node.
-        :rtype: list
+        :returns: List of link names occupied by the node.
+        :rtype: None or list of string
         """
         interfaces = node['interfaces']
         link_names = []
@@ -732,7 +746,7 @@ class Topology(object):
                                  .format(str(interface)))
                 else:
                     link_names.append(interface['link'])
-        if len(link_names) == 0:
+        if not link_names:
             link_names = None
         return link_names
 
@@ -782,15 +796,14 @@ class Topology(object):
         :param node2: Connected node.
         :type node1: dict
         :type node2: dict
-        :returns: Name of link connecting the two nodes together.
+        :returns: Name of a link connecting the two nodes together.
         :rtype: str
         :raises RuntimeError: If no links are found.
         """
         connecting_links = self.get_active_connecting_links(node1, node2)
-        if len(connecting_links) == 0:
+        if not connecting_links:
             raise RuntimeError("No links connecting the nodes were found")
-        else:
-            return connecting_links[0]
+        return connecting_links[0]
 
     @keyword('Get egress interfaces name on "${node1}" for link with '
              '"${node2}"')
@@ -806,7 +819,7 @@ class Topology(object):
         """
         interfaces = []
         links = self.get_active_connecting_links(node1, node2)
-        if len(links) == 0:
+        if not links:
             raise RuntimeError('No link between nodes')
         for interface in node1['interfaces'].values():
             link = interface.get('link')

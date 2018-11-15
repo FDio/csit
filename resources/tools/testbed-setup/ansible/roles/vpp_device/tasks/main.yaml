@@ -1,0 +1,21 @@
+---
+# file: roles/vpp_device/tasks/main.yaml
+
+- name: Copy csit-initialize-vfs.sh
+  copy:
+   src: 'files/csit-initialize-vfs.sh'
+   dest: '/usr/local/bin/'
+   owner: 'root'
+   group: 'root'
+   mode: '744'
+  tags: copy-vf-script
+
+- name: Copy csit-initialize-vfs.service
+  copy:
+   src: 'files/csit-initialize-vfs.service'
+   dest: '/etc/systemd/system/'
+   owner: 'root'
+   group: 'root'
+   mode: '644'
+  notify: ['Enable csit-initialize-vfs.service']
+  tags: copy-vf-service

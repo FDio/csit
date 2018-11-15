@@ -10,10 +10,6 @@ data:
     endpoints:
       - "172.17.0.1:22379"
 
-  kafka.conf: |
-    addrs:
-      - "172.17.0.1:9092"
-
   telemetry.conf: |
     polling-interval: 30000000000
     disabled: true

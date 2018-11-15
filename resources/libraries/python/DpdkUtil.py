@@ -29,8 +29,8 @@ class DpdkUtil(object):
         :rtype: str
         """
         # Set the hexadecimal bitmask of the cores to run on.
-        eal_coremask = '-c {} '.format(args['eal_coremask'])\
-            if args.get('eal_coremask', '') else ''
+        eal_corelist = '-l {} '.format(args['eal_corelist'])\
+            if args.get('eal_corelist', '') else ''
         # Set master core.
         eal_master_core = '--master-lcore 0 '
         # Set the number of memory channels to use.
@@ -42,7 +42,7 @@ class DpdkUtil(object):
         # Load an external driver. Multiple -d options are allowed.
         eal_driver = '-d /usr/lib/librte_pmd_virtio.so '
         eal_options = '-v '\
-            + eal_coremask\
+            + eal_corelist\
             + eal_master_core\
             + eal_mem_channels\
             + eal_socket_mem\
@@ -121,17 +121,17 @@ class DpdkUtil(object):
         return pmd_options
 
     @staticmethod
-    def dpdk_testpmd_start(node, **args):
+    def dpdk_testpmd_start(node, **kwargs):
         """Start DPDK testpmd app on VM node.
 
         :param node: VM Node to start testpmd on.
-        :param args: List of testpmd parameters.
+        :param args: Key-value testpmd parameters.
         :type node: dict
         :type args: dict
         :returns: nothing
         """
-        eal_options = DpdkUtil.get_eal_options(**args)
-        pmd_options = DpdkUtil.get_pmd_options(**args)
+        eal_options = DpdkUtil.get_eal_options(**kwargs)
+        pmd_options = DpdkUtil.get_pmd_options(**kwargs)
 
         ssh = SSH()
         ssh.connect(node)

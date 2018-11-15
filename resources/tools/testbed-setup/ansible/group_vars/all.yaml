@@ -2,3 +2,4 @@
 # file: group_vars/all.yaml
 
 ansible_python_interpreter: "/usr/bin/python2.7"
+ansible_become_pass: '{{ inventory_sudo_pass }}'

@@ -289,12 +289,17 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_TC_NUMBER = re.compile(r'tc[0-9]{2}-')
 
-    def __init__(self, metadata):
+    def __init__(self, metadata, mapping, ignore):
         """Initialisation.
 
         :param metadata: Key-value pairs to be included in "metadata" part of
-        JSON structure.
+            JSON structure.
+        :param mapping: Mapping of the old names of test cases to the new
+            (actual) one.
+        :param ignore: List of TCs to be ignored.
         :type metadata: dict
+        :type mapping: dict
+        :type ignore: list
         """
 
         # Type of message to parse out from the test messages
@@ -305,6 +310,12 @@ class ExecutionChecker(ResultVisitor):
 
         # Timestamp
         self._timestamp = None
+
+        # Mapping of TCs long names
+        self._mapping = mapping
+
+        # Ignore list
+        self._ignore = ignore
 
         # Number of VAT History messages found:
         # 0 - no message
@@ -626,12 +637,30 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
+        longname_orig = test.longname.lower()
+
+        # Check the ignore list
+        if longname_orig in self._ignore:
+            return
+
         tags = [str(tag) for tag in test.tags]
         test_result = dict()
-        test_result["name"] = test.name.lower()
+
+        # Change the TC long name and name if defined in the mapping table
+        longname = self._mapping.get(longname_orig, None)
+        if longname is not None:
+            name = longname.split('.')[-1]
+            logging.debug("{0}\n{1}\n{2}\n{3}".format(
+                self._data["metadata"], longname_orig, longname, name))
+        else:
+            longname = longname_orig
+            name = test.name.lower()
+
+        # Remove TC number from the TC long name (backward compatibility):
+        self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", longname)
         # Remove TC number from the TC name (not needed):
-        test_result["name"] = re.sub(self.REGEX_TC_NUMBER, "",
-                                     test.name.lower())
+        test_result["name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
+
         test_result["parent"] = test.parent.name.lower()
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
@@ -641,8 +670,6 @@ class ExecutionChecker(ResultVisitor):
             replace('\r', '').replace('"', "'")
         test_result["type"] = "FUNC"
         test_result["status"] = test.status
-        # Remove TC number from the TC long name (backward compatibility):
-        self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", test.longname.lower())
 
         if "PERFTEST" in tags:
             # Replace info about cores (e.g. -1c-) with the info about threads
@@ -671,6 +698,7 @@ class ExecutionChecker(ResultVisitor):
                     self._data["tests"][self._test_ID] = test_result
                     logging.error("The test '{0}' has no or more than one "
                                   "multi-threading tags.".format(self._test_ID))
+                    logging.debug("Tags: {0}".format(test_result["tags"]))
                     return
 
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
@@ -737,8 +765,12 @@ class ExecutionChecker(ResultVisitor):
                     items_str = groups.group(1)
                     items_float = [float(item.strip()) for item
                                    in items_str.split(",")]
-                    test_result["result"]["receive-rate"] = \
-                        AvgStdevMetadataFactory.from_data(items_float)
+                    metadata = AvgStdevMetadataFactory.from_data(items_float)
+                    # Next two lines have been introduced in CSIT-1179,
+                    # to be removed in CSIT-1180.
+                    metadata.size = 1
+                    metadata.stdev = 0.0
+                    test_result["result"]["receive-rate"] = metadata
                 else:
                     groups = re.search(self.REGEX_MRR, test.message)
                     test_result["result"]["receive-rate"] = \
@@ -1021,8 +1053,7 @@ class InputData(object):
 
         return self.data[job][build]["tests"]
 
-    @staticmethod
-    def _parse_tests(job, build, log):
+    def _parse_tests(self, job, build, log):
         """Process data from robot output.xml file and return JSON structured
         data.
 
@@ -1048,7 +1079,8 @@ class InputData(object):
                 log.append(("ERROR", "Error occurred while parsing output.xml: "
                                      "{0}".format(err)))
                 return None
-        checker = ExecutionChecker(metadata)
+        checker = ExecutionChecker(metadata, self._cfg.mapping,
+                                   self._cfg.ignore)
         result.visit(checker)
 
         return checker.data
@@ -1099,7 +1131,7 @@ class InputData(object):
         if success:
             logs.append(("INFO", "  Processing data from the build '{0}' ...".
                          format(build["build"])))
-            data = InputData._parse_tests(job, build, logs)
+            data = self._parse_tests(job, build, logs)
             if data is None:
                 logs.append(("ERROR", "Input data file from the job '{job}', "
                                       "build '{build}' is damaged. Skipped.".

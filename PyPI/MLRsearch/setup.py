@@ -14,7 +14,7 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 
 setup(
     name="MLRsearch",
-    version="0.1.1",  # This is currently the only place listing the version.
+    version="0.2.0",  # This is currently the only place listing the version.
     description="Library for speeding up binary search using shorter measurements.",
     long_description=long_description,
     long_description_content_type="text/x-rst",

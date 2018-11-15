@@ -329,12 +329,15 @@ class ContainerEngine(object):
         if self.container.install_dkms:
             self.execute(
                 'apt-get install -y dkms && '
-                'dpkg -i --force-all {guest_dir}/install_dir/*.deb'.
+                'dpkg -i --force-all '
+                '{guest_dir}/openvpp-testing/download_dir/*.deb'.
                 format(guest_dir=self.container.mnt[0].split(':')[1]))
         else:
             self.execute(
-                'for i in $(ls -I \"*dkms*\" {guest_dir}/install_dir/); do '
-                'dpkg -i --force-all {guest_dir}/install_dir/$i; done'.
+                'for i in $(ls -I \"*dkms*\" '
+                '{guest_dir}/openvpp-testing/download_dir/); do '
+                'dpkg -i --force-all '
+                '{guest_dir}/openvpp-testing/download_dir/$i; done'.
                 format(guest_dir=self.container.mnt[0].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')
@@ -476,9 +479,7 @@ class ContainerEngine(object):
 class LXC(ContainerEngine):
     """LXC implementation."""
 
-    def __init__(self):
-        """Initialize LXC object."""
-        super(LXC, self).__init__()
+    # Implicit constructor is inherited.
 
     def acquire(self, force=True):
         """Acquire a privileged system object where configuration is stored.
@@ -669,9 +670,7 @@ class LXC(ContainerEngine):
 class Docker(ContainerEngine):
     """Docker implementation."""
 
-    def __init__(self):
-        """Initialize Docker object."""
-        super(Docker, self).__init__()
+    # Implicit constructor is inherited.
 
     def acquire(self, force=True):
         """Pull an image or a repository from a registry.
@@ -686,7 +685,10 @@ class Docker(ContainerEngine):
             else:
                 return
 
-        cmd = 'docker pull {c.image}'.format(c=self.container)
+        image = self.container.image if self.container.image else\
+            "ubuntu:xenial-20180412"
+
+        cmd = 'docker pull {image}'.format(image=image)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
         if int(ret) != 0:

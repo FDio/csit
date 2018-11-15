@@ -118,8 +118,8 @@ class IPv4Node(object):
 
 class Tg(IPv4Node):
     """Traffic generator node"""
-    def __init__(self, node_info):
-        super(Tg, self).__init__(node_info)
+
+    # Implicit constructor is inherited.
 
     def _execute(self, cmd):
         """Executes the specified command on TG using SSH.
@@ -179,8 +179,8 @@ class Tg(IPv4Node):
 
 class Dut(IPv4Node):
     """Device under test"""
-    def __init__(self, node_info):
-        super(Dut, self).__init__(node_info)
+
+    # Implicit contructor is inherited.
 
     def get_sw_if_index(self, interface):
         """Get sw_if_index of specified interface from current node.
