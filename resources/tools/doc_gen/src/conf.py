@@ -54,7 +54,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'CSIT'
-copyright = u'2017, FD.io'
+copyright = u'2018, FD.io'
 author = u'CSIT'
 
 # The version info for the project you're documenting, acts as replacement for
