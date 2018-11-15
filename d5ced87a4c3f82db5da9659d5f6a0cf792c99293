@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c9ae8a3_88a378b9",
+        "filename": "resources/tools/disk-image-builder/ubuntu/build-listmaker.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:47:25Z",
+      "side": 1,
+      "message": "2018 :)",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "d5ced87a4c3f82db5da9659d5f6a0cf792c99293",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
