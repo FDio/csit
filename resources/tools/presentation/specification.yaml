@@ -146,7 +146,6 @@
       - 44  # NDRPDR sel
       - 47  # NDRPDR sel
       csit-vpp-perf-verify-1810-3n-hsw:
-      # TODO: Add data
       - 8   # NDRPDR sel
       - 12  # NDRPDR sel
       - 14  # NDRPDR sel
@@ -156,10 +155,10 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
 
     vpp-compare-testbeds:
       csit-vpp-perf-verify-1810-3n-hsw:
-      # TODO: Add data
       - 8   # NDRPDR sel
       - 12  # NDRPDR sel
       - 14  # NDRPDR sel
@@ -169,6 +168,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
       csit-vpp-perf-verify-1810-3n-skx:
       - 24  # NDRPDR full
       - 10  # NDRPDR sel
@@ -247,7 +247,6 @@
 
     plot-throughput-speedup-analysis-3n-hsw:
       csit-vpp-perf-verify-1810-3n-hsw:
-      # TODO: Add data
       - 8   # NDRPDR sel
       - 12  # NDRPDR sel
       - 14  # NDRPDR sel
@@ -257,6 +256,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
 
     plot-throughput-speedup-analysis-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
@@ -287,7 +287,6 @@
 
     plot-vpp-throughput-latency-3n-hsw:
       csit-vpp-perf-verify-1810-3n-hsw:
-      # TODO: Add data
       - 8   # NDRPDR sel
       - 12  # NDRPDR sel
       - 14  # NDRPDR sel
@@ -297,6 +296,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
 
     plot-vpp-throughput-latency-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
@@ -669,7 +669,7 @@
         font:
           size: 16
       width: 700
-      height: 850
+      # height: 850
 
     plot-throughput-speedup-analysis:
       titlefont:
@@ -879,7 +879,6 @@
     - 30  # WRK
     - 32  # WRK
     - 35  # WRK
-    # TODO: Add data:
     csit-vpp-perf-verify-1810-3n-hsw:
     - 9   # MRR sel
     - 20  # NDRPDR full
@@ -895,6 +894,7 @@
     - 38  # NDRPDR sel
     - 39  # NDRPDR sel
     - 41  # NDRPDR sel
+    - 42  # NDRPDR sel
     - 28  # WRK
     - 29  # WRK
     - 30  # WRK
@@ -1157,6 +1157,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1216,6 +1217,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1275,6 +1277,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1334,6 +1337,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
   data: "vpp-performance-changes"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -1361,6 +1365,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
@@ -1402,6 +1407,7 @@
       - 38  # NDRPDR sel
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
