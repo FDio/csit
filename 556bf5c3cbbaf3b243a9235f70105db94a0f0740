@@ -22,6 +22,30 @@
       "revId": "556bf5c3cbbaf3b243a9235f70105db94a0f0740",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa5b3a9_8d9e4cd3",
+        "filename": "resources/tools/testbed-setup/pxe/dhcpd.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-11-15T12:11:53Z",
+      "side": 1,
+      "message": "You are right. I will uncomment back. I had weak time so i put safe back here to not DHCP\u0027d VIRLs but no point to comment in it in code.",
+      "parentUuid": "48601673_cd0dea4d",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "556bf5c3cbbaf3b243a9235f70105db94a0f0740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
