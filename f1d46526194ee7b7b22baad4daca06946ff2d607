@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4754d4dd_f32971d1",
+        "filename": "resources/tools/disk-image-builder/ubuntu/build-listmaker.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:35:01Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "f1d46526194ee7b7b22baad4daca06946ff2d607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "031cb9c1_14a8ed73",
+        "filename": "resources/tools/disk-image-builder/ubuntu/run-listmaker.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:35:01Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "f1d46526194ee7b7b22baad4daca06946ff2d607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e7e98e7_27282454",
+        "filename": "resources/tools/disk-image-builder/ubuntu/scripts-remote/cleanup.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:35:01Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "f1d46526194ee7b7b22baad4daca06946ff2d607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10374ab3_1f529d7b",
+        "filename": "resources/tools/disk-image-builder/ubuntu/scripts-remote/cleanup.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:35:01Z",
+      "side": 1,
+      "message": "# Not killing dhclient because...",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 15
+      },
+      "revId": "f1d46526194ee7b7b22baad4daca06946ff2d607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2c89605_a9939469",
+        "filename": "resources/tools/disk-image-builder/ubuntu/scripts-remote/serial-console-ubuntu-18.04.1.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-15T12:35:01Z",
+      "side": 1,
+      "message": "This might be ignored, depending on how is the script launched.\n\nDo we want all the scripts to follow bash code style guidelines?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "f1d46526194ee7b7b22baad4daca06946ff2d607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
