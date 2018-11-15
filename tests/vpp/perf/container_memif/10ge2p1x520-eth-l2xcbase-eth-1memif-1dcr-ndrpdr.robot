@@ -99,7 +99,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize L2 xconnect for single memif in 3-node circular topology
+| | And Initialize L2 xconnect for single memif
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 

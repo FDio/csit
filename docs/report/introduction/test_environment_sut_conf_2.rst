@@ -1,5 +1,5 @@
 
-Linux CFS tunings
+Linux CFS Tunings
 ~~~~~~~~~~~~~~~~~
 
 Linux CFS scheduler tunings are applied to all QEMU vCPU worker threads

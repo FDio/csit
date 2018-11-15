@@ -1,0 +1,310 @@
+# Mapping of the old names of test cases to the new (actual) one.
+#
+# Data structure:
+#
+# old-name: new-name
+#
+# All TC names (old and new) are the long names. The mapping table is converted
+# to lowercase when loaded.
+
+
+# MRR Tests
+
+# tests.vpp.perf.l2
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale10kmaclrn-mrr.tc01-64B-1t1c-eth-l2dbscale10kmaclrn-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale10kmaclrn-mrr.tc01-64B-1t1c-eth-l2bdscale10kmaclrn-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale10kmaclrn-mrr.tc05-64B-2t2c-eth-l2dbscale10kmaclrn-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale10kmaclrn-mrr.tc02-64B-2t2c-eth-l2bdscale10kmaclrn-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale10kmaclrn-mrr.tc09-64B-4t4c-eth-l2dbscale10kmaclrn-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale10kmaclrn-mrr.tc03-64B-4t4c-eth-l2bdscale10kmaclrn-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdscale10kmaclrn-mrr.tc01-64B-1t1c-eth-l2dbscale10kmaclrn-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdscale10kmaclrn-mrr.tc01-64B-1t1c-eth-l2bdscale10kmaclrn-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdscale10kmaclrn-mrr.tc05-64B-2t2c-eth-l2dbscale10kmaclrn-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdscale10kmaclrn-mrr.tc02-64B-2t2c-eth-l2bdscale10kmaclrn-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdscale10kmaclrn-mrr.tc09-64B-4t4c-eth-l2dbscale10kmaclrn-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdscale10kmaclrn-mrr.tc03-64B-4t4c-eth-l2bdscale10kmaclrn-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc05-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc02-64B-2t2c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc09-64B-4t4c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.l2.10ge2p1x710-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr.tc03-64B-4t4c-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
+
+
+# tests.vpp.perf.ip4
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Mrr.tc01-64B-1t1c-ethip4-ip4base-snat-1u-1p-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-nat44-mrr.tc01-64B-1t1c-ethip4udp-ip4base-nat44-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Mrr.tc05-64B-2t2c-ethip4-ip4base-snat-1u-1p-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-nat44-mrr.tc02-64B-2t2c-ethip4udp-ip4base-nat44-mrr"
+
+Tests.Vpp.Perf.Ip4.10Ge2P1X520-Ethip4Udp-Ip4Base-Nat44-Mrr.tc09-64B-4t4c-ethip4-ip4base-snat-1u-1p-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4base-nat44-mrr.tc03-64B-4t4c-ethip4udp-ip4base-nat44-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc01-64B-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-snat-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc01-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc05-64B-2t2c-ethip4udp-ip4scale1000-udpsrcscale15-snat-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc02-64b-2t2c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc09-64B-4t4c-ethip4udp-ip4scale1000-udpsrcscale15-snat-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x520-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc03-64b-4t4c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl1-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sf-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl1sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl1-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl1sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl50-stateful-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sf-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc01-64b-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc05-64b-2t2c-ethip4udp-ip4base-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc02-64b-2t2c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc09-64b-4t4c-ethip4udp-ip4base-iacl50-stateless-flows10k-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-iacl50sl-10kflows-mrr.tc03-64b-4t4c-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+
+Tests.Vpp.Perf.Ip4.10ge2p1x710-Ethip4Udp-Ip4Base-Nat44-Mrr.tc01-64B-1t1c-ethip4-ip4base-snat-1u-1p-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-nat44-mrr.tc01-64B-1t1c-ethip4udp-ip4base-nat44-mrr"
+
+Tests.Vpp.Perf.Ip4.10ge2p1x710-Ethip4Udp-Ip4Base-Nat44-Mrr.tc05-64B-2t2c-ethip4-ip4base-snat-1u-1p-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-nat44-mrr.tc02-64B-2t2c-ethip4udp-ip4base-nat44-mrr"
+
+Tests.Vpp.Perf.Ip4.10ge2p1x710-Ethip4Udp-Ip4Base-Nat44-Mrr.tc09-64B-4t4c-ethip4-ip4base-snat-1u-1p-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4base-nat44-mrr.tc03-64B-4t4c-ethip4udp-ip4base-nat44-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc01-64B-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-snat-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc01-64b-1t1c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc05-64B-2t2c-ethip4udp-ip4scale1000-udpsrcscale15-snat-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc02-64b-2t2c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+
+tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc09-64B-4t4c-ethip4udp-ip4scale1000-udpsrcscale15-snat-mrr:
+  "tests.vpp.perf.ip4.10ge2p1x710-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr.tc03-64b-4t4c-ethip4udp-ip4scale1000-udpsrcscale15-nat44-mrr"
+
+
+# tests.vpp.perf.ip6
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-mrr.tc01-78B-1t1c-ethip6-ip6base-ip6scale2m-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-mrr.tc01-78B-1t1c-ethip6-ip6scale2m-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-mrr.tc05-78B-2t2c-ethip6-ip6base-ip6scale2m-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-mrr.tc02-78B-2t2c-ethip6-ip6scale2m-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-mrr.tc09-78B-4t4c-ethip6-ip6base-ip6scale2m-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-mrr.tc03-78B-4t4c-ethip6-ip6scale2m-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-mrr.tc01-78B-1t1c-ethip6-ip6base-ip6scale20k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-mrr.tc01-78B-1t1c-ethip6-ip6scale20k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-mrr.tc05-78B-2t2c-ethip6-ip6base-ip6scale20k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-mrr.tc02-78B-2t2c-ethip6-ip6scale20k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-mrr.tc09-78B-4t4c-ethip6-ip6base-ip6scale20k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-mrr.tc03-78B-4t4c-ethip6-ip6scale20k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale200k-mrr.tc01-78B-1t1c-ethip6-ip6base-ip6scale200k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale200k-mrr.tc01-78B-1t1c-ethip6-ip6scale200k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale200k-mrr.tc05-78B-2t2c-ethip6-ip6base-ip6scale200k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale200k-mrr.tc02-78B-2t2c-ethip6-ip6scale200k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale200k-mrr.tc09-78B-4t4c-ethip6-ip6base-ip6scale200k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale200k-mrr.tc03-78B-4t4c-ethip6-ip6scale200k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale2m-mrr.tc01-78B-1t1c-ethip6-ip6base-ip6scale2m-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale2m-mrr.tc01-78B-1t1c-ethip6-ip6scale2m-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale2m-mrr.tc05-78B-2t2c-ethip6-ip6base-ip6scale2m-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale2m-mrr.tc02-78B-2t2c-ethip6-ip6scale2m-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale2m-mrr.tc09-78B-4t4c-ethip6-ip6base-ip6scale2m-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale2m-mrr.tc03-78B-4t4c-ethip6-ip6scale2m-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale20k-mrr.tc01-78B-1t1c-ethip6-ip6base-ip6scale20k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale20k-mrr.tc01-78B-1t1c-ethip6-ip6scale20k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale20k-mrr.tc05-78B-2t2c-ethip6-ip6base-ip6scale20k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale20k-mrr.tc02-78B-2t2c-ethip6-ip6scale20k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale20k-mrr.tc09-78B-4t4c-ethip6-ip6base-ip6scale20k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale20k-mrr.tc03-78B-4t4c-ethip6-ip6scale20k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale200k-mrr.tc01-78B-1t1c-ethip6-ip6base-ip6scale200k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale200k-mrr.tc01-78B-1t1c-ethip6-ip6scale200k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale200k-mrr.tc05-78B-2t2c-ethip6-ip6base-ip6scale200k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale200k-mrr.tc02-78B-2t2c-ethip6-ip6scale200k-mrr"
+
+tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale200k-mrr.tc09-78B-4t4c-ethip6-ip6base-ip6scale200k-mrr:
+  "tests.vpp.perf.ip6.10ge2p1x710-ethip6-ip6scale200k-mrr.tc03-78B-4t4c-ethip6-ip6scale200k-mrr"
+
+
+# tests.vpp.perf.vm_vhost
+
+Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc01-64B-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc01-64B-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc05-64B-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc02-64B-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc09-64B-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc03-64B-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc04-IMIX-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc10-IMIX-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc08-IMIX-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc11-IMIX-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc01-64B-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc01-64B-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc05-64B-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc02-64B-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc09-64B-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc03-64B-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc04-IMIX-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc10-IMIX-1t1c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc08-IMIX-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc11-IMIX-2t2c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
+  "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"

@@ -94,20 +94,32 @@ class Specification(object):
         return self._specification["static"]
 
     @property
-    def is_debug(self):
-        """Getter - debug mode
+    def mapping(self):
+        """Getter - Mapping.
 
-        :returns: True if debug mode is on, otherwise False.
-        :rtype: bool
+        :returns: Mapping of the old names of test cases to the new (actual)
+            one.
+        :rtype: dict
         """
+        return self._specification["configuration"]["mapping"]
 
-        try:
-            if self.environment["configuration"]["CFG[DEBUG]"] == 1:
-                return True
-            else:
-                return False
-        except KeyError:
-            return False
+    @property
+    def ignore(self):
+        """Getter - Ignore list.
+
+        :returns: List of ignored test cases.
+        :rtype: list
+        """
+        return self._specification["configuration"]["ignore"]
+
+    @property
+    def alerting(self):
+        """Getter - Alerting.
+
+        :returns: Specification of alerts.
+        :rtype: dict
+        """
+        return self._specification["configuration"]["alerting"]
 
     @property
     def input(self):
@@ -413,6 +425,51 @@ class Specification(object):
                             build_nr = self._get_build_number(job, build_nr)
                         builds = [x for x in range(builds["start"], build_nr+1)]
                         self.configuration["data-sets"][set_name][job] = builds
+
+        # Mapping table:
+        mapping = None
+        mapping_file_name = self._specification["configuration"].\
+            get("mapping-file", None)
+        if mapping_file_name:
+            logging.debug("Mapping file: '{0}'".format(mapping_file_name))
+            try:
+                with open(mapping_file_name, 'r') as mfile:
+                    mapping = load(mfile)
+                logging.debug("Loaded mapping table:\n{0}".format(mapping))
+            except (YAMLError, IOError) as err:
+                raise PresentationError(
+                    msg="An error occurred while parsing the mapping file "
+                        "'{0}'.".format(mapping_file_name),
+                    details=repr(err))
+        # Make sure everything is lowercase
+        if mapping:
+            self._specification["configuration"]["mapping"] = \
+                {key.lower(): val.lower() for key, val in mapping.iteritems()}
+        else:
+            self._specification["configuration"]["mapping"] = dict()
+
+        # Ignore list:
+        ignore = None
+        ignore_list_name = self._specification["configuration"].\
+            get("ignore-list", None)
+        if ignore_list_name:
+            logging.debug("Ignore list file: '{0}'".format(ignore_list_name))
+            try:
+                with open(ignore_list_name, 'r') as ifile:
+                    ignore = load(ifile)
+                logging.debug("Loaded ignore list:\n{0}".format(ignore))
+            except (YAMLError, IOError) as err:
+                raise PresentationError(
+                    msg="An error occurred while parsing the ignore list file "
+                        "'{0}'.".format(ignore_list_name),
+                    details=repr(err))
+        # Make sure everything is lowercase
+        if ignore:
+            self._specification["configuration"]["ignore"] = \
+                [item.lower() for item in ignore]
+        else:
+            self._specification["configuration"]["ignore"] = list()
+
         logging.info("Done.")
 
     def _parse_input(self):

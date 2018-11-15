@@ -30,6 +30,6 @@ class AbstractMeasurer(object):
         :type duration: float
         :type transmit_rate: float
         :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
+        :rtype: ReceiveRateMeasurement.ReceiveRateMeasurement
         """
         pass

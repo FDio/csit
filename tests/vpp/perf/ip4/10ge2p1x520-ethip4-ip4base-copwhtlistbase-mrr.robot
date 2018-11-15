@@ -74,7 +74,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding in 3-node circular topology
+| | When Initialize IPv4 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1
 | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
 | | And Add Fib Table | ${dut2} | 1

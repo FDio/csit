@@ -6,13 +6,12 @@ metadata:
 spec:
   containers:
     - name: "sfc-controller"
-      image: ligato/prod_sfc_controller
-      imagePullPolicy: IfNotPresent
+      image: ligato/prod_sfc_controller:v0.0.1-102-gc74fec6
+      imagePullPolicy: Always
       command:
         - /bin/sfc-controller
-        - -etcdv3-config=/opt/sfc-controller/dev/etcd.conf
+        - -etcd-config=/opt/sfc-controller/dev/etcd.conf
         - -sfc-config=/opt/sfc-controller/dev/sfc.conf
-        - -vnf-config=/opt/sfc-controller/dev/vnf.conf
       volumeMounts:
         - name: controller-config
           mountPath: /opt/sfc-controller/dev

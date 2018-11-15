@@ -26,8 +26,8 @@ class ReceiveRateInterval(object):
 
         :param measured_low: Measurement for the lower bound.
         :param measured_high: Measurement for the upper bound.
-        :type measured_low: ReceiveRateMeasurement
-        :type measured_high: ReceiveRateMeasurement
+        :type measured_low: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type measured_high: ReceiveRateMeasurement.ReceiveRateMeasurement
         """
         # TODO: Type checking is not very pythonic,
         # perhaps users can fix wrong usage without it?

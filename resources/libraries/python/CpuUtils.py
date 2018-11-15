@@ -82,7 +82,7 @@ class CpuUtils(object):
                         ret, stderr))
             node['cpuinfo'] = list()
             for line in stdout.split("\n"):
-                if len(line) > 0 and line[0] != "#":
+                if line and line[0] != "#":
                     node['cpuinfo'].append([CpuUtils.__str2int(x) for x in
                                             line.split(",")])
 

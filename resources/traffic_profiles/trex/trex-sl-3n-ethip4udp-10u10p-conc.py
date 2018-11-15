@@ -24,7 +24,7 @@ Stream profile:
  - Direction 1 --> 0:
    - Source IP address range:      20.20.20.2 - 20.20.20.11
    - Destination IP address range: 10.10.10.2 - 10.10.10.11
-   - Source UDP port range:        2001-2010
+   - Source UDP port range:        2001 - 2010
    - Destination UDP port range:   1001 - 1010
 """
 

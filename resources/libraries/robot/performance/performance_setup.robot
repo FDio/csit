@@ -24,67 +24,6 @@
 
 # Keywords used in setups and teardowns
 
-| Set variables in 2-node circular topology
-| | [Documentation]
-| | ... | Compute path for testing on two given nodes in circular
-| | ... | topology and set corresponding suite variables.
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - tg - TG node
-| | ... | - tg_if1 - 1st TG interface towards DUT.
-| | ... | - tg_if2 - 2nd TG interface towards DUT.
-| | ... | - dut1 - DUT1 node
-| | ... | - dut1_if1 - 1st DUT interface towards TG.
-| | ... | - dut1_if2 - 2nd DUT interface towards TG.
-| | ...
-| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Compute Path | always_same_link=${FALSE}
-| | ${tg_if1} | ${tg}= | First Interface
-| | ${dut1_if1} | ${dut1}= | First Ingress Interface
-| | ${dut1_if2} | ${dut1}= | Last Egress Interface
-| | ${tg_if2} | ${tg}= | Last Interface
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${dut1}
-| | Set Suite Variable | ${dut1_if1}
-| | Set Suite Variable | ${dut1_if2}
-
-| Set variables in 3-node circular topology
-| | [Documentation]
-| | ... | Compute path for testing on three given nodes in circular
-| | ... | topology and set corresponding suite variables.
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - tg - TG node
-| | ... | - tg_if1 - TG interface towards DUT1.
-| | ... | - tg_if2 - TG interface towards DUT2.
-| | ... | - dut1 - DUT1 node
-| | ... | - dut1_if1 - DUT1 interface towards TG.
-| | ... | - dut1_if2 - DUT1 interface towards DUT2.
-| | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1 - DUT2 interface towards DUT1.
-| | ... | - dut2_if2 - DUT2 interface towards TG.
-| | ...
-| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | ... | ${nodes['TG']}
-| | Compute Path
-| | ${tg_if1} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${dut2_if1} | ${dut2}= | Next Interface
-| | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${tg_if2} | ${tg}= | Next Interface
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${dut1}
-| | Set Suite Variable | ${dut1_if1}
-| | Set Suite Variable | ${dut1_if2}
-| | Set Suite Variable | ${dut2}
-| | Set Suite Variable | ${dut2_if1}
-| | Set Suite Variable | ${dut2_if2}
-
 | Set variables in 2-node circular topology with DUT interface model
 | | [Documentation]
 | | ... | Compute path for testing on two given nodes in circular topology
@@ -142,8 +81,8 @@
 | | ... | - dut1_if1 - DUT1 interface towards TG.
 | | ... | - dut1_if2 - DUT1 interface towards DUT2.
 | | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1 - DUT2 interface towards TG.
-| | ... | - dut2_if2 - DUT2 interface towards DUT1.
+| | ... | - dut2_if1 - DUT2 interface towards DUT1.
+| | ... | - dut2_if2 - DUT2 interface towards TG.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -172,6 +111,74 @@
 | | Set Suite Variable | ${dut1_if2}
 | | Set Suite Variable | ${dut2}
 | | Set Suite Variable | ${dut2_if1}
+| | Set Suite Variable | ${dut2_if2}
+
+| Set variables in 3-node circular topology with DUT interface model with double link between DUTs
+| | [Documentation]
+| | ... | Compute path for testing on three given nodes in circular topology
+| | ... | with double link between DUTs based on interface model provided as an
+| | ... | argument and set corresponding suite variables.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - tg - TG node
+| | ... | - tg_if1 - TG interface towards DUT1.
+| | ... | - tg_if2 - TG interface towards DUT2.
+| | ... | - dut1 - DUT1 node
+| | ... | - dut1_if1 - DUT1 interface towards TG.
+| | ... | - dut1_if2_1 - DUT1 interface 1 towards DUT2.
+| | ... | - dut1_if2_2 - DUT1 interface 2 towards DUT2.
+| | ... | - dut2 - DUT2 node
+| | ... | - dut2_if1_1 - DUT2 interface 1 towards DUT1.
+| | ... | - dut2_if1_2 - DUT2 interface 2 towards DUT1.
+| | ... | - dut2_if2 - DUT2 interface towards TG.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set variables in 3-node circular topology with DUT interface model\
+| | ... | with double link between DUTs \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${iface_model}
+| | ...
+| | ${iface_model_list}= | Create list | ${iface_model}
+| | # Compute path TG - DUT1 with single link in between
+| | Append Node | ${nodes['TG']}
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | # Compute path TG - DUT2 with single link in between
+| | Clear Path
+| | Append Node | ${nodes['TG']}
+| | Append Node | ${nodes['DUT2']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if2} | ${tg}= | Next Interface
+| | ${dut2_if2} | ${dut2}= | Next Interface
+| | # Compute path DUT1 - DUT2 with double link in between
+| | Clear Path
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['DUT2']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Compute Path | always_same_link=${FALSE}
+| | ${dut1_if2_1} | ${dut1}= | First Interface
+| | ${dut1_if2_2} | ${dut1}= | Last Interface
+| | ${dut2_if1_1} | ${dut2}= | First Ingress Interface
+| | ${dut2_if1_2} | ${dut2}= | Last Egress Interface
+| | # Set suite variables
+| | Set Suite Variable | ${tg}
+| | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${dut1}
+| | Set Suite Variable | ${dut1_if1}
+| | Set Suite Variable | ${dut1_if2_1}
+| | Set Suite Variable | ${dut1_if2_2}
+| | Set Suite Variable | ${dut2}
+| | Set Suite Variable | ${dut2_if1_1}
+| | Set Suite Variable | ${dut2_if1_2}
 | | Set Suite Variable | ${dut2_if2}
 
 | Tear down guest VM with dpdk-testpmd
@@ -228,8 +235,8 @@
 
 | Set up 2-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator.
 | | ...
@@ -250,8 +257,8 @@
 
 | Set up 2-node-switched performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator.
 | | ...
@@ -277,8 +284,8 @@
 
 | Set up 3-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator.
 | | ...
@@ -298,9 +305,32 @@
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
 
+| Set up 3-node performance topology with DUT's NIC model with double link between DUTs
+| | [Documentation]
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up 3-node performance topology with DUT's NIC model with \
+| | ... | double link between DUTs \| L2 \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | ...
+| | Set variables in 3-node circular topology with DUT interface model with double link between DUTs
+| | ... | ${nic_model}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
+
 | Set up DPDK 2-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Updates interfaces on all nodes and setup global
+| | ... | Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator. Initializes DPDK test
 | | ... | environment.
@@ -324,7 +354,7 @@
 
 | Set up DPDK 3-node performance topology with DUT's NIC model
 | | [Documentation]
-| | ... | Updates interfaces on all nodes and setup global
+| | ... | Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Initializes traffic generator. Initializes DPDK test
 | | ... | environment.
@@ -345,6 +375,68 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
+
+| Set up SRIOV 2-node performance topology with DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that sets default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ... | It configures PCI device with VFs on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ... | - vf_driver - Virtual function driver. Type: string
+| | ... | - numvfs - Number of VFs. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up SRIOV 2-node performance topology with DUT's NIC model \
+| | ... | \| L2 \| Intel-X520-DA2 \| AVF \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model} | ${vf_driver}
+| | ... | ${numvfs}=${1}
+| | ...
+| | Set variables in 2-node circular topology with DUT interface model
+| | ... | ${nic_model}
+| | Run Keyword If | '${vf_driver}' == 'AVF'
+| | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
+| | ... | topology_type=${topology_type}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1_vf0} | ${dut1} | ${dut1_if2_vf0}
+| | ... | ${topology_type}
+
+| Set up SRIOV 3-node performance topology with DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that sets default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ... | It configures PCI device with VFs on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ... | - vf_driver - Virtual function driver. Type: string
+| | ... | - numvfs - Number of VFs. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up SRIOV 3-node performance topology with DUT's NIC model \
+| | ... | \| L2 \| Intel-X520-DA2 \| AVF \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model} | ${vf_driver}
+| | ... | ${numvfs}=${1}
+| | ...
+| | Set variables in 3-node circular topology with DUT interface model
+| | ... | ${nic_model}
+| | Run Keyword If | '${vf_driver}' == 'AVF'
+| | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
+| | ... | topology_type=${topology_type}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1_vf0} | ${dut2} | ${dut2_if2_vf0}
+| | ... | ${topology_type}
 
 | Set up IPSec performance test suite
 | | [Documentation]
@@ -374,7 +466,7 @@
 | | ... | '${crypto_type}' == 'SW_cryptodev' | ${0}
 | | Configure crypto device on all DUTs | force_init=${True} | numvfs=${numvfs}
 | | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
-| | ... | Configure kernel module on all DUTs | igb_uio | force_load=${True}
+| | ... | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
 | Set up performance topology with containers
 | | [Documentation]
@@ -385,7 +477,9 @@
 | | Acquire all 'VNF' containers
 | | Create all 'VNF' containers
 | | Configure VPP in all 'VNF' containers
+| | Stop VPP service on all DUTs | ${nodes}
 | | Install VPP in all 'VNF' containers
+| | Start VPP service on all DUTs | ${nodes}
 
 | Set up performance test suite with MEMIF
 | | [Documentation]
@@ -407,6 +501,13 @@
 | | ...
 | | Set Suite Variable | @{plugins_to_enable}
 | | Append To List | ${plugins_to_enable} | acl_plugin.so
+
+| Set up performance test suite with AVF driver
+| | [Documentation]
+| | ... | Append avf_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | avf_plugin.so
 
 | Set up performance test suite with Static SRv6 proxy
 | | [Documentation]
@@ -438,8 +539,8 @@
 
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
 | | ... | variables used in test cases based on interface model provided as an
 | | ... | argument. Installs the traffic generator.
 | | ...
@@ -570,18 +671,6 @@
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
 
-| Tear down performance ndrchk test
-| | [Documentation] | Common test teardown for ndrchk performance tests.
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-
-| Tear down performance pdrchk test
-| | [Documentation] | Common test teardown for pdrchk performance tests.
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-
 | Tear down performance mrr test
 | | [Documentation] | Common test teardown for max-received-rate performance
 | | ... | tests.
@@ -685,7 +774,7 @@
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | ... | ${dut1_node} | ${dut1_vm_refs}
 | | ... | ${dut2_node} | ${dut2_vm_refs}
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
@@ -705,7 +794,7 @@
 | | Tear down mrr test with vhost and VM with dpdk-testpmd
 | | ... | ${dut1_node} | ${dut1_vm_refs}
 | | ... | ${dut2_node} | ${dut2_vm_refs}
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
@@ -834,7 +923,7 @@
 | | ...
 | | Tear down performance discovery test | ${rate} | ${framesize}
 | | ... | ${traffic_profile}
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
@@ -847,7 +936,7 @@
 | | ... | \| Tear down mrr test with ACL \|
 | | ...
 | | Tear down performance mrr test
-| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 

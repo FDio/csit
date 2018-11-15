@@ -4,12 +4,15 @@ Report History
 +---------+--------------------------------------------------------------------+
 | Version | Change                                                             |
 +=========+====================================================================+
-| 1.1     | The known issues                                                   |
-|         | `CSIT-1246 <https://jira.fd.io/browse/CSIT-1246>`_,                |
-|         | `CSIT-1253 <https://jira.fd.io/browse/CSIT-1253>`_,                |
-|         | `CSIT-1266 <https://jira.fd.io/browse/CSIT-1266>`_,                |
-|         | `CSIT-1267 <https://jira.fd.io/browse/CSIT-1267>`_                 |
-|         | added to :ref:`vpp_known_issues`.                                  |
+| 1.2     | - Add automatic wrapping of long test names in graphs              |
++---------+--------------------------------------------------------------------+
+| 1.1     | - Add dot1q KVM VMs vhost-user tests to the VPP performance        |
+|         |   graphs.                                                          |
+|         | - Add the information about the number of runs used to generate    |
+|         |   the plots.                                                       |
+|         | - Add the test results:                                            |
+|         |   - K8s Container Memif,                                           |
+|         |   - VPP on 3n-hsw testbed.                                         |
 +---------+--------------------------------------------------------------------+
 | 1.0     | Initial version                                                    |
 +---------+--------------------------------------------------------------------+

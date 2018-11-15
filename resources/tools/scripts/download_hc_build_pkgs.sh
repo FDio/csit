@@ -20,8 +20,9 @@ OS=$2
 
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VPP_GROUP="io.fd.vpp"
-NSH_GROUP="io.fd.nsh_sfc"
-NSH_ARTIFACTS="vpp-nsh-plugin"
+# TODO(CSIT-994): reenable NSH
+# NSH_GROUP="io.fd.nsh_sfc"
+# NSH_ARTIFACTS="vpp-nsh-plugin"
 VPP_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
 
 if [ "${OS}" == "ubuntu1604" ]; then
@@ -52,11 +53,12 @@ for ART in ${VPP_ARTIFACTS}; do
     done
 done
 
-for ART in ${NSH_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
+# TODO(CSIT-994): reenable NSH
+# for ART in ${NSH_ARTIFACTS}; do
+#     for PAC in ${PACKAGE}; do
+#         curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+#     done
+# done
 
 # verify downloaded packages
 if [ "${OS}" == "centos7" ]; then

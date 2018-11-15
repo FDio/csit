@@ -73,7 +73,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding in 3-node circular topology
+| | When Initialize IPv4 forwarding in circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 

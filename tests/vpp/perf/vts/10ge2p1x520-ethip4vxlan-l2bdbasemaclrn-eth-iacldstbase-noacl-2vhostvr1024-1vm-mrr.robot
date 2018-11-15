@@ -56,7 +56,6 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
-| ${perf_qemu_qsz}= | 1024
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 | ${overhead}= | ${50}
@@ -68,8 +67,10 @@
 | ${sock2}= | /tmp/sock-1-${dut1_bd_id2}
 # Traffic profile:
 | ${traffic_profile} | trex-sl-ethip4-vxlansrc253
-
 | ${acl_type}= | ${EMPTY}
+# Defaults for teardown:
+| ${dut1}= | ${None}
+| ${dut1_vm_refs}= | ${None}
 
 *** Keywords ***
 | Local Template
@@ -107,8 +108,8 @@
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
 | | ${vm1} = | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | ... | jumbo_frames=${jumbo}
+| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | Set Test Variable | &{dut1_vm_refs} | DUT1_VM1=${vm1}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
