@@ -12,6 +12,13 @@ FD.io CSIT-18.10 Test Report History
 |         |    a. HoneyComb Functional,                                        |
 |         |    b. VPP on 3n-hsw testbed.                                       |
 |         |                                                                    |
+|         | 5. 3n-skx and 2n-skx comparisons added to Report:                  |
+|         |                                                                    |
+|         |    a. VPP Performance Tests:                                       |
+|         |       :ref:`vpp_compare_current_vs_previous_release`               |
+|         |    b. DPDK Performance Tests:                                      |
+|         |       :ref:`dpdk_compare_current_vs_previous_release`              |
+|         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w46    | 1. dot1q KVM VMs vhost-user tests added to                         |
 |         |    :ref:`KVM_VMs_vhost`.                                           |
