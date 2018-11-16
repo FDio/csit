@@ -305,7 +305,7 @@ def plot_latency_error_bars(plot, input_data):
             split_name = True
             for segment in name_lst:
                 if (len(name) + len(segment) + 1) > 50 and split_name:
-                    name += "<br>    "
+                    name += "<br>"
                     split_name = False
                 name += segment + '-'
             name = name[:-1]
@@ -494,7 +494,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
                     split_name = True
                     for segment in name_lst:
                         if (len(name) + len(segment) + 1) > 50 and split_name:
-                            name += "<br>    "
+                            name += "<br>"
                             split_name = False
                         name += segment + '-'
                     name = name[:-1]

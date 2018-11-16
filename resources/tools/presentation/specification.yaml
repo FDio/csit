@@ -669,7 +669,7 @@
         font:
           size: 16
       width: 700
-      # height: 850
+      height: 900
 
     plot-throughput-speedup-analysis:
       titlefont:
