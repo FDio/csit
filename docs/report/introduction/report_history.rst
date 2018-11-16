@@ -5,8 +5,12 @@ FD.io CSIT-18.10 Test Report History
 | Version | Change                                                             |
 +=========+====================================================================+
 | .w47    | 1. Automatic wrapping of long test names in graphs added.          |
-|         | 2. Data and time format in the header changed                      |
+|         | 2. Data and time format in the header changed.                     |
 |         | 3. Versioning changed.                                             |
+|         | 4. Added more test runs:                                           |
+|         |                                                                    |
+|         |    a. HoneyComb Functional,                                        |
+|         |    b. VPP on 3n-hsw testbed.                                       |
 |         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w46    | 1. dot1q KVM VMs vhost-user tests added to                         |

@@ -498,7 +498,7 @@
     # HoneyComb Functional
     hc-func-results:
       csit-hc2vpp-verify-func-1810-ubuntu1604:
-      - 1
+      - 3
 
     # NSH SFC Functional
     nsh-func-results:
@@ -1088,7 +1088,7 @@
     csit-dmm-functional-1810-ubuntu1604-virl:
     - 1
     csit-hc2vpp-verify-func-1810-ubuntu1604:
-    - 1
+    - 3
 
 -
   type: "output"
