@@ -1,4 +1,6 @@
 
+.. _VPP_Packet_Latency:
+
 .. raw:: latex
 
     \clearpage
