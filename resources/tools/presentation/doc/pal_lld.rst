@@ -1,5 +1,5 @@
-Presentation and Analytics Layer
-================================
+Presentation and Analytics
+==========================
 
 Overview
 --------

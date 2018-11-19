@@ -1,5 +1,5 @@
-VPP Performance NDR/PDR
-=======================
+VPP Throughput
+==============
 
 .. toctree::
 
