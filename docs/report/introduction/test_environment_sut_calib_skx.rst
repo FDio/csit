@@ -211,3 +211,5 @@ L1/L2/LLC Latency
     Writer Numa Node        0       1
                 0           -   177.9
                 1       177.6       -
+
+.. include:: test_environment_sut_meltspec_skx.rst
