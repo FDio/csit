@@ -204,11 +204,13 @@ Performance testing tags
     Single test finding both No Drop Rate and Partial Drop Rate simultaneously.
     The search is done by optimized algorithm which performs
     multiple trial runs at different durations and transmit rates.
+    The results come from the final trials, which have duration of 30 seconds.
 
 .. topic:: MRR
 
     Performance tests where TG sends the traffic at maximum rate (line rate)
-    and reports total sent/received packets over performance trial duration.
+    and reports total sent/received packets over trial duration.
+    The result is an average of 10 trials of 1 second duration.
 
 Ethernet frame size tags for performance tests
 ----------------------------------------------
