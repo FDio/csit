@@ -187,3 +187,50 @@ Complete 2n-skx testbed specification is available on
 <https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.>`_ wiki page.
 
 Total of four 2n-skx testbeds are in operation in FD.io labs.
+
+2-Node Atom Denverton (2n-dnv)
+------------------------------
+
+2n-dnv testbed is based on one SuperMicro SYS-7049GP-TRT server that equipped
+with two Intel Xeon Skylake Platinum 8180 2.5 GHz 28 core processors and one
+SuperMicro SYS-E300-9A server that equipped with one Intel Atom CPU C3858
+2.00GHz 12 core processors. Physical testbed topology is depicted in a figure
+below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-2n-dnv}
+                \label{fig:testbed-2n-dnv}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: testbed-2n-dnv.svg
+        :alt: testbed-2n-dnv
+        :align: center
+
+SUT server have four internal 10G NIC port:
+
+#. P-1: x553 copper port.
+#. P-2: x553 copper port.
+#. P-3: x553 fiber port.
+#. P-4: x553 fiber port.
+
+TG server run T-Rex application and are populated with the following
+NIC models:
+
+#. NIC-1: x550-T2 2p10GE Intel.
+#. NIC-2: x550-T2 2p10GE Intel.
+#. NIC-3: x520-DA2 2p10GE Intel.
+#. NIC-4: x520-DA2 2p10GE Intel.
+
+Complete 2n-dnv testbed specification is available on
+`CSIT/Testbeds: Xeon Skx, Arm, Atom
+<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.>`_ wiki page.
+
+Total of one 2n-dnv testbeds are in operation in FD.io labs.
