@@ -1,4 +1,5 @@
 
+.. _VPP_Packet_Throughput:
 .. raw:: latex
 
     \clearpage

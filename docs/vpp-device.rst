@@ -1,5 +1,5 @@
-VPP_Device Integration Tests
-============================
+Integration Tests
+=================
 
 Abstract
 --------
