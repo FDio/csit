@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1abe18b8_7708f33f",
+        "filename": "resources/test_data/honeycomb/plugin_acl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-19T14:00:44Z",
+      "side": 1,
+      "message": "Other blocks would have _dst_ here. Was it a typo, or is this exchange \"logical\" for reflex?",
+      "range": {
+        "startLine": 500,
+        "startChar": 73,
+        "endLine": 500,
+        "endChar": 78
+      },
+      "revId": "b3e3e9f52f72579bfa88c464c1a75d69055eaee6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
