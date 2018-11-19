@@ -271,10 +271,7 @@ class ACLKeywords(object):
         :raises HoneycombError: If the operation fails.
         """
 
-        if macip:
-            path = "/acl/vpp-acl:vpp-macip-acl/{0}".format(list_name)
-        else:
-            path = "/acl/vpp-acl:vpp-acl/{0}".format(list_name)
+        path = "/acl/{0}".format(list_name)
 
         status_code, resp = HcUtil.put_honeycomb_data(
             node, "config_plugin_acl", data, path)
@@ -318,32 +315,19 @@ class ACLKeywords(object):
                              "Valid options are: ingress, egress."
                              .format(direction))
 
-        path = "/interface/{0}/interface-acl:acl/{1}".format(
+        path = "/attachment-points/interface/{0}/{1}/acl-sets/".format(
             interface, direction)
 
-        if macip:
-            data = {
-                direction: {
-                    "vpp-macip-acl": {
-                        "type": "vpp-acl:vpp-macip-acl",
-                        "name": acl_name
-                    }
+        data = {
+            "acl-sets": {
+                "acl-set": {
+                    "name": acl_name
                 }
             }
-        else:
-            data = {
-                direction: {
-                    "vpp-acls": [
-                        {
-                            "type": "vpp-acl:vpp-acl",
-                            "name": acl_name
-                        }
-                    ]
-                }
-            }
+        }
 
         status_code, resp = HcUtil.put_honeycomb_data(
-            node, "config_vpp_interfaces", data, path)
+            node, "config_plugin_acl", data, path)
 
         if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
@@ -367,9 +351,9 @@ class ACLKeywords(object):
 
         interface = interface.replace("/", "%2F")
 
-        path = "/interface/{0}/interface-acl:acl/".format(interface)
+        path = "/attachment-points/interface/{0}/".format(interface)
         status_code, _ = HcUtil.delete_honeycomb_data(
-            node, "config_vpp_interfaces", path)
+            node, "config_plugin_acl", path)
 
         if status_code != HTTPCodes.OK:
             raise HoneycombError(

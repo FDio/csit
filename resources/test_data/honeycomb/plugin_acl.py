@@ -152,366 +152,390 @@ def get_variables(test_case, name):
     }
     acl_data = {
         # ACL configuration for L2 tests
+
         "macip": {
             "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-macip-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [
-                    {
-                        "rule-name": "rule1",
-                        "matches": {
-                            "vpp-macip-ace-nodes": {
-                                "source-mac-address":
-                                    test_vars["macip"]["classify_src"],
-                                "source-mac-address-mask":
-                                    test_vars["macip"]["src_mask"],
-                                "source-ipv4-network": "16.0.0.0/24"
+                "name": name,
+                "type": "vpp-acl:vpp-macip-acl",
+                "aces": {
+                    "ace": [
+                        {
+                            "name": "rule1",
+                            "matches": {
+
+                                "eth": {
+                                    "source-mac-address": test_vars["macip"]["classify_src"],
+                                    "source-mac-address-mask": test_vars["macip"]["src_mask"]
+                                },
+                                "ipv4": {
+
+                                    "source-ipv4-network": "16.0.0.0/24"
+                                }
+                            },
+
+                            "actions": {
+                                "forwarding": "ietf-access-control-list:drop"
                             }
                         },
-                        "actions": {
-                            "deny": ["null"]
-                        }
-                    },
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-macip-ace-nodes": {
-                                "source-mac-address":
-                                    test_vars["macip"]["classify_src"],
-                                "source-mac-address-mask": "00:00:00:00:00:00",
-                                "source-ipv4-network": "0.0.0.0/0"
+                        {
+                            "name": "rule_all",
+                            "matches": {
+
+                                "eth": {
+                                    "source-mac-address": test_vars["macip"]["classify_src"],
+                                    "source-mac-address-mask": "00:00:00:00:00:00"
+                                },
+
+                                "ipv4": {
+                                    "source-ipv4-network": "0.0.0.0/0"
+                                }
+                            },
+                            "actions": {
+                                "forwarding": "ietf-access-control-list:accept"
                             }
-                        },
-                        "actions": {
-                            "permit": ["null"]
                         }
-                    },
-                ]}
-            }]
+                    ]}
+                }
+            ]
         },
         # ACL configuration for L3 IPv4 tests
         "l3_ip4": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [
-                    {
-                        "rule-name": "rule1",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network":
-                                    "{0}/{1}".format(
-                                        test_vars["l3_ip4"]["classify_src_net"],
-                                        test_vars["l3_ip4"]["prefix_length"]),
-                                "destination-ipv4-network":
-                                    "{0}/{1}".format(
-                                        test_vars["l3_ip4"]["classify_dst_net"],
-                                        test_vars["l3_ip4"]["prefix_length"]),
-                                "udp-nodes": {
-                                    "source-port-range": {
-                                        "lower-port": "0",
-                                        "upper-port": "65535"
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "rule1",
+                                "matches": {
+                                    "ipv4": {
+                                        "destination-ipv4-network": "{0}/{1}".format(
+                                            test_vars["l3_ip4"]["classify_dst_net"],
+                                            test_vars["l3_ip4"]["prefix_length"]),
+                                        "source-ipv4-network": "{0}/{1}".format(
+                                            test_vars["l3_ip4"]["classify_src_net"],
+                                            test_vars["l3_ip4"]["prefix_length"])
                                     },
-                                    "destination-port-range": {
-                                        "lower-port": "0",
-                                        "upper-port": "65535"
+                                    "udp":{
+                                        "source-port": {
+                                            "lower-port": "0",
+                                            "upper-port": "65535"
+                                        },
+                                        "destination-port": {
+                                            "lower-port": "0",
+                                            "upper-port": "65535"
+                                        }
                                     }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:drop"
+                                }
+                            },
+                            {
+                                "name": "rule_all",
+                                "matches": {
+                                    "ipv4": {
+                                        "destination-ipv4-network": "0.0.0.0/0",
+                                        "source-ipv4-network": "0.0.0.0/0"
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:accept"
                                 }
                             }
-                        },
-                        "actions": {
-                            "deny": ["null"]
-                        },
-                    },
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network": "0.0.0.0/0",
-                                "destination-ipv4-network": "0.0.0.0/0",
-                            }
-                        },
-                        "actions": {
-                            "permit": ["null"]
-                        }
+                        ]
                     }
-                ]}
-            }]
+                }
+            ]
         },
         # ACL settings for L3 IPv6 tests
         "l3_ip6": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [
-                    {
-                        "rule-name": "rule1",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv6-network":
-                                    "{0}/{1}".format(
-                                        test_vars["l3_ip6"]["classify_src_net"],
-                                        test_vars["l3_ip6"]["prefix_length"]),
-                                "destination-ipv6-network":
-                                    "{0}/{1}".format(
-                                        test_vars["l3_ip6"]["classify_dst_net"],
-                                        test_vars["l3_ip6"]["prefix_length"]),
-                                "udp-nodes": {
-                                    "source-port-range": {
-                                        "lower-port": "0",
-                                        "upper-port": "65535"
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "rule1",
+                                "matches": {
+                                    "ipv6": {
+                                        "destination-ipv6-network": "{0}/{1}".format(
+                                            test_vars["l3_ip6"]["classify_dst_net"],
+                                            test_vars["l3_ip6"]["prefix_length"]),
+                                        "source-ipv6-network": "{0}/{1}".format(
+                                            test_vars["l3_ip6"]["classify_src_net"],
+                                            test_vars["l3_ip6"]["prefix_length"])
                                     },
-                                    "destination-port-range": {
-                                        "lower-port": "0",
-                                        "upper-port": "65535"
+                                    "udp":{
+                                        "source-port": {
+                                            "lower-port": "0",
+                                            "upper-port": "65535"
+                                        },
+                                        "destination-port": {
+                                            "lower-port": "0",
+                                            "upper-port": "65535"
+                                        }
                                     }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:drop"
+                                }
+                            },
+                            {
+                                "name": "rule_all",
+                                "matches": {
+                                    "ipv6": {
+                                        "destination-ipv6-network": "0::0/0",
+                                        "source-ipv6-network": "0::0/0"
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:accept"
                                 }
                             }
-                        },
-                        "actions": {
-                            "deny": ["null"]
-                        }
-                    },
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv6-network": "0::0/0",
-                                "destination-ipv6-network": "0::0/0",
-                            }
-                        },
-                        "actions": {
-                            "permit": ["null"]
-                        }
+                        ]
                     }
-                ]}
-            }]
+                }
+            ]
         },
         # ACL configuration for L4 tests
         "l4": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [{
-                    "rule-name": "rule1",
-                    "matches": {
-                        "vpp-ace-nodes": {
-                            "source-ipv4-network": "0.0.0.0/0",
-                            "tcp-nodes": {
-                                "destination-port-range": {
-                                    "lower-port":
-                                        test_vars["l4"]["classify_dst"],
-                                    "upper-port":
-                                        test_vars["l4"]["classify_dst"] + 10
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "rule1",
+                                "matches": {
+                                    "ipv4": {
+                                        "source-ipv4-network": "0.0.0.0/0"
+                                    },
+                                    "tcp": {
+                                        "source-port": {
+                                            "lower-port": test_vars["l4"]["classify_src"],
+                                            "upper-port": test_vars["l4"]["classify_src"] + 10
+                                        },
+                                        "destination-port":{
+                                            "lower-port": test_vars["l4"]["classify_dst"],
+                                            "upper-port": test_vars["l4"]["classify_dst"] + 10
+                                        }
+                                    }
                                 },
-                                "source-port-range": {
-                                    "lower-port":
-                                        test_vars["l4"]["classify_src"],
-                                    "upper-port":
-                                        test_vars["l4"]["classify_src"] + 10
+                                "actions":{
+                                    "forwarding": "ietf-access-control-list:drop"
+                                }
+                            },
+                            {
+                                "name": "rule_all",
+                                "matches": {
+                                    "ipv4": {
+                                        "source-ipv4-network": "0.0.0.0/0",
+                                        "destination-ipv4-network": "0.0.0.0/0"
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:accept"
                                 }
                             }
-                        }
-                    },
-                    "actions": {
-                        "deny": ["null"]
-                    },
-                },
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network": "0.0.0.0/0",
-                                "destination-ipv4-network": "0.0.0.0/0",
-                            }
-                        },
-                        "actions": {
-                            "permit": ["null"]
-                        }
+                        ]
                     }
-                ]}
-            }]
+                }
+            ]
         },
         "mixed": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [{
-                    "rule-name": "ports",
-                    "matches": {
-                        "vpp-ace-nodes": {
-                            "source-ipv4-network": "0.0.0.0/0",
-                            "tcp-nodes": {
-                                "destination-port-range": {
-                                    "lower-port":
-                                        test_vars["l4"]["classify_dst"],
-                                    "upper-port":
-                                        test_vars["l4"]["classify_dst"] + 10
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "ports",
+                                "matches": {
+                                    "ipv4": {
+                                        "source-ipv4-network": "0.0.0.0/0"
+                                    },
+                                    "tcp": {
+                                        "source-port": {
+                                            "lower-port": test_vars["l4"]["classify_src"],
+                                            "upper-port": test_vars["l4"]["classify_src"] + 10
+                                        },
+                                        "destination-port":{
+                                            "lower-port": test_vars["l4"]["classify_dst"],
+                                            "upper-port": test_vars["l4"]["classify_dst"] + 10
+                                        }
+                                    }
                                 },
-                                "source-port-range": {
-                                    "lower-port":
-                                        test_vars["l4"]["classify_src"],
-                                    "upper-port":
-                                        test_vars["l4"]["classify_src"] + 10
+                                "actions":{
+                                    "forwarding": "ietf-access-control-list:drop"
+                                }
+                            },
+                            {
+                                "name": "rule_all",
+                                "matches": {
+                                    "ipv4": {
+                                        "destination-ipv4-network": "0.0.0.0/0",
+                                        "source-ipv4-network": "0.0.0.0/0"
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:accept"
                                 }
                             }
-                        }
-                    },
-                    "actions": {
-                        "deny": ["null"]
-                    },
-                },
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network": "0.0.0.0/0",
-                                "destination-ipv4-network": "0.0.0.0/0",
-                            }
-                        },
-                        "actions": {
-                            "permit": ["null"]
-                        }
+                        ]
                     }
-                ]}
-            }]
+                }
+            ]
         },
         "icmp": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [
-                    {
-                        "rule-name": "rule1",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network": "0.0.0.0/0",
-                                "icmp-nodes": {
-                                    "icmp-type-range": {
-                                        "first": "1",
-                                        "last": "5"
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "rule1",
+                                "matches": {
+                                    "ipv4": {
+                                        "source-ipv4-network": "0.0.0.0/0"
                                     },
-                                    "icmp-code-range": {
-                                        "first": "1",
-                                        "last": "5"
+                                    "icmp": {
+                                        "vpp-acl:vpp-icmp-ace": {
+                                            "vpp-acl:icmp-type-range": {
+                                                "first": "1",
+                                                "last": "5"
+                                            },
+                                            "vpp-acl:icmp-code-range": {
+                                                "first": "1",
+                                                "last": "5"
+                                            }
+                                        }
                                     }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:drop"
+                                }
+                            },
+                            {
+                                "name": "rule_all",
+                                "matches": {
+                                    "ipv4": {
+                                        "source-ipv4-network": "0.0.0.0/0",
+                                        "destination-ipv4-network": "0.0.0.0/0"
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:accept"
                                 }
                             }
-                        },
-                        "actions": {
-                            "deny": ["null"]
-                        },
-                    },
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network": "0.0.0.0/0",
-                                "destination-ipv4-network": "0.0.0.0/0",
-                            }
-                        },
-                        "actions": {
-                            "permit": ["null"]
-                        }
+                        ]
                     }
-                ]}
-            }]
+                }
+            ]
         },
         "icmpv6": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [
-                    {
-                        "rule-name": "rule1",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv6-network": "::/0",
-                                "icmp-v6-nodes": {
-                                    "icmp-type-range": {
-                                        "first": "1",
-                                        "last": "5"
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "rule1",
+                                "matches": {
+                                    "ipv6": {
+                                        "source-ipv6-network": "::/0",
                                     },
-                                    "icmp-code-range": {
-                                        "first": "1",
-                                        "last": "5"
+                                    "icmp": {
+                                        "vpp-acl:vpp-icmp-ace": {
+                                            "vpp-acl:icmp-type-range": {
+                                                "first": "1",
+                                                "last": "5"
+                                            },
+                                            "vpp-acl:icmp-code-range": {
+                                                "first": "1",
+                                                "last": "5"
+                                            }
+                                        }
                                     }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:drop"
+                                }
+                            },
+                            {
+                                "name": "rule_all",
+                                "matches": {
+                                    "ipv6": {
+                                        "destination-ipv6-network": "0::0/0",
+                                        "source-ipv6-network": "::/0",
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:accept"
                                 }
                             }
-                        },
-                        "actions": {
-                            "deny": ["null"]
-                        },
-                    },
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv6-network": "0::0/0",
-                                "destination-ipv6-network": "0::0/0",
-                            }
-                        },
-                        "actions": {
-                            "permit": ["null"]
-                        }
+                        ]
                     }
-                ]}
-            }]
+                }
+            ]
         },
         "reflex": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [
-                    {
-                        "rule-name": "rule1",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network":
-                                    "{0}/{1}".format(
-                                        test_vars["reflex"]["classify_dst_net"],
-                                        test_vars["reflex"]["prefix_length"]),
-                                "destination-ipv4-network":
-                                    "{0}/{1}".format(
-                                        test_vars["reflex"]["classify_src_net"],
-                                        test_vars["reflex"]["prefix_length"]),
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "rule1",
+                                "matches": {
+                                    "ipv4": {
+                                        "destination-ipv4-network": "{0}/{1}".format(
+                                            test_vars["reflex"]["classify_src_net"],
+                                            test_vars["reflex"]["prefix_length"]),
+                                        "source-ipv4-network": "{0}/{1}".format(
+                                            test_vars["reflex"]["classify_dst_net"],
+                                            test_vars["reflex"]["prefix_length"])
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "vpp-acl:accept-and-reflect"
+                                }
                             }
-                        },
-                        "actions": {
-                            "vpp-acl:permit-and-reflect": ["null"]
-                        },
-                    },
-                ]}
-            }]
+                        ]
+                    }
+                }
+            ]
         },
         "block_all": {
-            "acl": [{
-                "acl-type":
-                    "vpp-acl:vpp-acl",
-                "acl-name": name,
-                "access-list-entries": {"ace": [
-                    {
-                        "rule-name": "rule_all",
-                        "matches": {
-                            "vpp-ace-nodes": {
-                                "source-ipv4-network": "0.0.0.0/0",
-                                "destination-ipv4-network": "0.0.0.0/0",
+            "acl": [
+                {
+                    "name": name,
+                    "type": "vpp-acl:vpp-acl",
+                    "aces": {
+                        "ace": [
+                            {
+                                "name": "rule_all",
+                                "matches": {
+                                    "ipv4": {
+                                        "destination-ipv4-network": "0.0.0.0/0",
+                                        "source-ipv4-network": "0.0.0.0/0"
+                                    }
+                                },
+                                "actions": {
+                                    "forwarding": "ietf-access-control-list:drop"
+                                }
                             }
-                        },
-                        "actions": {
-                            "deny": ["null"]
-                        }
+                        ]
                     }
-                ]}
-            }]
+                }
+            ]
         },
     }
 
