@@ -239,6 +239,42 @@
       - 12  # MRR sel
       - 13  # MRR sel
 
+    vpp-compare-topologies:
+      csit-vpp-perf-verify-1810-3n-skx:
+      - 10  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
+      - 16  # NDRPDR sel
+      - 17  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
+      csit-vpp-perf-verify-1810-2n-skx:
+      - 9   # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 23  # NDRPDR sel
+      - 24  # NDRPDR sel
+      - 27  # NDRPDR sel
+
+    vpp-compare-topologies-mrr:
+      csit-vpp-perf-verify-1810-3n-skx:
+      - 9   # MRR sel
+      - 11  # MRR sel
+      - 12  # MRR sel
+      - 13  # MRR sel
+      csit-vpp-perf-verify-1810-2n-skx:
+      - 8   # MRR sel
+      - 10  # MRR sel
+      - 11  # MRR sel
+      - 12  # MRR sel
+
     vpp-performance-changes-3n-hsw-mrr:
       csit-vpp-perf-check-1804:
       - 6   # mrr - sel
@@ -551,6 +587,30 @@
       - 8   # NDRPDR sel
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
+
+    dpdk-compare-topologies:
+      csit-dpdk-perf-verify-1810-3n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-1810-3n-hsw:
@@ -1874,6 +1934,90 @@
   - "parent"
   - "throughput"
 
+# VPP Comparison Across Topologies 3n-skx to 2n-skx ndr
+-
+  type: "table"
+  title: "VPP Comparison Across Topologies 3n-skx to 2n-skx ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-ndr"
+  reference:
+    title: "3-Node Skx"
+    data:
+      csit-vpp-perf-verify-1810-3n-skx:
+      - 10  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
+      - 16  # NDRPDR sel
+      - 17  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
+  compare:
+    title: "2-Node Skx"
+    data:
+      csit-vpp-perf-verify-1810-2n-skx:
+      - 9   # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 23  # NDRPDR sel
+      - 24  # NDRPDR sel
+      - 27  # NDRPDR sel
+  data: "vpp-compare-topologies"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# VPP Comparison Across Topologies 3n-skx to 2n-skx pdr
+-
+  type: "table"
+  title: "VPP Comparison Across Topologies 3n-skx to 2n-skx pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-pdr"
+  reference:
+    title: "3-Node Skx"
+    data:
+      csit-vpp-perf-verify-1810-3n-skx:
+      - 10  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
+      - 16  # NDRPDR sel
+      - 17  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
+  compare:
+    title: "2-Node Skx"
+    data:
+      csit-vpp-perf-verify-1810-2n-skx:
+      - 9   # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 23  # NDRPDR sel
+      - 24  # NDRPDR sel
+      - 27  # NDRPDR sel
+  data: "vpp-compare-topologies"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
 # VPP Performance Changes 3n-hsw 1t1c MRR
 -
   type: "table"
@@ -2250,6 +2394,36 @@
   data: "vpp-compare-testbeds-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Comparison Across Topologies 3n-skx to 2n-skx mrr
+-
+  type: "table"
+  title: "VPP Comparison Across Topologies 3n-skx to 2n-skx mrr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-topologies-3n-skx-2n-skx-mrr"
+  reference:
+    title: "3-Node Skx"
+    data:
+      csit-vpp-perf-verify-1810-3n-skx:
+      - 9   # MRR sel
+      - 11  # MRR sel
+      - 12  # MRR sel
+      - 13  # MRR sel
+  compare:
+    title: "2-Node Skx"
+    data:
+      csit-vpp-perf-verify-1810-2n-skx:
+      - 8   # MRR sel
+      - 10  # MRR sel
+      - 11  # MRR sel
+      - 12  # MRR sel
+  data: "vpp-compare-topologies-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'MRR'"
   parameters:
   - "name"
   - "parent"
@@ -3187,6 +3361,90 @@
   data: "dpdk-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr
+-
+  type: "table"
+  title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-ndr"
+  reference:
+    title: "3-Node Skx"
+    data:
+      csit-dpdk-perf-verify-1810-3n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  compare:
+    title: "2-Node Skx"
+    data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  data: "dpdk-compare-topologies"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr
+-
+  type: "table"
+  title: "DPDK Comparison Across Topologies 3n-skx to 2n-skx pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-topologies-3n-skx-2n-skx-pdr"
+  reference:
+    title: "3-Node Skx"
+    data:
+      csit-dpdk-perf-verify-1810-3n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  compare:
+    title: "2-Node Skx"
+    data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  data: "dpdk-compare-topologies"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
   parameters:
   - "name"
   - "parent"

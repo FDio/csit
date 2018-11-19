@@ -20,6 +20,10 @@ Document History
 |         |       :ref:`dpdk_compare_current_vs_previous_release`              |
 |         |                                                                    |
 |         | 6. Changed title of this chapter to "Document History"             |
+|         | 7. Added comparisons between topologies:                           |
+|         |                                                                    |
+|         |    a. VPP: :ref:`vpp_compare_topologies_3n-Skx_vs_2n-Skx`          |
+|         |    b. DPDK: :ref:`dpdk_compare_topologies_3n-Skx_vs_2n-Skx`        |
 |         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w46    | 1. dot1q KVM VMs vhost-user tests added to                         |
