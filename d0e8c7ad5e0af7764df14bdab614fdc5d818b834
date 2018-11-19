@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2c46da9_4da6acfd",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 540
+      },
+      "writtenOn": "2018-11-19T11:29:54Z",
+      "side": 1,
+      "message": "You should acknowledge that testing occurred at Intel. Not in the Linux Foundation Lab perhaps.\n\n**N.B. FD.io 18.10 2-Node Atom Denverton testing took place at a Intel® Corporation carefully adhering to FD.io CSIT best practices**",
+      "revId": "d0e8c7ad5e0af7764df14bdab614fdc5d818b834",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39713d01_7700106c",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 540
+      },
+      "writtenOn": "2018-11-19T11:29:54Z",
+      "side": 1,
+      "message": "that is equipped",
+      "range": {
+        "startLine": 194,
+        "startChar": 64,
+        "endLine": 194,
+        "endChar": 68
+      },
+      "revId": "d0e8c7ad5e0af7764df14bdab614fdc5d818b834",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e20104f_488a6108",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 540
+      },
+      "writtenOn": "2018-11-19T11:29:54Z",
+      "side": 1,
+      "message": "that is equipped\nDo you want to mention the board - Super A2SDi-TP8F?",
+      "revId": "d0e8c7ad5e0af7764df14bdab614fdc5d818b834",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "946e8fb8_799fb21b",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 540
+      },
+      "writtenOn": "2018-11-19T11:29:54Z",
+      "side": 1,
+      "message": "runs T-Rex software traffic generator",
+      "range": {
+        "startLine": 224,
+        "startChar": 10,
+        "endLine": 224,
+        "endChar": 13
+      },
+      "revId": "d0e8c7ad5e0af7764df14bdab614fdc5d818b834",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
