@@ -1,5 +1,5 @@
-FD.io CSIT-18.10 Test Report History
-====================================
+Document History
+================
 
 +---------+--------------------------------------------------------------------+
 | Version | Change                                                             |
@@ -18,6 +18,8 @@ FD.io CSIT-18.10 Test Report History
 |         |       :ref:`vpp_compare_current_vs_previous_release`               |
 |         |    b. DPDK Performance Tests:                                      |
 |         |       :ref:`dpdk_compare_current_vs_previous_release`              |
+|         |                                                                    |
+|         | 6. Title of this chapter changed to "Document History"             |
 |         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w46    | 1. dot1q KVM VMs vhost-user tests added to                         |
