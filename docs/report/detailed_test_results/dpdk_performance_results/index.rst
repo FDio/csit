@@ -1,5 +1,5 @@
-DPDK Performance
-================
+DPDK Throughput
+===============
 
 .. toctree::
 
