@@ -221,3 +221,5 @@ L1/L2/LLC Latency
     Writer Numa Node     0       1
                 0        -   107.7
                 1    106.6       -
+
+.. include:: ./introduction/test_environment_sut_meltspec_hsw.rst

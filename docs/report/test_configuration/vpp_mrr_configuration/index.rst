@@ -1,5 +1,5 @@
-VPP Performance MRR
-===================
+VPP MRR
+=======
 
 .. toctree::
 

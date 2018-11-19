@@ -1,3 +1,4 @@
+
 .. _throughput_speedup_multi_core:
 
 .. raw:: latex

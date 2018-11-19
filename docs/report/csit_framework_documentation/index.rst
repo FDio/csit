@@ -1,5 +1,5 @@
-CSIT Framework Documentation
-============================
+CSIT Framework
+==============
 
 .. toctree::
 
