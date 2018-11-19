@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3cb5dd39_881045e7",
+        "filename": "docs/report/introduction/test_environment_sut_calib_dnv.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 540
+      },
+      "writtenOn": "2018-11-19T11:36:52Z",
+      "side": 1,
+      "message": "You should acknowledge that testing occurred at Intel. Not in the Linux Foundation Lab perhaps.\n\n**N.B. FD.io 18.10 2-Node Atom Denverton testing took place at a Intel® Corporation carefully adhering to FD.io CSIT best practices**",
+      "revId": "7b0eb8aa6dde548e858b72478a80a020ca003c9f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
