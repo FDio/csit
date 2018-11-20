@@ -70,6 +70,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
+    # URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/intel_denverton_vpp_release_1810.tar.gz"
+    URL[VIRL,DNV]: "http://ts1-host3.cisco.com/intel_denverton_vpp_release_1810.tar.gz"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
 
@@ -117,6 +119,11 @@
       pci-g3-x16: 148809523.81
 
   data-sets:
+
+    # Denverton:
+    intel-dnv-vpp:
+      intel-dnv-vpp-release-1810:
+      - 1
 
     # VPP Performance
     vpp-performance-changes-3n-hsw:
@@ -1003,260 +1010,263 @@
 
   builds:
 
-    csit-vpp-perf-1804-all:
-    - 21  # sel
-    - 22  # sel
-    - 23  # sel
-    - 24  # sel
-    - 27  # sel
-    - 28  # sel
-    - 29  # sel
-    - 30  # sel
-    - 31  # sel
-    - 35  # sel
-    csit-vpp-perf-verify-1807-3n-hsw:
-    - 8   # MRR full
-    - 9   # MRR sel
-    - 21  # MRR sel
-    - 31  # MRR sel
-    - 33  # MRR sel
-    - 36  # MRR sel
-    - 41  # MRR sel
-    - 42  # MRR sel
-    - 48  # MRR sel
-    - 11  # NDRPDR full 1
-    - 22  # NDRPDR full 2
-    - 45  # NDRPDR full 3
-    - 46  # NDRPDR full 4
-    - 15  # NDRPDR sel
-    - 16  # NDRPDR sel
-    - 19  # NDRPDR sel
-    - 18  # NDRPDR sel
-    - 20  # NDRPDR sel
-    - 38  # NDRPDR sel
-    - 40  # NDRPDR sel
-    - 44  # NDRPDR sel
-    - 47  # NDRPDR sel
-    - 24  # WRK
-    - 25  # WRK
-    - 23  # WRK
-    - 26  # WRK
-    - 27  # WRK
-    - 28  # WRK
-    - 29  # WRK
-    - 30  # WRK
-    - 32  # WRK
-    - 35  # WRK
-    csit-vpp-perf-verify-1810-3n-hsw:
-    - 9   # MRR sel
-    - 20  # NDRPDR full
-    - 21  # NDRPDR full
-    - 22  # NDRPDR full
-    - 27  # NDRPDR full
-    - 8   # NDRPDR sel
-    - 12  # NDRPDR sel
-    - 14  # NDRPDR sel
-    - 18  # NDRPDR sel
-    - 23  # NDRPDR sel
-    - 25  # NDRPDR sel
-    - 38  # NDRPDR sel
-    - 39  # NDRPDR sel
-    - 41  # NDRPDR sel
-    - 42  # NDRPDR sel
-    - 28  # WRK
-    - 29  # WRK
-    - 30  # WRK
-    - 31  # WRK
-    - 32  # WRK
-    - 33  # WRK
-    - 34  # WRK
-    - 35  # WRK
-    - 36  # WRK
-    - 37  # WRK
-    csit-vpp-perf-verify-1807-3n-skx:
-    - 31  # MRR full
-    - 28  # MRR sel
-    - 32  # MRR sel
-    - 36  # MRR sel
-    - 42  # MRR sel
-    - 47  # MRR sel
-    - 48  # MRR sel
-    - 51  # MRR sel
-    - 52  # MRR sel
-    - 53  # MRR sel
-    - 54  # MRR sel
-    - 40  # NDRPDR full 1
-    - 41  # NDRPDR full 2
-    - 33  # NDRPDR sel
-    - 35  # NDRPDR sel
-    - 37  # NDRPDR sel
-    - 38  # NDRPDR sel
-    - 39  # NDRPDR sel
-    - 43  # NDRPDR sel
-    - 44  # NDRPDR sel
-    - 49  # NDRPDR sel
-    - 50  # NDRPDR sel
-    - 56  # NDRPDR sel
-    csit-vpp-perf-verify-1810-3n-skx:
-    - 9   # MRR sel
-    - 11  # MRR sel
-    - 12  # MRR sel
-    - 13  # MRR sel
-    - 23  # NDRPDR full
-    - 24  # NDRPDR full
-    - 10  # NDRPDR sel
-    - 14  # NDRPDR sel
-    - 15  # NDRPDR sel
-    - 16  # NDRPDR sel
-    - 17  # NDRPDR sel
-    - 19  # NDRPDR sel
-    - 20  # NDRPDR sel
-    - 21  # NDRPDR sel
-    - 22  # NDRPDR sel
-    - 25  # NDRPDR sel
-    csit-vpp-perf-verify-1807-2n-skx:
-    - 27  # MRR full
-    - 31  # MRR sel
-    - 33  # MRR sel
-    - 37  # MRR sel
-    - 38  # MRR sel
-    - 41  # MRR sel
-    - 43  # MRR sel
-    - 44  # MRR sel
-    - 45  # MRR sel
-    - 46  # MRR sel
-    - 47  # MRR sel
-    - 32  # NDRPDR full
-    - 26  # NDRPDR sel
-    - 28  # NDRPDR sel
-    - 29  # NDRPDR sel
-    - 30  # NDRPDR sel
-    - 34  # NDRPDR sel
-    - 35  # NDRPDR sel
-    - 36  # NDRPDR sel
-    - 39  # NDRPDR sel
-    - 40  # NDRPDR sel
-    - 42  # NDRPDR sel
-    csit-vpp-perf-verify-1810-2n-skx:
-    - 8   # MRR sel
-    - 10  # MRR sel
-    - 11  # MRR sel
-    - 12  # MRR sel
-    - 25  # NDRPDR full
-    - 26  # NDRPDR full
-    - 9   # NDRPDR sel
-    - 13  # NDRPDR sel
-    - 14  # NDRPDR sel
-    - 19  # NDRPDR sel
-    - 20  # NDRPDR sel
-    - 21  # NDRPDR sel
-    - 22  # NDRPDR sel
-    - 23  # NDRPDR sel
-    - 24  # NDRPDR sel
-    - 27  # NDRPDR sel
-    csit-vpp-perf-check-1804:
-    - 5   # mrr - full
-    - 6   # mrr - sel
-    - 13  # mrr - sel
-    - 14  # mrr - sel
-    - 15  # mrr - sel
-    - 16  # mrr - sel
-    - 17  # mrr - sel
-    - 19  # mrr - sel
-    - 20  # mrr - sel
-    - 21  # mrr - sel
-    - 22  # mrr - sel
-    csit-ligato-perf-verify-1810-3n-hsw:
-    - 5   # full
-    - 6   # sel
-    - 8   # sel
-    - 9   # sel
-    - 11  # sel
-    - 12  # sel
-    - 13  # sel
-    - 14  # sel
-    - 16  # sel
-    - 17  # sel
-    - 18  # sel
-    csit-dpdk-perf-1804-all:
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    - 12
-    - 13
-    csit-dpdk-perf-verify-1807-3n-hsw:
-    - 11
-    - 12  # full
-    - 14
-    - 15
-    - 16
-    - 17
-    - 20
-    - 21
-    - 22
-    - 23
-    csit-dpdk-perf-verify-1810-3n-hsw:
-    - 1   # NDRPDR sel
-    - 2   # NDRPDR sel
-    - 3   # NDRPDR sel
-    - 4   # NDRPDR sel
-    - 5   # NDRPDR sel
-    - 6   # NDRPDR sel
-    - 7   # NDRPDR sel
-    - 8   # NDRPDR sel
-    - 9   # NDRPDR sel
-    - 10  # NDRPDR sel
-    csit-dpdk-perf-verify-1807-3n-skx:
-    - 1   # NDRPDR sel
-    - 2   # NDRPDR sel
-    - 3   # NDRPDR sel
-    - 6   # NDRPDR sel
-    - 7   # NDRPDR sel
-    - 8   # NDRPDR sel
-    - 9   # NDRPDR sel
-    - 10  # NDRPDR sel
-    - 11  # NDRPDR sel
-    - 12  # NDRPDR sel
-    csit-dpdk-perf-verify-1810-3n-skx:
-    - 3   # NDRPDR sel
-    - 4   # NDRPDR sel
-    - 6   # NDRPDR sel
-    - 7   # NDRPDR sel
-    - 8   # NDRPDR sel
-    - 9   # NDRPDR sel
-    - 10  # NDRPDR sel
-    - 11  # NDRPDR sel
-    - 12  # NDRPDR sel
-    - 13  # NDRPDR sel
-    csit-dpdk-perf-verify-1810-2n-skx:
-    - 3   # NDRPDR sel
-    - 4   # NDRPDR sel
-    - 5   # NDRPDR sel
-    - 7   # NDRPDR sel
-    - 8   # NDRPDR sel
-    - 9   # NDRPDR sel
-    - 10  # NDRPDR sel
-    - 11  # NDRPDR sel
-    - 12  # NDRPDR sel
-    - 13  # NDRPDR sel
+    intel-dnv-vpp-release-1810:
+    - 1
 
-    csit-vpp-functional-1810-ubuntu1604-virl:
-    - 44
-    csit-vpp-functional-1810-centos7-virl:
-    - 44
-    csit-vpp-device-1810-ubuntu1804-1n-skx:
-    - 2
-    csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
-    - 1
-    csit-dmm-functional-1810-ubuntu1604-virl:
-    - 1
-    csit-hc2vpp-verify-func-1810-ubuntu1604:
-    - 3
+#    csit-vpp-perf-1804-all:
+#    - 21  # sel
+#    - 22  # sel
+#    - 23  # sel
+#    - 24  # sel
+#    - 27  # sel
+#    - 28  # sel
+#    - 29  # sel
+#    - 30  # sel
+#    - 31  # sel
+#    - 35  # sel
+#    csit-vpp-perf-verify-1807-3n-hsw:
+#    - 8   # MRR full
+#    - 9   # MRR sel
+#    - 21  # MRR sel
+#    - 31  # MRR sel
+#    - 33  # MRR sel
+#    - 36  # MRR sel
+#    - 41  # MRR sel
+#    - 42  # MRR sel
+#    - 48  # MRR sel
+#    - 11  # NDRPDR full 1
+#    - 22  # NDRPDR full 2
+#    - 45  # NDRPDR full 3
+#    - 46  # NDRPDR full 4
+#    - 15  # NDRPDR sel
+#    - 16  # NDRPDR sel
+#    - 19  # NDRPDR sel
+#    - 18  # NDRPDR sel
+#    - 20  # NDRPDR sel
+#    - 38  # NDRPDR sel
+#    - 40  # NDRPDR sel
+#    - 44  # NDRPDR sel
+#    - 47  # NDRPDR sel
+#    - 24  # WRK
+#    - 25  # WRK
+#    - 23  # WRK
+#    - 26  # WRK
+#    - 27  # WRK
+#    - 28  # WRK
+#    - 29  # WRK
+#    - 30  # WRK
+#    - 32  # WRK
+#    - 35  # WRK
+#    csit-vpp-perf-verify-1810-3n-hsw:
+#    - 9   # MRR sel
+#    - 20  # NDRPDR full
+#    - 21  # NDRPDR full
+#    - 22  # NDRPDR full
+#    - 27  # NDRPDR full
+#    - 8   # NDRPDR sel
+#    - 12  # NDRPDR sel
+#    - 14  # NDRPDR sel
+#    - 18  # NDRPDR sel
+#    - 23  # NDRPDR sel
+#    - 25  # NDRPDR sel
+#    - 38  # NDRPDR sel
+#    - 39  # NDRPDR sel
+#    - 41  # NDRPDR sel
+#    - 42  # NDRPDR sel
+#    - 28  # WRK
+#    - 29  # WRK
+#    - 30  # WRK
+#    - 31  # WRK
+#    - 32  # WRK
+#    - 33  # WRK
+#    - 34  # WRK
+#    - 35  # WRK
+#    - 36  # WRK
+#    - 37  # WRK
+#    csit-vpp-perf-verify-1807-3n-skx:
+#    - 31  # MRR full
+#    - 28  # MRR sel
+#    - 32  # MRR sel
+#    - 36  # MRR sel
+#    - 42  # MRR sel
+#    - 47  # MRR sel
+#    - 48  # MRR sel
+#    - 51  # MRR sel
+#    - 52  # MRR sel
+#    - 53  # MRR sel
+#    - 54  # MRR sel
+#    - 40  # NDRPDR full 1
+#    - 41  # NDRPDR full 2
+#    - 33  # NDRPDR sel
+#    - 35  # NDRPDR sel
+#    - 37  # NDRPDR sel
+#    - 38  # NDRPDR sel
+#    - 39  # NDRPDR sel
+#    - 43  # NDRPDR sel
+#    - 44  # NDRPDR sel
+#    - 49  # NDRPDR sel
+#    - 50  # NDRPDR sel
+#    - 56  # NDRPDR sel
+#    csit-vpp-perf-verify-1810-3n-skx:
+#    - 9   # MRR sel
+#    - 11  # MRR sel
+#    - 12  # MRR sel
+#    - 13  # MRR sel
+#    - 23  # NDRPDR full
+#    - 24  # NDRPDR full
+#    - 10  # NDRPDR sel
+#    - 14  # NDRPDR sel
+#    - 15  # NDRPDR sel
+#    - 16  # NDRPDR sel
+#    - 17  # NDRPDR sel
+#    - 19  # NDRPDR sel
+#    - 20  # NDRPDR sel
+#    - 21  # NDRPDR sel
+#    - 22  # NDRPDR sel
+#    - 25  # NDRPDR sel
+#    csit-vpp-perf-verify-1807-2n-skx:
+#    - 27  # MRR full
+#    - 31  # MRR sel
+#    - 33  # MRR sel
+#    - 37  # MRR sel
+#    - 38  # MRR sel
+#    - 41  # MRR sel
+#    - 43  # MRR sel
+#    - 44  # MRR sel
+#    - 45  # MRR sel
+#    - 46  # MRR sel
+#    - 47  # MRR sel
+#    - 32  # NDRPDR full
+#    - 26  # NDRPDR sel
+#    - 28  # NDRPDR sel
+#    - 29  # NDRPDR sel
+#    - 30  # NDRPDR sel
+#    - 34  # NDRPDR sel
+#    - 35  # NDRPDR sel
+#    - 36  # NDRPDR sel
+#    - 39  # NDRPDR sel
+#    - 40  # NDRPDR sel
+#    - 42  # NDRPDR sel
+#    csit-vpp-perf-verify-1810-2n-skx:
+#    - 8   # MRR sel
+#    - 10  # MRR sel
+#    - 11  # MRR sel
+#    - 12  # MRR sel
+#    - 25  # NDRPDR full
+#    - 26  # NDRPDR full
+#    - 9   # NDRPDR sel
+#    - 13  # NDRPDR sel
+#    - 14  # NDRPDR sel
+#    - 19  # NDRPDR sel
+#    - 20  # NDRPDR sel
+#    - 21  # NDRPDR sel
+#    - 22  # NDRPDR sel
+#    - 23  # NDRPDR sel
+#    - 24  # NDRPDR sel
+#    - 27  # NDRPDR sel
+#    csit-vpp-perf-check-1804:
+#    - 5   # mrr - full
+#    - 6   # mrr - sel
+#    - 13  # mrr - sel
+#    - 14  # mrr - sel
+#    - 15  # mrr - sel
+#    - 16  # mrr - sel
+#    - 17  # mrr - sel
+#    - 19  # mrr - sel
+#    - 20  # mrr - sel
+#    - 21  # mrr - sel
+#    - 22  # mrr - sel
+#    csit-ligato-perf-verify-1810-3n-hsw:
+#    - 5   # full
+#    - 6   # sel
+#    - 8   # sel
+#    - 9   # sel
+#    - 11  # sel
+#    - 12  # sel
+#    - 13  # sel
+#    - 14  # sel
+#    - 16  # sel
+#    - 17  # sel
+#    - 18  # sel
+#    csit-dpdk-perf-1804-all:
+#    - 4
+#    - 5
+#    - 6
+#    - 7
+#    - 8
+#    - 9
+#    - 10
+#    - 11
+#    - 12
+#    - 13
+#    csit-dpdk-perf-verify-1807-3n-hsw:
+#    - 11
+#    - 12  # full
+#    - 14
+#    - 15
+#    - 16
+#    - 17
+#    - 20
+#    - 21
+#    - 22
+#    - 23
+#    csit-dpdk-perf-verify-1810-3n-hsw:
+#    - 1   # NDRPDR sel
+#    - 2   # NDRPDR sel
+#    - 3   # NDRPDR sel
+#    - 4   # NDRPDR sel
+#    - 5   # NDRPDR sel
+#    - 6   # NDRPDR sel
+#    - 7   # NDRPDR sel
+#    - 8   # NDRPDR sel
+#    - 9   # NDRPDR sel
+#    - 10  # NDRPDR sel
+#    csit-dpdk-perf-verify-1807-3n-skx:
+#    - 1   # NDRPDR sel
+#    - 2   # NDRPDR sel
+#    - 3   # NDRPDR sel
+#    - 6   # NDRPDR sel
+#    - 7   # NDRPDR sel
+#    - 8   # NDRPDR sel
+#    - 9   # NDRPDR sel
+#    - 10  # NDRPDR sel
+#    - 11  # NDRPDR sel
+#    - 12  # NDRPDR sel
+#    csit-dpdk-perf-verify-1810-3n-skx:
+#    - 3   # NDRPDR sel
+#    - 4   # NDRPDR sel
+#    - 6   # NDRPDR sel
+#    - 7   # NDRPDR sel
+#    - 8   # NDRPDR sel
+#    - 9   # NDRPDR sel
+#    - 10  # NDRPDR sel
+#    - 11  # NDRPDR sel
+#    - 12  # NDRPDR sel
+#    - 13  # NDRPDR sel
+#    csit-dpdk-perf-verify-1810-2n-skx:
+#    - 3   # NDRPDR sel
+#    - 4   # NDRPDR sel
+#    - 5   # NDRPDR sel
+#    - 7   # NDRPDR sel
+#    - 8   # NDRPDR sel
+#    - 9   # NDRPDR sel
+#    - 10  # NDRPDR sel
+#    - 11  # NDRPDR sel
+#    - 12  # NDRPDR sel
+#    - 13  # NDRPDR sel
+#
+#    csit-vpp-functional-1810-ubuntu1604-virl:
+#    - 44
+#    csit-vpp-functional-1810-centos7-virl:
+#    - 44
+#    csit-vpp-device-1810-ubuntu1804-1n-skx:
+#    - 2
+#    csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
+#    - 1
+#    csit-dmm-functional-1810-ubuntu1604-virl:
+#    - 1
+#    csit-hc2vpp-verify-func-1810-ubuntu1604:
+#    - 3
 
 -
   type: "output"
@@ -1264,8 +1274,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
