@@ -33,9 +33,11 @@
     DIR[DTR,PERF,VPP,3N,HSW]: "{DIR[DTR]}/vpp_performance_results_3n_hsw"
     DIR[DTR,PERF,VPP,3N,SKX]: "{DIR[DTR]}/vpp_performance_results_3n_skx"
     DIR[DTR,PERF,VPP,2N,SKX]: "{DIR[DTR]}/vpp_performance_results_2n_skx"
+    DIR[DTR,PERF,VPP,2N,DNV]: "{DIR[DTR]}/vpp_performance_results_2n_dnv"
     DIR[DTR,MRR,VPP,3N,HSW]: "{DIR[DTR]}/vpp_mrr_results_3n_hsw"
     DIR[DTR,MRR,VPP,3N,SKX]: "{DIR[DTR]}/vpp_mrr_results_3n_skx"
     DIR[DTR,MRR,VPP,2N,SKX]: "{DIR[DTR]}/vpp_mrr_results_2n_skx"
+    DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
     DIR[DTR,PERF,COT,3N,HSW]: "{DIR[DTR]}/cot_performance_results_3n_hsw"
     DIR[DTR,FUNC,VPP,UBUNTU]: "{DIR[DTR]}/vpp_functional_results_ubuntu"
     DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
@@ -70,6 +72,7 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
+    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/intel_denverton_vpp_release_1810.tar.gz"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
 
@@ -117,6 +120,11 @@
       pci-g3-x16: 148809523.81
 
   data-sets:
+
+    # Denverton:
+    intel-dnv-vpp:
+      intel-dnv-vpp-release-1810:
+      - 1
 
     # VPP Performance
     vpp-performance-changes-3n-hsw:
@@ -1003,6 +1011,9 @@
 
   builds:
 
+    intel-dnv-vpp-release-1810:
+    - 1
+
     csit-vpp-perf-1804-all:
     - 21  # sel
     - 22  # sel
@@ -1264,8 +1275,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -2495,6 +2506,28 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP Performance Results 2n-dnv
+-
+  type: "table"
+  title: "Detailed Test Results - VPP Performance Results 2n-dnv"
+  algorithm: "table_merged_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "intel-dnv-vpp"
+  filter: "'NDRPDR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
 # Test configuration - VPP Performance Test Configs 3n-hsw
 -
   type: "table"
@@ -2687,6 +2720,28 @@
     data: "data msg"
   rows: "generated"
   data: "vpp-mrr-results-2n-skx"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP MRR Results 2n-dnv
+-
+  type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-dnv"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}/vpp_mrr_results_2n_dnv"
+  columns:
+  -
+    title: "Name"
+    data: "data name"
+  -
+    title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "intel-dnv-vpp"
   filter: "'MRR'"
   parameters:
   - "name"
@@ -3743,6 +3798,24 @@
   - "parent"
   data-start-level: 3
 
+# VPP Performance Results 2n-dnv
+-
+  type: "file"
+  title: "VPP Performance Results 2n-dnv"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,PERF,VPP,2N,DNV]}"
+  data: "intel-dnv-vpp"
+  filter: "'NDRPDR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
 # VPP Performance Configuration 3n-hsw
 -
   type: "file"
@@ -3897,6 +3970,24 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,MRR,VPP,2N,SKX]}"
   data: "vpp-mrr-results-2n-skx"
+  filter: "all"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+# VPP MRR Results 2n-dnv
+-
+  type: "file"
+  title: "VPP MRR Results 2n-dnv"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}/vpp_mrr_results_2n_dnv"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP,2N,DNV]}"
+  data: "intel-dnv-vpp"
   filter: "all"
   parameters:
   - "name"
