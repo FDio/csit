@@ -175,9 +175,8 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     file_name = spec.input["file-name"]
     full_name = spec.input["download-path"]. \
         format(job=job, build=build["build"], filename=file_name)
-    if job.startswith("intel-dnv-"):
-        full_name = ""
-    url = "{0}/{1}".format(url, full_name)
+    if not job.startswith("intel-dnv-"):
+        url = "{0}/{1}".format(url, full_name)
     new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
                     "{job}{sep}{build}{sep}{name}".
                     format(job=job, sep=SEPARATOR, build=build["build"],
