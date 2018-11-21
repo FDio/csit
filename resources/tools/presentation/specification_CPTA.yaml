@@ -140,7 +140,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 120
+        start: 210
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
         start: 3
@@ -148,7 +148,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 120
+        start: 210
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-hsw:
