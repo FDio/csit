@@ -16,7 +16,6 @@ Download all data.
 """
 
 import re
-import logging
 
 from os import rename, mkdir
 from os.path import join
@@ -182,12 +181,8 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                     format(job=job, sep=SEPARATOR, build=build["build"],
                            name=file_name))
 
-    logging.info(new_name)
-
     # Download the file from the defined source (Jenkins, logs.fd.io):
     success = _download_file(url, new_name, log)
-
-    logging.info("{}: {}".format(url, success))
 
     if success and new_name.endswith(".zip"):
         if not is_zipfile(new_name):
