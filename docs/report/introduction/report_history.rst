@@ -25,6 +25,11 @@ Document History
 |         |    a. VPP: :ref:`vpp_compare_topologies_3n-Skx_vs_2n-Skx`          |
 |         |    b. DPDK: :ref:`dpdk_compare_topologies_3n-Skx_vs_2n-Skx`        |
 |         |                                                                    |
+|         | 8. Added results for Denverton:                                    |
+|         |                                                                    |
+|         |    a. Packet throughput :ref:`vpp_performance_results_2n_dnv`      |
+|         |    b. MRR :ref:`vpp_mrr_results_2n_dnv`                            |
+|         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w46    | 1. dot1q KVM VMs vhost-user tests added to                         |
 |         |    :ref:`KVM_VMs_vhost`.                                           |
