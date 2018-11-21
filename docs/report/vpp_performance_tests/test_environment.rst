@@ -1,9 +1,9 @@
 
-.. _vpp_test_environment:
-
 .. raw:: latex
 
     \clearpage
+
+.. _vpp_test_environment:
 
 .. include:: ../introduction/test_environment_intro.rst
 
