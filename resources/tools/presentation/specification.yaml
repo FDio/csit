@@ -2511,7 +2511,7 @@
 -
   type: "table"
   title: "Detailed Test Results - VPP Performance Results 2n-dnv"
-  algorithm: "table_merged_details"
+  algorithm: "table_details"
   output-file-ext: ".csv"
   output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
   columns:
