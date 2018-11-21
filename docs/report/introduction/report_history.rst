@@ -30,6 +30,12 @@ Document History
 |         |    a. Packet throughput :ref:`vpp_performance_results_2n_dnv`      |
 |         |    b. MRR :ref:`vpp_mrr_results_2n_dnv`                            |
 |         |                                                                    |
+|         | 9. Added the chapter "2-Node Atom Denverton (2n-dnv)" to           |
+|         |    :ref:`tested_physical_topologies`                               |
+|         |                                                                    |
+|         | 10. Added the chapter "Calibration Data - Denverton" to            |
+|         |     :ref:`vpp_test_environment`                                    |
+|         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w46    | 1. dot1q KVM VMs vhost-user tests added to                         |
 |         |    :ref:`KVM_VMs_vhost`.                                           |
