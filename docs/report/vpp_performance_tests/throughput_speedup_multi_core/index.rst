@@ -1,9 +1,9 @@
 
-.. _throughput_speedup_multi_core:
-
 .. raw:: latex
 
     \clearpage
+
+.. _throughput_speedup_multi_core:
 
 Speedup Multi-Core
 ==================
