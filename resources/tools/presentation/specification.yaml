@@ -72,7 +72,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
-    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/intel_denverton_vpp_release_1810.tar.gz"
+    # URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/intel_denverton_vpp_release_1810.tar.gz"
+    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1810/robot-plugin.zip"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
 
