@@ -1,4 +1,6 @@
 
+.. _vpp_test_environment:
+
 .. raw:: latex
 
     \clearpage
