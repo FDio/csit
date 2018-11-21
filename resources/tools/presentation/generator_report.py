@@ -127,7 +127,6 @@ def generate_report(release, spec, report_version):
         report[report_format](release, spec, versions, report_version)
 
     archive_input_data(spec)
-    archive_report(spec)
 
     logging.info("Done.")
 
