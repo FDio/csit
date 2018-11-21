@@ -3989,7 +3989,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,MRR,VPP,2N,DNV]}"
   data: "intel-dnv-vpp"
-  filter: "all"
+  filter: "'MRR'"
   parameters:
   - "name"
   - "doc"
