@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d9d7205_c09d3b6a",
+        "filename": "docs/report/introduction/test_environment_sut_calib_dnv.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-11-21T10:57:56Z",
+      "side": 1,
+      "message": "VPP-18.10",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "916f381cc1c61d742f31e1fc107eba58214aea2a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
