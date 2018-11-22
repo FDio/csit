@@ -189,6 +189,30 @@
       "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4dd0e5e8_1ce41bdf",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-22T15:24:16Z",
+      "side": 1,
+      "message": "If fixes are coming, it is good to have IMIX in documentation, as it stays sort of valid no matter which fix we apply.",
+      "parentUuid": "ce33733b_ef561b14",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "2d3503ba9b63106c8afa653f3e7881b51a17c15a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
