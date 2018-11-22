@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf3aedb0_902d9662",
+        "filename": "docs/report/introduction/testbed-2n-dnv.svg",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-22T13:54:21Z",
+      "side": 1,
+      "message": "What kind of program puts trailing whitespace in .svg?",
+      "range": {
+        "startLine": 581,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 6
+      },
+      "revId": "038eac9472666920a5fbdd8bb55e58bc8044ddc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
