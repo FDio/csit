@@ -647,8 +647,9 @@ function select_tags () {
                 test_tag_array=("mrrAND${DEFAULT_NIC}AND1cAND64bANDip4base"
                                 "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
                                 "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
-                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbaseNOTdrv_avf"
+                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbaseANDvhost_1024AND1vm"
+                                "!dot1q")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
