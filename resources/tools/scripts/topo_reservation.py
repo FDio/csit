@@ -13,9 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This script provides simple reservation mechanism to avoid
-   simultaneous use of nodes listed in topology file.
-   As source of truth is used DUT1 node from the topology file."""
+"""Script managing reservation and un-reservation of testbeds.
+
+This script provides simple reservation mechanism to avoid
+simultaneous use of nodes listed in topology file.
+As source of truth, TG node from the topology file is used.
+"""
 
 import sys
 import argparse
@@ -37,19 +40,20 @@ def main():
     work_file = open(topology_file)
     topology = load(work_file.read())['nodes']
 
-    #we are using DUT1 node because we expect DUT1 to be a linux host
-    #we don't use TG because we don't expect TG to be linux only host
+    # Even if TG is not guaranteed to be a Linux host,
+    # we are using it, because testing shows SSH access to DUT
+    # during test affects its performance (bursts of lost packets).
     try:
-        tg_node = topology["DUT1"]
+        tg_node = topology["TG"]
     except KeyError:
-        print "Topology file does not contain 'DUT1' node"
+        print "Topology file does not contain 'TG' node"
         return 1
 
     ssh = SSH()
     ssh.connect(tg_node)
 
-    #For system reservation we use mkdir it is an atomic operation and we can
-    #store additional data (time, client_ID, ..) within reservation directory
+    # For system reservation we use mkdir it is an atomic operation and we can
+    # store additional data (time, client_ID, ..) within reservation directory.
     if cancel_reservation:
         ret, _, err = ssh.exec_command("rm -r {}".format(RESERVATION_DIR))
     else:
