@@ -13,6 +13,9 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
+# TODO: What is the best way to ensure all suites
+# have access to Disconnect All Ssh Connections keyword?
+| Library | resources.libraries.python.ssh
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SOAK
 | ... | NIC_Intel-X710 | ETH | L2PATCH | BASE
@@ -64,6 +67,7 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 patch
+| | Disconnect All Ssh Connections
 | | Then Find critical load using PLRsearch
 | | ... | ${framesize} | ${traffic_profile} | ${10000} | ${max_rate}
 
