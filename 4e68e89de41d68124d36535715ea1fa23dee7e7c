@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e0c6ac2f_e1ad86ec",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-23T17:23:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dad2d39_bdfaf19c",
+      "range": {
+        "startLine": 57,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cab374e8_359520a0",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2018-11-14T15:01:01Z",
       "side": 1,
       "message": "Just a consequence of execute_papi not returning its results explicitly. As VatExecutor is hiding them as class instance fields as well, this makes the transition easier, but I would still prefer PapiExecutor to be less stateful.",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 210,
+        "endChar": 23
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52d40406_d0525fc4",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-23T17:23:42Z",
+      "side": 1,
+      "message": "Well, we can discuss it together with other improvements/optimisations.",
+      "parentUuid": "cab374e8_359520a0",
       "range": {
         "startLine": 210,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5d8ea253_8a8b9f3a",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-23T17:23:42Z",
+      "side": 1,
+      "message": "Already done.",
+      "parentUuid": "0fed3b4e_49bb6193",
+      "range": {
+        "startLine": 152,
+        "startChar": 21,
+        "endLine": 152,
+        "endChar": 32
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59b79534_7060c2b4",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 16
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "986d1001_defb7e78",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-23T17:23:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59b79534_7060c2b4",
+      "range": {
+        "startLine": 174,
+        "startChar": 22,
+        "endLine": 174,
+        "endChar": 49
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f22adcb_edd76b1f",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 16
@@ -105,6 +201,30 @@
       "writtenOn": "2018-11-14T15:01:01Z",
       "side": 1,
       "message": "Single space please.",
+      "range": {
+        "startLine": 206,
+        "startChar": 27,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08a64346_804786e8",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-23T17:23:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f22adcb_edd76b1f",
       "range": {
         "startLine": 206,
         "startChar": 27,
