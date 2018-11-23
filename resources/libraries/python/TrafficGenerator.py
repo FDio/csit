@@ -672,7 +672,7 @@ class OptimizedSearch(object):
     def perform_soak_search(
             frame_size, traffic_type, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.2,
-            initial_count=50, timeout=36000.0):
+            initial_count=50, timeout=1800.0):
         """FIXME."""
         # we need instance of TrafficGenerator instantiated by Robot Framework
         # to be able to use trex_stl-*()
