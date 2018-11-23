@@ -672,7 +672,7 @@ class OptimizedSearch(object):
     def perform_soak_search(
             frame_size, traffic_type, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.2,
-            initial_count=50, timeout=36000.0):
+            initial_count=50, timeout=1800.0):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
