@@ -279,7 +279,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 120
+      start: 210
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master:
       start: 3
