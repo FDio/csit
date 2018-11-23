@@ -418,3 +418,18 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
         raise RuntimeError(msg)
 
     return stdout, stderr
+
+def disconnect_all_ssh_conections():
+    """Disconnect all existing SSH connections.
+
+    Testing has showed that even lingering SSH connections to DUTs
+    are affecting DUT performance (drop bursts of decreasing frequency).
+    Call this after setup, just before entering
+    the performance critical part of test.
+    """
+    # We need an immutable copy of key list to iterate reliably.
+    for node_hash in list(SSH.__existing_connections.keys()):
+        logger.debug('Disconnecting node hash {node_hash}'.
+                     format(node_hash=node_hash))
+        ssh = SSH.__existing_connections.pop(node_hash)
+        ssh.close()
