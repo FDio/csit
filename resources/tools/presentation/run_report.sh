@@ -38,7 +38,7 @@ export PYTHONPATH=`pwd`
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
-    --version "w47" \
+    --version "w48" \
     --logging INFO \
     --force
 

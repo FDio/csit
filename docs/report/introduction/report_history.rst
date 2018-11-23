@@ -4,6 +4,16 @@ Document History
 +---------+--------------------------------------------------------------------+
 | Version | Change                                                             |
 +=========+====================================================================+
+| .w48    | 1. Added configurations for Denverton:                             |
+|         |                                                                    |
+|         |    a. Packet throughput :ref:`vpp_perf_configurations_2n_dnv`      |
+|         |    b. MRR :ref:`vpp_mrr_configurations_2n_dnv`                     |
+|         |                                                                    |
+|         | 2. Added operational data for Denverton:                           |
+|         |                                                                    |
+|         |    a. Packet throughput :ref:`vpp_perf_operational_2n_dnv`         |
+|         |                                                                    |
++---------+--------------------------------------------------------------------+
 | .w47    | 1. Added automated wrapping of long test names in graphs.          |
 |         | 2. Changed data and time format in the header.                     |
 |         | 3. Changed versioning.                                             |
