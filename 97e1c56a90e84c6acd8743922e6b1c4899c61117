@@ -46,6 +46,30 @@
       "revId": "97e1c56a90e84c6acd8743922e6b1c4899c61117",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "accf77e2_26a3ea27",
+        "filename": "resources/tools/presentation/specification.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-23T16:43:29Z",
+      "side": 1,
+      "message": "I see \"URL[VIRL,DNV]\" which is not the Nexus URL. Where can I see the Nexus URL for denverton results?",
+      "parentUuid": "5670aa6b_4e833bb1",
+      "range": {
+        "startLine": 76,
+        "startChar": 27,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "97e1c56a90e84c6acd8743922e6b1c4899c61117",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
