@@ -12,6 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
+# TODO: What is the best way to ensure all suites
+# have access to Disconnect All Ssh Connections keyword?
+| Library | resources.libraries.python.ssh.SSH
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SOAK
@@ -64,6 +67,7 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 patch
+| | Disconnect All Ssh Connections
 | | Then Perform soak search
 | | ... | ${framesize} | ${traffic_profile} | ${10000} | ${max_rate}
 
