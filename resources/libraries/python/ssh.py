@@ -23,7 +23,7 @@ from paramiko.ssh_exception import SSHException
 from scp import SCPClient
 from robot.api import logger
 
-__all__ = ["exec_cmd", "exec_cmd_no_error"]
+__all__ = ["exec_cmd", "exec_cmd_no_error", "disconnect_all_ssh_connections"]
 
 # TODO: load priv key
 
@@ -418,3 +418,20 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
         raise RuntimeError(msg)
 
     return stdout, stderr
+
+def disconnect_all_ssh_connections():
+    """Disconnect all existing SSH connections.
+
+    Testing has showed that even lingering SSH connections to DUTs
+    are affecting DUT performance (drop bursts of decreasing frequency).
+    Call this after setup, just before entering
+    the performance critical part of test.
+    """
+    # Private variables names look different when accessed from outside.
+    conn_dict = SSH._SSH__existing_connections
+    # We need an immutable copy of key list to iterate reliably.
+    for node_hash in list(conn_dict.keys()):
+        logger.debug('Disconnecting node hash {node_hash}'.
+                     format(node_hash=node_hash))
+        ssh = conn_dict.pop(node_hash)
+        ssh.close()
