@@ -56,7 +56,7 @@
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
+| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None} | ${disconn}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
@@ -64,10 +64,15 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 patch
+| | Run Keyword If | ${disconn} | Disconnect All Ssh Conections
 | | Then Perform soak search
 | | ... | ${framesize} | ${traffic_profile} | ${10000} | ${max_rate}
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2patch-soak
 | | [Tags] | 64B | 1C
-| | framesize=${64} | phy_cores=${1}
+| | framesize=${64} | phy_cores=${1} | disconn=True
+
+| tc02-64B-1c-eth-l2patch-soak
+| | [Tags] | 64B | 1C
+| | framesize=${64} | phy_cores=${1} | disconn=False
