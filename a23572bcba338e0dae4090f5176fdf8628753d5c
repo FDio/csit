@@ -22,6 +22,30 @@
       "revId": "a23572bcba338e0dae4090f5176fdf8628753d5c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f6b2cf6_e493282a",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-23T17:23:42Z",
+      "side": 1,
+      "message": "Unfotunately not. Wy can try to ask vpp-dev to remove this padding from strings.",
+      "parentUuid": "bd7ba45c_b77fdb2d",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 61
+      },
+      "revId": "a23572bcba338e0dae4090f5176fdf8628753d5c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
