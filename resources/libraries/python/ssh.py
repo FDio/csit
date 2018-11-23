@@ -431,5 +431,7 @@ def disconnect_all_ssh_connections():
     for node_hash in list(SSH.__existing_connections.keys()):
         logger.debug('Disconnecting node hash {node_hash}'.
                      format(node_hash=node_hash))
-        ssh = SSH.__existing_connections.pop(node_hash)
+        # When class attribute starts with _,
+        # class name needs to be inserted for external acess.
+        ssh = SSH._SSH__existing_connections.pop(node_hash)
         ssh.close()
