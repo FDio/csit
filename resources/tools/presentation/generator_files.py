@@ -109,11 +109,6 @@ def file_test_results(file_spec, input_data):
             if len(suite_longname.split(".")) <= file_spec["data-start-level"]:
                 continue
 
-            file_handler.write("\n{0}\n{1}\n".format(
-                suite["name"], get_rst_title_char(
-                    suite["level"] - file_spec["data-start-level"] - 1) *
-                            len(suite["name"])))
-
             if not ("-ndrpdr" in suite["name"] or
                     "-mrr" in suite["name"] or
                     "-func" in suite["name"] or
