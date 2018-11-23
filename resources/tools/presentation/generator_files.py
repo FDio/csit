@@ -114,7 +114,20 @@ def file_test_results(file_spec, input_data):
                     suite["level"] - file_spec["data-start-level"] - 1) *
                             len(suite["name"])))
 
+            if not ("-ndrpdr" in suite["name"] or
+                    "-mrr" in suite["name"] or
+                    "-func" in suite["name"] or
+                    "-device" in suite["name"]):
+                file_handler.write("\n{0}\n{1}\n".format(
+                    suite["name"], get_rst_title_char(
+                        suite["level"] - file_spec["data-start-level"] - 1) *
+                                len(suite["name"])))
+
             if _tests_in_suite(suite["name"], tests):
+                file_handler.write("\n{0}\n{1}\n".format(
+                    suite["name"], get_rst_title_char(
+                        suite["level"] - file_spec["data-start-level"] - 1) *
+                                   len(suite["name"])))
                 file_handler.write("\n{0}\n".format(
                     suite["doc"].replace('|br|', '\n\n -')))
                 for tbl_file in table_lst:
@@ -123,4 +136,5 @@ def file_test_results(file_spec, input_data):
                             RST_INCLUDE_TABLE.format(
                                 file_latex=tbl_file,
                                 file_html=tbl_file.split("/")[-1]))
+
     logging.info("  Done.")
