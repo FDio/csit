@@ -1,10 +1,13 @@
 Document History
 ================
 
+The version of this document is expressed as: **CSIT-YYMM.WW** where YY is the
+year, MM is the month and WW is the calendar week.
+
 +---------+--------------------------------------------------------------------+
 | Version | Change                                                             |
 +=========+====================================================================+
-| .w48    | 1. Added configurations for Denverton:                             |
+| .48     | 1. Added configurations for Denverton:                             |
 |         |                                                                    |
 |         |    a. Packet throughput :ref:`vpp_perf_configurations_2n_dnv`      |
 |         |    b. MRR :ref:`vpp_mrr_configurations_2n_dnv`                     |
