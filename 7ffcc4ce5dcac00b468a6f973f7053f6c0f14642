@@ -1281,6 +1281,30 @@
       "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "373dc4c7_a69ce090",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T11:38:14Z",
+      "side": 1,
+      "message": "Really? Do (for example) \"make test\" tests have to remove that padding (in some kind of wrapper)?\nIf yes, the DUT utility could do that, so the transferred json is more readable.",
+      "parentUuid": "77dc0f58_5c328237",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 1254
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
