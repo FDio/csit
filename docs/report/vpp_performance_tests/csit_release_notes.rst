@@ -80,6 +80,9 @@ Changes in |csit-release|
    - **3n-dnv Tests (3rd Party)**: Published performance tests for 3n-
      dnv (3-Node Atom Denverton) from 3rd party testbeds running FD.io
      |csit-release| automated testing code.
+     Only graphs for Packet Throughput and Speedup Multi-core and not
+     for Packet Latency were published as there are no results for Packet
+     Latency available.
 
 .. raw:: latex
 
