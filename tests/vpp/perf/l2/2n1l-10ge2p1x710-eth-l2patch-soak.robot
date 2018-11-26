@@ -70,6 +70,14 @@
 | | Disconnect All Ssh Connections
 | | Then Find critical load using PLRsearch
 | | ... | ${framesize} | ${traffic_profile} | ${10000} | ${max_rate}
+| | Exec Cmd | ${dut1} | tail -n 100 /var/log/auth.log | sudo=True
+| | Exec Cmd | ${dut1} | tail -n 100 /var/log/daemon.log | sudo=True
+| | Exec Cmd | ${dut1} | tail -n 100 /var/log/kern.log | sudo=True
+| | Exec Cmd | ${dut1} | tail -n 100 /var/log/messages | sudo=True
+| | Exec Cmd | ${dut1} | tail -n 100 /var/log/syslog | sudo=True
+| | Exec Cmd | ${dut1} | tail -n 100 /var/log/user.log | sudo=True
+| | Exec Cmd | ${dut1} | tail -n 100 /tmp/vpe.log | sudo=True
+| | Show event logger on all DUTs | ${nodes}
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2patch-soak
