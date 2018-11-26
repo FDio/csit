@@ -68,9 +68,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 patch
 | | Disconnect All Ssh Connections
-| | Sleep | 3600
 | | Then Perform soak search
 | | ... | ${framesize} | ${traffic_profile} | ${10000} | ${max_rate}
+| | Exec Cmd No Error | ${dut1} | tail -n 500 /var/log/auth.log | sudo=True
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2patch-soak
