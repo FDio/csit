@@ -75,8 +75,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
-    # URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1810/robot-plugin.zip"
-    URL[VIRL,DNV]: "http://download.it/from/nexus"
+    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1810/robot-plugin.zip"
+    # URL[VIRL,DNV]: "http://download.it/from/nexus"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
 
