@@ -2039,3 +2039,118 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
             \label{fig:ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. _packet_throughput_graphs_ip4-2n-dnv-x553:
+
+2n-dnv-x553
+~~~~~~~~~~~
+
+64b-1t1c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Packet Throughput: ip4-2n-dnv-x553-64b-1t1c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-dnv-x553-64b-1t1c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-dnv-x553-64b-1t1c-base-ndr}
+            \label{fig:ip4-2n-dnv-x553-64b-1t1c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+.. raw:: latex
+
+    \clearpage
+
+:index:`Packet Throughput: ip4-2n-dnv-x553-64b-1t1c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-dnv-x553-64b-1t1c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-dnv-x553-64b-1t1c-base-pdr}
+            \label{fig:ip4-2n-dnv-x553-64b-1t1c-base-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t2c-base
+-------------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Packet Throughput: ip4-2n-dnv-x553-64b-2t2c-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-dnv-x553-64b-2t2c-base-ndr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-dnv-x553-64b-2t2c-base-ndr}
+            \label{fig:ip4-2n-dnv-x553-64b-2t2c-base-ndr}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+.. raw:: latex
+
+    \clearpage
+
+:index:`Packet Throughput: ip4-2n-dnv-x553-64b-2t2c-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-dnv-x553-64b-2t2c-base-pdr.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-dnv-x553-64b-2t2c-base-pdr}
+            \label{fig:ip4-2n-dnv-x553-64b-2t2c-base-pdr}
+    \end{figure}

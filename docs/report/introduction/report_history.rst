@@ -13,6 +13,21 @@ Document History
 |         |                                                                    |
 |         |    a. Packet throughput :ref:`vpp_perf_operational_2n_dnv`         |
 |         |                                                                    |
+|         | 3. Added graphs for Denverton:                                     |
+|         |                                                                    |
+|         |    a. Packet Throughput - L2 Switching -                           |
+|         |       :ref:`packet_throughput_graphs_l2sw-2n-dnv-x553`             |
+|         |    b. Packet Throughput - IPv4 Routing -                           |
+|         |       :ref:`packet_throughput_graphs_ip4-2n-dnv-x553`              |
+|         |    c. Packet Throughput - IPv6 Routing -                           |
+|         |       :ref:`packet_throughput_graphs_ip6-2n-dnv-x553`              |
+|         |    d. Speedup Multi-Core - L2 Switching -                          |
+|         |       :ref:`speedup_graphs_l2sw-2n-dnv-x553`                       |
+|         |    e. Speedup Multi-Core - IPv4 Routing -                          |
+|         |       :ref:`speedup_graphs_ip4-2n-dnv-x553`                        |
+|         |    f. Speedup Multi-Core - IPv6 Routing -                          |
+|         |       :ref:`speedup_graphs_ip6-2n-dnv-x553`                        |
+|         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w47    | 1. Added automated wrapping of long test names in graphs.          |
 |         | 2. Changed data and time format in the header.                     |

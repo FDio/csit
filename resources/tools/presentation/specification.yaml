@@ -75,7 +75,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
-    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1810/robot-plugin.zip"
+    # URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1810/robot-plugin.zip"
+    URL[VIRL,DNV]: "http://download.it/from/nexus"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
 
@@ -3945,7 +3946,7 @@
   title: "VPP Performance Configuration 2n-dnv"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTC,PERF,VPP,2N,DNVvpp_performance_configuration_2n_dnv"
+  output-file: "{DIR[DTC,PERF,VPP,2N,DNV]}/vpp_performance_configuration_2n_dnv"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP,2N,DNV]}"
   data: "intel-dnv-vpp"
@@ -5836,6 +5837,135 @@
     whiskerwidth: 0
   layout:
     title: "l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP L2 2n-dnv-x553 base
+-
+  type: "plot"
+  title: "VPP Throughput: l2sw-2n-dnv-x553-64b-1t1c-base-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-dnv-x553-64b-1t1c-base-ndr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           'BASE' and
+           'NDRPDR' and
+           'ETH' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "L2PATCH"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-2n-dnv-x553-64b-1t1c-base-ndr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: l2sw-2n-dnv-x553-64b-1t1c-base-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-dnv-x553-64b-1t1c-base-pdr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRPDR' and
+           'ETH' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "L2PATCH"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-2n-dnv-x553-64b-1t1c-base-pdr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: l2sw-2n-dnv-x553-64b-2t2c-base-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-dnv-x553-64b-2t2c-base-ndr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRPDR' and
+           'ETH' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "L2PATCH"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-2n-dnv-x553-64b-2t2c-base-ndr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: l2sw-2n-dnv-x553-64b-2t2c-base-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-dnv-x553-64b-2t2c-base-pdr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRPDR' and
+           'ETH' and
+           '2T2C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "L2PATCH"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-2n-dnv-x553-64b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -9640,6 +9770,123 @@
     title: "ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
+# Packet Throughput - VPP IPv4 2n-dnv-x553 base and scale
+-
+  type: "plot"
+  title: "VPP Throughput: ip4-2n-dnv-x553-64b-1t1c-base-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-dnv-x553-64b-1t1c-base-ndr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           'IP4BASE' and
+           'NDRPDR' and
+           '1T1C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-dnv-x553-64b-1t1c-base-ndr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: ip4-2n-dnv-x553-64b-1t1c-base-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-dnv-x553-64b-1t1c-base-pdr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           'IP4BASE' and
+           'NDRPDR' and
+           '1T1C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-dnv-x553-64b-1t1c-base-pdr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: ip4-2n-dnv-x553-64b-2t2c-base-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-dnv-x553-64b-2t2c-base-ndr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           'IP4BASE' and
+           'NDRPDR' and
+           '2T2C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-dnv-x553-64b-2t2c-base-ndr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: ip4-2n-dnv-x553-64b-2t2c-base-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-dnv-x553-64b-2t2c-base-pdr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           'IP4BASE' and
+           'NDRPDR' and
+           '2T2C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-dnv-x553-64b-2t2c-base-pdr"
+    layout: "plot-throughput"
+
 ################################################################################
 
 # Packet Throughput - VPP IPv4 tunnels 3n-hsw-x520 base and scale
@@ -11673,6 +11920,127 @@
     whiskerwidth: 0
   layout:
     title: "ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP IPv6 2n-dnv-x553 base
+-
+  type: "plot"
+  title: "VPP Throughput: ip6-2n-dnv-x553-78b-1t1c-base-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-dnv-x553-78b-1t1c-base-ndr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '78B' and
+           'IP6BASE' and
+           'NDRPDR' and
+           '1T1C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-2n-dnv-x553-78b-1t1c-base-ndr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: ip6-2n-dnv-x553-78b-1t1c-base-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-dnv-x553-78b-1t1c-base-pdr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '78B' and
+           'IP6BASE' and
+           'NDRPDR' and
+           '1T1C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-2n-dnv-x553-78b-1t1c-base-pdr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: ip6-2n-dnv-x553-78b-2t2c-base-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-dnv-x553-78b-2t2c-base-ndr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '78B' and
+           'IP6BASE' and
+           'NDRPDR' and
+           '2T2C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-2n-dnv-x553-78b-2t2c-base-ndr"
+    layout: "plot-throughput"
+
+-
+  type: "plot"
+  title: "VPP Throughput: ip6-2n-dnv-x553-78b-2t2c-base-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-dnv-x553-78b-2t2c-base-pdr"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '78B' and
+           'IP6BASE' and
+           'NDRPDR' and
+           '2T2C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-2n-dnv-x553-78b-2t2c-base-pdr"
     layout: "plot-throughput"
 
 ################################################################################
@@ -24089,6 +24457,55 @@
     title: "ip4-2n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
+# Speedup - VPP IPv4 2n-dnv-x553 base
+-
+  type: "plot"
+  title: "Speedup: ip4-2n-dnv-x553-64b-base-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-dnv-x553-64b-base-ndr-tsa"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           'IP4BASE' and
+           'NDRPDR' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  layout:
+    title: "ip4-2n-dnv-x553-64b-base-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "Speedup: ip4-2n-dnv-x553-64b-base-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-dnv-x553-64b-base-pdr-tsa"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           'IP4BASE' and
+           'NDRPDR' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  layout:
+    title: "ip4-2n-dnv-x553-64b-base-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
 ################################################################################
 
 # Speedup - VPP IPv4 Tunnels 3n-hsw-x520
@@ -24966,6 +25383,57 @@
     title: "ip6-2n-skx-xxv710-78b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
+# Speedup - VPP IPv6 2n-dnv-x553 base
+-
+  type: "plot"
+  title: "Speedup: ip6-2n-dnv-x553-78b-base-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-dnv-x553-78b-base-ndr-tsa"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '78B' and
+           'IP6BASE' and
+           'NDRPDR' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  layout:
+    title: "ip6-2n-dnv-x553-78b-base-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "Speedup: ip6-2n-dnv-x553-78b-base-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-dnv-x553-78b-base-pdr-tsa"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '78B' and
+           'IP6BASE' and
+           'NDRPDR' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  layout:
+    title: "ip6-2n-dnv-x553-78b-base-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
 ################################################################################
 
 # Speedup - VPP IPv6 tunnels 3n-hsw-x520
@@ -25795,6 +26263,61 @@
   - "FIB_1M"
   layout:
     title: "l2sw-2n-skx-xxv710-64b-base_and_scale-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP L2 2n-dnv-x553 base
+-
+  type: "plot"
+  title: "Speedup: l2sw-2n-dnv-x553-64b-base-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-dnv-x553-64b-base-ndr-tsa"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRPDR' and
+           'ETH' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "L2PATCH"
+  layout:
+    title: "l2sw-2n-dnv-x553-64b-base-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+-
+  type: "plot"
+  title: "Speedup: l2sw-2n-dnv-x553-64b-base-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-dnv-x553-64b-base-pdr-tsa"
+  data: "intel-dnv-vpp"
+  filter: "'NIC_Intel-X553' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRPDR' and
+           'ETH' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "L2PATCH"
+  layout:
+    title: "l2sw-2n-dnv-x553-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
