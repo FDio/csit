@@ -930,6 +930,30 @@
     },
     {
       "key": {
+        "uuid": "73fe851e_05cac983",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T11:23:26Z",
+      "side": 1,
+      "message": "\u003e vpp_ipsec_create_tunnel_interfaces\n\nAs I see it, the commands are \"spit\" just because they are executed on different DUTs.",
+      "parentUuid": "0181851c_56ae5500",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a09700f3_60e0c8ad",
         "filename": "resources/tools/papi/doc/papi_hld.rst",
         "patchSetId": 1
@@ -989,6 +1013,30 @@
       "side": 1,
       "message": "As we already have some methods using this approach - see https://gerrit.fd.io/r/gitweb?p\u003dcsit.git;a\u003dblob;f\u003dresources/libraries/python/IPsecUtil.py;hb\u003drefs/heads/master or https://gerrit.fd.io/r/gitweb?p\u003dcsit.git;a\u003dblob;f\u003dresources/libraries/python/InterfaceUtil.py;hb\u003drefs/heads/master.",
       "parentUuid": "5c47cbe1_192941c8",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 20
+      },
+      "revId": "7ffcc4ce5dcac00b468a6f973f7053f6c0f14642",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ce8125e_3dd30ca6",
+        "filename": "resources/tools/papi/doc/papi_hld.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T11:23:26Z",
+      "side": 1,
+      "message": "You mean single \"script\" consisting of multiple \"commands\"? I agree that is a useful wrapper around single command execution, but I do not see any reason why the json format should support multiple commands. Do we have some tests where there are thousands of commands? If not, it would be simpler (and more readable) to have each command handled by a separate DUT utility invocation.",
+      "parentUuid": "2cf5c4ee_164d6486",
       "range": {
         "startLine": 75,
         "startChar": 12,
