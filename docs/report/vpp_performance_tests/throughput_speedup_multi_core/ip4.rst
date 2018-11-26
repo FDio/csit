@@ -1050,3 +1050,63 @@ CSIT source code for the test cases used for plots can be found in
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
             \label{fig:ip4-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. _speedup_graphs_ip4-2n-dnv-x553:
+
+2n-dnv-x553
+~~~~~~~~~~~
+
+64b-base
+--------
+
+.. raw:: html
+
+    <center><b>
+
+:index:`Speedup Multi-core: ip4-2n-dnv-x553-64b-base-ndr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm37" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-dnv-x553-64b-base-ndr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-dnv-x553-64b-base-ndr-tsa}
+            \label{fig:ip4-2n-dnv-x553-64b-base-ndr-tsa}
+    \end{figure}
+
+.. raw:: html
+
+    <center><b>
+
+.. raw:: latex
+
+    \clearpage
+
+:index:`Speedup Multi-core: ip4-2n-dnv-x553-64b-base-pdr`
+
+.. raw:: html
+
+    </b>
+    <iframe id="ifrm38" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-dnv-x553-64b-base-pdr-tsa.html"></iframe>
+    <p><br><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-dnv-x553-64b-base-pdr-tsa}
+            \label{fig:ip4-2n-dnv-x553-64b-base-pdr-tsa}
+    \end{figure}
