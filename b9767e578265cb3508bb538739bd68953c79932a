@@ -22,6 +22,52 @@
       "revId": "b9767e578265cb3508bb538739bd68953c79932a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "005a8b48_677d1708",
+        "filename": "resources/tools/papi/doc/python_api_hld.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T11:41:25Z",
+      "side": 1,
+      "message": "Why is it not handled automatically, as \"client_index\" and \"context\" are? We are not really using different clients. We are using always the same DUT utility, in blocking mode (so no concurrent invocations).",
+      "range": {
+        "startLine": 127,
+        "startChar": 14,
+        "endLine": 127,
+        "endChar": 25
+      },
+      "revId": "b9767e578265cb3508bb538739bd68953c79932a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7552b99_9406a57a",
+        "filename": "resources/tools/papi/doc/python_api_hld.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T11:41:25Z",
+      "side": 1,
+      "message": "commands\n\nWe are not executing diferent interfaces, just different commands via the same intervase.",
+      "range": {
+        "startLine": 128,
+        "startChar": 22,
+        "endLine": 128,
+        "endChar": 26
+      },
+      "revId": "b9767e578265cb3508bb538739bd68953c79932a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
