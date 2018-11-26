@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "64dc9cb2_93e06a01",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T11:28:58Z",
+      "side": 1,
+      "message": "Replied there. Basically, I prefer the DUT utility to support just one command per call, with any convenience wrappers being only on Robot executor side.",
+      "parentUuid": "5d8ea253_8a8b9f3a",
+      "range": {
+        "startLine": 152,
+        "startChar": 21,
+        "endLine": 152,
+        "endChar": 32
+      },
+      "revId": "4e68e89de41d68124d36535715ea1fa23dee7e7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59b79534_7060c2b4",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 16
