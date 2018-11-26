@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "47952f03_31a993b2",
+        "filename": "resources/tools/papi/doc/python_api_hld.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-26T15:36:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd7b16b3_af494e87",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "b9767e578265cb3508bb538739bd68953c79932a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "005a8b48_677d1708",
         "filename": "resources/tools/papi/doc/python_api_hld.rst",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "206f1c73_efaaba74",
+        "filename": "resources/tools/papi/doc/python_api_hld.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-26T15:36:11Z",
+      "side": 1,
+      "message": "\u0027Why is it not handled automatically, as \"client_index\" and \"context\" are?\u0027 - that\u0027s the question for vpp-dev.\nIf it\u0027s really confusing you we can change our part to use always the same client name, e.g. \"csit_papi\" and reduce complexity of JSON data exchanged between Robot framework executor library and remote python script. (I expect \"yes\" there ;) )",
+      "parentUuid": "005a8b48_677d1708",
+      "range": {
+        "startLine": 127,
+        "startChar": 14,
+        "endLine": 127,
+        "endChar": 25
+      },
+      "revId": "b9767e578265cb3508bb538739bd68953c79932a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7552b99_9406a57a",
         "filename": "resources/tools/papi/doc/python_api_hld.rst",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2018-11-26T11:41:25Z",
       "side": 1,
       "message": "commands\n\nWe are not executing diferent interfaces, just different commands via the same intervase.",
+      "range": {
+        "startLine": 128,
+        "startChar": 22,
+        "endLine": 128,
+        "endChar": 26
+      },
+      "revId": "b9767e578265cb3508bb538739bd68953c79932a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc39afe9_d8379383",
+        "filename": "resources/tools/papi/doc/python_api_hld.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2018-11-26T15:36:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7552b99_9406a57a",
       "range": {
         "startLine": 128,
         "startChar": 22,
