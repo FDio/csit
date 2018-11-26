@@ -1,10 +1,12 @@
 Document History
 ================
 
+
+
 +---------+--------------------------------------------------------------------+
 | Version | Change                                                             |
 +=========+====================================================================+
-| .w48    | 1. Added configurations for Denverton:                             |
+| .48     | 1. Added configurations for Denverton:                             |
 |         |                                                                    |
 |         |    a. Packet throughput :ref:`vpp_perf_configurations_2n_dnv`      |
 |         |    b. MRR :ref:`vpp_mrr_configurations_2n_dnv`                     |
