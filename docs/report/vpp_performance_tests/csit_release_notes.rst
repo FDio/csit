@@ -38,7 +38,7 @@ Changes in |csit-release|
 #. TEST FRAMEWORK
 
    - **Experimental Soak Tests**: Added performamce soak tests framework
-     code for extended time duration tests and  throughput discovery
+     code for extended time duration tests and throughput discovery
      at given PLR and at give total test time e.g. minutes, hours,
      days, weeks, months, years. See updated
      :ref:`performance_test_methodology` section for more details.
@@ -70,7 +70,6 @@ Changes in |csit-release|
      for better readibility and maintenance: test grouping, axis
      labels, descriptions, other informative decoration. Master report
      generated. 744 graphs(!)
-
 
    - **Performance Trending**: Further improvements of continuous
      performance trending, anomaly detection and analysis.
