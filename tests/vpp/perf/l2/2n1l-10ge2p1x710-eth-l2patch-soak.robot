@@ -68,6 +68,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 patch
 | | Disconnect All Ssh Connections
+| | Sleep | 3600
 | | Then Find critical load using PLRsearch
 | | ... | ${framesize} | ${traffic_profile} | ${10000} | ${max_rate}
 | | Exec Cmd | ${dut1} | tail -n 100 /var/log/auth.log | sudo=True
