@@ -1,10 +1,13 @@
 Document History
 ================
 
+The version of this document is expressed as: **CSIT-YYMM.WW** where YY is the
+year, MM is the month and WW is the calendar week.
+
 +---------+--------------------------------------------------------------------+
 | Version | Change                                                             |
 +=========+====================================================================+
-| .w48    | 1. Added configurations for Denverton:                             |
+| .48     | 1. Added configurations for Denverton:                             |
 |         |                                                                    |
 |         |    a. Packet throughput :ref:`vpp_perf_configurations_2n_dnv`      |
 |         |    b. MRR :ref:`vpp_mrr_configurations_2n_dnv`                     |
@@ -27,6 +30,11 @@ Document History
 |         |       :ref:`speedup_graphs_ip4-2n-dnv-x553`                        |
 |         |    f. Speedup Multi-Core - IPv6 Routing -                          |
 |         |       :ref:`speedup_graphs_ip6-2n-dnv-x553`                        |
+|         |                                                                    |
+|         | 4. Replaced old Denverton data with new data delivered on Nov-27.  |
+|         |                                                                    |
+|         | 5. Changed versioning of this document, see description on the top |
+|         |    of this page.                                                   |
 |         |                                                                    |
 +---------+--------------------------------------------------------------------+
 | .w47    | 1. Added automated wrapping of long test names in graphs.          |
