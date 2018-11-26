@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "8abde153_1a901d82",
+        "filename": "resources/tools/papi/doc/python_api_hld.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T15:43:15Z",
+      "side": 1,
+      "message": "\u003e and reduce complexity of JSON data\n\nYes please.",
+      "parentUuid": "206f1c73_efaaba74",
+      "range": {
+        "startLine": 127,
+        "startChar": 14,
+        "endLine": 127,
+        "endChar": 25
+      },
+      "revId": "b9767e578265cb3508bb538739bd68953c79932a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7552b99_9406a57a",
         "filename": "resources/tools/papi/doc/python_api_hld.rst",
         "patchSetId": 2
