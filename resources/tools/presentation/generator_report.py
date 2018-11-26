@@ -105,15 +105,15 @@ PDF_BUILDER = 'sphinx-build -v -c . -a ' \
               '{build_dir}'
 
 
-def generate_report(release, spec, report_version):
+def generate_report(release, spec, report_week):
     """Generate all formats and versions of the report.
 
     :param release: Release string of the product.
     :param spec: Specification read from the specification file.
-    :param report_version: Version of the report.
+    :param report_week: Calendar week when the report is published.
     :type release: str
     :type spec: Specification
-    :type report_version: str
+    :type report_week: str
     """
 
     logging.info("Generating the report ...")
@@ -124,7 +124,7 @@ def generate_report(release, spec, report_version):
     }
 
     for report_format, versions in spec.output["format"].items():
-        report[report_format](release, spec, versions, report_version)
+        report[report_format](release, spec, versions, report_week)
 
     archive_input_data(spec)
 
@@ -155,7 +155,6 @@ def generate_html_report(release, spec, versions, report_version):
 
     cmd = HTML_BUILDER.format(
         release=release,
-        report_version=report_version,
         date=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
         working_dir=working_dir,
         build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
@@ -172,17 +171,17 @@ def generate_html_report(release, spec, versions, report_version):
     logging.info("  Done.")
 
 
-def generate_pdf_report(release, spec, versions, report_version):
+def generate_pdf_report(release, spec, versions, report_week):
     """Generate html format of the report.
 
     :param release: Release string of the product.
     :param spec: Specification read from the specification file.
     :param versions: List of versions to generate. Not implemented yet.
-    :param report_version: Version of the report.
+    :param report_week: Calendar week when the report is published.
     :type release: str
     :type spec: Specification
     :type versions: list
-    :type report_version: str
+    :type report_week: str
     """
 
     logging.info("  Generating the pdf report, give me a few minutes, please "
@@ -210,7 +209,6 @@ def generate_pdf_report(release, spec, versions, report_version):
     build_dir = spec.environment["paths"]["DIR[BUILD,LATEX]"]
     cmd = PDF_BUILDER.format(
         release=release,
-        report_version=report_version,
         date=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
         working_dir=working_dir,
         build_dir=build_dir)
@@ -226,12 +224,12 @@ def generate_pdf_report(release, spec, versions, report_version):
         'pdflatex -interaction nonstopmode csit.tex || true'.
         format(build_dir=build_dir),
         'cd {build_dir} && '
-        'cp csit.pdf ../{archive_dir}/csit_{release}_{report_version}.pdf &&'
+        'cp csit.pdf ../{archive_dir}/csit_{release}.{week}.pdf &&'
         'cp csit.pdf ../{archive_dir}/csit_{release}.pdf'.
         format(build_dir=build_dir,
                archive_dir=archive_dir,
                release=release,
-               report_version=report_version)
+               week=report_week)
     ]
 
     for cmd in cmds:
