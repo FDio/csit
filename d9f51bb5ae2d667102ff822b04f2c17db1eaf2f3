@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dde398f2_b2ebaa53",
+        "filename": "resources/tools/presentation/doc/graphs_test_data_rules.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-26T15:55:32Z",
+      "side": 1,
+      "message": "We also want l2patch somewhere.",
+      "range": {
+        "startLine": 675,
+        "startChar": 13,
+        "endLine": 675,
+        "endChar": 21
+      },
+      "revId": "d9f51bb5ae2d667102ff822b04f2c17db1eaf2f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
