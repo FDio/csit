@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ca0befcd_5bdb3980",
+        "filename": "resources/tools/presentation/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-11-26T15:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a1a51d2_45693f0c",
+      "range": {
+        "startLine": 73,
+        "startChar": 94,
+        "endLine": 73,
+        "endChar": 120
+      },
+      "revId": "65a75703bb28cc0d7f196495d6568f1a170df47f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "489138a3_5f6f7d0a",
         "filename": "resources/tools/presentation/conf.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "94822267_00268d1b",
+        "filename": "resources/tools/presentation/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-11-26T15:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "489138a3_5f6f7d0a",
+      "range": {
+        "startLine": 108,
+        "startChar": 11,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "65a75703bb28cc0d7f196495d6568f1a170df47f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72402b64_e4a3179b",
         "filename": "resources/tools/presentation/run_report.sh",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-11-26T15:20:28Z",
       "side": 1,
       "message": "--week",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 13
+      },
+      "revId": "65a75703bb28cc0d7f196495d6568f1a170df47f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "770c5c77_4d290d2f",
+        "filename": "resources/tools/presentation/run_report.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-11-26T15:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72402b64_e4a3179b",
       "range": {
         "startLine": 41,
         "startChar": 4,
