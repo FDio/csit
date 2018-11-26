@@ -68,6 +68,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 patch
 | | Disconnect All Ssh Connections
+| | Sleep | 3600
 | | Then Perform soak search
 | | ... | ${framesize} | ${traffic_profile} | ${10000} | ${max_rate}
 
