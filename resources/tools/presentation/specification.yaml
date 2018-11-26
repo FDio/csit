@@ -75,7 +75,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
-    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1810/robot-plugin.zip"
+    # URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1810/robot-plugin.zip"
+    URL[VIRL,DNV]: "http://download.it/from/nexus"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
 
@@ -3945,7 +3946,7 @@
   title: "VPP Performance Configuration 2n-dnv"
   algorithm: "file_test_results"
   output-file-ext: ".rst"
-  output-file: "{DIR[DTC,PERF,VPP,2N,DNVvpp_performance_configuration_2n_dnv"
+  output-file: "{DIR[DTC,PERF,VPP,2N,DNV]}/vpp_performance_configuration_2n_dnv"
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP,2N,DNV]}"
   data: "intel-dnv-vpp"
