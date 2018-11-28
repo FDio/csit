@@ -272,9 +272,17 @@ function gather_vpp () {
                 warn "Downloading latest VPP packages from Packagecloud."
             else
                 warn "Downloading stable VPP packages from Packagecloud."
-                VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU")" || {
-                    die "Read VPP stable version failed."
-                }
+                if [[ "${TEST_CODE}" == *"device"* ]];
+                then
+                    VPP_VERSION= \
+                        "$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU_BIONIC")" || {
+                        die "Read VPP stable version failed."
+                    }
+                else
+                    VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU")" || {
+                        die "Read VPP stable version failed."
+                    }
+                fi
             fi
             source "${BASH_FUNCTION_DIR}/artifacts.sh" || die "Source failed."
             download_artifacts || die
