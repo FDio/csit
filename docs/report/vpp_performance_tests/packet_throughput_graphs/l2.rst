@@ -1161,7 +1161,7 @@ CSIT source code for the test cases used for plots can be found in
 
     \clearpage
 
-.. _packet_throughput_graphs_ip4-2n-dnv-x553:
+.. _packet_throughput_graphs_l2sw-2n-dnv-x553:
 
 2n-dnv-x553
 ~~~~~~~~~~~
