@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72e9f824_08176fe4",
+        "filename": "resources/tools/papi/doc/python_api_hld.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-28T13:31:15Z",
+      "side": 1,
+      "message": "Is it too late to rename the \"api_\" prefix to \"command_\", \"cmd_\" or similar?",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 17
+      },
+      "revId": "9bc5017b07c7a779af9bff0360d022388adbf2d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
