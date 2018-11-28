@@ -546,6 +546,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
             limit = plot["limits"]["nic"]["xxv710"]
         elif "xl710" in test_name:
             limit = plot["limits"]["nic"]["xl710"]
+        elif "x553" in test_name:
+            limit = plot["limits"]["nic"]["x553"]
         else:
             limit = 0
         if limit > nic_limit:
