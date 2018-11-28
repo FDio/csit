@@ -681,7 +681,7 @@
     - title: "VPP 1T1C L2 64B MRR Trending 3n-hsw"
       output-file-name: "l2-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -689,7 +689,7 @@
     - title: "VPP 2T2C L2 64B MRR Trending 3n-hsw"
       output-file-name: "l2-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -697,7 +697,7 @@
     - title: "VPP 4T4C L2 64B MRR Trending 3n-hsw"
       output-file-name: "l2-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -705,7 +705,7 @@
     - title: "VPP 1T1C L2 64B IACL MRR Trending 3n-hsw"
       output-file-name: "l2-feature-1t1c-x520-3n-hsw-iacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'IACL' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'IACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -713,7 +713,7 @@
     - title: "VPP 2T2C L2 64B IACL MRR Trending 3n-hsw"
       output-file-name: "l2-feature-2t2c-x520-3n-hsw-iacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'IACL' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'IACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -721,7 +721,7 @@
     - title: "VPP 4T4C L2 64B IACL MRR Trending 3n-hsw"
       output-file-name: "l2-feature-4t4c-x520-3n-hsw-iacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'IACL' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'IACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -729,7 +729,7 @@
     - title: "VPP 1T1C L2 64B OACL MRR Trending 3n-hsw"
       output-file-name: "l2-feature-1t1c-x520-3n-hsw-oacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' ('ACL1' or 'ACL50') and '10k_FLOWS' and and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -737,7 +737,7 @@
     - title: "VPP 2T2C L2 64B OACL MRR Trending 3n-hsw"
       output-file-name: "l2-feature-2t2c-x520-3n-hsw-oacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -745,7 +745,7 @@
     - title: "VPP 4T4C L2 64B OACL MRR Trending 3n-hsw"
       output-file-name: "l2-feature-4t4c-x520-3n-hsw-oacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -753,7 +753,7 @@
     - title: "VPP 1T1C L2 64B MACIP MRR Trending 3n-hsw"
       output-file-name: "l2-feature-1t1c-x520-3n-hsw-macip"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'MACIP' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -761,7 +761,7 @@
     - title: "VPP 2T2C L2 64B MACIP MRR Trending 3n-hsw"
       output-file-name: "l2-feature-2t2c-x520-3n-hsw-macip"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'MACIP' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -769,7 +769,7 @@
     - title: "VPP 4T4C L2 64B MACIP MRR Trending 3n-hsw"
       output-file-name: "l2-feature-4t4c-x520-3n-hsw-macip"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'MACIP' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -855,7 +855,7 @@
     - title: "VPP 1T1C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -863,7 +863,7 @@
     - title: "VPP 2T2C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -871,7 +871,7 @@
     - title: "VPP 4T4C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -879,7 +879,7 @@
     - title: "VPP 1T1C IPv4 64B IACL MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-1t1c-x520-3n-hsw-iacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and 'IP4FWD' and 'IACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and 'IP4FWD' and 'IACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -887,7 +887,7 @@
     - title: "VPP 2T2C IPv4 64B IACL MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-2t2c-x520-3n-hsw-iacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and 'IP4FWD' and 'IACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and 'IP4FWD' and 'IACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -895,7 +895,7 @@
     - title: "VPP 4T4C IPv4 64B IACL MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-4t4c-x520-3n-hsw-iacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and 'IP4FWD' and 'IACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and 'IP4FWD' and 'IACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -903,7 +903,7 @@
     - title: "VPP 1T1C IPv4 64B OACL MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-1t1c-x520-3n-hsw-oacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and 'IP4FWD' and 'OACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and 'IP4FWD' and 'OACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -911,7 +911,7 @@
     - title: "VPP 2T2C IPv4 64B OACL MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-2t2c-x520-3n-hsw-oacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and 'IP4FWD' and 'OACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and 'IP4FWD' and 'OACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -919,7 +919,7 @@
     - title: "VPP 4T4C IPv4 64B OACL MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-4t4c-x520-3n-hsw-oacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and 'IP4FWD' and 'OACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and 'IP4FWD' and 'OACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -927,7 +927,7 @@
     - title: "VPP 1T1C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and 'IP4FWD' and not 'OACL' and not 'IACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'NAT44' and('BASE' or 'SRC_USER_4000') and 'FEATURE' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -935,7 +935,7 @@
     - title: "VPP 2T2C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and 'IP4FWD' and not 'OACL' and not 'IACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'NAT44' and('BASE' or 'SRC_USER_4000') and 'FEATURE' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -943,7 +943,7 @@
     - title: "VPP 4T4C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-feature-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and 'IP4FWD' and not 'OACL' and not 'IACL' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'NAT44' and('BASE' or 'SRC_USER_4000') and 'FEATURE' and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -979,7 +979,7 @@
     - title: "VPP 1T1C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-1t1c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -987,7 +987,7 @@
     - title: "VPP 2T2C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-2t2c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -995,7 +995,7 @@
     - title: "VPP 4T4C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-4t4c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1029,7 +1029,7 @@
     - title: "VPP 1T1C IPv4 Tunnels 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-tunnels-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '1T1C' and 'LISP' and 'IP6UNRLAY' and 'IP4OVRLAY' and not 'VHOST' and not 'IPSECHW'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1037,7 +1037,7 @@
     - title: "VPP 2T2C IPv4 Tunnels 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-tunnels-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '2T2C' and 'LISP' and 'IP6UNRLAY' and 'IP4OVRLAY' and not 'VHOST' and not 'IPSECHW'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1045,7 +1045,7 @@
     - title: "VPP 4T4C IPv4 Tunnels 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-tunnels-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '4T4C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '4T4C' and 'LISP' and 'IP6UNRLAY' and 'IP4OVRLAY' and not 'VHOST' and not 'IPSECHW'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1081,7 +1081,7 @@
     - title: "VPP 1T1C IPv6 78B MRR Trending 3n-hsw"
       output-file-name: "ip6-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and 'BASE' and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1089,7 +1089,7 @@
     - title: "VPP 2T2C IPv6 78B MRR Trending 3n-hsw"
       output-file-name: "ip6-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and 'BASE' and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1097,7 +1097,7 @@
     - title: "VPP 4T4C IPv6 78B MRR Trending 3n-hsw"
       output-file-name: "ip6-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and 'BASE' and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'SRv6' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1133,7 +1133,7 @@
     - title: "VPP 1T1C IPv6 78B MRR Trending 3n-hsw"
       output-file-name: "ip6-1t1c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1141,7 +1141,7 @@
     - title: "VPP 2T2C IPv6 78B MRR Trending 3n-hsw"
       output-file-name: "ip6-2t2c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1149,7 +1149,7 @@
     - title: "VPP 4T4C IPv6 78B MRR Trending 3n-hsw"
       output-file-name: "ip6-4t4c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2092,7 +2092,7 @@
     - title: "VPP 2T1C IPv4 64B MRR Trending 3n-skx"
       output-file-name: "ip4-2t1c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2100,7 +2100,7 @@
     - title: "VPP 4T2C IPv4 64B MRR Trending 3n-skx"
       output-file-name: "ip4-4t2c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2108,7 +2108,7 @@
     - title: "VPP 8T4C IPv4 64B MRR Trending 3n-skx"
       output-file-name: "ip4-8t4c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2244,7 +2244,7 @@
     - title: "VPP 2T1C IPv6 78B MRR Trending 3n-skx"
       output-file-name: "ip6-2t1c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2252,7 +2252,7 @@
     - title: "VPP 4T2C IPv6 78B MRR Trending 3n-skx"
       output-file-name: "ip6-4t2c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2260,7 +2260,7 @@
     - title: "VPP 8T4C IPv6 78B MRR Trending 3n-skx"
       output-file-name: "ip6-8t4c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2270,7 +2270,7 @@
     - title: "VPP 2T1C IPv6 78B MRR Trending 3n-skx"
       output-file-name: "ip6-2t1c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2278,7 +2278,7 @@
     - title: "VPP 4T2C IPv6 78B MRR Trending 3n-skx"
       output-file-name: "ip6-4t2c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2286,7 +2286,7 @@
     - title: "VPP 8T4C IPv6 78B MRR Trending 3n-skx"
       output-file-name: "ip6-8t4c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2819,7 +2819,7 @@
     - title: "VPP 2T1C L2 64B MRR Trending 2n-skx"
       output-file-name: "l2-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2827,7 +2827,7 @@
     - title: "VPP 4T2C L2 64B MRR Trending 2n-skx"
       output-file-name: "l2-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2835,7 +2835,7 @@
     - title: "VPP 8T4C L2 64B MRR Trending 2n-skx"
       output-file-name: "l2-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2869,7 +2869,7 @@
     - title: "VPP 2T1C L2 64B MRR Trending 2n-skx"
       output-file-name: "l2-2t1c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2877,7 +2877,7 @@
     - title: "VPP 4T2C L2 64B MRR Trending 2n-skx"
       output-file-name: "l2-4t2c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2885,7 +2885,7 @@
     - title: "VPP 8T4C L2 64B MRR Trending 2n-skx"
       output-file-name: "l2-8t4c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2919,7 +2919,7 @@
     - title: "VPP 2T1C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2927,7 +2927,7 @@
     - title: "VPP 4T2C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2935,7 +2935,7 @@
     - title: "VPP 8T4C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2969,7 +2969,7 @@
     - title: "VPP 2T1C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-2t1c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2977,7 +2977,7 @@
     - title: "VPP 4T2C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-4t2c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2985,7 +2985,7 @@
     - title: "VPP 8T4C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-8t4c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3071,7 +3071,7 @@
     - title: "VPP 2T1C IPv6 78B MRR Trending 2n-skx"
       output-file-name: "ip6-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3079,7 +3079,7 @@
     - title: "VPP 4T2C IPv6 78B MRR Trending 2n-skx"
       output-file-name: "ip6-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3087,7 +3087,7 @@
     - title: "VPP 8T4C IPv6 78B MRR Trending 2n-skx"
       output-file-name: "ip6-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3097,7 +3097,7 @@
     - title: "VPP 2T1C IPv6 78B MRR Trending 2n-skx"
       output-file-name: "ip6-2t1c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3105,7 +3105,7 @@
     - title: "VPP 4T2C IPv6 78B MRR Trending 2n-skx"
       output-file-name: "ip6-4t2c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3113,7 +3113,7 @@
     - title: "VPP 8T4C IPv6 78B MRR Trending 2n-skx"
       output-file-name: "ip6-8t4c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '8T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
       parameters:
       - "result"
       layout: "plot-cpta"
