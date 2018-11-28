@@ -17,7 +17,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X520-DA2 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
-| ... | VHOST_1024 | LBOND | LBOND_VPP| LBOND_MODE_LACP | LBOND_LB_L34
+| ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up 3-node performance topology with DUT's NIC model | L2
