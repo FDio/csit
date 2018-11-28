@@ -20,7 +20,7 @@
 | Resource | resources/libraries/robot/ip/map.robot
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SOFTWIRE
 | Test Setup | Run Keywords | Set up functional test
 | ... | AND | Set interfaces IP addresses and routes
 | Test Teardown | Tear down functional test

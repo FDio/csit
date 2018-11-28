@@ -18,7 +18,7 @@
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/ip/map.robot
 | Library  | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SOFTWIRE
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *Lightweight 4 over 6 test cases*

@@ -225,6 +225,7 @@ do
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
+        --exclude SOFTWIRE \
         --noncritical EXPECTED_FAILING \
         --output ${LOG_PATH}/output_test_set${test_set} \
         tests/
