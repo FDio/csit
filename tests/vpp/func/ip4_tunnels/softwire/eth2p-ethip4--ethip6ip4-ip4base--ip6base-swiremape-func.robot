@@ -22,6 +22,7 @@
 | Library  | resources.libraries.python.Trace
 | Variables | resources/test_data/softwire/map_e_domains.py | ${5}
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
+| ... | SOFTWIRE
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *Test for Basic mapping rule for MAP-E*\
