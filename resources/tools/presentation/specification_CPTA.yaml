@@ -418,7 +418,7 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  window: 14
+  window: 7  # days
 
 -
   type: "table"
@@ -533,7 +533,7 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  window: 14
+  window: 7  # days
 
 -
   type: "table"
@@ -648,7 +648,7 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  window: 14
+  window: 7  # days
 
 -
   type: "table"
