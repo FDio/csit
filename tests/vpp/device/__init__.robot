@@ -45,7 +45,8 @@
 | | Set Global Variable | ${vm_image} | /var/lib/vm/csit-nested-1.7.img
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | @{vpp_rpm_pkgs}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
+| | ... | vpp-api-python
 | | Set Global Variable | ${vpp_rpm_pkgs}
 | | @{vpp_deb_pkgs}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
-| | ... | vpp-plugins
+| | ... | vpp-plugins | vpp-api-python
 | | Set Global Variable | ${vpp_deb_pkgs}
