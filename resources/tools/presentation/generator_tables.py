@@ -23,6 +23,8 @@ from string import replace
 from collections import OrderedDict
 from numpy import nan, isnan
 from xml.etree import ElementTree as ET
+from datetime import datetime as dt
+from datetime import timedelta
 
 from utils import mean, stdev, relative_change, classify_anomalies, \
     convert_csv_to_pretty_txt
@@ -765,6 +767,10 @@ def table_failed_tests(table, input_data):
 
     # Generate the data for the table according to the model in the table
     # specification
+
+    now = dt.utcnow()
+    timeperiod = timedelta(int(table.get("window", 7)))
+
     tbl_dict = dict()
     for job, builds in table["data"].items():
         for build in builds:
@@ -781,19 +787,24 @@ def table_failed_tests(table, input_data):
                         "name": "{0}-{1}".format(nic, tst_data["name"]),
                         "data": OrderedDict()}
                 try:
-                    tbl_dict[tst_name]["data"][build] = (
-                        tst_data["status"],
-                        input_data.metadata(job, build).get("generated", ""),
-                        input_data.metadata(job, build).get("version", ""),
-                        build)
+                    generated = input_data.metadata(job, build).\
+                        get("generated", "")
+                    if not generated:
+                        continue
+                    then = dt.strptime(generated, "%Y%m%d %H:%M")
+                    if (now - then) <= timeperiod:
+                        tbl_dict[tst_name]["data"][build] = (
+                            tst_data["status"],
+                            generated,
+                            input_data.metadata(job, build).get("version", ""),
+                            build)
                 except (TypeError, KeyError):
                     pass  # No data in output.xml for this test
 
     tbl_lst = list()
     for tst_data in tbl_dict.values():
-        win_size = min(len(tst_data["data"]), table["window"])
         fails_nr = 0
-        for val in tst_data["data"].values()[-win_size:]:
+        for val in tst_data["data"].values():
             if val[0] == "FAIL":
                 fails_nr += 1
                 fails_last_date = val[1]
