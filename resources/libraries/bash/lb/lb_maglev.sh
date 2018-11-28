@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -x
+
+vpp_intf1=$1
+vpp_intf1_adj_mac=$2
+vpp_intf2=$3
+vpp_intf2_adj_mac=$4
+
+sudo service vpp restart || exit 1
+sleep 10
+
+sudo vppctl set int state ${vpp_intf1} up
+sleep 10
+sudo vppctl set int ip table ${vpp_intf1} 0
+sudo vppctl set int ip address ${vpp_intf1} 192.168.50.72/32
+
+sudo vppctl set int state ${vpp_intf2} up
+sleep 10
+sudo vppctl set int ip table ${vpp_intf2} 0
+sudo vppctl set int ip address ${vpp_intf2} 192.168.50.73/32
+
+sudo vppctl ip route add 192.168.50.0/24 via ${vpp_intf2}
+sudo vppctl set ip arp ${vpp_intf2} 192.168.50.74 ${vpp_intf2_adj_mac}
+sudo vppctl set ip arp ${vpp_intf2} 192.168.50.75 ${vpp_intf2_adj_mac}
+sudo vppctl set ip arp ${vpp_intf2} 192.168.50.76 ${vpp_intf2_adj_mac}
+sudo vppctl set ip arp ${vpp_intf2} 192.168.50.77 ${vpp_intf2_adj_mac}
+sudo vppctl set ip arp ${vpp_intf2} 192.168.50.78 ${vpp_intf2_adj_mac}
+sudo vppctl set ip arp ${vpp_intf2} 192.168.50.79 ${vpp_intf2_adj_mac}
+
+sudo vppctl lb conf ip4-src-address 192.168.50.73 buckets 128
+sudo vppctl lb vip 90.1.2.1/32 encap gre4 new_len 1024
+sudo vppctl lb as 90.1.2.1/32 192.168.50.74 192.168.50.75 192.168.50.76 \
+192.168.50.77 192.168.50.78 192.168.50.79
+
+sudo vppctl show lb vip verbose
