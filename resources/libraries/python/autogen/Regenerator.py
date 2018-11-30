@@ -101,6 +101,11 @@ class Regenerator(object):
                 # Not supported by AVF driver.
                 # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
                 pass
+            elif ("soak" in suite_id and
+                  (kwargs["phy_cores"] != 1
+                   or wargs["framesize"] in (1518, 9000, "IMIX_v4_1"))):
+                # Soak test take too long, do not risk other than tc01.
+                pass
             else:
                 file_out.write(testcase.generate(num=num, **kwargs))
             return num + 1
