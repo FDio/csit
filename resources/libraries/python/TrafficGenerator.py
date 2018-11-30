@@ -25,6 +25,7 @@ from .topology import Topology
 from .MLRsearch.AbstractMeasurer import AbstractMeasurer
 from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
+from .PLRsearch.PLRsearch import PLRsearch
 
 __all__ = ['TGDropRateSearchImpl', 'TrafficGenerator', 'OptimizedSearch']
 
@@ -665,4 +666,39 @@ class OptimizedSearch(object):
             doublings=doublings)
         result = algorithm.narrow_down_ndr_and_pdr(
             minimum_transmit_rate, maximum_transmit_rate, packet_loss_ratio)
+        return result
+
+    @staticmethod
+    def perform_soak_search(
+            frame_size, traffic_type, minimum_transmit_rate,
+            maximum_transmit_rate, plr_target=1e-7, tdpt=0.2,
+            initial_count=50, timeout=36000.0):
+        """Setup initialized TG, perform soak search, return avg and stdev.
+
+        :param frame_size: Frame size identifier or value [B].
+        :param traffic_type: Module name as a traffic type identifier.
+            See resources/traffic_profiles/trex for implemented modules.
+        :param minimum_transmit_rate: Minimal bidirectional
+            target transmit rate [pps].
+        :param maximum_transmit_rate: Maximal bidirectional
+            target transmit rate [pps].
+        :param packet_loss_ratio: Fraction of packets lost, to achieve [1].
+        :param timeout: The search will stop after this overall time [s].
+        :type frame_size: str or int
+        :type traffic_type: str
+        :type minimum_transmit_rate: float
+        :type maximum_transmit_rate: float
+        :type packet_loss_ratio: float
+        :type timeout: float
+        :returns: Average and stdev of estimated bidirectional rate giving PLR.
+        :rtype: 2-tuple of float
+        """
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        tg_instance.set_rate_provider_defaults(frame_size, traffic_type)
+        algorithm = PLRsearch(
+            measurer=tg_instance, trial_duration_per_trial=tdpt,
+            packet_loss_ratio_target=plr_target,
+            trial_number_offset=initial_count, timeout=timeout)
+        result = algorithm.search(minimum_transmit_rate, maximum_transmit_rate)
         return result
