@@ -12,5 +12,5 @@
 # limitations under the License.
 
 """
-__init__ file for Python package "MLRsearch".
+__init__ file for Python package "PLRsearch".
 """
