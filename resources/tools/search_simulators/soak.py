@@ -11,10 +11,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# MLRsearch stats simulator:
-pandas
+import logging
+import sys
 
-# PLRsearch:
-dill
-numpy
-scipy
+from SoakMeasurer import SoakMeasurer as measurer
+from LoggingMeasurer import LoggingMeasurer as infologging
+from TimeTrackingMeasurer import TimeTrackingMeasurer as tracking
+from PLRsearch import PLRsearch as search
+
+logging.basicConfig(level=getattr(logging, "DEBUG"))
+
+p = tracking(infologging(measurer(7000000, 1000, 1, fast=False)))
+
+print "soak search, soak measurer, printing"
+
+s = search(p, 0.2, 1.0/6993076, 50, 2*3600)
+
+average, stdev = s.search(10000, 10000000)
+
+print "result average={avg}, stdev={stdev}".format(avg=average, stdev=stdev)
