@@ -220,6 +220,42 @@
 | | Perform additional measurements based on NDRPDR result
 | | ... | ${result} | ${frame_size} | ${topology_type}
 
+| Find critical load using PLRsearch
+| | [Documentation]
+| | ... | Find boundaries for troughput (of given target loss ratio)
+| | ... | using PLRsearch algorithm.
+| | ... | Display results as formatted test message.
+| | ... | Fail if computed lower bound is below minimal rate.
+| | ... | Input rates are understood as uni-directional,
+| | ... | reported result contains bi-directional rates.
+| | ... | TODO: Any additional measurements for debug purposes?
+| | ...
+| | ... | *Arguments:*
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - minimum_transmit_rate - Lower limit of search [pps]. Type: float
+| | ... | - maximum_transmit_rate - Upper limit of search [pps]. Type: float
+| | ... | - packet_loss_ratio - Accepted loss during search. Type: float
+| | ... | - timeout - Stop when search duration is longer [s]. Type: float
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find critical load usingPLR search \| \${64} \| \
+| | ... | 3-node-IPv4 \| \${100000} \| \${14880952} \| \${1e-7} \| \${1800} \
+| | ...
+| | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
+| | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${1e-7}
+| | ... | ${timeout}=${1800.0}
+| | ...
+| | ${min_rate} = | Set Variable | ${minimum_transmit_rate*2}
+| | ${average} | ${stdev} = | Perform soak search | ${frame_size}
+| | ... | ${topology_type} | ${min_rate} | ${maximum_transmit_rate*2}
+| | ... | ${packet_loss_ratio} | timeout=${timeout}
+| | ${lower} | ${upper} = | Display result of soak search
+| | ... | ${average} | ${stdev} | ${frame_size}
+| | Should Not Be True | ${lower} < ${min_rate}
+| | ... | Lower bound ${lower} is below bidirectional minimum ${min_rate}.
+
 | Display single bound
 | | [Documentation]
 | | ... | Display one bound of NDR+PDR search,
@@ -272,7 +308,7 @@
 | | ...
 | | [Arguments] | ${result} | ${framesize}
 | | ...
-| | ${framesize}= | Get Frame Size | ${framesize}
+| | ${framesize} = | Get Frame Size | ${framesize}
 | | Display single bound | NDR_LOWER
 | | ... | ${result.ndr_interval.measured_low.transmit_rate} | ${framesize}
 | | ... | ${result.ndr_interval.measured_low.latency}
@@ -283,6 +319,41 @@
 | | ... | ${result.pdr_interval.measured_low.latency}
 | | Display single bound | PDR_UPPER
 | | ... | ${result.pdr_interval.measured_high.transmit_rate} | ${framesize}
+
+| Display result of soak search
+| | [Documentation]
+| | ... | Display result of soak search, avg+-stdev, as upper/lower bounds,
+| | ... | in packet per seconds (total and per stream)
+| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | Througput is calculated as:
+| | ... | Measured rate per stream * Total number of streams
+| | ... | Bandwidth is calculated as:
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | TODO: Do we want to report some latency data,
+| | ... | even if not measured at the reported bounds?.
+| | ...
+| | ... | *Arguments:*
+| | ... | - avg - Estimated average critical load [pps]. Type: float
+| | ... | - stdev - Standard deviation of critical load [pps]. Type: float
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ...
+| | ... | *Returns:*
+| | ... | - Lower and upper bound of critical load [pps]. Type: 2-tuple of float
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Display result of soak search \| \${100000} \| \${100} \| \${64} \|
+| | ...
+| | [Arguments] | ${avg} | ${stdev} | ${framesize}
+| | ...
+| | ${framesize} = | Get Frame Size | ${framesize}
+| | ${avg} = | Convert To Integer | ${avg}
+| | ${stdev} = | Convert To Integer | ${stdev}
+| | ${lower} = | Evaluate | ${avg} - ${stdev}
+| | ${upper} = | Evaluate | ${avg} + ${stdev}
+| | Display single bound | PLRsearch lower bound: | ${lower} | ${framesize}
+| | Display single bound | PLRsearch upper bound: | ${upper} | ${framesize}
+| | Return From Keyword | ${lower} | ${upper}
 
 | Check NDRPDR interval validity
 | | [Documentation]
