@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2dd74f66_7158e539",
+        "filename": "resources/libraries/python/PLRsearch/PLRsearch.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-11-30T15:59:19Z",
+      "side": 1,
+      "message": "[0] shows this triggers some error in ip6base tests (I expect OverflowError) but not in l2patch test [1]. Will fix when I find out what is happening.\n\n[0] https://jenkins.fd.io/job/csit-vpp-perf-verify-1810-2n-skx/95/console\n[1] https://jenkins.fd.io/job/csit-vpp-perf-verify-1810-2n-skx/96/console",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 172,
+        "endChar": 32
+      },
+      "revId": "8aac9e560d65a4e909f9ede71e04732d6d609afc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
