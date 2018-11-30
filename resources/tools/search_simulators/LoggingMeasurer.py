@@ -28,4 +28,5 @@ class LoggingMeasurer(AbstractMeasurer):
         logging.info("Provider called with Tr %s and d %s", transmit_rate, duration)
         measurement = self.measurer.measure(duration, transmit_rate)
         logging.info("Provider returned measurement: %s", measurement)
+        logging.info("that is %s packets lost", measurement.loss_count)
         return measurement
