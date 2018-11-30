@@ -45,3 +45,8 @@ requests==2.9.1
 ecdsa==0.13
 pycrypto==2.6.1
 pypcap==1.1.5
+
+# The following is only there for PLRsearch testing.
+dill==0.2.8.2
+numpy==1.14.5
+scipy==1.1.0
