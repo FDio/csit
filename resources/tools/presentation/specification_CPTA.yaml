@@ -729,7 +729,7 @@
     - title: "VPP 1T1C L2 64B OACL MRR Trending 3n-hsw"
       output-file-name: "l2-feature-1t1c-x520-3n-hsw-oacl"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and 'OACL' and ('ACL1' or 'ACL50') and '10k_FLOWS' and not 'MACIP' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
