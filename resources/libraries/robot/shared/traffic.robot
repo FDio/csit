@@ -457,3 +457,24 @@
 | | ... | --path_1_mac | ${rx_dst_mac_1} | --path_2_mac | ${rx_dst_mac_2}
 | | Run Traffic Script On Node | send_icmp_check_multipath.py | ${tg_node}
 | | ... | ${args}
+
+| Send IPv4 ping packet and verify headers
+| | [Documentation] | TODO\
+| | ...
+| | ...
+| | ... | *Arguments:*
+| | ... | TODO\
+| | ...
+| | [Arguments] | ${tx_node} | ${tx_port} | ${rx_node} | ${rx_port}
+| | ... | ${src_ip} | ${dst_ip} | ${first_hop_mac}
+| | ...
+| | ${src_mac}= | Get interface MAC | ${tx_node} | ${tx_port}
+| | ${dst_mac}= | Get interface MAC | ${rx_node} | ${rx_port}
+| | ${is_dst_tg}= | Is TG node | ${rx_node}
+| | ${tx_port_name}= | Get interface name | ${tx_node} | ${tx_port}
+| | ${rx_port_name}= | Get interface name | ${rx_node} | ${rx_port}
+| | ${args}= | Traffic Script Gen Arg | ${rx_port_name} | ${tx_port_name}
+| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ${args}= | Catenate | ${args} | --hops ${hops}
+| | ... | --first_hop_mac ${first_hop_mac} | --is_dst_tg ${is_dst_tg}
+| | Run Traffic Script On Node | ipv4_ping_ttl_check.py | ${tx_node} | ${args}
