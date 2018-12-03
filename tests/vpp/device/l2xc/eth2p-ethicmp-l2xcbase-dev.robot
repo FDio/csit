@@ -18,7 +18,7 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | L2XCFWD | ICMP
+| ... | FUNCTEST | L2XCFWD | BASE | ETH | ICMP
 | ...
 | Test Setup | Set up VPP device test
 | ...
@@ -37,21 +37,21 @@
 | ... | are sent in both directions by TG on links to DUT1; on receive TG\
 | ... | verifies packets for correctness and their IPv4 (IPv6) src-addr,\
 | ... | dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications: rfc792*
+| ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Test Cases ***
 | tc01-eth2p-ethicmpv4-l2xcbase-device
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG. [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC), with both interfaces\
-| | ... | to TG.
+| | ... | [Cfg] Configure L2 cross-connects (L2XC) between both interfaces\
+| | ... | towards TG on DUT1.
 | | ... | [Ver] Make TG send ICMPv4 Echo Req in both directions between two of\
 | | ... | its interfaces to be switched by DUT1; verify all packets are
 | | ... | received.
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set Interfaces In 2-node Circular Topology Up
+| | And Set interfaces in path up
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv4 bidirectionally and verify received packets
@@ -59,16 +59,16 @@
 
 | tc02-eth2p-ethicmpv6-l2xcbase-device
 | | [Documentation]
-| | ... | [Top] TG-DUT1-TG. [Enc] Eth-IPv4-ICMPv6.
-| | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC), with both interfaces\
-| | ... | to TG.
-| | ... | [Ver] Make TG send ICMPv4 Echo Req in both directions between two of\
+| | ... | [Top] TG-DUT1-TG. [Enc] Eth-IPv6-ICMPv6.
+| | ... | [Cfg] Configure L2 cross-connects (L2XC) between both interfaces\
+| | ... | towards TG on DUT1.
+| | ... | [Ver] Make TG send ICMPv6 Echo Req in both directions between two of\
 | | ... | its interfaces to be switched by DUT1; verify all packets are
 | | ... | received.
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set Interfaces In 2-node Circular Topology Up
+| | And Set interfaces in path up
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv6 bidirectionally and verify received packets
