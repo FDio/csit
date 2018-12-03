@@ -329,7 +329,7 @@
 | | ... | - No value returned.
 | | ...
 | | ... | _NOTE:_ This KW uses test variables sets in
-| | ... |         "Configure path in double-link 3-node circular topology" KW.
+| | ... | "Configure path in double-link 3-node circular topology" KW.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -351,3 +351,30 @@
 | | Set Interface State | ${dut2_node} | ${dut2_to_dut1_if2} | up
 | | Vpp Node Interfaces Ready Wait | ${dut1_node}
 | | Vpp Node Interfaces Ready Wait | ${dut2_node}
+
+| Set interfaces in path up
+| | [Documentation]
+| | ... | Set UP state on interfaces in 2-node or 3-node path on nodes and \
+| | ... | wait until all interfaces are ready.
+| | ...
+| | ... | *Arguments:*
+| | ... | - No arguments.
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | _NOTE:_ This KW uses test variables sets in\
+| | ... | "Configure path in 2-node circular topology" or\
+| | ... | "Configure path in 3-node circular topology" KW.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set interfaces in path up \|
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set interfaces in 3-node circular topology up
+| | ... | ELSE
+| | ... | Set interfaces in 2-node circular topology up
