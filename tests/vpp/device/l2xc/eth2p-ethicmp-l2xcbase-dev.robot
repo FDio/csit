@@ -18,7 +18,7 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | L2XCFWD | ICMP
+| ... | FUNCTEST | L2XCFWD | BASE | ETH | ICMP
 | ...
 | Test Setup | Set up VPP device test
 | ...
@@ -37,7 +37,7 @@
 | ... | are sent in both directions by TG on links to DUT1; on receive TG\
 | ... | verifies packets for correctness and their IPv4 (IPv6) src-addr,\
 | ... | dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications: rfc792*
+| ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Test Cases ***
 | tc01-eth2p-ethicmpv4-l2xcbase-device
