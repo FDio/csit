@@ -14,15 +14,16 @@
 """IPv6 keywords"""
 
 *** Settings ***
+| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.IPv6Setup
-| Library | resources.libraries.python.TrafficScriptExecutor
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Routing
-| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.topology.Topology
-| Resource | resources/libraries/robot/shared/default.robot
+| Library | resources.libraries.python.TrafficScriptExecutor
 | Resource | resources/libraries/robot/shared/counters.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
 | Documentation | IPv6 keywords
 
 *** Keywords ***
@@ -195,3 +196,106 @@
 | | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
 | | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
 | | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | ${dut2_if_addr} | ${dut1_if}
+
+| Initialize IPv6 forwarding in circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
+| | ... | circular topology. Get the interface MAC addresses and setup ARP on
+| | ... | all VPP interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG
+| | ... | links. In case of 3-node topology setup IPv4 adresses with /30 prefix
+| | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /24
+| | ... | and next hop of neighbour DUT interface IPv4 address.
+| | ...
+| | [Arguments] | ${tg_if1_ip6} | ${tg_if2_ip6} | ${dut1_if1_ip6}
+| | ... | ${dut1_if2_ip6} | ${dut2_if1_ip6}=${NONE} | ${dut2_if2_ip6}=${NONE}
+| | ... | ${remote_host1_ip6}=${NONE} | ${remote_host2_ip6}=${NONE}
+| | ... | ${remote_host_ip6_prefix}=${NONE}
+| | ...
+| | ${dut_tg_ip6_prefix}= | Set Variable | 64
+| | ${dut_link_ip6_prefix}= | Set Variable | 96
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2_node}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | ${dut1}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut1_node} | ${dut_node}
+| | ${dut2}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut2_node}
+| | ${tg_if1}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut1_to_tg} | ${dut_to_tg_if1}
+| | ${tg_if2}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut2_to_tg} | ${dut_to_tg_if2}
+| | ${tg_if1_mac}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${tg_to_dut1_mac} | ${tg_to_dut_if1_mac}
+| | ${tg_if2_mac}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${tg_to_dut2_mac} | ${tg_to_dut_if2_mac}
+| | ${dut1_if1}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut1_to_tg} | ${dut_to_tg_if1}
+| | ${dut1_if2}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut1_to_dut2} | ${dut_to_tg_if2}
+| | ${dut1_if2_mac}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut1_to_dut2_mac}
+| | ${dut2_if1}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut2_to_dut1}
+| | ${dut2_if2}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut2_to_tg}
+| | ${dut2_if1_mac}= | Set Variable If | '${dut2_status}' == 'PASS'
+| | ... | ${dut2_to_dut1_mac}
+| | ...
+| | Add IP neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip6} | ${tg_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add IP neighbor | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6}
+| | ... | ${dut2_if1_mac}
+| | ... | ELSE
+| | ... | Add IP neighbor | ${dut1} | ${dut1_if2} | ${tg_if2_ip6}
+| | ... | ${tg_if2_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add IP neighbor | ${dut2} | ${dut2_if1} | ${dut1_if2_ip6}
+| | ... | ${dut1_if2_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Add IP neighbor | ${dut2} | ${dut2_if2} | ${tg_if2_ip6}
+| | ... | ${tg_if2_mac}
+| | ...
+| | VPP set If IPv6 addr | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6}
+| | ... | ${dut_tg_ip6_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP set If IPv6 addr | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6}
+| | ... | ${dut_link_ip6_prefix}
+| | ... | ELSE
+| | ... | VPP set If IPv6 addr | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6}
+| | ... | ${dut_tg_ip6_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP set If IPv6 addr | ${dut2} | ${dut2_if1} | ${dut2_if1_ip6}
+| | ... | ${dut_link_ip6_prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP set If IPv6 addr | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6}
+| | ... | ${dut_tg_ip6_prefix}
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | ${tg_if2_ip6} | ${dut_tg_ip6_prefix}
+| | ... | ${dut2_if1_ip6} | ${dut1_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${tg_if1_ip6} | ${dut_tg_ip6_prefix}
+| | ... | ${dut1_if2_ip6} | ${dut2_if1}
+| | ...
+| | Run Keyword Unless | '${remote_host1_ip6}' == '${NONE}'
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip6}
+| | ... | ${remote_host_ip6_prefix} | ${tg_if1_ip6} | ${dut1_if1}
+| | Run Keyword Unless
+| | ... | '${remote_host2_ip6}' == '${NONE}' or '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | ${remote_host2_ip6}
+| | ... | ${remote_host_ip6_prefix} | ${tg_if2_ip6} | ${dut1_if2}
+| | Run Keyword Unless
+| | ... | '${remote_host2_ip6}' == '${NONE}' or '${dut2_status}' == 'FAIL'
+| | ... | Vpp Route Add | ${dut1} | ${remote_host2_ip6}
+| | ... | ${remote_host_ip6_prefix} | ${dut2_if1_ip6} | ${dut1_if2}
+| | Run Keyword Unless
+| | ... | '${remote_host1_ip6}' == '${NONE}' or '${dut2_status}' == 'FAIL'
+| | ... | Vpp Route Add | ${dut2} | ${remote_host1_ip6}
+| | ... | ${remote_host_ip6_prefix} | ${dut1_if2_ip6} | ${dut2_if1}
+| | Run Keyword Unless
+| | ... | '${remote_host2_ip6}' == '${NONE}' or '${dut2_status}' == 'FAIL'
+| | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip6}
+| | ... | ${remote_host_ip6_prefix} | ${tg_if2_ip6} | ${dut2_if2}
