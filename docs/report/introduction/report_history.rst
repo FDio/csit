@@ -6,6 +6,9 @@ FD.io CSIT-1810 Report history and per .[ww] revision changes are listed below.
 +----------------+----------------------------------------------------------------+
 | .[ww] Revision | Changes                                                        |
 +================+================================================================+
+| .49            | 1. Split pages with graphs.                                    |
+|                |                                                                |
++----------------+----------------------------------------------------------------+
 | .48            | 1. Added configurations for Denverton:                         |
 |                |                                                                |
 |                |    a. Packet throughput :ref:`vpp_perf_configurations_2n_dnv`  |
