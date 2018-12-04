@@ -22,6 +22,30 @@
       "revId": "8ab5e0eaa5186b8827049ca01a23d9f911fbc5dd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4a0f37a_ad16ebf5",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1049
+      },
+      "writtenOn": "2018-12-04T04:11:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe6cedb4_333f06d9",
+      "range": {
+        "startLine": 339,
+        "startChar": 69,
+        "endLine": 339,
+        "endChar": 74
+      },
+      "revId": "8ab5e0eaa5186b8827049ca01a23d9f911fbc5dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
