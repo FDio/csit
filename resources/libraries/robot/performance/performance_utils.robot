@@ -777,11 +777,13 @@
 | | ... | \| 3-node-IPv4 \| ${1} \| ${10.0} | ${False} \|
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ... | ${trial_duration}=${perf_trial_duration} | ${fail_no_traffic}=${True}
 | | ... | ${subsamples}=${perf_trial_multiplicity}
 | | ...
 | | ${results} = | Send traffic at specified rate | ${trial_duration} | ${rate}
-| | ... | ${framesize} | ${topology_type} | ${subsamples}
+| | ... | ${framesize} | ${topology_type} | ${unidirection}
+| | ... | ${tx_port} | ${rx_port} | ${subsamples}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
@@ -807,10 +809,12 @@
 | | ... | \| 3-node-IPv4 \| ${10} \|
 | | ...
 | | [Arguments] | ${trial_duration} | ${rate} | ${framesize}
-| | ... | ${topology_type} | ${subsamples}=${1}
+| | ... | ${topology_type} | ${unidirection}=${False} | ${tx_port}=${0}
+| | ... | ${rx_port}=${1} | ${subsamples}=${1}
 | | ...
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${unidirection} | ${tx_port} | ${rx_port}
 | | Run Keyword If | ${dut_stats}==${True} | Clear all counters on all DUTs
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
@@ -819,7 +823,8 @@
 | | ${results} = | Create List
 | | :FOR | ${i} | IN RANGE | ${subsamples}
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${framesize}
-| | | ... | ${topology_type} | warmup_time=0
+| | | ... | ${topology_type} | ${unidirection} | ${tx_port}
+| | | ... | ${rx_port} | warmup_time=0
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
@@ -845,12 +850,14 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Traffic should pass with partial loss \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| 0.5 \| percentage \|
+| | ... | \| Clear and show runtime counters with running traffic \| 10 \
+| | ... | \| 4.0mpps \| 64 \| 3-node-IPv4 \|
 | | ...
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
 | | Send traffic on tg | -1 | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${unidirection} | ${tx_port} | ${rx_port}
 | | ... | warmup_time=0 | async_call=${True} | latency=${False}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear runtime counters on all DUTs | ${nodes}
