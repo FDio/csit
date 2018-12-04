@@ -457,6 +457,84 @@ class TrafficGenerator(AbstractMeasurer):
             self._latency.append(self._result.split(', ')[4].split('=')[1])
             self._latency.append(self._result.split(', ')[5].split('=')[1])
 
+    def trex_remote_unidirection(self, duration, rate, framesize, traffic_type,
+                                 tx_port=0, rx_port=1, async_call=False,
+                                 latency=False, warmup_time=5.0):
+        """Execute script on remote node over ssh to start unidirection traffic.
+        The purpose of this function is to support performance test that need to
+        measure unidirectional traffic, e.g. Load balancer maglev mode and l3dsr
+        mode test.
+
+        :param duration: Time expresed in seconds for how long to send traffic.
+        :param rate: Traffic rate expressed with units (pps, %)
+        :param framesize: L2 frame size to send (without padding and IPG).
+        :param traffic_type: Module name as a traffic type identifier.
+            See resources/traffic_profiles/trex for implemented modules.
+        :param tx_port: Traffic generator port.
+        :param rx_port: Traffic generator port.
+        :param latency: With latency measurement.
+        :param async_call: If enabled then don't wait for all incomming trafic.
+        :param warmup_time: Warmup time period.
+        :type duration: float
+        :type rate: str
+        :type framesize: str
+        :type traffic_type: str
+        :type tx_port: integer
+        :type rx_port: integer
+        :type latency: bool
+        :type async_call: bool
+        :type warmup_time: float
+        :returns: Nothing
+        :raises RuntimeError: In case of TG driver issue.
+        """
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        _latency = "--latency" if latency else ""
+        _async = "--async" if async_call else ""
+
+        profile_path = ("{0}/resources/traffic_profiles/trex/"
+                        "{1}.py".format(Constants.REMOTE_FW_DIR,
+                                        traffic_type))
+        (ret, stdout, _) = ssh.exec_command(
+            "sh -c "
+            "'{0}/resources/tools/trex/trex_stateless_profile.py "
+            "--profile {1} "
+            "--duration {2} "
+            "--frame_size {3} "
+            "--rate {4} "
+            "--warmup_time {5} "
+            "--port_0 {6} "
+            "--port_1 {7} "
+            "{8} "  # --async
+            "{9} "  # --latency
+            "{10}'".  # --unidirection
+            format(Constants.REMOTE_FW_DIR, profile_path, duration, framesize,
+                   rate, warmup_time, tx_port, rx_port, _async, _latency,
+                   "--unidirection"),
+            timeout=float(duration) + 60)
+
+        if int(ret) != 0:
+            raise RuntimeError('TRex unidirection runtime error')
+        elif async_call:
+            #no result
+            self._received = None
+            self._sent = None
+            self._loss = None
+            self._latency = None
+        else:
+            # last line from console output
+            line = stdout.splitlines()[-1]
+
+            self._result = line
+            logger.info('TrafficGen result: {0}'.format(self._result))
+
+            self._received = self._result.split(', ')[1].split('=')[1]
+            self._sent = self._result.split(', ')[2].split('=')[1]
+            self._loss = self._result.split(', ')[3].split('=')[1]
+            self._latency = []
+            self._latency.append(self._result.split(', ')[4].split('=')[1])
+
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG.
 
@@ -468,9 +546,9 @@ class TrafficGenerator(AbstractMeasurer):
         if self._node['subtype'] == NodeSubTypeTG.TREX:
             self.trex_stl_stop_remote_exec(self._node)
 
-    def send_traffic_on_tg(self, duration, rate, framesize,
-                           traffic_type, warmup_time=5, async_call=False,
-                           latency=True):
+    def send_traffic_on_tg(self, duration, rate, framesize, traffic_type,
+                           unidirection=False, tx_port=0, rx_port=1,
+                           warmup_time=5, async_call=False, latency=True):
         """Send traffic from all configured interfaces on TG.
 
         :param duration: Duration of test traffic generation in seconds.
@@ -478,6 +556,8 @@ class TrafficGenerator(AbstractMeasurer):
         :param framesize: Frame size (L2) in Bytes.
         :param traffic_type: Module name as a traffic type identifier.
             See resources/traffic_profiles/trex for implemented modules.
+        :param tx_port: Traffic generator port.
+        :param rx_port: Traffic generator port.
         :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
         :param latency: With latency measurement.
@@ -485,6 +565,8 @@ class TrafficGenerator(AbstractMeasurer):
         :type rate: str
         :type framesize: str
         :type traffic_type: str
+        :type tx_port: integer
+        :type rx_port: integer
         :type warmup_time: float
         :type async_call: bool
         :type latency: bool
@@ -505,9 +587,15 @@ class TrafficGenerator(AbstractMeasurer):
         if node['subtype'] is None:
             raise RuntimeError('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
-            self.trex_stl_start_remote_exec(duration, rate, framesize,
-                                            traffic_type, async_call, latency,
-                                            warmup_time=warmup_time)
+            if not unidirection:
+                self.trex_stl_start_remote_exec(duration, rate, framesize,
+                                                traffic_type, async_call, latency,
+                                                warmup_time=warmup_time)
+            else:
+                self.trex_remote_unidirection(duration, rate, framesize,
+                                              traffic_type, tx_port, rx_port,
+                                              async_call, latency,
+                                              warmup_time=warmup_time)
         else:
             raise NotImplementedError("TG subtype not supported")
 
