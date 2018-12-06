@@ -517,6 +517,8 @@ function start_topology_containers () {
     # Mount vfio to be able to bind to see binded interfaces. We cannot use
     # --device=/dev/vfio as this does not see newly binded interfaces.
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
+    # Mount nested_vm image to be able to run VM tests.
+    dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img "
 
     # Docker Container UUIDs.
     declare -gA DCR_UUIDS
