@@ -373,8 +373,25 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
+
+    if node.get('host_port') is not None:
+        ssh_node = dict()
+        ssh_node['host'] = '127.0.0.1'
+        ssh_node['port'] = node['port']
+        ssh_node['username'] = node['username']
+        ssh_node['password'] = node['password']
+        import pexpect
+        cmd = 'ssh -L {port}:127.0.0.1:{port} {user}@{host} -p {host_port}'.\
+            format(port=node['port'], user=node['host_username'],
+                   host=node['host'], host_port=node['host_port'])
+        child = pexpect.spawn(cmd)
+        child.expect('.* password: ')
+        child.sendline(node['host_password'])
+    else:
+        ssh_node = node
+
     try:
-        ssh.connect(node)
+        ssh.connect(ssh_node)
     except SSHException as err:
         logger.error("Failed to connect to node" + str(err))
         return None, None, None
