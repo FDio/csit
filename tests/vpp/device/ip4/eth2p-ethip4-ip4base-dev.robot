@@ -26,14 +26,14 @@
 | ...
 | Documentation | *IPv4 routing test cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for IPv4 routing on both\
-| ... | links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and two\
-| ... | static IPv4 /24 route entries.
-| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets are sent in\
-| ... | one direction by TG on links to DUT1; on receive TG verifies packets\
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for IPv4 routing on \
+| ... | both links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
+| ... | two static IPv4 /24 route entries.
+| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets are sent in \
+| ... | one direction by TG on links to DUT1; on receive TG verifies packets \
 | ... | for correctness and their IPv4 src-addr, dst-addr and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
@@ -49,7 +49,7 @@
 *** Test Cases ***
 | tc01-eth2p-ethicmpv4-ip4base-device_echo-req-to-dut-ingress-interface
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req to DUT1 ingress interface. Make TG\
+| | ... | Make TG send ICMPv4 Echo Req to DUT1 ingress interface. Make TG \
 | | ... | verify ICMP Echo Reply is correct.
 | | ...
 | | ${hops}= | Set Variable | ${0}
@@ -66,7 +66,7 @@
 
 | tc02-eth2p-ethicmpv4-ip4base-device_echo-req-to-dut-egress-interface
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req towards DUT1 egress interface. Make TG\
+| | ... | Make TG send ICMPv4 Echo Req towards DUT1 egress interface. Make TG \
 | | ... | verify ICMP Echo Reply is correct.
 | | ...
 | | ${hops}= | Set Variable | ${0}
@@ -83,8 +83,8 @@
 
 | tc03-eth2p-ethicmpv4-ip4base-device_echo-req-to-tg-interface-for-local-ipv4-address
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req between its interfaces across DUT1 for\
-| | ... | locally connected IPv4 addresses. Make TG verify ICMPv4 Echo Replies\
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across DUT1 for \
+| | ... | locally connected IPv4 addresses. Make TG verify ICMPv4 Echo Replies \
 | | ... | are correct.
 | | ...
 | | ${hops}= | Set Variable | ${1}
@@ -101,8 +101,8 @@
 
 | tc04-eth2p-ethicmpv4-ip4base-device_echo-req-to-tg-interface-for-remote-host-ipv4-address
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req between its interfaces across DUT1 for\
-| | ... | remote host IPv4 addresses. Make TG verify ICMPv4 Echo Replies are\
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across DUT1 for \
+| | ... | remote host IPv4 addresses. Make TG verify ICMPv4 Echo Replies are \
 | | ... | correct.
 | | ...
 | | ${hops}= | Set Variable | ${1}

@@ -26,16 +26,16 @@
 | ...
 | Documentation | *L2 cross-connect test cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of\
-| ... | IPv4; Eth-IPv6-ICMPv6 for L2 switching of IPv6 use. Both apply to all\
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of \
+| ... | IPv4; Eth-IPv6-ICMPv6 for L2 switching of IPv6 use. Both apply to all \
 | ... | links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-connect\
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-connect \
 | ... | switching.
-| ... | *[Ver] TG verification:* Test ICMPv4 (or ICMPv6) Echo Request packets\
-| ... | are sent in both directions by TG on links to DUT1; on receive TG\
-| ... | verifies packets for correctness and their IPv4 (IPv6) src-addr,\
+| ... | *[Ver] TG verification:* Test ICMPv4 (or ICMPv6) Echo Request packets \
+| ... | are sent in both directions by TG on links to DUT1; on receive TG \
+| ... | verifies packets for correctness and their IPv4 (IPv6) src-addr, \
 | ... | dst-addr and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
@@ -43,10 +43,10 @@
 | tc01-eth2p-ethicmpv4-l2xcbase-device
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG. [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] Configure L2 cross-connects (L2XC) between both interfaces\
+| | ... | [Cfg] Configure L2 cross-connects (L2XC) between both interfaces \
 | | ... | towards TG on DUT1.
-| | ... | [Ver] Make TG send ICMPv4 Echo Req in both directions between two of\
-| | ... | its interfaces to be switched by DUT1; verify all packets are\
+| | ... | [Ver] Make TG send ICMPv4 Echo Req in both directions between two of \
+| | ... | its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
 | | Given Configure path in 2-node circular topology
@@ -60,10 +60,10 @@
 | tc02-eth2p-ethicmpv6-l2xcbase-device
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG. [Enc] Eth-IPv6-ICMPv6.
-| | ... | [Cfg] Configure L2 cross-connects (L2XC) between both interfaces\
+| | ... | [Cfg] Configure L2 cross-connects (L2XC) between both interfaces \
 | | ... | towards TG on DUT1.
-| | ... | [Ver] Make TG send ICMPv6 Echo Req in both directions between two of\
-| | ... | its interfaces to be switched by DUT1; verify all packets are\
+| | ... | [Ver] Make TG send ICMPv6 Echo Req in both directions between two of \
+| | ... | its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
 | | Given Configure path in 2-node circular topology
