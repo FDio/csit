@@ -19,7 +19,7 @@ from time import time, sleep
 import socket
 import paramiko
 from paramiko import RSAKey
-from paramiko.ssh_exception import SSHException
+from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from scp import SCPClient
 from robot.api import logger
 
@@ -104,6 +104,11 @@ class SSH(object):
             except SSHException:
                 raise IOError('Cannot connect to {host}'.
                               format(host=node['host']))
+            except NoValidConnectionsError as err:
+                logger.trace('NoValidConnectionsError(s):\n{errors}'.
+                             format(errors=err.errors))
+                raise IOError('Unable to connect to port {port} on {host}'.
+                              format(port=node['port'], host=node['host']))
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -373,8 +378,28 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
+
+    if node.get('host_port') is not None:
+        ssh_node = dict()
+        ssh_node['host'] = '127.0.0.1'
+        ssh_node['port'] = node['port']
+        ssh_node['username'] = node['username']
+        ssh_node['password'] = node['password']
+        import pexpect
+        tnl = 'ssh -L {port}:127.0.0.1:{port} {user}@{host} -p {host_port}'.\
+            format(port=node['port'], user=node['host_username'],
+                   host=node['host'], host_port=node['host_port'])
+        child = pexpect.spawn(tnl)
+        child.expect('.* password: ')
+        logger.trace(child.after)
+        child.sendline(node['host_password'])
+        child.expect('Welcome .*')
+        logger.trace(child.after)
+    else:
+        ssh_node = node
+
     try:
-        ssh.connect(node)
+        ssh.connect(ssh_node)
     except SSHException as err:
         logger.error("Failed to connect to node" + str(err))
         return None, None, None
