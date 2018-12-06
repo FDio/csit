@@ -283,7 +283,7 @@ class L2Util(object):
         :param br_name: Bridge name.
         :param set_down: Change bridge interface state to down before delbr
             command. Optional. Default: True.
-        :type node: str
+        :type node: dict
         :type br_name: str
         :type set_down: bool
         """
