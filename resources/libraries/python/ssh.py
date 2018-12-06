@@ -13,15 +13,15 @@
 
 """Library for SSH connection management."""
 
-import StringIO
-from time import time, sleep
-
-import socket
 import paramiko
+import socket
+import StringIO
+
 from paramiko import RSAKey
-from paramiko.ssh_exception import SSHException
-from scp import SCPClient
+from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from robot.api import logger
+from scp import SCPClient
+from time import time, sleep
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -93,7 +93,8 @@ class SSH(object):
                                   password=node.get('password'), pkey=pkey,
                                   port=node['port'])
 
-                self._ssh.get_transport().set_keepalive(10)
+                interval = 2 if node['host'] == '127.0.0.1' else 10
+                self._ssh.get_transport().set_keepalive(interval)
 
                 SSH.__existing_connections[node_hash] = self._ssh
                 logger.debug('New SSH to {peer} took {total} seconds: {ssh}'.
@@ -101,9 +102,16 @@ class SSH(object):
                                  peer=self._ssh.get_transport().getpeername(),
                                  total=(time() - start),
                                  ssh=self._ssh))
-            except SSHException:
+            except SSHException as err:
+                logger.trace('SSHException:\n{error}'.
+                             format(error=repr(err)))
                 raise IOError('Cannot connect to {host}'.
                               format(host=node['host']))
+            except NoValidConnectionsError as err:
+                logger.trace('NoValidConnectionsError(s):\n{errors}'.
+                             format(errors=err.errors))
+                raise IOError('Unable to connect to port {port} on {host}'.
+                              format(port=node['port'], host=node['host']))
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -380,8 +388,78 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
+
+    if node.get('host_port') is not None:
+        ssh_node = dict()
+        ssh_node['host'] = '127.0.0.1'
+        # ssh_node['port'] = node['port']
+        ssh_node['username'] = node['username']
+        ssh_node['password'] = node['password']
+        dut_port_hash = hash(frozenset([node['host'], node['host_port']]))
+        from resources.libraries.python.QemuUtils import \
+            DICT__QEMU_PORTS_MAPPING,  DICT__LOCAL_QEMU_PORTS
+
+        dut_qemu_ports = DICT__QEMU_PORTS_MAPPING.get(dut_port_hash)
+        if dut_qemu_ports is None:
+            DICT__QEMU_PORTS_MAPPING[dut_port_hash] = dict()
+            local_port_hash = None
+        else:
+            local_port_hash = dut_qemu_ports.get(node['port'])
+        if local_port_hash is not None:
+            ssh_node['port'] = DICT__LOCAL_QEMU_PORTS[local_port_hash]
+            logger.trace('Using local forwarded port: {port}.'.
+                         format(port=ssh_node['port']))
+        else:
+            local_port = node['port'] - 1
+            local_port_hashes = DICT__LOCAL_QEMU_PORTS.keys()
+            while True:
+                local_port += 1
+                local_port_hash = hash(frozenset([ssh_node['host'],
+                                                  local_port]))
+                if local_port_hash not in local_port_hashes:
+                    ssh_node['port'] = local_port
+                    DICT__LOCAL_QEMU_PORTS[local_port_hash] = local_port
+                    DICT__QEMU_PORTS_MAPPING[dut_port_hash][node['port']] = \
+                        local_port_hash
+                    break
+            import pexpect
+            options = '-o StrictHostKeyChecking=no ' \
+                      '-o UserKnownHostsFile=/dev/null'
+            tnl = '-L {local_port}:127.0.0.1:{port}'.\
+                format(local_port=local_port, port=node['port'])
+            ssh_cmd = 'ssh {tnl} {op} {user}@{host} -p {host_port}'.\
+                format(tnl=tnl, op=options, user=node['host_username'],
+                       host=node['host'], host_port=node['host_port'])
+            logger.trace('Initializing local port forwarding:\n{ssh_cmd}'.
+                         format(ssh_cmd=ssh_cmd))
+            child = pexpect.spawn(ssh_cmd)
+            child.expect('.* password: ')
+            logger.trace(child.after)
+            child.sendline(node['host_password'])
+            child.expect('Welcome .*')
+            logger.trace(child.after)
+            logger.trace('Local port forwarding finished.')
+
+        # import pexpect
+        # options = '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+        # tnl = '-L {port}:127.0.0.1:{port}'.format(port=node['port'])
+        # ssh_cmd = 'ssh {tnl} {op} {user}@{host} -p {host_port}'.\
+        #     format(tnl=tnl, op=options, user=node['host_username'],
+        #            host=node['host'], host_port=node['host_port'])
+        # logger.trace('Initializing local port forwarding:\n{ssh_cmd}'.
+        #              format(ssh_cmd=ssh_cmd))
+        # child = pexpect.spawn(ssh_cmd)
+        # child.expect('.* password: ')
+        # logger.trace(child.after)
+        # child.sendline(node['host_password'])
+        # child.expect('Welcome .*')
+        # logger.trace(child.after)
+        # logger.trace('Local port forwarding finished.')
+    else:
+        ssh_node = node
+
     try:
-        ssh.connect(node)
+        ssh.connect(ssh_node)
     except SSHException as err:
         logger.error("Failed to connect to node" + str(err))
         return None, None, None
