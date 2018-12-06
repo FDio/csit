@@ -27,6 +27,9 @@ from resources.libraries.python.constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType, Topology
 
+DICT__QEMU_PORTS_MAPPING = dict()
+DICT__LOCAL_QEMU_PORTS = dict()
+
 
 class QemuUtils(object):
     """QEMU utilities."""
@@ -213,7 +216,10 @@ class QemuUtils(object):
         self._ssh = SSH()
         self._ssh.connect(node)
         self._vm_info['host'] = node['host']
-
+        if node['port'] != 22:
+            self._vm_info['host_port'] = node['port']
+            self._vm_info['host_username'] = node['username']
+            self._vm_info['host_password'] = node['password']
         arch = Topology.get_node_arch(node)
         self._qemu_opt['qemu_bin'] = 'qemu-system-{arch}'.format(arch=arch)
 
