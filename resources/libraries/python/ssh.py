@@ -19,7 +19,7 @@ from time import time, sleep
 import socket
 import paramiko
 from paramiko import RSAKey
-from paramiko.ssh_exception import SSHException
+from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from scp import SCPClient
 from robot.api import logger
 
@@ -104,6 +104,11 @@ class SSH(object):
             except SSHException:
                 raise IOError('Cannot connect to {host}'.
                               format(host=node['host']))
+            except NoValidConnectionsError as err:
+                logger.trace('NoValidConnectionsError(s):\n{errors}'.
+                             format(errors=err.errors))
+                raise IOError('Unable to connect to port {port} on {host}'.
+                              format(port=node['port'], host=node['host']))
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -373,8 +378,56 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
+
+    if node.get('host_port') is not None:
+        ssh_node = dict()
+        ssh_node['host'] = '127.0.0.1'
+        ssh_node['username'] = node['username']
+        ssh_node['password'] = node['password']
+        dut_port_hash = hash(frozenset([node['host'], node['host_port']]))
+        from resources.libraries.python.QemuUtils import \
+            DICT__QEMU_PORTS_MAPPING,  DICT__LOCAL_QEMU_PORTS
+
+        dut_qemu_ports = DICT__QEMU_PORTS_MAPPING.get(dut_port_hash)
+        if dut_qemu_ports is None:
+            DICT__QEMU_PORTS_MAPPING[dut_port_hash] = dict()
+            local_port_hash = None
+        else:
+            local_port_hash = dut_qemu_ports.get(node['port'])
+        if local_port_hash is not None:
+            ssh_node['port'] = DICT__LOCAL_QEMU_PORTS[local_port_hash]
+        else:
+            local_port = node['port'] - 1
+            local_port_hashes = DICT__LOCAL_QEMU_PORTS.keys()
+            while True:
+                local_port += 1
+                local_port_hash = hash(frozenset([ssh_node['host'],
+                                                  local_port]))
+                if local_port_hash not in local_port_hashes:
+                    ssh_node['port'] = local_port
+                    DICT__LOCAL_QEMU_PORTS[local_port_hash] = local_port
+                    DICT__QEMU_PORTS_MAPPING[dut_port_hash][node['port']] = \
+                        local_port_hash
+                    break
+            import pexpect
+            options = '-o StrictHostKeyChecking=no ' \
+                      '-o UserKnownHostsFile=/dev/null'
+            tnl = '-L {local_port}:127.0.0.1:{port}'.\
+                format(local_port=local_port, port=node['port'])
+            ssh_cmd = 'ssh {tnl} {op} {user}@{host} -p {host_port}'.\
+                format(tnl=tnl, op=options, user=node['host_username'],
+                       host=node['host'], host_port=node['host_port'])
+            child = pexpect.spawn(ssh_cmd)
+            child.expect('.* password: ')
+            logger.trace(child.after)
+            child.sendline(node['host_password'])
+            child.expect('Welcome .*')
+            logger.trace(child.after)
+    else:
+        ssh_node = node
+
     try:
-        ssh.connect(node)
+        ssh.connect(ssh_node)
     except SSHException as err:
         logger.error("Failed to connect to node" + str(err))
         return None, None, None
