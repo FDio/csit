@@ -13,15 +13,21 @@
 
 """Library for SSH connection management."""
 
-import StringIO
-from time import time, sleep
-
-import socket
 import paramiko
+import select
+import socket
+import StringIO
+
+try:
+    import SocketServer
+except ImportError:
+    import socketserver as SocketServer
+
 from paramiko import RSAKey
-from paramiko.ssh_exception import SSHException
-from scp import SCPClient
+from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from robot.api import logger
+from scp import SCPClient
+from time import time, sleep
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -31,6 +37,61 @@ __all__ = ["exec_cmd", "exec_cmd_no_error"]
 class SSHTimeout(Exception):
     """This exception is raised when a timeout occurs."""
     pass
+
+
+class ForwardServer(SocketServer.ThreadingTCPServer):
+    daemon_threads = True
+    allow_reuse_address = True
+
+
+class Handler(SocketServer.BaseRequestHandler):
+    def handle(self):
+        try:
+            chan = self.ssh_transport.open_channel(
+                "direct-tcpip", (self.chain_host, self.chain_port),
+                self.request.getpeername())
+        except Exception as err:
+            raise SSHException('Incoming request to {host}:{port} failed:\n{err}'.
+                          format(host=self.chain_host, port=self.chain_port,
+                                 err=repr(err)))
+        if chan is None:
+            raise IOError('Incoming request to {r_host}:{r_port} was rejected '
+                          'by the SSH server.'.
+                          format(r_host=self.chain_host,
+                                 r_port=self.chain_port))
+        logger.trace('Tunnel open: {req} -> {chan} -> {r_host}:{r_port}'.
+                     format(req=self.request.getpeername(),
+                            chan=chan.getpeername(),
+                            r_host=self.chain_host, r_port=self.chain_port))
+        while True:
+            r, w, x = select.select([self.request, chan], [], [])
+            if self.request in r:
+                data = self.request.recv(1024)
+                if len(data) == 0:
+                    break
+                chan.send(data)
+            if chan in r:
+                data = chan.recv(1024)
+                if len(data) == 0:
+                    break
+                self.request.send(data)
+
+        peername = self.request.getpeername()
+        chan.close()
+        self.request.close()
+        logger.trace('Tunnel closed from {peer}'.format(peer=peername))
+
+
+def forward_tunnel(local_port, remote_host, remote_port, transport):
+    # this is a little convoluted, but lets us configure things for the Handler
+    # object.  (SocketServer doesn't give Handlers any way to access the outer
+    # server normally.)
+    class SubHandler(Handler):
+            chain_host = remote_host
+            chain_port = remote_port
+            ssh_transport = transport
+
+    ForwardServer(("", local_port), SubHandler).serve_forever()
 
 
 class SSH(object):
@@ -104,6 +165,11 @@ class SSH(object):
             except SSHException:
                 raise IOError('Cannot connect to {host}'.
                               format(host=node['host']))
+            except NoValidConnectionsError as err:
+                logger.trace('NoValidConnectionsError(s):\n{errors}'.
+                             format(errors=err.errors))
+                raise IOError('Unable to connect to port {port} on {host}'.
+                              format(port=node['port'], host=node['host']))
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -380,8 +446,81 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
+
+    if node.get('host_port') is not None:
+        ssh_node = dict()
+        ssh_node['host'] = '127.0.0.1'
+        ssh_node['username'] = node['username']
+        ssh_node['password'] = node['password']
+        dut_port_hash = hash(frozenset([node['host'], node['host_port']]))
+        from resources.libraries.python.QemuUtils import \
+            DICT__QEMU_PORTS_MAPPING,  DICT__LOCAL_QEMU_PORTS
+
+        dut_qemu_ports = DICT__QEMU_PORTS_MAPPING.get(dut_port_hash)
+        if dut_qemu_ports is None:
+            DICT__QEMU_PORTS_MAPPING[dut_port_hash] = dict()
+            local_port_hash = None
+        else:
+            local_port_hash = dut_qemu_ports.get(node['port'])
+        if local_port_hash is not None:
+            ssh_node['port'] = DICT__LOCAL_QEMU_PORTS[local_port_hash]
+        else:
+            local_port = node['port'] - 1
+            local_port_hashes = DICT__LOCAL_QEMU_PORTS.keys()
+            while True:
+                local_port += 1
+                local_port_hash = hash(frozenset([ssh_node['host'],
+                                                  local_port]))
+                if local_port_hash not in local_port_hashes:
+                    ssh_node['port'] = local_port
+                    DICT__LOCAL_QEMU_PORTS[local_port_hash] = local_port
+                    DICT__QEMU_PORTS_MAPPING[dut_port_hash][node['port']] = \
+                        local_port_hash
+                    break
+            client = paramiko.SSHClient()
+            client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            logger.trace('Connecting to ssh host {host}:{port} ...'.
+                         format(host=node['host'], port=node['host_port']))
+            try:
+                client.connect(node['host_port'], node['port'],
+                               username=node['host_username'],
+                               password=node['host_password'])
+            except Exception as err:
+                raise IOError('Failed to connect to {host}:{port}\n{err}'.
+                              format(host=node['host'], port=node['host_port'],
+                                     err=repr(err)))
+            remote_host = '127.0.0.1'
+            logger.trace('Forwarding port {l_port} to {r_host}:{r_port} ...'.
+                         format(l_port=local_port, r_host=remote_host,
+                                r_port=node['port']))
+            try:
+                forward_tunnel(local_port, remote_host, node['port'],
+                               client.get_transport())
+            except Exception as err:
+                raise IOError('Failed to forward {l_port} to {r_host}:{r_port}'.
+                             format(l_port=local_port, r_host=remote_host,
+                                    r_port=node['port']))
+                raise err
+
+            # import pexpect
+            # options = '-o StrictHostKeyChecking=no ' \
+            #           '-o UserKnownHostsFile=/dev/null'
+            # tnl = '-L {local_port}:127.0.0.1:{port}'.\
+            #     format(local_port=local_port, port=node['port'])
+            # ssh_cmd = 'ssh {tnl} {op} {user}@{host} -p {host_port}'.\
+            #     format(tnl=tnl, op=options, user=node['host_username'],
+            #            host=node['host'], host_port=node['host_port'])
+            # child = pexpect.spawn(ssh_cmd)
+            # child.expect('.* password: ')
+            # logger.trace(child.after)
+            # child.sendline(node['host_password'])
+            # child.expect('Welcome .*')
+            # logger.trace(child.after)
+    else:
+        ssh_node = node
+
     try:
-        ssh.connect(node)
+        ssh.connect(ssh_node)
     except SSHException as err:
         logger.error("Failed to connect to node" + str(err))
         return None, None, None
