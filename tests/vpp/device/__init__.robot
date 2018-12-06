@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
+| ...
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${packages_dir}
@@ -25,6 +26,7 @@
 | ... | AND | Get CPU Layout from all nodes | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
 | ...       | skip_tg_udev=${True}
+| ...
 | Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***

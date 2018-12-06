@@ -13,15 +13,15 @@
 
 """Library for SSH connection management."""
 
-import StringIO
-from time import time, sleep
-
-import socket
 import paramiko
+import socket
+import StringIO
+
 from paramiko import RSAKey
-from paramiko.ssh_exception import SSHException
-from scp import SCPClient
+from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from robot.api import logger
+from scp import SCPClient
+from time import time, sleep
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -104,6 +104,11 @@ class SSH(object):
             except SSHException:
                 raise IOError('Cannot connect to {host}'.
                               format(host=node['host']))
+            except NoValidConnectionsError as err:
+                logger.trace('NoValidConnectionsError(s):\n{errors}'.
+                             format(errors=err.errors))
+                raise IOError('Unable to connect to port {port} on {host}'.
+                              format(port=node['port'], host=node['host']))
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -320,7 +325,7 @@ class SSH(object):
     def interactive_terminal_close(chan):
         """Close interactive terminal SSH channel.
 
-        :param: chan: SSH channel to be closed.
+        :param chan: SSH channel to be closed.
         """
         chan.close()
 
@@ -371,6 +376,17 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
     """Convenience function to ssh/exec/return rc, out & err.
 
     Returns (rc, stdout, stderr).
+
+    :param node: The node to execute command on.
+    :param cmd: Command to execute.
+    :param timeout: Timeout value in seconds. Default: 600.
+    :param sudo: Sudo privilege execution flag. Default: False.
+    :type node: dict
+    :type cmd: str
+    :type timeout: int
+    :type sudo: bool
+    :returns: RC, Stdout, Stderr.
+    :rtype: tuple(int, str, str)
     """
     if node is None:
         raise TypeError('Node parameter is None')
@@ -380,8 +396,33 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         raise ValueError('Empty command parameter')
 
     ssh = SSH()
+
+    if node.get('host_port') is not None:
+        ssh_node = dict()
+        ssh_node['host'] = '127.0.0.1'
+        ssh_node['port'] = node['port']
+        ssh_node['username'] = node['username']
+        ssh_node['password'] = node['password']
+        import pexpect
+        options = '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+        tnl = '-L {port}:127.0.0.1:{port}'.format(port=node['port'])
+        ssh_cmd = 'ssh {tnl} {op} {user}@{host} -p {host_port}'.\
+            format(tnl=tnl, op=options, user=node['host_username'],
+                   host=node['host'], host_port=node['host_port'])
+        logger.trace('Initializing local port forwarding:\n{ssh_cmd}'.
+                     format(ssh_cmd=ssh_cmd))
+        child = pexpect.spawn(ssh_cmd)
+        child.expect('.* password: ')
+        logger.trace(child.after)
+        child.sendline(node['host_password'])
+        child.expect('Welcome .*')
+        logger.trace(child.after)
+        logger.trace('Local port forwarding finished.')
+    else:
+        ssh_node = node
+
     try:
-        ssh.connect(node)
+        ssh.connect(ssh_node)
     except SSHException as err:
         logger.error("Failed to connect to node" + str(err))
         return None, None, None
@@ -416,7 +457,7 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
     :type message: str
     :returns: Stdout, Stderr.
     :rtype: tuple(str, str)
-    :raise RuntimeError: If bash return code is not 0.
+    :raises RuntimeError: If bash return code is not 0.
     """
     ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
     msg = ('Command execution failed: "{cmd}"\n{stderr}'.
