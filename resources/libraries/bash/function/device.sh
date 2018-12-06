@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -517,6 +517,8 @@ function start_topology_containers () {
     # Mount vfio to be able to bind to see binded interfaces. We cannot use
     # --device=/dev/vfio as this does not see newly binded interfaces.
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
+    # Mount nested_vm image to be able to run VM tests.
+    dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img "
 
     # Docker Container UUIDs.
     declare -gA DCR_UUIDS
