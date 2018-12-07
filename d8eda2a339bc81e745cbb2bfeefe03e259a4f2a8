@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d62f5fd0_f35fdd77",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "Add an empty line.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2799633f_43fd82ef",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "Consider implementation of 2 KWs, one for 2n, second for 3n topology. Then call the right one from this KW.",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 49
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "955027fa_10fdcdd9",
+        "filename": "resources/libraries/robot/ip/ip6.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3bfe01aa_fce5392d",
+        "filename": "resources/libraries/robot/ip/ip6.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "Consider implementation of 2 KWs, one for 2n, second for 3n topology. Then call the right one from this KW.",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 49
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4085d94_34461deb",
+        "filename": "resources/libraries/robot/shared/testing_path.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5529765_636df65d",
+        "filename": "resources/traffic_scripts/icmpv6_echo_req_resp.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "2018",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4cecae3d_a7ae3508",
+        "filename": "resources/traffic_scripts/icmpv6_echo_req_resp.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "another one / another TG port",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 55
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1491deb_e7739177",
+        "filename": "resources/traffic_scripts/icmpv6_echo_req_resp.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2018-12-07T12:56:45Z",
+      "side": 1,
+      "message": "Replying with hlim decremented by one",
+      "range": {
+        "startLine": 158,
+        "startChar": 35,
+        "endLine": 158,
+        "endChar": 74
+      },
+      "revId": "d8eda2a339bc81e745cbb2bfeefe03e259a4f2a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
