@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e786d1ce_ed2537f3",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-12-08T03:10:41Z",
+      "side": 1,
+      "message": "What for? there is loop of 3x3 up to 10s. Does it take longer? If, so please increase loop count instead of timeout. That way it take less time on fast machine with being still gentle to slow machine.\nThanks.",
+      "range": {
+        "startLine": 320,
+        "startChar": 34,
+        "endLine": 320,
+        "endChar": 36
+      },
+      "revId": "cc3ba32456e3cdf7f9b6c47d27380045c9b5265c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b92b812_dd06f9e2",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-12-08T03:10:41Z",
+      "side": 1,
+      "message": "Can you please little bit describe motivation behind forking this function? Thanks.",
+      "range": {
+        "startLine": 460,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 79
+      },
+      "revId": "cc3ba32456e3cdf7f9b6c47d27380045c9b5265c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e81d7bab_ec163b0f",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-12-08T03:10:41Z",
+      "side": 1,
+      "message": "Can you please document new variables there?",
+      "range": {
+        "startLine": 773,
+        "startChar": 4,
+        "endLine": 773,
+        "endChar": 7
+      },
+      "revId": "cc3ba32456e3cdf7f9b6c47d27380045c9b5265c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe2e89d5_e088a2a8",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-12-08T03:10:41Z",
+      "side": 1,
+      "message": "Can you please document new variables?",
+      "range": {
+        "startLine": 805,
+        "startChar": 4,
+        "endLine": 805,
+        "endChar": 7
+      },
+      "revId": "cc3ba32456e3cdf7f9b6c47d27380045c9b5265c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6b753a8_0d5e866c",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-12-08T03:10:41Z",
+      "side": 1,
+      "message": "Can you please document new variables there",
+      "range": {
+        "startLine": 850,
+        "startChar": 4,
+        "endLine": 850,
+        "endChar": 7
+      },
+      "revId": "cc3ba32456e3cdf7f9b6c47d27380045c9b5265c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
