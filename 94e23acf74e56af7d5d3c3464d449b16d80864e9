@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "4e62ce0d_1654db07",
+        "filename": "resources/libraries/python/PLRsearch/PLRsearch.py",
+        "patchSetId": 95
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-10T15:58:34Z",
+      "side": 1,
+      "message": "I believe the grouping is correct (16-20 is 1., 22-23 is 2., 25-26 is 3.).\n\n\u003e use the full pathname location of the module\n\nNot convenient for libraries planned to be (eventually) uploaded to PyPI. See precedent in MLRsearch [5].\n\n\u003e python coding guide https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines\n\nI believe we should migrate Python related stuff into docs/test_code_guidelines.rst (making reviews and edits along the way). Any takers?\n\n[5] https://github.com/FDio/csit/blob/master/resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py#L20-L22",
+      "parentUuid": "2149d897_a637b4d3",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 40
+      },
+      "revId": "94e23acf74e56af7d5d3c3464d449b16d80864e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ed03568_6f5e130a",
         "filename": "resources/libraries/python/PLRsearch/PLRsearch.py",
         "patchSetId": 95
