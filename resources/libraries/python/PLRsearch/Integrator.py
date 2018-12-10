@@ -35,24 +35,23 @@ Integrator__HALF_PI = math.acos(0)
 Integrator__DOUBLE_PI = 4 * Integrator__HALF_PI
 
 
-def try_estimate_nd(communication_pipe, scale_coeff=10.0):
+def try_estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
     """Call estimate_nd but catch any exception and send traceback."""
     try:
-        return estimate_nd(communication_pipe, scale_coeff)
+        return estimate_nd(communication_pipe, scale_coeff, trace_enabled)
     except:
         traceback_string = traceback.format_exc()
         communication_pipe.send(traceback_string)
 
 
-def estimate_nd(communication_pipe, scale_coeff=10.0):
+def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
     """Use Bayesian inference from control queue, put result to result queue.
 
     TODO: Use a logging framework that works in a user friendly way.
     (Note that multiprocessing_logging does not work well with robot
     and robotbackgroundlogger only works for threads, not processes.
-    Or, wait for https://github.com/robotframework/robotframework/pull/2182 )
-
-    TODO: Delete the commented-out debug prints (or change to trace logs).
+    Or, wait for https://github.com/robotframework/robotframework/pull/2182
+    Anyway, the current implementation with trace_enabled looks ugly.)
 
     The result is average and standard deviation for posterior distribution
     of a single dependent (positive scalar) value.
@@ -116,16 +115,23 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
     - param_hint_cov: Covariance matrix defining initial focus shape.
 
     Output/result object (sent to pipe queue)
-    is a 4-tuple of the following fields:
+    is a 6-tuple of the following fields:
     - value_avg: Float estimate of posterior average dependent value.
     - value_stdev: Float estimate of posterior standard deviation of the value.
     - param_importance_avg: Float tuple, center of Gaussian to use next.
     - param_importance_cov: Float covariance matrix of the Gaussian to use next.
-    - log_list: List of strings to log at main process.
+    - debug_list: List of debug strings to log at main process.
+    - trace_list: List of trace strings to log at main process if needed.
+    Trace strings are very verbose, it is recommended to not enable them;
+    bumping some lines manually to debug_list instead if needed.
 
     :param communication_pipe: Pipe to comunicate with boss process.
     :param scale_coeff: Float number to tweak convergence speed with.
+    :param trace_enabled: Whether trace list should be populated at all.
+        Default: False
     :type communication_pipe: multiprocessing.Connection (or compatible)
+    :type scale_coeff: float
+    :tupe trace_enabled: bolean
     :raises OverflowError: If one sample dominates the rest too much.
         Or if value_logweight_function does not handle
         some part of parameter space carefully enough.
@@ -136,7 +142,20 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
     # Block until input object appears.
     dimension, dilled_function, param_hint_avg, param_hint_cov = (
         communication_pipe.recv())
-    log_list = list()
+    debug_list = list()
+    trace_list = list()
+    def add_trace(name, value):
+        """
+        Add a variable (name and value) to trace list (if enabled).
+
+        :param name: Any string identifying the value.
+        :param value: Any object to log repr of.
+        :type name: str
+        :type value: object
+        """
+        if not trace_enabled:
+            return
+        trace_list.append(name + " " + repr(value))
     value_logweight_function = dill.loads(dilled_function)
     len_top = (dimension + 2) * (dimension + 1) / 2
     top_weight_param = list()
@@ -184,9 +203,10 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
             log_weight_norm = log_plus(log_sum_weight, log_top_weight)
             top_ratio = math.exp(log_top_weight - log_weight_norm)
             sampled_ratio = math.exp(log_sum_weight - log_weight_norm)
-#            print "log_top_weight", log_top_weight,
-#            print "log_sum_weight", log_sum_weight, "top_ratio", top_ratio,
-#            print "sampled_ratio", sampled_ratio
+            add_trace("log_top_weight", log_top_weight)
+            add_trace("log_sum_weight", log_sum_weight)
+            add_trace("top_ratio", top_ratio)
+            add_trace("sampled_ratio", sampled_ratio)
             param_focus_avg = [
                 sampled_ratio * param_sampled_avg[first]
                 + top_ratio * param_top_avg[first]
@@ -196,8 +216,8 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
                     sampled_ratio * param_sampled_cov[first][second]
                     + top_ratio * param_top_cov[first][second])
                 for first in range(dimension)] for second in range(dimension)]
-#        print "param_focus_avg", repr(param_focus_avg),
-#        print "param_focus_cov", repr(param_focus_cov)
+        add_trace("param_focus_avg", param_focus_avg)
+        add_trace("param_focus_cov", param_focus_cov)
         # Generate next sample.
         while 1:
             # Multivariate Gauss can fall outside (-1, 1) interval
@@ -209,10 +229,11 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
                     break
             else:  # These two breaks implement "level two continue".
                 break
-#        print "DEBUG sample_point", repr(sample_point)
+        add_trace("sample_point", sample_point)
         samples += 1
         value, log_weight = value_logweight_function(*sample_point)
-#        print "value", value, "log_weight", log_weight
+        add_trace("value", value)
+        add_trace("log_weight", log_weight)
         # Update bias related statistics.
         log_sum_weight = log_plus(log_sum_weight, log_weight)
         if len(top_weight_param) < len_top:
@@ -225,7 +246,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
             top_weight_param = top_weight_param[:-1]
             top_weight_param.append((log_weight, sample_point))
             top_weight_param.sort(key=lambda item: -item[0])
-#            print "DEBUG top_weight_param", repr(top_weight_param)
+            add_trace("top_weight_param", top_weight_param)
             # top_weight_param has changed, recompute biases.
             param_top_avg = top_weight_param[0][1]
             param_top_cov = [[0.0 for first in range(dimension)]
@@ -245,8 +266,8 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
                             param_shift[first] * param_shift[second]
                             * next_item_ratio)
                         param_top_cov[first][second] *= previous_items_ratio
-#            print "param_top_avg", repr(param_top_avg),
-#            print "param_top_cov", repr(param_top_cov)
+            add_trace("param_top_avg", param_top_avg)
+            add_trace("param_top_cov", param_top_cov)
         # The code above looked at weight (not importance).
         # The code below looks at importance (not weight).
         param_shift = [sample_point[first] - param_focus_avg[first]
@@ -254,14 +275,15 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
         rarity_gradient = numpy.linalg.solve(param_focus_cov, param_shift)
         rarity_step = numpy.vdot(param_shift, rarity_gradient)
         log_rarity = rarity_step / 2.0
-#        print "log_rarity", log_rarity, "samples", samples
+        add_trace("log_rarity", log_rarity)
+        add_trace("samples", samples)
         log_importance = log_weight + log_rarity
-#        print "log_importance", log_importance
+        add_trace("log_importance", log_importance)
         # Update sampled statistics.
         old_log_sum_importance = log_sum_importance
         log_sum_importance = log_plus(old_log_sum_importance, log_importance)
-#        print "new log_sum_weight", log_sum_weight,
-#        print "log_sum_importance", log_sum_importance
+        add_trace("new log_sum_weight", log_sum_weight)
+        add_trace("log_sum_importance", log_sum_importance)
         if old_log_sum_importance is None:
             param_sampled_avg = list(sample_point)
             value_avg = value
@@ -283,8 +305,8 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
                 param_sampled_cov[first][second] += (
                     param_shift[first] * param_shift[second] * new_sample_ratio)
                 param_sampled_cov[first][second] *= previous_samples_ratio
-#        print "param_sampled_avg", repr(param_sampled_avg),
-#        print "param_sampled_cov", repr(param_sampled_cov)
+        add_trace("param_sampled_avg", param_sampled_avg)
+        add_trace("param_sampled_cov", param_sampled_cov)
         update_secondary_stats = True
         if log_importance_best is None or log_importance > log_importance_best:
             log_importance_best = log_importance
@@ -325,8 +347,8 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
         if value_log_secondary_variance is not None:
             value_log_secondary_variance -= (
                 log_secondary_sum_importance - old_log_secondary_sum_importance)
-    log_list.append("integrator used " + str(samples) + " samples")
-    log_list.append(
+    debug_list.append("integrator used " + str(samples) + " samples")
+    debug_list.append(
         "value_avg " + str(value_avg)
         + " param_sampled_avg " + repr(param_sampled_avg)
         + " param_sampled_cov " + repr(param_sampled_cov)
@@ -334,8 +356,9 @@ def estimate_nd(communication_pipe, scale_coeff=10.0):
         + " value_log_secondary_variance " + str(value_log_secondary_variance))
     value_stdev = math.exp(
         (2 * value_log_variance - value_log_secondary_variance) / 2.0)
-    log_list.append("top_weight_param[0] " + repr(top_weight_param[0]))
+    debug_list.append("top_weight_param[0] " + repr(top_weight_param[0]))
     # Intentionally returning param_focus_avg and param_focus_cov,
     # instead of possibly hyper-focused bias or sampled.
     communication_pipe.send(
-        (value_avg, value_stdev, param_focus_avg, param_focus_cov, log_list))
+        (value_avg, value_stdev, param_focus_avg, param_focus_cov, debug_list,
+         trace_list))
