@@ -552,26 +552,26 @@ class PLRsearch(object):
         result_or_traceback = stretch_pipe.recv()
         try:
             (stretch_avg, stretch_stdev, stretch_bias_avg,
-             stretch_bias_cov, log_list) = result_or_traceback
+             stretch_bias_cov, debug_list, _) = result_or_traceback
         except ValueError:
             raise RuntimeError(
                 "Stretch worker failed with the following traceback:\n{tr}"
                 .format(tr=result_or_traceback))
         logging.info("Logs from stretch worker:")
-        for message in log_list:
+        for message in debug_list:
             logging.debug(message)
         if not erf_pipe.poll(1.0):
             raise RuntimeError("Erf worker did not finish!")
         result_or_traceback = erf_pipe.recv()
         try:
             (erf_avg, erf_stdev, erf_bias_avg,
-             erf_bias_cov, log_list) = result_or_traceback
+             erf_bias_cov, debug_list, _) = result_or_traceback
         except ValueError:
             raise RuntimeError(
                 "Erf worker failed with the following traceback:\n{tr}"
                 .format(tr=result_or_traceback))
         logging.info("Logs from erf worker:")
-        for message in log_list:
+        for message in debug_list:
             logging.debug(message)
         avg = math.exp((stretch_avg + erf_avg) / 2.0)
         var = (stretch_stdev * stretch_stdev + erf_stdev * erf_stdev) / 2.0
