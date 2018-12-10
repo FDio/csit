@@ -30,10 +30,5 @@ STATUS=$(python pal.py \
     --force)
 RETURN_STATUS=$?
 
-( cd ../presentation_new && python pal.py \
-    --specification specification_CPTA.yaml \
-    --logging INFO \
-    --force )
-
 echo ${STATUS}
 exit ${RETURN_STATUS}
