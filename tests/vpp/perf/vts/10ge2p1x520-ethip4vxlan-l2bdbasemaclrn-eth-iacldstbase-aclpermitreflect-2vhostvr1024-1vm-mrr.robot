@@ -66,7 +66,7 @@
 | ${sock1}= | /tmp/sock-1-${dut1_bd_id1}
 | ${sock2}= | /tmp/sock-1-${dut1_bd_id2}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-ethip4-vxlansrc253
+| ${traffic_profile}= | trex-sl-ethip4-vxlansrc253
 | ${acl_type}= | permit+reflect
 # Defaults for teardown:
 | ${dut1}= | ${None}

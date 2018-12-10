@@ -62,7 +62,7 @@
 | ${sock2}= | /tmp/sock-1-${bd_id2}
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
-| ${overhead} | ${50}
+| ${overhead}= | ${50}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
