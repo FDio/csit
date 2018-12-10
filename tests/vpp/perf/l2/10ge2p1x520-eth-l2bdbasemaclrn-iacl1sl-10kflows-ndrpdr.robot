@@ -75,7 +75,7 @@
 | ${trex_stream2_subnet}= | 20.20.20.0/24
 
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4udp-10u1000p-conc
+| ${traffic_profile}= | trex-sl-3n-ethip4udp-10u1000p-conc
 
 *** Keywords ***
 | Local Template
