@@ -52,7 +52,7 @@
 # X710-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | Local Template

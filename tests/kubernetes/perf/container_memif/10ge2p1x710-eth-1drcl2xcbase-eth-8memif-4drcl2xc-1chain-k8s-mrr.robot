@@ -50,11 +50,11 @@
 
 *** Variables ***
 # X710 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit}= | ${10000000000}
 # SFC profile
-| ${sfc_profile} | configmaps/eth-1drcl2xcbase-eth-8memif-4drcl2xc-1chain
+| ${sfc_profile}= | configmaps/eth-1drcl2xcbase-eth-8memif-4drcl2xc-1chain
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vswitch_cpus}= | ${5}
