@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "29e0b94e_52fef37d",
+        "filename": "resources/libraries/python/PLRsearch/Integrator.py",
+        "patchSetId": 95
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-10T13:22:04Z",
+      "side": 1,
+      "message": "Working on it, will squash here when verified.",
+      "parentUuid": "23a5ddc4_e196d992",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 74
+      },
+      "revId": "94e23acf74e56af7d5d3c3464d449b16d80864e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d971241_4944ec5b",
         "filename": "resources/libraries/python/PLRsearch/Integrator.py",
         "patchSetId": 95
