@@ -140,7 +140,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 260
+        start: 360  # 260
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
         start: 3
@@ -148,7 +148,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 260
+        start: 360  # 260
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-hsw:
@@ -159,7 +159,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 20
+        start: 100  # 20
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 1
@@ -167,7 +167,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 20
+        start: 100  # 20
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-skx:
@@ -178,7 +178,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 20
+        start: 100  # 20
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 1
@@ -186,7 +186,7 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 20
+        start: 100  # 20
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-2n-skx:
@@ -274,12 +274,13 @@
     file-format: ".gz"
     download-path: "{job}/{build}/archives/{filename}"
     extract: "output.xml"
+    time-period: 10  # Number of days
 
   builds:
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 260
+      start: 360  # 260
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master:
       start: 3
@@ -287,7 +288,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 20
+      start: 100  # 20
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
       start: 1
@@ -295,7 +296,7 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 20
+      start: 100  # 20
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master-2n-skx:
       start: 1

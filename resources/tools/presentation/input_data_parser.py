@@ -30,10 +30,17 @@ from robot import errors
 from collections import OrderedDict
 from string import replace
 from os import remove
+from os.path import join
+from datetime import datetime as dt
+from datetime import timedelta
 from jumpavg.AvgStdevMetadataFactory import AvgStdevMetadataFactory
 
 from input_data_files import download_and_unzip_data_file
 from utils import Worker
+
+
+# Separator used in file names
+SEPARATOR = "__"
 
 
 class ExecutionChecker(ResultVisitor):
@@ -696,7 +703,7 @@ class ExecutionChecker(ResultVisitor):
                 else:
                     test_result["status"] = "FAIL"
                     self._data["tests"][self._test_ID] = test_result
-                    logging.error("The test '{0}' has no or more than one "
+                    logging.debug("The test '{0}' has no or more than one "
                                   "multi-threading tags.".format(self._test_ID))
                     logging.debug("Tags: {0}".format(test_result["tags"]))
                     return
@@ -1143,7 +1150,43 @@ class InputData(object):
                 remove(build["file-name"])
             except OSError as err:
                 logs.append(("ERROR", "Cannot remove the file '{0}': {1}".
-                             format(build["file-name"], err)))
+                             format(build["file-name"], repr(err))))
+
+        timeperiod = self._cfg.input.get("time-period", None)
+        if timeperiod and data:
+            now = dt.utcnow()
+            timeperiod = timedelta(int(timeperiod))
+            metadata = data.get("metadata", None)
+            if metadata:
+                generated = metadata.get("generated", None)
+                if generated:
+                    generated = dt.strptime(generated, "%Y%m%d %H:%M")
+                    if (now - generated) > timeperiod:
+                        # Remove the data and the file:
+                        state = "removed"
+                        data = None
+                        logs.append(
+                            ("INFO",
+                             "    The build {job}/{build} is outdated, will be "
+                             "removed".format(job=job, build=build["build"])))
+                        file_name = self._cfg.input["file-name"]
+                        full_name = join(
+                            self._cfg.environment["paths"]["DIR[WORKING,DATA]"],
+                            "{job}{sep}{build}{sep}{name}".
+                                format(job=job,
+                                       sep=SEPARATOR,
+                                       build=build["build"],
+                                       name=file_name))
+                        try:
+                            remove(full_name)
+                            logs.append(("INFO",
+                                         "    The file {name} has been removed".
+                                         format(name=full_name)))
+                        except OSError as err:
+                            logs.append(("ERROR",
+                                        "Cannot remove the file '{0}': {1}".
+                                        format(full_name, repr(err))))
+
         logs.append(("INFO", "  Done."))
 
         result = {
