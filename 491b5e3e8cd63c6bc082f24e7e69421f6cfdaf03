@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11d42a63_de78274c",
+        "filename": "requirements.txt",
+        "patchSetId": 98
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-12T09:06:54Z",
+      "side": 1,
+      "message": "This seems to cause VIRL failure as below. Any ideas how to fix that?\n\n21:46:33  21:46:27 [ ERROR ] Node 10.30.53.72 setup failed, error:\u0027Virtualenv setup including requirements.txt on 10.30.53.72\u0027\n\nhttps://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-functional-master-ubuntu1604-virl/6223/console-timestamp.log.gz",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 15
+      },
+      "revId": "491b5e3e8cd63c6bc082f24e7e69421f6cfdaf03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
