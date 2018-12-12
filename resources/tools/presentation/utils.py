@@ -25,6 +25,7 @@ from os import walk, makedirs, environ
 from os.path import join, isdir
 from shutil import move, Error
 from math import sqrt
+from datetime import datetime
 
 from errors import PresentationError
 from jumpavg.BitCountingClassifier import BitCountingClassifier
@@ -176,6 +177,29 @@ def get_last_completed_build_number(jenkins_url, job_name):
     cmd = "wget -qO- {url}".format(url=url)
 
     return execute_command(cmd)
+
+
+def get_build_timestamp(jenkins_url, job_name, build_nr):
+    """Get the timestamp of the build of the given job.
+
+    :param jenkins_url: Jenkins URL.
+    :param job_name: Job name.
+    :param build_nr: Build number.
+    :type jenkins_url: str
+    :type job_name: str
+    :type build_nr: int
+    :returns: The timestamp.
+    :rtype: datetime.datetime
+    """
+
+    url = "{jenkins_url}/{job_name}/{build_nr}".format(jenkins_url=jenkins_url,
+                                                       job_name=job_name,
+                                                       build_nr=build_nr)
+    cmd = "wget -qO- {url}".format(url=url)
+
+    timestamp = execute_command(cmd)
+
+    return datetime.fromtimestamp(timestamp/1000)
 
 
 def archive_input_data(spec):

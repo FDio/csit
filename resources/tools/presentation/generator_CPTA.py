@@ -427,7 +427,8 @@ def _generate_all_charts(spec, input_data):
             builds_dict[job] = list()
         for build in spec.input["builds"][job]:
             status = build["status"]
-            if status != "failed" and status != "not found":
+            if status != "failed" and status != "not found" and \
+                status != "removed":
                 builds_dict[job].append(str(build["build"]))
 
     # Create "build ID": "date" dict:
