@@ -444,7 +444,7 @@ def _generate_all_charts(spec, input_data):
     work_queue = multiprocessing.JoinableQueue()
     manager = multiprocessing.Manager()
     data_queue = manager.Queue()
-    cpus = multiprocessing.cpu_count()
+    cpus = 1
 
     workers = list()
     for cpu in range(cpus):
