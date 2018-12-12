@@ -274,6 +274,7 @@
     file-format: ".gz"
     download-path: "{job}/{build}/archives/{filename}"
     extract: "output.xml"
+    time-period: 10  # Number of days
 
   builds:
 
