@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45731742_1008fc49",
+        "filename": "resources/tools/trex/trex_unidirection.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-12T14:21:23Z",
+      "side": 1,
+      "message": "This file contains much of the code from trex_stateless_profile.py and except creating just 0-\u003e1 traffic (with corresponding output change), it also supports port_0\u003d\u003dport_1 case, and drops support for latency measurement.\n\n-1 for code duplication and lack of latency support.\n\nIt will be better if you just extend trex_stateless_profile.py with new a command line option. For example \"--direction\" with possible values \"01\", \"10\" and \"both\" (default).",
+      "revId": "b53f69a1ad14cc612333b61829a8b5efe17f3bdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
