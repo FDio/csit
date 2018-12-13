@@ -16,6 +16,24 @@
       "revId": "b53f69a1ad14cc612333b61829a8b5efe17f3bdd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c8f9ae6_fcc2443b",
+        "filename": "resources/tools/trex/trex_unidirection.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2018-12-13T06:03:03Z",
+      "side": 1,
+      "message": "Hi Vratko,\n\nActually my first thought is to change simple_burst in trex_stateless_profile.py to make it support unidirection, but found that too many \"if ... else...\" need to be added, that will make the source code become ugly and difficult to understand.\n\nso I add a standalone trex_unidirection.py, I think it can keep \ntrex_stateless_profile.py clean, and most important that there has no risk to break current bidirectional test cases in CSIT by this way. and also trex_stateless_profile.py and trex_unidirection.py both are standalone executable file, no relationship between each other, So Maybe we do not need to worry about code duplication. \n\nMy Purpose of adding unidirection support is for load balancer\nmaglev mode and l3dsr mode performance test, that does not need\nto measure latency, so I drop it. I can add it back if you think\nthat it must support to measure latency.\n\nwhat\u0027s your opinion?\n\nBest Regards\nYulong Pei",
+      "parentUuid": "45731742_1008fc49",
+      "revId": "b53f69a1ad14cc612333b61829a8b5efe17f3bdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
