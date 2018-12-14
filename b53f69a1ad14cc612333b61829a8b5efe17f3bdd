@@ -34,6 +34,24 @@
       "revId": "b53f69a1ad14cc612333b61829a8b5efe17f3bdd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2b5eb3_bf28c1a8",
+        "filename": "resources/tools/trex/trex_unidirection.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-12-14T09:01:08Z",
+      "side": 1,
+      "message": "If it would mean too many IF statements i prefer separate file.",
+      "parentUuid": "1c8f9ae6_fcc2443b",
+      "revId": "b53f69a1ad14cc612333b61829a8b5efe17f3bdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
