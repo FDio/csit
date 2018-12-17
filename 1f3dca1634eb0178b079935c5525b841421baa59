@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c80111f_caee33bc",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2018-12-17T09:35:08Z",
+      "side": 1,
+      "message": "Why we are not using paramiko for this?\n\nhttps://github.com/paramiko/paramiko/blob/master/demos/forward.py\nhttps://github.com/paramiko/paramiko/blob/master/demos/rforward.py\n\nno need pexpect!",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 37
+      },
+      "revId": "1f3dca1634eb0178b079935c5525b841421baa59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
