@@ -130,7 +130,7 @@ def convert_reply(api_r):
     """Process API reply / a part of API reply for smooth converting to
     JSON string.
 
-    Apply binascii.hexlify() method for string values.
+    # Apply binascii.hexlify() method for string values.
     :param api_r: API reply.
     :type api_r: Vpp_serializer reply object (named tuple)
     :returns: Processed API reply / a part of API reply.
@@ -143,9 +143,10 @@ def convert_reply(api_r):
     reply_value = dict()
     for item in dir(api_r):
         if not item.startswith('_') and item not in unwanted_fields:
-            attr_value = getattr(api_r, item)
-            value = binascii.hexlify(attr_value) \
-                if isinstance(attr_value, str) else attr_value
+            # attr_value = getattr(api_r, item)
+            # value = binascii.hexlify(attr_value) \
+            #     if isinstance(attr_value, str) else attr_value
+            value = getattr(api_r, item)
             reply_value[item] = value
     reply_dict[reply_key] = reply_value
     return reply_dict
