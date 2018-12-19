@@ -51,7 +51,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set interfaces in path up
+| | And Configure interfaces in path up
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv4 bidirectionally and verify received packets
@@ -68,7 +68,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set interfaces in path up
+| | And Configure interfaces in path up
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv6 bidirectionally and verify received packets

@@ -352,7 +352,7 @@
 | | Vpp Node Interfaces Ready Wait | ${dut1_node}
 | | Vpp Node Interfaces Ready Wait | ${dut2_node}
 
-| Set interfaces in path up
+| Configure interfaces in path up
 | | [Documentation]
 | | ... | Set UP state on interfaces in 2-node or 3-node path on nodes and \
 | | ... | wait until all interfaces are ready.
@@ -369,7 +369,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set interfaces in path up \|
+| | ... | \| Configure interfaces in path up \|
 | | ...
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
