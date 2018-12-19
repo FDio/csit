@@ -175,7 +175,7 @@
 | | Run Traffic Script On Node | send_icmp_wait_for_reply.py
 | | ... | ${tg_node} | ${args}
 
-| Initialize IPv4 forwarding in circular topology
+| Configure IPv4 forwarding in circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
 | | ... | circular topology. Get the interface MAC addresses and setup ARP on
@@ -203,16 +203,16 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 20.20.20.1 \|
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 20.20.20.1 \
 | | ... | \| remote_host1_ip4=192.168.0.1 \| remote_host2_ip4=192.168.0.2 \
 | | ... | \| remote_host_ip4_prefix=32 \|
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 1.1.1.1 \| 1.1.1.2 \
 | | ... | \| 20.20.20.1 \|
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 1.1.1.1 \| 1.1.1.2 \
 | | ... | \| 20.20.20.1 \| remote_host1_ip4=192.168.0.1 \
 | | ... | \| remote_host2_ip4=192.168.0.2 \| remote_host_ip4_prefix=32 \|
@@ -222,24 +222,24 @@
 | | ... | ${remote_host1_ip4}=${NONE} | ${remote_host2_ip4}=${NONE}
 | | ... | ${remote_host_ip4_prefix}=${NONE}
 | | ...
-| | Set interfaces in path up
+| | Configure interfaces in path up
 | | ...
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2_node}
 | | ...
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Initialize IPv4 forwarding in 3-node circular topology
+| | ... | Configure IPv4 forwarding in 3-node circular topology
 | | ... | ${tg_if1_ip4} | ${tg_if2_ip4} | ${dut1_if1_ip4} | ${dut1_if2_ip4}
 | | ... | ${dut2_if1_ip4} | ${dut2_if2_ip4} | ${remote_host1_ip4}
 | | ... | ${remote_host2_ip4} | ${remote_host_ip4_prefix}
 | | ... | ELSE
-| | ... | Initialize IPv4 forwarding in 2-node circular topology
+| | ... | Configure IPv4 forwarding in 2-node circular topology
 | | ... | ${tg_if1_ip4} | ${tg_if2_ip4} | ${dut1_if1_ip4} | ${dut1_if2_ip4}
 | | ... | remote_host1_ip4=${remote_host1_ip4}
 | | ... | remote_host2_ip4=${remote_host2_ip4}
 | | ... | remote_host_ip4_prefix=${remote_host_ip4_prefix}
 
-| Initialize IPv4 forwarding in 2-node circular topology
+| Configure IPv4 forwarding in 2-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces on DUT node in 2-node circular
 | | ... | topology. Get the interface MAC addresses and setup ARP on
@@ -261,9 +261,9 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 20.20.20.1 \|
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 20.20.20.1 \
 | | ... | \| 192.168.0.1 \| 192.168.0.2 \| 32 \|
 | | ...
@@ -290,7 +290,7 @@
 | | ... | Vpp Route Add | ${dut_node} | ${remote_host2_ip4}
 | | ... | ${remote_host_ip4_prefix} | ${tg_if2_ip4} | ${dut_to_tg_if2}
 
-| Initialize IPv4 forwarding in 3-node circular topology
+| Configure IPv4 forwarding in 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
 | | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
@@ -316,10 +316,10 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 1.1.1.1 \| 1.1.1.2 \
 | | ... | \| 20.20.20.1 \|
-| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| Configure IPv4 forwarding in circular topology \
 | | ... | \| 10.10.10.2 \| 20.20.20.2 \| 10.10.10.1 \| 1.1.1.1 \| 1.1.1.2 \
 | | ... | \| 20.20.20.1 \| 192.168.0.1 \| 192.168.0.2 \| 32 \|
 | | ...

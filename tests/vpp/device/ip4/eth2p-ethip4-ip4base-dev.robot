@@ -56,7 +56,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
+| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv4 ping packet and verify headers | ${tg_node}
@@ -73,7 +73,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
+| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv4 ping packet and verify headers | ${tg_node}
@@ -91,7 +91,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
+| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv4 ping packet and verify headers | ${tg_node}
@@ -109,7 +109,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
+| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
 | | ... | remote_host1_ip4=${remote_host1_ip4}
 | | ... | remote_host2_ip4=${remote_host2_ip4}
