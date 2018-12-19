@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "437247ce_d101b4ac",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-19T11:20:04Z",
+      "side": 1,
+      "message": "There is a keyword of the same name defined already in resources/libraries/robot/performance/performance_configuration.robot line 178.\nIf this is the same, remove from here. If this is different, rename.",
+      "range": {
+        "startLine": 171,
+        "startChar": 2,
+        "endLine": 171,
+        "endChar": 49
+      },
+      "revId": "c1374a56648e6cec769e1a51b1c6a08c98a135e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
