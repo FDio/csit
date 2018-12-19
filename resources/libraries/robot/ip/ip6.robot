@@ -209,7 +209,7 @@
 | | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | ${dut2_if_addr}
 | | | ... | ${dut1_if}
 
-| Initialize IPv6 forwarding in circular topology
+| Configure IPv6 forwarding in circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
 | | ... | circular topology. Get the interface MAC addresses and setup ARP on
@@ -237,16 +237,16 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2001:2::1 \|
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2001:2::1 \
 | | ... | \| remote_host1_ip6=3ffe:5f::1 \| remote_host2_ip6=3ffe:5f::2 \
 | | ... | \| remote_host_ip6_prefix=128 \|
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2003:3::1 \| 2003:3::2 \
 | | ... | \| 2001:2::1 \|
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2003:3::1 \| 2003:3::2 \
 | | ... | \| 2001:2::1 \| remote_host1_ip4=3ffe:5f::1 \
 | | ... | \| remote_host2_ip4=3ffe:5f::2 \| remote_host_ip4_prefix=128 \|
@@ -257,24 +257,24 @@
 | | ... | ${remote_host_ip6_prefix}=${NONE}
 | | ...
 | | ...
-| | Set interfaces in path up
+| | Configure interfaces in path up
 | | ...
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2_node}
 | | ...
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Initialize IPv6 forwarding in 3-node circular topology
+| | ... | Configure IPv6 forwarding in 3-node circular topology
 | | ... | ${tg_if1_ip6} | ${tg_if2_ip6} | ${dut1_if1_ip6} | ${dut1_if2_ip6}
 | | ... | ${dut2_if1_ip6} | ${dut2_if2_ip6} | ${remote_host1_ip6}
 | | ... | ${remote_host2_ip6} | ${remote_host_ip6_prefix}
 | | ... | ELSE
-| | ... | Initialize IPv6 forwarding in 2-node circular topology
+| | ... | Configure IPv6 forwarding in 2-node circular topology
 | | ... | ${tg_if1_ip6} | ${tg_if2_ip6} | ${dut1_if1_ip6} | ${dut1_if2_ip6}
 | | ... | remote_host1_ip6=${remote_host1_ip6}
 | | ... | remote_host2_ip6=${remote_host2_ip6}
 | | ... | remote_host_ip6_prefix=${remote_host_ip6_prefix}
 
-| Initialize IPv6 forwarding in 2-node circular topology
+| Configure IPv6 forwarding in 2-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces on DUT node in 2-node circular
 | | ... | topology. Get the interface MAC addresses and setup ARP on
@@ -296,9 +296,9 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2001:2::1 \|
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2001:2::1 \
 | | ... | \| remote_host1_ip6=3ffe:5f::1 \| remote_host2_ip6=3ffe:5f::2 \
 | | ... | \| remote_host_ip6_prefix=128 \|
@@ -326,7 +326,7 @@
 | | ... | Vpp Route Add | ${dut_node} | ${remote_host2_ip6}
 | | ... | ${remote_host_ip6_prefix} | ${tg_if2_ip6} | ${dut_to_tg_if2}
 
-| Initialize IPv6 forwarding in 3-node circular topology
+| Configure IPv6 forwarding in 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
 | | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
@@ -352,10 +352,10 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2003:3::1 \| 2003:3::2 \
 | | ... | \| 2001:2::1 \|
-| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| Configure IPv6 forwarding in circular topology \
 | | ... | \| 2001:1::2 \| 2001:2::2 \| 2001:1::1 \| 2003:3::1 \| 2003:3::2 \
 | | ... | \| 2001:2::1 \| remote_host1_ip4=3ffe:5f::1 \
 | | ... | \| remote_host2_ip4=3ffe:5f::2 \| remote_host_ip4_prefix=128 \|

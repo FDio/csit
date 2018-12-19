@@ -56,7 +56,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
+| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
@@ -74,7 +74,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
+| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
@@ -93,7 +93,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
+| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
@@ -112,7 +112,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Initialize IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
+| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
 | | ... | remote_host1_ip6=${remote_host1_ip6}
 | | ... | remote_host2_ip6=${remote_host2_ip6}

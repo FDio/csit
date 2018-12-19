@@ -55,7 +55,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set interfaces in path up
+| | And Configure interfaces in path up
 | | And Create bridge domain | ${dut_node} | ${bd_id}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${bd_id}
@@ -76,7 +76,7 @@
 | | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set interfaces in path up
+| | And Configure interfaces in path up
 | | And Create bridge domain | ${dut_node} | ${bd_id}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${bd_id}
