@@ -548,8 +548,8 @@ class PLRsearch(object):
             return boss_pipe_end
         erf_pipe = start_computing(
             self.lfit_erf, erf_bias_avg, erf_bias_cov)
-        stretch_pipe = start_computing(
-            self.lfit_stretch, stretch_bias_avg, stretch_bias_cov)
+#        stretch_pipe = start_computing(
+#            self.lfit_stretch, stretch_bias_avg, stretch_bias_cov)
         # Measurement phase.
         measurement = self.measurer.measure(trial_duration, transmit_rate)
         # Processing phase.
@@ -586,7 +586,8 @@ class PLRsearch(object):
                 logging.debug(message)
             return avg, stdev, bias_avg, bias_cov
         stretch_avg, stretch_stdev, stretch_bias_avg, stretch_bias_cov = (
-            stop_computing("stretch", stretch_pipe))
+            1e6, 1e2, [0.0, 0.0], [[1.0, 0.0], [0.0, 1.0]])
+#            stop_computing("stretch", stretch_pipe))
         erf_avg, erf_stdev, erf_bias_avg, erf_bias_cov = (
             stop_computing("erf", erf_pipe))
         avg = math.exp((stretch_avg + erf_avg) / 2.0)
