@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e43bafce_25f934af",
+        "filename": "resources/libraries/robot/ip/ip6.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-19T12:18:46Z",
+      "side": 1,
+      "message": "Also a duplicate keyword name.",
+      "range": {
+        "startLine": 282,
+        "startChar": 2,
+        "endLine": 282,
+        "endChar": 56
+      },
+      "revId": "f9041bcdc886ba08800fe11c32e218d98ef6ed33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd376dd9_431272d9",
+        "filename": "resources/libraries/robot/ip/ip6.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-19T12:18:46Z",
+      "side": 1,
+      "message": "Also a duplicate keyword name.",
+      "range": {
+        "startLine": 334,
+        "startChar": 2,
+        "endLine": 334,
+        "endChar": 56
+      },
+      "revId": "f9041bcdc886ba08800fe11c32e218d98ef6ed33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a49c0cc_11685de4",
+        "filename": "resources/libraries/robot/shared/testing_path.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2018-12-19T12:18:46Z",
+      "side": 1,
+      "message": "Also a duplicate keyword name.",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 27
+      },
+      "revId": "f9041bcdc886ba08800fe11c32e218d98ef6ed33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
