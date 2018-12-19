@@ -575,7 +575,7 @@ class PLRsearch(object):
                     "Worker {name} did not finish!".format(name=name))
             result_or_traceback = pipe.recv()
             try:
-                avg, stdev, bias_avg, bias_cov, debug_list, _ = (
+                avg, stdev, bias_avg, bias_cov, debug_list, trace_list = (
                     result_or_traceback)
             except ValueError:
                 raise RuntimeError(
@@ -583,7 +583,9 @@ class PLRsearch(object):
                     .format(name=name, tr=result_or_traceback))
             logging.info("Logs from worker {name}:".format(name=name))
             for message in debug_list:
-                logging.debug(message)
+                logging.info(message)
+            for message in trace_list:
+                logging.info(message)
             return avg, stdev, bias_avg, bias_cov
         stretch_avg, stretch_stdev, stretch_bias_avg, stretch_bias_cov = (
             10.0, 0.1, [0.0, 0.0], [[1.0, 0.0], [0.0, 1.0]])
