@@ -16,7 +16,6 @@
 import logging
 import math
 import multiprocessing
-import random
 import time
 
 import dill
@@ -40,9 +39,6 @@ class PLRsearch(object):
     Method othed than search (and than __init__)
     are just internal code structure.
     TODO: Those method names should start with underscore then.
-
-    TODO: Figure out how to replace #print with logging
-    without slowing down too much.
     """
 
     xerfcx_limit = math.pow(math.acos(0), -0.5)
@@ -198,7 +194,7 @@ class PLRsearch(object):
             transmit_rate = min(max_rate, max(min_rate, next_load))
 
     @staticmethod
-    def lfit_stretch(load, mrr, spread):
+    def lfit_stretch(trace, load, mrr, spread):
         """Stretch-based fitting function.
 
         Return the logarithm of average packet loss per second
@@ -214,12 +210,14 @@ class PLRsearch(object):
         TODO: Explain how the high-level description
         has been converted into an implementation full of ifs.
 
+        :param trace: A multiprocessing-friendly logging function (closure).
         :param load: Offered load (positive), in packets per second.
         :param mrr: Parameter of this fitting function, equal to limiting
             (positive) average number of packets received (as opposed to lost)
             when offered load is many spreads more than mrr.
         :param spread: The x-scaling parameter (positive). No nice semantics,
             roughly corresponds to size of "tail" for loads below mrr.
+        :type trace: function (str, object) -> None
         :type load: float
         :type mrr: float
         :type spread: float
@@ -229,30 +227,34 @@ class PLRsearch(object):
         # TODO: chi is from https://en.wikipedia.org/wiki/Nondimensionalization
         chi = (load - mrr) / spread
         chi0 = -mrr / spread
-#        print "load", load, "mrr", mrr, "spread", spread, "chi", chi
+        trace("stretch: load", load)
+        trace("mrr", mrr)
+        trace("spread", spread)
+        trace("chi", chi)
+        trace("chi0", chi0)
         if chi > 0:
             log_lps = math.log(
                 load - mrr + (log_plus(0, -chi) - log_plus(0, chi0)) * spread)
-#            print "big loss direct log_lps", log_lps
+            trace("big loss direct log_lps", log_lps)
         else:
             approx = (math.exp(chi) - math.exp(2 * chi) / 2) * spread
             if approx == 0.0:
                 log_lps = chi
-#                print "small loss crude log_lps", log_lps
+                trace("small loss crude log_lps", log_lps)
                 return log_lps
             third = math.exp(3 * chi) / 3 * spread
             if approx + third != approx + 2 * third:
                 log_lps = math.log(
                     (log_plus(0, chi) - log_plus(0, chi0)) * spread)
-#                print "small loss direct log_lps", log_lps
+                trace("small loss direct log_lps", log_lps)
             else:
                 log_lps = math.log(
                     approx - (math.exp(chi0) - math.exp(2 * chi0)) * spread)
-#                print "small loss approx log_lps", log_lps
+                trace("small loss approx log_lps", log_lps)
         return log_lps
 
     @staticmethod
-    def lfit_erf(load, mrr, spread):
+    def lfit_erf(trace, load, mrr, spread):
         """Erf-based fitting function.
 
         Return the logarithm of average packet loss per second
@@ -269,12 +271,14 @@ class PLRsearch(object):
         TODO: Explain how the high-level description
         has been converted into an implementation full of ifs.
 
+        :param trace: A multiprocessing-friendly logging function (closure).
         :param load: Offered load (positive), in packets per second.
         :param mrr: Parameter of this fitting function, equal to limiting
             (positive) average number of packets received (as opposed to lost)
             when offered load is many spreads more than mrr.
         :param spread: The x-scaling parameter (positive). No nice semantics,
             roughly corresponds to size of "tail" for loads below mrr.
+        :type trace: function (str, object) -> None
         :type load: float
         :type mrr: float
         :type spread: float
@@ -285,24 +289,28 @@ class PLRsearch(object):
         # TODO: The stretch sign is just to have less minuses. Worth changing?
         chi = (mrr - load) / spread
         chi0 = mrr / spread
-#        print "load", load, "mrr", mrr, "spread", spread,
-#        print "chi", chi, "chi0", chi0
+        trace("Erf: load", load)
+        trace("mrr", mrr)
+        trace("spread", spread)
+        trace("chi", chi)
+        trace("chi0", chi0)
         if chi >= -1.0:
-#            print "positive, b ~> m"
+            trace("positive, b ~> m", None)
             if chi > math.exp(10):
                 first = PLRsearch.log_xerfcx_10 + 2 * (math.log(chi) - 10)
-#                print "approximated"
+                trace("approximated first", first)
             else:
                 first = math.log(PLRsearch.xerfcx_limit - chi * erfcx(chi))
-#                print "exact"
+                trace("exact first", first)
             first -= chi * chi
             second = math.log(PLRsearch.xerfcx_limit - chi * erfcx(chi0))
             second -= chi0 * chi0
             intermediate = log_minus(first, second)
-#            print "first", first, "second", second,
-#            print "intermediate", intermediate
+            trace("first", first)
+            trace("second", second)
+            trace("intermediate", intermediate)
         else:
-#            print "negative, b ~< m"
+            trace("negative, b ~< m", None)
             exp_first = PLRsearch.xerfcx_limit + chi * erfcx(-chi)
             exp_first *= math.exp(-chi * chi)
             exp_first -= 2 * chi
@@ -313,14 +321,14 @@ class PLRsearch(object):
             second = math.log(PLRsearch.xerfcx_limit - chi * erfcx(chi0))
             second -= chi0 * chi0
             intermediate = math.log(exp_first - math.exp(second))
-#            print "exp_first", exp_first, "second", second,
-#            print "intermediate", intermediate
+            trace("exp_first", exp_first)
+            trace("second", second)
+            trace("intermediate", intermediate)
         result = intermediate + math.log(spread) - math.log(erfc(-chi0))
-#        print "lfit erf result", result
         return result
 
     @staticmethod
-    def find_critical_rate(lfit_func, log_lps_target, mrr, spread):
+    def find_critical_rate(trace, lfit_func, log_lps_target, mrr, spread):
         """Given lps target and parameters, return the achieving offered load.
 
         This is basically an inverse function to lfit_func
@@ -335,11 +343,13 @@ class PLRsearch(object):
 
         TODO: Use at least some method with faster convergence.
 
+        :param trace: A multiprocessing-friendly logging function (closure).
         :param lfit_func: Fitting function, typically lfit_spread or lfit_erf.
         :param log_lps_target: Fitting function should return this
             at the returned load and parameters.
         :param mrr: The mrr parameter for the fitting function.
         :param spread: The spread parameter for the fittinmg function.
+        :type trace: function (str, object) -> None
         :type lfit_func: Function from 3 floats to float.
         :type log_lps_target: float
         :type mrr: float
@@ -349,7 +359,7 @@ class PLRsearch(object):
         """
         # TODO: Should we make the initial rate configurable?
         rate = 10000000.0
-        log_loss = lfit_func(rate, mrr, spread)
+        log_loss = lfit_func(trace, rate, mrr, spread)
         if log_loss == log_lps_target:
             return rate
         # Exponential search part.
@@ -357,7 +367,7 @@ class PLRsearch(object):
             rate_hi = rate
             while 1:
                 rate_lo = rate_hi / 2.0
-                log_loss = lfit_func(rate_lo, mrr, spread)
+                log_loss = lfit_func(trace, rate_lo, mrr, spread)
                 if log_loss > log_lps_target:
                     rate_hi = rate_lo
                     continue
@@ -368,7 +378,7 @@ class PLRsearch(object):
             rate_lo = rate
             while 1:
                 rate_hi = rate_lo * 2.0
-                log_loss = lfit_func(rate_hi, mrr, spread)
+                log_loss = lfit_func(trace, rate_hi, mrr, spread)
                 if log_loss < log_lps_target:
                     rate_lo = rate_hi
                     continue
@@ -378,9 +388,9 @@ class PLRsearch(object):
         # Binary search part.
         while rate_hi != rate_lo:
             rate = (rate_hi + rate_lo) / 2.0
-            log_loss = lfit_func(rate, mrr, spread)
+            log_loss = lfit_func(trace, rate, mrr, spread)
             if rate == rate_hi or rate == rate_lo or log_loss == log_lps_target:
-#                print "found", rate
+                trace("found", rate)
                 return rate
             if log_loss > log_lps_target:
                 rate_hi = rate
@@ -388,7 +398,7 @@ class PLRsearch(object):
                 rate_lo = rate
 
     @staticmethod
-    def log_weight(lfit_func, trial_result_list, mrr, spread):
+    def log_weight(trace, lfit_func, trial_result_list, mrr, spread):
         """Return log of weight of trial results by the function and parameters.
 
         Integrator assumes uniform distribution, but over different parameters.
@@ -402,10 +412,12 @@ class PLRsearch(object):
 
         TODO: Copy ReceiveRateMeasurement from MLRsearch.
 
+        :param trace: A multiprocessing-friendly logging function (closure).
         :param lfit_func: Fitting function, typically lfit_spread or lfit_erf.
         :param result_list: List of trial measurement results.
         :param mrr: The mrr parameter for the fitting function.
         :param spread: The spread parameter for the fittinmg function.
+        :type trace: function (str, object) -> None
         :type lfit_func: Function from 3 floats to float.
         :type result_list: list of MLRsearch.ReceiveRateMeasurement
         :type mrr: float
@@ -414,10 +426,14 @@ class PLRsearch(object):
         :rtype: float
         """
         log_likelihood = 0.0
+        trace("log_weight for mrr", mrr)
+        trace("spread", spread)
         for result in trial_result_list:
-#            print "DEBUG for tr", result.target_tr,
-#            print "lc", result.loss_count, "d", result.duration
-            log_avg_loss_per_second = lfit_func(result.target_tr, mrr, spread)
+            trace("for tr", result.target_tr)
+            trace("lc", result.loss_count)
+            trace("d", result.duration)
+            log_avg_loss_per_second = lfit_func(
+                trace, result.target_tr, mrr, spread)
             log_avg_loss_per_trial = (
                 log_avg_loss_per_second + math.log(result.duration))
             # Poisson probability computation works nice for logarithms.
@@ -426,12 +442,8 @@ class PLRsearch(object):
                 - math.exp(log_avg_loss_per_trial))
             log_trial_likelihood -= math.lgamma(1 + result.loss_count)
             log_likelihood += log_trial_likelihood
-#            print "log_avg_loss_per_second", log_avg_loss_per_second
-#            print "log_avg_loss_per_trial", log_avg_loss_per_trial
-#            print "avg_loss_per_trial", math.exp(log_avg_loss_per_trial)
-#            print "log_trial_likelihood", log_trial_likelihood
-#            print "log_likelihood", log_likelihood
-#        print "returning log_likelihood", log_likelihood
+            trace("avg_loss_per_trial", math.exp(log_avg_loss_per_trial))
+            trace("log_trial_likelihood", log_trial_likelihood)
         return log_likelihood
 
     def measure_and_compute(
@@ -483,7 +495,6 @@ class PLRsearch(object):
         dimension = 2
         stretch_bias_avg, erf_bias_avg, stretch_bias_cov, erf_bias_cov = (
             integrator_data)
-        random.seed(0)
         packet_loss_per_second_target = (
             transmit_rate * self.packet_loss_ratio_target)
         def start_computing(fitting_function, bias_avg, bias_cov):
@@ -501,7 +512,7 @@ class PLRsearch(object):
             :returns: Boss end of communication pipe.
             :rtype: multiprocessing.Connection
             """
-            def value_logweight_func(x_mrr, x_spread):
+            def value_logweight_func(trace, x_mrr, x_spread):
                 """Return log of critical rate and log of likelihood.
 
                 This is a closure. The ancestor function got
@@ -521,20 +532,23 @@ class PLRsearch(object):
 
                 TODO: x^-2 (for x>1.0) might be simpler/nicer prior.
 
+                :param trace: A multiprocessing-friendly logging function (closure).
                 :param x_mrr: The first dimensionless param
                     from (-1, 1) interval.
                 :param x_spread: The second dimensionless param
                     from (-1, 1) interval.
+                :type trace: function (str, object) -> None
+                :type x_mrr: float
+                :type x_spread: float
                 :returns: Log of critical rate [pps] and log of likelihood.
                 :rtype: 2-tuple of float
                 """
                 mrr = max_rate * (1.0 / (x_mrr + 1.0) - 0.5) + 1.0
                 spread = math.exp((x_spread + 1.0) / 2.0 * math.log(mrr))
-#                print "mrr", mrr, "spread", spread
                 logweight = self.log_weight(
-                    fitting_function, trial_result_list, mrr, spread)
+                    trace, fitting_function, trial_result_list, mrr, spread)
                 value = math.log(self.find_critical_rate(
-                    fitting_function,
+                    trace, fitting_function,
                     math.log(packet_loss_per_second_target), mrr, spread))
                 return value, logweight
             dilled_function = dill.dumps(value_logweight_func)
@@ -571,7 +585,7 @@ class PLRsearch(object):
             :rtype: 4-tuple of float, float, vector and matrix.
             """
             pipe.send(None)
-            if not pipe.poll(1.0):
+            if not pipe.poll(10.0):
                 raise RuntimeError(
                     "Worker {name} did not finish!".format(name=name))
             result_or_traceback = pipe.recv()
