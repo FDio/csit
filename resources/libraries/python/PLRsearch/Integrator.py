@@ -226,7 +226,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         while 1:
             # Multivariate Gauss can fall outside (-1, 1) interval
             sample_point = numpy.random.multivariate_normal(
-                param_focus_avg, param_focus_cov, 1)[0]
+                param_focus_avg, param_focus_cov, 1)[0].tolist()
             for first in range(dimension):
                 sample_coordinate = sample_point[first]
                 if sample_coordinate <= -1.0 or sample_coordinate >= 1.0:
@@ -235,7 +235,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
                 break
         add_trace("sample_point", sample_point)
         samples += 1
-        value, log_weight = value_logweight_function(*sample_point)
+        value, log_weight = value_logweight_function(add_trace, *sample_point)
         add_trace("value", value)
         add_trace("log_weight", log_weight)
         # Update bias related statistics.
