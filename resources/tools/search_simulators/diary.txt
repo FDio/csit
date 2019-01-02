@@ -1,0 +1,638 @@
+Scratch pad to derive the correct formulas.
+
+First problem: 2D quadratic fit with weights.
+We have data points x_a, y_a, v_a, to be taken with weight w_a.
+we want to minimize L:
+L = Sum_a[1/2*((A +Bx +Cy +Dxx +Exy +Fyy)(x_a, y_a) -v_a)^2 *w_a]
+Function G(x,y) = (A +Bx +Cy +Dxx +Exy +Fyy)(x,y):
+L = Sum_a[1/2*(G(x_a, y_a) -v_a)^2 *w_a]
+Derivatives:
+0 = dL/dA = Sum_a[(G -v_a) *w_a]
+0 = dL/dB = Sum_a[x*(G -v_a) *w_a]
+0 = dL/dC = Sum_a[y*(G -v_a) *w_a]
+0 = dL/dD = Sum_a[x*x*(G -v_a) *w_a]
+0 = dL/dE = Sum_a[x*y*(G -v_a) *w_a]
+0 = dL/dF = Sum_a[y*y*(G -v_a) *w_a]
+With sums of argument powers: S{x}{y} = Sum_a[x_a^{}*y_a^{}*w_a]
+A*S +B*Sx +C*Sy +D*Sxx +E*Sxy +F*Syy = Sv
+A*Sx +B*Sxx +C*Sxy +D*Sxxx +E*Sxxy +F*Sxyy = Sxv
+A*Sy +B*Sxy +C*Syy +D*Sxxy +E*Sxyy +F*Syyy = Syv
+A*Sxx +B*Sxxx +C*Sxxy +D*Sxxxx +E*Sxxxy +F*Sxxyy = Sxxv
+A*Sxy +B*Sxxy +C*Sxyy +D*Sxxxy +E*Sxxyy +F*Sxyyy = Sxyv
+A*Syy +B*Sxyy +C*Syyy +D*Sxxyy +E*Sxyyy +F*Syyyy = Syyv
+System of linear equations, easy to solve. Left side is even symmetric.
+Then finding the minimum of G:
+0 = dG/dx = B +2Dx +Ey
+0 = dG/dy = C +Ex +2Fy
+One again, easy.
+The hardest part would be finding the transformation matrix for generation.
+
+Weights. We have 6 parameters, so we need at least 6 points, non-co-quadric.
+Say 12 to be safe. Only keep the 12 best so faraway points do not influence.
+As usual, do not do tard cutoff. Say, the 12th point should have 1/100 weight
+of the first point, and take all points into account.
+If constant re-weighting takes time, we can fix generating few point
+before recomputing the quadric.
+
+Outliers. There will be low frequency, high weight points, as usually
+the tail will not be Gaussian. Handle that by requiring the generator
+to stretch more in direction of big outlier, compensate by smaller average weight.
+
+With non-trivial function, 2D quadratic fit is giving quite a bad approximation.
+So more direct idea: compute moments of weighted distribution.
+2D average as in AvgStdeMetadata avg.
+xx and yy moments via m2, but let me check xy:
+We want Sum_a[w_a *(x_a -x_avg) *(y_a -y_avg)] =: Vxy
+x_avg(n) = x_avg(n-1) +(x_n -x_avg(n-1)) *(w_n /S(n))
+dx_n :=(x_n -x_avg(n-1))
+x_n -x_avg(n) = x_n -x_avg(n-1) -dx_n*w_n/S_n
+x_a -x_avg(n) = x_a -x_avg(n-1) -dx_n*w_n/S_n
+Vxy_n =w_n*(x_n -x_avg(n-1) -dx_n*w_n/S_n)*(y_n -y_avg(n-1) -dy_n*w_n/S_n) +
++ Sum_a(n-1)[w_a*(x_a -x_avg(n-1) -dx_n*w_n/S_n)*(y_a -y_avg(n-1) -dy_n*w_n/S_n) =
+= w_n*dx_n*dy_n *(1 -w_n/S_n)^2 +Vxy(n-1) -0 -0 +S(n-1)*dx_n*dy_n *(w_n/S_n)^2 =
+= Vxy(n-1) +dx_n*dy_n*[w_n *(S(n-1)/S(n))^2 + S(n-1) *(w_n/S_n)^2] =
+= Vxy(n-1) +dx_n*dy_n*(w_n*S(n-1)/S_n^2)*[S(n-1) +w_n] =
+= Vxy(n-1) +dx_n*dy_n*w_n*S(n-1)/S(n)
+Alright, nothing surprising happened.
+As usual, I would like to track Axy=Vxy/S
+Axy(n) = Vxy(n)/S_n = Vxy(n-1)/S_n +dx_n*dy_n*w_n*S(n-1)/S_n^2 =
+= Axy(n-1)*S(n-1)/S_n +dx_n*dy_n*w_n*S(n-1)/S_n^2 =
+= [Axy(n-1) +dx_n*dy_n*w_n/S_n]*S(n-1)/S(n)
+
+Ok, suppose we have ._avg and A.. computed so far. How to create a generator?
+First, choice of envelope to achieve. Gaussian is the simplest, but it has
+too short tail. 1/(1+r^2) is not normalized in 2D, but either
+1/(1+r^2)^2 or 1/(1+r^4) would work. The second one is easier, because
+dx*dy = 2Pi*r*dr*dphi and 2Pirdr/(1+r^4) = Pi*dT/(1+T^2) for T=r^2.
+Int_0^Inf gives Pi*(Pi/2) if that matters. For random z uniform from (0,1),
+T=Tan[z*Pi/2], so r=Sqrt[Tan[z*Pi/2]], cos/sin phi uniform as in Gauss.
+It took me embarassingly long to try to manipulate Mathematica engine
+into not using expressions involving Complex, before I realized
+that this distribution does not have finite second moment.
+Nevermind, I will be using ad-hoc scaling constants anyway
+to allow for the generator to converge from far from optimum.
+
+In presence of hard limits, there are few open question.
+If there are no hard limits, there are other questions.
+No limits first. With no limits, default ditribution cannot be uniform,
+so it is not sure how "non-localized" generator works.
+In practice, it works by generating in hard-limited region and then transforming.
+For hard limits, there are two possibilities.
+Either ad-hoc limits, or unit squere plus linear transformation.
+In the second case, it is not clear whether the moments should be computed
+in transformed region, in unit square, or even in some no-limit presentation
+of the unit square.
+For the first prototype, I will compute moments in the transformed linear region.
+
+So, generator for that region. Translation to _avg is obvious.
+Sub-problem: Find transformation from 1/(1+r^4) generated points
+into (0,0) centered linear transformation targetting Axx, Axy, Ayy.
+So, generated X,Y; transformation x=a*X +b*Y, y=c*Y. Ayy = c*c*AYY
+(AYY is infinite but we pretend it is 1) ergo c=Sqrt[Ayy].
+Axy = a*c*AXY + b*c*AYY = b*c => b = Axy/c.
+Axx = a*a*AXX + 0 + b*b*AYY = a*a +b*b => a = Sqrt[Axx -b*b].
+Together: Compute a, b, c; then x=x_avg + a*X +b*Y; y=y_avg +c*Y.
+Relative bonus for the generated point (to compensate lower generation probability)
+is (1+(X*X+Y*Y)^2).
+
+Now, what to do with limits. Several options.
+Safe but slow option is generate uniform on out.
+As we are in 2D and function will be expensive in general,
+better idea is to keep retrying the localized generation until it fits.
+
+Finally, the initial condition problem. When we have zero points,
+A.. is zero (or undefined) which is bad for generation.
+First idea is to insert weight 1 Axx=1=Ayy, Axy=0 at start,
+and keep lowering the weight by some formula to switch from dumb uniform search
+into maximum finding walk.
+First ideas for weight of that bias for generating n-th point are
+1/n or 2^-n. I can try both to see which is better.
+
+Update on critical region approximation function.
+First, there will be no result selection, no result supression.
+All results are relevant, but we rely on the fact that the search will mostly
+measure inside the critical region, so data from there have more influence
+just because there is more of it (than data drom far away).
+Than means we do not like fit functions giving zero probabilities.
+
+A simple fitting function comes from single packet buffer model.
+Imagine DUT can only store single packet. If another arrives before
+buffer is processed, one packet hast to be dropped.
+If packet process time distribution is exponential, it does not matter
+which packet gets discarded, so we assume it is exponential.
+When pps rate is "b", a packet arrives each 1/b seconds.
+Probability of the packet being lost is Exp[-m/b] where "m"
+is some scaling constant in pps. Loss rate is then lr=b*Exp[-m/b] and
+forwarding rate is then fr=b*(1-Exp[-m/b]).
+Approximating for big b we get fr=m-m^2/2b...
+From the asymptotic we see "m" is MRR.
+That is nice, but setting b=m gives us lr(m)=b*Exp[-1]
+which is not a good approximation. In practice lr(m) is around Sqrt[m].
+In order to keep the asymptotic, simple idea is to just add a term, say
+lr=b*Exp[-m/b-k^2*m^2/2b^2], giving fr=m-m^2(1-k^2)/2b^2...
+Written this way it makes clear values [0,1] are reasonable for k,
+so we can generate k uniformly. Values of m are less clear,
+but rate_max*math.tan(PI_HALF*random.random()) is as good idea as any.
+
+After putting thing together, it turns out the logit functions there
+are way too sharp. Current ad-hoc way of sliding from uniform-bias generator
+tends to change abruptly from "no signal" to "everything in one point".
+A sketch of possibly better algorithm:
+Track top 12 (6 minimum * 2 for stability) points
+(by weight without rarity bonus),
+compute non-weighted (or rank-weighted) moments (also avg)
+for them and use that as a bias.
+Strength of the bias should be given by how much
+the top weight is close to overall weight sum.
+
+Alright, integration finally works fine enough now.
+But there are problems with fitting function.
+(I purposedly use different function in Measurer to enable this.)
+Trials bith big number of packets lost give large information content.
+Trials with zero packet loss give comparatively less information,
+which means the average moves only slightly under large list of zero loss trials.
+One optimization is to purposedly aim at higher loss (than target)
+and converge from high information region,
+but this is tricky to get working if bad fitting function
+tends throw the average deep into zero loss region (by Measurer point of view).
+Will investigate more and try some tricks.
+
+I think it is worth start using read data first
+(before overtuning for unrealistic Measurer).
+But even before that, choosing more realistic fitting function is good.
+I would like to keep (load - mrr) asymptotic for high loads,
+and I like b*c0*Exp[c1/b] asymptotic for low loads.
+Unfortunatelly, the most natural generalization has 3 parameters:
+lr=b*{(1-t)*Exp[m1/b]+t*Exp[m2/b]} with 0<t<0.5 to avoid symmetric points
+(thus two different maximums).
+Sigh. Going to start rewriting into nD integration now.
+
+First, generator envelope. 1/(1+r^4) is only normalizable up to 3D.
+Note that for 2D we did generate T with 1/(1+T^2) envelope,
+then used T=r^2 to get the "r" Jacobian and r^-4 tail.
+If we did T=r^3, we would get "r^2" Jacobian (good for 3D) and r^-6 tail
+(which might be too short for 3D).
+Imagine now we have "t" with envelope t^(-3/2) asymptotically for large t
+and constant for small t.
+t=r is fine for 1D, t=r^2 gives Jacobian for 2D and r^-3 tail.
+t=r^3 is 3D with r^-9/2, once again quite short.
+Another try: t^-1*ln(t)^-2. This gives good tails, but is hard to generate.
+Practically, it might be a good idea to use Normal distribution
+and start caring about short tails only when results are not stable enough.
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html
+
+Next, the linear transformation to achieve moments.
+Once again, the simplest step is to use Numpy,
+the only consequence is that it needs symmetric matrix (instead of just triangle).
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.multivariate_normal.html#numpy.random.multivariate_normal
+
+Oh, I forgot about the rarity factor which numpy does not give us.
+Rarity is Exp[+1/2*dx*A^-1*dx]. dx=x-xa as usual, and we need to
+solve A*dy=dx (then dy=A^-1*dx) and compute dx*dy. Numpy again:
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.solve.html#numpy.linalg.solve
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.vdot.html#numpy.vdot
+
+Alright, nD behaves similarly to 2D now, even if it uses gaussian generator.
+I changed the lps target logic, but still it converges slowly
+when the fitting function is bad.
+Now I need to simulate with good fitting function,
+then start integrating with TrafficGenerator to see how good that is for real data.
+
+I have done some fixes in generator, now it is more stable.
+Scale factor behaves well and no tricks with loss target are needed.
+Still, 1s simulated trials are not converging at all,
+and 10s simulated trials are converging for around hour before they get hit
+by small number of samples.
+It seems that the current fitting function is not obviously convex,
+perhaps even containing multiple maxima.
+
+Integration with TrafficGenerator is done (ip4base, 1C, 64B),
+but convergence is worse. It seems the search has trouble guessing
+much above half of max rate.
+So aside the fitting function, even tweaks to prior distribution might be needed.
+
+Seeing the real data assured me that there is MRR-based asymptotic,
+roughly exponential just before MRR. But for severe parameters,
+I need to make sure forward rate is not negative.
+So focus on loss ratio.
+Asymptotic is 1-m/b, but I need transformation function
+taking negative values to something small, but keeping 1-ep -> 1-ep.
+Small increase is alright, as we know fr decreases with decreasing load.
+Log[1+Exp[x/a]]/Log[1+Exp[1/a]] looks promising, for x=1-m/b
+But my code want Log of average loss rate.
+So: Log[b*Log[1+Exp[(1-m/b)/a]]/Log[1+Exp[1/a]]] =
+= Log[b] +Log[Log[1+Exp[(1-m/b)/a]]] -Log[Log[1+Exp[1/a]]]
+When b is big, no problem. But when b is small, that 1+Exp[]
+is machine-identical to 1, which is bad under two logs.
+So I need so shuffle the terms around.
+Log[Log[1+ep]] = Log[0+ep-ep^2/2+...] = Log[ep]+...
+Log[1+Exp[(1-m/b)/a]] = Log[Exp[(1-m/b)/a]*(1+Exp[(-1+m/b)/a])] =
+= (1-m/b)/a +Log[1+Exp[(-1+m/b)/a]] =
+= (1-m/b)/a +Log_plus[0, (-1+m/b)/a]
+Code will probably look like this:
+lep := (1-m/b)/a
+If Log_plus[0, -lep] != -lep: use that formula
+Else lalr = Log[b] +lep -Log[Log[1+Exp[1/a]]].
+That formula: lalr = Log[b] +Log[lep+Log_plus[0,-lep]] -Log[Log[1+Exp[1/a]]]
+Let me implement that.
+
+I have implemented something, just "a" looks better in nominator.
+New a bigger than say 30 risks overflow, around 1 it has nice sqrt feel,
+too low will get too broad fuzz, but I guess it is fine.
+Ok, let me try to simulate that.
+For realistic numbers, 30 is too low to fit.
+Log[Log[1+Exp[a]]] = Log[Log_plus[0, a]] should make it work.
+With this, the reasonable interval fo a is from mrr
+(to have sub-1 lost packet at mrr) to 1/mrr (to have reasonable packer loss
+at 2pps load. So mrr^[-1,1], which is nice as x is already in [-1, 1].
+Looks good, let us try on real system.
+
+The new fitting function is good enough.
+But the current implementation tends to fail when number of trials accumulate.
+Simple solution would be to increace integration time linearly with trial number.
+Originally, I was opposed to longer trial durations, as it loses data.
+But Poisson distribution does not care about spread, just average,
+so likeliness does not depend on partitioning the aggregated result.
+There is another issue of trial load not changing frequently,
+but the numerical stability is worth it.
+So I am going to implement it, and test of ip4base and some less stable suite.
+
+Numerical stability is fine, but convergence (for ip4base) is too slow.
+Will try some "avg+2*stdev" or other workarounds,
+but different fitting function might be needed.
+
+So, problem is not slow convergence per se.
+Even on simulated data, the integrator seems to be flipping between too modes,
+one giving too high avg, the other giving too low one.
+Looking at raw sample data, stdev on "a" parameter value is too high,
+and lweight tends to give wildly uneven values.
+I suspect the trickery with "lep" above is either wrong,
+or "Log_plus[0, -lep] != -lep" has to be reformulated to add 1
+(epsilon versus least positive number) to avoid going log_plus path
+if rounding errors are too high.
+I will consider doing higher order approximation if that does not work.
+Quick test has shown it is not the case.
+Current soaker.py still shows the two modes.
+
+After some dwelling into the data, I have found that the two modes
+are not resulting from any bug in soak/integrator code,
+but it is selected by the data, who show two-band structure.
+Not sure if it is the familiar thing making testbed results unreliable,
+or if it is some timer affecting the results.
+
+Results of vhost test (tdpt 0.1s, avg+0*stdev) look quite good, no troublesome
+two band data. Just occasionally big loss causes avg to jump by ~50 stdevs,
+but I guess that is expected (unless we replace Poisson with something
+with longer tail).
+
+Ip4base test (tdpt 0.1s, avg+2*stdev) still looks bad.
+Single exceptionally large measurement throws the algorithm far into zero land,
+and as zeros are not rich in information, it stays there.
+I think some kind of information supression is needed to help with that.
+One idea is to sort measurements by offered load, and supress based on that.
+For example using some bell-like symmetric rank function,
+for example square root of binomial distribution.
+But perhaps easier is to trim the list. Say every 5 trials remove 1
+from each edge.
+For simulation it does not change much (apart stdev taking steps back).
+
+For real tests, trimming is bad, as frequently big nonzero result
+is the only think keeping the zero land, and on its removal
+the sea of zeros causes even bigger nonzero result, and cycle repeats.
+We need supression.
+Let me implement the square root binomial, or just binomial.
+
+During tweaking the suppresion, I have stumbled upon visible bug,
+that one related to "lep". Direct computation was off due to rounding.
+I tried to increase the "1.0" constant in the simplification test,
+but behavior is still visible, probably now due to missing second order. So:
+... oh, I think I see an error. Retry:
+Log[avg_loss] = Log[b] +Log[Log[1+Exp[(1-m/b)*a]]] -Log[Log[1+Exp[a]]]
+lep = (1-m/b)*a, which for b << m is large negative (as oposed to negligible).
+lal = Log[b] +Log[Log[1+Exp[lep]]] -Log[Log[1+Exp[a]]] =
+~= Log[b] +Log[Exp[lep] -Exp[2*lep]/2] -Log[Log[1+Exp[a]]] =
+= Log[b] +Log[Exp[lep]] +Log[1-Exp[lep]/2] -Log[Log[1+Exp[a]]] =
+= Log[b] +lep +Log[1-Exp[lep]/2] -Log[Log[1+Exp[a]]] =
+~= Log[b] +lep -Exp[lep]/2 -Log[Log[1+Exp[a]]]
+and the other branch:
+lal = Log[b] +Log[Log[1+Exp[lep]]] -Log[Log[1+Exp[a]]] =
+= Log[b] +Log[Log[Exp[lep]*(1+Exp[-lep])]] -Log[Log[1+Exp[a]]] =
+= Log[b] +Log[Log[Exp[lep]]+Log[1+Exp[-lep]]] -Log[Log[1+Exp[a]]] =
+= Log[b] +Log[lep+Log[1+Exp[-lep]]] -Log[Log[1+Exp[a]]] =
+= Log[b] +Log[lep+Log_plus[0,-lep]] -Log[Log[1+Exp[a]]] =
+First branch one order more:
+lal = Log[b] +Log[Log[1+Exp[lep]]] -Log[Log[1+Exp[a]]] =
+~= Log[b] +Log[Exp[lep] -Exp[2*lep]/2 +Exp[3*lep]/3] -Log[Log[1+Exp[a]]] =
+= Log[b] +Log[Exp[lep]] +Log[1+(-Exp[lep]/2+Exp[2lep]/3)] -Log[Log[1+Exp[a]]] =
+= Log[b] +lep +Log[1+(-Exp[lep]/2+Exp[2lep]/3)] -Log[Log[1+Exp[a]]] =
+~= Log[b] +lep -Exp[lep]/2 +Exp[2lep]/3 +(Exp[lep]/2)^2/2 -Log[Log[1+Exp[a]]] =
+= Log[b] +lep -Exp[lep]/2 +Exp[2lep]/3 +Exp[2lep]/8 -Log[Log[1+Exp[a]]] =
+= Log[b] +lep -Exp[lep]/2 +11/24*Exp[2*lep] -Log[Log[1+Exp[a]]] =
+The idea is to use direct only when the 11/24 part does change the simple sum.
+Initial implementation does not help, will investigate.
+
+Manual testing of fitting function suggests it is plainly wrong,
+not even following the asymptotic it should.
+So, repeat the derivation:
+There are two ideas. First idea is (1-m/b) is important. Two modes,
+m<<b, () is close to 1, we want loss ratio also close to 1.
+m>>b, () is big negative, we want loss ratio to behave exponentially.
+In m>>b region "a" comes into plat, we want lf (loss fraction,
+not to mistake with loss rate) to be lf~=Exp[a*(1-m/b)].
+Using directly that would be wrong in m<<b region.
+Two conditions: Limit point should be lf~=1 and to first order
+lf ~= 1 - m/b (so that lr = b*lf ~= b - m).
+Exp[a*(1-m/b)] = Exp[a -a*m/b] = Exp[a] *Exp[-a*m/b] =
+~= Exp[a] *(1-a*m/b) = Exp[a] +(-Exp[a]*a)*m/b
+Getting the endpoint is easy, just try lf:=Exp[-a*m/b]
+This gives lf ~= 1 -a*m/b which has wrong slope.
+Basically, if lf:=Exp[g(-m/b)], then function g has to satisfy:
+g(x) ~= a*x for large negative x.
+g(x) ~= x for small negative x.
+Defining g(x) := x*h(x) we want h(x) going from a far left to 1 in center.
+Simplest: exp. h(x) = a + (1-a)*Exp[c*x].
+g(x) = a*x +(1-a)*x*Exp[c*x].
+lf := Exp[-a*m/b -(1-a)*m/b*Exp[-c*m/b]]
+lr = b*lf
+Log[lr] = Log[b] -a*m/b +(a-1)*m/b*Exp[-c*m/b] =
+= Log[b] -m/b*(a -(a-1)*Exp[-c*m/b]).
+Good news, no ifs for rounding errors seem to be needed,
+just keep "a" and "c" positive.
+Finding good transformation from [-1,1] can be tricky.
+One condition is for second order asymptote.
+lr = b * Exp[-a*m/b +(a-1)*m/b*Exp[-c*m/b]] =
+~= b * Exp[-a*m/b +(a-1)*m/b*(1-c*m/b)] =
+= b * Exp[0 -m/b -c*(a-1)*(m/b)^2] =
+~= b * (1 - m/b +(m/b)^2/2 -c*(a-1)*(m/b)^2) =
+= b - m + (1/2 -c*(a-1))*m*m/b => (assuming a>1) c <= 1/2/(a-1)
+
+Simulation results show this leads to way low estimates,
+even forcing ~mrr trials and trimming results do not really help.
+Will have to look for low level bugs again...
+No, the issue is that in real data the supression is probably more like
+double exponential. So still lf = Exp[g(-m/b)], g(x) ~= x for small negative x,
+but g(x) ~= -c*Exp[-a*x] for large negative x.
+Once again, g(x) = x * h(x) := x * Exp[-a * x] is the simplest.
+Log[lr] = Log[b] + Log[lf] = Log[b] + g(-m/b) = Log[b] -m/b*Exp[+a*m/b].
+Setting b=m the reasonable upper limit for a is Log[m], and 0 for lower.
+Well, double exponential leads to overflows.
+Third attempt: g(x)~x for small, g(x)~-a*x*x for large negative x.
+g(x) = -a*x*x + x. Log[lr] = Log[b] + g(-m/b) = Log[b] -m/b -a*m*m/b/b.
+Still behaves badly, currently I suspect the focused generator part
+reacting badly to narrow alleys.
+
+Before re-examining integrator, I need to make sure fitting function
+is realistic. I mean I will plot a graph to verify it looks good.
+The "Log[b] -m/b -a*m*m/b/b" is probably not good,
+as it can lower loss rate below "hard mrr" model.
+The hard model is: lr = b - m = b * (1 - m / b) =>
+Log[lr] = Log[b] + Log[1-m/b] (undefined for b<=m).
+Let us try -a*m/b asymptote again:
+Log[lr] = Log[b] -a*m/b if b<=m
+  else Log[lr] = Log[b] + Log_plus[-a*m/b, Log[1-m/b]]
+if x:=-m/b then Log[lr] = Log[b] + Log_plus[a*x, Log[1+x]]
+Plotting has revealed that d(lr)/db is not continuous.
+Another look: d(lr)/db in hard model just jumps from 0 to 1.
+We can smear it into sigmoid 1/(1+Exp[-a*(1-m/b)]).
+Sadly, finding primitive function to that is hard.
+Let us go back to 1/(1+Exp[-a*(b-m)]).
+Mathematica says it integrates into:
+lr = b + Log[(1+Exp[a*(m-b)])/(1+Exp[a*m])] / a =
+= b + (Log_plus[0,a*(m-b)]-Log_plus[0,a*m]) / a
+This looks good on graphs, but once again we need to avoid rounding errors.
+Observe: Log_plus[0,x] = Log[1+Exp[x]] = Log[Exp[x]*(1+Exp[-x])]
+= Log[Exp[x]] +Log[1+Exp[-x]] = x +Log_plus[0,-x]
+so lr = b - m - Log_plus[0,-a*m]/a +Log_plus[0,a*(m-b)]/a for b>m, but
+also lr = Log_plus[0,-a*(m-b)]/a -Log_plus[0,-a*m]/a for m>b.
+For large postive x: Log_plus[0,-x] = Log[1+Exp[-x]] =
+~= Exp[-x] -Exp[-2x]/2 +Exp[-3x]/3 so we can use that for avoiding errors.
+For my calculations it is easiest to consider Log_plus[0,-a*m]/a always negligible
+(make sure to set a and m domains so), so then
+lr = b-m +Log_plus[0,-a*(b-m)]/a if b>m else Log_plus[0,-a*(m-b)]/a
+And for the else attempt Exp[-a*(m-b)]/a -Exp[-2a*(m-b)]/2a
+if Exp[-3a*(m-b)]/3a is negligible addition.
+I ended up implementing one more if, -a*(m-b) could be so negative,
+Exp[-a*(m-b)]/a would end up being zero. In that case -a*(m-b)
+is a crude approximation to Log[lr] matching machine precision.
+This finally works well with simulation, but I guess it is just because
+the measurer uses the same kind of function. Time to test on real data.
+
+Data from ip4base lead to bad behavior. Basically, ip4base data
+is steeper than exponential below mrr. Or at least the domain for "a"
+should be different. Currently the domain is shifted due to approximation
+in lfit which drops the Log_plus[0,-a*m]/a term. So I need to not drop it.
+One improvement I have not described here is related to generating
+positive drop counts, in hope to avoid spending time in zero region.
+The idea is to measure at optimistic load after each zero loss measurement.
+Optimistic means some previous big load minus the excess loss.
+I have tried using "smallest excess loss" for the aforementioned "some previous",
+but frequently it got stuch on the same load, just because subsequent measurements
+had higher loss fraction. Now I will try "last load
+with loss fraction more than target".
+Doing that revealed a possible issue with prior distribution for "a"
+leading to maximum being close to edge, as opposed to "a" domain being wrong.
+So I have changed that, let us see what ip4base will react to that.
+
+I have discovered big bug in result trimming functionality
+(result.duration is good, count is unreliable),
+so I am going to test if getting rid of faraway points makes fitting good.
+Simulation is good enough, but I have convinced myself result removal
+is bad in some scenarios (e.g. if less than quarter of measurements
+are expected to be nonzero).
+Going to try avg+std instead. That works for simulation and could help with ip4.
+
+Hmm, with "optimistic after zero" improvement, ip4base spends most of the time
+re-measuring the optimistic load, waiting for non-zero,
+while the average stays quite far in the zero land.
+I will try disabling the improvement to see if average ever reaches nonzero.
+
+It does not. It stays in zero land, manual testing of lprob
+has revealed that simply the fitting function is not steep enough
+while having to fit also the initial line rate measurement.
+Basically, we either need better fitting function (I am thinking about one
+based on erfi), but perhaps lowering the impact of high loss count
+(ot other large negative lprob) measurements would also help.
+One workaround is very simple, just use -Sqrt[-lprob] instead of lprob.
+This makes the search no longer respect Bayesian inference,
+but I can try to see whether it helps anyway.
+Simulation works quite well with both avg and avg+stdev,
+on to ip4base with avg+stdev.
+
+And for ip4base it does not work, the same way as before.
+Because I have implemented it wrong, each measurement should be sqarerooted,
+not just the sum.
+Alternative idea is to supress according to measured loss count.
+Ok, avg+stdev with (1+lc)^(-1/3) supression simulates reasonable, let me test.
+
+Nope, still does not converge meaningfully, but I think it is expected,
+as I have never seen loss count less than 1000, so it is expected to see
+hundreds of zero trials before hitting another kiloloss.
+Nevertheless, I will try (1+lc)^(-1/2) suppression with avg,
+this time also on other tests than ip4base.
+Another idea is to perform few mrr-optimistic measurements
+to (at least) avoid max_rate losses.
+Also, (m-b)/a (as opposed to *a) is an "a" easier to compare,
+and prior should be log-uniform from 1 to m.
+Implemented all of the above (except disabling supression),
+simulation shows avg+stdev looks better.
+Now suites.
+
+Surprisingly, avoiding max_rate losses can backfire, when occasional
+big loss is bigger than the initial one. I will keep two optimistics though.
+For some reason, I tested with avg (as opposed to avg+stdev).
+Also, I am using 0.02s per trial to get more trials.
+Also also I have fixed (at least partially) v_stdev computation.
+
+Tests look quite good, except ip4base which still converges too slowly.
+And ip6base failed on math overflow error, due to too little samples.
+I implemented initial_count to fight that, and re-enabled
+optimistic_after_zero to see how that behaves on ip4base with more measurements.
+Also, setting seed to make overflow errors reproducible.
+
+I got a feeling that measuring at optimistic load after each zero
+tends to create too much measurements in medium loss area
+(frequently zero on real systems), indirectly preventing avg to increase.
+So I have implemented a compromise, currently using optimistic load only
+if number of measured zeros is dividable by 3.
+I suspect it is not a good idea, but going to test anyway.
+
+So, it is not really a bad idea, it just does not help.
+We probably need fitting function of another shape,
+which will take a while to implement in rounding friendly way.
+
+So, one more new fitting function.
+Integrating Gaussian twice in wolframcloud lab gives:
+alc = a*Exp[-(b-m)^2/(2*a^2)]/Sqrt[2*Pi] +(b-m)*(1+Erf[(b-m)/(Sqrt[2]*a)])/2
+(up to constant given by b=0)
+Using x = (m - b) / a / Sqrt[2]:
+acl = a*Exp[-x*x] +(b-m)/2*Erfc[x]
+For large x: Exp[x*x]*Erfc[x] ~= 1/Sqrt[Pi]*(x^-1 -1/2*x^-3 +3/4*x^-5 -15/8*x^-7 ...)
+For big negative x, acl = b-m +a*Exp[-x*x] -(b-m)/2*Erfc[-x].
+For series expansion, acl = a*Exp[-x*x]*(1 +x/Sqrt[2*Pi]*(x^-1 -1/2*x^-3 +...))
+By the way, scipy has Erfcx[x] = Exp[x*x]*Erfc[x] implemented,
+so the only if is needed to decide on sign of x,
+to acl = a*Exp[-x*x]*(1 +x/Sqrt[2]*Erfcx[x]),
+or acl = b-m + a*Exp[-x*x]*(1 -x/Sqrt[2]*Erfcx[-x]).
+
+I forgot that normalization should be done by integrating from 0 (not -Inf).
+Paste from wolframcloud lab:
+b2 + ((a*(-E^(-((b2 - m)^2/a^2)) + E^(-(m^2/a^2))))/Sqrt[Pi]
+   + (b2 - m)*Erfc[(b2 - m)/a] + m*Erfc[-(m/a)])/(-2 + Erfc[m/a])
+if x=(m-b)/a and x0=m/a (and b=b2):
+alc = b +a*((-E^(-x^2) +E^(-x0^2))/Sqrt[Pi] -x*Erfc[-x] +x0*Erfc[-x0])/(-Erfc[-x0])
+alc = b +a*((E^(-x^2) -E^(-x0^2))/Sqrt[Pi] +x*Erfc[-x] -x0*Erfc[-x0])/Erfc[-x0]
+alc = b +a/Erfc[-x0]*((E^(-x^2)/Sqrt[Pi] +x*Erfc[-x]) -(E^(-x0^2)/Sqrt[Pi]+x0*Erfc[-x0]))
+alc = b +a/(2-Erfc[x0])*((E^(-x^2)/Sqrt[Pi] +x*Erfc[-x]) -(E^(-x0^2)/Sqrt[Pi]+x0*(2-Erfc[x0]))
+alc = b-m +a/Erfc[-x0]*((E^(-x^2)/Sqrt[Pi] +x*Erfc[-x]) -E^(-x0^2)/Sqrt[Pi])
+alc = b-m +a/Erfc[-x0]*(E^(-x^2)*(1/Sqrt[Pi] +x*Erfcx[-x]) -E^(-x0^2)/Sqrt[Pi])
+This is for b>m (x<0). x>0:
+alc = b-m +a/Erfc[-x0]*((E^(-x^2)/Sqrt[Pi] +x*(2-Erfc[x])) -E^(-x0^2)/Sqrt[Pi])
+alc = b-m +2/Erfc[-x0]*(m-b) +a/Erfc[-x0]*(E^(-x^2)*(1/Sqrt[Pi] -x*Erfcx[x]) -E^(-x0^2)/Sqrt[Pi])
+alc = (b-m)*(2-Erfc[-x0])/Erfc[-x0] +a/Erfc[-x0]*(E^(-x^2)*(1/Sqrt[Pi] -x*Erfcx[x]) -E^(-x0^2)/Sqrt[Pi])
+alc = (b-m)*Erfc[x0]/Erfc[-x0] +a/Erfc[-x0]*(E^(-x^2)*(1/Sqrt[Pi] -x*Erfcx[x]) -E^(-x0^2)/Sqrt[Pi])
+Still need to reorder few terms before writing logarithmic forms,
+paying attention to signs and magnitudes.
+x<0:
+alc = (b-m -E^(-x0^2)*a/Sqrt[Pi]/Erfc[-x0]) +a/Erfc[-x0]*(E^(-x^2)*(1/Sqrt[Pi] +x*Erfcx[-x])
+the last bracket is narrowly positive for high x, it is better to do Log last.
+x>0:
+alc = -a/Erfc[-x0]*E^(-x0^2)*(1/Sqrt[Pi] +x*Erfcx[x0])
+      +a/Erfc[-x0]*E^(-x^2)*(1/Sqrt[Pi] -x*Erfcx[x])
+I did few in-place edits, and from alsomst symmetric form you can see
+I have lost one minus sign along the way.
+Graph plots have showed me that the minus sign is correct, so:
+x>0:
+alc = -a/Erfc[-x0]*E^(-x0^2)*(1/Sqrt[Pi] -x*Erfcx[x0])
+      +a/Erfc[-x0]*E^(-x^2)*(1/Sqrt[Pi] -x*Erfcx[x])
+before x<0:
+E^(-x^2)*(-x)*Erfcx[x] = -x*Erfc[x] = -x*(2-Erfc[-x]) = -2x +x*Erfc[-x] =
+= -2x +x*E^(-x^2)*Erfcx[-x]
+so x<0:
+alc = -a/Erfc[-x0]*E^(-x0^2)*(1/Sqrt[Pi] -x*Erfcx[x0])
+      +a/Erfc[-x0]*E^(-x^2)*(1/Sqrt[Pi] +x*Erfcx[-x])
+      +2*(b-m)/Erfc[-x0]
+Before implementing:
+x>0:
+alc = a/Erfc[-x0]*( E^(-x^2) *(1/Sqrt[Pi] -x*Erfcx[x])
+                   -E^(-x0^2)*(1/Sqrt[Pi] -x*Erfcx[x0]))
+x<0:
+alc = a/Erfc[-x0]*(+2*(-x)
+                   +E^(-x^2) *(1/Sqrt[Pi] +x*Erfcx[-x])
+                   -E^(-x0^2)*(1/Sqrt[Pi] -x*Erfcx[x0]))
+still, x=(m-b)/a
+Ok, let me implement that.
+
+I have identified one hurdle, (1/Sqrt[Pi] -x*Erfcx[x])
+is so small it can run into underflow.
+Luckily for big x (above Exp[10]), it seem each *=Exp[1] of x
+means Log of the result decreases by 2.0, so I can use this asymptotic.
+
+Implemented, debugged, simulates well enough.
+Thwere is big space for tweaking tdpt and initial_count,
+but first let us see how ip4base fares.
+
+I focused mainly on l2patch, it works quite well.
+On the other hand, vhost works considerably worse, but after some tdpt tweaking
+and using 1-hour test, I think it is good enough for rls1810.
+
+I have also implemented computation to run on worker thread
+(while the main thread waits for measurement result), will test to see
+any surprises, and how much the speedup help.
+
+After rls1810, I will implement both stretch-based and erf-based
+fitting functions, so both l2patch and vhost have one which fits well.
+The idea is to run two integrations in parallel, offered load
+taked from avg from one on even count, from the other on odd count.
+Also, the difference in avgs is bigger contributor to overall stdev
+than stdev from single fitting function.
+(In general, stretch underestimates and erf overestimates.)
+The only snag is that it seems erf-based fitting needs longer tdpt.
+Will think about that when I get to it.
+Other stretch goal is to use Cython (or even port to C/C++),
+so the integrator allows even smaller trial durations.
+
+It seems the bad convergence is caused by (accidentally) negative slope
+combined with lack of max_rate measurement to keep things anchored.
+Will retest without ignoring any measurement (even if it is warmup-grade).
+
+The erf-based function works reasonably well with anchoring,
+but it seems to converge too slowly for "normal" tests such as ip6base.
+I have implemented two-fitting-functions approach
+(the code is quite messy with one-line copypastas).
+Currently both integrators are stopped after measurement
+(even though only one result is used as next offered load),
+but at least the combined stdev (includes avg difference) is reasonable now.
+one thread (I think erf one) manages only one third of other thread's samples.
+CPU usage is around 115%, so there is much to optimize.
+Also, for some time I have implemented also integrator state reuse.
+The combines x_avg and A are returned, and used as a starting bias
+for next integrator run, assuming the new peak will be close by,
+or at least reachable more quickly than from uniform prior.
+For some reason (maybe the state reuse one) simulations behave best
+when moderately small tdpt is combined with large initial count.
+
+Testing shows the two fitting functions can give quite different estimates
+when the unstable area (where both zero and nonzero loss counts can happen)
+is large. I guess the big difference is expected in this case.
+
+Also, I see certain patterns in trial results,
+so perhaps some tweaking should be done on environment side
+(kernel, scheduler, do not use latency stream) before making conclusions.
+
+Changed SoakMeasurer (used for simulation) to resemble the testbed behavior,
+simulation then confirms in this case the two estimates
+tend to be far from each other, and convergence is slow.
+Basically, less useful bits of information are extracted per trial.
+
+Changed target loss argument from loss cont per second (lps)
+to loss count per offered count (plr). Had to do it by internally computing
+lps for each measurement, because it turns out the fitting functions
+are not stable enough at small mrr for small plr to work.
+
+Big rewrite for readability. Fixed bugs in integrator hinting
+and in stdev computation. Converted to multiprocessing for performance boost.
+plr5.xlsx in https://lists.fd.io/g/csit-dev/topic/about_stability_of_ipsec/28242909?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,0,28242909
+suggests there is still something wrong in integrator hinting,
+but I was not able to reliably reproduce (apparently depends on hint).
+As integrator is probably better now, there is space for tweaking
+the time related parameters.
