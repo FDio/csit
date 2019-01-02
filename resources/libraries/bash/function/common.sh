@@ -507,6 +507,7 @@ function run_pybot () {
     tries="${1:-1}" || die "Argument evaluation failed."
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("${EXPANDED_TAGS[@]}")
+    all_options+=("-r" "NONE" "-l" "NONE")
 
     while true; do
         if [[ "${tries}" -le 0 ]]; then
