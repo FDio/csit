@@ -630,6 +630,7 @@ function run_pybot () {
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("--noncritical" "EXPECTED_FAILING")
     all_options+=("${EXPANDED_TAGS[@]}")
+    all_options+=("-r" "NONE" "-l" "NONE")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
