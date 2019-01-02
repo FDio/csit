@@ -16,6 +16,29 @@
       "revId": "cf0b6bf531d0d23588a2134ea8f6aaabac978aca",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3db841fa_408a5772",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T11:01:51Z",
+      "side": 1,
+      "message": "I am pretty sure we have this in topology.py if not L2KW is there.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 33
+      },
+      "revId": "cf0b6bf531d0d23588a2134ea8f6aaabac978aca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
