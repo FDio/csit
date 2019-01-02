@@ -646,4 +646,5 @@ class PLRsearch(object):
         focus_trackers = (stretch_focus_tracker, erf_focus_tracker)
         return (
             measurement, avg, stdev, math.exp(stretch_avg),
-            math.exp(erf_avg), focus_trackers)
+            8000000, focus_trackers)
+#            math.exp(erf_avg), focus_trackers)
