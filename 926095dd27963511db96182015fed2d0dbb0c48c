@@ -46,6 +46,30 @@
       "revId": "926095dd27963511db96182015fed2d0dbb0c48c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a009d17c_0bf433cf",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T14:17:20Z",
+      "side": 1,
+      "message": "It would be much more simple if semiweekly and weekly will exchange role.",
+      "parentUuid": "20adb1d0_854e328d",
+      "range": {
+        "startLine": 268,
+        "startChar": 12,
+        "endLine": 268,
+        "endChar": 14
+      },
+      "revId": "926095dd27963511db96182015fed2d0dbb0c48c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
