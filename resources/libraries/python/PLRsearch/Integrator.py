@@ -117,6 +117,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
     - - Returns float 2-tuple of dependent value and parameter log-likelihood.
     - param_hint_avg: Dimension-tuple of floats to start searching around.
     - param_hint_cov: Covariance matrix defining initial focus shape.
+    - max_samples: None or a limit for samples to use.
 
     Output/result object (sent to pipe queue)
     is a 6-tuple of the following fields:
@@ -144,11 +145,13 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         (due to rounding errors). Try changing scale_coeff.
     """
 
-    # Block until input object appears.
-    dimension, dilled_function, param_hint_avg, param_hint_cov = (
-        communication_pipe.recv())
     debug_list = list()
     trace_list = list()
+    # Block until input object appears.
+    dimension, dilled_function, param_hint_avg, param_hint_cov, max_samples = (
+        communication_pipe.recv())
+    debug_list.append("Called with param_hint_avg {a!r}, param_hint_cov {c!r}"
+                      .format(a=param_hint_avg, c=param_hint_cov))
     def trace(name, value):
         """
         Add a variable (name and value) to trace list (if enabled).
@@ -203,7 +206,10 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         param_hint_cov = [
             [1.0 if first == second else 0.0 for first in range(dimension)]
             for second in range(dimension)]
+    numpy.random.seed(0)
     while not communication_pipe.poll():
+        if max_samples and samples >= max_samples:
+            break
         # Compute focus data.
         if len(top_weight_param) < len_top:
             # Not enough samples for reasonable top, use hint bias.
@@ -235,7 +241,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         while 1:
             # TODO: Inform pylint that correct version of numpy is available.
             sample_point = numpy.random.multivariate_normal(
-                param_focus_avg, param_focus_cov, 1)[0]
+                param_focus_avg, param_focus_cov, 1)[0].tolist()
             # Multivariate Gauss can fall outside (-1, 1) interval
             for first in range(dimension):
                 sample_coordinate = sample_point[first]
@@ -245,7 +251,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
                 break
         trace("sample_point", sample_point)
         samples += 1
-        value, log_weight = value_logweight_function(*sample_point)
+        value, log_weight = value_logweight_function(trace, *sample_point)
         trace("value", value)
         trace("log_weight", log_weight)
         # Update bias related statistics.
