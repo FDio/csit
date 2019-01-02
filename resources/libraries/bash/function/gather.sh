@@ -264,10 +264,11 @@ function gather_vpp () {
     case "${TEST_CODE}" in
         # Not csit-vpp as this code is re-used by ligato gathering.
         "csit-"*)
-            # Use downloaded packages with specific version
-            if [[ "${TEST_CODE}" == *"daily"* ]] || \
-               [[ "${TEST_CODE}" == *"weekly"* ]] || \
-               [[ "${TEST_CODE}" == *"timed"* ]];
+            # Use downloaded packages with specific version.
+            if [[ "${TEST_CODE}" == *"-daily"* ]] || \
+               ([[ "${TEST_CODE}" == *"-weekly"* ]] && \
+                [[ "${TEST_CODE}" != *"-device"* ]]) || \
+               [[ "${TEST_CODE}" == *"-semiweekly"* ]];
             then
                 warn "Downloading latest VPP packages from Packagecloud."
             else
@@ -287,7 +288,7 @@ function gather_vpp () {
             download_artifacts || die
             ;;
         "vpp-csit-"*)
-            # Use local built packages.
+            # Use locally built packages.
             mv "${DOWNLOAD_DIR}"/../"vpp"*".deb" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
             }
