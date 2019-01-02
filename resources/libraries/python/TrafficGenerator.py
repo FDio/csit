@@ -423,10 +423,10 @@ class TrafficGenerator(AbstractMeasurer):
             "sh -c "
             "'{0}/resources/tools/trex/trex_stateless_profile.py "
             "--profile {1} "
-            "--duration {2} "
+            "--duration {2!r} "
             "--frame_size {3} "
-            "--rate {4} "
-            "--warmup_time {5} "
+            "--rate {4!r} "
+            "--warmup_time {5!r} "
             "--port_0 {6} "
             "--port_1 {7} "
             "{8} "   # --async
@@ -672,7 +672,7 @@ class OptimizedSearch(object):
     def perform_soak_search(
             frame_size, traffic_type, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.2,
-            initial_count=50, timeout=1800.0):
+            initial_count=50, timeout=1800.0, trace_enabled=False):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
@@ -707,6 +707,7 @@ class OptimizedSearch(object):
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
-            trial_number_offset=initial_count, timeout=timeout)
+            trial_number_offset=initial_count, timeout=timeout,
+            trace_enabled=trace_enabled)
         result = algorithm.search(minimum_transmit_rate, maximum_transmit_rate)
         return result
