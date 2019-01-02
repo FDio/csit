@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5a7225b_b01260a3",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-02T16:44:56Z",
+      "side": 1,
+      "message": "Can you create a function for quickly extracting the \"generated\" value, so the time-period removal can happen here (before the complete parsing is called)?",
+      "range": {
+        "startLine": 1141,
+        "startChar": 24,
+        "endLine": 1141,
+        "endChar": 36
+      },
+      "revId": "c7cd008e11e76e22b8cebf5397b2b149251cbb4c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aed5cd29_e06bb62e",
+        "filename": "resources/tools/presentation/input_data_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-02T16:44:56Z",
+      "side": 1,
+      "message": "generated \u003d metadata.get(\"generated\", None) if metadata else None\n\nThis is to reduce indentation level. Lines 1164-1165 can be handled in a similar way.",
+      "range": {
+        "startLine": 1162,
+        "startChar": 12,
+        "endLine": 1163,
+        "endChar": 59
+      },
+      "revId": "c7cd008e11e76e22b8cebf5397b2b149251cbb4c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
