@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -87,3 +87,16 @@ def log_minus(first, second):
         raise RuntimeError("log_minus: non-positive number to log")
     else:
         return first + math.log(factor)
+
+
+def safe_exp(log_value):
+    """Return exponential of the argument, or zero if the argument is None.
+
+    :param log_value: The value to exponentiate.
+    :type log_value: NoneType or float
+    :returns: The exponentiated value.
+    :rtype: float
+    """
+    if log_value is None:
+        return 0.0
+    return math.exp(log_value)
