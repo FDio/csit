@@ -52,6 +52,24 @@
       "revId": "b53f69a1ad14cc612333b61829a8b5efe17f3bdd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42cf6317_5c4637bf",
+        "filename": "resources/tools/trex/trex_unidirection.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-02T12:29:41Z",
+      "side": 1,
+      "message": "After taking a second look, I still believe a code full of ifs is a lesser evel compared to code duplication. Duplicated code is hard to maintain, especially when differences between the copies are subtle.\n\nThe existing (bidirectional) code already contains way more if than needed. I think the reason is that the return value of create_streams (and get_streams) has a wrong type. It is a simple list of streams, so it does not include the element metadata, such as which port should emit the stream, and whether it is a latency stream. A better return type would make the code more readable, and adding support for unidirectional traffic (without code duplication) will become easier.\n\nIn other words, if the current code is hard to read, we should make it easier to read; without resorting to code duplication.\n\nThat said, it is no fun for the contributor to pay up the technical debt.\nSo I would be fine with a less perfect contribution, if it contained enough FIXMEs of what the current debt is.",
+      "parentUuid": "5f2b5eb3_bf28c1a8",
+      "revId": "b53f69a1ad14cc612333b61829a8b5efe17f3bdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
