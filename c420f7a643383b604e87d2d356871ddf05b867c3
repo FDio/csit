@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79a14b64_d434df45",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T09:40:35Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 82
+      },
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ecf637cc_2d687cfd",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T09:40:35Z",
+      "side": 1,
+      "message": "maybe:\ntrex_stl_start_unidirection (as we will have astf as well)\n\nremote is i guess useless.",
+      "range": {
+        "startLine": 595,
+        "startChar": 26,
+        "endLine": 595,
+        "endChar": 32
+      },
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5eaaf8e0_83e0625c",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T09:40:35Z",
+      "side": 1,
+      "message": "Can we use opposite logic? Better readable.\n\nif unidirection...\nelse\n  bidirection",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 45
+      },
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65350264_55eee425",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T09:40:35Z",
+      "side": 1,
+      "message": "space missing.",
+      "range": {
+        "startLine": 254,
+        "startChar": 28,
+        "endLine": 254,
+        "endChar": 29
+      },
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d72f45a7_8b7c0a26",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T09:40:35Z",
+      "side": 1,
+      "message": "parameter documentation.",
+      "range": {
+        "startLine": 259,
+        "startChar": 7,
+        "endLine": 259,
+        "endChar": 7
+      },
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2553878c_40cd4b90",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T09:40:35Z",
+      "side": 1,
+      "message": "I think this part can be safely moved to simple_burst one level above",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 19
+      },
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7df3c94_077963ae",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T09:40:35Z",
+      "side": 1,
+      "message": "missing dot",
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
