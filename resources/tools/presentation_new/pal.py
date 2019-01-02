@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -112,8 +112,11 @@ def main():
             logging.info("Successfully finished.")
         elif spec.output["output"] == "CPTA":
             sys.stdout.write(generate_cpta(spec, data))
-            alert = Alerting(spec)
-            alert.generate_alerts()
+            try:
+                alert = Alerting(spec)
+                alert.generate_alerts()
+            except AlertingError as err:
+                logging.warning(repr(err))
             logging.info("Successfully finished.")
         ret_code = 0
 
