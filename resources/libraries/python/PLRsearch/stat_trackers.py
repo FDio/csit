@@ -29,7 +29,7 @@ import numpy
 # TODO: Teach FD.io CSIT to use multiple dirs in PYTHONPATH,
 # then switch to absolute imports within PLRsearch package.
 # Current usage of relative imports is just a short term workaround.
-from log_plus import log_plus  # pylint: disable=relative-import
+from log_plus import log_plus, safe_exp  # pylint: disable=relative-import
 
 
 class ScalarStatTracker(object):
@@ -200,6 +200,27 @@ class ScalarDualStatTracker(ScalarStatTracker):
             self.secondary.add(scalar_value, log_weight)
         primary.add(scalar_value, log_weight)
         return self
+
+
+    def get_pessimistic_variance(self):
+        """Return estimate of variance reflecting weight effects.
+
+        Typical scenario is the primary tracker dominated by a single sample.
+        In worse case, secondary tracker is also dominated by
+        a single (but different) sample.
+
+        Current implementation simply returns variance of average
+        of the two trackers, as if they were independent.
+
+        :returns: Pessimistic estimate of variance (not stdev, no log).
+        :rtype: float
+        """
+        var_primary = safe_exp(self.log_variance)
+        var_secondary = safe_exp(self.secondary.log_variance)
+        var_combined = (var_primary + var_secondary) / 2
+        avg_half_diff = (self.average - self.secondary.average) / 2
+        var_combined += avg_half_diff * avg_half_diff
+        return var_combined
 
 
 class VectorStatTracker(object):
