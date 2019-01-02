@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c48801dd_9c3c00ac",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-02T12:38:20Z",
+      "side": 1,
+      "message": "Just confirming, two consecutive commas (caused by the else part of line 259) are fine here?",
+      "range": {
+        "startLine": 263,
+        "startChar": 24,
+        "endLine": 263,
+        "endChar": 39
+      },
+      "revId": "ff8ba5fd5fd066332b4b109caad09e5dbb86b853",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
