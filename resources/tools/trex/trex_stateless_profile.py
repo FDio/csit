@@ -265,11 +265,11 @@ def send_traffic_bidirection(profile_file, duration, framesize, rate,
         else:
             if client:
                 client.disconnect()
-            print("rate={0}, totalReceived={1}, totalSent={2}, "
+            print("rate={0!r}, totalReceived={1}, totalSent={2}, "
                   "frameLoss={3}, latencyStream0(usec)={4}, "
-                  "latencyStream1(usec)={5}".
+                  "latencyStream1(usec)={5}, targetDuration={d!r}".
                   format(rate, total_rcvd, total_sent, lost_a + lost_b,
-                         lat_a, lat_b))
+                         lat_a, lat_b, d=duration))
 
 
 def send_traffic_unidirection(profile_file, duration, framesize, rate,
@@ -422,9 +422,10 @@ def send_traffic_unidirection(profile_file, duration, framesize, rate,
         else:
             if client:
                 client.disconnect()
-            print("rate={0}, totalReceived={1}, totalSent={2}, "
-                  "frameLoss={3}, latencyStream0(usec)={4}".
-                  format(rate, total_rcvd, total_sent, lost_a, lat_a))
+            print("rate={0!r}, totalReceived={1}, totalSent={2}, frameLoss={3},"
+                  " latencyStream0(usec)={4}, targetDuration={d!r}".
+                  format(rate, total_rcvd, total_sent, lost_a, lat_a,
+                         d=duration))
 
 
 def main():
