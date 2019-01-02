@@ -70,6 +70,30 @@
       "revId": "926095dd27963511db96182015fed2d0dbb0c48c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2b60eb8_3dfb35ab",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-02T14:43:39Z",
+      "side": 1,
+      "message": "\u003e That requires renaming all jobs. in fact is more complicated than this.\n\nRenaming jobs is only complicated if we need to save Jenkis history; and I think we can afford losing it, as logs.fd.io will still hold the previous results.\n\n\u003e It would be much more simple if semiweekly and weekly will exchange role.\n\nI agree that would be less disruptive. We should ask Jan about that.\n\nIn short term, this Change will get +1 from me if there is a TODO to improve the jobs.",
+      "parentUuid": "a009d17c_0bf433cf",
+      "range": {
+        "startLine": 268,
+        "startChar": 12,
+        "endLine": 268,
+        "endChar": 14
+      },
+      "revId": "926095dd27963511db96182015fed2d0dbb0c48c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
