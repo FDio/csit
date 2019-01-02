@@ -241,7 +241,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Find critical load usingPLR search \| \${64} \| \
-| | ... | 3-node-IPv4 \| \${100000} \| \${14880952} \| \${1e-7} \| \${1800} \
+| | ... | 3-node-IPv4 \| \${100000} \| \${14880952} \| \${1e-7} \| \${120} \
 | | ...
 | | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
 | | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${1e-7}

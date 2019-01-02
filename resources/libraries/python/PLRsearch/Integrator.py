@@ -203,6 +203,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         param_hint_cov = [
             [1.0 if first == second else 0.0 for first in range(dimension)]
             for second in range(dimension)]
+    numpy.random.seed(0)
     while not communication_pipe.poll():
         # Compute focus data.
         if len(top_weight_param) < len_top:
@@ -235,7 +236,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         while 1:
             # TODO: Inform pylint that correct version of numpy is available.
             sample_point = numpy.random.multivariate_normal(
-                param_focus_avg, param_focus_cov, 1)[0]
+                param_focus_avg, param_focus_cov, 1)[0].tolist()
             # Multivariate Gauss can fall outside (-1, 1) interval
             for first in range(dimension):
                 sample_coordinate = sample_point[first]
@@ -245,7 +246,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
                 break
         trace("sample_point", sample_point)
         samples += 1
-        value, log_weight = value_logweight_function(*sample_point)
+        value, log_weight = value_logweight_function(trace, *sample_point)
         trace("value", value)
         trace("log_weight", log_weight)
         # Update bias related statistics.
