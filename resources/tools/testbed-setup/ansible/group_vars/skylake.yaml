@@ -1,4 +1,0 @@
----
-# file: group_vars/skylake/tg.yaml
-
-isolcpus: "1-27,29-55,57-83,85-111"

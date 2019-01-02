@@ -1,4 +1,0 @@
----
-# file: group_vars/haswell/tg.yaml
-
-isolcpus: "1-17,19-35"
