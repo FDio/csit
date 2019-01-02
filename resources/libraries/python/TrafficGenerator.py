@@ -425,8 +425,8 @@ class TrafficGenerator(AbstractMeasurer):
         command = (
             "sh -c '{tool}/resources/tools/trex/trex_stateless_profile.py"
             " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"
-            " --duration {duration} --frame_size {frame_size} --rate {rate}"
-            " --warmup_time {warmup} --port_0 {p_0} --port_1 {p_1}").format(
+            " --duration {duration!r} --frame_size {frame_size} --rate {rate!r}"
+            " --warmup_time {warmup!r} --port_0 {p_0} --port_1 {p_1}").format(
                 tool=Constants.REMOTE_FW_DIR, prof=Constants.REMOTE_FW_DIR,
                 traffic=traffic_profile, duration=duration,
                 frame_size=frame_size, rate=rate, warmup=warmup_time, p_0=p_0,
@@ -698,8 +698,8 @@ class OptimizedSearch(object):
     @staticmethod
     def perform_soak_search(
             frame_size, traffic_profile, minimum_transmit_rate,
-            maximum_transmit_rate, plr_target=1e-7, tdpt=0.2,
-            initial_count=50, timeout=1800.0):
+            maximum_transmit_rate, plr_target=1e-7, tdpt=0.1,
+            initial_count=50, timeout=1800.0, trace_enabled=False):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
@@ -734,6 +734,7 @@ class OptimizedSearch(object):
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
-            trial_number_offset=initial_count, timeout=timeout)
+            trial_number_offset=initial_count, timeout=timeout,
+            trace_enabled=trace_enabled)
         result = algorithm.search(minimum_transmit_rate, maximum_transmit_rate)
         return result
