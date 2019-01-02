@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a0ff7f1_d3fa4818",
+        "filename": "resources/libraries/bash/lb/lb_l3dsr.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-02T11:01:08Z",
+      "side": 1,
+      "message": "-2 for this.\nWhy are you not using VAT or PAPI? This is not a way to go. There is huge L1 KW support for restart/arp/interface operations this is not debug-able and for sure not flexible or even modular enough.",
+      "revId": "cf0b6bf531d0d23588a2134ea8f6aaabac978aca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
