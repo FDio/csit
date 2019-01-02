@@ -2,3 +2,4 @@
 # file: host_vars/10.30.51.26.yaml
 
 hostname: "t3-sut2"
+isolcpus: "1-17,19-35"
