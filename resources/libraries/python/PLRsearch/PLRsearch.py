@@ -43,6 +43,7 @@ class PLRsearch(object):
 
     Method othed than search (and than __init__)
     are just internal code structure.
+
     TODO: Those method names should start with underscore then.
     """
 
@@ -174,7 +175,7 @@ class PLRsearch(object):
         focus_trackers = (None, None)
         transmit_rate = (min_rate + max_rate) / 2.0
         lossy_loads = [max_rate]
-        zeros = [0, 0]  # Cosecutive zero loss, separately for stretch and erf.
+        zeros = 0  # How many cosecutive zero loss results are happening.
         while 1:
             trial_number += 1
             logging.info("Trial %(number)r", {"number": trial_number})
@@ -182,15 +183,14 @@ class PLRsearch(object):
                 self.trial_duration_per_trial * trial_number, transmit_rate,
                 trial_result_list, min_rate, max_rate, focus_trackers)
             measurement, average, stdev, avg1, avg2, focus_trackers = results
-            index = trial_number % 2
-            zeros[index] += 1
+            zeros += 1
             # TODO: Ratio of fill rate to drain rate seems to have
             # exponential impact. Make it configurable, or is 4:3 good enough?
             if measurement.loss_fraction >= self.packet_loss_ratio_target:
-                for _ in range(4 * zeros[index]):
+                for _ in range(4 * zeros):
                     lossy_loads.append(measurement.target_tr)
             if measurement.loss_count > 0:
-                zeros[index] = 0
+                zeros = 0
             lossy_loads.sort()
             if stop_time <= time.time():
                 return average, stdev
@@ -201,20 +201,19 @@ class PLRsearch(object):
                 next_load = (measurement.receive_rate / (
                     1.0 - self.packet_loss_ratio_target))
             else:
-                index = (trial_number + 1) % 2
-                next_load = (avg1, avg2)[index]
-                if zeros[index] > 0:
+                next_load = (avg1 + avg2) / 2.0
+                if zeros > 0:
                     if lossy_loads[0] > next_load:
-                        diminisher = math.pow(2.0, 1 - zeros[index])
+                        diminisher = math.pow(2.0, 1 - zeros)
                         next_load = lossy_loads[0] + diminisher * next_load
                         next_load /= (1.0 + diminisher)
                     # On zero measurement, we need to drain obsoleted low losses
                     # even if we did not use them to increase next_load,
-                    # in order to get to usable loses with higher load.
+                    # in order to get to usable loses at higher loads.
                     if len(lossy_loads) > 3:
                         lossy_loads = lossy_loads[3:]
                 logging.debug("Zeros %(z)r orig %(o)r next %(n)r loads %(s)r",
-                              {"z": zeros, "o": (avg1, avg2)[index],
+                              {"z": zeros, "o": (avg1 + avg2) / 2.0,
                                "n": next_load, "s": lossy_loads})
             transmit_rate = min(max_rate, max(min_rate, next_load))
 
@@ -645,12 +644,15 @@ class PLRsearch(object):
         stretch_avg = stretch_value_tracker.average
         erf_avg = erf_value_tracker.average
         # TODO: Take into account secondary stats.
-        stretch_stdev = math.exp(stretch_value_tracker.log_variance / 2)
-        erf_stdev = math.exp(erf_value_tracker.log_variance / 2)
-        avg = math.exp((stretch_avg + erf_avg) / 2.0)
-        var = (stretch_stdev * stretch_stdev + erf_stdev * erf_stdev) / 2.0
-        var += (stretch_avg - erf_avg) * (stretch_avg - erf_avg) / 4.0
-        stdev = avg * math.sqrt(var)
+        stretch_var = stretch_value_tracker.get_pessimistic_variance()
+        erf_var = erf_value_tracker.get_pessimistic_variance()
+        avg_log = (stretch_avg + erf_avg) / 2.0
+        var_log = (stretch_var + erf_var) / 2.0
+        var_log += (stretch_avg - erf_avg) * (stretch_avg - erf_avg) / 4.0
+        stdev_log = math.sqrt(var_log)
+        low, upp = math.exp(avg_log - stdev_log), math.exp(avg_log + stdev_log)
+        avg = (low + upp) / 2
+        stdev = avg - low
         focus_trackers = (stretch_focus_tracker, erf_focus_tracker)
         logging.info(
             "measure_and_compute finished with trial result %(res)r "
