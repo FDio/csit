@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81882b0b_33b736a5",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-02T14:10:23Z",
+      "side": 1,
+      "message": "The whole if expression is getting complicated.\nI would prefer the job name itself stating which VPP version to test. If \u0027vpp-stable\u0027 is found, use stable, otherwise use latest (of given VPP branch).",
+      "range": {
+        "startLine": 268,
+        "startChar": 12,
+        "endLine": 268,
+        "endChar": 14
+      },
+      "revId": "926095dd27963511db96182015fed2d0dbb0c48c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
