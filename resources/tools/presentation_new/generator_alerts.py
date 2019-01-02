@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -70,7 +70,13 @@ class Alerting(object):
         # Implemented alerts:
         self._ALERTS = ("failed-tests", )
 
-        self._spec = spec.alerting
+        try:
+            self._spec = spec.alerting
+        except KeyError as err:
+            raise  AlertingError("Alerting is not configured, skipped.",
+                                 repr(err),
+                                 "WARNING")
+
         self._path_failed_tests = spec.environment["paths"]["DIR[STATIC,VPP]"]
 
         # Verify and validate input specification:
