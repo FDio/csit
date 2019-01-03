@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e07346ee_99ad8662",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-03T17:40:38Z",
+      "side": 1,
+      "message": "Oh, this matches also \"semiweekly\", that is confusing.",
+      "range": {
+        "startLine": 269,
+        "startChar": 37,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "46e0e136a132d4d7dda04f82c035a1efd1f430f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
