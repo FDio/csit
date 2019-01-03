@@ -275,7 +275,8 @@ class ExecutionChecker(ResultVisitor):
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
 
-    REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*)(.*)")
+    REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*|"
+                                   r"VPP Version:\s*)(.*)")
 
     REGEX_VERSION_DPDK = re.compile(r"(return STDOUT testpmd)([\d\D\n]*)"
                                     r"(RTE Version: 'DPDK )(.*)(')")
@@ -378,7 +379,8 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("return STDOUT Version:"):
+        if msg.message.count("return STDOUT Version:") or \
+            msg.message.count("VPP Version:"):
             self._version = str(re.search(self.REGEX_VERSION_VPP, msg.message).
                                 group(2))
             self._data["metadata"]["version"] = self._version
