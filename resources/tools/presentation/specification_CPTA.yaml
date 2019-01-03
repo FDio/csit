@@ -140,7 +140,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 300
+        start: 450  #300
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
         start: 50
@@ -148,7 +148,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 300
+        start: 450  #300
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-hsw:
@@ -282,7 +282,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 300
+      start: 450  #300
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master:
       start: 50
@@ -316,94 +316,94 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
-################################################################################
-# 3n-hsw
--
-  type: "table"
-  title: "Performance trending dashboard 1t1c-3n-hsw"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw"
-  data: "plot-performance-trending-all-3n-hsw"
-  filter: "'MRR' and '1T1C' and not 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "Performance trending dashboard 2t2c-3n-hsw"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-hsw"
-  data: "plot-performance-trending-all-3n-hsw"
-  filter: "'MRR' and '2T2C' and not 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "Performance trending dashboard 4t4c-3n-hsw"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-hsw"
-  data: "plot-performance-trending-all-3n-hsw"
-  filter: "'MRR' and '4T4C' and not 'NIC_Intel-XXV710'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 1t1c-3n-hsw"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw.rst"
-  testbed: "3n-hsw"
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 2t2c-3n-hsw"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-hsw.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-hsw.rst"
-  testbed: "3n-hsw"
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 4t4c-3n-hsw"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-hsw.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-hsw.rst"
-  testbed: "3n-hsw"
+#################################################################################
+## 3n-hsw
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 1t1c-3n-hsw"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw"
+#  data: "plot-performance-trending-all-3n-hsw"
+#  filter: "'MRR' and '1T1C' and not 'NIC_Intel-XXV710'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 2t2c-3n-hsw"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-hsw"
+#  data: "plot-performance-trending-all-3n-hsw"
+#  filter: "'MRR' and '2T2C' and not 'NIC_Intel-XXV710'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 4t4c-3n-hsw"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-hsw"
+#  data: "plot-performance-trending-all-3n-hsw"
+#  filter: "'MRR' and '4T4C' and not 'NIC_Intel-XXV710'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 1t1c-3n-hsw"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-hsw.rst"
+#  testbed: "3n-hsw"
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 2t2c-3n-hsw"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-hsw.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-hsw.rst"
+#  testbed: "3n-hsw"
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 4t4c-3n-hsw"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-hsw.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-hsw.rst"
+#  testbed: "3n-hsw"
 
 -
   type: "table"
@@ -431,235 +431,235 @@
   output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-hsw.rst"
   testbed: "3n-hsw"
 
-################################################################################
-# 3n-skx
--
-  type: "table"
-  title: "Performance trending dashboard 2t1c-3n-skx"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx"
-  data: "plot-performance-trending-all-3n-skx"
-  filter: "'MRR' and '2T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "Performance trending dashboard 4t2c-3n-skx"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-skx"
-  data: "plot-performance-trending-all-3n-skx"
-  filter: "'MRR' and '4T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "Performance trending dashboard 8t4c-3n-skx"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-3n-skx"
-  data: "plot-performance-trending-all-3n-skx"
-  filter: "'MRR' and '8T4C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 2t1c-3n-skx"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx.rst"
-  testbed: "3n-skx"
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 4t2c-3n-skx"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-skx.rst"
-  testbed: "3n-skx"
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 8t4c-3n-skx"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-3n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-3n-skx.rst"
-  testbed: "3n-skx"
-
--
-  type: "table"
-  title: "Failed MRR tests 3n-skx"
-  algorithm: "table_failed_tests"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx"
-  data: "plot-performance-trending-all-3n-skx"
-  filter: "'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "status"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  window: 7  # days
-
--
-  type: "table"
-  title: "HTML Failed MRR tests 3n-skx"
-  algorithm: "table_failed_tests_html"
-  input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx.rst"
-  testbed: "3n-skx"
-
-################################################################################
-# 2n-skx
--
-  type: "table"
-  title: "Performance trending dashboard 2t1c-2n-skx"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx"
-  data: "plot-performance-trending-all-2n-skx"
-  filter: "'MRR' and '2T1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "Performance trending dashboard 4t2c-2n-skx"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-skx"
-  data: "plot-performance-trending-all-2n-skx"
-  filter: "'MRR' and '4T2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "Performance trending dashboard 8t4c-2n-skx"
-  algorithm: "table_performance_trending_dashboard"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-skx"
-  data: "plot-performance-trending-all-2n-skx"
-  filter: "'MRR' and '8T4C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "result"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
-  window: 14
-  evaluated-window: 14
-  long-trend-window: 180
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 2t1c-2n-skx"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx.rst"
-  testbed: "2n-skx"
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 4t2c-2n-skx"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-skx.rst"
-  testbed: "2n-skx"
-
--
-  type: "table"
-  title: "HTML performance trending dashboard 8t4c-2n-skx"
-  algorithm: "table_performance_trending_dashboard_html"
-  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-skx.rst"
-  testbed: "2n-skx"
-
--
-  type: "table"
-  title: "Failed MRR tests 2n-skx"
-  algorithm: "table_failed_tests"
-  output-file-ext: ".csv"
-  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx"
-  data: "plot-performance-trending-all-2n-skx"
-  filter: "'MRR'"
-  parameters:
-  - "name"
-  - "parent"
-  - "status"
-  ignore-list:
-    # This test is "ndrdisc" test and was improperly tagged. It was fixed
-    # but it remains in the old output.xml files.
-  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  window: 7  # days
-
--
-  type: "table"
-  title: "HTML Failed MRR tests 2n-skx"
-  algorithm: "table_failed_tests_html"
-  input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx.csv"
-  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx.rst"
-  testbed: "2n-skx"
+#################################################################################
+## 3n-skx
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 2t1c-3n-skx"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx"
+#  data: "plot-performance-trending-all-3n-skx"
+#  filter: "'MRR' and '2T1C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 4t2c-3n-skx"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-skx"
+#  data: "plot-performance-trending-all-3n-skx"
+#  filter: "'MRR' and '4T2C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 8t4c-3n-skx"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-3n-skx"
+#  data: "plot-performance-trending-all-3n-skx"
+#  filter: "'MRR' and '8T4C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 2t1c-3n-skx"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-skx.rst"
+#  testbed: "3n-skx"
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 4t2c-3n-skx"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-skx.rst"
+#  testbed: "3n-skx"
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 8t4c-3n-skx"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-3n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-3n-skx.rst"
+#  testbed: "3n-skx"
+#
+#-
+#  type: "table"
+#  title: "Failed MRR tests 3n-skx"
+#  algorithm: "table_failed_tests"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx"
+#  data: "plot-performance-trending-all-3n-skx"
+#  filter: "'MRR'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "status"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  window: 7  # days
+#
+#-
+#  type: "table"
+#  title: "HTML Failed MRR tests 3n-skx"
+#  algorithm: "table_failed_tests_html"
+#  input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-skx.rst"
+#  testbed: "3n-skx"
+#
+#################################################################################
+## 2n-skx
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 2t1c-2n-skx"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx"
+#  data: "plot-performance-trending-all-2n-skx"
+#  filter: "'MRR' and '2T1C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 4t2c-2n-skx"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-skx"
+#  data: "plot-performance-trending-all-2n-skx"
+#  filter: "'MRR' and '4T2C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "Performance trending dashboard 8t4c-2n-skx"
+#  algorithm: "table_performance_trending_dashboard"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-skx"
+#  data: "plot-performance-trending-all-2n-skx"
+#  filter: "'MRR' and '8T4C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "result"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  outlier-const: 1.5
+#  window: 14
+#  # evaluated-window: 14
+#  long-trend-window: 180
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 2t1c-2n-skx"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-skx.rst"
+#  testbed: "2n-skx"
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 4t2c-2n-skx"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-skx.rst"
+#  testbed: "2n-skx"
+#
+#-
+#  type: "table"
+#  title: "HTML performance trending dashboard 8t4c-2n-skx"
+#  algorithm: "table_performance_trending_dashboard_html"
+#  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-8t4c-2n-skx.rst"
+#  testbed: "2n-skx"
+#
+#-
+#  type: "table"
+#  title: "Failed MRR tests 2n-skx"
+#  algorithm: "table_failed_tests"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx"
+#  data: "plot-performance-trending-all-2n-skx"
+#  filter: "'MRR'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "status"
+#  ignore-list:
+#    # This test is "ndrdisc" test and was improperly tagged. It was fixed
+#    # but it remains in the old output.xml files.
+#  - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
+#  window: 7  # days
+#
+#-
+#  type: "table"
+#  title: "HTML Failed MRR tests 2n-skx"
+#  algorithm: "table_failed_tests_html"
+#  input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx.csv"
+#  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx.rst"
+#  testbed: "2n-skx"
 
 
 ################################################################################
