@@ -497,14 +497,24 @@ def table_performance_trending_dashboard(table, input_data):
         if classification_lst:
             if isnan(rel_change_last) and isnan(rel_change_long):
                 continue
+            if (isnan(last_avg) or
+                isnan(rel_change_last) or
+                isnan(rel_change_long)):
+                continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
-                 '-' if isnan(last_avg) else
                  round(last_avg / 1000000, 2),
-                 '-' if isnan(rel_change_last) else rel_change_last,
-                 '-' if isnan(rel_change_long) else rel_change_long,
+                 rel_change_last,
+                 rel_change_long,
                  classification_lst[-win_size:].count("regression"),
                  classification_lst[-win_size:].count("progression")])
+            # tbl_lst.append(
+            #     [tbl_dict[tst_name]["name"],
+            #      '-' if isnan(last_avg) else round(last_avg / 1000000, 2),
+            #      '-' if isnan(rel_change_last) else rel_change_last,
+            #      '-' if isnan(rel_change_long) else rel_change_long,
+            #      classification_lst[-win_size:].count("regression"),
+            #      classification_lst[-win_size:].count("progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
 
@@ -776,11 +786,14 @@ def table_failed_tests(table, input_data):
         for build in builds:
             build = str(build)
             for tst_name, tst_data in data[job][build].iteritems():
+                logging.info("tst_name: {}".format(tst_name))
                 if tst_name.lower() in table["ignore-list"]:
                     continue
                 if tbl_dict.get(tst_name, None) is None:
                     groups = re.search(REGEX_NIC, tst_data["parent"])
+                    logging.info("tst_data['parent']: {}".format(tst_data["parent"]))
                     if not groups:
+                        logging.info("### No NIC")
                         continue
                     nic = groups.group(0)
                     tbl_dict[tst_name] = {
@@ -789,17 +802,24 @@ def table_failed_tests(table, input_data):
                 try:
                     generated = input_data.metadata(job, build).\
                         get("generated", "")
+                    logging.info("generated: {}".format(generated))
                     if not generated:
                         continue
                     then = dt.strptime(generated, "%Y%m%d %H:%M")
+                    logging.info("then: {}".format(then))
                     if (now - then) <= timeperiod:
                         tbl_dict[tst_name]["data"][build] = (
                             tst_data["status"],
                             generated,
                             input_data.metadata(job, build).get("version", ""),
                             build)
-                except (TypeError, KeyError):
-                    pass  # No data in output.xml for this test
+                        logging.info("Included: {}".format(tst_name))
+                    else:
+                        logging.info("Removed:  {}".format(tst_name))
+                except (TypeError, KeyError) as err:
+                    logging.warning("tst_name: {} - err: {}".
+                                    format(tst_name, repr(err)))
+                    # pass  # No data in output.xml for this test
 
     tbl_lst = list()
     for tst_data in tbl_dict.values():
