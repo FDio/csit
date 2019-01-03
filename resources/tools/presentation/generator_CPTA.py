@@ -174,28 +174,29 @@ def _generate_trending_traces(in_data, job_name, build_info,
     xaxis = list()
     for idx in data_x:
         date = build_info[job_name][str(idx)][0]
-        hover_str = ("date: {0}<br>"
-                     "value: {1:,}<br>"
-                     "{2}-ref: {3}<br>"
-                     "csit-ref: mrr-{4}-build-{5}")
+        hover_str = ("date: {date}<br>"
+                     "value: {value:,}<br>"
+                     "{sut}-ref: {build}<br>"
+                     "csit-ref: mrr-{period}-build-{build_nr}<br>"
+                     "testbed: {testbed}")
         if "dpdk" in job_name:
             hover_text.append(hover_str.format(
-                date,
-                int(in_data[idx].avg),
-                "dpdk",
-                build_info[job_name][str(idx)][1].
-                rsplit('~', 1)[0],
-                "weekly",
-                idx))
+                date=date,
+                value=int(in_data[idx].avg),
+                sut="dpdk",
+                build=build_info[job_name][str(idx)][1].rsplit('~', 1)[0],
+                period="weekly",
+                build_nr=idx,
+                testbed=build_info[job_name][str(idx)][2]))
         elif "vpp" in job_name:
             hover_text.append(hover_str.format(
-                date,
-                int(in_data[idx].avg),
-                "vpp",
-                build_info[job_name][str(idx)][1].
-                rsplit('~', 1)[0],
-                "daily",
-                idx))
+                date=date,
+                value=int(in_data[idx].avg),
+                sut="vpp",
+                build=build_info[job_name][str(idx)][1].rsplit('~', 1)[0],
+                period="daily",
+                build_nr=idx,
+                testbed=build_info[job_name][str(idx)][2]))
 
         xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
                               int(date[9:11]), int(date[12:])))
@@ -437,9 +438,16 @@ def _generate_all_charts(spec, input_data):
         if build_info.get(job_name, None) is None:
             build_info[job_name] = OrderedDict()
         for build in job_data:
+            testbed = ""
+            tb_ip = input_data.metadata(job_name, build).get("testbed", "")
+            if tb_ip:
+                pass
+
+
             build_info[job_name][build] = (
                 input_data.metadata(job_name, build).get("generated", ""),
-                input_data.metadata(job_name, build).get("version", "")
+                input_data.metadata(job_name, build).get("version", ""),
+                testbed
             )
 
     work_queue = multiprocessing.JoinableQueue()
