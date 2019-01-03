@@ -497,14 +497,24 @@ def table_performance_trending_dashboard(table, input_data):
         if classification_lst:
             if isnan(rel_change_last) and isnan(rel_change_long):
                 continue
+            if (isnan(last_avg) or
+                isnan(rel_change_last) or
+                isnan(rel_change_long)):
+                continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
-                 '-' if isnan(last_avg) else
                  round(last_avg / 1000000, 2),
-                 '-' if isnan(rel_change_last) else rel_change_last,
-                 '-' if isnan(rel_change_long) else rel_change_long,
+                 rel_change_last,
+                 rel_change_long,
                  classification_lst[-win_size:].count("regression"),
                  classification_lst[-win_size:].count("progression")])
+            # tbl_lst.append(
+            #     [tbl_dict[tst_name]["name"],
+            #      '-' if isnan(last_avg) else round(last_avg / 1000000, 2),
+            #      '-' if isnan(rel_change_last) else rel_change_last,
+            #      '-' if isnan(rel_change_long) else rel_change_long,
+            #      classification_lst[-win_size:].count("regression"),
+            #      classification_lst[-win_size:].count("progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
 
@@ -798,9 +808,11 @@ def table_failed_tests(table, input_data):
                             generated,
                             input_data.metadata(job, build).get("version", ""),
                             build)
-                except (TypeError, KeyError):
-                    pass  # No data in output.xml for this test
+                except (TypeError, KeyError) as err:
+                    logging.warning("tst_name: {} - err: {}".
+                                    format(tst_name, repr(err)))
 
+    max_fails = 0
     tbl_lst = list()
     for tst_data in tbl_dict.values():
         fails_nr = 0
@@ -811,6 +823,7 @@ def table_failed_tests(table, input_data):
                 fails_last_vpp = val[2]
                 fails_last_csit = val[3]
         if fails_nr:
+            max_fails = fails_nr if fails_nr > max_fails else max_fails
             tbl_lst.append([tst_data["name"],
                             fails_nr,
                             fails_last_date,
@@ -819,7 +832,7 @@ def table_failed_tests(table, input_data):
 
     tbl_lst.sort(key=lambda rel: rel[2], reverse=True)
     tbl_sorted = list()
-    for nrf in range(table["window"], -1, -1):
+    for nrf in range(max_fails, -1, -1):
         tbl_fails = [item for item in tbl_lst if item[1] == nrf]
         tbl_sorted.extend(tbl_fails)
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
