@@ -55,9 +55,9 @@ NDR Comparison
 Comparison tables in ASCII and CSV formats:
 
   - `ASCII 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.txt>`_
-  - `ASCII 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t1c-ndr.txt>`_
+  - `ASCII 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.txt>`_
   - `CSV 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.csv>`_
-  - `CSV 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t1c-ndr.csv>`_
+  - `CSV 4t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.csv>`_
 
 PDR Comparison
 ``````````````
@@ -65,6 +65,6 @@ PDR Comparison
 Comparison tables in ASCII and CSV formats:
 
   - `ASCII 2t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-pdr.txt>`_
-  - `ASCII 4t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t1c-pdr.txt>`_
+  - `ASCII 4t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-pdr.txt>`_
   - `CSV 2t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-pdr.csv>`_
-  - `CSV 4t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t1c-pdr.csv>`_
+  - `CSV 4t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-pdr.csv>`_
