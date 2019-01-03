@@ -33,6 +33,7 @@ from os import remove
 from os.path import join
 from datetime import datetime as dt
 from datetime import timedelta
+from json import loads
 from jumpavg.AvgStdevMetadataFactory import AvgStdevMetadataFactory
 
 from input_data_files import download_and_unzip_data_file
@@ -275,7 +276,8 @@ class ExecutionChecker(ResultVisitor):
     REGEX_TOLERANCE = re.compile(r'^[\D\d]*LOSS_ACCEPTANCE:\s(\d*\.\d*)\s'
                                  r'[\D\d]*')
 
-    REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*)(.*)")
+    REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*|"
+                                   r"VPP Version:\s*)(.*)")
 
     REGEX_VERSION_DPDK = re.compile(r"(return STDOUT testpmd)([\d\D\n]*)"
                                     r"(RTE Version: 'DPDK )(.*)(')")
@@ -318,6 +320,9 @@ class ExecutionChecker(ResultVisitor):
         # Timestamp
         self._timestamp = None
 
+        # Testbed. The testbed is identified by TG node IP address.
+        self._testbed = None
+
         # Mapping of TCs long names
         self._mapping = mapping
 
@@ -358,7 +363,8 @@ class ExecutionChecker(ResultVisitor):
             "vpp-version": self._get_vpp_version,
             "dpdk-version": self._get_dpdk_version,
             "teardown-vat-history": self._get_vat_history,
-            "test-show-runtime": self._get_show_run
+            "test-show-runtime": self._get_show_run,
+            "testbed": self._get_testbed
         }
 
     @property
@@ -370,6 +376,29 @@ class ExecutionChecker(ResultVisitor):
         """
         return self._data
 
+    def _get_testbed(self, msg):
+        """Called when extraction of testbed IP is required.
+        The testbed is identified by TG node IP address.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
+        if msg.message.count("Arguments:"):
+            message = str(msg.message).replace(' ', '').replace('\n', '').\
+                replace("'", '"').replace('b"', '"').\
+                replace("honeycom", "honeycomb")
+            message = loads(message[11:-1])
+            try:
+                self._testbed = message["TG"]["host"]
+                logging.info("self._testbed: {}".format(self._testbed))
+            except (KeyError, ValueError):
+                pass
+            finally:
+                self._data["metadata"]["testbed"] = self._testbed
+                self._msg_type = None
+
     def _get_vpp_version(self, msg):
         """Called when extraction of VPP version is required.
 
@@ -378,7 +407,8 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("return STDOUT Version:"):
+        if msg.message.count("return STDOUT Version:") or \
+            msg.message.count("VPP Version:"):
             self._version = str(re.search(self.REGEX_VERSION_VPP, msg.message).
                                 group(2))
             self._data["metadata"]["version"] = self._version
@@ -901,6 +931,8 @@ class ExecutionChecker(ResultVisitor):
         elif setup_kw.name.count("Setup performance global Variables") \
                 and not self._timestamp:
             self._msg_type = "timestamp"
+        elif setup_kw.name.count("Setup Framework") and not self._testbed:
+            self._msg_type = "testbed"
         else:
             return
         setup_kw.messages.visit(self)
