@@ -392,6 +392,12 @@ class Specification(object):
         except KeyError:
             self._specification["environment"]["build-dirs"] = None
 
+        try:
+            self._specification["environment"]["testbeds"] = \
+                self._cfg_yaml[idx]["testbeds"]
+        except KeyError:
+            self._specification["environment"]["testbeds"] = None
+
         logging.info("Done.")
 
     def _parse_configuration(self):
