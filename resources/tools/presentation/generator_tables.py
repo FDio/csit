@@ -497,14 +497,24 @@ def table_performance_trending_dashboard(table, input_data):
         if classification_lst:
             if isnan(rel_change_last) and isnan(rel_change_long):
                 continue
+            if (isnan(last_avg) or
+                isnan(rel_change_last) or
+                isnan(rel_change_long)):
+                continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
-                 '-' if isnan(last_avg) else
                  round(last_avg / 1000000, 2),
-                 '-' if isnan(rel_change_last) else rel_change_last,
-                 '-' if isnan(rel_change_long) else rel_change_long,
+                 rel_change_last,
+                 rel_change_long,
                  classification_lst[-win_size:].count("regression"),
                  classification_lst[-win_size:].count("progression")])
+            # tbl_lst.append(
+            #     [tbl_dict[tst_name]["name"],
+            #      '-' if isnan(last_avg) else round(last_avg / 1000000, 2),
+            #      '-' if isnan(rel_change_last) else rel_change_last,
+            #      '-' if isnan(rel_change_long) else rel_change_long,
+            #      classification_lst[-win_size:].count("regression"),
+            #      classification_lst[-win_size:].count("progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
 
