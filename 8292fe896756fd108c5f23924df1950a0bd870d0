@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cefe50ee_df65a77f",
+        "filename": "resources/libraries/python/PLRsearch/PLRsearch.py",
+        "patchSetId": 105
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-04T14:35:03Z",
+      "side": 1,
+      "message": "Perhaps there is a bug in pylint. I do not see a reason why pylint does not see the members.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 71
+      },
+      "revId": "8292fe896756fd108c5f23924df1950a0bd870d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
