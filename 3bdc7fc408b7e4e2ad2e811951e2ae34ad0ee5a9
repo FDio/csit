@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f83eeb7_00376d82",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-04T15:19:43Z",
+      "side": 0,
+      "message": "The table is correct, expect the implementation counts runs instead of days (Tibor has fixing that in his TODO list).",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 35
+      },
+      "revId": "3bdc7fc408b7e4e2ad2e811951e2ae34ad0ee5a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
