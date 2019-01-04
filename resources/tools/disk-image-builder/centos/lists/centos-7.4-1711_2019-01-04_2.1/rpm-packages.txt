@@ -1,0 +1,63 @@
+bridge-utils
+cloud-init
+dkms-2.6.1-1.el7.noarch http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/d/
+elfutils-libelf
+elfutils-libelf-devel
+gcc
+git
+glusterfs
+glusterfs-api
+glusterfs-devel
+gnutls
+gperftools
+ipxe-roms-qemu
+java-1.8.0-openjdk-devel
+java-1.8.0-openjdk-headless
+kernel-debug-devel
+libcacard
+libcacard-devel
+libcacard-tools
+libffi-devel
+libibverbs
+libiscsi
+libnettle
+libpcap
+libpcap-devel
+libpng
+librados2
+librbd1
+librdmacm
+libseccomp
+libusb
+mbedtls-2.7.6-1.el7.x86_64 http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/m/
+nettle-2.7.1-8.el7.x86_64 http://mirror.centos.org/centos/7/os/x86_64/Packages/
+nfs-utils
+nss-devel
+openssl-devel
+pixman
+pkgconfig
+psmisc
+pulseaudio-libs
+python2-pip-8.1.2-6.el7.noarch http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/p/
+python-cffi
+python-devel
+python-setuptools
+python-virtualenv
+qemu-img-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+qemu-kvm-common-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+qemu-kvm-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+qemu-kvm-tools-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+seabios-bin
+seavgabios-bin
+selinux-policy
+selinux-policy-devel
+sgabios-bin
+socat
+spice-server
+strongswan-5.7.1-1.el7.x86_64 http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/s/
+tcpdump
+trousers
+unzip
+usbredir
+yum-utils
+zlib-devel
