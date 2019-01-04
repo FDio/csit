@@ -2263,6 +2263,8 @@
 | | ... | - sock2 - Socket path for second Vhost-User interface.
 | | ... | Type: string
 | | ... | - vm_name - QemuUtil instance name. Type: string
+| | ... | - chains: Total number of chains. Type: integer
+| | ... | - nodeness: Total number of nodes per chain. Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT
 | | ... | node. Type: integer
 | | ... | - jumbo - Set True if jumbo frames are used in the test.
@@ -2281,10 +2283,14 @@
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock-2-1 \| /tmp/sock-2-2 \| DUT1_VM2 \
 | | ... | \| qemu_id=${2} \|
 | | ...
-| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${qemu_id}=${1}
-| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
-| | ... | ${use_tuned_cfs}=${False}
+| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${chains}=${1}
+| | ... | ${nodeness}=${1} | ${qemu_id}=${1} | ${jumbo}=${False}
+| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
 | | ...
+| | ${nf_cpus}= | Create network function CPU list | ${dut}
+| | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${1}
+| | ... | node_id=${qemu_id} | auto_scale=${True}
+| | ${nf_cpus_count}= | Get Length | ${nf_cpus}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
@@ -2292,28 +2298,6 @@
 | | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
 | | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
 | | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
-| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if1}
-| | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
-| | ... | Create List | ${${dut}_if1}
-| | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
-| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${${dut}_if2}
-| | Run Keyword If | '${if2_status}' == 'PASS'
-| | ... | Append To List | ${if_list} | ${${dut}_if2}
-| | ... | ELSE | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
-| | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
-# Compute CPU placement for VM based on expected DUT placement.
-| | ${os_cpus}= | Set Variable | ${1}
-| | ${dut_main_cpus}= | Set Variable | ${1}
-| | ${dut_wk_cpus}= | Set Variable | ${cpu_count_int}
-| | ${vm_cpus}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus}
-| | ${skip_dut}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus} + ${os_cpus}
-| | ${skip_cpu}= | Evaluate | ${skip_dut} + (${qemu_id} - ${1}) * ${vm_cpus}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${nodes['${dut}']}
-| | ... | ${dut_numa} | skip_cnt=${skip_cpu} | cpu_cnt=${vm_cpus}
-| | ... | smt_used=${smt_used}
-| | ${vm_thrs}= | Get Length | ${qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Queue Count | ${rxq_count_int}
 | | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
@@ -2325,13 +2309,14 @@
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
 | | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${nodes['${dut}']}
-| | ... | apply_patch=${False}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${vm_thrs} | ${vm_thrs} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${nf_cpus_count} | ${nf_cpus_count}
+| | ... | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
 | | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
@@ -2373,8 +2358,8 @@
 | | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
-| | | ... | qemu_id=${number} | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
-| | | ... | use_tuned_cfs=${use_tuned_cfs}
+| | | ... | nodeness=${vm_count} | qemu_id=${number} | jumbo=${jumbo}
+| | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
 | | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
 
 | Configure guest VMs with dpdk-testpmd connected via vhost-user
@@ -2420,6 +2405,8 @@
 | | ... | - vm_name - QemuUtil instance name. Type: string
 | | ... | - eth0_mac - MAC address of first Vhost interface. Type: string
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
+| | ... | - chains: Total number of chains. Type: integer
+| | ... | - nodeness: Total number of nodes per chain. Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT
 | | ... | node. Type: integer
 | | ... | - jumbo - Set True if jumbo frames are used in the test.
@@ -2439,9 +2426,14 @@
 | | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \|
 | | ...
 | | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name}
-| | ... | ${eth0_mac} | ${eth1_mac} | ${qemu_id}=${1} | ${jumbo}=${False}
-| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ... | ${eth0_mac} | ${eth1_mac} | ${chains}=${1} | ${nodeness}=${1}
+| | ... | ${qemu_id}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${use_tuned_cfs}=${False}
 | | ...
+| | ${nf_cpus}= | Create network function CPU list | ${dut}
+| | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${1}
+| | ... | node_id=${qemu_id} | auto_scale=${True}
+| | ${nf_cpus_count}= | Get Length | ${nf_cpus}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
@@ -2449,19 +2441,6 @@
 | | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
 | | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
 | | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
-| | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | ${${dut}_if2}
-# Compute CPU placement for VM based on expected DUT placement.
-| | ${os_cpus}= | Set Variable | ${1}
-| | ${dut_main_cpus}= | Set Variable | ${1}
-| | ${dut_wk_cpus}= | Set Variable | ${cpu_count_int}
-| | ${vm_cpus}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus}
-| | ${skip_dut}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus} + ${os_cpus}
-| | ${skip_cpu}= | Evaluate | ${skip_dut} + (${qemu_id} - ${1}) * ${vm_cpus}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${nodes['${dut}']}
-| | ... | ${dut_numa} | skip_cnt=${skip_cpu} | cpu_cnt=${vm_cpus}
-| | ... | smt_used=${smt_used}
-| | ${vm_thrs}= | Get Length | ${qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Queue Count | ${rxq_count_int}
 | | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
@@ -2475,11 +2454,12 @@
 | | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${nodes['${dut}']}
 | | ... | apply_patch=${False}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${vm_thrs} | ${vm_thrs} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${nf_cpus_count} | ${nf_cpus_count}
+| | ... | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
 | | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
@@ -2526,8 +2506,8 @@
 | | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
 | | | ... | ${${dut}-vhost-${number}-if1_mac}
-| | | ... | ${${dut}-vhost-${number}-if2_mac} | qemu_id=${number}
-| | | ... | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
+| | | ... | ${${dut}-vhost-${number}-if2_mac} | nodeness=${vm_count}
+| | | ... | qemu_id=${number} | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
 | | | ... | use_tuned_cfs=${use_tuned_cfs}
 | | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
 
@@ -2559,66 +2539,6 @@
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
 | | All VPP Interfaces Ready Wait | ${nodes}
-
-| Configure guest VM with linux bridge connected via vhost-user
-| | [Documentation]
-| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting\
-| | ... | linux bridge.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut - DUT node to start guest VM on. Type: dictionary
-| | ... | - sock1 - Socket path for first Vhost-User interface.
-| | ... | Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface.
-| | ... | Type: string
-| | ... | - vm_name - QemuUtil instance name. Type: string
-| | ... | - skip_cnt - number of cpus which will be skipped. Type: int
-| | ...
-| | ... | _NOTE:_ This KW expects following test case variables to be set:
-| | ... | - cpu_count_int - Number of Physical CPUs allocated for DUT.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Configure guest VM with linux bridge connected via vhost-user \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${6} \|
-| | ...
-| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${skip_cnt}=${6}
-| | ... | ${count}=${5}
-| | ...
-| | Import Library | resources.libraries.python.QemuUtils
-| | ... | WITH NAME | ${vm_name}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${dut}
-| | ${dut_numa}= | Get interfaces numa node | ${dut}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${vm_phy_cpus}= | Evaluate | ${cpu_count_int} + ${1}
-| | ${skip_cnt}= | Evaluate | ${skip} + (${qemu_id} - ${1}) * ${vm_phy_cpus}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${dut} | ${dut_numa}
-| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${vm_phy_cpus} | smt_used=${smt_used}
-| | ${vm_thr_cpus}= | Get Length | ${qemu_cpus}
-| | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ${apply_patch}= | Set Variable | ${False}
-| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
-| | ... | ${perf_qemu_path}-patch/bin/
-| | ... | ${perf_qemu_path}-base/bin/
-| | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${dut}
-| | ... | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${vm_thr_cpus} | ${vm_thr_cpus}
-| | ... | 1 | 1
-| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
-| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
-| | ${br}= | Set Variable | br0
-| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
-| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
-| | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
-| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
-| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
-| | Set Interface State | ${vm} | ${br} | up | if_type=name
-| | Return From Keyword | ${vm}
 
 | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
