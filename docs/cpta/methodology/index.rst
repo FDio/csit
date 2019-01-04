@@ -167,25 +167,26 @@ Performance Dashboard
 Dashboard tables list a summary of per test-case VPP MRR performance
 trend and trend compliance metrics and detected number of anomalies.
 
-Separate tables are generated for tested VPP worker-thread-core
-combinations (1t1c, 2t2c, 4t4c). Test case names are linked to
-respective trending graphs for ease of navigation thru the test data.
+Separate tables are generated for each tested number of physical cores
+for VPP workers (1c, 2c, 4c). Test case names are linked to
+respective trending graphs for ease of navigation through the test data.
 
 Trendline Graphs
 ````````````````
 
-Trendline graphs show per test case measured MRR throughput values with
-associated gruop averages. The graphs are constructed as follows:
+Trendline graphs show measured per run averages of MRR throughput,
+group average values, and detected anomalies.
+The graphs are constructed as follows:
 
 - X-axis represents performance trend job build Id (csit-vpp-perf-mrr-
   daily-master-build).
-- Y-axis represents MRR throughput in Mpps.
+- Y-axis represents average MRR throughput in Mpps.
 - Markers to indicate anomaly classification:
 
   - Regression - red circle.
   - Progression - green circle.
 
-- The line shows average of each group.
+- The line shows average throughput of each group.
 
 In addition the graphs show dynamic labels while hovering over graph
 data points, representing (trend job build Id, MRR value) and the actual
@@ -208,18 +209,18 @@ data per test case. PT is designed as follows:
 
 2. Measurements and data calculations per test case:
 
-  a) Max Received Rate (MRR) - send packets at link rate over a trial
-     period, count total received packets, divide by trial period.
+  a) Max Received Rate (MRR) - for each trial measurement,
+     send packets at link rate for trial duration,
+     count total received packets, divide by trial duration.
 
-3. Archive MRR per test case.
+3. Archive MRR values per test case.
 4. Archive all counters collected at MRR.
 
 Performance Analysis (PA)
 `````````````````````````
 
-CSIT PA runs performance analysis including trendline calculation, trend
-compliance and anomaly detection using specified trend analysis metrics
-over the rolling window of last <N> sets of historical measurement data.
+CSIT PA runs performance analysis
+including anomaly detection as described above.
 PA is defined as follows:
 
 1. PA job triggers:
