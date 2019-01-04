@@ -246,3 +246,61 @@ class CpuUtils(object):
             cpu_range = "{}{}{}".format(cpu_list[0], sep, cpu_list[-1])
 
         return cpu_range
+
+    @staticmethod
+    def cpu_slice_of_list_for_nf(**kwargs):
+        """Return list of node related list of CPU numbers.
+
+        :param kwargs: Key-value pairs used to construct container.
+        :type kwargs: dict
+        :returns: Cpu numbers related to numa from argument.
+        :rtype: list
+        :raises RuntimeError: If we require more cpus than available or if
+        placement is not possible due to wrong parameters.
+        """
+        chains = kwargs['chains']
+        nodeness = kwargs['nodeness']
+        chain_id = kwargs['chain_id']
+        node_id = kwargs['node_id']
+        mtcr = kwargs['mtcr']
+        dtcr = kwargs['dtcr']
+        dtc = kwargs['dtc']
+
+        if chain_id - 1 >= chains:
+            raise RuntimeError("ChainID is higher than total number of chains!")
+        if node_id - 1 >= nodeness:
+            raise RuntimeError("NodeID is higher than chain nodeness!")
+
+        smt_used = CpuUtils.is_smt_enabled(kwargs['node']['cpuinfo'])
+        cpu_list = CpuUtils.cpu_list_per_node(kwargs['node'],
+                                              kwargs['cpu_node'], smt_used)
+        cpu_list_len = len(cpu_list)
+
+        mt_req = ((chains * nodeness) + mtcr - 1) / mtcr
+        dt_req = ((chains * nodeness) + dtcr - 1) / dtcr
+
+        if kwargs['skip_cnt'] + mt_req + dt_req > cpu_list_len:
+            raise RuntimeError("Not enough CPU cores available for placement!")
+
+        pre_offset = (node_id - 1) + (chain_id - 1) * nodeness
+        try:
+            mt_odd = (pre_offset / mt_req) & 1
+            mt_skip = kwargs['skip_cnt'] + (pre_offset % mt_req)
+            dt_skip = kwargs['skip_cnt'] + mt_req + (pre_offset % dt_req) * dtc
+        except ZeroDivisionError:
+            raise RuntimeError("Invalid placement combination!")
+
+        if smt_used:
+            cpu_list_0 = cpu_list[:cpu_list_len / CpuUtils.NR_OF_THREADS]
+            cpu_list_1 = cpu_list[cpu_list_len / CpuUtils.NR_OF_THREADS:]
+
+            mt_cpu_list = [cpu for cpu in cpu_list_1[mt_skip:mt_skip + 1]] \
+                if mt_odd else [cpu for cpu in cpu_list_0[mt_skip:mt_skip + 1]]
+
+            dt_cpu_list = [cpu for cpu in cpu_list_0[dt_skip:dt_skip + dtc]]
+            dt_cpu_list += [cpu for cpu in cpu_list_1[dt_skip:dt_skip + dtc]]
+        else:
+            mt_cpu_list = [cpu for cpu in cpu_list[mt_skip:mt_skip + 1]]
+            dt_cpu_list = [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
+
+        return mt_cpu_list + dt_cpu_list
