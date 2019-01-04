@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "663932b8_561f4827",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-01-04T12:12:07Z",
+      "side": 1,
+      "message": "**TODO**:\n\nOr a similar highlight, to be visible to anyone reading the rendered version.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 2
+      },
+      "revId": "fbbda70d15b9c7f0c0aa3b26352f0690b40e1352",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
