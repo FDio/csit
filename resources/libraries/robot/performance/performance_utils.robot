@@ -482,3 +482,54 @@
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Show runtime counters on all DUTs | ${nodes}
 | | Stop traffic on tg
+
+| Create network function CPU list
+| | [Documentation]
+| | ... | Create list of CPUs allocated for network function base on SUT/DUT
+| | ... | placement and other network functions placement.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: dictionary
+| | ... | - chains: Total number of chains. Type: integer
+| | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ... | - chain_id - Network function chain ID. Type: integer
+| | ... | - node_id - Network function node ID within chain. Type: integer
+| | ... | - mtcr - Main thread to core ratio. Type: integer
+| | ... | - dtcr - Dataplane thread to core ratio. Type: integer
+| | ... | - auto_scale - If True, use same amount of Dataplane threads for
+| | ... |   network function as DUT, otherwise use single physical core for
+| | ... |   every network function. Type: boolean
+| | ...
+| | ... | *Note:*
+| | ... | KW uses test variables \${cpu_count_int} set by
+| | ... | "Add worker threads and rxqueues to all DUTs"
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Create network function CPU list \| ${nodes['DUT1']} \
+| | ... | \| 1 \| 1 \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${dut} | ${chains}=${1} | ${nodeness}=${1} | ${chain_id}=${1}
+| | ... | ${node_id}=${1} | ${mtcr}=${2} | ${dtcr}=${1} | ${auto_scale}=${False}
+| | ...
+| | ${sut_sc}= | Set Variable | ${1}
+| | ${dut_mc}= | Set Variable | ${1}
+| | ${dut_dc}= | Set Variable | ${cpu_count_int}
+| | ${skip}= | Evaluate | ${sut_sc} + ${dut_mc} + ${dut_dc}
+| | ${dtc}= | Set Variable If | ${auto_scale} | ${cpu_count_int} | ${1}
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Create List | ${${dut}_if1}
+| | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Append To List | ${if_list} | ${${dut}_if2}
+| | ... | ELSE | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
+| | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
+| | ${nf_cpus}= | Cpu slice of list for NF | node=${nodes['${dut}']}
+| | ... | cpu_node=${dut_numa} | chains=${chains} | nodeness=${nodeness}
+| | ... | chain_id=${chain_id} | node_id=${node_id} | mtcr=${mtcr}
+| | ... | dtcr=${dtcr} | dtc=${dtc} | skip_cnt=${skip}
+| | Return From Keyword | ${nf_cpus}
