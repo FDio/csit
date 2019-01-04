@@ -6,20 +6,14 @@ Trending Methodology
 Overview
 --------
 
-// Below paragraph needs to be updated.
 This document describes a high-level design of a system for continuous
 performance measuring, trending and change detection for FD.io VPP SW
-data plane. It builds upon the existing FD.io CSIT framework with
-extensions to its throughput testing methodology, CSIT data analytics
-engine (PAL – Presentation-and-Analytics-Layer) and associated Jenkins
-jobs definitions.
+data plane (and other performance tests run withing CSIT sub-project).
 
-// Below paragraph needs to be updated.
-Proposed design replaces existing CSIT performance trending jobs and
-tests with new Performance Trending (PT) CSIT module and separate
+There is a Performance Trending (PT) CSIT module, and a separate
 Performance Analysis (PA) module ingesting results from PT and
 analysing, detecting and reporting any performance anomalies using
-historical trending data and statistical metrics. PA does also produce
+historical data and statistical metrics. PA does also produce
 trending dashboard and graphs with summary and drill-down views across
 all specified tests that can be reviewed and inspected regularly by
 FD.io developers and users community.
@@ -27,9 +21,9 @@ FD.io developers and users community.
 Performance Tests
 -----------------
 
-Performance trending is relies on Maximum Receive Rate
-(MRR) tests. MRR tests measure the packet forwarding rate under the
-maximum load offered by traffic generator over a set trial duration,
+Performance trending relies on Maximum Receive Rate (MRR) tests.
+MRR tests measure the packet forwarding rate, in multiple trials of set duration,
+under the maximum load offered by traffic generator
 regardless of packet loss. Maximum load for specified Ethernet frame
 size is set to the bi-directional link rate.
 
@@ -70,6 +64,15 @@ using normal distribution. While sometimes the samples within a group
 are far from being distributed normally, currently we do not have a
 better tractable model.
 
+Here, "sample" should be the result of single trial measurement,
+with group boundaries set only at test run granularity.
+But in order to avoid detecting causes unrelated to VPP performance,
+the default presentation (without /new/ in URL)
+takes average of all trials within the run as the sample.
+Effectively, this acts as a single trial with aggregate duration.
+
+Performance graphs always show the run average (not all trial results).
+
 The group boundaries are selected based on `Minimum Description Length`_.
 
 Minimum Description Length
@@ -108,13 +111,9 @@ for stdev and average of the first group,
 but for averages of subsequent groups we have chosen a distribution
 which disourages deliminating groups with averages close together.
 
-// Below paragraph needs to be updated.
-One part of our implementation which is not precise enough
-is handling of measurement precision.
-The minimal difference in MRR values is currently 0.1 pps
-(the difference of one packet over 10 second trial),
-but the code assumes the precision is 1.0.
-Also, all the calculations assume 1.0 is totally negligible,
+Our implementation assumes thef measuremen precision is 1.0 pps.
+Thus it is slightly wrong for trial durations other than 1.0 seconds.
+Also, all the calculations assume 1.0 pps is totally negligible,
 compared to stdev value.
 
 The group selection algorithm currently has no parameters,
@@ -138,6 +137,9 @@ Once the trend data is divided into groups, each group has its population averag
 The start of the following group is marked as a regression (or progression)
 if the new group's average is lower (higher) then the previous group's.
 
+In the text below, "average at time <t>", shorhand "AVG[t]"
+means "the group average of the group the sample at time <t> belongs to".
+
 Trend Compliance
 ````````````````
 
@@ -148,7 +150,6 @@ ago, AVG[last - 1week] and to the maximum of trend values over last
 quarter except last week, max(AVG[last - 3mths]..ANV[last - 1week]),
 respectively. This results in following trend compliance calculations:
 
-// Below table needs to be updated.
 +-------------------------+---------------------------------+-----------+-------------------------------------------+
 | Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                 |
 +=========================+=================================+===========+===========================================+
@@ -166,25 +167,26 @@ Performance Dashboard
 Dashboard tables list a summary of per test-case VPP MRR performance
 trend and trend compliance metrics and detected number of anomalies.
 
-Separate tables are generated for tested VPP worker-thread-core
-combinations (1t1c, 2t2c, 4t4c). Test case names are linked to
-respective trending graphs for ease of navigation thru the test data.
+Separate tables are generated for each tested number of physical cores
+for VPP workers (1c, 2c, 4c). Test case names are linked to
+respective trending graphs for ease of navigation through the test data.
 
 Trendline Graphs
 ````````````````
 
-Trendline graphs show per test case measured MRR throughput values with
-associated gruop averages. The graphs are constructed as follows:
+Trendline graphs show measured per run averages of MRR values,
+group average values, and detected anomalies.
+The graphs are constructed as follows:
 
 - X-axis represents performance trend job build Id (csit-vpp-perf-mrr-
   daily-master-build).
-- Y-axis represents MRR throughput in Mpps.
+- Y-axis represents run-average MRR value in Mpps.
 - Markers to indicate anomaly classification:
 
   - Regression - red circle.
   - Progression - green circle.
 
-- The line shows average of each group.
+- The line shows average MRR value of each group.
 
 In addition the graphs show dynamic labels while hovering over graph
 data points, representing (trend job build Id, MRR value) and the actual
@@ -207,18 +209,18 @@ data per test case. PT is designed as follows:
 
 2. Measurements and data calculations per test case:
 
-  a) Max Received Rate (MRR) - send packets at link rate over a trial
-     period, count total received packets, divide by trial period.
+  a) Max Received Rate (MRR) - for each trial measurement,
+     send packets at link rate for trial duration,
+     count total received packets, divide by trial duration.
 
-3. Archive MRR per test case.
+3. Archive MRR values per test case.
 4. Archive all counters collected at MRR.
 
 Performance Analysis (PA)
 `````````````````````````
 
-CSIT PA runs performance analysis including trendline calculation, trend
-compliance and anomaly detection using specified trend analysis metrics
-over the rolling window of last <N> sets of historical measurement data.
+CSIT PA runs performance analysis
+including anomaly detection as described above.
 PA is defined as follows:
 
 1. PA job triggers:
