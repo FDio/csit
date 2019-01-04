@@ -2303,17 +2303,14 @@
 | | ... | Append To List | ${if_list} | ${${dut}_if2}
 | | ... | ELSE | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
 | | ${dut_numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
-# Compute CPU placement for VM based on expected DUT placement.
-| | ${os_cpus}= | Set Variable | ${1}
-| | ${dut_main_cpus}= | Set Variable | ${1}
-| | ${dut_wk_cpus}= | Set Variable | ${cpu_count_int}
-| | ${vm_cpus}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus}
-| | ${skip_dut}= | Evaluate | ${dut_wk_cpus} + ${dut_main_cpus} + ${os_cpus}
-| | ${skip_cpu}= | Evaluate | ${skip_dut} + (${qemu_id} - ${1}) * ${vm_cpus}
-| | ${qemu_cpus}= | Cpu slice of list per node | ${nodes['${dut}']}
-| | ... | ${dut_numa} | skip_cnt=${skip_cpu} | cpu_cnt=${vm_cpus}
-| | ... | smt_used=${smt_used}
-| | ${vm_thrs}= | Get Length | ${qemu_cpus}
+# =============================================================================
+# =============================================================================
+| | ${nf_cpus}= | Create network function CPU list | ${dut} | ${dut_numa}
+| | ... | 1 | ${qemu_id}
+# =============================================================================
+# =============================================================================
+| | ${nf_cpus_count}= | Get Length | ${nf_cpus}
+| | Set test message | ${nf_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Queue Count | ${rxq_count_int}
 | | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
@@ -2325,13 +2322,14 @@
 | | ... | ${perf_qemu_path}-patch/bin/
 | | ... | ${perf_qemu_path}-base/bin/
 | | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${nodes['${dut}']}
-| | ... | apply_patch=${False}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${vm_thrs} | ${vm_thrs} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${nf_cpus_count} | ${nf_cpus_count}
+| | ... | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
 | | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
