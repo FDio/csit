@@ -6,6 +6,7 @@ Trending Methodology
 Overview
 --------
 
+// Below paragraph needs to be updated.
 This document describes a high-level design of a system for continuous
 performance measuring, trending and change detection for FD.io VPP SW
 data plane. It builds upon the existing FD.io CSIT framework with
@@ -13,6 +14,7 @@ extensions to its throughput testing methodology, CSIT data analytics
 engine (PAL – Presentation-and-Analytics-Layer) and associated Jenkins
 jobs definitions.
 
+// Below paragraph needs to be updated.
 Proposed design replaces existing CSIT performance trending jobs and
 tests with new Performance Trending (PT) CSIT module and separate
 Performance Analysis (PA) module ingesting results from PT and
@@ -25,7 +27,7 @@ FD.io developers and users community.
 Performance Tests
 -----------------
 
-Performance trending is currently relying on the Maximum Receive Rate
+Performance trending is relies on Maximum Receive Rate
 (MRR) tests. MRR tests measure the packet forwarding rate under the
 maximum load offered by traffic generator over a set trial duration,
 regardless of packet loss. Maximum load for specified Ethernet frame
@@ -44,11 +46,14 @@ Current parameters for performance trending MRR tests:
   - For 10GE NICs the maximum packet rate load is 2* 14.88 Mpps for 64B,
     a 10GE bi-directional link rate.
   - For 40GE NICs the maximum packet rate load is 2* 18.75 Mpps for 64B,
-    a 40GE bi-directional link sub-rate limited by TG 40GE NIC used,
-    XL710.
+    a 40GE bi-directional link sub-rate limited by the packet forwarding
+    capacity of 2-port 40GE NIC model (XL710) used on T-Rex Traffic
+    Generator.
 
-- **Trial duration**: 10sec.
-- **Execution frequency**: twice a day, every 12 hrs (02:00, 14:00 UTC).
+- **Trial duration**: 1 sec.
+- **Number of trials per test**: 10.
+- **Test execution frequency**: twice a day, every 12 hrs (02:00,
+  14:00 UTC).
 
 Note: MRR tests should be reporting bi-directional link rate (or NIC
 rate, if lower) if tested VPP configuration can handle the packet rate
@@ -62,7 +67,8 @@ Trend Analysis
 All measured performance trend data is treated as time-series data that
 can be modelled as concatenation of groups, each group modelled
 using normal distribution. While sometimes the samples within a group
-are far from being distributed normally, we do not have a better tractable model.
+are far from being distributed normally, currently we do not have a
+better tractable model.
 
 The group boundaries are selected based on `Minimum Description Length`_.
 
@@ -73,7 +79,7 @@ Minimum Description Length
 of `Occam's razor`_ principle.
 
 The general formulation mandates to evaluate a large set of models,
-but for anomaly detection purposes, it is usefuls to consider
+but for anomaly detection purposes, it is useful to consider
 a smaller set of models, so that scoring and comparing them is easier.
 
 For each candidate model, the data should be compressed losslessly,
@@ -102,6 +108,7 @@ for stdev and average of the first group,
 but for averages of subsequent groups we have chosen a distribution
 which disourages deliminating groups with averages close together.
 
+// Below paragraph needs to be updated.
 One part of our implementation which is not precise enough
 is handling of measurement precision.
 The minimal difference in MRR values is currently 0.1 pps
@@ -141,6 +148,7 @@ ago, AVG[last - 1week] and to the maximum of trend values over last
 quarter except last week, max(AVG[last - 3mths]..ANV[last - 1week]),
 respectively. This results in following trend compliance calculations:
 
+// Below table needs to be updated.
 +-------------------------+---------------------------------+-----------+-------------------------------------------+
 | Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                 |
 +=========================+=================================+===========+===========================================+
