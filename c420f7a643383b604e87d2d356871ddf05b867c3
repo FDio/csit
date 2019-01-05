@@ -278,6 +278,30 @@
     },
     {
       "key": {
+        "uuid": "601f8c3b_c4b04cce",
+        "filename": "resources/tools/trex/trex_stateless_profile.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2019-01-05T06:44:35Z",
+      "side": 1,
+      "message": "Hi Peter,\n\nThere have below codes use \"profile_file\", \n\n        if \"macsrc\" in profile_file:\n\nso It can not move to simple_burst level.\n\nBest Regards\nYulong Pei",
+      "parentUuid": "2553878c_40cd4b90",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 19
+      },
+      "revId": "c420f7a643383b604e87d2d356871ddf05b867c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7df3c94_077963ae",
         "filename": "resources/tools/trex/trex_stateless_profile.py",
         "patchSetId": 3
