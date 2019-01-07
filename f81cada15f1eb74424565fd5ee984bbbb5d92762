@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1593d87d_7240b875",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-07T12:07:19Z",
+      "side": 1,
+      "message": "Unidirection param missing",
+      "range": {
+        "startLine": 555,
+        "startChar": 0,
+        "endLine": 578,
+        "endChar": 60
+      },
+      "revId": "f81cada15f1eb74424565fd5ee984bbbb5d92762",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
