@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -391,6 +391,12 @@ class Specification(object):
                 self._cfg_yaml[idx]["build-dirs"]
         except KeyError:
             self._specification["environment"]["build-dirs"] = None
+
+        try:
+            self._specification["environment"]["testbeds"] = \
+                self._cfg_yaml[idx]["testbeds"]
+        except KeyError:
+            self._specification["environment"]["testbeds"] = None
 
         logging.info("Done.")
 
