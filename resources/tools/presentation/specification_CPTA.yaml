@@ -151,20 +151,20 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 300
+        start: 346
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
-        start: 35
+        start: 43
         end: "lastCompletedBuild"
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 300
+        start: 346
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-hsw:
       csit-dpdk-perf-mrr-weekly-master:
-        start: 35
+        start: 43
         end: "lastCompletedBuild"
 
     # 3n-skx
@@ -173,7 +173,7 @@
         start: 100
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
-        start: 7
+        start: 8
         end: "lastCompletedBuild"
 
     plot-performance-trending-vpp-3n-skx:
@@ -183,7 +183,7 @@
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
-        start: 7
+        start: 8
         end: "lastCompletedBuild"
 
     # 2n-skx
@@ -192,7 +192,7 @@
         start: 100
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
-        start: 7
+        start: 8
         end: "lastCompletedBuild"
 
     plot-performance-trending-vpp-2n-skx:
@@ -202,7 +202,7 @@
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
-        start: 7
+        start: 8
         end: "lastCompletedBuild"
 
   plot-layouts:
@@ -293,10 +293,10 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 300
+      start: 346
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master:
-      start: 35
+      start: 43
       end: "lastCompletedBuild"
 
     # 3n-skx
@@ -304,7 +304,7 @@
       start: 100
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
-      start: 7
+      start: 8
       end: "lastCompletedBuild"
 
     # 2n-skx
@@ -312,7 +312,7 @@
       start: 100
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master-2n-skx:
-      start: 7
+      start: 8
       end: "lastCompletedBuild"
 
 -
@@ -345,7 +345,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-1t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -365,7 +364,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-2t2c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -385,7 +383,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-4t4c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -457,7 +454,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -477,7 +473,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -497,7 +492,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -569,7 +563,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc01-64b-2t1c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -589,7 +582,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc05-64b-4t2c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
@@ -609,7 +601,6 @@
     # This test is "ndrdisc" test and was improperly tagged. It was fixed
     # but it remains in the old output.xml files.
   - "tests.vpp.perf.l2.10ge2p1x520-eth-l2bdscale1mmaclrn-mrr.tc09-64b-8t4c-eth-l2bdscale1mmaclrn-ndrdisc"
-  outlier-const: 1.5
   window: 14
   long-trend-window: 180
 
