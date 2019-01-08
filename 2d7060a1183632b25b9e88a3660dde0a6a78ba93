@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e19a890_9c4be167",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-01-08T12:53:54Z",
+      "side": 1,
+      "message": "intend 4 spaces to the right.",
+      "range": {
+        "startLine": 254,
+        "startChar": 8,
+        "endLine": 254,
+        "endChar": 58
+      },
+      "revId": "2d7060a1183632b25b9e88a3660dde0a6a78ba93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2fea4c0_4f9b97fa",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 2284,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-01-08T12:53:54Z",
+      "side": 1,
+      "message": "update",
+      "range": {
+        "startLine": 2280,
+        "startChar": 0,
+        "endLine": 2284,
+        "endChar": 28
+      },
+      "revId": "2d7060a1183632b25b9e88a3660dde0a6a78ba93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a00dbad_4f4e29ed",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 2426,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-01-08T12:53:54Z",
+      "side": 1,
+      "message": "update",
+      "range": {
+        "startLine": 2422,
+        "startChar": 0,
+        "endLine": 2426,
+        "endChar": 54
+      },
+      "revId": "2d7060a1183632b25b9e88a3660dde0a6a78ba93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
