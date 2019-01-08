@@ -21,13 +21,14 @@
 | ... | Set up 3-node performance topology with DUT's NIC model | L2
 | ... | Intel-X710
 | ... | AND | Set up performance test suite with MEMIF
-| ... | AND | Set up performance topology with containers
+| ... | AND | Set up performance topology with containers | chains=${1}
+| ... | nodeness=${1}
 | ...
 | Suite Teardown | Tear down 3-node performance topology with container
 | ...
 | Test Setup | Run Keywords
 | ... | Set up performance test
-| ... | AND | Restart VPP in all 'VNF' containers
+| ... | AND | Restart VPP in all 'CNF' containers
 | ...
 | Test Teardown | Tear down performance mrr test
 | ...
@@ -60,16 +61,10 @@
 | ${s_limit}= | ${10000000000}
 # Traffic profile
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
-# Container settings
-| ${container_count}= | ${1}
+# Container
+| ${cpu_count_int}= | ${4}
 | ${container_engine}= | Docker
-| ${container_image}= | ubuntu:xenial-20180412
-| ${container_install_dkms}= | ${TRUE}
 | ${container_chain_topology}= | cross_horiz
-# CPU settings
-| ${system_cpus}= | ${1}
-| ${vpp_cpus}= | ${5}
-| ${container_cpus}= | ${5}
 
 *** Keywords ***
 | Local Template
