@@ -472,13 +472,23 @@
 | | [Documentation]
 | | ... | Suite preparation phase that starts containers
 | | ...
+| | ... | *Arguments:*
+| | ... | - chains: Total number of chains. Type: integer
+| | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up performance topology with containers \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | ...
 | | Set Suite Variable | @{container_groups} | @{EMPTY}
-| | Construct VNF containers on all DUTs
-| | Acquire all 'VNF' containers
-| | Create all 'VNF' containers
-| | Configure VPP in all 'VNF' containers
+| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
+| | Acquire all 'CNF' containers
+| | Create all 'CNF' containers
+| | Configure VPP in all 'CNF' containers
 | | Stop VPP service on all DUTs | ${nodes}
-| | Install VPP in all 'VNF' containers
+| | Install VPP in all 'CNF' containers
 | | Start VPP service on all DUTs | ${nodes}
 
 | Set up performance test suite with MEMIF
