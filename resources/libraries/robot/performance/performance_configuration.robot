@@ -983,8 +983,8 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | ${sock1}= | Set Variable | memif-DUT1_VNF
-| | ${sock2}= | Set Variable | memif-DUT2_VNF
+| | ${sock1}= | Set Variable | memif-DUT1_CNF1
+| | ${sock2}= | Set Variable | memif-DUT2_CNF1
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
 | | ... | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2 | ${rxq_count_int}
 | | ... | ${rxq_count_int}
@@ -2821,7 +2821,7 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-\${dut}_VNF\${number}-\${sid}
+| | ... | - /tmp/memif-\${dut}_CNF\${number}-\${sid}
 | | ...
 | | ... | KW uses test variable \${rxq_count_int} set by KW Add worker threads
 | | ... | and rxqueues to all DUTs
@@ -2834,8 +2834,8 @@
 | | [Arguments] | ${dut} | ${count}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${count}+1
-| | | ${sock1}= | Set Variable | memif-${dut}_VNF
-| | | ${sock2}= | Set Variable | memif-${dut}_VNF
+| | | ${sock1}= | Set Variable | memif-${dut}_CNF1
+| | | ${sock2}= | Set Variable | memif-${dut}_CNF1
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
@@ -2880,7 +2880,7 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-\${dut}_VNF\${number}-\${sid}
+| | ... | - /tmp/memif-\${dut}_CNF\${number}-\${sid}
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2894,8 +2894,8 @@
 | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if2}
 | | ... | ${bd_id2}
 | | :FOR | ${number} | IN RANGE | 1 | ${count}+1
-| | | ${sock1}= | Set Variable | memif-${dut}_VNF
-| | | ${sock2}= | Set Variable | memif-${dut}_VNF
+| | | ${sock1}= | Set Variable | memif-${dut}_CNF1
+| | | ${sock2}= | Set Variable | memif-${dut}_CNF1
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
@@ -2966,8 +2966,8 @@
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | ...
 | | ${number}= | Set Variable | ${1}
-| | ${sock1}= | Set Variable | memif-DUT1_VNF
-| | ${sock2}= | Set Variable | memif-DUT1_VNF
+| | ${sock1}= | Set Variable | memif-DUT1_CNF1
+| | ${sock2}= | Set Variable | memif-DUT1_CNF1
 | | ${memif_if1_name}= | Set Variable | DUT1-memif-${number}-if1
 | | ${memif_if2_name}= | Set Variable | DUT1-memif-${number}-if2
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock2}
@@ -2978,9 +2978,9 @@
 | | Add interface to bridge domain | ${dut1} | ${${memif_if2_name}} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | ${sock1}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | memif-DUT2_VNF
+| | ... | Set Variable | memif-DUT2_CNF1
 | | ${sock2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | memif-DUT2_VNF
+| | ... | Set Variable | memif-DUT2_CNF1
 | | ${memif_if1_name}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | DUT2-memif-${number}-if1
 | | ${memif_if2_name}= | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -3015,7 +3015,7 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-\${dut}_VNF\${number}-\${sid}
+| | ... | - /tmp/memif-\${dut}_CNF\${number}-\${sid}
 | | ...
 | | ... | *Example:*
 | | ...
@@ -3080,8 +3080,8 @@
 | | ${fib_table_1}= | Evaluate | ${fib_table_1} - ${1}
 | | ${ip_base_start}= | Set Variable | ${31}
 | | :FOR | ${number} | IN RANGE | 1 | ${count+${1}}
-| | | ${sock1}= | Set Variable | memif-${dut}_VNF
-| | | ${sock2}= | Set Variable | memif-${dut}_VNF
+| | | ${sock1}= | Set Variable | memif-${dut}_CNF1
+| | | ${sock2}= | Set Variable | memif-${dut}_CNF1
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
@@ -3155,7 +3155,7 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-DUT1_VNF\${number}-\${sid}
+| | ... | - /tmp/memif-DUT1_CNF\${number}-\${sid}
 | | ...
 | | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
 | | ... | and rxqueues to all DUTs
@@ -3168,7 +3168,7 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${sock}= | Set Variable | memif-${dut}_VNF
+| | | ${sock}= | Set Variable | memif-${dut}_CNF1
 | | | Set up single memif interface on DUT node | ${nodes['${dut}']} | ${sock}
 | | | ... | ${number} | ${dut}-memif-${number}-if1 | ${rxq_count_int}
 | | | ... | ${rxq_count_int}
@@ -3187,7 +3187,7 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-DUT1_VNF\${number}-\${sid}
+| | ... | - /tmp/memif-DUT1_CNF\${number}-\${sid}
 | | ...
 | | ... | KW uses test variable ${rxq_count_int} set by KW Add worker threads
 | | ... | and rxqueues to all DUTs
@@ -3200,7 +3200,7 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${sock}= | Set Variable | memif-${dut}_VNF
+| | | ${sock}= | Set Variable | memif-${dut}_CNF1
 | | | Set up single memif interface on DUT node | ${nodes['${dut}']} | ${sock}
 | | | ... | ${number} | ${dut}-memif-${number}-if1 | ${rxq_count_int}
 | | | ... | ${rxq_count_int}
