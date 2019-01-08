@@ -20,7 +20,6 @@ from collections import OrderedDict, Counter
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
-from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
@@ -77,24 +76,6 @@ class ContainerManager(object):
         # Set additional environmental variables
         setattr(self.engine.container, 'env',
                 'MICROSERVICE_LABEL={label}'.format(label=kwargs['name']))
-
-        # Set cpuset.cpus cgroup
-        skip_cnt = kwargs['cpu_skip']
-        smt_used = CpuUtils.is_smt_enabled(kwargs['node']['cpuinfo'])
-        if not kwargs['cpu_shared']:
-            skip_cnt += kwargs['i'] * kwargs['cpu_count']
-        self.engine.container.cpuset_cpus = \
-            CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
-                                                cpu_node=kwargs['cpuset_mems'],
-                                                skip_cnt=skip_cnt,
-                                                cpu_cnt=1,
-                                                smt_used=False) \
-            + \
-            CpuUtils.cpu_slice_of_list_per_node(node=kwargs['node'],
-                                                cpu_node=kwargs['cpuset_mems'],
-                                                skip_cnt=skip_cnt+1,
-                                                cpu_cnt=kwargs['cpu_count']-1,
-                                                smt_used=smt_used)
 
         # Store container instance
         self.containers[kwargs['name']] = self.engine.container
@@ -326,19 +307,10 @@ class ContainerEngine(object):
         """Install VPP inside a container."""
         self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
         self.execute('apt-get update')
-        if self.container.install_dkms:
-            self.execute(
-                'apt-get install -y dkms && '
-                'dpkg -i --force-all '
-                '{guest_dir}/openvpp-testing/download_dir/*.deb'.
-                format(guest_dir=self.container.mnt[0].split(':')[1]))
-        else:
-            self.execute(
-                'for i in $(ls -I \"*dkms*\" '
-                '{guest_dir}/openvpp-testing/download_dir/); do '
-                'dpkg -i --force-all '
-                '{guest_dir}/openvpp-testing/download_dir/$i; done'.
-                format(guest_dir=self.container.mnt[0].split(':')[1]))
+        self.execute(
+            'dpkg -i --force-all '
+            '{guest_dir}/openvpp-testing/download_dir/*.deb'.
+            format(guest_dir=self.container.mnt[0].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')
         self.execute('echo "{config}" >> {config_file}'.
@@ -685,10 +657,10 @@ class Docker(ContainerEngine):
             else:
                 return
 
-        image = self.container.image if self.container.image else\
-            "ubuntu:xenial-20180412"
+        if not self.container.image:
+            self.container.image = "snergster/csit-sut:latest"
 
-        cmd = 'docker pull {image}'.format(image=image)
+        cmd = 'docker pull {image}'.format(image=self.container.image)
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
         if int(ret) != 0:
