@@ -33,9 +33,6 @@
 | | [Arguments] | ${chains}=${1} | ${nodeness}=${1} | ${chain_id}=${1}
 | | ... | ${node_id}=${1}
 | | ...
-| | ${group}= | Set Variable | CNF
-| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
-| | ... | engine=${container_engine} | WITH NAME | ${group}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
@@ -43,10 +40,10 @@
 | | | ${nf_cpus}= | Create network function CPU list | ${dut}
 | | | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${chain_id}
 | | | ... | node_id=${node_id} | auto_scale=${True}
-| | | Run Keyword | ${group}.Construct container
-| | | ... | name=${dut}_${group}${chain_id}${node_id} | node=${nodes['${dut}']}
-| | | ... | mnt=${mnt} | env=${env} | cpuset_cpus=${nf_cpus}
-| | Append To List | ${container_groups} | ${group}
+| | | Run Keyword | ${container_group}.Construct container
+| | | ... | name=${dut}_${container_group}${chain_id}${node_id}
+| | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
+| | | ... | cpuset_cpus=${nf_cpus}
 
 | Construct chain of containers on all DUTs
 | | [Documentation] | Construct 1 chain of 1..N CNFs on all DUT nodes.
