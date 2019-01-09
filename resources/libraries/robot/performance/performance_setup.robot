@@ -468,29 +468,6 @@
 | | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
 | | ... | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
-| Set up performance topology with containers
-| | [Documentation]
-| | ... | Suite preparation phase that starts containers
-| | ...
-| | ... | *Arguments:*
-| | ... | - chains: Total number of chains. Type: integer
-| | ... | - nodeness: Total number of nodes per chain. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set up performance topology with containers \| 1 \| 1 \|
-| | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
-| | ...
-| | Set Suite Variable | @{container_groups} | @{EMPTY}
-| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
-| | Acquire all 'CNF' containers
-| | Create all 'CNF' containers
-| | Configure VPP in all 'CNF' containers
-| | Stop VPP service on all DUTs | ${nodes}
-| | Install VPP in all 'CNF' containers
-| | Start VPP service on all DUTs | ${nodes}
-
 | Set up performance test suite with MEMIF
 | | [Documentation]
 | | ... | Append memif_plugin.so to the list of enabled plugins.
@@ -601,29 +578,11 @@
 | | ...
 | | Teardown traffic generator | ${tg}
 
-| Tear down 2-node performance topology with container
-| | [Documentation]
-| | ... | Suite teardown phase with traffic generator teardown and container
-| | ... | destroy.
-| | ...
-| | Teardown traffic generator | ${tg}
-| | :FOR | ${group} | IN | @{container_groups}
-| | | Destroy all '${group}' containers
-
 | Tear down 3-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ...
 | | Teardown traffic generator | ${tg}
-
-| Tear down 3-node performance topology with container
-| | [Documentation]
-| | ... | Suite teardown phase with traffic generator teardown and container
-| | ... | destroy.
-| | ...
-| | Teardown traffic generator | ${tg}
-| | :FOR | ${group} | IN | @{container_groups}
-| | | Destroy all '${group}' containers
 
 # Tests setups
 
@@ -654,6 +613,33 @@
 | | ... | pods/contiv-sfc-controller.yaml
 | | Apply Kubernetes resource on all duts | ${nodes}
 | | ... | pods/contiv-vswitch.yaml
+
+| Set up performance test with containers
+| | [Documentation]
+| | ... | Common test setup for performance tests with containers
+| | ...
+| | ... | *Arguments:*
+| | ... | - chains: Total number of chains. Type: integer
+| | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up performance test with containers \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | ...
+| | Set Test Variable | @{container_groups} | @{EMPTY}
+| | Set Test Variable | ${container_group} | CNF
+| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | ... | engine=${container_engine} | WITH NAME | ${container_group}
+| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
+| | Acquire all '${container_group}' containers
+| | Create all '${container_group}' containers
+| | Configure VPP in all '${container_group}' containers
+| | Stop VPP service on all DUTs | ${nodes}
+| | Install VPP in all '${container_group}' containers
+| | Start VPP service on all DUTs | ${nodes}
+| | Append To List | ${container_groups} | ${container_group}
 
 # Tests teardowns
 
@@ -699,6 +685,13 @@
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Show statistics on all DUTs | ${nodes}
+
+| Tear down performance test with container
+| | [Documentation]
+| | ... | Common test teardown for performance tests which uses containers.
+| | ...
+| | :FOR | ${container_group} | IN | @{container_groups}
+| | | Destroy all '${container_group}' containers
 
 | Tear down performance test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for performance tests which use
