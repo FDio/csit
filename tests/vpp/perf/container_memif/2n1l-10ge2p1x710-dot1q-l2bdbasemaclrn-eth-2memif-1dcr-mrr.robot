@@ -21,16 +21,14 @@
 | ... | Set up 2-node performance topology with DUT's NIC model | L2
 | ... | Intel-X710
 | ... | AND | Set up performance test suite with MEMIF
-| ... | AND | Set up performance topology with containers | chains=${1}
-| ... | nodeness=${1}
 | ...
-| Suite Teardown | Tear down 2-node performance topology with container
+| Suite Teardown | Tear down 2-node performance topology
 | ...
-| Test Setup | Run Keywords
-| ... | Set up performance test
-| ... | AND | Restart VPP in all 'CNF' containers
+| Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance mrr test
+| Test Teardown | Run Keywords
+| ... | Tear down performance mrr test
+| ... | AND | Tear down performance test with container
 | ...
 | Test Template | Local Template
 | ...
@@ -66,7 +64,6 @@
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-dot1qip4asym-ip4src254
 # Container
-| ${cpu_count_int}= | ${4}
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain
 
@@ -91,6 +88,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
+| | And Set up performance test with containers | chains=${1} | nodeness=${1}
 | | When Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | Then Traffic should pass with maximum rate
