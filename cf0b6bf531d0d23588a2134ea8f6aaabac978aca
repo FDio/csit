@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "323d9a88_90c427d0",
+        "filename": "resources/libraries/bash/lb/lb_l3dsr.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-09T10:09:29Z",
+      "side": 1,
+      "message": "The only one I think is nsh_sfc which is obsolete and was supposed to be updated to utilize VAT.\n \nWith your approach the code is not maintainable and cannot be reused. So no one can benefit and reuse your work for other testing like using LB keyword to configure with other protocols in other tests. It is static. And worst of all, you are not able to detect or recover from error in configuration. You are not able to detect Interface IDs. You are not able to detect if VPP is UP and burning 2*9s of execution time if vpp comes in 1s with this:\n\nsudo service vpp restart || exit 1\nsleep 10",
+      "parentUuid": "1fdfa050_8f8692bf",
+      "revId": "cf0b6bf531d0d23588a2134ea8f6aaabac978aca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3db841fa_408a5772",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 1
