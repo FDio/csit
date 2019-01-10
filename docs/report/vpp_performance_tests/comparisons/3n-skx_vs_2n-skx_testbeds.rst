@@ -23,21 +23,29 @@ NDR Comparison
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII NDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-ndr.txt>`_
-  - `CSV NDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-ndr.csv>`_
+  - `ASCII NDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-1c-ndr.txt>`_
+  - `ASCII NDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-2c-ndr.txt>`_
+  - `CSV NDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-1c-ndr.csv>`_
+  - `CSV NDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-2c-ndr.csv>`_
 
 PDR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII PDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-pdr.txt>`_
-  - `CSV PDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-pdr.csv>`_
+  - `ASCII PDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-1c-pdr.txt>`_
+  - `ASCII PDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-2c-pdr.txt>`_
+  - `CSV PDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-1c-pdr.csv>`_
+  - `CSV PDR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-2c-pdr.csv>`_
 
 MRR Comparison
 ~~~~~~~~~~~~~~
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-mrr.txt>`_
-  - `CSV MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-mrr.csv>`_
+  - `ASCII MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-1c-mrr.txt>`_
+  - `ASCII MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-2c-mrr.txt>`_
+  - `ASCII MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-4c-mrr.txt>`_
+  - `CSV MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-1c-mrr.csv>`_
+  - `CSV MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-2c-mrr.csv>`_
+  - `CSV MRR comparison <../../_static/vpp/performance-compare-topologies-3n-skx-2n-skx-4c-mrr.csv>`_
