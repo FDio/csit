@@ -152,7 +152,7 @@ class ContainerManager(object):
             self.engine.restart_vpp()
 
     def configure_vpp_in_all_containers(self, chain_topology,
-                                        dut1_if=None, dut2_if=None):
+                                        dut1_if=None, dut2_if=None, memif_rx_mode='polling'):
         """Configure VPP in all containers.
 
         :param chain_topology: Topology used for chaining containers can be
@@ -161,7 +161,7 @@ class ContainerManager(object):
             interface in container (only single container can be configured).
         :param dut1_if: Interface on DUT1 directly connected to DUT2.
         :param dut2_if: Interface on DUT2 directly connected to DUT1.
-        :type container_topology: str
+        :type chain_topology: str
         :type dut1_if: str
         :type dut2_if: str
         """
@@ -178,6 +178,14 @@ class ContainerManager(object):
                 mid2 = i % mod + 1
                 sid1 = i % mod * 2 + 1
                 sid2 = i % mod * 2 + 2
+                if memif_rx_mode == 'interrupt':
+                    memif1_rx_mode = 'set interface rx-mode memif{sid}/{mid} ' \
+                                     'interrupt'.format(mid=mid1, sid=sid1)
+                    memif2_rx_mode = 'set interface rx-mode memif{sid}/{mid} ' \
+                                     'interrupt'.format(mid=mid2, sid=sid2)
+                else:
+                    memif1_rx_mode = ''
+                    memif2_rx_mode = ''
                 self.engine.container = self.containers[container]
                 self.engine.create_vpp_startup_config()
                 self.engine.create_vpp_exec_config(container_vat_template, \
@@ -185,7 +193,9 @@ class ContainerManager(object):
                     socket1='memif-{c.name}-{sid}'. \
                     format(c=self.engine.container, sid=sid1), \
                     socket2='memif-{c.name}-{sid}'. \
-                    format(c=self.engine.container, sid=sid2))
+                    format(c=self.engine.container, sid=sid2), \
+                    memif1_rx_mode=memif1_rx_mode, \
+                    memif2_rx_mode=memif2_rx_mode)
         elif chain_topology == 'cross_horiz':
             if mod > 1:
                 raise RuntimeError('Container chain topology {topology} '
@@ -355,9 +365,9 @@ class ContainerEngine(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
-        # We will pop first core from list to be main core
+        # We will pop the first core from the list to be a main core
         vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
-        # if this is not only core in list, the rest will be used as workers.
+        # If more cores in the list, the rest will be used as workers.
         if cpuset_cpus:
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
@@ -388,6 +398,23 @@ class ContainerEngine(object):
         vpp_config.add_plugin('disable', 'default')
         vpp_config.add_plugin('enable', 'dpdk_plugin.so')
         vpp_config.add_plugin('enable', 'memif_plugin.so')
+
+        # Apply configuration
+        self.execute('mkdir -p /etc/vpp/')
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
+
+    def create_vpp_startup_config_func_dev(self):
+        """Create startup configuration of VPP on container for functional
+        vpp_device tests.
+        """
+        # Create config instance
+        vpp_config = VppConfigGenerator()
+        vpp_config.set_node(self.container.node)
+        vpp_config.add_unix_cli_listen()
+        vpp_config.add_unix_nodaemon()
+        vpp_config.add_unix_exec('/tmp/running.exec')
+        vpp_config.add_plugin('disable', 'dpdk_plugin.so')
 
         # Apply configuration
         self.execute('mkdir -p /etc/vpp/')
