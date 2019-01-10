@@ -28,8 +28,8 @@
 | | ... | Type: string
 | | ... | - ${memif_if2} - Name of the second Memif interface (Optional).
 | | ... | Type: string
-| | ... | - ${rxq} - RX queues. Type: integer
-| | ... | - ${txq} - TX queues. Type: integer
+| | ... | - ${rxq} - RX queues; 0 means do not set. Type: integer
+| | ... | - ${txq} - TX queues; 0 means do not set. Type: integer
 | | ... | - ${role} - Memif role. Type: string
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:

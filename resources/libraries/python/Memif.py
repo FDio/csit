@@ -33,8 +33,8 @@ class Memif(object):
         :param filename: Memif interface socket filename.
         :param mid: Memif interface ID.
         :param sid: Socket ID.
-        :param rxq: Number of RX queues.
-        :param txq: Number of TX queues.
+        :param rxq: Number of RX queues; 0 means do not set.
+        :param txq: Number of TX queues; 0 means do not set.
         :param role: Memif interface role [master|slave]. Default is master.
         :type node: dict
         :type filename: str
@@ -48,12 +48,15 @@ class Memif(object):
         :raises ValueError: If command 'create memif' fails.
         """
 
+        rx_q = '' if rxq == 0 else 'rx-queues {rxq}'.format(rxq=rxq)
+        tx_q = '' if rxq == 0 else 'tx-queues {txq}'.format(txq=txq)
+
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 'memif_socket_filename_add_del.vat',
                 add_del='add', id=sid, filename='/tmp/'+filename)
             vat.vat_terminal_exec_cmd_from_template(
-                'memif_create.vat', id=mid, socket=sid, rxq=rxq, txq=txq,
+                'memif_create.vat', id=mid, socket=sid, rx_q=rx_q, tx_q=tx_q,
                 role=role)
             if 'sw_if_index' in vat.vat_stdout:
                 try:
