@@ -1,1 +1,1 @@
-memif_create id {id} socket-id {socket} {role} rx-queues {rxq} tx-queues {txq}
+memif_create id {id} socket-id {socket} {role} {rx_q} {tx_q}
