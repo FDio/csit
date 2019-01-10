@@ -3001,10 +3001,11 @@
 | | ...
 | | [Arguments] | ${count}=${1}
 | | ...
+| | Set interfaces in path up
+| | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
-| | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain with memif pairs on DUT node
