@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -151,19 +151,16 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             self.engine.restart_vpp()
 
-    def configure_vpp_in_all_containers(self, chain_topology,
-                                        dut1_if=None, dut2_if=None):
+    def configure_vpp_in_all_containers(self, chain_topology, **kwargs):
         """Configure VPP in all containers.
 
         :param chain_topology: Topology used for chaining containers can be
             chain or cross_horiz. Chain topology is using 1 memif pair per
             container. Cross_horiz topology is using 1 memif and 1 physical
             interface in container (only single container can be configured).
-        :param dut1_if: Interface on DUT1 directly connected to DUT2.
-        :param dut2_if: Interface on DUT2 directly connected to DUT1.
-        :type container_topology: str
-        :type dut1_if: str
-        :type dut2_if: str
+        :param kwargs: Named parameters.
+        :type chain_topology: str
+        :param kwargs: dict
         """
         # Count number of DUTs based on node's host information
         dut_cnt = len(Counter([self.containers[container].node['host']
@@ -180,12 +177,15 @@ class ContainerManager(object):
                 sid2 = i % mod * 2 + 2
                 self.engine.container = self.containers[container]
                 self.engine.create_vpp_startup_config()
-                self.engine.create_vpp_exec_config(container_vat_template, \
-                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2, \
-                    socket1='memif-{c.name}-{sid}'. \
-                    format(c=self.engine.container, sid=sid1), \
-                    socket2='memif-{c.name}-{sid}'. \
-                    format(c=self.engine.container, sid=sid2))
+                c_name = self.engine.container.name
+                guest_dir = self.engine.container.mnt[0].split(':')[1]
+                self.engine.create_vpp_exec_config(
+                    container_vat_template,
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    socket1='{dir}/memif-{c_name}-{sid}'.
+                            format(c_name=c_name, sid=sid1, dir=guest_dir),
+                    socket2='{dir}/memif-{c_name}-{sid}'.
+                            format(c_name=c_name, sid=sid2, dir=guest_dir))
         elif chain_topology == 'cross_horiz':
             if mod > 1:
                 raise RuntimeError('Container chain topology {topology} '
@@ -194,7 +194,17 @@ class ContainerManager(object):
             for i, container in enumerate(self.containers):
                 mid1 = i % mod + 1
                 sid1 = i % mod * 2 + 1
+                try:
+                    dut1_if = kwargs['dut1_if']
+                except KeyError:
+                    raise AttributeError('Missing dut1_if parameter.')
+                try:
+                    dut2_if = kwargs['dut2_if']
+                except KeyError:
+                    raise AttributeError('Missing dut2_if parameter.')
                 self.engine.container = self.containers[container]
+                c_name = self.engine.container.name
+                guest_dir = self.engine.container.mnt[0].split(':')[1]
                 if 'DUT1' in self.engine.container.name:
                     if_pci = Topology.get_interface_pci_addr( \
                         self.engine.container.node, dut1_if)
@@ -206,10 +216,30 @@ class ContainerManager(object):
                     if_name = Topology.get_interface_name( \
                         self.engine.container.node, dut2_if)
                 self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
-                self.engine.create_vpp_exec_config(container_vat_template, \
-                    mid1=mid1, sid1=sid1, if_name=if_name, \
-                    socket1='memif-{c.name}-{sid}'. \
-                    format(c=self.engine.container, sid=sid1))
+                self.engine.create_vpp_exec_config(
+                    container_vat_template,
+                    mid1=mid1, sid1=sid1, if_name=if_name,
+                    socket1='{dir}/memif-{c_name}-{sid}'.
+                            format(c_name=c_name, sid=sid1, dir=guest_dir))
+        elif chain_topology == 'chain_functional':
+            for i, container in enumerate(self.containers):
+                mid1 = i % mod + 1
+                mid2 = i % mod + 1
+                sid1 = i % mod * 2 + 1
+                sid2 = i % mod * 2 + 2
+                memif_rx_mode = 'interrupt'
+                self.engine.container = self.containers[container]
+                self.engine.create_vpp_startup_config_func_dev()
+                c_name = self.engine.container.name
+                guest_dir = self.engine.container.mnt[0].split(':')[1]
+                self.engine.create_vpp_exec_config(
+                    container_vat_template,
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    socket1='{dir}/memif-{c_name}-{sid}'.
+                            format(c_name=c_name, sid=sid1, dir=guest_dir),
+                    socket2='{dir}/memif-{c_name}-{sid}'.
+                            format(c_name=c_name, sid=sid2, dir=guest_dir),
+                    rx_mode=memif_rx_mode)
         else:
             raise RuntimeError('Container topology {topology} not implemented'.
                                format(topology=chain_topology))
@@ -355,9 +385,9 @@ class ContainerEngine(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
-        # We will pop first core from list to be main core
+        # We will pop the first core from the list to be a main core
         vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
-        # if this is not only core in list, the rest will be used as workers.
+        # If more cores in the list, the rest will be used as workers.
         if cpuset_cpus:
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
@@ -388,6 +418,23 @@ class ContainerEngine(object):
         vpp_config.add_plugin('disable', 'default')
         vpp_config.add_plugin('enable', 'dpdk_plugin.so')
         vpp_config.add_plugin('enable', 'memif_plugin.so')
+
+        # Apply configuration
+        self.execute('mkdir -p /etc/vpp/')
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
+
+    def create_vpp_startup_config_func_dev(self):
+        """Create startup configuration of VPP on container for functional
+        vpp_device tests.
+        """
+        # Create config instance
+        vpp_config = VppConfigGenerator()
+        vpp_config.set_node(self.container.node)
+        vpp_config.add_unix_cli_listen()
+        vpp_config.add_unix_nodaemon()
+        vpp_config.add_unix_exec('/tmp/running.exec')
+        vpp_config.add_plugin('disable', 'dpdk_plugin.so')
 
         # Apply configuration
         self.execute('mkdir -p /etc/vpp/')
@@ -678,7 +725,8 @@ class Docker(ContainerEngine):
         if int(ret) != 0:
             raise RuntimeError('Failed to create container {c.name}.'
                                .format(c=self.container))
-        self._configure_cgroup('docker')
+        if self.container.cpuset_cpus:
+            self._configure_cgroup('docker')
 
     def create(self):
         """Create/deploy container.
