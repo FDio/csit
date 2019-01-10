@@ -108,8 +108,8 @@ function bind_interfaces_to_driver () {
 
 
 function clean_environment () {
-    # Cleanup environment by removing topology containers and binding
-    # interfaces back to original driver.
+    # Cleanup environment by removing topology containers and shared volumes
+    # and binding interfaces back to original driver.
     #
     # Variables read:
     # - DCR_UUIDS - Docker Container UUIDs.
@@ -123,6 +123,11 @@ function clean_environment () {
 
     # Kill docker containers.
     docker rm --force "${DCR_UUIDS[@]}" || die "Cleanup containers failed!"
+
+    # Remove DUT1 /tmp volume
+    docker volume rm "${DCR_VOLUMES[dut1_vol]}" || {
+        die "Failed to remove DUT1 /tmp volume!"
+    }
 
     # Rebind interfaces back to kernel drivers.
     for ADDR in ${TG_PCIDEVS[@]}; do
@@ -420,8 +425,10 @@ function read_env_variables () {
         export "${param}"
     done
     declare -gA DCR_UUIDS
+    declare -gA DCR_VOLUMES
     DCR_UUIDS+=([tg]="${CSIT_TG_UUID}")
     DCR_UUIDS+=([dut1]="${CSIT_DUT1_UUID}")
+    DCR_VOLUMES+=([dut1_vol]="${CSIT_DUT1_VOL}")
     TG_PCIDEVS=("${CSIT_TG_INTERFACES_PORT1_PCI}")
     TG_DRIVERS=("${CSIT_TG_INTERFACES_PORT1_DRV}")
     TG_PCIDEVS+=("${CSIT_TG_INTERFACES_PORT2_PCI}")
@@ -465,6 +472,7 @@ function set_env_variables () {
     CSIT_DUT1_ARCH="$(uname -i)" || {
         die "Reading machine architecture failed!"
     }
+    CSIT_DUT1_VOL="${DCR_VOLUMES[dut1_vol]}"
     CSIT_TG_INTERFACES_PORT1_MAC="${TG_NETMACS[0]}"
     CSIT_TG_INTERFACES_PORT1_PCI="${TG_PCIDEVS[0]}"
     CSIT_TG_INTERFACES_PORT1_DRV="${TG_DRIVERS[0]}"
@@ -519,6 +527,19 @@ function start_topology_containers () {
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     # Mount nested_vm image to be able to run VM tests.
     dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img "
+    # Mount docker.sock to be able to use docker deamon of the host.
+    dcr_stc_params+="--volume /var/run/docker.sock:/var/run/docker.sock "
+
+    # Docker Container volumes with no relationship to the host
+    declare -gA DCR_VOLUMES
+
+    DUT1_VOL_UUID=$(uuidgen)
+    # Create DUT1 /tmp volume to be able to install VPP in "nested" container.
+    dut1_vol_param="--volume DUT1_VOL_${DUT1_VOL_UUID}:/tmp "
+    DCR_VOLUMES+=([dut1_vol]="DUT1_VOL_${DUT1_VOL_UUID}")
+    docker volume create --name "${DCR_VOLUMES[dut1_vol]}" || {
+        die "Failed to create DUT1 /tmp volume!"
+    }
 
     # Docker Container UUIDs.
     declare -gA DCR_UUIDS
@@ -532,7 +553,7 @@ function start_topology_containers () {
     DCR_UUIDS+=([tg]="$(docker run "${params[@]}")") || {
         die "Failed to start TG docker container!"
     }
-    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
+    params=(${dcr_stc_params} ${dut1_vol_param} --name csit-dut1-$(uuidgen) ${dcr_image})
     DCR_UUIDS+=([dut1]="$(docker run "${params[@]}")") || {
         die "Failed to start DUT1 docker container!"
     }
