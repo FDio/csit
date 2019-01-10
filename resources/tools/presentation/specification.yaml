@@ -5040,9 +5040,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -5075,9 +5075,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -5110,9 +5110,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -5145,9 +5145,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -5445,7 +5445,8 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "throughput"
   - "parent"
@@ -5480,7 +5481,8 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "throughput"
   - "parent"
@@ -5515,7 +5517,8 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "throughput"
   - "parent"
@@ -5550,7 +5553,8 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "throughput"
   - "parent"
@@ -7621,7 +7625,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -7632,9 +7636,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -7653,7 +7658,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -7664,9 +7669,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -7685,7 +7691,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -7696,9 +7702,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -7717,7 +7724,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -7728,9 +7735,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -7765,6 +7773,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -7803,6 +7812,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -7841,6 +7851,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -7879,6 +7890,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -8317,6 +8329,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -8349,6 +8362,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -8381,6 +8395,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -8413,6 +8428,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -9805,7 +9821,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -9816,9 +9832,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -9837,7 +9854,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -9848,9 +9865,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -9869,7 +9887,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -9880,9 +9898,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -9901,7 +9920,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -9912,9 +9931,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -9934,7 +9954,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -9945,9 +9965,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -9966,7 +9987,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -9977,9 +9998,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -9998,7 +10020,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -10009,9 +10031,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10030,7 +10053,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -10041,9 +10064,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10185,8 +10209,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10219,8 +10242,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10253,8 +10275,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10287,8 +10308,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10451,8 +10471,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10460,7 +10479,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -10485,8 +10504,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10494,7 +10512,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -10519,8 +10537,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10528,7 +10545,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -10553,8 +10570,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10562,7 +10578,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -10717,8 +10733,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10751,8 +10766,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10785,8 +10799,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -10819,8 +10832,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11684,8 +11696,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11717,8 +11729,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11750,8 +11762,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11783,8 +11795,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11949,7 +11961,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -11962,8 +11974,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11982,7 +11994,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -11995,8 +12007,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -12015,7 +12027,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -12028,8 +12040,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -12048,7 +12060,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -12061,8 +12073,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -12082,7 +12094,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -12115,7 +12127,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -12148,7 +12160,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -12181,7 +12193,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -17736,9 +17748,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -17767,9 +17779,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -18033,7 +18045,8 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "latency"
   - "parent"
@@ -18064,7 +18077,8 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "latency"
   - "parent"
@@ -18944,7 +18958,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -18955,9 +18969,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
@@ -18972,7 +18987,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -18983,9 +18998,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
@@ -19016,6 +19032,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -19050,6 +19067,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -19260,6 +19278,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -19288,6 +19307,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -19916,7 +19936,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -19927,9 +19947,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
@@ -19944,7 +19965,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -19955,9 +19976,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
@@ -19973,7 +19995,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -19984,9 +20006,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
@@ -20001,7 +20024,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -20012,9 +20035,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
@@ -20035,8 +20059,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -20065,8 +20088,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -20153,8 +20175,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -20162,7 +20183,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -20183,8 +20204,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -20192,7 +20212,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -20271,8 +20291,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -20301,8 +20320,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -20624,7 +20642,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -20637,8 +20655,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
@@ -20653,7 +20671,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -20666,8 +20684,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr"
@@ -20683,7 +20701,7 @@
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -20696,8 +20714,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
@@ -20725,8 +20743,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
@@ -23700,7 +23718,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -23710,9 +23728,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-base_and_scale-ndr"
@@ -23727,7 +23746,7 @@
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -23737,9 +23756,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-base_and_scale-pdr"
@@ -23769,6 +23789,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -23802,6 +23823,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -24005,6 +24027,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -24032,6 +24055,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -24640,7 +24664,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -24650,9 +24674,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-base_and_scale-ndr"
@@ -24667,7 +24692,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -24677,9 +24702,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-base_and_scale-pdr"
@@ -24695,7 +24721,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -24705,9 +24731,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-base_and_scale-ndr"
@@ -24722,7 +24749,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -24732,9 +24759,10 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-base_and_scale-pdr"
@@ -24803,8 +24831,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -24832,8 +24859,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -24917,8 +24943,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -24926,7 +24951,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -24946,8 +24971,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -24955,7 +24979,7 @@
   - "parent"
   - "tags"
   sort:
-  - "not DOT1Q"
+  - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
   - "VXLAN_100"
@@ -25562,7 +25586,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -25574,8 +25598,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-base_and_scale-ndr"
@@ -25590,7 +25614,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -25602,8 +25626,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-base_and_scale-pdr"
@@ -25619,7 +25643,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -25631,8 +25655,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-base_and_scale-ndr"
@@ -25647,7 +25671,7 @@
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -25659,8 +25683,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20K"
-  - "FIB_200K"
+  - "FIB_20k"
+  - "FIB_200k"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-base_and_scale-pdr"
@@ -25977,9 +26001,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -26007,9 +26031,9 @@
   - "parent"
   - "tags"
   sort:
+  - "L2XCFWD"
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -26087,7 +26111,8 @@
            'ETH' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "throughput"
   - "parent"
@@ -26117,7 +26142,8 @@
            'ETH' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF'"
+           not 'MEMIF' and
+           not 'DRV_AVF'"
   parameters:
   - "throughput"
   - "parent"
