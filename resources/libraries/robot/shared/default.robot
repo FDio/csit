@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,22 +12,28 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/vm/qemu.robot
-| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Variables | resources/libraries/python/topology.py
 | Variables | resources/libraries/python/VatHistory.py
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.VatHistory
+| ...
+| Library | Collections
+| Library | OperatingSystem
+| Library | String
+| ...
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.DUTSetup
-| Library | resources.libraries.python.SchedUtils
-| Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.L2Util
+| Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.Tap
+| Library | resources.libraries.python.TGSetup
+| Library | resources.libraries.python.VatHistory
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
 | Library | resources.libraries.python.Trace
-| Library | Collections
+| Library | resources.libraries.python.topology.Topology
+| ...
+| Resource | resources/libraries/robot/shared/container.robot
+| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
+| Resource | resources/libraries/robot/vm/qemu.robot
 
 *** Keywords ***
 | Configure all DUTs before test
@@ -533,6 +539,47 @@
 | | Set up functional test
 | | Clean Up Namespaces | ${nodes['DUT1']}
 
+| Set up functional test with containers
+| | [Documentation]
+| | ... | Common test setup for functional tests with containers.
+| | ...
+| | ... | *Arguments:*
+| | ... | - chains: Total number of chains (Optional). Type: integer, default
+| | ... | value: ${1}
+| | ... | - nodeness: Total number of nodes per chain (Optional). Type: integer,
+| | ... | default value: ${1}
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variables:
+| | ... | - tmp_volume - Docker volume mounted as /tmp directory on DUT1.
+| | ... | - dcr_uuid - UUID string (including prefix - underscore character) of
+| | ... | DUT1 /tmp volume.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up functional test with containers \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | ...
+| | Set Test Variable | @{container_groups} | @{EMPTY}
+| | Set Test Variable | ${container_group} | CNF
+| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | ... | engine=${container_engine} | WITH NAME | ${container_group}
+| | ...
+| | ${tmp_volume}= | Get Environment Variable | CSIT_DUT1_VOL
+| | ${dcr_uuid}= | Remove String | ${tmp_volume} | DUT1_VOL
+| | Set Test Variable | ${tmp_volume}
+| | Set Test Variable | ${dcr_uuid}
+| | ...
+| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
+| | ... | set_nf_cpus=${False}
+| | Acquire all '${container_group}' containers
+| | Create all '${container_group}' containers
+| | Configure VPP in all '${container_group}' containers
+| | Stop VPP service on all DUTs | ${nodes}
+| | Install VPP in all '${container_group}' containers
+| | Start VPP service on all DUTs | ${nodes}
+| | Append To List | ${container_groups} | ${container_group}
+
 | Tear down TAP functional test
 | | [Documentation] | Common test teardown for functional tests with TAP.
 | | ...
@@ -576,6 +623,13 @@
 | | Tear down functional test
 | | Tear down QEMU | ${dut1_node} | ${qemu_node1} | qemu_node1
 | | Tear down QEMU | ${dut2_node} | ${qemu_node2} | qemu_node2
+
+| Tear down functional test with container
+| | [Documentation]
+| | ... | Common test teardown for functional tests which uses containers.
+| | ...
+| | :FOR | ${container_group} | IN | @{container_groups}
+| | | Destroy all '${container_group}' containers
 
 | Stop VPP Service on DUT
 | | [Documentation] | Stop the VPP service on the specified node.
