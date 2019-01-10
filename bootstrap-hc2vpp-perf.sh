@@ -84,7 +84,11 @@ trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
 # Download VPP and HC packages from the current branch
 echo Downloading packages...
-bash ${SCRIPT_DIR}/resources/tools/scripts/download_hc_pkgs.sh ${STREAM} 'ubuntu1604'
+CSIT_DIR=${SCRIPT_DIR}
+source "${SCRIPT_DIR}/resources/libraries/bash/function/artifacts.sh"
+source "${SCRIPT_DIR}/resources/libraries/bash/function/artifacts_hc.sh"
+download_artifacts
+download_artifacts_hc
 
 if [ "${OS}" == "centos7" ]; then
     VPP_PKGS=(*.rpm)
