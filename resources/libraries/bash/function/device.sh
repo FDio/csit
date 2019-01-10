@@ -519,6 +519,8 @@ function start_topology_containers () {
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     # Mount nested_vm image to be able to run VM tests.
     dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img "
+    # Mount nested_vm image to be able to run VM tests.
+    dcr_stc_params+="--volume /var/run/docker.sock:/var/run/docker.sock "
 
     # Docker Container UUIDs.
     declare -gA DCR_UUIDS
