@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
+| Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Variables | resources/libraries/python/topology.py
@@ -533,6 +534,33 @@
 | | Set up functional test
 | | Clean Up Namespaces | ${nodes['DUT1']}
 
+| Set up functional test with containers
+| | [Documentation]
+| | ... | Common test setup for performance tests with containers
+| | ...
+| | ... | *Arguments:*
+| | ... | - chains: Total number of chains. Type: integer
+| | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up functional test with containers \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | ...
+| | Set Test Variable | @{container_groups} | @{EMPTY}
+| | Set Test Variable | ${container_group} | CNF
+| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | ... | engine=${container_engine} | WITH NAME | ${container_group}
+| | Construct chains of containers on all DUTs | ${chains} | ${nodeness} | set_nf_cpus=${False}
+| | Acquire all '${container_group}' containers
+| | Create all '${container_group}' containers
+| | Configure VPP in all '${container_group}' containers
+| | Stop VPP service on all DUTs | ${nodes}
+| | Install VPP in all '${container_group}' containers
+| | Start VPP service on all DUTs | ${nodes}
+| | Append To List | ${container_groups} | ${container_group}
+
 | Tear down TAP functional test
 | | [Documentation] | Common test teardown for functional tests with TAP.
 | | ...
@@ -576,6 +604,13 @@
 | | Tear down functional test
 | | Tear down QEMU | ${dut1_node} | ${qemu_node1} | qemu_node1
 | | Tear down QEMU | ${dut2_node} | ${qemu_node2} | qemu_node2
+
+| Tear down functional test with container
+| | [Documentation]
+| | ... | Common test teardown for functional tests which uses containers.
+| | ...
+| | :FOR | ${container_group} | IN | @{container_groups}
+| | | Destroy all '${container_group}' containers
 
 | Stop VPP Service on DUT
 | | [Documentation] | Stop the VPP service on the specified node.

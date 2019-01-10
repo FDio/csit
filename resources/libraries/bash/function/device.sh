@@ -519,6 +519,10 @@ function start_topology_containers () {
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     # Mount nested_vm image to be able to run VM tests.
     dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img "
+    # Mount docker.sock to be able to use docker deamon of the host.
+    dcr_stc_params+="--volume /var/run/docker.sock:/var/run/docker.sock "
+    # Mount download_dir to be able to run VM tests.
+    "--volume /mnt/host/openvpp-testing/download_dir:/mnt/host/openvpp-testing/download_dir "
 
     # Docker Container UUIDs.
     declare -gA DCR_UUIDS
