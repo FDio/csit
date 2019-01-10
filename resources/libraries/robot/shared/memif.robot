@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,25 +12,32 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.Memif
 | Documentation | Memif interface keyword library.
+| ...
+| Library | resources.libraries.python.Memif
 
 *** Keywords ***
 | Set up memif interfaces on DUT node
 | | [Documentation] | Create two Memif interfaces on given VPP node.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ... | - ${filename1} - Socket filename for 1st Memif interface. Type: string
-| | ... | - ${filename2} - Socket filename for 2nd Memif interface. Type: string
-| | ... | - ${mid} - Memif interface ID. Type: integer
-| | ... | - ${memif_if1} - Name of the first Memif interface (Optional).
-| | ... | Type: string
-| | ... | - ${memif_if2} - Name of the second Memif interface (Optional).
-| | ... | Type: string
-| | ... | - ${rxq} - RX queues. Type: integer
-| | ... | - ${txq} - TX queues. Type: integer
-| | ... | - ${role} - Memif role. Type: string
+| | ... | - dut_node - DUT node. Type: dictionary
+| | ... | - filename1 - Socket filename for 1st Memif interface. Type: string
+| | ... | - filename2 - Socket filename for 2nd Memif interface. Type: string
+| | ... | - mid - Memif interface ID. Type: integer, default value: ${1}
+| | ... | - memif_if1 - Name of the first Memif interface (Optional).
+| | ... | Type: string, default value: memif_if1
+| | ... | - memif_if2 - Name of the second Memif interface (Optional).
+| | ... | Type: string, default value: memif_if2
+| | ... | - rxq - RX queues; 0 means do not set (Optional). Type: integer,
+| | ... | default value: ${1}
+| | ... | - txq - TX queues; 0 means do not set (Optional). Type: integer,
+| | ... | default value: ${1}
+| | ... | - role - Memif role (Optional). Type: string, default value: slave
+| | ... | - dcr_uuid - UUID string (including prefix - underscore character) of
+| | ... | DUT1 /tmp volume created outside of the DUT1 docker in case of
+| | ... | vpp-device test. ${EMPTY} value means that /tmp directory is inside
+| | ... | the DUT1 docker. (Optional). Type: string, default value: ${EMPTY}
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${memif_if1}} - 1st Memif interface.
@@ -43,18 +50,20 @@
 | | ... | \| Set up memif interfaces on DUT node \
 | | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \
 | | ... | \| dut2_memif_if1 \| dut2_memif_if2 \| 1 \| 1 \| slave \|
+| | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \| rxq=0 \| txq=0 \
+| | ... | \| dcr_uuid=_a5730a0a-2ba1-4fe9-91bd-79b9828e968e \|
 | | ...
 | | [Arguments] | ${dut_node} | ${filename1} | ${filename2} | ${mid}=${1}
 | | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2 | ${rxq}=${1}
-| | ... | ${txq}=${1} | ${role}=slave
+| | ... | ${txq}=${1} | ${role}=slave | ${dcr_uuid}=${EMPTY}
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
 | | ${memif_1}= | Create memif interface | ${dut_node}
-| | ... | ${filename1}${mid}-${sid_1} | ${mid} | ${sid_1} | rxq=${rxq}
-| | ... | txq=${txq} | role=${role}
+| | ... | ${filename1}${mid}${dcr_uuid}-${sid_1} | ${mid} | ${sid_1}
+| | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | ${memif_2}= | Create memif interface | ${dut_node}
-| | ... | ${filename2}${mid}-${sid_2} | ${mid} | ${sid_2} | rxq=${rxq}
-| | ... | txq=${txq} | role=${role}
+| | ... | ${filename2}${mid}${dcr_uuid}-${sid_2} | ${mid} | ${sid_2}
+| | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | Set Interface State | ${dut_node} | ${memif_1} | up
 | | Set Interface State | ${dut_node} | ${memif_2} | up
 | | Set Test Variable | ${${memif_if1}} | ${memif_1}
@@ -64,14 +73,14 @@
 | | [Documentation] | Create single Memif interface on given VPP node.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ... | - ${filename} - Socket filename for Memif interface. Type: string
-| | ... | - ${mid} - Memif interface ID. Type: integer
-| | ... | - ${memif_if} - Name of the Memif interface (Optional).
+| | ... | - dut_node - DUT node. Type: dictionary
+| | ... | - filename - Socket filename for Memif interface. Type: string
+| | ... | - mid - Memif interface ID. Type: integer
+| | ... | - memif_if - Name of the Memif interface (Optional).
 | | ... | Type: string
-| | ... | - ${rxq} - RX queues. Type: integer
-| | ... | - ${txq} - TX queues. Type: integer
-| | ... | - ${role} - Memif role. Type: string
+| | ... | - rxq - RX queues. Type: integer
+| | ... | - txq - TX queues. Type: integer
+| | ... | - role - Memif role. Type: string
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${memif_if}} - Memif interface.
