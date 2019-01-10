@@ -1,9 +1,11 @@
 create memif socket id {sid1} filename {dir}/{socket1}
 create interface memif id {mid1} socket-id {sid1} master
+set interface rx-mode memif{sid1}/{mid1} {rx_mode}
 set int state memif{sid1}/{mid1} up
 
 create memif socket id {sid2} filename {dir}/{socket2}
 create interface memif id {mid2} socket-id {sid2} master
+set interface rx-mode memif{sid2}/{mid2} {rx_mode}
 set int state memif{sid2}/{mid2} up
 
 set interface l2 xconnect memif{sid2}/{mid2} memif{sid1}/{mid1}
