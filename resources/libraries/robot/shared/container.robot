@@ -13,6 +13,9 @@
 
 *** Settings ***
 | Documentation | Keywords related to linux containers
+| Library | Collections
+#| Library | OperatingSystem
+| Library | resources.libraries.python.ContainerUtils
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.topology.Topology
 
@@ -25,25 +28,39 @@
 | | ... | - nodeness: Total number of nodes per chain. Type: integer
 | | ... | - chain_id: Chain ID. Type: integer
 | | ... | - node_id: Node ID. Type: integer
+| | ... | - nf_cpus: CPUs allocated for network function per SUT/DUT.
+| | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Construct container on all DUTs \| 1 \| 1 \| 1 \| 1 \|
+| | ... | \| Construct container on all DUTs \| 1 \| 1 \| 1 \| 1 \| ${True} \|
 | | ...
 | | [Arguments] | ${chains}=${1} | ${nodeness}=${1} | ${chain_id}=${1}
-| | ... | ${node_id}=${1}
+| | ... | ${node_id}=${1} | ${set_nf_cpus}=${True}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-| | | ${mnt}= | Create List | /tmp:/mnt/host | /dev/vfio:/dev/vfio
-| | | ${nf_cpus}= | Create network function CPU list | ${dut}
+#| | | ${ext_tmp_stat} | ${value}= | Run Keyword And Ignor Error
+#| | | ... | Environment Variable Should Be Set | %{CSIT_DUT1_TMP}
+#| | | ${tmp_volume}= | Set Variable If | '${ext_tmp_stat}' == 'PASS'
+#| | | ... | %{CSIT_DUT1_TMP} | /tmp:/mnt/host
+| | | ${tmp_volume}= | Get Variable Value | %{CSIT_DUT1_TMP} | /tmp:/mnt/host
+| | | ${mnt}= | Create List | ${tmp_volume} | /dev/vfio:/dev/vfio
+#| | | Run Keyword Unless | ${set_nf_cpus} | Append To List | ${mnt}
+#| | | ... | /mnt/host/openvpp-testing/download_dir:/mnt/host/openvpp-testing/download_dir
+| | | ${nf_cpus}= | Run Keyword If | ${set_nf_cpus}
+| | | ... | Create network function CPU list | ${dut}
 | | | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${chain_id}
 | | | ... | node_id=${node_id} | auto_scale=${True}
-| | | Run Keyword | ${container_group}.Construct container
-| | | ... | name=${dut}_${container_group}${chain_id}${node_id}
+| | | ... | ELSE | Set Variable | ${None}
+| | | ${uuid}= | Get UUID
+| | | &{cont_args}= | Create Dictionary
+| | | ... | name=${dut}_${container_group}${chain_id}${node_id}_${uuid}
 | | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
-| | | ... | cpuset_cpus=${nf_cpus}
+| | | Run Keyword If | ${set_nf_cpus}
+| | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
+| | | Run Keyword | ${container_group}.Construct container | &{cont_args}
 
 | Construct chain of containers on all DUTs
 | | [Documentation] | Construct 1 chain of 1..N CNFs on all DUT nodes.
@@ -57,11 +74,11 @@
 | | ...
 | | ... | \| Construct chain of containers on all DUTs \| 1 \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains} | ${nodeness} | ${chain_id}
+| | [Arguments] | ${chains} | ${nodeness} | ${chain_id} | ${set_nf_cpus}=${True}
 | | ...
 | | :FOR | ${node_id} | IN RANGE | 1 | ${nodeness}+1
 | | | Construct container on all DUTs | chains=${chains} | nodeness=${nodeness}
-| | | ... | chain_id=${chain_id} | node_id=${node_id}
+| | | ... | chain_id=${chain_id} | node_id=${node_id} | set_nf_cpus=${set_nf_cpus}
 
 | Construct chains of containers on all DUTs
 | | [Documentation] | Construct 1..N chains of 1..N CNFs on all DUT nodes.
@@ -74,11 +91,11 @@
 | | ...
 | | ... | \| Construct chains of containers on all DUTs \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | [Arguments] | ${chains}=${1} | ${nodeness}=${1} | ${set_nf_cpus}=${True}
 | | ...
 | | :FOR | ${chain_id} | IN RANGE | 1 | ${chains}+1
 | | | Construct chain of containers on all DUTs | chains=${chains}
-| | | ... | nodeness=${nodeness} | chain_id=${chain_id}
+| | | ... | nodeness=${nodeness} | chain_id=${chain_id} | set_nf_cpus=${set_nf_cpus}
 
 | Acquire all '${group}' containers
 | | [Documentation] | Acquire all container(s) in specific container group on
@@ -108,7 +125,8 @@
 | | [Documentation] | Configure VPP on all container(s) in specific container
 | | ... | group on all DUT nodes.
 | | ...
-| | ${dut2_if2} = | Get Variable Value | \${dut2_if2} | ${EMPTY}
+| | ${dut1_if2} = | Get Variable Value | \${dut1_if2} | ${None}
+| | ${dut2_if2} = | Get Variable Value | \${dut2_if2} | ${None}
 | | Run Keyword | ${group}.Configure VPP In All Containers
 | | ... | chain_topology=${container_chain_topology}
 | | ... | dut1_if=${dut1_if2} | dut2_if=${dut2_if2}
