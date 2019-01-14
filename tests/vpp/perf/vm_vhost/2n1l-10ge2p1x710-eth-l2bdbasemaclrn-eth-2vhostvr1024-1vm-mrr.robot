@@ -78,7 +78,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User | vm_count=${1}
+| | When Initialize L2 bridge domains with Vhost-User | nf_nodes=${1}
 | | And Configure guest VMs with dpdk-testpmd connected via vhost-user
 | | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
 | | ... | use_tuned_cfs=${False}
