@@ -108,14 +108,9 @@
 | | When Initialize L2 bridge domains with Vhost-User and VLAN with DPDK link bonding in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite}
-| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | And Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | DUT2 | ${sock1} | ${sock2} | DUT2_VM1 | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | And Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
