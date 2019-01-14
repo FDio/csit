@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -183,6 +183,247 @@ def plot_performance_box(plot, input_data):
             layout["yaxis"]["range"] = [0, max(y_max)]
         plpl = plgo.Figure(data=traces, layout=layout)
 
+        # Export Plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(repr(err).replace("\n", " ")))
+        return
+
+
+def plot_soak_bars(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_soak_bars
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    # Prepare the data for the plot
+    y_vals = dict()
+    y_tags = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if y_vals.get(test["parent"], None) is None:
+                    y_tags[test["parent"]] = test.get("tags", None)
+                try:
+                    if test["type"] in ("SOAK", ):
+                        y_vals[test["parent"]] = test["throughput"]
+                    else:
+                        continue
+                except (KeyError, TypeError):
+                    y_vals[test["parent"]] = dict()
+
+    # Sort the tests
+    order = plot.get("sort", None)
+    if order and y_tags:
+        y_sorted = OrderedDict()
+        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
+        for tag in order:
+            logging.debug(tag)
+            for suite, tags in y_tags_l.items():
+                if "not " in tag:
+                    tag = tag.split(" ")[-1]
+                    if tag.lower() in tags:
+                        continue
+                else:
+                    if tag.lower() not in tags:
+                        continue
+                try:
+                    y_sorted[suite] = y_vals.pop(suite)
+                    y_tags_l.pop(suite)
+                    logging.debug(suite)
+                except KeyError as err:
+                    logging.error("Not found: {0}".format(repr(err)))
+                finally:
+                    break
+    else:
+        y_sorted = y_vals
+
+    idx = 0
+    y_max = 0
+    traces = list()
+    for test_name, test_data in y_sorted.items():
+        idx += 1
+        name = "{nr}. {name}".\
+            format(nr=idx, name=test_name.lower().replace('-soak', ''))
+        if len(name) > 50:
+            name_lst = name.split('-')
+            name = ""
+            split_name = True
+            for segment in name_lst:
+                if (len(name) + len(segment) + 1) > 50 and split_name:
+                    name += "<br>    "
+                    split_name = False
+                name += segment + '-'
+            name = name[:-1]
+
+        y_val = test_data.get("LOWER", None)
+        if y_val:
+            y_val /= 1000000
+            if y_val > y_max:
+                y_max = y_val
+
+        time = "No Information"
+        result = "No Information"
+        hovertext = ("{name}<br>"
+                     "Packet Throughput: {val:.2f}Mpps<br>"
+                     "Final Duration: {time}<br>"
+                     "Result: {result}".format(name=name,
+                                               val=y_val,
+                                               time=time,
+                                               result=result))
+        traces.append(plgo.Bar(x=[str(idx) + '.', ],
+                               y=[y_val, ],
+                               name=name,
+                               text=hovertext,
+                               hoverinfo="text"))
+    try:
+        # Create plot
+        layout = deepcopy(plot["layout"])
+        if layout.get("title", None):
+            layout["title"] = "<b>Packet Throughput:</b> {0}". \
+                format(layout["title"])
+        if y_max:
+            layout["yaxis"]["range"] = [0, y_max]
+        plpl = plgo.Figure(data=traces, layout=layout)
+        # Export Plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(repr(err).replace("\n", " ")))
+        return
+
+
+def plot_soak_boxes(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_soak_boxes
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_data(plot)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    # Prepare the data for the plot
+    y_vals = dict()
+    y_tags = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if y_vals.get(test["parent"], None) is None:
+                    y_tags[test["parent"]] = test.get("tags", None)
+                try:
+                    if test["type"] in ("SOAK", ):
+                        y_vals[test["parent"]] = test["throughput"]
+                    else:
+                        continue
+                except (KeyError, TypeError):
+                    y_vals[test["parent"]] = dict()
+
+    # Sort the tests
+    order = plot.get("sort", None)
+    if order and y_tags:
+        y_sorted = OrderedDict()
+        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
+        for tag in order:
+            logging.debug(tag)
+            for suite, tags in y_tags_l.items():
+                if "not " in tag:
+                    tag = tag.split(" ")[-1]
+                    if tag.lower() in tags:
+                        continue
+                else:
+                    if tag.lower() not in tags:
+                        continue
+                try:
+                    y_sorted[suite] = y_vals.pop(suite)
+                    y_tags_l.pop(suite)
+                    logging.debug(suite)
+                except KeyError as err:
+                    logging.error("Not found: {0}".format(repr(err)))
+                finally:
+                    break
+    else:
+        y_sorted = y_vals
+
+    idx = 0
+    y_max = 0
+    traces = list()
+    for test_name, test_data in y_sorted.items():
+        idx += 1
+        name = "{nr}. {name}".\
+            format(nr=idx, name=test_name.lower().replace('-soak', ''))
+        if len(name) > 50:
+            name_lst = name.split('-')
+            name = ""
+            split_name = True
+            for segment in name_lst:
+                if (len(name) + len(segment) + 1) > 50 and split_name:
+                    name += "<br>    "
+                    split_name = False
+                name += segment + '-'
+            name = name[:-1]
+
+        y_val = test_data.get("UPPER", None)
+        if y_val:
+            y_val /= 1000000
+            if y_val > y_max:
+                y_max = y_val
+
+        y_base = test_data.get("LOWER", None)
+        if y_base:
+            y_base /= 1000000
+
+        hovertext = ("{name}<br>"
+                     "Upper bound: {upper:.2f}Mpps<br>"
+                     "Lower bound: {lower:.2f}Mpps".format(name=name,
+                                                           upper=y_val,
+                                                           lower=y_base))
+        traces.append(plgo.Bar(x=[str(idx) + '.', ],
+                               y=[y_val - y_base + 0.01, ],
+                               base=y_base,
+                               name=name,
+                               text=hovertext,
+                               hoverinfo="text"))
+    try:
+        # Create plot
+        layout = deepcopy(plot["layout"])
+        if layout.get("title", None):
+            layout["title"] = "<b>Packet Throughput:</b> {0}". \
+                format(layout["title"])
+        if y_max:
+            layout["yaxis"]["range"] = [0, y_max]
+        plpl = plgo.Figure(data=traces, layout=layout)
         # Export Plot
         logging.info("    Writing file '{0}{1}'.".
                      format(plot["output-file"], plot["output-file-type"]))
