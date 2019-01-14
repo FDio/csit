@@ -66,8 +66,8 @@
 | ${bond_mode}= | lacp
 | ${lb_mode}= | l34
 # Socket names
-| ${sock1}= | /tmp/sock-1
-| ${sock2}= | /tmp/sock-2
+| ${sock1}= | /tmp/sock-1-1
+| ${sock2}= | /tmp/sock-1-2
 # X710 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
@@ -103,14 +103,9 @@
 | | When Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite} | ${bond_mode}
 | | ... | ${lb_mode}
-| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | And Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | DUT2 | ${sock1} | ${sock2} | DUT2_VM1 | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | And Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
+| | ... | use_tuned_cfs=${False}
 | | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
