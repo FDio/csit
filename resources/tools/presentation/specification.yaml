@@ -488,6 +488,10 @@
       - 41  # NDRPDR sel
       - 42  # NDRPDR sel
 
+    plot-vpp-soak-2n-skx:
+      csit-vpp-perf-verify-master-2n-skx:
+      - 207  # SOAK sel
+
     plot-vpp-throughput-latency-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
       - 24  # NDRPDR full
@@ -749,6 +753,57 @@
       - 1
 
   plot-layouts:
+
+    plot-soak-throughput:
+      titlefont:
+        size: 18
+      xaxis:
+        title: "<b>Test Cases [Index]</b>"
+        titlefont:
+          size: 16
+        autorange: True
+        fixedrange: False
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickmode: "linear"
+        tickfont:
+          size: 16
+        zeroline: False
+      yaxis:
+        title: "<b>Packet Throughput [Mpps]</b>"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
+        hoverformat: ".4s"
+        tickformat: ".3s"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickfont:
+          size: 16
+        zeroline: False
+        range: [0,50]
+      autosize: False
+      margin:
+        t: 50
+        b: 0
+        l: 80
+        r: 20
+      showlegend: True
+      legend:
+        orientation: "h"
+        font:
+          size: 16
+      width: 700
+      height: 900
 
     plot-cps:
       titlefont:
@@ -1227,6 +1282,8 @@
     - 23  # NDRPDR sel
     - 24  # NDRPDR sel
     - 27  # NDRPDR sel
+    csit-vpp-perf-verify-master-2n-skx:
+    - 207  # SOAK sel
     csit-vpp-perf-check-1804:
     - 5   # mrr - full
     - 6   # mrr - sel
@@ -5198,6 +5255,52 @@
 ################################################################################
 ###                                P L O T S                                 ###
 ################################################################################
+
+# Soak test - example
+-
+  type: "plot"
+  title: "VPP Throughput Soak: Example"
+  algorithm: "plot_soak_boxes"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/example-soak-boxes"
+  data: "plot-vpp-soak-2n-skx"
+  filter: "'SOAK'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2PATCH"
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "IP4FWD"
+  - "IP6FWD"
+  layout:
+    title: "example-30min-boxes"
+    layout: "plot-soak-throughput"
+
+# Soak test - example
+-
+  type: "plot"
+  title: "VPP Throughput Soak: Example"
+  algorithm: "plot_soak_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/example-soak-bars"
+  data: "plot-vpp-soak-2n-skx"
+  filter: "'SOAK'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "L2PATCH"
+  - "L2XCBASE"
+  - "L2BDMACLRN"
+  - "IP4FWD"
+  - "IP6FWD"
+  layout:
+    title: "example-30min-bars"
+    layout: "plot-soak-throughput"
 
 ################################################################################
 # Plots VPP HTTP Server Performance
