@@ -60,8 +60,8 @@
 | ${tag_rewrite}= | pop-1
 | ${overhead}= | ${4}
 # Socket names
-| ${sock1}= | /tmp/sock-1
-| ${sock2}= | /tmp/sock-2
+| ${sock1}= | /tmp/sock-1-1
+| ${sock2}= | /tmp/sock-1-2
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:

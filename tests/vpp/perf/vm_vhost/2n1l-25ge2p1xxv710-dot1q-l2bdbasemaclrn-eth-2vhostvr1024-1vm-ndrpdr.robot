@@ -61,8 +61,8 @@
 # Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
-| ${sock1}= | /tmp/sock-1-${bd_id1}
-| ${sock2}= | /tmp/sock-1-${bd_id2}
+| ${sock1}= | /tmp/sock-1-1-${bd_id1}
+| ${sock2}= | /tmp/sock-1-1-${bd_id2}
 # XXV710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
 | ${s_24.5G}= | ${24500000000}
 # XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
