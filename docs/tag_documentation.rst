@@ -185,6 +185,22 @@ Scaling TAGs
     Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP ports) in
     one direction.
 
+.. topic:: 1C1N
+
+    1 service chain with 1 network function per chain.
+
+.. topic:: 2C1N
+
+    2 service chains with 1 network function per chain.
+
+.. topic:: 1C2N
+
+    1 service chain with 2 network functions per chain.
+
+.. topic:: 2C2N
+
+    2 service chains with 2 network functions per chain.
+
 Tags marking functional vs. performance of tests
 ------------------------------------------------
 
@@ -318,6 +334,11 @@ Test type tags
 .. topic:: HTTP
 
     Tests which use HTTP.
+
+.. topic:: SERVICE_DENSITY
+
+    Performance tests which measures performance of service density by creating
+    topology of multiple sevice chains of network functions.
 
 Forwarding mode tags
 --------------------

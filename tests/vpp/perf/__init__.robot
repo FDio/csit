@@ -28,7 +28,7 @@
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes
 | ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
-| Suite Teardown | Cleanup Framework | ${nodes}
+#| Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables
@@ -56,7 +56,7 @@
 | | Set Global Variable | ${dut_stats} | ${True}
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
 | | Set Global Variable | @{plugins_to_enable}
-| | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
+| | Set Global Variable | ${packages_dir} | /tmp/install_dir/
 | | @{vpp_rpm_pkgs}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
 | | Set Global Variable | ${vpp_rpm_pkgs}
 | | @{vpp_deb_pkgs}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
