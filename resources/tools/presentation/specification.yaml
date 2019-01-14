@@ -431,6 +431,10 @@
       - 41  # NDRPDR sel
       - 42  # NDRPDR sel
 
+    plot-vpp-soak-3n-hsw:
+      csit-vpp-perf-verify-1810-3n-hsw:
+      - 41  # NDRPDR sel
+
     plot-vpp-throughput-latency-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
       - 24  # NDRPDR full
@@ -692,6 +696,57 @@
       - 1
 
   plot-layouts:
+
+    plot-soak-throughput:
+      titlefont:
+        size: 18
+      xaxis:
+        title: "<b>Test Cases [Index]</b>"
+        titlefont:
+          size: 16
+        autorange: True
+        fixedrange: False
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickmode: "linear"
+        tickfont:
+          size: 16
+        zeroline: False
+      yaxis:
+        title: "<b>Packet Throughput [Mpps]</b>"
+        titlefont:
+          size: 16
+        gridcolor: "rgb(230, 230, 230)"
+        hoverformat: ".4s"
+        tickformat: ".3s"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickfont:
+          size: 16
+        zeroline: False
+        range: [0,50]
+      autosize: False
+      margin:
+        t: 50
+        b: 0
+        l: 80
+        r: 20
+      showlegend: True
+      legend:
+        orientation: "h"
+        font:
+          size: 16
+      width: 700
+      height: 900
 
     plot-cps:
       titlefont:
@@ -1290,7 +1345,7 @@
 ################################################################################
 # VPP
 
-# VPP Performance Changes 3n-hsw 1t1c pdr 
+# VPP Performance Changes 3n-hsw 1t1c pdr
 -
   type: "table"
   title: "VPP Performance Changes 3n-hsw 1t1c pdr"
@@ -1530,7 +1585,7 @@
   - "parent"
   - "throughput"
 
-# VPP Performance Changes 3n-skx 2t1c pdr 
+# VPP Performance Changes 3n-skx 2t1c pdr
 -
   type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c pdr"
@@ -1698,7 +1753,7 @@
   - "parent"
   - "throughput"
 
-# VPP Performance Changes 2n-skx 2t1c pdr 
+# VPP Performance Changes 2n-skx 2t1c pdr
 -
   type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c pdr"
@@ -4745,6 +4800,38 @@
     title: "VPP HTTP Server Performance"
     layout:
       "plot-rps"
+
+################################################################################
+
+# Soak test - example
+-
+  type: "plot"
+  title: "VPP Throughput Soak: ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+  algorithm: "plot_soak_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-soak"
+  data: "plot-vpp-soak-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '2T2C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "DOT1Q"
+  - "IP4BASE"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  layout:
+    title: "ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+    layout: "plot-soak-throughput"
 
 ################################################################################
 
