@@ -66,8 +66,8 @@
 | ${bond_mode}= | lacp
 | ${lb_mode}= | l34
 # Socket names
-| ${sock1}= | /tmp/sock-1
-| ${sock2}= | /tmp/sock-2
+| ${sock1}= | /tmp/sock-1-1
+| ${sock2}= | /tmp/sock-1-2
 # X710 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:

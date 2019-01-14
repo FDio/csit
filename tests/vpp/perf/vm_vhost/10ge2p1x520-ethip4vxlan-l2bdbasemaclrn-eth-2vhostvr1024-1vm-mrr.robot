@@ -58,8 +58,8 @@
 # Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
-| ${sock1}= | /tmp/sock-1-${bd_id1}
-| ${sock2}= | /tmp/sock-1-${bd_id2}
+| ${sock1}= | /tmp/sock-1-1-${bd_id1}
+| ${sock2}= | /tmp/sock-1-1-${bd_id2}
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 | ${overhead}= | ${50}
