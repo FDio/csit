@@ -628,6 +628,10 @@ def _generate_url(base, testbed, test_name):
         nic = "xl710-"
     elif "xxv710" in test_name:
         nic = "xxv710-"
+    elif "vic1227" in test_name:
+        nic = "vic1227-"
+    elif "vic1385" in test_name:
+        nic = "vic1385-"
     else:
         nic = ""
     anchor += nic
