@@ -90,10 +90,8 @@
 | | When Initialize L2 bridge domains with Vhost-User and VLAN in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
 | | ... | ${tag_rewrite}
-| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
+| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
+| | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
