@@ -45,8 +45,8 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'FD.io CSIT-1810.49'
-copyright = u'2018, FD.io'
+project = u'FD.io CSIT-1810.03'
+copyright = u'2019, FD.io'
 author = u'FD.io CSIT'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -105,7 +105,7 @@ rst_epilog = """
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _K8s configuration files: https://github.com/FDio/csit/tree/{release}/resources/templates/kubernetes
 """.format(release='rls1810',
-           report_week='49',
+           report_week='03',
            prev_release='rls1807',
            srelease='1810',
            csitrelease='1810',

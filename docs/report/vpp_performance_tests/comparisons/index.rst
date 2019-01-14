@@ -3,6 +3,8 @@
 
     \clearpage
 
+.. _vpp_throughput_comparisons:
+
 Comparisons
 ===========
 
