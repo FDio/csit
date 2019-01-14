@@ -672,6 +672,58 @@
 ################################################################################
 # 3n-hsw
 
+# L2 - VIC-1227
+
+    - title: "VPP 1T1C L2 64B MRR Trending 3n-hsw"
+      output-file-name: "l2-1t1c-vic1227-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Cisco-VIC-1227' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'MEMIF' and not 'DRV_AVF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 2T2C L2 64B MRR Trending 3n-hsw"
+      output-file-name: "l2-2t2c-vic1227-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Cisco-VIC-1227' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'MEMIF' and not 'DRV_AVF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 4T4C L2 64B MRR Trending 3n-hsw"
+      output-file-name: "l2-4t4c-vic1227-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Cisco-VIC-1227' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'MEMIF' and not 'DRV_AVF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# L2 - VIC-1385
+
+    - title: "VPP 1T1C L2 64B MRR Trending 3n-hsw"
+      output-file-name: "l2-1t1c-vic1385-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Cisco-VIC-1385' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'MEMIF' and not 'DRV_AVF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 2T2C L2 64B MRR Trending 3n-hsw"
+      output-file-name: "l2-2t2c-vic1385-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Cisco-VIC-1385' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'MEMIF' and not 'DRV_AVF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "VPP 4T4C L2 64B MRR Trending 3n-hsw"
+      output-file-name: "l2-4t4c-vic1385-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Cisco-VIC-1385' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'MEMIF' and not 'DRV_AVF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
 # L2 - x520
 
     - title: "VPP 1T1C L2 64B MRR Trending 3n-hsw"
