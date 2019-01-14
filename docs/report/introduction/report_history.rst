@@ -6,6 +6,12 @@ FD.io CSIT-1810 Report history and per .[ww] revision changes are listed below.
 +----------------+----------------------------------------------------------------+
 | .[ww] Revision | Changes                                                        |
 +================+================================================================+
+| .03            | 1. Split the VPP throughput :ref:`_vpp_throughput_comparisons` |
+|                |    tables per number of cores.                                 |
+|                | 2. Add 20k and 200k scale tests to VPP                         |
+|                |    :ref:`VPP_Packet_Throughput`.                               |
+|                |                                                                |
++----------------+----------------------------------------------------------------+
 | .49            | 1. Split pages with graphs.                                    |
 |                |                                                                |
 +----------------+----------------------------------------------------------------+
