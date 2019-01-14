@@ -1686,7 +1686,8 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
-| | ... | - vm_count - VM count. Type: integer
+| | ... | - nf_chain - NF chain. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
@@ -1696,47 +1697,72 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 bridge domains with Vhost-User on node \| DUT1 \
-| | ... | \| 1 \|
+| | ... | \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${dut} | ${vm_count}=${1}
+| | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
-| | ${bd_id2}= | Evaluate | ${vm_count}+1
+| | ${bd_id2}= | Evaluate | ${nf_nodes}+1
 | | Add interface to bridge domain | ${nodes['${dut}']}
 | | ... | ${${dut}_if1} | ${1}
 | | Add interface to bridge domain | ${nodes['${dut}']}
 | | ... | ${${dut}_if2} | ${bd_id2}
-| | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
-| | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
+| | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
+| | | ${sock1}= | Set Variable | /tmp/sock-${qemu_id}-1
+| | | ${sock2}= | Set Variable | /tmp/sock-${qemu_id}-2
 | | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
-| | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
-| | | ... | ${dut}-vhost-${number}-if2
-| | | ${bd_id2}= | Evaluate | ${number}+1
+| | | ... | ${sock1} | ${sock2}
+| | | ... | ${dut}-vhost-${qemu_id}-if1
+| | | ... | ${dut}-vhost-${qemu_id}-if2
+| | | ${bd_id2}= | Evaluate | ${nf_node}+1
 | | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${number}-if1} | ${number}
+| | | ... | ${${dut}-vhost-${qemu_id}-if1} | ${nf_node}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${number}-if2} | ${bd_id2}
+| | | ... | ${${dut}-vhost-${qemu_id}-if2} | ${bd_id2}
 
 | Initialize L2 bridge domains with Vhost-User
 | | [Documentation]
-| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on all
-| | ... | defined VPP nodes. Add each Vhost-User interface into L2 bridge
+| | ... | Create pairs of Vhost-User interfaces for defined number of VNF nodes
+| | ... | on all defined VPP nodes. Add each Vhost-User interface into L2 bridge
 | | ... | domains with learning enabled with physical inteface or Vhost-User
 | | ... | interface of another VM.
 | | ...
 | | ... | *Arguments:*
-| | ... | - vm_count - VM count. Type: integer
+| | ... | - nf_chain - NF chain. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize L2 bridge domains with Vhost-User \| 1 \|
+| | ... | \| Initialize L2 bridge domains with Vhost-User \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${vm_count}=${1}
+| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 bridge domains with Vhost-User on node | ${dut}
-| | | ... | vm_count=${vm_count}
+| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+
+| Initialize L2 bridge domains for multiple chains with Vhost-User
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of NF chains
+| | ... | with defined number of VNF nodes on all defined VPP nodes. Add each
+| | ... | Vhost-User interface into L2 bridge domains with learning enabled
+| | ... | with physical inteface or Vhost-User interface of another VM.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_chains - Number of chains of NFs. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domains for multiple chains with Vhost-User \
+| | ... | \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
+| | ...
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
+| | | Initialize L2 bridge domains with Vhost-User | nf_chain=${nf_chain}
+| | | ... | nf_nodes=${nf_nodes}
 
 | Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -2280,16 +2306,13 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure guest VM with dpdk-testpmd connected via vhost-user \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock-2-1 \| /tmp/sock-2-2 \| DUT1_VM2 \
-| | ... | \| qemu_id=${2} \|
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock-1-1 \| /tmp/sock-1-2 \
+| | ... | \| DUT1_VM2 \| qemu_id=${2} \|
 | | ...
-| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${chains}=${1}
-| | ... | ${nodeness}=${1} | ${qemu_id}=${1} | ${jumbo}=${False}
-| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${nf_cpus}
+| | ... | ${qemu_id}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${use_tuned_cfs}=${False}
 | | ...
-| | ${nf_cpus}= | Create network function CPU list | ${dut}
-| | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${1}
-| | ... | node_id=${qemu_id} | auto_scale=${True}
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
@@ -2319,9 +2342,8 @@
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
-| | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
 | | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
-| | ... | cpu_cnt=${testpmd_cpus}
+| | ... | cpu_cnt=${nf_cpus_count}
 | | Dpdk Testpmd Start | ${vm} | eal_corelist=${testpmd_cpus}
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_rxd=${perf_qemu_qsz} | pmd_txd=${perf_qemu_qsz}
@@ -2353,12 +2375,15 @@
 | | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
+| | | ${nf_cpus}= | Create network function CPU list | ${dut}
+| | | ... | chains=${1} | nodeness=${vm_count} | chain_id=${1}
+| | | ... | node_id=${number} | auto_scale=${True}
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
-| | | ... | nodeness=${vm_count} | qemu_id=${number} | jumbo=${jumbo}
+| | | ... | ${nf_cpus} | qemu_id=${number} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
 | | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
 
@@ -2405,8 +2430,7 @@
 | | ... | - vm_name - QemuUtil instance name. Type: string
 | | ... | - eth0_mac - MAC address of first Vhost interface. Type: string
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
-| | ... | - chains: Total number of chains. Type: integer
-| | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ... | - nf_cpus: List of allocated CPUs. Type: list
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT
 | | ... | node. Type: integer
 | | ... | - jumbo - Set True if jumbo frames are used in the test.
@@ -2426,13 +2450,10 @@
 | | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \|
 | | ...
 | | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name}
-| | ... | ${eth0_mac} | ${eth1_mac} | ${chains}=${1} | ${nodeness}=${1}
-| | ... | ${qemu_id}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${eth0_mac} | ${eth1_mac} | ${nf_cpus} | ${qemu_id}=${1}
+| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
 | | ... | ${use_tuned_cfs}=${False}
 | | ...
-| | ${nf_cpus}= | Create network function CPU list | ${dut}
-| | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${1}
-| | ... | node_id=${qemu_id} | auto_scale=${True}
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
@@ -2462,9 +2483,8 @@
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
-| | ${testpmd_cpus}= | Evaluate | ${thr_count_int} + ${1}
 | | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
-| | ... | cpu_cnt=${testpmd_cpus}
+| | ... | cpu_cnt=${nf_cpus_count}
 | | Dpdk Testpmd Start | ${vm} | eal_corelist=${testpmd_cpus}
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${TRUE}
@@ -2481,7 +2501,7 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut - DUT node to start guest VM on. Type: dictionary
-| | ... | - vm_count} - Number of guest VMs. Type: int
+| | ... | - vm_count - Number of guest VMs. Type: int
 | | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
 | | ... | in the test. Type: boolean
 | | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
@@ -2500,13 +2520,16 @@
 | | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
+| | | ${nf_cpus}= | Create network function CPU list | ${dut}
+| | | ... | chains=${1} | nodeness=${vm_count} | chain_id=${1}
+| | | ... | node_id=${number} | auto_scale=${True}
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
 | | | ... | ${${dut}-vhost-${number}-if1_mac}
-| | | ... | ${${dut}-vhost-${number}-if2_mac} | nodeness=${vm_count}
+| | | ... | ${${dut}-vhost-${number}-if2_mac} | nf_cpus=${nf_cpus}
 | | | ... | qemu_id=${number} | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
 | | | ... | use_tuned_cfs=${use_tuned_cfs}
 | | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
@@ -2538,6 +2561,126 @@
 | | | Configure guest VMs with dpdk-testpmd-mac connected via vhost-user on node
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
+| | All VPP Interfaces Ready Wait | ${nodes}
+
+| Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user on node
+| | [Documentation]
+| | ... | Start 1 chain of 1..N QEMU guests (VNFs) with two vhost-user\
+| | ... | interfaces and interconnecting DPDK testpmd with fwd mode set to mac\
+| | ... | rewrite on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node to start guest VM on. Type: dictionary
+| | ... | - nf_chains - Number of chains of NFs. Type: integer
+| | ... | - nf_chain - NF chain ID. Type: integer
+| | ... | - nf_nodes - Number of guest VMs. Type: integer
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: boolean
+| | ...
+| | ... | _NOTE:_ This KW expects following test case variables to be set:
+| | ... | - cpu_count_int - Number of Physical CPUs allocated for DUT.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure chain of NFs with dpdk-testpmd-mac connected via \
+| | ... | vhost-user on node \| DUT1 \| 1 \| 1 \| False \| 256 \|
+| | ...
+| | [Arguments] | ${dut} | ${nf_chains}=${1} | ${nf_chain}=${1}
+| | ... | ${nf_nodes}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${use_tuned_cfs}=${False}
+| | ...
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes} + ${1}
+| | | ${nf_cpus}= | Create network function CPU list | ${dut}
+| | | ... | chains=${nf_chains} | nodeness=${nf_nodes} | chain_id=${nf_chain}
+| | | ... | node_id=${nf_node} | auto_scale=${False}
+| | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
+| | | ${sock1}= | Set Variable | /tmp/sock-${qemu_id}-1
+| | | ${sock2}= | Set Variable | /tmp/sock-${qemu_id}-2
+| | | ${nf_name}= | Set Variable | ${dut}_VM${qemu_id}
+| | | ${prev_qemu_id}= | Evaluate | ${qemu_id} - ${1}
+| | | ${next_qemu_id}= | Evaluate | ${qemu_id} + ${1}
+| | | ${prev_qemu_id_hex}= | Convert To Hex | ${prev_qemu_id} | length=2
+| | | ... | lowercase=yes
+| | | ${next_qemu_id_hex}= | Convert To Hex | ${next_qemu_id} | length=2
+| | | ... | lowercase=yes
+| | | ${vif1_mac}= | Set Variable If | ${nf_node} == ${1}
+| | | ... | ${tg_if1_mac}
+| | | ... | 52:54:00:00:${prev_qemu_id_hex}:02
+| | | ${vif2_mac}= | Set Variable If | ${nf_node} == ${nf_nodes}
+| | | ... | ${tg_if2_mac}
+| | | ... | 52:54:00:00:${next_qemu_id_hex}:01
+| | | ${vm}=
+| | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
+| | | ... | ${dut} | ${sock1} | ${sock2} | ${nf_name} | ${vif1_mac}
+| | | ... | ${vif2_mac} | ${nf_cpus} | qemu_id=${qemu_id} | jumbo=${jumbo}
+| | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
+| | | Set To Dictionary | ${${dut}_vm_refs} | ${nf_name} | ${vm}
+
+| Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user
+| | [Documentation]
+| | ... | Start 1 chain of 1..N QEMU guests (VNFs) with two vhost-user\
+| | ... | interfaces and interconnecting DPDK testpmd with fwd mode set to mac\
+| | ... | rewrite on all defined VPP nodes.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_chains - Number of chains of NFs. Type: integer
+| | ... | - nf_chain - NF chain ID. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure chain of NFs with dpdk-testpmd-mac connected via\
+| | ... | vhost-user \| 1 \| 1 \| False \| 256 \|
+| | ...
+| | [Arguments] | ${nf_chains}=${1} | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${use_tuned_cfs}=${False}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user on node
+| | | ... | ${dut} | nf_chains=${nf_chains} | nf_chain=${nf_chain}
+| | | ... | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
+
+| Configure chains of NFs with dpdk-testpmd-mac connected via vhost-user
+| | [Documentation]
+| | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
+| | ... | interfaces and interconnecting DPDK testpmd with fwd mode set to mac\
+| | ... | rewrite on all defined VPP nodes.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_chains - Number of chains of NFs. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure chains of VMs with dpdk-testpmd-mac connected via \
+| | ... | vhost-user \| 1 \| 1 \| False \| 256 \|
+| | ...
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
+| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ...
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
+| | | Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user
+| | | ... | nf_chains=${nf_chains} | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | ... | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
+| | | ... | use_tuned_cfs=${False}
 | | All VPP Interfaces Ready Wait | ${nodes}
 
 | Initialize LISP IPv4 forwarding in 3-node circular topology
