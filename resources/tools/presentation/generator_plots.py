@@ -841,3 +841,144 @@ def plot_http_server_performance_box(plot, input_data):
         logging.error("   Finished with error: {}".
                       format(str(err).replace("\n", " ")))
         return
+
+
+def plot_service_density_heatmap(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_service_density_heatmap
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Example data in Mpps
+    txt_chains = ['1', '2', '4', '6']
+    txt_nodes = ['1', '2', '4', '6']
+    chains = [1, 2, 3, 4]
+    nodes = [1, 2, 3, 4]
+    data = [
+        [10.3, 8.16, 6.51, 3.94],  # 1c1n, 1c2n, 1c4n, 1c6n
+        [9.11, 7.27, 6.23, 4.15],  # 2c1n, 2c2n, 2c4n, 2c6n
+        [8.22, 6.18, 5.03, None],  # 4c1n, 4c2n, 4c4n, 4c6n
+        [7.01, 5.39, None, None]   # 6c1n, 6c2n, 6c4n, 6c6n
+    ]
+
+    hovertext = list()
+    annotations = list()
+
+    text = ("No. of Network Functions in a Chain: {nodes}<br>"
+            "No. of Chains of Network Functions: {chains}<br>"
+            "Packet Throughput: {val}")
+
+    for c in range(len(txt_chains)):
+        hover_line = list()
+        for n in range(len(txt_nodes)):
+            val = "{0}Mpps".format(data[c][n]) if data[c][n] else "Not measured"
+            hover_line.append(text.format(nodes=txt_nodes[n],
+                                          chains=txt_chains[c],
+                                          val=val))
+            if data[c][n]:
+                annotations.append(dict(
+                    x=n+1,
+                    y=c+1,
+                    xref="x",
+                    yref="y",
+                    xanchor="center",
+                    yanchor="middle",
+                    text="{val}".format(val=val),
+                    font=dict(
+                        size=14,
+                    ),
+                    align="center",
+                    showarrow=False
+                ))
+        hovertext.append(hover_line)
+
+    traces = [
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=data,
+                     colorbar={
+                         "title": "Packet Throughput [Mpps]",
+                         "titleside": "right",
+                         "titlefont": {
+                            "size": 14
+                         }
+                     },
+                     colorscale="Reds",
+                     text=hovertext,
+                     hoverinfo="text")
+    ]
+
+    for idx, item in enumerate(txt_nodes):
+        annotations.append(dict(
+            x=idx+1,
+            y=0.4,
+            xref="x",
+            yref="y",
+            xanchor="center",
+            yanchor="top",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+    for idx, item in enumerate(txt_chains):
+        annotations.append(dict(
+            x=0.4,
+            y=idx+1,
+            xref="x",
+            yref="y",
+            xanchor="right",
+            yanchor="middle",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+
+    updatemenus = list([
+        dict(
+            buttons=list([
+                dict(
+                    args=["heatmap.colorscale", "Reds"],
+                    label="Red",
+                    method="relayout"
+                ),
+                dict(
+                    args=["heatmap.colorscale", "Blues"],
+                    label="Blue",
+                    method="relayout"
+                )
+            ])
+        )
+    ])
+
+    layout = deepcopy(plot["layout"])
+    layout["annotations"] = annotations
+    layout['updatemenus'] = updatemenus
+
+    try:
+        # Create plot
+        if layout.get("title", None):
+            layout["title"] = "<b>Packet Throughput:</b> {0}". \
+                format(layout["title"])
+
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
