@@ -54,11 +54,11 @@ a:operation="replace">
 <name>4fe335c8-6fdc-4654-b12c-d256e9b39229</name>
 <description>neutron port</description>
 <link-up-down-trap-enable>enabled</link-up-down-trap-enable>
-<vhost-user xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<vhost-user xmlns="http://fd.io/hc2vpp/yang/v3po">
 <role>client</role>
 <socket>/tmp/socket_4fe335c8-6fdc-4654-b12c-d256e9b39229</socket>
 </vhost-user>
-<type xmlns:x="urn:opendaylight:params:xml:ns:yang:v3po">x:vhost-user</type>
+<type xmlns:x="http://fd.io/hc2vpp/yang/v3po">x:vhost-user</type>
 <enabled>true</enabled>
 </interface>
 </interfaces>
@@ -144,11 +144,11 @@ a:operation="replace">
 <name>4fe335c8-6fdc-4654-b12c-d256e9b39229</name>
 <description>neutron port</description>
 <link-up-down-trap-enable>enabled</link-up-down-trap-enable>
-<vhost-user xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<vhost-user xmlns="http://fd.io/hc2vpp/yang/v3po">
 <role>client</role>
 <socket>/tmp/socket_4fe335c8-6fdc-4654-b12c-d256e9b39229</socket>
 </vhost-user>
-<type xmlns:x="urn:opendaylight:params:xml:ns:yang:v3po">x:vhost-user</type>
+<type xmlns:x="http://fd.io/hc2vpp/yang/v3po">x:vhost-user</type>
 <enabled>true</enabled>
 </interface>
 </interfaces>
@@ -193,11 +193,11 @@ a:operation="replace">
 <name>d7611278-88ff-40e1-81e2-602e94e96fc7</name>
 <description>neutron port</description>
 <link-up-down-trap-enable>enabled</link-up-down-trap-enable>
-<vhost-user xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<vhost-user xmlns="http://fd.io/hc2vpp/yang/v3po">
 <role>client</role>
 <socket>/tmp/socket_d7611278-88ff-40e1-81e2-602e94e96fc7</socket>
 </vhost-user>
-<type xmlns:x="urn:opendaylight:params:xml:ns:yang:v3po">x:vhost-user</type>
+<type xmlns:x="http://fd.io/hc2vpp/yang/v3po">x:vhost-user</type>
 <enabled>true</enabled>
 </interface>
 </interfaces>
@@ -242,11 +242,11 @@ a:operation="replace">
 <name>1f96a665-4351-4984-b1a8-dc6f54683123</name>
 <description>neutron port</description>
 <link-up-down-trap-enable>enabled</link-up-down-trap-enable>
-<vhost-user xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<vhost-user xmlns="http://fd.io/hc2vpp/yang/v3po">
 <role>client</role>
 <socket>/tmp/socket_1f96a665-4351-4984-b1a8-dc6f54683123</socket>
 </vhost-user>
-<type xmlns:x="urn:opendaylight:params:xml:ns:yang:v3po">x:vhost-user</type>
+<type xmlns:x="http://fd.io/hc2vpp/yang/v3po">x:vhost-user</type>
 <enabled>true</enabled>
 </interface>
 </interfaces>
@@ -285,7 +285,7 @@ a:operation="replace">
 </target>
 <default-operation>none</default-operation>
 <config>
-<bridge-domains xmlns="urn:opendaylight:params:xml:ns:yang:v3po"
+<bridge-domains xmlns="http://fd.io/hc2vpp/yang/v3po"
 xmlns:a="urn:ietf:params:xml:ns:netconf:base:1.0" a:operation="replace">
 <bridge-domain>
 <name>e86740a2-042c-4e64-a43b-cc224e0d5240</name>
@@ -345,10 +345,10 @@ trigger_revert1 = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>vxlan3</name>
-<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">
+<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">
     v3po:vxlan-tunnel</type>
 <enabled>true</enabled>
-<vxlan xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<vxlan xmlns="http://fd.io/hc2vpp/yang/v3po">
 <src>192.168.1.6</src>
 <dst>192.168.1.7</dst>
 <vni>9</vni>
@@ -370,10 +370,10 @@ trigger_revert1 = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>vxlan4</name>
-<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">
+<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">
     v3po:vxlan-tunnel</type>
 <enabled>true</enabled>
-<vxlan xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<vxlan xmlns="http://fd.io/hc2vpp/yang/v3po">
 <src>192.168.1.6</src>
 <dst>192.168.1.7</dst>
 <vni>9</vni>
@@ -404,9 +404,9 @@ trigger_revert2 = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>tap</name>
-<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">v3po:tap</type>
+<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">v3po:tap</type>
 <enabled>true</enabled>
-<tap xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<tap xmlns="http://fd.io/hc2vpp/yang/v3po">
 <tap-name>tap</tap-name>
 </tap>
 </interface>
@@ -425,9 +425,9 @@ trigger_revert2 = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>tap2</name>
-<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">v3po:tap</type>
+<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">v3po:tap</type>
 <enabled>true</enabled>
-<tap xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<tap xmlns="http://fd.io/hc2vpp/yang/v3po">
 <tap-name>tap</tap-name>
 </tap>
 </interface>
@@ -455,7 +455,7 @@ trigger_vlan = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>{interface}</name>
-<sub-interfaces xmlns="urn:opendaylight:params:xml:ns:yang:vpp:vlan"/>
+<sub-interfaces xmlns="http://fd.io/hc2vpp/yang/vpp-vlan"/>
 </interface>
 </interfaces>
 </config>
@@ -472,7 +472,7 @@ trigger_vlan = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>{interface}</name>
-<sub-interfaces xmlns="urn:opendaylight:params:xml:ns:yang:vpp:vlan">
+<sub-interfaces xmlns="http://fd.io/hc2vpp/yang/vpp-vlan">
 <sub-interface>
 <identifier>2420</identifier>
 </sub-interface>
@@ -494,7 +494,7 @@ trigger_vlan = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>{interface}</name>
-<sub-interfaces xmlns="urn:opendaylight:params:xml:ns:yang:vpp:vlan">
+<sub-interfaces xmlns="http://fd.io/hc2vpp/yang/vpp-vlan">
 <sub-interface xmlns:a="urn:ietf:params:xml:ns:netconf:base:1.0" a:operation="replace">
 <identifier>2420</identifier>
 <match>

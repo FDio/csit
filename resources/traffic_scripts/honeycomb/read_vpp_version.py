@@ -74,7 +74,7 @@ class ConfigBlaster(object):
     <get>
     <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0"
     ns0:type="subtree">
-    <vpp-state xmlns="urn:opendaylight:params:xml:ns:yang:vpp:management">
+    <vpp-state xmlns="http://fd.io/hc2vpp/yang/vpp-management">
     <version/>
     </vpp-state>
     </filter>
