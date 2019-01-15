@@ -126,6 +126,11 @@
 
   data-sets:
 
+    # Example
+    plot-vpp-service-density-3n-hsw:
+      csit-vpp-perf-verify-1810-3n-hsw:
+      - 28
+
     # Denverton:
     intel-dnv-vpp:
       intel-dnv-vpp-release-1810:
@@ -804,6 +809,34 @@
           size: 16
       width: 700
       height: 900
+
+    plot-service-density:
+      titlefont:
+        size: 18
+      xaxis:
+        side: "top"
+        autorange: True
+        fixedrange: False
+        showgrid: False
+        showline: False
+        showticklabels: False
+        ticks: ""
+        ticklen: 0
+        tickwidth: 0
+        zeroline: False
+      yaxis:
+        autorange: "reversed"
+        showgrid: False
+        showline: False
+        showticklabels: False
+        ticks: ""
+        ticklen: 0
+        tickwidth: 0
+        zeroline: False
+      autosize: True
+      showlegend: False
+      width: 700
+      height: 700
 
     plot-cps:
       titlefont:
@@ -5301,6 +5334,31 @@
   layout:
     title: "example-30min-bars"
     layout: "plot-soak-throughput"
+
+# Heatmap - example
+-
+  type: "plot"
+  title: "Service Density: l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+  algorithm: "plot_service_density_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-sd-ndr"
+  data: "plot-vpp-service-density-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRPDR' and
+           'ETH' and
+           '1T1C' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "<b>Network Service Density Matrix: Packet Throughput View</b>"
+    layout: "plot-service-density"
 
 ################################################################################
 # Plots VPP HTTP Server Performance
