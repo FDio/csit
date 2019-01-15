@@ -42,7 +42,6 @@ class Notifications(Netconf):
         self.send(subscription)
 
         reply = self.get_response(
-            time_out=time_out,
             err="Timeout on notifications subscription."
         )
 
@@ -65,7 +64,6 @@ class Notifications(Netconf):
                      .format(time_out))
 
         reply = self.get_response(
-            time_out=time_out,
             err="Timeout on getting notification."
         )
 

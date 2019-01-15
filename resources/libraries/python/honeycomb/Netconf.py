@@ -19,7 +19,6 @@ from time import time
 
 import paramiko
 from robot.api import logger
-from interruptingcow import timeout
 
 from resources.libraries.python.honeycomb.HoneycombUtil import HoneycombError
 
@@ -82,7 +81,6 @@ class Netconf(object):
         # read OpenDaylight's hello message and capability list
         self.get_response(
             size=131072,
-            time_out=time_out,
             err="Timeout on getting hello message."
         )
 
@@ -90,16 +88,14 @@ class Netconf(object):
         if not self.channel.active:
             raise HoneycombError("Channel closed on capabilities exchange.")
 
-    def get_response(self, size=4096, time_out=10, err="Unspecified Error."):
+    def get_response(self, size=4096, err="Unspecified Error."):
         """Iteratively read data from the receive buffer and catenate together
         until message ends with the message delimiter, or
         until timeout is reached.
 
         :param size: Maximum number of bytes to read in one iteration.
-        :param time_out: Timeout value for getting the complete response.
         :param err: Error message to provide when timeout is reached.
         :type size: int
-        :type time_out: int
         :type err: str
         :returns: Content of response.
         :rtype: str
@@ -109,20 +105,19 @@ class Netconf(object):
         reply = ''
 
         try:
-            with timeout(time_out, exception=RuntimeError):
-                while not reply.endswith(self.delimiter) or \
-                        self.channel.recv_ready():
-                    try:
-                        chunk = self.channel.recv(size)
-                        if not chunk:
-                            break
-                        reply += chunk
-                        if self.channel.exit_status_ready():
-                            logger.debug('Channel exit status ready.')
-                            break
-                    except socket.timeout:
-                        raise HoneycombError("Socket timeout.",
-                                             enable_logging=False)
+            while not reply.endswith(self.delimiter) or \
+                    self.channel.recv_ready():
+                try:
+                    chunk = self.channel.recv(size)
+                    if not chunk:
+                        break
+                    reply += chunk
+                    if self.channel.exit_status_ready():
+                        logger.debug('Channel exit status ready.')
+                        break
+                except socket.timeout:
+                    raise HoneycombError("Socket timeout.",
+                                         enable_logging=False)
 
         except RuntimeError:
             raise HoneycombError(err + " Content of buffer: {0}".format(reply),
@@ -148,7 +143,7 @@ class Netconf(object):
 
         while True:
             try:
-                response += self.get_response(size, time_out, err)
+                response += self.get_response(size, err)
             except HoneycombError:
                 break
 
