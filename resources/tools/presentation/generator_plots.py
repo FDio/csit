@@ -841,3 +841,248 @@ def plot_http_server_performance_box(plot, input_data):
         logging.error("   Finished with error: {}".
                       format(str(err).replace("\n", " ")))
         return
+
+
+def plot_service_density_heatmap(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_service_density_heatmap
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Example data in Mpps
+    txt_chains = ['1', '2', '4', '6', '8', '10']
+    txt_nodes = ['1', '2', '4', '6', '8', '10']
+    chains = [i + 1 for i in range(len(txt_chains))]
+    nodes = [i + 1 for i in range(len(txt_nodes))]
+    data = [
+        [6.3, 6.3, 6.3, 6.4, 6.5, 6.4],
+        [5.8, 5.6, 5.6, 5.6, 5.5, None],
+        [5.6, 5.5, 5.3, None, None, None],
+        [5.4, 5.3, None, None, None, None],
+        [5.4, 5.2, None, None, None, None],
+        [5.3, None, None, None, None, None]
+    ]
+
+    hovertext = list()
+    annotations = list()
+
+    text = "{name}"
+
+    for c in range(len(txt_chains)):
+        hover_line = list()
+        for n in range(len(txt_nodes)):
+            val = "{0}Mpps".format(data[c][n]) if data[c][n] else "Not measured"
+            hover_line.append(text.format(name="Testcase Name"))
+            if data[c][n]:
+                annotations.append(dict(
+                    x=n+1,
+                    y=c+1,
+                    xref="x",
+                    yref="y",
+                    xanchor="center",
+                    yanchor="middle",
+                    text="{val}".format(val=val[:-4]),
+                    font=dict(
+                        size=14,
+                    ),
+                    align="center",
+                    showarrow=False
+                ))
+        hovertext.append(hover_line)
+
+    traces = [
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=data,
+                     colorbar=dict(
+                         title="Packet Throughput [Mpps]",
+                         titleside="right",
+                         titlefont=dict(
+                            size=14
+                         ),
+                     ),
+                     showscale=True,
+                     colorscale="Reds",
+                     text=hovertext,
+                     hoverinfo="text")
+    ]
+
+    for idx, item in enumerate(txt_nodes):
+        annotations.append(dict(
+            x=idx+1,
+            y=0,
+            xref="x",
+            yref="y",
+            xanchor="center",
+            yanchor="top",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+    for idx, item in enumerate(txt_chains):
+        annotations.append(dict(
+            x=0.3,
+            y=idx+1,
+            xref="x",
+            yref="y",
+            xanchor="right",
+            yanchor="middle",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+    # X-axis:
+    annotations.append(dict(
+        x=0.55,
+        y=1.05,
+        xref="paper",
+        yref="paper",
+        xanchor="center",
+        yanchor="middle",
+        text="<b>No. of Network Functions per Service Instance</b>",
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        showarrow=False
+    ))
+    # Y-axis:
+    annotations.append(dict(
+        x=-0.04,
+        y=0.5,
+        xref="paper",
+        yref="paper",
+        xanchor="center",
+        yanchor="middle",
+        text="<b>No. of Service Instances</b>",
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        textangle=270,
+        showarrow=False
+    ))
+    updatemenus = list([
+        dict(
+            x=1.0,
+            y=0.0,
+            xanchor='right',
+            yanchor='bottom',
+            direction='up',
+            buttons=list([
+                dict(
+                    args=[{"colorscale": "Reds", "reversescale": False}],
+                    label="Red",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Blues", "reversescale": True}],
+                    label="Blue",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Greys", "reversescale": True}],
+                    label="Grey",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Greens", "reversescale": True}],
+                    label="Green",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "RdBu", "reversescale": False}],
+                    label="RedBlue",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Picnic", "reversescale": False}],
+                    label="Picnic",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Rainbow", "reversescale": False}],
+                    label="Rainbow",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Portland", "reversescale": False}],
+                    label="Portland",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Jet", "reversescale": False}],
+                    label="Jet",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Hot", "reversescale": True}],
+                    label="Hot",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Blackbody", "reversescale": True}],
+                    label="Blackbody",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Earth", "reversescale": True}],
+                    label="Earth",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Electric", "reversescale": True}],
+                    label="Electric",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Viridis", "reversescale": True}],
+                    label="Viridis",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Cividis", "reversescale": True}],
+                    label="Cividis",
+                    method="update"
+                ),
+            ])
+        )
+    ])
+
+    try:
+        layout = deepcopy(plot["layout"])
+    except KeyError as err:
+        logging.error("Finished with error: No layout defined")
+        logging.error(repr(err))
+        return
+
+    # if layout.get("title", None):
+    #         layout["title"] = "<b>Packet Throughput:</b> {0}<br> ". \
+    #             format(layout["title"])
+    layout["annotations"] = annotations
+    layout['updatemenus'] = updatemenus
+
+    try:
+        # Create plot
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
