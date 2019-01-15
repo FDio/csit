@@ -446,26 +446,26 @@ Each server in 3-node Xeon topology has its NIC cards placed, and NIC cards and 
 #### 3-Node Arm
 Note: Server19 (TG) is shared between testbed33 & testbed34
 ```
-- Server17 [Type-3]:
+- Server15 [Type-3]:
     - testbedname: testbed33.
-    - hostname: s17-t33-sut1.
+    - hostname: s15-t33-sut1.
     - IPMI IP: 10.30.50.36
     - Host IP: 10.30.51.36
     - portnames:
-        - s17-t33-sut1-ca/p1 - 10GE-port1 82599-2p10GE.
-        - s17-t33-sut1-ca/p2 - 10GE-port2 82599-2p10GE.
-        - s17-t33-sut1-c2/p1 - 25GE-port1 cx4-2p25GE.
-        - s17-t33-sut1-c2/p2 - 25GE-port2 cx4-2p25GE.
-- Server18 [Type-3]:
+        - s15-t33-sut1-c6/p1 - 10GE-port1 82599-2p10GE.
+        - s15-t33-sut1-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s15-t33-sut1-c4/p1 - 25GE-port1 cx4-2p25GE.
+        - s15-t33-sut1-c4/p2 - 25GE-port2 cx4-2p25GE.
+- Server16 [Type-3]:
     - testbedname: testbed33.
-    - hostname: s18-t33-sut2.
+    - hostname: s16-t33-sut2.
     - IPMI IP: 10.30.50.37
     - Host IP: 10.30.51.37
     - portnames:
-        - s18-t33-sut2-ca/p1 - 10GE-port1 82599-2p10GE.
-        - s18-t33-sut2-ca/p2 - 10GE-port2 82599-2p10GE.
-        - s18-t33-sut2-c2/p1 - 25GE-port1 cx4-2p25GE.
-        - s18-t33-sut2-c2/p2 - 25GE-port2 cx4-2p25GE.
+        - s16-t33-sut2-c6/p1 - 10GE-port1 82599-2p10GE.
+        - s16-t33-sut2-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s16-t33-sut2-c4/p1 - 25GE-port1 cx4-2p25GE.
+        - s16-t33-sut2-c4/p2 - 25GE-port2 cx4-2p25GE.
 - Server19 [Type-2]:
     - testbedname: testbed33.
     - hostname: s19-t33t34-tg1.
@@ -696,13 +696,13 @@ One 3-Node testbed is constructed by connecting 3 Arm servers using below specif
 ```
 - testbed33:
     - ring1 10GE-ports 82599-2p10GE on SUTs:
-        - t33t34-tg1-c2/p1 - t33-sut1-ca/p1.
-        - t33-sut1-ca/p2 - t33-sut2-ca/p1.
-        - t33-sut2-ca/p2 - t33t34-tg1-c2/p2.
+        - t33t34-tg1-c2/p2 - t33-sut1-c6/p2.
+        - t33-sut1-c6/p1 - t33-sut2-c6/p2.
+        - t33-sut2-c6/p1 - t33t34-tg1-c2/p1.
     - ring2 25GE-ports cx4-2p25GE on SUTs:
-        - t33t34-tg1-c4/p1 - t33-sut1-c2/p1.
-        - t33-sut1-c2/p2 - t33-sut2-c2/p1.
-        - t33-sut2-c2/p2 - t33t34-tg1-c4/p2.
+        - t33t34-tg1-c4/p2 - t33-sut1-c4/p2.
+        - t33-sut1-c4/p1 - t33-sut2-c4/p2.
+        - t33-sut2-c4/p1 - t33t34-tg1-c4/p1.
 - testbed34:
     - ring1 10GE-ports Marvell on SUTs:
         - t33t34-tg1-c2/p3 - t34-sut1-ca/p1.
