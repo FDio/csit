@@ -77,8 +77,8 @@ Platform Name and Specification | Role | Status | Hostname | IP | IPMI | Cores |
   | VPP dev debug | Up | fdio-cavium5 | 10.30.51.66 | 10.30.50.66 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
   | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | fdio-cavium6 | 10.30.51.67 | 10.30.50.67 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
   | VPP dev debug | Up | fdio-cavium7 | 10.30.51.68 | 10.30.50.68 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
-Huawei TaiShan 2280 | CSIT Performance | Up, Manual perf experiments | s15-t33-sut1 | 10.30.51.36 | 10.30.50.36 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
-  | CSIT Performance | Up, Manual perf experiments | s16-t33-sut2 | 10.30.51.37 | 10.30.50.37 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
+Huawei TaiShan 2280 | CSIT Performance | Up, Manual perf experiments | s17-t33-sut1 | 10.30.51.36 | 10.30.50.36 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
+  | CSIT Performance | Up, Manual perf experiments | s18-t33-sut2 | 10.30.51.37 | 10.30.50.37 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
 [Marvell MACCHIATObin](http://macchiatobin.net/) | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s20-t34-sut1 | 10.30.51.41 | 10.30.51.49, then connect to /dev/ttyUSB0 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.4
   | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s21-t34-sut2 | 10.30.51.42 | 10.30.51.49, then connect to /dev/ttyUSB1 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
   | VPP dev debug | Up, Manual VPP Device experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | fdio-mcbin3 | 10.30.51.43 | 10.30.51.49, then connect to /dev/ttyUSB2 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
@@ -452,22 +452,22 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
     - IPMI IP: 10.30.50.36
     - Host IP: 10.30.51.36
     - portnames:
-        - s17-t33-sut1-ca/p1 - 10GE-port1 82599-2p10GE.
-        - s17-t33-sut1-ca/p2 - 10GE-port2 82599-2p10GE.
-        - s17-t33-sut1-c2/p1 - 25GE-port1 cx4-2p25GE.
-        - s17-t33-sut1-c2/p2 - 25GE-port2 cx4-2p25GE.
+        - s17-t33-sut1-c6/p1 - 10GE-port1 82599-2p10GE.
+        - s17-t33-sut1-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s17-t33-sut1-c4/p1 - 25GE-port1 cx4-2p25GE.
+        - s17-t33-sut1-c4/p2 - 25GE-port2 cx4-2p25GE.
 - Server18 [Type-3]:
     - testbedname: testbed33.
     - hostname: s18-t33-sut2.
     - IPMI IP: 10.30.50.37
     - Host IP: 10.30.51.37
     - portnames:
-        - s18-t33-sut2-ca/p1 - 10GE-port1 82599-2p10GE.
-        - s18-t33-sut2-ca/p2 - 10GE-port2 82599-2p10GE.
-        - s18-t33-sut2-c2/p1 - 25GE-port1 cx4-2p25GE.
-        - s18-t33-sut2-c2/p2 - 25GE-port2 cx4-2p25GE.
+        - s18-t33-sut2-c6/p1 - 10GE-port1 82599-2p10GE.
+        - s18-t33-sut2-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s18-t33-sut2-c4/p1 - 25GE-port1 cx4-2p25GE.
+        - s18-t33-sut2-c4/p2 - 25GE-port2 cx4-2p25GE.
 - Server19 [Type-2]:
-    - testbedname: testbed33.
+    - testbednames: testbed33 and testbed34.
     - hostname: s19-t33t34-tg1.
     - IPMI IP: 10.30.50.46
     - Host IP: 10.30.51.49
@@ -478,6 +478,10 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s19-t33t34-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s19-t33t34-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s19-t33t34-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s19-t33t34-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s19-t33t34-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s19-t33t34-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s19-t33t34-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 - Server20 [Type-4]:
     - testbedname: testbed34.
     - hostname: s20-t34-sut1.
@@ -692,17 +696,20 @@ Two 3-Node testbeds are constructed by connecting 6 Xeon servers using below spe
 ```
 
 #### 3-Node Arm
-One 3-Node testbed is constructed by connecting 3 Arm servers using below specification:
+One 3-Node testbed is constructed by connecting 2 TaiShan servers and one Xeon server using below specification:
 ```
 - testbed33:
     - ring1 10GE-ports 82599-2p10GE on SUTs:
-        - t33t34-tg1-c2/p1 - t33-sut1-ca/p1.
-        - t33-sut1-ca/p2 - t33-sut2-ca/p1.
-        - t33-sut2-ca/p2 - t33t34-tg1-c2/p2.
+        - t33t34-tg1-c2/p2 - t33-sut1-c6/p2.
+        - t33-sut1-c6/p1 - t33-sut2-c6/p2.
+        - t33-sut2-c6/p1 - t33t34-tg1-c2/p1.
     - ring2 25GE-ports cx4-2p25GE on SUTs:
-        - t33t34-tg1-c4/p1 - t33-sut1-c2/p1.
-        - t33-sut1-c2/p2 - t33-sut2-c2/p1.
-        - t33-sut2-c2/p2 - t33t34-tg1-c4/p2.
+        - t33t34-tg1-c4/p2 - t33-sut1-c4/p2.
+        - t33-sut1-c4/p1 - t33-sut2-c4/p2.
+        - t33-sut2-c4/p1 - t33t34-tg1-c4/p1.
+```
+One 3-Node testbed is constructed by connecting 2 MACCHIATObin servers and one Xeon server using below specification:
+```
 - testbed34:
     - ring1 10GE-ports Marvell on SUTs:
         - t33t34-tg1-c2/p3 - t34-sut1-ca/p1.
@@ -782,8 +789,8 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
         - RAM Memory: 8* 16GB DDR4-2400MT/s
         - Disks: 1* 4TB SATA HDD
     - NICs configuration:
-        - PCIe Slot2 e9:00.xx: connectx4-2p25GE Mellanox.
-        - PCIe Slota 11:00.xx: 82599-2p10GE Intel.
+        - PCIe Slot4 e9:00.xx: connectx4-2p25GE Mellanox.
+        - PCIe Slot6 11:00.xx: 82599-2p10GE Intel.
 4. Type-4: Purpose - (Arm Armada 8040 Processor) SUT for SW Data Plane Workload i.e. VPP, testpmd.
     - Quantity: 3
     - Physical connectivity:
