@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34f6cc37_bbce248b",
+        "filename": "docs/lab/Testbeds_Xeon_Skx_Arm_Atom.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-01-15T11:42:28Z",
+      "side": 1,
+      "message": "There already is Server15 in the previous section - we should leave this as Server17 (and 18) and rename the physical machines",
+      "range": {
+        "startLine": 449,
+        "startChar": 2,
+        "endLine": 449,
+        "endChar": 10
+      },
+      "revId": "24cbab546d433cfaaaf956d16611167405e45f9a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
