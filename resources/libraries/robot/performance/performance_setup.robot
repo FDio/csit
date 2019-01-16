@@ -621,18 +621,22 @@
 | | ... | *Arguments:*
 | | ... | - chains: Total number of chains. Type: integer
 | | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ... | - auto_scale - If True, use same amount of Dataplane threads for
+| | ... |   network function as DUT, otherwise use single physical core for
+| | ... |   every network function. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Set up performance test with containers \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
 | | Set Test Variable | @{container_groups} | @{EMPTY}
 | | Set Test Variable | ${container_group} | CNF
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
 | | ... | engine=${container_engine} | WITH NAME | ${container_group}
-| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
+| | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
+| | ... | auto_scale=${auto_scale}
 | | Acquire all '${container_group}' containers
 | | Create all '${container_group}' containers
 | | Configure VPP in all '${container_group}' containers
