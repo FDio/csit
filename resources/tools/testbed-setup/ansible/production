@@ -26,7 +26,7 @@ all:
           hosts:
             10.30.51.45: null #s4-t21-tg1
             10.30.51.48: null #s13-t31-tg1
-            10.30.51.49: null #s17-t33-tg1
+            10.30.51.49: null #s19-t33t34-tg1
             10.30.51.53: null #s6-t22-tg1
             10.30.51.55: null #s8-t23-tg1
             10.30.51.57: null #s10-t24-tg1
@@ -45,9 +45,11 @@ all:
           hosts:
             10.30.51.50: null #s1-t11-sut1
             10.30.51.51: null #s2-t12-sut1
-#    arm:
-#      children:
+    taishan:
+      children:
 #        tg:
 #          hosts:
-#        sut:
-#          hosts:
+        sut:
+          hosts:
+            10.30.51.36: null #s17-t33-sut1
+            10.30.51.37: null #s18-t33-sut2

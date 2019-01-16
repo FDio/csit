@@ -1,0 +1,7 @@
+---
+# file: host_vars/10.30.51.36.yaml
+
+hostname: "s17-t33-sut1"
+isolcpus: "1-15,17-31,33-47,49-63"
+cfs_cpus: "0,16,32,48"
+taishan_workaround: True

@@ -77,4 +77,4 @@ kernel.randomize_va_space=0
 # typically this value would only be touched in the nohz_full case
 # to re-enable cores that by default were not running the watchdog,
 # if a kernel lockup was suspected on those cores.
-kernel.watchdog_cpumask=0,18
+kernel.watchdog_cpumask={{ cfs_cpus }}

@@ -2,19 +2,31 @@
 # file: roles/tg_sut/tasks/main.yaml
 
 - name: Ubuntu specific
-  import_tasks: ubuntu_x86_64.yaml
-  when: ansible_distribution|lower == 'ubuntu' and ansible_machine == 'x86_64'
+  import_tasks: ubuntu.yaml
+  when: ansible_distribution|lower == 'ubuntu'
 
-- name: Copy interfaces file
+- name: x86 specific
+  import_tasks: x86_64.yaml
+  when: ansible_machine == 'x86_64'
+
+- name: skylake specific
+  import_tasks: skylake.yaml
+  when: ("skylake" in groups) and inventory_hostname in groups['skylake']
+
+- name: aarch specific
+  import_tasks: aarch64.yaml
+  when: ansible_machine == 'aarch64'
+
+- name: Copy netplan network config file
   template:
-    src: 'files/interfaces_physical'
-    dest: '/etc/network/interfaces'
+    src: 'files/netplan_config'
+    dest: '/etc/netplan/01-netcfg.yaml'
     owner: 'root'
     group: 'root'
     mode: '0644'
   tags: copy-interface-file
 
-- name: Copy sysctl file
+- name: Copy CSIT sysctl file
   template:
     src: 'files/90-csit'
     dest: '/etc/sysctl.d/90-csit.conf'
@@ -47,15 +59,6 @@
     dest: '/tmp/requirements.txt'
   tags: copy-pip
 
-- name: Set isolcpus and pstate parameter
-  lineinfile:
-    path: '/etc/default/grub'
-    state: 'present'
-    regexp: '^GRUB_CMDLINE_LINUX='
-    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off"'
-  notify: ['Update GRUB']
-  tags: set-grub
-
 - name: Set ondemand service to disable
   service:
     name: 'ondemand'
@@ -73,29 +76,3 @@
     state: 'present'
     line: 'vfio-pci'
   tags: load-vfio-pci
-
-- name: Load msr by default
-  lineinfile:
-    path: '/etc/modules'
-    state: 'present'
-    line: 'msr'
-  tags: disable-turbo-boost
-
-- name: Disable Turbo-Boost by service
-  copy:
-    src: 'files/disable-turbo-boost.service'
-    dest: '/etc/systemd/system/disable-turbo-boost.service'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-  when: >
-        inventory_hostname in groups['skylake']
-  tags: disable-turbo-boost
-
-- name: Disable Turbo-Boost by service on startup
-  service:
-    name: disable-turbo-boost
-    enabled: yes
-  when: >
-        inventory_hostname in groups['skylake']
-  tags: disable-turbo-boost

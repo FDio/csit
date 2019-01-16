@@ -3,3 +3,4 @@
 
 hostname: "t2-sut1"
 isolcpus: "1-17,19-35"
+cfs_cpus: "0,18"

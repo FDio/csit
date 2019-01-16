@@ -1,0 +1,11 @@
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    {{ ansible_default_ipv4["interface"] }}:
+      addresses: [ {{ (ansible_default_ipv4.address + '/' + ansible_default_ipv4.netmask) | ipaddr('host/prefix') }} ]
+      gateway4: {{ ansible_default_ipv4["gateway"] }}
+      nameservers:
+        addresses: [ 199.204.44.24, 199.204.47.54 ]
