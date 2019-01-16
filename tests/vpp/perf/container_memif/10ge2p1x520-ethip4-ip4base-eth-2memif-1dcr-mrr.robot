@@ -81,7 +81,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
-| | And Set up performance test with containers | chains=${1} | nodeness=${1}
+| | And Set up performance test with containers
 | | And Initialize IPv4 routing with memif pairs
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}

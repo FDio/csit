@@ -61,7 +61,7 @@
 | ${prefix_length}= | 64
 | ${fib_table_2}= | 20
 # Memif
-| ${sock_base}= | memif-DUT1_CNF1
+| ${sock_base}= | memif-DUT1_CNF
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
