@@ -1,0 +1,5 @@
+---
+# file: host_vars/10.30.51.37.yaml
+
+hostname: "s18-t33-sut2"
+isolcpus: "1-15,16-31,32-47,48-63"

@@ -7,8 +7,8 @@
 - import_playbook: sut.yaml
   tags: sut
 
-- import_playbook: vpp_device.yaml
-  tags: vpp-device
+#- import_playbook: vpp_device.yaml
+#  tags: vpp-device
 
 #- import_playbook: virl.yaml
 #  tags: virl

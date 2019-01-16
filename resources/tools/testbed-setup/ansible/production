@@ -1,53 +1,57 @@
 all:
   children:
-    haswell:
-      children:
-        tg:
-          hosts:
-            10.30.51.16: null #t1-tg1
-            10.30.51.20: null #t2-tg1
-            10.30.51.24: null #t3-tg1
-        sut:
-          hosts:
-            10.30.51.17: null #t1-sut1
-            10.30.51.18: null #t1-sut2
-            10.30.51.21: null #t2-sut1
-            10.30.51.22: null #t2-sut2
-            10.30.51.25: null #t3-sut1
-            10.30.51.26: null #t3-sut2
+#    haswell:
+#      children:
+#        tg:
+#          hosts:
+#            10.30.51.16: null #t1-tg1
+#            10.30.51.20: null #t2-tg1
+#            10.30.51.24: null #t3-tg1
+#        sut:
+#          hosts:
+#            10.30.51.17: null #t1-sut1
+#            10.30.51.18: null #t1-sut2
+#            10.30.51.21: null #t2-sut1
+#            10.30.51.22: null #t2-sut2
+#            10.30.51.25: null #t3-sut1
+#            10.30.51.26: null #t3-sut2
 #        virl: # WARNING, DO NOT ENABLE VIRL UNLESS YOU KNOW WHAT YOU ARE DOING
 #          hosts:
 #            10.30.51.28: null #t4-virl1
 #            10.30.51.29: null #t4-virl2
 #            10.30.51.30: null #t4-virl3
-    skylake:
-      children:
-        tg:
-          hosts:
-            10.30.51.45: null #s4-t21-tg1
-            10.30.51.48: null #s13-t31-tg1
-            10.30.51.49: null #s17-t33-tg1
-            10.30.51.53: null #s6-t22-tg1
-            10.30.51.55: null #s8-t23-tg1
-            10.30.51.57: null #s10-t24-tg1
-            10.30.51.60: null #s16-t32-tg1
-        sut:
-          hosts:
-            10.30.51.44: null #s3-t21-sut1
-            10.30.51.46: null #s11-t31-sut1
-            10.30.51.47: null #s12-t31-sut2
-            10.30.51.52: null #s5-t22-sut1
-            10.30.51.54: null #s7-t23-sut1
-            10.30.51.56: null #s9-t24-sut1
-            10.30.51.58: null #s14-t32-sut1
-            10.30.51.59: null #s15-t32-sut2
-        vpp_device:
-          hosts:
-            10.30.51.50: null #s1-t11-sut1
-            10.30.51.51: null #s2-t12-sut1
-#    arm:
+#    skylake:
 #      children:
 #        tg:
 #          hosts:
+#            10.30.51.45: null #s4-t21-tg1
+#            10.30.51.48: null #s13-t31-tg1
+#            10.30.51.49: null #s17-t33-tg1
+#            10.30.51.53: null #s6-t22-tg1
+#            10.30.51.55: null #s8-t23-tg1
+#            10.30.51.57: null #s10-t24-tg1
+#            10.30.51.60: null #s16-t32-tg1
 #        sut:
 #          hosts:
+#            10.30.51.44: null #s3-t21-sut1
+#            10.30.51.46: null #s11-t31-sut1
+#            10.30.51.47: null #s12-t31-sut2
+#            10.30.51.52: null #s5-t22-sut1
+#            10.30.51.54: null #s7-t23-sut1
+#            10.30.51.56: null #s9-t24-sut1
+#            10.30.51.58: null #s14-t32-sut1
+#            10.30.51.59: null #s15-t32-sut2
+#        vpp_device:
+#          hosts:
+#            10.30.51.50: null #s1-t11-sut1
+#            10.30.51.51: null #s2-t12-sut1
+    arm:
+      children:
+        tg:
+          hosts:
+            10.30.51.49: null #s19-t33t34-tg1
+        sut:
+          hosts:
+            10.30.51.36: null #s17-t33-sut1
+            10.30.51.37: null #s18-t33-sut2
+
