@@ -3013,39 +3013,41 @@
 | Initialize L2 Bridge Domain with memif pairs on DUT node
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on DUT node. Put each Memif interface
-| | ... | to separate L2 bridge domain with one physical or virtual interface
+| | ... | to separate L2 bridge domain with one physical or memif interface
 | | ... | to create a chain accross DUT node.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: dictionary
-| | ... | - count - Number of memif pairs (containers). Type: integer
+| | ... | - nf_chain - NF chain. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
-| | ... | - /tmp/memif-\${dut}_CNF\${number}-\${sid}
+| | ... | - /tmp/memif-\${dut}_CNF\${nf_id}-\${sid}
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 Bridge Domain with memif pairs on DUT node \
-| | ... | \| ${dut} \| ${1} \|
+| | ... | \| ${dut} \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${dut} | ${count}
+| | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
-| | ${bd_id2}= | Evaluate | ${count}+1
+| | ${bd_id2}= | Evaluate | ${nf_nodes}+1
 | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1} | ${1}
 | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if2}
 | | ... | ${bd_id2}
-| | :FOR | ${number} | IN RANGE | 1 | ${count}+1
-| | | ${sock1}= | Set Variable | memif-${dut}_CNF1
-| | | ${sock2}= | Set Variable | memif-${dut}_CNF1
+| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
+| | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
+| | | ${sock1}= | Set Variable | memif-${dut}_CNF
+| | | ${sock2}= | Set Variable | memif-${dut}_CNF
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
-| | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
-| | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
-| | | ${bd_id2}= | Evaluate | ${number}+1
+| | | ... | ${sock1} | ${sock2} | ${nf_id} | ${dut}-memif-${nf_id}-if1
+| | | ... | ${dut}-memif-${nf_id}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ${bd_id2}= | Evaluate | ${nf_node}+1
 | | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-memif-${number}-if1} | ${number}
+| | | ... | ${${dut}-memif-${nf_id}-if1} | ${nf_node}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-memif-${number}-if2} | ${bd_id2}
+| | | ... | ${${dut}-memif-${nf_id}-if2} | ${bd_id2}
 
 | Initialize L2 Bridge Domain with memif pairs
 | | [Documentation]
@@ -3054,18 +3056,41 @@
 | | ... | virtual interface to create a chain accross DUT node.
 | | ...
 | | ... | *Arguments:*
-| | ... | - count - Number of memif pairs (containers). Type: integer
+| | ... | - nf_chain - NF chain. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize L2 Bridge Domain with memif pairs \| ${1} \|
+| | ... | \| Initialize L2 Bridge Domain with memif pairs \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${count}=${1}
+| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 Bridge Domain with memif pairs on DUT node | ${dut}
-| | | ... | ${count}
+| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+
+| Initialize L2 Bridge Domain for multiple chains with memif pairs
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces for defined number of NF chains
+| | ... | with defined number of NF nodes on all defined VPP nodes. Add each
+| | ... | Memif interface into L2 bridge domains with learning enabled
+| | ... | with physical inteface or Memif interface of another NF.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_chains - Number of chains of NFs. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 Bridge Domain for multiple chains with memif pairs \
+| | ... | \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
+| | ...
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
+| | | Initialize L2 Bridge Domain with memif pairs | nf_chain=${nf_chain}
+| | | ... | nf_nodes=${nf_nodes}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 

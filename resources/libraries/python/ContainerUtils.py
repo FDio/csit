@@ -321,7 +321,7 @@ class ContainerEngine(object):
                      'rm -f "${deb}"')
         self.execute(
             'dpkg -i --force-all '
-            '{guest_dir}/openvpp-testing/download_dir/*.deb'.
+            '{guest_dir}/install_dir/*.deb'.
             format(guest_dir=self.container.mnt[0].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')

@@ -35,13 +35,14 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
+| | | ${nf_id}= | Evaluate | (${chain_id} - ${1}) * ${nodeness} + ${node_id}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
 | | | ${mnt}= | Create List | /tmp:/mnt/host | /dev/vfio:/dev/vfio
 | | | ${nf_cpus}= | Create network function CPU list | ${dut}
 | | | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${chain_id}
 | | | ... | node_id=${node_id} | auto_scale=${True}
 | | | Run Keyword | ${container_group}.Construct container
-| | | ... | name=${dut}_${container_group}${chain_id}${node_id}
+| | | ... | name=${dut}_${container_group}${nf_id}
 | | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
 | | | ... | cpuset_cpus=${nf_cpus}
 
