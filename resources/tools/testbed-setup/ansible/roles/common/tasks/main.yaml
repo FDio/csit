@@ -2,8 +2,16 @@
 # file: roles/common/tasks/main.yaml
 
 - name: Ubuntu specific
-  import_tasks: ubuntu_x86_64.yaml
-  when: ansible_distribution|lower == 'ubuntu' and ansible_machine == 'x86_64'
+  import_tasks: ubuntu.yaml
+  when: ansible_distribution|lower == 'ubuntu'
+
+- name: x86_64 specific
+  import_tasks: x86_64.yaml
+  when: ansible_machine == 'x86_64'
+
+- name: aarch64 specific
+  import_tasks: aarch64.yaml
+  when: ansible_machine == 'aarch64'
 
 - name: Set hostname
   hostname:
@@ -17,7 +25,7 @@
     line: '{{ ansible_default_ipv4.address }} {{ hostname }}.linuxfoundation.org'
   tags: set-hostname
 
-- name: Set sudoers
+- name: Set sudoers admin
   lineinfile:
     path: '/etc/sudoers'
     state: 'present'
@@ -26,7 +34,7 @@
     validate: '/usr/sbin/visudo -cf %s'
   tags: set-sudoers
 
-- name: Set sudoers
+- name: Set sudoers sudo
   lineinfile:
     path: '/etc/sudoers'
     state: 'present'

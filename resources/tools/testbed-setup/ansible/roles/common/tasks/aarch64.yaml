@@ -1,0 +1,8 @@
+---
+# file: roles/common/tasks/aarch64.yaml
+
+- name: Copy aarch64 apt sources file
+  template:
+    src: 'files/apt-sources-arm.list'
+    dest: '/etc/apt/sources.list'
+  tags: copy-apt-sources

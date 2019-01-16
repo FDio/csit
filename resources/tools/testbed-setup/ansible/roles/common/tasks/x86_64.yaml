@@ -1,0 +1,8 @@
+---
+# file: roles/common/tasks/x86_64.yaml
+
+- name: Copy x86_64 apt sources file
+  template:
+    src: 'files/apt-sources.list'
+    dest: '/etc/apt/sources.list'
+  tags: copy-apt-sources
