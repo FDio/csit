@@ -606,7 +606,8 @@ class DUTSetup(object):
         :raises RuntimeError: If failed to remove or install VPP.
         """
         for node in nodes.values():
-            message='Failed to install VPP on {host}!'.format(host=node['host'])
+            message = 'Failed to install VPP on host {host}!'.\
+                format(host=node['host'])
             if node['type'] == NodeType.DUT:
                 command = '. /etc/lsb-release; echo "${DISTRIB_ID}"'
                 stdout, _ = exec_cmd_no_error(node, command)
@@ -615,15 +616,15 @@ class DUTSetup(object):
                     exec_cmd_no_error(node, 'apt-get purge -y "*vpp*" || true',
                                       timeout=120, sudo=True)
                     exec_cmd_no_error(node, 'dpkg -i --force-all {dir}*.deb'.
-                        format(dir=vpp_pkg_dir), timeout=120, sudo=True,
-                        message=message)
+                                      format(dir=vpp_pkg_dir), timeout=120,
+                                      sudo=True, message=message)
                     exec_cmd_no_error(node, 'dpkg -l | grep vpp', sudo=True)
                 else:
                     exec_cmd_no_error(node, 'yum -y remove "*vpp*" || true',
                                       timeout=120, sudo=True)
-                    exec_cmd_no_error(node, 'rpm -ivh {dir}*.rpm'.\
-                        format(dir=vpp_pkg_dir), timeout=120, sudo=True,
-                        message=message)
+                    exec_cmd_no_error(node, 'rpm -ivh {dir}*.rpm'.
+                                      format(dir=vpp_pkg_dir), timeout=120,
+                                      sudo=True, message=message)
                     exec_cmd_no_error(node, 'rpm -qai *vpp*', sudo=True)
 
     @staticmethod
