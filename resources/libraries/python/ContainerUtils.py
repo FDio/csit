@@ -141,6 +141,7 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             # We need to install supervisor client/server system to control VPP
             # as a service
+            self.engine.execute('apt-get update')
             self.engine.install_supervisor()
             self.engine.install_vpp()
             self.engine.restart_vpp()
@@ -280,10 +281,9 @@ class ContainerEngine(object):
 
     def install_supervisor(self):
         """Install supervisord inside a container."""
-        self.execute('sleep 3')
-        self.execute('apt-get update')
         self.execute('apt-get install -y supervisor')
-        self.execute('echo "{config}" > {config_file}'.
+        self.execute('echo "{config}" > {config_file} && '
+                     'supervisord -c {config_file}'.
                      format(
                          config='[unix_http_server]\n'
                          'file  = /tmp/supervisor.sock\n\n'
@@ -300,13 +300,10 @@ class ContainerEngine(object):
                          'loglevel=debug\n'
                          'nodaemon=false\n\n',
                          config_file=SUPERVISOR_CONF))
-        self.execute('supervisord -c {config_file}'.
-                     format(config_file=SUPERVISOR_CONF))
 
     def install_vpp(self):
         """Install VPP inside a container."""
         self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
-        self.execute('apt-get update')
         # Workaround for install xenial vpp build on bionic ubuntu.
         self.execute('apt-get install -y wget')
         self.execute('deb=$(mktemp) && wget -O "${deb}" '
@@ -321,7 +318,7 @@ class ContainerEngine(object):
                      'rm -f "${deb}"')
         self.execute(
             'dpkg -i --force-all '
-            '{guest_dir}/openvpp-testing/download_dir/*.deb'.
+            '{guest_dir}/install_dir/*.deb'.
             format(guest_dir=self.container.mnt[0].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')
@@ -334,7 +331,6 @@ class ContainerEngine(object):
                          'priority=1',
                          config_file=SUPERVISOR_CONF))
         self.execute('supervisorctl reload')
-        self.execute('supervisorctl restart vpp')
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""

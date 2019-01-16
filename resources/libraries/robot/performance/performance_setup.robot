@@ -626,13 +626,13 @@
 | | ...
 | | ... | \| Set up performance test with containers \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ...
 | | Set Test Variable | @{container_groups} | @{EMPTY}
 | | Set Test Variable | ${container_group} | CNF
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
 | | ... | engine=${container_engine} | WITH NAME | ${container_group}
-| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
+| | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
 | | Acquire all '${container_group}' containers
 | | Create all '${container_group}' containers
 | | Configure VPP in all '${container_group}' containers

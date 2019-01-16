@@ -21,27 +21,28 @@
 | | [Documentation] | Construct 1 CNF of specific technology on all DUT nodes.
 | | ...
 | | ... | *Arguments:*
-| | ... | - chains: Total number of chains. Type: integer
-| | ... | - nodeness: Total number of nodes per chain. Type: integer
-| | ... | - chain_id: Chain ID. Type: integer
-| | ... | - node_id: Node ID. Type: integer
+| | ... | - nf_chains: Total number of chains. Type: integer
+| | ... | - nf_nodes: Total number of nodes per chain. Type: integer
+| | ... | - nf_chain: Chain ID. Type: integer
+| | ... | - nf_node: Node ID. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Construct container on all DUTs \| 1 \| 1 \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1} | ${chain_id}=${1}
-| | ... | ${node_id}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
+| | ... | ${nf_node}=${1}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
+| | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
 | | | ${mnt}= | Create List | /tmp:/mnt/host | /dev/vfio:/dev/vfio
 | | | ${nf_cpus}= | Create network function CPU list | ${dut}
-| | | ... | chains=${chains} | nodeness=${nodeness} | chain_id=${chain_id}
-| | | ... | node_id=${node_id} | auto_scale=${True}
+| | | ... | chains=${nf_chains} | nodeness=${nf_nodes} | chain_id=${nf_chain}
+| | | ... | node_id=${nf_node} | auto_scale=${True}
 | | | Run Keyword | ${container_group}.Construct container
-| | | ... | name=${dut}_${container_group}${chain_id}${node_id}
+| | | ... | name=${dut}_${container_group}${nf_id}
 | | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
 | | | ... | cpuset_cpus=${nf_cpus}
 
@@ -49,36 +50,36 @@
 | | [Documentation] | Construct 1 chain of 1..N CNFs on all DUT nodes.
 | | ...
 | | ... | *Arguments:*
-| | ... | - chains: Total number of chains. Type: integer
-| | ... | - nodeness: Total number of nodes per chain. Type: integer
-| | ... | - chain_id: Chain ID. Type: integer
+| | ... | - nf_chains: Total number of chains. Type: integer
+| | ... | - nf_nodes: Total number of nodes per chain. Type: integer
+| | ... | - nf_chain: Chain ID. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Construct chain of containers on all DUTs \| 1 \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains} | ${nodeness} | ${chain_id}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
 | | ...
-| | :FOR | ${node_id} | IN RANGE | 1 | ${nodeness}+1
-| | | Construct container on all DUTs | chains=${chains} | nodeness=${nodeness}
-| | | ... | chain_id=${chain_id} | node_id=${node_id}
+| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
+| | | Construct container on all DUTs | nf_chains=${nf_chains}
+| | | ... | nf_nodes=${nf_nodes} | nf_chain=${nf_chain} | nf_node=${nf_node}
 
 | Construct chains of containers on all DUTs
 | | [Documentation] | Construct 1..N chains of 1..N CNFs on all DUT nodes.
 | | ...
 | | ... | *Arguments:*
-| | ... | - chains: Total number of chains. Type: integer
-| | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ... | - nf_chains: Total number of chains. Type: integer
+| | ... | - nf_nodes: Total number of nodes per chain. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Construct chains of containers on all DUTs \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ...
-| | :FOR | ${chain_id} | IN RANGE | 1 | ${chains}+1
-| | | Construct chain of containers on all DUTs | chains=${chains}
-| | | ... | nodeness=${nodeness} | chain_id=${chain_id}
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
+| | | Construct chain of containers on all DUTs | nf_chains=${nf_chains}
+| | | ... | nf_nodes=${nf_nodes} | nf_chain=${nf_chain}
 
 | Acquire all '${group}' containers
 | | [Documentation] | Acquire all container(s) in specific container group on
