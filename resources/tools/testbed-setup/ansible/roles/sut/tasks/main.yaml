@@ -2,8 +2,12 @@
 # file: roles/sut/tasks/main.yaml
 
 - name: Ubuntu specific
-  import_tasks: ubuntu_x86_64.yaml
-  when: ansible_distribution|lower == 'ubuntu' and ansible_machine == 'x86_64'
+  import_tasks: ubuntu.yaml
+  when: ansible_distribution|lower == 'ubuntu'
+
+- name: Taishan aarch64 specific
+  import_tasks: taishan_workaround.yaml
+  when: taishan_workaround is defined
 
 - name: Copy 80-vpp.conf
   file:

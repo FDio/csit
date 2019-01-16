@@ -3,3 +3,4 @@
 
 hostname: "s1-t11-sut1"
 isolcpus: "1-27,29-55,57-83,85-111"
+cfs_cpus: "0,28,56,84"

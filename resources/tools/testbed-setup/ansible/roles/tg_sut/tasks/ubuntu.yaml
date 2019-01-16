@@ -1,5 +1,5 @@
 ---
-# file: roles/tg_sut/tasks/ubuntu_x86_64.yaml
+# file: roles/tg_sut/tasks/ubuntu.yaml
 
 - name: Install python-dev
   apt:
@@ -69,17 +69,13 @@
     - "cron"
   tags: install-docker
 
-- name: Install upstream APT GPG key
+- name: Install Docker APT GPG key
   apt_key:
-    id: "{{ docker_apt_key }}"
-    keyserver: "{{ ansible_local.core.keyserver
-                   if (ansible_local|d() and ansible_local.core|d() and
-                       ansible_local.core.keyserver)
-                   else 'hkp://pool.sks-keyservers.net' }}"
+    url: https://download.docker.com/linux/ubuntu/gpg
     state: "present"
   tags: install-docker
 
-- name: Install upstream APT repository
+- name: Install Docker APT repository
   apt_repository:
     repo: "{{ docker_repository }}"
     state: "present"
@@ -95,7 +91,7 @@
     cache_valid_time: "{{ apt_cache_time }}"
   tags: install-docker
 
-- name: Remove Upstart config file
+- name: Remove Upstart docker config file
   file:
     path: "/etc/default/docker"
     state: "absent"
@@ -110,7 +106,7 @@
     mode: "0755"
   tags: ensure-docker
 
-- name: Copy systemd unit file
+- name: Copy systemd docker unit file
   template:
     src: "templates/docker.service.j2"
     dest: "/etc/systemd/system/docker.service"
@@ -136,17 +132,13 @@
   when: docker_users
   tags: set-docker
 
-- name: Install upstream APT GPG key
+- name: Install kubernetes APT GPG key
   apt_key:
-    id: "{{ kubernetes_apt_key }}"
-    keyserver: "{{ ansible_local.core.keyserver
-                   if (ansible_local|d() and ansible_local.core|d() and
-                       ansible_local.core.keyserver)
-                   else 'hkp://pool.sks-keyservers.net' }}"
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     state: "present"
   tags: install-kubernetes
 
-- name: Install upstream APT repository
+- name: Install kubernetes APT repository
   apt_repository:
     repo: "{{ kubernetes_repository }}"
     state: "present"
