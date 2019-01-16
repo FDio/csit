@@ -48,7 +48,7 @@
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 # Memif
-| ${sock_base}= | memif-DUT1_CNF1
+| ${sock_base}= | memif-DUT1_CNF
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
