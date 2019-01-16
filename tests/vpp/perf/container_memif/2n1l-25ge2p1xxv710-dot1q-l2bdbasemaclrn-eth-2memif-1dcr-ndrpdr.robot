@@ -98,7 +98,7 @@
 | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
 | | ... | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
-| | And Set up performance test with containers | chains=${1} | nodeness=${1}
+| | And Set up performance test with containers
 | | When Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | Then Find NDR and PDR intervals using optimized search
