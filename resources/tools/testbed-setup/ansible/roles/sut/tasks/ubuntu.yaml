@@ -1,5 +1,5 @@
 ---
-# file: roles/sut/tasks/ubuntu_x86_64.yaml
+# file: roles/sut/tasks/ubuntu.yaml
 
 - name: Install DKMS
   apt:

@@ -1,11 +1,5 @@
 ---
-# file: roles/common/tasks/ubuntu_x86_64.yaml
-
-- name: Copy apt sources file
-  template:
-    src: 'files/apt-sources.list'
-    dest: '/etc/apt/sources.list'
-  tags: copy-apt-sources
+# file: roles/common/tasks/ubuntu.yaml
 
 - name: Install python-apt
   apt:
@@ -44,7 +38,21 @@
 
 - name: Install qemu
   apt:
-    name: 'qemu-system-x86'
+    name: 'qemu-system'
     state: 'present'
     update_cache: True
   tags: install-qemu
+
+- name: Copy aarch64 apt sources file
+  template:
+    src: 'files/apt-sources-arm.list'
+    dest: '/etc/apt/sources.list'
+  tags: copy-apt-sources
+  when: ansible_machine == 'aarch64'
+
+- name: Copy x86_64 apt sources file
+  template:
+    src: 'files/apt-sources.list'
+    dest: '/etc/apt/sources.list'
+  tags: copy-apt-sources
+  when: ansible_machine == 'x86_64'
