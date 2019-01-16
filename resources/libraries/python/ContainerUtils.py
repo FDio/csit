@@ -141,6 +141,7 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             # We need to install supervisor client/server system to control VPP
             # as a service
+            self.engine.execute('apt-get update')
             self.engine.install_supervisor()
             self.engine.install_vpp()
             self.engine.restart_vpp()
@@ -169,42 +170,29 @@ class ContainerManager(object):
         container_vat_template = 'memif_create_{topology}.vat'.format(
             topology=chain_topology)
 
-        if chain_topology == 'chain':
-            for i, container in enumerate(self.containers):
-                mid1 = i % mod + 1
-                mid2 = i % mod + 1
-                sid1 = i % mod * 2 + 1
-                sid2 = i % mod * 2 + 2
-                self.engine.container = self.containers[container]
+        for i, container in enumerate(self.containers):
+            mid1 = i % mod + 1
+            mid2 = i % mod + 1
+            sid1 = i % mod * 2 + 1
+            sid2 = i % mod * 2 + 2
+            self.engine.container = self.containers[container]
+            guest_dir = self.engine.container.mnt[0].split(':')[1]
+
+            if chain_topology == 'chain':
                 self.engine.create_vpp_startup_config()
-                c_name = self.engine.container.name
-                guest_dir = self.engine.container.mnt[0].split(':')[1]
                 self.engine.create_vpp_exec_config(
                     container_vat_template,
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
-                    socket1='{dir}/memif-{c_name}-{sid}'.
-                    format(c_name=c_name, sid=sid1, dir=guest_dir),
-                    socket2='{dir}/memif-{c_name}-{sid}'.
-                    format(c_name=c_name, sid=sid2, dir=guest_dir))
-        elif chain_topology == 'cross_horiz':
-            if mod > 1:
-                raise RuntimeError('Container chain topology {topology} '
-                                   'supports only single container.'.
-                                   format(topology=chain_topology))
-            for i, container in enumerate(self.containers):
-                mid1 = i % mod + 1
-                sid1 = i % mod * 2 + 1
+                    socket1='{dir}/memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid1, dir=guest_dir),
+                    socket2='{dir}/memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid2, dir=guest_dir))
+            elif chain_topology == 'cross_horiz':
                 try:
                     dut1_if = kwargs['dut1_if']
-                except KeyError:
-                    raise AttributeError('Missing dut1_if parameter.')
-                try:
                     dut2_if = kwargs['dut2_if']
                 except KeyError:
-                    raise AttributeError('Missing dut2_if parameter.')
-                self.engine.container = self.containers[container]
-                c_name = self.engine.container.name
-                guest_dir = self.engine.container.mnt[0].split(':')[1]
+                    raise AttributeError('DUT interfaces not specified!')
                 if 'DUT1' in self.engine.container.name:
                     if_pci = Topology.get_interface_pci_addr(
                         self.engine.container.node, dut1_if)
@@ -219,30 +207,41 @@ class ContainerManager(object):
                 self.engine.create_vpp_exec_config(
                     container_vat_template,
                     mid1=mid1, sid1=sid1, if_name=if_name,
-                    socket1='{dir}/memif-{c_name}-{sid}'.
-                    format(c_name=c_name, sid=sid1, dir=guest_dir))
-        elif chain_topology == 'chain_functional':
-            for i, container in enumerate(self.containers):
-                mid1 = i % mod + 1
-                mid2 = i % mod + 1
-                sid1 = i % mod * 2 + 1
-                sid2 = i % mod * 2 + 2
+                    socket1='{dir}/memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid1, dir=guest_dir))
+            elif chain_topology == 'chain_functional':
                 memif_rx_mode = 'interrupt'
-                self.engine.container = self.containers[container]
                 self.engine.create_vpp_startup_config_func_dev()
-                c_name = self.engine.container.name
-                guest_dir = self.engine.container.mnt[0].split(':')[1]
                 self.engine.create_vpp_exec_config(
                     container_vat_template,
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
-                    socket1='{dir}/memif-{c_name}-{sid}'.
-                    format(c_name=c_name, sid=sid1, dir=guest_dir),
-                    socket2='{dir}/memif-{c_name}-{sid}'.
-                    format(c_name=c_name, sid=sid2, dir=guest_dir),
+                    socket1='{dir}/memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid1, dir=guest_dir),
+                    socket2='{dir}/memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid2, dir=guest_dir),
                     rx_mode=memif_rx_mode)
-        else:
-            raise RuntimeError('Container topology {topology} not implemented'.
-                               format(topology=chain_topology))
+            elif chain_topology == 'chain_ip4':
+                self.engine.create_vpp_startup_config()
+                vif1_mac = kwargs['tg_if1_mac'] \
+                    if (mid1 - 1) % kwargs['nodes'] + 1 == 1 \
+                    else '52:54:00:00:{0:02X}:02'.format(mid1-1)
+                vif2_mac = kwargs['tg_if2_mac'] \
+                    if (mid2 - 1) % kwargs['nodes'] + 1 == kwargs['nodes'] \
+                    else '52:54:00:00:{0:02X}:01'.format(mid2+1)
+                self.engine.create_vpp_exec_config(
+                    container_vat_template,
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    socket1='{dir}/memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid1, dir=guest_dir),
+                    socket2='{dir}/memif-{c.name}-{sid}'.
+                    format(c=self.engine.container, sid=sid2, dir=guest_dir),
+                    mac1='52:54:00:00:{0:02X}:01'.format(mid1),
+                    mac2='52:54:00:00:{0:02X}:02'.format(mid2),
+                    vif1_mac=vif1_mac, vif2_mac=vif2_mac)
+            else:
+                raise RuntimeError('Container topology {topology} not '
+                                   'implemented'.
+                                   format(topology=chain_topology))
 
     def stop_all_containers(self):
         """Stop all containers."""
@@ -310,10 +309,9 @@ class ContainerEngine(object):
 
     def install_supervisor(self):
         """Install supervisord inside a container."""
-        self.execute('sleep 3')
-        self.execute('apt-get update')
         self.execute('apt-get install -y supervisor')
-        self.execute('echo "{config}" > {config_file}'.
+        self.execute('echo "{config}" > {config_file} && '
+                     'supervisord -c {config_file}'.
                      format(
                          config='[unix_http_server]\n'
                          'file  = /tmp/supervisor.sock\n\n'
@@ -330,13 +328,10 @@ class ContainerEngine(object):
                          'loglevel=debug\n'
                          'nodaemon=false\n\n',
                          config_file=SUPERVISOR_CONF))
-        self.execute('supervisord -c {config_file}'.
-                     format(config_file=SUPERVISOR_CONF))
 
     def install_vpp(self):
         """Install VPP inside a container."""
         self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
-        self.execute('apt-get update')
         # Workaround for install xenial vpp build on bionic ubuntu.
         self.execute('apt-get install -y wget')
         self.execute('deb=$(mktemp) && wget -O "${deb}" '
@@ -364,7 +359,6 @@ class ContainerEngine(object):
                          'priority=1',
                          config_file=SUPERVISOR_CONF))
         self.execute('supervisorctl reload')
-        self.execute('supervisorctl restart vpp')
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
