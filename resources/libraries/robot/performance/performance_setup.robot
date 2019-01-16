@@ -57,9 +57,13 @@
 | | ${dut1_if1} | ${dut1}= | First Ingress Interface
 | | ${dut1_if2} | ${dut1}= | Last Egress Interface
 | | ${tg_if2} | ${tg}= | Last Interface
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | Set Suite Variable | ${tg}
 | | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if1_mac}
 | | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${tg_if2_mac}
 | | Set Suite Variable | ${dut1}
 | | Set Suite Variable | ${dut1_if1}
 | | Set Suite Variable | ${dut1_if2}
@@ -103,9 +107,13 @@
 | | ${dut2_if1} | ${dut2}= | Next Interface
 | | ${dut2_if2} | ${dut2}= | Next Interface
 | | ${tg_if2} | ${tg}= | Next Interface
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | Set Suite Variable | ${tg}
 | | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if1_mac}
 | | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${tg_if2_mac}
 | | Set Suite Variable | ${dut1}
 | | Set Suite Variable | ${dut1_if1}
 | | Set Suite Variable | ${dut1_if2}
@@ -168,10 +176,14 @@
 | | ${dut1_if2_2} | ${dut1}= | Last Interface
 | | ${dut2_if1_1} | ${dut2}= | First Ingress Interface
 | | ${dut2_if1_2} | ${dut2}= | Last Egress Interface
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | # Set suite variables
 | | Set Suite Variable | ${tg}
 | | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if1_mac}
 | | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${tg_if2_mac}
 | | Set Suite Variable | ${dut1}
 | | Set Suite Variable | ${dut1_if1}
 | | Set Suite Variable | ${dut1_if2_1}
@@ -621,18 +633,23 @@
 | | ... | *Arguments:*
 | | ... | - chains: Total number of chains. Type: integer
 | | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ... | - auto_scale - If True, use same amount of Dataplane threads for
+| | ... |   network function as DUT, otherwise use single physical core for
+| | ... |   every network function. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Set up performance test with containers \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
 | | Set Test Variable | @{container_groups} | @{EMPTY}
 | | Set Test Variable | ${container_group} | CNF
+| | Set Test Variable | ${nf_nodes}
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
 | | ... | engine=${container_engine} | WITH NAME | ${container_group}
-| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
+| | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
+| | ... | auto_scale=${auto_scale}
 | | Acquire all '${container_group}' containers
 | | Create all '${container_group}' containers
 | | Configure VPP in all '${container_group}' containers
