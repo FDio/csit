@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,11 +15,12 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-XXV710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 8R2C
+| ... | NF_DENSITY | CHAIN | NF_VPPIP4
 | ...
 | Suite Setup | Run Keywords
-| ... | Set up 2-node performance topology with DUT's NIC model | L2
-| ... | Intel-XXV710
+| ... | Set up 2-node performance topology with DUT's NIC model | L3
+| ... | Intel-X710
 | ... | AND | Set up performance test suite with MEMIF
 | ...
 | Suite Teardown | Tear down 2-node performance topology
@@ -32,13 +33,14 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *Raw results L2BD test cases*
+| Documentation | *Raw results L2BD test cases with memif 8 chains 16 docker
+| ... | containers*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with
 | ... | single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 bridge domain.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with two L2 bridge domains
-| ... | and MAC learning enabled. DUT1 tested with 2p25GE NIC XXV710 by Intel.
+| ... | and MAC learning enabled. DUT1 tested with 2p10GE NIC X710 by Intel.
 | ... | Container is connected to VPP via Memif interface. Container is running
 | ... | same VPP version as running on DUT. Container is limited via cgroup to
 | ... | use cores allocated from pool of isolated CPUs. There are no memory
@@ -52,15 +54,13 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-# XXV710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_24.5G}= | ${24500000000}
-# XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps}= | ${18750000}
+# X710-DA2 bandwidth limit
+| ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-8c2n
 # Container
 | ${container_engine}= | Docker
-| ${container_chain_topology}= | chain
+| ${container_chain_topology}= | chain_ip4
 
 *** Keywords ***
 | Local Template
@@ -81,58 +81,60 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | And Set up performance test with containers
-| | And Initialize L2 Bridge Domain with memif pairs
+| | ... | nf_chains=${8} | nf_nodes=${2} | auto_scale=${False}
+| | And Initialize L2 Bridge Domain for multiple chains with memif pairs
+| | ... | nf_chains=${8} | nf_nodes=${2}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc01-64B-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc02-64B-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc03-64B-4c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 64B | 4C
 | | framesize=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc04-1518B-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc05-1518B-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc06-1518B-4c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc07-9000B-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc08-9000B-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc09-9000B-4c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc10-IMIX-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc11-IMIX-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+| tc12-IMIX-4c-eth-l2bd-32memif-8chain-16dcr-vppip4-mrr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
