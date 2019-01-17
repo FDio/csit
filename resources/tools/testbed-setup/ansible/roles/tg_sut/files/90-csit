@@ -1,5 +1,6 @@
 # change the minimum size of the hugepage pool.
-vm.nr_hugepages=4096
+# 2G VPP, 16x2G for Fullbox VM, 2G reserve
+vm.nr_hugepages=36864
 
 # this file contains the maximum number of memory map areas a process
 # may have. memory map areas are used as a side-effect of calling
