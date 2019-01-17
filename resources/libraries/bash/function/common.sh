@@ -1,4 +1,5 @@
 # Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -382,6 +383,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="skx"
             ;;
+        *"3n-tsh"*)
+            NODENESS="3n"
+            FLAVOR="tsh"
+            ;;
         *)
             # Fallback to 3-node Haswell by default (backward compatibility)
             NODENESS="3n"
@@ -424,6 +429,7 @@ function get_test_tag_string () {
                 comment="${comment/perftest-3n/perftest}"
                 comment="${comment/perftest-hsw/perftest}"
                 comment="${comment/perftest-skx/perftest}"
+                comment="${comment/perftest-tsh/perftest}"
                 tag_string="$(echo "${comment}" \
                     | grep -oE '(perftest$|perftest[[:space:]].+$)' || true)"
                 # Set test tags as string.
@@ -557,6 +563,16 @@ function select_tags () {
     # All topologies NICs - Selected topology NICs
     exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}")))
 
+    # Select default NIC
+    case "${TEST_CODE}" in
+        *"3n-tsh"*)
+            DEFAULT_NIC='nic_intel-82599es'
+            ;;
+        *)
+            DEFAULT_NIC='nic_intel-x710'
+            ;;
+    esac
+
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
@@ -666,10 +682,10 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrANDnic_intel-x710AND1cAND64bANDip4base"
-                                "mrrANDnic_intel-x710AND1cAND78bANDip6base"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbase"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2xcbase"
+                test_tag_array=("mrrAND${DEFAULT_NIC}AND1cAND64bANDip4base"
+                                "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
+                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
+                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
                                 "!dot1q")
             else
                 # If trigger contains tags, split them into array.
@@ -689,6 +705,9 @@ function select_tags () {
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
             ;;
+        *"3n-tsh"*)
+            test_tag_array+=("!ipsechw")
+            ;;
         *)
             # Default to 3n-hsw due to compatibility.
             test_tag_array+=("!drv_avf")
@@ -706,7 +725,7 @@ function select_tags () {
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         # Automatic prefixing for VPP jobs to limit the NIC used and
         # traffic evaluation to MRR.
-        prefix="${prefix}mrrANDnic_intel-x710AND"
+        prefix="${prefix}mrrAND${DEFAULT_NIC}AND"
     fi
     for tag in "${test_tag_array[@]}"; do
         if [[ ${tag} == "!"* ]]; then
@@ -817,6 +836,12 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_tsh")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/lf_3n_tsh_testbed33.yaml"
+                       )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
