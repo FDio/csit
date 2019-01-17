@@ -379,6 +379,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="skx"
             ;;
+        *"3n-arm"*)
+            NODENESS="3n"
+            FLAVOR="arm"
+            ;;
         *)
             # Fallback to 3-node Haswell by default (backward compatibility)
             NODENESS="3n"
@@ -801,6 +805,12 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_arm")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/lf_3n_arm_testbed33.yaml"
+                       )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
