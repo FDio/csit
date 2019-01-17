@@ -23,14 +23,15 @@
 | ... | Intel-X520-DA2
 | ... | AND | Set up performance test suite with MEMIF
 | ... | AND | Set up performance test suite with Masquerading SRv6 proxy
-| ... | AND | Set up performance topology with containers
 | ...
-| Suite Teardown | Tear down 3-node performance topology with container
+| Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance test with SRv6 with encapsulation
+| Test Teardown | Run Keywords
+| ... | Tear down performance test with SRv6 with encapsulation
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
+| ... | AND | Tear down performance test with container
 | ...
 | Test Template | Local Template
 | ...
@@ -95,15 +96,8 @@
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
 # LXC container
-| ${container_count}= | ${1}
 | ${container_engine}= | LXC
-| ${container_image}= | ${EMPTY}
-| ${container_install_dkms}= | ${FALSE}
 | ${container_chain_topology}= | chain
-# CPU settings
-| ${system_cpus}= | ${1}
-| ${vpp_cpus}= | ${5}
-| ${container_cpus}= | ${5}
 
 *** Keywords ***
 | Local Template
@@ -130,6 +124,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${srv6_overhead_3sids}
 | | And Apply startup configuration on all VPP DUTs
+| | And Set up performance test with containers | chains=${1} | nodeness=${1}
 | | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'masquerading' behaviour in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
