@@ -13,21 +13,6 @@
 - debug: var=spectre_meltdown_output.stdout_lines
   tags: run-spectre-meltdown-checker
 
-- name: Clone Jitter tool
-  git:
-    repo: 'https://gerrit.fd.io/r/pma_tools'
-    dest: '{{ jitter.directory }}'
-  tags: run-jitter-tool
-
-- name: Compile Jitter tool
-  raw: 'cd {{ jitter.directory }}/jitter && make'
-  tags: run-jitter-tool
-
-- name: Run Jitter tool
-  raw: '{{ jitter.directory }}/jitter/jitter -c {{ jitter.core }} -i {{ jitter.iterations }} -f'
-  become: yes
-  register: jitter_output
-  tags: run-jitter-tool
-
-- debug: var=jitter_output.stdout_lines
-  tags: run-jitter-tool
+- name: x86 specific
+  import_tasks: x86_64.yaml
+  when: ansible_machine == 'x86_64'
