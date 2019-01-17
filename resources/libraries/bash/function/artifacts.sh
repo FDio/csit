@@ -77,9 +77,17 @@ function download_ubuntu_artifacts () {
             die "Install VPP artifacts failed."
         }
     else
-        apt-get -y download "${artifacts[@]}" || {
-            die "Download VPP artifacts failed."
-        }
+#        apt-get -y download "${artifacts[@]}" || {
+#            die "Download VPP artifacts failed."
+#        }
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-api-java_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-api-lua_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-api-python_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-dbg_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-dev_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-lib_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
+wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-plugins_19.01-rc0~642-g31fe7aa3~b188_arm64.deb/download.deb
     fi
 }
 
