@@ -1,0 +1,86 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Example file of topology
+
+---
+metadata:
+  version: 0.1
+  schema: # list of schema files against which to validate
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: 10.30.51.49
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port0:
+        mac_address: "3c:fd:fe:a8:aa:c0"
+        pci_address: "0000:18:00.0"
+        link: link2
+        driver: i40e
+        model: Intel_X710
+      port1:
+        mac_address: "3c:fd:fe:a8:aa:c1"
+        pci_address: "0000:18:00.1"
+        link: link1
+        driver: i40e
+        model: Intel_X710
+  DUT1:
+    type: DUT
+    host: 10.30.51.36
+    arch: aarch64
+    port: 22
+    username: testuser
+    password: fdioARM
+    interfaces:
+      port0:
+        mac_address: "80:41:26:6f:19:81"
+        pci_address: "000a:11:00.0"
+        link: link3
+        uio_driver: uio_pci_generic
+        model: Intel_82599ES
+      port1:
+        mac_address: "80:41:26:6f:19:82"
+        pci_address: "000a:11:00.1"
+        link: link1
+        uio_driver: uio_pci_generic
+        model: Intel_82599ES
+  DUT2:
+    type: DUT
+    host: 10.30.51.37
+    arch: aarch64
+    port: 22
+    username: testuser
+    password: fdioARM
+    interfaces:
+      port0:
+        mac_address: "80:41:26:6f:19:7d"
+        pci_address: "000a:11:00.0"
+        link: link2
+        uio_driver: uio_pci_generic
+        model: Intel_82599ES
+      port1:
+        mac_address: "80:41:26:6f:19:7e"
+        pci_address: "000a:11:00.1"
+        link: link3
+        uio_driver: uio_pci_generic
+        model: Intel_82599ES
+
