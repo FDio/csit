@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -64,13 +64,35 @@ function download_ubuntu_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    vpp=(vpp vpp-dbg vpp-dev vpp-api-python libvppinfra libvppinfra-dev
-         vpp-plugin-core vpp-plugin-dpdk)
+    APT_FDIO_REPO_FILE=$(curl -s "${REPO_URL}"/script.deb.sh | \
+                         sed -n 's#.*apt_source_path="\([^"]*\)"#\1#p') || {
+                             die "Local fdio repo file path fetch failed."
+                         }
+    vpp=$(apt-cache -o Dir::Etc::sourcelist=${APT_FDIO_REPO_FILE} dumpavail \
+          | grep Package: | cut -d " " -f 2) || {
+              die "Retrieval of available VPP packages failed."
+          }
     if [ -z "${VPP_VERSION-}" ]; then
-        artifacts+=(${vpp[@]})
-    else
-        artifacts+=(${vpp[@]/%/=${VPP_VERSION-}})
+        # If version is not specified, find out the most recent version
+        VPP_VERSION=$(apt-cache --no-all-versions show vpp | grep Version: | \
+                      cut -d " " -f 2) || {
+                          die "Retrieval of most recent VPP version failed."
+                      }
     fi
+
+    for vpppkg in ${vpp}; do
+        # Filter packages with given version
+        set +x
+        pkg_info=$(apt-cache show ${vpppkg}) || {
+            die "apt-cache show on ${vpppkg} failed."
+        }
+        ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*")
+        set -x
+        if [ -n "${ver-}" ]; then
+            ver=$(echo "$ver" | cut -d " " -f 2)
+            artifacts+=(${vpppkg}=${ver})
+        fi
+    done
 
     if [ "${INSTALL:-false}" = true ]; then
         sudo apt-get -y install "${artifacts[@]}" || {
@@ -148,4 +170,3 @@ function download_opensuse_artifacts () {
         }
     fi
 }
-
