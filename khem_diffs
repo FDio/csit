@@ -1,0 +1,186 @@
+diff --git a/resources/libraries/python/DUTSetup.py b/resources/libraries/python/DUTSetup.py
+old mode 100644
+new mode 100755
+index 7c8ca1b8..f745b471
+--- a/resources/libraries/python/DUTSetup.py
++++ b/resources/libraries/python/DUTSetup.py
+@@ -459,13 +459,13 @@ class DUTSetup(object):
+         cmd = 'grep -w {0} /proc/modules'.format(module)
+         ret_code, _, _ = ssh.exec_command(cmd)
+ 
+-        if int(ret_code) != 0:
+-            if force_load:
++        #if int(ret_code) != 0:
++            #if force_load:
+                 # Module is not loaded and we want to load it
+-                DUTSetup.kernel_module_load(node, module)
+-            else:
+-                raise RuntimeError('Kernel module {0} is not loaded on host '
+-                                   '{1}'.format(module, node['host']))
++                # DUTSetup.kernel_module_load(node, module)
++            # else:
++                # raise RuntimeError('Kernel module {0} is not loaded on host '
++                #                   '{1}'.format(module, node['host']))
+ 
+     @staticmethod
+     def kernel_module_verify_on_all_duts(nodes, module, force_load=False):
+diff --git a/resources/libraries/python/VppConfigGenerator.py b/resources/libraries/python/VppConfigGenerator.py
+old mode 100644
+new mode 100755
+index 8611219e..d5928921
+--- a/resources/libraries/python/VppConfigGenerator.py
++++ b/resources/libraries/python/VppConfigGenerator.py
+@@ -350,7 +350,7 @@ class VppConfigGenerator(object):
+         :type value: str
+         """
+         path = ['dpdk', 'socket-mem']
+-        self.add_config_item(self._nodeconfig, value, path)
++        self.add_config_item(self._nodeconfig, "512,512,512,2048", path)
+ 
+     def add_dpdk_num_mbufs(self, value):
+         """Add DPDK number of I/O buffers.
+@@ -359,7 +359,7 @@ class VppConfigGenerator(object):
+         :type value: int
+         """
+         path = ['dpdk', 'num-mbufs']
+-        self.add_config_item(self._nodeconfig, value, path)
++        self.add_config_item(self._nodeconfig, 16384, path)
+ 
+     def add_dpdk_uio_driver(self, value=None):
+         """Add DPDK uio-driver configuration.
+@@ -399,7 +399,7 @@ class VppConfigGenerator(object):
+         :type value: str
+         """
+         path = ['heapsize']
+-        self.add_config_item(self._nodeconfig, value, path)
++        self.add_config_item(self._nodeconfig, '4G', path)
+ 
+     def add_api_trace(self):
+         """Add API trace configuration."""
+@@ -412,8 +412,8 @@ class VppConfigGenerator(object):
+         :param value: Number of IP6 hash buckets.
+         :type value: str
+         """
+-        path = ['ip6', 'hash-buckets']
+-        self.add_config_item(self._nodeconfig, value, path)
++        #path = ['ip6', 'hash-buckets']
++        #self.add_config_item(self._nodeconfig, value, path)
+ 
+     def add_ip6_heap_size(self, value):
+         """Add IP6 heap-size configuration.
+@@ -421,8 +421,8 @@ class VppConfigGenerator(object):
+         :param value: IP6 Heapsize amount.
+         :type value: str
+         """
+-        path = ['ip6', 'heap-size']
+-        self.add_config_item(self._nodeconfig, value, path)
++        #path = ['ip6', 'heap-size']
++        #self.add_config_item(self._nodeconfig, value, path)
+ 
+     def add_ip_heap_size(self, value):
+         """Add IP heap-size configuration.
+@@ -431,7 +431,7 @@ class VppConfigGenerator(object):
+         :type value: str
+         """
+         path = ['ip', 'heap-size']
+-        self.add_config_item(self._nodeconfig, value, path)
++        self.add_config_item(self._nodeconfig, '4G', path)
+ 
+     def add_statseg_size(self, value):
+         """Add stats segment heap size configuration.
+@@ -440,7 +440,7 @@ class VppConfigGenerator(object):
+         :type value: str
+         """
+         path = ['statseg', 'size']
+-        self.add_config_item(self._nodeconfig, value, path)
++        self.add_config_item(self._nodeconfig, '4G', path)
+ 
+     def add_plugin(self, state, *plugins):
+         """Add plugin section for specific plugin(s).
+@@ -633,4 +633,4 @@ class VppConfigGenerator(object):
+                                             dest=self._vpp_startup_conf))
+         if ret != 0:
+             raise RuntimeError('Restoration of config file failed on node '
+-                               '{name}'.format(name=self._hostname))
++                    '{name}'.format(name=self._hostname))
+diff --git a/tests/vpp/perf/__init__.robot b/tests/vpp/perf/__init__.robot
+old mode 100644
+new mode 100755
+index b847d813..bb2863a6
+--- a/tests/vpp/perf/__init__.robot
++++ b/tests/vpp/perf/__init__.robot
+@@ -44,6 +44,8 @@
+ | | ... | - uio_driver - Default UIO driver
+ | | ... | - plugins_to_enable - List of plugins to be enabled for test
+ | | ...
++| | Set Global Variable | ${perf_trial_duration} | 10
++| | Set Global Variable | ${perf_trial_multiplicity} | 1
+ | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
+ | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
+ | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
+diff --git a/tests/vpp/perf/ip4/10ge2p1x520-ethip4-ip4base-mrr.robot b/tests/vpp/perf/ip4/10ge2p1x520-ethip4-ip4base-mrr.robot
+old mode 100644
+new mode 100755
+index b763d9d9..9b5508db
+--- a/tests/vpp/perf/ip4/10ge2p1x520-ethip4-ip4base-mrr.robot
++++ b/tests/vpp/perf/ip4/10ge2p1x520-ethip4-ip4base-mrr.robot
+@@ -15,10 +15,10 @@
+ | Resource | resources/libraries/robot/performance/performance_setup.robot
+ | ...
+ | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
+-| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | IP4BASE
++| ... | NIC_Intel_82599ES | ETH | IP4FWD | BASE | IP4BASE
+ | ...
+ | Suite Setup | Set up 3-node performance topology with DUT's NIC model
+-| ... | L3 | Intel-X520-DA2
++| ... | L3 | Intel_82599ES
+ | Suite Teardown | Tear down 3-node performance topology
+ | ...
+ | Test Setup | Set up performance test
+@@ -79,46 +79,7 @@
+ | | [Tags] | 64B | 1C
+ | | framesize=${64} | phy_cores=${1}
+ 
+-| tc02-64B-2c-ethip4-ip4base-mrr
+-| | [Tags] | 64B | 2C
+-| | framesize=${64} | phy_cores=${2}
+-
+-| tc03-64B-4c-ethip4-ip4base-mrr
+-| | [Tags] | 64B | 4C
+-| | framesize=${64} | phy_cores=${4}
+-
+ | tc04-1518B-1c-ethip4-ip4base-mrr
+ | | [Tags] | 1518B | 1C
+ | | framesize=${1518} | phy_cores=${1}
+ 
+-| tc05-1518B-2c-ethip4-ip4base-mrr
+-| | [Tags] | 1518B | 2C
+-| | framesize=${1518} | phy_cores=${2}
+-
+-| tc06-1518B-4c-ethip4-ip4base-mrr
+-| | [Tags] | 1518B | 4C
+-| | framesize=${1518} | phy_cores=${4}
+-
+-| tc07-9000B-1c-ethip4-ip4base-mrr
+-| | [Tags] | 9000B | 1C
+-| | framesize=${9000} | phy_cores=${1}
+-
+-| tc08-9000B-2c-ethip4-ip4base-mrr
+-| | [Tags] | 9000B | 2C
+-| | framesize=${9000} | phy_cores=${2}
+-
+-| tc09-9000B-4c-ethip4-ip4base-mrr
+-| | [Tags] | 9000B | 4C
+-| | framesize=${9000} | phy_cores=${4}
+-
+-| tc10-IMIX-1c-ethip4-ip4base-mrr
+-| | [Tags] | IMIX | 1C
+-| | framesize=IMIX_v4_1 | phy_cores=${1}
+-
+-| tc11-IMIX-2c-ethip4-ip4base-mrr
+-| | [Tags] | IMIX | 2C
+-| | framesize=IMIX_v4_1 | phy_cores=${2}
+-
+-| tc12-IMIX-4c-ethip4-ip4base-mrr
+-| | [Tags] | IMIX | 4C
+-| | framesize=IMIX_v4_1 | phy_cores=${4}

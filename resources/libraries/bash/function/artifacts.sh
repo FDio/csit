@@ -77,9 +77,18 @@ function download_ubuntu_artifacts () {
             die "Install VPP artifacts failed."
         }
     else
-        apt-get -y download "${artifacts[@]}" || {
-            die "Download VPP artifacts failed."
-        }
+       echo "Not downloading packages, expecting packages in download_dir"
+       # apt-get -y download "${artifacts[@]}" || {
+       #     die "Download VPP artifacts failed."
+       # }
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp_${VPP_VERSION-}_arm64.deb/download.deb
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-api-python_${VPP_VERSION-}_arm64.deb/download.deb
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-dbg_${VPP_VERSION-}_arm64.deb/download.deb
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-dev_${VPP_VERSION-}_arm64.deb/download.deb
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/libvppinfra_${VPP_VERSION-}_arm64.deb/download.deb
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/libvppinfra-dev_${VPP_VERSION-}_arm64.deb/download.deb
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-plugin-dpdk_${VPP_VERSION-}_arm64.deb/download.deb
+#wget --content-disposition https://packagecloud.io/fdio/master/packages/ubuntu/bionic/vpp-plugin-core_${VPP_VERSION-}_arm64.deb/download.deb
     fi
 }
 
