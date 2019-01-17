@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -273,7 +273,7 @@ function gather_vpp () {
                 warn "Downloading latest VPP packages from Packagecloud."
             else
                 warn "Downloading stable VPP packages from Packagecloud."
-                if [[ "${TEST_CODE}" == *"device"* ]];
+                if [[ "${TEST_CODE}" == *"device"* || "${TEST_CODE}" == *"3n-tsh"* ]];
                 then
                     VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU_BIONIC")" || {
                         die "Read VPP stable version failed."
