@@ -15,7 +15,8 @@ FROM ubuntu:bionic-20180821
 
 MAINTAINER csit-dev <csit-dev@lists.fd.io>
 LABEL Description="CSIT vpp-device ubuntu 18.04 baseline image"
-LABEL Version="0.3"
+LABEL Vendor="cisco.com"
+LABEL Version="0.4"
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -79,6 +80,8 @@ RUN apt-get -q update \
         libmbedtls10 \
         libmbedx509-0 \
         libnuma1 \
+        python-cffi \
+        python-enum34 \
  && rm -rf /var/lib/apt/lists/*
 
 # Configure locales
@@ -96,18 +99,25 @@ RUN mkdir -p /tmp/dumps \
 
 # PIP pre-cache
 RUN pip install \
-        robotframework==2.9.2 \
-        paramiko==1.16.0 \
-        scp==0.10.2 \
-        ipaddress==1.0.16 \
-        PyYAML==3.11 \
-        pykwalify==1.5.0 \
-        scapy==2.3.1 \
-        enum34==1.1.2 \
-        requests==2.9.1 \
+        docopt==0.6.2 \
         ecdsa==0.13 \
+        enum34==1.1.2 \
+        ipaddress==1.0.16 \
+        paramiko==1.16.0 \
+        pexpect==4.6.0 \
         pycrypto==2.6.1 \
-        pypcap==1.1.5
+        pykwalify==1.5.0 \
+        pypcap==1.1.5 \
+        python-dateutil==2.4.2 \
+        PyYAML==3.11 \
+        requests==2.9.1 \
+        robotframework==2.9.2 \
+        scapy==2.3.1 \
+        scp==0.10.2 \
+        six==1.12.0 \
+        dill==0.2.8.2 \
+        numpy==1.14.5 \
+        scipy==1.1.0
 
 # SSH settings
 RUN echo 'root:Csit1234' | chpasswd \
