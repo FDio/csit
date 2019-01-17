@@ -350,7 +350,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['dpdk', 'socket-mem']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, "512,512,512,2048", path)
 
     def add_dpdk_num_mbufs(self, value):
         """Add DPDK number of I/O buffers.
@@ -404,7 +404,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['heapsize']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, "4G", path)
 
     def add_api_trace(self):
         """Add API trace configuration."""
@@ -436,7 +436,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['ip', 'heap-size']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, "4G", path)
 
     def add_statseg_size(self, value):
         """Add stats segment heap size configuration.
@@ -445,7 +445,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['statseg', 'size']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, "4G", path)
 
     def add_plugin(self, state, *plugins):
         """Add plugin section for specific plugin(s).
