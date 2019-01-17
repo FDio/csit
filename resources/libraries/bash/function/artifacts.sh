@@ -64,13 +64,23 @@ function download_ubuntu_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    vpp=(vpp vpp-dbg vpp-dev vpp-api-python libvppinfra libvppinfra-dev
-         vpp-plugin-core vpp-plugin-dpdk)
+    APT_FDIO_REPO_FILE=$(ls "/etc/apt/sources.list.d/fdio_*.list")
+    vpp=$(apt-cache -o Dir::Etc::sourcelist=${APT_FDIO_REPO_FILE} dumpavail \
+          | grep Package: | cut -d " " -f 2)
     if [ -z "${VPP_VERSION-}" ]; then
-        artifacts+=(${vpp[@]})
-    else
-        artifacts+=(${vpp[@]/%/=${VPP_VERSION-}})
+        # if version is noT specified, find out the most recent version
+        VPP_VERSION=$(apt-cache --no-all-versions show vpp | grep Version: \
+                      | cut -d " " -f 2)
     fi
+
+    for vpppkg in $vpp; do
+        # filter packages with given version
+        ver=$(apt-cache show $vpppkg | grep ${VPP_VERSION-} | grep Version:)
+        if [ -n "${ver-}" ]; then
+            ver=$(echo "$ver" | cut -d " " -f 2)
+            artifacts+=(${vpppkg}=${ver})
+        fi
+    done
 
     if [ "${INSTALL:-false}" = true ]; then
         sudo apt-get -y install "${artifacts[@]}" || {

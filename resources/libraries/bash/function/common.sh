@@ -379,6 +379,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="skx"
             ;;
+        *"3n-tsh"*)
+            NODENESS="3n"
+            FLAVOR="tsh"
+            ;;
         *)
             # Fallback to 3-node Haswell by default (backward compatibility)
             NODENESS="3n"
@@ -681,6 +685,9 @@ function select_tags () {
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
             ;;
+        *"3n-tsh"*)
+            test_tag_array+=("!ipsechw")
+            ;;
         *)
             # Default to 3n-hsw due to compatibility.
             test_tag_array+=("!drv_avf")
@@ -809,6 +816,12 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/lf_3n_hsw_testbed3.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_tsh")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/lf_3n_tsh_testbed33.yaml"
+                       )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
