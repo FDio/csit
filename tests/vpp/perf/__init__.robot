@@ -19,9 +19,6 @@
 | Library | resources.libraries.python.CpuUtils
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
-| ...         | AND          | Install Vpp On All Duts | ${nodes}
-| ...         | ${packages_dir} | ${vpp_rpm_pkgs} | ${vpp_deb_pkgs}
-| ...         | AND          | Verify Vpp On All Duts | ${nodes}
 | ...         | AND          | Verify UIO Driver on all DUTs | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Show Vpp Version On All Duts | ${nodes}
@@ -47,6 +44,8 @@
 | | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
+| | Set Global Variable | ${perf_trial_duration} | 10
+| | Set Global Variable | ${perf_trial_multiplicity} | 1
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
