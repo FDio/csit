@@ -350,7 +350,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['dpdk', 'socket-mem']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, "512,512,512,2048", path)
 
     def add_dpdk_num_mbufs(self, value):
         """Add DPDK number of I/O buffers.
@@ -359,12 +359,7 @@ class VppConfigGenerator(object):
         :type value: int
         """
         path = ['dpdk', 'num-mbufs']
-        self.add_config_item(self._nodeconfig, value, path)
-
-    def add_dpdk_no_pci(self):
-        """Add DPDK no-pci."""
-        path = ['dpdk', 'no-pci']
-        self.add_config_item(self._nodeconfig, '', path)
+        self.add_config_item(self._nodeconfig, 16384, path)
 
     def add_dpdk_uio_driver(self, value=None):
         """Add DPDK uio-driver configuration.
@@ -404,7 +399,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['heapsize']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, '4G', path)
 
     def add_api_trace(self):
         """Add API trace configuration."""
@@ -417,8 +412,8 @@ class VppConfigGenerator(object):
         :param value: Number of IP6 hash buckets.
         :type value: str
         """
-        path = ['ip6', 'hash-buckets']
-        self.add_config_item(self._nodeconfig, value, path)
+        #path = ['ip6', 'hash-buckets']
+        #self.add_config_item(self._nodeconfig, value, path)
 
     def add_ip6_heap_size(self, value):
         """Add IP6 heap-size configuration.
@@ -426,8 +421,8 @@ class VppConfigGenerator(object):
         :param value: IP6 Heapsize amount.
         :type value: str
         """
-        path = ['ip6', 'heap-size']
-        self.add_config_item(self._nodeconfig, value, path)
+        #path = ['ip6', 'heap-size']
+        #self.add_config_item(self._nodeconfig, value, path)
 
     def add_ip_heap_size(self, value):
         """Add IP heap-size configuration.
@@ -436,7 +431,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['ip', 'heap-size']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, '4G', path)
 
     def add_statseg_size(self, value):
         """Add stats segment heap size configuration.
@@ -445,7 +440,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['statseg', 'size']
-        self.add_config_item(self._nodeconfig, value, path)
+        self.add_config_item(self._nodeconfig, '4G', path)
 
     def add_plugin(self, state, *plugins):
         """Add plugin section for specific plugin(s).
@@ -638,4 +633,4 @@ class VppConfigGenerator(object):
                                             dest=self._vpp_startup_conf))
         if ret != 0:
             raise RuntimeError('Restoration of config file failed on node '
-                               '{name}'.format(name=self._hostname))
+                    '{name}'.format(name=self._hostname))
