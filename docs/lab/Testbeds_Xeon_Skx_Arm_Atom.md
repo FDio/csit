@@ -10,9 +10,10 @@ This is a low-level design implemented as an extensions of FD.io CSIT lab to acc
  3.  3-node Xeon.       perf.       skx.  skx.  2.    4.      2.    6.
  4.  tcp-l47.           tcp-stack.  skx.  ps1.  1.    1.      1.    1.
  5.  atom-netgate.      perf+func.  net.  skx.  1.    3.      1.    1.
- 6.  aarch64-d05        perf+func.  arm.  skx.  2.    2.      1.    1.
- 7.  aarch64-mcbin      perf        arm.  skx.  1.    2.      1.    1.
-                                                 Total skx_node:   20.
+ 6.  aarch64-d05        perf        arm.  skx.  1.    2.      1.    1/2.
+ 7.  aarch64-mcbin      perf        arm.  skx.  1.    2.      1.    1/2.
+ 8.  1-node aarch64     func        arm.  n/a.  1.    1.      0.    0.
+                                                 Total skx_node:   19.
 ```
 
 ### 1-Node Xeon Testbeds
@@ -24,10 +25,14 @@ Four 2-node Xeon testbeds (are expected to be built|are built), with each testbe
 ### 3-Node Xeon Testbeds
 Two 3-node Xeon testbeds (are expected to be built|are built), with each testbed using two SUTs (Type-1 server) and one TG (Type-2 server) connected in full-mesh triangle. NIC cards placement into slots and NIC ports connectivity is following the testbed specification included in next sections.
 
-### Arm Testbeds
-One 3-node Huawei testbeds (are expected to be built|are built), with each testbed using two SUTs (Type-3 server) and one TG (Type-2 server) connected in full-mesh triangle.
+### 1-Node Arm Marvell ThunderX2 Testbed
+One 1-node ThunderX2 testbed for VPP_Device tests is expected to be built using one SUT (Type-9 server), with NIC ports connected back-to-back.
 
-One 3-node Marvell testbeds (are expected to be built|are built), with each testbed using two SUTs (Type-4 server) and one TG (Type-2 server) connected in full-mesh triangle.
+### 3-Node Arm Huawei TaiShan Testbed
+One 3-node TaiShan testbed is built, with each testbed using two SUTs (Type-3 server) and one TG (Type-2 server) connected in full-mesh triangle. NIC cards placement into slots and NIC ports connectivity is following the testbed specification included in next sections.
+
+### 3-Node Arm Marvell MACCHIATObin Testbed
+One 3-node MACCHIATObin testbeds is built, with each testbed using two SUTs (Type-4 server) and one TG (Type-2 server) connected in full-mesh triangle. Built-in NIC ports connectivity is following the testbed specification included in next sections.
 
 ### TCP/IP and L47 Testbeds
 One 2-node Ixia PS One and Xeon server testbed, for TCP/IP host stack tests.
@@ -53,6 +58,11 @@ One 3-node Atom (Netgate based) testbed is built consisting of three SUTs (Type-
 ### Arm Servers
 ```
 1. Arm Cortex A-72 servers
+    - 1 * ThunderX2
+        - Chassis: Marvell ThunderX2
+        - Processors: 2* ThunderX2 CN9975 ~ 112* ThunderX2.
+        - RAM Memory: 4* 32GB RDIMM
+        - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
     - 2 * Huawei TaiShan 2280.
         - Chassis: Huawei TaiShan 2280.
         - Processors: 1* hip07-d05 ~ 64* Arm Cortex-A72.
@@ -68,20 +78,21 @@ One 3-node Atom (Netgate based) testbed is built consisting of three SUTs (Type-
 Platform Name and Specification | Role | Status | Hostname | IP | IPMI | Cores | RAM | Ethernet | Distro
 ------------------------------- | ---- | ------ | -------- | -- | ---- | ----- | --- | -------- | ------
 [SoftIron OverDrive 1000](https://softiron.com/development-tools/overdrive-1000/) | CI build server | Up, Not Running Jobs | softiron-1 | 10.30.51.12 | N/A | 4 | 8GB |  | openSUSE
-  | CI build server | Up, Not Running Jobs | softiron-2 | 10.30.51.13 | N/A | 4 | 8GB |   | openSUSE
-  | CI build server | Up, Not Running Jobs | softiron-3 | 10.30.51.14 | N/A | 4 | 8GB |   | openSUSE
-[Cavium ThunderX](https://cavium.com/product-thunderx-arm-processors.html) | CI build server | Up, Running VPP CI | nomad3arm | 10.30.51.38 | 10.30.50.38 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
-  | CI build server | Up, Running VPP CI | nomad4arm | 10.30.51.39 | 10.30.50.39 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
-  | CI build server | Up, Running VPP CI | nomad5arm | 10.30.51.40 | 10.30.50.40 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
-  | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | fdio-cavium4 | 10.30.51.65 | 10.30.50.65 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
-  | VPP dev debug | Up | fdio-cavium5 | 10.30.51.66 | 10.30.50.66 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
-  | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | fdio-cavium6 | 10.30.51.67 | 10.30.50.67 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
-  | VPP dev debug | Up | fdio-cavium7 | 10.30.51.68 | 10.30.50.68 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
+  | | CI build server | Up, Not Running Jobs | softiron-2 | 10.30.51.13 | N/A | 4 | 8GB |   | openSUSE
+  | | CI build server | Up, Not Running Jobs | softiron-3 | 10.30.51.14 | N/A | 4 | 8GB |   | openSUSE
+[Marvell ThunderX](https://www.marvell.com/server-processors/thunderx-arm-processors/) | CI build server | Up, Running VPP CI | nomad3arm | 10.30.51.38 | 10.30.50.38 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
+  | | CI build server | Up, Running VPP CI | nomad4arm | 10.30.51.39 | 10.30.50.39 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
+  | | CI build server | Up, Running VPP CI | nomad5arm | 10.30.51.40 | 10.30.50.40 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
+  | | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | fdio-tx1-4 | 10.30.51.65 | 10.30.50.65 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
+  | | VPP dev debug | Up | fdio-marvell5 | 10.30.51.66 | 10.30.50.66 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
+  | | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | fdio-marvell6 | 10.30.51.67 | 10.30.50.67 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
+  | | VPP dev debug | Up | fdio-marvell7 | 10.30.51.68 | 10.30.50.68 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
+[Marvell ThunderX2](https://www.marvell.com/server-processors/thunderx2-arm-processors/) | VPP device server | Being Provisioned | s27-t13-sut1 | <TBD> | <TBD> | 112 | 128GB | 3x40GbE QSFP+ XL710-QDA2 | Ubuntu 18.04
 Huawei TaiShan 2280 | CSIT Performance | Up, Manual perf experiments | s15-t33-sut1 | 10.30.51.36 | 10.30.50.36 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
-  | CSIT Performance | Up, Manual perf experiments | s16-t33-sut2 | 10.30.51.37 | 10.30.50.37 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
+  | | CSIT Performance | Up, Manual perf experiments | s16-t33-sut2 | 10.30.51.37 | 10.30.50.37 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
 [Marvell MACCHIATObin](http://macchiatobin.net/) | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s20-t34-sut1 | 10.30.51.41 | 10.30.51.49, then connect to /dev/ttyUSB0 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.4
-  | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s21-t34-sut2 | 10.30.51.42 | 10.30.51.49, then connect to /dev/ttyUSB1 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
-  | VPP dev debug | Up, Manual VPP Device experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | fdio-mcbin3 | 10.30.51.43 | 10.30.51.49, then connect to /dev/ttyUSB2 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
+  | | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s21-t34-sut2 | 10.30.51.42 | 10.30.51.49, then connect to /dev/ttyUSB1 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
+  | | VPP dev debug | Up, Manual VPP Device experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | fdio-mcbin3 | 10.30.51.43 | 10.30.51.49, then connect to /dev/ttyUSB2 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
 
 ### Xeon and Atom Servers
 ```
@@ -443,6 +454,23 @@ Each server in 3-node Xeon topology has its NIC cards placed, and NIC cards and 
         - s16-t32-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
 ```
 
+#### 1-Node Arm
+Note: There are a lot of placeholders
+```
+- Server17 [Type-3]:
+    - testbedname: testbed13.
+    - hostname: s27-t13-sut1.
+    - IPMI IP: <TBD>
+    - Host IP: <TBD>
+    - portnames:
+        - s27-t13-sut1-cx/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-cx/p2 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-cy/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-cy/p2 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-cz/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-cz/p2 - 40GE-port1 XL710-QDA2-2p40GE.
+```
+
 #### 3-Node Arm
 Note: Server19 (TG) is shared between testbed33 & testbed34
 ```
@@ -691,8 +719,22 @@ Two 3-Node testbeds are constructed by connecting 6 Xeon servers using below spe
         - s16-t32-tg1-c10/p3 to s16-t32-tg1-c10/p4.
 ```
 
+
+#### 1-Node Arm
+One 1-Node testbed is constructed by connecting 1 Arm server using below specification:
+```
+- testbed13:
+    - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
+        - s27-t13-sut1-cx/p2 - s27-t13-sut1-cy/p1.
+    - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
+        - s27-t13-sut1-cy/p2 - s27-t13-sut1-cz/p1.
+    - ring3 40GE-ports XL710-QDA2-2p40GE on SUTs:
+        - s27-t13-sut1-cz/p2 - s27-t13-sut1-cx/p1.
+```
+
+
 #### 3-Node Arm
-One 3-Node testbed is constructed by connecting 3 Arm servers using below specification:
+Two 3-Node testbeds are constructed by connecting 3 Arm servers using below specification:
 ```
 - testbed33:
     - ring1 10GE-ports 82599-2p10GE on SUTs:
@@ -882,7 +924,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
     - NICs configuration:
         - PCIe Slotx <TBD>: XL710-QDA2.
         - PCIe Sloty <TBD>: XL710-QDA2.
-  - PCIe Slotz <TBD>: XL710-QDA2.
+        - PCIe Slotz <TBD>: XL710-QDA2.
 10. Type-10: Purpose - (Intel Atom C3000 Processor) SUT for SW Data Plane Workload i.e. VPP, testpmd.
     - Quantity: 4
     - Physical connectivity:
