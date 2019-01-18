@@ -412,6 +412,126 @@ def table_performance_comparison(table, input_data):
     convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
 
 
+def table_nics_comparison(table, input_data):
+    """Generate the table(s) with algorithm: table_nics_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
+    data = input_data.filter_data(table, continue_on_error=True)
+
+    # Prepare the header of the tables
+    try:
+        header = ["Test case", ]
+
+        if table["include-tests"] == "MRR":
+            hdr_param = "Receive Rate"
+        else:
+            hdr_param = "Throughput"
+
+        header.extend(
+            ["{0} {1} [Mpps]".format(table["reference"]["title"], hdr_param),
+             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
+             "{0} {1} [Mpps]".format(table["compare"]["title"], hdr_param),
+             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
+             "Delta [%]"])
+        header_str = ",".join(header) + "\n"
+    except (AttributeError, KeyError) as err:
+        logging.error("The model is invalid, missing parameter: {0}".
+                      format(err))
+        return
+
+    # Prepare data to the table:
+    tbl_dict = dict()
+    for job, builds in table["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                logging.info("   ###")
+                logging.info("tst_name: {0}".format(tst_name))
+                logging.info("tst_data: {0}".format(tst_data))
+                tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
+                    replace("-ndrpdr", "").replace("-pdrdisc", "").\
+                    replace("-ndrdisc", "").replace("-pdr", "").\
+                    replace("-ndr", "").\
+                    replace("1t1c", "1c").replace("2t1c", "1c").\
+                    replace("2t2c", "2c").replace("4t2c", "2c").\
+                    replace("4t4c", "4c").replace("8t4c", "4c")
+                if tbl_dict.get(tst_name_mod, None) is None:
+                    name = "-".join(tst_data["name"].split("-")[:-1])
+                    tbl_dict[tst_name_mod] = {"name": name,
+                                              "ref-data": list(),
+                                              "cmp-data": list()}
+                try:
+                    if table["include-tests"] == "MRR":
+                        result = tst_data["result"]["receive-rate"].avg
+                        # tbl_dict[tst_name_mod]["ref-data"]. \
+                        #     append(tst_data["result"]["receive-rate"].avg)
+                    elif table["include-tests"] == "PDR":
+                        result = tst_data["throughput"]["PDR"]["LOWER"]
+                        # tbl_dict[tst_name_mod]["ref-data"].append(
+                        #     tst_data["throughput"]["PDR"]["LOWER"])
+                    elif table["include-tests"] == "NDR":
+                        result = tst_data["throughput"]["NDR"]["LOWER"]
+                        # tbl_dict[tst_name_mod]["ref-data"].append(
+                        #     tst_data["throughput"]["NDR"]["LOWER"])
+                    else:
+                        result = None
+
+                    logging.info("result: {0}".format(result))
+
+                    if result is not None:
+                        if table["reference"]["nic"] in tst_data["tags"]:
+                            tbl_dict[tst_name_mod]["ref-data"].append(result)
+                        elif table["compare"]["nic"] in tst_data["tags"]:
+                            tbl_dict[tst_name_mod]["cmp-data"].append(result)
+                except (TypeError, KeyError) as err:
+                    logging.warning("No data for {0}".format(tst_name))
+                    logging.warning(repr(err))
+                    # No data in output.xml for this test
+
+    tbl_lst = list()
+    for tst_name in tbl_dict.keys():
+        item = [tbl_dict[tst_name]["name"], ]
+        data_t = tbl_dict[tst_name]["ref-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        data_t = tbl_dict[tst_name]["cmp-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
+            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        if len(item) == len(header):
+            tbl_lst.append(item)
+
+    # Sort the table according to the relative change
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Generate csv tables:
+    csv_file = "{0}.csv".format(table["output-file"])
+    with open(csv_file, "w") as file_handler:
+        file_handler.write(header_str)
+        for test in tbl_lst:
+            file_handler.write(",".join([str(item) for item in test]) + "\n")
+
+    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+
+
 def table_performance_trending_dashboard(table, input_data):
     """Generate the table(s) with algorithm:
     table_performance_trending_dashboard
