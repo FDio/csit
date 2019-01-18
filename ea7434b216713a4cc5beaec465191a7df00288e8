@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adc19c21_9b3ee4f7",
+        "filename": "docs/lab/Testbeds_Xeon_Skx_Arm_Atom.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1230
+      },
+      "writtenOn": "2019-01-18T16:36:18Z",
+      "side": 1,
+      "message": "what is skx_node ?",
+      "revId": "ea7434b216713a4cc5beaec465191a7df00288e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f2e73bea_0bbd26e5",
+        "filename": "docs/lab/Testbeds_Xeon_Skx_Arm_Atom.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1230
+      },
+      "writtenOn": "2019-01-18T16:36:18Z",
+      "side": 1,
+      "message": "It should be port 1 2 3\n40GE-port1 XL710-QDA2-2p40GE.\n40GE-port2 XL710-QDA2-2p40GE.",
+      "range": {
+        "startLine": 466,
+        "startChar": 31,
+        "endLine": 466,
+        "endChar": 60
+      },
+      "revId": "ea7434b216713a4cc5beaec465191a7df00288e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
