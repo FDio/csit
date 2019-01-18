@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6219ad51_9969a24a",
+        "filename": "docs/lab/Testbeds_Xeon_Skx_Arm_Atom.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-01-18T15:29:33Z",
+      "side": 1,
+      "message": "let\u0027s also change this to include both testbeds, something like testbednames: testbed33, testbed34.",
+      "range": {
+        "startLine": 470,
+        "startChar": 19,
+        "endLine": 470,
+        "endChar": 28
+      },
+      "revId": "6bdc1bbe159914326a091d65538096c90b68dee1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5bcf2110_68e34b84",
+        "filename": "docs/lab/Testbeds_Xeon_Skx_Arm_Atom.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-01-18T15:29:33Z",
+      "side": 1,
+      "message": "We have two testbeds 3-node testbeds, so let\u0027s update this to reflect that and also update that we\u0027re using 4 Arm servers with 1 Xeon server.",
+      "range": {
+        "startLine": 699,
+        "startChar": 0,
+        "endLine": 699,
+        "endChar": 10
+      },
+      "revId": "6bdc1bbe159914326a091d65538096c90b68dee1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
