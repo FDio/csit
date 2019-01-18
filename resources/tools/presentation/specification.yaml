@@ -170,6 +170,19 @@
       - 41  # NDRPDR sel
       - 42  # NDRPDR sel
 
+    vpp-nic-comparison-3n-hsw:
+      csit-vpp-perf-verify-1810-3n-hsw:
+      - 8   # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 18  # NDRPDR sel
+      - 23  # NDRPDR sel
+      - 25  # NDRPDR sel
+      - 38  # NDRPDR sel
+      - 39  # NDRPDR sel
+      - 41  # NDRPDR sel
+      - 42  # NDRPDR sel
+
     vpp-performance-changes-3n-skx:
       csit-vpp-perf-verify-1807-3n-skx:
       - 33  # NDRPDR sel
@@ -194,6 +207,19 @@
       - 22  # NDRPDR sel
       - 25  # NDRPDR sel
 
+    vpp-nic-comparison-3n-skx:
+      csit-vpp-perf-verify-1810-3n-skx:
+      - 10  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
+      - 16  # NDRPDR sel
+      - 17  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 25  # NDRPDR sel
+
     vpp-performance-changes-2n-skx:
       csit-vpp-perf-verify-1807-2n-skx:
       - 26  # NDRPDR sel
@@ -206,6 +232,19 @@
       - 39  # NDRPDR sel
       - 40  # NDRPDR sel
       - 42  # NDRPDR sel
+      csit-vpp-perf-verify-1810-2n-skx:
+      - 9   # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
+      - 19  # NDRPDR sel
+      - 20  # NDRPDR sel
+      - 21  # NDRPDR sel
+      - 22  # NDRPDR sel
+      - 23  # NDRPDR sel
+      - 24  # NDRPDR sel
+      - 27  # NDRPDR sel
+
+    vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-1810-2n-skx:
       - 9   # NDRPDR sel
       - 13  # NDRPDR sel
@@ -313,6 +352,10 @@
       csit-vpp-perf-verify-1810-3n-hsw:
       - 9   # MRR sel
 
+    vpp-nic-comparison-3n-hsw-mrr:
+      csit-vpp-perf-verify-1810-3n-hsw:
+      - 9   # MRR sel
+
     vpp-performance-changes-3n-skx-mrr:
       csit-vpp-perf-verify-1807-3n-skx:
       - 28  # MRR sel
@@ -331,6 +374,13 @@
       - 12  # MRR sel
       - 13  # MRR sel
 
+    vpp-nic-comparison-3n-skx-mrr:
+      csit-vpp-perf-verify-1810-3n-skx:
+      - 9   # MRR sel
+      - 11  # MRR sel
+      - 12  # MRR sel
+      - 13  # MRR sel
+
     vpp-performance-changes-2n-skx-mrr:
       csit-vpp-perf-verify-1807-2n-skx:
       - 31  # MRR sel
@@ -343,6 +393,13 @@
       - 45  # MRR sel
       - 46  # MRR sel
       - 47  # MRR sel
+      csit-vpp-perf-verify-1810-2n-skx:
+      - 8   # MRR sel
+      - 10  # MRR sel
+      - 11  # MRR sel
+      - 12  # MRR sel
+
+    vpp-nic-comparison-2n-skx-mrr:
       csit-vpp-perf-verify-1810-2n-skx:
       - 8   # MRR sel
       - 10  # MRR sel
@@ -1287,10 +1344,452 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
+
+# VPP Compare NICs 3n-hsw 1t1c ndr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-hsw 1t1c ndr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-nics-ndr"
+  reference:
+    title: "Intel-x520"
+    nic: "NIC_Intel-X520-DA2"
+  compare:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  data: "vpp-nic-comparison-3n-hsw"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 3n-hsw 2t2c ndr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-hsw 2t2c ndr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-nics-ndr"
+  reference:
+    title: "Intel-x520"
+    nic: "NIC_Intel-X520-DA2"
+  compare:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  data: "vpp-nic-comparison-3n-hsw"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 3n-hsw 1t1c pdr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-hsw 1t1c pdr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-nics-pdr"
+  reference:
+    title: "Intel-x520"
+    nic: "NIC_Intel-X520-DA2"
+  compare:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  data: "vpp-nic-comparison-3n-hsw"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 3n-hsw 2t2c pdr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-hsw 2t2c pdr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-nics-pdr"
+  reference:
+    title: "Intel-x520"
+    nic: "NIC_Intel-X520-DA2"
+  compare:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  data: "vpp-nic-comparison-3n-hsw"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 3n-hsw 1t1c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-hsw 1t1c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-nics-mrr"
+  reference:
+    title: "Intel-x520"
+    nic: "NIC_Intel-X520-DA2"
+  compare:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  data: "vpp-nic-comparison-3n-hsw-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 3n-hsw 2t2c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-hsw 2t2c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-nics-mrr"
+  reference:
+    title: "Intel-x520"
+    nic: "NIC_Intel-X520-DA2"
+  compare:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  data: "vpp-nic-comparison-3n-hsw-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 3n-hsw 4t4c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-hsw 4t4c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-4t4c-nics-mrr"
+  reference:
+    title: "Intel-x520"
+    nic: "NIC_Intel-X520-DA2"
+  compare:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  data: "vpp-nic-comparison-3n-hsw-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T4C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 3n-skx 2t1c ndr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-skx 2t1c ndr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-ndr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 3n-skx 4t2c ndr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-skx 4t2c ndr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-ndr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 3n-skx 2t1c pdr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-skx 2t1c pdr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-pdr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+ # VPP Compare NICs 3n-skx 4t2c pdr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-skx 4t2c pdr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-pdr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 3n-skx 2t1c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-skx 2t1c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-mrr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 3n-skx 4t2c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-skx 4t2c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-mrr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+ # VPP Compare NICs 3n-skx 8t4c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 3n-skx 8t4c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-nics-mrr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-3n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 2n-skx 2t1c ndr
+-
+  type: "table"
+  title: "VPP Compare NICs 2n-skx 2t1c ndr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-ndr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 2n-skx 4t2c ndr
+-
+  type: "table"
+  title: "VPP Compare NICs 2n-skx 4t2c ndr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-ndr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+ # VPP Compare NICs 2n-skx 2t1c pdr
+-
+  type: "table"
+  title: "VPP Compare NICs 2n-skx 2t1c pdr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-pdr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 2n-skx 4t2c pdr
+-
+  type: "table"
+  title: "VPP Compare NICs 2n-skx 4t2c pdr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-pdr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  - "tags"
+
+# VPP Compare NICs 2n-skx 2t1c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 2n-skx 2t1c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-mrr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-2n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 2n-skx 4t2c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 2n-skx 4t2c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-mrr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-2n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
+# VPP Compare NICs 2n-skx 8t4c mrr
+-
+  type: "table"
+  title: "VPP Compare NICs 2n-skx 8t4c mrr"
+  algorithm: "table_nics_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-8t4c-nics-mrr"
+  reference:
+    title: "Intel-x710"
+    nic: "NIC_Intel-X710"
+  compare:
+    title: "Intel-xxv710"
+    nic: "NIC_Intel-XXV710"
+  data: "vpp-nic-comparison-2n-skx-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C' and 'MRR'" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  - "tags"
+
 ################################################################################
 # VPP
 
-# VPP Performance Changes 3n-hsw 1t1c pdr 
+# VPP Performance Changes 3n-hsw 1t1c pdr
 -
   type: "table"
   title: "VPP Performance Changes 3n-hsw 1t1c pdr"
@@ -1530,7 +2029,7 @@
   - "parent"
   - "throughput"
 
-# VPP Performance Changes 3n-skx 2t1c pdr 
+# VPP Performance Changes 3n-skx 2t1c pdr
 -
   type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c pdr"
@@ -1698,7 +2197,7 @@
   - "parent"
   - "throughput"
 
-# VPP Performance Changes 2n-skx 2t1c pdr 
+# VPP Performance Changes 2n-skx 2t1c pdr
 -
   type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c pdr"
