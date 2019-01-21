@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2527bcd_b8e5acc2",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": ".dot",
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "508be3a7_13f12a8a",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": "put to the group of declares below (line 550)",
+      "range": {
+        "startLine": 534,
+        "startChar": 0,
+        "endLine": 534,
+        "endChar": 27
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79ad8e31_ce8cd9ff",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": "please keep the style below:\n\n\nparams\u003d(create --name $(uuidgen))\nDCR_VOLUMES+\u003d([dut1]\u003d\"$(docker volume \"${params[@]}\")\") || {\n        die \"Failed to create DUT1 volume!\"\n    }\ndcr_stc_params\u003d\"--volume ${DCR_VOLUMES[dut1]}:/tmp \"",
+      "range": {
+        "startLine": 536,
+        "startChar": 0,
+        "endLine": 542,
+        "endChar": 5
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e66f720_7a265128",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": "remove, line too long",
+      "range": {
+        "startLine": 556,
+        "startChar": 30,
+        "endLine": 556,
+        "endChar": 46
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04c1a23f_c61e7de7",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": "can we do:\n\ndef configure_vpp_in_all_containers(self, chain_topology, **kwargs)\n\ni did it in my consequent change.. this is not maintainable.",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 79
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4544562_ed853db9",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": "can we actually make separate chain_topology\u003dfunctional\n?\nThis is if-spaghetti mess.",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 50
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5201c51_0ea60fe7",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 340,
+        "startChar": 8,
+        "endLine": 340,
+        "endChar": 56
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e34b5f52_04db1cfd",
+        "filename": "resources/libraries/robot/shared/memif.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:27:48Z",
+      "side": 1,
+      "message": "9",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
