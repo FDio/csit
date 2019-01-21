@@ -486,8 +486,8 @@ def table_nics_comparison(table, input_data):
                         elif table["compare"]["nic"] in tst_data["tags"]:
                             tbl_dict[tst_name_mod]["cmp-data"].append(result)
                 except (TypeError, KeyError) as err:
-                    logging.warning("No data for {0}".format(tst_name))
-                    logging.warning(repr(err))
+                    logging.debug("No data for {0}".format(tst_name))
+                    logging.debug(repr(err))
                     # No data in output.xml for this test
 
     tbl_lst = list()
