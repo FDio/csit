@@ -157,6 +157,29 @@
     },
     {
       "key": {
+        "uuid": "f6360858_a2cd36a6",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-21T14:30:03Z",
+      "side": 1,
+      "message": "I later reworked this as:\n\n| | Run Keyword If | \u0027${container_chain_topology}\u0027 \u003d\u003d \u0027cross_horiz\u0027\n| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}\n| | ... | if1\u003d${dut1_if2} | if2\u003d${dut2_if2}\n| | ... | ELSE IF | \u0027${container_chain_topology}\u0027 \u003d\u003d \u0027chain\u0027\n| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 51
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e34b5f52_04db1cfd",
         "filename": "resources/libraries/robot/shared/memif.robot",
         "patchSetId": 25
