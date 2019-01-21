@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08b3d251_d26ea05e",
+        "filename": "docs/lab/Testbeds_Xeon_Skx_Arm_Atom.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-01-21T09:10:30Z",
+      "side": 1,
+      "message": "Upon further reflection, let\u0027s split this into two parts and describe each part to be consistent with Xeon testbed descriptions, e.g. \"One 3-Node testbed is constructed by connecting 2 TaiShan servers and one Xeon server using below specification:\" and \"One 3-Node testbed is constructed by connecting 2 MACCHIATObin servers and one Xeon server using below specification:\"",
+      "range": {
+        "startLine": 703,
+        "startChar": 0,
+        "endLine": 718,
+        "endChar": 3
+      },
+      "revId": "6746abeff2ca35b54fa177314594adf5406380c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
