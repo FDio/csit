@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "703f2d3a_ba9d1d46",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2527bcd_b8e5acc2",
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "508be3a7_13f12a8a",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 25
@@ -30,6 +48,30 @@
       "writtenOn": "2019-01-21T14:27:48Z",
       "side": 1,
       "message": "put to the group of declares below (line 550)",
+      "range": {
+        "startLine": 534,
+        "startChar": 0,
+        "endLine": 534,
+        "endChar": 27
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7749ef4_98a6a480",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "508be3a7_13f12a8a",
       "range": {
         "startLine": 534,
         "startChar": 0,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "301587ae_4a17d952",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done\nUsed separate parameter\ndcr_stc_params_dut1\u003d\"--volume ${DUT1_VOLUME}:/tmp \"\nas we want to mount the volume to DUT1 container only, not to TG container.",
+      "parentUuid": "79ad8e31_ce8cd9ff",
+      "range": {
+        "startLine": 536,
+        "startChar": 0,
+        "endLine": 542,
+        "endChar": 5
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e66f720_7a265128",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 25
@@ -76,6 +142,30 @@
       "writtenOn": "2019-01-21T14:27:48Z",
       "side": 1,
       "message": "remove, line too long",
+      "range": {
+        "startLine": 556,
+        "startChar": 30,
+        "endLine": 556,
+        "endChar": 46
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9eeec027_484272fa",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "We need separate parameter as we want to mount the volume to DUT1 container only.",
+      "parentUuid": "9e66f720_7a265128",
       "range": {
         "startLine": 556,
         "startChar": 30,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "b931eecd_2858f3d1",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97fa7eba_b6c88c54",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04c1a23f_c61e7de7",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 25
@@ -122,6 +236,30 @@
       "writtenOn": "2019-01-21T14:27:48Z",
       "side": 1,
       "message": "can we do:\n\ndef configure_vpp_in_all_containers(self, chain_topology, **kwargs)\n\ni did it in my consequent change.. this is not maintainable.",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 79
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ffb8c5f8_c9a16909",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04c1a23f_c61e7de7",
       "range": {
         "startLine": 154,
         "startChar": 0,
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "641a9f01_fd3e7713",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4544562_ed853db9",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 50
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5201c51_0ea60fe7",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 25
@@ -168,6 +330,30 @@
       "writtenOn": "2019-01-21T14:27:48Z",
       "side": 1,
       "message": "?",
+      "range": {
+        "startLine": 340,
+        "startChar": 8,
+        "endLine": 340,
+        "endChar": 56
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6491b32_d8075cc9",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5201c51_0ea60fe7",
       "range": {
         "startLine": 340,
         "startChar": 8,
@@ -203,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "2721ca1d_a91ff4e0",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b38e9a90_90730afe",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62db735b_be63a98e",
         "filename": "resources/libraries/python/Memif.py",
         "patchSetId": 25
@@ -214,6 +424,30 @@
       "writtenOn": "2019-01-21T15:40:28Z",
       "side": 1,
       "message": "rx_q \u003d \u0027rx-queues {rxq}\u0027.format(rxq\u003drxq) if rxq else \u0027\u0027",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 68
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0754a824_33283dd6",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62db735b_be63a98e",
       "range": {
         "startLine": 51,
         "startChar": 8,
@@ -249,6 +483,30 @@
     },
     {
       "key": {
+        "uuid": "23ac92d2_e2f200fe",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80971356_ff60dff0",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8678161_be7a6c4e",
         "filename": "resources/libraries/robot/shared/container.robot",
         "patchSetId": 25
@@ -260,6 +518,30 @@
       "writtenOn": "2019-01-21T15:40:28Z",
       "side": 1,
       "message": "\\| ${True} \\|",
+      "range": {
+        "startLine": 79,
+        "startChar": 10,
+        "endLine": 79,
+        "endChar": 20
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d944380_d7c4eb09",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8678161_be7a6c4e",
       "range": {
         "startLine": 79,
         "startChar": 10,
@@ -295,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "56824718_208bce6f",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6360858_a2cd36a6",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 51
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5449fa8a_c1385385",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 25
@@ -306,6 +612,30 @@
       "writtenOn": "2019-01-21T15:40:28Z",
       "side": 1,
       "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35f81e51_77b96d86",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5449fa8a_c1385385",
       "range": {
         "startLine": 1,
         "startChar": 16,
@@ -341,6 +671,30 @@
     },
     {
       "key": {
+        "uuid": "5e64040e_d04d93f5",
+        "filename": "resources/libraries/robot/shared/memif.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e34b5f52_04db1cfd",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "328fa0a4_0413337d",
         "filename": "tests/vpp/device/container_memif/eth2p-eth-l2bdbasemaclrn-eth-2memif-1dcr-dev.robot",
         "patchSetId": 25
@@ -352,6 +706,30 @@
       "writtenOn": "2019-01-21T15:40:28Z",
       "side": 1,
       "message": "Remove if not needed.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb1b7ac9_69c1e41f",
+        "filename": "tests/vpp/device/container_memif/eth2p-eth-l2bdbasemaclrn-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "328fa0a4_0413337d",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -387,6 +765,30 @@
     },
     {
       "key": {
+        "uuid": "7e96eb1f_b97b98b0",
+        "filename": "tests/vpp/device/container_memif/eth2p-eth-l2xcbase-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a882789f_2de02d09",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 48
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6fd4c9ad_356062b2",
         "filename": "tests/vpp/device/container_memif/eth2p-eth-l2xcbase-eth-2memif-1dcr-dev.robot",
         "patchSetId": 25
@@ -398,6 +800,30 @@
       "writtenOn": "2019-01-21T15:40:28Z",
       "side": 1,
       "message": "Remove if not needed.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 63
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0f778c3_e218df46",
+        "filename": "tests/vpp/device/container_memif/eth2p-eth-l2xcbase-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd4c9ad_356062b2",
       "range": {
         "startLine": 24,
         "startChar": 0,
@@ -433,6 +859,30 @@
     },
     {
       "key": {
+        "uuid": "57140d17_1ebbcf0f",
+        "filename": "tests/vpp/device/container_memif/eth2p-eth-l2xcbase-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "769aac96_b421f8bd",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 59
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a1713cf_050d88a1",
         "filename": "tests/vpp/device/container_memif/eth2p-ethip4-ip4base-eth-2memif-1dcr-dev.robot",
         "patchSetId": 25
@@ -444,6 +894,30 @@
       "writtenOn": "2019-01-21T15:40:28Z",
       "side": 1,
       "message": "Remove if not needed.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d651b00a_f5983bda",
+        "filename": "tests/vpp/device/container_memif/eth2p-ethip4-ip4base-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a1713cf_050d88a1",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -479,6 +953,30 @@
     },
     {
       "key": {
+        "uuid": "87d4b9c9_d9306da0",
+        "filename": "tests/vpp/device/container_memif/eth2p-ethip6-ip6base-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29b35453_492d38f7",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 47
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "995cb2c7_973bc27e",
         "filename": "tests/vpp/device/container_memif/eth2p-ethip6-ip6base-eth-2memif-1dcr-dev.robot",
         "patchSetId": 25
@@ -490,6 +988,30 @@
       "writtenOn": "2019-01-21T15:40:28Z",
       "side": 1,
       "message": "Remove if not needed.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 52
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0b9451f_ca33a7d7",
+        "filename": "tests/vpp/device/container_memif/eth2p-ethip6-ip6base-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-01-22T11:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "995cb2c7_973bc27e",
       "range": {
         "startLine": 25,
         "startChar": 0,
