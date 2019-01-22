@@ -15,6 +15,7 @@
 """
 
 
+import re
 import logging
 import pandas as pd
 import plotly.offline as ploff
@@ -24,7 +25,7 @@ from plotly.exceptions import PlotlyError
 from collections import OrderedDict
 from copy import deepcopy
 
-from utils import mean
+from utils import mean, stdev
 
 
 COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
@@ -1095,19 +1096,94 @@ def plot_service_density_heatmap(plot, input_data):
     :type input_data: InputData
     """
 
-    # Example data in Mpps
-    txt_chains = ['1', '2', '4', '6', '8', '10']
-    txt_nodes = ['1', '2', '4', '6', '8', '10']
+    REGEX_CN = re.compile(r'^(\d*)C(\d*)N$')
+    
+    txt_chains = list()
+    txt_nodes = list()
+    vals = dict()
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot.get("title", "")))
+    data = input_data.filter_data(plot, continue_on_error=True)
+    if data is None:
+        logging.error("No data.")
+        return
+
+    logging.info("data: {}".format(data))
+    
+    for job in data:
+        for build in job:
+            for test in build:
+                for tag in test['tags']:
+                    groups = re.search(REGEX_CN, tag)
+                    if groups:
+                        c = str(groups.group(1))
+                        n = str(groups.group(2))
+                        break
+                else:
+                    continue
+                if vals.get(c, None) is None:
+                    vals[c] = dict()
+                if vals[c].get(n, None) is None:
+                    vals[c][n] = dict(name=test["name"],
+                                      vals=list(),
+                                      nr=None,
+                                      mean=None,
+                                      stdev=None)
+                if plot["include-tests"] == "MRR":
+                    result = test["result"]["receive-rate"].avg
+                elif plot["include-tests"] == "PDR":
+                    result = test["throughput"]["PDR"]["LOWER"]
+                elif plot["include-tests"] == "NDR":
+                    result = test["throughput"]["NDR"]["LOWER"]
+                else:
+                    result = None
+
+                if result:
+                    vals[c][n]["vals"].append(result)
+
+    logging.info("vals: {}".format(vals))
+
+    for key_c in vals.keys():
+        txt_chains.append(key_c)
+        for key_n in vals[key_c].keys():
+            txt_nodes.append(key_n)
+            if vals[key_c][key_n]["vals"]:
+                vals[key_c][key_n]["nr"] = len(vals[key_c][key_n]["vals"])
+                vals[key_c][key_n]["mean"] = mean(vals[key_c][key_n]["vals"])
+                vals[key_c][key_n]["stdev"] = stdev(vals[key_c][key_n]["vals"])
+    txt_nodes = list(set(txt_nodes))
+
+    txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
+    txt_nodes = sorted(txt_nodes, key=lambda node: int(node))
+
+    # # Example data in Mpps
+    # txt_chains = ['1', '2', '4', '6', '8', '10']
+    # txt_nodes = ['1', '2', '4', '6', '8', '10']
+    #
+    # data = [
+    #     [6.3, 6.3, 6.3, 6.4, 6.5, 6.4],
+    #     [5.8, 5.6, 5.6, 5.6, 5.5, None],
+    #     [5.6, 5.5, 5.3, None, None, None],
+    #     [5.4, 5.3, None, None, None, None],
+    #     [5.4, 5.2, None, None, None, None],
+    #     [5.3, None, None, None, None, None]
+    # ]
+
     chains = [i + 1 for i in range(len(txt_chains))]
     nodes = [i + 1 for i in range(len(txt_nodes))]
-    data = [
-        [6.3, 6.3, 6.3, 6.4, 6.5, 6.4],
-        [5.8, 5.6, 5.6, 5.6, 5.5, None],
-        [5.6, 5.5, 5.3, None, None, None],
-        [5.4, 5.3, None, None, None, None],
-        [5.4, 5.2, None, None, None, None],
-        [5.3, None, None, None, None, None]
-    ]
+
+    data = [list() for _ in range(len(chains))]
+    for c in chains:
+        for n in nodes:
+            try:
+                val = vals[txt_chains[c]][txt_nodes[n]]["mean"]
+            except KeyError:
+                val = None
+            data[c].append(val)
+
+    logging.info("data: {}".format(data))
 
     hovertext = list()
     annotations = list()
@@ -1132,7 +1208,7 @@ def plot_service_density_heatmap(plot, input_data):
                     align="center",
                     showarrow=False
                 ))
-                hover_line.append(text.format(name="Testcase Name"))
+                hover_line.append(text.format(name=vals[c][n]["name"]))
         hovertext.append(hover_line)
 
     traces = [
