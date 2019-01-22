@@ -21,7 +21,6 @@
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${packages_dir}
-| ... | ${vpp_rpm_pkgs} | ${vpp_deb_pkgs}
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Get CPU Layout from all nodes | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
@@ -46,9 +45,3 @@
 | | Set Global Variable | ${dut_stats} | ${True}
 | | Set Global Variable | ${vm_image} | /var/lib/vm/csit-nested-1.7.img
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
-| | @{vpp_rpm_pkgs}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
-| | ... | vpp-api-python
-| | Set Global Variable | ${vpp_rpm_pkgs}
-| | @{vpp_deb_pkgs}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
-| | ... | vpp-plugins | vpp-api-python
-| | Set Global Variable | ${vpp_deb_pkgs}

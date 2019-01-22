@@ -33,7 +33,8 @@ class DUTSetup(object):
         :type service: str
         """
         if DUTSetup.running_in_container(node):
-            command = 'echo $(< /var/log/supervisord.log)'
+            command = ('echo $(< /var/log/supervisord.log);'
+                       'echo $(< /tmp/*supervisor*.log)')
         else:
             command = ('journalctl --no-pager --unit={name} '
                        '--since="$(echo `systemctl show -p '
@@ -595,73 +596,36 @@ class DUTSetup(object):
         exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
 
     @staticmethod
-    def install_vpp_on_all_duts(nodes, vpp_pkg_dir, vpp_rpm_pkgs, vpp_deb_pkgs):
+    def install_vpp_on_all_duts(nodes, vpp_pkg_dir):
         """Install VPP on all DUT nodes.
 
         :param nodes: Nodes in the topology.
         :param vpp_pkg_dir: Path to directory where VPP packages are stored.
-        :param vpp_rpm_pkgs: List of VPP rpm packages to be installed.
-        :param vpp_deb_pkgs: List of VPP deb packages to be installed.
         :type nodes: dict
         :type vpp_pkg_dir: str
-        :type vpp_rpm_pkgs: list
-        :type vpp_deb_pkgs: list
         :raises RuntimeError: If failed to remove or install VPP.
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                logger.debug("Installing VPP on node {0}".format(node['host']))
+                command = '[[ -f /etc/redhat-release ]]'
+                try:
+                    exec_cmd_no_error(node, command)
 
-                ssh = SSH()
-                ssh.connect(node)
+                    remove = 'yum -y remove "*vpp*" || true'
+                    install = 'rpm -ivh {dir}*.rpm'.\
+                        format(dir=vpp_pkg_dir)
+                    verify = 'rpm -qai *vpp*'
+                except RuntimeError:
+                    remove = 'apt-get purge -y "*vpp*" || true'
+                    install = 'dpkg -i --force-all {dir}*.deb'.\
+                        format(dir=vpp_pkg_dir)
+                    verify = 'dpkg -l | grep vpp'
 
-                cmd = "[[ -f /etc/redhat-release ]]"
-                return_code, _, _ = ssh.exec_command(cmd)
-                if not int(return_code):
-                    # workaroud - uninstall existing vpp installation until
-                    # start-testcase script is updated on all virl servers
-                    rpm_pkgs_remove = "vpp*"
-                    cmd_u = 'yum -y remove "{0}"'.format(rpm_pkgs_remove)
-                    r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
-                    if int(r_rcode):
-                        raise RuntimeError('Failed to remove previous VPP'
-                                           'installation on host {0}:\n{1}'
-                                           .format(node['host'], r_err))
-
-                    rpm_pkgs = "*.rpm ".join(str(vpp_pkg_dir + pkg)
-                                             for pkg in vpp_rpm_pkgs) + "*.rpm"
-                    cmd_i = "rpm -ivh {0}".format(rpm_pkgs)
-                    ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
-                    if int(ret_code):
-                        raise RuntimeError('Failed to install VPP on host {0}:'
-                                           '\n{1}'.format(node['host'], err))
-                    else:
-                        ssh.exec_command_sudo("rpm -qai vpp*")
-                        logger.info("VPP installed on node {0}".
-                                    format(node['host']))
-                else:
-                    # workaroud - uninstall existing vpp installation until
-                    # start-testcase script is updated on all virl servers
-                    deb_pkgs_remove = "vpp*"
-                    cmd_u = 'apt-get purge -y "{0}"'.format(deb_pkgs_remove)
-                    r_rcode, _, r_err = ssh.exec_command_sudo(cmd_u, timeout=90)
-                    if int(r_rcode):
-                        raise RuntimeError('Failed to remove previous VPP'
-                                           'installation on host {0}:\n{1}'
-                                           .format(node['host'], r_err))
-                    deb_pkgs = "*.deb ".join(str(vpp_pkg_dir + pkg)
-                                             for pkg in vpp_deb_pkgs) + "*.deb"
-                    cmd_i = "dpkg -i --force-all {0}".format(deb_pkgs)
-                    ret_code, _, err = ssh.exec_command_sudo(cmd_i, timeout=90)
-                    if int(ret_code):
-                        raise RuntimeError('Failed to install VPP on host {0}:'
-                                           '\n{1}'.format(node['host'], err))
-                    else:
-                        ssh.exec_command_sudo("dpkg -l | grep vpp")
-                        logger.info("VPP installed on node {0}".
-                                    format(node['host']))
-
-                ssh.disconnect(node)
+                exec_cmd_no_error(node, remove, timeout=120, sudo=True)
+                exec_cmd_no_error(node, install, timeout=120, sudo=True,
+                    message='Failed to install VPP on host {host}!'.\
+                    format(host=node['host']))
+                exec_cmd_no_error(node, verify, sudo=True)
 
     @staticmethod
     def running_in_container(node):
