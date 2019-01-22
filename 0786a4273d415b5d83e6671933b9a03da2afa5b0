@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f57958e_90b587de",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": ", dir\u003dguest_dir",
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84325826_c69c7de3",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": "{dir}",
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58d3e572_aea1c503",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": ", dir\u003dguest_dir",
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a397368_6a982bed",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": "Is this needed? Iow isn\u0027t it transparent from within container?",
+      "range": {
+        "startLine": 58,
+        "startChar": 63,
+        "endLine": 58,
+        "endChar": 74
+      },
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0b25d7_dc64a44a",
+        "filename": "resources/templates/vat/memif_create_chain.vat",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": "{socket1}",
+      "range": {
+        "startLine": 1,
+        "startChar": 39,
+        "endLine": 1,
+        "endChar": 54
+      },
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "000a5363_7595f3ba",
+        "filename": "resources/templates/vat/memif_create_chain.vat",
+        "patchSetId": 27
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": "{socket2}",
+      "range": {
+        "startLine": 5,
+        "startChar": 39,
+        "endLine": 5,
+        "endChar": 54
+      },
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87a85b13_667c5c87",
+        "filename": "resources/templates/vat/memif_create_chain_functional.vat",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": "{socket1}",
+      "range": {
+        "startLine": 1,
+        "startChar": 39,
+        "endLine": 1,
+        "endChar": 54
+      },
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "075d0ad3_abdd5daf",
+        "filename": "resources/templates/vat/memif_create_chain_functional.vat",
+        "patchSetId": 27
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T12:21:05Z",
+      "side": 1,
+      "message": "{socket2}",
+      "range": {
+        "startLine": 6,
+        "startChar": 39,
+        "endLine": 6,
+        "endChar": 54
+      },
+      "revId": "0786a4273d415b5d83e6671933b9a03da2afa5b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
