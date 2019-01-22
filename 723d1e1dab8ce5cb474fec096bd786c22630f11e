@@ -410,6 +410,29 @@
     },
     {
       "key": {
+        "uuid": "769aac96_b421f8bd",
+        "filename": "tests/vpp/device/container_memif/eth2p-eth-l2xcbase-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-01-22T07:48:44Z",
+      "side": 1,
+      "message": "could be this moved to main KW? It is same for every TC",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 59
+      },
+      "revId": "723d1e1dab8ce5cb474fec096bd786c22630f11e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a1713cf_050d88a1",
         "filename": "tests/vpp/device/container_memif/eth2p-ethip4-ip4base-eth-2memif-1dcr-dev.robot",
         "patchSetId": 25
