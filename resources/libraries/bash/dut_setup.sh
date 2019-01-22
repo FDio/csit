@@ -24,9 +24,9 @@ echo
 echo "[Command_desc] Starting ${0}"
 
 if [ -f "/etc/redhat-release" ]; then
-    cmd 'rpm -qai vpp*'
+    cmd 'rpm -qai *vpp*'
 else
-    cmd 'dpkg -l vpp\*'
+    cmd 'dpkg -l | grep vpp'
 fi
 
 cmd 'ps aux | grep vpp'
