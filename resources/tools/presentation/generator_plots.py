@@ -1097,7 +1097,7 @@ def plot_service_density_heatmap(plot, input_data):
     """
 
     REGEX_CN = re.compile(r'^(\d*)C(\d*)N$')
-    
+
     txt_chains = list()
     txt_nodes = list()
     vals = dict()
@@ -1109,7 +1109,7 @@ def plot_service_density_heatmap(plot, input_data):
     if data is None:
         logging.error("No data.")
         return
-    
+
     for job in data:
         for build in job:
             for test in build:
