@@ -60,7 +60,7 @@ if do_import:
 CLIENT_NAME = 'csit_papi'
 
 
-def papi_init(vpp_json_dir='/usr/share/vpp/api/'):
+def papi_init():
     """Construct a VPP instance from VPP JSON API files.
 
     :param vpp_json_dir: Directory containing all the JSON API files. If VPP is
@@ -71,18 +71,8 @@ def papi_init(vpp_json_dir='/usr/share/vpp/api/'):
     :raises PapiJsonFileError: If no api.json file found.
     :raises PapiInitError: If PAPI initialization failed.
     """
-    # construct a list of all the json api files
-    jsonfiles = []
-    for root, dirnames, filenames in os.walk(vpp_json_dir):
-        for filename in fnmatch.filter(filenames, '*.api.json'):
-            jsonfiles.append(os.path.join(vpp_json_dir, filename))
-    if not jsonfiles:
-        raise PapiJsonFileError(
-            'No json api files found in location {dir}'.format(
-                dir=vpp_json_dir))
-
     try:
-        vpp = VPP(jsonfiles)
+        vpp = VPP()
         return vpp
     except Exception as err:
         raise PapiInitError('PAPI init failed:\n{exc}'.format(exc=repr(err)))
@@ -191,9 +181,8 @@ def main():
                         help="Directory containing all vpp json api files.")
     args = parser.parse_args()
     json_string = args.json_data
-    vpp_json_dir = args.json_dir
 
-    vpp = papi_init(vpp_json_dir=vpp_json_dir)
+    vpp = papi_init()
 
     reply = list()
     json_data = json.loads(json_string)
