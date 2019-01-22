@@ -29,7 +29,6 @@
 | ... | AND | Get CPU Layout from All nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True} | numa_node=${True}
-| ...
 | Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***

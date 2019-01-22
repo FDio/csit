@@ -609,7 +609,6 @@ class DUTSetup(object):
             if node['type'] == NodeType.DUT:
                 command = 'ln -s /dev/null /etc/sysctl.d/80-vpp.conf || true'
                 exec_cmd_no_error(node, command, sudo=True)
-
                 command = '. /etc/lsb-release; echo "${DISTRIB_ID}"'
                 stdout, _ = exec_cmd_no_error(node, command)
 
@@ -617,15 +616,15 @@ class DUTSetup(object):
                     exec_cmd_no_error(node, 'apt-get purge -y "*vpp*" || true',
                                       timeout=120, sudo=True)
                     exec_cmd_no_error(node, 'dpkg -i --force-all {dir}*.deb'.
-                                      format(dir=vpp_pkg_dir), timeout=120,
-                                      sudo=True, message=message)
+                        format(dir=vpp_pkg_dir), timeout=120, sudo=True,
+                        message=message)
                     exec_cmd_no_error(node, 'dpkg -l | grep vpp', sudo=True)
                 else:
                     exec_cmd_no_error(node, 'yum -y remove "*vpp*" || true',
                                       timeout=120, sudo=True)
-                    exec_cmd_no_error(node, 'rpm -ivh {dir}*.rpm'.
-                                      format(dir=vpp_pkg_dir), timeout=120,
-                                      sudo=True, message=message)
+                    exec_cmd_no_error(node, 'rpm -ivh {dir}*.rpm'.\
+                        format(dir=vpp_pkg_dir), timeout=120, sudo=True,
+                        message=message)
                     exec_cmd_no_error(node, 'rpm -qai *vpp*', sudo=True)
 
     @staticmethod
