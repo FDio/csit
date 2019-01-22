@@ -64,7 +64,8 @@ function download_ubuntu_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    vpp=(vpp vpp-dbg vpp-dev vpp-lib vpp-plugins vpp-api-python)
+    vpp=(vpp vpp-dbg vpp-dev vpp-api-python libvppinfra libvppinfra-dev
+         vpp-plugin-core vpp-plugin-dpdk)
     if [ -z "${VPP_VERSION-}" ]; then
         artifacts+=(${vpp[@]})
     else
