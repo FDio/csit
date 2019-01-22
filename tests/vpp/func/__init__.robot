@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,7 +19,6 @@
 | Suite Setup | Run Keywords | Setup Functional Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${VPP_PKG_DIR}
-| ... | ${VPP_RPM_PKGS} | ${VPP_DEB_PKGS}
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Setup All DUTs | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
@@ -34,9 +33,3 @@
 | | ... | - vpp_pkg_dir - Path to directory where VPP packages are stored.
 | | ...
 | | Set Global Variable | ${VPP_PKG_DIR} | /scratch/vpp/
-| | @{VPP_RPM_PKGS}= | Create List | vpp | vpp-devel | vpp-lib | vpp-plugins
-| | ... | vpp-api-python
-| | Set Global Variable | ${VPP_RPM_PKGS}
-| | @{VPP_DEB_PKGS}= | Create List | vpp | vpp-dbg | vpp-dev | vpp-lib
-| | ... | vpp-plugins | vpp-api-python
-| | Set Global Variable | ${VPP_DEB_PKGS}
