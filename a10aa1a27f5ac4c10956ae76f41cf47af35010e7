@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a733552b_b1001248",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-01-23T14:34:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdbf55af_59856c2e",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 9
+      },
+      "revId": "a10aa1a27f5ac4c10956ae76f41cf47af35010e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6d32666_0b7584d6",
         "filename": "docs/tag_documentation.rst",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-01-23T12:55:58Z",
       "side": 1,
       "message": "What to do with this?",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 56
+      },
+      "revId": "a10aa1a27f5ac4c10956ae76f41cf47af35010e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74062e37_4367909a",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-01-23T14:34:35Z",
+      "side": 1,
+      "message": "Removed as redundant now. Added {r}R{c}C parameterised tag instead.",
+      "parentUuid": "d6d32666_0b7584d6",
       "range": {
         "startLine": 188,
         "startChar": 0,
