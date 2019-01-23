@@ -13,15 +13,17 @@
 
 """Library for SSH connection management."""
 
-import paramiko
+
 import socket
 import StringIO
 
-from paramiko import RSAKey
+from time import time, sleep
+
+from paramiko import RSAKey, SSHClient, AutoAddPolicy
 from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from robot.api import logger
 from scp import SCPClient
-from time import time, sleep
+
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -86,8 +88,8 @@ class SSH(object):
                     pkey = RSAKey.from_private_key(
                         StringIO.StringIO(node['priv_key']))
 
-                self._ssh = paramiko.SSHClient()
-                self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                self._ssh = SSHClient()
+                self._ssh.set_missing_host_key_policy(AutoAddPolicy())
 
                 self._ssh.connect(node['host'], username=node['username'],
                                   password=node.get('password'), pkey=pkey,
