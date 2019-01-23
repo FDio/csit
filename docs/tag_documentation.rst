@@ -1,13 +1,13 @@
-CSIT TAGs
+CSIT Tags
 =========
 
 All CSIT test cases are labelled with Robot Framework tags used to allow for
 easy test case type identification, test case grouping and selection for
-execution. Following sections list currently used CSIT TAGs and their
-documentation.
+execution. Following sections list currently used CSIT tags and their
+descriptions.
 
-Topology TAGs
--------------
+Testbed Topology Tags
+---------------------
 
 .. topic:: 2_NODE_DOUBLE_LINK_TOPO
 
@@ -29,7 +29,7 @@ Topology TAGs
     3 nodes connected in a circular topology with at least one link
     interconnecting devices.
 
-Objective TAGs
+Objective Tags
 --------------
 
 .. topic:: SKIP_PATCH
@@ -41,7 +41,7 @@ Objective TAGs
 
     Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch).
 
-Environment TAGs
+Environment Tags
 ----------------
 
 .. topic:: HW_ENV
@@ -56,7 +56,7 @@ Environment TAGs
 
     DUTs with VPP and capable of running Virtual Machine.
 
-NIC model tags
+NIC model Tags
 --------------
 
 .. topic:: NIC_Intel-X520-DA2
@@ -83,7 +83,7 @@ NIC model tags
 
     VIC-1385 by Cisco.
 
-Scaling TAGs
+Scaling Tags
 ------------
 
 .. topic:: FIB_20K
@@ -201,8 +201,8 @@ Scaling TAGs
 
     2 service chains with 2 network functions per chain.
 
-Tags marking functional vs. performance of tests
-------------------------------------------------
+Test Category Tags
+------------------
 
 .. topic:: FUNCTEST
 
@@ -212,8 +212,8 @@ Tags marking functional vs. performance of tests
 
     All performance test cases.
 
-Performance testing tags
-------------------------
+Performance Type Tags
+---------------------
 
 .. topic:: NDRPDR
 
@@ -228,8 +228,8 @@ Performance testing tags
     and reports total sent/received packets over trial duration.
     The result is an average of 10 trials of 1 second duration.
 
-Ethernet frame size tags for performance tests
-----------------------------------------------
+Ethernet Frame Size Tags
+------------------------
 
 .. topic:: 64B
 
@@ -267,7 +267,7 @@ Ethernet frame size tags for performance tests
 
     9000B frames used for test.
 
-Test type tags
+Test Type Tags
 --------------
 
 .. topic:: BASE
@@ -335,12 +335,31 @@ Test type tags
 
     Tests which use HTTP.
 
-.. topic:: SERVICE_DENSITY
+.. topic:: NF_DENSITY
 
-    Performance tests which measures performance of service density by creating
-    topology of multiple sevice chains of network functions.
+    Performance tests that measure throughput of multiple VNF and CNF
+    service topologies at different service densities.
 
-Forwarding mode tags
+NF Service Density Tags
+-----------------------
+
+.. topic:: CHAIN
+
+   NF service density tests with VNF or CNF service chain topology(ies).
+
+.. topic:: PIPE
+
+   NF service density tests with CNF service pipeline topology(ies).
+
+.. topic:: NF_L3FWDIP4
+
+   NF service density tests with DPDK l3fwd IPv4 routing as NF workload.
+
+.. topic:: NF_VPPIP4
+
+   NF service density tests with VPP IPv4 routing as NF workload.
+
+Forwarding Mode Tags
 --------------------
 
 .. topic:: L2BDMACSTAT
@@ -363,7 +382,7 @@ Forwarding mode tags
 
     VPP IPv6 routed forwarding.
 
-Underlay tags
+Underlay Tags
 -------------
 
 .. topic:: IP4UNRLAY
@@ -378,7 +397,7 @@ Underlay tags
 
     MPLS underlay.
 
-Overlay tags
+Overlay Tags
 ------------
 
 .. topic:: L2OVRLAY
@@ -393,7 +412,7 @@ Overlay tags
 
     IPv6 overlay (IPv6 payload).
 
-Tagging tags
+Tagging Tags
 ------------
 
 .. topic:: DOT1Q
@@ -404,7 +423,7 @@ Tagging tags
 
     All test cases with dot1ad.
 
-Encapsulation tags
+Encapsulation Tags
 ------------------
 
 .. topic:: ETH
@@ -439,7 +458,7 @@ Encapsulation tags
 
     All test cases with Segment routing over IPv6 dataplane.
 
-Interface tags
+Interface Tags
 --------------
 
 .. topic:: PHY
@@ -524,7 +543,7 @@ Interface tags
     devices. In essence, today this driver can be used only with Intel
     XL710 / X710 / XXV710 adapters.
 
-Feature tags
+Feature Tags
 ------------
 
 .. topic:: IACLDST
@@ -591,7 +610,7 @@ Feature tags
 
     SRv6 endpoint to SR-unaware appliance via masquerading proxy.
 
-Encryption tags
+Encryption Tags
 ---------------
 
 .. topic:: IPSECSW
@@ -610,7 +629,7 @@ Encryption tags
 
     IPSec in tunnel mode.
 
-Client-workload tags
+Client-Workload Tags
 --------------------
 
 .. topic:: VM
@@ -621,6 +640,10 @@ Client-workload tags
 
     All test cases which use Linux container and LXC utils.
 
+.. topic:: DRC
+
+    All test cases which use at least one Docker container.
+
 .. topic:: DOCKER
 
     All test cases which use Docker as container manager.
@@ -629,7 +652,7 @@ Client-workload tags
 
     All test cases with specific APP use.
 
-Container orchestration tags
+Container Orchestration Tags
 ----------------------------
 
 .. topic:: K8S
@@ -662,7 +685,7 @@ Container orchestration tags
 
     4 VPP running in 4 Docker containers acting as VNF work load.
 
-Multi-threading tags
+Multi-Threading Tags
 --------------------
 
 .. topic:: STHREAD
@@ -739,7 +762,7 @@ Multi-threading tags
     physical cores. 4 receive queues per interface. Main thread pinned to core
     1.
 
-Honeycomb tags
+Honeycomb Tags
 --------------
 
 .. topic:: HC_FUNC
