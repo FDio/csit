@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -79,7 +79,7 @@ class VPPUtil(object):
                 break
         else:
             raise RuntimeError('VPP failed to start on host {name}'.
-                                   format(name=node['host']))
+                               format(name=node['host']))
         DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
     @staticmethod

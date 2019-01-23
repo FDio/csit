@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -409,37 +409,7 @@ class DropRateSearch(object):
 
             res = self._get_res_based_on_search_type(res)
 
-            if self._search_linear_direction == SearchDirection.BOTTOM_UP:
-                # loss occurred and it was above acceptance criteria
-                if not res:
-                    # if this is first run then we didn't find drop rate
-                    if prev_rate is None:
-                        self._search_result = SearchResults.FAILURE
-                        self._search_result_rate = None
-                    # else we found the rate, which is value from previous run
-                    else:
-                        self._search_result = SearchResults.SUCCESS
-                        self._search_result_rate = prev_rate
-                    return
-                # there was no loss / loss below acceptance criteria
-                elif res:
-                    prev_rate = rate
-                    rate += self._rate_linear_step
-                    if rate > self._rate_max:
-                        if prev_rate != self._rate_max:
-                            # one last step with rate set to _rate_max
-                            rate = self._rate_max
-                            continue
-                        else:
-                            self._search_result = SearchResults.SUCCESS
-                            self._search_result_rate = prev_rate
-                            return
-                    else:
-                        continue
-                else:
-                    raise RuntimeError("Unknown search result")
-
-            elif self._search_linear_direction == SearchDirection.TOP_DOWN:
+            if self._search_linear_direction == SearchDirection.TOP_DOWN:
                 # loss occurred, decrease rate
                 if not res:
                     prev_rate = rate
@@ -464,8 +434,6 @@ class DropRateSearch(object):
                     raise RuntimeError("Unknown search result")
             else:
                 raise Exception("Unknown search direction")
-
-        raise Exception("Wrong codepath")
 
     def verify_search_result(self):
         """Fail if search was not successful.
