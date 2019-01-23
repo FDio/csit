@@ -22,81 +22,66 @@ class Routing(object):
     """Routing utilities."""
 
     @staticmethod
-    def vpp_route_add(node, network, prefix_len, gateway=None,
-                      interface=None, use_sw_index=True, resolve_attempts=10,
-                      count=1, vrf=None, lookup_vrf=None, multipath=False,
-                      weight=None, local=False):
+    def vpp_route_add(node, network, prefix_len, **kwargs):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
         :param network: Route destination network address.
         :param prefix_len: Route destination network prefix length.
-        :param gateway: Route gateway address.
-        :param interface: Route interface.
-        :param vrf: VRF table ID (Optional).
-        :param use_sw_index: Use sw_if_index in VAT command.
-        :param resolve_attempts: Resolve attempts IP route add parameter.
-        :param count: number of IP addresses to add starting from network IP
-        :param local: The route is local
-            with same prefix (increment is 1). If None, then is not used.
-        :param lookup_vrf: VRF table ID for lookup.
-        :param multipath: Enable multipath routing.
-        :param weight: Weight value for unequal cost multipath routing.
+        :param kwargs: Optional key-value arguments:
+
+            gateway: Route gateway address. (str)
+            interface: Route interface. (str)
+            vrf: VRF table ID. (int)
+            use_sw_index: Use sw_if_index in VAT command. (bool)
+            resolve_attempts: Resolve attempts IP route add parameter. (int)
+            count: number of IP addresses to add starting from network IP (int)
+            local: The route is local with same prefix (increment is 1).
+                If None, then is not used. (bool)
+            lookup_vrf: VRF table ID for lookup. (int)
+            multipath: Enable multipath routing. (bool)
+            weight: Weight value for unequal cost multipath routing. (int)
+
         :type node: dict
         :type network: str
         :type prefix_len: int
-        :type gateway: str
-        :type interface: str
-        :type use_sw_index: bool
-        :type resolve_attempts: int
-        :type count: int
-        :type vrf: int
-        :type lookup_vrf: int
-        :type multipath: bool
-        :type weight: int
-        :type local: bool
+        :type kwargs: dict
         """
-        if interface:
+
+        gateway = kwargs.get("gateway", '')
+        intf = kwargs.get("interface", '')
+        use_sw_index = kwargs.get("use_sw_index", True)
+        ra = kwargs.get("resolve_attempts", 10)
+        count = kwargs.get("count", 1)
+        vrf = kwargs.get("vrf", None)
+        l_vrf = kwargs.get("lookup_vrf", None)
+        multipath = kwargs.get("multipath", False)
+        weight = kwargs.get("weight", None)
+        local = kwargs.get("local", False)
+
+        if intf:
             if use_sw_index:
                 int_cmd = ('sw_if_index {}'.
-                           format(Topology.get_interface_sw_index(node,
-                                                                  interface)))
+                           format(Topology.get_interface_sw_index(node, intf)))
             else:
-                int_cmd = interface
+                int_cmd = intf
         else:
             int_cmd = ''
 
-        rap = 'resolve-attempts {}'.format(resolve_attempts) \
-            if resolve_attempts else ''
-
-        via = 'via {}'.format(gateway) if gateway else ''
-
-        cnt = 'count {}'.format(count) \
-            if count else ''
-
-        vrf = 'vrf {}'.format(vrf) if vrf else ''
-
-        lookup_vrf = 'lookup-in-vrf {}'.format(lookup_vrf) if lookup_vrf else ''
-
-        multipath = 'multipath' if multipath else ''
-
-        weight = 'weight {}'.format(weight) if weight else ''
-
-        local = 'local' if local else ''
-
         with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template('add_route.vat',
-                                                    network=network,
-                                                    prefix_length=prefix_len,
-                                                    via=via,
-                                                    vrf=vrf,
-                                                    interface=int_cmd,
-                                                    resolve_attempts=rap,
-                                                    count=cnt,
-                                                    lookup_vrf=lookup_vrf,
-                                                    multipath=multipath,
-                                                    weight=weight,
-                                                    local=local)
+            vat.vat_terminal_exec_cmd_from_template(
+                'add_route.vat',
+                network=network,
+                prefix_length=prefix_len,
+                via='via {}'.format(gateway) if gateway else '',
+                vrf='vrf {}'.format(vrf) if vrf else '',
+                interface=int_cmd,
+                resolve_attempts='resolve-attempts {}'.format(ra) if ra else '',
+                count='count {}'.format(count) if count else '',
+                lookup_vrf='lookup-in-vrf {}'.format(l_vrf) if l_vrf else '',
+                multipath='multipath' if multipath else '',
+                weight='weight {}'.format(weight) if weight else '',
+                local='local' if local else '')
 
     @staticmethod
     def add_fib_table(node, table_id, ipv6=False):
