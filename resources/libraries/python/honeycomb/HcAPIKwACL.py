@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,8 @@
 
 """This module implements keywords to manipulate ACL data structures using
 Honeycomb REST API."""
+
+
 from robot.api import logger
 
 from resources.libraries.python.topology import Topology
@@ -255,17 +257,15 @@ class ACLKeywords(object):
             " under ACL table {1}.".format(session_match, table_name))
 
     @staticmethod
-    def create_acl_plugin_classify_chain(node, list_name, data, macip=False):
+    def create_acl_plugin_classify_chain(node, list_name, data):
         """Create classify chain using the ietf-acl node.
 
         :param node: Honeycomb node.
         :param list_name: Name for the classify list.
         :param data: Dictionary of settings to send to Honeycomb.
-        :param macip: Use simple MAC+IP classifier. Optional.
         :type node: dict
         :type list_name: str
         :type data: dict
-        :type macip: bool
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails.

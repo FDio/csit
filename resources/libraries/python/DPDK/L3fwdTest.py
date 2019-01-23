@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,6 +18,7 @@ This module exists to provide the l3fwd test for DPDK on topology nodes.
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import NodeType, Topology
+
 
 class L3fwdTest(object):
     """Test the DPDK l3fwd performance."""
@@ -59,16 +60,14 @@ class L3fwdTest(object):
                 for queue in range(0, int(queue_nums)):
                     if int(nb_cores) == 1:
                         index = 0
-                        temp_str = '({port}, {queue}, {core}),'.\
-                        format(port=port, queue=queue,
-                               core=int(list_cores[index]))
+                        port_config += '({port}, {queue}, {core}),'.\
+                            format(port=port, queue=queue,
+                                   core=int(list_cores[index]))
                     else:
-                        temp_str = '({port}, {queue}, {core}),'.\
-                        format(port=port, queue=queue,
-                               core=int(list_cores[index]))
-
-                    port_config += temp_str
-                    index = index + 1
+                        port_config += '({port}, {queue}, {core}),'.\
+                            format(port=port, queue=queue,
+                                   core=int(list_cores[index]))
+                    index += 1
 
             ssh = SSH()
             ssh.connect(dut_node)

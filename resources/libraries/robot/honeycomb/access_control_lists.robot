@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -10,6 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 *** Variables ***
 #TODO: update based on resolution of bug https://jira.fd.io/browse/HONEYCOMB-119
 
@@ -356,7 +357,7 @@
 | | [Arguments] | ${node} | ${acl_list_name} | ${acl_list_settings}
 | | ... | ${macip}=${False}
 | | Create ACL plugin classify chain
-| | ... | ${node} | ${acl_list_name} | ${acl_list_settings} | ${macip}
+| | ... | ${node} | ${acl_list_name} | ${acl_list_settings}
 
 | Honeycomb assigns plugin-ACL chain to interface
 | | [Documentation] | Applies classification through the high-level\
@@ -438,12 +439,12 @@
 | | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
 | | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate | --src_mac | ${tx_mac}
-| | ...                 | --dst_mac | ${rx_mac}
-| | ...                 | --src_ip | ${src_ip}
-| | ...                 | --dst_ip | ${dst_ip}
-| | ...                 | --tx_if | ${tx_port_name}
-| | ...                 | --rx_if | ${rx_port_name}
-| | ...                 | --icmp_type | ${icmp_type}
-| | ...                 | --icmp_code | ${icmp_code}
+| | ... | --dst_mac | ${rx_mac}
+| | ... | --src_ip | ${src_ip}
+| | ... | --dst_ip | ${dst_ip}
+| | ... | --tx_if | ${tx_port_name}
+| | ... | --rx_if | ${rx_port_name}
+| | ... | --icmp_type | ${icmp_type}
+| | ... | --icmp_code | ${icmp_code}
 | | Run Traffic Script On Node | send_icmp_type_code.py
 | | ... | ${tg_node} | ${args}

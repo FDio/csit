@@ -206,14 +206,14 @@ class ContainerManager(object):
                 c_name = self.engine.container.name
                 guest_dir = self.engine.container.mnt[0].split(':')[1]
                 if 'DUT1' in self.engine.container.name:
-                    if_pci = Topology.get_interface_pci_addr( \
+                    if_pci = Topology.get_interface_pci_addr(
                         self.engine.container.node, dut1_if)
-                    if_name = Topology.get_interface_name( \
+                    if_name = Topology.get_interface_name(
                         self.engine.container.node, dut1_if)
                 if 'DUT2' in self.engine.container.name:
-                    if_pci = Topology.get_interface_pci_addr( \
+                    if_pci = Topology.get_interface_pci_addr(
                         self.engine.container.node, dut2_if)
-                    if_name = Topology.get_interface_name( \
+                    if_name = Topology.get_interface_name(
                         self.engine.container.node, dut2_if)
                 self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
                 self.engine.create_vpp_exec_config(
