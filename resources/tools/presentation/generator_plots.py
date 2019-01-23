@@ -1096,7 +1096,7 @@ def plot_service_density_heatmap(plot, input_data):
     :type input_data: InputData
     """
 
-    REGEX_CN = re.compile(r'^(\d*)C(\d*)N$')
+    REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
 
     txt_chains = list()
     txt_nodes = list()
