@@ -494,7 +494,7 @@
 
     plot-vpp-vsc-2n-skx:
       csit-vpp-perf-verify-master-2n-skx:
-      - 234
+      - 237
 
     plot-vpp-csc-2n-skx:
       csit-vpp-perf-verify-master-2n-skx:
@@ -1322,7 +1322,7 @@
     - 27  # NDRPDR sel
     csit-vpp-perf-verify-master-2n-skx:
     - 207  # SOAK sel
-    - 234  # VSC
+    - 237  # VSC
     - 226  # CSC
     - 231  # CSC
     - 233  # CSC
