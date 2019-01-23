@@ -492,13 +492,16 @@
       csit-vpp-perf-verify-master-2n-skx:
       - 207  # SOAK sel
 
-    plot-vpp-service-density-2n-skx:
+    plot-vpp-vsc-2n-skx:
       csit-vpp-perf-verify-master-2n-skx:
-      - 215
-      - 216
-      - 219
-      - 221
-      - 222
+      - 234
+
+     plot-vpp-csc-2n-skx:
+      csit-vpp-perf-verify-master-2n-skx:
+      - 226
+      - 231
+      - 233
+
     plot-vpp-throughput-latency-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
       - 24  # NDRPDR full
@@ -1319,11 +1322,10 @@
     - 27  # NDRPDR sel
     csit-vpp-perf-verify-master-2n-skx:
     - 207  # SOAK sel
-    - 215  # SD
-    - 216  # SD
-    - 219  # SD
-    - 221  # SD
-    - 222  # SD
+    - 234  # VSC
+    - 226  # CSC
+    - 231  # CSC
+    - 233  # CSC
     csit-vpp-perf-check-1804:
     - 5   # mrr - full
     - 6   # mrr - sel
@@ -5345,20 +5347,44 @@
 # Heatmap - example
 -
   type: "plot"
-  title: "Service Density: l2sw-2n-skx-x710-64b-2t1c-base-sd-mrr"
+  title: "Service Density: l2sw-2n-skx-x710-64b-2t1c-base-vsc-mrr"
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base-sd-mrr"
-  data: "plot-vpp-service-density-2n-skx"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base-vsc-mrr"
+  data: "plot-vpp-vsc-2n-skx"
   filter: "'NIC_Intel-X710' and
-           'SERVICE_DENSITY' and
+           'NF_DENSITY' and
+           'VM' and
+           'CHAIN' and
            '64B' and
            '2T1C' and
            'MRR'"
   parameters:
   - "result"
   - "name"
-  - "parent"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  layout:
+    title: "<b>Network Service Density Matrix: Packet Throughput View</b>"
+    layout: "plot-service-density"
+
+-
+  type: "plot"
+  title: "Service Density: l2sw-2n-skx-x710-64b-2t1c-base-csc-mrr"
+  algorithm: "plot_service_density_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base-csc-mrr"
+  data: "plot-vpp-csc-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'CHAIN' and
+           '64B' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
   - "tags"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
   layout:
