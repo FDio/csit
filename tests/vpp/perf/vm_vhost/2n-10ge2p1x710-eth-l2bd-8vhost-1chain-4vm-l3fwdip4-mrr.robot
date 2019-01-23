@@ -17,7 +17,7 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM
-| ... | VHOST_1024 | NF_DENSITY | NF_L3FWDIP4 | CHAIN | 1R14C
+| ... | VHOST_1024 | NF_DENSITY | NF_L3FWDIP4 | CHAIN | 1R4C
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X710
