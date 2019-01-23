@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -27,14 +27,12 @@ class Notifications(Netconf):
     - read received notifications
     """
 
-    def add_notification_listener(self, subscription, time_out=10):
+    def add_notification_listener(self, subscription):
         """Open a new channel on the SSH session, connect to Netconf subsystem
         and subscribe to receive Honeycomb notifications.
 
         :param subscription: RPC for subscription to notifications.
-        :param time_out: Timeout value for each read operation in seconds.
         :type subscription: str
-        :type time_out: int
         :raises HoneycombError: If subscription to notifications fails.
         """
 
