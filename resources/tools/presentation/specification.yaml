@@ -496,7 +496,7 @@
       csit-vpp-perf-verify-master-2n-skx:
       - 234
 
-     plot-vpp-csc-2n-skx:
+    plot-vpp-csc-2n-skx:
       csit-vpp-perf-verify-master-2n-skx:
       - 226
       - 231
