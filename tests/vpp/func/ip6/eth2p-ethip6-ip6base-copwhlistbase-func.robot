@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -88,7 +88,8 @@
 | | And Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
 | | And Vpp Route Add | ${dut1_node}
-| | ... | ${test_dst_ip} | ${ip_prefix} | ${dut1_if2_ip_GW} | ${dut1_to_dut2}
+| | ... | ${test_dst_ip} | ${ip_prefix} | gateway=${dut1_if2_ip_GW}
+| | ... | interface=${dut1_to_dut2}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | And Add fib table | ${dut1_node} | ${fib_table_number} | ipv6=${TRUE}
 | | And Vpp Route Add | ${dut1_node}

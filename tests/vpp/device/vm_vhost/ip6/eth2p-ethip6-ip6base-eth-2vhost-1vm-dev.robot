@@ -96,11 +96,12 @@
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
 | | ${vhost2_mac}= | And Get Vhost User Mac By SW Index
 | | ... | ${dut_node} | ${vhost2}
-| | And Vpp Route Add | ${dut_node} | ${net3} | ${prefix_length} | ${net2_ip2}
-| | ... | ${vhost1} | resolve_attempts=${NONE} | count=${NONE}
-| | And Vpp Route Add | ${dut_node} | ${net1} | ${prefix_length} | ${net2_ip1}
-| | ... | ${vhost2} | resolve_attempts=${NONE} | count=${NONE}
-| | ... | vrf=${fib_table_2}
+| | And Vpp Route Add | ${dut_node} | ${net3} | ${prefix_length}
+| | ... | gateway=${net2_ip2} | interface=${vhost1} | resolve_attempts=${NONE}
+| | ... | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | ${net1} | ${prefix_length}
+| | ... | gateway=${net2_ip1} | interface=${vhost2} | resolve_attempts=${NONE}
+| | ... | count=${NONE} | vrf=${fib_table_2}
 | | Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
 | | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}
 | | ... | ${tg_to_dut_if2_mac}

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -77,9 +77,9 @@
 | | And Set interfaces in 3-node circular topology up
 | | And Configure IP addresses on interfaces
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_ip_address} | ${prefix}
-| | ... | ${dut1_node} | ${dut1_to_tg}   | ${net1_gw_address} | ${prefix}
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${net1_gw_address} | ${prefix}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_ip_address} | ${prefix}
-| | ... | ${dut2_node} | ${dut2_to_tg}   | ${net2_gw_address} | ${prefix}
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${net2_gw_address} | ${prefix}
 | | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${dut2_ip_address}
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${dut1_ip_address}
 | | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${net2_host_address}
@@ -88,13 +88,13 @@
 | | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut1_node} | ${dut1_ip_address} | ${dut2_ip_address}
 | | ${dut2_gre_interface} | ${dut2_gre_index}=
-| | ... | And  Create GRE tunnel interface and set it up
+| | ... | And Create GRE tunnel interface and set it up
 | | ... | ${dut2_node} | ${dut2_ip_address} | ${dut1_ip_address}
 | | And Configure IP addresses on interfaces
 | | ... | ${dut1_node} | ${dut1_gre_index} | ${dut1_gre_ip} | ${prefix}
 | | ... | ${dut2_node} | ${dut2_gre_index} | ${dut2_gre_ip} | ${prefix}
 | | And Vpp Route Add | ${dut1_node} | ${net2_address} | ${prefix}
-| | ... | ${dut2_gre_ip} | ${dut1_gre_index}
+| | ... | gateway=${dut2_gre_ip} | interface=${dut1_gre_index}
 | | Then Send packet and verify headers | ${tg_node}
 | | ... | ${net1_host_address} | ${net2_host_address}
 | | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
@@ -122,7 +122,7 @@
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut1_gre_index} | ${dut1_gre_ip} | ${prefix}
 | | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
-| | ... | ${dut2_gre_ip} | ${dut1_gre_index}
+| | ... | gateway=${dut2_gre_ip} | interface=${dut1_gre_index}
 | | Then Send ICMPv4 and check received GRE header
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if2_mac}
@@ -171,7 +171,7 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
-| | And Set Interface State |  ${dut_node} | ${dut1_lo_index} | up
+| | And Set Interface State | ${dut_node} | ${dut1_lo_index} | up
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
@@ -179,9 +179,9 @@
 | | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
 | | ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
-| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
-| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | ${dut1_gre0_interface} | ${dut1_gre0_index}=
 | | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}
@@ -192,9 +192,9 @@
 | | ... | ${dut_node} | ${dut1_gre0_index} | ${dut_tun0_ip1} | ${prefix}
 | | ... | ${dut_node} | ${dut1_gre1_index} | ${dut_tun1_ip1} | ${prefix}
 | | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
-| |  ... | ${dut_tun0_ip2} | ${dut1_gre0_index}
+| | ... | gateway=${dut_tun0_ip2} | interface=${dut1_gre0_index}
 | | And Vpp Route Add | ${dut_node} | ${net3_address} | ${prefix}
-| | ... | ${dut_tun1_ip2} | ${dut1_gre1_index}
+| | ... | gateway=${dut_tun1_ip2} | interface=${dut1_gre1_index}
 | | Then Send ICMPv4 and check received GRE header
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if2_mac}
@@ -222,7 +222,7 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
-| | And Set Interface State |  ${dut_node} | ${dut1_lo_index} | up
+| | And Set Interface State | ${dut_node} | ${dut1_lo_index} | up
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
@@ -230,9 +230,9 @@
 | | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
 | | ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
-| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
-| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | ${dut1_gre0_interface} | ${dut1_gre0_index}=
 | | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}
@@ -243,9 +243,9 @@
 | | ... | ${dut_node} | ${dut1_gre0_index} | ${dut_tun0_ip1} | ${prefix}
 | | ... | ${dut_node} | ${dut1_gre1_index} | ${dut_tun1_ip1} | ${prefix}
 | | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
-| |  ... | ${dut_tun0_ip2} | ${dut1_gre0_index}
+| | ... | gateway=${dut_tun0_ip2} | interface=${dut1_gre0_index}
 | | And Vpp Route Add | ${dut_node} | ${net3_address} | ${prefix}
-| | ... | ${dut_tun1_ip2} | ${dut1_gre1_index}
+| | ... | gateway=${dut_tun1_ip2} | interface=${dut1_gre1_index}
 | | Then Send GRE and check received GRE header
 | | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if2}
 | | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
@@ -271,7 +271,7 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
-| | And Set Interface State |  ${dut_node} | ${dut1_lo_index} | up
+| | And Set Interface State | ${dut_node} | ${dut1_lo_index} | up
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
@@ -281,9 +281,9 @@
 | | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
 | | ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
-| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
-| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | ${dut1_gre0_interface} | ${dut1_gre0_index}=
 | | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}

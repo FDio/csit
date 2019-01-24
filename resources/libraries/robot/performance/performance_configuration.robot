@@ -172,8 +172,10 @@
 | | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
-| | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | ${tg_if1_ip4} | ${dut1_if1}
-| | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | ${tg_if2_ip4} | ${dut2_if2}
+| | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
+| | ... | interface=${dut1_if1}
+| | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
+| | ... | interface=${dut2_if2}
 
 | Initialize IPv4 forwarding in circular topology
 | | [Documentation]
@@ -221,9 +223,11 @@
 | | ... | 20.20.20.1 | 24
 | | ...
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
+| | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=1.1.1.2
+| | ... | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
+| | ... | interface=${dut2_if1}
 
 | Initialize IPv4 forwarding with scaling in circular topology
 | | [Documentation]
@@ -274,16 +278,16 @@
 | | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2
 | | ... | 30
 | | Configure IP addresses on interfaces | ${dut} | ${dut_if2} | 3.3.3.2 | 30
-| | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | 1.1.1.1 | ${dut1_if1}
-| | ... | count=${count}
+| | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | gateway=1.1.1.1
+| | ... | interface=${dut1_if1} | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 32 | 2.2.2.2 | ${dut1_if2}
-| | ... | count=${count}
+| | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 32 | gateway=2.2.2.2
+| | ... | interface=${dut1_if2} | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 32 | 2.2.2.1 | ${dut2_if1}
-| | ... | count=${count}
-| | Vpp Route Add | ${dut} | 20.0.0.0 | 32 | 3.3.3.1 | ${dut_if2}
-| | ... | count=${count}
+| | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 32 | gateway=2.2.2.1
+| | ... | interface=${dut2_if1} | count=${count}
+| | Vpp Route Add | ${dut} | 20.0.0.0 | 32 | gateway=3.3.3.1
+| | ... | interface=${dut_if2} | count=${count}
 
 | Initialize IPv4 forwarding with vhost in 2-node circular topology
 | | [Documentation]
@@ -328,10 +332,10 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
 | | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${tg1_if2_mac}
-| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
-| | ... | vrf=${fib_table_1}
-| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 2.2.2.2 | ${dut1_if2}
-| | ... | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | gateway=1.1.1.1
+| | ... | interface=${dut1_if1} | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=2.2.2.2
+| | ... | interface=${dut1_if2} | vrf=${fib_table_2}
 | | ${ip_base_start}= | Set Variable | ${4}
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
@@ -382,10 +386,10 @@
 | | | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
 | | | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if2}
 | | | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
-| | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | ${ip_net_vif1}.2
-| | | ... | ${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
-| | | ... | ${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+| | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=${ip_net_vif1}.2
+| | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | gateway=${ip_net_vif2}.2
+| | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
 
 | Initialize IPv4 forwarding with vhost in 3-node circular topology
 | | [Documentation]
@@ -444,14 +448,14 @@
 | | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if2} | 3.3.3.2 | ${tg1_if2_mac}
-| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
-| | ... | vrf=${fib_table_1}
-| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 2.2.2.2 | ${dut1_if2}
-| | ... | vrf=${fib_table_2}
-| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 2.2.2.1 | ${dut2_if1}
-| | ... | vrf=${fib_table_1}
-| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 3.3.3.2 | ${dut2_if2}
-| | ... | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | gateway=1.1.1.1
+| | ... | interface=${dut1_if1} | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=2.2.2.2
+| | ... | interface=${dut1_if2} | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=2.2.2.1
+| | ... | interface=${dut2_if1} | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | gateway=3.3.3.2
+| | ... | interface=${dut2_if2} | vrf=${fib_table_2}
 | | ${ip_base_start}= | Set Variable | ${4}
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
@@ -537,14 +541,14 @@
 | | | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
 | | | Add arp on dut | ${dut2} | ${dut2-vhost-${number}-if2}
 | | | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
-| | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | ${ip_net_vif1}.2
-| | | ... | ${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
-| | | ... | ${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
-| | | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | ${ip_net_vif1}.2
-| | | ... | ${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
-| | | ... | ${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
+| | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=${ip_net_vif1}.2
+| | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | gateway=${ip_net_vif2}.2
+| | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+| | | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | gateway=${ip_net_vif1}.2
+| | | ... | interface=${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=${ip_net_vif2}.2
+| | | ... | interface=${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
 
 | Initialize IPv4 forwarding with VLAN dot1q sub-interfaces in circular topology
 | | [Documentation]
@@ -623,14 +627,16 @@
 | | ... | Configure IP addresses on interfaces | ${dut2} | ${subif_index_2}
 | | ... | 2.2.2.2 | 30
 | | Configure IP addresses on interfaces | ${dut} | ${dut_if2} | 3.3.3.2 | 30
-| | Vpp Route Add | ${dut1} | ${tg_if1_net} | 30 | 1.1.1.1 | ${dut1_if1}
+| | Vpp Route Add | ${dut1} | ${tg_if1_net} | 30 | gateway=1.1.1.1
+| | ... | interface=${dut1_if1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | 30 | 2.2.2.2
-| | ... | ${subif_index_1}
+| | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | 30 | gateway=2.2.2.2
+| | ... | interface=${subif_index_1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | ${tg_if1_net} | 30 | 2.2.2.1
-| | ... | ${subif_index_2}
-| | Vpp Route Add | ${dut} | ${tg_if2_net} | 30 | 3.3.3.1 | ${dut_if2}
+| | ... | Vpp Route Add | ${dut2} | ${tg_if1_net} | 30 | gateway=2.2.2.1
+| | ... | interface=${subif_index_2}
+| | Vpp Route Add | ${dut} | ${tg_if2_net} | 30 | gateway=3.3.3.1
+| | ... | interface=${dut_if2}
 
 | Initialize IPv4 policer 2r3c-${t} in circular topology
 | | [Documentation]
@@ -712,8 +718,10 @@
 | | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if2} | 2001:3::2 | ${dut2_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:3::1 | ${dut1_if2_mac}
-| | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | 2001:3::2 | ${dut1_if2}
-| | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
+| | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | gateway=2001:3::2
+| | ... | interface=${dut1_if2}
+| | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | gateway=2001:3::1
+| | ... | interface=${dut2_if1}
 
 | Initialize IPv6 forwarding with scaling in circular topology
 | | [Documentation]
@@ -765,15 +773,15 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:4::1 | ${dut1_if2_mac}
 | | Add Ip Neighbor | ${dut} | ${dut_if2} | 2001:5::2 | ${tg1_if2_mac}
-| | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | 2001:3::2
+| | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | gateway=2001:3::2
 | | ... | interface=${dut1_if1} | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix} | 2001:4::2
-| | ... | interface=${dut1_if2} | count=${count}
+| | ... | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix}
+| | ... | gateway=2001:4::2 | interface=${dut1_if2} | count=${count}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix} | 2001:4::1
-| | ... | interface=${dut2_if1} | count=${count}
-| | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | 2001:5::2
+| | ... | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix}
+| | ... | gateway=2001:4::1 | interface=${dut2_if1} | count=${count}
+| | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | gateway=2001:5::2
 | | ... | interface=${dut_if2} | count=${count}
 
 | Initialize IPv6 forwarding with VLAN dot1q sub-interfaces in circular topology
@@ -856,16 +864,16 @@
 | | ... | ${prefix}
 | | VPP Set If IPv6 Addr | ${dut} | ${dut_if2} | 2002:3::2 | ${prefix}
 | | Suppress ICMPv6 router advertisement message | ${nodes}
-| | Vpp Route Add | ${dut1} | ${tg_if1_net} | ${host_prefix} | 2002:1::1
-| | ... | interface=${dut1_if1}
+| | Vpp Route Add | ${dut1} | ${tg_if1_net} | ${host_prefix}
+| | ... | gateway=2002:1::1 | interface=${dut1_if1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | ${host_prefix} | 2002:2::2
-| | ... | interface=${subif_index_1}
+| | ... | Vpp Route Add | ${dut1} | ${tg_if2_net} | ${host_prefix}
+| | ... | gateway=2002:2::2 | interface=${subif_index_1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | ${tg_if1_net} | ${host_prefix} | 2002:2::1
-| | ... | interface=${subif_index_2}
-| | Vpp Route Add | ${dut} | ${tg_if2_net} | ${host_prefix} | 2002:3::1
-| | ... | interface=${dut_if2}
+| | ... | Vpp Route Add | ${dut2} | ${tg_if1_net} | ${host_prefix}
+| | ... | gateway=2002:2::1 | interface=${subif_index_2}
+| | Vpp Route Add | ${dut} | ${tg_if2_net} | ${host_prefix}
+| | ... | gateway=2002:3::1 | interface=${dut_if2}
 
 | Initialize IPv6 iAcl whitelist in 3-node circular topology
 | | [Documentation]
@@ -918,10 +926,10 @@
 | | ${sid2}= | Set Variable If
 | | ... | "${n}" == "1" | ${dut1_sid2}
 | | ... | "${n}" == "2" | ${dut1_sid2_1}
-| | Vpp Route Add | ${dut1} | ${sid1} | ${sid_prefix} | ${dut2_if1_ip6}
-| | ... | ${dut1_if2}
-| | Vpp Route Add | ${dut2} | ${sid2} | ${sid_prefix} | ${dut1_if2_ip6}
-| | ... | ${dut2_if1}
+| | Vpp Route Add | ${dut1} | ${sid1} | ${sid_prefix} | gateway=${dut2_if1_ip6}
+| | ... | interface=${dut1_if2}
+| | Vpp Route Add | ${dut2} | ${sid2} | ${sid_prefix} | gateway=${dut1_if2_ip6}
+| | ... | interface=${dut2_if1}
 # Configure SRv6 for direction0
 | | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
 | | @{sid_list_dir0}= | Run Keyword If | "${n}" == "1"
@@ -942,7 +950,7 @@
 | | ... | interface=${dut2_if2} | next_hop=${tg_if2_ip6_subnet}2
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut2} | ${dut2_sid1_2} | ${sid_prefix}
-| | ... | ${tg_if2_ip6_subnet}2 | ${dut2_if2}
+| | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${dut2_if2}
 # Configure SRv6 for direction1
 | | Set SR Encaps Source Address on DUT | ${dut2} | ${dut2_sid2}
 | | @{sid_list_dir1}= | Run Keyword If | "${n}" == "1"
@@ -963,7 +971,7 @@
 | | ... | interface=${dut1_if1} | next_hop=${tg_if1_ip6_subnet}2
 | | Run Keyword If | "${n}" == "2" and "${prepos}" == "without"
 | | ... | Vpp Route Add | ${dut1} | ${dut1_sid2_2} | ${sid_prefix}
-| | ... | ${tg_if1_ip6_subnet}2 | ${dut1_if1}
+| | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${dut1_if1}
 | | Set interfaces in path up
 
 | Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via '${behavior}' behaviour in 3-node circular topology
@@ -1023,14 +1031,14 @@
 | | ... | ${dut1-memif-1-if2_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2-memif-1-if1} | ${dut2_nh}
 | | ... | ${dut2-memif-1-if2_mac}
-| | Vpp Route Add | ${dut1} | ${dut2_sid1} | ${sid_prefix} | ${dut2_if1_ip6}
-| | ... | ${dut1_if2}
+| | Vpp Route Add | ${dut1} | ${dut2_sid1} | ${sid_prefix}
+| | ... | gateway=${dut2_if1_ip6} | interface=${dut1_if2}
 | | Vpp Route Add | ${dut1} | ${out_sid2_1} | ${sid_prefix}
-| | ... | ${tg_if1_ip6_subnet}2 | ${dut1_if1}
-| | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix} | ${dut1_if2_ip6}
-| | ... | ${dut2_if1}
+| | ... | gateway=${tg_if1_ip6_subnet}2 | interface=${dut1_if1}
+| | Vpp Route Add | ${dut2} | ${dut1_sid2} | ${sid_prefix}
+| | ... | gateway=${dut1_if2_ip6} | interface=${dut2_if1}
 | | Vpp Route Add | ${dut2} | ${out_sid1_1} | ${sid_prefix}
-| | ... | ${tg_if2_ip6_subnet}2 | ${dut2_if2}
+| | ... | gateway=${tg_if2_ip6_subnet}2 | interface=${dut2_if2}
 # Configure SRv6 for direction0 on DUT1
 | | Set SR Encaps Source Address on DUT | ${dut1} | ${dut1_sid1}
 | | @{sid_list_dir0}= | Create List | ${dut2_sid1} | ${out_sid1_1}
@@ -1550,9 +1558,11 @@
 | | ... | ${dut2} | ${dut2_if1} | 1.1.1.2 | 30
 | | ...
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
+| | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=1.1.1.2
+| | ... | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
+| | ... | interface=${dut2_if1}
 | | ...
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
@@ -1936,9 +1946,9 @@
 | | Add arp on dut | ${dut1} | ${dut1_if1} | ${dut1_gw} | ${tg_if1_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if2} | ${dut2_gw} | ${tg_if2_mac}
 | | Vpp Route Add | ${dut1} | ${dut1_route_subnet} | ${dut1_route_mask}
-| | ... | ${dut1_gw} | ${dut1_if1}
+| | ... | gateway=${dut1_gw} | interface=${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${dut2_route_subnet} | ${dut2_route_mask}
-| | ... | ${dut2_gw} | ${dut2_if2}
+| | ... | gateway=${dut2_gw} | interface=${dut2_if2}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${dut1_bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${dut2_bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${dut1_bd_id1}
@@ -2935,13 +2945,17 @@
 | | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 11.0.0.1 | ${dut1_if2_mac}
 | | Add arp on dut | ${dut} | ${dut_if2} | 12.0.0.2 | ${tg_if2_mac}
 | | ...
-| | Vpp Route Add | ${dut1} | 20.0.0.0 | 18 | 10.0.0.2 | ${dut1_if1}
+| | Vpp Route Add | ${dut1} | 20.0.0.0 | 18 | gateway=10.0.0.2
+| | ... | interface=${dut1_if1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 12.0.0.2 | 32 | 11.0.0.2 | ${dut1_if2}
+| | ... | Vpp Route Add | ${dut1} | 12.0.0.2 | 32 | gateway=11.0.0.2
+| | ... | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 12.0.0.0 | 24 | 12.0.0.2 | ${dut2_if2}
+| | ... | Vpp Route Add | ${dut2} | 12.0.0.0 | 24 | gateway=12.0.0.2
+| | ... | interface=${dut2_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 200.0.0.0 | 30 | 11.0.0.1 | ${dut2_if1}
+| | ... | Vpp Route Add | ${dut2} | 200.0.0.0 | 30 | gateway=11.0.0.1
+| | ... | interface=${dut2_if1}
 | | ...
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -3177,8 +3191,9 @@
 | | ${ip_base_if1}= | Evaluate | ${dut_index} + ${1}
 | | ${ip_net_if1}= | Set Variable
 | | ... | ${ip_base_if1}.${ip_base_if1}.${ip_base_if1}
-| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if1_net} | 24 | vrf=${fib_table_1}
-| | ... | gateway=${ip_net_if1}.1 | interface=${${dut}_if1} | multipath=${TRUE}
+| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if1_net} | 24
+| | ... | vrf=${fib_table_1} | gateway=${ip_net_if1}.1
+| | ... | interface=${${dut}_if1} | multipath=${TRUE}
 | | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_if1}
 | | ... | ${fib_table_1}
 | | Configure IP addresses on interfaces | ${nodes['${dut}']} | ${${dut}_if1}
@@ -3199,8 +3214,9 @@
 | | ${ip_base_if2}= | Evaluate | ${ip_base_if1} + ${1}
 | | ${ip_net_if2}= | Set Variable
 | | ... | ${ip_base_if2}.${ip_base_if2}.${ip_base_if2}
-| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if2_net} | 24 | vrf=${fib_table_2}
-| | ... | gateway=${ip_net_if2}.2 | interface=${${dut}_if2} | multipath=${TRUE}
+| | Vpp Route Add | ${nodes['${dut}']} | ${tg_if2_net} | 24
+| | ... | vrf=${fib_table_2} | gateway=${ip_net_if2}.2
+| | ... | interface=${${dut}_if2} | multipath=${TRUE}
 | | Assign Interface To Fib Table | ${nodes['${dut}']} | ${${dut}_if2}
 | | ... | ${fib_table_2}
 | | Configure IP addresses on interfaces | ${nodes['${dut}']} | ${${dut}_if2}

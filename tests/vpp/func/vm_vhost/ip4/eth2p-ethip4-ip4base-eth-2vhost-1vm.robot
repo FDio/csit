@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -82,10 +82,10 @@
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip1} | ${prefix_length}
 | | ${vhost2_mac}= | And Get Vhost User Mac By SW Index
 | | ... | ${dut_node} | ${vhost2}
-| | And Vpp Route Add | ${dut_node} | ${net3} | 24 | ${net2_ip2}
-| | ... | ${vhost1} | resolve_attempts=${NONE} | count=${NONE}
-| | And Vpp Route Add | ${dut_node} | ${net1} | 24 | ${net2_ip1}
-| | ... | ${vhost2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | ${net3} | 24 | gateway=${net2_ip2}
+| | ... | interface=${vhost1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | ${net1} | 24 | gateway=${net2_ip1}
+| | ... | interface=${vhost2} | resolve_attempts=${NONE} | count=${NONE}
 | | ... | vrf=${fib_table_2}
 | | Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
 | | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}

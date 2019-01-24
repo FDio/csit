@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -81,7 +81,7 @@
 | |       ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add
 | |       ... | ${dut_node} | ${lw_rule_ipv6_dst} | 128
-| |       ... | ${tg_ip6} | ${dut_to_tg_if2} | resolve_attempts=${NONE}
+| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2} | resolve_attempts=${NONE}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
@@ -118,7 +118,7 @@ TC02: Encapsulate IPv4 ICMP into IPv6. IPv6 dst depends on IPv4 addr and ICMP ID
 | |       ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add
 | |       ... | ${dut_node} | ${lw_rule_ipv6_dst} | 128
-| |       ... | ${tg_ip6} | ${dut_to_tg_if2} | resolve_attempts=${NONE}
+| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2} | resolve_attempts=${NONE}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
@@ -187,7 +187,7 @@ TC04: Hairpinning of traffic between two lwB4
 | |       ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add
 | |       ... | ${dut_node} | ${lw_rule_2_ipv6_dst} | 128
-| |       ... | ${tg_ip6} | ${dut_to_tg_if2} | resolve_attempts=${NONE}
+| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2} | resolve_attempts=${NONE}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}

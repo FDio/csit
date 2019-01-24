@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -63,13 +63,15 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2} | resolve_attempts=${NONE}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
+| | ... | resolve_attempts=${NONE}
 | | And Add Arp On Dut
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip_GW}
 | | ... | ${tg_to_dut1_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${pass_test_src_ip} | ${prefix_length}
-| | ... | ${dut1_to_tg_ip_GW} | ${dut1_to_tg} | resolve_attempts=${NONE}
+| | ... | gateway=${dut1_to_tg_ip_GW} | interface=${dut1_to_tg}
+| | ... | resolve_attempts=${NONE}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | Then Send packet and verify headers | ${tg_node}
@@ -113,13 +115,15 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2} | resolve_attempts=${NONE}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
+| | ... | resolve_attempts=${NONE}
 | | And Add Arp On Dut
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip_GW}
 | | ... | ${tg_to_dut1_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${pass_test_src_ip} | ${prefix_length}
-| | ... | ${dut1_to_tg_ip_GW} | ${dut1_to_tg} | resolve_attempts=${NONE}
+| | ... | gateway=${dut1_to_tg_ip_GW} | interface=${dut1_to_tg}
+| | ... | resolve_attempts=${NONE}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | ${dut1_to_tg_name}= | Get Interface Name | ${dut1_node} | ${dut1_to_tg}
