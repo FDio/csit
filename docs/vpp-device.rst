@@ -199,8 +199,10 @@ that only Y number of simulations are spawned on any given HW node.
   *root* user account as primary. From the jenkins slave it will be able to
   connect via env variable, since the jenkins slave doesn't actually know what
   host its running on.
+
   ::
-    ssh -p 6022 root@10.30.51.node
+
+      ssh -p 6022 root@10.30.51.node
 
 csit-sut-dcr
 ~~~~~~~~~~~~
