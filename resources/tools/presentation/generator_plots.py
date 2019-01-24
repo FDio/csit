@@ -1097,6 +1097,7 @@ def plot_service_density_heatmap(plot, input_data):
     """
 
     REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
+    REGEX_TEST_NAME = re.compile(r'^.*-(\d*vhost)-(\d*chain)-(\d*vm).*$')
 
     txt_chains = list()
     txt_nodes = list()
@@ -1121,10 +1122,18 @@ def plot_service_density_heatmap(plot, input_data):
                         break
                 else:
                     continue
+                groups = re.search(REGEX_TEST_NAME, test["name"])
+                if groups and len(groups.groups()) == 3:
+                    hover_name = "{vhost}-{chain}-{vm}".format(
+                        vhost=str(groups.group(1)),
+                        chain=str(groups.group(2)),
+                        vm=str(groups.group(3)))
+                else:
+                    hover_name = ""
                 if vals.get(c, None) is None:
                     vals[c] = dict()
                 if vals[c].get(n, None) is None:
-                    vals[c][n] = dict(name=test["name"],
+                    vals[c][n] = dict(name=hover_name,
                                       vals=list(),
                                       nr=None,
                                       mean=None,
@@ -1148,9 +1157,9 @@ def plot_service_density_heatmap(plot, input_data):
             if vals[key_c][key_n]["vals"]:
                 vals[key_c][key_n]["nr"] = len(vals[key_c][key_n]["vals"])
                 vals[key_c][key_n]["mean"] = \
-                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 2)
+                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 1)
                 vals[key_c][key_n]["stdev"] = \
-                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 2)
+                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 1)
     txt_nodes = list(set(txt_nodes))
 
     txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
@@ -1159,22 +1168,39 @@ def plot_service_density_heatmap(plot, input_data):
     chains = [i + 1 for i in range(len(txt_chains))]
     nodes = [i + 1 for i in range(len(txt_nodes))]
 
+    z_max = 0.0
+    z_min = 1000000.0
     data = [list() for _ in range(len(chains))]
     for c in chains:
         for n in nodes:
             try:
                 val = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean"]
+                z_max = val if val > z_max else z_max
+                z_min = val if val < z_min else z_min
             except (KeyError, IndexError):
                 val = None
             data[c - 1].append(val)
 
+    # Colorscales:
+    my_green = [[0.0, 'rgb(198, 235, 217)'],
+                [z_min/z_max, 'rgb(198, 235, 217)'],
+                [1.0, 'rgb(38, 115, 77)']]
+
+    my_blue = [[0.0, 'rgb(236, 242, 248)'],
+               [z_min/z_max, 'rgb(217, 230, 242)'],
+               [1.0, 'rgb(51, 102, 153)']]
+
+    my_grey = [[0.0, 'rgb(230, 230, 230)'],
+               [z_min/z_max, 'rgb(217, 217, 217)'],
+               [1.0, 'rgb(102, 102, 102)']]
+
     hovertext = list()
     annotations = list()
 
-    text = ("{name}<br>"
-            "No. of Samples: {nr}<br>"
-            "Throughput: {val}<br>"
-            "Stdev: {stdev}")
+    text = ("Test: {name}<br>"
+            "Runs: {nr}<br>"
+            "Thput: {val}<br>"
+            "StDev: {stdev}")
 
     for c in range(len(txt_chains)):
         hover_line = list()
@@ -1206,22 +1232,26 @@ def plot_service_density_heatmap(plot, input_data):
                      y=chains,
                      z=data,
                      colorbar=dict(
-                         title="Packet Throughput [Mpps]",
+                         title=plot.get("z-axis", ""),
                          titleside="right",
                          titlefont=dict(
-                            size=14
+                            size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
                          ),
                      ),
                      showscale=True,
-                     colorscale="Reds",
+                     colorscale=my_green,
                      text=hovertext,
                      hoverinfo="text")
     ]
 
     for idx, item in enumerate(txt_nodes):
+        # X-axis, numbers:
         annotations.append(dict(
             x=idx+1,
-            y=0,
+            y=0.05,
             xref="x",
             yref="y",
             xanchor="center",
@@ -1234,8 +1264,9 @@ def plot_service_density_heatmap(plot, input_data):
             showarrow=False
         ))
     for idx, item in enumerate(txt_chains):
+        # Y-axis, numbers:
         annotations.append(dict(
-            x=0.3,
+            x=0.35,
             y=idx+1,
             xref="x",
             yref="y",
@@ -1248,30 +1279,30 @@ def plot_service_density_heatmap(plot, input_data):
             align="center",
             showarrow=False
         ))
-    # X-axis:
+    # X-axis, title:
     annotations.append(dict(
         x=0.55,
-        y=1.05,
+        y=-0.15,
         xref="paper",
-        yref="paper",
+        yref="y",
         xanchor="center",
-        yanchor="middle",
-        text="<b>No. of Network Functions per Service Instance</b>",
+        yanchor="top",
+        text=plot.get("x-axis", ""),
         font=dict(
             size=16,
         ),
         align="center",
         showarrow=False
     ))
-    # Y-axis:
+    # Y-axis, title:
     annotations.append(dict(
-        x=-0.04,
+        x=0.0,
         y=0.5,
-        xref="paper",
+        xref="x",
         yref="paper",
         xanchor="center",
         yanchor="middle",
-        text="<b>No. of Service Instances</b>",
+        text=plot.get("y-axis", ""),
         font=dict(
             size=16,
         ),
@@ -1288,80 +1319,20 @@ def plot_service_density_heatmap(plot, input_data):
             direction='up',
             buttons=list([
                 dict(
-                    args=[{"colorscale": "Reds", "reversescale": False}],
-                    label="Red",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Blues", "reversescale": True}],
-                    label="Blue",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Greys", "reversescale": True}],
-                    label="Grey",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Greens", "reversescale": True}],
+                    args=[{"colorscale": [my_green, ], "reversescale": False}],
                     label="Green",
                     method="update"
                 ),
                 dict(
-                    args=[{"colorscale": "RdBu", "reversescale": False}],
-                    label="RedBlue",
+                    args=[{"colorscale": [my_blue, ], "reversescale": False}],
+                    label="Blue",
                     method="update"
                 ),
                 dict(
-                    args=[{"colorscale": "Picnic", "reversescale": False}],
-                    label="Picnic",
+                    args=[{"colorscale": [my_grey, ], "reversescale": False}],
+                    label="Grey",
                     method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Rainbow", "reversescale": False}],
-                    label="Rainbow",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Portland", "reversescale": False}],
-                    label="Portland",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Jet", "reversescale": False}],
-                    label="Jet",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Hot", "reversescale": True}],
-                    label="Hot",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Blackbody", "reversescale": True}],
-                    label="Blackbody",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Earth", "reversescale": True}],
-                    label="Earth",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Electric", "reversescale": True}],
-                    label="Electric",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Viridis", "reversescale": True}],
-                    label="Viridis",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Cividis", "reversescale": True}],
-                    label="Cividis",
-                    method="update"
-                ),
+                )
             ])
         )
     ])
