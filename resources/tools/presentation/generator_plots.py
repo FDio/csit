@@ -35,6 +35,8 @@ COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
           "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
           "MediumSeaGreen", "SeaGreen", "LightSlateGrey"]
 
+REGEX_NIC = re.compile(r'\d*ge\dp\d\D*\d*-')
+
 
 def generate_plots(spec, data):
     """Generate all plots specified in the specification file.
@@ -145,21 +147,14 @@ def plot_performance_box(plot, input_data):
     df.head()
     y_max = list()
     for i, col in enumerate(df.columns):
+        tst_name = re.sub(REGEX_NIC, "",
+                          col.lower().replace('-ndrpdr', '').
+                          replace('2n1l-', ''))
         name = "{nr}. ({samples:02d} run{plural}) {name}".\
             format(nr=(i + 1),
                    samples=nr_of_samples[i],
                    plural='s' if nr_of_samples[i] > 1 else '',
-                   name=col.lower().replace('-ndrpdr', ''))
-        if len(name) > 50:
-            name_lst = name.split('-')
-            name = ""
-            split_name = True
-            for segment in name_lst:
-                if (len(name) + len(segment) + 1) > 50 and split_name:
-                    name += "<br>    "
-                    split_name = False
-                name += segment + '-'
-            name = name[:-1]
+                   name=tst_name)
 
         logging.debug(name)
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
@@ -178,7 +173,7 @@ def plot_performance_box(plot, input_data):
         # Create plot
         layout = deepcopy(plot["layout"])
         if layout.get("title", None):
-            layout["title"] = "<b>Packet Throughput:</b> {0}". \
+            layout["title"] = "<b>Throughput:</b> {0}". \
                 format(layout["title"])
         if y_max:
             layout["yaxis"]["range"] = [0, max(y_max)]
@@ -383,13 +378,14 @@ def plot_soak_boxes(plot, input_data):
     for test_name, test_data in y_sorted.items():
         idx += 1
         name = "{nr}. {name}".\
-            format(nr=idx, name=test_name.lower().replace('-soak', ''))
-        if len(name) > 50:
+            format(nr=idx, name=test_name.lower().replace('-soak', '').
+                   replace('2n1l-', ''))
+        if len(name) > 55:
             name_lst = name.split('-')
             name = ""
             split_name = True
             for segment in name_lst:
-                if (len(name) + len(segment) + 1) > 50 and split_name:
+                if (len(name) + len(segment) + 1) > 55 and split_name:
                     name += "<br>    "
                     split_name = False
                 name += segment + '-'
@@ -405,10 +401,8 @@ def plot_soak_boxes(plot, input_data):
         if y_base:
             y_base /= 1000000
 
-        hovertext = ("{name}<br>"
-                     "Upper bound: {upper:.2f}Mpps<br>"
-                     "Lower bound: {lower:.2f}Mpps".format(name=name,
-                                                           upper=y_val,
+        hovertext = ("Upper bound: {upper:.2f}Mpps<br>"
+                     "Lower bound: {lower:.2f}Mpps".format(upper=y_val,
                                                            lower=y_base))
         traces.append(plgo.Bar(x=[str(idx) + '.', ],
                                # +0.05 to see the value in case lower == upper
@@ -541,17 +535,8 @@ def plot_latency_error_bars(plot, input_data):
     y_maxs = list()
     nr_of_samples = list()
     for key, val in y_sorted.items():
-        name = "-".join(key.split("-")[1:-1])
-        if len(name) > 50:
-            name_lst = name.split('-')
-            name = ""
-            split_name = True
-            for segment in name_lst:
-                if (len(name) + len(segment) + 1) > 50 and split_name:
-                    name += "<br>"
-                    split_name = False
-                name += segment + '-'
-            name = name[:-1]
+        name = re.sub(REGEX_NIC, "", key.replace('-ndrpdr', '').
+                      replace('2n1l-', ''))
         x_vals.append(name)  # dir 1
         y_vals.append(mean(val[1]) if val[1] else None)
         y_mins.append(mean(val[0]) if val[0] else None)
@@ -641,7 +626,7 @@ def plot_latency_error_bars(plot, input_data):
                      format(plot["output-file"], plot["output-file-type"]))
         layout = deepcopy(plot["layout"])
         if layout.get("title", None):
-            layout["title"] = "<b>Packet Latency:</b> {0}".\
+            layout["title"] = "<b>Latency:</b> {0}".\
                 format(layout["title"])
         layout["annotations"] = annotations
         plpl = plgo.Figure(data=traces, layout=layout)
@@ -730,18 +715,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
     for test_name, test_vals in y_vals.items():
         try:
             if test_vals["1"][1]:
-                name = "-".join(test_name.split('-')[1:-1])
-                if len(name) > 50:
-                    name_lst = name.split('-')
-                    name = ""
-                    split_name = True
-                    for segment in name_lst:
-                        if (len(name) + len(segment) + 1) > 50 and split_name:
-                            name += "<br>"
-                            split_name = False
-                        name += segment + '-'
-                    name = name[:-1]
-
+                name = re.sub(REGEX_NIC, "", test_name.replace('-ndrpdr', '').
+                              replace('2n1l-', ''))
                 vals[name] = dict()
                 y_val_1 = test_vals["1"][0] / 1000000.0
                 y_val_2 = test_vals["2"][0] / 1000000.0 if test_vals["2"][0] \
@@ -766,7 +741,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
                     logging.error(err)
                     continue
                 if val_max:
-                    y_max.append(int((val_max / 10) + 1) * 10)
+                    # y_max.append(int((val_max / 10) + 1) * 10)
+                    y_max.append(val_max)
 
                 if y_val_2:
                     vals[name]["rel"][1] = round(y_val_2 / y_val_1, 2)
@@ -818,7 +794,9 @@ def plot_throughput_speedup_analysis(plot, input_data):
         for tag in order:
             for test, tags in y_tags_l.items():
                 if tag.lower() in tags:
-                    name = "-".join(test.split('-')[1:-1])
+                    name = re.sub(REGEX_NIC, "",
+                                  test.replace('-ndrpdr', '').
+                                  replace('2n1l-', ''))
                     try:
                         y_sorted[name] = vals.pop(name)
                         y_tags_l.pop(test)
@@ -868,7 +846,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
             align="left",
             showarrow=False
         ))
-        y_max.append(int((nic_limit / 10) + 1) * 10)
+        # y_max.append(int((nic_limit / 10) + 1) * 10)
+        # y_max.append(nic_limit)
 
     lnk_limit /= 1000000.0
     if lnk_limit < threshold:
@@ -899,10 +878,12 @@ def plot_throughput_speedup_analysis(plot, input_data):
             align="left",
             showarrow=False
         ))
-        y_max.append(int((lnk_limit / 10) + 1) * 10)
+        # y_max.append(int((lnk_limit / 10) + 1) * 10)
+        # y_max.append(lnk_limit)
 
     pci_limit /= 1000000.0
-    if pci_limit < threshold:
+    if (pci_limit < threshold and
+        (pci_limit < lnk_limit * 0.95 or lnk_limit > lnk_limit * 1.05)):
         traces.append(plgo.Scatter(
             x=x_vals,
             y=[pci_limit, ] * len(x_vals),
@@ -930,7 +911,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
             align="left",
             showarrow=False
         ))
-        y_max.append(int((pci_limit / 10) + 1) * 10)
+        # y_max.append(int((pci_limit / 10) + 1) * 10)
+        # y_max.append(pci_limit)
 
     # Perfect and measured:
     cidx = 0
@@ -1097,6 +1079,9 @@ def plot_service_density_heatmap(plot, input_data):
     """
 
     REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
+    REGEX_TEST_NAME = re.compile(r'^.*-(\d+vhost|\d+memif)-'
+                                 r'(\d+chain|\d+pipe)-'
+                                 r'(\d+vm|\d+dcr|\d+drc).*$')
 
     txt_chains = list()
     txt_nodes = list()
@@ -1106,7 +1091,7 @@ def plot_service_density_heatmap(plot, input_data):
     logging.info("    Creating the data set for the {0} '{1}'.".
                  format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot, continue_on_error=True)
-    if data is None:
+    if data is None or data.empty:
         logging.error("No data.")
         return
 
@@ -1121,10 +1106,18 @@ def plot_service_density_heatmap(plot, input_data):
                         break
                 else:
                     continue
+                groups = re.search(REGEX_TEST_NAME, test["name"])
+                if groups and len(groups.groups()) == 3:
+                    hover_name = "{vhost}-{chain}-{vm}".format(
+                        vhost=str(groups.group(1)),
+                        chain=str(groups.group(2)),
+                        vm=str(groups.group(3)))
+                else:
+                    hover_name = ""
                 if vals.get(c, None) is None:
                     vals[c] = dict()
                 if vals[c].get(n, None) is None:
-                    vals[c][n] = dict(name=test["name"],
+                    vals[c][n] = dict(name=hover_name,
                                       vals=list(),
                                       nr=None,
                                       mean=None,
@@ -1141,6 +1134,10 @@ def plot_service_density_heatmap(plot, input_data):
                 if result:
                     vals[c][n]["vals"].append(result)
 
+    if not vals:
+        logging.error("No data.")
+        return
+
     for key_c in vals.keys():
         txt_chains.append(key_c)
         for key_n in vals[key_c].keys():
@@ -1148,9 +1145,9 @@ def plot_service_density_heatmap(plot, input_data):
             if vals[key_c][key_n]["vals"]:
                 vals[key_c][key_n]["nr"] = len(vals[key_c][key_n]["vals"])
                 vals[key_c][key_n]["mean"] = \
-                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 2)
+                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 1)
                 vals[key_c][key_n]["stdev"] = \
-                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 2)
+                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 1)
     txt_nodes = list(set(txt_nodes))
 
     txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
@@ -1168,13 +1165,23 @@ def plot_service_density_heatmap(plot, input_data):
                 val = None
             data[c - 1].append(val)
 
+    # Colorscales:
+    my_green = [[0.0, 'rgb(235, 249, 242)'],
+                [1.0, 'rgb(45, 134, 89)']]
+
+    my_blue = [[0.0, 'rgb(236, 242, 248)'],
+               [1.0, 'rgb(57, 115, 172)']]
+
+    my_grey = [[0.0, 'rgb(230, 230, 230)'],
+               [1.0, 'rgb(102, 102, 102)']]
+
     hovertext = list()
     annotations = list()
 
-    text = ("{name}<br>"
-            "No. of Samples: {nr}<br>"
-            "Throughput: {val}<br>"
-            "Stdev: {stdev}")
+    text = ("Test: {name}<br>"
+            "Runs: {nr}<br>"
+            "Thput: {val}<br>"
+            "StDev: {stdev}")
 
     for c in range(len(txt_chains)):
         hover_line = list()
@@ -1206,22 +1213,30 @@ def plot_service_density_heatmap(plot, input_data):
                      y=chains,
                      z=data,
                      colorbar=dict(
-                         title="Packet Throughput [Mpps]",
+                         title=plot.get("z-axis", ""),
                          titleside="right",
                          titlefont=dict(
-                            size=14
+                            size=16
                          ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
                      ),
                      showscale=True,
-                     colorscale="Reds",
+                     colorscale=my_green,
                      text=hovertext,
                      hoverinfo="text")
     ]
 
     for idx, item in enumerate(txt_nodes):
+        # X-axis, numbers:
         annotations.append(dict(
             x=idx+1,
-            y=0,
+            y=0.05,
             xref="x",
             yref="y",
             xanchor="center",
@@ -1234,8 +1249,9 @@ def plot_service_density_heatmap(plot, input_data):
             showarrow=False
         ))
     for idx, item in enumerate(txt_chains):
+        # Y-axis, numbers:
         annotations.append(dict(
-            x=0.3,
+            x=0.35,
             y=idx+1,
             xref="x",
             yref="y",
@@ -1248,30 +1264,30 @@ def plot_service_density_heatmap(plot, input_data):
             align="center",
             showarrow=False
         ))
-    # X-axis:
+    # X-axis, title:
     annotations.append(dict(
         x=0.55,
-        y=1.05,
+        y=-0.15,
         xref="paper",
-        yref="paper",
+        yref="y",
         xanchor="center",
-        yanchor="middle",
-        text="<b>No. of Network Functions per Service Instance</b>",
+        yanchor="bottom",
+        text=plot.get("x-axis", ""),
         font=dict(
             size=16,
         ),
         align="center",
         showarrow=False
     ))
-    # Y-axis:
+    # Y-axis, title:
     annotations.append(dict(
-        x=-0.04,
+        x=-0.1,
         y=0.5,
-        xref="paper",
+        xref="x",
         yref="paper",
         xanchor="center",
         yanchor="middle",
-        text="<b>No. of Service Instances</b>",
+        text=plot.get("y-axis", ""),
         font=dict(
             size=16,
         ),
@@ -1288,80 +1304,20 @@ def plot_service_density_heatmap(plot, input_data):
             direction='up',
             buttons=list([
                 dict(
-                    args=[{"colorscale": "Reds", "reversescale": False}],
-                    label="Red",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Blues", "reversescale": True}],
-                    label="Blue",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Greys", "reversescale": True}],
-                    label="Grey",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Greens", "reversescale": True}],
+                    args=[{"colorscale": [my_green, ], "reversescale": False}],
                     label="Green",
                     method="update"
                 ),
                 dict(
-                    args=[{"colorscale": "RdBu", "reversescale": False}],
-                    label="RedBlue",
+                    args=[{"colorscale": [my_blue, ], "reversescale": False}],
+                    label="Blue",
                     method="update"
                 ),
                 dict(
-                    args=[{"colorscale": "Picnic", "reversescale": False}],
-                    label="Picnic",
+                    args=[{"colorscale": [my_grey, ], "reversescale": False}],
+                    label="Grey",
                     method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Rainbow", "reversescale": False}],
-                    label="Rainbow",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Portland", "reversescale": False}],
-                    label="Portland",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Jet", "reversescale": False}],
-                    label="Jet",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Hot", "reversescale": True}],
-                    label="Hot",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Blackbody", "reversescale": True}],
-                    label="Blackbody",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Earth", "reversescale": True}],
-                    label="Earth",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Electric", "reversescale": True}],
-                    label="Electric",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Viridis", "reversescale": True}],
-                    label="Viridis",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Cividis", "reversescale": True}],
-                    label="Cividis",
-                    method="update"
-                ),
+                )
             ])
         )
     ])
