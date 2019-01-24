@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -103,10 +103,10 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Initialize IPSec in 3-node circular topology
-| | And Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4}
-| | ... | ${dut1_if2}
-| | And Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4}
-| | ... | ${dut2_if1}
+| | And Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | gateway=${dut2_if1_ip4}
+| | ... | interface=${dut1_if2}
+| | And Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | gateway=${dut1_if2_ip4}
+| | ... | interface=${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}

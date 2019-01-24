@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -53,8 +53,8 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
-| | ... | ${FALSE} | ${NONE}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
+| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
 | | And Set Interface Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut_node}
@@ -77,8 +77,8 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
-| | ... | ${FALSE} | ${NONE}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
+| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
 | | And Set Interface Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut_node}

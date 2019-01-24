@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -112,8 +112,8 @@
 | | ... | ${tg_to_dut_if2_mac}
 | | Add ARP on DUT | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server2_ip}
 | | ... | ${tg_to_dut_if2_mac}
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
-| | ... | ${FALSE} | ${NONE}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
+| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
 
 | DHCP relay test setup IPv6
 | | Configure path in 2-node circular topology
@@ -127,5 +127,5 @@
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip6} | ${prefix_length_v6}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip6}
 | | ... | ${tg_to_dut_if2_mac}
-| | And VPP Route Add | ${dut_node} | ff02::1:2 | 128 | ${NONE} | local
-| | ... | ${FALSE} | ${NONE}
+| | And VPP Route Add | ${dut_node} | ff02::1:2 | 128 | gateway=${NONE}
+| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}

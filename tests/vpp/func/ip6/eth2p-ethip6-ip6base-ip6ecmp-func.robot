@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -63,11 +63,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_2_ip} | ${neighbor_2_mac}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
 | | When Vpp Route Add
-| | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length} | ${neighbor_1_ip}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | multipath=${TRUE}
+| | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | gateway=${neighbor_1_ip} | interface=${dut_to_tg_if1}
+| | ... | resolve_attempts=${NONE} | multipath=${TRUE}
 | | And Vpp Route Add
-| | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length} | ${neighbor_2_ip}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | multipath=${TRUE}
+| | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | gateway=${neighbor_2_ip} | interface=${dut_to_tg_if1}
+| | ... | resolve_attempts=${NONE} | multipath=${TRUE}
 | | Then Send packets and verify multipath routing | ${tg_node}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${test_src_ip} | ${test_dst_ip}
 | | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${dut_to_tg_if1_mac}

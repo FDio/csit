@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -55,13 +55,13 @@
 | | :FOR | ${link} | IN | @{tg_dut1_links}
 | | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
 | | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut2} | ${net} | ${prefix} | ${dut1_if_addr}
-| | | ... | ${dut2_if}
+| | | Vpp Route Add | ${dut2} | ${net} | ${prefix}
+| | | ... | gateway=${dut1_if_addr} | interface=${dut2_if}
 | | :FOR | ${link} | IN | @{tg_dut2_links}
 | | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
 | | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | ${dut2_if_addr}
-| | | ... | ${dut1_if}
+| | | Vpp Route Add | ${dut1} | ${net} | ${prefix}
+| | | ... | gateway=${dut2_if_addr} | interface=${dut1_if}
 
 | Configure DUT nodes for IPv4 testing
 | | Configure IPv4 addresses on all DUTs | ${nodes} | ${nodes_ipv4_addr}
@@ -285,10 +285,12 @@
 | | ...
 | | Run Keyword Unless | '${remote_host1_ip4}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut_node} | ${remote_host1_ip4}
-| | ... | ${remote_host_ip4_prefix} | ${tg_if1_ip4} | ${dut_to_tg_if1}
+| | ... | ${remote_host_ip4_prefix} | gateway=${tg_if1_ip4}
+| | ... | interface=${dut_to_tg_if1}
 | | Run Keyword Unless | '${remote_host2_ip4}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut_node} | ${remote_host2_ip4}
-| | ... | ${remote_host_ip4_prefix} | ${tg_if2_ip4} | ${dut_to_tg_if2}
+| | ... | ${remote_host_ip4_prefix} | gateway=${tg_if2_ip4}
+| | ... | interface=${dut_to_tg_if2}
 
 | Configure IPv4 forwarding in 3-node circular topology
 | | [Documentation]
@@ -350,19 +352,23 @@
 | | ... | ${dut2_if2_ip4} | ${dut_tg_ip4_prefix}
 | | ...
 | | Vpp Route Add | ${dut1_node} | ${tg_if2_ip4} | ${dut_tg_ip4_prefix}
-| | ... | ${dut2_if1_ip4} | ${dut1_to_dut2}
+| | ... | gateway=${dut2_if1_ip4} | interface=${dut1_to_dut2}
 | | Vpp Route Add | ${dut2_node} | ${tg_if1_ip4} | ${dut_tg_ip4_prefix}
-| | ... | ${dut1_if2_ip4} | ${dut2_to_dut1}
+| | ... | gateway=${dut1_if2_ip4} | interface=${dut2_to_dut1}
 | | ...
 | | Run Keyword Unless | '${remote_host1_ip4}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1_node} | ${remote_host1_ip4}
-| | ... | ${remote_host_ip4_prefix} | ${tg_if1_ip4} | ${dut1_to_tg}
+| | ... | ${remote_host_ip4_prefix} | gateway=${tg_if1_ip4}
+| | ... | interface=${dut1_to_tg}
 | | Run Keyword Unless | '${remote_host2_ip4}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1_node} | ${remote_host2_ip4}
-| | ... | ${remote_host_ip4_prefix} | ${dut2_if1_ip4} | ${dut1_to_dut2}
+| | ... | ${remote_host_ip4_prefix} | gateway=${dut2_if1_ip4}
+| | ... | interface=${dut1_to_dut2}
 | | Run Keyword Unless | '${remote_host1_ip4}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut2_node} | ${remote_host1_ip4}
-| | ... | ${remote_host_ip4_prefix} | ${dut1_if2_ip4} | ${dut2_to_dut1}
+| | ... | ${remote_host_ip4_prefix} | gateway=${dut1_if2_ip4}
+| | ... | interface=${dut2_to_dut1}
 | | Run Keyword Unless | '${remote_host2_ip4}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut2_node} | ${remote_host2_ip4}
-| | ... | ${remote_host_ip4_prefix} | ${tg_if2_ip4} | ${dut2_to_tg}
+| | ... | ${remote_host_ip4_prefix} | gateway=${tg_if2_ip4}
+| | ... | interface=${dut2_to_tg}

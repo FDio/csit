@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -450,9 +450,9 @@
 | | And Honeycomb adds interface IPv6 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
-| | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
 | | And VPP Route Add | ${node} | ${classify_dst_net} | ${prefix_length}
-| | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
 | | When Honeycomb Creates ACL Chain Through ACL plugin
 | | ... | ${dut_node} | ${acl_name_l3_ip6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
@@ -627,9 +627,9 @@
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | And VPP RA suppress link layer | ${dut_node} | ${dut_to_tg_if2}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
-| | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
 | | And VPP Route Add | ${node} | ${classify_dst_net} | ${prefix_length}
-| | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
 | | When Honeycomb Creates ACL Chain Through ACL plugin
 | | ... | ${dut_node} | ${acl_name_icmpv6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
@@ -677,11 +677,11 @@
 | | And Add ARP on DUT
 | | ... | ${node} | ${dut_to_tg_if1} | ${gateway2} | ${tg_to_dut_if1_mac}
 | | And VPP Route Add
-| | ... | ${node} | ${src_net} | ${prefix_length} | ${gateway2}
+| | ... | ${node} | ${src_net} | ${prefix_length} | gateway=${gateway2}
 | | ... | interface=${dut_to_tg_if1} | use_sw_index=False
 | | And VPP Route Add
-| | ... | ${node} | ${classify_src_net} | ${prefix_length} | ${gateway2}
-| | ... | interface=${dut_to_tg_if1} | use_sw_index=False
+| | ... | ${node} | ${classify_src_net} | ${prefix_length}
+| | ... | gateway=${gateway2} | interface=${dut_to_tg_if1} | use_sw_index=False
 | | When Honeycomb Creates ACL Chain Through ACL plugin
 | | ... | ${dut_node} | ${acl_name_reflex} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
@@ -729,10 +729,10 @@
 | | And Honeycomb adds interface IPv4 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | VPP Route Add
-| | ... | ${node} | ${dst_net} | ${prefix_length} | ${gateway}
+| | ... | ${node} | ${dst_net} | ${prefix_length} | gateway=${gateway}
 | | ... | interface=${dut_to_tg_if2} | use_sw_index=False
 | | VPP Route Add
-| | ... | ${node} | ${classify_dst_net} | ${prefix_length} | ${gateway}
+| | ... | ${node} | ${classify_dst_net} | ${prefix_length} | gateway=${gateway}
 | | ... | interface=${dut_to_tg_if2} | use_sw_index=False
 
 | Setup interfaces and bridge domain for plugin-acl test

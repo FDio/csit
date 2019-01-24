@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -84,12 +84,12 @@
 | | Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw} | ${dut_to_tg_if2}
-| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
+| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw} | ${dut_to_tg_if1}
-| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
+| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 

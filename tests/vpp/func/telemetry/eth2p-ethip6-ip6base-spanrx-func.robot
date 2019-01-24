@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -56,7 +56,7 @@
 | | And Add Ip Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if1_mac}
 | | And Vpp Route Add | ${dut_node} | ${tg_to_dut_if1_ip6} | ${prefix}
-| | ... | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if1}
+| | ... | gateway=${dut_to_tg_if1_ip6} | interface=${dut_to_tg_if1}
 | | And Set SPAN Mirroring | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | Then Send Packet And Check Received Copies | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}

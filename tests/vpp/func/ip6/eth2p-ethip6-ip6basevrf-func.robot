@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -401,13 +401,17 @@
 | | ... | ${dut1_to_dut2_ip2} | ${dut1_to_dut2_if2_mac}
 
 | | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip1} | ${ip_prefix}
-| | ... | ${dut2_to_dut1_ip1} | ${dut1_to_dut2_if1} | vrf=${fib_table_1}
+| | ... | gateway=${dut2_to_dut1_ip1} | interface=${dut1_to_dut2_if1}
+| | ... | vrf=${fib_table_1}
 | | And Vpp Route Add | ${dut2_node} | ${tg_dut1_ip1} | ${ip_prefix}
-| | ... | ${dut1_to_dut2_ip1} | ${dut2_to_dut1_if1} | vrf=${fib_table_1}
+| | ... | gateway=${dut1_to_dut2_ip1} | interface=${dut2_to_dut1_if1}
+| | ... | vrf=${fib_table_1}
 
 | | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip2} | ${ip_prefix}
-| | ... | ${dut2_to_dut1_ip2} | ${dut1_to_dut2_if2} | vrf=${fib_table_2}
+| | ... | gateway=${dut2_to_dut1_ip2} | interface=${dut1_to_dut2_if2}
+| | ... | vrf=${fib_table_2}
 | | And Vpp Route Add | ${dut2_node} | ${tg_dut1_ip2} | ${ip_prefix}
-| | ... | ${dut1_to_dut2_ip2} | ${dut2_to_dut1_if2} | vrf=${fib_table_2}
+| | ... | gateway=${dut1_to_dut2_ip2} | interface=${dut2_to_dut1_if2}
+| | ... | vrf=${fib_table_2}
 
 | | Vpp All RA Suppress Link Layer | ${nodes}
