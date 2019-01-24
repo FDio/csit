@@ -10,7 +10,7 @@ Changes in |csit-release|
      updated with a configurable burst MRR parameters: trial duration
      and number of trials in a single burst. Enables a new Burst MRR
      (BMRR for short) methodology for more precise performance
-     trending. See updated :ref:`performance_test_methodology` section
+     trending. See updated :ref:`test_methodology` section
      for more details.
 
    - **2n-skx tests**: Added performamce tests for 2n-skx (2-Node Xeon
@@ -41,7 +41,7 @@ Changes in |csit-release|
      code for extended time duration tests and throughput discovery
      at given PLR and at give total test time e.g. minutes, hours,
      days, weeks, months, years. See updated
-     :ref:`performance_test_methodology` section for more details.
+     :ref:`test_methodology` section for more details.
 
    - **Trending Tests BMRR**: Used new Burst MRR (BMRR) tests for daily
      trending.
