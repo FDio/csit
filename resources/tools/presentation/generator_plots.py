@@ -1213,7 +1213,7 @@ def plot_service_density_heatmap(plot, input_data):
                          ),
                      ),
                      showscale=True,
-                     colorscale="Reds",
+                     colorscale="Green",
                      text=hovertext,
                      hoverinfo="text")
     ]
@@ -1288,7 +1288,12 @@ def plot_service_density_heatmap(plot, input_data):
             direction='up',
             buttons=list([
                 dict(
-                    args=[{"colorscale": "Reds", "reversescale": False}],
+                    args=[{"colorscale": "Greens", "reversescale": True}],
+                    label="Green",
+                    method="update"
+                ),
+                dict(
+                    args=[{"colorscale": "Reds", "reversescale": True}],
                     label="Red",
                     method="update"
                 ),
@@ -1301,67 +1306,7 @@ def plot_service_density_heatmap(plot, input_data):
                     args=[{"colorscale": "Greys", "reversescale": True}],
                     label="Grey",
                     method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Greens", "reversescale": True}],
-                    label="Green",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "RdBu", "reversescale": False}],
-                    label="RedBlue",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Picnic", "reversescale": False}],
-                    label="Picnic",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Rainbow", "reversescale": False}],
-                    label="Rainbow",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Portland", "reversescale": False}],
-                    label="Portland",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Jet", "reversescale": False}],
-                    label="Jet",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Hot", "reversescale": True}],
-                    label="Hot",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Blackbody", "reversescale": True}],
-                    label="Blackbody",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Earth", "reversescale": True}],
-                    label="Earth",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Electric", "reversescale": True}],
-                    label="Electric",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Viridis", "reversescale": True}],
-                    label="Viridis",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Cividis", "reversescale": True}],
-                    label="Cividis",
-                    method="update"
-                ),
+                )
             ])
         )
     ])
