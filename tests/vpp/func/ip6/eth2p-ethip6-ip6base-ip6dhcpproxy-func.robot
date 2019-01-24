@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -54,8 +54,8 @@
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | And Vpp Set If Ipv6 Addr | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And VPP Route Add | ${dut_node} | ff02::1:2 | 128 | ${NONE} | local
-| | ... | ${FALSE} | ${NONE}
+| | And VPP Route Add | ${dut_node} | ff02::1:2 | 128 | gateway=${NONE}
+| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
 | | ... | ${tg_to_dut_if2_mac}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}

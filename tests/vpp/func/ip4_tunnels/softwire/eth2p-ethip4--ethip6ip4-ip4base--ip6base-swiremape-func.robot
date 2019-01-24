@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -251,12 +251,12 @@
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
-| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
+| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
+| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 | | :FOR | ${domain_set} | IN | @{domain_sets}
@@ -273,7 +273,7 @@
 | | | And Send IPv4 UDP In IPv6 And Check Headers For Lightweight 4over6
 | | | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1}
 | | | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac} | ${ipv6_br} | ${ipv6}
-| | | ... | ${ipv4_outside} |  ${ipv4} | ${port} | ${tg_to_dut_if1_mac}
+| | | ... | ${ipv4_outside} | ${ipv4} | ${port} | ${tg_to_dut_if1_mac}
 | | | ... | ${dut_to_tg_if1_mac}
 
 
@@ -291,19 +291,19 @@
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
-| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
+| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
+| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 | | :FOR | ${domain_set} | IN | @{domain_sets}
 | | | When Map Add Domain | ${dut_node} | @{domain_set}
 | | ${ip_set_A}= | Get From List | ${ip_sets} | 0
 | | ${ip_set_B}= | Get From List | ${ip_sets} | 1
-| | ${ipv6_br}=  | Get From List | ${ip_set_A} | 3
+| | ${ipv6_br}= | Get From List | ${ip_set_A} | 3
 | | ${port_A}= | Get From List | ${ip_set_A} | 2
 | | ${port_B}= | Get From List | ${ip_set_B} | 2
 | | ${ipv6_A}= | Get From List | ${ip_set_A} | 1
@@ -312,7 +312,7 @@
 | | ${ipv4_B}= | Get From List | ${ip_set_B} | 0
 | | Then Send IPv4 UDP In IPv6 And Check Headers For Lightweight Hairpinning
 | | ... | ${tg_node} | ${tg_to_dut_if2}
-| | ... | ${tg_to_dut_if2}  | ${dut_to_tg_if2_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac}
 | | ... | ${ipv6_br} | ${ipv6_A}
 | | ... | ${ipv4_B} | ${ipv4_A}
 | | ... | ${port_B} | ${port_A}
@@ -337,12 +337,12 @@
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
-| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
+| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
+| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 | | :FOR | ${domain_set} | IN | @{domain_sets}
@@ -351,7 +351,7 @@
 | | ${ipv4_A}= | Get From List | ${ip_set_A} | 0
 | | ${ipv6_A}= | Get From List | ${ip_set_A} | 1
 | | ${icmp_id_A}= | Get From List | ${ip_set_A} | 2
-| | ${ipv6_br}=  | Get From List | ${ip_set_A} | 3
+| | ${ipv6_br}= | Get From List | ${ip_set_A} | 3
 | | Then Send IPv4 ICMP And Check Headers For Lightweight 4over6
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | ... | ${dut_to_tg_if1_mac} | ${ipv4_A} | ${ipv4_outside}
@@ -364,7 +364,7 @@
 | | ... | Original issue described in https://jira.fd.io/browse/VPP-312.
 | | ... | [Top] TG=DUT1.
 | | ... | [Cfg] IP address are set on interfaces, ip neighbor multiple times
-| | ... | [Ver] FIB is not in broken state.  The steps are add route, \
+| | ... | [Ver] FIB is not in broken state. The steps are add route, \
 | | ... | check with traffic then add same route
 | | ... | again and check with traffic script.
 | | Given Configure path in 2-node circular topology
@@ -373,12 +373,12 @@
 | | When Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
-| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | gateway=${dut_ip6_gw}
+| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
+| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 | | Then Check MAP Configuration With Traffic Script
@@ -387,12 +387,12 @@
 | | When Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
-| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | gateway=${dut_ip6_gw}
+| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
+| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 | | Then Check MAP Configuration With Traffic Script
@@ -422,12 +422,12 @@
 | | Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw} | ${dut_to_tg_if2}
-| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
+| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | Vpp Route Add | ${dut_node} | ${ipv4_outside} | 32 | ${dut_ip4_gw}
-| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | Vpp Route Add | ${dut_node} | ${ipv4_outside} | 32 | gateway=${dut_ip4_gw}
+| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 
@@ -451,7 +451,7 @@
 | | ... | ${psid_len} | ${ipv4_dst} | ${dst_port}
 | | ${ipv6_dst}= | Run Keyword If | "${expected_ipv6_dst}" == "${EMPTY}"
 | | ... | Set Variable | ${computed_ipv6_dst}
-| | ... | ELSE |  Set Variable | ${expected_ipv6_dst}
+| | ... | ELSE | Set Variable | ${expected_ipv6_dst}
 | | Run Keyword If | "${expected_ipv6_dst}" != "${EMPTY}"
 | | ... | IP Addresses Should Be Equal
 | | ... | ${computed_ipv6_dst} | ${expected_ipv6_dst}

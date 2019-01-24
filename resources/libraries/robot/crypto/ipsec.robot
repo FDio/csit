@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -99,8 +99,8 @@
 | | Set Interface Address | ${dut_node} | ${dut_lo} | ${dut_lo_ip4}
 | | ... | ${ip4_plen}
 | | dut1_v4.Set Arp | ${dut_if} | ${tg_if_ip4} | ${tg_if_mac}
-| | Vpp Route Add | ${dut_node} | ${tg_lo_ip4} | ${ip4_plen} | ${tg_if_ip4}
-| | ... | ${dut_if}
+| | Vpp Route Add | ${dut_node} | ${tg_lo_ip4} | ${ip4_plen}
+| | ... | gateway=${tg_if_ip4} | interface=${dut_if}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip4}
 | | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip4}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip4}
@@ -122,8 +122,8 @@
 | | VPP Set If IPv6 Addr | ${dut_node} | ${dut_lo} | ${dut_lo_ip6} | ${ip6_plen}
 | | Add IP Neighbor | ${dut_node} | ${dut_if} | ${tg_if_ip6} | ${tg_if_mac}
 | | Vpp All RA Suppress Link Layer | ${nodes}
-| | Vpp Route Add | ${dut_node} | ${tg_lo_ip6} | ${ip6_plen_rt} | ${tg_if_ip6}
-| | ... | ${dut_if}
+| | Vpp Route Add | ${dut_node} | ${tg_lo_ip6} | ${ip6_plen_rt}
+| | ... | gateway=${tg_if_ip6} | interface=${dut_if}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip6}
 | | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip6}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip6}

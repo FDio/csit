@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,7 +67,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -112,10 +112,10 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${non_drop_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -160,10 +160,10 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${non_drop_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -215,7 +215,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -256,7 +256,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -297,7 +297,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -339,7 +339,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -381,7 +381,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -392,7 +392,7 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP
-| | ...                                      | source + destination
+| | ... | source + destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
@@ -424,7 +424,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -466,7 +466,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -508,7 +508,7 @@
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
@@ -519,7 +519,7 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP
-| | ...                                      | source + destination
+| | ... | source + destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
@@ -560,7 +560,7 @@
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | src | ${tg_to_dut1_mac}
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP
-| | ...                                      | source + destination
+| | ... | source + destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}

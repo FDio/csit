@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -201,13 +201,13 @@
 | | :FOR | ${link} | IN | @{tg_dut1_links}
 | | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
 | | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut2} | ${net} | ${prefix} | ${dut1_if_addr}
-| | | ... | ${dut2_if}
+| | | Vpp Route Add | ${dut2} | ${net} | ${prefix} | gateway=${dut1_if_addr}
+| | | ... | interface=${dut2_if}
 | | :FOR | ${link} | IN | @{tg_dut2_links}
 | | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
 | | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | ${dut2_if_addr}
-| | | ... | ${dut1_if}
+| | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | gateway=${dut2_if_addr}
+| | | ... | interface=${dut1_if}
 
 | Configure IPv6 forwarding in circular topology
 | | [Documentation]
@@ -321,10 +321,12 @@
 | | ...
 | | Run Keyword Unless | '${remote_host1_ip6}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut_node} | ${remote_host1_ip6}
-| | ... | ${remote_host_ip6_prefix} | ${tg_if1_ip6} | ${dut_to_tg_if1}
+| | ... | ${remote_host_ip6_prefix} | gateway=${tg_if1_ip6}
+| | ... | interface=${dut_to_tg_if1}
 | | Run Keyword Unless | '${remote_host2_ip6}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut_node} | ${remote_host2_ip6}
-| | ... | ${remote_host_ip6_prefix} | ${tg_if2_ip6} | ${dut_to_tg_if2}
+| | ... | ${remote_host_ip6_prefix} | gateway=${tg_if2_ip6}
+| | ... | interface=${dut_to_tg_if2}
 
 | Configure IPv6 forwarding in 3-node circular topology
 | | [Documentation]
@@ -387,19 +389,23 @@
 | | ... | ${dut_tg_ip6_prefix}
 | | ...
 | | Vpp Route Add | ${dut1_node} | ${tg_if2_ip6} | ${dut_tg_ip6_prefix}
-| | ... | ${dut2_if1_ip6} | ${dut1_to_dut2}
+| | ... | gateway=${dut2_if1_ip6} | interface=${dut1_to_dut2}
 | | Vpp Route Add | ${dut2_node} | ${tg_if1_ip6} | ${dut_tg_ip6_prefix}
-| | ... | ${dut1_if2_ip6} | ${dut2_to_dut1}
+| | ... | gateway=${dut1_if2_ip6} | interface=${dut2_to_dut1}
 | | ...
 | | Run Keyword Unless | '${remote_host1_ip6}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1_node} | ${remote_host1_ip6}
-| | ... | ${remote_host_ip6_prefix} | ${tg_if1_ip6} | ${dut1_to_tg}
+| | ... | ${remote_host_ip6_prefix} | gateway=${tg_if1_ip6}
+| | ... | interface=${dut1_to_tg}
 | | Run Keyword Unless | '${remote_host2_ip6}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1_node} | ${remote_host2_ip6}
-| | ... | ${remote_host_ip6_prefix} | ${dut2_if1_ip6} | ${dut1_to_dut2}
+| | ... | ${remote_host_ip6_prefix} | gateway=${dut2_if1_ip6}
+| | ... | interface=${dut1_to_dut2}
 | | Run Keyword Unless | '${remote_host1_ip6}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut2_node} | ${remote_host1_ip6}
-| | ... | ${remote_host_ip6_prefix} | ${dut1_if2_ip6} | ${dut2_to_dut1}
+| | ... | ${remote_host_ip6_prefix} | gateway=${dut1_if2_ip6}
+| | ... | interface=${dut2_to_dut1}
 | | Run Keyword Unless | '${remote_host2_ip6}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut2_node} | ${remote_host2_ip6}
-| | ... | ${remote_host_ip6_prefix} | ${tg_if2_ip6} | ${dut2_to_tg}
+| | ... | ${remote_host_ip6_prefix} | gateway=${tg_if2_ip6}
+| | ... | interface=${dut2_to_tg}
