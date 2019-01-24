@@ -1148,9 +1148,9 @@ def plot_service_density_heatmap(plot, input_data):
             if vals[key_c][key_n]["vals"]:
                 vals[key_c][key_n]["nr"] = len(vals[key_c][key_n]["vals"])
                 vals[key_c][key_n]["mean"] = \
-                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 2)
+                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 1)
                 vals[key_c][key_n]["stdev"] = \
-                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 2)
+                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 1)
     txt_nodes = list(set(txt_nodes))
 
     txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
@@ -1159,21 +1159,38 @@ def plot_service_density_heatmap(plot, input_data):
     chains = [i + 1 for i in range(len(txt_chains))]
     nodes = [i + 1 for i in range(len(txt_nodes))]
 
+    z_max = 0.0
+    z_min = 1000000.0
     data = [list() for _ in range(len(chains))]
     for c in chains:
         for n in nodes:
             try:
                 val = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean"]
+                z_max = val if val > z_max else z_max
+                z_min = val if val < z_min else z_min
             except (KeyError, IndexError):
                 val = None
             data[c - 1].append(val)
+
+    # Colorscales:
+    my_green = [[0.0, 'rgb(198, 235, 217)'],
+                [z_min/z_max, 'rgb(198, 235, 217)'],
+                [1.0, 'rgb(38, 115, 77)']]
+
+    my_blue = [[0.0, 'rgb(236, 242, 248)'],
+               [z_min/z_max, 'rgb(217, 230, 242)'],
+               [1.0, 'rgb(51, 102, 153)']]
+
+    my_grey = [[0.0, 'rgb(230, 230, 230)'],
+               [z_min/z_max, 'rgb(217, 217, 217)'],
+               [1.0, 'rgb(102, 102, 102)']]
 
     hovertext = list()
     annotations = list()
 
     text = ("{name}<br>"
-            "No. of Samples: {nr}<br>"
-            "Throughput: {val}<br>"
+            "No. of Runs: {nr}<br>"
+            "Throughput: {val}Mpps<br>"
             "Stdev: {stdev}")
 
     for c in range(len(txt_chains)):
@@ -1213,7 +1230,7 @@ def plot_service_density_heatmap(plot, input_data):
                          ),
                      ),
                      showscale=True,
-                     colorscale="Reds",
+                     colorscale=my_green,
                      text=hovertext,
                      hoverinfo="text")
     ]
@@ -1288,80 +1305,20 @@ def plot_service_density_heatmap(plot, input_data):
             direction='up',
             buttons=list([
                 dict(
-                    args=[{"colorscale": "Reds", "reversescale": False}],
-                    label="Red",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Blues", "reversescale": True}],
-                    label="Blue",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Greys", "reversescale": True}],
-                    label="Grey",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Greens", "reversescale": True}],
+                    args=[{"colorscale": [my_green, ], "reversescale": False}],
                     label="Green",
                     method="update"
                 ),
                 dict(
-                    args=[{"colorscale": "RdBu", "reversescale": False}],
-                    label="RedBlue",
+                    args=[{"colorscale": [my_blue, ], "reversescale": False}],
+                    label="Blue",
                     method="update"
                 ),
                 dict(
-                    args=[{"colorscale": "Picnic", "reversescale": False}],
-                    label="Picnic",
+                    args=[{"colorscale": [my_grey, ], "reversescale": False}],
+                    label="Grey",
                     method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Rainbow", "reversescale": False}],
-                    label="Rainbow",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Portland", "reversescale": False}],
-                    label="Portland",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Jet", "reversescale": False}],
-                    label="Jet",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Hot", "reversescale": True}],
-                    label="Hot",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Blackbody", "reversescale": True}],
-                    label="Blackbody",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Earth", "reversescale": True}],
-                    label="Earth",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Electric", "reversescale": True}],
-                    label="Electric",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Viridis", "reversescale": True}],
-                    label="Viridis",
-                    method="update"
-                ),
-                dict(
-                    args=[{"colorscale": "Cividis", "reversescale": True}],
-                    label="Cividis",
-                    method="update"
-                ),
+                )
             ])
         )
     ])
